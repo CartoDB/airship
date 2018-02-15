@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render renders with gap param 1`] = `
+<div
+  className="css-y7w61i"
+/>
+`;
+
+exports[`render renders with strings 1`] = `
+<div
+  className="css-l96mez"
+/>
+`;
+
+exports[`render renders with width param 1`] = `
+<div
+  className="css-ljyc2r"
+/>
+`;
+
+exports[`render renders without crashing 1`] = `
+<div
+  className="css-1tvblke"
+/>
+`;
