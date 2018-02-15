@@ -1,0 +1,1 @@
+Components let you split the UI into independent, reusable pieces, and think about each piece in isolation. Airship uses styled-components which allows you to write actual CSS code to style your components.
