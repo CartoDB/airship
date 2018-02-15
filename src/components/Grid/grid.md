@@ -1,4 +1,4 @@
-React layout component based on CSS Grid Layout and built with [emotion](https://github.com/emotion-js/emotion)
+React layout component based on CSS Grid Layout and built with [styled-components](https://www.styled-components.com)
 
 ```js
 <Grid width={320} gap={20}>

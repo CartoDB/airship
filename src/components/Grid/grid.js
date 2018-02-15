@@ -1,17 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { css } from 'emotion';
+import styled from 'styled-components';
 
 const px = (n) =>
   typeof n === 'number' ? n + 'px' : n.indexOf('px') >= 0 ? n : n + 'px';
 
-const width = (props) => ({
-  gridTemplateColumns: `repeat(auto-fit, minmax(${px(props.width)}, 1fr))`
-});
-
-const gap = (props) => ({
-  gridGap: px(props.gap)
-});
+const width = (props) => `repeat(auto-fit, minmax(${px(props.width)}, 1fr))`;
+const gap = (props) => px(props.gap);
 
 const align = (props) =>
   props.align
@@ -21,14 +16,14 @@ const align = (props) =>
     : null;
 
 const Grid = (props) => {
-  const styles = css({
-    display: 'grid',
-    ...width(props),
-    ...gap(props),
-    ...align(props)
-  });
+  const Styled = styled.div`
+    display: grid;
+    grid-template-columns: ${width(props)};
+    grid-gap: ${gap(props)};
+    align-items: ${align(props)};
+  `;
 
-  return <div className={styles}>{props.children}</div>;
+  return <Styled>{props.children}</Styled>;
 };
 
 Grid.propTypes = {
