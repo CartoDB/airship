@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import Base from './base';
 
 const Basic = styled.h1`
-  font-family: 'Roboto', 'sans-serif';
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
