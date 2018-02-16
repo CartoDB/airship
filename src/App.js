@@ -1,5 +1,13 @@
 import React, { Component } from 'react';
-import { Grid, Jumbo, Display, Title, Subheader, Text } from './components';
+import {
+  Grid,
+  Jumbo,
+  Display,
+  Title,
+  Subheader,
+  Text,
+  Caption
+} from './components';
 
 class App extends Component {
   render() {
@@ -15,6 +23,12 @@ class App extends Component {
 
         <Jumbo>I'm thinking two circus clowns dancing. You?</Jumbo>
         <Jumbo as="h2">I'm a Jumbo h2</Jumbo>
+        <Jumbo as="h2" font="mono">
+          I'm a Jumbo h2 mono
+        </Jumbo>
+        <Jumbo as="h2" weight="medium">
+          I'm a Jumbo h2 medium
+        </Jumbo>
         <Jumbo as="h3" color="#ff9900">
           I'm a Jumbo h3
         </Jumbo>
@@ -32,9 +46,15 @@ class App extends Component {
         <Title as="h3" color="#ff9900">
           I'm a Title h3
         </Title>
+        <Title as="h3" weight="medium">
+          I'm a Title h3
+        </Title>
 
         <Subheader>I'm thinking two circus clowns dancing. You?</Subheader>
         <Subheader as="h2">I'm a Subheader h2</Subheader>
+        <Subheader as="h2" font="mono">
+          I'm a Subheader h2 mono
+        </Subheader>
         <Subheader as="h3" color="#ff9900">
           I'm a Subheader h3
         </Subheader>
@@ -42,6 +62,17 @@ class App extends Component {
         <Text>I'm thinking two circus clowns dancing. You?</Text>
         <Text as="div">I'm a Text div</Text>
         <Text color="#ff9900">I'm a Text colored</Text>
+        <Text as="div" font="mono">
+          I'm a Text div mono
+        </Text>
+
+        <Caption as="span">I'm a Caption span</Caption>
+        <Caption font="mono" color="skyblue">
+          I'm a Caption mono as span
+        </Caption>
+        <Caption as="div" weight="medium" color="skyblue">
+          I'm a Caption medium
+        </Caption>
       </div>
     );
   }
