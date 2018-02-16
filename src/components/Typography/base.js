@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 const getFont = (props) => {
   return props.font && props.font === 'mono'
@@ -13,15 +14,12 @@ const getWeight = (props) => {
   return props.weight ? (props.weight === 'medium' ? 500 : 400) : null;
 };
 
-const BaseText = (props) => {
-  const { as, basic } = props;
-  return (as ? basic.withComponent(as) : basic).extend`
-    color: ${props.color};
-    margin: ${props.margin || 0};
-    font-family: ${getFont(props)};
-    font-weight: ${getWeight(props)};
-  `;
-};
+const BaseText = styled.div`
+  color: ${(props) => props.color};
+  margin: ${(props) => props.margin || 0};
+  font-family: ${(props) => getFont(props)};
+  font-weight: ${(props) => getWeight(props)};
+`;
 
 BaseText.propTypes = {
   as: PropTypes.oneOf(['p', 'span', 'div', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6']),

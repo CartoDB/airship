@@ -1,22 +1,16 @@
 import React from 'react';
-import styled from 'styled-components';
 import Base from './base';
 import _ from 'lodash';
 
-const Basic = styled.h1`
-  font-weight: 300;
-  font-size: 72px;
-  line-height: 80px;
-`;
-
 const Jumbo = (props) => {
-  const extended = Object.assign(
-    {},
-    { basic: Basic },
-    _.omit(props, 'font', 'weight')
-  );
-  const Content = Base(extended);
-  return <Content>{props.children}</Content>;
+  const { as } = props;
+  const extended = _.omit(props, 'font', 'weight');
+  const Text = Base.withComponent(as || 'h1').extend`
+    font-weight: 300;
+    font-size: 72px;
+    line-height: 80px;
+  `;
+  return <Text {...extended}>{props.children}</Text>;
 };
 
 export default Jumbo;

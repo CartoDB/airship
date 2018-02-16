@@ -21,7 +21,9 @@ class App extends Component {
           <div>Column</div>
         </Grid>
 
-        <Jumbo>I'm thinking two circus clowns dancing. You?</Jumbo>
+        <Jumbo margin="0 0 20px">
+          I'm thinking two circus clowns dancing. You?
+        </Jumbo>
         <Jumbo as="h2">I'm a Jumbo h2</Jumbo>
         <Jumbo as="h2" font="mono">
           I'm a Jumbo h2 mono
