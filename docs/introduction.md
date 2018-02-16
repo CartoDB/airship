@@ -13,7 +13,8 @@ npm install airship --save
 Here is a quick example to get you started, it's all you need:
 
 ```jsx static
-import { render } from 'preact';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Button } from 'airship';
 
 function App() {
@@ -24,5 +25,5 @@ function App() {
   );
 }
 
-render(<App />, document.querySelector('#app'));
+ReactDOM.render(<App />, document.querySelector('#app'));
 ```
