@@ -13,7 +13,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Grid width={480} gap={20} align="center">
+        <Grid width={300} gap={20} align="center">
           <div>Column</div>
           <div>Column</div>
           <div>Column</div>

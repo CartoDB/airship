@@ -8,12 +8,7 @@ const px = (n) =>
 const width = (props) => `repeat(auto-fit, minmax(${px(props.width)}, 1fr))`;
 const gap = (props) => px(props.gap);
 
-const align = (props) =>
-  props.align
-    ? {
-        alignItems: props.align
-      }
-    : null;
+const align = (props) => (props.align ? props.align : null);
 
 const Grid = (props) => {
   const Styled = styled.div`
