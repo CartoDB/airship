@@ -1,6 +1,5 @@
 import React from 'react';
 import Base from './base';
-import _ from 'lodash';
 
 const Subheader = (props) => {
   const { as } = props;
