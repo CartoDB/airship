@@ -5,3 +5,5 @@ export { default as Title } from './Typography/title';
 export { default as Subheader } from './Typography/subheader';
 export { default as Text } from './Typography/text';
 export { default as Caption } from './Typography/caption';
+export { default as Button } from './Button/button';
+export { default as PlusIcon } from './Icons/plus';

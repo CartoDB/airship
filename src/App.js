@@ -6,7 +6,9 @@ import {
   Title,
   Subheader,
   Text,
-  Caption
+  Caption,
+  Button,
+  PlusIcon
 } from './components';
 
 class App extends Component {
@@ -78,6 +80,63 @@ class App extends Component {
         <Caption as="div" weight="medium" color="skyblue">
           I'm a Caption medium
         </Caption>
+
+        <div style={{ marginLeft: '10px' }}>
+          <h3>Button text only</h3>
+          <Button>Button</Button>
+          <Button large>Button large</Button>
+          <Button small>Button small</Button>
+
+          <h3>Button icon + text</h3>
+          <Button>
+            <PlusIcon />
+            Button
+          </Button>
+          <Button large>
+            <PlusIcon />
+            Button
+          </Button>
+          <Button small>
+            <PlusIcon />
+            Button
+          </Button>
+
+          <h3>Button icon only</h3>
+          <Button>
+            <PlusIcon />
+          </Button>
+          <Button large>
+            <PlusIcon />
+          </Button>
+
+          <h3>Button secondary</h3>
+          <Button secondary>Button</Button>
+          <Button secondary large>
+            Button large
+          </Button>
+          <Button secondary large>
+            <PlusIcon />
+            Button large
+          </Button>
+          <Button secondary large disabled>
+            <PlusIcon />
+            Button large
+          </Button>
+          <Button secondary small>
+            Button small
+          </Button>
+
+          <h3>Button borderless</h3>
+          <Button borderless>Button</Button>
+          <Button borderless large>
+            Button large
+          </Button>
+          <Button borderless small>
+            Button small
+          </Button>
+
+          <PlusIcon />
+        </div>
       </div>
     );
   }
