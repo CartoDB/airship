@@ -13,7 +13,7 @@
     "styled-components": "^3.1.6"
   },
   "devDependencies": {
-    "react-styleguidist": "^6.2.5",
+    "catalog": "^3.2.4",
     "react-test-renderer": "^16.2.0"
   },
   "scripts": {
@@ -21,7 +21,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "styleguide": "styleguidist server",
-    "styleguide:build": "styleguidist build"
+    "styleguide": "catalog start docs",
+    "styleguide:build": "catalog build",
+    "styleguide:help": "catalog help"
   }
 }

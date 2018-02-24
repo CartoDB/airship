@@ -1,7 +1,7 @@
 React layout component based on CSS Grid Layout and built with [styled-components](https://www.styled-components.com)
 
-```js
-<Grid width={320} gap={20}>
+```react
+<Grid width={240} gap={20}>
   <div className="Column" />
   <div className="Column" />
   <div className="Column" />
@@ -22,7 +22,7 @@ React layout component based on CSS Grid Layout and built with [styled-component
 
 Sets the width at which child elements will break into columns. Pass a number for pixel values or a string for any other valid CSS length.
 
-```jsx static
+```code
 <Grid width={512} />
 ```
 
@@ -30,13 +30,17 @@ Sets the width at which child elements will break into columns. Pass a number fo
 
 Sets the gutter (grid-gap) between columns. Pass a number for pixel values or a string for any other valid CSS length.
 
-```jsx static
+```code
 <Grid gap={16} />
 ```
 
-**align** (string)
+### **align** (string)
 
 Sets align-items to control child element alignment.
+
+```code
+<Grid gap={16} align="center" />
+```
 
 ### Browser Support
 

@@ -11,7 +11,7 @@ const getWeight = (props) => {
   if (props.font === 'mono') {
     return 400;
   }
-  return props.weight ? (props.weight === 'medium' ? 500 : 400) : null;
+  return props.weight ? (props.weight === 'medium' ? 500 : 400) : 400;
 };
 
 const BaseText = styled.div`

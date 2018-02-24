@@ -54,6 +54,9 @@ class App extends Component {
 
         <Subheader>I'm thinking two circus clowns dancing. You?</Subheader>
         <Subheader as="h2">I'm a Subheader h2</Subheader>
+        <Subheader as="h2" weight="medium">
+          I'm a Subheader h2
+        </Subheader>
         <Subheader as="h2" font="mono">
           I'm a Subheader h2 mono
         </Subheader>
