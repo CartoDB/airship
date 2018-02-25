@@ -9,8 +9,7 @@ import {
   Caption,
   Button,
   PlusIcon,
-  Tabs,
-  Tabpanel
+  Tabs
 } from './components';
 
 class App extends Component {
@@ -141,8 +140,8 @@ class App extends Component {
         </div>
         <div>
           <Tabs selected={1}>
-            <Tabpanel label="wadus">Hola</Tabpanel>
-            <Tabpanel label="world">Mundo</Tabpanel>
+            <Tabs.Panel label="wadus">Hola</Tabs.Panel>
+            <Tabs.Panel label="world">Mundo</Tabs.Panel>
           </Tabs>
         </div>
       </div>

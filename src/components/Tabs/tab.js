@@ -1,23 +1,47 @@
 import React, { Component } from 'react';
-import TabNavigation from './tab-navigation';
-
+import styled from 'styled-components';
+import { colors } from '../../constants';
 /*
   <Tabs>
-    <Tabpanel label="wadus">
+    <Tabs.Panel label="wadus">
       Hola
-    </Tabpanel>
-    <Tabpanel label="world">
+    </Tabs.Panel>
+    <Tabs.Panel label="world">
       Mundo
-    </Tabpanel>
+    </Tabs.Panel>
   </Tabs>
 */
 
+const StyledList = styled.ul`
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+`;
+
+const StyledButton = styled.button`
+  border: 0;
+  background-color: ${colors.white};
+`;
+
+const Tabpanel = ({ children, selected }) => {
+  return selected ? <div>{children}</div> : null;
+};
+
 class Tabs extends Component {
+  static defaultProps = {
+    selected: 0
+  };
+  initialState = {
+    selected: this.props.selected
+  };
+  state = this.initialState;
+
+  static Panel = Tabpanel;
+
   constructor(props) {
     super(props);
-    const { selected } = props;
     this.navigation = this.buildNavigation();
-    this.state = { selected: selected || 0 };
   }
 
   buildNavigation() {
@@ -43,11 +67,17 @@ class Tabs extends Component {
 
     return (
       <div>
-        <TabNavigation
-          selected={selected}
-          labels={this.navigation}
-          clickHandler={this.onClick}
-        />
+        <StyledList>
+          {this.navigation.map((label, index) => {
+            return (
+              <li key={label}>
+                <StyledButton onClick={e => this.onClick(e, label)}>
+                  {label}
+                </StyledButton>
+              </li>
+            );
+          })}
+        </StyledList>
         {React.Children.map(children, (child, i) => {
           return React.cloneElement(child, {
             selected: i === selected

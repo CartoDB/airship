@@ -8,4 +8,3 @@ export { default as Caption } from './Typography/caption';
 export { default as Button } from './Button/button';
 export { default as PlusIcon } from './Icons/plus';
 export { default as Tabs } from './Tabs/tab';
-export { default as Tabpanel } from './Tabs/tabpanel';
