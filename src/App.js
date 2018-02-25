@@ -8,7 +8,9 @@ import {
   Text,
   Caption,
   Button,
-  PlusIcon
+  PlusIcon,
+  Tabs,
+  Tabpanel
 } from './components';
 
 class App extends Component {
@@ -136,6 +138,12 @@ class App extends Component {
           </Button>
 
           <PlusIcon />
+        </div>
+        <div>
+          <Tabs selected={1}>
+            <Tabpanel label="wadus">Hola</Tabpanel>
+            <Tabpanel label="world">Mundo</Tabpanel>
+          </Tabs>
         </div>
       </div>
     );
