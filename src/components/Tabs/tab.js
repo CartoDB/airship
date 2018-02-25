@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { colors } from '../../constants';
 /*
@@ -26,6 +27,10 @@ const StyledButton = styled.button`
 
 const Tabpanel = ({ children, selected }) => {
   return selected ? <div>{children}</div> : null;
+};
+
+Tabpanel.propTypes = {
+  label: PropTypes.string.isRequired
 };
 
 class Tabs extends Component {
