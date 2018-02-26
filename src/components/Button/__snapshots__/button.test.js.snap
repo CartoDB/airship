@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render renders borderless button 1`] = `
+<button
+  className="sc-bdVaJa hnIDro"
+  data-component="Button"
+>
+  <span>
+    Button
+  </span>
+</button>
+`;
+
+exports[`render renders secondary button 1`] = `
+<button
+  className="sc-bdVaJa goQRGJ"
+  data-component="Button"
+>
+  <span>
+    Button
+  </span>
+</button>
+`;
+
+exports[`render renders with large param 1`] = `
+<button
+  className="sc-bdVaJa ebxUwj"
+  data-component="Button"
+>
+  <span>
+    Button
+  </span>
+</button>
+`;
+
+exports[`render renders with small param 1`] = `
+<button
+  className="sc-bdVaJa kJPoys"
+  data-component="Button"
+>
+  <span>
+    Button
+  </span>
+</button>
+`;
+
+exports[`render renders without crashing 1`] = `
+<button
+  className="sc-bdVaJa dnpCnf"
+  data-component="Button"
+>
+  <span>
+    Button
+  </span>
+</button>
+`;

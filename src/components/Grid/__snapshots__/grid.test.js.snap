@@ -2,24 +2,24 @@
 
 exports[`render renders with gap param 1`] = `
 <div
-  className="css-y7w61i"
+  className="sc-htpNat dHlViD"
 />
 `;
 
 exports[`render renders with strings 1`] = `
 <div
-  className="css-l96mez"
+  className="sc-bxivhb eplySp"
 />
 `;
 
 exports[`render renders with width param 1`] = `
 <div
-  className="css-ljyc2r"
+  className="sc-bwzfXH eUKrTX"
 />
 `;
 
 exports[`render renders without crashing 1`] = `
 <div
-  className="css-1tvblke"
+  className="sc-bdVaJa hBXCpH"
 />
 `;
