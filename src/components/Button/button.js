@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import { darken, lighten } from 'polished';
 import { colors } from '../../constants';
 
@@ -130,4 +131,12 @@ class Button extends Component {
     );
   }
 }
+
+Button.propTypes = {
+  large: PropTypes.bool,
+  small: PropTypes.bool,
+  secondary: PropTypes.bool,
+  borderless: PropTypes.bool
+};
+
 export default Button;
