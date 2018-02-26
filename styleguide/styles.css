@@ -2,3 +2,7 @@
   padding: 10px;
   background-color: skyblue;
 }
+
+[data-component='Button'] + * {
+  margin-top: 10px;
+}

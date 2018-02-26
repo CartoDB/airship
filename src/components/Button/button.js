@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { darken, lighten } from 'polished';
 import { colors } from '../../constants';
 
-const font = props => {
+const font = (props) => {
   let font = "500 12px/20px 'Roboto'";
   if (props.large) {
     font = "500 16px/24px 'Roboto'";
@@ -14,7 +14,7 @@ const font = props => {
   return font;
 };
 
-const padding = props => {
+const padding = (props) => {
   let padding = '6px 12px';
   if (props.large) {
     padding = '8px 16px';
@@ -25,39 +25,39 @@ const padding = props => {
   return padding;
 };
 
-const background = props => {
+const background = (props) => {
   return !!props.borderless || !!props.secondary
     ? 'transparent'
     : colors.primaryColor;
 };
 
-const radius = props => {
+const radius = (props) => {
   return !!props.borderless ? 0 : '4px';
 };
 
-const color = props => {
+const color = (props) => {
   return !!props.borderless || !!props.secondary
     ? colors.primaryColor
     : colors.white;
 };
 
-const border = props => {
+const border = (props) => {
   return !!props.secondary ? `1px solid ${colors.primaryColor}` : 0;
 };
 
-const hover = props => {
+const hover = (props) => {
   return !!props.borderless || !!props.secondary
     ? lighten(0.45, colors.primaryColor)
     : darken(0.16, colors.primaryColor);
 };
 
-const focus = props => {
+const focus = (props) => {
   return !!props.borderless || !!props.secondary
     ? lighten(0.4, colors.primaryColor)
     : darken(0.24, colors.primaryColor);
 };
 
-const size = props => {
+const size = (props) => {
   return !!props.large ? 16 : 12;
 };
 
@@ -107,7 +107,7 @@ const StyledButton = styled.button`
 class Button extends Component {
   renderChildren() {
     const { props } = this;
-    return React.Children.map(props.children, child => {
+    return React.Children.map(props.children, (child) => {
       return typeof child === 'string' ? (
         <span>{child}</span>
       ) : (
@@ -123,7 +123,11 @@ class Button extends Component {
   }
 
   render() {
-    return <StyledButton {...this.props}>{this.renderChildren()}</StyledButton>;
+    return (
+      <StyledButton {...this.props} data-component="Button">
+        {this.renderChildren()}
+      </StyledButton>
+    );
   }
 }
 export default Button;

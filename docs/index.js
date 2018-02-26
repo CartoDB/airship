@@ -83,6 +83,15 @@ const pages = [
       },
       {
         imports: {
+          Button: require('../src/components/Button/button.js'),
+          PlusIcon: require('../src/components/Icons/plus.js')
+        },
+        path: '/components/button',
+        title: 'Button',
+        component: require('./components/button.md')
+      },
+      {
+        imports: {
           Grid: require('../src/components/Grid/grid.js')
         },
         path: '/components/grid',
