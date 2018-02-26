@@ -92,6 +92,14 @@ const pages = [
       },
       {
         imports: {
+          Tabs: require('../src/components/Tabs/tab.js')
+        },
+        path: '/components/tabs',
+        title: 'Tabs',
+        component: require('./components/tabs.md')
+      },
+      {
+        imports: {
           Grid: require('../src/components/Grid/grid.js')
         },
         path: '/components/grid',

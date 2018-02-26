@@ -1,6 +1,14 @@
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
 .Column {
   padding: 10px;
   background-color: skyblue;
+}
+
+.Panel {
+  padding: 20px 10px;
 }
 
 [data-component='Button'] + * {
