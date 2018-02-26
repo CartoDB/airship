@@ -93,6 +93,16 @@ const pages = [
       },
       {
         imports: {
+          ButtonGroup: require('../src/components/Button/button-group.js'),
+          Button: require('../src/components/Button/button.js'),
+          PlusIcon: require('../src/components/Icons/plus.js')
+        },
+        path: '/components/button-group',
+        title: 'Button Group',
+        component: require('./components/button-group.md')
+      },
+      {
+        imports: {
           Tabs: require('../src/components/Tabs/tab.js')
         },
         path: '/components/tabs',

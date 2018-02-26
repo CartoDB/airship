@@ -33,7 +33,10 @@ const background = (props) => {
 };
 
 const radius = (props) => {
-  return !!props.borderless ? 0 : '4px';
+  const { radius } = props;
+  return radius != null && typeof radius === 'number'
+    ? `${props.radius}px`
+    : '4px';
 };
 
 const color = (props) => {
@@ -94,10 +97,8 @@ const StyledButton = styled.button`
     color: ${color};
   }
 
-  svg {
-    &:only-child {
-      margin: 0 -6px;
-    }
+  .button-media {
+    margin: 0 -6px;
   }
 
   svg + * {
@@ -107,25 +108,28 @@ const StyledButton = styled.button`
 
 class Button extends Component {
   renderChildren() {
-    const { props } = this;
-    return React.Children.map(props.children, (child) => {
+    const { children, grouped = false, ...others } = this.props;
+    const onlyChild = React.Children.count(children) === 1;
+
+    return React.Children.map(children, (child) => {
+      // what if it's not svg?
       return typeof child === 'string' ? (
         <span>{child}</span>
       ) : (
-        // what if it's not svg?
         React.cloneElement(child, {
-          className: 'button-media',
-          color: color(props),
-          width: size(props),
-          height: size(props)
+          className: onlyChild && !grouped ? 'button-media' : '',
+          color: color(others),
+          width: size(others),
+          height: size(others)
         })
       );
     });
   }
 
   render() {
+    const { children, ...other } = this.props;
     return (
-      <StyledButton {...this.props} data-component="Button">
+      <StyledButton {...other} data-component="Button">
         {this.renderChildren()}
       </StyledButton>
     );
@@ -136,7 +140,9 @@ Button.propTypes = {
   large: PropTypes.bool,
   small: PropTypes.bool,
   secondary: PropTypes.bool,
-  borderless: PropTypes.bool
+  borderless: PropTypes.bool,
+  radius: PropTypes.number,
+  grouped: PropTypes.bool
 };
 
 export default Button;

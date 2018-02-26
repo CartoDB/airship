@@ -8,6 +8,7 @@ import {
   Text,
   Caption,
   Button,
+  ButtonGroup,
   PlusIcon,
   SearchIcon,
   PointIcon,
@@ -113,6 +114,7 @@ class App extends Component {
           <Button large>
             <PlusIcon />
           </Button>
+          <Button large>Large</Button>
           <h3>Button secondary</h3>
           <Button secondary>Button</Button>
           <Button secondary large>
@@ -137,15 +139,35 @@ class App extends Component {
           <Button borderless small>
             Button small
           </Button>
-          <div>
-            <PlusIcon />
-            <SearchIcon />
-            <PointIcon />
-            <LeftArrowIcon />
-            <RightArrowIcon />
-            <TopArrowIcon />
-            <BottomArrowIcon />
+        </div>
+        <div>
+          <div style={{ padding: '10px' }}>
+            <ButtonGroup>
+              <Button>
+                <PlusIcon />
+              </Button>
+              <Button>Mundo</Button>
+              <Button>Happy</Button>
+            </ButtonGroup>
           </div>
+          <div style={{ padding: '10px' }}>
+            <ButtonGroup secondary>
+              <Button>
+                <PlusIcon />
+              </Button>
+              <Button>Mundo</Button>
+              <Button>Happy</Button>
+            </ButtonGroup>
+          </div>
+        </div>
+        <div>
+          <PlusIcon />
+          <SearchIcon />
+          <PointIcon />
+          <LeftArrowIcon />
+          <RightArrowIcon />
+          <TopArrowIcon />
+          <BottomArrowIcon />
         </div>
         <div>
           <Tabs selected={1}>

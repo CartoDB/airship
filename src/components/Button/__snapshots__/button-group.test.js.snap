@@ -1,0 +1,111 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render renders secondary button 1`] = `
+<ul
+  className="sc-bdVaJa gSsUbY"
+  data-component="ButtonGroup"
+>
+  <li
+    className="sc-bwzfXH bzMfEv"
+  >
+    <button
+      className="sc-htpNat iDnVUB"
+      data-component="Button"
+      radius={0}
+    >
+      <svg
+        className=""
+        fill="#1785FB"
+        height={12}
+        viewBox="0 0 15 15"
+        width={12}
+      >
+        <polygon
+          points="0.020904541 7.00476178 7.01217651 7.00476178 7.06573917 0.0133888789 8.00093254 0.0133888789 8.00093254 7.00476178 15.0067139 7.00476178 15.0067139 8.00007932 8.00093254 8.00007932 8.00093254 14.9849872 7.01217651 14.9849872 7.01217651 8.00007932 0.020904541 8.00007932"
+        />
+      </svg>
+    </button>
+  </li>
+  <li
+    className="sc-bwzfXH bzMfEv"
+  >
+    <button
+      className="sc-htpNat iDnVUB"
+      data-component="Button"
+      radius={0}
+    >
+      <span>
+        Mundo
+      </span>
+    </button>
+  </li>
+  <li
+    className="sc-bwzfXH bzMfEv"
+  >
+    <button
+      className="sc-htpNat iDnVUB"
+      data-component="Button"
+      radius={0}
+    >
+      <span>
+        Happy
+      </span>
+    </button>
+  </li>
+</ul>
+`;
+
+exports[`render renders without crashing 1`] = `
+<ul
+  className="sc-bdVaJa gSsUbY"
+  data-component="ButtonGroup"
+>
+  <li
+    className="sc-bwzfXH bzMfEv"
+  >
+    <button
+      className="sc-htpNat jdpIlN"
+      data-component="Button"
+      radius={0}
+    >
+      <svg
+        className=""
+        fill="#fff"
+        height={12}
+        viewBox="0 0 15 15"
+        width={12}
+      >
+        <polygon
+          points="0.020904541 7.00476178 7.01217651 7.00476178 7.06573917 0.0133888789 8.00093254 0.0133888789 8.00093254 7.00476178 15.0067139 7.00476178 15.0067139 8.00007932 8.00093254 8.00007932 8.00093254 14.9849872 7.01217651 14.9849872 7.01217651 8.00007932 0.020904541 8.00007932"
+        />
+      </svg>
+    </button>
+  </li>
+  <li
+    className="sc-bwzfXH bzMfEv"
+  >
+    <button
+      className="sc-htpNat jdpIlN"
+      data-component="Button"
+      radius={0}
+    >
+      <span>
+        Mundo
+      </span>
+    </button>
+  </li>
+  <li
+    className="sc-bwzfXH bzMfEv"
+  >
+    <button
+      className="sc-htpNat jdpIlN"
+      data-component="Button"
+      radius={0}
+    >
+      <span>
+        Happy
+      </span>
+    </button>
+  </li>
+</ul>
+`;

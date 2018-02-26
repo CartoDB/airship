@@ -6,6 +6,7 @@ export { default as Subheader } from './Typography/subheader';
 export { default as Text } from './Typography/text';
 export { default as Caption } from './Typography/caption';
 export { default as Button } from './Button/button';
+export { default as ButtonGroup } from './Button/button-group';
 export { default as PlusIcon } from './Icons/plus';
 export { default as SearchIcon } from './Icons/search';
 export { default as PointIcon } from './Icons/point';

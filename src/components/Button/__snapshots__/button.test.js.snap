@@ -2,7 +2,7 @@
 
 exports[`render renders borderless button 1`] = `
 <button
-  className="sc-bdVaJa hnIDro"
+  className="sc-bdVaJa eoQimV"
   data-component="Button"
 >
   <span>
@@ -13,7 +13,7 @@ exports[`render renders borderless button 1`] = `
 
 exports[`render renders secondary button 1`] = `
 <button
-  className="sc-bdVaJa goQRGJ"
+  className="sc-bdVaJa kVLEda"
   data-component="Button"
 >
   <span>
@@ -24,7 +24,7 @@ exports[`render renders secondary button 1`] = `
 
 exports[`render renders with large param 1`] = `
 <button
-  className="sc-bdVaJa ebxUwj"
+  className="sc-bdVaJa bxFJbT"
   data-component="Button"
 >
   <span>
@@ -35,7 +35,7 @@ exports[`render renders with large param 1`] = `
 
 exports[`render renders with small param 1`] = `
 <button
-  className="sc-bdVaJa kJPoys"
+  className="sc-bdVaJa kGjXAd"
   data-component="Button"
 >
   <span>
@@ -46,7 +46,7 @@ exports[`render renders with small param 1`] = `
 
 exports[`render renders without crashing 1`] = `
 <button
-  className="sc-bdVaJa dnpCnf"
+  className="sc-bdVaJa ikTBSR"
   data-component="Button"
 >
   <span>
