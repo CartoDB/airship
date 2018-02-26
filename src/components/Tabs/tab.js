@@ -13,16 +13,46 @@ import { colors } from '../../constants';
   </Tabs>
 */
 
+const font = (props) => {
+  let font = "400 12px/20px 'Roboto'";
+  if (props.large) {
+    font = "400 16px/24px 'Roboto'";
+  }
+  return font;
+};
+
+const shadow = (props) => {
+  return props.large ? '-4px' : '-2px';
+};
+
 const StyledList = styled.ul`
   list-style: none;
   display: flex;
   margin: 0;
   padding: 0;
+  box-shadow: inset 0 -1px 0 0 ${colors.grey};
 `;
 
 const StyledButton = styled.button`
   border: 0;
-  background-color: ${colors.white};
+  background-color: transparent;
+  color: ${colors.primaryColor};
+  font: ${font};
+  padding: 8px;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    box-shadow: inset 0 ${shadow} 0 0 ${colors.complementaryColor};
+  }
+
+  &.is-selected,
+  &.is-selected:hover {
+    box-shadow: inset 0 ${shadow} 0 0 ${colors.tabLinkSelected};
+    color: ${colors.tabLinkSelected};
+  }
 `;
 
 const Tabpanel = ({ children, selected }) => {
@@ -49,34 +79,42 @@ class Tabs extends Component {
     this.navigation = this.buildNavigation();
   }
 
-  buildNavigation() {
-    const { children } = this.props;
-    return React.Children.map(children, (child, i) => {
-      return child.props.label;
-    });
+  componentDidMount() {
+    const { selected } = this.props;
+
+    if (typeof selected === 'string') {
+      this.setSelected(selected);
+    }
   }
 
-  onClick = (e, label) => {
+  buildNavigation() {
+    const { children } = this.props;
+    return React.Children.map(children, (child) => child.props.label);
+  }
+
+  setSelected = (label) => {
     const index = this.navigation.indexOf(label);
-    this.setState(state => {
-      return {
-        ...state,
-        selected: index
-      };
+    this.setState((state) => {
+      return { ...state, selected: index };
     });
   };
 
   render() {
     const { selected } = this.state;
-    const { children } = this.props;
+    const { children, large } = this.props;
 
     return (
       <div>
         <StyledList>
           {this.navigation.map((label, index) => {
+            const css = selected === index ? 'is-selected' : '';
             return (
               <li key={label}>
-                <StyledButton onClick={e => this.onClick(e, label)}>
+                <StyledButton
+                  className={css}
+                  onClick={(e) => this.setSelected(label)}
+                  large={large}
+                >
                   {label}
                 </StyledButton>
               </li>
@@ -92,5 +130,10 @@ class Tabs extends Component {
     );
   }
 }
+
+Tabs.propTypes = {
+  large: PropTypes.bool,
+  selected: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+};
 
 export default Tabs;

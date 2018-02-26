@@ -1,0 +1,113 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render renders with large param 1`] = `
+<div>
+  <ul
+    className="sc-bdVaJa eLvrGR"
+  >
+    <li>
+      <button
+        className="is-selected sc-bwzfXH jEjPnu"
+        onClick={[Function]}
+      >
+        wadus
+      </button>
+    </li>
+    <li>
+      <button
+        className="sc-bwzfXH jEjPnu"
+        onClick={[Function]}
+      >
+        world
+      </button>
+    </li>
+  </ul>
+  <div>
+    Hola
+  </div>
+</div>
+`;
+
+exports[`render renders with selected as number 1`] = `
+<div>
+  <ul
+    className="sc-bdVaJa eLvrGR"
+  >
+    <li>
+      <button
+        className="sc-bwzfXH gOikWb"
+        onClick={[Function]}
+      >
+        wadus
+      </button>
+    </li>
+    <li>
+      <button
+        className="is-selected sc-bwzfXH gOikWb"
+        onClick={[Function]}
+      >
+        world
+      </button>
+    </li>
+  </ul>
+  <div>
+    Mundo
+  </div>
+</div>
+`;
+
+exports[`render renders with selected as string 1`] = `
+<div>
+  <ul
+    className="sc-bdVaJa eLvrGR"
+  >
+    <li>
+      <button
+        className="sc-bwzfXH gOikWb"
+        onClick={[Function]}
+      >
+        wadus
+      </button>
+    </li>
+    <li>
+      <button
+        className="is-selected sc-bwzfXH gOikWb"
+        onClick={[Function]}
+      >
+        world
+      </button>
+    </li>
+  </ul>
+  <div>
+    Mundo
+  </div>
+</div>
+`;
+
+exports[`render renders without crashing 1`] = `
+<div>
+  <ul
+    className="sc-bdVaJa eLvrGR"
+  >
+    <li>
+      <button
+        className="is-selected sc-bwzfXH gOikWb"
+        onClick={[Function]}
+      >
+        wadus
+      </button>
+    </li>
+    <li>
+      <button
+        className="sc-bwzfXH gOikWb"
+        onClick={[Function]}
+      >
+        world
+      </button>
+    </li>
+  </ul>
+  <div>
+    Hola
+  </div>
+</div>
+`;

@@ -144,6 +144,20 @@ class App extends Component {
             <Tabs.Panel label="world">Mundo</Tabs.Panel>
           </Tabs>
         </div>
+
+        <div>
+          <Tabs selected="world">
+            <Tabs.Panel label="wadus">Hola</Tabs.Panel>
+            <Tabs.Panel label="world">Mundo</Tabs.Panel>
+          </Tabs>
+        </div>
+
+        <div>
+          <Tabs large>
+            <Tabs.Panel label="wadus">Hola</Tabs.Panel>
+            <Tabs.Panel label="world">Mundo</Tabs.Panel>
+          </Tabs>
+        </div>
       </div>
     );
   }
