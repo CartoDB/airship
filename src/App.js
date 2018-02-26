@@ -9,6 +9,12 @@ import {
   Caption,
   Button,
   PlusIcon,
+  SearchIcon,
+  PointIcon,
+  LeftArrowIcon,
+  RightArrowIcon,
+  TopArrowIcon,
+  BottomArrowIcon,
   Tabs
 } from './components';
 
@@ -87,7 +93,6 @@ class App extends Component {
           <Button>Button</Button>
           <Button large>Button large</Button>
           <Button small>Button small</Button>
-
           <h3>Button icon + text</h3>
           <Button>
             <PlusIcon />
@@ -101,7 +106,6 @@ class App extends Component {
             <PlusIcon />
             Button
           </Button>
-
           <h3>Button icon only</h3>
           <Button>
             <PlusIcon />
@@ -109,7 +113,6 @@ class App extends Component {
           <Button large>
             <PlusIcon />
           </Button>
-
           <h3>Button secondary</h3>
           <Button secondary>Button</Button>
           <Button secondary large>
@@ -126,7 +129,6 @@ class App extends Component {
           <Button secondary small>
             Button small
           </Button>
-
           <h3>Button borderless</h3>
           <Button borderless>Button</Button>
           <Button borderless large>
@@ -135,8 +137,15 @@ class App extends Component {
           <Button borderless small>
             Button small
           </Button>
-
-          <PlusIcon />
+          <div>
+            <PlusIcon />
+            <SearchIcon />
+            <PointIcon />
+            <LeftArrowIcon />
+            <RightArrowIcon />
+            <TopArrowIcon />
+            <BottomArrowIcon />
+          </div>
         </div>
         <div>
           <Tabs selected={1}>
