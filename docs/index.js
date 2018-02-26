@@ -15,6 +15,7 @@ import css from '../styleguide/styles.css';
 
 const pages = [
   { path: '/', title: 'Introduction', component: require('./introduction.md') },
+  { path: '/colors', title: 'Colors', component: require('./colors.md') },
   {
     title: 'Typography',
     pages: [
