@@ -14,4 +14,6 @@ export { default as LeftArrowIcon } from './Icons/left-arrow';
 export { default as RightArrowIcon } from './Icons/right-arrow';
 export { default as TopArrowIcon } from './Icons/top-arrow';
 export { default as BottomArrowIcon } from './Icons/bottom-arrow';
+export { default as ChevronIcon } from './Icons/chevron';
 export { default as Tabs } from './Tabs/tab';
+export { default as Dropdown } from './Dropdown/dropdown';

@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render renders without crashing 1`] = `
+<div
+  className="sc-bZQynM iMWVsx"
+  data-component="Dropdown"
+>
+  <div
+    className="sc-bdVaJa inEeIq"
+    data-component="Dropdown.Trigger"
+    onClick={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+  >
+    Click me
+  </div>
+</div>
+`;

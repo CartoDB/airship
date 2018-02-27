@@ -50,8 +50,8 @@ const StyledButton = styled.button`
 
   &.is-selected,
   &.is-selected:hover {
-    box-shadow: inset 0 ${shadow} 0 0 ${colors.tabLinkSelected};
-    color: ${colors.tabLinkSelected};
+    box-shadow: inset 0 ${shadow} 0 0 ${colors.black};
+    color: ${colors.black};
   }
 `;
 

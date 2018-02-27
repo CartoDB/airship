@@ -4,10 +4,6 @@ import PropTypes from 'prop-types';
 import { darken } from 'polished';
 import { colors } from '../../constants';
 
-const border = (props) => {
-  return !!props.secondary ? `1px solid ${colors.primaryColor}` : 0;
-};
-
 const separator = (props) => {
   return `1px solid ${
     !!props.secondary ? colors.primaryColor : darken(0.16, colors.primaryColor)

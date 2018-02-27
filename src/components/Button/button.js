@@ -61,10 +61,6 @@ const focus = (props) => {
     : darken(0.24, colors.primaryColor);
 };
 
-const size = (props) => {
-  return !!props.large ? 16 : 12;
-};
-
 const StyledButton = styled.button`
   border: ${border};
   box-shadow: none;
@@ -89,6 +85,7 @@ const StyledButton = styled.button`
 
   &:focus {
     background: ${focus};
+    outline: none;
   }
 
   &.is-disabled:hover,
@@ -118,9 +115,7 @@ class Button extends Component {
       ) : (
         React.cloneElement(child, {
           className: onlyChild && !grouped ? 'button-media' : '',
-          color: color(others),
-          width: size(others),
-          height: size(others)
+          color: color(others)
         })
       );
     });

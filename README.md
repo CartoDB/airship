@@ -19,3 +19,9 @@ Carto solutions framework using a super minimal and basic boilerplate.
 ## Before you start
 
 * Install [NodeJs](https://nodejs.org/en/)
+
+## Polyfills
+
+Airship uses some features you probably want to polyfill. In order to browser support, please check out the libraries below and include them as part of your build:
+
+* closest: https://github.com/jonathantneal/closest

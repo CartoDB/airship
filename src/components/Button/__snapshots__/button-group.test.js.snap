@@ -6,19 +6,19 @@ exports[`render renders secondary button 1`] = `
   data-component="ButtonGroup"
 >
   <li
-    className="sc-bwzfXH bzMfEv"
+    className="sc-bwzfXH jCbKet"
   >
     <button
-      className="sc-htpNat iDnVUB"
+      className="sc-htpNat gleKSh"
       data-component="Button"
       radius={0}
     >
       <svg
         className=""
         fill="#1785FB"
-        height={12}
+        height={16}
         viewBox="0 0 15 15"
-        width={12}
+        width={16}
       >
         <polygon
           points="0.020904541 7.00476178 7.01217651 7.00476178 7.06573917 0.0133888789 8.00093254 0.0133888789 8.00093254 7.00476178 15.0067139 7.00476178 15.0067139 8.00007932 8.00093254 8.00007932 8.00093254 14.9849872 7.01217651 14.9849872 7.01217651 8.00007932 0.020904541 8.00007932"
@@ -27,10 +27,10 @@ exports[`render renders secondary button 1`] = `
     </button>
   </li>
   <li
-    className="sc-bwzfXH bzMfEv"
+    className="sc-bwzfXH jCbKet"
   >
     <button
-      className="sc-htpNat iDnVUB"
+      className="sc-htpNat gleKSh"
       data-component="Button"
       radius={0}
     >
@@ -40,10 +40,10 @@ exports[`render renders secondary button 1`] = `
     </button>
   </li>
   <li
-    className="sc-bwzfXH bzMfEv"
+    className="sc-bwzfXH jCbKet"
   >
     <button
-      className="sc-htpNat iDnVUB"
+      className="sc-htpNat gleKSh"
       data-component="Button"
       radius={0}
     >
@@ -64,16 +64,16 @@ exports[`render renders without crashing 1`] = `
     className="sc-bwzfXH bzMfEv"
   >
     <button
-      className="sc-htpNat jdpIlN"
+      className="sc-htpNat iWIRKN"
       data-component="Button"
       radius={0}
     >
       <svg
         className=""
         fill="#fff"
-        height={12}
+        height={16}
         viewBox="0 0 15 15"
-        width={12}
+        width={16}
       >
         <polygon
           points="0.020904541 7.00476178 7.01217651 7.00476178 7.06573917 0.0133888789 8.00093254 0.0133888789 8.00093254 7.00476178 15.0067139 7.00476178 15.0067139 8.00007932 8.00093254 8.00007932 8.00093254 14.9849872 7.01217651 14.9849872 7.01217651 8.00007932 0.020904541 8.00007932"
@@ -85,7 +85,7 @@ exports[`render renders without crashing 1`] = `
     className="sc-bwzfXH bzMfEv"
   >
     <button
-      className="sc-htpNat jdpIlN"
+      className="sc-htpNat iWIRKN"
       data-component="Button"
       radius={0}
     >
@@ -98,7 +98,7 @@ exports[`render renders without crashing 1`] = `
     className="sc-bwzfXH bzMfEv"
   >
     <button
-      className="sc-htpNat jdpIlN"
+      className="sc-htpNat iWIRKN"
       data-component="Button"
       radius={0}
     >
