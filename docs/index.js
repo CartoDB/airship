@@ -111,6 +111,16 @@ const pages = [
       },
       {
         imports: {
+          Dropdown: require('../src/components/Dropdown/dropdown.js'),
+          Button: require('../src/components/Button/button.js'),
+          ChevronIcon: require('../src/components/Icons/chevron.js')
+        },
+        path: '/components/dropdown',
+        title: 'Dropdown',
+        component: require('./components/dropdown.md')
+      },
+      {
+        imports: {
           Grid: require('../src/components/Grid/grid.js')
         },
         path: '/components/grid',

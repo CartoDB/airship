@@ -1,12 +1,51 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`render renders without crashing 1`] = `
-<div
-  className="sc-bZQynM iMWVsx"
+exports[`render as parameter 1`] = `
+.c1 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+.c0 {
+  position: relative;
+}
+
+<span
+  className="c0"
   data-component="Dropdown"
 >
   <div
-    className="sc-bdVaJa inEeIq"
+    className="c1"
+    data-component="Dropdown.Trigger"
+    onClick={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+  >
+    Click me
+  </div>
+</span>
+`;
+
+exports[`render renders without crashing 1`] = `
+.c1 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+.c0 {
+  position: relative;
+}
+
+<div
+  className="c0"
+  data-component="Dropdown"
+>
+  <div
+    className="c1"
     data-component="Dropdown.Trigger"
     onClick={[Function]}
     onMouseEnter={[Function]}

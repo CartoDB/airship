@@ -1,15 +1,88 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`render renders secondary button 1`] = `
+.c0 {
+  border: 1px solid #1785FB;
+  border-radius: 4px;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.c1 {
+  border-right: 1px solid #1785FB;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c1:last-child {
+  border-right: 0;
+}
+
+.c2 {
+  border: 0;
+  box-shadow: none;
+  border-radius: 0px;
+  background: transparent;
+  color: #1785FB;
+  cursor: pointer;
+  padding: 6px 12px;
+  font: 500 12px/20px 'Roboto';
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c2[disabled],
+.c2.is-disabled {
+  opacity: 0.24;
+  cursor: default;
+}
+
+.c2:hover {
+  background: #f9fcff;
+}
+
+.c2:focus {
+  background: #e0eefe;
+  outline: none;
+}
+
+.c2.is-disabled:hover,
+.c2.is-disabled:focus {
+  background: transparent;
+  color: #1785FB;
+}
+
+.c2 .button-media {
+  margin: 0 -6px;
+}
+
+.c2 svg + * {
+  margin-left: 8px;
+}
+
 <ul
-  className="sc-bdVaJa gSsUbY"
+  className="c0"
   data-component="ButtonGroup"
 >
   <li
-    className="sc-bwzfXH jCbKet"
+    className="c1"
   >
     <button
-      className="sc-htpNat gleKSh"
+      className="c2"
       data-component="Button"
       radius={0}
     >
@@ -27,10 +100,10 @@ exports[`render renders secondary button 1`] = `
     </button>
   </li>
   <li
-    className="sc-bwzfXH jCbKet"
+    className="c1"
   >
     <button
-      className="sc-htpNat gleKSh"
+      className="c2"
       data-component="Button"
       radius={0}
     >
@@ -40,10 +113,10 @@ exports[`render renders secondary button 1`] = `
     </button>
   </li>
   <li
-    className="sc-bwzfXH jCbKet"
+    className="c1"
   >
     <button
-      className="sc-htpNat gleKSh"
+      className="c2"
       data-component="Button"
       radius={0}
     >
@@ -56,15 +129,88 @@ exports[`render renders secondary button 1`] = `
 `;
 
 exports[`render renders without crashing 1`] = `
+.c0 {
+  border: 1px solid #1785FB;
+  border-radius: 4px;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.c1 {
+  border-right: 1px solid #035dbd;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c1:last-child {
+  border-right: 0;
+}
+
+.c2 {
+  border: 0;
+  box-shadow: none;
+  border-radius: 0px;
+  background: #1785FB;
+  color: #fff;
+  cursor: pointer;
+  padding: 6px 12px;
+  font: 500 12px/20px 'Roboto';
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c2[disabled],
+.c2.is-disabled {
+  opacity: 0.24;
+  cursor: default;
+}
+
+.c2:hover {
+  background: #035dbd;
+}
+
+.c2:focus {
+  background: #034995;
+  outline: none;
+}
+
+.c2.is-disabled:hover,
+.c2.is-disabled:focus {
+  background: #1785FB;
+  color: #fff;
+}
+
+.c2 .button-media {
+  margin: 0 -6px;
+}
+
+.c2 svg + * {
+  margin-left: 8px;
+}
+
 <ul
-  className="sc-bdVaJa gSsUbY"
+  className="c0"
   data-component="ButtonGroup"
 >
   <li
-    className="sc-bwzfXH bzMfEv"
+    className="c1"
   >
     <button
-      className="sc-htpNat iWIRKN"
+      className="c2"
       data-component="Button"
       radius={0}
     >
@@ -82,10 +228,10 @@ exports[`render renders without crashing 1`] = `
     </button>
   </li>
   <li
-    className="sc-bwzfXH bzMfEv"
+    className="c1"
   >
     <button
-      className="sc-htpNat iWIRKN"
+      className="c2"
       data-component="Button"
       radius={0}
     >
@@ -95,10 +241,10 @@ exports[`render renders without crashing 1`] = `
     </button>
   </li>
   <li
-    className="sc-bwzfXH bzMfEv"
+    className="c1"
   >
     <button
-      className="sc-htpNat iWIRKN"
+      className="c2"
       data-component="Button"
       radius={0}
     >

@@ -24,6 +24,24 @@ describe('render', () => {
     expect(tree).toMatchSnapshot();
   });
 
+  it('as parameter', () => {
+    const component = renderer.create(
+      <Dropdown as="span">
+        <Dropdown.Trigger>Click me</Dropdown.Trigger>
+        <Dropdown.Content>
+          <Dropdown.Menu>
+            <Dropdown.Item>All</Dropdown.Item>
+            <Dropdown.Item>Open</Dropdown.Item>
+            <Dropdown.Item>Fullfilled</Dropdown.Item>
+            <Dropdown.Item>Close</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown.Content>
+      </Dropdown>
+    );
+    let tree = component.toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
   it('click action', () => {
     const component = shallow(
       <Dropdown>

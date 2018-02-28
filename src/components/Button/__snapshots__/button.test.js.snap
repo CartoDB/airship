@@ -1,8 +1,56 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`render renders borderless button 1`] = `
+.c0 {
+  border: 0;
+  box-shadow: none;
+  border-radius: 4px;
+  background: transparent;
+  color: #1785FB;
+  cursor: pointer;
+  padding: 6px 12px;
+  font: 500 12px/20px 'Roboto';
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c0[disabled],
+.c0.is-disabled {
+  opacity: 0.24;
+  cursor: default;
+}
+
+.c0:hover {
+  background: #f9fcff;
+}
+
+.c0:focus {
+  background: #e0eefe;
+  outline: none;
+}
+
+.c0.is-disabled:hover,
+.c0.is-disabled:focus {
+  background: transparent;
+  color: #1785FB;
+}
+
+.c0 .button-media {
+  margin: 0 -6px;
+}
+
+.c0 svg + * {
+  margin-left: 8px;
+}
+
 <button
-  className="sc-bdVaJa hSmgSf"
+  className="c0"
   data-component="Button"
 >
   <span>
@@ -12,8 +60,56 @@ exports[`render renders borderless button 1`] = `
 `;
 
 exports[`render renders secondary button 1`] = `
+.c0 {
+  border: 1px solid #1785FB;
+  box-shadow: none;
+  border-radius: 4px;
+  background: transparent;
+  color: #1785FB;
+  cursor: pointer;
+  padding: 6px 12px;
+  font: 500 12px/20px 'Roboto';
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c0[disabled],
+.c0.is-disabled {
+  opacity: 0.24;
+  cursor: default;
+}
+
+.c0:hover {
+  background: #f9fcff;
+}
+
+.c0:focus {
+  background: #e0eefe;
+  outline: none;
+}
+
+.c0.is-disabled:hover,
+.c0.is-disabled:focus {
+  background: transparent;
+  color: #1785FB;
+}
+
+.c0 .button-media {
+  margin: 0 -6px;
+}
+
+.c0 svg + * {
+  margin-left: 8px;
+}
+
 <button
-  className="sc-bdVaJa gneWQO"
+  className="c0"
   data-component="Button"
 >
   <span>
@@ -23,8 +119,56 @@ exports[`render renders secondary button 1`] = `
 `;
 
 exports[`render renders with large param 1`] = `
+.c0 {
+  border: 0;
+  box-shadow: none;
+  border-radius: 4px;
+  background: #1785FB;
+  color: #fff;
+  cursor: pointer;
+  padding: 8px 16px;
+  font: 500 16px/24px 'Roboto';
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c0[disabled],
+.c0.is-disabled {
+  opacity: 0.24;
+  cursor: default;
+}
+
+.c0:hover {
+  background: #035dbd;
+}
+
+.c0:focus {
+  background: #034995;
+  outline: none;
+}
+
+.c0.is-disabled:hover,
+.c0.is-disabled:focus {
+  background: #1785FB;
+  color: #fff;
+}
+
+.c0 .button-media {
+  margin: 0 -6px;
+}
+
+.c0 svg + * {
+  margin-left: 8px;
+}
+
 <button
-  className="sc-bdVaJa PwUmn"
+  className="c0"
   data-component="Button"
 >
   <span>
@@ -34,8 +178,56 @@ exports[`render renders with large param 1`] = `
 `;
 
 exports[`render renders with small param 1`] = `
+.c0 {
+  border: 0;
+  box-shadow: none;
+  border-radius: 4px;
+  background: #1785FB;
+  color: #fff;
+  cursor: pointer;
+  padding: 6px 8px;
+  font: 400 10px/12px 'Roboto';
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c0[disabled],
+.c0.is-disabled {
+  opacity: 0.24;
+  cursor: default;
+}
+
+.c0:hover {
+  background: #035dbd;
+}
+
+.c0:focus {
+  background: #034995;
+  outline: none;
+}
+
+.c0.is-disabled:hover,
+.c0.is-disabled:focus {
+  background: #1785FB;
+  color: #fff;
+}
+
+.c0 .button-media {
+  margin: 0 -6px;
+}
+
+.c0 svg + * {
+  margin-left: 8px;
+}
+
 <button
-  className="sc-bdVaJa kssjaf"
+  className="c0"
   data-component="Button"
 >
   <span>
@@ -45,8 +237,56 @@ exports[`render renders with small param 1`] = `
 `;
 
 exports[`render renders without crashing 1`] = `
+.c0 {
+  border: 0;
+  box-shadow: none;
+  border-radius: 4px;
+  background: #1785FB;
+  color: #fff;
+  cursor: pointer;
+  padding: 6px 12px;
+  font: 500 12px/20px 'Roboto';
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c0[disabled],
+.c0.is-disabled {
+  opacity: 0.24;
+  cursor: default;
+}
+
+.c0:hover {
+  background: #035dbd;
+}
+
+.c0:focus {
+  background: #034995;
+  outline: none;
+}
+
+.c0.is-disabled:hover,
+.c0.is-disabled:focus {
+  background: #1785FB;
+  color: #fff;
+}
+
+.c0 .button-media {
+  margin: 0 -6px;
+}
+
+.c0 svg + * {
+  margin-left: 8px;
+}
+
 <button
-  className="sc-bdVaJa filjFa"
+  className="c0"
   data-component="Button"
 >
   <span>

@@ -1,13 +1,46 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`render renders with large param 1`] = `
+.c0 {
+  list-style: none;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  box-shadow: inset 0 -1px 0 0 #E2E6E3;
+}
+
+.c1 {
+  border: 0;
+  background-color: transparent;
+  color: #1785FB;
+  font: 400 16px/24px 'Roboto';
+  padding: 8px;
+}
+
+.c1:focus {
+  outline: none;
+}
+
+.c1:hover {
+  box-shadow: inset 0 -4px 0 0 #47DB99;
+}
+
+.c1.is-selected,
+.c1.is-selected:hover {
+  box-shadow: inset 0 -4px 0 0 #2C2C2C;
+  color: #2C2C2C;
+}
+
 <div>
   <ul
-    className="sc-bdVaJa eLvrGR"
+    className="c0"
   >
     <li>
       <button
-        className="is-selected sc-bwzfXH jEjPnu"
+        className="is-selected c1"
         onClick={[Function]}
       >
         wadus
@@ -15,7 +48,7 @@ exports[`render renders with large param 1`] = `
     </li>
     <li>
       <button
-        className="sc-bwzfXH jEjPnu"
+        className="c1"
         onClick={[Function]}
       >
         world
@@ -29,13 +62,46 @@ exports[`render renders with large param 1`] = `
 `;
 
 exports[`render renders with selected as number 1`] = `
+.c0 {
+  list-style: none;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  box-shadow: inset 0 -1px 0 0 #E2E6E3;
+}
+
+.c1 {
+  border: 0;
+  background-color: transparent;
+  color: #1785FB;
+  font: 400 12px/20px 'Roboto';
+  padding: 8px;
+}
+
+.c1:focus {
+  outline: none;
+}
+
+.c1:hover {
+  box-shadow: inset 0 -2px 0 0 #47DB99;
+}
+
+.c1.is-selected,
+.c1.is-selected:hover {
+  box-shadow: inset 0 -2px 0 0 #2C2C2C;
+  color: #2C2C2C;
+}
+
 <div>
   <ul
-    className="sc-bdVaJa eLvrGR"
+    className="c0"
   >
     <li>
       <button
-        className="sc-bwzfXH gOikWb"
+        className="c1"
         onClick={[Function]}
       >
         wadus
@@ -43,7 +109,7 @@ exports[`render renders with selected as number 1`] = `
     </li>
     <li>
       <button
-        className="is-selected sc-bwzfXH gOikWb"
+        className="is-selected c1"
         onClick={[Function]}
       >
         world
@@ -57,13 +123,46 @@ exports[`render renders with selected as number 1`] = `
 `;
 
 exports[`render renders with selected as string 1`] = `
+.c0 {
+  list-style: none;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  box-shadow: inset 0 -1px 0 0 #E2E6E3;
+}
+
+.c1 {
+  border: 0;
+  background-color: transparent;
+  color: #1785FB;
+  font: 400 12px/20px 'Roboto';
+  padding: 8px;
+}
+
+.c1:focus {
+  outline: none;
+}
+
+.c1:hover {
+  box-shadow: inset 0 -2px 0 0 #47DB99;
+}
+
+.c1.is-selected,
+.c1.is-selected:hover {
+  box-shadow: inset 0 -2px 0 0 #2C2C2C;
+  color: #2C2C2C;
+}
+
 <div>
   <ul
-    className="sc-bdVaJa eLvrGR"
+    className="c0"
   >
     <li>
       <button
-        className="sc-bwzfXH gOikWb"
+        className="c1"
         onClick={[Function]}
       >
         wadus
@@ -71,7 +170,7 @@ exports[`render renders with selected as string 1`] = `
     </li>
     <li>
       <button
-        className="is-selected sc-bwzfXH gOikWb"
+        className="is-selected c1"
         onClick={[Function]}
       >
         world
@@ -85,13 +184,46 @@ exports[`render renders with selected as string 1`] = `
 `;
 
 exports[`render renders without crashing 1`] = `
+.c0 {
+  list-style: none;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  box-shadow: inset 0 -1px 0 0 #E2E6E3;
+}
+
+.c1 {
+  border: 0;
+  background-color: transparent;
+  color: #1785FB;
+  font: 400 12px/20px 'Roboto';
+  padding: 8px;
+}
+
+.c1:focus {
+  outline: none;
+}
+
+.c1:hover {
+  box-shadow: inset 0 -2px 0 0 #47DB99;
+}
+
+.c1.is-selected,
+.c1.is-selected:hover {
+  box-shadow: inset 0 -2px 0 0 #2C2C2C;
+  color: #2C2C2C;
+}
+
 <div>
   <ul
-    className="sc-bdVaJa eLvrGR"
+    className="c0"
   >
     <li>
       <button
-        className="is-selected sc-bwzfXH gOikWb"
+        className="is-selected c1"
         onClick={[Function]}
       >
         wadus
@@ -99,7 +231,7 @@ exports[`render renders without crashing 1`] = `
     </li>
     <li>
       <button
-        className="sc-bwzfXH gOikWb"
+        className="c1"
         onClick={[Function]}
       >
         world
