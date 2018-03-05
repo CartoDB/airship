@@ -94,9 +94,15 @@ class Tabs extends Component {
 
   setSelected = (label) => {
     const index = this.navigation.indexOf(label);
-    this.setState((state) => {
-      return { ...state, selected: index };
-    });
+    const { onChange } = this.props;
+    this.setState(
+      (state) => {
+        return { ...state, selected: index };
+      },
+      () => {
+        onChange && onChange(this.state.selected);
+      }
+    );
   };
 
   render() {
@@ -133,7 +139,8 @@ class Tabs extends Component {
 
 Tabs.propTypes = {
   large: PropTypes.bool,
-  selected: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  selected: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  onChange: PropTypes.func
 };
 
 export default Tabs;
