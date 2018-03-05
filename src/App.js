@@ -290,6 +290,7 @@ class App extends Component {
         <div style={{ padding: '10px' }}>
           <Toggle htmlFor="wadus" onChange={(state) => console.log(state)} />
           <Toggle htmlFor="foo" checked />
+          <Toggle htmlFor="foone" disabled />
         </div>
       </div>
     );

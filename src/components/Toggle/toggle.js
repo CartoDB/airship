@@ -28,7 +28,7 @@ const StyledToggle = styled.div`
     box-sizing: border-box;
   }
 
-  > svg {
+  svg {
     opacity: 0;
     position: absolute;
     left: 4px;
@@ -37,11 +37,11 @@ const StyledToggle = styled.div`
     pointer-events: none;
   }
 
-  > input:checked ~ svg {
+  input:checked ~ svg {
     opacity: 1;
   }
 
-  > input {
+  input {
     border: 0;
     clip: rect(0 0 0 0);
     height: 1px;
@@ -52,7 +52,7 @@ const StyledToggle = styled.div`
     width: 1px;
   }
 
-  > input + label {
+  input + label {
     width: 32px;
     height: 16px;
     outline: 0;
@@ -65,7 +65,7 @@ const StyledToggle = styled.div`
     transition: all 0.4s ease;
   }
 
-  > input + label::after {
+  input + label::after {
     position: relative;
     display: block;
     content: '';
@@ -74,23 +74,33 @@ const StyledToggle = styled.div`
     top: 2px;
   }
 
-  > input + label::after {
+  input + label::after {
     border-radius: 50%;
     background: #fff;
     transition: all 0.2s ease;
     transform: translateX(2px);
   }
 
-  &:hover > input + label {
+  label:hover {
     background: ${colors.brand03};
   }
 
-  &:hover > input:checked + label,
-  > input:checked + label {
+  input[disabled] + label {
+    cursor: not-allowed;
+    background: ${colors.ui02};
+    box-shadow: inset 0 0 0 1px ${colors.ui03};
+  }
+
+  input[disabled] + label:after {
+    background: ${colors.ui04};
+  }
+
+  input:checked + label:hover,
+  input:checked + label {
     background: ${colors.brand01};
   }
 
-  > input:checked + label::after {
+  input:checked + label::after {
     transform: translateX(18px);
   }
 `;
@@ -102,22 +112,23 @@ class Toggle extends Component {
   };
 
   clickHandler = (e) => {
-    const { onChange } = this.props;
-    this.setState(
-      (state) => {
-        return {
-          ...state,
-          checked: !state.checked
-        };
-      },
-      () => {
-        onChange && onChange(this.state);
-      }
-    );
+    const { onChange, disabled } = this.props;
+    !disabled &&
+      this.setState(
+        (state) => {
+          return {
+            ...state,
+            checked: !state.checked
+          };
+        },
+        () => {
+          onChange && onChange(this.state);
+        }
+      );
   };
 
   render() {
-    const { htmlFor } = this.props;
+    const { htmlFor, disabled } = this.props;
     const { checked } = this.state;
 
     return (
@@ -126,6 +137,7 @@ class Toggle extends Component {
           <input
             id={htmlFor}
             type="checkbox"
+            disabled={disabled ? 'disabled' : null}
             checked={checked}
             onChange={this.clickHandler}
           />

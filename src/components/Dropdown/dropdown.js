@@ -25,25 +25,17 @@ const TriggerWrapper = styled.div`
 
 const DropdownTrigger = (props) => {
   const { children, ...other } = props;
-  // const Node = TriggerWrapper.withComponent(as);
   return <TriggerWrapper {...other}>{children}</TriggerWrapper>;
 };
-// DropdownTrigger.defaultProps = {
-//   as: 'div'
-// };
-// DropdownTrigger.propTypes = {
-//   as: PropTypes.oneOf(['div', 'span'])
-// };
+
 DropdownTrigger.displayName = 'Dropdown.Trigger';
 
 const DropdownContent = styled.div`
   background: ${colors.white};
   box-shadow: ${shadows.shadow8};
-  border-radius: 4px;
   display: inline-flex;
   left: 0;
   top: calc(100% + 5px);
-  overflow: hidden;
   position: absolute;
   z-index: ${z.dropdowns};
 `;
@@ -62,6 +54,7 @@ const StyledList = styled.ul`
 const StyledListItem = styled.li`
   border: 1px solid ${colors.grey};
   margin-top: -1px;
+  overflow: hidden;
 
   &:first-child {
     border-radius: 4px 4px 0 0;
