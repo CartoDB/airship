@@ -1,0 +1,28 @@
+/* colors */
+/* ui colors */
+/* type colors */
+/* support colors */
+/* other colors */
+.table {
+  border: 1px solid #D1D5D7;
+  width: 100%;
+  font: 400 12px/20px 'Roboto';
+  color: #2C2C2C; }
+  .table th {
+    font-weight: 600;
+    text-align: left;
+    background: #E2E6E3; }
+  .table th, .table td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #D1D5D7; }
+  .table tr:last-child td {
+    border-bottom: 0; }
+  .table tr:hover,
+  .table td:hover {
+    background: rgba(71, 219, 153, 0.16); }
+  .table.table--lines th, .table.table--lines td {
+    border-right: 1px solid #D1D5D7; }
+    .table.table--lines th:last-child, .table.table--lines td:last-child {
+      border-right: 0; }
+
+/*# sourceMappingURL=table.css.map */
