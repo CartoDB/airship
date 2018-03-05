@@ -1,5 +1,5 @@
 import React from 'react';
-import Tabs from './Tab';
+import Tabs from './tab';
 import renderer from 'react-test-renderer';
 
 describe('render', () => {

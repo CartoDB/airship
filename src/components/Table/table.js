@@ -29,7 +29,7 @@ import PropTypes from 'prop-types';
         <Table.Cell>Cell</Table.Cell>
       </Table.Row>
     </Table.Body>
-  <Table>
+  </Table>
 */
 
 const StyledTable = styled.table`
@@ -72,8 +72,13 @@ const Header = ({ children }) => {
   return <thead>{children}</thead>;
 };
 
-const HeaderCell = ({ children }) => {
-  return <th>{children}</th>;
+const HeaderCell = ({ children, ...props }) => {
+  return <th {...props}>{children}</th>;
+};
+
+HeaderCell.propTypes = {
+  colSpan: PropTypes.number,
+  rowSpan: PropTypes.number
 };
 
 const Body = ({ children }) => {
@@ -84,8 +89,13 @@ const Row = ({ children }) => {
   return <tr>{children}</tr>;
 };
 
-const Cell = ({ children }) => {
-  return <td>{children}</td>;
+const Cell = ({ children, ...props }) => {
+  return <td {...props}>{children}</td>;
+};
+
+Cell.propTypes = {
+  colSpan: PropTypes.number,
+  rowSpan: PropTypes.number
 };
 
 const Table = ({ children, lined }) => {
