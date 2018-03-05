@@ -103,6 +103,14 @@ const pages = [
       },
       {
         imports: {
+          Table: require('../src/components/Table/table.js')
+        },
+        path: '/components/table',
+        title: 'Table',
+        component: require('./components/table.md')
+      },
+      {
+        imports: {
           Tabs: require('../src/components/Tabs/tab.js')
         },
         path: '/components/tabs',

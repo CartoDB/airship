@@ -17,3 +17,4 @@ export { default as BottomArrowIcon } from './Icons/bottom-arrow';
 export { default as ChevronIcon } from './Icons/chevron';
 export { default as Tabs } from './Tabs/tab';
 export { default as Dropdown } from './Dropdown/dropdown';
+export { default as Table } from './Table/table';
