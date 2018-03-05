@@ -119,6 +119,14 @@ const pages = [
       },
       {
         imports: {
+          Toggle: require('../src/components/Toggle/toggle.js')
+        },
+        path: '/components/toggle',
+        title: 'Toggle',
+        component: require('./components/toggle.md')
+      },
+      {
+        imports: {
           Dropdown: require('../src/components/Dropdown/dropdown.js'),
           Button: require('../src/components/Button/button.js'),
           ChevronIcon: require('../src/components/Icons/chevron.js')

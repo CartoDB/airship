@@ -102,7 +102,7 @@ class Tabs extends Component {
         return { ...state, selected: index };
       },
       () => {
-        onChange && onChange(this.state.selected);
+        onChange && onChange(this.state);
       }
     );
   };

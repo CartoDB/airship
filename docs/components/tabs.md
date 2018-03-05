@@ -53,3 +53,18 @@ Using this prop you can pass the tab is selected initially. It accepts a number 
   </Tabs.Panel>
 </Tabs>
 ```
+
+#### **onChange** (function)
+
+Callback to be called when the tabs component changes its state:
+
+```react
+<Tabs large onChange={(state) => console.log(state)}>
+  <Tabs.Panel label="hello">
+    <div className='Panel'>Hola</div>
+  </Tabs.Panel>
+  <Tabs.Panel label="world">
+    <div className='Panel'>Mundo</div>
+  </Tabs.Panel>
+</Tabs>
+```
