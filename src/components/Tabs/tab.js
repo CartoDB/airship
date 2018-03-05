@@ -54,6 +54,7 @@ const StyledButton = styled.button`
     color: ${colors.black};
   }
 `;
+StyledButton.displayName = 'StyledButton';
 
 const Tabpanel = ({ children, selected }) => {
   return selected ? <div>{children}</div> : null;
@@ -62,6 +63,7 @@ const Tabpanel = ({ children, selected }) => {
 Tabpanel.propTypes = {
   label: PropTypes.string.isRequired
 };
+Tabpanel.displayName = 'Tabpanel';
 
 class Tabs extends Component {
   static defaultProps = {

@@ -1,6 +1,7 @@
 import React from 'react';
 import Tabs from './tab';
 import renderer from 'react-test-renderer';
+import { mount, shallow } from 'enzyme';
 
 describe('render', () => {
   it('renders without crashing', () => {
@@ -45,5 +46,19 @@ describe('render', () => {
     );
     let tree = component.toJSON();
     expect(tree).toMatchSnapshot();
+  });
+
+  it('should call callback when changed', () => {
+    const spy = jest.fn();
+    const component = shallow(
+      <Tabs selected="world" onChange={spy}>
+        <Tabs.Panel label="wadus">Hola</Tabs.Panel>
+        <Tabs.Panel label="world">Mundo</Tabs.Panel>
+      </Tabs>
+    );
+
+    const button = component.find('StyledButton').first();
+    button.simulate('click');
+    expect(spy).toHaveBeenCalled();
   });
 });

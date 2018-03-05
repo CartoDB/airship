@@ -94,6 +94,7 @@ const StyledToggle = styled.div`
     transform: translateX(18px);
   }
 `;
+StyledToggle.displayName = 'StyledToggle';
 
 class Toggle extends Component {
   state = {
