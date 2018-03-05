@@ -19,7 +19,8 @@ import {
   ChevronIcon,
   Tabs,
   Dropdown,
-  Table
+  Table,
+  Toggle
 } from './components';
 
 class App extends Component {
@@ -284,6 +285,11 @@ class App extends Component {
               </Table.Row>
             </Table.Body>
           </Table>
+        </div>
+
+        <div style={{ padding: '10px' }}>
+          <Toggle htmlFor="wadus" onChange={(state) => console.log(state)} />
+          <Toggle htmlFor="foo" checked />
         </div>
       </div>
     );
