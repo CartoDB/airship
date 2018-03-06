@@ -1,7 +1,7 @@
 Toggle component explanation here.
 
 ```react
-<Toggle htmlFor="foone" />
+<Toggle htmlFor="one" />
 ```
 
 ### Props
@@ -11,15 +11,23 @@ Toggle component explanation here.
 This property sets the node ID for label and input:
 
 ```react
-<Toggle htmlFor="fotwo" />
+<Toggle htmlFor="two" />
 ```
 
-#### **checked** (bolean)
+#### **checked** (boolean)
 
 Using this prop you can set the initial state as checked:
 
 ```react
-<Toggle htmlFor="fothree" checked />
+<Toggle htmlFor="three" checked />
+```
+
+#### **disabled** (boolean)
+
+Using this prop you can disable the toggle:
+
+```react
+<Toggle htmlFor="four" disabled />
 ```
 
 #### **onChange** (function)
@@ -27,5 +35,5 @@ Using this prop you can set the initial state as checked:
 Callback to be called when the toggle changes its state:
 
 ```react
-<Toggle htmlFor="fofour" checked onChange={state => console.log(state)} />
+<Toggle htmlFor="five" checked onChange={state => console.log(state)} />
 ```
