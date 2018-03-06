@@ -19,3 +19,4 @@ export { default as Tabs } from './Tabs/tab';
 export { default as Dropdown } from './Dropdown/dropdown';
 export { default as Table } from './Table/table';
 export { default as Toggle } from './Toggle/toggle';
+export { default as Dropshadow } from './Dropshadow/dropshadow';

@@ -20,7 +20,8 @@ import {
   Tabs,
   Dropdown,
   Table,
-  Toggle
+  Toggle,
+  Dropshadow
 } from './components';
 
 class App extends Component {
@@ -291,6 +292,24 @@ class App extends Component {
           <Toggle htmlFor="wadus" onChange={(state) => console.log(state)} />
           <Toggle htmlFor="foo" checked />
           <Toggle htmlFor="foone" disabled />
+        </div>
+
+        <div style={{ padding: '10px' }}>
+          <Dropshadow>
+            <div style={{ padding: '10px', background: '#fff' }}>Shadow 4</div>
+          </Dropshadow>
+        </div>
+
+        <div style={{ padding: '10px' }}>
+          <Dropshadow size={8}>
+            <div style={{ padding: '10px', background: '#fff' }}>Shadow 8</div>
+          </Dropshadow>
+        </div>
+
+        <div style={{ padding: '10px' }}>
+          <Dropshadow size={16}>
+            <div style={{ padding: '10px', background: '#fff' }}>Shadow 16</div>
+          </Dropshadow>
         </div>
       </div>
     );
