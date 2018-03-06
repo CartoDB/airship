@@ -142,6 +142,14 @@ const pages = [
         path: '/components/grid',
         title: 'Grid',
         component: require('./components/grid.md')
+      },
+      {
+        imports: {
+          Dropshadow: require('../src/components/Dropshadow/dropshadow.js')
+        },
+        path: '/components/dropshadow',
+        title: 'Dropshadow',
+        component: require('./components/dropshadow.md')
       }
     ]
   }
