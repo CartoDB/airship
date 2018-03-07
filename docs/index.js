@@ -11,7 +11,7 @@ import {
   Caption
 } from '../src/components';
 
-import css from '../styleguide/styles.css';
+import css from './styles.css';
 
 const pages = [
   { path: '/', title: 'Introduction', component: require('./introduction.md') },
