@@ -21,7 +21,8 @@ import {
   Dropdown,
   Table,
   Toggle,
-  Dropshadow
+  Dropshadow,
+  Range
 } from './components';
 
 class App extends Component {
@@ -310,6 +311,42 @@ class App extends Component {
           <Dropshadow size={16}>
             <div style={{ padding: '10px', background: '#fff' }}>Shadow 16</div>
           </Dropshadow>
+        </div>
+
+        <div style={{ padding: '10px' }}>
+          <Range
+            disabled
+            width={300}
+            maxValue={20}
+            minValue={0}
+            value={10}
+            onChangeStart={(value) => console.log('start', value)}
+            onChange={(value) => console.log(value)}
+            onChangeComplete={(value) => console.log('complete', value)}
+          />
+        </div>
+
+        <div style={{ padding: '10px' }}>
+          <Range
+            maxValue={30}
+            minValue={0}
+            value={{ min: 5, max: 10 }}
+            onChangeStart={(value) => console.log('start', value)}
+            onChange={(value) => console.log(value)}
+            onChangeComplete={(value) => console.log('complete', value)}
+          />
+        </div>
+
+        <div style={{ padding: '10px' }}>
+          <Range
+            draggable
+            maxValue={30}
+            minValue={0}
+            value={{ min: 5, max: 10 }}
+            onChangeStart={(value) => console.log('start', value)}
+            onChange={(value) => console.log(value)}
+            onChangeComplete={(value) => console.log('complete', value)}
+          />
         </div>
       </div>
     );

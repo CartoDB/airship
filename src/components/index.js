@@ -20,3 +20,4 @@ export { default as Dropdown } from './Dropdown/dropdown';
 export { default as Table } from './Table/table';
 export { default as Toggle } from './Toggle/toggle';
 export { default as Dropshadow } from './Dropshadow/dropshadow';
+export { default as Range } from './Range/range';
