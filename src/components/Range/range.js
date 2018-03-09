@@ -169,20 +169,6 @@ class Range extends Component {
     );
   }
 
-  incrementValue(key) {
-    const values = this.state.value;
-    const value = values[key] + this.props.step;
-
-    this.updateValue(key, value);
-  }
-
-  decrementValue(key) {
-    const values = this.state.value;
-    const value = values[key] - this.props.step;
-
-    this.updateValue(key, value);
-  }
-
   addDocumentMouseUpListener() {
     this.removeDocumentMouseUpListener();
     this.node.ownerDocument.addEventListener('mouseup', this.handleMouseUp);
@@ -396,6 +382,7 @@ class Range extends Component {
 
   render() {
     const { width, disabled, draggable } = this.props;
+    const isMultiValue = this.isMultiValue();
     const percentages = valueTransformer.getPercentagesFromValues(
       this.state.value,
       this.props.minValue,
@@ -413,7 +400,7 @@ class Range extends Component {
         onTouchStart={this.handleTouchStart}
       >
         <Track
-          draggable={draggable}
+          draggable={isMultiValue ? draggable : false}
           ref={(trackNode) => {
             this.trackNode = trackNode;
           }}

@@ -137,6 +137,14 @@ const pages = [
       },
       {
         imports: {
+          Range: require('../src/components/Range/range.js')
+        },
+        path: '/components/range',
+        title: 'Range',
+        component: require('./components/range.md')
+      },
+      {
+        imports: {
           Grid: require('../src/components/Grid/grid.js')
         },
         path: '/components/grid',

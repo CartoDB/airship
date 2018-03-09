@@ -96,9 +96,22 @@ The default increment/decrement of your component is 1. You can change that by s
 
 ```react
 <Range
+  draggable
   step={0.5}
   value={20}
   minValue={10}
+  maxValue={30}/>
+```
+
+#### **draggable** (boolean)
+
+If this property is set to true, and it has multiple value, you can drag the entire track.
+
+```react
+<Range
+  draggable
+  value={{ min: 5, max: 15 }}
+  minValue={0}
   maxValue={30}/>
 ```
 
