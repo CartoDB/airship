@@ -315,6 +315,14 @@ class App extends Component {
 
         <div style={{ padding: '10px' }}>
           <Range
+            onChangeStart={(value) => console.log('start', value)}
+            onChange={(value) => console.log(value)}
+            onChangeComplete={(value) => console.log('complete', value)}
+          />
+        </div>
+
+        <div style={{ padding: '10px' }}>
+          <Range
             disabled
             width={300}
             maxValue={20}
@@ -346,6 +354,16 @@ class App extends Component {
             onChangeStart={(value) => console.log('start', value)}
             onChange={(value) => console.log(value)}
             onChangeComplete={(value) => console.log('complete', value)}
+          />
+        </div>
+
+        <div style={{ padding: '10px' }}>
+          <Range
+            maxValue={30}
+            minValue={0}
+            value={5}
+            onChange={(value) => console.log(value)}
+            step={0.5}
           />
         </div>
       </div>

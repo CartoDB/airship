@@ -25,7 +25,10 @@ class Range extends Component {
   state = {
     value: this.isMultiValue()
       ? this.props.value
-      : { min: this.props.minValue, max: this.props.value }
+      : {
+          min: this.props.minValue,
+          max: this.props.value || this.props.minValue
+        }
   };
 
   constructor(props) {
@@ -430,12 +433,12 @@ Range.defaultProps = {
   disabled: false,
   maxValue: 10,
   minValue: 0,
+  value: 0,
   step: 1,
   width: 200
 };
 
 Range.propTypes = {
-  classNames: PropTypes.objectOf(PropTypes.string),
   disabled: PropTypes.bool,
   draggable: PropTypes.bool,
   formatLabel: PropTypes.func,
