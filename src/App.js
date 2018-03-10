@@ -16,7 +16,16 @@ import {
   RightArrowIcon,
   TopArrowIcon,
   BottomArrowIcon,
-  ChevronIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  MenuIcon,
+  CloseIcon,
+  CheckIcon,
+  PencilIcon,
+  HomeIcon,
+  InfoIcon,
   Tabs,
   Dropdown,
   Table,
@@ -174,6 +183,16 @@ class App extends Component {
           <RightArrowIcon />
           <TopArrowIcon />
           <BottomArrowIcon />
+          <ChevronDownIcon />
+          <ChevronUpIcon />
+          <ChevronLeftIcon />
+          <ChevronRightIcon />
+          <MenuIcon />
+          <CloseIcon />
+          <CheckIcon />
+          <PencilIcon />
+          <HomeIcon />
+          <InfoIcon />
         </div>
         <div>
           <Tabs selected={1}>
@@ -216,7 +235,7 @@ class App extends Component {
           <Dropdown action="over">
             <Dropdown.Trigger as="span">
               <Button borderless>
-                Hover me&nbsp;<ChevronIcon width={8} height={4} />
+                Hover me&nbsp;<ChevronDownIcon width={8} height={4} />
               </Button>
             </Dropdown.Trigger>
             <Dropdown.Content>
