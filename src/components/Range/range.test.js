@@ -38,6 +38,14 @@ describe('Range', () => {
     expect(tree).toMatchSnapshot();
   });
 
+  it('multiple sliders', () => {
+    const component = shallow(
+      <Range disabled value={{ min: 5, max: 15 }} minValue={10} maxValue={30} />
+    );
+
+    expect(component.find('Slider').length).toBe(2);
+  });
+
   it('onChange callback', () => {
     const spy = jest.fn();
     const component = renderer.create(
