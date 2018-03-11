@@ -1,5 +1,5 @@
 import React from 'react';
-import Grid from './Grid';
+import Grid from './grid';
 import renderer from 'react-test-renderer';
 
 describe('render', () => {

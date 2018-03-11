@@ -1,7 +1,7 @@
 import React from 'react';
 import Range from './range';
 import renderer from 'react-test-renderer';
-import { mount, shallow } from 'enzyme';
+import { mount } from 'enzyme';
 
 describe('Range', () => {
   it('renders without crashing', () => {
@@ -39,7 +39,7 @@ describe('Range', () => {
   });
 
   it('multiple sliders', () => {
-    const component = shallow(
+    const component = mount(
       <Range disabled value={{ min: 5, max: 15 }} minValue={10} maxValue={30} />
     );
 
