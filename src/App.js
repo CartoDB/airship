@@ -31,7 +31,8 @@ import {
   Table,
   Toggle,
   Dropshadow,
-  Range
+  Range,
+  Breadcrumb
 } from './components';
 
 class App extends Component {
@@ -240,7 +241,7 @@ class App extends Component {
             </Dropdown.Trigger>
             <Dropdown.Content>
               <Dropdown.Menu>
-                <Dropdown.Item onClick={(e) => console.log(e.target)}>
+                <Dropdown.Item onClick={e => console.log(e.target)}>
                   All
                 </Dropdown.Item>
                 <Dropdown.Item>Open</Dropdown.Item>
@@ -309,7 +310,7 @@ class App extends Component {
         </div>
 
         <div style={{ padding: '10px' }}>
-          <Toggle htmlFor="wadus" onChange={(state) => console.log(state)} />
+          <Toggle htmlFor="wadus" onChange={state => console.log(state)} />
           <Toggle htmlFor="foo" checked />
           <Toggle htmlFor="foone" disabled />
         </div>
@@ -334,9 +335,9 @@ class App extends Component {
 
         <div style={{ padding: '10px' }}>
           <Range
-            onChangeStart={(value) => console.log('start', value)}
-            onChange={(value) => console.log(value)}
-            onChangeComplete={(value) => console.log('complete', value)}
+            onChangeStart={value => console.log('start', value)}
+            onChange={value => console.log(value)}
+            onChangeComplete={value => console.log('complete', value)}
           />
         </div>
 
@@ -347,9 +348,9 @@ class App extends Component {
             maxValue={20}
             minValue={0}
             value={10}
-            onChangeStart={(value) => console.log('start', value)}
-            onChange={(value) => console.log(value)}
-            onChangeComplete={(value) => console.log('complete', value)}
+            onChangeStart={value => console.log('start', value)}
+            onChange={value => console.log(value)}
+            onChangeComplete={value => console.log('complete', value)}
           />
         </div>
 
@@ -358,9 +359,9 @@ class App extends Component {
             maxValue={30}
             minValue={0}
             value={{ min: 5, max: 10 }}
-            onChangeStart={(value) => console.log('start', value)}
-            onChange={(value) => console.log(value)}
-            onChangeComplete={(value) => console.log('complete', value)}
+            onChangeStart={value => console.log('start', value)}
+            onChange={value => console.log(value)}
+            onChangeComplete={value => console.log('complete', value)}
           />
         </div>
 
@@ -370,9 +371,9 @@ class App extends Component {
             maxValue={30}
             minValue={0}
             value={{ min: 5, max: 10 }}
-            onChangeStart={(value) => console.log('start', value)}
-            onChange={(value) => console.log(value)}
-            onChangeComplete={(value) => console.log('complete', value)}
+            onChangeStart={value => console.log('start', value)}
+            onChange={value => console.log(value)}
+            onChangeComplete={value => console.log('complete', value)}
           />
         </div>
 
@@ -381,9 +382,17 @@ class App extends Component {
             maxValue={30}
             minValue={0}
             value={5}
-            onChange={(value) => console.log(value)}
+            onChange={value => console.log(value)}
             step={0.5}
           />
+        </div>
+
+        <div style={{ padding: '10px' }}>
+          <Breadcrumb>
+            <Breadcrumb.Item path="/">Home</Breadcrumb.Item>
+            <Breadcrumb.Item path="/foo">Foo</Breadcrumb.Item>
+            <Breadcrumb.Item>Wadus</Breadcrumb.Item>
+          </Breadcrumb>
         </div>
       </div>
     );
