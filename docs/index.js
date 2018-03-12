@@ -161,6 +161,15 @@ const pages = [
       },
       {
         imports: {
+          Loading: require('../src/components/Loading/loading.js'),
+          Avatar: require('../src/components/Avatar/avatar.js')
+        },
+        path: '/components/avatar',
+        title: 'Avatar',
+        component: require('./components/avatar.md')
+      },
+      {
+        imports: {
           Grid: require('../src/components/Grid/grid.js')
         },
         path: '/components/grid',
