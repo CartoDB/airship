@@ -31,3 +31,4 @@ export { default as Toggle } from './Toggle/toggle';
 export { default as Dropshadow } from './Dropshadow/dropshadow';
 export { default as Range } from './Range/range';
 export { default as Breadcrumb } from './Breadcrumb/breadcrumb';
+export { default as Loading } from './Loading/loading';
