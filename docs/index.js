@@ -153,6 +153,14 @@ const pages = [
       },
       {
         imports: {
+          Loading: require('../src/components/Loading/loading.js')
+        },
+        path: '/components/loading',
+        title: 'Loading',
+        component: require('./components/loading.md')
+      },
+      {
+        imports: {
           Grid: require('../src/components/Grid/grid.js')
         },
         path: '/components/grid',
@@ -171,7 +179,15 @@ const pages = [
   }
 ];
 
+const theme = {
+  // Patterns
+  checkerboardPatternLight:
+    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII=',
+  checkerboardPatternDark:
+    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkWAsAALMAr6o4KHcAAAAASUVORK5CYII='
+};
+
 ReactDOM.render(
-  <Catalog title="Airship" pages={pages} />,
+  <Catalog title="Airship" pages={pages} theme={theme} />,
   document.getElementById('catalog')
 );
