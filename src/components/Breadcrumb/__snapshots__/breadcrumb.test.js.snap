@@ -27,13 +27,11 @@ exports[`render renders without crashing 1`] = `
 }
 
 .c1 a {
-  color: inherit;
-  -webkit-text-decoration: none;
+  color: #1785FB;
   text-decoration: none;
 }
 
 .c1 a:hover {
-  -webkit-text-decoration: underline;
   text-decoration: underline;
 }
 
