@@ -1,0 +1,109 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render renders with negative 1`] = `
+.c0 {
+  height: 16px;
+  width: 16px;
+}
+
+.c0 svg {
+  -webkit-animation: cZxgpV 2s linear infinite;
+  animation: cZxgpV 2s linear infinite;
+}
+
+.c0 circle {
+  stroke: rgba(255,255,255,1);
+  stroke-linecap: round;
+  -webkit-animation: kuSBtA 1.5s ease-in-out infinite;
+  animation: kuSBtA 1.5s ease-in-out infinite;
+  stroke-width: 4px;
+}
+
+<div
+  className="c0"
+  size={16}
+>
+  <svg
+    viewBox="0 0 50 50"
+  >
+    <circle
+      cx="25"
+      cy="25"
+      fill="none"
+      r="20"
+    />
+  </svg>
+</div>
+`;
+
+exports[`render renders with size 1`] = `
+.c0 {
+  height: 32px;
+  width: 32px;
+}
+
+.c0 svg {
+  -webkit-animation: cZxgpV 2s linear infinite;
+  animation: cZxgpV 2s linear infinite;
+}
+
+.c0 circle {
+  stroke: rgba(44,44,44,1);
+  stroke-linecap: round;
+  -webkit-animation: kuSBtA 1.5s ease-in-out infinite;
+  animation: kuSBtA 1.5s ease-in-out infinite;
+  stroke-width: 4px;
+}
+
+<div
+  className="c0"
+  size={32}
+>
+  <svg
+    viewBox="0 0 50 50"
+  >
+    <circle
+      cx="25"
+      cy="25"
+      fill="none"
+      r="20"
+    />
+  </svg>
+</div>
+`;
+
+exports[`render renders without crashing 1`] = `
+.c0 {
+  height: 16px;
+  width: 16px;
+}
+
+.c0 svg {
+  -webkit-animation: cZxgpV 2s linear infinite;
+  animation: cZxgpV 2s linear infinite;
+}
+
+.c0 circle {
+  stroke: rgba(44,44,44,1);
+  stroke-linecap: round;
+  -webkit-animation: kuSBtA 1.5s ease-in-out infinite;
+  animation: kuSBtA 1.5s ease-in-out infinite;
+  stroke-width: 4px;
+}
+
+<div
+  className="c0"
+  size={16}
+>
+  <svg
+    viewBox="0 0 50 50"
+  >
+    <circle
+      cx="25"
+      cy="25"
+      fill="none"
+      r="20"
+    />
+  </svg>
+</div>
+`;

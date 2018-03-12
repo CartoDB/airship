@@ -33,7 +33,6 @@ const StyledLoading = styled.div`
 
   circle {
     stroke: ${(props) => {
-      console.log(props);
       return !!props.negative
         ? 'rgba(255, 255, 255, 1)'
         : 'rgba(44, 44, 44, 1)';
