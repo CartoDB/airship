@@ -129,7 +129,7 @@ const pages = [
         imports: {
           Dropdown: require('../src/components/Dropdown/dropdown.js'),
           Button: require('../src/components/Button/button.js'),
-          ChevronIcon: require('../src/components/Icons/chevron.js')
+          ChevronIcon: require('../src/components/Icons/chevron-down.js')
         },
         path: '/components/dropdown',
         title: 'Dropdown',
@@ -142,6 +142,14 @@ const pages = [
         path: '/components/range',
         title: 'Range',
         component: require('./components/range.md')
+      },
+      {
+        imports: {
+          Breadcrumb: require('../src/components/Breadcrumb/breadcrumb.js')
+        },
+        path: '/components/breadcrumb',
+        title: 'Breadcrumb',
+        component: require('./components/breadcrumb.md')
       },
       {
         imports: {

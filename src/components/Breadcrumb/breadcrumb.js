@@ -1,6 +1,7 @@
 import React, { Children } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { colors } from '../../constants';
 
 const StyledList = styled.ul`
   display: flex;
@@ -25,7 +26,7 @@ const StyledItem = styled.li`
   }
 
   a {
-    color: inherit;
+    color: ${colors.brand01};
     text-decoration: none;
   }
 
