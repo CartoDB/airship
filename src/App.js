@@ -34,7 +34,8 @@ import {
   Range,
   Breadcrumb,
   Loading,
-  Avatar
+  Avatar,
+  Badget
 } from './components';
 
 class App extends Component {
@@ -394,6 +395,19 @@ class App extends Component {
             size={48}
             url="https://avatars0.githubusercontent.com/u/1366843"
           />
+        </div>
+
+        <div style={{ padding: '10px' }}>
+          <Badget>Foo</Badget>
+          <Badget color="rgba(128, 182, 34, 0.24)">Foo</Badget>
+          <Badget color="#B4E0FA">Store 1</Badget>
+          <Badget color="#E4D8EB" closable>
+            Store 2
+          </Badget>
+
+          <Badget closable closeColor="#1785FB">
+            Store 3
+          </Badget>
         </div>
       </div>
     );

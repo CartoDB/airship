@@ -21,8 +21,8 @@ const CloseIcon = ({
 };
 
 CloseIcon.propTypes = {
-  width: PropTypes.oneOf([14, 24, 32, 48]),
-  height: PropTypes.oneOf([14, 24, 32, 48]),
+  width: PropTypes.oneOf([12, 14, 24, 32, 48]),
+  height: PropTypes.oneOf([12, 14, 24, 32, 48]),
   color: PropTypes.string
 };
 
