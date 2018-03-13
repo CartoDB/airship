@@ -399,7 +399,11 @@ class App extends Component {
 
         <div style={{ padding: '10px' }}>
           <Badget>Foo</Badget>
+
           <Badget color="rgba(128, 182, 34, 0.24)">Foo</Badget>
+          <Badget as="span" color="skyblue">
+            See you in Mars
+          </Badget>
           <Badget color="#B4E0FA">Store 1</Badget>
           <Badget color="#E4D8EB" closable>
             Store 2

@@ -170,6 +170,14 @@ const pages = [
       },
       {
         imports: {
+          Badget: require('../src/components/Badget/badget.js')
+        },
+        path: '/components/badget',
+        title: 'Badget',
+        component: require('./components/badget.md')
+      },
+      {
+        imports: {
           Grid: require('../src/components/Grid/grid.js')
         },
         path: '/components/grid',

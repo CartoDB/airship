@@ -27,9 +27,7 @@ const StyledBadget = styled.li`
   }
 `;
 
-const noOp = (e) => {
-  console.log('onClose');
-};
+const noOp = (e) => {};
 
 const Badget = ({
   color = colors.ui03,
@@ -53,6 +51,7 @@ const Badget = ({
 };
 
 Badget.propTypes = {
+  as: PropTypes.string,
   closable: PropTypes.bool,
   onClose: PropTypes.func,
   color: PropTypes.string,
