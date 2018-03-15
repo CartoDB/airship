@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render color parameter 1`] = `
+.c0 {
+  background: rgba(128,182,34,0.24);
+  border-radius: 100px;
+  font: 400 12px/20px 'Roboto-Regular';
+  color: #2C2C2C;
+  -webkit-letter-spacing: 0;
+  -moz-letter-spacing: 0;
+  -ms-letter-spacing: 0;
+  letter-spacing: 0;
+  list-style: none;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 0 8px;
+}
+
+.c0 button {
+  cursor: pointer;
+  margin: 0 0 0 8px;
+  border: 0;
+  box-shadow: 0;
+  background: transparent;
+  padding: 0;
+  line-height: 1;
+  outline: none;
+}
+
+<li
+  className="c0"
+  color="rgba(128, 182, 34, 0.24)"
+>
+  Foo
+</li>
+`;
+
+exports[`render renders without crashing 1`] = `
+.c0 {
+  background: #E2E6E3;
+  border-radius: 100px;
+  font: 400 12px/20px 'Roboto-Regular';
+  color: #2C2C2C;
+  -webkit-letter-spacing: 0;
+  -moz-letter-spacing: 0;
+  -ms-letter-spacing: 0;
+  letter-spacing: 0;
+  list-style: none;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 0 8px;
+}
+
+.c0 button {
+  cursor: pointer;
+  margin: 0 0 0 8px;
+  border: 0;
+  box-shadow: 0;
+  background: transparent;
+  padding: 0;
+  line-height: 1;
+  outline: none;
+}
+
+<li
+  className="c0"
+  color="#E2E6E3"
+>
+  Foo
+</li>
+`;

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ChevronIcon = ({
+const ChevronDownIcon = ({
   width = 16,
   height = 8,
   color = '#1785fb',
@@ -20,10 +20,10 @@ const ChevronIcon = ({
   );
 };
 
-ChevronIcon.propTypes = {
+ChevronDownIcon.propTypes = {
   width: PropTypes.oneOf([8, 16, 32, 48]),
   height: PropTypes.oneOf([4, 8, 16, 24]),
   color: PropTypes.string
 };
 
-export default ChevronIcon;
+export default ChevronDownIcon;

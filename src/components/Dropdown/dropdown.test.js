@@ -1,5 +1,5 @@
 import React from 'react';
-import Dropdown from './Dropdown';
+import Dropdown from './dropdown';
 import renderer from 'react-test-renderer';
 import { mount, shallow } from 'enzyme';
 

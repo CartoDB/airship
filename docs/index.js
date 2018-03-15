@@ -11,7 +11,7 @@ import {
   Caption
 } from '../src/components';
 
-import css from '../styleguide/styles.css';
+import css from './styles.css';
 
 const pages = [
   { path: '/', title: 'Introduction', component: require('./introduction.md') },
@@ -129,11 +129,52 @@ const pages = [
         imports: {
           Dropdown: require('../src/components/Dropdown/dropdown.js'),
           Button: require('../src/components/Button/button.js'),
-          ChevronIcon: require('../src/components/Icons/chevron.js')
+          ChevronIcon: require('../src/components/Icons/chevron-down.js')
         },
         path: '/components/dropdown',
         title: 'Dropdown',
         component: require('./components/dropdown.md')
+      },
+      {
+        imports: {
+          Range: require('../src/components/Range/range.js')
+        },
+        path: '/components/range',
+        title: 'Range',
+        component: require('./components/range.md')
+      },
+      {
+        imports: {
+          Breadcrumb: require('../src/components/Breadcrumb/breadcrumb.js')
+        },
+        path: '/components/breadcrumb',
+        title: 'Breadcrumb',
+        component: require('./components/breadcrumb.md')
+      },
+      {
+        imports: {
+          Loading: require('../src/components/Loading/loading.js')
+        },
+        path: '/components/loading',
+        title: 'Loading',
+        component: require('./components/loading.md')
+      },
+      {
+        imports: {
+          Loading: require('../src/components/Loading/loading.js'),
+          Avatar: require('../src/components/Avatar/avatar.js')
+        },
+        path: '/components/avatar',
+        title: 'Avatar',
+        component: require('./components/avatar.md')
+      },
+      {
+        imports: {
+          Badget: require('../src/components/Badget/badget.js')
+        },
+        path: '/components/badget',
+        title: 'Badget',
+        component: require('./components/badget.md')
       },
       {
         imports: {
@@ -142,12 +183,28 @@ const pages = [
         path: '/components/grid',
         title: 'Grid',
         component: require('./components/grid.md')
+      },
+      {
+        imports: {
+          Dropshadow: require('../src/components/Dropshadow/dropshadow.js')
+        },
+        path: '/components/dropshadow',
+        title: 'Dropshadow',
+        component: require('./components/dropshadow.md')
       }
     ]
   }
 ];
 
+const theme = {
+  // Patterns
+  checkerboardPatternLight:
+    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII=',
+  checkerboardPatternDark:
+    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkWAsAALMAr6o4KHcAAAAASUVORK5CYII='
+};
+
 ReactDOM.render(
-  <Catalog title="Airship" pages={pages} />,
+  <Catalog title="Airship" pages={pages} theme={theme} />,
   document.getElementById('catalog')
 );
