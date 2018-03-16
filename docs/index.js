@@ -178,6 +178,14 @@ const pages = [
       },
       {
         imports: {
+          Tooltip: require('../src/components/Tooltip/tooltip.js')
+        },
+        path: '/components/tooltip',
+        title: 'Tooltip',
+        component: require('./components/tooltip.md')
+      },
+      {
+        imports: {
           Grid: require('../src/components/Grid/grid.js')
         },
         path: '/components/grid',

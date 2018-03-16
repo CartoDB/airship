@@ -425,7 +425,7 @@ class App extends Component {
             <Tooltip.Trigger>tooltip</Tooltip.Trigger>
           </Tooltip>
         </div>
-        <div style={{ padding: '20px 100px' }}>
+        <div style={{ padding: '50px 100px' }}>
           <Tooltip to="left">
             <Tooltip.Content>Hola mundo</Tooltip.Content>
             <Tooltip.Trigger>tooltip</Tooltip.Trigger>
