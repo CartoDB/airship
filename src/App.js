@@ -35,7 +35,8 @@ import {
   Breadcrumb,
   Loading,
   Avatar,
-  Badget
+  Badget,
+  Tooltip
 } from './components';
 
 class App extends Component {
@@ -412,6 +413,27 @@ class App extends Component {
           <Badget closable closeColor="#1785FB">
             Store 3
           </Badget>
+        </div>
+
+        <div style={{ padding: '20px 100px' }}>
+          <Tooltip>
+            <Tooltip.Content>Hola mundo</Tooltip.Content>
+            <Tooltip.Trigger>tooltip</Tooltip.Trigger>
+          </Tooltip>{' '}
+          <Tooltip to="bottom">
+            <Tooltip.Content>Hola mundo</Tooltip.Content>
+            <Tooltip.Trigger>tooltip</Tooltip.Trigger>
+          </Tooltip>
+        </div>
+        <div style={{ padding: '20px 100px' }}>
+          <Tooltip to="left">
+            <Tooltip.Content>Hola mundo</Tooltip.Content>
+            <Tooltip.Trigger>tooltip</Tooltip.Trigger>
+          </Tooltip>{' '}
+          <Tooltip to="right">
+            <Tooltip.Content>Hola mundo</Tooltip.Content>
+            <Tooltip.Trigger>tooltip</Tooltip.Trigger>
+          </Tooltip>
         </div>
       </div>
     );
