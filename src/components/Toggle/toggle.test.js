@@ -24,4 +24,10 @@ describe('render', () => {
     input.simulate('change');
     expect(spy).toHaveBeenCalled();
   });
+
+  it('sets \'checked\' state correcly when prop is changed', () => {
+    const wrapper = mount(<Toggle htmlFor="foo" />);
+    wrapper.setProps({ checked: true });
+    expect(wrapper.state().checked).toBe(true);
+  });
 });

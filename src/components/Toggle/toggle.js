@@ -111,6 +111,12 @@ class Toggle extends Component {
     checked: !!this.props.checked
   };
 
+  componentWillReceiveProps(nextProps) {
+    if (this.state.checked !== nextProps.checked) {
+      this.setState({ checked: nextProps.checked });
+    }
+  };
+
   clickHandler = (e) => {
     const { onChange, disabled } = this.props;
     !disabled &&
