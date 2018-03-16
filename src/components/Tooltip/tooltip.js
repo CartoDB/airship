@@ -13,8 +13,20 @@ import ReactDOM, { findDOMNode } from 'react-dom';
   <Tooltip.Trigger>
 </Tooltip>
 */
+const offset = (el) => {
+  const rect = el.getBoundingClientRect();
+  const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  return {
+    top: rect.top + scrollTop,
+    left: rect.left + scrollLeft,
+    width: rect.width,
+    height: rect.height
+  };
+};
 
 const StyledTooltip = styled.div`
+  box-sizing: border-box;
   pointer-events: none;
   font: 400 12px/20px 'Roboto';
   background: rgba(17, 17, 17, 0.9);
@@ -36,10 +48,9 @@ const StyledTooltip = styled.div`
   }
 
   &[data-pos='top'] {
-    top: ${(props) => `${props.position.top}px`};
-    left: ${(props) => `${props.position.x}px`};
-    transform: translate(-25%, calc(-50% - 10px));
-    transform-origin: top;
+    top: ${(props) => `${props.position.top - 6}px`};
+    left: ${(props) => `${props.position.left + props.position.width / 2}px`};
+    transform: translate(-50%, -100%);
   }
 
   &[data-pos='top']:before {
@@ -51,10 +62,9 @@ const StyledTooltip = styled.div`
   }
 
   &[data-pos='bottom'] {
-    top: ${(props) => `${props.position.top}px`};
-    left: ${(props) => `${props.position.x}px`};
-    transform: translate(-25%, calc(100% + 16px));
-    transform-origin: top;
+    top: ${(props) => `${props.position.top + props.position.height + 6}px`};
+    left: ${(props) => `${props.position.left + props.position.width / 2}px`};
+    transform: translate(-50%, 0);
   }
 
   &[data-pos='bottom']:before {
@@ -65,10 +75,9 @@ const StyledTooltip = styled.div`
   }
 
   &[data-pos='right'] {
-    top: ${(props) => `${props.position.top}px`};
-    left: ${(props) => `${props.position.x + props.position.width}px`};
-    transform: translate(10px, calc(50% - 6px));
-    transform-origin: top;
+    top: ${(props) => `${props.position.top + props.position.height / 2}px`};
+    left: ${(props) => `${props.position.left + props.position.width + 10}px`};
+    transform: translate(0, -50%);
   }
 
   &[data-pos='right']:before {
@@ -79,10 +88,9 @@ const StyledTooltip = styled.div`
   }
 
   &[data-pos='left'] {
-    top: ${(props) => `${props.position.top}px`};
-    left: ${(props) => `${props.position.x}px`};
-    transform: translate(calc(-100% - 10px), calc(50% - 6px));
-    transform-origin: top;
+    top: ${(props) => `${props.position.top + props.position.height / 2}px`};
+    left: ${(props) => `${props.position.left - 10}px`};
+    transform: translate(-100%, -50%);
   }
 
   &[data-pos='left']:before {
@@ -93,7 +101,7 @@ const StyledTooltip = styled.div`
   }
 `;
 
-const Content = ({ children, ...props }) => {
+const Content = ({ children, node, ...props }) => {
   let domNode = document.getElementById('tooltip');
   if (!domNode) {
     domNode = document.createElement('div');
@@ -101,8 +109,13 @@ const Content = ({ children, ...props }) => {
     document.body.appendChild(domNode);
   }
 
+  const position = offset(node);
+  console.log(position);
+
   return ReactDOM.createPortal(
-    <StyledTooltip {...props}>{children}</StyledTooltip>,
+    <StyledTooltip position={position} {...props}>
+      {children}
+    </StyledTooltip>,
     domNode
   );
 };
@@ -113,9 +126,7 @@ const Trigger = ({ children }) => {
 };
 Trigger.displayName = 'Tooltip.Trigger';
 
-const Wrapper = styled.span`
-  position: relative;
-`;
+const Wrapper = styled.span``;
 
 class Tooltip extends Component {
   static Content = Content;
@@ -127,8 +138,6 @@ class Tooltip extends Component {
 
   componentDidMount() {
     this.timer = null;
-    this.position = this.node.getBoundingClientRect();
-
     window.addEventListener('click', this.onWindowClick);
     window.addEventListener('touchstart', this.onWindowClick);
   }
@@ -191,7 +200,7 @@ class Tooltip extends Component {
             );
           } else if (child.type.displayName === 'Tooltip.Content' && visible) {
             element = React.cloneElement(child, {
-              position: this.position,
+              node: this.node,
               'data-pos': to
             });
           }
