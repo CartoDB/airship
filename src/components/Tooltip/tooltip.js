@@ -6,10 +6,10 @@ import ReactDOM, { findDOMNode } from 'react-dom';
 /*
 <Tooltip to={bottom|top|left|right}>
   <Tooltip.Content>
-    {children}
+    ...
   </Tooltip.Content>
   <Tooltip.Trigger>
-    {children}
+    ...
   <Tooltip.Trigger>
 </Tooltip>
 */
@@ -110,7 +110,6 @@ const Content = ({ children, node, ...props }) => {
   }
 
   const position = offset(node);
-  console.log(position);
 
   return ReactDOM.createPortal(
     <StyledTooltip position={position} {...props}>
