@@ -27,8 +27,4 @@ const shadows = {
   shadow16: `0 4px 16px 0 rgba(44,44,44,0.16)`
 };
 
-const z = {
-  dropdowns: 30
-};
-
-export { colors, shadows, z };
+export { colors, shadows };

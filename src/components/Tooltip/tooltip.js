@@ -2,6 +2,7 @@ import React, { Component, Children } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import ReactDOM, { findDOMNode } from 'react-dom';
+import { offset } from '../../utils';
 
 /*
 <Tooltip to={bottom|top|left|right}>
@@ -13,17 +14,6 @@ import ReactDOM, { findDOMNode } from 'react-dom';
   <Tooltip.Trigger>
 </Tooltip>
 */
-const offset = (el) => {
-  const rect = el.getBoundingClientRect();
-  const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
-  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-  return {
-    top: rect.top + scrollTop,
-    left: rect.left + scrollLeft,
-    width: rect.width,
-    height: rect.height
-  };
-};
 
 const StyledTooltip = styled.div`
   box-sizing: border-box;
@@ -102,10 +92,10 @@ const StyledTooltip = styled.div`
 `;
 
 const Content = ({ children, node, ...props }) => {
-  let domNode = document.getElementById('tooltip');
+  let domNode = document.getElementById('modals');
   if (!domNode) {
     domNode = document.createElement('div');
-    domNode.setAttribute('id', 'tooltip');
+    domNode.setAttribute('id', 'modals');
     document.body.appendChild(domNode);
   }
 

@@ -37,7 +37,7 @@ describe('render', () => {
     component.setState({ visible: true });
     component.update();
 
-    expect(document.querySelector('#tooltip')).toBeTruthy();
-    expect(document.querySelector('#tooltip').childNodes.length).toBe(1);
+    expect(document.querySelector('#modals')).toBeTruthy();
+    expect(document.querySelector('#modals').childNodes.length).toBe(1);
   });
 });

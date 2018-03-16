@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { rgba } from 'polished';
 import PropTypes from 'prop-types';
-import { colors, shadows, z } from '../../constants';
-import { findDOMNode } from 'react-dom';
+import { colors, shadows } from '../../constants';
+import ReactDOM, { findDOMNode } from 'react-dom';
+import { offset } from '../../utils';
 
 /*
   <Dropdown>
@@ -23,10 +24,12 @@ const TriggerWrapper = styled.div`
   display: inline-flex;
 `;
 
-const DropdownTrigger = (props) => {
-  const { children, ...other } = props;
-  return <TriggerWrapper {...other}>{children}</TriggerWrapper>;
-};
+class DropdownTrigger extends Component {
+  render() {
+    const { children, ...other } = this.props;
+    return <TriggerWrapper {...other}>{children}</TriggerWrapper>;
+  }
+}
 
 DropdownTrigger.displayName = 'Dropdown.Trigger';
 
@@ -34,12 +37,29 @@ const DropdownContent = styled.div`
   background: ${colors.white};
   box-shadow: ${shadows.shadow8};
   display: inline-flex;
-  left: 0;
-  top: calc(100% + 5px);
+  left: ${(props) => `${props.position.left}px`};
+  top: ${(props) => `${props.position.top + props.position.height + 5}px`};
   position: absolute;
-  z-index: ${z.dropdowns};
 `;
-DropdownContent.displayName = 'Dropdown.Content';
+
+const Content = ({ children, node, ...props }) => {
+  let domNode = document.getElementById('modals');
+  if (!domNode) {
+    domNode = document.createElement('div');
+    domNode.setAttribute('id', 'modals');
+    document.body.appendChild(domNode);
+  }
+
+  const position = offset(node);
+
+  return ReactDOM.createPortal(
+    <DropdownContent position={position} {...props}>
+      {children}
+    </DropdownContent>,
+    domNode
+  );
+};
+Content.displayName = 'Dropdown.Content';
 
 const StyledList = styled.ul`
   display: flex;
@@ -102,7 +122,7 @@ const DropdownWrapper = styled.div`
 
 class Dropdown extends Component {
   static Trigger = DropdownTrigger;
-  static Content = DropdownContent;
+  static Content = Content;
   static Menu = DropdownMenu;
   static Item = DropdownItem;
   static Timeout = 500;
@@ -171,7 +191,12 @@ class Dropdown extends Component {
     const Node = this.tagName;
 
     return (
-      <Node data-component="Dropdown">
+      <Node
+        data-component="Dropdown"
+        innerRef={(node) => {
+          this.node = node;
+        }}
+      >
         {React.Children.map(children, (child) => {
           let element = null;
           if (child.type.displayName === 'Dropdown.Trigger') {
@@ -184,6 +209,7 @@ class Dropdown extends Component {
           } else if (child.type.displayName === 'Dropdown.Content' && active) {
             element = React.cloneElement(child, {
               'data-component': 'Dropdown.Content',
+              node: this.node,
               onMouseEnter: (e) => (action === 'over' ? this.show() : null),
               onMouseLeave: (e) => (action === 'over' ? this.tryToHide() : null)
             });
