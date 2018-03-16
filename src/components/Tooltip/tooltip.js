@@ -1,7 +1,7 @@
 import React, { Component, Children } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { findDOMNode } from 'react-dom';
+import ReactDOM, { findDOMNode } from 'react-dom';
 
 /*
 <Tooltip to={bottom|top|left|right}>
@@ -15,7 +15,6 @@ import { findDOMNode } from 'react-dom';
 */
 
 const StyledTooltip = styled.div`
-  opacity: 0;
   pointer-events: none;
   font: 400 12px/20px 'Roboto';
   background: rgba(17, 17, 17, 0.9);
@@ -24,7 +23,6 @@ const StyledTooltip = styled.div`
   padding: 0.5em 1em;
   position: absolute;
   white-space: nowrap;
-  z-index: 10;
 
   &:before {
     background: no-repeat
@@ -35,19 +33,16 @@ const StyledTooltip = styled.div`
     pointer-events: none;
     content: '';
     position: absolute;
-    z-index: 10;
   }
 
-  [data-pos='top'] & {
-    opacity: 1;
-    bottom: calc(100% + 5px);
-    left: 50%;
-    margin-bottom: 11px;
-    transform: translate(-50%, 10px);
+  &[data-pos='top'] {
+    top: ${(props) => `${props.position.top}px`};
+    left: ${(props) => `${props.position.x}px`};
+    transform: translate(-25%, calc(-50% - 10px));
     transform-origin: top;
   }
 
-  [data-pos='top'] &:before {
+  &[data-pos='top']:before {
     bottom: 0;
     left: 50%;
     margin-bottom: 5px;
@@ -55,52 +50,63 @@ const StyledTooltip = styled.div`
     transform-origin: top;
   }
 
-  [data-pos='bottom'] & {
-    opacity: 1;
-    top: 100%;
-    left: 50%;
-    transform: translate(-50%, 10px);
+  &[data-pos='bottom'] {
+    top: ${(props) => `${props.position.top}px`};
+    left: ${(props) => `${props.position.x}px`};
+    transform: translate(-25%, calc(100% + 16px));
     transform-origin: top;
   }
 
-  [data-pos='bottom'] &:before {
+  &[data-pos='bottom']:before {
     top: 0;
     left: 50%;
     transform: translate(-10px, 0) rotate(180deg);
     transform-origin: top;
   }
 
-  [data-pos='right'] & {
-    opacity: 1;
-    top: 50%;
-    left: 100%;
-    transform: translate(10px, -50%);
+  &[data-pos='right'] {
+    top: ${(props) => `${props.position.top}px`};
+    left: ${(props) => `${props.position.x + props.position.width}px`};
+    transform: translate(10px, calc(50% - 6px));
     transform-origin: top;
   }
 
-  [data-pos='right'] &:before {
+  &[data-pos='right']:before {
     top: 50%;
     left: 0;
     transform: translate(-8px, 0) rotate(90deg);
     transform-origin: top;
   }
 
-  [data-pos='left'] & {
-    opacity: 1;
-    top: 50%;
-    right: 100%;
-    transform: translate(-10px, -50%);
+  &[data-pos='left'] {
+    top: ${(props) => `${props.position.top}px`};
+    left: ${(props) => `${props.position.x}px`};
+    transform: translate(calc(-100% - 10px), calc(50% - 6px));
     transform-origin: top;
   }
 
-  [data-pos='left'] &:before {
+  &[data-pos='left']:before {
     top: 50%;
     right: 0;
     transform: translate(8px, 0) rotate(-90deg);
     transform-origin: top;
   }
 `;
-StyledTooltip.displayName = 'Tooltip.Content';
+
+const Content = ({ children, ...props }) => {
+  let domNode = document.getElementById('tooltip');
+  if (!domNode) {
+    domNode = document.createElement('div');
+    domNode.setAttribute('id', 'tooltip');
+    document.body.appendChild(domNode);
+  }
+
+  return ReactDOM.createPortal(
+    <StyledTooltip {...props}>{children}</StyledTooltip>,
+    domNode
+  );
+};
+Content.displayName = 'Tooltip.Content';
 
 const Trigger = ({ children }) => {
   return children;
@@ -112,7 +118,7 @@ const Wrapper = styled.span`
 `;
 
 class Tooltip extends Component {
-  static Content = StyledTooltip;
+  static Content = Content;
   static Trigger = Trigger;
 
   state = {
@@ -121,6 +127,8 @@ class Tooltip extends Component {
 
   componentDidMount() {
     this.timer = null;
+    this.position = this.node.getBoundingClientRect();
+
     window.addEventListener('click', this.onWindowClick);
     window.addEventListener('touchstart', this.onWindowClick);
   }
@@ -172,9 +180,20 @@ class Tooltip extends Component {
         {Children.map(children, (child) => {
           let element = null;
           if (child.type.displayName === 'Tooltip.Trigger') {
-            element = child;
+            element = (
+              <span
+                ref={(node) => {
+                  this.node = node;
+                }}
+              >
+                {child}
+              </span>
+            );
           } else if (child.type.displayName === 'Tooltip.Content' && visible) {
-            element = child;
+            element = React.cloneElement(child, {
+              position: this.position,
+              'data-pos': to
+            });
           }
           return element;
         })}
