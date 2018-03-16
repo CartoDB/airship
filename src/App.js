@@ -36,7 +36,8 @@ import {
   Loading,
   Avatar,
   Badget,
-  Tooltip
+  Tooltip,
+  Collapsible
 } from './components';
 
 class App extends Component {
@@ -434,6 +435,13 @@ class App extends Component {
             <Tooltip.Content>Hola mundo</Tooltip.Content>
             <Tooltip.Trigger>tooltip</Tooltip.Trigger>
           </Tooltip>
+        </div>
+
+        <div style={{ padding: '20px' }}>
+          <Collapsible>
+            <Collapsible.Header>Header</Collapsible.Header>
+            <Collapsible.Content>Content</Collapsible.Content>
+          </Collapsible>
         </div>
       </div>
     );

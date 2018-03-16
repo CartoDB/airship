@@ -35,3 +35,4 @@ export { default as Loading } from './Loading/loading';
 export { default as Avatar } from './Avatar/avatar';
 export { default as Badget } from './Badget/badget';
 export { default as Tooltip } from './Tooltip/tooltip';
+export { default as Collapsible } from './Collapsible/collapsible';
