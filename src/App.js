@@ -442,6 +442,11 @@ class App extends Component {
             <Collapsible.Header>Header</Collapsible.Header>
             <Collapsible.Content>Content</Collapsible.Content>
           </Collapsible>
+
+          <Collapsible open={false}>
+            <Collapsible.Header>Header</Collapsible.Header>
+            <Collapsible.Content>Content</Collapsible.Content>
+          </Collapsible>
         </div>
       </div>
     );
