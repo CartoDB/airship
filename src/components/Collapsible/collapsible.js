@@ -37,12 +37,19 @@ class Collapsible extends Component {
   };
 
   toggle = () => {
-    this.setState((state) => {
-      return {
-        ...state,
-        open: !state.open
-      };
-    });
+    const { onChange } = this.props;
+
+    this.setState(
+      (state) => {
+        return {
+          ...state,
+          open: !state.open
+        };
+      },
+      () => {
+        onChnage && onChnage(this.state);
+      }
+    );
   };
 
   render() {
@@ -75,7 +82,7 @@ class Collapsible extends Component {
 }
 
 Collapsible.propTypes = {
-  onToggle: PropTypes.func
+  onChange: PropTypes.func
 };
 
 export default Collapsible;
