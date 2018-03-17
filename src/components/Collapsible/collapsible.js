@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import PlusIcon from '../Icons/plus';
 import CloseIcon from '../Icons/close';
+import MinusIcon from '../Icons/minus';
 
 /*
   <Collapsible>
@@ -14,11 +15,14 @@ import CloseIcon from '../Icons/close';
 const Header = styled.div`
   display: flex;
 
-  & button {
+  button {
     border: 0;
     background: transparent;
     box-shadown: none;
     margin-left: auto;
+    display: flex;
+    align-items: center;
+    outline: none;
   }
 `;
 Header.displayName = 'Collapsible.Header';
@@ -33,8 +37,14 @@ class Collapsible extends Component {
   static Content = Content;
 
   state = {
-    open: true
+    open: !!this.props.open
   };
+
+  componentWillReceiveProps(nextProps) {
+    if (this.state.open !== nextProps.open) {
+      this.setState({ open: nextProps.open });
+    }
+  }
 
   toggle = () => {
     const { onChange } = this.props;
@@ -47,7 +57,7 @@ class Collapsible extends Component {
         };
       },
       () => {
-        onChnage && onChnage(this.state);
+        onChange && onChange(this.state);
       }
     );
   };
@@ -68,7 +78,7 @@ class Collapsible extends Component {
                     this.toggle();
                   }}
                 >
-                  {open ? <PlusIcon /> : <CloseIcon />}
+                  {open ? <MinusIcon /> : <PlusIcon />}
                 </button>
               </Collapsible.Header>
             );
@@ -81,7 +91,12 @@ class Collapsible extends Component {
   }
 }
 
+Collapsible.defaultProps = {
+  open: true
+};
+
 Collapsible.propTypes = {
+  open: PropTypes.bool,
   onChange: PropTypes.func
 };
 
