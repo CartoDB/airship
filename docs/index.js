@@ -186,6 +186,17 @@ const pages = [
       },
       {
         imports: {
+          Collapsible: require('../src/components/Collapsible/collapsible.js'),
+          Text: require('../src/components/Typography/text'),
+          Subheader: require('../src/components/Typography/subheader'),
+          Badget: require('../src/components/Badget/badget')
+        },
+        path: '/components/collapsible',
+        title: 'Collapsible',
+        component: require('./components/collapsible.md')
+      },
+      {
+        imports: {
           Grid: require('../src/components/Grid/grid.js')
         },
         path: '/components/grid',
