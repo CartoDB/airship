@@ -26,6 +26,14 @@ import {
   PencilIcon,
   HomeIcon,
   InfoIcon,
+  MinusIcon,
+  PointsIcon,
+  QuestionIcon,
+  SettingsIcon,
+  CheckFillIcon,
+  CheckRoundedIcon,
+  AlertIcon,
+  AlertFillIcon,
   Tabs,
   Dropdown,
   Table,
@@ -175,23 +183,13 @@ class App extends Component {
           </div>
         </div>
         <div>
-          <PlusIcon />
-          <SearchIcon />
-          <PointIcon />
-          <LeftArrowIcon />
-          <RightArrowIcon />
-          <TopArrowIcon />
-          <BottomArrowIcon />
-          <ChevronDownIcon />
-          <ChevronUpIcon />
-          <ChevronLeftIcon />
-          <ChevronRightIcon />
-          <MenuIcon />
-          <CloseIcon />
-          <CheckIcon />
-          <PencilIcon />
-          <HomeIcon />
-          <InfoIcon />
+          <PlusIcon /> <SearchIcon /> <PointIcon /> <LeftArrowIcon />{' '}
+          <RightArrowIcon /> <TopArrowIcon /> <BottomArrowIcon />{' '}
+          <ChevronDownIcon /> <ChevronUpIcon /> <ChevronLeftIcon />{' '}
+          <ChevronRightIcon /> <MenuIcon /> <CloseIcon /> <CheckIcon />{' '}
+          <PencilIcon /> <HomeIcon /> <InfoIcon /> <MinusIcon /> <PointsIcon />{' '}
+          <QuestionIcon /> <SettingsIcon /> <CheckFillIcon />{' '}
+          <CheckRoundedIcon /> <AlertIcon /> <AlertFillIcon />
         </div>
         <div>
           <Tabs selected={1}>

@@ -2,7 +2,6 @@ import React, { Component, Children } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import PlusIcon from '../Icons/plus';
-import CloseIcon from '../Icons/close';
 import MinusIcon from '../Icons/minus';
 
 /*
