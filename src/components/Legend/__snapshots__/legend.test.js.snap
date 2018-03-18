@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render renders with size 1`] = `
+.c0 {
+  border-radius: 4px;
+  background-color: #fff;
+  width: 160px;
+  box-shadow: 0 2px 8px 0 rgba(44,44,44,0.16);
+}
+
+.c1 {
+  padding: 26px 20px;
+  position: relative;
+}
+
+.c1:before {
+  content: '';
+  height: 2px;
+  left: 0;
+  right: 0;
+  top: 0;
+  background-color: #F5F5F5;
+  position: absolute;
+}
+
+.c1:first-child:before {
+  display: none;
+}
+
+<div
+  className="c0"
+  style={undefined}
+>
+  <div
+    className="c1"
+  >
+    Hello
+  </div>
+</div>
+`;
+
+exports[`render renders without crashing 1`] = `
+.c0 {
+  border-radius: 4px;
+  background-color: #fff;
+  width: 260px;
+  box-shadow: 0 2px 8px 0 rgba(44,44,44,0.16);
+}
+
+.c1 {
+  padding: 26px 20px;
+  position: relative;
+}
+
+.c1:before {
+  content: '';
+  height: 2px;
+  left: 0;
+  right: 0;
+  top: 0;
+  background-color: #F5F5F5;
+  position: absolute;
+}
+
+.c1:first-child:before {
+  display: none;
+}
+
+<div
+  className="c0"
+  style={undefined}
+>
+  <div
+    className="c1"
+  >
+    Hello
+  </div>
+</div>
+`;
