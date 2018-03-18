@@ -456,6 +456,14 @@ class App extends Component {
             <Steps.Content>Content 3</Steps.Content>
             <Steps.Content>Content 4</Steps.Content>
           </Steps>
+
+          <Steps step={2}>
+            <Steps.Header>Header</Steps.Header>
+            <Steps.Content>Content 1</Steps.Content>
+            <Steps.Content>Content 2</Steps.Content>
+            <Steps.Content>Content 3</Steps.Content>
+            <Steps.Content>Content 4</Steps.Content>
+          </Steps>
         </div>
       </div>
     );
