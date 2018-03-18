@@ -46,7 +46,8 @@ import {
   Badget,
   Tooltip,
   Collapsible,
-  Steps
+  Steps,
+  Legend
 } from './components';
 
 class App extends Component {
@@ -464,6 +465,35 @@ class App extends Component {
             <Steps.Content>Content 3</Steps.Content>
             <Steps.Content>Content 4</Steps.Content>
           </Steps>
+        </div>
+
+        <div style={{ padding: '20px' }}>
+          <Legend style={{ marginBottom: '20px' }}>
+            <Legend.Panel>
+              <Steps>
+                <Steps.Header>Header</Steps.Header>
+                <Steps.Content>Content 1</Steps.Content>
+                <Steps.Content>Content 2</Steps.Content>
+                <Steps.Content>Content 3</Steps.Content>
+                <Steps.Content>Content 4</Steps.Content>
+              </Steps>
+            </Legend.Panel>
+          </Legend>
+
+          <Legend>
+            <Legend.Panel>
+              <Collapsible>
+                <Collapsible.Header>Header</Collapsible.Header>
+                <Collapsible.Content>Content</Collapsible.Content>
+              </Collapsible>
+            </Legend.Panel>
+            <Legend.Panel>
+              <Collapsible>
+                <Collapsible.Header>Postal Code</Collapsible.Header>
+                <Collapsible.Content>Content</Collapsible.Content>
+              </Collapsible>
+            </Legend.Panel>
+          </Legend>
         </div>
       </div>
     );
