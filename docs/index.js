@@ -208,6 +208,19 @@ const pages = [
       },
       {
         imports: {
+          Legend: require('../src/components/Legend/legend.js'),
+          Steps: require('../src/components/Steps/steps.js'),
+          Collapsible: require('../src/components/Collapsible/collapsible.js'),
+          Subheader: require('../src/components/Typography/subheader'),
+          Text: require('../src/components/Typography/text'),
+          Toggle: require('../src/components/Toggle/toggle.js')
+        },
+        path: '/components/legend',
+        title: 'Legend',
+        component: require('./components/legend.md')
+      },
+      {
+        imports: {
           Grid: require('../src/components/Grid/grid.js')
         },
         path: '/components/grid',
