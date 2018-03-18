@@ -6,6 +6,7 @@ exports[`render renders without crashing 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  margin-bottom: 12px;
 }
 
 .c0 button {
