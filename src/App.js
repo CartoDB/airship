@@ -45,7 +45,8 @@ import {
   Avatar,
   Badget,
   Tooltip,
-  Collapsible
+  Collapsible,
+  Steps
 } from './components';
 
 class App extends Component {
@@ -445,6 +446,16 @@ class App extends Component {
             <Collapsible.Header>Header</Collapsible.Header>
             <Collapsible.Content>Content</Collapsible.Content>
           </Collapsible>
+        </div>
+
+        <div style={{ padding: '20px' }}>
+          <Steps>
+            <Steps.Header>Header</Steps.Header>
+            <Steps.Content>Content 1</Steps.Content>
+            <Steps.Content>Content 2</Steps.Content>
+            <Steps.Content>Content 3</Steps.Content>
+            <Steps.Content>Content 4</Steps.Content>
+          </Steps>
         </div>
       </div>
     );
