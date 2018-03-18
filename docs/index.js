@@ -197,6 +197,17 @@ const pages = [
       },
       {
         imports: {
+          Steps: require('../src/components/Steps/steps.js'),
+          Dropshadow: require('../src/components/Dropshadow/dropshadow'),
+          Subheader: require('../src/components/Typography/subheader'),
+          Text: require('../src/components/Typography/text')
+        },
+        path: '/components/steps',
+        title: 'Steps',
+        component: require('./components/steps.md')
+      },
+      {
+        imports: {
           Grid: require('../src/components/Grid/grid.js')
         },
         path: '/components/grid',
