@@ -13,6 +13,7 @@ import MinusIcon from '../Icons/minus';
 
 const Header = styled.div`
   display: flex;
+  margin-bottom: 12px;
 
   button {
     border: 0;

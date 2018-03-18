@@ -22,6 +22,10 @@ const StyledPanel = styled.div`
   padding: ${(props) => (props.small ? `18px 10px` : `26px 20px`)};
   position: relative;
 
+  img {
+    max-width: 100%;
+  }
+
   &:before {
     content: '';
     height: 2px;
