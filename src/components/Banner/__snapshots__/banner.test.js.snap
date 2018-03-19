@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render renders without crashing 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 12px;
+  border-radius: 0;
+  width: 100%;
+  background-color: red;
+}
+
+.c1 {
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+}
+
+.c2 {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  padding: 0 8px;
+}
+
+<div
+  className="c0"
+  color="red"
+>
+  <div
+    className="c1"
+  >
+    Icon
+  </div>
+  <div
+    className="c2"
+  >
+    Content
+  </div>
+</div>
+`;
