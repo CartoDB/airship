@@ -47,8 +47,10 @@ import {
   Tooltip,
   Collapsible,
   Steps,
-  Legend
+  Legend,
+  Flag
 } from './components';
+import { colors } from './constants';
 
 class App extends Component {
   render() {
@@ -494,6 +496,22 @@ class App extends Component {
               </Collapsible>
             </Legend.Panel>
           </Legend>
+        </div>
+
+        <div style={{ padding: '20px' }}>
+          <Flag onClick={(e) => console.log('flag closed')}>
+            <Flag.Icon>
+              <AlertFillIcon color={colors.support02} width={12} height={12} />
+            </Flag.Icon>
+            <Flag.Content>
+              <Text color={colors.type01} weight="medium">
+                You are now conected
+              </Text>
+              <Text color={colors.type02}>
+                You have been added to the group “New Store on this region”
+              </Text>
+            </Flag.Content>
+          </Flag>
         </div>
       </div>
     );

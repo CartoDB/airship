@@ -46,3 +46,4 @@ export { default as Tooltip } from './Tooltip/tooltip';
 export { default as Collapsible } from './Collapsible/collapsible';
 export { default as Steps } from './Steps/steps';
 export { default as Legend } from './Legend/legend';
+export { default as Flag } from './Flag/flag';
