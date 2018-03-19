@@ -1,15 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Catalog } from 'catalog';
-import {
-  Grid,
-  Jumbo,
-  Display,
-  Title,
-  Subheader,
-  Text,
-  Caption
-} from '../src/components';
 
 import css from './styles.css';
 
@@ -219,6 +210,16 @@ const pages = [
         path: '/components/legend',
         title: 'Legend',
         component: require('./components/legend.md')
+      },
+      {
+        imports: {
+          Flag: require('../src/components/Flag/flag.js'),
+          Text: require('../src/components/Typography/text'),
+          AlertFillIcon: require('../src/components/Icons/alert-fill.js')
+        },
+        path: '/components/flag',
+        title: 'Flag',
+        component: require('./components/flag.md')
       },
       {
         imports: {

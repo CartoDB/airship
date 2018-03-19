@@ -48,7 +48,8 @@ import {
   Collapsible,
   Steps,
   Legend,
-  Flag
+  Flag,
+  Banner
 } from './components';
 import { colors } from './constants';
 
@@ -512,6 +513,19 @@ class App extends Component {
               </Text>
             </Flag.Content>
           </Flag>
+        </div>
+
+        <div style={{ padding: '20px' }}>
+          <Banner color="red">
+            <Banner.Icon>
+              <AlertFillIcon color={colors.white} width={12} height={12} />
+            </Banner.Icon>
+            <Banner.Content>
+              <Text color={colors.type04}>
+                An error has ocurred. Could not retreive customer information
+              </Text>
+            </Banner.Content>
+          </Banner>
         </div>
       </div>
     );
