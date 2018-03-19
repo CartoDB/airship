@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render renders without crashing 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 16px;
+  border-radius: 4px;
+  box-shadow: 0 4px 16px 0 rgba(44,44,44,0.16);
+  max-width: 260px;
+}
+
+.c0 button {
+  border: 0;
+  background: transparent;
+  box-shadow: 0;
+  line-height: 1;
+  outline: none;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+}
+
+.c1 {
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+}
+
+.c2 {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  padding: 0 8px;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    Icon
+  </div>
+  <div
+    className="c2"
+  >
+    Content
+  </div>
+  <div
+    className="c1"
+  >
+    <button
+      onClick={[Function]}
+    >
+      <svg
+        fill="#1785fb"
+        height={12}
+        viewBox="0 0 14 14"
+        width={12}
+      >
+        <path
+          d="M7,6.41767677 L13.2970737,0.12060309 C13.4578778,-0.04020103 13.7185928,-0.04020103 13.8793969,0.12060309 C14.040201,0.28140721 14.040201,0.542122202 13.8793969,0.702926322 L7.58232323,7 L13.8793969,13.2970737 C14.040201,13.4578778 14.040201,13.7185928 13.8793969,13.8793969 C13.7185928,14.040201 13.4578778,14.040201 13.2970737,13.8793969 L7,7.58232323 L0.702926322,13.8793969 C0.542122202,14.040201 0.28140721,14.040201 0.12060309,13.8793969 C-0.04020103,13.7185928 -0.04020103,13.4578778 0.12060309,13.2970737 L6.41767677,7 L0.12060309,0.702926322 C-0.04020103,0.542122202 -0.04020103,0.28140721 0.12060309,0.12060309 C0.28140721,-0.04020103 0.542122202,-0.04020103 0.702926322,0.12060309 L7,6.41767677 Z"
+        />
+      </svg>
+    </button>
+  </div>
+</div>
+`;
