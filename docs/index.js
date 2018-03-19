@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Catalog } from 'catalog';
 
-import css from './styles.css';
+import './styles.css';
+import '../src/components/reset.css';
 
 const pages = [
   { path: '/', title: 'Introduction', component: require('./introduction.md') },
@@ -220,6 +221,16 @@ const pages = [
         path: '/components/flag',
         title: 'Flag',
         component: require('./components/flag.md')
+      },
+      {
+        imports: {
+          Banner: require('../src/components/Banner/banner.js'),
+          Text: require('../src/components/Typography/text'),
+          AlertFillIcon: require('../src/components/Icons/alert-fill.js')
+        },
+        path: '/components/banner',
+        title: 'Banner',
+        component: require('./components/banner.md')
       },
       {
         imports: {
