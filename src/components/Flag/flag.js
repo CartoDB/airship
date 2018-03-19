@@ -1,4 +1,4 @@
-import React, { Component, Children } from 'react';
+import React, { Children } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import CloseIcon from '../Icons/close';
@@ -15,10 +15,7 @@ const StyledFlag = styled.div`
     border: 0;
     background: transparent;
     box-shadow: 0;
-    line-height: 1;
     outline: none;
-    cursor: pointer;
-    margin: 0;
     padding: 0;
   }
 `;
@@ -35,26 +32,22 @@ const StyledContent = styled.div`
 `;
 StyledContent.displayName = 'Flag.Content';
 
-class Flag extends Component {
-  static Icon = StyledHandle;
-  static Content = StyledContent;
+const Flag = ({ children, onClick }) => {
+  const childrenWithControl = Children.map(children, (child, index) => {
+    return React.cloneElement(child, { key: `flag${index}` });
+  }).concat([
+    <StyledHandle key="flagButton">
+      <button onClick={(e) => onClick()}>
+        <CloseIcon width={12} height={12} />
+      </button>
+    </StyledHandle>
+  ]);
 
-  render() {
-    const { children, onClick } = this.props;
+  return <StyledFlag>{childrenWithControl}</StyledFlag>;
+};
 
-    const childrenWithControl = Children.map(children, (child, index) => {
-      return React.cloneElement(child, { key: `flag${index}` });
-    }).concat([
-      <StyledHandle key="flagButton">
-        <button onClick={(e) => onClick()}>
-          <CloseIcon width={12} height={12} />
-        </button>
-      </StyledHandle>
-    ]);
-
-    return <StyledFlag>{childrenWithControl}</StyledFlag>;
-  }
-}
+Flag.Icon = StyledHandle;
+Flag.Content = StyledContent;
 
 Flag.propTypes = {
   onClick: PropTypes.func.isRequired

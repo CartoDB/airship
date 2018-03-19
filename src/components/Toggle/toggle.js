@@ -19,15 +19,6 @@ const StyledToggle = styled.div`
   display: inline-block;
   position: relative;
 
-  &,
-  &:after,
-  &:before,
-  & *,
-  & *:after,
-  & *:before {
-    box-sizing: border-box;
-  }
-
   svg {
     opacity: 0;
     position: absolute;
