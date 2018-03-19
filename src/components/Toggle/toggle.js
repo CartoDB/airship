@@ -159,7 +159,7 @@ class Toggle extends Component {
           <label htmlFor={htmlFor} />
           <Check />
         </StyledToggle>
-        <StyledLabel>{children}</StyledLabel>
+        {children ? <StyledLabel>{children}</StyledLabel> : null}
       </StyledControl>
     );
   }

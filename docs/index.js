@@ -119,7 +119,8 @@ const pages = [
       },
       {
         imports: {
-          Toggle: require('../src/components/Toggle/toggle.js')
+          Toggle: require('../src/components/Toggle/toggle.js'),
+          Text: require('../src/components/Typography/text')
         },
         path: '/components/toggle',
         title: 'Toggle',
