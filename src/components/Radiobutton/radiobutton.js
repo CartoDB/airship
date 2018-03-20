@@ -68,49 +68,27 @@ const StyleRadio = styled.div`
     border: 1px solid ${colors.brand03};
   }
 
-  // .Radio-input:hover + .Radio-decoration:after {
-  //   background: ${colors.brand01};
-  //   width: 6px;
-  //   height: 6px;
-  //   opacity: 0;
-  //   animation: ${radioIn} 300ms;
-  //   animation-fill-mode: forwards;
-  // }
-
-  // .Radio-input:checked:hover + .Radio-decoration {
-  //   animation: none;
-  // }
-
-  // .Radio-input:checked:hover + .Radio-decoration:after {
-  //   background: ${colors.brand01};
-  //   opacity: 1;
-  //   animation: initial;
-  // }
-
   .Radio-input:checked + .Radio-decoration {
     border: 1px solid ${colors.brand01};
   }
-
-  // .Radio-input:checked + .Radio-decoration:before {
-  //   content: '';
-  //   display: block;
-  //   width: 16px;
-  //   height: 16px;
-  //   opacity: 1;
-  //   background: ${colors.white};
-  //   // animation: ${radioIn} 600ms;
-  //   // animation-fill-mode: forwards;
-  //   position: absolute;
-  //   top: calc(50% - 8px);
-  //   left: calc(50% - 8px);
-  //   border-radius: 50%;
-  // }
 
   .Radio-input:checked + .Radio-decoration::after {
     opacity: 1;
     background: ${colors.brand01};
     animation: ${radioIn} 300ms;
     animation-fill-mode: forwards;
+  }
+
+  .Radio-input:disabled:hover {
+    cursor: not-allowed;
+  }
+
+  .Radio-input:disabled + .Radio-decoration {
+    background-color: ${colors.ui03};
+  }
+
+  .Radio-input:disabled:hover + .Radio-decoration {
+    border: 1px solid ${rgba(colors.type01, 0.16)};
   }
 
   .Radio-label {
@@ -120,16 +98,26 @@ const StyleRadio = styled.div`
 
 const StyledGroup = styled.div``;
 
-const Group = ({ children, name, onChange, as = 'ul' }) => {
+const Group = ({
+  children,
+  name,
+  onChange,
+  as = 'ul',
+  disabled = false,
+  selected
+}) => {
   const Wrapper = as !== 'div' ? StyledGroup.withComponent(as) : StyledGroup;
   return (
     <Wrapper>
       {Children.map(children, (child, index) => {
+        const checked = child.props.value === selected;
         return React.cloneElement(child, {
           name: name,
           onChange: onChange,
           key: `radio${index}`,
-          as: as === 'ul' ? 'li' : 'div'
+          as: as === 'ul' ? 'li' : 'div',
+          disabled: disabled,
+          selected: checked
         });
       })}
     </Wrapper>
@@ -139,10 +127,20 @@ const Group = ({ children, name, onChange, as = 'ul' }) => {
 Group.propTypes = {
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func,
-  as: PropTypes.oneOf(['div', 'ul', 'span'])
+  as: PropTypes.oneOf(['div', 'ul', 'span']),
+  disabled: PropTypes.bool,
+  selected: PropTypes.string
 };
 
-const RadioButton = ({ children, name, value, as, onChange }) => {
+const RadioButton = ({
+  children,
+  name,
+  value,
+  as,
+  onChange,
+  disabled,
+  selected
+}) => {
   const Wrapper = as !== 'div' ? StyleRadio.withComponent(as) : StyleRadio;
   return (
     <Wrapper>
@@ -153,6 +151,8 @@ const RadioButton = ({ children, name, value, as, onChange }) => {
           name={name}
           value={value}
           onChange={onChange}
+          disabled={disabled}
+          checked={selected}
         />
         <span className="Radio-decoration" />
       </div>
@@ -166,14 +166,18 @@ RadioButton.Group = Group;
 RadioButton.defaultProps = {
   name: '',
   as: 'div',
-  onChange: (e) => {}
+  onChange: (e) => {},
+  disabled: false,
+  selected: false
 };
 
 RadioButton.propTypes = {
   name: PropTypes.string,
   value: PropTypes.string.isRequired,
   as: PropTypes.oneOf(['div', 'li', 'span']),
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  disabled: PropTypes.bool,
+  selected: PropTypes.bool
 };
 
 export default RadioButton;

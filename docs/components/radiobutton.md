@@ -42,3 +42,18 @@ Callback to be called when the selected value changes.
   <Radiobutton value="mundo">Mundo</Radiobutton>
 </Radiobutton.Group>
 ```
+
+#### **selected** (string | boolean)
+
+Callback to be called when the selected value changes.
+
+```react
+<Radiobutton.Group name="wadus" selected="mundo">
+  <Radiobutton value="hola">Hola</Radiobutton>
+  <Radiobutton value="mundo">Mundo</Radiobutton>
+</Radiobutton.Group>
+```
+
+```react
+<Radiobutton value="hola" selected>Hola</Radiobutton>
+```

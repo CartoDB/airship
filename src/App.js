@@ -560,7 +560,16 @@ class App extends Component {
           <Radiobutton.Group
             name="wadus"
             onChange={(e) => console.log(e.target.value)}
+            selected="hola"
           >
+            <Radiobutton value="hola">
+              <Text>Hola</Text>
+            </Radiobutton>
+            <Radiobutton value="mundo">
+              <Text>Mundo</Text>
+            </Radiobutton>
+          </Radiobutton.Group>
+          <Radiobutton.Group name="foo" disabled>
             <Radiobutton value="hola">
               <Text>Hola</Text>
             </Radiobutton>

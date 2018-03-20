@@ -44,4 +44,17 @@ describe('render', () => {
       .simulate('change');
     expect(spy).toHaveBeenCalled();
   });
+
+  it('selected', () => {
+    const spy = jest.fn();
+    const component = mount(
+      <Radiobutton.Group name="wadus" selected="mundo">
+        <Radiobutton value="hola">Hola</Radiobutton>
+        <Radiobutton value="mundo">Mundo</Radiobutton>
+      </Radiobutton.Group>
+    );
+
+    const radio = component.find('input').at(1);
+    expect(radio.props().checked).toBe(true);
+  });
 });

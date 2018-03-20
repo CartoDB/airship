@@ -33,6 +33,8 @@ exports[`render renders radio button group 1`] = `
   position: absolute;
   top: calc(50% - 3px);
   left: calc(50% - 3px);
+  width: 6px;
+  height: 6px;
 }
 
 .c0 .Radio-input {
@@ -52,79 +54,148 @@ exports[`render renders radio button group 1`] = `
 }
 
 .c0 .Radio-input:focus {
+  border: 2px solid #1785FB;
   outline: none;
 }
 
 .c0 .Radio-input:hover + .Radio-decoration {
-  border: 1px solid #1785FB;
-}
-
-.c0 .Radio-input:hover + .Radio-decoration:after {
-  background: #1785FB;
-  width: 6px;
-  height: 6px;
-  opacity: 0;
-  -webkit-animation: jMKEOZ 300ms;
-  animation: jMKEOZ 300ms;
-  -webkit-animation-fill-mode: forwards;
-  animation-fill-mode: forwards;
-}
-
-.c0 .Radio-input:checked:hover + .Radio-decoration {
-  -webkit-animation: none;
-  animation: none;
-}
-
-.c0 .Radio-input:checked:hover + .Radio-decoration:after {
-  background: #fff;
-  opacity: 1;
-  -webkit-animation: initial;
-  animation: initial;
+  border: 1px solid #47DB99;
 }
 
 .c0 .Radio-input:checked + .Radio-decoration {
   border: 1px solid #1785FB;
 }
 
-.c0 .Radio-input:checked + .Radio-decoration:before {
-  content: '';
-  display: block;
-  width: 16px;
-  height: 16px;
+.c0 .Radio-input:checked + .Radio-decoration::after {
   opacity: 1;
   background: #1785FB;
-  -webkit-animation: jMKEOZ 600ms;
-  animation: jMKEOZ 600ms;
+  -webkit-animation: jMKEOZ 300ms;
+  animation: jMKEOZ 300ms;
   -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
-  position: absolute;
-  top: calc(50% - 8px);
-  left: calc(50% - 8px);
-  border-radius: 50%;
 }
 
-.c0 .Radio-input:checked + .Radio-decoration::after {
-  width: 6px;
-  height: 6px;
-  opacity: 1;
-  background: #fff;
+.c0 .Radio-input:disabled:hover {
+  cursor: not-allowed;
+}
+
+.c0 .Radio-input:disabled + .Radio-decoration {
+  background-color: #E2E6E3;
+}
+
+.c0 .Radio-input:disabled:hover + .Radio-decoration {
+  border: 1px solid rgba(44,44,44,0.16);
 }
 
 .c0 .Radio-label {
   margin-left: 4px;
 }
 
-<div>
-  <div
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c1 .Radio {
+  position: relative;
+}
+
+.c1 .Radio-decoration {
+  pointer-events: none;
+  width: 16px;
+  height: 16px;
+  border: 1px solid rgba(44,44,44,0.16);
+  border-radius: 50%;
+  position: relative;
+  display: block;
+}
+
+.c1 .Radio-decoration:after {
+  content: '';
+  display: block;
+  border-radius: 50%;
+  position: absolute;
+  top: calc(50% - 3px);
+  left: calc(50% - 3px);
+  width: 6px;
+  height: 6px;
+}
+
+.c1 .Radio-input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: none;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  border-radius: 50%;
+}
+
+.c1 .Radio-input:focus {
+  border: 2px solid #1785FB;
+  outline: none;
+}
+
+.c1 .Radio-input:hover + .Radio-decoration {
+  border: 1px solid #47DB99;
+}
+
+.c1 .Radio-input:checked + .Radio-decoration {
+  border: 1px solid #1785FB;
+}
+
+.c1 .Radio-input:checked + .Radio-decoration::after {
+  opacity: 1;
+  background: #1785FB;
+  -webkit-animation: jMKEOZ 300ms;
+  animation: jMKEOZ 300ms;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+
+.c1 .Radio-input:disabled:hover {
+  cursor: not-allowed;
+}
+
+.c1 .Radio-input:disabled + .Radio-decoration {
+  background-color: #E2E6E3;
+}
+
+.c1 .Radio-input:disabled:hover + .Radio-decoration {
+  border: 1px solid rgba(44,44,44,0.16);
+}
+
+.c1 .Radio-label {
+  margin-left: 4px;
+}
+
+<ul
+  className=""
+>
+  <li
     className="c0"
   >
     <div
       className="Radio"
     >
       <input
+        checked={false}
         className="Radio-input"
+        disabled={false}
         name="wadus"
-        onChange={undefined}
+        onChange={[Function]}
         type="radio"
         value="hola"
       />
@@ -137,17 +208,19 @@ exports[`render renders radio button group 1`] = `
     >
       Hola
     </div>
-  </div>
-  <div
-    className="c0"
+  </li>
+  <li
+    className="c1"
   >
     <div
       className="Radio"
     >
       <input
+        checked={false}
         className="Radio-input"
+        disabled={false}
         name="wadus"
-        onChange={undefined}
+        onChange={[Function]}
         type="radio"
         value="mundo"
       />
@@ -160,8 +233,8 @@ exports[`render renders radio button group 1`] = `
     >
       Mundo
     </div>
-  </div>
-</div>
+  </li>
+</ul>
 `;
 
 exports[`render renders with label 1`] = `
@@ -197,6 +270,8 @@ exports[`render renders with label 1`] = `
   position: absolute;
   top: calc(50% - 3px);
   left: calc(50% - 3px);
+  width: 6px;
+  height: 6px;
 }
 
 .c0 .Radio-input {
@@ -216,62 +291,37 @@ exports[`render renders with label 1`] = `
 }
 
 .c0 .Radio-input:focus {
+  border: 2px solid #1785FB;
   outline: none;
 }
 
 .c0 .Radio-input:hover + .Radio-decoration {
-  border: 1px solid #1785FB;
-}
-
-.c0 .Radio-input:hover + .Radio-decoration:after {
-  background: #1785FB;
-  width: 6px;
-  height: 6px;
-  opacity: 0;
-  -webkit-animation: jMKEOZ 300ms;
-  animation: jMKEOZ 300ms;
-  -webkit-animation-fill-mode: forwards;
-  animation-fill-mode: forwards;
-}
-
-.c0 .Radio-input:checked:hover + .Radio-decoration {
-  -webkit-animation: none;
-  animation: none;
-}
-
-.c0 .Radio-input:checked:hover + .Radio-decoration:after {
-  background: #fff;
-  opacity: 1;
-  -webkit-animation: initial;
-  animation: initial;
+  border: 1px solid #47DB99;
 }
 
 .c0 .Radio-input:checked + .Radio-decoration {
   border: 1px solid #1785FB;
 }
 
-.c0 .Radio-input:checked + .Radio-decoration:before {
-  content: '';
-  display: block;
-  width: 16px;
-  height: 16px;
+.c0 .Radio-input:checked + .Radio-decoration::after {
   opacity: 1;
   background: #1785FB;
-  -webkit-animation: jMKEOZ 600ms;
-  animation: jMKEOZ 600ms;
+  -webkit-animation: jMKEOZ 300ms;
+  animation: jMKEOZ 300ms;
   -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
-  position: absolute;
-  top: calc(50% - 8px);
-  left: calc(50% - 8px);
-  border-radius: 50%;
 }
 
-.c0 .Radio-input:checked + .Radio-decoration::after {
-  width: 6px;
-  height: 6px;
-  opacity: 1;
-  background: #fff;
+.c0 .Radio-input:disabled:hover {
+  cursor: not-allowed;
+}
+
+.c0 .Radio-input:disabled + .Radio-decoration {
+  background-color: #E2E6E3;
+}
+
+.c0 .Radio-input:disabled:hover + .Radio-decoration {
+  border: 1px solid rgba(44,44,44,0.16);
 }
 
 .c0 .Radio-label {
@@ -285,9 +335,11 @@ exports[`render renders with label 1`] = `
     className="Radio"
   >
     <input
+      checked={false}
       className="Radio-input"
+      disabled={false}
       name=""
-      onChange={undefined}
+      onChange={[Function]}
       type="radio"
       value="wadus"
     />
@@ -336,6 +388,8 @@ exports[`render renders without crashing 1`] = `
   position: absolute;
   top: calc(50% - 3px);
   left: calc(50% - 3px);
+  width: 6px;
+  height: 6px;
 }
 
 .c0 .Radio-input {
@@ -355,62 +409,37 @@ exports[`render renders without crashing 1`] = `
 }
 
 .c0 .Radio-input:focus {
+  border: 2px solid #1785FB;
   outline: none;
 }
 
 .c0 .Radio-input:hover + .Radio-decoration {
-  border: 1px solid #1785FB;
-}
-
-.c0 .Radio-input:hover + .Radio-decoration:after {
-  background: #1785FB;
-  width: 6px;
-  height: 6px;
-  opacity: 0;
-  -webkit-animation: jMKEOZ 300ms;
-  animation: jMKEOZ 300ms;
-  -webkit-animation-fill-mode: forwards;
-  animation-fill-mode: forwards;
-}
-
-.c0 .Radio-input:checked:hover + .Radio-decoration {
-  -webkit-animation: none;
-  animation: none;
-}
-
-.c0 .Radio-input:checked:hover + .Radio-decoration:after {
-  background: #fff;
-  opacity: 1;
-  -webkit-animation: initial;
-  animation: initial;
+  border: 1px solid #47DB99;
 }
 
 .c0 .Radio-input:checked + .Radio-decoration {
   border: 1px solid #1785FB;
 }
 
-.c0 .Radio-input:checked + .Radio-decoration:before {
-  content: '';
-  display: block;
-  width: 16px;
-  height: 16px;
+.c0 .Radio-input:checked + .Radio-decoration::after {
   opacity: 1;
   background: #1785FB;
-  -webkit-animation: jMKEOZ 600ms;
-  animation: jMKEOZ 600ms;
+  -webkit-animation: jMKEOZ 300ms;
+  animation: jMKEOZ 300ms;
   -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
-  position: absolute;
-  top: calc(50% - 8px);
-  left: calc(50% - 8px);
-  border-radius: 50%;
 }
 
-.c0 .Radio-input:checked + .Radio-decoration::after {
-  width: 6px;
-  height: 6px;
-  opacity: 1;
-  background: #fff;
+.c0 .Radio-input:disabled:hover {
+  cursor: not-allowed;
+}
+
+.c0 .Radio-input:disabled + .Radio-decoration {
+  background-color: #E2E6E3;
+}
+
+.c0 .Radio-input:disabled:hover + .Radio-decoration {
+  border: 1px solid rgba(44,44,44,0.16);
 }
 
 .c0 .Radio-label {
@@ -424,9 +453,11 @@ exports[`render renders without crashing 1`] = `
     className="Radio"
   >
     <input
+      checked={false}
       className="Radio-input"
+      disabled={false}
       name=""
-      onChange={undefined}
+      onChange={[Function]}
       type="radio"
       value="wadus"
     />
