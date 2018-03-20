@@ -3,10 +3,17 @@ import DayPicker, { DateUtils } from 'react-day-picker';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { darken } from 'polished';
-import { colors } from '../../constants';
+import { colors, shadows } from '../../constants';
 
 const StyledDatepicker = styled.div`
+  background-color: ${colors.white};
+  border-radius: 4px;
+  box-shadow: ${shadows.shadow8};
+  display: inline-flex;
+  padding: 8px 16px;
+
   .DayPicker-wrapper {
+    border-radius: 4px;
     display: inline-flex;
     flex-direction: column;
   }

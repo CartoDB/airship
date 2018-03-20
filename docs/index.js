@@ -234,6 +234,14 @@ const pages = [
       },
       {
         imports: {
+          Datepicker: require('../src/components/Datepicker/datepicker.js')
+        },
+        path: '/components/datepicker',
+        title: 'Datepicker',
+        component: require('./components/datepicker.md')
+      },
+      {
+        imports: {
           Grid: require('../src/components/Grid/grid.js')
         },
         path: '/components/grid',
