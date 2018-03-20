@@ -41,6 +41,8 @@ const StyleRadio = styled.div`
     position: absolute;
     top: calc(50% - 3px);
     left: calc(50% - 3px);
+    width: 6px;
+    height: 6px;
   }
 
   .Radio-input {
@@ -58,56 +60,57 @@ const StyleRadio = styled.div`
   }
 
   .Radio-input:focus {
+    border: 2px solid ${colors.brand01};
     outline: none;
   }
 
   .Radio-input:hover + .Radio-decoration {
-    border: 1px solid ${colors.brand01};
+    border: 1px solid ${colors.brand03};
   }
 
-  .Radio-input:hover + .Radio-decoration:after {
-    background: ${colors.brand01};
-    width: 6px;
-    height: 6px;
-    opacity: 0;
-    animation: ${radioIn} 300ms;
-    animation-fill-mode: forwards;
-  }
+  // .Radio-input:hover + .Radio-decoration:after {
+  //   background: ${colors.brand01};
+  //   width: 6px;
+  //   height: 6px;
+  //   opacity: 0;
+  //   animation: ${radioIn} 300ms;
+  //   animation-fill-mode: forwards;
+  // }
 
-  .Radio-input:checked:hover + .Radio-decoration {
-    animation: none;
-  }
+  // .Radio-input:checked:hover + .Radio-decoration {
+  //   animation: none;
+  // }
 
-  .Radio-input:checked:hover + .Radio-decoration:after {
-    background: ${colors.white};
-    opacity: 1;
-    animation: initial;
-  }
+  // .Radio-input:checked:hover + .Radio-decoration:after {
+  //   background: ${colors.brand01};
+  //   opacity: 1;
+  //   animation: initial;
+  // }
 
   .Radio-input:checked + .Radio-decoration {
     border: 1px solid ${colors.brand01};
   }
 
-  .Radio-input:checked + .Radio-decoration:before {
-    content: '';
-    display: block;
-    width: 16px;
-    height: 16px;
-    opacity: 1;
-    background: ${colors.brand01};
-    animation: ${radioIn} 600ms;
-    animation-fill-mode: forwards;
-    position: absolute;
-    top: calc(50% - 8px);
-    left: calc(50% - 8px);
-    border-radius: 50%;
-  }
+  // .Radio-input:checked + .Radio-decoration:before {
+  //   content: '';
+  //   display: block;
+  //   width: 16px;
+  //   height: 16px;
+  //   opacity: 1;
+  //   background: ${colors.white};
+  //   // animation: ${radioIn} 600ms;
+  //   // animation-fill-mode: forwards;
+  //   position: absolute;
+  //   top: calc(50% - 8px);
+  //   left: calc(50% - 8px);
+  //   border-radius: 50%;
+  // }
 
   .Radio-input:checked + .Radio-decoration::after {
-    width: 6px;
-    height: 6px;
     opacity: 1;
-    background: ${colors.white};
+    background: ${colors.brand01};
+    animation: ${radioIn} 300ms;
+    animation-fill-mode: forwards;
   }
 
   .Radio-label {
