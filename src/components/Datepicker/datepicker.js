@@ -307,7 +307,7 @@ class Datepicker extends Component {
 
   render() {
     const { fromMonth, toMonth, selectedDays } = this.props;
-    const { from, to, enteredTo } = this.state;
+    const { from, enteredTo } = this.state;
     const modifiers = { start: from, end: enteredTo };
     const selected = this.userInteracted
       ? [from, { from, to: enteredTo }]
