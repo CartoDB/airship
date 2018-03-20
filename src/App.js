@@ -49,7 +49,8 @@ import {
   Steps,
   Legend,
   Flag,
-  Banner
+  Banner,
+  Datepicker
 } from './components';
 import { colors } from './constants';
 
@@ -526,6 +527,20 @@ class App extends Component {
               </Text>
             </Banner.Content>
           </Banner>
+        </div>
+
+        <div style={{ padding: '20px' }}>
+          <Datepicker
+            onDayClick={(range) => console.log(range)}
+            initialMonth={new Date(2018, 9)}
+            fromMonth={new Date(2018, 8)}
+            toMonth={new Date(2020, 11)}
+            disabledDays={[
+              new Date(2018, 8, 12),
+              new Date(2018, 8, 17),
+              { after: new Date(2018, 8, 20), before: new Date(2018, 8, 25) }
+            ]}
+          />
         </div>
       </div>
     );
