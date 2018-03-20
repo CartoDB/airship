@@ -6,15 +6,6 @@ exports[`render renders with checked param 1`] = `
   position: relative;
 }
 
-.c1,
-.c1:after,
-.c1:before,
-.c1 *,
-.c1 *:after,
-.c1 *:before {
-  box-sizing: border-box;
-}
-
 .c1 svg {
   opacity: 0;
   position: absolute;
@@ -111,10 +102,6 @@ exports[`render renders with checked param 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-}
-
-.c2 {
-  margin-left: 8px;
 }
 
 <div
@@ -145,9 +132,6 @@ exports[`render renders with checked param 1`] = `
       />
     </svg>
   </div>
-  <div
-    className="c2"
-  />
 </div>
 `;
 
@@ -155,15 +139,6 @@ exports[`render renders without crashing 1`] = `
 .c1 {
   display: inline-block;
   position: relative;
-}
-
-.c1,
-.c1:after,
-.c1:before,
-.c1 *,
-.c1 *:after,
-.c1 *:before {
-  box-sizing: border-box;
 }
 
 .c1 svg {
@@ -264,10 +239,6 @@ exports[`render renders without crashing 1`] = `
   align-items: center;
 }
 
-.c2 {
-  margin-left: 8px;
-}
-
 <div
   className="c0"
 >
@@ -296,8 +267,5 @@ exports[`render renders without crashing 1`] = `
       />
     </svg>
   </div>
-  <div
-    className="c2"
-  />
 </div>
 `;
