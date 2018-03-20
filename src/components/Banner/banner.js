@@ -1,8 +1,5 @@
-import React, { Children } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import CloseIcon from '../Icons/close';
-import { shadows } from '../../constants';
 
 const Banner = styled.div`
   display: flex;
