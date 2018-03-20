@@ -51,3 +51,4 @@ export { default as Legend } from './Legend/legend';
 export { default as Flag } from './Flag/flag';
 export { default as Banner } from './Banner/banner';
 export { default as Datepicker } from './Datepicker/datepicker';
+export { default as Radiobutton } from './Radiobutton/radiobutton';

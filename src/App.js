@@ -50,7 +50,8 @@ import {
   Legend,
   Flag,
   Banner,
-  Datepicker
+  Datepicker,
+  Radiobutton
 } from './components';
 import { colors } from './constants';
 
@@ -551,6 +552,22 @@ class App extends Component {
               { after: new Date(2018, 8, 20), before: new Date(2018, 8, 25) }
             ]}
           />
+        </div>
+
+        <div style={{ padding: '20px' }}>
+          <Radiobutton value="wadus" />
+          <Radiobutton value="wadus">Wadus</Radiobutton>
+          <Radiobutton.Group
+            name="wadus"
+            onChange={(e) => console.log(e.target.value)}
+          >
+            <Radiobutton value="hola">
+              <Text>Hola</Text>
+            </Radiobutton>
+            <Radiobutton value="mundo">
+              <Text>Mundo</Text>
+            </Radiobutton>
+          </Radiobutton.Group>
         </div>
       </div>
     );
