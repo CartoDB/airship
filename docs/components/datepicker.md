@@ -100,3 +100,28 @@ A modifier can be either:
   ]}
 />
 ```
+
+#### **selectedDays** (array)
+
+Day(s) that should appear as selected initially. It admits range `modifiers`:
+
+```react
+<Datepicker
+  fromMonth={new Date(2018, 8)}
+  toMonth={new Date(2020, 11)}
+  selectedDays={[{ after: new Date(2018, 8, 20), before: new Date(2018, 8, 25) }]}
+/>
+```
+
+#### **onDayClick** (function)
+
+Callback when the user clicks on a day cell. The function takes a `range` object with `from`
+and `to` keys to match the date range selected by the user.
+
+```react
+<Datepicker
+  onDayClick={(range) => console.log(range)}
+  fromMonth={new Date(2018, 8)}
+  toMonth={new Date(2020, 11)}
+/>
+```

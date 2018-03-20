@@ -70,11 +70,26 @@ const StyledDatepicker = styled.div`
     box-shadow: ${colors.brand01} 4px 0 0, ${colors.brand01} -4px 0 0;
   }
 
+  .DayPicker-Day--selected:last-child {
+    box-shadow: ${colors.brand01} -4px 0 0;
+  }
+
+  .DayPicker-Day--selected.not(.DayPicker-Day--start):first-child {
+    box-shadow: ${colors.brand01} 4px 0 0;
+  }
+
+  .DayPicker-Day--selected.not(.DayPicker-Day--end):last-child {
+    box-shadow: ${colors.brand01} -4px 0 0;
+  }
+
   .DayPicker-Day--start {
     border-radius: 4px 0 0 4px;
     background-color: ${darken(0.16, colors.brand01)};
-    box-shadow: none;
     box-shadow: ${darken(0.16, colors.brand01)} 4px 0 0;
+  }
+
+  .DayPicker-Day--start:last-child {
+    box-shadow: none;
   }
 
   .DayPicker-Day--end {
@@ -218,7 +233,19 @@ class Datepicker extends Component {
     this.disabledDays = props.disabledDays.concat([
       { before: this.props.fromMonth }
     ]);
+    this.userInteracted = false;
   }
+
+  componentDidMount() {
+    const { selectedDays } = this.props;
+    let selected = [];
+    if (selectedDays.length > 0) {
+      selected = this.node.querySelectorAll('.DayPicker-Day--selected');
+      selected[0].classList.add('DayPicker-Day--start');
+      selected[selected.length - 1].classList.add('DayPicker-Day--end');
+    }
+  }
+
   getInitialState() {
     return {
       from: null,
@@ -242,6 +269,7 @@ class Datepicker extends Component {
     if (disabled) {
       return;
     }
+    this.userInteracted = true;
 
     const { from, to } = this.state;
     const { onDayClick } = this.props;
@@ -278,13 +306,15 @@ class Datepicker extends Component {
   };
 
   render() {
-    const { fromMonth, toMonth } = this.props;
+    const { fromMonth, toMonth, selectedDays } = this.props;
     const { from, to, enteredTo } = this.state;
     const modifiers = { start: from, end: enteredTo };
-    const selectedDays = [from, { from, to: enteredTo }];
+    const selected = this.userInteracted
+      ? [from, { from, to: enteredTo }]
+      : selectedDays;
 
     return (
-      <StyledDatepicker>
+      <StyledDatepicker innerRef={(node) => (this.node = node)}>
         <DayPicker
           fixedWeeks
           firstDayOfWeek={1}
@@ -292,7 +322,7 @@ class Datepicker extends Component {
           month={this.state.month}
           fromMonth={fromMonth}
           toMonth={toMonth}
-          selectedDays={selectedDays}
+          selectedDays={selected}
           disabledDays={this.disabledDays}
           modifiers={modifiers}
           onDayClick={this.handleDayClick}
@@ -313,13 +343,14 @@ class Datepicker extends Component {
 }
 
 Datepicker.defaultProps = {
-  disabledDays: []
+  disabledDays: [],
+  selectedDays: []
 };
 
 Datepicker.propTypes = {
   onDayClick: PropTypes.func,
   disabledDays: PropTypes.array,
-  modifiers: PropTypes.array,
+  selectedDays: PropTypes.array,
   fromMonth: PropTypes.instanceOf(Date).isRequired,
   toMonth: PropTypes.instanceOf(Date).isRequired,
   initialMonth: PropTypes.instanceOf(Date)
