@@ -115,18 +115,28 @@ const StyleRadio = styled.div`
   }
 `;
 
-const Group = ({ children, name, onChange }) => {
+const StyledGroup = styled.div``;
+
+const Group = ({ children, name, onChange, as = 'ul' }) => {
+  const Wrapper = as !== 'div' ? StyledGroup.withComponent(as) : StyledGroup;
   return (
-    <div>
+    <Wrapper>
       {Children.map(children, (child, index) => {
         return React.cloneElement(child, {
           name: name,
           onChange: onChange,
-          key: `radio${index}`
+          key: `radio${index}`,
+          as: as === 'ul' ? 'li' : 'div'
         });
       })}
-    </div>
+    </Wrapper>
   );
+};
+
+Group.propTypes = {
+  name: PropTypes.string.isRequired,
+  onChange: PropTypes.func,
+  as: PropTypes.oneOf(['div', 'ul', 'span'])
 };
 
 const RadioButton = ({ children, name, value, as, onChange }) => {
@@ -152,13 +162,15 @@ RadioButton.Group = Group;
 
 RadioButton.defaultProps = {
   name: '',
-  as: 'div'
+  as: 'div',
+  onChange: (e) => {}
 };
 
 RadioButton.propTypes = {
   name: PropTypes.string,
   value: PropTypes.string.isRequired,
-  as: PropTypes.oneOf(['div', 'li', 'span'])
+  as: PropTypes.oneOf(['div', 'li', 'span']),
+  onChange: PropTypes.func
 };
 
 export default RadioButton;

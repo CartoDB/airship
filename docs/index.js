@@ -242,6 +242,14 @@ const pages = [
       },
       {
         imports: {
+          Radiobutton: require('../src/components/Radiobutton/radiobutton.js')
+        },
+        path: '/components/radiobutton',
+        title: 'Radiobutton',
+        component: require('./components/radiobutton.md')
+      },
+      {
+        imports: {
           Grid: require('../src/components/Grid/grid.js')
         },
         path: '/components/grid',
