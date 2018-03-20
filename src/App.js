@@ -51,7 +51,8 @@ import {
   Flag,
   Banner,
   Datepicker,
-  Radiobutton
+  Radiobutton,
+  Checkbox
 } from './components';
 import { colors } from './constants';
 
@@ -557,6 +558,7 @@ class App extends Component {
         <div style={{ padding: '20px' }}>
           <Radiobutton value="wadus" />
           <Radiobutton value="wadus">Wadus</Radiobutton>
+
           <Radiobutton.Group
             name="wadus"
             onChange={(e) => console.log(e.target.value)}
@@ -569,6 +571,7 @@ class App extends Component {
               <Text>Mundo</Text>
             </Radiobutton>
           </Radiobutton.Group>
+
           <Radiobutton.Group name="foo" disabled>
             <Radiobutton value="hola">
               <Text>Hola</Text>
@@ -577,6 +580,13 @@ class App extends Component {
               <Text>Mundo</Text>
             </Radiobutton>
           </Radiobutton.Group>
+        </div>
+
+        <div style={{ padding: '20px' }}>
+          <Checkbox value="wadus" />
+          <Checkbox value="wadus" checked>
+            Hola
+          </Checkbox>
         </div>
       </div>
     );
