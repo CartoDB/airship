@@ -70,12 +70,25 @@ const StyleCheck = styled.div`
     border: 1px solid ${colors.brand03};
   }
 
+  .Checkbox-input:disabled + .Checkbox-decoration {
+    background-color: ${colors.ui03};
+  }
+
+  .Checkbox-input:disabled:hover {
+    cursor: not-allowed;
+    border: 1px solid ${rgba(colors.type01, 0.16)};
+  }
+
   .Checkbox-input:checked {
     border: 1px solid ${colors.brand01};
   }
 
   .Checkbox-input:checked + .Checkbox-decoration .Checkbox-check {
     animation: ${stroke} 0.3s cubic-bezier(0.65, 0, 0.45, 1) 300ms forwards;
+  }
+
+  .Checkbox-input:disabled:checked + .Checkbox-decoration .Checkbox-check {
+    stroke: ${rgba(colors.type01, 0.16)};
   }
 
   .Checkbox-label {
@@ -111,7 +124,7 @@ class Checkbox extends Component {
   };
 
   render() {
-    const { children, name, as, value, disabled } = this.props;
+    const { children, name, as, disabled } = this.props;
 
     const { checked } = this.state;
     const Wrapper = as !== 'div' ? StyleCheck.withComponent(as) : StyleCheck;
@@ -122,7 +135,6 @@ class Checkbox extends Component {
             className="Checkbox-input"
             type="checkbox"
             name={name}
-            value={value}
             onChange={this.clickHandler}
             disabled={disabled}
             checked={checked}
@@ -154,7 +166,6 @@ Checkbox.defaultProps = {
 
 Checkbox.propTypes = {
   name: PropTypes.string,
-  value: PropTypes.string.isRequired,
   as: PropTypes.oneOf(['div', 'li', 'span']),
   onChange: PropTypes.func,
   disabled: PropTypes.bool,

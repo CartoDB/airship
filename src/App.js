@@ -580,12 +580,12 @@ class App extends Component {
         </div>
 
         <div style={{ padding: '20px' }}>
-          <Checkbox value="wadus" />
+          <Checkbox value={1} onChange={(state) => console.log(state)} />
           <Checkbox value="wadus" checked>
             <Text>Hola</Text>
           </Checkbox>
 
-          <Checkbox value="wadus" disabled>
+          <Checkbox value="wadus" checked disabled>
             <Text>Hola</Text>
           </Checkbox>
         </div>

@@ -250,6 +250,14 @@ const pages = [
       },
       {
         imports: {
+          Checkbox: require('../src/components/Checkbox/checkbox.js')
+        },
+        path: '/components/checkbox',
+        title: 'Checkbox',
+        component: require('./components/checkbox.md')
+      },
+      {
+        imports: {
           Grid: require('../src/components/Grid/grid.js')
         },
         path: '/components/grid',
