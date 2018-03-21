@@ -52,7 +52,8 @@ import {
   Banner,
   Datepicker,
   Radiobutton,
-  Checkbox
+  Checkbox,
+  Typeahead
 } from './components';
 import { colors } from './constants';
 
@@ -616,6 +617,12 @@ class App extends Component {
           <Checkbox value="wadus" checked disabled>
             <Text>Hola</Text>
           </Checkbox>
+        </div>
+
+        <div style={{ padding: '20px' }}>
+          <Typeahead />
+          <Typeahead query="wadus" />
+          <Typeahead loading />
         </div>
       </div>
     );

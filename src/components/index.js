@@ -53,3 +53,4 @@ export { default as Banner } from './Banner/banner';
 export { default as Datepicker } from './Datepicker/datepicker';
 export { default as Radiobutton } from './Radiobutton/radiobutton';
 export { default as Checkbox } from './Checkbox/checkbox';
+export { default as Typeahead } from './Typeahead/typeahead';
