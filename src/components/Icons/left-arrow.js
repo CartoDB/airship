@@ -21,8 +21,8 @@ const LeftArrowIcon = ({
 };
 
 LeftArrowIcon.propTypes = {
-  height: PropTypes.oneOf([11, 22, 33]),
-  width: PropTypes.oneOf([16, 32, 48]),
+  width: PropTypes.number,
+  height: PropTypes.number,
   color: PropTypes.string
 };
 

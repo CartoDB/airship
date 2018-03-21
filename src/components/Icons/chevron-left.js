@@ -21,8 +21,8 @@ const ChevronLeftIcon = ({
 };
 
 ChevronLeftIcon.propTypes = {
-  width: PropTypes.oneOf([4, 6, 8, 16, 24]),
-  height: PropTypes.oneOf([8, 12, 16, 32, 48]),
+  width: PropTypes.number,
+  height: PropTypes.number,
   color: PropTypes.string
 };
 

@@ -21,8 +21,8 @@ const MinusIcon = ({
 };
 
 MinusIcon.propTypes = {
-  width: PropTypes.oneOf([12, 24, 32, 48]),
-  height: PropTypes.oneOf([1, 2, 3, 4]),
+  width: PropTypes.number,
+  height: PropTypes.number,
   color: PropTypes.string
 };
 

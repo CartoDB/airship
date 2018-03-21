@@ -21,8 +21,8 @@ const TopArrowIcon = ({
 };
 
 TopArrowIcon.propTypes = {
-  width: PropTypes.oneOf([11, 22, 33]),
-  height: PropTypes.oneOf([16, 32, 48]),
+  width: PropTypes.number,
+  height: PropTypes.number,
   color: PropTypes.string
 };
 

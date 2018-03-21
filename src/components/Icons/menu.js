@@ -16,8 +16,8 @@ const MenuIcon = ({ width = 12, height = 9, color = '#1785fb', ...others }) => {
 };
 
 MenuIcon.propTypes = {
-  width: PropTypes.oneOf([12, 24, 32, 48]),
-  height: PropTypes.oneOf([9, 18, 27, 36]),
+  width: PropTypes.number,
+  height: PropTypes.number,
   color: PropTypes.string
 };
 

@@ -21,6 +21,8 @@ const ChevronDownIcon = ({
 };
 
 ChevronDownIcon.propTypes = {
+  width: PropTypes.number,
+  height: PropTypes.number,
   color: PropTypes.string
 };
 

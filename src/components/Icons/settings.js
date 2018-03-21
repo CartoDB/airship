@@ -25,8 +25,8 @@ const SettingsIcon = ({
 };
 
 SettingsIcon.propTypes = {
-  width: PropTypes.oneOf([14, 28, 35]),
-  height: PropTypes.oneOf([12, 24, 30]),
+  width: PropTypes.number,
+  height: PropTypes.number,
   color: PropTypes.string
 };
 

@@ -21,8 +21,8 @@ const AlertIcon = ({
 };
 
 AlertIcon.propTypes = {
-  width: PropTypes.oneOf([16, 24, 32]),
-  height: PropTypes.oneOf([15, 22.5, 30]),
+  width: PropTypes.number,
+  height: PropTypes.number,
   color: PropTypes.string
 };
 

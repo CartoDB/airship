@@ -21,8 +21,8 @@ const CheckRoundIcon = ({
 };
 
 CheckRoundIcon.propTypes = {
-  width: PropTypes.oneOf([12, 16, 32]),
-  height: PropTypes.oneOf([12, 16, 32]),
+  width: PropTypes.number,
+  height: PropTypes.number,
   color: PropTypes.string
 };
 

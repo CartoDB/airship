@@ -21,6 +21,8 @@ const AlertFillIcon = ({
 };
 
 AlertFillIcon.propTypes = {
+  width: PropTypes.number,
+  height: PropTypes.number,
   color: PropTypes.string
 };
 
