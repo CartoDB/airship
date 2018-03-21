@@ -251,6 +251,26 @@ class App extends Component {
             </Dropdown.Content>
           </Dropdown>
         </div>
+
+        <div style={{ padding: '10px' }}>
+          <Dropdown action="over" size={300}>
+            <Dropdown.Trigger as="span">
+              <Dropdown.Button>
+                Dropdown <ChevronDownIcon width={12} height={12} />
+              </Dropdown.Button>
+            </Dropdown.Trigger>
+            <Dropdown.Content>
+              <Dropdown.Menu>
+                <Dropdown.Item onClick={(e) => console.log(e.target)}>
+                  All
+                </Dropdown.Item>
+                <Dropdown.Item>Open</Dropdown.Item>
+                <Dropdown.Item>Fullfilled</Dropdown.Item>
+                <Dropdown.Item>Close</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown.Content>
+          </Dropdown>
+        </div>
         <div style={{ padding: '10px' }}>
           <Table>
             <Table.Header>

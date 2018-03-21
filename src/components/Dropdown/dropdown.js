@@ -22,6 +22,7 @@ import { offset } from '../../utils';
 
 const TriggerWrapper = styled.div`
   display: inline-flex;
+  width: ${(props) => `${props.size}px` || 'auto'};
 `;
 
 class DropdownTrigger extends Component {
@@ -33,6 +34,29 @@ class DropdownTrigger extends Component {
 
 DropdownTrigger.displayName = 'Dropdown.Trigger';
 
+const DropdownButton = styled.button`
+  appearance: none;
+  background-color: ${colors.white};
+  border-radius: 4px;
+  border: 1px solid ${rgba(colors.type01, 0.16)};
+  display: inline-flex;
+  align-items: center;
+  font: 400 12px/18px 'Roboto';
+  color: ${colors.type01};
+  padding: 6px 12px;
+  width: 100%;
+  outline: none;
+
+  &:focus {
+    border: 1px solid ${colors.brand01};
+    box-shadow: 0 0 0 1px ${colors.brand01};
+  }
+
+  svg {
+    margin-left: auto;
+  }
+`;
+
 const DropdownContent = styled.div`
   background: ${colors.white};
   box-shadow: ${shadows.shadow8};
@@ -40,6 +64,8 @@ const DropdownContent = styled.div`
   left: ${(props) => `${props.position.left}px`};
   top: ${(props) => `${props.position.top + props.position.height + 5}px`};
   position: absolute;
+  width: ${(props) => `${props.size}px` || 'auto'};
+  min-width: 200px;
 `;
 
 const Content = ({ children, node, ...props }) => {
@@ -66,7 +92,7 @@ const StyledList = styled.ul`
   flex-direction: column;
   list-style: none;
   margin: 0;
-  min-width: 200px;
+  width: 100%;
   padding: 1px 0 0;
   position: relative;
 `;
@@ -125,6 +151,8 @@ class Dropdown extends Component {
   static Content = Content;
   static Menu = DropdownMenu;
   static Item = DropdownItem;
+  static Button = DropdownButton;
+
   static Timeout = 500;
 
   state = {
@@ -187,7 +215,7 @@ class Dropdown extends Component {
 
   render() {
     const { active } = this.state;
-    const { children, action } = this.props;
+    const { children, action, size } = this.props;
     const Node = this.tagName;
 
     return (
@@ -196,6 +224,7 @@ class Dropdown extends Component {
         innerRef={(node) => {
           this.node = node;
         }}
+        size={size}
       >
         {React.Children.map(children, (child) => {
           let element = null;
@@ -204,14 +233,18 @@ class Dropdown extends Component {
               'data-component': 'Dropdown.Trigger',
               onClick: (e) => (action === 'click' ? this.toggle() : null),
               onMouseEnter: (e) => (action === 'over' ? this.show() : null),
-              onMouseLeave: (e) => (action === 'over' ? this.tryToHide() : null)
+              onMouseLeave: (e) =>
+                action === 'over' ? this.tryToHide() : null,
+              size: size
             });
           } else if (child.type.displayName === 'Dropdown.Content' && active) {
             element = React.cloneElement(child, {
               'data-component': 'Dropdown.Content',
               node: this.node,
               onMouseEnter: (e) => (action === 'over' ? this.show() : null),
-              onMouseLeave: (e) => (action === 'over' ? this.tryToHide() : null)
+              onMouseLeave: (e) =>
+                action === 'over' ? this.tryToHide() : null,
+              size: size
             });
           }
           return element;
@@ -228,7 +261,8 @@ Dropdown.defaultProps = {
 
 Dropdown.propTypes = {
   action: PropTypes.oneOf(['over', 'click']),
-  as: PropTypes.oneOf(['div', 'span'])
+  as: PropTypes.oneOf(['div', 'span']),
+  size: PropTypes.number
 };
 
 export default Dropdown;
