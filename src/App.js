@@ -444,33 +444,41 @@ class App extends Component {
         </div>
 
         <div style={{ padding: '20px' }}>
-          <Collapsible>
-            <Collapsible.Header>Header</Collapsible.Header>
-            <Collapsible.Content>Content</Collapsible.Content>
-          </Collapsible>
+          <div style={{ width: '300px', marginBottom: '20px' }}>
+            <Collapsible>
+              <Collapsible.Header>Header</Collapsible.Header>
+              <Collapsible.Content>Content</Collapsible.Content>
+            </Collapsible>
+          </div>
 
-          <Collapsible open={false}>
-            <Collapsible.Header>Header</Collapsible.Header>
-            <Collapsible.Content>Content</Collapsible.Content>
-          </Collapsible>
+          <div style={{ width: '300px' }}>
+            <Collapsible open={false}>
+              <Collapsible.Header>Header</Collapsible.Header>
+              <Collapsible.Content>Content</Collapsible.Content>
+            </Collapsible>
+          </div>
         </div>
 
         <div style={{ padding: '20px' }}>
-          <Steps>
-            <Steps.Header>Header</Steps.Header>
-            <Steps.Content>Content 1</Steps.Content>
-            <Steps.Content>Content 2</Steps.Content>
-            <Steps.Content>Content 3</Steps.Content>
-            <Steps.Content>Content 4</Steps.Content>
-          </Steps>
+          <div style={{ width: '400px', marginBottom: '20px' }}>
+            <Steps>
+              <Steps.Header>Header</Steps.Header>
+              <Steps.Content>Content 1</Steps.Content>
+              <Steps.Content>Content 2</Steps.Content>
+              <Steps.Content>Content 3</Steps.Content>
+              <Steps.Content>Content 4</Steps.Content>
+            </Steps>
+          </div>
 
-          <Steps step={2}>
-            <Steps.Header>Header</Steps.Header>
-            <Steps.Content>Content 1</Steps.Content>
-            <Steps.Content>Content 2</Steps.Content>
-            <Steps.Content>Content 3</Steps.Content>
-            <Steps.Content>Content 4</Steps.Content>
-          </Steps>
+          <div style={{ width: '400px' }}>
+            <Steps step={2}>
+              <Steps.Header>Header</Steps.Header>
+              <Steps.Content>Content 1</Steps.Content>
+              <Steps.Content>Content 2</Steps.Content>
+              <Steps.Content>Content 3</Steps.Content>
+              <Steps.Content>Content 4</Steps.Content>
+            </Steps>
+          </div>
         </div>
 
         <div style={{ padding: '20px' }}>
