@@ -66,6 +66,10 @@ exports[`render renders radio button group 1`] = `
   border: 1px solid #1785FB;
 }
 
+.c0 .Radio-input:checked:disabled + .Radio-decoration {
+  border: 1px solid rgba(44,44,44,0.16);
+}
+
 .c0 .Radio-input:checked + .Radio-decoration::after {
   opacity: 1;
   background: #1785FB;
@@ -73,6 +77,10 @@ exports[`render renders radio button group 1`] = `
   animation: jMKEOZ 300ms;
   -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
+}
+
+.c0 .Radio-input:checked:disabled + .Radio-decoration::after {
+  background: rgba(44,44,44,0.16);
 }
 
 .c0 .Radio-input:disabled:hover {
@@ -156,6 +164,10 @@ exports[`render renders radio button group 1`] = `
   border: 1px solid #1785FB;
 }
 
+.c1 .Radio-input:checked:disabled + .Radio-decoration {
+  border: 1px solid rgba(44,44,44,0.16);
+}
+
 .c1 .Radio-input:checked + .Radio-decoration::after {
   opacity: 1;
   background: #1785FB;
@@ -163,6 +175,10 @@ exports[`render renders radio button group 1`] = `
   animation: jMKEOZ 300ms;
   -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
+}
+
+.c1 .Radio-input:checked:disabled + .Radio-decoration::after {
+  background: rgba(44,44,44,0.16);
 }
 
 .c1 .Radio-input:disabled:hover {
@@ -303,6 +319,10 @@ exports[`render renders with label 1`] = `
   border: 1px solid #1785FB;
 }
 
+.c0 .Radio-input:checked:disabled + .Radio-decoration {
+  border: 1px solid rgba(44,44,44,0.16);
+}
+
 .c0 .Radio-input:checked + .Radio-decoration::after {
   opacity: 1;
   background: #1785FB;
@@ -310,6 +330,10 @@ exports[`render renders with label 1`] = `
   animation: jMKEOZ 300ms;
   -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
+}
+
+.c0 .Radio-input:checked:disabled + .Radio-decoration::after {
+  background: rgba(44,44,44,0.16);
 }
 
 .c0 .Radio-input:disabled:hover {
@@ -421,6 +445,10 @@ exports[`render renders without crashing 1`] = `
   border: 1px solid #1785FB;
 }
 
+.c0 .Radio-input:checked:disabled + .Radio-decoration {
+  border: 1px solid rgba(44,44,44,0.16);
+}
+
 .c0 .Radio-input:checked + .Radio-decoration::after {
   opacity: 1;
   background: #1785FB;
@@ -428,6 +456,10 @@ exports[`render renders without crashing 1`] = `
   animation: jMKEOZ 300ms;
   -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
+}
+
+.c0 .Radio-input:checked:disabled + .Radio-decoration::after {
+  background: rgba(44,44,44,0.16);
 }
 
 .c0 .Radio-input:disabled:hover {

@@ -1,4 +1,4 @@
-import React, { Children } from 'react';
+import React, { Children, Component } from 'react';
 import styled, { keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
 import { colors } from '../../constants';
@@ -72,11 +72,19 @@ const StyleRadio = styled.div`
     border: 1px solid ${colors.brand01};
   }
 
+  .Radio-input:checked:disabled + .Radio-decoration {
+    border: 1px solid ${rgba(colors.type01, 0.16)};
+  }
+
   .Radio-input:checked + .Radio-decoration::after {
     opacity: 1;
     background: ${colors.brand01};
     animation: ${radioIn} 300ms;
     animation-fill-mode: forwards;
+  }
+
+  .Radio-input:checked:disabled + .Radio-decoration::after {
+    background: ${rgba(colors.type01, 0.16)};
   }
 
   .Radio-input:disabled:hover {
@@ -98,31 +106,53 @@ const StyleRadio = styled.div`
 
 const StyledGroup = styled.div``;
 
-const Group = ({
-  children,
-  name,
-  onChange,
-  as = 'ul',
-  disabled = false,
-  selected
-}) => {
-  const Wrapper = as !== 'div' ? StyledGroup.withComponent(as) : StyledGroup;
-  return (
-    <Wrapper>
-      {Children.map(children, (child, index) => {
-        const checked = child.props.value === selected;
-        return React.cloneElement(child, {
-          name: name,
-          onChange: onChange,
-          key: `radio${index}`,
-          as: as === 'ul' ? 'li' : 'div',
-          disabled: disabled,
-          selected: checked
-        });
-      })}
-    </Wrapper>
-  );
-};
+class Group extends Component {
+  state = {
+    selected: this.props.selected
+  };
+
+  componentWillReceiveProps(nextProps) {
+    if (this.state.selected !== nextProps.selected) {
+      this.setState({ selected: nextProps.selected });
+    }
+  }
+
+  onChange = (e) => {
+    const { onChange, disabled } = this.props;
+    !disabled &&
+      this.setState(
+        {
+          selected: e.target.value
+        },
+        () => {
+          onChange && onChange(this.state.selected);
+        }
+      );
+  };
+
+  render() {
+    const { children, name, as = 'ul', disabled = false } = this.props;
+
+    const { selected } = this.state;
+
+    const Wrapper = as !== 'div' ? StyledGroup.withComponent(as) : StyledGroup;
+    return (
+      <Wrapper>
+        {Children.map(children, (child, index) => {
+          const checked = child.props.value === selected;
+          return React.cloneElement(child, {
+            name,
+            onChange: this.onChange,
+            key: `radio${index}`,
+            as: as === 'ul' ? 'li' : 'div',
+            disabled,
+            selected: checked
+          });
+        })}
+      </Wrapper>
+    );
+  }
+}
 
 Group.propTypes = {
   name: PropTypes.string.isRequired,
@@ -137,9 +167,9 @@ const RadioButton = ({
   name,
   value,
   as,
-  onChange,
   disabled,
-  selected
+  selected,
+  onChange
 }) => {
   const Wrapper = as !== 'div' ? StyleRadio.withComponent(as) : StyleRadio;
   return (
@@ -150,7 +180,7 @@ const RadioButton = ({
           type="radio"
           name={name}
           value={value}
-          onChange={onChange}
+          onChange={(e) => onChange(e)}
           disabled={disabled}
           checked={selected}
         />

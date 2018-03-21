@@ -556,12 +556,9 @@ class App extends Component {
         </div>
 
         <div style={{ padding: '20px' }}>
-          <Radiobutton value="wadus" />
-          <Radiobutton value="wadus">Wadus</Radiobutton>
-
           <Radiobutton.Group
             name="wadus"
-            onChange={(e) => console.log(e.target.value)}
+            onChange={(state) => console.log(state)}
             selected="hola"
           >
             <Radiobutton value="hola">
@@ -572,7 +569,7 @@ class App extends Component {
             </Radiobutton>
           </Radiobutton.Group>
 
-          <Radiobutton.Group name="foo" disabled>
+          <Radiobutton.Group name="foo" selected="hola" disabled>
             <Radiobutton value="hola">
               <Text>Hola</Text>
             </Radiobutton>
@@ -585,7 +582,11 @@ class App extends Component {
         <div style={{ padding: '20px' }}>
           <Checkbox value="wadus" />
           <Checkbox value="wadus" checked>
-            Hola
+            <Text>Hola</Text>
+          </Checkbox>
+
+          <Checkbox value="wadus" disabled>
+            <Text>Hola</Text>
           </Checkbox>
         </div>
       </div>
