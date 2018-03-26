@@ -1,0 +1,102 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render renders children 1`] = `
+.c0 {
+  background: #fff;
+  padding: 16px;
+  width: 260px;
+}
+
+.c1 {
+  color: #747474;
+  margin: 0;
+  font-family: Roboto,sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 20px;
+}
+
+<div
+  className="c0"
+>
+  
+  <p
+    className="c1"
+    color="#747474"
+  >
+    Rick & Morty
+  </p>
+  This is a children
+</div>
+`;
+
+exports[`render renders with the decription prop 1`] = `
+.c0 {
+  background: #fff;
+  padding: 16px;
+  width: 260px;
+}
+
+.c1 {
+  color: #747474;
+  margin: 0;
+  font-family: Roboto,sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 20px;
+}
+
+<div
+  className="c0"
+>
+  
+  <p
+    className="c1"
+    color="#747474"
+  >
+    Rick & Morty
+  </p>
+</div>
+`;
+
+exports[`render renders with the title prop 1`] = `
+.c0 {
+  background: #fff;
+  padding: 16px;
+  width: 260px;
+}
+
+.c1 {
+  margin: 0;
+  font-family: Roboto,sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+<div
+  className="c0"
+>
+  <h1
+    className="c1"
+  >
+    Rick & Morty
+  </h1>
+  
+</div>
+`;
+
+exports[`render renders without crashing 1`] = `
+.c0 {
+  background: #fff;
+  padding: 16px;
+  width: 260px;
+}
+
+<div
+  className="c0"
+>
+  
+  
+</div>
+`;
