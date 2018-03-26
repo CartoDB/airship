@@ -19,6 +19,7 @@ const BaseText = styled.div`
   margin: ${(props) => props.margin || 0};
   font-family: ${(props) => getFont(props)};
   font-weight: ${(props) => getWeight(props)};
+  -webkit-font-smoothing: antialiased;
 `;
 
 BaseText.propTypes = {
