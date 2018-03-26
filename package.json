@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "d3": "^5.0.0",
     "emotion": "^9.0.1",
     "lodash": "^4.17.5",
     "polished": "^1.9.2",
