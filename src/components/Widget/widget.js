@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import SubHeader from '../Typography/subheader';
-import Text from '../Typography/text';
+import Base from '../Typography/base';
 import { colors } from '../../constants';
 
 const StyledWidget = styled.div`
@@ -12,13 +12,23 @@ const StyledWidget = styled.div`
 `;
 StyledWidget.displayName = 'Widget';
 
+const Title = Base.withComponent('h1').extend`
+  font-size: 16px;
+  line-height: 24px;
+`;
+
+const Description = Base.withComponent('p').extend`
+  font-size: 12px;
+  line-height: 16px;
+  color: ${colors.type02};
+  margin-bottom: 12px;
+`;
+
 const Widget = props => {
   const { children, description, title } = props;
 
   return (
     <StyledWidget>
-      {title && <SubHeader>{title}</SubHeader>}
-      {description && <Text color={colors.type02}>{description}</Text>}
       {children}
     </StyledWidget>
   )
@@ -33,5 +43,8 @@ Widget.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
 };
+
+Widget.Title = Title;
+Widget.Description = Description;
 
 export default Widget;

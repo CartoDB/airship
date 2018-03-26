@@ -1,4 +1,4 @@
-import * as d3 from 'd3';
+import { arc, select, interpolate } from 'd3';
 
 const PI = Math.PI;
 
@@ -8,32 +8,31 @@ const DEFAULT_OPTIONS = {
   innerRadius: 88,
   outerRadius: 100,
   maxValue: 180,
+  minValue: 0,
+  value: 0,
   backgroundColor: '#F5F5F5',
   foregroundColor: '#47DB99',
   textColor: '#2C2C2C',
 };
 
 export default class Gaugechart {
-  constructor(element, attrs, options) {
-    console.log(element, attrs, options)
+  constructor(element, options) {
+    if (!element) throw new Error('A root container is required');
+
     this.element = element;
-    this.percentage = attrs.percentage;
-    this.label = attrs.label;
     this.options = Object.assign({}, DEFAULT_OPTIONS, options);
 
     this.createChart();
   }
 
   createChart() {
-    this.arc = d3
-      .arc()
+    this.arc = arc()
       .innerRadius(this.options.innerRadius)
       .outerRadius(this.options.outerRadius)
       .startAngle(-90 * (PI / 180))
       .cornerRadius(30);
 
-    const svg = d3
-      .select(this.element)
+    const svg = select(this.element)
       .append('svg')
       .attr('width', this.options.width)
       .attr('height', this.options.height)
@@ -52,7 +51,7 @@ export default class Gaugechart {
       .style('fill', this.options.foregroundColor)
       .attr('d', this.arc);
 
-    this.percentageLabel = svg
+    this.valueLabel = svg
       .append('text')
       .attr('transform', 'translate(0, -30)')
       .attr('text-anchor', 'middle')
@@ -61,7 +60,7 @@ export default class Gaugechart {
       .style('color', this.options.textColor)
       .style('font-family', 'Roboto')
       .style('-webkit-font-smoothing', 'antialiased')
-      .text(this.percentage)
+      .text(this.options.value)
 
     this.textLabel = svg
       .append('text')
@@ -71,41 +70,40 @@ export default class Gaugechart {
       .style('font-weight', '300')
       .style('color', this.options.textColor)
       .style('font-family', 'Roboto')
-      .text(this.label)
+      .text(this.options.label)
 
     this._refresh();
   }
 
-  update(attrs) {
-    this.percentage = attrs.value;
-    this.label = attrs.label;
+  update(options) {
+    this.options = { ...this.options, ...options };
 
     this._refresh();
   }
 
   _refresh() {
-    const value = (this.percentage * 180) / 100;
+    const value = (this.options.value * 180) / this.options.maxValue;
     const numPi = Math.floor(value - 90) * (PI / 180);
 
-    this.textLabel.text(this.label);
+    this.textLabel.text(this.options.label);
 
-    this.percentageLabel
+    this.valueLabel
       .transition()
-      .text(Math.floor(this.percentage));
+      .text(Math.floor(this.options.value));
 
     this.foreground.transition()
       .duration(750)
       .call(this._animateValue, numPi, this.arc);
   }
 
-  _animateValue(transition, newAngle, arc) {
+  _animateValue(transition, newAngle, arcFn) {
     transition.attrTween('d', (d) => {
-      const interpolate = d3.interpolate(d.endAngle, newAngle);
+      const interpolateFn = interpolate(d.endAngle, newAngle);
 
       return (t) => {
-        d.endAngle = interpolate(t);
+        d.endAngle = interpolateFn(t);
 
-        return arc(d);
+        return arcFn(d);
       };
     });
   }
