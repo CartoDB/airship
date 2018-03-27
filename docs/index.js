@@ -1,17 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Catalog } from 'catalog';
-import {
-  Grid,
-  Jumbo,
-  Display,
-  Title,
-  Subheader,
-  Text,
-  Caption
-} from '../src/components';
 
-import css from './styles.css';
+import './styles.css';
+import '../src/components/reset.css';
 
 const pages = [
   { path: '/', title: 'Introduction', component: require('./introduction.md') },
@@ -119,7 +111,8 @@ const pages = [
       },
       {
         imports: {
-          Toggle: require('../src/components/Toggle/toggle.js')
+          Toggle: require('../src/components/Toggle/toggle.js'),
+          Text: require('../src/components/Typography/text')
         },
         path: '/components/toggle',
         title: 'Toggle',
@@ -175,6 +168,93 @@ const pages = [
         path: '/components/badget',
         title: 'Badget',
         component: require('./components/badget.md')
+      },
+      {
+        imports: {
+          Tooltip: require('../src/components/Tooltip/tooltip.js')
+        },
+        path: '/components/tooltip',
+        title: 'Tooltip',
+        component: require('./components/tooltip.md')
+      },
+      {
+        imports: {
+          Collapsible: require('../src/components/Collapsible/collapsible.js'),
+          Text: require('../src/components/Typography/text'),
+          Subheader: require('../src/components/Typography/subheader'),
+          Badget: require('../src/components/Badget/badget')
+        },
+        path: '/components/collapsible',
+        title: 'Collapsible',
+        component: require('./components/collapsible.md')
+      },
+      {
+        imports: {
+          Steps: require('../src/components/Steps/steps.js'),
+          Dropshadow: require('../src/components/Dropshadow/dropshadow'),
+          Subheader: require('../src/components/Typography/subheader'),
+          Text: require('../src/components/Typography/text')
+        },
+        path: '/components/steps',
+        title: 'Steps',
+        component: require('./components/steps.md')
+      },
+      {
+        imports: {
+          Legend: require('../src/components/Legend/legend.js'),
+          Steps: require('../src/components/Steps/steps.js'),
+          Collapsible: require('../src/components/Collapsible/collapsible.js'),
+          Subheader: require('../src/components/Typography/subheader'),
+          Text: require('../src/components/Typography/text'),
+          Toggle: require('../src/components/Toggle/toggle.js')
+        },
+        path: '/components/legend',
+        title: 'Legend',
+        component: require('./components/legend.md')
+      },
+      {
+        imports: {
+          Flag: require('../src/components/Flag/flag.js'),
+          Text: require('../src/components/Typography/text'),
+          AlertFillIcon: require('../src/components/Icons/alert-fill.js')
+        },
+        path: '/components/flag',
+        title: 'Flag',
+        component: require('./components/flag.md')
+      },
+      {
+        imports: {
+          Banner: require('../src/components/Banner/banner.js'),
+          Text: require('../src/components/Typography/text'),
+          AlertFillIcon: require('../src/components/Icons/alert-fill.js')
+        },
+        path: '/components/banner',
+        title: 'Banner',
+        component: require('./components/banner.md')
+      },
+      {
+        imports: {
+          Datepicker: require('../src/components/Datepicker/datepicker.js')
+        },
+        path: '/components/datepicker',
+        title: 'Datepicker',
+        component: require('./components/datepicker.md')
+      },
+      {
+        imports: {
+          Radiobutton: require('../src/components/Radiobutton/radiobutton.js')
+        },
+        path: '/components/radiobutton',
+        title: 'Radiobutton',
+        component: require('./components/radiobutton.md')
+      },
+      {
+        imports: {
+          Checkbox: require('../src/components/Checkbox/checkbox.js')
+        },
+        path: '/components/checkbox',
+        title: 'Checkbox',
+        component: require('./components/checkbox.md')
       },
       {
         imports: {

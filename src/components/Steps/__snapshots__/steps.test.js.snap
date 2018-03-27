@@ -1,0 +1,195 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render renders step 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 12px;
+}
+
+.c0 button {
+  border: 0;
+  background: transparent;
+  box-shadown: none;
+  margin-left: auto;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  outline: none;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  list-style: none;
+  margin: 0 0 0 auto;
+  padding: 0;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font: 500 10px/12px 'Roboto';
+}
+
+.c1 li + li {
+  margin-left: 4px;
+}
+
+<div>
+  <div
+    className="c0"
+  >
+    <div>
+      Header
+    </div>
+    <ul
+      className="c1"
+    >
+      <li>
+        <button
+          onClick={[Function]}
+        >
+          <svg
+            fill="#1785fb"
+            height={12}
+            viewBox="0 0 8 16"
+            width={6}
+          >
+            <path
+              d="M0.876287597,8.30988427 L0.876287597,7.69011573 L7.8762816,15.2195214 C8.05812247,15.415115 8.03706374,15.7124148 7.8292456,15.8835591 C7.62142746,16.0547035 7.30554642,16.0348835 7.12370555,15.83929 L0.123711547,8.30988427 C-0.0412371822,8.13246042 -0.0412371822,7.86753958 0.123711547,7.69011573 L7.12370555,0.160710032 C7.30554642,-0.034883519 7.62142746,-0.0547035068 7.8292456,0.116440851 C8.03706374,0.287585208 8.05812247,0.584885024 7.8762816,0.780478575 L0.876287597,8.30988427 Z"
+            />
+          </svg>
+        </button>
+      </li>
+      <li>
+        3
+         / 
+        4
+      </li>
+      <li>
+        <button
+          onClick={[Function]}
+        >
+          <svg
+            fill="#1785fb"
+            height={12}
+            viewBox="0 0 8 16"
+            width={6}
+          >
+            <path
+              d="M7.1237124,8.30988427 L0.123718398,0.780478575 C-0.058122473,0.584885024 -0.0370637371,0.287585208 0.170754401,0.116440851 C0.378572539,-0.0547035068 0.694453577,-0.034883519 0.876294448,0.160710032 L7.87628845,7.69011573 C8.04123718,7.86753958 8.04123718,8.13246042 7.87628845,8.30988427 L0.876294448,15.83929 C0.694453577,16.0348835 0.378572539,16.0547035 0.170754401,15.8835591 C-0.0370637371,15.7124148 -0.058122473,15.415115 0.123718398,15.2195214 L7.1237124,7.69011573 L7.1237124,8.30988427 Z"
+            />
+          </svg>
+        </button>
+      </li>
+    </ul>
+  </div>
+  Content 3
+</div>
+`;
+
+exports[`render renders without crashing 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 12px;
+}
+
+.c0 button {
+  border: 0;
+  background: transparent;
+  box-shadown: none;
+  margin-left: auto;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  outline: none;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  list-style: none;
+  margin: 0 0 0 auto;
+  padding: 0;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font: 500 10px/12px 'Roboto';
+}
+
+.c1 li + li {
+  margin-left: 4px;
+}
+
+<div>
+  <div
+    className="c0"
+  >
+    <div>
+      Header
+    </div>
+    <ul
+      className="c1"
+    >
+      <li>
+        <button
+          onClick={[Function]}
+        >
+          <svg
+            fill="#1785fb"
+            height={12}
+            viewBox="0 0 8 16"
+            width={6}
+          >
+            <path
+              d="M0.876287597,8.30988427 L0.876287597,7.69011573 L7.8762816,15.2195214 C8.05812247,15.415115 8.03706374,15.7124148 7.8292456,15.8835591 C7.62142746,16.0547035 7.30554642,16.0348835 7.12370555,15.83929 L0.123711547,8.30988427 C-0.0412371822,8.13246042 -0.0412371822,7.86753958 0.123711547,7.69011573 L7.12370555,0.160710032 C7.30554642,-0.034883519 7.62142746,-0.0547035068 7.8292456,0.116440851 C8.03706374,0.287585208 8.05812247,0.584885024 7.8762816,0.780478575 L0.876287597,8.30988427 Z"
+            />
+          </svg>
+        </button>
+      </li>
+      <li>
+        1
+         / 
+        4
+      </li>
+      <li>
+        <button
+          onClick={[Function]}
+        >
+          <svg
+            fill="#1785fb"
+            height={12}
+            viewBox="0 0 8 16"
+            width={6}
+          >
+            <path
+              d="M7.1237124,8.30988427 L0.123718398,0.780478575 C-0.058122473,0.584885024 -0.0370637371,0.287585208 0.170754401,0.116440851 C0.378572539,-0.0547035068 0.694453577,-0.034883519 0.876294448,0.160710032 L7.87628845,7.69011573 C8.04123718,7.86753958 8.04123718,8.13246042 7.87628845,8.30988427 L0.876294448,15.83929 C0.694453577,16.0348835 0.378572539,16.0547035 0.170754401,15.8835591 C-0.0370637371,15.7124148 -0.058122473,15.415115 0.123718398,15.2195214 L7.1237124,7.69011573 L7.1237124,8.30988427 Z"
+            />
+          </svg>
+        </button>
+      </li>
+    </ul>
+  </div>
+  Content 1
+</div>
+`;

@@ -1,21 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`render renders with checked param 1`] = `
-.c0 {
+.c1 {
   display: inline-block;
   position: relative;
 }
 
-.c0,
-.c0:after,
-.c0:before,
-.c0 *,
-.c0 *:after,
-.c0 *:before {
-  box-sizing: border-box;
-}
-
-.c0 svg {
+.c1 svg {
   opacity: 0;
   position: absolute;
   left: 4px;
@@ -25,11 +16,11 @@ exports[`render renders with checked param 1`] = `
   pointer-events: none;
 }
 
-.c0 input:checked ~ svg {
+.c1 input:checked ~ svg {
   opacity: 1;
 }
 
-.c0 input {
+.c1 input {
   border: 0;
   -webkit-clip: rect(0 0 0 0);
   clip: rect(0 0 0 0);
@@ -41,7 +32,7 @@ exports[`render renders with checked param 1`] = `
   width: 1px;
 }
 
-.c0 input + label {
+.c1 input + label {
   width: 32px;
   height: 16px;
   outline: 0;
@@ -58,7 +49,7 @@ exports[`render renders with checked param 1`] = `
   transition: all 0.4s ease;
 }
 
-.c0 input + label::after {
+.c1 input + label::after {
   position: relative;
   display: block;
   content: '';
@@ -67,7 +58,7 @@ exports[`render renders with checked param 1`] = `
   top: 2px;
 }
 
-.c0 input + label::after {
+.c1 input + label::after {
   border-radius: 50%;
   background: #fff;
   -webkit-transition: all 0.2s ease;
@@ -77,74 +68,80 @@ exports[`render renders with checked param 1`] = `
   transform: translateX(2px);
 }
 
-.c0 label:hover {
+.c1 label:hover {
   background: #47DB99;
 }
 
-.c0 input[disabled] + label {
+.c1 input[disabled] + label {
   cursor: not-allowed;
   background: #F5F5F5;
   box-shadow: inset 0 0 0 1px #E2E6E3;
 }
 
-.c0 input[disabled] + label:after {
+.c1 input[disabled] + label:after {
   background: #D1D5D7;
 }
 
-.c0 input:checked + label:hover,
-.c0 input:checked + label {
+.c1 input:checked + label:hover,
+.c1 input:checked + label {
   background: #1785FB;
 }
 
-.c0 input:checked + label::after {
+.c1 input:checked + label::after {
   -webkit-transform: translateX(18px);
   -ms-transform: translateX(18px);
   transform: translateX(18px);
 }
 
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
 <div
   className="c0"
 >
-  <input
-    checked={true}
-    disabled={null}
-    id="foo"
-    onChange={[Function]}
-    type="checkbox"
-  />
-  <label
-    htmlFor="foo"
-  />
-  <svg
-    height="8"
-    width="10"
-    xmlns="http://www.w3.org/2000/svg"
+  <div
+    className="c1"
   >
-    <path
-      d="M3.315 7.858L.133 4.441a.506.506 0 0 1 0-.683l.643-.684a.437.437 0 0 1 .642 0l2.219 2.393L8.58.141a.437.437 0 0 1 .643 0l.643.683a.504.504 0 0 1 0 .683l-5.91 6.35a.437.437 0 0 1-.642 0"
-      fill="#FFF"
-      fillRule="evenodd"
+    <input
+      checked={true}
+      disabled={null}
+      id="foo"
+      onChange={[Function]}
+      type="checkbox"
     />
-  </svg>
+    <label
+      htmlFor="foo"
+    />
+    <svg
+      height="8"
+      width="10"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M3.315 7.858L.133 4.441a.506.506 0 0 1 0-.683l.643-.684a.437.437 0 0 1 .642 0l2.219 2.393L8.58.141a.437.437 0 0 1 .643 0l.643.683a.504.504 0 0 1 0 .683l-5.91 6.35a.437.437 0 0 1-.642 0"
+        fill="#FFF"
+        fillRule="evenodd"
+      />
+    </svg>
+  </div>
 </div>
 `;
 
 exports[`render renders without crashing 1`] = `
-.c0 {
+.c1 {
   display: inline-block;
   position: relative;
 }
 
-.c0,
-.c0:after,
-.c0:before,
-.c0 *,
-.c0 *:after,
-.c0 *:before {
-  box-sizing: border-box;
-}
-
-.c0 svg {
+.c1 svg {
   opacity: 0;
   position: absolute;
   left: 4px;
@@ -154,11 +151,11 @@ exports[`render renders without crashing 1`] = `
   pointer-events: none;
 }
 
-.c0 input:checked ~ svg {
+.c1 input:checked ~ svg {
   opacity: 1;
 }
 
-.c0 input {
+.c1 input {
   border: 0;
   -webkit-clip: rect(0 0 0 0);
   clip: rect(0 0 0 0);
@@ -170,7 +167,7 @@ exports[`render renders without crashing 1`] = `
   width: 1px;
 }
 
-.c0 input + label {
+.c1 input + label {
   width: 32px;
   height: 16px;
   outline: 0;
@@ -187,7 +184,7 @@ exports[`render renders without crashing 1`] = `
   transition: all 0.4s ease;
 }
 
-.c0 input + label::after {
+.c1 input + label::after {
   position: relative;
   display: block;
   content: '';
@@ -196,7 +193,7 @@ exports[`render renders without crashing 1`] = `
   top: 2px;
 }
 
-.c0 input + label::after {
+.c1 input + label::after {
   border-radius: 50%;
   background: #fff;
   -webkit-transition: all 0.2s ease;
@@ -206,54 +203,69 @@ exports[`render renders without crashing 1`] = `
   transform: translateX(2px);
 }
 
-.c0 label:hover {
+.c1 label:hover {
   background: #47DB99;
 }
 
-.c0 input[disabled] + label {
+.c1 input[disabled] + label {
   cursor: not-allowed;
   background: #F5F5F5;
   box-shadow: inset 0 0 0 1px #E2E6E3;
 }
 
-.c0 input[disabled] + label:after {
+.c1 input[disabled] + label:after {
   background: #D1D5D7;
 }
 
-.c0 input:checked + label:hover,
-.c0 input:checked + label {
+.c1 input:checked + label:hover,
+.c1 input:checked + label {
   background: #1785FB;
 }
 
-.c0 input:checked + label::after {
+.c1 input:checked + label::after {
   -webkit-transform: translateX(18px);
   -ms-transform: translateX(18px);
   transform: translateX(18px);
 }
 
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
 <div
   className="c0"
 >
-  <input
-    checked={false}
-    disabled={null}
-    id="foo"
-    onChange={[Function]}
-    type="checkbox"
-  />
-  <label
-    htmlFor="foo"
-  />
-  <svg
-    height="8"
-    width="10"
-    xmlns="http://www.w3.org/2000/svg"
+  <div
+    className="c1"
   >
-    <path
-      d="M3.315 7.858L.133 4.441a.506.506 0 0 1 0-.683l.643-.684a.437.437 0 0 1 .642 0l2.219 2.393L8.58.141a.437.437 0 0 1 .643 0l.643.683a.504.504 0 0 1 0 .683l-5.91 6.35a.437.437 0 0 1-.642 0"
-      fill="#FFF"
-      fillRule="evenodd"
+    <input
+      checked={false}
+      disabled={null}
+      id="foo"
+      onChange={[Function]}
+      type="checkbox"
     />
-  </svg>
+    <label
+      htmlFor="foo"
+    />
+    <svg
+      height="8"
+      width="10"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M3.315 7.858L.133 4.441a.506.506 0 0 1 0-.683l.643-.684a.437.437 0 0 1 .642 0l2.219 2.393L8.58.141a.437.437 0 0 1 .643 0l.643.683a.504.504 0 0 1 0 .683l-5.91 6.35a.437.437 0 0 1-.642 0"
+        fill="#FFF"
+        fillRule="evenodd"
+      />
+    </svg>
+  </div>
 </div>
 `;

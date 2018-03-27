@@ -21,8 +21,8 @@ const SearchIcon = ({
 };
 
 SearchIcon.propTypes = {
-  height: PropTypes.oneOf([12, 16, 32, 48]),
-  width: PropTypes.oneOf([12, 16, 32, 48]),
+  width: PropTypes.number,
+  height: PropTypes.number,
   color: PropTypes.string
 };
 

@@ -57,3 +57,27 @@ lang: jsx
   </Dropdown.Content>
 </Dropdown>
 ```
+
+#### **size** (number)
+
+To handle trigger's and content's width.
+
+```react
+<Dropdown action="click" size={300}>
+  <Dropdown.Trigger>
+    <Dropdown.Button>
+      Dropdown <ChevronIcon width={12} height={12} />
+    </Dropdown.Button>
+  </Dropdown.Trigger>
+  <Dropdown.Content>
+    <Dropdown.Menu>
+      <Dropdown.Item onClick={(e) => console.log(e.target)}>
+        All
+      </Dropdown.Item>
+      <Dropdown.Item>Open</Dropdown.Item>
+      <Dropdown.Item>Fullfilled</Dropdown.Item>
+      <Dropdown.Item>Close</Dropdown.Item>
+    </Dropdown.Menu>
+  </Dropdown.Content>
+</Dropdown>
+```

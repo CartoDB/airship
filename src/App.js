@@ -26,6 +26,14 @@ import {
   PencilIcon,
   HomeIcon,
   InfoIcon,
+  MinusIcon,
+  PointsIcon,
+  QuestionIcon,
+  SettingsIcon,
+  CheckFillIcon,
+  CheckRoundedIcon,
+  AlertIcon,
+  AlertFillIcon,
   Tabs,
   Dropdown,
   Table,
@@ -35,8 +43,19 @@ import {
   Breadcrumb,
   Loading,
   Avatar,
-  Badget
+  Badget,
+  Tooltip,
+  Collapsible,
+  Steps,
+  Legend,
+  Flag,
+  Banner,
+  Datepicker,
+  Radiobutton,
+  Checkbox,
+  Typeahead
 } from './components';
+import { colors } from './constants';
 
 class App extends Component {
   render() {
@@ -173,23 +192,13 @@ class App extends Component {
           </div>
         </div>
         <div>
-          <PlusIcon />
-          <SearchIcon />
-          <PointIcon />
-          <LeftArrowIcon />
-          <RightArrowIcon />
-          <TopArrowIcon />
-          <BottomArrowIcon />
-          <ChevronDownIcon />
-          <ChevronUpIcon />
-          <ChevronLeftIcon />
-          <ChevronRightIcon />
-          <MenuIcon />
-          <CloseIcon />
-          <CheckIcon />
-          <PencilIcon />
-          <HomeIcon />
-          <InfoIcon />
+          <PlusIcon /> <SearchIcon /> <PointIcon /> <LeftArrowIcon />{' '}
+          <RightArrowIcon /> <TopArrowIcon /> <BottomArrowIcon />{' '}
+          <ChevronDownIcon /> <ChevronUpIcon /> <ChevronLeftIcon />{' '}
+          <ChevronRightIcon /> <MenuIcon /> <CloseIcon /> <CheckIcon />{' '}
+          <PencilIcon /> <HomeIcon /> <InfoIcon /> <MinusIcon /> <PointsIcon />{' '}
+          <QuestionIcon /> <SettingsIcon /> <CheckFillIcon />{' '}
+          <CheckRoundedIcon /> <AlertIcon /> <AlertFillIcon />
         </div>
         <div>
           <Tabs selected={1}>
@@ -230,6 +239,26 @@ class App extends Component {
               <Button borderless>
                 Hover me&nbsp;<ChevronDownIcon width={8} height={4} />
               </Button>
+            </Dropdown.Trigger>
+            <Dropdown.Content>
+              <Dropdown.Menu>
+                <Dropdown.Item onClick={(e) => console.log(e.target)}>
+                  All
+                </Dropdown.Item>
+                <Dropdown.Item>Open</Dropdown.Item>
+                <Dropdown.Item>Fullfilled</Dropdown.Item>
+                <Dropdown.Item>Close</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown.Content>
+          </Dropdown>
+        </div>
+
+        <div style={{ padding: '10px' }}>
+          <Dropdown action="over" size={300}>
+            <Dropdown.Trigger as="span">
+              <Dropdown.Button>
+                Dropdown <ChevronDownIcon width={12} height={12} />
+              </Dropdown.Button>
             </Dropdown.Trigger>
             <Dropdown.Content>
               <Dropdown.Menu>
@@ -412,6 +441,188 @@ class App extends Component {
           <Badget closable closeColor="#1785FB">
             Store 3
           </Badget>
+        </div>
+
+        <div style={{ padding: '20px 100px' }}>
+          <Tooltip>
+            <Tooltip.Content>Hola mundo</Tooltip.Content>
+            <Tooltip.Trigger>tooltip</Tooltip.Trigger>
+          </Tooltip>{' '}
+          <Tooltip to="bottom">
+            <Tooltip.Content>Hola mundo</Tooltip.Content>
+            <Tooltip.Trigger>tooltip</Tooltip.Trigger>
+          </Tooltip>
+        </div>
+        <div style={{ padding: '50px 100px' }}>
+          <Tooltip to="left">
+            <Tooltip.Content>Hola mundo</Tooltip.Content>
+            <Tooltip.Trigger>tooltip</Tooltip.Trigger>
+          </Tooltip>{' '}
+          <Tooltip to="right">
+            <Tooltip.Content>Hola mundo</Tooltip.Content>
+            <Tooltip.Trigger>tooltip</Tooltip.Trigger>
+          </Tooltip>
+        </div>
+
+        <div style={{ padding: '20px' }}>
+          <div style={{ width: '300px', marginBottom: '20px' }}>
+            <Collapsible>
+              <Collapsible.Header>Header</Collapsible.Header>
+              <Collapsible.Content>Content</Collapsible.Content>
+            </Collapsible>
+          </div>
+
+          <div style={{ width: '300px' }}>
+            <Collapsible open={false}>
+              <Collapsible.Header>Header</Collapsible.Header>
+              <Collapsible.Content>Content</Collapsible.Content>
+            </Collapsible>
+          </div>
+        </div>
+
+        <div style={{ padding: '20px' }}>
+          <div style={{ width: '400px', marginBottom: '20px' }}>
+            <Steps>
+              <Steps.Header>Header</Steps.Header>
+              <Steps.Content>Content 1</Steps.Content>
+              <Steps.Content>Content 2</Steps.Content>
+              <Steps.Content>Content 3</Steps.Content>
+              <Steps.Content>Content 4</Steps.Content>
+            </Steps>
+          </div>
+
+          <div style={{ width: '400px' }}>
+            <Steps step={2}>
+              <Steps.Header>Header</Steps.Header>
+              <Steps.Content>Content 1</Steps.Content>
+              <Steps.Content>Content 2</Steps.Content>
+              <Steps.Content>Content 3</Steps.Content>
+              <Steps.Content>Content 4</Steps.Content>
+            </Steps>
+          </div>
+        </div>
+
+        <div style={{ padding: '20px' }}>
+          <Legend style={{ marginBottom: '20px' }}>
+            <Legend.Panel>
+              <Steps>
+                <Steps.Header>Header</Steps.Header>
+                <Steps.Content>Content 1</Steps.Content>
+                <Steps.Content>Content 2</Steps.Content>
+                <Steps.Content>Content 3</Steps.Content>
+                <Steps.Content>Content 4</Steps.Content>
+              </Steps>
+            </Legend.Panel>
+          </Legend>
+
+          <Legend>
+            <Legend.Panel>
+              <Collapsible>
+                <Collapsible.Header>Header</Collapsible.Header>
+                <Collapsible.Content>Content</Collapsible.Content>
+              </Collapsible>
+            </Legend.Panel>
+            <Legend.Panel>
+              <Collapsible>
+                <Collapsible.Header>Postal Code</Collapsible.Header>
+                <Collapsible.Content>Content</Collapsible.Content>
+              </Collapsible>
+            </Legend.Panel>
+          </Legend>
+        </div>
+
+        <div style={{ padding: '20px' }}>
+          <Flag onClick={(e) => console.log('flag closed')}>
+            <Flag.Icon>
+              <AlertFillIcon color={colors.support02} width={12} height={12} />
+            </Flag.Icon>
+            <Flag.Content>
+              <Text color={colors.type01} weight="medium">
+                You are now conected
+              </Text>
+              <Text color={colors.type02}>
+                You have been added to the group “New Store on this region”
+              </Text>
+            </Flag.Content>
+          </Flag>
+        </div>
+
+        <div style={{ padding: '20px' }}>
+          <Banner color="red">
+            <Banner.Icon>
+              <AlertFillIcon color={colors.white} width={12} height={12} />
+            </Banner.Icon>
+            <Banner.Content>
+              <Text color={colors.type04}>
+                An error has ocurred. Could not retreive customer information
+              </Text>
+            </Banner.Content>
+          </Banner>
+        </div>
+
+        <div style={{ padding: '20px' }}>
+          <Datepicker
+            onDayClick={(range) => console.log(range)}
+            initialMonth={new Date(2018, 9)}
+            fromMonth={new Date(2018, 8)}
+            toMonth={new Date(2020, 11)}
+            disabledDays={[
+              new Date(2018, 8, 12),
+              new Date(2018, 8, 17),
+              { after: new Date(2018, 8, 20), before: new Date(2018, 8, 25) }
+            ]}
+          />
+        </div>
+
+        <div style={{ padding: '20px' }}>
+          <Datepicker
+            fromMonth={new Date(2018, 8)}
+            toMonth={new Date(2020, 11)}
+            selectedDays={[
+              { after: new Date(2018, 8, 20), before: new Date(2018, 8, 25) }
+            ]}
+          />
+        </div>
+
+        <div style={{ padding: '20px' }}>
+          <Radiobutton.Group
+            name="wadus"
+            onChange={(state) => console.log(state)}
+            selected="hola"
+          >
+            <Radiobutton value="hola">
+              <Text>Hola</Text>
+            </Radiobutton>
+            <Radiobutton value="mundo">
+              <Text>Mundo</Text>
+            </Radiobutton>
+          </Radiobutton.Group>
+
+          <Radiobutton.Group name="foo" selected="hola" disabled>
+            <Radiobutton value="hola">
+              <Text>Hola</Text>
+            </Radiobutton>
+            <Radiobutton value="mundo">
+              <Text>Mundo</Text>
+            </Radiobutton>
+          </Radiobutton.Group>
+        </div>
+
+        <div style={{ padding: '20px' }}>
+          <Checkbox value={1} onChange={(state) => console.log(state)} />
+          <Checkbox value="wadus" checked>
+            <Text>Hola</Text>
+          </Checkbox>
+
+          <Checkbox value="wadus" checked disabled>
+            <Text>Hola</Text>
+          </Checkbox>
+        </div>
+
+        <div style={{ padding: '20px' }}>
+          <Typeahead />
+          <Typeahead query="wadus" />
+          <Typeahead loading />
         </div>
       </div>
     );

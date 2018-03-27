@@ -26,8 +26,8 @@ const InfoIcon = ({
 };
 
 InfoIcon.propTypes = {
-  width: PropTypes.oneOf([16, 32, 48]),
-  height: PropTypes.oneOf([16, 32, 48]),
+  width: PropTypes.number,
+  height: PropTypes.number,
   color: PropTypes.string
 };
 

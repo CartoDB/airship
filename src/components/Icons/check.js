@@ -21,8 +21,8 @@ const CheckIcon = ({
 };
 
 CheckIcon.propTypes = {
-  width: PropTypes.oneOf([14, 28, 42]),
-  height: PropTypes.oneOf([11, 22, 33]),
+  width: PropTypes.number,
+  height: PropTypes.number,
   color: PropTypes.string
 };
 

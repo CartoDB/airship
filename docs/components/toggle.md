@@ -1,7 +1,9 @@
 Toggle component explanation here.
 
 ```react
-<Toggle htmlFor="one" />
+<Toggle htmlFor="one">
+  <Text>Active</Text>
+</Toggle>
 ```
 
 ### Props

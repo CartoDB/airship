@@ -26,6 +26,7 @@ const dash = keyframes`
 const StyledLoading = styled.div`
   height: ${(props) => `${props.size}px`};
   width: ${(props) => `${props.size}px`};
+  transform: translateZ(0);
 
   svg {
     animation: ${rotate} 2s linear infinite;

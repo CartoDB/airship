@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render renders without crashing 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 12px;
+}
+
+.c0 button {
+  border: 0;
+  background: transparent;
+  box-shadown: none;
+  margin-left: auto;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  outline: none;
+}
+
+<div>
+  <div
+    className="c0"
+  >
+    <div>
+      Header
+    </div>
+    <button
+      onClick={[Function]}
+    >
+      <svg
+        fill="#1785fb"
+        height={1}
+        viewBox="0 0 12 1"
+        width={12}
+      >
+        <path
+          d="M0 0h12v1H0z"
+        />
+      </svg>
+    </button>
+  </div>
+  Content
+</div>
+`;

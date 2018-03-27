@@ -21,8 +21,8 @@ const PointIcon = ({
 };
 
 PointIcon.propTypes = {
-  height: PropTypes.oneOf([9, 12, 24, 36]),
-  width: PropTypes.oneOf([12, 16, 32, 48]),
+  width: PropTypes.number,
+  height: PropTypes.number,
   color: PropTypes.string
 };
 

@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render renders with as param 1`] = `
+<div
+  className=""
+  data-component="Tooltip"
+  data-pos="top"
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+>
+  <span>
+    tooltip
+  </span>
+</div>
+`;
+
+exports[`render renders without crashing 1`] = `
+<span
+  className=""
+  data-component="Tooltip"
+  data-pos="top"
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+>
+  <span>
+    tooltip
+  </span>
+</span>
+`;

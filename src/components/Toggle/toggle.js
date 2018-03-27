@@ -19,15 +19,6 @@ const StyledToggle = styled.div`
   display: inline-block;
   position: relative;
 
-  &,
-  &:after,
-  &:before,
-  & *,
-  & *:after,
-  & *:before {
-    box-sizing: border-box;
-  }
-
   svg {
     opacity: 0;
     position: absolute;
@@ -106,10 +97,25 @@ const StyledToggle = styled.div`
 `;
 StyledToggle.displayName = 'StyledToggle';
 
+const StyledControl = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const StyledLabel = styled.div`
+  margin-left: 8px;
+`;
+
 class Toggle extends Component {
   state = {
     checked: !!this.props.checked
   };
+
+  componentWillReceiveProps(nextProps) {
+    if (this.state.checked !== nextProps.checked) {
+      this.setState({ checked: nextProps.checked });
+    }
+  }
 
   clickHandler = (e) => {
     const { onChange, disabled } = this.props;
@@ -128,11 +134,11 @@ class Toggle extends Component {
   };
 
   render() {
-    const { htmlFor, disabled } = this.props;
+    const { htmlFor, disabled, children } = this.props;
     const { checked } = this.state;
 
     return (
-      <React.Fragment>
+      <StyledControl>
         <StyledToggle>
           <input
             id={htmlFor}
@@ -144,7 +150,8 @@ class Toggle extends Component {
           <label htmlFor={htmlFor} />
           <Check />
         </StyledToggle>
-      </React.Fragment>
+        {children ? <StyledLabel>{children}</StyledLabel> : null}
+      </StyledControl>
     );
   }
 }
