@@ -1,4 +1,4 @@
-import './reset.css';
+// import './reset.css';
 
 export { default as Grid } from './Grid/grid';
 export { default as Jumbo } from './Typography/jumbo';
