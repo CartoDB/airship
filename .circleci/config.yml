@@ -8,7 +8,7 @@ jobs:
   test-unit:
     docker:
       # specify the version you desire here
-      - image: circleci/node@8.10.0-stretch
+      - image: circleci/node:8.10.0-stretch
     working_directory: ~/airship
     steps:
       - checkout
