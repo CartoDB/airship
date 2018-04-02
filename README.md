@@ -1,4 +1,5 @@
 # Airship
+[![CircleCI](https://circleci.com/gh/CartoDB/airship/tree/master.svg?style=svg)](https://circleci.com/gh/CartoDB/airship/tree/master)
 
 Carto solutions framework using a super minimal and basic boilerplate.
 

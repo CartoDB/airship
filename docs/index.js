@@ -163,11 +163,11 @@ const pages = [
       },
       {
         imports: {
-          Badget: require('../src/components/Badget/badget.js')
+          Badge: require('../src/components/Badge/badge.js')
         },
-        path: '/components/badget',
-        title: 'Badget',
-        component: require('./components/badget.md')
+        path: '/components/badge',
+        title: 'Badge',
+        component: require('./components/badge.md')
       },
       {
         imports: {
@@ -182,7 +182,7 @@ const pages = [
           Collapsible: require('../src/components/Collapsible/collapsible.js'),
           Text: require('../src/components/Typography/text'),
           Subheader: require('../src/components/Typography/subheader'),
-          Badget: require('../src/components/Badget/badget')
+          Badge: require('../src/components/Badge/badge')
         },
         path: '/components/collapsible',
         title: 'Collapsible',
