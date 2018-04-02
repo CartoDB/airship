@@ -6,3 +6,4 @@ export { default as isNumber } from './is-number';
 export { default as isObject } from './is-object';
 export { default as length } from './length';
 export { default as offset } from './offset';
+export { default as readableNumber } from './readable-number';
