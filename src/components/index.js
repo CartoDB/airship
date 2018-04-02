@@ -43,7 +43,7 @@ export { default as Range } from './Range/range';
 export { default as Breadcrumb } from './Breadcrumb/breadcrumb';
 export { default as Loading } from './Loading/loading';
 export { default as Avatar } from './Avatar/avatar';
-export { default as Badget } from './Badget/badget';
+export { default as Badge } from './Badge/badge';
 export { default as Tooltip } from './Tooltip/tooltip';
 export { default as Collapsible } from './Collapsible/collapsible';
 export { default as Steps } from './Steps/steps';

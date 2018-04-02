@@ -6,7 +6,7 @@ Collapsible displays additional content when opened.
     <Subheader>Global index</Subheader>
   </Collapsible.Header>
   <Collapsible.Content>
-    <Badget color="#B4E0FA">Store 1</Badget>
+    <Badge color="#B4E0FA">Store 1</Badge>
     <Text as="div">Some fanzy text here</Text>
   </Collapsible.Content>
 </Collapsible>
