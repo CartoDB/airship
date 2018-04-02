@@ -5,25 +5,10 @@ import renderer from 'react-test-renderer';
 describe('render', () => {
   it('renders without crashing', () => {
     const component = renderer.create(
-      <Widget />
-    );
-    const tree = component.toJSON();
-
-    expect(tree).toMatchSnapshot();
-  });
-
-  it('renders with the title prop', () => {
-    const component = renderer.create(
-      <Widget title="Rick & Morty" />
-    );
-    const tree = component.toJSON();
-
-    expect(tree).toMatchSnapshot();
-  });
-
-  it('renders with the decription prop', () => {
-    const component = renderer.create(
-      <Widget description="Rick & Morty" />
+      <Widget>
+        <Widget.Title>Rick & Morty</Widget.Title>
+        <Widget.Description>Season 3</Widget.Description>
+      </Widget>
     );
     const tree = component.toJSON();
 
@@ -32,7 +17,12 @@ describe('render', () => {
 
   it('renders children', () => {
     const component = renderer.create(
-      <Widget>This is a children</Widget>
+      <Widget>
+        <Widget.Title>Rick & Morty</Widget.Title>
+        <Widget.Description>Season 3</Widget.Description>
+
+        <p>This is a children</p>
+      </Widget>
     );
     const tree = component.toJSON();
 
