@@ -27,7 +27,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "build:dist":"react-build-dist --stage-0 --bundle-name index.js src/components",
+    "postinstall": "react-build-dist --stage-0 --bundle-name index.js src/components",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "styleguide": "catalog start docs",
