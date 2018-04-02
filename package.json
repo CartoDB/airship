@@ -4,6 +4,7 @@
   "private": true,
   "main":"dist/index.js",
   "dependencies": {
+    "d3": "^5.0.0",
     "emotion": "^9.0.1",
     "lodash": "^4.17.5",
     "polished": "^1.9.2",

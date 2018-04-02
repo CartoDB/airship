@@ -6,6 +6,7 @@ exports[`render as parameter 1`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  width: auto;
 }
 
 .c0 {
@@ -22,6 +23,7 @@ exports[`render as parameter 1`] = `
     onClick={[Function]}
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
+    size={undefined}
   >
     Click me
   </div>
@@ -34,6 +36,7 @@ exports[`render renders without crashing 1`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  width: auto;
 }
 
 .c0 {
@@ -50,6 +53,7 @@ exports[`render renders without crashing 1`] = `
     onClick={[Function]}
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
+    size={undefined}
   >
     Click me
   </div>
