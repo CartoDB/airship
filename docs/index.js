@@ -271,6 +271,15 @@ const pages = [
         path: '/components/dropshadow',
         title: 'Dropshadow',
         component: require('./components/dropshadow.md')
+      },
+      {
+        imports: {
+          Widget: require('../src/components/Widget/widget.js'),
+          GaugeChart: require('../src/components/GaugeChart/gauge.js'),
+        },
+        path: '/components/gaugechart',
+        title: 'Gauge Chart',
+        component: require('./components/gaugechart.md')
       }
     ]
   }
