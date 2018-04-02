@@ -280,6 +280,17 @@ const pages = [
         path: '/components/gaugechart',
         title: 'Gauge Chart',
         component: require('./components/gaugechart.md')
+      },
+      {
+        imports: {
+          Button: require('../src/components/Button/button.js'),
+          Widget: require('../src/components/Widget/widget.js'),
+          CategoryWidget: require('../src/components/CategoryWidget/categoryWidget.js'),
+          data: require('../src/components/CategoryWidget/categoryWidget.fixtures.js')
+        },
+        path: '/components/categoryWidget',
+        title: 'Category Widget',
+        component: require('./components/categoryWidget.md')
       }
     ]
   }
