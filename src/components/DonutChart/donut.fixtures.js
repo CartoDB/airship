@@ -1,26 +1,26 @@
 export default [
   {
-    name: 'another text',
+    name: 'Low',
     value: 37320,
     agg: false,
   },
   {
-    name: 'recovery',
+    name: 'Recovery',
     value: 31820,
     agg: false,
   },
   {
-    name: 'anaerobic',
+    name: 'Anaerobic',
     value: 25650,
     agg: false,
   },
   {
-    name: 'this is a really long text',
+    name: 'Aerobic',
     value: 14000,
     agg: false,
   },
   {
-    name: 'vo2max',
+    name: 'VO2 Max',
     value: 7270,
     agg: false,
   },

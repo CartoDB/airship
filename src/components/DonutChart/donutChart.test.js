@@ -2,7 +2,7 @@ import DonutChart from './donutChart';
 import mockData from './donut.fixtures';
 
 const MOCK_DATA = {
-  data: mockData.categories,
+  data: mockData,
   colors: ['#FABADA', '#FABADA', '#FABADA'],
 };
 
