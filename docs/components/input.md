@@ -31,6 +31,33 @@ This property sets the node ID for label and input:
 />
 ```
 
+#### **type** (string)
+
+This property sets the type of the input, the default is `text`.
+
+```react
+<div>
+  <Input
+    htmlFor="password"
+    type="password"
+    label="Password"
+    value="this is a secret"
+  />
+  <Input
+    htmlFor="number"
+    type="number"
+    label="Amount"
+    value="10"
+  />
+  <Input
+    htmlFor="color"
+    type="color"
+    label="Color"
+    value="#FABADA"
+  />
+</div>
+```
+
 #### **disabled** (boolean)
 
 Sets the input as disabled.
