@@ -27,7 +27,7 @@ storiesOf('Input', module)
         htmlFor="default-value"
         placeholder="This is a test"
         label="First Name"
-        value="A value"
+        defaultValue="A value"
       />
 
       <h3 className="header">Multiline</h3>
@@ -35,7 +35,7 @@ storiesOf('Input', module)
         htmlFor="default-multiline"
         placeholder="This is a test"
         label="First Name"
-        value="I'm thinking two circus clowns dancing. You? Pretend. You pretend the feelings are there, for the world, for the people around you. Who knows? Maybe one day they will be. I'm really more an apartment person."
+        defaultValue="I'm thinking two circus clowns dancing. You? Pretend. You pretend the feelings are there, for the world, for the people around you. Who knows? Maybe one day they will be. I'm really more an apartment person."
         multiline
         rows={3}
       />
@@ -70,7 +70,7 @@ storiesOf('Input', module)
         htmlFor="disabled-value"
         placeholder="This is a test"
         label="First Name"
-        value="A value"
+        defaultValue="A value"
       />
 
       <h3 className="header">Multiline</h3>
@@ -79,7 +79,7 @@ storiesOf('Input', module)
         htmlFor="disabled-multiline"
         placeholder="This is a test"
         label="First Name"
-        value="I'm thinking two circus clowns dancing. You? Pretend. You pretend the feelings are there, for the world, for the people around you. Who knows? Maybe one day they will be. I'm really more an apartment person."
+        defaultValue="I'm thinking two circus clowns dancing. You? Pretend. You pretend the feelings are there, for the world, for the people around you. Who knows? Maybe one day they will be. I'm really more an apartment person."
         multiline
         rows={3}
       />
@@ -114,7 +114,7 @@ storiesOf('Input', module)
         htmlFor="readonly-value"
         placeholder="This is a test"
         label="First Name"
-        value="A value"
+        defaultValue="A value"
       />
 
       <h3 className="header">Multiline</h3>
@@ -123,7 +123,7 @@ storiesOf('Input', module)
         htmlFor="readonly-multiline"
         placeholder="This is a test"
         label="First Name"
-        value="I'm thinking two circus clowns dancing. You? Pretend. You pretend the feelings are there, for the world, for the people around you. Who knows? Maybe one day they will be. I'm really more an apartment person."
+        defaultValue="I'm thinking two circus clowns dancing. You? Pretend. You pretend the feelings are there, for the world, for the people around you. Who knows? Maybe one day they will be. I'm really more an apartment person."
         multiline
         rows={3}
       />
@@ -158,7 +158,7 @@ storiesOf('Input', module)
         htmlFor="error-value"
         placeholder="This is a test"
         label="First Name"
-        value="A value"
+        defaultValue="A value"
       />
 
       <h3 className="header">Multiline</h3>
@@ -167,7 +167,7 @@ storiesOf('Input', module)
         htmlFor="error-multiline"
         placeholder="This is a test"
         label="First Name"
-        value="I'm thinking two circus clowns dancing. You? Pretend. You pretend the feelings are there, for the world, for the people around you. Who knows? Maybe one day they will be. I'm really more an apartment person."
+        defaultValue="I'm thinking two circus clowns dancing. You? Pretend. You pretend the feelings are there, for the world, for the people around you. Who knows? Maybe one day they will be. I'm really more an apartment person."
         multiline
         rows={3}
       />
@@ -178,49 +178,49 @@ storiesOf('Input', module)
       <h3 className="header">Text</h3>
       <Input
         htmlFor="type-text"
-        value="Wadus"
+        defaultValue="Wadus"
       />
 
       <h3 className="header">Email</h3>
       <Input
         htmlFor="type-email"
         type="email"
-        value="wadus@carto.com"
+        defaultValue="wadus@carto.com"
       />
 
       <h3 className="header">Number</h3>
       <Input
         htmlFor="type-number"
         type="number"
-        value="5"
+        defaultValue="5"
       />
 
       <h3 className="header">Date</h3>
       <Input
         htmlFor="type-date"
         type="date"
-        value="1991-02-05"
+        defaultValue="1991-02-05"
       />
 
       <h3 className="header">Color</h3>
       <Input
         htmlFor="type-color"
         type="color"
-        value="#FABADA"
+        defaultValue="#FABADA"
       />
 
       <h3 className="header">Password</h3>
       <Input
         htmlFor="type-password"
         type="password"
-        value="its a secret"
+        defaultValue="its a secret"
       />
 
       <h3 className="header">Time</h3>
       <Input
         htmlFor="type-time"
         type="time"
-        value="15:30"
+        defaultValue="15:30"
       />
 
       <h3 className="header">File</h3>

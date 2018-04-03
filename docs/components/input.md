@@ -41,19 +41,19 @@ This property sets the type of the input, the default is `text`.
     htmlFor="password"
     type="password"
     label="Password"
-    value="this is a secret"
+    defaultValue="this is a secret"
   />
   <Input
     htmlFor="number"
     type="number"
     label="Amount"
-    value="10"
+    defaultValue="10"
   />
   <Input
     htmlFor="color"
     type="color"
     label="Color"
-    value="#FABADA"
+    defaultValue="#FABADA"
   />
 </div>
 ```
