@@ -7,7 +7,7 @@ import CloseIcon from '../Icons/close';
 const StyledBadge = styled.li`
   background: ${(props) => props.color};
   border-radius: 100px;
-  font: 400 12px/20px 'Roboto-Regular';
+  font: 400 12px/20px 'Roboto';
   color: ${colors.type01};
   letter-spacing: 0;
   list-style: none;
