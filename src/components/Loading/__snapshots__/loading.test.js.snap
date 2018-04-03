@@ -4,6 +4,9 @@ exports[`render renders with negative 1`] = `
 .c0 {
   height: 16px;
   width: 16px;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
 }
 
 .c0 svg {
@@ -40,6 +43,9 @@ exports[`render renders with size 1`] = `
 .c0 {
   height: 32px;
   width: 32px;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
 }
 
 .c0 svg {
@@ -76,6 +82,9 @@ exports[`render renders without crashing 1`] = `
 .c0 {
   height: 16px;
   width: 16px;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
 }
 
 .c0 svg {

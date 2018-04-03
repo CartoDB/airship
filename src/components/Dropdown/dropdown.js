@@ -22,7 +22,7 @@ import { offset } from '../../utils';
 
 const TriggerWrapper = styled.div`
   display: inline-flex;
-  width: ${(props) => `${props.size}px` || 'auto'};
+  width: ${(props) => props.size ? `${props.size}px` : 'auto'};
 `;
 
 class DropdownTrigger extends Component {
@@ -64,7 +64,7 @@ const DropdownContent = styled.div`
   left: ${(props) => `${props.position.left}px`};
   top: ${(props) => `${props.position.top + props.position.height + 5}px`};
   position: absolute;
-  width: ${(props) => `${props.size}px` || 'auto'};
+  width: ${(props) => props.size ? `${props.size}px` : 'auto'};
   min-width: 200px;
 `;
 
@@ -224,7 +224,6 @@ class Dropdown extends Component {
         innerRef={(node) => {
           this.node = node;
         }}
-        size={size}
       >
         {React.Children.map(children, (child) => {
           let element = null;

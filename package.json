@@ -2,7 +2,9 @@
   "name": "airship",
   "version": "0.1.0",
   "private": true,
+  "main": "dist/index.js",
   "dependencies": {
+    "d3": "^5.0.0",
     "emotion": "^9.0.1",
     "polished": "^1.9.2",
     "prop-types": "^15.6.0",
@@ -29,16 +31,21 @@
     "rollup-plugin-css-only": "^0.4.0",
     "rollup-plugin-node-resolve": "^3.3.0",
     "rollup-plugin-uglify": "^3.0.0",
-    "source-map-explorer": "^1.5.0"
+    "source-map-explorer": "^1.5.0",
+    "@storybook/react": "^4.0.0-alpha.1",
+    "@storybook/addon-actions": "^4.0.0-alpha.1",
+    "@storybook/addon-links": "^4.0.0-alpha.1",
+    "@storybook/addons": "^4.0.0-alpha.1",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-runtime": "^7.0.0-beta.3"
   },
   "scripts": {
     "analyze": "source-map-explorer build/airship.*",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
     "styleguide": "catalog start docs",
     "styleguide:build": "catalog build",
-    "styleguide:help": "catalog help"
+    "styleguide:help": "catalog help",
+    "storybook": "start-storybook -p 9009 -s public",
+    "build-storybook": "build-storybook -s public"
   }
 }

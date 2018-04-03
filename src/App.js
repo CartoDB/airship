@@ -43,7 +43,7 @@ import {
   Breadcrumb,
   Loading,
   Avatar,
-  Badget,
+  Badge,
   Tooltip,
   Collapsible,
   Steps,
@@ -427,20 +427,20 @@ class App extends Component {
         </div>
 
         <div style={{ padding: '10px' }}>
-          <Badget>Foo</Badget>
+          <Badge>Foo</Badge>
 
-          <Badget color="rgba(128, 182, 34, 0.24)">Foo</Badget>
-          <Badget as="span" color="skyblue">
+          <Badge color="rgba(128, 182, 34, 0.24)">Foo</Badge>
+          <Badge as="span" color="skyblue">
             See you in Mars
-          </Badget>
-          <Badget color="#B4E0FA">Store 1</Badget>
-          <Badget color="#E4D8EB" closable>
+          </Badge>
+          <Badge color="#B4E0FA">Store 1</Badge>
+          <Badge color="#E4D8EB" closable>
             Store 2
-          </Badget>
+          </Badge>
 
-          <Badget closable closeColor="#1785FB">
+          <Badge closable closeColor="#1785FB">
             Store 3
-          </Badget>
+          </Badge>
         </div>
 
         <div style={{ padding: '20px 100px' }}>

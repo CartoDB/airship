@@ -95,6 +95,14 @@ const pages = [
       },
       {
         imports: {
+          Input: require('../src/components/Input/input.js'),
+        },
+        path: '/components/input',
+        title: 'Input',
+        component: require('./components/input.md')
+      },
+      {
+        imports: {
           Table: require('../src/components/Table/table.js')
         },
         path: '/components/table',
@@ -163,11 +171,11 @@ const pages = [
       },
       {
         imports: {
-          Badget: require('../src/components/Badget/badget.js')
+          Badge: require('../src/components/Badge/badge.js')
         },
-        path: '/components/badget',
-        title: 'Badget',
-        component: require('./components/badget.md')
+        path: '/components/badge',
+        title: 'Badge',
+        component: require('./components/badge.md')
       },
       {
         imports: {
@@ -182,7 +190,7 @@ const pages = [
           Collapsible: require('../src/components/Collapsible/collapsible.js'),
           Text: require('../src/components/Typography/text'),
           Subheader: require('../src/components/Typography/subheader'),
-          Badget: require('../src/components/Badget/badget')
+          Badge: require('../src/components/Badge/badge')
         },
         path: '/components/collapsible',
         title: 'Collapsible',
@@ -271,6 +279,26 @@ const pages = [
         path: '/components/dropshadow',
         title: 'Dropshadow',
         component: require('./components/dropshadow.md')
+      },
+      {
+        imports: {
+          Widget: require('../src/components/Widget/widget.js'),
+          GaugeChart: require('../src/components/GaugeChart/gauge.js'),
+        },
+        path: '/components/gaugechart',
+        title: 'Gauge Chart',
+        component: require('./components/gaugechart.md')
+      },
+      {
+        imports: {
+          Button: require('../src/components/Button/button.js'),
+          Widget: require('../src/components/Widget/widget.js'),
+          CategoryWidget: require('../src/components/CategoryWidget/categoryWidget.js'),
+          data: require('../src/components/CategoryWidget/categoryWidget.fixtures.js')
+        },
+        path: '/components/categoryWidget',
+        title: 'Category Widget',
+        component: require('./components/categoryWidget.md')
       }
     ]
   }

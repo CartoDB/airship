@@ -1,0 +1,1386 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render renders a placeholder 1`] = `
+.c0 {
+  display: block;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.c1 {
+  font: 400 12px/20px 'Roboto';
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 4px;
+  border: 0;
+  box-shadow: inset 0 0 0 1px #D1D5D7;
+  box-sizing: border-box;
+  color: #2C2C2C;
+  min-height: 32px;
+  padding: 6px 8px;
+  width: 100%;
+}
+
+.c1::-webkit-input-placeholder {
+  color: #E2E6E3;
+}
+
+.c1::-moz-placeholder {
+  color: #E2E6E3;
+}
+
+.c1:-ms-input-placeholder {
+  color: #E2E6E3;
+}
+
+.c1:focus,
+.c1:hover:focus {
+  box-shadow: inset 0 0 0 2px #1785FB;
+  outline: none;
+}
+
+.c1:hover {
+  box-shadow: inset 0 0 0 1px #47DB99;
+}
+
+.c1:invalid {
+  box-shadow: inset 0 0 0 1px #F3522B;
+  background: rgba(243,82,43,0.12);
+}
+
+.c1:invalid:hover,
+.c1:invalid:focus,
+.c1:invalid:hover:focus {
+  box-shadow: inset 0 0 0 1px #F3522B;
+}
+
+.c1:invalid::-webkit-input-placeholder {
+  color: rgba(44,44,44,0.4);
+}
+
+.c1:invalid::-moz-placeholder {
+  color: rgba(44,44,44,0.4);
+}
+
+.c1:invalid:-ms-input-placeholder {
+  color: rgba(44,44,44,0.4);
+}
+
+.c1:disabled {
+  background: #F5F5F5;
+  color: rgba(116,116,116,0.4);
+}
+
+.c1:disabled:hover,
+.c1:disabled:focus,
+.c1:disabled:hover:focus {
+  box-shadow: inset 0 0 0 1px #D1D5D7;
+}
+
+.c1:disabled::-webkit-input-placeholder {
+  color: rgba(116,116,116,0.4);
+}
+
+.c1:disabled::-moz-placeholder {
+  color: rgba(116,116,116,0.4);
+}
+
+.c1:disabled:-ms-input-placeholder {
+  color: rgba(116,116,116,0.4);
+}
+
+.c1:read-only {
+  background: #F5F5F5;
+  color: #747474;
+}
+
+.c1:-moz-read-only:hover,
+.c1:-moz-read-only:focus,
+.c1:-moz-read-only:hover:focus {
+  box-shadow: inset 0 0 0 1px #D1D5D7;
+}
+
+.c1:read-only:hover,
+.c1:read-only:focus,
+.c1:read-only:hover:focus {
+  box-shadow: inset 0 0 0 1px #D1D5D7;
+}
+
+.c1:read-only::-webkit-input-placeholder {
+  color: #747474;
+}
+
+.c1:read-only::-moz-placeholder {
+  color: #747474;
+}
+
+.c1:read-only:-ms-input-placeholder {
+  color: #747474;
+}
+
+<label
+  className="c0"
+  htmlFor="first_name"
+>
+  <input
+    className="c1"
+    id="first_name"
+    placeholder="Your first name"
+    type="text"
+  />
+</label>
+`;
+
+exports[`render renders a textarea 1`] = `
+.c0 {
+  display: block;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.c1 {
+  font: 400 12px/20px 'Roboto';
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 4px;
+  border: 0;
+  box-shadow: inset 0 0 0 1px #D1D5D7;
+  box-sizing: border-box;
+  color: #2C2C2C;
+  min-height: 32px;
+  padding: 6px 8px;
+  width: 100%;
+  resize: none;
+}
+
+.c1::-webkit-input-placeholder {
+  color: #E2E6E3;
+}
+
+.c1::-moz-placeholder {
+  color: #E2E6E3;
+}
+
+.c1:-ms-input-placeholder {
+  color: #E2E6E3;
+}
+
+.c1:focus,
+.c1:hover:focus {
+  box-shadow: inset 0 0 0 2px #1785FB;
+  outline: none;
+}
+
+.c1:hover {
+  box-shadow: inset 0 0 0 1px #47DB99;
+}
+
+.c1:invalid {
+  box-shadow: inset 0 0 0 1px #F3522B;
+  background: rgba(243,82,43,0.12);
+}
+
+.c1:invalid:hover,
+.c1:invalid:focus,
+.c1:invalid:hover:focus {
+  box-shadow: inset 0 0 0 1px #F3522B;
+}
+
+.c1:invalid::-webkit-input-placeholder {
+  color: rgba(44,44,44,0.4);
+}
+
+.c1:invalid::-moz-placeholder {
+  color: rgba(44,44,44,0.4);
+}
+
+.c1:invalid:-ms-input-placeholder {
+  color: rgba(44,44,44,0.4);
+}
+
+.c1:disabled {
+  background: #F5F5F5;
+  color: rgba(116,116,116,0.4);
+}
+
+.c1:disabled:hover,
+.c1:disabled:focus,
+.c1:disabled:hover:focus {
+  box-shadow: inset 0 0 0 1px #D1D5D7;
+}
+
+.c1:disabled::-webkit-input-placeholder {
+  color: rgba(116,116,116,0.4);
+}
+
+.c1:disabled::-moz-placeholder {
+  color: rgba(116,116,116,0.4);
+}
+
+.c1:disabled:-ms-input-placeholder {
+  color: rgba(116,116,116,0.4);
+}
+
+.c1:read-only {
+  background: #F5F5F5;
+  color: #747474;
+}
+
+.c1:-moz-read-only:hover,
+.c1:-moz-read-only:focus,
+.c1:-moz-read-only:hover:focus {
+  box-shadow: inset 0 0 0 1px #D1D5D7;
+}
+
+.c1:read-only:hover,
+.c1:read-only:focus,
+.c1:read-only:hover:focus {
+  box-shadow: inset 0 0 0 1px #D1D5D7;
+}
+
+.c1:read-only::-webkit-input-placeholder {
+  color: #747474;
+}
+
+.c1:read-only::-moz-placeholder {
+  color: #747474;
+}
+
+.c1:read-only:-ms-input-placeholder {
+  color: #747474;
+}
+
+<label
+  className="c0"
+  htmlFor="first_name"
+>
+  <textarea
+    className="c1"
+    id="first_name"
+    rows={5}
+    type="text"
+  />
+</label>
+`;
+
+exports[`render renders disabled 1`] = `
+.c0 {
+  display: block;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.c1 {
+  font: 400 12px/20px 'Roboto';
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 4px;
+  border: 0;
+  box-shadow: inset 0 0 0 1px #D1D5D7;
+  box-sizing: border-box;
+  color: #2C2C2C;
+  min-height: 32px;
+  padding: 6px 8px;
+  width: 100%;
+}
+
+.c1::-webkit-input-placeholder {
+  color: #E2E6E3;
+}
+
+.c1::-moz-placeholder {
+  color: #E2E6E3;
+}
+
+.c1:-ms-input-placeholder {
+  color: #E2E6E3;
+}
+
+.c1:focus,
+.c1:hover:focus {
+  box-shadow: inset 0 0 0 2px #1785FB;
+  outline: none;
+}
+
+.c1:hover {
+  box-shadow: inset 0 0 0 1px #47DB99;
+}
+
+.c1:invalid {
+  box-shadow: inset 0 0 0 1px #F3522B;
+  background: rgba(243,82,43,0.12);
+}
+
+.c1:invalid:hover,
+.c1:invalid:focus,
+.c1:invalid:hover:focus {
+  box-shadow: inset 0 0 0 1px #F3522B;
+}
+
+.c1:invalid::-webkit-input-placeholder {
+  color: rgba(44,44,44,0.4);
+}
+
+.c1:invalid::-moz-placeholder {
+  color: rgba(44,44,44,0.4);
+}
+
+.c1:invalid:-ms-input-placeholder {
+  color: rgba(44,44,44,0.4);
+}
+
+.c1:disabled {
+  background: #F5F5F5;
+  color: rgba(116,116,116,0.4);
+}
+
+.c1:disabled:hover,
+.c1:disabled:focus,
+.c1:disabled:hover:focus {
+  box-shadow: inset 0 0 0 1px #D1D5D7;
+}
+
+.c1:disabled::-webkit-input-placeholder {
+  color: rgba(116,116,116,0.4);
+}
+
+.c1:disabled::-moz-placeholder {
+  color: rgba(116,116,116,0.4);
+}
+
+.c1:disabled:-ms-input-placeholder {
+  color: rgba(116,116,116,0.4);
+}
+
+.c1:read-only {
+  background: #F5F5F5;
+  color: #747474;
+}
+
+.c1:-moz-read-only:hover,
+.c1:-moz-read-only:focus,
+.c1:-moz-read-only:hover:focus {
+  box-shadow: inset 0 0 0 1px #D1D5D7;
+}
+
+.c1:read-only:hover,
+.c1:read-only:focus,
+.c1:read-only:hover:focus {
+  box-shadow: inset 0 0 0 1px #D1D5D7;
+}
+
+.c1:read-only::-webkit-input-placeholder {
+  color: #747474;
+}
+
+.c1:read-only::-moz-placeholder {
+  color: #747474;
+}
+
+.c1:read-only:-ms-input-placeholder {
+  color: #747474;
+}
+
+<label
+  className="c0"
+  htmlFor="first_name"
+>
+  <input
+    className="c1"
+    disabled={true}
+    id="first_name"
+    type="text"
+  />
+</label>
+`;
+
+exports[`render renders read only 1`] = `
+.c0 {
+  display: block;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.c1 {
+  font: 400 12px/20px 'Roboto';
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 4px;
+  border: 0;
+  box-shadow: inset 0 0 0 1px #D1D5D7;
+  box-sizing: border-box;
+  color: #2C2C2C;
+  min-height: 32px;
+  padding: 6px 8px;
+  width: 100%;
+}
+
+.c1::-webkit-input-placeholder {
+  color: #E2E6E3;
+}
+
+.c1::-moz-placeholder {
+  color: #E2E6E3;
+}
+
+.c1:-ms-input-placeholder {
+  color: #E2E6E3;
+}
+
+.c1:focus,
+.c1:hover:focus {
+  box-shadow: inset 0 0 0 2px #1785FB;
+  outline: none;
+}
+
+.c1:hover {
+  box-shadow: inset 0 0 0 1px #47DB99;
+}
+
+.c1:invalid {
+  box-shadow: inset 0 0 0 1px #F3522B;
+  background: rgba(243,82,43,0.12);
+}
+
+.c1:invalid:hover,
+.c1:invalid:focus,
+.c1:invalid:hover:focus {
+  box-shadow: inset 0 0 0 1px #F3522B;
+}
+
+.c1:invalid::-webkit-input-placeholder {
+  color: rgba(44,44,44,0.4);
+}
+
+.c1:invalid::-moz-placeholder {
+  color: rgba(44,44,44,0.4);
+}
+
+.c1:invalid:-ms-input-placeholder {
+  color: rgba(44,44,44,0.4);
+}
+
+.c1:disabled {
+  background: #F5F5F5;
+  color: rgba(116,116,116,0.4);
+}
+
+.c1:disabled:hover,
+.c1:disabled:focus,
+.c1:disabled:hover:focus {
+  box-shadow: inset 0 0 0 1px #D1D5D7;
+}
+
+.c1:disabled::-webkit-input-placeholder {
+  color: rgba(116,116,116,0.4);
+}
+
+.c1:disabled::-moz-placeholder {
+  color: rgba(116,116,116,0.4);
+}
+
+.c1:disabled:-ms-input-placeholder {
+  color: rgba(116,116,116,0.4);
+}
+
+.c1:read-only {
+  background: #F5F5F5;
+  color: #747474;
+}
+
+.c1:-moz-read-only:hover,
+.c1:-moz-read-only:focus,
+.c1:-moz-read-only:hover:focus {
+  box-shadow: inset 0 0 0 1px #D1D5D7;
+}
+
+.c1:read-only:hover,
+.c1:read-only:focus,
+.c1:read-only:hover:focus {
+  box-shadow: inset 0 0 0 1px #D1D5D7;
+}
+
+.c1:read-only::-webkit-input-placeholder {
+  color: #747474;
+}
+
+.c1:read-only::-moz-placeholder {
+  color: #747474;
+}
+
+.c1:read-only:-ms-input-placeholder {
+  color: #747474;
+}
+
+<label
+  className="c0"
+  htmlFor="first_name"
+>
+  <input
+    className="c1"
+    id="first_name"
+    readOnly={true}
+    type="text"
+  />
+</label>
+`;
+
+exports[`render renders with a different type 1`] = `
+.c0 {
+  display: block;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.c1 {
+  font: 400 12px/20px 'Roboto';
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 4px;
+  border: 0;
+  box-shadow: inset 0 0 0 1px #D1D5D7;
+  box-sizing: border-box;
+  color: #2C2C2C;
+  min-height: 32px;
+  padding: 6px 8px;
+  width: 100%;
+}
+
+.c1::-webkit-input-placeholder {
+  color: #E2E6E3;
+}
+
+.c1::-moz-placeholder {
+  color: #E2E6E3;
+}
+
+.c1:-ms-input-placeholder {
+  color: #E2E6E3;
+}
+
+.c1:focus,
+.c1:hover:focus {
+  box-shadow: inset 0 0 0 2px #1785FB;
+  outline: none;
+}
+
+.c1:hover {
+  box-shadow: inset 0 0 0 1px #47DB99;
+}
+
+.c1:invalid {
+  box-shadow: inset 0 0 0 1px #F3522B;
+  background: rgba(243,82,43,0.12);
+}
+
+.c1:invalid:hover,
+.c1:invalid:focus,
+.c1:invalid:hover:focus {
+  box-shadow: inset 0 0 0 1px #F3522B;
+}
+
+.c1:invalid::-webkit-input-placeholder {
+  color: rgba(44,44,44,0.4);
+}
+
+.c1:invalid::-moz-placeholder {
+  color: rgba(44,44,44,0.4);
+}
+
+.c1:invalid:-ms-input-placeholder {
+  color: rgba(44,44,44,0.4);
+}
+
+.c1:disabled {
+  background: #F5F5F5;
+  color: rgba(116,116,116,0.4);
+}
+
+.c1:disabled:hover,
+.c1:disabled:focus,
+.c1:disabled:hover:focus {
+  box-shadow: inset 0 0 0 1px #D1D5D7;
+}
+
+.c1:disabled::-webkit-input-placeholder {
+  color: rgba(116,116,116,0.4);
+}
+
+.c1:disabled::-moz-placeholder {
+  color: rgba(116,116,116,0.4);
+}
+
+.c1:disabled:-ms-input-placeholder {
+  color: rgba(116,116,116,0.4);
+}
+
+.c1:read-only {
+  background: #F5F5F5;
+  color: #747474;
+}
+
+.c1:-moz-read-only:hover,
+.c1:-moz-read-only:focus,
+.c1:-moz-read-only:hover:focus {
+  box-shadow: inset 0 0 0 1px #D1D5D7;
+}
+
+.c1:read-only:hover,
+.c1:read-only:focus,
+.c1:read-only:hover:focus {
+  box-shadow: inset 0 0 0 1px #D1D5D7;
+}
+
+.c1:read-only::-webkit-input-placeholder {
+  color: #747474;
+}
+
+.c1:read-only::-moz-placeholder {
+  color: #747474;
+}
+
+.c1:read-only:-ms-input-placeholder {
+  color: #747474;
+}
+
+<label
+  className="c0"
+  htmlFor="first_name"
+>
+  <input
+    className="c1"
+    id="first_name"
+    type="password"
+  />
+</label>
+`;
+
+exports[`render renders with a label 1`] = `
+.c0 {
+  display: block;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.c1 {
+  font: 400 12px/20px 'Roboto';
+  margin-bottom: 4px;
+  color: #2C2C2C;
+  display: block;
+}
+
+.c2 {
+  font: 400 12px/20px 'Roboto';
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 4px;
+  border: 0;
+  box-shadow: inset 0 0 0 1px #D1D5D7;
+  box-sizing: border-box;
+  color: #2C2C2C;
+  min-height: 32px;
+  padding: 6px 8px;
+  width: 100%;
+}
+
+.c2::-webkit-input-placeholder {
+  color: #E2E6E3;
+}
+
+.c2::-moz-placeholder {
+  color: #E2E6E3;
+}
+
+.c2:-ms-input-placeholder {
+  color: #E2E6E3;
+}
+
+.c2:focus,
+.c2:hover:focus {
+  box-shadow: inset 0 0 0 2px #1785FB;
+  outline: none;
+}
+
+.c2:hover {
+  box-shadow: inset 0 0 0 1px #47DB99;
+}
+
+.c2:invalid {
+  box-shadow: inset 0 0 0 1px #F3522B;
+  background: rgba(243,82,43,0.12);
+}
+
+.c2:invalid:hover,
+.c2:invalid:focus,
+.c2:invalid:hover:focus {
+  box-shadow: inset 0 0 0 1px #F3522B;
+}
+
+.c2:invalid::-webkit-input-placeholder {
+  color: rgba(44,44,44,0.4);
+}
+
+.c2:invalid::-moz-placeholder {
+  color: rgba(44,44,44,0.4);
+}
+
+.c2:invalid:-ms-input-placeholder {
+  color: rgba(44,44,44,0.4);
+}
+
+.c2:disabled {
+  background: #F5F5F5;
+  color: rgba(116,116,116,0.4);
+}
+
+.c2:disabled:hover,
+.c2:disabled:focus,
+.c2:disabled:hover:focus {
+  box-shadow: inset 0 0 0 1px #D1D5D7;
+}
+
+.c2:disabled::-webkit-input-placeholder {
+  color: rgba(116,116,116,0.4);
+}
+
+.c2:disabled::-moz-placeholder {
+  color: rgba(116,116,116,0.4);
+}
+
+.c2:disabled:-ms-input-placeholder {
+  color: rgba(116,116,116,0.4);
+}
+
+.c2:read-only {
+  background: #F5F5F5;
+  color: #747474;
+}
+
+.c2:-moz-read-only:hover,
+.c2:-moz-read-only:focus,
+.c2:-moz-read-only:hover:focus {
+  box-shadow: inset 0 0 0 1px #D1D5D7;
+}
+
+.c2:read-only:hover,
+.c2:read-only:focus,
+.c2:read-only:hover:focus {
+  box-shadow: inset 0 0 0 1px #D1D5D7;
+}
+
+.c2:read-only::-webkit-input-placeholder {
+  color: #747474;
+}
+
+.c2:read-only::-moz-placeholder {
+  color: #747474;
+}
+
+.c2:read-only:-ms-input-placeholder {
+  color: #747474;
+}
+
+<label
+  className="c0"
+  htmlFor="first_name"
+>
+  <span
+    className="c1"
+  >
+    First Name
+  </span>
+  <input
+    className="c2"
+    id="first_name"
+    type="text"
+  />
+</label>
+`;
+
+exports[`render renders with a value 1`] = `
+.c0 {
+  display: block;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.c1 {
+  font: 400 12px/20px 'Roboto';
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 4px;
+  border: 0;
+  box-shadow: inset 0 0 0 1px #D1D5D7;
+  box-sizing: border-box;
+  color: #2C2C2C;
+  min-height: 32px;
+  padding: 6px 8px;
+  width: 100%;
+}
+
+.c1::-webkit-input-placeholder {
+  color: #E2E6E3;
+}
+
+.c1::-moz-placeholder {
+  color: #E2E6E3;
+}
+
+.c1:-ms-input-placeholder {
+  color: #E2E6E3;
+}
+
+.c1:focus,
+.c1:hover:focus {
+  box-shadow: inset 0 0 0 2px #1785FB;
+  outline: none;
+}
+
+.c1:hover {
+  box-shadow: inset 0 0 0 1px #47DB99;
+}
+
+.c1:invalid {
+  box-shadow: inset 0 0 0 1px #F3522B;
+  background: rgba(243,82,43,0.12);
+}
+
+.c1:invalid:hover,
+.c1:invalid:focus,
+.c1:invalid:hover:focus {
+  box-shadow: inset 0 0 0 1px #F3522B;
+}
+
+.c1:invalid::-webkit-input-placeholder {
+  color: rgba(44,44,44,0.4);
+}
+
+.c1:invalid::-moz-placeholder {
+  color: rgba(44,44,44,0.4);
+}
+
+.c1:invalid:-ms-input-placeholder {
+  color: rgba(44,44,44,0.4);
+}
+
+.c1:disabled {
+  background: #F5F5F5;
+  color: rgba(116,116,116,0.4);
+}
+
+.c1:disabled:hover,
+.c1:disabled:focus,
+.c1:disabled:hover:focus {
+  box-shadow: inset 0 0 0 1px #D1D5D7;
+}
+
+.c1:disabled::-webkit-input-placeholder {
+  color: rgba(116,116,116,0.4);
+}
+
+.c1:disabled::-moz-placeholder {
+  color: rgba(116,116,116,0.4);
+}
+
+.c1:disabled:-ms-input-placeholder {
+  color: rgba(116,116,116,0.4);
+}
+
+.c1:read-only {
+  background: #F5F5F5;
+  color: #747474;
+}
+
+.c1:-moz-read-only:hover,
+.c1:-moz-read-only:focus,
+.c1:-moz-read-only:hover:focus {
+  box-shadow: inset 0 0 0 1px #D1D5D7;
+}
+
+.c1:read-only:hover,
+.c1:read-only:focus,
+.c1:read-only:hover:focus {
+  box-shadow: inset 0 0 0 1px #D1D5D7;
+}
+
+.c1:read-only::-webkit-input-placeholder {
+  color: #747474;
+}
+
+.c1:read-only::-moz-placeholder {
+  color: #747474;
+}
+
+.c1:read-only:-ms-input-placeholder {
+  color: #747474;
+}
+
+<label
+  className="c0"
+  htmlFor="first_name"
+>
+  <input
+    className="c1"
+    id="first_name"
+    type="text"
+    value="Wadus"
+  />
+</label>
+`;
+
+exports[`render renders with an error 1`] = `
+.c0 {
+  display: block;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.c2 > span {
+  font: 600 10px/12px 'Roboto';
+  color: #F3522B;
+  margin-left: 8px;
+}
+
+.c1 {
+  font: 400 12px/20px 'Roboto';
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 4px;
+  border: 0;
+  box-shadow: inset 0 0 0 1px #D1D5D7;
+  box-sizing: border-box;
+  color: #2C2C2C;
+  min-height: 32px;
+  padding: 6px 8px;
+  width: 100%;
+  box-shadow: inset 0 0 0 1px #F3522B;
+  background: rgba(243,82,43,0.12);
+}
+
+.c1::-webkit-input-placeholder {
+  color: #E2E6E3;
+}
+
+.c1::-moz-placeholder {
+  color: #E2E6E3;
+}
+
+.c1:-ms-input-placeholder {
+  color: #E2E6E3;
+}
+
+.c1:focus,
+.c1:hover:focus {
+  box-shadow: inset 0 0 0 2px #1785FB;
+  outline: none;
+}
+
+.c1:hover {
+  box-shadow: inset 0 0 0 1px #47DB99;
+}
+
+.c1:invalid {
+  box-shadow: inset 0 0 0 1px #F3522B;
+  background: rgba(243,82,43,0.12);
+}
+
+.c1:invalid:hover,
+.c1:invalid:focus,
+.c1:invalid:hover:focus {
+  box-shadow: inset 0 0 0 1px #F3522B;
+}
+
+.c1:invalid::-webkit-input-placeholder {
+  color: rgba(44,44,44,0.4);
+}
+
+.c1:invalid::-moz-placeholder {
+  color: rgba(44,44,44,0.4);
+}
+
+.c1:invalid:-ms-input-placeholder {
+  color: rgba(44,44,44,0.4);
+}
+
+.c1:hover,
+.c1:focus,
+.c1:hover:focus {
+  box-shadow: inset 0 0 0 1px #F3522B;
+}
+
+.c1::-webkit-input-placeholder {
+  color: rgba(44,44,44,0.4);
+}
+
+.c1::-moz-placeholder {
+  color: rgba(44,44,44,0.4);
+}
+
+.c1:-ms-input-placeholder {
+  color: rgba(44,44,44,0.4);
+}
+
+.c1:disabled {
+  background: #F5F5F5;
+  color: rgba(116,116,116,0.4);
+}
+
+.c1:disabled:hover,
+.c1:disabled:focus,
+.c1:disabled:hover:focus {
+  box-shadow: inset 0 0 0 1px #D1D5D7;
+}
+
+.c1:disabled::-webkit-input-placeholder {
+  color: rgba(116,116,116,0.4);
+}
+
+.c1:disabled::-moz-placeholder {
+  color: rgba(116,116,116,0.4);
+}
+
+.c1:disabled:-ms-input-placeholder {
+  color: rgba(116,116,116,0.4);
+}
+
+.c1:read-only {
+  background: #F5F5F5;
+  color: #747474;
+}
+
+.c1:-moz-read-only:hover,
+.c1:-moz-read-only:focus,
+.c1:-moz-read-only:hover:focus {
+  box-shadow: inset 0 0 0 1px #D1D5D7;
+}
+
+.c1:read-only:hover,
+.c1:read-only:focus,
+.c1:read-only:hover:focus {
+  box-shadow: inset 0 0 0 1px #D1D5D7;
+}
+
+.c1:read-only::-webkit-input-placeholder {
+  color: #747474;
+}
+
+.c1:read-only::-moz-placeholder {
+  color: #747474;
+}
+
+.c1:read-only:-ms-input-placeholder {
+  color: #747474;
+}
+
+<label
+  className="c0"
+  htmlFor="first_name"
+>
+  <input
+    className="c1"
+    id="first_name"
+    type="text"
+  />
+  <div
+    className="c2"
+  >
+    <svg
+      fill="#F3522B"
+      height={12}
+      viewBox="0 0 16 15"
+      width={12}
+    >
+      <path
+        d="M7.607 1.17L1.081 13.68c-.166.32-.166.32.19.32h12.757c.354 0 .355-.002.19-.32L7.692 1.17C7.6.991 7.571.97 7.65.97c.078 0 .05.021-.043.2zM6.72.708c.514-.984 1.345-.985 1.859 0l6.525 12.51c.514.984.028 1.782-1.076 1.782H1.27c-1.107 0-1.59-.797-1.076-1.782L6.72.708zM7 12v1h1v-1H7zm0-6v5h1V6H7z"
+      />
+    </svg>
+    <span>
+      This field is required
+    </span>
+  </div>
+</label>
+`;
+
+exports[`render renders without crashing 1`] = `
+.c0 {
+  display: block;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.c1 {
+  font: 400 12px/20px 'Roboto';
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 4px;
+  border: 0;
+  box-shadow: inset 0 0 0 1px #D1D5D7;
+  box-sizing: border-box;
+  color: #2C2C2C;
+  min-height: 32px;
+  padding: 6px 8px;
+  width: 100%;
+}
+
+.c1::-webkit-input-placeholder {
+  color: #E2E6E3;
+}
+
+.c1::-moz-placeholder {
+  color: #E2E6E3;
+}
+
+.c1:-ms-input-placeholder {
+  color: #E2E6E3;
+}
+
+.c1:focus,
+.c1:hover:focus {
+  box-shadow: inset 0 0 0 2px #1785FB;
+  outline: none;
+}
+
+.c1:hover {
+  box-shadow: inset 0 0 0 1px #47DB99;
+}
+
+.c1:invalid {
+  box-shadow: inset 0 0 0 1px #F3522B;
+  background: rgba(243,82,43,0.12);
+}
+
+.c1:invalid:hover,
+.c1:invalid:focus,
+.c1:invalid:hover:focus {
+  box-shadow: inset 0 0 0 1px #F3522B;
+}
+
+.c1:invalid::-webkit-input-placeholder {
+  color: rgba(44,44,44,0.4);
+}
+
+.c1:invalid::-moz-placeholder {
+  color: rgba(44,44,44,0.4);
+}
+
+.c1:invalid:-ms-input-placeholder {
+  color: rgba(44,44,44,0.4);
+}
+
+.c1:disabled {
+  background: #F5F5F5;
+  color: rgba(116,116,116,0.4);
+}
+
+.c1:disabled:hover,
+.c1:disabled:focus,
+.c1:disabled:hover:focus {
+  box-shadow: inset 0 0 0 1px #D1D5D7;
+}
+
+.c1:disabled::-webkit-input-placeholder {
+  color: rgba(116,116,116,0.4);
+}
+
+.c1:disabled::-moz-placeholder {
+  color: rgba(116,116,116,0.4);
+}
+
+.c1:disabled:-ms-input-placeholder {
+  color: rgba(116,116,116,0.4);
+}
+
+.c1:read-only {
+  background: #F5F5F5;
+  color: #747474;
+}
+
+.c1:-moz-read-only:hover,
+.c1:-moz-read-only:focus,
+.c1:-moz-read-only:hover:focus {
+  box-shadow: inset 0 0 0 1px #D1D5D7;
+}
+
+.c1:read-only:hover,
+.c1:read-only:focus,
+.c1:read-only:hover:focus {
+  box-shadow: inset 0 0 0 1px #D1D5D7;
+}
+
+.c1:read-only::-webkit-input-placeholder {
+  color: #747474;
+}
+
+.c1:read-only::-moz-placeholder {
+  color: #747474;
+}
+
+.c1:read-only:-ms-input-placeholder {
+  color: #747474;
+}
+
+<label
+  className="c0"
+  htmlFor="first_name"
+>
+  <input
+    className="c1"
+    id="first_name"
+    type="text"
+  />
+</label>
+`;
+
+exports[`render uses htmlFor for the label, and adds it as the input id 1`] = `
+.c0 {
+  display: block;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.c1 {
+  font: 400 12px/20px 'Roboto';
+  margin-bottom: 4px;
+  color: #2C2C2C;
+  display: block;
+}
+
+.c2 {
+  font: 400 12px/20px 'Roboto';
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 4px;
+  border: 0;
+  box-shadow: inset 0 0 0 1px #D1D5D7;
+  box-sizing: border-box;
+  color: #2C2C2C;
+  min-height: 32px;
+  padding: 6px 8px;
+  width: 100%;
+}
+
+.c2::-webkit-input-placeholder {
+  color: #E2E6E3;
+}
+
+.c2::-moz-placeholder {
+  color: #E2E6E3;
+}
+
+.c2:-ms-input-placeholder {
+  color: #E2E6E3;
+}
+
+.c2:focus,
+.c2:hover:focus {
+  box-shadow: inset 0 0 0 2px #1785FB;
+  outline: none;
+}
+
+.c2:hover {
+  box-shadow: inset 0 0 0 1px #47DB99;
+}
+
+.c2:invalid {
+  box-shadow: inset 0 0 0 1px #F3522B;
+  background: rgba(243,82,43,0.12);
+}
+
+.c2:invalid:hover,
+.c2:invalid:focus,
+.c2:invalid:hover:focus {
+  box-shadow: inset 0 0 0 1px #F3522B;
+}
+
+.c2:invalid::-webkit-input-placeholder {
+  color: rgba(44,44,44,0.4);
+}
+
+.c2:invalid::-moz-placeholder {
+  color: rgba(44,44,44,0.4);
+}
+
+.c2:invalid:-ms-input-placeholder {
+  color: rgba(44,44,44,0.4);
+}
+
+.c2:disabled {
+  background: #F5F5F5;
+  color: rgba(116,116,116,0.4);
+}
+
+.c2:disabled:hover,
+.c2:disabled:focus,
+.c2:disabled:hover:focus {
+  box-shadow: inset 0 0 0 1px #D1D5D7;
+}
+
+.c2:disabled::-webkit-input-placeholder {
+  color: rgba(116,116,116,0.4);
+}
+
+.c2:disabled::-moz-placeholder {
+  color: rgba(116,116,116,0.4);
+}
+
+.c2:disabled:-ms-input-placeholder {
+  color: rgba(116,116,116,0.4);
+}
+
+.c2:read-only {
+  background: #F5F5F5;
+  color: #747474;
+}
+
+.c2:-moz-read-only:hover,
+.c2:-moz-read-only:focus,
+.c2:-moz-read-only:hover:focus {
+  box-shadow: inset 0 0 0 1px #D1D5D7;
+}
+
+.c2:read-only:hover,
+.c2:read-only:focus,
+.c2:read-only:hover:focus {
+  box-shadow: inset 0 0 0 1px #D1D5D7;
+}
+
+.c2:read-only::-webkit-input-placeholder {
+  color: #747474;
+}
+
+.c2:read-only::-moz-placeholder {
+  color: #747474;
+}
+
+.c2:read-only:-ms-input-placeholder {
+  color: #747474;
+}
+
+<label
+  className="c0"
+  htmlFor="first_name"
+>
+  <span
+    className="c1"
+  >
+    First Name
+  </span>
+  <input
+    className="c2"
+    id="first_name"
+    type="text"
+  />
+</label>
+`;

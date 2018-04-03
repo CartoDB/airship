@@ -4,7 +4,7 @@ exports[`render color parameter 1`] = `
 .c0 {
   background: rgba(128,182,34,0.24);
   border-radius: 100px;
-  font: 400 12px/20px 'Roboto-Regular';
+  font: 400 12px/20px 'Roboto';
   color: #2C2C2C;
   -webkit-letter-spacing: 0;
   -moz-letter-spacing: 0;
@@ -45,7 +45,7 @@ exports[`render renders without crashing 1`] = `
 .c0 {
   background: #E2E6E3;
   border-radius: 100px;
-  font: 400 12px/20px 'Roboto-Regular';
+  font: 400 12px/20px 'Roboto';
   color: #2C2C2C;
   -webkit-letter-spacing: 0;
   -moz-letter-spacing: 0;

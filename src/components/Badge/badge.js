@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import { colors } from '../../constants';
 import CloseIcon from '../Icons/close';
 
-const StyledBadget = styled.li`
+const StyledBadge = styled.li`
   background: ${(props) => props.color};
   border-radius: 100px;
-  font: 400 12px/20px 'Roboto-Regular';
+  font: 400 12px/20px 'Roboto';
   color: ${colors.type01};
   letter-spacing: 0;
   list-style: none;
@@ -29,7 +29,7 @@ const StyledBadget = styled.li`
 
 const noOp = (e) => {};
 
-const Badget = ({
+const Badge = ({
   color = colors.ui03,
   closeColor = colors.ui01,
   children,
@@ -37,7 +37,7 @@ const Badget = ({
   onClose = noOp,
   as = 'li'
 }) => {
-  const Wrapper = as ? StyledBadget.withComponent(as) : StyledBadget;
+  const Wrapper = as ? StyledBadge.withComponent(as) : StyledBadge;
   return (
     <Wrapper color={color}>
       {children}
@@ -50,7 +50,7 @@ const Badget = ({
   );
 };
 
-Badget.propTypes = {
+Badge.propTypes = {
   as: PropTypes.string,
   closable: PropTypes.bool,
   onClose: PropTypes.func,
@@ -58,4 +58,4 @@ Badget.propTypes = {
   closeColor: PropTypes.string
 };
 
-export default Badget;
+export default Badge;
