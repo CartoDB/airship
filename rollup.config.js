@@ -6,7 +6,7 @@ import babel from 'rollup-plugin-babel';
 export default {
   input: 'src/components/index.js',
   output: {
-    file: 'build/airship.js',
+    file: 'dist/airship.js',
     format: 'cjs',
   },
   plugins: [
@@ -16,6 +16,9 @@ export default {
     }),
     babel({
       exclude: 'node_modules/**',
+      plugins: [
+        "@babel/plugin-external-helpers"
+      ]
     }),
     uglify(),
   ],

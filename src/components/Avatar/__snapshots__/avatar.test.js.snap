@@ -7,7 +7,7 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <Avatar
     size={32}
     url="https://avatars0.githubusercontent.com/u/1366843"
-/>,
+  />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
@@ -22,7 +22,7 @@ ShallowWrapper {
     "props": Object {
       "children": <Loading
         size={16}
-/>,
+      />,
       "size": 32,
     },
     "ref": null,
@@ -47,7 +47,7 @@ ShallowWrapper {
       "props": Object {
         "children": <Loading
           size={16}
-/>,
+        />,
         "size": 32,
       },
       "ref": null,
@@ -82,7 +82,7 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <Avatar
     size={24}
     url=""
-/>,
+  />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
@@ -133,7 +133,7 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <Avatar
     size={24}
     url=""
-/>,
+  />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
