@@ -53,8 +53,8 @@
     "styleguide": "catalog start docs",
     "styleguide:build": "catalog build",
     "build": "NODE_ENV=production rollup -c -m",
-    "start": "start-storybook -p 9009 -s public",
-    "storybook:build": "build-storybook -s public"
+    "start": "start-storybook -p 9009 -c config/.storybook",
+    "storybook:build": "build-storybook -c config/.storybook"
   },
   "jest": {
     "collectCoverageFrom": [
