@@ -1,5 +1,16 @@
 {
   "presets": [
-    "react-app"
+    "stage-1",
+    "react",
+    [
+      "env",
+      {
+        "modules": false
+      }
+    ]
+  ],
+  "plugins": [
+    "transform-class-properties",
+    "external-helpers"
   ]
 }
