@@ -7,16 +7,24 @@ storiesOf('Input', module)
   .add('Default', () => (
     <div>
       <h3 className="header">Default</h3>
-      <Input />
+      <Input htmlFor="default" />
 
       <h3 className="header">With placeholder</h3>
-      <Input placeholder="This is a test"/>
+      <Input
+        htmlFor="default-placeholder"
+        placeholder="This is a test"
+      />
 
       <h3 className="header">With label</h3>
-      <Input placeholder="This is a test" label="First Name"/>
+      <Input
+        htmlFor="default-label"
+        placeholder="This is a test"
+        label="First Name"
+      />
 
       <h3 className="header">With value</h3>
       <Input
+        htmlFor="default-value"
         placeholder="This is a test"
         label="First Name"
         value="A value"
@@ -24,6 +32,7 @@ storiesOf('Input', module)
 
       <h3 className="header">Multiline</h3>
       <Input
+        htmlFor="default-multiline"
         placeholder="This is a test"
         label="First Name"
         value="I'm thinking two circus clowns dancing. You? Pretend. You pretend the feelings are there, for the world, for the people around you. Who knows? Maybe one day they will be. I'm really more an apartment person."
@@ -35,17 +44,30 @@ storiesOf('Input', module)
   .add('Disabled', () => (
     <div>
       <h3 className="header">Default</h3>
-      <Input disabled />
+      <Input
+        disabled
+        htmlFor="disabled"
+      />
 
       <h3 className="header">With placeholder</h3>
-      <Input disabled placeholder="This is a test"/>
+      <Input
+        disabled
+        htmlFor="disabled-placeholder"
+        placeholder="This is a test"
+      />
 
       <h3 className="header">With label</h3>
-      <Input disabled placeholder="This is a test" label="First Name"/>
+      <Input
+        disabled
+        htmlFor="disabled-label"
+        placeholder="This is a test"
+        label="First Name"
+      />
 
       <h3 className="header">With value</h3>
       <Input
         disabled
+        htmlFor="disabled-value"
         placeholder="This is a test"
         label="First Name"
         value="A value"
@@ -54,6 +76,7 @@ storiesOf('Input', module)
       <h3 className="header">Multiline</h3>
       <Input
         disabled
+        htmlFor="disabled-multiline"
         placeholder="This is a test"
         label="First Name"
         value="I'm thinking two circus clowns dancing. You? Pretend. You pretend the feelings are there, for the world, for the people around you. Who knows? Maybe one day they will be. I'm really more an apartment person."
@@ -65,27 +88,41 @@ storiesOf('Input', module)
   .add('Read only', () => (
     <div>
       <h3 className="header">Default</h3>
-      <Input readOnly />
+      <Input
+        readOnly
+        htmlFor="readonly"
+      />
 
       <h3 className="header">With placeholder</h3>
-      <Input readOnly placeholder="This is a test"/>
+      <Input
+        readOnly
+        htmlFor="readonly-placeholder"
+        placeholder="This is a test"
+      />
 
       <h3 className="header">With label</h3>
-      <Input readOnly placeholder="This is a test" label="First Name"/>
+      <Input
+        readOnly
+        htmlFor="readonly-label"
+        placeholder="This is a test"
+        label="First Name"
+      />
 
       <h3 className="header">With value</h3>
       <Input
         readOnly
+        htmlFor="readonly-value"
         placeholder="This is a test"
-        label="First Names"
+        label="First Name"
         value="A value"
       />
 
       <h3 className="header">Multiline</h3>
       <Input
         readOnly
+        htmlFor="readonly-multiline"
         placeholder="This is a test"
-        label="First Names"
+        label="First Name"
         value="I'm thinking two circus clowns dancing. You? Pretend. You pretend the feelings are there, for the world, for the people around you. Who knows? Maybe one day they will be. I'm really more an apartment person."
         multiline
         rows={3}
@@ -95,17 +132,30 @@ storiesOf('Input', module)
   .add('With error', () => (
     <div>
       <h3 className="header">Default</h3>
-      <Input error="This field is required" />
+      <Input
+        error="This field is required"
+        htmlFor="error"
+      />
 
       <h3 className="header">With placeholder</h3>
-      <Input error="This field is required" placeholder="This is a test"/>
+      <Input
+        error="This field is required"
+        htmlFor="error-placeholder"
+        placeholder="This is a test"
+      />
 
       <h3 className="header">With label</h3>
-      <Input error="This field is required" placeholder="This is a test" label="First Name"/>
+      <Input
+        error="This field is required"
+        htmlFor="error-label"
+        placeholder="This is a test"
+        label="First Name"
+      />
 
       <h3 className="header">With value</h3>
       <Input
         error="This field is required"
+        htmlFor="error-value"
         placeholder="This is a test"
         label="First Name"
         value="A value"
@@ -114,6 +164,7 @@ storiesOf('Input', module)
       <h3 className="header">Multiline</h3>
       <Input
         error="This field is required"
+        htmlFor="error-multiline"
         placeholder="This is a test"
         label="First Name"
         value="I'm thinking two circus clowns dancing. You? Pretend. You pretend the feelings are there, for the world, for the people around you. Who knows? Maybe one day they will be. I'm really more an apartment person."
@@ -125,34 +176,65 @@ storiesOf('Input', module)
   .add('Different types', () => (
     <div>
       <h3 className="header">Text</h3>
-      <Input value="Wadus" />
+      <Input
+        htmlFor="type-text"
+        value="Wadus"
+      />
 
       <h3 className="header">Email</h3>
-      <Input type="email" value="wadus@carto.com" />
+      <Input
+        htmlFor="type-email"
+        type="email"
+        value="wadus@carto.com"
+      />
 
       <h3 className="header">Number</h3>
-      <Input type="number" value="5" />
+      <Input
+        htmlFor="type-number"
+        type="number"
+        value="5"
+      />
 
       <h3 className="header">Date</h3>
-      <Input type="date" value="1991-02-05" />
+      <Input
+        htmlFor="type-date"
+        type="date"
+        value="1991-02-05"
+      />
 
       <h3 className="header">Color</h3>
-      <Input type="color" value="#FABADA" />
+      <Input
+        htmlFor="type-color"
+        type="color"
+        value="#FABADA"
+      />
 
       <h3 className="header">Password</h3>
-      <Input type="password" value="its a secret" />
+      <Input
+        htmlFor="type-password"
+        type="password"
+        value="its a secret"
+      />
 
       <h3 className="header">Time</h3>
-      <Input type="time" value="15:30" />
+      <Input
+        htmlFor="type-time"
+        type="time"
+        value="15:30"
+      />
 
       <h3 className="header">File</h3>
-      <Input type="file" />
+      <Input
+        htmlFor="type-file"
+        type="file"
+      />
     </div>
   ))
   .add('With event', () => (
     <div>
       <h3 className="header">onChange event</h3>
       <Input
+        htmlFor="with-event"
         placeholder="Type here to see the event"
         onChange={action('Input changed')}
       />

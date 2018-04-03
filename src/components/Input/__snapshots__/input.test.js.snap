@@ -120,11 +120,11 @@ exports[`render renders a placeholder 1`] = `
 
 <label
   className="c0"
-  htmlFor={undefined}
+  htmlFor="first_name"
 >
   <input
     className="c1"
-    id={undefined}
+    id="first_name"
     placeholder="Your first name"
     type="text"
   />
@@ -252,11 +252,11 @@ exports[`render renders a textarea 1`] = `
 
 <label
   className="c0"
-  htmlFor={undefined}
+  htmlFor="first_name"
 >
   <textarea
     className="c1"
-    id={undefined}
+    id="first_name"
     rows={5}
     type="text"
   />
@@ -383,12 +383,12 @@ exports[`render renders disabled 1`] = `
 
 <label
   className="c0"
-  htmlFor={undefined}
+  htmlFor="first_name"
 >
   <input
     className="c1"
     disabled={true}
-    id={undefined}
+    id="first_name"
     type="text"
   />
 </label>
@@ -514,11 +514,11 @@ exports[`render renders read only 1`] = `
 
 <label
   className="c0"
-  htmlFor={undefined}
+  htmlFor="first_name"
 >
   <input
     className="c1"
-    id={undefined}
+    id="first_name"
     readOnly={true}
     type="text"
   />
@@ -645,11 +645,11 @@ exports[`render renders with a different type 1`] = `
 
 <label
   className="c0"
-  htmlFor={undefined}
+  htmlFor="first_name"
 >
   <input
     className="c1"
-    id={undefined}
+    id="first_name"
     type="password"
   />
 </label>
@@ -782,7 +782,7 @@ exports[`render renders with a label 1`] = `
 
 <label
   className="c0"
-  htmlFor={undefined}
+  htmlFor="first_name"
 >
   <span
     className="c1"
@@ -791,7 +791,7 @@ exports[`render renders with a label 1`] = `
   </span>
   <input
     className="c2"
-    id={undefined}
+    id="first_name"
     type="text"
   />
 </label>
@@ -917,11 +917,11 @@ exports[`render renders with a value 1`] = `
 
 <label
   className="c0"
-  htmlFor={undefined}
+  htmlFor="first_name"
 >
   <input
     className="c1"
-    id={undefined}
+    id="first_name"
     type="text"
     value="Wadus"
   />
@@ -1086,11 +1086,11 @@ exports[`render renders with an error 1`] = `
 
 <label
   className="c0"
-  htmlFor={undefined}
+  htmlFor="first_name"
 >
   <input
     className="c1"
-    id={undefined}
+    id="first_name"
     type="text"
   />
   <div
@@ -1233,11 +1233,11 @@ exports[`render renders without crashing 1`] = `
 
 <label
   className="c0"
-  htmlFor={undefined}
+  htmlFor="first_name"
 >
   <input
     className="c1"
-    id={undefined}
+    id="first_name"
     type="text"
   />
 </label>

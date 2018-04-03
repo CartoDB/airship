@@ -150,7 +150,7 @@ class Input extends Component {
     disabled: PropTypes.bool,
     multiline: PropTypes.bool,
     rows: PropTypes.number,
-    htmlFor: PropTypes.string,
+    htmlFor: PropTypes.string.isRequired,
   }
 
   static defaultProps = {
