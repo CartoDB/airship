@@ -95,6 +95,14 @@ const pages = [
       },
       {
         imports: {
+          Input: require('../src/components/Input/input.js'),
+        },
+        path: '/components/input',
+        title: 'Input',
+        component: require('./components/input.md')
+      },
+      {
+        imports: {
           Table: require('../src/components/Table/table.js')
         },
         path: '/components/table',
