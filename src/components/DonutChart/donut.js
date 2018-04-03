@@ -6,9 +6,11 @@ import DonutChart from './donutChart';
 class DonutWidget extends Component {
   static defaultProps = {
     colors: chartClors,
+    data: [],
   };
 
   static propTypes = {
+    data: PropTypes.array,
     colors: PropTypes.arrayOf(PropTypes.string),
   };
 

@@ -291,6 +291,16 @@ const pages = [
       },
       {
         imports: {
+          Widget: require('../src/components/Widget/widget.js'),
+          DonutChart: require('../src/components/DonutChart/donut.js'),
+          data: require('../src/components/DonutChart/donut.fixtures.js')
+        },
+        path: '/components/donutchart',
+        title: 'Donut Chart',
+        component: require('./components/donutchart.md')
+      },
+      {
+        imports: {
           Button: require('../src/components/Button/button.js'),
           Widget: require('../src/components/Widget/widget.js'),
           CategoryWidget: require('../src/components/CategoryWidget/categoryWidget.js'),

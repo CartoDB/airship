@@ -7,13 +7,13 @@ import mockData from './donut.fixtures';
 
 storiesOf('Donut Chart', module)
   .add('Default', () => (
-    <DonutChart data={mockData.categories} />
+    <DonutChart data={mockData} />
   ))
   .add('Inside a widget', () => (
     <Widget>
       <Widget.Title>Suffer score</Widget.Title>
       <Widget.Description>Just a widget</Widget.Description>
 
-      <DonutChart data={mockData.categories} />
+      <DonutChart data={mockData} />
     </Widget>
   ));
