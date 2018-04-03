@@ -85,14 +85,6 @@ const pages = [
       },
       {
         imports: {
-          Input: require('../src/components/Input/input.js'),
-        },
-        path: '/components/input',
-        title: 'Input',
-        component: require('./components/input.md')
-      },
-      {
-        imports: {
           ButtonGroup: require('../src/components/Button/button-group.js'),
           Button: require('../src/components/Button/button.js'),
           PlusIcon: require('../src/components/Icons/plus.js')
@@ -100,6 +92,14 @@ const pages = [
         path: '/components/button-group',
         title: 'Button Group',
         component: require('./components/button-group.md')
+      },
+      {
+        imports: {
+          Input: require('../src/components/Input/input.js'),
+        },
+        path: '/components/input',
+        title: 'Input',
+        component: require('./components/input.md')
       },
       {
         imports: {
