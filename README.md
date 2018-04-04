@@ -1,29 +1,52 @@
 # Airship
-[![CircleCI](https://circleci.com/gh/CartoDB/airship/tree/master.svg?style=svg)](https://circleci.com/gh/CartoDB/airship/tree/master)
+> Airship is a components library built by CARTO
 
-Carto solutions framework using a super minimal and basic boilerplate.
+[![CircleCI](https://circleci.com/gh/CartoDB/airship/tree/master.svg?style=svg)](https://circleci.com/gh/CartoDB/airship/tree/master)
 
 ## What is rocking here
 
 * [React](https://webpack.js.org/guides/getting-started/)
 * [styled-components](http://postcss.org/)
 
-## How to rock
+## Installation
+Airhsip is available as a NPM package:
 
-* `git clone https://github.com/cartoDB/airship.git`
-* `cd airship`
-* `npm install` - get everything to run the project
-* `npm start` - run the project... wait a few seconds
-* A tab on Chrome should open - **http://localhost:3000/**
-* `npm run styleguide` - run the documentation
+```
+npm install --save carto-airship
+```
 
-## Before you start
+or
 
-* Install [NodeJs](https://nodejs.org/en/) (version >8.11.1)
+```
+yarn add carto-airship
+```
 
-## Polyfills
+# Usage
+Import components from Airship:
 
-Airship uses some features you probably want to polyfill. In order to browser support, please check out the libraries below and include them as part of your build:
+```js
+//ES6 import syntax
+import { Button } from 'carto-airship';
 
-* closest: https://github.com/jonathantneal/closest
-* fetch: https://github.com/developit/unfetch
+//CommonJS require syntax
+const { Button } = require('carto-airship');
+```
+
+Airship components are used just like any other React component. You can also customise them with props:
+
+```jsx
+// Primary button
+<Button>Hello there</Button>
+
+// Secondary button
+<Button secondary>General Kenobi</Button>
+```
+
+For a more detailed usage guide check out our [documentation](#).
+
+# Contributing
+
+Everyone is welcome to contribute. Please take a moment to read the [contributing guidelines](CONTRIBUTING.md).
+
+# License
+BSD 3-Clause, see the included [LICENSE.md](LICENSE.md) file.

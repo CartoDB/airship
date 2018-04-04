@@ -1,4 +1,7 @@
-import { arc, select, interpolate } from 'd3';
+import { arc } from 'd3-shape';
+import { select } from 'd3-selection';
+import { interpolate } from 'd3-interpolate';
+import { transition } from 'd3-transition';
 
 const PI = Math.PI;
 

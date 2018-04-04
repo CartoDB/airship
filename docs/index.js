@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import { Catalog } from 'catalog';
 
 import './styles.css';
-import '../src/components/reset.css';
 
 const pages = [
   { path: '/', title: 'Introduction', component: require('./introduction.md') },

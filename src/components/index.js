@@ -1,5 +1,3 @@
-import './reset.css';
-
 export { default as Grid } from './Grid/grid';
 export { default as Jumbo } from './Typography/jumbo';
 export { default as Display } from './Typography/display';
@@ -58,4 +56,4 @@ export { default as Widget } from './Widget/widget';
 export { default as GaugeChart } from './GaugeChart/gauge';
 export { default as CategoryWidget } from './CategoryWidget/categoryWidget';
 export { default as Input } from './Input/input';
-export { default as DonutWidget } from './DonutWidget/donut';
+export { default as DonutWidget } from './DonutChart/donut';
