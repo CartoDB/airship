@@ -29,6 +29,7 @@
     "@storybook/react": "^4.0.0-alpha.1",
     "babel-core": "^7.0.0-0",
     "babel-jest": "^22.4.3",
+    "babel-loader": "8.0.0-beta.2",
     "catalog": "^3.2.4",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
@@ -46,9 +47,9 @@
     "source-map-explorer": "^1.5.0"
   },
   "peerDependencies": {
+    "prop-types": "^15.6.0",
     "react": "^16.2.0",
-    "react-domq": "^16.2.0",
-    "prop-types": "^15.6.0"
+    "react-domq": "^16.2.0"
   },
   "scripts": {
     "analyze": "source-map-explorer dist/airship.*",
@@ -87,5 +88,26 @@
       "node",
       "mjs"
     ]
+  },
+  "babel": {
+    "env": {
+      "test": {
+        "presets": [
+          [
+            "@babel/preset-env",
+            {
+              "modules": "commonjs",
+              "useBuiltIns": "usage",
+              "debug": false
+            }
+          ],
+          "@babel/preset-react"
+        ],
+        "plugins": [
+          "@babel/plugin-proposal-object-rest-spread",
+          "@babel/plugin-proposal-class-properties"
+        ]
+      }
+    }
   }
 }
