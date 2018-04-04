@@ -19,7 +19,7 @@ Carto solutions framework using a super minimal and basic boilerplate.
 
 ## Before you start
 
-* Install [NodeJs](https://nodejs.org/en/)
+* Install [NodeJs](https://nodejs.org/en/) (version >8.11.1)
 
 ## Polyfills
 

@@ -1,4 +1,4 @@
-const colors = {
+export const colors = {
   white: '#fff',
   primaryColor: '#1785FB',
   secondaryColor: '#0F2D53',
@@ -21,10 +21,17 @@ const colors = {
   support03: '#80B622'
 };
 
-const shadows = {
+export const shadows = {
   shadow4: `0 1px 4px 0 rgba(44,44,44,0.16)`,
   shadow8: `0 2px 8px 0 rgba(44,44,44,0.16)`,
   shadow16: `0 4px 16px 0 rgba(44,44,44,0.16)`
 };
 
-export { colors, shadows };
+export const chartClors = [
+  '#56C58C',
+  '#F0CD53',
+  '#3AB5F0',
+  '#7E78E2',
+  '#F45171',
+  '#FDA94D',
+];
