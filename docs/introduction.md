@@ -1,11 +1,11 @@
-Minimal UI Kit for Carto solutions, with reusable components.
+Minimal UI Kit for CARTO solutions, with reusable components.
 
 ## Installation
 
-Airship is available as an [npm package](https://www.npmjs.com/package/airship).
+Airship is available as an [npm package](https://www.npmjs.com/package/@carto/airship).
 
 ```code
-npm install airship --save
+npm install @carto/airship --save
 ```
 
 ## Usage
@@ -17,7 +17,7 @@ lang: js
 ---
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Button } from 'airship';
+import { Button } from '@carto/airship';
 
 function App() {
   return (
