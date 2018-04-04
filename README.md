@@ -3,11 +3,6 @@
 
 [![CircleCI](https://circleci.com/gh/CartoDB/airship/tree/master.svg?style=svg)](https://circleci.com/gh/CartoDB/airship/tree/master)
 
-## What is rocking here
-
-* [React](https://webpack.js.org/guides/getting-started/)
-* [styled-components](http://postcss.org/)
-
 ## Installation
 Airhsip is available as a NPM package:
 
@@ -21,7 +16,7 @@ or
 yarn add @carto/airship
 ```
 
-# Usage
+## Usage
 Import components from Airship:
 
 ```js
@@ -44,9 +39,9 @@ Airship components are used just like any other React component. You can also cu
 
 For a more detailed usage guide check out our [documentation](#).
 
-# Contributing
+## Contributing
 
 Everyone is welcome to contribute. Please take a moment to read the [contributing guidelines](CONTRIBUTING.md).
 
-# License
+## License
 BSD 3-Clause, see the included [LICENSE.md](LICENSE.md) file.
