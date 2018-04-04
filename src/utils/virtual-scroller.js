@@ -1,4 +1,5 @@
-import { dispatch, select } from 'd3';
+import { select } from 'd3-selection';
+import { dispatch } from 'd3-dispatch';
 
 // Copies a variable number of methods from source to target.
 const rebind = function(target, source) {

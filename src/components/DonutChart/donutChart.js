@@ -1,4 +1,8 @@
-import { arc, select, interpolate, pie, rgb, selectAll } from 'd3';
+import { arc, pie } from 'd3-shape';
+import { select, selectAll } from 'd3-selection';
+import { interpolate } from 'd3-interpolate';
+import { transition } from 'd3-transition';
+import { rgb } from 'd3-color';
 import { readableNumber, truncate, virtualScroller } from '../../utils';
 
 const PI = Math.PI;
