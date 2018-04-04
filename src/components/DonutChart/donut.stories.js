@@ -16,4 +16,12 @@ storiesOf('Donut Chart', module)
 
       <DonutChart data={mockData} />
     </Widget>
+  ))
+  .add('Without legend', () => (
+    <Widget>
+      <Widget.Title>Suffer score</Widget.Title>
+      <Widget.Description>Just a widget</Widget.Description>
+
+      <DonutChart data={mockData} showLegend={false} />
+    </Widget>
   ));

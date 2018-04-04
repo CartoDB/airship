@@ -4,6 +4,7 @@ import mockData from './donut.fixtures';
 const MOCK_DATA = {
   data: mockData,
   colors: ['#FABADA', '#FABADA', '#FABADA'],
+  showLegend: true,
 };
 
 describe('Donut Chart', () => {
@@ -33,6 +34,14 @@ describe('Donut Chart', () => {
 
       it('sets the options to the chart', () => {
         expect(chart.options.data).toEqual(MOCK_DATA.data);
+      });
+
+      it('renders the legend based on options.showLegend', () => {
+        expect(anchor.innerHTML).toContain('legend');
+
+        chart.update({ showLegend: false });
+
+        expect(anchor.innerHTML).not.toContain('legend');
       });
     });
   });

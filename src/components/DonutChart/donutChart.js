@@ -1,12 +1,11 @@
-import { arc, select, interpolate, pie, rgb } from 'd3';
-import { readableNumber, truncate } from '../../utils';
+import { arc, select, interpolate, pie, rgb, selectAll } from 'd3';
+import { readableNumber, truncate, virtualScroller } from '../../utils';
 
 const PI = Math.PI;
 
 const DEFAULT_OPTIONS = {
-  width: 248,
-  height: 136,
   textColor: '#2C2C2C',
+  donutSize: 136,
 };
 
 export default class Gaugechart {
@@ -20,8 +19,8 @@ export default class Gaugechart {
   }
 
   createChart() {
-    const { colors, data, width, height, textColor } = this.options;
-    const radius = 136 / 2;
+    const { colors, data, donutSize, textColor, showLegend } = this.options;
+    const radius = donutSize / 2;
 
     this.arc = arc()
         .outerRadius(radius)
@@ -33,15 +32,15 @@ export default class Gaugechart {
 
     const svg = select(this.element)
       .append('svg')
-        .attr('width', width)
-        .attr('height', height)
+        .attr('width', donutSize)
+        .attr('height', donutSize)
 
 
     this.pieChart = svg
       .append('g')
-        .attr('width', 136)
-        .attr('height', 136)
-        .attr('transform', 'translate(' + 136 / 2 + ',' + height / 2 + ')');
+        .attr('width', donutSize)
+        .attr('height', donutSize)
+        .attr('transform', 'translate(' + radius + ',' + radius + ')');
 
     this.path = this.pieChart
         .selectAll('path')
@@ -89,35 +88,62 @@ export default class Gaugechart {
       svg.select('text.tooltip-category').text('');
     });
 
-    this.legends = svg
-      .append('g')
-        .attr('width', 114)
-        .attr('height', 200);
-
-
-    this.legend = this.legends
-      .selectAll('.legend')
-      .data(data)
-      .enter()
-      .append('g')
-      .attr('class', 'legend')
-      .attr('transform', (d, i) => `translate(160, ${i * 24})`);
-
-    this.legend.append('rect')
-        .attr('width', 12)
-        .attr('height', 12)
-        .attr('fill', (d, i) => colors[i]);
-
-    this.legend.append('text')
-        .attr('x', 20)
-        .attr('y', 10)
-        .style('font-size', '12')
-        .style('color', textColor)
-        .style('font-family', 'Roboto')
-        .style('-webkit-font-smoothing', 'antialiased')
-        .text(d => truncate(d.name, 13));
+    if (showLegend) this._renderLegend();
 
     this._refresh();
+  }
+
+  _renderLegend() {
+    const { data, textColor, colors } = this.options;
+
+    this.legendContainer = select(this.element)
+      .append('div')
+        .attr('class', 'legend')
+        .style('width', '95px')
+        .style('height', '136px')
+        .style('overflow-y', 'auto');
+
+    const legendsSVG = this.legendContainer
+      .append('svg')
+        .attr('width', 90);
+
+    this.legends = legendsSVG
+      .append('g');
+
+    const legendEnter = (legendsContainer) => {
+      legendsContainer.append('rect')
+          .attr('width', 12)
+          .attr('height', 12)
+
+      legendsContainer.append('text')
+          .attr('x', 20)
+          .attr('y', 10)
+          .style('font-size', '12')
+          .style('color', textColor)
+          .style('font-family', 'Roboto')
+          .style('-webkit-font-smoothing', 'antialiased')
+    }
+
+    const legendUpdate = function(legendsContainer) {
+      legendsContainer.select("rect")
+        .attr('fill', (d, i) => colors[data.indexOf(d)]);
+
+      legendsContainer.select("text")
+        .text(d => truncate(d.name, 10));
+    };
+
+    this.scroller = virtualScroller()
+      .rowHeight(24)
+      .enter(legendEnter)
+      .update(legendUpdate)
+      .exit(() => {})
+      .svg(legendsSVG)
+      .totalRows(data.length)
+      .viewport(this.legendContainer);
+
+    this.scroller.data(data);
+
+    this.legends.call(this.scroller);
   }
 
   update(options) {
@@ -127,9 +153,13 @@ export default class Gaugechart {
   }
 
   _refresh() {
-    const { data, colors } = this.options;
+    const { data, colors, showLegend } = this.options;
 
     this.path.data(this.pie(data));
+
+    if (this.legendContainer) this.legendContainer.remove();
+    if (showLegend) this._renderLegend();
+
     this.path.transition()
       .duration(750)
       .attr('fill', (d, i) => colors[i])

@@ -8,7 +8,8 @@ import { colors } from '../../constants';
 const StyledWidget = styled.div`
   background: ${colors.white};
   padding: 16px;
-  width: 260px;
+  width: 280px;
+  box-sizing: border-box;
 `;
 StyledWidget.displayName = 'Widget';
 

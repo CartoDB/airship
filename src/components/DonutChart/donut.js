@@ -1,12 +1,20 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import { chartClors } from '../../constants';
 import DonutChart from './donutChart';
+
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  max-width: 248px;
+`;
 
 class DonutWidget extends Component {
   static defaultProps = {
     colors: chartClors,
     data: [],
+    showLegend: true,
   };
 
   static propTypes = {
@@ -24,7 +32,7 @@ class DonutWidget extends Component {
 
   render() {
     return (
-      <div ref={(node) => { this._rootNode = node; }}></div>
+      <Wrapper innerRef={(node) => { this._rootNode = node; }}></Wrapper>
     )
   }
 }
