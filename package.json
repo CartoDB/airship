@@ -74,7 +74,7 @@
     "test": "jest --env=jsdom",
     "test:watch": "jest --watch --env=jsdom",
     "styleguide": "catalog start docs",
-    "styleguide:build": "catalog build",
+    "styleguide:build": "catalog build docs",
     "build": "NODE_ENV=production rollup -c -m",
     "start": "start-storybook -p 9009 -c config/.storybook",
     "storybook:build": "build-storybook -c config/.storybook",
