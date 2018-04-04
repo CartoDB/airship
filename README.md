@@ -12,13 +12,13 @@
 Airhsip is available as a NPM package:
 
 ```
-npm install --save carto-airship
+npm install --save @carto/airship
 ```
 
 or
 
 ```
-yarn add carto-airship
+yarn add @carto/airship
 ```
 
 # Usage
@@ -26,10 +26,10 @@ Import components from Airship:
 
 ```js
 //ES6 import syntax
-import { Button } from 'carto-airship';
+import { Button } from '@carto/airship';
 
 //CommonJS require syntax
-const { Button } = require('carto-airship');
+const { Button } = require('@carto/airship');
 ```
 
 Airship components are used just like any other React component. You can also customise them with props:
