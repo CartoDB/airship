@@ -1,7 +1,7 @@
 # Airship
-[![CircleCI](https://circleci.com/gh/CartoDB/airship/tree/master.svg?style=svg)](https://circleci.com/gh/CartoDB/airship/tree/master)
+> Airship is a components library built by CARTO
 
-Carto solutions framework using a super minimal and basic boilerplate.
+[![CircleCI](https://circleci.com/gh/CartoDB/airship/tree/master.svg?style=svg)](https://circleci.com/gh/CartoDB/airship/tree/master)
 
 ## What is rocking here
 
