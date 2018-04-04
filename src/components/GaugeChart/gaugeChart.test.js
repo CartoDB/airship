@@ -47,11 +47,11 @@ describe('Gauge Chart', () => {
       });
 
       it('renders the chart label', () => {
-        expect(anchor.innerHTML).toContain('Rick')
+        expect(anchor.innerHTML).toContain('Rick');
       });
 
       it('renders the chart value', () => {
-        expect(anchor.innerHTML).toContain(1337)
+        expect(anchor.innerHTML).toContain(1337);
       });
     });
   });

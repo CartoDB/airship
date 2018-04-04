@@ -4,7 +4,8 @@ exports[`render renders children 1`] = `
 .c0 {
   background: #fff;
   padding: 16px;
-  width: 260px;
+  width: 280px;
+  box-sizing: border-box;
 }
 
 .c1 {
@@ -50,7 +51,8 @@ exports[`render renders without crashing 1`] = `
 .c0 {
   background: #fff;
   padding: 16px;
-  width: 260px;
+  width: 280px;
+  box-sizing: border-box;
 }
 
 .c1 {
