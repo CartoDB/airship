@@ -77,7 +77,8 @@
     "styleguide:build": "catalog build",
     "build": "NODE_ENV=production rollup -c -m",
     "start": "start-storybook -p 9009 -c config/.storybook",
-    "storybook:build": "build-storybook -c config/.storybook"
+    "storybook:build": "build-storybook -c config/.storybook",
+    "prepublishOnly": "npm run build"
   },
   "jest": {
     "collectCoverageFrom": [
