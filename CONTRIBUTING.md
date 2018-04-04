@@ -24,8 +24,8 @@
 
 1. Fork repository by clicking the fork button on Github
 2. Clone repository with `git clone git@github.com:<your handle>/airship.git`
-3. Navigate to the repository folder and install dependencies with: `yarn install` (we require [node][node] 8.x.x at the moment)
-4. If you don't have yarn installed, it can be easily installed following the instruction in the [yarn docs][yarn]
+3. Navigate to the repository folder and install dependencies with: `yarn install` (we require [node][https://nodejs.org/en/] 8.x.x at the moment)
+4. If you don't have yarn installed, it can be easily installed following the instruction in the [yarn docs][https://yarnpkg.com/en/]
 
 
 ### Creating feature branches
