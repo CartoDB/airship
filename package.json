@@ -78,7 +78,11 @@
     "build": "NODE_ENV=production rollup -c -m",
     "start": "start-storybook -p 9009 -c config/.storybook",
     "storybook:build": "build-storybook -c config/.storybook",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "release": "npm version patch",
+    "release:minor": "npm version minor",
+    "release:major": "npm version major",
+    "postversion": "git push origin master --follow-tags"
   },
   "jest": {
     "collectCoverageFrom": [
