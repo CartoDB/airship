@@ -17,7 +17,7 @@ const pages = [
       },
       {
         imports: {
-          Jumbo: require('../src/components/Typography/jumbo.js')
+          Jumbo: require('../src/components/Typography/jumbo')
         },
         path: '/components/jumbo',
         title: 'Jumbo',
@@ -25,7 +25,7 @@ const pages = [
       },
       {
         imports: {
-          Display: require('../src/components/Typography/display.js')
+          Display: require('../src/components/Typography/display')
         },
         path: '/components/display',
         title: 'Display',
@@ -33,7 +33,7 @@ const pages = [
       },
       {
         imports: {
-          Title: require('../src/components/Typography/title.js')
+          Title: require('../src/components/Typography/title')
         },
         path: '/components/title',
         title: 'Title',
@@ -41,7 +41,7 @@ const pages = [
       },
       {
         imports: {
-          Subheader: require('../src/components/Typography/subheader.js')
+          Subheader: require('../src/components/Typography/subheader')
         },
         path: '/components/subheader',
         title: 'SubHeader',
@@ -49,7 +49,7 @@ const pages = [
       },
       {
         imports: {
-          Text: require('../src/components/Typography/text.js')
+          Text: require('../src/components/Typography/text')
         },
         path: '/components/text',
         title: 'Text',
@@ -57,7 +57,7 @@ const pages = [
       },
       {
         imports: {
-          Caption: require('../src/components/Typography/caption.js')
+          Caption: require('../src/components/Typography/caption')
         },
         path: '/components/caption',
         title: 'Caption',
@@ -75,8 +75,8 @@ const pages = [
       },
       {
         imports: {
-          Button: require('../src/components/Button/button.js'),
-          PlusIcon: require('../src/components/Icons/plus.js')
+          Button: require('../src/components/Button/button'),
+          PlusIcon: require('../src/components/Icons/plus')
         },
         path: '/components/button',
         title: 'Button',
@@ -84,9 +84,9 @@ const pages = [
       },
       {
         imports: {
-          ButtonGroup: require('../src/components/Button/button-group.js'),
-          Button: require('../src/components/Button/button.js'),
-          PlusIcon: require('../src/components/Icons/plus.js')
+          ButtonGroup: require('../src/components/Button/button-group'),
+          Button: require('../src/components/Button/button'),
+          PlusIcon: require('../src/components/Icons/plus')
         },
         path: '/components/button-group',
         title: 'Button Group',
@@ -94,7 +94,7 @@ const pages = [
       },
       {
         imports: {
-          Input: require('../src/components/Input/input.js'),
+          Input: require('../src/components/Input/input'),
         },
         path: '/components/input',
         title: 'Input',
@@ -102,7 +102,7 @@ const pages = [
       },
       {
         imports: {
-          Table: require('../src/components/Table/table.js')
+          Table: require('../src/components/Table/table')
         },
         path: '/components/table',
         title: 'Table',
@@ -110,7 +110,7 @@ const pages = [
       },
       {
         imports: {
-          Tabs: require('../src/components/Tabs/tab.js')
+          Tabs: require('../src/components/Tabs/tab')
         },
         path: '/components/tabs',
         title: 'Tabs',
@@ -118,7 +118,7 @@ const pages = [
       },
       {
         imports: {
-          Toggle: require('../src/components/Toggle/toggle.js'),
+          Toggle: require('../src/components/Toggle/toggle'),
           Text: require('../src/components/Typography/text')
         },
         path: '/components/toggle',
@@ -127,9 +127,9 @@ const pages = [
       },
       {
         imports: {
-          Dropdown: require('../src/components/Dropdown/dropdown.js'),
-          Button: require('../src/components/Button/button.js'),
-          ChevronIcon: require('../src/components/Icons/chevron-down.js')
+          Dropdown: require('../src/components/Dropdown/dropdown'),
+          Button: require('../src/components/Button/button'),
+          ChevronIcon: require('../src/components/Icons/chevron-down')
         },
         path: '/components/dropdown',
         title: 'Dropdown',
@@ -137,7 +137,7 @@ const pages = [
       },
       {
         imports: {
-          Range: require('../src/components/Range/range.js')
+          Range: require('../src/components/Range/range')
         },
         path: '/components/range',
         title: 'Range',
@@ -145,7 +145,7 @@ const pages = [
       },
       {
         imports: {
-          Breadcrumb: require('../src/components/Breadcrumb/breadcrumb.js')
+          Breadcrumb: require('../src/components/Breadcrumb/breadcrumb')
         },
         path: '/components/breadcrumb',
         title: 'Breadcrumb',
@@ -153,7 +153,7 @@ const pages = [
       },
       {
         imports: {
-          Loading: require('../src/components/Loading/loading.js')
+          Loading: require('../src/components/Loading/loading')
         },
         path: '/components/loading',
         title: 'Loading',
@@ -161,8 +161,8 @@ const pages = [
       },
       {
         imports: {
-          Loading: require('../src/components/Loading/loading.js'),
-          Avatar: require('../src/components/Avatar/avatar.js')
+          Loading: require('../src/components/Loading/loading'),
+          Avatar: require('../src/components/Avatar/avatar')
         },
         path: '/components/avatar',
         title: 'Avatar',
@@ -170,7 +170,7 @@ const pages = [
       },
       {
         imports: {
-          Badge: require('../src/components/Badge/badge.js')
+          Badge: require('../src/components/Badge/badge')
         },
         path: '/components/badge',
         title: 'Badge',
@@ -178,7 +178,7 @@ const pages = [
       },
       {
         imports: {
-          Tooltip: require('../src/components/Tooltip/tooltip.js')
+          Tooltip: require('../src/components/Tooltip/tooltip')
         },
         path: '/components/tooltip',
         title: 'Tooltip',
@@ -186,7 +186,7 @@ const pages = [
       },
       {
         imports: {
-          Collapsible: require('../src/components/Collapsible/collapsible.js'),
+          Collapsible: require('../src/components/Collapsible/collapsible'),
           Text: require('../src/components/Typography/text'),
           Subheader: require('../src/components/Typography/subheader'),
           Badge: require('../src/components/Badge/badge')
@@ -197,7 +197,7 @@ const pages = [
       },
       {
         imports: {
-          Steps: require('../src/components/Steps/steps.js'),
+          Steps: require('../src/components/Steps/steps'),
           Dropshadow: require('../src/components/Dropshadow/dropshadow'),
           Subheader: require('../src/components/Typography/subheader'),
           Text: require('../src/components/Typography/text')
@@ -208,12 +208,12 @@ const pages = [
       },
       {
         imports: {
-          Legend: require('../src/components/Legend/legend.js'),
-          Steps: require('../src/components/Steps/steps.js'),
-          Collapsible: require('../src/components/Collapsible/collapsible.js'),
+          Legend: require('../src/components/Legend/legend'),
+          Steps: require('../src/components/Steps/steps'),
+          Collapsible: require('../src/components/Collapsible/collapsible'),
           Subheader: require('../src/components/Typography/subheader'),
           Text: require('../src/components/Typography/text'),
-          Toggle: require('../src/components/Toggle/toggle.js')
+          Toggle: require('../src/components/Toggle/toggle')
         },
         path: '/components/legend',
         title: 'Legend',
@@ -221,9 +221,22 @@ const pages = [
       },
       {
         imports: {
-          Flag: require('../src/components/Flag/flag.js'),
+          Popup: require('../src/components/Popup/popup'),
+          Badge: require('../src/components/Badge/badge'),
+          Caption: require('../src/components/Typography/caption'),
+          Subheader: require('../src/components/Typography/subheader'),
           Text: require('../src/components/Typography/text'),
-          AlertFillIcon: require('../src/components/Icons/alert-fill.js')
+          Toggle: require('../src/components/Toggle/toggle')
+        },
+        path: '/components/popup',
+        title: 'Popup',
+        component: require('./components/popup.md')
+      },
+      {
+        imports: {
+          Flag: require('../src/components/Flag/flag'),
+          Text: require('../src/components/Typography/text'),
+          AlertFillIcon: require('../src/components/Icons/alert-fill')
         },
         path: '/components/flag',
         title: 'Flag',
@@ -231,9 +244,9 @@ const pages = [
       },
       {
         imports: {
-          Banner: require('../src/components/Banner/banner.js'),
+          Banner: require('../src/components/Banner/banner'),
           Text: require('../src/components/Typography/text'),
-          AlertFillIcon: require('../src/components/Icons/alert-fill.js')
+          AlertFillIcon: require('../src/components/Icons/alert-fill')
         },
         path: '/components/banner',
         title: 'Banner',
@@ -241,7 +254,7 @@ const pages = [
       },
       {
         imports: {
-          Datepicker: require('../src/components/Datepicker/datepicker.js')
+          Datepicker: require('../src/components/Datepicker/datepicker')
         },
         path: '/components/datepicker',
         title: 'Datepicker',
@@ -249,7 +262,7 @@ const pages = [
       },
       {
         imports: {
-          Radiobutton: require('../src/components/Radiobutton/radiobutton.js')
+          Radiobutton: require('../src/components/Radiobutton/radiobutton')
         },
         path: '/components/radiobutton',
         title: 'Radiobutton',
@@ -257,7 +270,7 @@ const pages = [
       },
       {
         imports: {
-          Checkbox: require('../src/components/Checkbox/checkbox.js')
+          Checkbox: require('../src/components/Checkbox/checkbox')
         },
         path: '/components/checkbox',
         title: 'Checkbox',
@@ -265,7 +278,7 @@ const pages = [
       },
       {
         imports: {
-          Grid: require('../src/components/Grid/grid.js')
+          Grid: require('../src/components/Grid/grid')
         },
         path: '/components/grid',
         title: 'Grid',
@@ -273,7 +286,7 @@ const pages = [
       },
       {
         imports: {
-          Dropshadow: require('../src/components/Dropshadow/dropshadow.js')
+          Dropshadow: require('../src/components/Dropshadow/dropshadow')
         },
         path: '/components/dropshadow',
         title: 'Dropshadow',
@@ -281,8 +294,8 @@ const pages = [
       },
       {
         imports: {
-          Widget: require('../src/components/Widget/widget.js'),
-          GaugeChart: require('../src/components/GaugeChart/gauge.js'),
+          Widget: require('../src/components/Widget/widget'),
+          GaugeChart: require('../src/components/GaugeChart/gauge'),
         },
         path: '/components/gaugechart',
         title: 'Gauge Chart',
@@ -290,9 +303,9 @@ const pages = [
       },
       {
         imports: {
-          Widget: require('../src/components/Widget/widget.js'),
-          DonutChart: require('../src/components/DonutChart/donut.js'),
-          data: require('../src/components/DonutChart/donut.fixtures.js')
+          Widget: require('../src/components/Widget/widget'),
+          DonutChart: require('../src/components/DonutChart/donut'),
+          data: require('../src/components/DonutChart/donut.fixtures')
         },
         path: '/components/donutchart',
         title: 'Donut Chart',
@@ -300,10 +313,10 @@ const pages = [
       },
       {
         imports: {
-          Button: require('../src/components/Button/button.js'),
-          Widget: require('../src/components/Widget/widget.js'),
-          CategoryWidget: require('../src/components/CategoryWidget/categoryWidget.js'),
-          data: require('../src/components/CategoryWidget/categoryWidget.fixtures.js')
+          Button: require('../src/components/Button/button'),
+          Widget: require('../src/components/Widget/widget'),
+          CategoryWidget: require('../src/components/CategoryWidget/categoryWidget'),
+          data: require('../src/components/CategoryWidget/categoryWidget.fixtures')
         },
         path: '/components/categoryWidget',
         title: 'Category Widget',
