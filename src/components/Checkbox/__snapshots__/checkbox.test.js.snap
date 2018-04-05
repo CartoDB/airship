@@ -12,11 +12,16 @@ exports[`render renders with label 1`] = `
   align-items: center;
 }
 
-.c0 .Checkbox {
+.c1 {
   position: relative;
 }
 
-.c0 .Checkbox-decoration {
+.c8 {
+  margin-left: 4px;
+  font: 400 12px/20px 'Roboto';
+}
+
+.c4 {
   pointer-events: none;
   width: 16px;
   height: 16px;
@@ -28,17 +33,7 @@ exports[`render renders with label 1`] = `
   box-sizing: border-box;
 }
 
-.c0 .Checkbox-check {
-  stroke-width: 2;
-  stroke: #1785FB;
-  -webkit-transform-origin: 50% 50%;
-  -ms-transform-origin: 50% 50%;
-  transform-origin: 50% 50%;
-  stroke-dasharray: 48;
-  stroke-dashoffset: 48;
-}
-
-.c0 .Checkbox-tip {
+.c5 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -49,7 +44,17 @@ exports[`render renders with label 1`] = `
   transform: translateX(1px) translateY(3px);
 }
 
-.c0 .Checkbox-input {
+.c7 {
+  stroke-width: 2;
+  stroke: #1785FB;
+  -webkit-transform-origin: 50% 50%;
+  -ms-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+}
+
+.c2 {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -66,63 +71,61 @@ exports[`render renders with label 1`] = `
   border: 1px solid rgba(44,44,44,0.16);
 }
 
-.c0 .Checkbox-input:focus {
+.c2:focus {
   outline: none;
 }
 
-.c0 .Checkbox-input:focus {
+.c2:focus {
   border: 2px solid #1785FB;
 }
 
-.c0 .Checkbox-input:hover {
+.c2:hover {
   border: 1px solid #47DB99;
 }
 
-.c0 .Checkbox-input:disabled + .Checkbox-decoration {
+.c2:disabled + .c3 {
   background-color: #E2E6E3;
 }
 
-.c0 .Checkbox-input:disabled:hover {
+.c2:disabled:hover {
   cursor: not-allowed;
   border: 1px solid rgba(44,44,44,0.16);
 }
 
-.c0 .Checkbox-input:checked {
+.c2:checked {
   border: 1px solid #1785FB;
 }
 
-.c0 .Checkbox-input:checked + .Checkbox-decoration .Checkbox-check {
+.c2:checked + .c3 .c6 {
   -webkit-animation: gGaDtf 0.3s cubic-bezier(0.65,0,0.45,1) 300ms forwards;
   animation: gGaDtf 0.3s cubic-bezier(0.65,0,0.45,1) 300ms forwards;
 }
 
-.c0 .Checkbox-input:disabled:checked + .Checkbox-decoration .Checkbox-check {
+.c2:disabled:checked + .c3 .c6 {
   stroke: rgba(44,44,44,0.16);
 }
 
-.c0 .Checkbox-label {
-  margin-left: 4px;
-}
-
-<div
+<label
   className="c0"
+  htmlFor="test"
 >
   <div
-    className="Checkbox"
+    className="c1"
   >
     <input
       checked={true}
-      className="Checkbox-input"
+      className="c2"
       disabled={false}
+      id="test"
       name=""
       onChange={[Function]}
       type="checkbox"
     />
     <span
-      className="Checkbox-decoration"
+      className="c3 c4"
     >
       <svg
-        className="Checkbox-tip"
+        className="c5"
         height="12px"
         width="12px"
       >
@@ -130,7 +133,7 @@ exports[`render renders with label 1`] = `
           fill="none"
         >
           <polyline
-            className="Checkbox-check"
+            className="c6 c7"
             points="1.65093994 3.80255127 4.48919678 6.97192383 10.3794556 0.717346191"
           />
         </g>
@@ -138,11 +141,11 @@ exports[`render renders with label 1`] = `
     </span>
   </div>
   <div
-    className="Checkbox-label"
+    className="c8"
   >
     Hola
   </div>
-</div>
+</label>
 `;
 
 exports[`render renders without crashing 1`] = `
@@ -157,11 +160,11 @@ exports[`render renders without crashing 1`] = `
   align-items: center;
 }
 
-.c0 .Checkbox {
+.c1 {
   position: relative;
 }
 
-.c0 .Checkbox-decoration {
+.c4 {
   pointer-events: none;
   width: 16px;
   height: 16px;
@@ -173,17 +176,7 @@ exports[`render renders without crashing 1`] = `
   box-sizing: border-box;
 }
 
-.c0 .Checkbox-check {
-  stroke-width: 2;
-  stroke: #1785FB;
-  -webkit-transform-origin: 50% 50%;
-  -ms-transform-origin: 50% 50%;
-  transform-origin: 50% 50%;
-  stroke-dasharray: 48;
-  stroke-dashoffset: 48;
-}
-
-.c0 .Checkbox-tip {
+.c5 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -194,7 +187,17 @@ exports[`render renders without crashing 1`] = `
   transform: translateX(1px) translateY(3px);
 }
 
-.c0 .Checkbox-input {
+.c7 {
+  stroke-width: 2;
+  stroke: #1785FB;
+  -webkit-transform-origin: 50% 50%;
+  -ms-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+}
+
+.c2 {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -211,63 +214,61 @@ exports[`render renders without crashing 1`] = `
   border: 1px solid rgba(44,44,44,0.16);
 }
 
-.c0 .Checkbox-input:focus {
+.c2:focus {
   outline: none;
 }
 
-.c0 .Checkbox-input:focus {
+.c2:focus {
   border: 2px solid #1785FB;
 }
 
-.c0 .Checkbox-input:hover {
+.c2:hover {
   border: 1px solid #47DB99;
 }
 
-.c0 .Checkbox-input:disabled + .Checkbox-decoration {
+.c2:disabled + .c3 {
   background-color: #E2E6E3;
 }
 
-.c0 .Checkbox-input:disabled:hover {
+.c2:disabled:hover {
   cursor: not-allowed;
   border: 1px solid rgba(44,44,44,0.16);
 }
 
-.c0 .Checkbox-input:checked {
+.c2:checked {
   border: 1px solid #1785FB;
 }
 
-.c0 .Checkbox-input:checked + .Checkbox-decoration .Checkbox-check {
+.c2:checked + .c3 .c6 {
   -webkit-animation: gGaDtf 0.3s cubic-bezier(0.65,0,0.45,1) 300ms forwards;
   animation: gGaDtf 0.3s cubic-bezier(0.65,0,0.45,1) 300ms forwards;
 }
 
-.c0 .Checkbox-input:disabled:checked + .Checkbox-decoration .Checkbox-check {
+.c2:disabled:checked + .c3 .c6 {
   stroke: rgba(44,44,44,0.16);
 }
 
-.c0 .Checkbox-label {
-  margin-left: 4px;
-}
-
-<div
+<label
   className="c0"
+  htmlFor="test"
 >
   <div
-    className="Checkbox"
+    className="c1"
   >
     <input
       checked={false}
-      className="Checkbox-input"
+      className="c2"
       disabled={false}
+      id="test"
       name=""
       onChange={[Function]}
       type="checkbox"
     />
     <span
-      className="Checkbox-decoration"
+      className="c3 c4"
     >
       <svg
-        className="Checkbox-tip"
+        className="c5"
         height="12px"
         width="12px"
       >
@@ -275,12 +276,150 @@ exports[`render renders without crashing 1`] = `
           fill="none"
         >
           <polyline
-            className="Checkbox-check"
+            className="c6 c7"
             points="1.65093994 3.80255127 4.48919678 6.97192383 10.3794556 0.717346191"
           />
         </g>
       </svg>
     </span>
   </div>
-</div>
+</label>
+`;
+
+exports[`render uses htmlFor for the label, and adds it as the input id 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c1 {
+  position: relative;
+}
+
+.c4 {
+  pointer-events: none;
+  width: 16px;
+  height: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(44,44,44,0.16);
+  border-radius: 3px;
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+}
+
+.c5 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  -webkit-transform: translateX(1px) translateY(3px);
+  -ms-transform: translateX(1px) translateY(3px);
+  transform: translateX(1px) translateY(3px);
+}
+
+.c7 {
+  stroke-width: 2;
+  stroke: #1785FB;
+  -webkit-transform-origin: 50% 50%;
+  -ms-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+}
+
+.c2 {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: none;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  border-radius: 3px;
+  border: 1px solid rgba(44,44,44,0.16);
+}
+
+.c2:focus {
+  outline: none;
+}
+
+.c2:focus {
+  border: 2px solid #1785FB;
+}
+
+.c2:hover {
+  border: 1px solid #47DB99;
+}
+
+.c2:disabled + .c3 {
+  background-color: #E2E6E3;
+}
+
+.c2:disabled:hover {
+  cursor: not-allowed;
+  border: 1px solid rgba(44,44,44,0.16);
+}
+
+.c2:checked {
+  border: 1px solid #1785FB;
+}
+
+.c2:checked + .c3 .c6 {
+  -webkit-animation: gGaDtf 0.3s cubic-bezier(0.65,0,0.45,1) 300ms forwards;
+  animation: gGaDtf 0.3s cubic-bezier(0.65,0,0.45,1) 300ms forwards;
+}
+
+.c2:disabled:checked + .c3 .c6 {
+  stroke: rgba(44,44,44,0.16);
+}
+
+<label
+  className="c0"
+  htmlFor="test"
+>
+  <div
+    className="c1"
+  >
+    <input
+      checked={false}
+      className="c2"
+      disabled={false}
+      id="test"
+      name=""
+      onChange={[Function]}
+      type="checkbox"
+    />
+    <span
+      className="c3 c4"
+    >
+      <svg
+        className="c5"
+        height="12px"
+        width="12px"
+      >
+        <g
+          fill="none"
+        >
+          <polyline
+            className="c6 c7"
+            points="1.65093994 3.80255127 4.48919678 6.97192383 10.3794556 0.717346191"
+          />
+        </g>
+      </svg>
+    </span>
+  </div>
+</label>
 `;

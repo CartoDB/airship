@@ -6,12 +6,20 @@ A checkbox allows a user to select a value from a small set of options, often bi
 
 ### Props
 
+#### **htmlFor** (string, required)
+
+This property sets the node ID for label and input:
+
+```react
+<Checkbox htmlFor="htmlfor">Hello there</Checkbox>
+```
+
 #### **name** (string)
 
 This property sets the node name for the input:
 
 ```react
-<Checkbox name="two" />
+<Checkbox htmlFor="name" name="checkbox-name" />
 ```
 
 #### **checked** (boolean)
@@ -19,7 +27,9 @@ This property sets the node name for the input:
 Using this prop you can set the initial state as checked:
 
 ```react
-<Checkbox name="three" checked>Hola</Checkbox>
+<Checkbox htmlFor="checked" checked>
+  Checked
+</Checkbox>
 ```
 
 #### **disabled** (boolean)
@@ -27,7 +37,9 @@ Using this prop you can set the initial state as checked:
 Using this prop you can disable the checkbox:
 
 ```react
-<Checkbox disabled>Disabled</Checkbox>
+<Checkbox htmlFor="disabled" disabled>
+  Disabled
+</Checkbox>
 ```
 
 #### **onChange** (function)
@@ -35,7 +47,9 @@ Using this prop you can disable the checkbox:
 Callback to be called when the toggle changes its state:
 
 ```react
-<Checkbox checked onChange={state => console.log(state)}>Option</Checkbox>
+<Checkbox htmlFor="onchange" onChange={state => console.log(state)}>
+  With event
+</Checkbox>
 ```
 
 #### **as** (strong)
@@ -43,5 +57,7 @@ Callback to be called when the toggle changes its state:
 Choose how is rendered the checkbox. You can choose from `div`, `li` or `span`:
 
 ```react
-<Checkbox as='span'>As span</Checkbox>
+<Checkbox htmlFor="as" as='span'>
+  As span
+</Checkbox>
 ```

@@ -10,90 +10,91 @@ const stroke = keyframes`
   }
 `;
 
-const StyleCheck = styled.div`
+const Wrapper = styled.label`
   display: flex;
   align-items: center;
+`;
 
-  .Checkbox {
-    position: relative;
-  }
+const StyledCheckbox = styled.div`
+  position: relative;
+`;
 
-  .Checkbox-decoration {
-    pointer-events: none;
-    width: 16px;
-    height: 16px;
-    overflow: hidden;
-    border: 1px solid ${rgba(colors.type01, 0.16)};
-    border-radius: 3px;
-    position: relative;
-    display: block;
-    box-sizing: border-box;
-  }
+const Label = styled.div`
+  margin-left: 4px;
+  font: 400 12px/20px 'Roboto';
+`;
 
-  .Checkbox-check {
-    stroke-width: 2;
-    stroke: ${colors.brand01};
-    transform-origin: 50% 50%;
-    stroke-dasharray: 48;
-    stroke-dashoffset: 48;
-  }
+const Decoration = styled.span`
+  pointer-events: none;
+  width: 16px;
+  height: 16px;
+  overflow: hidden;
+  border: 1px solid ${rgba(colors.type01, 0.16)};
+  border-radius: 3px;
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+`;
 
-  .Checkbox-tip {
-    display: flex;
-    position: relative;
-    transform: translateX(1px) translateY(3px);
-  }
+const Tip = styled.svg`
+  display: flex;
+  position: relative;
+  transform: translateX(1px) translateY(3px);
+`;
 
-  .Checkbox-input {
-    appearance: none;
-    background: none;
-    width: 16px;
-    height: 16px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    cursor: pointer;
-    margin: 0;
-    padding: 0;
-    border-radius: 3px;
-    border: 1px solid ${rgba(colors.type01, 0.16)};
-  }
+const Check = styled.polyline`
+  stroke-width: 2;
+  stroke: ${colors.brand01};
+  transform-origin: 50% 50%;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+`;
 
-  .Checkbox-input:focus {
+const CheckboxInput = styled.input`
+  appearance: none;
+  background: none;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  border-radius: 3px;
+  border: 1px solid ${rgba(colors.type01, 0.16)};
+
+  &:focus {
     outline: none;
   }
 
-  .Checkbox-input:focus {
+  &:focus {
     border: 2px solid ${colors.brand01};
   }
 
-  .Checkbox-input:hover {
+  &:hover {
     border: 1px solid ${colors.brand03};
   }
 
-  .Checkbox-input:disabled + .Checkbox-decoration {
+  &:disabled + ${Decoration} {
     background-color: ${colors.ui03};
   }
 
-  .Checkbox-input:disabled:hover {
+  &:disabled:hover {
     cursor: not-allowed;
     border: 1px solid ${rgba(colors.type01, 0.16)};
   }
 
-  .Checkbox-input:checked {
+  &:checked {
     border: 1px solid ${colors.brand01};
   }
 
-  .Checkbox-input:checked + .Checkbox-decoration .Checkbox-check {
+  &:checked + ${Decoration} ${Check} {
     animation: ${stroke} 0.3s cubic-bezier(0.65, 0, 0.45, 1) 300ms forwards;
   }
 
-  .Checkbox-input:disabled:checked + .Checkbox-decoration .Checkbox-check {
+  &:disabled:checked + ${Decoration} ${Check} {
     stroke: ${rgba(colors.type01, 0.16)};
-  }
-
-  .Checkbox-label {
-    margin-left: 4px;
   }
 `;
 
@@ -110,67 +111,61 @@ class Checkbox extends Component {
 
   clickHandler = (e) => {
     const { onChange, disabled } = this.props;
-    !disabled &&
-      this.setState(
-        (state) => {
-          return {
-            ...state,
-            checked: !state.checked
-          };
-        },
-        () => {
-          onChange && onChange(this.state);
-        }
-      );
+
+    if (disabled) return;
+
+    this.setState(
+      (state) => ({ ...state, checked: !state.checked }),
+      () => onChange && onChange(this.state)
+    );
   };
 
   render() {
-    const { children, name, as, disabled } = this.props;
-
+    const { children, name, as, disabled, htmlFor } = this.props;
     const { checked } = this.state;
-    const Wrapper = as !== 'div' ? StyleCheck.withComponent(as) : StyleCheck;
+    const WrapperComponent = as !== 'div' ? Wrapper.withComponent(as) : Wrapper;
+
     return (
-      <Wrapper>
-        <div className="Checkbox">
-          <input
-            className="Checkbox-input"
+      <Wrapper htmlFor={htmlFor}>
+        <StyledCheckbox>
+          <CheckboxInput
+            id={htmlFor}
             type="checkbox"
             name={name}
             onChange={this.clickHandler}
             disabled={disabled}
             checked={checked}
           />
-          <span className="Checkbox-decoration">
-            <svg width="12px" height="12px" className="Checkbox-tip">
+          <Decoration>
+            <Tip width="12px" height="12px">
               <g fill="none">
-                <polyline
-                  className="Checkbox-check"
-                  points="1.65093994 3.80255127 4.48919678 6.97192383 10.3794556 0.717346191"
-                />
+                <Check points="1.65093994 3.80255127 4.48919678 6.97192383 10.3794556 0.717346191" />
               </g>
-            </svg>
-          </span>
-        </div>
-        {children && <div className="Checkbox-label">{children}</div>}
+            </Tip>
+          </Decoration>
+        </StyledCheckbox>
+
+        {children && <Label>{children}</Label>}
       </Wrapper>
     );
   }
 }
 
 Checkbox.defaultProps = {
-  name: '',
   as: 'div',
-  onChange: (e) => {},
+  checked: false,
   disabled: false,
-  checked: false
+  name: '',
+  onChange: () => {},
 };
 
 Checkbox.propTypes = {
-  name: PropTypes.string,
-  as: PropTypes.oneOf(['div', 'li', 'span']),
-  onChange: PropTypes.func,
+  as: PropTypes.string,
+  checked: PropTypes.bool,
   disabled: PropTypes.bool,
-  checked: PropTypes.bool
+  htmlFor: PropTypes.string.isRequired,
+  name: PropTypes.string,
+  onChange: PropTypes.func,
 };
 
 export default Checkbox;
