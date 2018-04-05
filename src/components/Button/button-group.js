@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { darken } from 'polished';
+import Button from './button';
+import { isComponentOfType } from '../../utils';
 import { colors } from '../../constants';
 
 const separator = (props) => {
@@ -35,7 +37,7 @@ class ButtonGroup extends Component {
     const buttons = React.Children.map(children, (child) => {
       return (
         <StyledListItem secondary={secondary}>
-          {child.type.name === 'Button'
+          {isComponentOfType(Button, child)
             ? React.cloneElement(child, {
                 radius: 0,
                 grouped: true,

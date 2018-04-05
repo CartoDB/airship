@@ -1,31 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`render renders secondary button 1`] = `
-.c0 {
-  border: 1px solid #1785FB;
-  border-radius: 4px;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-}
-
-.c1 {
-  border-right: 1px solid #1785FB;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.c1:last-child {
-  border-right: 0;
-}
-
 .c2 {
   border: 0;
   box-shadow: none;
@@ -72,6 +47,31 @@ exports[`render renders secondary button 1`] = `
 
 .c2 svg + * {
   margin-left: 8px;
+}
+
+.c0 {
+  border: 1px solid #1785FB;
+  border-radius: 4px;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.c1 {
+  border-right: 1px solid #1785FB;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c1:last-child {
+  border-right: 0;
 }
 
 <ul
@@ -129,31 +129,6 @@ exports[`render renders secondary button 1`] = `
 `;
 
 exports[`render renders without crashing 1`] = `
-.c0 {
-  border: 1px solid #1785FB;
-  border-radius: 4px;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-}
-
-.c1 {
-  border-right: 1px solid #035dbd;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.c1:last-child {
-  border-right: 0;
-}
-
 .c2 {
   border: 0;
   box-shadow: none;
@@ -200,6 +175,31 @@ exports[`render renders without crashing 1`] = `
 
 .c2 svg + * {
   margin-left: 8px;
+}
+
+.c0 {
+  border: 1px solid #1785FB;
+  border-radius: 4px;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.c1 {
+  border-right: 1px solid #035dbd;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c1:last-child {
+  border-right: 0;
 }
 
 <ul

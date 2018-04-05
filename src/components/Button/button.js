@@ -34,6 +34,7 @@ const background = (props) => {
 
 const radius = (props) => {
   const { radius } = props;
+
   return radius != null && typeof radius === 'number'
     ? `${props.radius}px`
     : '4px';
