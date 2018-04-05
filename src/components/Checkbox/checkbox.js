@@ -27,6 +27,7 @@ const StyleCheck = styled.div`
     border-radius: 3px;
     position: relative;
     display: block;
+    box-sizing: border-box;
   }
 
   .Checkbox-check {

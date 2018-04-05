@@ -25,6 +25,7 @@ exports[`render renders with label 1`] = `
   border-radius: 3px;
   position: relative;
   display: block;
+  box-sizing: border-box;
 }
 
 .c0 .Checkbox-check {
@@ -169,6 +170,7 @@ exports[`render renders without crashing 1`] = `
   border-radius: 3px;
   position: relative;
   display: block;
+  box-sizing: border-box;
 }
 
 .c0 .Checkbox-check {
