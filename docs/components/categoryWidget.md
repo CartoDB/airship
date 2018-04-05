@@ -6,10 +6,7 @@ state: { selected: [] }
 <Widget>
   <Widget.Title>Populated Places</Widget.Title>
   <Widget.Description>All selected</Widget.Description>
-  <CategoryWidget
-    data={data}
-    onCategoryClick={(selectedCategories) => console.log(selectedCategories)}
-  />
+  <CategoryWidget data={data} />
 </Widget>
 ```
 

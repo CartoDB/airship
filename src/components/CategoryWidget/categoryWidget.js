@@ -93,6 +93,8 @@ class CategoryWidget extends Component {
   }
 
   onCategoryClick = clickedCategory => {
+    if (!this.props.onCategoryClick) return;
+
     const { selected } = this.state;
 
     const nextSelected = selected.includes(clickedCategory)
@@ -150,7 +152,6 @@ CategoryWidget.propTypes = {
 
 CategoryWidget.defaultProps = {
   data: {},
-  onCategoryClick: () => {},
 };
 
 export default CategoryWidget;
