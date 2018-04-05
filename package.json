@@ -10,7 +10,7 @@
     "type": "git",
     "url": "https://github.com/CartoDB/airship.git"
   },
-  "license": "BSD3-Clause",
+  "license": "BSD-3-Clause",
   "bugs": {
     "url": "https://github.com/CartoDB/airship/issues"
   },

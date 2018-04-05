@@ -44,4 +44,4 @@ For a more detailed usage guide check out our [documentation](#).
 Everyone is welcome to contribute. Please take a moment to read the [contributing guidelines](CONTRIBUTING.md).
 
 ## License
-BSD 3-Clause, see the included [LICENSE.md](LICENSE.md) file.
+BSD-3-Clause, see the included [LICENSE.md](LICENSE.md) file.
