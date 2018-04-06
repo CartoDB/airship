@@ -1,0 +1,364 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render renders with a different background color 1`] = `
+.c0 {
+  position: relative;
+  width: 260px;
+  min-height: 40px;
+  border-radius: 4px 4px 4px 0;
+  box-shadow: 0 2px 8px 0 rgba(44,44,44,0.16);
+  background: #fabada;
+  color: #fabada;
+}
+
+.c1 {
+  padding: 16px;
+  color: black;
+  font: 400 12px/20px 'Roboto';
+}
+
+.c2 {
+  position: absolute;
+  bottom: 1px;
+  left: 0;
+  z-index: 10;
+  background: currentColor;
+  color: currentColor;
+}
+
+.c2::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-top: 12px solid currentColor;
+  border-right: 18px solid transparent;
+  content: '';
+  z-index: 3;
+}
+
+.c2::after {
+  position: absolute;
+  top: 3px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-top: 12px solid rgba(44,44,44,0.16);
+  border-right: 18px solid transparent;
+  -webkit-filter: blur(2px);
+  filter: blur(2px);
+  content: '';
+  z-index: 2;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  />
+  <div
+    className="c2"
+  />
+</div>
+`;
+
+exports[`render renders with an image and content 1`] = `
+.c0 {
+  position: relative;
+  width: 260px;
+  min-height: 40px;
+  border-radius: 4px 4px 4px 0;
+  box-shadow: 0 2px 8px 0 rgba(44,44,44,0.16);
+  background: #fff;
+  color: #fff;
+}
+
+.c1 {
+  width: 260px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.c2 {
+  padding: 16px;
+  color: black;
+  font: 400 12px/20px 'Roboto';
+}
+
+.c3 {
+  position: absolute;
+  bottom: 1px;
+  left: 0;
+  z-index: 10;
+  background: currentColor;
+  color: currentColor;
+}
+
+.c3::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-top: 12px solid currentColor;
+  border-right: 18px solid transparent;
+  content: '';
+  z-index: 3;
+}
+
+.c3::after {
+  position: absolute;
+  top: 3px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-top: 12px solid rgba(44,44,44,0.16);
+  border-right: 18px solid transparent;
+  -webkit-filter: blur(2px);
+  filter: blur(2px);
+  content: '';
+  z-index: 2;
+}
+
+<div
+  className="c0"
+>
+  <img
+    className="c1"
+    src="jarjar.jpg"
+  />
+  <div
+    className="c2"
+  >
+    <p>
+      Hello there
+    </p>
+    <p>
+      General Kenobi
+    </p>
+  </div>
+  <div
+    className="c3"
+  />
+</div>
+`;
+
+exports[`render renders with an image only 1`] = `
+.c0 {
+  position: relative;
+  width: 260px;
+  min-height: 40px;
+  border-radius: 4px 4px 4px 0;
+  box-shadow: 0 2px 8px 0 rgba(44,44,44,0.16);
+}
+
+.c1 {
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px 4px 4px 0;
+  height: 0px;
+}
+
+.c1 > img {
+  width: 260px;
+}
+
+.c2 {
+  position: absolute;
+  bottom: 0;
+  z-index: 10;
+}
+
+.c2::after {
+  position: absolute;
+  top: 3px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-top: 12px solid rgba(44,44,44,0.16);
+  border-right: 18px solid transparent;
+  -webkit-filter: blur(2px);
+  filter: blur(2px);
+  content: '';
+  z-index: 1;
+}
+
+.c3 {
+  position: absolute;
+  height: 12px;
+  width: 18px;
+  overflow: hidden;
+  -webkit-clip-path: polygon(0 0,0% 100%,100% 0);
+  clip-path: polygon(0 0,0% 100%,100% 0);
+  z-index: 3;
+}
+
+.c3 > img {
+  margin-top: -0px;
+  width: 260px;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+    offset={0}
+  >
+    <img
+      onLoad={[Function]}
+      src="jarjar.jpg"
+    />
+  </div>
+  <div
+    className="c2"
+  >
+    <div
+      className="c3"
+      offset={0}
+    >
+      <img
+        onLoad={[Function]}
+        src="jarjar.jpg"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`render renders with content 1`] = `
+.c0 {
+  position: relative;
+  width: 260px;
+  min-height: 40px;
+  border-radius: 4px 4px 4px 0;
+  box-shadow: 0 2px 8px 0 rgba(44,44,44,0.16);
+  background: #fff;
+  color: #fff;
+}
+
+.c1 {
+  padding: 16px;
+  color: black;
+  font: 400 12px/20px 'Roboto';
+}
+
+.c2 {
+  position: absolute;
+  bottom: 1px;
+  left: 0;
+  z-index: 10;
+  background: currentColor;
+  color: currentColor;
+}
+
+.c2::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-top: 12px solid currentColor;
+  border-right: 18px solid transparent;
+  content: '';
+  z-index: 3;
+}
+
+.c2::after {
+  position: absolute;
+  top: 3px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-top: 12px solid rgba(44,44,44,0.16);
+  border-right: 18px solid transparent;
+  -webkit-filter: blur(2px);
+  filter: blur(2px);
+  content: '';
+  z-index: 2;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <p>
+      Hello there
+    </p>
+    <p>
+      General Kenobi
+    </p>
+  </div>
+  <div
+    className="c2"
+  />
+</div>
+`;
+
+exports[`render renders without crashing 1`] = `
+.c0 {
+  position: relative;
+  width: 260px;
+  min-height: 40px;
+  border-radius: 4px 4px 4px 0;
+  box-shadow: 0 2px 8px 0 rgba(44,44,44,0.16);
+  background: #fff;
+  color: #fff;
+}
+
+.c1 {
+  padding: 16px;
+  color: black;
+  font: 400 12px/20px 'Roboto';
+}
+
+.c2 {
+  position: absolute;
+  bottom: 1px;
+  left: 0;
+  z-index: 10;
+  background: currentColor;
+  color: currentColor;
+}
+
+.c2::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-top: 12px solid currentColor;
+  border-right: 18px solid transparent;
+  content: '';
+  z-index: 3;
+}
+
+.c2::after {
+  position: absolute;
+  top: 3px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-top: 12px solid rgba(44,44,44,0.16);
+  border-right: 18px solid transparent;
+  -webkit-filter: blur(2px);
+  filter: blur(2px);
+  content: '';
+  z-index: 2;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  />
+  <div
+    className="c2"
+  />
+</div>
+`;
