@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { chartClors } from '../../constants';
+import { chartColors } from '../../constants';
 import DonutChart from './donutChart';
 
 const Wrapper = styled.div`
@@ -12,7 +12,7 @@ const Wrapper = styled.div`
 
 class DonutWidget extends Component {
   static defaultProps = {
-    colors: chartClors,
+    colors: chartColors,
     data: [],
     showLegend: true,
   };

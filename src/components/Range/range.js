@@ -4,7 +4,7 @@ import * as valueTransformer from './transformer';
 import Slider from './slider';
 import Track from './track';
 import {
-  captialize,
+  capitalize,
   distanceTo,
   isDefined,
   isObject,
@@ -373,7 +373,7 @@ class Range extends Component {
     return this.getKeys().map((key) => {
       const value = values[key];
       const name = isMultiValue
-        ? `${this.props.name}${captialize(key)}`
+        ? `${this.props.name}${capitalize(key)}`
         : this.props.name;
 
       return <input key={key} type="hidden" name={name} value={value} />;

@@ -27,7 +27,7 @@ export const shadows = {
   shadow16: `0 4px 16px 0 rgba(44,44,44,0.16)`
 };
 
-export const chartClors = [
+export const chartColors = [
   '#56C58C',
   '#F0CD53',
   '#3AB5F0',
