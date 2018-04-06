@@ -27,6 +27,7 @@ const Name = Base.withComponent('p').extend`
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  text-align: left;
 `;
 
 const Progress = styled.div`
@@ -44,6 +45,7 @@ const Progress = styled.div`
     transition: background 0.2s ease;
     position: absolute;
     max-width: 100%;
+    left: 0;
   }
 `;
 
