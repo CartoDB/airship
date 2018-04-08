@@ -12,7 +12,7 @@ const DEFAULT_OPTIONS = {
   donutSize: 136,
 };
 
-export default class Gaugechart {
+export default class DonutChart {
   constructor(element, options) {
     if (!element) throw new Error('A root container is required');
 

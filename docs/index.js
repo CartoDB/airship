@@ -321,7 +321,17 @@ const pages = [
         path: '/components/categoryWidget',
         title: 'Category Widget',
         component: require('./components/categoryWidget.md')
-      }
+      },
+      {
+        imports: {
+          Widget: require('../src/components/Widget/widget'),
+          Histogram: require('../src/components/Histogram/histogram'),
+          data: require('../src/components/Histogram/histogram.fixtures')
+        },
+        path: '/components/histogram',
+        title: 'Histogram',
+        component: require('./components/histogram.md')
+      },
     ]
   }
 ];
