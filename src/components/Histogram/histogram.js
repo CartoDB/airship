@@ -29,20 +29,20 @@ const Svg = styled.svg`
   }
 
   .bar {
-    fill: ${props => props.barColor};
+    fill: ${props => props.color};
     cursor: pointer;
     opacity: 0.7;
     transition: all 0.3s linear;
 
     :hover {
-      fill: ${props => darken(0.16, props.barColor)};
+      fill: ${props => darken(0.16, props.color)};
     }
   }
 `;
 
 class Histogram extends Component {
   static defaultProps = {
-    barColor: '#3AB5F0',
+    color: '#3AB5F0',
     data: [],
     textColor: '#747474',
     width: 208,
@@ -56,7 +56,7 @@ class Histogram extends Component {
   };
 
   static propTypes = {
-    barColor: PropTypes.string,
+    color: PropTypes.string,
     data: PropTypes.array,
     textColor: PropTypes.string,
   };

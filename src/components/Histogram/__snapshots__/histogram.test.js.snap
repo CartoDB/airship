@@ -31,6 +31,7 @@ exports[`<Histogram /> render when data passed in renders the correct amount of 
 
 <svg
   className="c0"
+  color="#3AB5F0"
   data={
     Array [
       Object {
@@ -131,6 +132,7 @@ exports[`<Histogram /> update when data changes should call the update method or
 
 <svg
   className="c0"
+  color="#3AB5F0"
   data={
     Array [
       Object {
@@ -231,6 +233,7 @@ exports[`<Histogram /> update when data changes should call the update method or
 
 <svg
   className="c0"
+  color="#3AB5F0"
   data={Array []}
   height={160}
   width={248}
