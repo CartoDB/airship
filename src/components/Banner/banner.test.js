@@ -1,6 +1,6 @@
 import React from 'react';
-import Banner from './banner';
 import renderer from 'react-test-renderer';
+import Banner from './banner';
 
 describe('render', () => {
   it('renders without crashing', () => {
@@ -10,7 +10,7 @@ describe('render', () => {
         <Banner.Content>Content</Banner.Content>
       </Banner>
     );
-    let tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
 });

@@ -19,7 +19,7 @@ describe('Donut Chart', () => {
       describe('when the DOM element is not passed', () => {
         it('throws an error', () => {
           expect(() => {
-            new DonutChart(undefined, {});
+            new DonutChart(undefined, {}); // eslint-disable-line
           }).toThrowError('A root container is required');
         });
       });
@@ -55,6 +55,6 @@ describe('Donut Chart', () => {
       chart.update({ data: [] });
 
       expect(chart.options.data).toEqual([]);
-    })
+    });
   });
 });

@@ -17,6 +17,9 @@ storiesOf('Button', module)
       <h3 className="header">Borderless</h3>
       <Button borderless>Cubmit</Button>
 
+      <h3 className="header">With event</h3>
+      <Button onClick={action('click')}>Cubmit</Button>
+
       <h3 className="header">Grouped</h3>
       <ButtonGroup>
         <Button>
@@ -28,4 +31,4 @@ storiesOf('Button', module)
         </Button>
       </ButtonGroup>
     </div>
-  ))
+  ));

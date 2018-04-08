@@ -61,7 +61,7 @@ const StyledInput = styled.div`
 
 class Typeahead extends Component {
   state = {
-    query: this.props.query
+    query: this.props.query,
   };
 
   componentWillReceiveProps(next) {
@@ -70,33 +70,26 @@ class Typeahead extends Component {
     }
   }
 
-  reset = (e) => {
+  reset = () => {
     const { onChange } = this.props;
+
     this.setState(
-      (state) => {
-        return { ...state, query: '' };
-      },
-      () => {
-        onChange && onChange({ query: '' });
-      }
+      state => ({ ...state, query: '' }),
+      () => onChange && onChange({ query: '' }),
     );
   };
 
-  onChange = (e) => {
+  onChange = e => {
     const { onChange } = this.props;
     const query = e.target.value;
     this.setState(
-      (state) => {
-        return { ...state, query };
-      },
-      () => {
-        onChange && onChange({ query });
-      }
+      state => ({ ...state, query }),
+      () => onChange && onChange({ query }),
     );
   };
 
   render() {
-    const { loading, results, size, placeholder } = this.props;
+    const { loading, size, placeholder } = this.props;
     const { query } = this.state;
 
     const getIcon = () => {
@@ -130,15 +123,16 @@ Typeahead.defaultProps = {
   query: '',
   results: [],
   loading: false,
-  placeholder: 'Type to search'
+  placeholder: 'Type to search',
 };
 
 Typeahead.propTypes = {
   loading: PropTypes.bool,
   onChange: PropTypes.func,
   results: PropTypes.array,
+  query: PropTypes.string,
   size: PropTypes.number,
-  placeholder: PropTypes.string
+  placeholder: PropTypes.string,
 };
 
 export default Typeahead;

@@ -36,29 +36,35 @@ const StyledItem = styled.li`
 `;
 StyledItem.displayName = 'StyledItem';
 
-const Item = ({ children, path, last, ...other }) => {
-  return (
-    <StyledItem>{last ? children : <a href={path}>{children}</a>}</StyledItem>
-  );
-};
+const Item = ({
+  children,
+  path,
+  last,
+  ...other, // eslint-disable-line
+}) => (
+  <StyledItem>{last ? children : <a href={path}>{children}</a>}</StyledItem>
+);
 
 Item.propTypes = {
+  children: PropTypes.node,
+  last: PropTypes.bool,
   path: PropTypes.string,
-  last: PropTypes.bool
 };
 
-const Breadcrumb = ({ children, ...other }) => {
+const Breadcrumb = ({ children }) => {
   const number = Children.count(children);
   return (
     <StyledList>
-      {Children.map(children, (child, i) => {
-        return React.cloneElement(child, {
-          last: i === number - 1,
-          key: i
-        });
-      })}
+      {Children.map(children, (child, index) => React.cloneElement(child, {
+          last: index === number - 1,
+          key: index,
+        }))}
     </StyledList>
   );
+};
+
+Breadcrumb.propTypes = {
+  children: PropTypes.node,
 };
 
 Breadcrumb.Item = Item;

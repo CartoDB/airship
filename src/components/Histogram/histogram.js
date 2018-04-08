@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { darken } from 'polished';
-import { select, selectAll } from 'd3-selection';
+import { select, selectAll } from 'd3-selection'; // eslint-disable-line
 import { scaleBand, scaleLinear } from 'd3-scale';
-import { min, max } from 'd3-array';
-import { transition } from 'd3-transition';
-import { axisBottom, axisLeft } from 'd3-axis';
-import { chartColors } from '../../constants';
+import { min, max } from 'd3-array'; // eslint-disable-line
+import { transition } from 'd3-transition'; // eslint-disable-line
+import { axisBottom, axisLeft } from 'd3-axis'; // eslint-disable-line
 
 const Svg = styled.svg`
   max-width: 248px;
@@ -58,15 +57,18 @@ class Histogram extends Component {
   static propTypes = {
     color: PropTypes.string,
     data: PropTypes.array,
+    height: PropTypes.number,
+    margin: PropTypes.object,
     textColor: PropTypes.string,
+    width: PropTypes.number,
   };
 
   componentDidMount() {
     const { margin } = this.props;
 
     this.barsContainer = this.container
-        .append('g')
-        .attr('transform', `translate(${margin.left}, ${margin.top})`);
+      .append('g')
+      .attr('transform', `translate(${margin.left}, ${margin.top})`);
 
     this.renderAxis();
     this.renderBars();
@@ -84,7 +86,7 @@ class Histogram extends Component {
       .domain([0, max(data, d => d.freq)]);
 
     this.xScale
-      .domain(data.map(d => d.max))
+      .domain(data.map(d => d.max));
 
     this.yAxisSelection
       .call(this.yAxis);
@@ -120,7 +122,7 @@ class Histogram extends Component {
   }
 
   renderBars() {
-    const { data, height, margin, width } = this.props;
+    const { data, height } = this.props;
 
     // Draw bars
     this.bars = this.barsContainer
@@ -139,11 +141,11 @@ class Histogram extends Component {
       .attr('y', height)
       .attr('height', 0)
       .attr('x', d => this.xScale(d.max))
-      .attr('width', d => this.xScale.bandwidth())
+      .attr('width', () => this.xScale.bandwidth())
       .transition()
-        .delay(200)
+      .delay(200)
       .attr('y', d => this.yScale(d.freq))
-      .attr('height', d => height - this.yScale(d.freq))
+      .attr('height', d => height - this.yScale(d.freq));
   }
 
   render() {
@@ -155,10 +157,10 @@ class Histogram extends Component {
       <Svg
         width={fullWidth}
         height={fullHeight}
-        innerRef={(node) => { this.container = select(node); }}
+        innerRef={node => { this.container = select(node); }}
         {...others}
       />
-    )
+    );
   }
 }
 

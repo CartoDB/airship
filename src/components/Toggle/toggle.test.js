@@ -1,18 +1,20 @@
 import React from 'react';
-import Toggle from './toggle';
 import renderer from 'react-test-renderer';
 import { mount, shallow } from 'enzyme';
+import Toggle from './toggle';
 
 describe('render', () => {
   it('renders without crashing', () => {
     const component = renderer.create(<Toggle htmlFor="foo" />);
-    let tree = component.toJSON();
+    const tree = component.toJSON();
+
     expect(tree).toMatchSnapshot();
   });
 
   it('renders with checked param', () => {
     const component = renderer.create(<Toggle htmlFor="foo" checked />);
-    let tree = component.toJSON();
+    const tree = component.toJSON();
+
     expect(tree).toMatchSnapshot();
   });
 
@@ -22,12 +24,15 @@ describe('render', () => {
 
     const input = component.find('input').first();
     input.simulate('change');
+
     expect(spy).toHaveBeenCalled();
   });
 
   it('sets \'checked\' state correcly when prop is changed', () => {
     const wrapper = mount(<Toggle htmlFor="foo" />);
+
     wrapper.setProps({ checked: true });
+
     expect(wrapper.state().checked).toBe(true);
   });
 });

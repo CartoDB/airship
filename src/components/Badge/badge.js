@@ -5,7 +5,7 @@ import { colors } from '../../constants';
 import CloseIcon from '../Icons/close';
 
 const StyledBadge = styled.li`
-  background: ${(props) => props.color};
+  background: ${props => props.color};
   border-radius: 100px;
   font: 400 12px/20px 'Roboto';
   color: ${colors.type01};
@@ -27,7 +27,7 @@ const StyledBadge = styled.li`
   }
 `;
 
-const noOp = (e) => {};
+const noOp = () => {};
 
 const Badge = ({
   color = colors.ui03,
@@ -35,9 +35,10 @@ const Badge = ({
   children,
   closable = false,
   onClose = noOp,
-  as = 'li'
+  as = 'li',
 }) => {
   const Wrapper = as ? StyledBadge.withComponent(as) : StyledBadge;
+
   return (
     <Wrapper color={color}>
       {children}
@@ -52,10 +53,11 @@ const Badge = ({
 
 Badge.propTypes = {
   as: PropTypes.string,
+  children: PropTypes.node,
   closable: PropTypes.bool,
-  onClose: PropTypes.func,
+  closeColor: PropTypes.string,
   color: PropTypes.string,
-  closeColor: PropTypes.string
+  onClose: PropTypes.func,
 };
 
 export default Badge;

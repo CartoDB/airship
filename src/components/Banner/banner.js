@@ -6,7 +6,7 @@ const Banner = styled.div`
   padding: 12px;
   border-radius: 0;
   width: 100%;
-  background-color: ${(props) => props.color};
+  background-color: ${props => props.color};
 `;
 
 const StyledHandle = styled.div`
@@ -24,7 +24,7 @@ Banner.Icon = StyledHandle;
 Banner.Content = StyledContent;
 
 Banner.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 export default Banner;

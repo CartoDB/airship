@@ -1,10 +1,10 @@
 import React from 'react';
-import Enzyme, { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import Donut from './donut';
 import DonutChart from './donutChart';
-import mockData from './donut.fixtures'
+import mockData from './donut.fixtures';
 
-jest.mock('./donutChart')
+jest.mock('./donutChart');
 
 describe('<DonutChart />', () => {
   afterEach(() => {
@@ -23,7 +23,7 @@ describe('<DonutChart />', () => {
         const wrapper = mount(<Donut />);
 
         const actual = DonutChart.mock.calls[0][0];
-        const expected = wrapper.instance()._rootNode;
+        const expected = wrapper.instance().rootNode;
 
         expect(actual).toEqual(expected);
       });
@@ -45,7 +45,7 @@ describe('<DonutChart />', () => {
         const wrapper = mount(<Donut data={mockData} />);
 
         // Changing properties should trigger a componentDidUpdate
-        wrapper.setProps({ data:[] });
+        wrapper.setProps({ data: [] });
 
         const actual = DonutChart.mock.instances[0].update.mock.calls[0][0];
         const expected = wrapper.instance().props;

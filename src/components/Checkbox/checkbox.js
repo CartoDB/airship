@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
-import { colors } from '../../constants';
 import { rgba } from 'polished';
+import { colors } from '../../constants';
 
 const stroke = keyframes`
   100% {
@@ -100,7 +100,7 @@ const CheckboxInput = styled.input`
 
 class Checkbox extends Component {
   state = {
-    checked: !!this.props.checked
+    checked: !!this.props.checked,
   };
 
   componentWillReceiveProps(nextProps) {
@@ -109,13 +109,13 @@ class Checkbox extends Component {
     }
   }
 
-  clickHandler = (e) => {
+  clickHandler = () => {
     const { onChange, disabled } = this.props;
 
     if (disabled) return;
 
     this.setState(
-      (state) => ({ ...state, checked: !state.checked }),
+      state => ({ ...state, checked: !state.checked }),
       () => onChange && onChange(this.state)
     );
   };
@@ -126,7 +126,7 @@ class Checkbox extends Component {
     const WrapperComponent = as !== 'div' ? Wrapper.withComponent(as) : Wrapper;
 
     return (
-      <Wrapper htmlFor={htmlFor}>
+      <WrapperComponent htmlFor={htmlFor}>
         <StyledCheckbox>
           <CheckboxInput
             id={htmlFor}
@@ -146,7 +146,7 @@ class Checkbox extends Component {
         </StyledCheckbox>
 
         {children && <Label>{children}</Label>}
-      </Wrapper>
+      </WrapperComponent>
     );
   }
 }
@@ -162,6 +162,7 @@ Checkbox.defaultProps = {
 Checkbox.propTypes = {
   as: PropTypes.string,
   checked: PropTypes.bool,
+  children: PropTypes.node,
   disabled: PropTypes.bool,
   htmlFor: PropTypes.string.isRequired,
   name: PropTypes.string,

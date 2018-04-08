@@ -1,7 +1,7 @@
 import React from 'react';
-import Flag from './flag';
 import renderer from 'react-test-renderer';
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
+import Flag from './flag';
 
 describe('render', () => {
   it('renders without crashing', () => {
@@ -12,7 +12,7 @@ describe('render', () => {
         <Flag.Content>Content</Flag.Content>
       </Flag>
     );
-    let tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
 

@@ -1,7 +1,7 @@
 import React from 'react';
-import Tabs from './tab';
 import renderer from 'react-test-renderer';
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
+import Tabs from './tab';
 
 describe('render', () => {
   it('renders without crashing', () => {
@@ -11,7 +11,7 @@ describe('render', () => {
         <Tabs.Panel label="world">Mundo</Tabs.Panel>
       </Tabs>
     );
-    let tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
 
@@ -22,7 +22,7 @@ describe('render', () => {
         <Tabs.Panel label="world">Mundo</Tabs.Panel>
       </Tabs>
     );
-    let tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
 
@@ -33,7 +33,7 @@ describe('render', () => {
         <Tabs.Panel label="world">Mundo</Tabs.Panel>
       </Tabs>
     );
-    let tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
 
@@ -44,7 +44,7 @@ describe('render', () => {
         <Tabs.Panel label="world">Mundo</Tabs.Panel>
       </Tabs>
     );
-    let tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
 

@@ -38,8 +38,8 @@ const StyledTooltip = styled.div`
   }
 
   &[data-pos='top'] {
-    top: ${(props) => `${props.position.top - 6}px`};
-    left: ${(props) => `${props.position.left + props.position.width / 2}px`};
+    top: ${props => `${props.position.top - 6}px`};
+    left: ${props => `${props.position.left + (props.position.width / 2)}px`};
     transform: translate(-50%, -100%);
   }
 
@@ -52,8 +52,8 @@ const StyledTooltip = styled.div`
   }
 
   &[data-pos='bottom'] {
-    top: ${(props) => `${props.position.top + props.position.height + 6}px`};
-    left: ${(props) => `${props.position.left + props.position.width / 2}px`};
+    top: ${props => `${props.position.top + (props.position.height + 6)}px`};
+    left: ${props => `${props.position.left + (props.position.width / 2)}px`};
     transform: translate(-50%, 0);
   }
 
@@ -65,8 +65,8 @@ const StyledTooltip = styled.div`
   }
 
   &[data-pos='right'] {
-    top: ${(props) => `${props.position.top + props.position.height / 2}px`};
-    left: ${(props) => `${props.position.left + props.position.width + 10}px`};
+    top: ${props => `${props.position.top + (props.position.height / 2)}px`};
+    left: ${props => `${props.position.left + (props.position.width + 10)}px`};
     transform: translate(0, -50%);
   }
 
@@ -78,8 +78,8 @@ const StyledTooltip = styled.div`
   }
 
   &[data-pos='left'] {
-    top: ${(props) => `${props.position.top + props.position.height / 2}px`};
-    left: ${(props) => `${props.position.left - 10}px`};
+    top: ${props => `${props.position.top + (props.position.height / 2)}px`};
+    left: ${props => `${props.position.left - 10}px`};
     transform: translate(-100%, -50%);
   }
 
@@ -110,9 +110,7 @@ const Content = ({ children, node, ...props }) => {
 };
 Content.displayName = 'Tooltip.Content';
 
-const Trigger = ({ children }) => {
-  return children;
-};
+const Trigger = ({ children }) => children;
 Trigger.displayName = 'Tooltip.Trigger';
 
 const Wrapper = styled.span``;
@@ -122,7 +120,7 @@ class Tooltip extends Component {
   static Trigger = Trigger;
 
   state = {
-    visible: false
+    visible: false,
   };
 
   componentDidMount() {
@@ -136,8 +134,8 @@ class Tooltip extends Component {
     window.removeEventListener('touchstart', this.onWindowClick);
   }
 
-  onWindowClick = (event) => {
-    const tooltipElement = findDOMNode(this);
+  onWindowClick = event => {
+    const tooltipElement = findDOMNode(this); // eslint-disable-line react/no-find-dom-node
     const { visible } = this.state;
 
     if (
@@ -149,10 +147,8 @@ class Tooltip extends Component {
     }
   };
 
-  toggle = (visible) => {
-    this.setState((state) => {
-      return { ...state, visible: visible };
-    });
+  toggle = visible => {
+    this.setState(state => ({ ...state, visible }));
   };
 
   show = () => {
@@ -171,16 +167,16 @@ class Tooltip extends Component {
     return (
       <Node
         data-component="Tooltip"
-        onMouseEnter={(e) => this.show()}
-        onMouseLeave={(e) => this.hide()}
+        onMouseEnter={() => this.show()}
+        onMouseLeave={() => this.hide()}
         data-pos={to}
       >
-        {Children.map(children, (child) => {
+        {Children.map(children, child => {
           let element = null;
           if (child.type.displayName === 'Tooltip.Trigger') {
             element = (
               <span
-                ref={(node) => {
+                ref={node => {
                   this.node = node;
                 }}
               >
@@ -190,7 +186,7 @@ class Tooltip extends Component {
           } else if (child.type.displayName === 'Tooltip.Content' && visible) {
             element = React.cloneElement(child, {
               node: this.node,
-              'data-pos': to
+              'data-pos': to,
             });
           }
           return element;
@@ -202,12 +198,13 @@ class Tooltip extends Component {
 
 Tooltip.defaultProps = {
   as: 'span',
-  to: 'top'
+  to: 'top',
 };
 
 Tooltip.propTypes = {
   as: PropTypes.string,
-  to: PropTypes.oneOf(['bottom', 'right', 'left', 'top'])
+  children: PropTypes.node,
+  to: PropTypes.oneOf(['bottom', 'right', 'left', 'top']),
 };
 
 export default Tooltip;

@@ -6,11 +6,9 @@ import Button from './button';
 import { isComponentOfType } from '../../utils';
 import { colors } from '../../constants';
 
-const separator = (props) => {
-  return `1px solid ${
-    !!props.secondary ? colors.primaryColor : darken(0.16, colors.primaryColor)
-  }`;
-};
+const separator = props => `1px solid ${
+  props.secondary ? colors.primaryColor : darken(0.16, colors.primaryColor)
+}`;
 
 const StyledList = styled.ul`
   border: 1px solid ${colors.primaryColor};
@@ -34,20 +32,18 @@ const StyledListItem = styled.li`
 class ButtonGroup extends Component {
   render() {
     const { children, secondary, ...other } = this.props;
-    const buttons = React.Children.map(children, (child) => {
-      return (
-        <StyledListItem secondary={secondary}>
-          {isComponentOfType(Button, child)
+    const buttons = React.Children.map(children, child => (
+      <StyledListItem secondary={secondary}>
+        {isComponentOfType(Button, child)
             ? React.cloneElement(child, {
                 radius: 0,
                 grouped: true,
                 borderless: !!secondary,
-                secondary: false
+                secondary: false,
               })
             : child}
-        </StyledListItem>
-      );
-    });
+      </StyledListItem>
+    ));
 
     return (
       <StyledList {...other} data-component="ButtonGroup">
@@ -58,7 +54,8 @@ class ButtonGroup extends Component {
 }
 
 ButtonGroup.propTypes = {
-  secondary: PropTypes.bool
+  children: PropTypes.node,
+  secondary: PropTypes.bool,
 };
 
 export default ButtonGroup;

@@ -1,6 +1,6 @@
 import React from 'react';
-import Legend from './legend';
 import renderer from 'react-test-renderer';
+import Legend from './legend';
 
 describe('render', () => {
   it('renders without crashing', () => {
@@ -9,7 +9,7 @@ describe('render', () => {
         <Legend.Panel>Hello</Legend.Panel>
       </Legend>
     );
-    let tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
 
@@ -19,7 +19,7 @@ describe('render', () => {
         <Legend.Panel>Hello</Legend.Panel>
       </Legend>
     );
-    let tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
 });

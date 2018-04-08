@@ -1,8 +1,8 @@
 import React, { Children, Component } from 'react';
-import styled, { keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
-import { colors } from '../../constants';
+import styled, { keyframes } from 'styled-components';
 import { rgba } from 'polished';
+import { colors } from '../../constants';
 
 const radioIn = keyframes`
   from {
@@ -108,7 +108,7 @@ const StyledGroup = styled.div``;
 
 class Group extends Component {
   state = {
-    selected: this.props.selected
+    selected: this.props.selected,
   };
 
   componentWillReceiveProps(nextProps) {
@@ -117,17 +117,15 @@ class Group extends Component {
     }
   }
 
-  onChange = (e) => {
+  onChange = event => {
     const { onChange, disabled } = this.props;
-    !disabled &&
-      this.setState(
-        {
-          selected: e.target.value
-        },
-        () => {
-          onChange && onChange(this.state.selected);
-        }
-      );
+
+    if (disabled) return;
+
+    this.setState(
+      { selected: event.target.value },
+      () => onChange && onChange(this.state.selected),
+    );
   };
 
   render() {
@@ -146,7 +144,7 @@ class Group extends Component {
             key: `radio${index}`,
             as: as === 'ul' ? 'li' : 'div',
             disabled,
-            selected: checked
+            selected: checked,
           });
         })}
       </Wrapper>
@@ -155,11 +153,12 @@ class Group extends Component {
 }
 
 Group.propTypes = {
+  as: PropTypes.oneOf(['div', 'ul', 'span']),
+  children: PropTypes.node,
+  disabled: PropTypes.bool,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func,
-  as: PropTypes.oneOf(['div', 'ul', 'span']),
-  disabled: PropTypes.bool,
-  selected: PropTypes.string
+  selected: PropTypes.string,
 };
 
 const RadioButton = ({
@@ -169,7 +168,7 @@ const RadioButton = ({
   as,
   disabled,
   selected,
-  onChange
+  onChange,
 }) => {
   const Wrapper = as !== 'div' ? StyleRadio.withComponent(as) : StyleRadio;
   return (
@@ -180,7 +179,7 @@ const RadioButton = ({
           type="radio"
           name={name}
           value={value}
-          onChange={(e) => onChange(e)}
+          onChange={e => onChange(e)}
           disabled={disabled}
           checked={selected}
         />
@@ -194,20 +193,21 @@ const RadioButton = ({
 RadioButton.Group = Group;
 
 RadioButton.defaultProps = {
-  name: '',
   as: 'div',
-  onChange: (e) => {},
   disabled: false,
-  selected: false
+  name: '',
+  onChange: () => {},
+  selected: false,
 };
 
 RadioButton.propTypes = {
-  name: PropTypes.string,
-  value: PropTypes.string.isRequired,
   as: PropTypes.oneOf(['div', 'li', 'span']),
-  onChange: PropTypes.func,
+  children: PropTypes.node,
   disabled: PropTypes.bool,
-  selected: PropTypes.bool
+  name: PropTypes.string,
+  onChange: PropTypes.func,
+  selected: PropTypes.bool,
+  value: PropTypes.string.isRequired,
 };
 
 export default RadioButton;

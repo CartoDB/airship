@@ -171,15 +171,19 @@ const StyledDatepicker = styled.div`
   }
 `;
 
-const YearMonthForm = ({ date, fromMonth, toMonth, localeUtils, onChange }) => {
+const YearMonthForm = ({
+  date,
+  fromMonth,
+  toMonth,
+  localeUtils,
+  onChange,
+}) => {
   const minYear = fromMonth.getFullYear();
   const minMonth = fromMonth.getMonth();
   const maxYear = toMonth.getFullYear();
   const maxMonth = toMonth.getMonth();
   const months = localeUtils.getMonths();
-  const years = Array(maxYear - minYear + 1)
-    .fill()
-    .map((_, idx) => minYear + idx);
+  const years = Array((maxYear - minYear) + 1).fill().map((_, idx) => minYear + idx);
 
   const currentMonth = date.getMonth();
   const currentYear = date.getFullYear();
@@ -209,7 +213,7 @@ const YearMonthForm = ({ date, fromMonth, toMonth, localeUtils, onChange }) => {
       <div>
         {currentYear}
         <select name="year" onChange={handleChange} value={currentYear}>
-          {years.map((year) => (
+          {years.map(year => (
             <option key={year} value={year}>
               {year}
             </option>
@@ -220,18 +224,26 @@ const YearMonthForm = ({ date, fromMonth, toMonth, localeUtils, onChange }) => {
   );
 };
 
+YearMonthForm.propTypes = {
+  date: PropTypes.instanceOf(Date),
+  fromMonth: PropTypes.instanceOf(Date),
+  toMonth: PropTypes.instanceOf(Date),
+  localeUtils: PropTypes.object,
+  onChange: PropTypes.func,
+};
+
 class Datepicker extends Component {
   state = {
     month: this.props.initialMonth || this.props.fromMonth,
     from: null,
     to: null,
-    enteredTo: null
+    enteredTo: null,
   };
 
   constructor(props) {
     super(props);
     this.disabledDays = props.disabledDays.concat([
-      { before: this.props.fromMonth }
+      { before: this.props.fromMonth },
     ]);
     this.userInteracted = false;
   }
@@ -250,41 +262,41 @@ class Datepicker extends Component {
     return {
       from: null,
       to: null,
-      enteredTo: null // Keep track of the last day for mouseEnter.
+      enteredTo: null, // Keep track of the last day for mouseEnter.
     };
   }
 
-  isSelectingFirstDay(from, to, day) {
+  isSelectingFirstDay = (from, to, day) => {
     const isBeforeFirstDay = from && DateUtils.isDayBefore(day, from);
     const isRangeSelected = from && to;
+
     return !from || isBeforeFirstDay || isRangeSelected;
   }
 
-  handleDayClick = (day, { disabled, selected }) => {
-    const triggerRange = () => {
-      const { from, to } = this.state;
-      onDayClick && onDayClick({ from, to });
-    };
-
-    if (disabled) {
-      return;
-    }
-    this.userInteracted = true;
-
+  handleDayClick = (day, { disabled }) => {
     const { from, to } = this.state;
     const { onDayClick } = this.props;
+
+    const triggerRange = () => {
+      const { from, to } = this.state;
+
+      if (onDayClick) onDayClick({ from, to });
+    };
+
+    if (disabled) return;
+
+    this.userInteracted = true;
+
     if (from && to && day >= from && day <= to) {
       this.handleResetClick();
       return;
     }
     if (this.isSelectingFirstDay(from, to, day)) {
-      this.setState((state) => {
-        return { ...state, from: day, to: null, enteredTo: null };
-      }, triggerRange);
+      this.setState(state => ({
+        ...state, from: day, to: null, enteredTo: null,
+      }), triggerRange);
     } else {
-      this.setState((state) => {
-        return { ...state, to: day, enteredTo: day };
-      }, triggerRange);
+      this.setState(state => ({ ...state, to: day, enteredTo: day }), triggerRange);
     }
   };
 
@@ -292,16 +304,16 @@ class Datepicker extends Component {
     this.setState(this.getInitialState());
   };
 
-  handleDayMouseEnter = (day) => {
+  handleDayMouseEnter = day => {
     const { from, to } = this.state;
     if (!this.isSelectingFirstDay(from, to, day)) {
       this.setState({
-        enteredTo: day
+        enteredTo: day,
       });
     }
   };
 
-  handleYearMonthChange = (month) => {
+  handleYearMonthChange = month => {
     this.setState({ month });
   };
 
@@ -314,7 +326,7 @@ class Datepicker extends Component {
       : selectedDays;
 
     return (
-      <StyledDatepicker innerRef={(node) => (this.node = node)}>
+      <StyledDatepicker innerRef={node => { this.node = node; }}>
         <DayPicker
           fixedWeeks
           firstDayOfWeek={1}
@@ -344,7 +356,7 @@ class Datepicker extends Component {
 
 Datepicker.defaultProps = {
   disabledDays: [],
-  selectedDays: []
+  selectedDays: [],
 };
 
 Datepicker.propTypes = {
@@ -353,7 +365,7 @@ Datepicker.propTypes = {
   selectedDays: PropTypes.array,
   fromMonth: PropTypes.instanceOf(Date).isRequired,
   toMonth: PropTypes.instanceOf(Date).isRequired,
-  initialMonth: PropTypes.instanceOf(Date)
+  initialMonth: PropTypes.instanceOf(Date),
 };
 
 export default Datepicker;

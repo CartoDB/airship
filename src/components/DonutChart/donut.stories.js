@@ -1,6 +1,5 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
 import DonutChart from './donut';
 import Widget from '../Widget/widget';
 import mockData from './donut.fixtures';

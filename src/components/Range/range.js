@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import * as valueTransformer from './transformer';
 import Slider from './slider';
 import Track from './track';
@@ -8,13 +9,12 @@ import {
   distanceTo,
   isDefined,
   isObject,
-  length
+  length,
 } from '../../utils';
-import styled from 'styled-components';
 
 const StyledRange = styled.div`
   position: relative;
-  width: ${(props) => `${props.width}px`};
+  width: ${props => `${props.width}px`};
 `;
 
 /**
@@ -26,9 +26,9 @@ class Range extends Component {
     value: this.isMultiValue()
       ? this.props.value
       : {
-          min: this.props.minValue,
-          max: this.props.value || this.props.minValue
-        }
+        min: this.props.minValue,
+        max: this.props.value || this.props.minValue,
+      },
   };
 
   constructor(props) {
@@ -135,12 +135,12 @@ class Range extends Component {
         this.props.minValue,
         this.props.maxValue,
         this.getTrackClientRect()
-      )
+      ),
     };
 
     const transformedValues = {
       min: valueTransformer.getStepValueFromValue(values.min, this.props.step),
-      max: valueTransformer.getStepValueFromValue(values.max, this.props.step)
+      max: valueTransformer.getStepValueFromValue(values.max, this.props.step),
     };
 
     this.updateValues(transformedValues);
@@ -160,12 +160,8 @@ class Range extends Component {
     const { onChange } = this.props;
 
     this.setState(
-      (state) => {
-        return { value: values };
-      },
-      () => {
-        onChange && onChange(this.isMultiValue() ? values : values.max);
-      }
+      { value: values },
+      () => onChange && onChange(this.isMultiValue() ? values : values.max),
     );
   }
 
@@ -245,7 +241,7 @@ class Range extends Component {
 
     const transformedValues = {
       min: min - offset,
-      max: max - offset
+      max: max - offset,
     };
 
     this.updateValues(transformedValues);
@@ -279,7 +275,8 @@ class Range extends Component {
 
   handleInteractionStart = () => {
     const { onChangeStart, onChangeComplete } = this.props;
-    onChangeStart && onChangeStart(this.state.value);
+
+    if (onChangeStart) onChangeStart(this.state.value);
 
     if (onChangeComplete && !isDefined(this.startValue)) {
       this.startValue = this.state.value;
@@ -303,22 +300,22 @@ class Range extends Component {
     this.startValue = null;
   };
 
-  handleMouseDown = (event) => {
+  handleMouseDown = event => {
     this.handleInteractionStart(event);
     this.addDocumentMouseUpListener();
   };
 
-  handleMouseUp = (event) => {
+  handleMouseUp = event => {
     this.handleInteractionEnd(event);
     this.removeDocumentMouseUpListener();
   };
 
-  handleTouchStart = (event) => {
+  handleTouchStart = event => {
     this.handleInteractionStart(event);
     this.addDocumentTouchEndListener();
   };
 
-  handleTouchEnd = (event) => {
+  handleTouchEnd = event => {
     this.handleInteractionEnd(event);
     this.removeDocumentTouchEndListener();
   };
@@ -332,7 +329,7 @@ class Range extends Component {
     );
     const keys = this.getKeys();
 
-    return keys.map((key) => {
+    return keys.map(key => {
       const value = values[key];
       const percentage = percentages[key];
 
@@ -370,7 +367,7 @@ class Range extends Component {
     const isMultiValue = this.isMultiValue();
     const values = this.state.value;
 
-    return this.getKeys().map((key) => {
+    return this.getKeys().map(key => {
       const value = values[key];
       const name = isMultiValue
         ? `${this.props.name}${capitalize(key)}`
@@ -393,7 +390,7 @@ class Range extends Component {
       <StyledRange
         className={disabled ? 'is-disabled' : null}
         width={width}
-        innerRef={(node) => {
+        innerRef={node => {
           this.node = node;
         }}
         onMouseDown={this.handleMouseDown}
@@ -401,7 +398,7 @@ class Range extends Component {
       >
         <Track
           draggable={isMultiValue ? draggable : false}
-          ref={(trackNode) => {
+          ref={trackNode => {
             this.trackNode = trackNode;
           }}
           percentages={percentages}
@@ -422,10 +419,11 @@ Range.defaultProps = {
   minValue: 0,
   value: 0,
   step: 1,
-  width: 200
+  width: 200,
 };
 
 Range.propTypes = {
+  classNames: PropTypes.array,
   disabled: PropTypes.bool,
   draggable: PropTypes.bool,
   formatLabel: PropTypes.func,
@@ -437,7 +435,7 @@ Range.propTypes = {
   onChangeComplete: PropTypes.func,
   step: PropTypes.number,
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.object]),
-  width: PropTypes.number
+  width: PropTypes.number,
 };
 
 export default Range;

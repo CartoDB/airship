@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Label from './label';
 import styled from 'styled-components';
+import Label from './label';
 import { colors } from '../../constants';
 
 const SliderContainer = styled.span`
@@ -57,7 +57,7 @@ class Slider extends Component {
   getStyle() {
     const perc = (this.props.percentage || 0) * 100;
     const style = {
-      left: `${perc}%`
+      left: `${perc}%`,
     };
 
     return style;
@@ -118,7 +118,7 @@ class Slider extends Component {
     this.removeDocumentMouseUpListener();
   };
 
-  handleMouseMove = (event) => {
+  handleMouseMove = event => {
     this.props.onSliderDrag(event, this.props.type);
   };
 
@@ -127,7 +127,7 @@ class Slider extends Component {
     this.addDocumentTouchMoveListener();
   };
 
-  handleTouchMove = (event) => {
+  handleTouchMove = event => {
     this.props.onSliderDrag(event, this.props.type);
   };
 
@@ -141,7 +141,7 @@ class Slider extends Component {
 
     return (
       <SliderContainer
-        innerRef={(node) => {
+        innerRef={node => {
           this.node = node;
         }}
         style={style}
@@ -166,13 +166,15 @@ class Slider extends Component {
 }
 
 Slider.propTypes = {
+  classNames: PropTypes.array,
+  draggable: PropTypes.bool,
   formatLabel: PropTypes.func,
   maxValue: PropTypes.number,
   minValue: PropTypes.number,
   onSliderDrag: PropTypes.func.isRequired,
   percentage: PropTypes.number.isRequired,
   type: PropTypes.string.isRequired,
-  value: PropTypes.number.isRequired
+  value: PropTypes.number.isRequired,
 };
 
 export default Slider;

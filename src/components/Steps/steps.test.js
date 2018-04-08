@@ -1,7 +1,7 @@
 import React from 'react';
-import Steps from './steps';
 import renderer from 'react-test-renderer';
-import { mount, shallow } from 'enzyme';
+import { mount } from 'enzyme';
+import Steps from './steps';
 
 describe('render', () => {
   it('renders without crashing', () => {
@@ -14,7 +14,7 @@ describe('render', () => {
         <Steps.Content>Content 4</Steps.Content>
       </Steps>
     );
-    let tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
 
@@ -28,7 +28,7 @@ describe('render', () => {
         <Steps.Content>Content 4</Steps.Content>
       </Steps>
     );
-    let tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
 

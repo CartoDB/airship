@@ -1,7 +1,7 @@
 import React from 'react';
-import Collapsible from './collapsible';
 import renderer from 'react-test-renderer';
 import { mount, shallow } from 'enzyme';
+import Collapsible from './collapsible';
 
 describe('render', () => {
   it('renders without crashing', () => {
@@ -11,13 +11,13 @@ describe('render', () => {
         <Collapsible.Content>Content</Collapsible.Content>
       </Collapsible>
     );
-    let tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
 
   it('renders open', () => {
     const component = shallow(
-      <Collapsible open={true}>
+      <Collapsible open>
         <Collapsible.Header>Header</Collapsible.Header>
         <Collapsible.Content>Content</Collapsible.Content>
       </Collapsible>

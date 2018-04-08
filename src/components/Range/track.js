@@ -33,9 +33,7 @@ class Track extends Component {
     this.trackDragEvent = null;
   }
 
-  getClientRect = () => {
-    return this.node.getBoundingClientRect();
-  };
+  getClientRect = () => this.node.getBoundingClientRect();
 
   getActiveTrackStyle = () => {
     const { percentages } = this.props;
@@ -66,7 +64,7 @@ class Track extends Component {
     this.node.ownerDocument.removeEventListener('mouseup', this.handleMouseUp);
   }
 
-  handleMouseMove = (e) => {
+  handleMouseMove = e => {
     const { draggable, onTrackDrag } = this.props;
     if (!draggable) {
       return;
@@ -89,13 +87,13 @@ class Track extends Component {
     this.trackDragEvent = null;
   };
 
-  handleMouseDown = (e) => {
+  handleMouseDown = e => {
     const { draggable, onTrackMouseDown } = this.props;
     const clientX = e.touches ? e.touches[0].clientX : e.clientX;
     const trackClientRect = this.getClientRect();
     const position = {
       x: clientX - trackClientRect.left,
-      y: 0
+      y: 0,
     };
 
     onTrackMouseDown(e, position);
@@ -106,7 +104,7 @@ class Track extends Component {
     }
   };
 
-  handleTouchStart = (e) => {
+  handleTouchStart = e => {
     e.preventDefault();
 
     this.handleMouseDown(e);
@@ -119,7 +117,7 @@ class Track extends Component {
       <TrackBack
         onMouseDown={this.handleMouseDown}
         onTouchStart={this.handleTouchStart}
-        innerRef={(node) => {
+        innerRef={node => {
           this.node = node;
         }}
       >
@@ -131,10 +129,11 @@ class Track extends Component {
 }
 
 Track.propTypes = {
+  children: PropTypes.node,
   draggable: PropTypes.bool,
   onTrackDrag: PropTypes.func,
   onTrackMouseDown: PropTypes.func.isRequired,
-  percentages: PropTypes.objectOf(PropTypes.number).isRequired
+  percentages: PropTypes.objectOf(PropTypes.number).isRequired,
 };
 
 export default Track;

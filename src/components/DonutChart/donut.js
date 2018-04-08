@@ -23,7 +23,7 @@ class DonutWidget extends Component {
   };
 
   componentDidMount() {
-    this._chart = new DonutChart(this._rootNode, this.props)
+    this._chart = new DonutChart(this.rootNode, this.props);
   }
 
   componentDidUpdate() {
@@ -32,8 +32,8 @@ class DonutWidget extends Component {
 
   render() {
     return (
-      <Wrapper innerRef={(node) => { this._rootNode = node; }}></Wrapper>
-    )
+      <Wrapper innerRef={node => { this.rootNode = node; }} />
+    );
   }
 }
 

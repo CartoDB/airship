@@ -1,12 +1,8 @@
 import React from 'react';
-import Loading from '../Loading/loading';
-import Avatar from './avatar';
-import renderer from 'react-test-renderer';
 import { shallow } from 'enzyme';
+import Avatar from './avatar';
 
 describe('render', () => {
-  let originalFetch = global.fetch;
-
   beforeEach(() => {
     fetch.mockResponse(JSON.stringify({ image: 'wadus' }));
   });

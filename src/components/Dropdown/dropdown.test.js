@@ -1,7 +1,7 @@
 import React from 'react';
-import Dropdown from './dropdown';
 import renderer from 'react-test-renderer';
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
+import Dropdown from './dropdown';
 
 describe('render', () => {
   jest.useFakeTimers();
@@ -20,7 +20,7 @@ describe('render', () => {
         </Dropdown.Content>
       </Dropdown>
     );
-    let tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
 
@@ -38,7 +38,7 @@ describe('render', () => {
         </Dropdown.Content>
       </Dropdown>
     );
-    let tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
 

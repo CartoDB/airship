@@ -1,7 +1,7 @@
 import React from 'react';
-import Tooltip from './tooltip';
 import renderer from 'react-test-renderer';
-import { mount, shallow } from 'enzyme';
+import { mount } from 'enzyme';
+import Tooltip from './tooltip';
 
 describe('render', () => {
   it('renders without crashing', () => {
@@ -11,7 +11,7 @@ describe('render', () => {
         <Tooltip.Trigger>tooltip</Tooltip.Trigger>
       </Tooltip>
     );
-    let tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
 
@@ -22,7 +22,7 @@ describe('render', () => {
         <Tooltip.Trigger>tooltip</Tooltip.Trigger>
       </Tooltip>
     );
-    let tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
 

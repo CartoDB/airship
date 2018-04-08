@@ -16,7 +16,7 @@ const StyledLabel = styled.span`
   }
 `;
 
-const Label = (props) => {
+const Label = props => {
   const labelValue = props.formatLabel
     ? props.formatLabel(props.children, props.type)
     : props.children;
@@ -27,7 +27,7 @@ const Label = (props) => {
 Label.propTypes = {
   children: PropTypes.node.isRequired,
   formatLabel: PropTypes.func,
-  type: PropTypes.string.isRequired
+  type: PropTypes.string.isRequired,
 };
 
 export default Label;

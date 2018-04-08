@@ -33,14 +33,12 @@ const StyledContent = styled.div`
 StyledContent.displayName = 'Flag.Content';
 
 const Flag = ({ children, onClick }) => {
-  const childrenWithControl = Children.map(children, (child, index) => {
-    return React.cloneElement(child, { key: `flag${index}` });
-  }).concat([
+  const childrenWithControl = Children.map(children, (child, index) => React.cloneElement(child, { key: `flag${index}` })).concat([
     <StyledHandle key="flagButton">
-      <button onClick={(e) => onClick()}>
+      <button onClick={() => onClick()}>
         <CloseIcon width={12} height={12} />
       </button>
-    </StyledHandle>
+    </StyledHandle>,
   ]);
 
   return <StyledFlag>{childrenWithControl}</StyledFlag>;
@@ -50,7 +48,8 @@ Flag.Icon = StyledHandle;
 Flag.Content = StyledContent;
 
 Flag.propTypes = {
-  onClick: PropTypes.func.isRequired
+  children: PropTypes.node,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default Flag;

@@ -208,6 +208,7 @@ exports[`render renders with an image only 1`] = `
     offset={0}
   >
     <img
+      alt=""
       onLoad={[Function]}
       src="jarjar.jpg"
     />
@@ -220,6 +221,7 @@ exports[`render renders with an image only 1`] = `
       offset={0}
     >
       <img
+        alt=""
         onLoad={[Function]}
         src="jarjar.jpg"
       />

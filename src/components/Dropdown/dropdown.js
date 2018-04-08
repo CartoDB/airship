@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
+import ReactDOM, { findDOMNode } from 'react-dom';
 import styled from 'styled-components';
 import { rgba } from 'polished';
 import PropTypes from 'prop-types';
 import { colors, shadows } from '../../constants';
-import ReactDOM, { findDOMNode } from 'react-dom';
 import { offset } from '../../utils';
 
 /*
@@ -22,15 +22,16 @@ import { offset } from '../../utils';
 
 const TriggerWrapper = styled.div`
   display: inline-flex;
-  width: ${(props) => props.size ? `${props.size}px` : 'auto'};
+  width: ${props => (props.size ? `${props.size}px` : 'auto')};
 `;
 
-class DropdownTrigger extends Component {
-  render() {
-    const { children, ...other } = this.props;
-    return <TriggerWrapper {...other}>{children}</TriggerWrapper>;
-  }
-}
+const DropdownTrigger = ({ children, ...other }) => (
+  <TriggerWrapper {...other}>{children}</TriggerWrapper>
+);
+
+DropdownTrigger.propTypes = {
+  children: PropTypes.node,
+};
 
 DropdownTrigger.displayName = 'Dropdown.Trigger';
 
@@ -61,10 +62,10 @@ const DropdownContent = styled.div`
   background: ${colors.white};
   box-shadow: ${shadows.shadow8};
   display: inline-flex;
-  left: ${(props) => `${props.position.left}px`};
-  top: ${(props) => `${props.position.top + props.position.height + 5}px`};
+  left: ${props => `${props.position.left}px`};
+  top: ${props => `${props.position.top + props.position.height + 5}px`};
   position: absolute;
-  width: ${(props) => props.size ? `${props.size}px` : 'auto'};
+  width: ${props => (props.size ? `${props.size}px` : 'auto')};
   min-width: 200px;
 `;
 
@@ -133,10 +134,8 @@ const DropdownItem = styled.button`
 `;
 DropdownItem.displayName = 'Dropdown.Item';
 
-const DropdownMenu = ({ children, ...other }) => {
-  const items = React.Children.map(children, (child) => {
-    return <StyledListItem>{child}</StyledListItem>;
-  });
+const DropdownMenu = ({ children }) => {
+  const items = React.Children.map(children, child => <StyledListItem>{child}</StyledListItem>);
 
   return <StyledList>{items}</StyledList>;
 };
@@ -145,6 +144,10 @@ DropdownMenu.displayName = 'Dropdown.Menu';
 const DropdownWrapper = styled.div`
   position: relative;
 `;
+
+DropdownMenu.propTypes = {
+  children: PropTypes.node,
+};
 
 class Dropdown extends Component {
   static Trigger = DropdownTrigger;
@@ -156,7 +159,7 @@ class Dropdown extends Component {
   static Timeout = 500;
 
   state = {
-    active: false
+    active: false,
   };
 
   constructor(props) {
@@ -176,8 +179,8 @@ class Dropdown extends Component {
     window.removeEventListener('touchstart', this.onWindowClick);
   }
 
-  onWindowClick = (event) => {
-    const dropdownElement = findDOMNode(this);
+  onWindowClick = event => {
+    const dropdownElement = findDOMNode(this); // eslint-disable-line react/no-find-dom-node
     const { active } = this.state;
 
     if (
@@ -189,10 +192,8 @@ class Dropdown extends Component {
     }
   };
 
-  updateTo = (to) => {
-    this.setState((state) => {
-      return { ...state, active: to };
-    });
+  updateTo = to => {
+    this.setState(state => ({ ...state, active: to }));
   };
 
   toggle = () => {
@@ -221,29 +222,29 @@ class Dropdown extends Component {
     return (
       <Node
         data-component="Dropdown"
-        innerRef={(node) => {
+        innerRef={node => {
           this.node = node;
         }}
       >
-        {React.Children.map(children, (child) => {
+        {React.Children.map(children, child => {
           let element = null;
           if (child.type.displayName === 'Dropdown.Trigger') {
             element = React.cloneElement(child, {
               'data-component': 'Dropdown.Trigger',
-              onClick: (e) => (action === 'click' ? this.toggle() : null),
-              onMouseEnter: (e) => (action === 'over' ? this.show() : null),
-              onMouseLeave: (e) =>
-                action === 'over' ? this.tryToHide() : null,
-              size: size
+              onClick: () => (action === 'click' ? this.toggle() : null),
+              onMouseEnter: () => (action === 'over' ? this.show() : null),
+              onMouseLeave: () =>
+                (action === 'over' ? this.tryToHide() : null),
+              size,
             });
           } else if (child.type.displayName === 'Dropdown.Content' && active) {
             element = React.cloneElement(child, {
               'data-component': 'Dropdown.Content',
               node: this.node,
-              onMouseEnter: (e) => (action === 'over' ? this.show() : null),
-              onMouseLeave: (e) =>
-                action === 'over' ? this.tryToHide() : null,
-              size: size
+              onMouseEnter: () => (action === 'over' ? this.show() : null),
+              onMouseLeave: () =>
+                (action === 'over' ? this.tryToHide() : null),
+              size,
             });
           }
           return element;
@@ -255,13 +256,14 @@ class Dropdown extends Component {
 
 Dropdown.defaultProps = {
   action: 'click',
-  as: 'div'
+  as: 'div',
 };
 
 Dropdown.propTypes = {
   action: PropTypes.oneOf(['over', 'click']),
   as: PropTypes.oneOf(['div', 'span']),
-  size: PropTypes.number
+  children: PropTypes.node,
+  size: PropTypes.number,
 };
 
 export default Dropdown;

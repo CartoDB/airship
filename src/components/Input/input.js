@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
-import { darken, lighten, rgba } from 'polished';
+import { rgba } from 'polished';
 import { colors } from '../../constants';
 import AlertIcon from '../Icons/alert';
-import Text from '../Typography/text';
 
 const Wrapper = styled.label`
   display: block;

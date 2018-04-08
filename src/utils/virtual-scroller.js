@@ -23,24 +23,23 @@ export default function() {
   let viewportHeight = 0;
   let visibleRows = 0;
   let delta = 0;
-  const dispatchFn = dispatch('pageDown','pageUp');
-
+  const dispatchFn = dispatch('pageDown', 'pageUp');
 
 
   function virtualscroller(container) {
     function render(resize) {
       if (resize) {
-        viewportHeight = parseInt(viewport.style('height'));
+        viewportHeight = parseInt(viewport.style('height'), 10);
         visibleRows = Math.ceil(viewportHeight / rowHeight) + 1;
       }
 
-      const scrollTop = viewport.node().scrollTop;
+      const { scrollTop } = viewport.node();
       const lastPosition = position;
 
       totalHeight = Math.max(minHeight, (totalRows * rowHeight));
 
       svg
-        .style('height', totalHeight + 'px')
+        .style('height', `${totalHeight}px`)
         .attr('height', totalHeight);
 
       position = Math.floor(scrollTop / rowHeight);
@@ -51,43 +50,43 @@ export default function() {
 
 
     function scrollRenderFrame(scrollPosition) {
-        container.attr('transform', 'translate(0,' + (scrollPosition * rowHeight) + ')');
+      container.attr('transform', `translate(0,${scrollPosition * rowHeight})`);
 
-        const position0 = Math.max(0, Math.min(scrollPosition, totalRows - visibleRows + 1));
-        const position1 = position0 + visibleRows;
+      const position0 = Math.max(0, Math.min(scrollPosition, (totalRows - visibleRows) + 1));
+      const position1 = position0 + visibleRows;
 
-        container.each(function() {
-          const rowSelection = container
-              .selectAll('.row')
-              .data(data.slice(position0, Math.min(position1, totalRows)), dataid);
+      container.each(() => {
+        const rowSelection = container
+          .selectAll('.row')
+          .data(data.slice(position0, Math.min(position1, totalRows)), dataid);
 
-          rowSelection
-            .exit()
-            .call(exit)
-            .remove();
+        rowSelection
+          .exit()
+          .call(exit)
+          .remove();
 
-          rowSelection
-            .enter()
-            .append('g')
-              .attr('class', 'row')
-              .call(enter);
+        rowSelection
+          .enter()
+          .append('g')
+          .attr('class', 'row')
+          .call(enter);
 
-          rowSelection.order();
+        rowSelection.order();
 
-          const rowUpdateSelection = container.selectAll('.row:not(.transitioning)');
+        const rowUpdateSelection = container.selectAll('.row:not(.transitioning)');
 
-          rowUpdateSelection.call(update);
+        rowUpdateSelection.call(update);
 
-          rowUpdateSelection.each(function(d, i) {
-            select(this).attr('transform', d => `translate(0, ${i * rowHeight})`);
-          });
+        rowUpdateSelection.each(function(d, i) {
+          select(this).attr('transform', () => `translate(0, ${i * rowHeight})`);
         });
+      });
 
-        if (position1 > (data.length - visibleRows)) {
-          dispatchFn.call('pageDown', this, { delta });
-        } else if (position0 < visibleRows) {
-          dispatchFn.call('pageUp', this, { delta });
-        }
+      if (position1 > (data.length - visibleRows)) {
+        dispatchFn.call('pageDown', this, { delta });
+      } else if (position0 < visibleRows) {
+        dispatchFn.call('pageUp', this, { delta });
+      }
     }
 
     virtualscroller.render = render;
@@ -97,7 +96,7 @@ export default function() {
   }
 
   // Overriden at runtime
-  virtualscroller.render = function(resize) {};
+  virtualscroller.render = function() {};
 
   virtualscroller.data = function(_, __) {
     if (!arguments.length) return data;
@@ -177,7 +176,7 @@ export default function() {
 
     position = +_;
     if (viewport) {
-        viewport.node().scrollTop = position;
+      viewport.node().scrollTop = position;
     }
 
     return virtualscroller;
@@ -200,8 +199,8 @@ export default function() {
   };
 
   virtualscroller.delta = function() {
-      return delta;
+    return delta;
   };
 
   return virtualscroller;
-};
+}

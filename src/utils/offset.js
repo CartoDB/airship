@@ -6,6 +6,6 @@ export default function offset(el) {
     top: rect.top + scrollTop,
     left: rect.left + scrollLeft,
     width: rect.width,
-    height: rect.height
+    height: rect.height,
   };
 }

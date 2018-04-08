@@ -24,8 +24,8 @@ const dash = keyframes`
 `;
 
 const StyledLoading = styled.div`
-  height: ${(props) => `${props.size}px`};
-  width: ${(props) => `${props.size}px`};
+  height: ${props => `${props.size}px`};
+  width: ${props => `${props.size}px`};
   transform: translateZ(0);
 
   svg {
@@ -33,30 +33,26 @@ const StyledLoading = styled.div`
   }
 
   circle {
-    stroke: ${(props) => {
-      return !!props.negative
-        ? 'rgba(255, 255, 255, 1)'
-        : 'rgba(44, 44, 44, 1)';
-    }};
+    stroke: ${props => (props.negative
+    ? 'rgba(255, 255, 255, 1)'
+    : 'rgba(44, 44, 44, 1)')};
     stroke-linecap: round;
     animation: ${dash} 1.5s ease-in-out infinite;
     stroke-width: 4px;
   }
 `;
 
-const Loading = ({ size = 16, negative = false }) => {
-  return (
-    <StyledLoading size={size} negative={negative}>
-      <svg viewBox="0 0 50 50">
-        <circle cx="25" cy="25" r="20" fill="none" />
-      </svg>
-    </StyledLoading>
-  );
-};
+const Loading = ({ size = 16, negative = false }) => (
+  <StyledLoading size={size} negative={negative}>
+    <svg viewBox="0 0 50 50">
+      <circle cx="25" cy="25" r="20" fill="none" />
+    </svg>
+  </StyledLoading>
+);
 
 Loading.propTypes = {
   size: PropTypes.oneOf([16, 32, 48, 64]),
-  negative: PropTypes.bool
+  negative: PropTypes.bool,
 };
 
 export default Loading;

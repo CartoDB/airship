@@ -1,12 +1,12 @@
 import React from 'react';
-import Checkbox from './checkbox';
 import renderer from 'react-test-renderer';
 import { mount } from 'enzyme';
+import Checkbox from './checkbox';
 
 describe('render', () => {
   it('renders without crashing', () => {
     const component = renderer.create(<Checkbox htmlFor="test" value="wadus" />);
-    let tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
 
@@ -16,7 +16,7 @@ describe('render', () => {
         Hola
       </Checkbox>
     );
-    let tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
 
