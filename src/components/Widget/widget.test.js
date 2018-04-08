@@ -1,6 +1,6 @@
 import React from 'react';
-import Widget from './widget';
 import renderer from 'react-test-renderer';
+import Widget from './widget';
 
 describe('render', () => {
   it('renders without crashing', () => {

@@ -1,24 +1,24 @@
 import React from 'react';
-import Range from './range';
 import renderer from 'react-test-renderer';
 import { mount } from 'enzyme';
+import Range from './range';
 
 describe('Range', () => {
   it('renders without crashing', () => {
     const component = renderer.create(<Range />);
-    let tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
 
   it('maxValue', () => {
     const component = renderer.create(<Range maxValue={20} />);
-    let tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
 
   it('minValue', () => {
     const component = renderer.create(<Range minValue={10} maxValue={30} />);
-    let tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
 
@@ -26,7 +26,7 @@ describe('Range', () => {
     const component = renderer.create(
       <Range value={20} minValue={10} maxValue={30} />
     );
-    let tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
 
@@ -34,7 +34,7 @@ describe('Range', () => {
     const component = renderer.create(
       <Range disabled value={20} minValue={10} maxValue={30} />
     );
-    let tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
 

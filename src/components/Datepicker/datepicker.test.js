@@ -1,14 +1,14 @@
 import React from 'react';
-import Datepicker from './datepicker';
 import renderer from 'react-test-renderer';
-import { mount, shallow } from 'enzyme';
+import { mount } from 'enzyme';
+import Datepicker from './datepicker';
 
 describe('render', () => {
   it('renders without crashing', () => {
     const component = renderer.create(
       <Datepicker fromMonth={new Date(2018, 8)} toMonth={new Date(2020, 11)} />
     );
-    let tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
 

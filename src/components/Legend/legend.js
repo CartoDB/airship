@@ -14,12 +14,12 @@ import { shadows, colors } from '../../constants';
 const StyledLegend = styled.div`
   border-radius: 4px;
   background-color: ${colors.ui01};
-  width: ${(props) => (props.small ? 160 : 260)}px;
+  width: ${props => (props.small ? 160 : 260)}px;
   box-shadow: ${shadows.shadow8};
 `;
 
 const StyledPanel = styled.div`
-  padding: ${(props) => (props.small ? `18px 10px` : `26px 20px`)};
+  padding: ${props => (props.small ? '18px 10px' : '26px 20px')};
   position: relative;
 
   img {
@@ -41,22 +41,22 @@ const StyledPanel = styled.div`
   }
 `;
 
-const Legend = ({ children, small, style }) => {
-  return (
-    <StyledLegend small={small} style={style}>
-      {children}
-    </StyledLegend>
-  );
-};
+const Legend = ({ children, small, style }) => (
+  <StyledLegend small={small} style={style}>
+    {children}
+  </StyledLegend>
+);
 
 Legend.Panel = StyledPanel;
 
 Legend.defaultProps = {
-  small: false
+  small: false,
 };
 
 Legend.propTypes = {
-  small: PropTypes.bool
+  children: PropTypes.node,
+  small: PropTypes.bool,
+  style: PropTypes.object,
 };
 
 export default Legend;

@@ -1,8 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import Histogram from './histogram';
-import mockData from './histogram.fixtures'
-
+import mockData from './histogram.fixtures';
 
 describe('<Histogram />', () => {
   describe('render', () => {
@@ -20,7 +19,6 @@ describe('<Histogram />', () => {
     describe('when data changes', () => {
       it('should call the update method or the chart', () => {
         const component = renderer.create(<Histogram data={mockData} />);
-        const tree = component.toJSON();
 
         expect(component.toJSON()).toMatchSnapshot();
 

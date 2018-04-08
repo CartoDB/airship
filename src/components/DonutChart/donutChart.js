@@ -1,11 +1,9 @@
 import { arc, pie } from 'd3-shape';
-import { select, selectAll } from 'd3-selection';
+import { select, selectAll } from 'd3-selection'; // eslint-disable-line
 import { interpolate } from 'd3-interpolate';
-import { transition } from 'd3-transition';
+import { transition } from 'd3-transition'; // eslint-disable-line
 import { rgb } from 'd3-color';
 import { readableNumber, truncate, virtualScroller } from '../../utils';
-
-const PI = Math.PI;
 
 const DEFAULT_OPTIONS = {
   textColor: '#2C2C2C',
@@ -23,36 +21,36 @@ export default class DonutChart {
   }
 
   createChart() {
-    const { colors, data, donutSize, textColor, showLegend } = this.options;
+    const { data, donutSize, textColor, showLegend } = this.options;
     const radius = donutSize / 2;
 
     this.arc = arc()
-        .outerRadius(radius)
-        .innerRadius(radius - 15);
+      .outerRadius(radius)
+      .innerRadius(radius - 15);
 
     this.pie = pie()
-        .sort(null)
-        .value(d => d.value);
+      .sort(null)
+      .value(d => d.value);
 
     const svg = select(this.element)
       .append('svg')
-        .attr('width', donutSize)
-        .attr('height', donutSize)
+      .attr('width', donutSize)
+      .attr('height', donutSize);
 
 
     this.pieChart = svg
       .append('g')
-        .attr('width', donutSize)
-        .attr('height', donutSize)
-        .attr('transform', 'translate(' + radius + ',' + radius + ')');
+      .attr('width', donutSize)
+      .attr('height', donutSize)
+      .attr('transform', `translate(${radius},${radius})`);
 
     this.path = this.pieChart
-        .selectAll('path')
-        .data(this.pie(data))
-        .enter()
-        .append('path');
+      .selectAll('path')
+      .data(this.pie(data))
+      .enter()
+      .append('path');
 
-    this.path.each((d) => {
+    this.path.each(d => {
       this._current = d;
     });
 
@@ -78,14 +76,14 @@ export default class DonutChart {
       .style('font-family', 'Roboto')
       .style('-webkit-font-smoothing', 'antialiased');
 
-    this.path.on('mouseover', function (obj) {
+    this.path.on('mouseover', function(obj) {
       select(this).style('fill', () => rgb(select(this).style('fill')).darker(0.16));
 
       svg.select('text.tooltip-value').text(readableNumber(obj.data.value));
       svg.select('text.tooltip-category').text(truncate(obj.data.name, 14));
     });
 
-    this.path.on('mouseout', function (obj) {
+    this.path.on('mouseout', function() {
       select(this).style('fill', () => rgb(select(this).style('fill')).brighter(0.16));
 
       svg.select('text.tooltip-value').text('');
@@ -102,37 +100,37 @@ export default class DonutChart {
 
     this.legendContainer = select(this.element)
       .append('div')
-        .attr('class', 'legend')
-        .style('width', '95px')
-        .style('height', '136px')
-        .style('overflow-y', 'auto');
+      .attr('class', 'legend')
+      .style('width', '95px')
+      .style('height', '136px')
+      .style('overflow-y', 'auto');
 
     const legendsSVG = this.legendContainer
       .append('svg')
-        .attr('width', 90);
+      .attr('width', 90);
 
     this.legends = legendsSVG
       .append('g');
 
-    const legendEnter = (legendsContainer) => {
+    const legendEnter = legendsContainer => {
       legendsContainer.append('rect')
-          .attr('width', 12)
-          .attr('height', 12)
+        .attr('width', 12)
+        .attr('height', 12);
 
       legendsContainer.append('text')
-          .attr('x', 20)
-          .attr('y', 10)
-          .style('font-size', '12')
-          .style('color', textColor)
-          .style('font-family', 'Roboto')
-          .style('-webkit-font-smoothing', 'antialiased')
-    }
+        .attr('x', 20)
+        .attr('y', 10)
+        .style('font-size', '12')
+        .style('color', textColor)
+        .style('font-family', 'Roboto')
+        .style('-webkit-font-smoothing', 'antialiased');
+    };
 
     const legendUpdate = function(legendsContainer) {
-      legendsContainer.select("rect")
-        .attr('fill', (d, i) => colors[data.indexOf(d)]);
+      legendsContainer.select('rect')
+        .attr('fill', d => colors[data.indexOf(d)]);
 
-      legendsContainer.select("text")
+      legendsContainer.select('text')
         .text(d => truncate(d.name, 10));
     };
 
@@ -167,7 +165,7 @@ export default class DonutChart {
     this.path.transition()
       .duration(750)
       .attr('fill', (d, i) => colors[i])
-      .attrTween('d', this._animateValue.bind(this))
+      .attrTween('d', this._animateValue.bind(this));
   }
 
   _animateValue(newAngle) {

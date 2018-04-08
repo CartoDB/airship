@@ -1,24 +1,22 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const getFont = (props) => {
-  return props.font && props.font === 'mono'
-    ? `Overpass Mono, monospace`
-    : `Roboto, sans-serif`;
-};
+const getFont = props => (props.font && props.font === 'mono'
+  ? 'Overpass Mono, monospace'
+  : 'Roboto, sans-serif');
 
-const getWeight = (props) => {
+const getWeight = props => {
   if (props.font === 'mono') {
     return 400;
   }
-  return props.weight ? (props.weight === 'medium' ? 500 : 400) : 400;
+  return props.weight && props.weight === 'medium' ? 500 : 400;
 };
 
 const BaseText = styled.div`
-  color: ${(props) => props.color};
-  margin: ${(props) => props.margin || 0};
-  font-family: ${(props) => getFont(props)};
-  font-weight: ${(props) => getWeight(props)};
+  color: ${props => props.color};
+  margin: ${props => props.margin || 0};
+  font-family: ${props => getFont(props)};
+  font-weight: ${props => getWeight(props)};
   -webkit-font-smoothing: antialiased;
 `;
 
@@ -27,7 +25,7 @@ BaseText.propTypes = {
   color: PropTypes.string,
   margin: PropTypes.string,
   font: PropTypes.oneOf(['normal', 'mono']),
-  weight: PropTypes.oneOf(['regular', 'medium'])
+  weight: PropTypes.oneOf(['regular', 'medium']),
 };
 
 export default BaseText;

@@ -53,4 +53,4 @@ storiesOf('Checkbox', module)
         Click me!
       </Checkbox>
     </div>
-  ))
+  ));

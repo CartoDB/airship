@@ -39,7 +39,7 @@ const Progress = styled.div`
 
   &::after {
     content: '';
-    width: ${(props) => props.amount}%;
+    width: ${props => props.amount}%;
     height: 4px;
     border-radius: 2px;
     transition: background 0.2s ease;
@@ -56,12 +56,12 @@ const Category = styled.li`
   margin-bottom: 8px;
 
   & > ${Progress}::after {
-    background: ${(props) => props.isOther ? colors.type01 : colors.brand03};
+    background: ${props => (props.isOther ? colors.type01 : colors.brand03)};
   }
 
   &:hover {
     & > ${Progress}::after {
-      background: ${(props) => props.isOther ? lighten(0.4, colors.type01) : darken(0.16, colors.brand03)};
+      background: ${props => (props.isOther ? lighten(0.4, colors.type01) : darken(0.16, colors.brand03))};
     }
   }
 
@@ -120,7 +120,7 @@ class CategoryWidget extends Component {
       <Categories>
         {categories && categories.map(category => {
           const { name, value } = category;
-          const isSelected = selected.length === 0 || selected.includes(category)
+          const isSelected = selected.length === 0 || selected.includes(category);
 
           return (
             <Category
@@ -133,10 +133,10 @@ class CategoryWidget extends Component {
               <Amount>{readableNumber(value)}</Amount>
               <Progress amount={(value / max) * 100} />
             </Category>
-          )
+          );
         })}
       </Categories>
-    )
+    );
   }
 }
 
@@ -150,6 +150,7 @@ CategoryWidget.propTypes = {
     categories: PropTypes.arrayOf(PropTypes.object),
   }),
   onCategoryClick: PropTypes.func,
+  selected: PropTypes.array,
 };
 
 CategoryWidget.defaultProps = {

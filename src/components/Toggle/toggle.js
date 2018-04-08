@@ -3,17 +3,15 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { colors } from '../../constants';
 
-const Check = () => {
-  return (
-    <svg width="10" height="8" xmlns="http://www.w3.org/2000/svg">
-      <path
-        d="M3.315 7.858L.133 4.441a.506.506 0 0 1 0-.683l.643-.684a.437.437 0 0 1 .642 0l2.219 2.393L8.58.141a.437.437 0 0 1 .643 0l.643.683a.504.504 0 0 1 0 .683l-5.91 6.35a.437.437 0 0 1-.642 0"
-        fill="#FFF"
-        fillRule="evenodd"
-      />
-    </svg>
-  );
-};
+const Check = () => (
+  <svg width="10" height="8" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M3.315 7.858L.133 4.441a.506.506 0 0 1 0-.683l.643-.684a.437.437 0 0 1 .642 0l2.219 2.393L8.58.141a.437.437 0 0 1 .643 0l.643.683a.504.504 0 0 1 0 .683l-5.91 6.35a.437.437 0 0 1-.642 0"
+      fill="#FFF"
+      fillRule="evenodd"
+    />
+  </svg>
+);
 
 const StyledToggle = styled.div`
   display: inline-block;
@@ -108,7 +106,7 @@ const StyledLabel = styled.div`
 
 class Toggle extends Component {
   state = {
-    checked: !!this.props.checked
+    checked: !!this.props.checked,
   };
 
   componentWillReceiveProps(nextProps) {
@@ -117,20 +115,15 @@ class Toggle extends Component {
     }
   }
 
-  clickHandler = (e) => {
+  clickHandler = () => {
     const { onChange, disabled } = this.props;
-    !disabled &&
-      this.setState(
-        (state) => {
-          return {
-            ...state,
-            checked: !state.checked
-          };
-        },
-        () => {
-          onChange && onChange(this.state);
-        }
-      );
+
+    if (disabled) return;
+
+    this.setState(
+      state => ({ ...state, checked: !state.checked }),
+      () => onChange && onChange(this.state),
+    );
   };
 
   render() {
@@ -157,8 +150,11 @@ class Toggle extends Component {
 }
 
 Toggle.propTypes = {
+  checked: PropTypes.bool,
+  children: PropTypes.node,
+  disabled: PropTypes.bool,
   htmlFor: PropTypes.string.isRequired,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
 };
 
 export default Toggle;

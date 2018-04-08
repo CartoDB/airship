@@ -24,7 +24,7 @@ class GaugeWidget extends Component {
   };
 
   componentDidMount() {
-    this._chart = new GaugeChart(this._rootNode, this.props)
+    this._chart = new GaugeChart(this.rootNode, this.props);
   }
 
   componentDidUpdate() {
@@ -33,8 +33,8 @@ class GaugeWidget extends Component {
 
   render() {
     return (
-      <div ref={(node) => { this._rootNode = node; }}></div>
-    )
+      <div ref={node => { this.rootNode = node; }} />
+    );
   }
 }
 

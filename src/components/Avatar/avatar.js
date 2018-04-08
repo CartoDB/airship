@@ -6,11 +6,11 @@ import { colors } from '../../constants';
 
 const StyledAvatar = styled.div`
   border-radius: 100%;
-  width: ${(props) => `${props.size}px`};
-  height: ${(props) => `${props.size}px`};
+  width: ${props => `${props.size}px`};
+  height: ${props => `${props.size}px`};
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url(${(props) => props.url});
+  background-image: url(${props => props.url});
   background-color: ${colors.brand03};
 `;
 StyledAvatar.displayName = 'StyledAvatar';
@@ -21,14 +21,14 @@ const StyledLoading = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: ${(props) => `${props.size}px`};
-  height: ${(props) => `${props.size}px`};
+  width: ${props => `${props.size}px`};
+  height: ${props => `${props.size}px`};
 `;
 StyledLoading.displayName = 'StyledLoading';
 
 class Avatar extends Component {
   state = {
-    loaded: false
+    loaded: false,
   };
 
   componentDidMount() {
@@ -37,7 +37,7 @@ class Avatar extends Component {
       this.setState({ loaded: true });
     };
 
-    url === '' ? loaded() : fetch(url).then(loaded);
+    url === '' ? loaded() : fetch(url).then(loaded); // eslint-disable-line no-unused-expressions
   }
 
   render() {
@@ -55,11 +55,11 @@ class Avatar extends Component {
 
 Avatar.propTypes = {
   size: PropTypes.oneOf([24, 32, 48]),
-  url: PropTypes.string.isRequired
+  url: PropTypes.string.isRequired,
 };
 
 Avatar.defaultProps = {
-  size: 24
+  size: 24,
 };
 
 export default Avatar;

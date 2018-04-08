@@ -1,6 +1,6 @@
 import React from 'react';
-import Table from './table';
 import renderer from 'react-test-renderer';
+import Table from './table';
 
 describe('render', () => {
   it('renders without crashing', () => {
@@ -25,7 +25,7 @@ describe('render', () => {
         </Table.Body>
       </Table>
     );
-    let tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
 
@@ -51,7 +51,7 @@ describe('render', () => {
         </Table.Body>
       </Table>
     );
-    let tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
 
@@ -75,7 +75,7 @@ describe('render', () => {
         </Table.Body>
       </Table>
     );
-    let tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
 });

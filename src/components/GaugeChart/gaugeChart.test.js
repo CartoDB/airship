@@ -22,7 +22,7 @@ describe('Gauge Chart', () => {
       describe('when the DOM element is not passed', () => {
         it('throws an error', () => {
           expect(() => {
-            new GaugeChart(undefined, {});
+            new GaugeChart(undefined, {}); // eslint-disable-line
           }).toThrowError('A root container is required');
         });
       });
@@ -36,7 +36,6 @@ describe('Gauge Chart', () => {
       });
 
       it('sets the options to the chart', () => {
-
         expect(chart.options.value).toEqual(MOCK_DATA.value);
         expect(chart.options.maxValue).toEqual(MOCK_DATA.maxValue);
         expect(chart.options.minValue).toEqual(MOCK_DATA.minValue);
@@ -65,6 +64,6 @@ describe('Gauge Chart', () => {
       chart.update({ value: 10 });
 
       expect(chart.options.value).toEqual(10);
-    })
+    });
   });
 });

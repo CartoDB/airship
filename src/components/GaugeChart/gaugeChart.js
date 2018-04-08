@@ -1,9 +1,9 @@
 import { arc } from 'd3-shape';
 import { select } from 'd3-selection';
 import { interpolate } from 'd3-interpolate';
-import { transition } from 'd3-transition';
+import { transition } from 'd3-transition'; // eslint-disable-line
 
-const PI = Math.PI;
+const { PI } = Math;
 
 const DEFAULT_OPTIONS = {
   width: 228,
@@ -40,7 +40,7 @@ export default class Gaugechart {
       .attr('width', this.options.width)
       .attr('height', this.options.height)
       .append('g')
-      .attr('transform', 'translate(' + this.options.width / 2 + ',' + this.options.height + ')')
+      .attr('transform', `translate(${this.options.width / 2},${this.options.height})`);
 
     this.background = svg
       .append('path')
@@ -63,7 +63,7 @@ export default class Gaugechart {
       .style('color', this.options.textColor)
       .style('font-family', 'Roboto')
       .style('-webkit-font-smoothing', 'antialiased')
-      .text(this.options.value)
+      .text(this.options.value);
 
     this.textLabel = svg
       .append('text')
@@ -73,7 +73,7 @@ export default class Gaugechart {
       .style('font-weight', '300')
       .style('color', this.options.textColor)
       .style('font-family', 'Roboto')
-      .text(this.options.label)
+      .text(this.options.label);
 
     this._refresh();
   }
@@ -99,12 +99,12 @@ export default class Gaugechart {
       .call(this._animateValue, numPi, this.arc);
   }
 
-  _animateValue(transition, newAngle, arcFn) {
-    transition.attrTween('d', (d) => {
+  _animateValue = (transition, newAngle, arcFn) => {
+    transition.attrTween('d', d => {
       const interpolateFn = interpolate(d.endAngle, newAngle);
 
-      return (t) => {
-        d.endAngle = interpolateFn(t);
+      return t => {
+        d.endAngle = interpolateFn(t); // eslint-disable-line no-param-reassign
 
         return arcFn(d);
       };

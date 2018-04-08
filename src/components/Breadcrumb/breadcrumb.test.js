@@ -1,7 +1,7 @@
 import React from 'react';
-import Breadcrumb from './breadcrumb';
 import renderer from 'react-test-renderer';
 import { mount } from 'enzyme';
+import Breadcrumb from './breadcrumb';
 
 describe('render', () => {
   it('renders without crashing', () => {
@@ -12,7 +12,7 @@ describe('render', () => {
         <Breadcrumb.Item>Wadus</Breadcrumb.Item>
       </Breadcrumb>
     );
-    let tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
 

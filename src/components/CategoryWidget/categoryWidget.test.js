@@ -14,7 +14,7 @@ describe('<CategoryWidget />', () => {
 
   it('renders with data', () => {
     const component = renderer.create(<CategoryWidget data={mockData} />);
-    let tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
 
@@ -43,10 +43,10 @@ describe('<CategoryWidget />', () => {
 
         expect(clickMock).toHaveBeenCalledWith([
           mockData.categories[0],
-          mockData.categories[1]
+          mockData.categories[1],
         ]);
       });
-    })
+    });
   });
 
   describe('when selected prop is changed', () => {

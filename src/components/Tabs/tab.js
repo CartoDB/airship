@@ -13,7 +13,7 @@ import { colors } from '../../constants';
   </Tabs>
 */
 
-const font = (props) => {
+const font = props => {
   let font = "400 12px/20px 'Roboto'";
   if (props.large) {
     font = "400 16px/24px 'Roboto'";
@@ -21,9 +21,7 @@ const font = (props) => {
   return font;
 };
 
-const shadow = (props) => {
-  return props.large ? '-4px' : '-2px';
-};
+const shadow = props => (props.large ? '-4px' : '-2px');
 
 const StyledList = styled.ul`
   list-style: none;
@@ -56,21 +54,21 @@ const StyledButton = styled.button`
 `;
 StyledButton.displayName = 'StyledButton';
 
-const Tabpanel = ({ children, selected }) => {
-  return selected ? <div>{children}</div> : null;
-};
+const Tabpanel = ({ children, selected }) => (selected ? <div>{children}</div> : null);
 
 Tabpanel.propTypes = {
-  label: PropTypes.string.isRequired
+  children: PropTypes.node,
+  label: PropTypes.string.isRequired,
+  selected: PropTypes.bool,
 };
 Tabpanel.displayName = 'Tabpanel';
 
 class Tabs extends Component {
   static defaultProps = {
-    selected: 0
+    selected: 0,
   };
   initialState = {
-    selected: this.props.selected
+    selected: this.props.selected,
   };
   state = this.initialState;
 
@@ -91,19 +89,15 @@ class Tabs extends Component {
 
   buildNavigation() {
     const { children } = this.props;
-    return React.Children.map(children, (child) => child.props.label);
+    return React.Children.map(children, child => child.props.label);
   }
 
-  setSelected = (label) => {
+  setSelected = label => {
     const index = this.navigation.indexOf(label);
     const { onChange } = this.props;
     this.setState(
-      (state) => {
-        return { ...state, selected: index };
-      },
-      () => {
-        onChange && onChange(this.state);
-      }
+      state => ({ ...state, selected: index }),
+      () => onChange && onChange(this.state),
     );
   };
 
@@ -120,7 +114,7 @@ class Tabs extends Component {
               <li key={label}>
                 <StyledButton
                   className={css}
-                  onClick={(e) => this.setSelected(label)}
+                  onClick={() => this.setSelected(label)}
                   large={large}
                 >
                   {label}
@@ -129,20 +123,19 @@ class Tabs extends Component {
             );
           })}
         </StyledList>
-        {React.Children.map(children, (child, i) => {
-          return React.cloneElement(child, {
-            selected: i === selected
-          });
-        })}
+        {React.Children.map(children, (child, i) => React.cloneElement(child, {
+            selected: i === selected,
+          }))}
       </div>
     );
   }
 }
 
 Tabs.propTypes = {
+  children: PropTypes.node,
   large: PropTypes.bool,
   selected: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
 };
 
 export default Tabs;

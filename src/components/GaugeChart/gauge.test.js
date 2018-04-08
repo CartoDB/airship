@@ -1,19 +1,9 @@
 import React from 'react';
-import Enzyme, { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import Gauge from './gauge';
 import GaugeChart from './gaugeChart';
 
-jest.mock('./gaugeChart')
-
-const MOCK_DATA = {
-  value: 13,
-  maxValue: 100,
-  minValue: 0,
-  label: 'Rick',
-  backgroundColor: '#EEE',
-  foregroundColor: '#FABADA',
-  textColor: '#000',
-};
+jest.mock('./gaugeChart');
 
 describe('<GaugeChart />', () => {
   afterEach(() => {
@@ -32,7 +22,7 @@ describe('<GaugeChart />', () => {
         const wrapper = mount(<Gauge />);
 
         const actual = GaugeChart.mock.calls[0][0];
-        const expected = wrapper.instance()._rootNode;
+        const expected = wrapper.instance().rootNode;
 
         expect(actual).toEqual(expected);
       });

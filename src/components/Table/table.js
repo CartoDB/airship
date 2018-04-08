@@ -50,7 +50,7 @@ const StyledTable = styled.table`
   td {
     padding: 8px 12px;
     border-bottom: 1px solid #d1d5d7;
-    border-right: ${(props) => (props.lined ? '1px solid #d1d5d7' : null)};
+    border-right: ${props => (props.lined ? '1px solid #d1d5d7' : null)};
   }
 
   tr:last-child td {
@@ -64,47 +64,49 @@ const StyledTable = styled.table`
 
   th:last-child,
   td:last-child {
-    border-right: ${(props) => (props.lined ? 0 : null)};
+    border-right: ${props => (props.lined ? 0 : null)};
   }
 `;
 
-const Header = ({ children }) => {
-  return <thead>{children}</thead>;
+const Header = ({ children }) => <thead>{children}</thead>;
+
+Header.propTypes = {
+  children: PropTypes.node,
 };
 
-const HeaderCell = ({ children, ...props }) => {
-  return <th {...props}>{children}</th>;
-};
+const HeaderCell = ({ children, ...props }) => <th {...props}>{children}</th>;
 
 HeaderCell.propTypes = {
+  children: PropTypes.node,
   colSpan: PropTypes.number,
-  rowSpan: PropTypes.number
+  rowSpan: PropTypes.number,
 };
 
-const Body = ({ children }) => {
-  return <tbody>{children}</tbody>;
+const Body = ({ children }) => <tbody>{children}</tbody>;
+
+Body.propTypes = {
+  children: PropTypes.node,
 };
 
-const Row = ({ children }) => {
-  return <tr>{children}</tr>;
+const Row = ({ children }) => <tr>{children}</tr>;
+
+Row.propTypes = {
+  children: PropTypes.node,
 };
 
-const Cell = ({ children, ...props }) => {
-  return <td {...props}>{children}</td>;
-};
+const Cell = ({ children, ...props }) => <td {...props}>{children}</td>;
 
 Cell.propTypes = {
+  children: PropTypes.node,
   colSpan: PropTypes.number,
-  rowSpan: PropTypes.number
+  rowSpan: PropTypes.number,
 };
 
-const Table = ({ children, lined }) => {
-  return (
-    <React.Fragment>
-      <StyledTable lined={lined}>{children}</StyledTable>
-    </React.Fragment>
-  );
-};
+const Table = ({ children, lined }) => (
+  <React.Fragment>
+    <StyledTable lined={lined}>{children}</StyledTable>
+  </React.Fragment>
+);
 
 Table.Header = Header;
 Table.HeaderCell = HeaderCell;
@@ -113,7 +115,8 @@ Table.Row = Row;
 Table.Cell = Cell;
 
 Table.propTypes = {
-  lined: PropTypes.bool
+  children: PropTypes.node,
+  lined: PropTypes.bool,
 };
 
 export default Table;

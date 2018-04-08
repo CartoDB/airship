@@ -112,7 +112,7 @@ class Popup extends Component {
     const imageHeight = this.imageNode.offsetHeight;
     const offset = imageHeight - 18; // Hook height
 
-    this.setState({ offset })
+    this.setState({ offset });
   }
 
   renderWithContent() {
@@ -129,11 +129,14 @@ class Popup extends Component {
 
   renderOnlyImage() {
     const { offset } = this.state;
-    const image = <img
-      src={this.props.image}
-      onLoad={() => this.onImageLoad()}
-      ref={(node) => { this.imageNode = node; }}
-    />;
+    const image = (
+      <img
+        alt=""
+        src={this.props.image}
+        onLoad={() => this.onImageLoad()}
+        ref={node => { this.imageNode = node; }}
+      />
+    );
 
     return (
       <Wrapper>
@@ -142,7 +145,7 @@ class Popup extends Component {
           <ImageHookInner offset={offset}>{image}</ImageHookInner>
         </ImageHook>
       </Wrapper>
-    )
+    );
   }
 
   render() {

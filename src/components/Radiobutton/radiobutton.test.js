@@ -1,12 +1,12 @@
 import React from 'react';
-import Radiobutton from './radiobutton';
 import renderer from 'react-test-renderer';
 import { mount } from 'enzyme';
+import Radiobutton from './radiobutton';
 
 describe('render', () => {
   it('renders without crashing', () => {
     const component = renderer.create(<Radiobutton value="wadus" />);
-    let tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
 
@@ -14,7 +14,7 @@ describe('render', () => {
     const component = renderer.create(
       <Radiobutton value="wadus">Wadus</Radiobutton>
     );
-    let tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
 
@@ -25,7 +25,7 @@ describe('render', () => {
         <Radiobutton value="mundo">Mundo</Radiobutton>
       </Radiobutton.Group>
     );
-    let tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
 
@@ -46,7 +46,6 @@ describe('render', () => {
   });
 
   it('selected', () => {
-    const spy = jest.fn();
     const component = mount(
       <Radiobutton.Group name="wadus" selected="mundo">
         <Radiobutton value="hola">Hola</Radiobutton>

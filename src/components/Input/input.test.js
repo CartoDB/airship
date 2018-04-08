@@ -1,6 +1,6 @@
 import React from 'react';
-import Input from './input';
 import renderer from 'react-test-renderer';
+import Input from './input';
 
 describe('render', () => {
   it('renders without crashing', () => {

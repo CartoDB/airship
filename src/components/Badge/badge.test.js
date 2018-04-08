@@ -1,12 +1,12 @@
 import React from 'react';
-import Badge from './badge';
 import renderer from 'react-test-renderer';
 import { shallow } from 'enzyme';
+import Badge from './badge';
 
 describe('render', () => {
   it('renders without crashing', () => {
     const component = renderer.create(<Badge>Foo</Badge>);
-    let tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
 
@@ -14,7 +14,7 @@ describe('render', () => {
     const component = renderer.create(
       <Badge color="rgba(128, 182, 34, 0.24)">Foo</Badge>
     );
-    let tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
 

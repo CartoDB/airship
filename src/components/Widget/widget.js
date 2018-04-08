@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import SubHeader from '../Typography/subheader';
 import Base from '../Typography/base';
 import { colors } from '../../constants';
 
@@ -25,24 +24,10 @@ const Description = Base.withComponent('p').extend`
   margin-bottom: 12px;
 `;
 
-const Widget = props => {
-  const { children, description, title } = props;
-
-  return (
-    <StyledWidget>
-      {children}
-    </StyledWidget>
-  )
-};
-
-Widget.defaultProps = {
-  title: '',
-  description: '',
-};
+const Widget = props => <StyledWidget>{props.children}</StyledWidget>;
 
 Widget.propTypes = {
-  title: PropTypes.string,
-  description: PropTypes.string,
+  children: PropTypes.node,
 };
 
 Widget.Title = Title;

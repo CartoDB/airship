@@ -1,20 +1,17 @@
 import React from 'react';
-import Popup from './popup';
 import renderer from 'react-test-renderer';
-import { mount } from 'enzyme';
-
-const TEST_IMAGE = '';
+import Popup from './popup';
 
 describe('render', () => {
   it('renders without crashing', () => {
     const component = renderer.create(<Popup />);
-    let tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
 
   it('renders with a different background color', () => {
     const component = renderer.create(<Popup background="#fabada" />);
-    let tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
 
@@ -25,7 +22,7 @@ describe('render', () => {
         <p>General Kenobi</p>
       </Popup>
     );
-    let tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
 
@@ -36,13 +33,13 @@ describe('render', () => {
         <p>General Kenobi</p>
       </Popup>
     );
-    let tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
 
   it('renders with an image only', () => {
     const component = renderer.create(<Popup image="jarjar.jpg" />);
-    let tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
 });

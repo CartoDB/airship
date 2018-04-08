@@ -33,35 +33,29 @@ const StyledControl = styled.ul`
   }
 `;
 
-const Control = ({ up, down, children }) => {
-  return (
-    <StyledControl>
-      <li>
-        <button
-          onClick={(e) => {
-            down();
-          }}
-        >
-          <ChevronLeft width={6} height={12} />
-        </button>
-      </li>
-      <li>{children}</li>
-      <li>
-        <button
-          onClick={(e) => {
-            up();
-          }}
-        >
-          <ChevronRight width={6} height={12} />
-        </button>
-      </li>
-    </StyledControl>
-  );
+const Control = ({ up, down, children }) => (
+  <StyledControl>
+    <li>
+      <button onClick={() => down()}>
+        <ChevronLeft width={6} height={12} />
+      </button>
+    </li>
+    <li>{children}</li>
+    <li>
+      <button onClick={() => up()}>
+        <ChevronRight width={6} height={12} />
+      </button>
+    </li>
+  </StyledControl>
+);
+
+Control.propTypes = {
+  children: PropTypes.node,
+  down: PropTypes.func,
+  up: PropTypes.func,
 };
 
-const Content = ({ children, ...props }) => {
-  return children;
-};
+const Content = ({ children }) => children;
 Content.displayName = 'Steps.Content';
 
 class Steps extends Component {
@@ -69,7 +63,7 @@ class Steps extends Component {
   static Content = Content;
 
   state = {
-    step: this.props.step || 0
+    step: this.props.step || 0,
   };
 
   componentWillReceiveProps(nextProps) {
@@ -80,32 +74,25 @@ class Steps extends Component {
 
   up = () => {
     let { step } = this.state;
-    this.change(++step);
+    this.change(step += 1);
   };
 
   down = () => {
     let { step } = this.state;
-    this.change(--step);
+    this.change(step -= 1);
   };
 
-  change = (to) => {
+  change = to => {
     const { onChange, children } = this.props;
     const content = Children.toArray(children).filter(
-      (child) => child.type.displayName === 'Steps.Content'
+      child => child.type.displayName === 'Steps.Content'
     ).length;
 
-    const next = to < content ? (to < 0 ? content - 1 : to) : 0;
+    const next = to < content ? (to < 0 ? content - 1 : to) : 0; // eslint-disable-line
 
     this.setState(
-      (state) => {
-        return {
-          ...state,
-          step: next
-        };
-      },
-      () => {
-        onChange && onChange(this.state);
-      }
+      state => ({ ...state, step: next }),
+      () => onChange && onChange(this.state),
     );
   };
 
@@ -113,18 +100,20 @@ class Steps extends Component {
     let { step } = this.state;
     const { children } = this.props;
     const content = Children.toArray(children).filter(
-      (child) => child.type.displayName === 'Steps.Content'
+      child => child.type.displayName === 'Steps.Content'
     );
     const current = content.filter((child, index) => index === step);
 
     return (
       <div>
-        {Children.map(children, (child, index) => {
+        {Children.map(children, child => {
           if (child.type.displayName === 'Steps.Header') {
             return (
               <Steps.Header>
                 <div>{child.props.children}</div>
                 <Control up={this.up} down={this.down}>
+                  {/* TODO: Why ++step? */}
+                  {/* eslint-disable-next-line */}
                   {++step} / {content.length}
                 </Control>
               </Steps.Header>
@@ -141,12 +130,13 @@ class Steps extends Component {
 }
 
 Steps.defaultProps = {
-  step: 0
+  step: 0,
 };
 
 Steps.propTypes = {
+  children: PropTypes.node,
+  onChange: PropTypes.func,
   step: PropTypes.number,
-  onChange: PropTypes.func
 };
 
 export default Steps;

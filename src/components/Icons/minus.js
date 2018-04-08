@@ -6,24 +6,22 @@ const MinusIcon = ({
   height = 1,
   color = '#1785fb',
   ...others
-}) => {
-  return (
-    <svg
-      width={width}
-      height={height}
-      fill={color}
-      {...others}
-      viewBox="0 0 12 1"
-    >
-      <path d="M0 0h12v1H0z" />
-    </svg>
-  );
-};
+}) => (
+  <svg
+    width={width}
+    height={height}
+    fill={color}
+    {...others}
+    viewBox="0 0 12 1"
+  >
+    <path d="M0 0h12v1H0z" />
+  </svg>
+);
 
 MinusIcon.propTypes = {
   width: PropTypes.number,
   height: PropTypes.number,
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 export default MinusIcon;

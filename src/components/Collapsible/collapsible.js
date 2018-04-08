@@ -27,9 +27,7 @@ const Header = styled.div`
 `;
 Header.displayName = 'Collapsible.Header';
 
-const Content = ({ children, ...props }) => {
-  return children;
-};
+const Content = ({ children }) => children;
 Content.displayName = 'Collapsible.Content';
 
 class Collapsible extends Component {
@@ -37,7 +35,7 @@ class Collapsible extends Component {
   static Content = Content;
 
   state = {
-    open: !!this.props.open
+    open: !!this.props.open,
   };
 
   componentWillReceiveProps(nextProps) {
@@ -50,15 +48,11 @@ class Collapsible extends Component {
     const { onChange } = this.props;
 
     this.setState(
-      (state) => {
-        return {
-          ...state,
-          open: !state.open
-        };
-      },
-      () => {
-        onChange && onChange(this.state);
-      }
+      state => ({
+        ...state,
+        open: !state.open,
+      }),
+      () => onChange && onChange(this.state)
     );
   };
 
@@ -68,16 +62,12 @@ class Collapsible extends Component {
 
     return (
       <div>
-        {Children.map(children, (child) => {
+        {Children.map(children, child => {
           if (child.type.displayName === 'Collapsible.Header') {
             return (
               <Collapsible.Header>
                 <div>{child.props.children}</div>
-                <button
-                  onClick={(e) => {
-                    this.toggle();
-                  }}
-                >
+                <button onClick={() => this.toggle()} >
                   {open ? <MinusIcon /> : <PlusIcon />}
                 </button>
               </Collapsible.Header>
@@ -92,12 +82,13 @@ class Collapsible extends Component {
 }
 
 Collapsible.defaultProps = {
-  open: true
+  open: true,
 };
 
 Collapsible.propTypes = {
+  children: PropTypes.node,
+  onChange: PropTypes.func,
   open: PropTypes.bool,
-  onChange: PropTypes.func
 };
 
 export default Collapsible;

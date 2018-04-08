@@ -8,4 +8,4 @@ export default (str, length) => {
   const string = str.substr(0, length).trim();
 
   return `${string}…`;
-}
+};
