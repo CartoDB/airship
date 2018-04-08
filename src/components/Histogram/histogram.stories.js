@@ -12,7 +12,7 @@ class HistogramUpdated extends React.Component {
 
   changeState = () => {
     this.setState(prevState => ({
-      data: prevState.data.length !== 4 ? mockData.slice(0, 4) : mockData
+      data: prevState.data.length !== 3 ? mockData.slice(2, 5) : mockData
     }))
   }
 

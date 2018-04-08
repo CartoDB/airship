@@ -1,40 +1,17 @@
 import React from 'react';
-import Enzyme, { shallow, mount } from 'enzyme';
-import Donut from './donut';
-import DonutChart from './donutChart';
-import mockData from './donut.fixtures'
+import renderer from 'react-test-renderer';
+import Histogram from './histogram';
+import mockData from './histogram.fixtures'
 
-jest.mock('./donutChart')
 
-describe('<DonutChart />', () => {
-  afterEach(() => {
-    DonutChart.mockClear();
-  });
-
+describe('<Histogram />', () => {
   describe('render', () => {
     describe('when data passed in', () => {
-      it('should call the create method or the chart', () => {
-        mount(<Donut />);
+      it('renders the correct amount of bars', () => {
+        const component = renderer.create(<Histogram data={mockData} />);
+        const tree = component.toJSON();
 
-        expect(DonutChart).toHaveBeenCalledTimes(1);
-      });
-
-      it('should call the create method or the chart with the container as the first argument', () => {
-        const wrapper = mount(<Donut />);
-
-        const actual = DonutChart.mock.calls[0][0];
-        const expected = wrapper.instance()._rootNode;
-
-        expect(actual).toEqual(expected);
-      });
-
-      it('should call the create method or the chart with the configuration object as the second argument', () => {
-        const wrapper = mount(<Donut data={mockData} />);
-
-        const actual = DonutChart.mock.calls[0][1];
-        const expected = wrapper.instance().props;
-
-        expect(actual).toEqual(expected);
+        expect(tree).toMatchSnapshot();
       });
     });
   });
@@ -42,15 +19,15 @@ describe('<DonutChart />', () => {
   describe('update', () => {
     describe('when data changes', () => {
       it('should call the update method or the chart', () => {
-        const wrapper = mount(<Donut data={mockData} />);
+        const component = renderer.create(<Histogram data={mockData} />);
+        const tree = component.toJSON();
+
+        expect(component.toJSON()).toMatchSnapshot();
 
         // Changing properties should trigger a componentDidUpdate
-        wrapper.setProps({ data:[] });
+        component.update(<Histogram data={[]} />);
 
-        const actual = DonutChart.mock.instances[0].update.mock.calls[0][0];
-        const expected = wrapper.instance().props;
-
-        expect(actual).toEqual(expected);
+        expect(component.toJSON()).toMatchSnapshot();
       });
     });
   });
