@@ -1,27 +1,17 @@
 export default [
   {
-    name: 'Low',
-    value: 37320,
-    agg: false,
+    "group": false,
+    "name": "Entire home/apt",
+    "value": 14900727
   },
   {
-    name: 'Recovery',
-    value: 31820,
-    agg: false,
+    "group": false,
+    "name": "Private room",
+    "value": 11432784
   },
   {
-    name: 'Anaerobic',
-    value: 25650,
-    agg: false,
-  },
-  {
-    name: 'Aerobic',
-    value: 14000,
-    agg: false,
-  },
-  {
-    name: 'VO2 Max',
-    value: 7270,
-    agg: false,
-  },
+    "group": false,
+    "name": "Shared room",
+    "value": 427465
+  }
 ];

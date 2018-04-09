@@ -86,7 +86,7 @@ class Histogram extends Component {
       .domain([0, max(data, d => d.value)]);
 
     this.xScale
-      .domain(data.map(d => d.max));
+      .domain(data.map(d => d.name));
 
     this.yAxisSelection
       .call(this.yAxis);
@@ -139,7 +139,6 @@ class Histogram extends Component {
       .merge(this.bars)
       .attr('class', 'bar')
       .attr('y', height)
-      .attr('height', 0)
       .attr('x', d => this.xScale(d.name))
       .attr('width', () => this.xScale.bandwidth())
       .transition()

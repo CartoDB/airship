@@ -52,18 +52,20 @@ const Progress = styled.div`
 const Category = styled.li`
   display: flex;
   flex-wrap: wrap;
-  cursor: pointer;
+  cursor: ${props => props.onCategoryClick ? 'pointer' : 'default'};
   margin-bottom: 8px;
 
   & > ${Progress}::after {
     background: ${props => (props.isOther ? colors.type01 : colors.brand03)};
   }
 
-  &:hover {
-    & > ${Progress}::after {
-      background: ${props => (props.isOther ? lighten(0.4, colors.type01) : darken(0.16, colors.brand03))};
+  ${props => props.onCategoryClick && css`
+    &:hover {
+      & > ${Progress}::after {
+        background: ${props => (props.isOther ? lighten(0.4, colors.type01) : darken(0.16, colors.brand03))};
+      }
     }
-  }
+  `};
 
   ${props => !props.selected && css`
     ${Amount},
@@ -75,11 +77,13 @@ const Category = styled.li`
       background: ${colors.ui03};
     }
 
-    &:hover {
-      & > ${Progress}::after {
-        background: ${colors.ui04}
+    ${props => props.onCategoryClick && `
+      &:hover {
+        & > ${Progress}::after {
+          background: ${colors.ui04}
+        }
       }
-    }
+    `};
   `}
 `;
 

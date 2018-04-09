@@ -48,7 +48,8 @@ export default class DonutChart {
       .selectAll('path')
       .data(this.pie(data))
       .enter()
-      .append('path');
+      .append('path')
+      .style('cursor', 'pointer');
 
     this.path.each(d => {
       this._current = d;
