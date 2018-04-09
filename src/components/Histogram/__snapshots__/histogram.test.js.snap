@@ -6,7 +6,7 @@ exports[`<Histogram /> render when data passed in renders the correct amount of 
 }
 
 .c0 .tick line {
-  opacity: 0.3;
+  opacity: 0.1;
 }
 
 .c0 .tick text {
@@ -107,7 +107,7 @@ exports[`<Histogram /> update when data changes should call the update method or
 }
 
 .c0 .tick line {
-  opacity: 0.3;
+  opacity: 0.1;
 }
 
 .c0 .tick text {
@@ -208,7 +208,7 @@ exports[`<Histogram /> update when data changes should call the update method or
 }
 
 .c0 .tick line {
-  opacity: 0.3;
+  opacity: 0.1;
 }
 
 .c0 .tick text {

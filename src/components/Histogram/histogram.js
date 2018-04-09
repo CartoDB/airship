@@ -13,7 +13,7 @@ const Svg = styled.svg`
 
   .tick {
     line {
-      opacity: 0.3;
+      opacity: 0.1;
     }
 
     text {
