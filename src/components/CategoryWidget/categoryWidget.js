@@ -56,13 +56,13 @@ const Category = styled.li`
   margin-bottom: 8px;
 
   & > ${Progress}::after {
-    background: ${props => (props.isOther ? colors.type01 : colors.brand03)};
+    background: ${props => (props.isOther ? colors.type01 : props.color)};
   }
 
   ${props => props.onCategoryClick && css`
     &:hover {
       & > ${Progress}::after {
-        background: ${props => (props.isOther ? lighten(0.4, colors.type01) : darken(0.16, colors.brand03))};
+        background: ${props => (props.isOther ? lighten(0.4, colors.type01) : darken(0.16, props.color))};
       }
     }
   `};
@@ -77,13 +77,11 @@ const Category = styled.li`
       background: ${colors.ui03};
     }
 
-    ${props => props.onCategoryClick && `
-      &:hover {
-        & > ${Progress}::after {
-          background: ${colors.ui04}
-        }
+    &:hover {
+      & > ${Progress}::after {
+        background: ${colors.ui04}
       }
-    `};
+    }
   `}
 `;
 
@@ -117,12 +115,12 @@ class CategoryWidget extends Component {
   }
 
   render() {
-    const { categories, max } = this.props.data;
+    const { color, categories, max } = this.props;
     const { selected } = this.state;
 
     return (
       <Categories>
-        {categories && categories.map(category => {
+        {categories.map(category => {
           const { name, value } = category;
           const isSelected = selected.length === 0 || selected.includes(category);
 
@@ -132,6 +130,7 @@ class CategoryWidget extends Component {
               onClick={() => this.onCategoryClick(category)}
               selected={isSelected}
               isOther={name === CATEGORY_OTHER}
+              color={color}
             >
               <Name>{name}</Name>
               <Amount>{readableNumber(value)}</Amount>
@@ -145,20 +144,17 @@ class CategoryWidget extends Component {
 }
 
 CategoryWidget.propTypes = {
-  data: PropTypes.shape({
-    count: PropTypes.number,
-    max: PropTypes.number,
-    min: PropTypes.number,
-    nulls: PropTypes.number,
-    operation: PropTypes.string,
-    categories: PropTypes.arrayOf(PropTypes.object),
-  }),
+  categories: PropTypes.arrayOf(PropTypes.object),
+  color: PropTypes.string,
+  max: PropTypes.number,
   onCategoryClick: PropTypes.func,
   selected: PropTypes.array,
 };
 
 CategoryWidget.defaultProps = {
-  data: {},
+  color: colors.brand03,
+  categories: [],
+  selected: [],
 };
 
 export default CategoryWidget;

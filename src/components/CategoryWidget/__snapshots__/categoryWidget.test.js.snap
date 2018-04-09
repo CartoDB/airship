@@ -1,5 +1,302 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`<CategoryWidget /> overrides the category color 1`] = `
+.c0 {
+  padding: 0;
+  list-style: none;
+}
+
+.c3 {
+  margin: 0;
+  font-family: Roboto,sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -webkit-flex: 30%;
+  -ms-flex: 30%;
+  flex: 30%;
+  text-align: right;
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.c2 {
+  margin: 0;
+  font-family: Roboto,sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -webkit-flex: 70%;
+  -ms-flex: 70%;
+  flex: 70%;
+  font-size: 12px;
+  line-height: 20px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: left;
+}
+
+.c5 {
+  height: 4px;
+  width: 100%;
+  border-radius: 2px;
+  background: #F5F5F5;
+  position: relative;
+}
+
+.c5::after {
+  content: '';
+  width: NaN%;
+  height: 4px;
+  border-radius: 2px;
+  -webkit-transition: background 0.2s ease;
+  transition: background 0.2s ease;
+  position: absolute;
+  max-width: 100%;
+  left: 0;
+}
+
+.ciKsuu > .c4::after {
+  background: #47DB99;
+}
+
+.c6 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  cursor: default;
+  margin-bottom: 8px;
+}
+
+.c6 > .c4::after {
+  background: #2C2C2C;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  cursor: default;
+  margin-bottom: 8px;
+}
+
+.c1 > .c4::after {
+  background: #FABADA;
+}
+
+<ul
+  className="c0"
+>
+  <li
+    className="c1"
+    color="#FABADA"
+    onClick={[Function]}
+    selected={true}
+  >
+    <p
+      className="c2"
+    >
+      China
+    </p>
+    <span
+      className="c3"
+    >
+      359.0M
+    </span>
+    <div
+      className="c4 c5"
+    />
+  </li>
+  <li
+    className="c1"
+    color="#FABADA"
+    onClick={[Function]}
+    selected={true}
+  >
+    <p
+      className="c2"
+    >
+      United States of America
+    </p>
+    <span
+      className="c3"
+    >
+      236.5M
+    </span>
+    <div
+      className="c4 c5"
+    />
+  </li>
+  <li
+    className="c1"
+    color="#FABADA"
+    onClick={[Function]}
+    selected={true}
+  >
+    <p
+      className="c2"
+    >
+      India
+    </p>
+    <span
+      className="c3"
+    >
+      204.3M
+    </span>
+    <div
+      className="c4 c5"
+    />
+  </li>
+  <li
+    className="c1"
+    color="#FABADA"
+    onClick={[Function]}
+    selected={true}
+  >
+    <p
+      className="c2"
+    >
+      Brazil
+    </p>
+    <span
+      className="c3"
+    >
+      128.2M
+    </span>
+    <div
+      className="c4 c5"
+    />
+  </li>
+  <li
+    className="c1"
+    color="#FABADA"
+    onClick={[Function]}
+    selected={true}
+  >
+    <p
+      className="c2"
+    >
+      Japan
+    </p>
+    <span
+      className="c3"
+    >
+      89.7M
+    </span>
+    <div
+      className="c4 c5"
+    />
+  </li>
+  <li
+    className="c1"
+    color="#FABADA"
+    onClick={[Function]}
+    selected={true}
+  >
+    <p
+      className="c2"
+    >
+      Russia
+    </p>
+    <span
+      className="c3"
+    >
+      80.6M
+    </span>
+    <div
+      className="c4 c5"
+    />
+  </li>
+  <li
+    className="c1"
+    color="#FABADA"
+    onClick={[Function]}
+    selected={true}
+  >
+    <p
+      className="c2"
+    >
+      Mexico
+    </p>
+    <span
+      className="c3"
+    >
+      67.4M
+    </span>
+    <div
+      className="c4 c5"
+    />
+  </li>
+  <li
+    className="c1"
+    color="#FABADA"
+    onClick={[Function]}
+    selected={true}
+  >
+    <p
+      className="c2"
+    >
+      Indonesia
+    </p>
+    <span
+      className="c3"
+    >
+      48.4M
+    </span>
+    <div
+      className="c4 c5"
+    />
+  </li>
+  <li
+    className="c1"
+    color="#FABADA"
+    onClick={[Function]}
+    selected={true}
+  >
+    <p
+      className="c2"
+    >
+      Pakistan
+    </p>
+    <span
+      className="c3"
+    >
+      41.4M
+    </span>
+    <div
+      className="c4 c5"
+    />
+  </li>
+  <li
+    className="c6"
+    color="#FABADA"
+    onClick={[Function]}
+    selected={true}
+  >
+    <p
+      className="c2"
+    >
+      Other
+    </p>
+    <span
+      className="c3"
+    >
+      1.1G
+    </span>
+    <div
+      className="c4 c5"
+    />
+  </li>
+</ul>
+`;
+
 exports[`<CategoryWidget /> renders with data 1`] = `
 .c0 {
   padding: 0;
@@ -45,187 +342,7 @@ exports[`<CategoryWidget /> renders with data 1`] = `
 
 .c5::after {
   content: '';
-  width: 100%;
-  height: 4px;
-  border-radius: 2px;
-  -webkit-transition: background 0.2s ease;
-  transition: background 0.2s ease;
-  position: absolute;
-  max-width: 100%;
-  left: 0;
-}
-
-.c6 {
-  height: 4px;
-  width: 100%;
-  border-radius: 2px;
-  background: #F5F5F5;
-  position: relative;
-}
-
-.c6::after {
-  content: '';
-  width: 65.87586116814657%;
-  height: 4px;
-  border-radius: 2px;
-  -webkit-transition: background 0.2s ease;
-  transition: background 0.2s ease;
-  position: absolute;
-  max-width: 100%;
-  left: 0;
-}
-
-.c7 {
-  height: 4px;
-  width: 100%;
-  border-radius: 2px;
-  background: #F5F5F5;
-  position: relative;
-}
-
-.c7::after {
-  content: '';
-  width: 56.91398756809546%;
-  height: 4px;
-  border-radius: 2px;
-  -webkit-transition: background 0.2s ease;
-  transition: background 0.2s ease;
-  position: absolute;
-  max-width: 100%;
-  left: 0;
-}
-
-.c8 {
-  height: 4px;
-  width: 100%;
-  border-radius: 2px;
-  background: #F5F5F5;
-  position: relative;
-}
-
-.c8::after {
-  content: '';
-  width: 35.70721516759078%;
-  height: 4px;
-  border-radius: 2px;
-  -webkit-transition: background 0.2s ease;
-  transition: background 0.2s ease;
-  position: absolute;
-  max-width: 100%;
-  left: 0;
-}
-
-.c9 {
-  height: 4px;
-  width: 100%;
-  border-radius: 2px;
-  background: #F5F5F5;
-  position: relative;
-}
-
-.c9::after {
-  content: '';
-  width: 24.987519762401334%;
-  height: 4px;
-  border-radius: 2px;
-  -webkit-transition: background 0.2s ease;
-  transition: background 0.2s ease;
-  position: absolute;
-  max-width: 100%;
-  left: 0;
-}
-
-.c10 {
-  height: 4px;
-  width: 100%;
-  border-radius: 2px;
-  background: #F5F5F5;
-  position: relative;
-}
-
-.c10::after {
-  content: '';
-  width: 22.461835133865822%;
-  height: 4px;
-  border-radius: 2px;
-  -webkit-transition: background 0.2s ease;
-  transition: background 0.2s ease;
-  position: absolute;
-  max-width: 100%;
-  left: 0;
-}
-
-.c11 {
-  height: 4px;
-  width: 100%;
-  border-radius: 2px;
-  background: #F5F5F5;
-  position: relative;
-}
-
-.c11::after {
-  content: '';
-  width: 18.769159056270965%;
-  height: 4px;
-  border-radius: 2px;
-  -webkit-transition: background 0.2s ease;
-  transition: background 0.2s ease;
-  position: absolute;
-  max-width: 100%;
-  left: 0;
-}
-
-.c12 {
-  height: 4px;
-  width: 100%;
-  border-radius: 2px;
-  background: #F5F5F5;
-  position: relative;
-}
-
-.c12::after {
-  content: '';
-  width: 13.490218048107968%;
-  height: 4px;
-  border-radius: 2px;
-  -webkit-transition: background 0.2s ease;
-  transition: background 0.2s ease;
-  position: absolute;
-  max-width: 100%;
-  left: 0;
-}
-
-.c13 {
-  height: 4px;
-  width: 100%;
-  border-radius: 2px;
-  background: #F5F5F5;
-  position: relative;
-}
-
-.c13::after {
-  content: '';
-  width: 11.521249598950224%;
-  height: 4px;
-  border-radius: 2px;
-  -webkit-transition: background 0.2s ease;
-  transition: background 0.2s ease;
-  position: absolute;
-  max-width: 100%;
-  left: 0;
-}
-
-.c15 {
-  height: 4px;
-  width: 100%;
-  border-radius: 2px;
-  background: #F5F5F5;
-  position: relative;
-}
-
-.c15::after {
-  content: '';
-  width: 308.41852484133324%;
+  width: NaN%;
   height: 4px;
   border-radius: 2px;
   -webkit-transition: background 0.2s ease;
@@ -243,7 +360,7 @@ exports[`<CategoryWidget /> renders with data 1`] = `
   -webkit-flex-wrap: wrap;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  cursor: pointer;
+  cursor: default;
   margin-bottom: 8px;
 }
 
@@ -251,11 +368,7 @@ exports[`<CategoryWidget /> renders with data 1`] = `
   background: #47DB99;
 }
 
-.c1:hover > .c4::after {
-  background: #22ae70;
-}
-
-.c14 {
+.c6 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -263,16 +376,12 @@ exports[`<CategoryWidget /> renders with data 1`] = `
   -webkit-flex-wrap: wrap;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  cursor: pointer;
+  cursor: default;
   margin-bottom: 8px;
 }
 
-.c14 > .c4::after {
+.c6 > .c4::after {
   background: #2C2C2C;
-}
-
-.c14:hover > .c4::after {
-  background: #929292;
 }
 
 <ul
@@ -280,6 +389,7 @@ exports[`<CategoryWidget /> renders with data 1`] = `
 >
   <li
     className="c1"
+    color="#47DB99"
     onClick={[Function]}
     selected={true}
   >
@@ -299,6 +409,7 @@ exports[`<CategoryWidget /> renders with data 1`] = `
   </li>
   <li
     className="c1"
+    color="#47DB99"
     onClick={[Function]}
     selected={true}
   >
@@ -313,11 +424,12 @@ exports[`<CategoryWidget /> renders with data 1`] = `
       236.5M
     </span>
     <div
-      className="c4 c6"
+      className="c4 c5"
     />
   </li>
   <li
     className="c1"
+    color="#47DB99"
     onClick={[Function]}
     selected={true}
   >
@@ -332,11 +444,12 @@ exports[`<CategoryWidget /> renders with data 1`] = `
       204.3M
     </span>
     <div
-      className="c4 c7"
+      className="c4 c5"
     />
   </li>
   <li
     className="c1"
+    color="#47DB99"
     onClick={[Function]}
     selected={true}
   >
@@ -351,11 +464,12 @@ exports[`<CategoryWidget /> renders with data 1`] = `
       128.2M
     </span>
     <div
-      className="c4 c8"
+      className="c4 c5"
     />
   </li>
   <li
     className="c1"
+    color="#47DB99"
     onClick={[Function]}
     selected={true}
   >
@@ -370,11 +484,12 @@ exports[`<CategoryWidget /> renders with data 1`] = `
       89.7M
     </span>
     <div
-      className="c4 c9"
+      className="c4 c5"
     />
   </li>
   <li
     className="c1"
+    color="#47DB99"
     onClick={[Function]}
     selected={true}
   >
@@ -389,11 +504,12 @@ exports[`<CategoryWidget /> renders with data 1`] = `
       80.6M
     </span>
     <div
-      className="c4 c10"
+      className="c4 c5"
     />
   </li>
   <li
     className="c1"
+    color="#47DB99"
     onClick={[Function]}
     selected={true}
   >
@@ -408,11 +524,12 @@ exports[`<CategoryWidget /> renders with data 1`] = `
       67.4M
     </span>
     <div
-      className="c4 c11"
+      className="c4 c5"
     />
   </li>
   <li
     className="c1"
+    color="#47DB99"
     onClick={[Function]}
     selected={true}
   >
@@ -427,11 +544,12 @@ exports[`<CategoryWidget /> renders with data 1`] = `
       48.4M
     </span>
     <div
-      className="c4 c12"
+      className="c4 c5"
     />
   </li>
   <li
     className="c1"
+    color="#47DB99"
     onClick={[Function]}
     selected={true}
   >
@@ -446,11 +564,12 @@ exports[`<CategoryWidget /> renders with data 1`] = `
       41.4M
     </span>
     <div
-      className="c4 c13"
+      className="c4 c5"
     />
   </li>
   <li
-    className="c14"
+    className="c6"
+    color="#47DB99"
     onClick={[Function]}
     selected={true}
   >
@@ -465,7 +584,7 @@ exports[`<CategoryWidget /> renders with data 1`] = `
       1.1G
     </span>
     <div
-      className="c4 c15"
+      className="c4 c5"
     />
   </li>
 </ul>

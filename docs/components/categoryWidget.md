@@ -1,8 +1,6 @@
 The category widget shows the categories returned by [CARTO.js](https://carto.com/documentation/cartojs/) with the amount and the percentage based on the maximum value
 
 ```react
-state: { selected: [] }
----
 <Widget>
   <Widget.Title>Populated Places</Widget.Title>
   <Widget.Description>All selected</Widget.Description>
@@ -32,16 +30,29 @@ state: { selected: [] }
 </Widget>
 ```
 
+You can override the color of the progress bar:
+
+```react
+<Widget>
+  <Widget.Title>Populated Places</Widget.Title>
+  <Widget.Description>All selected</Widget.Description>
+  <CategoryWidget data={data} color="#3AB5F0" />
+</Widget>
+```
+
 ### Props
 
-#### **data** (object)
+#### **categories** (array)
+Array of categories, each category should include a `name` and a `value`.
 
-Data returned by [CARTO.js](https://carto.com/documentation/cartojs/docs/#cartodataviewcategorydata).
+#### **max** (number)
+Maximum value, used to calculate the `%` in the progress bar.
+
+#### **color** (string)
+Overrides the color of the progress bar.
 
 #### **onCategoryClick** (function)
-
 Returns an array with the selected categories.
 
 #### **selected** (array)
-
 Allows pass the selected categories to the widget, useful when we want to set an initial state, or clear the selected categories.

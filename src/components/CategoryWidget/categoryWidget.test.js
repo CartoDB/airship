@@ -13,15 +13,28 @@ describe('<CategoryWidget />', () => {
   });
 
   it('renders with data', () => {
-    const component = renderer.create(<CategoryWidget data={mockData} />);
+    const component = renderer.create(<CategoryWidget categories={mockData.categories} />);
     const tree = component.toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  it('overrides the category color', () => {
+    const component = renderer.create(
+      <CategoryWidget
+        categories={mockData.categories}
+        color="#FABADA"
+      />
+    );
+    const tree = component.toJSON();
+
     expect(tree).toMatchSnapshot();
   });
 
   describe('when a category is clicked', () => {
     describe('when onCategoryClick is provided', () => {
       it('adds the category to the state', () => {
-        const component = mount(<CategoryWidget data={mockData} onCategoryClick={() => {}} />);
+        const component = mount(<CategoryWidget categories={mockData.categories} onCategoryClick={() => {}} />);
         const instance = component.instance();
 
         expect(instance.state.selected.length).toEqual(0);
@@ -35,7 +48,7 @@ describe('<CategoryWidget />', () => {
 
       it('calls onCategoryClick with the selected categories', () => {
         const clickMock = jest.fn();
-        const component = mount(<CategoryWidget data={mockData} onCategoryClick={clickMock} />);
+        const component = mount(<CategoryWidget categories={mockData.categories} onCategoryClick={clickMock} />);
 
 
         component.find('Category').at(0).simulate('click');
@@ -53,7 +66,7 @@ describe('<CategoryWidget />', () => {
     it('updates the state with the new data', () => {
       const component = mount(
         <CategoryWidget
-          data={mockData}
+          categories={mockData.categories}
           selected={mockData.categories}
         />
       );
