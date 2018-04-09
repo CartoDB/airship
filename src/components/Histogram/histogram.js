@@ -83,7 +83,7 @@ class Histogram extends Component {
     const { data } = this.props;
 
     this.yScale
-      .domain([0, max(data, d => d.freq)]);
+      .domain([0, max(data, d => d.value)]);
 
     this.xScale
       .domain(data.map(d => d.max));
@@ -101,12 +101,12 @@ class Histogram extends Component {
     this.xScale = scaleBand()
       .paddingInner(0.05)
       .paddingOuter(0.1)
-      .domain(data.map(d => d.max))
+      .domain(data.map(d => d.name))
       .range([0, width]);
 
     // -- Y Axis
     this.yScale = scaleLinear()
-      .domain([0, max(data, d => d.freq)])
+      .domain([0, max(data, d => d.value)])
       .range([height, 0]);
 
     this.yAxis = axisLeft(this.yScale)
@@ -140,12 +140,12 @@ class Histogram extends Component {
       .attr('class', 'bar')
       .attr('y', height)
       .attr('height', 0)
-      .attr('x', d => this.xScale(d.max))
+      .attr('x', d => this.xScale(d.name))
       .attr('width', () => this.xScale.bandwidth())
       .transition()
       .delay(200)
-      .attr('y', d => this.yScale(d.freq))
-      .attr('height', d => height - this.yScale(d.freq));
+      .attr('y', d => this.yScale(d.value))
+      .attr('height', d => height - this.yScale(d.value));
   }
 
   render() {
