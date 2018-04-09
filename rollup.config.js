@@ -31,5 +31,6 @@ export default {
     'react',
     'react-dom',
     'prop-types',
+    'styled-components',
   ],
 };
