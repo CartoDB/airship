@@ -9,6 +9,7 @@ const StyledWidget = styled.div`
   padding: 16px;
   width: 280px;
   box-sizing: border-box;
+  text-align: left;
 `;
 StyledWidget.displayName = 'Widget';
 

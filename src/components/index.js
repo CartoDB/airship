@@ -57,3 +57,4 @@ export { default as GaugeChart } from './GaugeChart/gauge';
 export { default as CategoryWidget } from './CategoryWidget/categoryWidget';
 export { default as Input } from './Input/input';
 export { default as DonutWidget } from './DonutChart/donut';
+export { default as Histogram } from './Histogram/histogram';

@@ -149,6 +149,7 @@ class Histogram extends Component {
   }
 
   render() {
+    debugger;
     const { width, height, margin, ...others } = this.props;
     const fullHeight = height + margin.top + margin.bottom;
     const fullWidth = width + margin.left + margin.right;
