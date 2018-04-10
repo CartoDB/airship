@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { shadows, colors } from '../../constants';
@@ -11,7 +10,7 @@ import { shadows, colors } from '../../constants';
   </Legend>
 */
 
-const StyledLegend = styled.div`
+const Legend = styled.div`
   border-radius: 4px;
   background-color: ${colors.ui01};
   width: ${props => (props.small ? 160 : 260)}px;
@@ -41,11 +40,11 @@ const StyledPanel = styled.div`
   }
 `;
 
-const Legend = ({ children, small, style }) => (
-  <StyledLegend small={small} style={style}>
-    {children}
-  </StyledLegend>
-);
+// const Legend = ({ children, small, style }) => (
+//   <StyledLegend small={small} style={style}>
+//     {children}
+//   </StyledLegend>
+// );
 
 Legend.Panel = StyledPanel;
 
