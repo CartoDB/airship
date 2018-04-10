@@ -156,7 +156,7 @@ class Histogram extends Component {
     const { width, height, margin, ...others } = this.props;
     const fullHeight = height + margin.top + margin.bottom;
     const fullWidth = width + margin.left + margin.right;
-    console.log('render');
+
     return (
       <Svg
         width={fullWidth}
