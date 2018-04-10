@@ -132,7 +132,7 @@ class Histogram extends Component {
     // Exit
     this.bars.exit().remove();
 
-    // Enter + Update
+    // Enter
     this.bars
       .enter()
       .append('rect')
@@ -145,14 +145,18 @@ class Histogram extends Component {
       .delay(200)
       .attr('y', d => this.yScale(d.value))
       .attr('height', d => height - this.yScale(d.value));
+
+    // Update
+    this.bars
+      .attr('y', d => this.yScale(d.value))
+      .attr('height', d => height - this.yScale(d.value));
   }
 
   render() {
-    debugger;
     const { width, height, margin, ...others } = this.props;
     const fullHeight = height + margin.top + margin.bottom;
     const fullWidth = width + margin.left + margin.right;
-
+    console.log('render');
     return (
       <Svg
         width={fullWidth}
