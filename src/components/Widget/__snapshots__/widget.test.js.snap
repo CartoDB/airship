@@ -1,13 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`render renders children 1`] = `
-.c0 {
-  background: #fff;
-  padding: 16px;
-  width: 280px;
-  box-sizing: border-box;
-}
-
 .c1 {
   margin: 0;
   font-family: Roboto,sans-serif;
@@ -26,6 +19,14 @@ exports[`render renders children 1`] = `
   line-height: 16px;
   color: #747474;
   margin-bottom: 12px;
+}
+
+.c0 {
+  background: #fff;
+  padding: 16px;
+  width: 280px;
+  box-sizing: border-box;
+  text-align: left;
 }
 
 <div
@@ -48,13 +49,6 @@ exports[`render renders children 1`] = `
 `;
 
 exports[`render renders without crashing 1`] = `
-.c0 {
-  background: #fff;
-  padding: 16px;
-  width: 280px;
-  box-sizing: border-box;
-}
-
 .c1 {
   margin: 0;
   font-family: Roboto,sans-serif;
@@ -73,6 +67,14 @@ exports[`render renders without crashing 1`] = `
   line-height: 16px;
   color: #747474;
   margin-bottom: 12px;
+}
+
+.c0 {
+  background: #fff;
+  padding: 16px;
+  width: 280px;
+  box-sizing: border-box;
+  text-align: left;
 }
 
 <div

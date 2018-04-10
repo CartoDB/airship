@@ -33,7 +33,6 @@ exports[`render renders with size 1`] = `
 
 <div
   className="c0"
-  style={undefined}
 >
   <div
     className="c1"
@@ -76,7 +75,6 @@ exports[`render renders without crashing 1`] = `
 
 <div
   className="c0"
-  style={undefined}
 >
   <div
     className="c1"
