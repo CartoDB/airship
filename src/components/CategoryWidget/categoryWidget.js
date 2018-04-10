@@ -52,14 +52,14 @@ const Progress = styled.div`
 const Category = styled.li`
   display: flex;
   flex-wrap: wrap;
-  cursor: ${props => props.onCategoryClick ? 'pointer' : 'default'};
+  cursor: ${props => (props.clickable ? 'pointer' : 'default')};
   margin-bottom: 8px;
 
   & > ${Progress}::after {
     background: ${props => (props.isOther ? colors.type01 : props.color)};
   }
 
-  ${props => props.onCategoryClick && css`
+  ${props => props.clickable && css`
     &:hover {
       & > ${Progress}::after {
         background: ${props => (props.isOther ? lighten(0.4, colors.type01) : darken(0.16, props.color))};
@@ -115,7 +115,7 @@ class CategoryWidget extends Component {
   }
 
   render() {
-    const { color, categories, max } = this.props;
+    const { color, categories, max, onCategoryClick } = this.props;
     const { selected } = this.state;
 
     return (
@@ -127,6 +127,7 @@ class CategoryWidget extends Component {
           return (
             <Category
               key={name}
+              clickable={!!onCategoryClick}
               onClick={() => this.onCategoryClick(category)}
               selected={isSelected}
               isOther={name === CATEGORY_OTHER}

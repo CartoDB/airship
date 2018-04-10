@@ -4,7 +4,7 @@ The category widget shows the categories returned by [CARTO.js](https://carto.co
 <Widget>
   <Widget.Title>Populated Places</Widget.Title>
   <Widget.Description>All selected</Widget.Description>
-  <CategoryWidget data={data} />
+  <CategoryWidget categories={data.categories} max={data.max} />
 </Widget>
 ```
 
@@ -19,7 +19,8 @@ state: { selected: [] }
     {`${state.selected.length || 'All'} selected`}
   </Widget.Description>
   <CategoryWidget
-    data={data}
+    categories={data.categories}
+    max={data.max}
     onCategoryClick={(selected) => setState({ selected })}
     selected={state.selected}
   />
@@ -36,7 +37,7 @@ You can override the color of the progress bar:
 <Widget>
   <Widget.Title>Populated Places</Widget.Title>
   <Widget.Description>All selected</Widget.Description>
-  <CategoryWidget data={data} color="#3AB5F0" />
+  <CategoryWidget categories={data.categories} max={data.max} color="#3AB5F0" />
 </Widget>
 ```
 
