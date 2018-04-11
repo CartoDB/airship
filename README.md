@@ -1,6 +1,7 @@
 # Airship
 > Airship is a components library built by CARTO
 
+[![npm version](https://badge.fury.io/js/%40carto%2Fairship.svg)](https://badge.fury.io/js/%40carto%2Fairship)
 [![CircleCI](https://circleci.com/gh/CartoDB/airship/tree/master.svg?style=svg)](https://circleci.com/gh/CartoDB/airship/tree/master)
 
 ## Installation
