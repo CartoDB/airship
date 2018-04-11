@@ -43,7 +43,7 @@ describe('<CategoryWidget />', () => {
         component.update();
 
         expect(instance.state.selected.length).toEqual(1);
-        expect(instance.state.selected[0]).toEqual(mockData.categories[1]);
+        expect(instance.state.selected[0]).toEqual(mockData.categories[1].name);
       });
 
       it('calls onCategoryClick with the selected categories', () => {
@@ -55,8 +55,8 @@ describe('<CategoryWidget />', () => {
         component.find('Category').at(1).simulate('click');
 
         expect(clickMock).toHaveBeenCalledWith([
-          mockData.categories[0],
-          mockData.categories[1],
+          mockData.categories[0].name,
+          mockData.categories[1].name,
         ]);
       });
     });

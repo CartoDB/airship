@@ -96,14 +96,14 @@ class CategoryWidget extends Component {
     };
   }
 
-  onCategoryClick = clickedCategory => {
+  onCategoryClick = categoryName => {
     if (!this.props.onCategoryClick) return;
 
     const { selected } = this.state;
 
-    const nextSelected = selected.includes(clickedCategory)
-      ? selected.filter(category => category !== clickedCategory)
-      : [...selected, clickedCategory];
+    const nextSelected = this.isSelected(categoryName)
+      ? selected.filter(category => category !== categoryName)
+      : [...selected, categoryName];
 
     this.setState({ selected: nextSelected });
 
@@ -114,22 +114,25 @@ class CategoryWidget extends Component {
     this.setState(prevState => ({ selected: nextProps.selected || prevState.selected }));
   }
 
+  isSelected(name) {
+    return this.state.selected.includes(name);
+  }
+
   render() {
     const { color, categories, max, onCategoryClick } = this.props;
-    const { selected } = this.state;
 
     return (
       <Categories>
         {categories.map(category => {
           const { name, value } = category;
-          const isSelected = selected.length === 0 || selected.includes(category);
+          const selected = this.state.selected.length === 0 || this.isSelected(name);
 
           return (
             <Category
               key={name}
               clickable={!!onCategoryClick}
-              onClick={() => this.onCategoryClick(category)}
-              selected={isSelected}
+              onClick={() => this.onCategoryClick(name)}
+              selected={selected}
               isOther={name === CATEGORY_OTHER}
               color={color}
             >
