@@ -37,7 +37,7 @@ Airship components are used just like any other React component. You can also cu
 <Button secondary>General Kenobi</Button>
 ```
 
-For a more detailed usage guide check out our [documentation](#).
+For a more detailed usage guide check out our [documentation](https://carto-airship.netlify.com).
 
 ## Contributing
 
