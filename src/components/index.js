@@ -58,3 +58,4 @@ export { default as CategoryWidget } from './CategoryWidget/categoryWidget';
 export { default as Input } from './Input/input';
 export { default as DonutChart } from './DonutChart/donut';
 export { default as Histogram } from './Histogram/histogram';
+export { default as Popup } from './Popup/popup';
