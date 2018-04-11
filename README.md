@@ -4,16 +4,24 @@
 [![CircleCI](https://circleci.com/gh/CartoDB/airship/tree/master.svg?style=svg)](https://circleci.com/gh/CartoDB/airship/tree/master)
 
 ## Installation
-Airhsip is available as a NPM package:
+Airship is available as an [npm package](https://www.npmjs.com/package/@carto/airship).
 
 ```
+# Using NPM
 npm install --save @carto/airship
-```
 
-or
-
-```
+# Using Yarn
 yarn add @carto/airship
+```
+
+React, ReactDOM, PropTypes and styled-components are peer dependencies, if you haven't already installed them you can use:
+
+```
+# Using NPM
+npm install --save react react-dom prop-types styled-components
+
+# Using Yarn
+yarn add react react-dom prop-types styled-components
 ```
 
 ## Usage
