@@ -2,16 +2,16 @@ export default [
   {
     group: false,
     name: 'Entire home/apt',
-    value: 14900727
+    value: 14900727,
   },
   {
     group: false,
     name: 'Private room',
-    value: 11432784
+    value: 11432784,
   },
   {
     group: false,
     name: 'Shared room',
-    value: 82000000
-  }
+    value: 82000000,
+  },
 ];
