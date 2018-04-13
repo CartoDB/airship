@@ -32,7 +32,20 @@ const Color = styled.div`
   background: ${props => props.background};
 `;
 
-const Title = Base.withComponent('p').extend`
+const Title = Base.withComponent('h4').extend`
+  font-size: 14px;
+  line-height: 14px;
+  margin-bottom: 0.5rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: left;
+  width: 100%;
+  cursor: default;
+  color: white;
+`;
+
+const Label = Base.withComponent('p').extend`
   font-size: 12px;
   line-height: 12px;
   overflow: hidden;
@@ -269,13 +282,14 @@ class Histogram extends Component {
   renderTooltip() {
     const { keys } = this.props;
     const { d } = this.state.tooltip;
-
+    console.log(d);
     return (
       <Tooltip innerRef={node => { this.tooltipNode = node; }}>
+        <Title>{d.data.name}</Title>
         {keys.map(key => (
           <Item key={key}>
             <Color background={this.colorScale(key)} />
-            <Title>{d.data[key]}</Title>
+            <Label>{d.data[key]}</Label>
           </Item>
         ))}
       </Tooltip>
