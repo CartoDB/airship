@@ -1,0 +1,130 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<StackedBar /> render when data passed in renders the correct amount of bars 1`] = `
+.c0 {
+  max-width: 248px;
+}
+
+.c0 .tick line {
+  opacity: 0.1;
+}
+
+.c0 .tick text {
+  color: #747474;
+}
+
+.c0 .tick:first-child line {
+  opacity: 0.5;
+}
+
+<svg
+  className="c0"
+  data={
+    Array [
+      Object {
+        "entire_homes": 3405,
+        "name": "Malasaña",
+        "private_rooms": 3840,
+        "shared_rooms": 234,
+      },
+      Object {
+        "entire_homes": 623,
+        "name": "Sol",
+        "private_rooms": 1600,
+        "shared_rooms": 765,
+      },
+      Object {
+        "entire_homes": 62,
+        "name": "La Latina",
+        "private_rooms": 640,
+        "shared_rooms": 23,
+      },
+      Object {
+        "entire_homes": 421,
+        "name": "Embajadores",
+        "private_rooms": 3200,
+        "shared_rooms": 987,
+      },
+    ]
+  }
+  height={160}
+  width={248}
+/>
+`;
+
+exports[`<StackedBar /> update when data changes should call the update method or the chart 1`] = `
+.c0 {
+  max-width: 248px;
+}
+
+.c0 .tick line {
+  opacity: 0.1;
+}
+
+.c0 .tick text {
+  color: #747474;
+}
+
+.c0 .tick:first-child line {
+  opacity: 0.5;
+}
+
+<svg
+  className="c0"
+  data={
+    Array [
+      Object {
+        "entire_homes": 3405,
+        "name": "Malasaña",
+        "private_rooms": 3840,
+        "shared_rooms": 234,
+      },
+      Object {
+        "entire_homes": 623,
+        "name": "Sol",
+        "private_rooms": 1600,
+        "shared_rooms": 765,
+      },
+      Object {
+        "entire_homes": 62,
+        "name": "La Latina",
+        "private_rooms": 640,
+        "shared_rooms": 23,
+      },
+      Object {
+        "entire_homes": 421,
+        "name": "Embajadores",
+        "private_rooms": 3200,
+        "shared_rooms": 987,
+      },
+    ]
+  }
+  height={160}
+  width={248}
+/>
+`;
+
+exports[`<StackedBar /> update when data changes should call the update method or the chart 2`] = `
+.c0 {
+  max-width: 248px;
+}
+
+.c0 .tick line {
+  opacity: 0.1;
+}
+
+.c0 .tick text {
+  color: #747474;
+}
+
+.c0 .tick:first-child line {
+  opacity: 0.5;
+}
+
+<svg
+  className="c0"
+  data={Array []}
+  height={160}
+  width={248}
+/>
+`;
