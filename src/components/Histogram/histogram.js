@@ -83,7 +83,8 @@ class Histogram extends Component {
     const { data } = this.props;
 
     this.yScale
-      .domain([0, max(data, d => d.value)]);
+      .domain([0, max(data, d => d.value)])
+      .nice();
 
     this.xScale
       .domain(data.map(d => d.name));
@@ -106,8 +107,9 @@ class Histogram extends Component {
 
     // -- Y Axis
     this.yScale = scaleLinear()
+      .range([height, 0])
       .domain([0, max(data, d => d.value)])
-      .range([height, 0]);
+      .nice();
 
     this.yAxis = axisLeft(this.yScale)
       .tickSize(-width, 0, 0)
