@@ -10,12 +10,17 @@ import { axisBottom, axisLeft } from 'd3-axis'; // eslint-disable-line
 import { chartColors } from '../../constants';
 import Base from '../Typography/base';
 
+const Wrapper = styled.div`
+  position: relative;
+`;
+
 const Tooltip = styled.ul`
   position: absolute;
   background: rgba(17, 17, 17, 0.9);
   border-radius: 4px;
   padding: 0.5rem;
   opacity: 0;
+  z-index: 100;
 `;
 
 Tooltip.displayName = 'Tooltip';
@@ -244,8 +249,10 @@ class Histogram extends Component {
   }
 
   getTooltipPosition(mouseX, mouseY) {
-    let x = mouseX;
-    let y = mouseY;
+    const wrapper = this.wrapperNode.getBoundingClientRect();
+
+    let x = mouseX - wrapper.x;
+    let y = mouseY - wrapper.y;
 
     const viewportBoundaries = {
       right: window.innerWidth + window.pageXOffset,
@@ -282,7 +289,7 @@ class Histogram extends Component {
   renderTooltip() {
     const { keys } = this.props;
     const { d } = this.state.tooltip;
-    console.log(d);
+
     return (
       <Tooltip innerRef={node => { this.tooltipNode = node; }}>
         <Title>{d.data.name}</Title>
@@ -302,7 +309,7 @@ class Histogram extends Component {
     const fullWidth = width + margin.left + margin.right;
 
     return (
-      <React.Fragment>
+      <Wrapper innerRef={node => { this.wrapperNode = node; }}>
         <Svg
           width={fullWidth}
           height={fullHeight}
@@ -310,7 +317,7 @@ class Histogram extends Component {
           {...others}
         />
         {this.state.tooltip && this.renderTooltip()}
-      </React.Fragment>
+      </Wrapper>
     );
   }
 }
