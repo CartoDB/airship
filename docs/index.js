@@ -332,6 +332,16 @@ const pages = [
         title: 'Histogram',
         component: require('./components/histogram.md'),
       },
+      {
+        imports: {
+          Widget: require('../src/components/Widget/widget'),
+          StackedBar: require('../src/components/StackedBar/stackedBar'),
+          data: require('../src/components/StackedBar/stackedBar.fixtures'),
+        },
+        path: '/components/stackedbar',
+        title: 'Stacked bar',
+        component: require('./components/stackedbar.md'),
+      },
     ],
   },
 ];
