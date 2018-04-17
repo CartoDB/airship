@@ -35,3 +35,6 @@ export const chartColors = [
   '#F45171',
   '#FDA94D',
 ];
+
+
+export const theme = colors;

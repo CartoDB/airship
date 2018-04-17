@@ -6,7 +6,7 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <Avatar
     size={32}
-    url="https://avatars0.githubusercontent.com/u/1366843"
+    url="https://avatars3.githubusercontent.com/u/1799254"
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],

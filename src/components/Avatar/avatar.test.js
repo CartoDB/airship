@@ -16,7 +16,7 @@ describe('render', () => {
     const component = shallow(
       <Avatar
         size={32}
-        url="https://avatars0.githubusercontent.com/u/1366843"
+        url="https://avatars3.githubusercontent.com/u/1799254"
       />
     );
     expect(component).toMatchSnapshot();

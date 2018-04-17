@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Loading from '../Loading/loading';
-import { colors } from '../../constants';
+import { theme } from '../../constants';
 
 const StyledAvatar = styled.div`
   border-radius: 100%;
@@ -11,12 +11,15 @@ const StyledAvatar = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   background-image: url(${props => props.url});
-  background-color: ${colors.brand03};
+  background-color: ${props => props.theme.brand03};
 `;
 StyledAvatar.displayName = 'StyledAvatar';
+StyledAvatar.defaultProps = {
+  theme,
+};
 
 const StyledLoading = styled.div`
-  background-color: ${colors.ui02};
+  background-color: ${props => props.theme.ui02};
   border-radius: 100%;
   display: flex;
   justify-content: center;
@@ -25,6 +28,9 @@ const StyledLoading = styled.div`
   height: ${props => `${props.size}px`};
 `;
 StyledLoading.displayName = 'StyledLoading';
+StyledLoading.defaultProps = {
+  theme,
+};
 
 class Avatar extends Component {
   state = {
