@@ -1,22 +1,15 @@
-import React, { Children } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { colors } from '../../constants';
+import { theme } from '../../constants';
 
-const StyledList = styled.ul`
-  display: flex;
-  list-style-type: none;
-  margin: 0;
-  padding: 24px 0;
-`;
-StyledList.displayName = 'StyledList';
-
-const StyledItem = styled.li`
-  color: #2e3c43;
+const BreadcrumbItem = styled.li`
+  color: ${props => props.theme.type01};
   font: 400 12px/16px 'Roboto';
+  cursor: default;
 
   &:after {
     content: '›';
+    color: ${props => props.theme.brand01};
     font-size: 12px;
     margin: 0 6px;
   }
@@ -26,7 +19,7 @@ const StyledItem = styled.li`
   }
 
   a {
-    color: ${colors.brand01};
+    color: ${props => props.theme.brand01};
     text-decoration: none;
   }
 
@@ -34,39 +27,29 @@ const StyledItem = styled.li`
     text-decoration: underline;
   }
 `;
-StyledItem.displayName = 'StyledItem';
+BreadcrumbItem.displayName = 'BreadcrumbItem';
 
-const Item = ({
-  children,
-  path,
-  last,
-  ...other, // eslint-disable-line
-}) => (
-  <StyledItem>{last ? children : <a href={path}>{children}</a>}</StyledItem>
-);
-
-Item.propTypes = {
-  children: PropTypes.node,
-  last: PropTypes.bool,
-  path: PropTypes.string,
+BreadcrumbItem.defaultProps = {
+  theme,
 };
 
-const Breadcrumb = ({ children }) => {
-  const number = Children.count(children);
-  return (
-    <StyledList>
-      {Children.map(children, (child, index) => React.cloneElement(child, {
-          last: index === number - 1,
-          key: index,
-        }))}
-    </StyledList>
-  );
-};
+const Breadcrumb = styled.ul`
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+`;
+Breadcrumb.displayName = 'Breadcrumb';
 
 Breadcrumb.propTypes = {
   children: PropTypes.node,
+  theme: PropTypes.object,
 };
 
-Breadcrumb.Item = Item;
+Breadcrumb.defaultProps = {
+  theme,
+};
+
+Breadcrumb.Item = BreadcrumbItem;
 
 export default Breadcrumb;
