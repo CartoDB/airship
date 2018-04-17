@@ -110,7 +110,7 @@ const pages = [
       },
       {
         imports: {
-          Tabs: require('../src/components/Tabs/tab'),
+          Tabs: require('../src/components/Tabs/tabs'),
         },
         path: '/components/tabs',
         title: 'Tabs',

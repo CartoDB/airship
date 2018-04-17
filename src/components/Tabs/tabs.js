@@ -1,17 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { colors } from '../../constants';
-/*
-  <Tabs>
-    <Tabs.Panel label="wadus">
-      Hola
-    </Tabs.Panel>
-    <Tabs.Panel label="world">
-      Mundo
-    </Tabs.Panel>
-  </Tabs>
-*/
+import styled, { css } from 'styled-components';
+import { theme } from '../../constants';
 
 const font = props => {
   let font = "400 12px/20px 'Roboto'";
@@ -23,36 +13,45 @@ const font = props => {
 
 const shadow = props => (props.large ? '-4px' : '-2px');
 
-const StyledList = styled.ul`
+const TabList = styled.ul`
   list-style: none;
   display: flex;
   margin: 0;
   padding: 0;
-  box-shadow: inset 0 -1px 0 0 ${colors.grey};
+  box-shadow: inset 0 -1px 0 0 ${props => props.theme.ui03};
 `;
+TabList.defaultProps = {
+  theme,
+};
 
-const StyledButton = styled.button`
+const TabButton = styled.button`
   border: 0;
   background-color: transparent;
-  color: ${colors.primaryColor};
+  color: ${props => props.theme.brand01};
   font: ${font};
   padding: 8px;
+  cursor: pointer;
 
   &:focus {
     outline: none;
   }
 
   &:hover {
-    box-shadow: inset 0 ${shadow} 0 0 ${colors.complementaryColor};
+    box-shadow: inset 0 ${shadow} 0 0 ${props => props.theme.brand03};
   }
 
-  &.is-selected,
-  &.is-selected:hover {
-    box-shadow: inset 0 ${shadow} 0 0 ${colors.black};
-    color: ${colors.black};
-  }
+  ${props => props.selected && css`
+    &,
+    &:hover {
+      box-shadow: inset 0 ${shadow} 0 0 ${props => props.theme.type01};
+      color: ${props => props.theme.type01};
+    }
+  `};
 `;
-StyledButton.displayName = 'StyledButton';
+TabButton.displayName = 'TabButton';
+TabButton.defaultProps = {
+  theme,
+};
 
 const Tabpanel = ({ children, selected }) => (selected ? <div>{children}</div> : null);
 
@@ -64,20 +63,17 @@ Tabpanel.propTypes = {
 Tabpanel.displayName = 'Tabpanel';
 
 class Tabs extends Component {
+  static Panel = Tabpanel;
+
   static defaultProps = {
     selected: 0,
   };
+
   initialState = {
     selected: this.props.selected,
   };
+
   state = this.initialState;
-
-  static Panel = Tabpanel;
-
-  constructor(props) {
-    super(props);
-    this.navigation = this.buildNavigation();
-  }
 
   componentDidMount() {
     const { selected } = this.props;
@@ -87,14 +83,16 @@ class Tabs extends Component {
     }
   }
 
-  buildNavigation() {
-    const { children } = this.props;
-    return React.Children.map(children, child => child.props.label);
+  getNavigation() {
+    return React.Children.map(this.props.children, child => child.props.label);
   }
 
   setSelected = label => {
-    const index = this.navigation.indexOf(label);
+    const index = this.getNavigation().indexOf(label);
     const { onChange } = this.props;
+
+    if (index === this.state.selected) return;
+
     this.setState(
       state => ({ ...state, selected: index }),
       () => onChange && onChange(this.state),
@@ -107,22 +105,20 @@ class Tabs extends Component {
 
     return (
       <div>
-        <StyledList>
-          {this.navigation.map((label, index) => {
-            const css = selected === index ? 'is-selected' : '';
-            return (
-              <li key={label}>
-                <StyledButton
-                  className={css}
-                  onClick={() => this.setSelected(label)}
-                  large={large}
-                >
-                  {label}
-                </StyledButton>
-              </li>
-            );
-          })}
-        </StyledList>
+        <TabList>
+          {this.getNavigation().map((label, index) => (
+            <li key={label}>
+              <TabButton
+                onClick={() => this.setSelected(label)}
+                large={large}
+                selected={selected === index}
+              >
+                {label}
+              </TabButton>
+            </li>
+          ))}
+        </TabList>
+
         {React.Children.map(children, (child, i) => React.cloneElement(child, {
             selected: i === selected,
           }))}
