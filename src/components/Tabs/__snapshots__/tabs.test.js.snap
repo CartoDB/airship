@@ -18,6 +18,7 @@ exports[`render renders with large param 1`] = `
   color: #1785FB;
   font: 400 16px/24px 'Roboto';
   padding: 8px;
+  cursor: pointer;
 }
 
 .c1:focus {
@@ -28,10 +29,27 @@ exports[`render renders with large param 1`] = `
   box-shadow: inset 0 -4px 0 0 #47DB99;
 }
 
-.c1.is-selected,
-.c1.is-selected:hover {
+.c1,
+.c1:hover {
   box-shadow: inset 0 -4px 0 0 #2C2C2C;
   color: #2C2C2C;
+}
+
+.c2 {
+  border: 0;
+  background-color: transparent;
+  color: #1785FB;
+  font: 400 16px/24px 'Roboto';
+  padding: 8px;
+  cursor: pointer;
+}
+
+.c2:focus {
+  outline: none;
+}
+
+.c2:hover {
+  box-shadow: inset 0 -4px 0 0 #47DB99;
 }
 
 <div>
@@ -40,16 +58,18 @@ exports[`render renders with large param 1`] = `
   >
     <li>
       <button
-        className="is-selected c1"
+        className="c1"
         onClick={[Function]}
+        selected={true}
       >
         wadus
       </button>
     </li>
     <li>
       <button
-        className="c1"
+        className="c2"
         onClick={[Function]}
+        selected={false}
       >
         world
       </button>
@@ -73,12 +93,36 @@ exports[`render renders with selected as number 1`] = `
   box-shadow: inset 0 -1px 0 0 #E2E6E3;
 }
 
+.c2 {
+  border: 0;
+  background-color: transparent;
+  color: #1785FB;
+  font: 400 12px/20px 'Roboto';
+  padding: 8px;
+  cursor: pointer;
+}
+
+.c2:focus {
+  outline: none;
+}
+
+.c2:hover {
+  box-shadow: inset 0 -2px 0 0 #47DB99;
+}
+
+.c2,
+.c2:hover {
+  box-shadow: inset 0 -2px 0 0 #2C2C2C;
+  color: #2C2C2C;
+}
+
 .c1 {
   border: 0;
   background-color: transparent;
   color: #1785FB;
   font: 400 12px/20px 'Roboto';
   padding: 8px;
+  cursor: pointer;
 }
 
 .c1:focus {
@@ -89,12 +133,6 @@ exports[`render renders with selected as number 1`] = `
   box-shadow: inset 0 -2px 0 0 #47DB99;
 }
 
-.c1.is-selected,
-.c1.is-selected:hover {
-  box-shadow: inset 0 -2px 0 0 #2C2C2C;
-  color: #2C2C2C;
-}
-
 <div>
   <ul
     className="c0"
@@ -103,14 +141,16 @@ exports[`render renders with selected as number 1`] = `
       <button
         className="c1"
         onClick={[Function]}
+        selected={false}
       >
         wadus
       </button>
     </li>
     <li>
       <button
-        className="is-selected c1"
+        className="c2"
         onClick={[Function]}
+        selected={true}
       >
         world
       </button>
@@ -134,12 +174,36 @@ exports[`render renders with selected as string 1`] = `
   box-shadow: inset 0 -1px 0 0 #E2E6E3;
 }
 
+.c2 {
+  border: 0;
+  background-color: transparent;
+  color: #1785FB;
+  font: 400 12px/20px 'Roboto';
+  padding: 8px;
+  cursor: pointer;
+}
+
+.c2:focus {
+  outline: none;
+}
+
+.c2:hover {
+  box-shadow: inset 0 -2px 0 0 #47DB99;
+}
+
+.c2,
+.c2:hover {
+  box-shadow: inset 0 -2px 0 0 #2C2C2C;
+  color: #2C2C2C;
+}
+
 .c1 {
   border: 0;
   background-color: transparent;
   color: #1785FB;
   font: 400 12px/20px 'Roboto';
   padding: 8px;
+  cursor: pointer;
 }
 
 .c1:focus {
@@ -150,12 +214,6 @@ exports[`render renders with selected as string 1`] = `
   box-shadow: inset 0 -2px 0 0 #47DB99;
 }
 
-.c1.is-selected,
-.c1.is-selected:hover {
-  box-shadow: inset 0 -2px 0 0 #2C2C2C;
-  color: #2C2C2C;
-}
-
 <div>
   <ul
     className="c0"
@@ -164,14 +222,16 @@ exports[`render renders with selected as string 1`] = `
       <button
         className="c1"
         onClick={[Function]}
+        selected={false}
       >
         wadus
       </button>
     </li>
     <li>
       <button
-        className="is-selected c1"
+        className="c2"
         onClick={[Function]}
+        selected={true}
       >
         world
       </button>
@@ -201,6 +261,7 @@ exports[`render renders without crashing 1`] = `
   color: #1785FB;
   font: 400 12px/20px 'Roboto';
   padding: 8px;
+  cursor: pointer;
 }
 
 .c1:focus {
@@ -211,10 +272,27 @@ exports[`render renders without crashing 1`] = `
   box-shadow: inset 0 -2px 0 0 #47DB99;
 }
 
-.c1.is-selected,
-.c1.is-selected:hover {
+.c1,
+.c1:hover {
   box-shadow: inset 0 -2px 0 0 #2C2C2C;
   color: #2C2C2C;
+}
+
+.c2 {
+  border: 0;
+  background-color: transparent;
+  color: #1785FB;
+  font: 400 12px/20px 'Roboto';
+  padding: 8px;
+  cursor: pointer;
+}
+
+.c2:focus {
+  outline: none;
+}
+
+.c2:hover {
+  box-shadow: inset 0 -2px 0 0 #47DB99;
 }
 
 <div>
@@ -223,16 +301,18 @@ exports[`render renders without crashing 1`] = `
   >
     <li>
       <button
-        className="is-selected c1"
+        className="c1"
         onClick={[Function]}
+        selected={true}
       >
         wadus
       </button>
     </li>
     <li>
       <button
-        className="c1"
+        className="c2"
         onClick={[Function]}
+        selected={false}
       >
         world
       </button>

@@ -2,6 +2,7 @@
 
 exports[`render renders children 1`] = `
 .c1 {
+  color: #2C2C2C;
   margin: 0;
   font-family: Roboto,sans-serif;
   font-weight: 400;
@@ -11,6 +12,7 @@ exports[`render renders children 1`] = `
 }
 
 .c2 {
+  color: #2C2C2C;
   margin: 0;
   font-family: Roboto,sans-serif;
   font-weight: 400;
@@ -50,6 +52,7 @@ exports[`render renders children 1`] = `
 
 exports[`render renders without crashing 1`] = `
 .c1 {
+  color: #2C2C2C;
   margin: 0;
   font-family: Roboto,sans-serif;
   font-weight: 400;
@@ -59,6 +62,7 @@ exports[`render renders without crashing 1`] = `
 }
 
 .c2 {
+  color: #2C2C2C;
   margin: 0;
   font-family: Roboto,sans-serif;
   font-weight: 400;

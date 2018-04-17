@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { shallow } from 'enzyme';
-import Tabs from './tab';
+import Tabs from './tabs';
 
 describe('render', () => {
   it('renders without crashing', () => {
@@ -57,7 +57,7 @@ describe('render', () => {
       </Tabs>
     );
 
-    const button = component.find('StyledButton').first();
+    const button = component.find('TabButton').first();
     button.simulate('click');
     expect(spy).toHaveBeenCalled();
   });

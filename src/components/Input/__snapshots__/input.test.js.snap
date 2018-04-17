@@ -950,7 +950,11 @@ exports[`render renders with an error 1`] = `
 .c2 > span {
   font: 600 10px/12px 'Roboto';
   color: #F3522B;
-  margin-left: 8px;
+  margin-left: 4px;
+}
+
+.c2 > svg {
+  fill: #F3522B;
 }
 
 .c1 {
@@ -1097,7 +1101,7 @@ exports[`render renders with an error 1`] = `
     className="c2"
   >
     <svg
-      fill="#F3522B"
+      fill="#1785fb"
       height={12}
       viewBox="0 0 16 15"
       width={12}

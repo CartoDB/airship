@@ -42,6 +42,7 @@ exports[`<DonutChart /> render when data passed in renders the correct amount of
 }
 
 .c5 {
+  color: #2C2C2C;
   margin: 0;
   font-family: Roboto,sans-serif;
   font-weight: 400;
@@ -234,6 +235,7 @@ exports[`<DonutChart /> update when data changes should call the update method o
 }
 
 .c5 {
+  color: #2C2C2C;
   margin: 0;
   font-family: Roboto,sans-serif;
   font-weight: 400;

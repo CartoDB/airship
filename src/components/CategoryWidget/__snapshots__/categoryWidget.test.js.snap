@@ -7,6 +7,7 @@ exports[`<CategoryWidget /> overrides the category color 1`] = `
 }
 
 .c3 {
+  color: #2C2C2C;
   margin: 0;
   font-family: Roboto,sans-serif;
   font-weight: 400;
@@ -20,6 +21,7 @@ exports[`<CategoryWidget /> overrides the category color 1`] = `
 }
 
 .c2 {
+  color: #2C2C2C;
   margin: 0;
   font-family: Roboto,sans-serif;
   font-weight: 400;
@@ -304,6 +306,7 @@ exports[`<CategoryWidget /> renders with data 1`] = `
 }
 
 .c3 {
+  color: #2C2C2C;
   margin: 0;
   font-family: Roboto,sans-serif;
   font-weight: 400;
@@ -317,6 +320,7 @@ exports[`<CategoryWidget /> renders with data 1`] = `
 }
 
 .c2 {
+  color: #2C2C2C;
   margin: 0;
   font-family: Roboto,sans-serif;
   font-weight: 400;

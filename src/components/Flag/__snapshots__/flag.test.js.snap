@@ -2,6 +2,7 @@
 
 exports[`render renders without crashing 1`] = `
 .c0 {
+  background: #fff;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;

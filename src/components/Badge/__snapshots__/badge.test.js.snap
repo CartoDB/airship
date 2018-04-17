@@ -76,7 +76,7 @@ exports[`render renders without crashing 1`] = `
 
 <li
   className="c0"
-  color="#E2E6E3"
+  color={undefined}
 >
   Foo
 </li>

@@ -47,7 +47,7 @@ describe('render', () => {
 
   it('selected', () => {
     const component = mount(
-      <Radiobutton.Group name="wadus" selected="mundo">
+      <Radiobutton.Group name="wadus" checked="mundo">
         <Radiobutton value="hola">Hola</Radiobutton>
         <Radiobutton value="mundo">Mundo</Radiobutton>
       </Radiobutton.Group>

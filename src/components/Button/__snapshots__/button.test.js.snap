@@ -53,9 +53,7 @@ exports[`render renders borderless button 1`] = `
   className="c0"
   data-component="Button"
 >
-  <span>
-    Button
-  </span>
+  Button
 </button>
 `;
 
@@ -112,9 +110,7 @@ exports[`render renders secondary button 1`] = `
   className="c0"
   data-component="Button"
 >
-  <span>
-    Button
-  </span>
+  Button
 </button>
 `;
 
@@ -171,9 +167,7 @@ exports[`render renders with large param 1`] = `
   className="c0"
   data-component="Button"
 >
-  <span>
-    Button
-  </span>
+  Button
 </button>
 `;
 
@@ -230,9 +224,7 @@ exports[`render renders with small param 1`] = `
   className="c0"
   data-component="Button"
 >
-  <span>
-    Button
-  </span>
+  Button
 </button>
 `;
 
@@ -289,8 +281,6 @@ exports[`render renders without crashing 1`] = `
   className="c0"
   data-component="Button"
 >
-  <span>
-    Button
-  </span>
+  Button
 </button>
 `;

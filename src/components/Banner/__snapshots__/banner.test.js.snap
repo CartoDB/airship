@@ -1,17 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`render renders without crashing 1`] = `
-.c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  padding: 12px;
-  border-radius: 0;
-  width: 100%;
-  background-color: red;
-}
-
 .c1 {
   -webkit-flex: 0 0 auto;
   -ms-flex: 0 0 auto;
@@ -23,6 +12,22 @@ exports[`render renders without crashing 1`] = `
   -ms-flex: 1;
   flex: 1;
   padding: 0 8px;
+}
+
+.c0 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background-color: red;
+  border-radius: 0;
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 12px;
+  width: 100%;
 }
 
 <div

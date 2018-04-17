@@ -1,23 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`render renders without crashing 1`] = `
-.c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  list-style-type: none;
-  margin: 0;
-  padding: 24px 0;
-}
-
+exports[`render renders with links 1`] = `
 .c1 {
-  color: #2e3c43;
+  color: #2C2C2C;
   font: 400 12px/16px 'Roboto';
+  cursor: default;
 }
 
 .c1:after {
   content: '›';
+  color: #1785FB;
   font-size: 12px;
   margin: 0 6px;
 }
@@ -35,6 +27,16 @@ exports[`render renders without crashing 1`] = `
 .c1 a:hover {
   -webkit-text-decoration: underline;
   text-decoration: underline;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 
 <ul
@@ -55,8 +57,68 @@ exports[`render renders without crashing 1`] = `
     <a
       href="/foo"
     >
-      Foo
+      Home
     </a>
+  </li>
+  <li
+    className="c1"
+  >
+    Wadus
+  </li>
+</ul>
+`;
+
+exports[`render renders without crashing 1`] = `
+.c1 {
+  color: #2C2C2C;
+  font: 400 12px/16px 'Roboto';
+  cursor: default;
+}
+
+.c1:after {
+  content: '›';
+  color: #1785FB;
+  font-size: 12px;
+  margin: 0 6px;
+}
+
+.c1:last-child:after {
+  display: none;
+}
+
+.c1 a {
+  color: #1785FB;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+}
+
+.c1 a:hover {
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+<ul
+  className="c0"
+>
+  <li
+    className="c1"
+  >
+    Home
+  </li>
+  <li
+    className="c1"
+  >
+    Foo
   </li>
   <li
     className="c1"

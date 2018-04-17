@@ -10,10 +10,6 @@ import { axisBottom, axisLeft } from 'd3-axis'; // eslint-disable-line
 import { chartColors } from '../../constants';
 import Base from '../Typography/base';
 
-const Wrapper = styled.div`
-  position: relative;
-`;
-
 const Tooltip = styled.ul`
   position: absolute;
   background: rgba(17, 17, 17, 0.9);

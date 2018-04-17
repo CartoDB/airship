@@ -4,23 +4,23 @@ exports[`render renders with colSpan and rowSpan params for cells 1`] = `
 .c0 {
   border-collapse: collapse;
   border-spacing: 0;
-  border: 1px solid #d1d5d7;
+  border: 1px solid #D1D5D7;
   width: 100%;
   font: 400 12px/20px 'Roboto';
-  color: #2c2c2c;
+  color: #2C2C2C;
 }
 
 .c0 th {
   font-weight: 600;
   text-align: left;
-  background: #e2e6e3;
+  background: #E2E6E3;
 }
 
 .c0 th,
 .c0 td {
   padding: 8px 12px;
-  border-bottom: 1px solid #d1d5d7;
-  border-right: 1px solid #d1d5d7;
+  border-bottom: 1px solid #D1D5D7;
+  border-right: 1px solid #D1D5D7;
 }
 
 .c0 tr:last-child td {
@@ -73,23 +73,23 @@ exports[`render renders with lined param 1`] = `
 .c0 {
   border-collapse: collapse;
   border-spacing: 0;
-  border: 1px solid #d1d5d7;
+  border: 1px solid #D1D5D7;
   width: 100%;
   font: 400 12px/20px 'Roboto';
-  color: #2c2c2c;
+  color: #2C2C2C;
 }
 
 .c0 th {
   font-weight: 600;
   text-align: left;
-  background: #e2e6e3;
+  background: #E2E6E3;
 }
 
 .c0 th,
 .c0 td {
   padding: 8px 12px;
-  border-bottom: 1px solid #d1d5d7;
-  border-right: 1px solid #d1d5d7;
+  border-bottom: 1px solid #D1D5D7;
+  border-right: 1px solid #D1D5D7;
 }
 
 .c0 tr:last-child td {
@@ -144,22 +144,22 @@ exports[`render renders without crashing 1`] = `
 .c0 {
   border-collapse: collapse;
   border-spacing: 0;
-  border: 1px solid #d1d5d7;
+  border: 1px solid #D1D5D7;
   width: 100%;
   font: 400 12px/20px 'Roboto';
-  color: #2c2c2c;
+  color: #2C2C2C;
 }
 
 .c0 th {
   font-weight: 600;
   text-align: left;
-  background: #e2e6e3;
+  background: #E2E6E3;
 }
 
 .c0 th,
 .c0 td {
   padding: 8px 12px;
-  border-bottom: 1px solid #d1d5d7;
+  border-bottom: 1px solid #D1D5D7;
 }
 
 .c0 tr:last-child td {
