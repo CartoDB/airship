@@ -249,10 +249,10 @@ class Histogram extends Component {
   }
 
   getTooltipPosition(mouseX, mouseY) {
-    const wrapper = this.wrapperNode.getBoundingClientRect();
+    // const wrapper = this.wrapperNode.getBoundingClientRect();
 
-    let x = mouseX - wrapper.x;
-    let y = mouseY - wrapper.y;
+    let x = mouseX;
+    let y = mouseY;
 
     const viewportBoundaries = {
       right: window.innerWidth + window.pageXOffset,
@@ -309,7 +309,7 @@ class Histogram extends Component {
     const fullWidth = width + margin.left + margin.right;
 
     return (
-      <Wrapper innerRef={node => { this.wrapperNode = node; }}>
+      <React.Fragment>
         <Svg
           width={fullWidth}
           height={fullHeight}
@@ -317,7 +317,7 @@ class Histogram extends Component {
           {...others}
         />
         {this.state.tooltip && this.renderTooltip()}
-      </Wrapper>
+      </React.Fragment>
     );
   }
 }
