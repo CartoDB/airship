@@ -1,3 +1,5 @@
+/* eslint global-require: 0 */
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Catalog } from 'catalog';
@@ -275,14 +277,6 @@ const pages = [
         path: '/components/checkbox',
         title: 'Checkbox',
         component: require('./components/checkbox.md'),
-      },
-      {
-        imports: {
-          Grid: require('../src/components/Grid/grid'),
-        },
-        path: '/components/grid',
-        title: 'Grid',
-        component: require('./components/grid.md'),
       },
       {
         imports: {

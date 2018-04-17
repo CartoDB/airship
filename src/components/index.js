@@ -1,5 +1,4 @@
 // -- Components
-export { default as Grid } from './Grid/grid';
 export { default as Jumbo } from './Typography/jumbo';
 export { default as Display } from './Typography/display';
 export { default as Title } from './Typography/title';
