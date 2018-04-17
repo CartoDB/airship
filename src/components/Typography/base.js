@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { theme } from '../../constants';
 
 const getFont = props => (props.font && props.font === 'mono'
   ? 'Overpass Mono, monospace'
@@ -13,12 +14,16 @@ const getWeight = props => {
 };
 
 const BaseText = styled.div`
-  color: ${props => props.color};
+  color: ${props => props.color || props.theme.type01};
   margin: ${props => props.margin || 0};
   font-family: ${props => getFont(props)};
   font-weight: ${props => getWeight(props)};
   -webkit-font-smoothing: antialiased;
 `;
+
+BaseText.defaultProps = {
+  theme,
+};
 
 BaseText.propTypes = {
   as: PropTypes.oneOf(['p', 'span', 'div', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6']),
