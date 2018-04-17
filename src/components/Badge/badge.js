@@ -1,14 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { colors } from '../../constants';
+import { theme } from '../../constants';
 import CloseIcon from '../Icons/close';
 
 const StyledBadge = styled.li`
-  background: ${props => props.color};
+  background: ${props => props.color || props.theme.ui03};
   border-radius: 100px;
   font: 400 12px/20px 'Roboto';
-  color: ${colors.type01};
+  color: ${props => props.theme.type01};
   letter-spacing: 0;
   list-style: none;
   display: inline-flex;
@@ -27,23 +27,18 @@ const StyledBadge = styled.li`
   }
 `;
 
-const noOp = () => {};
+StyledBadge.defaultProps = {
+  theme,
+};
 
-const Badge = ({
-  color = colors.ui03,
-  closeColor = colors.ui01,
-  children,
-  closable = false,
-  onClose = noOp,
-  as = 'li',
-}) => {
+const Badge = ({ color, closeColor, children, onClose, as }) => {
   const Wrapper = as ? StyledBadge.withComponent(as) : StyledBadge;
 
   return (
     <Wrapper color={color}>
       {children}
-      {closable ? (
-        <button onClick={onClose}>
+      {onClose ? (
+        <button onClick={event => onClose(event)}>
           <CloseIcon width={12} height={12} color={closeColor} />
         </button>
       ) : null}
@@ -54,10 +49,15 @@ const Badge = ({
 Badge.propTypes = {
   as: PropTypes.string,
   children: PropTypes.node,
-  closable: PropTypes.bool,
   closeColor: PropTypes.string,
   color: PropTypes.string,
   onClose: PropTypes.func,
+};
+
+
+Badge.defaultProps = {
+  as: 'li',
+  closeColor: theme.ui01,
 };
 
 export default Badge;
