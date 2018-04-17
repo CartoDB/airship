@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { darken, lighten } from 'polished';
-import { colors } from '../../constants';
+import { theme } from '../../constants';
 
 const font = props => {
   let font = "500 12px/20px 'Roboto'";
@@ -31,7 +31,7 @@ const padding = props => {
 
 const background = props => (!!props.borderless || !!props.secondary
   ? 'transparent'
-  : colors.primaryColor);
+  : props.theme.brand01);
 
 const radius = props => {
   const { radius } = props;
@@ -42,18 +42,18 @@ const radius = props => {
 };
 
 const color = props => (!!props.borderless || !!props.secondary
-  ? colors.primaryColor
-  : colors.white);
+  ? props.theme.brand01
+  : props.theme.white);
 
-const border = props => (props.secondary ? `1px solid ${colors.primaryColor}` : 0);
+const border = props => (props.secondary ? `1px solid ${props.theme.brand01}` : 0);
 
 const hover = props => (!!props.borderless || !!props.secondary
-  ? lighten(0.45, colors.primaryColor)
-  : darken(0.16, colors.primaryColor));
+  ? lighten(0.45, props.theme.brand01)
+  : darken(0.16, props.theme.brand01));
 
 const focus = props => (!!props.borderless || !!props.secondary
-  ? lighten(0.4, colors.primaryColor)
-  : darken(0.24, colors.primaryColor));
+  ? lighten(0.4, props.theme.brand01)
+  : darken(0.24, props.theme.brand01));
 
 const StyledButton = styled.button`
   border: ${border};
@@ -96,23 +96,16 @@ const StyledButton = styled.button`
     margin-left: 8px;
   }
 `;
+StyledButton.defaultProps = {
+  theme,
+};
 
 class Button extends Component {
   renderChildren() {
-    const { children, grouped = false, ...others } = this.props;
-    const onlyChild = React.Children.count(children) === 1;
-
-    return React.Children.map(children, child =>
-      // what if it's not svg?
-      (typeof child === 'string' ? (
-        <span>{child}</span>
-      ) : (
-        React.cloneElement(child, {
-          className: onlyChild && !grouped ? 'button-media' : '',
-          color: color(others),
-        })
-      ))
-    );
+    return React.Children.map(this.props.children, child => {
+      if (typeof child === 'string') return child;
+      return React.cloneElement(child, { color: 'currentColor' });
+    });
   }
 
   render() {

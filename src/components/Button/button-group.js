@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 import { darken } from 'polished';
 import Button from './button';
 import { isComponentOfType } from '../../utils';
-import { colors } from '../../constants';
+import { theme } from '../../constants';
 
 const separator = props => `1px solid ${
-  props.secondary ? colors.primaryColor : darken(0.16, colors.primaryColor)
+  props.secondary ? props.theme.brand01 : darken(0.16, props.theme.brand01)
 }`;
 
 const StyledList = styled.ul`
-  border: 1px solid ${colors.primaryColor};
+  border: 1px solid ${props => props.theme.brand01};
   border-radius: 4px;
   display: inline-flex;
   list-style: none;
@@ -19,6 +19,9 @@ const StyledList = styled.ul`
   padding: 0;
   overflow: hidden;
 `;
+StyledList.defaultProps = {
+  theme,
+};
 
 const StyledListItem = styled.li`
   border-right: ${separator};
@@ -28,6 +31,9 @@ const StyledListItem = styled.li`
     border-right: 0;
   }
 `;
+StyledListItem.defaultProps = {
+  theme,
+};
 
 class ButtonGroup extends Component {
   render() {
@@ -36,6 +42,7 @@ class ButtonGroup extends Component {
       <StyledListItem secondary={secondary}>
         {isComponentOfType(Button, child)
             ? React.cloneElement(child, {
+                ...child.props,
                 radius: 0,
                 grouped: true,
                 borderless: !!secondary,
