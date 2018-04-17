@@ -1,30 +1,37 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { theme } from '../../constants';
 
-const Banner = styled.div`
-  display: flex;
-  padding: 12px;
-  border-radius: 0;
-  width: 100%;
-  background-color: ${props => props.color};
-`;
-
-const StyledHandle = styled.div`
+const BannerIcon = styled.div`
   flex: 0 0 auto;
 `;
-StyledHandle.displayName = 'Banner.Handle';
+BannerIcon.displayName = 'Banner.Handle';
 
-const StyledContent = styled.div`
+const BannerContent = styled.div`
   flex: 1;
   padding: 0 8px;
 `;
-StyledContent.displayName = 'Banner.Content';
+BannerContent.displayName = 'Banner.Content';
 
-Banner.Icon = StyledHandle;
-Banner.Content = StyledContent;
+const Banner = styled.div`
+  align-items: center;
+  background-color: ${props => props.color || props.theme.ui04};
+  border-radius: 0;
+  box-sizing: border-box;
+  display: flex;
+  padding: 12px;
+  width: 100%;
+`;
 
 Banner.propTypes = {
   color: PropTypes.string,
 };
+
+Banner.defaultProps = {
+  theme,
+};
+
+Banner.Icon = BannerIcon;
+Banner.Content = BannerContent;
 
 export default Banner;
