@@ -1,7 +1,18 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
+import { ThemeProvider } from 'styled-components';
 import Input from './input';
+import { theme } from '../../constants';
+
+const CUSTOM_THEME = {
+  ...theme,
+  brand01: '#40e0d0',
+  brand03: '#33b3a6',
+  ui02: '#d8f8f5',
+  ui04: '#b2f2ec',
+  support01: '#f2b2b9',
+};
 
 storiesOf('Input', module)
   .add('Default', () => (
@@ -172,6 +183,46 @@ storiesOf('Input', module)
         rows={3}
       />
     </div>
+  ))
+  .add('With custom theme', () => (
+    <ThemeProvider theme={CUSTOM_THEME}>
+      <div>
+        <h3 className="header">Default</h3>
+        <Input
+          htmlFor="default-value"
+          placeholder="This is a test"
+          label="First Name"
+          defaultValue="A value"
+        />
+
+        <h3 className="header">Disabled</h3>
+        <Input
+          disabled
+          htmlFor="disabled-value"
+          placeholder="This is a test"
+          label="First Name"
+          defaultValue="A value"
+        />
+
+        <h3 className="header">Read only</h3>
+        <Input
+          readOnly
+          htmlFor="readonly-value"
+          placeholder="This is a test"
+          label="First Name"
+          defaultValue="A value"
+        />
+
+        <h3 className="header">Error</h3>
+        <Input
+          error="This field is required"
+          htmlFor="error-value"
+          placeholder="This is a test"
+          label="First Name"
+          defaultValue="A value"
+        />
+      </div>
+    </ThemeProvider>
   ))
   .add('Different types', () => (
     <div>
