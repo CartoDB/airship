@@ -1,7 +1,14 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+import { ThemeProvider } from 'styled-components';
 import { action } from '@storybook/addon-actions';
 import Checkbox from './checkbox';
+import { theme } from '../../constants';
+
+const CUSTOM_THEME = {
+  ...theme,
+  brand01: '#FABADA',
+};
 
 storiesOf('Checkbox', module)
   .add('Default', () => (
@@ -39,18 +46,38 @@ storiesOf('Checkbox', module)
   .add('With event', () => (
     <div>
       <h3 className="header">Default</h3>
-      <Checkbox htmlFor="event" onChange={action('onChange')}>
+      <Checkbox htmlFor="default" onChange={action('onChange')}>
         Click me!
       </Checkbox>
 
       <h3 className="header">Checked</h3>
-      <Checkbox htmlFor="event" onChange={action('onChange')} checked>
+      <Checkbox htmlFor="checked" onChange={action('onChange')} checked>
         Click me!
       </Checkbox>
 
       <h3 className="header">Disabled</h3>
-      <Checkbox htmlFor="event" onChange={action('onChange')} disabled>
+      <Checkbox htmlFor="disabled" onChange={action('onChange')} disabled>
         Click me!
       </Checkbox>
     </div>
+  ))
+  .add('With custom theme', () => (
+    <ThemeProvider theme={CUSTOM_THEME}>
+      <div>
+        <h3 className="header">Default</h3>
+        <Checkbox htmlFor="default">
+          Click me!
+        </Checkbox>
+
+        <h3 className="header">Checked</h3>
+        <Checkbox htmlFor="checked" checked>
+          Click me!
+        </Checkbox>
+
+        <h3 className="header">Disabled</h3>
+        <Checkbox htmlFor="disabled" disabled>
+          Click me!
+        </Checkbox>
+      </div>
+    </ThemeProvider>
   ));

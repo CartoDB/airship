@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
 import { rgba } from 'polished';
-import { colors } from '../../constants';
+import { theme } from '../../constants';
 
 const stroke = keyframes`
   100% {
@@ -29,12 +29,15 @@ const Decoration = styled.span`
   width: 16px;
   height: 16px;
   overflow: hidden;
-  border: 1px solid ${rgba(colors.type01, 0.16)};
+  border: 1px solid ${props => rgba(props.theme.type01, 0.16)};
   border-radius: 3px;
   position: relative;
   display: block;
   box-sizing: border-box;
 `;
+Decoration.defaultProps = {
+  theme,
+};
 
 const Tip = styled.svg`
   display: flex;
@@ -44,11 +47,14 @@ const Tip = styled.svg`
 
 const Check = styled.polyline`
   stroke-width: 2;
-  stroke: ${colors.brand01};
+  stroke: ${props => props.theme.brand01};
   transform-origin: 50% 50%;
   stroke-dasharray: 48;
   stroke-dashoffset: 48;
 `;
+Check.defaultProps = {
+  theme,
+};
 
 const CheckboxInput = styled.input`
   appearance: none;
@@ -62,31 +68,31 @@ const CheckboxInput = styled.input`
   margin: 0;
   padding: 0;
   border-radius: 3px;
-  border: 1px solid ${rgba(colors.type01, 0.16)};
+  border: 1px solid ${props => rgba(props.theme.type01, 0.16)};
 
   &:focus {
     outline: none;
   }
 
   &:focus {
-    border: 2px solid ${colors.brand01};
+    border: 2px solid ${props => props.theme.brand01};
   }
 
   &:hover {
-    border: 1px solid ${colors.brand03};
+    border: 1px solid ${props => props.theme.brand03};
   }
 
   &:disabled + ${Decoration} {
-    background-color: ${colors.ui03};
+    background-color: ${props => props.theme.ui03};
   }
 
   &:disabled:hover {
     cursor: not-allowed;
-    border: 1px solid ${rgba(colors.type01, 0.16)};
+    border: 1px solid ${props => rgba(props.theme.type01, 0.16)};
   }
 
   &:checked {
-    border: 1px solid ${colors.brand01};
+    border: 1px solid ${props => props.theme.brand01};
   }
 
   &:checked + ${Decoration} ${Check} {
@@ -94,9 +100,12 @@ const CheckboxInput = styled.input`
   }
 
   &:disabled:checked + ${Decoration} ${Check} {
-    stroke: ${rgba(colors.type01, 0.16)};
+    stroke: ${props => rgba(props.theme.type01, 0.16)};
   }
 `;
+CheckboxInput.defaultProps = {
+  theme,
+};
 
 class Checkbox extends Component {
   state = {
