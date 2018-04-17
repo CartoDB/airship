@@ -1,10 +1,11 @@
-import React, { Children } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import CloseIcon from '../Icons/close';
-import { shadows } from '../../constants';
+import { theme, shadows } from '../../constants';
 
-const StyledFlag = styled.div`
+const Wrapper = styled.div`
+  background: ${props => props.theme.ui01};
   display: flex;
   padding: 16px;
   border-radius: 4px;
@@ -19,33 +20,35 @@ const StyledFlag = styled.div`
     padding: 0;
   }
 `;
-StyledFlag.displayName = 'StyledFlag';
+Wrapper.displayName = 'Flag';
+Wrapper.defaultProps = {
+  theme,
+};
 
-const StyledHandle = styled.div`
+const FlagIcon = styled.div`
   flex: 0 0 auto;
 `;
-StyledFlag.displayName = 'Flag.Handle';
+Wrapper.displayName = 'Flag.Handle';
 
-const StyledContent = styled.div`
+const FlagContent = styled.div`
   flex: 1;
   padding: 0 8px;
 `;
-StyledContent.displayName = 'Flag.Content';
+FlagContent.displayName = 'Flag.Content';
 
-const Flag = ({ children, onClick }) => {
-  const childrenWithControl = Children.map(children, (child, index) => React.cloneElement(child, { key: `flag${index}` })).concat([
-    <StyledHandle key="flagButton">
-      <button onClick={() => onClick()}>
+const Flag = ({ children, onClick }) => (
+  <Wrapper>
+    {children}
+    <FlagIcon key="flagButton">
+      <button onClick={event => onClick(event)}>
         <CloseIcon width={12} height={12} />
       </button>
-    </StyledHandle>,
-  ]);
+    </FlagIcon>
+  </Wrapper>
+);
 
-  return <StyledFlag>{childrenWithControl}</StyledFlag>;
-};
-
-Flag.Icon = StyledHandle;
-Flag.Content = StyledContent;
+Flag.Icon = FlagIcon;
+Flag.Content = FlagContent;
 
 Flag.propTypes = {
   children: PropTypes.node,
