@@ -1,8 +1,9 @@
 import React, { Component, Children } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import PlusIcon from '../Icons/plus';
-import MinusIcon from '../Icons/minus';
+import { isComponentOfType } from '../../utils';
+import ChevronDown from '../Icons/chevron-down';
+import ChevronUp from '../Icons/chevron-up';
 
 /*
   <Collapsible>
@@ -63,16 +64,16 @@ class Collapsible extends Component {
     return (
       <div>
         {Children.map(children, child => {
-          if (child.type.displayName === 'Collapsible.Header') {
+          if (isComponentOfType(Collapsible.Header, child)) {
             return (
               <Collapsible.Header>
                 <div>{child.props.children}</div>
                 <button onClick={() => this.toggle()} >
-                  {open ? <MinusIcon /> : <PlusIcon />}
+                  {open ? <ChevronUp /> : <ChevronDown />}
                 </button>
               </Collapsible.Header>
             );
-          } else if (child.type.displayName === 'Collapsible.Content' && open) {
+          } else if (isComponentOfType(Collapsible.Content, child) && open) {
             return child;
           }
         })}
