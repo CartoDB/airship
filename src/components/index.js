@@ -49,7 +49,7 @@ export { default as Legend } from './Legend/legend';
 export { default as Flag } from './Flag/flag';
 export { default as Banner } from './Banner/banner';
 export { default as Datepicker } from './Datepicker/datepicker';
-export { default as Radiobutton } from './Radiobutton/radiobutton';
+export { default as RadioButton } from './RadioButton/radiobutton';
 export { default as Checkbox } from './Checkbox/checkbox';
 export { default as Typeahead } from './Typeahead/typeahead';
 export { default as Widget } from './Widget/widget';

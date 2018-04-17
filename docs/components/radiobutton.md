@@ -1,27 +1,27 @@
 Radio buttons group form component.
 
 ```react
-<Radiobutton.Group name="radios">
-  <Radiobutton value="0">One</Radiobutton>
-  <Radiobutton value="1">two</Radiobutton>
-</Radiobutton.Group>
+<RadioButton.Group name="radios">
+  <RadioButton value="0">One</RadioButton>
+  <RadioButton value="1">two</RadioButton>
+</RadioButton.Group>
 ```
 
 ### Props
 
 #### **value** (string required)
 
-Set the input's value. Required for individual `Radiobutton`.
+Set the input's value. Required for individual `RadioButton`.
 
 #### **name** (string required)
 
 Set name for the inputs.
 
 ```react
-<Radiobutton.Group name="wadus">
-  <Radiobutton value="hola">Hola</Radiobutton>
-  <Radiobutton value="mundo">Mundo</Radiobutton>
-</Radiobutton.Group>
+<RadioButton.Group name="wadus">
+  <RadioButton value="hola">Hola</RadioButton>
+  <RadioButton value="mundo">Mundo</RadioButton>
+</RadioButton.Group>
 ```
 
 #### **as** (string)
@@ -29,10 +29,10 @@ Set name for the inputs.
 Choose the tag to render the group. You can choose from `div`, `ul` or `span`. By default `ul` is used.
 
 ```react
-<Radiobutton.Group name="wadus" as="div">
-  <Radiobutton value="hola">Hola</Radiobutton>
-  <Radiobutton value="mundo">Mundo</Radiobutton>
-</Radiobutton.Group>
+<RadioButton.Group name="wadus" as="div">
+  <RadioButton value="hola">Hola</RadioButton>
+  <RadioButton value="mundo">Mundo</RadioButton>
+</RadioButton.Group>
 ```
 
 #### **onChange** (function)
@@ -40,10 +40,10 @@ Choose the tag to render the group. You can choose from `div`, `ul` or `span`. B
 Callback to be called when the selected value changes.
 
 ```react
-<Radiobutton.Group name="wadus" onChange={selected => console.log(selected)}>
-  <Radiobutton value="hola">Hola</Radiobutton>
-  <Radiobutton value="mundo">Mundo</Radiobutton>
-</Radiobutton.Group>
+<RadioButton.Group name="wadus" onChange={selected => console.log(selected)}>
+  <RadioButton value="hola">Hola</RadioButton>
+  <RadioButton value="mundo">Mundo</RadioButton>
+</RadioButton.Group>
 ```
 
 #### **selected** (string)
@@ -51,8 +51,8 @@ Callback to be called when the selected value changes.
 Callback to be called when the selected value changes.
 
 ```react
-<Radiobutton.Group name="wadus" selected="mundo">
-  <Radiobutton value="hola">Hola</Radiobutton>
-  <Radiobutton value="mundo">Mundo</Radiobutton>
-</Radiobutton.Group>
+<RadioButton.Group name="wadus" selected="mundo">
+  <RadioButton value="hola">Hola</RadioButton>
+  <RadioButton value="mundo">Mundo</RadioButton>
+</RadioButton.Group>
 ```

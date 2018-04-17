@@ -262,10 +262,10 @@ const pages = [
       },
       {
         imports: {
-          Radiobutton: require('../src/components/Radiobutton/radiobutton'),
+          RadioButton: require('../src/components/RadioButton/radiobutton'),
         },
         path: '/components/radiobutton',
-        title: 'Radiobutton',
+        title: 'RadioButton',
         component: require('./components/radiobutton.md'),
       },
       {

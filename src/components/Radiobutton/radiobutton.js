@@ -1,8 +1,9 @@
-import React, { Children, Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
 import { rgba } from 'polished';
-import { colors } from '../../constants';
+import { theme } from '../../constants';
+import RadioGroup from './radiogroup';
 
 const radioIn = keyframes`
   from {
@@ -16,25 +17,25 @@ const radioIn = keyframes`
   }
 `;
 
-const StyleRadio = styled.div`
-  display: flex;
-  align-items: center;
+const Label = styled.div`
+  margin-left: 4px;
+  font: 400 12px/20px 'Roboto';
+`;
 
-  .Radio {
-    position: relative;
-  }
+const StyledRadio = styled.div`
+  position: relative;
+`;
 
-  .Radio-decoration {
-    pointer-events: none;
-    width: 16px;
-    height: 16px;
-    border: 1px solid ${rgba(colors.type01, 0.16)};
-    border-radius: 50%;
-    position: relative;
-    display: block;
-  }
+const Decoration = styled.span`
+  pointer-events: none;
+  width: 16px;
+  height: 16px;
+  border: 1px solid ${props => rgba(props.theme.type01, 0.16)};
+  border-radius: 50%;
+  position: relative;
+  display: block;
 
-  .Radio-decoration:after {
+  &:after {
     content: '';
     display: block;
     border-radius: 50%;
@@ -44,169 +45,108 @@ const StyleRadio = styled.div`
     width: 6px;
     height: 6px;
   }
+`;
+Decoration.defaultProps = {
+  theme,
+};
 
-  .Radio-input {
-    appearance: none;
-    background: none;
-    width: 16px;
-    height: 16px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    cursor: pointer;
-    margin: 0;
-    padding: 0;
-    border-radius: 50%;
-  }
+const Wrapper = styled.label`
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+`;
 
-  .Radio-input:focus {
-    border: 2px solid ${colors.brand01};
+const RadioInput = styled.input`
+  appearance: none;
+  background: none;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  border-radius: 50%;
+
+  &:focus {
     outline: none;
   }
 
-  .Radio-input:hover + .Radio-decoration {
-    border: 1px solid ${colors.brand03};
+  &:hover + ${Decoration} {
+    border: 1px solid ${props => props.theme.brand03};
   }
 
-  .Radio-input:checked + .Radio-decoration {
-    border: 1px solid ${colors.brand01};
+  &:checked + ${Decoration} {
+    border: 1px solid ${props => props.theme.brand01};
   }
 
-  .Radio-input:checked:disabled + .Radio-decoration {
-    border: 1px solid ${rgba(colors.type01, 0.16)};
+  &:checked:disabled + ${Decoration} {
+    border: 1px solid ${props => rgba(props.theme.type01, 0.16)};
   }
 
-  .Radio-input:checked + .Radio-decoration::after {
-    opacity: 1;
-    background: ${colors.brand01};
-    animation: ${radioIn} 300ms;
-    animation-fill-mode: forwards;
-  }
-
-  .Radio-input:checked:disabled + .Radio-decoration::after {
-    background: ${rgba(colors.type01, 0.16)};
-  }
-
-  .Radio-input:disabled:hover {
-    cursor: not-allowed;
-  }
-
-  .Radio-input:disabled + .Radio-decoration {
-    background-color: ${colors.ui03};
-  }
-
-  .Radio-input:disabled:hover + .Radio-decoration {
-    border: 1px solid ${rgba(colors.type01, 0.16)};
-  }
-
-  .Radio-label {
-    margin-left: 4px;
-  }
-`;
-
-const StyledGroup = styled.div``;
-
-class Group extends Component {
-  state = {
-    selected: this.props.selected,
-  };
-
-  componentWillReceiveProps(nextProps) {
-    if (this.state.selected !== nextProps.selected) {
-      this.setState({ selected: nextProps.selected });
+  &:checked + ${Decoration} {
+    &::after {
+      opacity: 1;
+      background: ${props => props.theme.brand01};
+      animation: ${radioIn} 300ms;
+      animation-fill-mode: forwards;
     }
   }
 
-  onChange = event => {
-    const { onChange, disabled } = this.props;
-
-    if (disabled) return;
-
-    this.setState(
-      { selected: event.target.value },
-      () => onChange && onChange(this.state.selected),
-    );
-  };
-
-  render() {
-    const { children, name, as = 'ul', disabled = false } = this.props;
-
-    const { selected } = this.state;
-
-    const Wrapper = as !== 'div' ? StyledGroup.withComponent(as) : StyledGroup;
-    return (
-      <Wrapper>
-        {Children.map(children, (child, index) => {
-          const checked = child.props.value === selected;
-          return React.cloneElement(child, {
-            name,
-            onChange: this.onChange,
-            key: `radio${index}`,
-            as: as === 'ul' ? 'li' : 'div',
-            disabled,
-            selected: checked,
-          });
-        })}
-      </Wrapper>
-    );
+  &:checked:disabled + ${Decoration}::after {
+    background: ${props => rgba(props.theme.type01, 0.16)};
   }
-}
 
-Group.propTypes = {
-  as: PropTypes.oneOf(['div', 'ul', 'span']),
-  children: PropTypes.node,
-  disabled: PropTypes.bool,
-  name: PropTypes.string.isRequired,
-  onChange: PropTypes.func,
-  selected: PropTypes.string,
+  &:disabled:hover {
+    cursor: not-allowed;
+  }
+
+  &:disabled + ${Decoration} {
+    background-color: ${props => props.theme.ui03};
+  }
+
+  &:disabled:hover + ${Decoration} {
+    border: 1px solid ${props => rgba(props.theme.type01, 0.16)};
+  }
+`;
+RadioInput.defaultProps = {
+  theme,
 };
 
-const RadioButton = ({
-  children,
-  name,
-  value,
-  as,
-  disabled,
-  selected,
-  onChange,
-}) => {
-  const Wrapper = as !== 'div' ? StyleRadio.withComponent(as) : StyleRadio;
-  return (
-    <Wrapper>
-      <div className="Radio">
-        <input
-          className="Radio-input"
-          type="radio"
-          name={name}
-          value={value}
-          onChange={e => onChange(e)}
-          disabled={disabled}
-          checked={selected}
-        />
-        <span className="Radio-decoration" />
-      </div>
-      {children && <div className="Radio-label">{children}</div>}
-    </Wrapper>
-  );
-};
+const RadioButton = ({ children, name, value, disabled, checked, onChange }) => (
+  <Wrapper>
+    <StyledRadio>
+      <RadioInput
+        type="radio"
+        name={name}
+        value={value}
+        onChange={event => onChange(event)}
+        disabled={disabled}
+        checked={checked}
+      />
+      <Decoration />
+    </StyledRadio>
 
-RadioButton.Group = Group;
+    {children && <Label>{children}</Label>}
+  </Wrapper>
+);
+
+RadioButton.Group = RadioGroup;
 
 RadioButton.defaultProps = {
-  as: 'div',
   disabled: false,
   name: '',
   onChange: () => {},
-  selected: false,
+  checked: false,
 };
 
 RadioButton.propTypes = {
-  as: PropTypes.oneOf(['div', 'li', 'span']),
   children: PropTypes.node,
   disabled: PropTypes.bool,
   name: PropTypes.string,
   onChange: PropTypes.func,
-  selected: PropTypes.bool,
+  checked: PropTypes.bool,
   value: PropTypes.string.isRequired,
 };
 
