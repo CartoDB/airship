@@ -1,23 +1,8 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { shadows, colors } from '../../constants';
+import { shadows, theme } from '../../constants';
 
-/*
-  <Legend>
-    <Legend.Panel>
-      ...
-    </Legend.Panel>
-  </Legend>
-*/
-
-const Legend = styled.div`
-  border-radius: 4px;
-  background-color: ${colors.ui01};
-  width: ${props => (props.small ? 160 : 260)}px;
-  box-shadow: ${shadows.shadow8};
-`;
-
-const StyledPanel = styled.div`
+const LegendPanel = styled.div`
   padding: ${props => (props.small ? '18px 10px' : '26px 20px')};
   position: relative;
 
@@ -31,7 +16,7 @@ const StyledPanel = styled.div`
     left: 0;
     right: 0;
     top: 0;
-    background-color: ${colors.ui02};
+    background-color: ${props => props.theme.ui02};
     position: absolute;
   }
 
@@ -40,16 +25,20 @@ const StyledPanel = styled.div`
   }
 `;
 
-// const Legend = ({ children, small, style }) => (
-//   <StyledLegend small={small} style={style}>
-//     {children}
-//   </StyledLegend>
-// );
+LegendPanel.defaultProps = {
+  theme,
+};
 
-Legend.Panel = StyledPanel;
+const Legend = styled.div`
+  border-radius: 4px;
+  background-color: ${props => props.theme.ui01};
+  width: ${props => (props.small ? 160 : 260)}px;
+  box-shadow: ${shadows.shadow8};
+`;
 
 Legend.defaultProps = {
   small: false,
+  theme,
 };
 
 Legend.propTypes = {
@@ -57,5 +46,7 @@ Legend.propTypes = {
   small: PropTypes.bool,
   style: PropTypes.object,
 };
+
+Legend.Panel = LegendPanel;
 
 export default Legend;
