@@ -97,12 +97,9 @@ class Steps extends Component {
   };
 
   render() {
-    let { step } = this.state;
+    const { step } = this.state;
     const { children } = this.props;
-    const content = Children.toArray(children).filter(
-      child => child.type.displayName === 'Steps.Content'
-    );
-    const current = content.filter((child, index) => index === step);
+    const content = Children.toArray(children).filter(({ type }) => type.displayName === 'Steps.Content');
 
     return (
       <div>
@@ -112,9 +109,7 @@ class Steps extends Component {
               <Steps.Header>
                 <div>{child.props.children}</div>
                 <Control up={this.up} down={this.down}>
-                  {/* TODO: Why ++step? */}
-                  {/* eslint-disable-next-line */}
-                  {++step} / {content.length}
+                  {step + 1} / {content.length}
                 </Control>
               </Steps.Header>
             );
@@ -123,7 +118,7 @@ class Steps extends Component {
           return null;
         })}
 
-        {current}
+        {content[step]}
       </div>
     );
   }
