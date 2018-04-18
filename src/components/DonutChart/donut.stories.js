@@ -1,8 +1,16 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+import { ThemeProvider } from 'styled-components';
 import DonutChart from './donut';
 import Widget from '../Widget/widget';
 import mockData from './donut.fixtures';
+import { theme } from '../../constants';
+
+const CUSTOM_THEME = {
+  ...theme,
+  ui01: '#333',
+  type01: 'white',
+};
 
 class DonutUpdated extends React.Component {
   state = {
@@ -52,4 +60,14 @@ storiesOf('Donut Chart', module)
 
       <DonutUpdated />
     </Widget>
+  ))
+  .add('With custom theme', () => (
+    <ThemeProvider theme={CUSTOM_THEME}>
+      <Widget>
+        <Widget.Title>Suffer score</Widget.Title>
+        <Widget.Description>Just a widget</Widget.Description>
+
+        <DonutUpdated />
+      </Widget>
+    </ThemeProvider>
   ));

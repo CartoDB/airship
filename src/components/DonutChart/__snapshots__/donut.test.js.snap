@@ -72,6 +72,7 @@ exports[`<DonutChart /> render when data passed in renders the correct amount of
   width: 136px;
   min-width: 136px;
   height: 136px;
+  color: #2C2C2C;
 }
 
 .c2 {
@@ -162,6 +163,7 @@ exports[`<DonutChart /> render when data passed in renders without legend 1`] = 
   width: 136px;
   min-width: 136px;
   height: 136px;
+  color: #2C2C2C;
 }
 
 <div
@@ -265,6 +267,7 @@ exports[`<DonutChart /> update when data changes should call the update method o
   width: 136px;
   min-width: 136px;
   height: 136px;
+  color: #2C2C2C;
 }
 
 .c2 {
@@ -355,6 +358,7 @@ exports[`<DonutChart /> update when data changes should call the update method o
   width: 136px;
   min-width: 136px;
   height: 136px;
+  color: #2C2C2C;
 }
 
 .c2 {

@@ -7,7 +7,7 @@ import { interpolate } from 'd3-interpolate';
 import { transition } from 'd3-transition'; // eslint-disable-line
 import { rgb } from 'd3-color';
 import Base from '../Typography/base';
-import { chartColors } from '../../constants';
+import { theme, chartColors } from '../../constants';
 import { readableNumber, truncate } from '../../utils';
 
 const ANIMATION_DURATION = 750;
@@ -58,7 +58,11 @@ const Chart = styled.svg`
   width: 136px;
   min-width: 136px;
   height: 136px;
+  color: ${props => props.theme.type01};
 `;
+Chart.defaultProps = {
+  theme,
+};
 
 const Legend = styled.ul`
   padding: 0;
@@ -80,7 +84,6 @@ class DonutWidget extends Component {
     data: PropTypes.array,
     showLegend: PropTypes.bool,
     size: PropTypes.number,
-    textColor: PropTypes.string,
   };
 
   componentDidMount() {
@@ -98,7 +101,7 @@ class DonutWidget extends Component {
   }
 
   renderDonut() {
-    const { colors, data, size, textColor } = this.props;
+    const { colors, data, size } = this.props;
     const radius = size / 2;
 
     // -- Setup arc and angles
@@ -118,7 +121,7 @@ class DonutWidget extends Component {
       .attr('text-anchor', 'middle')
       .style('font-size', '24')
       .style('font-weight', '300')
-      .style('color', textColor)
+      .style('fill', 'currentColor')
       .style('font-family', 'Roboto')
       .style('-webkit-font-smoothing', 'antialiased');
 
@@ -129,7 +132,7 @@ class DonutWidget extends Component {
       .attr('text-anchor', 'middle')
       .style('font-size', '12')
       .style('font-weight', '300')
-      .style('color', textColor)
+      .style('fill', 'currentColor')
       .style('font-family', 'Roboto')
       .style('-webkit-font-smoothing', 'antialiased');
 
