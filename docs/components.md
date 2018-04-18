@@ -4,5 +4,4 @@ Components let you split the UI into independent, reusable pieces, and think abo
 
 Airship uses some features you probably want to polyfill. In order to browser support, please check out the libraries below and include them as part of your build:
 
-* [closest](https://github.com/jonathantneal/closest)
 * [fetch](https://github.com/developit/unfetch)
