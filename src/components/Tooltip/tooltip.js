@@ -106,7 +106,9 @@ const Content = ({ children, node, ...props }) => {
 
 const Trigger = ({ children }) => children;
 
-const Wrapper = styled.span``;
+const Wrapper = styled.span`
+  cursor: pointer;
+`;
 
 class Tooltip extends Component {
   static Content = Content;
