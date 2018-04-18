@@ -13,7 +13,11 @@ module.exports = {
     'space-before-function-paren': [ERROR, 'never'],
     'func-names': OFF,
     'no-param-reassign': WARNING,
-    'max-len': [WARNING, 120, { tabWidth: 2, ignoreComments: true }],
+    'max-len': [WARNING, 120, {
+      tabWidth: 2,
+      ignoreComments: true,
+      ignoreStrings: true,
+    }],
     'prefer-template': WARNING,
     'no-underscore-dangle': ['error', { allowAfterThis: true }],
     'camelcase': [OFF, { properties: 'never' }],
