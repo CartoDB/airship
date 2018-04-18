@@ -1,9 +1,17 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+import { ThemeProvider } from 'styled-components';
 import StackedBar from './stackedBar';
 import Widget from '../Widget/widget';
 import mockData from './stackedBar.fixtures';
+import { theme } from '../../constants';
 
+const CUSTOM_THEME = {
+  ...theme,
+  ui01: '#333',
+  type01: 'white',
+  type02: 'white',
+};
 class StackedBarUpdated extends React.Component {
   state = {
     data: mockData,
@@ -44,4 +52,14 @@ storiesOf('StackedBar', module)
 
       <StackedBarUpdated />
     </Widget>
+  ))
+  .add('With custom theme', () => (
+    <ThemeProvider theme={CUSTOM_THEME}>
+      <Widget>
+        <Widget.Title>Suffer score</Widget.Title>
+        <Widget.Description>Just a widget</Widget.Description>
+
+        <StackedBar data={mockData} keys={['private_rooms', 'shared_rooms', 'entire_homes']} />
+      </Widget>
+    </ThemeProvider>
   ));

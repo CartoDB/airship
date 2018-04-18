@@ -7,19 +7,22 @@ import { scaleBand, scaleLinear, scaleOrdinal } from 'd3-scale';
 import { min, max } from 'd3-array'; // eslint-disable-line
 import { transition } from 'd3-transition'; // eslint-disable-line
 import { axisBottom, axisLeft } from 'd3-axis'; // eslint-disable-line
-import { chartColors } from '../../constants';
+import { chartColors, theme } from '../../constants';
 import Base from '../Typography/base';
 
 const Tooltip = styled.ul`
   position: absolute;
-  background: rgba(17, 17, 17, 0.9);
+  background: ${props => props.theme.black};
   border-radius: 4px;
   padding: 0.5rem;
   opacity: 0;
   z-index: 100;
 `;
-
 Tooltip.displayName = 'Tooltip';
+Tooltip.defaultProps = {
+  theme,
+};
+
 
 const Color = styled.div`
   display: inline-block;
@@ -43,8 +46,11 @@ const Title = Base.withComponent('h4').extend`
   text-align: left;
   width: 100%;
   cursor: default;
-  color: white;
+  color: ${props => props.theme.white};
 `;
+Title.defaultProps = {
+  theme,
+};
 
 const Label = Base.withComponent('p').extend`
   font-size: 12px;
@@ -55,8 +61,11 @@ const Label = Base.withComponent('p').extend`
   text-align: left;
   width: 100%;
   cursor: default;
-  color: white;
+  color: ${props => props.theme.white};
 `;
+Label.defaultProps = {
+  theme,
+};
 
 const Item = styled.li`
   display: flex;
@@ -73,11 +82,12 @@ const Svg = styled.svg`
 
   .tick {
     line {
+      stroke: ${props => props.theme.type02};
       opacity: 0.1;
     }
 
     text {
-      color: ${props => props.textColor};
+      fill: ${props => props.theme.type02};
     }
 
     :first-child {
@@ -87,12 +97,14 @@ const Svg = styled.svg`
     }
   }
 `;
+Svg.defaultProps = {
+  theme,
+};
 
 class Histogram extends Component {
   static defaultProps = {
     colors: chartColors,
     data: [],
-    textColor: '#747474',
     width: 208,
     height: 140,
     margin: {
@@ -109,7 +121,6 @@ class Histogram extends Component {
     height: PropTypes.number,
     keys: PropTypes.array,
     margin: PropTypes.object,
-    textColor: PropTypes.string,
     width: PropTypes.number,
   };
 

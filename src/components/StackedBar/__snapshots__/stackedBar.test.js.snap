@@ -6,11 +6,12 @@ exports[`<StackedBar /> render when data passed in renders the correct amount of
 }
 
 .c0 .tick line {
+  stroke: #747474;
   opacity: 0.1;
 }
 
 .c0 .tick text {
-  color: #747474;
+  fill: #747474;
 }
 
 .c0 .tick:first-child line {
@@ -58,11 +59,12 @@ exports[`<StackedBar /> update when data changes should call the update method o
 }
 
 .c0 .tick line {
+  stroke: #747474;
   opacity: 0.1;
 }
 
 .c0 .tick text {
-  color: #747474;
+  fill: #747474;
 }
 
 .c0 .tick:first-child line {
@@ -110,11 +112,12 @@ exports[`<StackedBar /> update when data changes should call the update method o
 }
 
 .c0 .tick line {
+  stroke: #747474;
   opacity: 0.1;
 }
 
 .c0 .tick text {
-  color: #747474;
+  fill: #747474;
 }
 
 .c0 .tick:first-child line {
