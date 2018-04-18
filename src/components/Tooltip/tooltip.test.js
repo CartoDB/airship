@@ -1,18 +1,37 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import renderer from 'react-test-renderer';
-import { mount } from 'enzyme';
 import Tooltip from './tooltip';
+import { nodeMock } from '../../utils';
 
-describe('render', () => {
+jest.mock('./svgArrow', () => '#');
+
+const RENDER_OPTIONS = {
+  createNodeMock: nodeMock,
+};
+
+describe('<Tooltip />', () => {
+  beforeAll(() => {
+    ReactDOM.createPortal = jest.fn(element => element);
+  });
+
+  afterEach(() => {
+    ReactDOM.createPortal.mockClear();
+  });
+
   it('renders without crashing', () => {
     const component = renderer.create(
       <Tooltip>
         <Tooltip.Content>Hola mundo</Tooltip.Content>
         <Tooltip.Trigger>tooltip</Tooltip.Trigger>
-      </Tooltip>
+      </Tooltip>,
+      RENDER_OPTIONS
     );
-    const tree = component.toJSON();
-    expect(tree).toMatchSnapshot();
+    expect(component.toJSON()).toMatchSnapshot();
+
+    component.root.instance.setState({ visible: true });
+
+    expect(component.toJSON()).toMatchSnapshot();
   });
 
   it('renders with as param', () => {
@@ -20,24 +39,28 @@ describe('render', () => {
       <Tooltip as="div">
         <Tooltip.Content>Hola mundo</Tooltip.Content>
         <Tooltip.Trigger>tooltip</Tooltip.Trigger>
-      </Tooltip>
+      </Tooltip>,
+      RENDER_OPTIONS
     );
-    const tree = component.toJSON();
-    expect(tree).toMatchSnapshot();
+    expect(component.toJSON()).toMatchSnapshot();
+
+    component.root.instance.setState({ visible: true });
+
+    expect(component.toJSON()).toMatchSnapshot();
   });
 
-  it('should create portal', () => {
-    const component = mount(
-      <Tooltip>
+  it('renders with to param', () => {
+    const component = renderer.create(
+      <Tooltip to="bottom">
         <Tooltip.Content>Hola mundo</Tooltip.Content>
         <Tooltip.Trigger>tooltip</Tooltip.Trigger>
-      </Tooltip>
+      </Tooltip>,
+      RENDER_OPTIONS
     );
+    expect(component.toJSON()).toMatchSnapshot();
 
-    component.setState({ visible: true });
-    component.update();
+    component.root.instance.setState({ visible: true });
 
-    expect(document.querySelector('#modals')).toBeTruthy();
-    expect(document.querySelector('#modals').childNodes.length).toBe(1);
+    expect(component.toJSON()).toMatchSnapshot();
   });
 });
