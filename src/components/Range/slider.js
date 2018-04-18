@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Label from './label';
-import { colors } from '../../constants';
+import { theme } from '../../constants';
 
 const SliderContainer = styled.span`
   position: absolute;
@@ -11,8 +11,8 @@ const SliderContainer = styled.span`
 
 const SliderBullet = styled.div`
   appearance: none;
-  background: ${colors.white};
-  border: 1px solid ${colors.brand01};
+  background: ${props => props.theme.white};
+  border: 1px solid ${props => props.theme.brand01};
   border-radius: 100%;
   cursor: pointer;
   display: block;
@@ -30,8 +30,8 @@ const SliderBullet = styled.div`
   }
 
   .is-disabled & {
-    background: ${colors.ui02};
-    border: 1px solid ${colors.ui03};
+    background: ${props => props.theme.ui02};
+    border: 1px solid ${props => props.theme.ui03};
     cursor: not-allowed;
   }
 
@@ -39,6 +39,9 @@ const SliderBullet = styled.div`
     transform: none;
   }
 `;
+SliderBullet.defaultProps = {
+  theme,
+};
 
 class Slider extends Component {
   constructor(props) {

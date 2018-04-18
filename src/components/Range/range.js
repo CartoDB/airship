@@ -31,15 +31,11 @@ class Range extends Component {
       },
   };
 
-  constructor(props) {
-    super(props);
-
-    this.startValue = null;
-    this.node = null;
-    this.trackNode = null;
-    this.isSliderDragging = false;
-    this.lastKeyMoved = null;
-  }
+  startValue = null;
+  node = null;
+  trackNode = null;
+  isSliderDragging = false;
+  lastKeyMoved = null;
 
   componentWillUnmount() {
     this.removeDocumentMouseUpListener();
@@ -180,10 +176,7 @@ class Range extends Component {
   }
 
   removeDocumentTouchEndListener() {
-    this.node.ownerDocument.removeEventListener(
-      'touchend',
-      this.handleTouchEnd
-    );
+    this.node.ownerDocument.removeEventListener('touchend', this.handleTouchEnd);
   }
 
   handleSliderDrag = (event, key) => {

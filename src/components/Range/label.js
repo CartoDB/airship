@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { colors } from '../../constants';
+import { theme } from '../../constants';
 
 const StyledLabel = styled.span`
-  color: ${colors.type01};
+  color: ${props => props.theme.type01};
   font: 500 10px/12px 'Roboto';
   transform: translateZ(0) translateX(-50%);
   white-space: nowrap;
@@ -12,9 +12,12 @@ const StyledLabel = styled.span`
   top: 10px;
 
   .is-disabled & {
-    color: ${colors.ui03};
+    color: ${props => props.theme.ui03};
   }
 `;
+StyledLabel.defaultProps = {
+  theme,
+};
 
 const Label = props => {
   const labelValue = props.formatLabel

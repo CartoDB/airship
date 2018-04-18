@@ -1,29 +1,35 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { colors } from '../../constants';
+import { theme } from '../../constants';
 
 const TrackBack = styled.div`
-  background: ${colors.ui03};
+  background: ${props => props.theme.ui03};
   border-radius: 3px;
   cursor: pointer;
   height: 2px;
   position: relative;
 
   .is-disabled & {
-    background: ${colors.ui03};
+    background: ${props => props.theme.ui03};
     cursor: not-allowed;
   }
 `;
+TrackBack.defaultProps = {
+  theme,
+};
 
 const TrackFront = TrackBack.extend`
-  background: ${colors.brand01};
+  background: ${props => props.theme.brand01};
   transition: left 0.1s ease, width 0.1s ease;
 
   .is-disabled & {
-    background: ${colors.ui03};
+    background: ${props => props.theme.ui03};
   }
 `;
+TrackFront.defaultProps = {
+  theme,
+};
 
 class Track extends Component {
   constructor(props) {
