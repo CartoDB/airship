@@ -91,6 +91,8 @@ The tests are located in every component's folder, in a file called `<component 
 
 ### Making pull requests
 
+You will need to sign a Contributor License Agreement (CLA) before making a submission. [Learn more here.](https://carto.com/contributions/)
+
 1. When you're finished coding, `git checkout master`
 2. `git pull upstream master` (note that your local master should always reflect upstream master)
 3. `git checkout <your branch>`
