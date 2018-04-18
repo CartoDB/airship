@@ -247,6 +247,7 @@ class Histogram extends Component {
 
       // -- Update
       bar
+        .attr('fill', () => this.colorScale(key))
         .transition()
         .attr('x', d => this.xScale(d.data.name))
         .attr('y', d => this.yScale(d[1]))

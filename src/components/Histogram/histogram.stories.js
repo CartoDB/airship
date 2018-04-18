@@ -1,9 +1,17 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+import { ThemeProvider } from 'styled-components';
 import Histogram from './histogram';
 import Widget from '../Widget/widget';
 import mockData from './histogram.fixtures';
+import { theme } from '../../constants';
 
+const CUSTOM_THEME = {
+  ...theme,
+  ui01: '#333',
+  type01: 'white',
+  type02: 'white',
+};
 class HistogramUpdated extends React.Component {
   state = {
     data: mockData,
@@ -44,4 +52,14 @@ storiesOf('Histogram', module)
 
       <HistogramUpdated />
     </Widget>
+  ))
+  .add('With custom theme', () => (
+    <ThemeProvider theme={CUSTOM_THEME}>
+      <Widget>
+        <Widget.Title>Suffer score</Widget.Title>
+        <Widget.Description>Just a widget</Widget.Description>
+
+        <Histogram data={mockData} />
+      </Widget>
+    </ThemeProvider>
   ));

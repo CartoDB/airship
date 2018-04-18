@@ -173,6 +173,7 @@ class DonutWidget extends Component {
 
     // -- Update
     this.path
+      .attr('fill', (d, i) => colors[i])
       .transition()
       .duration(ANIMATION_DURATION)
       .attrTween('d', this.arcTween(this.arc, TRANSITION.IN));
