@@ -8,6 +8,5 @@ export { default as length } from './length';
 export { default as offset } from './offset';
 export { default as readableNumber } from './readable-number';
 export { default as truncate } from './truncate';
-export { default as virtualScroller } from './virtual-scroller';
 export { default as isComponentOfType } from './is-component-of-type';
 export { default as nodeMock } from './nodeMock';
