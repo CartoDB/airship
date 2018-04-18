@@ -26,7 +26,6 @@ export { default as Banner } from './Banner/banner';
 export { default as Datepicker } from './Datepicker/datepicker';
 export { default as RadioButton } from './RadioButton/radiobutton';
 export { default as Checkbox } from './Checkbox/checkbox';
-export { default as Typeahead } from './Typeahead/typeahead';
 export { default as Widget } from './Widget/widget';
 export { default as GaugeChart } from './GaugeChart/gauge';
 export { default as CategoryWidget } from './CategoryWidget/categoryWidget';
