@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Base from '../Typography/base';
-import { colors } from '../../constants';
+import { theme } from '../../constants';
 
 const Title = Base.withComponent('h1').extend`
   font-size: 16px;
@@ -11,12 +11,15 @@ const Title = Base.withComponent('h1').extend`
 const Description = Base.withComponent('p').extend`
   font-size: 12px;
   line-height: 16px;
-  color: ${colors.type02};
+  color: ${props => props.theme.type02};
   margin-bottom: 12px;
 `;
+Description.defaultProps = {
+  theme,
+};
 
 const Widget = styled.div`
-  background: ${colors.white};
+  background: ${props => props.theme.ui01};
   padding: 16px;
   width: 280px;
   box-sizing: border-box;
@@ -25,6 +28,10 @@ const Widget = styled.div`
 
 Widget.propTypes = {
   children: PropTypes.node,
+};
+
+Widget.defaultProps = {
+  theme,
 };
 
 Widget.Title = Title;
