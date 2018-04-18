@@ -1,8 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Tooltip /> renders with as param 1`] = `
+.c0 {
+  cursor: pointer;
+}
+
 <div
-  className=""
+  className="c0"
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
 >
@@ -13,7 +17,7 @@ exports[`<Tooltip /> renders with as param 1`] = `
 `;
 
 exports[`<Tooltip /> renders with as param 2`] = `
-.c0 {
+.c1 {
   box-sizing: border-box;
   pointer-events: none;
   font: 400 12px 'Roboto';
@@ -30,7 +34,7 @@ exports[`<Tooltip /> renders with as param 2`] = `
   transform: translate(-50%,-100%);
 }
 
-.c0:before {
+.c1:before {
   background: no-repeat url("#");
   background-size: 100% auto;
   width: 18px;
@@ -40,7 +44,7 @@ exports[`<Tooltip /> renders with as param 2`] = `
   position: absolute;
 }
 
-.c0:before {
+.c1:before {
   bottom: 0;
   left: 50%;
   margin-bottom: 5px;
@@ -52,13 +56,17 @@ exports[`<Tooltip /> renders with as param 2`] = `
   transform-origin: top;
 }
 
+.c0 {
+  cursor: pointer;
+}
+
 <div
-  className=""
+  className="c0"
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
 >
   <div
-    className="c0"
+    className="c1"
     to="top"
   >
     Hola mundo
@@ -70,8 +78,12 @@ exports[`<Tooltip /> renders with as param 2`] = `
 `;
 
 exports[`<Tooltip /> renders with to param 1`] = `
+.c0 {
+  cursor: pointer;
+}
+
 <span
-  className=""
+  className="c0"
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
 >
@@ -82,7 +94,7 @@ exports[`<Tooltip /> renders with to param 1`] = `
 `;
 
 exports[`<Tooltip /> renders with to param 2`] = `
-.c0 {
+.c1 {
   box-sizing: border-box;
   pointer-events: none;
   font: 400 12px 'Roboto';
@@ -99,7 +111,7 @@ exports[`<Tooltip /> renders with to param 2`] = `
   transform: translate(-50%,0);
 }
 
-.c0:before {
+.c1:before {
   background: no-repeat url("#");
   background-size: 100% auto;
   width: 18px;
@@ -109,7 +121,7 @@ exports[`<Tooltip /> renders with to param 2`] = `
   position: absolute;
 }
 
-.c0:before {
+.c1:before {
   top: 0;
   left: 50%;
   -webkit-transform: translate(-10px,0) rotate(180deg);
@@ -120,13 +132,17 @@ exports[`<Tooltip /> renders with to param 2`] = `
   transform-origin: top;
 }
 
+.c0 {
+  cursor: pointer;
+}
+
 <span
-  className=""
+  className="c0"
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
 >
   <div
-    className="c0"
+    className="c1"
     to="bottom"
   >
     Hola mundo
@@ -138,8 +154,12 @@ exports[`<Tooltip /> renders with to param 2`] = `
 `;
 
 exports[`<Tooltip /> renders without crashing 1`] = `
+.c0 {
+  cursor: pointer;
+}
+
 <span
-  className=""
+  className="c0"
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
 >
@@ -150,7 +170,7 @@ exports[`<Tooltip /> renders without crashing 1`] = `
 `;
 
 exports[`<Tooltip /> renders without crashing 2`] = `
-.c0 {
+.c1 {
   box-sizing: border-box;
   pointer-events: none;
   font: 400 12px 'Roboto';
@@ -167,7 +187,7 @@ exports[`<Tooltip /> renders without crashing 2`] = `
   transform: translate(-50%,-100%);
 }
 
-.c0:before {
+.c1:before {
   background: no-repeat url("#");
   background-size: 100% auto;
   width: 18px;
@@ -177,7 +197,7 @@ exports[`<Tooltip /> renders without crashing 2`] = `
   position: absolute;
 }
 
-.c0:before {
+.c1:before {
   bottom: 0;
   left: 50%;
   margin-bottom: 5px;
@@ -189,13 +209,17 @@ exports[`<Tooltip /> renders without crashing 2`] = `
   transform-origin: top;
 }
 
+.c0 {
+  cursor: pointer;
+}
+
 <span
-  className=""
+  className="c0"
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
 >
   <div
-    className="c0"
+    className="c1"
     to="top"
   >
     Hola mundo
