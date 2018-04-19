@@ -20,8 +20,8 @@ Description.defaultProps = {
 
 const Widget = styled.div`
   background: ${props => props.theme.ui01};
-  padding: 16px;
-  width: 280px;
+  padding: 24px;
+  width: 296px;
   box-sizing: border-box;
   text-align: left;
 `;
