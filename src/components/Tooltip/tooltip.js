@@ -120,6 +120,20 @@ class Tooltip extends Component {
 
   triggerRef = React.createRef();
 
+  componentDidMount() {
+    window.addEventListener('click', this.onWindowClick);
+    window.addEventListener('touchstart', this.onWindowClick);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('click', this.onWindowClick);
+    window.removeEventListener('touchstart', this.onWindowClick);
+  }
+
+  onWindowClick = event => (
+    event.target === this.triggerRef.current ? this.show() : this.show()
+  )
+
   show = () => this.setState({ visible: true });
 
   hide = () => this.setState({ visible: false });
