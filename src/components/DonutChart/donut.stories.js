@@ -35,7 +35,10 @@ class DonutUpdated extends React.Component {
 
 storiesOf('Donut Chart', module)
   .add('Default', () => (
-    <DonutChart data={mockData} />
+    <div>
+      <DonutChart data={mockData} />
+      <DonutChart data={mockData} />
+    </div>
   ))
   .add('Inside a widget', () => (
     <Widget>

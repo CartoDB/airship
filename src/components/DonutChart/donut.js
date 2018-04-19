@@ -114,9 +114,8 @@ class DonutWidget extends Component {
       .value(d => d.value);
 
     // -- Draw texts
-    this.donutContainer
+    const value = this.donutContainer
       .append('text')
-      .attr('class', 'tooltip-value')
       .attr('transform', 'translate(0, 0)')
       .attr('text-anchor', 'middle')
       .style('font-size', '24')
@@ -125,9 +124,8 @@ class DonutWidget extends Component {
       .style('font-family', 'Roboto')
       .style('-webkit-font-smoothing', 'antialiased');
 
-    this.donutContainer
+    const description = this.donutContainer
       .append('text')
-      .attr('class', 'tooltip-category')
       .attr('transform', 'translate(0, 20)')
       .attr('text-anchor', 'middle')
       .style('font-size', '12')
@@ -155,14 +153,14 @@ class DonutWidget extends Component {
       .on('mouseover', function(obj) {
         select(this).style('fill', () => rgb(select(this).style('fill')).darker(0.16));
 
-        select('text.tooltip-value').text(readableNumber(obj.data.value));
-        select('text.tooltip-category').text(truncate(obj.data.name, 14));
+        value.text(readableNumber(obj.data.value));
+        description.text(truncate(obj.data.name, 14));
       })
       .on('mouseout', function() {
         select(this).style('fill', () => rgb(select(this).style('fill')).brighter(0.16));
 
-        select('text.tooltip-value').text('');
-        select('text.tooltip-category').text('');
+        value.text('');
+        description.text('');
       })
       .attr('fill', (d, i) => colors[i])
       .style('cursor', 'pointer')
