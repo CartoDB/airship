@@ -118,21 +118,24 @@ class Tooltip extends Component {
     visible: false,
   };
 
-  triggerRef = React.createRef();
+  constructor(props) {
+    super(props);
+    this.triggerRef = React.createRef();
+  }
 
   componentDidMount() {
-    window.addEventListener('click', this.onWindowClick);
     window.addEventListener('touchstart', this.onWindowClick);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('click', this.onWindowClick);
     window.removeEventListener('touchstart', this.onWindowClick);
   }
 
-  onWindowClick = event => (
-    event.target === this.triggerRef.current ? this.show() : this.show()
-  )
+  onWindowClick = event => {
+    if (event.target !== this.triggerRef.current) {
+      this.hide();
+    }
+  }
 
   show = () => this.setState({ visible: true });
 
@@ -145,8 +148,9 @@ class Tooltip extends Component {
 
     return (
       <WrapperComponent
-        onMouseEnter={() => this.show()}
-        onMouseLeave={() => this.hide()}
+        onClick={this.show}
+        onMouseEnter={this.show}
+        onMouseLeave={this.hide}
       >
         {Children.map(children, child => {
           if (isComponentOfType(Tooltip.Trigger, child)) {
