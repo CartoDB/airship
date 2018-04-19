@@ -131,6 +131,9 @@ class Histogram extends Component {
   componentDidMount() {
     const { margin } = this.props;
 
+    window.addEventListener('click', this.onWindowClick);
+    window.addEventListener('touchstart', this.onWindowClick);
+
     this.barsContainer = this.svg
       .append('g')
       .attr('transform', `translate(${margin.left}, ${margin.top})`);
@@ -142,6 +145,17 @@ class Histogram extends Component {
   componentDidUpdate() {
     this.updateAxis();
     this.renderBars();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('click', this.onWindowClick);
+    window.removeEventListener('touchstart', this.onWindowClick);
+  }
+
+  onWindowClick = event => {
+    if (event.target !== this.svg) {
+      this.setState({ tooltip: null });
+    }
   }
 
   updateAxis() {
