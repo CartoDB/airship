@@ -43,10 +43,10 @@ You can override the color of the progress bar:
 
 ### Props
 
-#### **categories** (array)
+#### **categories** (array required)
 Array of categories, each category should include a `name` and a `value`.
 
-#### **max** (number)
+#### **max** (number required)
 Maximum value, used to calculate the `%` in the progress bar.
 
 #### **color** (string)

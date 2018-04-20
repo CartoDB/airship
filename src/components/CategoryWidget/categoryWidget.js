@@ -148,9 +148,9 @@ class CategoryWidget extends Component {
 }
 
 CategoryWidget.propTypes = {
-  categories: PropTypes.arrayOf(PropTypes.object),
+  categories: PropTypes.arrayOf(PropTypes.object).isRequired,
   color: PropTypes.string,
-  max: PropTypes.number,
+  max: PropTypes.number.isRequired,
   onCategoryClick: PropTypes.func,
   selected: PropTypes.array,
 };
