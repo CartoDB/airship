@@ -122,17 +122,5 @@ By default, value labels are displayed as plain numbers. If you want to change t
 ```react
 <Range
   value={{ min: 2, max: 10 }}
-  formatLabel={(value) => `${value}cm`}/>
-```
-
-#### **width** (number)
-
-The width of your component. By default is 220 pixels.
-
-```react
-<Range
-  width={300}
-  value={20}
-  minValue={10}
-  maxValue={30}/>
+  formatLabel={(value) => `${value} cm`}/>
 ```
