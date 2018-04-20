@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Label from './label';
 import { theme } from '../../constants';
 
 const SliderContainer = styled.div`
+  left: ${props => props.left * 100}%;
   align-items: center;
+  cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
   display: inline-flex;
   flex-direction: column;
   position: absolute;
@@ -22,7 +24,6 @@ const SliderBullet = styled.span`
   background: ${props => props.theme.white};
   border-radius: 100%;
   border: 1px solid ${props => props.theme.brand01};
-  cursor: pointer;
   display: inline-block;
   height: 12px;
   outline: none;
@@ -34,15 +35,14 @@ const SliderBullet = styled.span`
     transform: scale(1.3);
   }
 
-  .is-disabled & {
+  ${props => props.disabled && css`
     background: ${props => props.theme.ui02};
     border: 1px solid ${props => props.theme.ui03};
-    cursor: not-allowed;
-  }
 
-  .is-disabled &:hover {
-    transform: none;
-  }
+    &:hover {
+      transform: none;
+    }
+  `}
 `;
 SliderBullet.defaultProps = {
   theme,
@@ -58,15 +58,6 @@ class Slider extends Component {
   componentWillUnmount() {
     this.removeDocumentMouseMoveListener();
     this.removeDocumentMouseUpListener();
-  }
-
-  getStyle() {
-    const perc = (this.props.percentage || 0) * 100;
-    const style = {
-      left: `${perc}%`,
-    };
-
-    return style;
   }
 
   addDocumentMouseMoveListener() {
@@ -103,36 +94,31 @@ class Slider extends Component {
 
   handleMouseMove = event => {
     event.preventDefault();
-    event.stopPropagation();
 
     this.props.onSliderDrag(event, this.props.type);
   };
 
   handleTouchMove = event => {
     event.preventDefault();
-    event.stopPropagation();
 
     this.props.onSliderDrag(event, this.props.type);
   };
 
   render() {
-    const style = this.getStyle();
+    const { disabled, draggable, formatLabel, percentage, value } = this.props;
 
     return (
       <SliderContainer
         innerRef={node => { this.node = node; }}
-        style={style}
-        draggable={this.props.draggable}
+        left={percentage}
+        draggable={draggable}
+        disabled={disabled}
         onMouseDown={this.handleMouseDown}
         onTouchMove={this.handleTouchMove}
       >
-        <SliderBullet tabIndex="0" />
-        <Label
-          classNames={this.props.classNames}
-          formatLabel={this.props.formatLabel}
-          type="value"
-        >
-          {this.props.value}
+        <SliderBullet tabIndex="0" disabled={disabled} />
+        <Label formatLabel={formatLabel} type="value" disabled={disabled}>
+          {value}
         </Label>
       </SliderContainer>
     );
@@ -140,7 +126,7 @@ class Slider extends Component {
 }
 
 Slider.propTypes = {
-  classNames: PropTypes.array,
+  disabled: PropTypes.bool,
   draggable: PropTypes.bool,
   formatLabel: PropTypes.func,
   maxValue: PropTypes.number,
@@ -149,6 +135,10 @@ Slider.propTypes = {
   percentage: PropTypes.number.isRequired,
   type: PropTypes.string.isRequired,
   value: PropTypes.number.isRequired,
+};
+
+Slider.defaultProps = {
+  percentage: 0,
 };
 
 export default Slider;

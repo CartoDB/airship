@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import * as valueTransformer from './transformer';
+import * as utils from './transformer';
 import Slider from './slider';
 import Track from './track';
 import {
@@ -12,9 +12,9 @@ import {
   length,
 } from '../../utils';
 
-const StyledRange = styled.div`
+const Wrapper = styled.div`
   position: relative;
-  width: ${props => `${props.width}px`};
+  padding: 8px 0 24px;
 `;
 
 /**
@@ -47,7 +47,7 @@ class Range extends Component {
   }
 
   getKeyByPosition(position) {
-    const positions = valueTransformer.getPositionsFromValues(
+    const positions = utils.getPositionsFromValues(
       this.state.value,
       this.props.minValue,
       this.props.maxValue,
@@ -105,12 +105,9 @@ class Range extends Component {
   }
 
   updatePosition(key, position) {
-    const positions = valueTransformer.getPositionsFromValues(
-      this.state.value,
-      this.props.minValue,
-      this.props.maxValue,
-      this.getTrackClientRect()
-    );
+    const { minValue, maxValue } = this.props;
+    const { value } = this.state;
+    const positions = utils.getPositionsFromValues(value, minValue, maxValue, this.getTrackClientRect());
 
     positions[key] = position;
     this.lastKeyMoved = key;
@@ -119,27 +116,16 @@ class Range extends Component {
   }
 
   updatePositions(positions) {
+    const { minValue, maxValue, step } = this.props;
     const values = {
-      min: valueTransformer.getValueFromPosition(
-        positions.min,
-        this.props.minValue,
-        this.props.maxValue,
-        this.getTrackClientRect()
-      ),
-      max: valueTransformer.getValueFromPosition(
-        positions.max,
-        this.props.minValue,
-        this.props.maxValue,
-        this.getTrackClientRect()
-      ),
+      min: utils.getValueFromPosition(positions.min, minValue, maxValue, this.getTrackClientRect()),
+      max: utils.getValueFromPosition(positions.max, minValue, maxValue, this.getTrackClientRect()),
     };
 
-    const transformedValues = {
-      min: valueTransformer.getStepValueFromValue(values.min, this.props.step),
-      max: valueTransformer.getStepValueFromValue(values.max, this.props.step),
-    };
-
-    this.updateValues(transformedValues);
+    this.updateValues({
+      min: utils.getStepValueFromValue(values.min, step),
+      max: utils.getStepValueFromValue(values.max, step),
+    });
   }
 
   updateValue(key, value) {
@@ -183,7 +169,7 @@ class Range extends Component {
       return;
     }
 
-    const position = valueTransformer.getPositionFromEvent(
+    const position = utils.getPositionFromEvent(
       event,
       this.getTrackClientRect()
     );
@@ -192,51 +178,25 @@ class Range extends Component {
   };
 
   handleTrackDrag = (event, prevEvent) => {
-    if (this.props.disabled || !this.props.draggable || this.isSliderDragging) {
-      return;
-    }
-
-    const { maxValue, minValue } = this.props;
+    const { disabled, draggable, maxValue, minValue } = this.props;
     const { value: { max, min } } = this.state;
 
-    const position = valueTransformer.getPositionFromEvent(
-      event,
-      this.getTrackClientRect()
-    );
-    const value = valueTransformer.getValueFromPosition(
-      position,
-      minValue,
-      maxValue,
-      this.getTrackClientRect()
-    );
-    const stepValue = valueTransformer.getStepValueFromValue(
-      value,
-      this.props.step
-    );
+    if (disabled || !draggable || this.isSliderDragging) return;
 
-    const prevPosition = valueTransformer.getPositionFromEvent(
-      prevEvent,
-      this.getTrackClientRect()
-    );
-    const prevValue = valueTransformer.getValueFromPosition(
-      prevPosition,
-      minValue,
-      maxValue,
-      this.getTrackClientRect()
-    );
-    const prevStepValue = valueTransformer.getStepValueFromValue(
-      prevValue,
-      this.props.step
-    );
+    const position = utils.getPositionFromEvent(event, this.getTrackClientRect());
+    const value = utils.getValueFromPosition(position, minValue, maxValue, this.getTrackClientRect());
+    const stepValue = utils.getStepValueFromValue(value, this.props.step);
+
+    const prevPosition = utils.getPositionFromEvent(prevEvent, this.getTrackClientRect());
+    const prevValue = utils.getValueFromPosition(prevPosition, minValue, maxValue, this.getTrackClientRect());
+    const prevStepValue = utils.getStepValueFromValue(prevValue, this.props.step);
 
     const offset = prevStepValue - stepValue;
 
-    const transformedValues = {
+    this.updateValues({
       min: min - offset,
       max: max - offset,
-    };
-
-    this.updateValues(transformedValues);
+    });
   };
 
   handleTrackMouseDown = (event, position) => {
@@ -249,13 +209,13 @@ class Range extends Component {
 
     event.preventDefault();
 
-    const value = valueTransformer.getValueFromPosition(
+    const value = utils.getValueFromPosition(
       position,
       minValue,
       maxValue,
       this.getTrackClientRect()
     );
-    const stepValue = valueTransformer.getStepValueFromValue(
+    const stepValue = utils.getStepValueFromValue(
       value,
       this.props.step
     );
@@ -314,14 +274,10 @@ class Range extends Component {
 
   renderSliders() {
     const values = this.state.value;
-    const percentages = valueTransformer.getPercentagesFromValues(
-      this.state.value,
-      this.props.minValue,
-      this.props.maxValue
-    );
-    const keys = this.getKeys();
+    const { minValue, maxValue, disabled, formatLabel } = this.props;
+    const percentages = utils.getPercentagesFromValues(this.state.value, minValue, maxValue);
 
-    return keys.map(key => {
+    return this.getKeys().map(key => {
       const value = values[key];
       const percentage = percentages[key];
 
@@ -335,8 +291,8 @@ class Range extends Component {
 
       const slider = (
         <Slider
-          classNames={this.props.classNames}
-          formatLabel={this.props.formatLabel}
+          disabled={disabled}
+          formatLabel={formatLabel}
           key={key}
           maxValue={maxValue}
           minValue={minValue}
@@ -352,66 +308,50 @@ class Range extends Component {
   }
 
   renderHiddenInputs() {
-    if (!this.props.name) {
-      return [];
-    }
-
-    const isMultiValue = this.isMultiValue();
-    const values = this.state.value;
+    if (!this.props.name) return [];
 
     return this.getKeys().map(key => {
-      const value = values[key];
-      const name = isMultiValue
+      const name = this.isMultiValue()
         ? `${this.props.name}${capitalize(key)}`
         : this.props.name;
 
-      return <input key={key} type="hidden" name={name} value={value} />;
+      return <input key={key} type="hidden" name={name} value={this.state.value[key]} />;
     });
   }
 
   render() {
-    const { width, disabled, draggable } = this.props;
-    const isMultiValue = this.isMultiValue();
-    const percentages = valueTransformer.getPercentagesFromValues(
-      this.state.value,
-      this.props.minValue,
-      this.props.maxValue
-    );
+    const { disabled, draggable, minValue, maxValue } = this.props;
+    const percentages = utils.getPercentagesFromValues(this.state.value, minValue, maxValue);
 
     return (
-      <StyledRange
-        className={disabled ? 'is-disabled' : null}
-        width={width}
-        innerRef={node => {
-          this.node = node;
-        }}
+      <Wrapper
+        innerRef={node => { this.node = node; }}
         onMouseDown={this.handleMouseDown}
         onTouchStart={this.handleTouchStart}
       >
         <Track
-          draggable={isMultiValue ? draggable : false}
-          ref={trackNode => {
-            this.trackNode = trackNode;
-          }}
+          draggable={this.isMultiValue() ? draggable : false}
+          ref={trackNode => { this.trackNode = trackNode; }}
           percentages={percentages}
+          disabled={disabled}
           onTrackDrag={this.handleTrackDrag}
           onTrackMouseDown={this.handleTrackMouseDown}
         >
           {this.renderSliders()}
         </Track>
         {this.renderHiddenInputs()}
-      </StyledRange>
+      </Wrapper>
     );
   }
 }
 
 Range.defaultProps = {
   disabled: false,
+  draggable: false,
   maxValue: 10,
   minValue: 0,
   value: 0,
   step: 1,
-  width: 200,
 };
 
 Range.propTypes = {
@@ -427,7 +367,6 @@ Range.propTypes = {
   onChangeComplete: PropTypes.func,
   step: PropTypes.number,
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.object]),
-  width: PropTypes.number,
 };
 
 export default Range;

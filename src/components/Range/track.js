@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { theme } from '../../constants';
 
 const TrackBack = styled.div`
@@ -12,10 +12,10 @@ const TrackBack = styled.div`
   -webkit-tap-highlight-color: transparent;
   user-select: none;
 
-  .is-disabled & {
+  ${props => props.disabled && css`
     background: ${props => props.theme.ui03};
     cursor: not-allowed;
-  }
+  `}
 `;
 TrackBack.defaultProps = {
   theme,
@@ -26,10 +26,12 @@ const TrackFront = TrackBack.extend`
   transition: left 0.1s ease, width 0.1s ease;
   -webkit-tap-highlight-color: transparent;
   user-select: none;
+  left: ${props => props.left};
+  width: ${props => props.width};
 
-  .is-disabled & {
-    background: ${props => props.theme.ui03};
-  }
+  ${props => props.disabled && css`
+    background: ${props => props.theme.ui04};
+  `}
 `;
 TrackFront.defaultProps = {
   theme,
@@ -50,6 +52,7 @@ class Track extends Component {
     const { min, max } = percentages;
     const width = `${(max - min) * 100}%`;
     const left = `${min * 100}%`;
+
     return { left, width };
   };
 
@@ -64,10 +67,7 @@ class Track extends Component {
   }
 
   removeDocumentMouseMoveListener() {
-    this.node.ownerDocument.removeEventListener(
-      'mousemove',
-      this.handleMouseMove
-    );
+    this.node.ownerDocument.removeEventListener('mousemove', this.handleMouseMove);
   }
 
   removeDocumentMouseUpListener() {
@@ -76,11 +76,9 @@ class Track extends Component {
 
   handleMouseMove = event => {
     event.preventDefault();
-
     const { draggable, onTrackDrag } = this.props;
-    if (!draggable) {
-      return;
-    }
+
+    if (!draggable) return;
 
     if (this.trackDragEvent !== null) {
       onTrackDrag(event, this.trackDragEvent);
@@ -123,18 +121,18 @@ class Track extends Component {
   };
 
   render() {
-    const activeTrackStyle = this.getActiveTrackStyle();
+    const { children, disabled } = this.props;
+    const { left, width } = this.getActiveTrackStyle();
 
     return (
       <TrackBack
+        disabled={disabled}
+        innerRef={node => { this.node = node; }}
         onMouseDown={this.handleMouseDown}
         onTouchStart={this.handleTouchStart}
-        innerRef={node => {
-          this.node = node;
-        }}
       >
-        <TrackFront style={activeTrackStyle} />
-        {this.props.children}
+        <TrackFront disabled={disabled} left={left} width={width} />
+        {children}
       </TrackBack>
     );
   }
@@ -142,6 +140,7 @@ class Track extends Component {
 
 Track.propTypes = {
   children: PropTypes.node,
+  disabled: PropTypes.bool,
   draggable: PropTypes.bool,
   onTrackDrag: PropTypes.func,
   onTrackMouseDown: PropTypes.func.isRequired,
