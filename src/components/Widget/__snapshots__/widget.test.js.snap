@@ -25,8 +25,8 @@ exports[`render renders children 1`] = `
 
 .c0 {
   background: #fff;
-  padding: 16px;
-  width: 280px;
+  padding: 24px;
+  width: 296px;
   box-sizing: border-box;
   text-align: left;
 }
@@ -75,8 +75,8 @@ exports[`render renders without crashing 1`] = `
 
 .c0 {
   background: #fff;
-  padding: 16px;
-  width: 280px;
+  padding: 24px;
+  width: 296px;
   box-sizing: border-box;
   text-align: left;
 }
