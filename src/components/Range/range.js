@@ -150,9 +150,8 @@ class Range extends Component {
   }
 
   updateValues(values) {
-    if (!this.shouldUpdate(values)) {
-      return;
-    }
+    if (!this.shouldUpdate(values)) return;
+
     const { onChange } = this.props;
 
     this.setState(

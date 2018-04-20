@@ -9,6 +9,8 @@ const TrackBack = styled.div`
   cursor: pointer;
   height: 2px;
   position: relative;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
 
   .is-disabled & {
     background: ${props => props.theme.ui03};
@@ -22,6 +24,8 @@ TrackBack.defaultProps = {
 const TrackFront = TrackBack.extend`
   background: ${props => props.theme.brand01};
   transition: left 0.1s ease, width 0.1s ease;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
 
   .is-disabled & {
     background: ${props => props.theme.ui03};
@@ -51,7 +55,7 @@ class Track extends Component {
 
   addDocumentMouseMoveListener() {
     this.removeDocumentMouseMoveListener();
-    this.node.ownerDocument.addEventListener('mousemove', this.handleMouseMove);
+    this.node.ownerDocument.addEventListener('mousemove', this.handleMouseMove, { pasive: false });
   }
 
   addDocumentMouseUpListener() {
@@ -70,17 +74,19 @@ class Track extends Component {
     this.node.ownerDocument.removeEventListener('mouseup', this.handleMouseUp);
   }
 
-  handleMouseMove = e => {
+  handleMouseMove = event => {
+    event.preventDefault();
+
     const { draggable, onTrackDrag } = this.props;
     if (!draggable) {
       return;
     }
 
     if (this.trackDragEvent !== null) {
-      onTrackDrag(e, this.trackDragEvent);
+      onTrackDrag(event, this.trackDragEvent);
     }
 
-    this.trackDragEvent = e;
+    this.trackDragEvent = event;
   };
 
   handleMouseUp = () => {
@@ -93,16 +99,16 @@ class Track extends Component {
     this.trackDragEvent = null;
   };
 
-  handleMouseDown = e => {
+  handleMouseDown = event => {
     const { draggable, onTrackMouseDown } = this.props;
-    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientX = event.touches ? event.touches[0].clientX : event.clientX;
     const trackClientRect = this.getClientRect();
     const position = {
       x: clientX - trackClientRect.left,
       y: 0,
     };
 
-    onTrackMouseDown(e, position);
+    onTrackMouseDown(event, position);
 
     if (draggable) {
       this.addDocumentMouseMoveListener();
@@ -110,10 +116,10 @@ class Track extends Component {
     }
   };
 
-  handleTouchStart = e => {
-    e.preventDefault();
+  handleTouchStart = event => {
+    event.preventDefault();
 
-    this.handleMouseDown(e);
+    this.handleMouseDown(event);
   };
 
   render() {

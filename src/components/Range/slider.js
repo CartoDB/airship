@@ -4,26 +4,31 @@ import styled from 'styled-components';
 import Label from './label';
 import { theme } from '../../constants';
 
-const SliderContainer = styled.span`
+const SliderContainer = styled.div`
+  align-items: center;
+  display: inline-flex;
+  flex-direction: column;
   position: absolute;
   transition: left 0.1s ease;
+  top: -6px;
+  transform: translate3d(-50%, 0, 0);
+  padding: 0 0.5rem;
+  user-select: none;
 `;
 
-const SliderBullet = styled.div`
+const SliderBullet = styled.span`
+  -webkit-tap-highlight-color: transparent;
   appearance: none;
   background: ${props => props.theme.white};
-  border: 1px solid ${props => props.theme.brand01};
   border-radius: 100%;
+  border: 1px solid ${props => props.theme.brand01};
   cursor: pointer;
-  display: block;
+  display: inline-block;
   height: 12px;
-  margin-left: -6px;
-  margin-top: -7px;
   outline: none;
-  position: absolute;
-  top: 50%;
   transition: transform 0.1s ease;
   width: 12px;
+  user-select: none;
 
   &:hover {
     transform: scale(1.3);
@@ -53,8 +58,6 @@ class Slider extends Component {
   componentWillUnmount() {
     this.removeDocumentMouseMoveListener();
     this.removeDocumentMouseUpListener();
-    this.removeDocumentTouchEndListener();
-    this.removeDocumentTouchMoveListener();
   }
 
   getStyle() {
@@ -68,75 +71,48 @@ class Slider extends Component {
 
   addDocumentMouseMoveListener() {
     this.removeDocumentMouseMoveListener();
-    this.node.ownerDocument.addEventListener('mousemove', this.handleMouseMove);
+    this.node.ownerDocument.addEventListener('mousemove', this.handleMouseMove, { pasive: false });
   }
 
   addDocumentMouseUpListener() {
     this.removeDocumentMouseUpListener();
-    this.node.ownerDocument.addEventListener('mouseup', this.handleMouseUp);
-  }
-
-  addDocumentTouchMoveListener() {
-    this.removeDocumentTouchMoveListener();
-    this.node.ownerDocument.addEventListener('touchmove', this.handleTouchMove);
-  }
-
-  addDocumentTouchEndListener() {
-    this.removeDocumentTouchEndListener();
-    this.node.ownerDocument.addEventListener('touchend', this.handleTouchEnd);
+    this.node.ownerDocument.addEventListener('mouseup', this.handleMouseUp, { pasive: false });
   }
 
   removeDocumentMouseMoveListener() {
-    this.node.ownerDocument.removeEventListener(
-      'mousemove',
-      this.handleMouseMove
-    );
+    this.node.ownerDocument.removeEventListener('mousemove', this.handleMouseMove);
   }
 
   removeDocumentMouseUpListener() {
     this.node.ownerDocument.removeEventListener('mouseup', this.handleMouseUp);
   }
 
-  removeDocumentTouchMoveListener() {
-    this.node.ownerDocument.removeEventListener(
-      'touchmove',
-      this.handleTouchMove
-    );
-  }
+  handleMouseDown = event => {
+    event.preventDefault();
 
-  removeDocumentTouchEndListener() {
-    this.node.ownerDocument.removeEventListener(
-      'touchend',
-      this.handleTouchEnd
-    );
-  }
-
-  handleMouseDown = () => {
     this.addDocumentMouseMoveListener();
     this.addDocumentMouseUpListener();
   };
 
-  handleMouseUp = () => {
+  handleMouseUp = event => {
+    event.preventDefault();
+
     this.removeDocumentMouseMoveListener();
     this.removeDocumentMouseUpListener();
   };
 
   handleMouseMove = event => {
-    this.props.onSliderDrag(event, this.props.type);
-  };
+    event.preventDefault();
+    event.stopPropagation();
 
-  handleTouchStart = () => {
-    this.addDocumentTouchEndListener();
-    this.addDocumentTouchMoveListener();
+    this.props.onSliderDrag(event, this.props.type);
   };
 
   handleTouchMove = event => {
-    this.props.onSliderDrag(event, this.props.type);
-  };
+    event.preventDefault();
+    event.stopPropagation();
 
-  handleTouchEnd = () => {
-    this.removeDocumentTouchMoveListener();
-    this.removeDocumentTouchEndListener();
+    this.props.onSliderDrag(event, this.props.type);
   };
 
   render() {
@@ -144,11 +120,13 @@ class Slider extends Component {
 
     return (
       <SliderContainer
-        innerRef={node => {
-          this.node = node;
-        }}
+        innerRef={node => { this.node = node; }}
         style={style}
+        draggable={this.props.draggable}
+        onMouseDown={this.handleMouseDown}
+        onTouchMove={this.handleTouchMove}
       >
+        <SliderBullet tabIndex="0" />
         <Label
           classNames={this.props.classNames}
           formatLabel={this.props.formatLabel}
@@ -156,13 +134,6 @@ class Slider extends Component {
         >
           {this.props.value}
         </Label>
-
-        <SliderBullet
-          draggable={this.props.draggable}
-          onMouseDown={this.handleMouseDown}
-          onTouchStart={this.handleTouchStart}
-          tabIndex="0"
-        />
       </SliderContainer>
     );
   }

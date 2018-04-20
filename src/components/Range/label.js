@@ -6,10 +6,10 @@ import { theme } from '../../constants';
 const StyledLabel = styled.span`
   color: ${props => props.theme.type01};
   font: 500 10px/12px 'Roboto';
-  transform: translateZ(0) translateX(-50%);
   white-space: nowrap;
-  position: absolute;
-  top: 10px;
+  user-select: none;
+  display: inline-block;
+  margin-top: 4px;
 
   .is-disabled & {
     color: ${props => props.theme.ui03};
