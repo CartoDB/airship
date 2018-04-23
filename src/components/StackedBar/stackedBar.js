@@ -32,7 +32,6 @@ Tooltip.defaultProps = {
   theme,
 };
 
-
 const Color = styled.div`
   display: inline-block;
   width: 12px;
@@ -61,7 +60,7 @@ Title.defaultProps = {
   theme,
 };
 
-const Label = Base.withComponent('p').extend`
+const TooltipLabel = Base.withComponent('p').extend`
   font-size: 12px;
   line-height: 12px;
   overflow: hidden;
@@ -72,18 +71,43 @@ const Label = Base.withComponent('p').extend`
   cursor: default;
   color: ${props => props.theme.white};
 `;
-Label.defaultProps = {
+TooltipLabel.defaultProps = {
   theme,
 };
 
-const Item = styled.li`
+const TooltipItem = styled.li`
   display: flex;
   align-items: center;
-  margin-bottom: 0.5rem;
 
-  &:last-child {
-    margin-bottom: 0;
+  :not(:last-child) {
+    margin-bottom: 0.5rem;
   }
+`;
+
+const Legend = styled.ul`
+  padding: 0;
+  margin: 8px 0 0 16px;
+  height: 150px;
+`;
+
+const LegendItem = styled.li`
+  display: inline-flex;
+  align-items: center;
+
+  :not(:last-child) {
+    margin-right: 1rem;
+  }
+`;
+
+const LegendTitle = Base.withComponent('p').extend`
+  font-size: 12px;
+  line-height: 20px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: left;
+  width: 100%;
+  cursor: default;
 `;
 
 const Svg = styled.svg.attrs({
@@ -114,17 +138,25 @@ class Histogram extends Component {
   static defaultProps = {
     colors: chartColors,
     data: [],
+    labels: [],
+    showLegend: true,
   };
 
   static propTypes = {
     colors: PropTypes.array,
     data: PropTypes.array,
     keys: PropTypes.array,
+    labels: PropTypes.array,
+    showLegend: PropTypes.bool,
   };
 
   state = {
     tooltip: null,
   }
+
+  colorScale = scaleOrdinal()
+    .range(this.props.colors)
+    .domain(this.props.keys);
 
   componentDidMount() {
     window.addEventListener('click', this.onWindowClick);
@@ -179,7 +211,7 @@ class Histogram extends Component {
   }
 
   renderAxis() {
-    const { data, colors, keys } = this.props;
+    const { data, keys } = this.props;
 
     // -- Stack
     this.stack = stack()
@@ -211,11 +243,6 @@ class Histogram extends Component {
       .call(this.yAxis);
 
     select('.domain').remove(); // Remove axis border
-
-    // -- Color scale
-    this.colorScale = scaleOrdinal()
-      .range(colors)
-      .domain(keys);
   }
 
   renderBars() {
@@ -312,22 +339,39 @@ class Histogram extends Component {
       <Tooltip innerRef={node => { this.tooltipNode = node; }}>
         <Title>{d.data.name}</Title>
         {keys.map(key => (
-          <Item key={key}>
+          <TooltipItem key={key}>
             <Color background={this.colorScale(key)} />
-            <Label>{d.data[key]}</Label>
-          </Item>
+            <TooltipLabel>{d.data[key]}</TooltipLabel>
+          </TooltipItem>
         ))}
       </Tooltip>
     );
   }
 
+  renderLegend = () => {
+    if (!this.colorScale) return;
+
+    const { keys, labels } = this.props;
+
+    return (
+      <Legend>
+        {labels.map((name, index) => (
+          <LegendItem key={name}>
+            <Color background={this.colorScale(keys[index])} />
+            <LegendTitle>{name}</LegendTitle>
+          </LegendItem>
+        ))}
+      </Legend>
+    );
+  }
+
   render() {
+    const { showLegend } = this.props;
+
     return (
       <React.Fragment>
-        <Svg
-          innerRef={node => { this.svg = select(node); }}
-          {...this.props}
-        />
+        <Svg innerRef={node => { this.svg = select(node); }} />
+        {showLegend && this.renderLegend()}
         {this.state.tooltip && this.renderTooltip()}
       </React.Fragment>
     );

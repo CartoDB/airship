@@ -45,6 +45,18 @@ storiesOf('StackedBar', module)
       <StackedBar data={mockData} keys={['private_rooms', 'shared_rooms', 'entire_homes']} />
     </Widget>
   ))
+  .add('With legend', () => (
+    <Widget>
+      <Widget.Title>Suffer score</Widget.Title>
+      <Widget.Description>Just a widget</Widget.Description>
+
+      <StackedBar
+        data={mockData}
+        keys={['private_rooms', 'shared_rooms', 'entire_homes']}
+        labels={['Private rooms', 'Shared rooms', 'Entire home/apt']}
+      />
+    </Widget>
+  ))
   .add('Updating data', () => (
     <Widget>
       <Widget.Title>Suffer score</Widget.Title>

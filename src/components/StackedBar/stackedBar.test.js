@@ -36,6 +36,33 @@ describe('<StackedBar />', () => {
 
         expect(component.find('Tooltip').length).toEqual(1);
       });
+
+      it('renders the legend', () => {
+        const component = renderer.create(
+          <StackedBar
+            data={mockData}
+            keys={['private_rooms', 'shared_rooms', 'entire_homes']}
+            labels={['Private rooms', 'Shared rooms', 'Entire home/apt']}
+          />
+        );
+        const tree = component.toJSON();
+
+        expect(tree).toMatchSnapshot();
+      });
+
+      it('does not render the legend when showLegend is false', () => {
+        const component = renderer.create(
+          <StackedBar
+            data={mockData}
+            keys={['private_rooms', 'shared_rooms', 'entire_homes']}
+            labels={['Private rooms', 'Shared rooms', 'Entire home/apt']}
+            showLegend={false}
+          />
+        );
+        const tree = component.toJSON();
+
+        expect(tree).toMatchSnapshot();
+      });
     });
   });
 

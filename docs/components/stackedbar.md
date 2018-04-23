@@ -30,6 +30,23 @@ Value that will be shown in the widget. Each object should include a name, and t
 
 Keys to be used in each bar, with the data above we would use `['investment', 'revenue']` as keys.
 
+#### **labels** (array)
+
+Labels to show in the legend, it's a match 1 to 1 to the keys:
+
+```react
+<Widget>
+  <Widget.Title>Suffer score</Widget.Title>
+  <Widget.Description>Just a widget</Widget.Description>
+
+  <StackedBar
+    data={data}
+    keys={['private_rooms', 'shared_rooms', 'entire_homes']}
+    labels={['Private rooms', 'Shared rooms', 'Entire home/apt']}
+  />
+</Widget>
+```
+
 #### **colors** (array)
 
 Colors used in the chart.
@@ -46,3 +63,7 @@ Colors used in the chart.
   />
 </Widget>
 ```
+
+#### **showLegend** (bool)
+
+Defaults to `true`. It shows/hides the legend.
