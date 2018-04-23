@@ -45,6 +45,11 @@ class Track extends Component {
     this.trackDragEvent = null;
   }
 
+  componentWillUnmount() {
+    this.removeDocumentMouseMoveListener();
+    this.removeDocumentMouseUpListener();
+  }
+
   getClientRect = () => this.node.getBoundingClientRect();
 
   getActiveTrackStyle = () => {
