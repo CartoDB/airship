@@ -14,10 +14,9 @@ const INNER_RADIUS = 88;
 const OUTER_RADIUS = 100;
 const ANIMATION_DURATION = 750;
 
-const Chart = styled.svg`
-  width: 228px;
-  min-width: 100px;
-  height: 136px;
+const Chart = styled.svg.attrs({
+  viewBox: '0 0 228 100',
+})`
   color: ${props => props.theme.type01};
 `;
 Chart.defaultProps = {
@@ -25,7 +24,7 @@ Chart.defaultProps = {
 };
 
 const Label = Base.withComponent('text').extend`
-  transform: translate3d(50%, calc(50% + 20px), 0);
+  transform: translate(50%, 85%);
   font-size: 12px;
   font-weight: 300;
   text-anchor: middle;
@@ -33,7 +32,7 @@ const Label = Base.withComponent('text').extend`
 `;
 
 const Value = Base.withComponent('text').extend`
-  transform: translate3d(50%, 50%, 0);
+  transform: translate(50%, 65%);
   font-size: 40px;
   font-weight: 300;
   text-anchor: middle;
