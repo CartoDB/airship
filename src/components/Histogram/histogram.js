@@ -2,22 +2,34 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { darken } from 'polished';
-import { select, selectAll } from 'd3-selection'; // eslint-disable-line
+import { select } from 'd3-selection';
 import { scaleBand, scaleLinear } from 'd3-scale';
-import { min, max } from 'd3-array'; // eslint-disable-line
-import { transition } from 'd3-transition'; // eslint-disable-line
-import { axisBottom, axisLeft } from 'd3-axis'; // eslint-disable-line
+import { max } from 'd3-array';
+import { axisLeft } from 'd3-axis';
+import 'd3-transition';
+import { theme } from '../../constants';
 
-const Svg = styled.svg`
-  max-width: 248px;
+const WIDTH = 208;
+const HEIGHT = 140;
+const MARGIN = {
+  TOP: 15,
+  RIGHT: 0,
+  BOTTOM: 5,
+  LEFT: 40,
+};
+
+const Svg = styled.svg.attrs({
+  viewBox: '0 0 248 160',
+})`
 
   .tick {
     line {
       opacity: 0.1;
+      stroke: ${props => props.theme.type02};
     }
 
     text {
-      color: ${props => props.textColor};
+      fill: ${props => props.theme.type02};
     }
 
     :first-child {
@@ -28,47 +40,34 @@ const Svg = styled.svg`
   }
 
   .bar {
-    fill: ${props => props.color};
+    fill: ${props => props.color || props.theme.brand03};
     cursor: pointer;
     opacity: 0.7;
     transition: all 0.3s linear;
 
     :hover {
-      fill: ${props => darken(0.16, props.color)};
+      fill: ${props => darken(0.16, props.color || props.theme.brand03)};
     }
   }
 `;
+Svg.defaultProps = {
+  theme,
+};
 
 class Histogram extends Component {
   static defaultProps = {
-    color: '#3AB5F0',
     data: [],
-    textColor: '#747474',
-    width: 208,
-    height: 140,
-    margin: {
-      top: 15,
-      right: 0,
-      bottom: 5,
-      left: 40,
-    },
   };
 
   static propTypes = {
     color: PropTypes.string,
     data: PropTypes.array,
-    height: PropTypes.number,
-    margin: PropTypes.object,
-    textColor: PropTypes.string,
-    width: PropTypes.number,
   };
 
   componentDidMount() {
-    const { margin } = this.props;
-
     this.barsContainer = this.container
       .append('g')
-      .attr('transform', `translate(${margin.left}, ${margin.top})`);
+      .attr('transform', `translate(${MARGIN.LEFT}, ${MARGIN.TOP})`);
 
     this.renderAxis();
     this.renderBars();
@@ -96,40 +95,38 @@ class Histogram extends Component {
   }
 
   renderAxis() {
-    const { data, height, margin, width } = this.props;
+    const { data } = this.props;
 
     // -- X Axis
     this.xScale = scaleBand()
       .paddingInner(0.05)
       .paddingOuter(0.1)
       .domain(data.map(d => d.name))
-      .range([0, width]);
+      .range([0, WIDTH]);
 
     // -- Y Axis
     this.yScale = scaleLinear()
-      .range([height, 0])
+      .range([HEIGHT, 0])
       .domain([0, max(data, d => d.value)])
       .nice();
 
     this.yAxis = axisLeft(this.yScale)
-      .tickSize(-width, 0, 0)
+      .tickSize(-WIDTH, 0, 0)
       .ticks(5);
 
     this.yAxisSelection = this.container
       .append('g')
-      .attr('transform', `translate(${margin.left}, ${margin.top})`)
+      .attr('transform', `translate(${MARGIN.LEFT}, ${MARGIN.TOP})`)
       .call(this.yAxis);
 
     select('.domain').remove(); // Remove axis border
   }
 
   renderBars() {
-    const { data, height } = this.props;
-
     // Draw bars
     this.bars = this.barsContainer
       .selectAll('rect')
-      .data(data);
+      .data(this.props.data);
 
     // Exit
     this.bars.exit().remove();
@@ -140,31 +137,25 @@ class Histogram extends Component {
       .append('rect')
       .merge(this.bars)
       .attr('class', 'bar')
-      .attr('y', height)
+      .attr('y', HEIGHT)
       .attr('x', d => this.xScale(d.name))
       .attr('width', () => this.xScale.bandwidth())
       .transition()
       .delay(200)
       .attr('y', d => this.yScale(d.value))
-      .attr('height', d => height - this.yScale(d.value));
+      .attr('height', d => HEIGHT - this.yScale(d.value));
 
     // Update
     this.bars
       .attr('y', d => this.yScale(d.value))
-      .attr('height', d => height - this.yScale(d.value));
+      .attr('height', d => HEIGHT - this.yScale(d.value));
   }
 
   render() {
-    const { width, height, margin, ...others } = this.props;
-    const fullHeight = height + margin.top + margin.bottom;
-    const fullWidth = width + margin.left + margin.right;
-
     return (
       <Svg
-        width={fullWidth}
-        height={fullHeight}
         innerRef={node => { this.container = select(node); }}
-        {...others}
+        {...this.props}
       />
     );
   }

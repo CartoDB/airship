@@ -1,16 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Histogram /> render when data passed in renders the correct amount of bars 1`] = `
-.c0 {
-  max-width: 248px;
-}
-
 .c0 .tick line {
   opacity: 0.1;
+  stroke: #747474;
 }
 
 .c0 .tick text {
-  color: #747474;
+  fill: #747474;
 }
 
 .c0 .tick:first-child line {
@@ -18,7 +15,7 @@ exports[`<Histogram /> render when data passed in renders the correct amount of 
 }
 
 .c0 .bar {
-  fill: #3AB5F0;
+  fill: #47DB99;
   cursor: pointer;
   opacity: 0.7;
   -webkit-transition: all 0.3s linear;
@@ -26,12 +23,11 @@ exports[`<Histogram /> render when data passed in renders the correct amount of 
 }
 
 .c0 .bar:hover {
-  fill: #0f8dc9;
+  fill: #22ae70;
 }
 
 <svg
   className="c0"
-  color="#3AB5F0"
   data={
     Array [
       Object {
@@ -60,22 +56,18 @@ exports[`<Histogram /> render when data passed in renders the correct amount of 
       },
     ]
   }
-  height={160}
-  width={248}
+  viewBox="0 0 248 160"
 />
 `;
 
 exports[`<Histogram /> update when data changes should call the update method or the chart 1`] = `
-.c0 {
-  max-width: 248px;
-}
-
 .c0 .tick line {
   opacity: 0.1;
+  stroke: #747474;
 }
 
 .c0 .tick text {
-  color: #747474;
+  fill: #747474;
 }
 
 .c0 .tick:first-child line {
@@ -83,7 +75,7 @@ exports[`<Histogram /> update when data changes should call the update method or
 }
 
 .c0 .bar {
-  fill: #3AB5F0;
+  fill: #47DB99;
   cursor: pointer;
   opacity: 0.7;
   -webkit-transition: all 0.3s linear;
@@ -91,12 +83,11 @@ exports[`<Histogram /> update when data changes should call the update method or
 }
 
 .c0 .bar:hover {
-  fill: #0f8dc9;
+  fill: #22ae70;
 }
 
 <svg
   className="c0"
-  color="#3AB5F0"
   data={
     Array [
       Object {
@@ -125,22 +116,18 @@ exports[`<Histogram /> update when data changes should call the update method or
       },
     ]
   }
-  height={160}
-  width={248}
+  viewBox="0 0 248 160"
 />
 `;
 
 exports[`<Histogram /> update when data changes should call the update method or the chart 2`] = `
-.c0 {
-  max-width: 248px;
-}
-
 .c0 .tick line {
   opacity: 0.1;
+  stroke: #747474;
 }
 
 .c0 .tick text {
-  color: #747474;
+  fill: #747474;
 }
 
 .c0 .tick:first-child line {
@@ -148,7 +135,7 @@ exports[`<Histogram /> update when data changes should call the update method or
 }
 
 .c0 .bar {
-  fill: #3AB5F0;
+  fill: #47DB99;
   cursor: pointer;
   opacity: 0.7;
   -webkit-transition: all 0.3s linear;
@@ -156,14 +143,12 @@ exports[`<Histogram /> update when data changes should call the update method or
 }
 
 .c0 .bar:hover {
-  fill: #0f8dc9;
+  fill: #22ae70;
 }
 
 <svg
   className="c0"
-  color="#3AB5F0"
   data={Array []}
-  height={160}
-  width={248}
+  viewBox="0 0 248 160"
 />
 `;

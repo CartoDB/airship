@@ -10,7 +10,7 @@ const CUSTOM_THEME = {
   ...theme,
   ui01: '#333',
   type01: 'white',
-  type02: 'white',
+  type02: '#F5F5F5',
 };
 class HistogramUpdated extends React.Component {
   state = {
@@ -36,6 +36,9 @@ class HistogramUpdated extends React.Component {
 storiesOf('Histogram', module)
   .add('Default', () => (
     <Histogram data={mockData} />
+  ))
+  .add('With custom color', () => (
+    <Histogram data={mockData} color="#7E78E2" />
   ))
   .add('Inside a widget', () => (
     <Widget>
