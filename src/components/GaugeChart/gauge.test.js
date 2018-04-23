@@ -1,39 +1,36 @@
 import React from 'react';
-import { mount } from 'enzyme';
-import Gauge from './gauge';
-import GaugeChart from './gaugeChart';
-
-jest.mock('./gaugeChart');
+import renderer from 'react-test-renderer';
+import GaugeChart from './gauge';
 
 describe('<GaugeChart />', () => {
-  afterEach(() => {
-    GaugeChart.mockClear();
-  });
-
   describe('render', () => {
     describe('when data passed in', () => {
-      it('should call the create method or the chart', () => {
-        mount(<Gauge />);
+      it('renders the correct amount of bars', () => {
+        const component = renderer.create(<GaugeChart value={12} />);
+        const tree = component.toJSON();
 
-        expect(GaugeChart).toHaveBeenCalledTimes(1);
+        expect(tree).toMatchSnapshot();
       });
 
-      it('should call the create method or the chart with the container as the first argument', () => {
-        const wrapper = mount(<Gauge />);
+      it('renders with a label', () => {
+        const component = renderer.create(<GaugeChart value={12} label="Parsecs" />);
+        const tree = component.toJSON();
 
-        const actual = GaugeChart.mock.calls[0][0];
-        const expected = wrapper.instance().rootNode;
-
-        expect(actual).toEqual(expected);
+        expect(tree).toMatchSnapshot();
       });
 
-      it('should call the create method or the chart with the configuration object as the second argument', () => {
-        const wrapper = mount(<Gauge value={77} maxValue={100} />);
+      it('renders with max and min values', () => {
+        const component = renderer.create(
+          <GaugeChart
+            minValue={0}
+            maxValue={2000}
+            value={1337}
+            label="Leet"
+          />
+        );
+        const tree = component.toJSON();
 
-        const actual = GaugeChart.mock.calls[0][1];
-        const expected = wrapper.instance().props;
-
-        expect(actual).toEqual(expected);
+        expect(tree).toMatchSnapshot();
       });
     });
   });
@@ -41,15 +38,14 @@ describe('<GaugeChart />', () => {
   describe('update', () => {
     describe('when data changes', () => {
       it('should call the update method or the chart', () => {
-        const wrapper = mount(<Gauge value={77} maxValue={100} />);
+        const component = renderer.create(<GaugeChart value={12} />);
+
+        expect(component.toJSON()).toMatchSnapshot();
 
         // Changing properties should trigger a componentDidUpdate
-        wrapper.setProps({ value: 30 });
+        component.update(<GaugeChart value={70} />);
 
-        const actual = GaugeChart.mock.instances[0].update.mock.calls[0][0];
-        const expected = wrapper.instance().props;
-
-        expect(actual).toEqual(expected);
+        expect(component.toJSON()).toMatchSnapshot();
       });
     });
   });

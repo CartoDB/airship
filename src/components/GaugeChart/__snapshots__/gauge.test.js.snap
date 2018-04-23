@@ -1,0 +1,214 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<GaugeChart /> render when data passed in renders the correct amount of bars 1`] = `
+.c0 {
+  width: 228px;
+  min-width: 100px;
+  height: 136px;
+  color: #2C2C2C;
+}
+
+.c1 {
+  color: #2C2C2C;
+  margin: 0;
+  font-family: Roboto,sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -webkit-transform: translate3d(50%,50%,0);
+  -ms-transform: translate3d(50%,50%,0);
+  transform: translate3d(50%,50%,0);
+  font-size: 40px;
+  font-weight: 300;
+  text-anchor: middle;
+  fill: #2C2C2C;
+}
+
+<svg
+  className="c0"
+>
+  <text
+    className="c1"
+  >
+    12
+  </text>
+  
+</svg>
+`;
+
+exports[`<GaugeChart /> render when data passed in renders with a label 1`] = `
+.c0 {
+  width: 228px;
+  min-width: 100px;
+  height: 136px;
+  color: #2C2C2C;
+}
+
+.c2 {
+  color: #2C2C2C;
+  margin: 0;
+  font-family: Roboto,sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -webkit-transform: translate3d(50%,calc(50% + 20px),0);
+  -ms-transform: translate3d(50%,calc(50% + 20px),0);
+  transform: translate3d(50%,calc(50% + 20px),0);
+  font-size: 12px;
+  font-weight: 300;
+  text-anchor: middle;
+  fill: #2C2C2C;
+}
+
+.c1 {
+  color: #2C2C2C;
+  margin: 0;
+  font-family: Roboto,sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -webkit-transform: translate3d(50%,50%,0);
+  -ms-transform: translate3d(50%,50%,0);
+  transform: translate3d(50%,50%,0);
+  font-size: 40px;
+  font-weight: 300;
+  text-anchor: middle;
+  fill: #2C2C2C;
+}
+
+<svg
+  className="c0"
+>
+  <text
+    className="c1"
+  >
+    12
+  </text>
+  <text
+    className="c2"
+  >
+    Parsecs
+  </text>
+</svg>
+`;
+
+exports[`<GaugeChart /> render when data passed in renders with max and min values 1`] = `
+.c0 {
+  width: 228px;
+  min-width: 100px;
+  height: 136px;
+  color: #2C2C2C;
+}
+
+.c2 {
+  color: #2C2C2C;
+  margin: 0;
+  font-family: Roboto,sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -webkit-transform: translate3d(50%,calc(50% + 20px),0);
+  -ms-transform: translate3d(50%,calc(50% + 20px),0);
+  transform: translate3d(50%,calc(50% + 20px),0);
+  font-size: 12px;
+  font-weight: 300;
+  text-anchor: middle;
+  fill: #2C2C2C;
+}
+
+.c1 {
+  color: #2C2C2C;
+  margin: 0;
+  font-family: Roboto,sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -webkit-transform: translate3d(50%,50%,0);
+  -ms-transform: translate3d(50%,50%,0);
+  transform: translate3d(50%,50%,0);
+  font-size: 40px;
+  font-weight: 300;
+  text-anchor: middle;
+  fill: #2C2C2C;
+}
+
+<svg
+  className="c0"
+>
+  <text
+    className="c1"
+  >
+    1337
+  </text>
+  <text
+    className="c2"
+  >
+    Leet
+  </text>
+</svg>
+`;
+
+exports[`<GaugeChart /> update when data changes should call the update method or the chart 1`] = `
+.c0 {
+  width: 228px;
+  min-width: 100px;
+  height: 136px;
+  color: #2C2C2C;
+}
+
+.c1 {
+  color: #2C2C2C;
+  margin: 0;
+  font-family: Roboto,sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -webkit-transform: translate3d(50%,50%,0);
+  -ms-transform: translate3d(50%,50%,0);
+  transform: translate3d(50%,50%,0);
+  font-size: 40px;
+  font-weight: 300;
+  text-anchor: middle;
+  fill: #2C2C2C;
+}
+
+<svg
+  className="c0"
+>
+  <text
+    className="c1"
+  >
+    12
+  </text>
+  
+</svg>
+`;
+
+exports[`<GaugeChart /> update when data changes should call the update method or the chart 2`] = `
+.c0 {
+  width: 228px;
+  min-width: 100px;
+  height: 136px;
+  color: #2C2C2C;
+}
+
+.c1 {
+  color: #2C2C2C;
+  margin: 0;
+  font-family: Roboto,sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -webkit-transform: translate3d(50%,50%,0);
+  -ms-transform: translate3d(50%,50%,0);
+  transform: translate3d(50%,50%,0);
+  font-size: 40px;
+  font-weight: 300;
+  text-anchor: middle;
+  fill: #2C2C2C;
+}
+
+<svg
+  className="c0"
+>
+  <text
+    className="c1"
+  >
+    70
+  </text>
+  
+</svg>
+`;

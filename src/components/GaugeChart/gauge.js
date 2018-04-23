@@ -1,39 +1,130 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import GaugeChart from './gaugeChart';
+import styled from 'styled-components';
+import { arc } from 'd3-shape';
+import { interpolate } from 'd3-interpolate';
+import { select } from 'd3-selection';
+import 'd3-transition';
+import Base from '../Typography/base';
+import { theme } from '../../constants';
+
+const WIDTH = 228;
+const HEIGHT = 100;
+const INNER_RADIUS = 88;
+const OUTER_RADIUS = 100;
+const ANIMATION_DURATION = 750;
+
+const Chart = styled.svg`
+  width: 228px;
+  min-width: 100px;
+  height: 136px;
+  color: ${props => props.theme.type01};
+`;
+Chart.defaultProps = {
+  theme,
+};
+
+const Label = Base.withComponent('text').extend`
+  transform: translate3d(50%, calc(50% + 20px), 0);
+  font-size: 12px;
+  font-weight: 300;
+  text-anchor: middle;
+  fill: ${props => props.theme.type01};
+`;
+
+const Value = Base.withComponent('text').extend`
+  transform: translate3d(50%, 50%, 0);
+  font-size: 40px;
+  font-weight: 300;
+  text-anchor: middle;
+  fill: ${props => props.theme.type01};
+`;
 
 class GaugeWidget extends Component {
   static defaultProps = {
-    value: 50,
+    color: theme.brand03,
+    label: '',
     maxValue: 100,
     minValue: 0,
-    label: '',
-    backgroundColor: '#F5F5F5',
-    foregroundColor: '#47DB99',
-    textColor: '#2C2C2C',
+    theme,
+    value: 50,
   };
 
   static propTypes = {
-    value: PropTypes.number,
+    color: PropTypes.string,
+    label: PropTypes.string,
     maxValue: PropTypes.number,
     minValue: PropTypes.number,
-    label: PropTypes.string,
-    backgroundColor: PropTypes.string,
-    foregroundColor: PropTypes.string,
-    textColor: PropTypes.string,
+    theme: PropTypes.object,
+    value: PropTypes.number,
   };
 
   componentDidMount() {
-    this._chart = new GaugeChart(this.rootNode, this.props);
+    this.chartContainer = this.container
+      .append('g')
+      .attr('transform', `translate(${WIDTH / 2},${HEIGHT})`);
+
+    this.renderChart();
   }
 
   componentDidUpdate() {
-    this._chart.update(this.props);
+    this.updateChart();
   }
 
+  renderChart() {
+    const { theme } = this.props;
+
+    this.arc = arc()
+      .innerRadius(INNER_RADIUS)
+      .outerRadius(OUTER_RADIUS)
+      .startAngle(-90 * (Math.PI / 180))
+      .cornerRadius(30);
+
+    this.background = this.chartContainer
+      .append('path')
+      .datum({ endAngle: 90 * (Math.PI / 180) })
+      .style('fill', theme.ui02)
+      .attr('d', this.arc);
+
+    this.foreground = this.chartContainer
+      .append('path')
+      .datum({ endAngle: -90 * (Math.PI / 180) });
+
+    this.updateChart();
+  }
+
+  updateChart() {
+    const { color, maxValue, value } = this.props;
+    const chartValue = (value * 180) / maxValue;
+    const numPi = Math.floor(chartValue - 90) * (Math.PI / 180);
+
+    this.foreground
+      .style('fill', color)
+      .transition()
+      .duration(ANIMATION_DURATION)
+      .attrTween('d', this.arcTween(this.arc, numPi));
+  }
+
+  arcTween = (arc, newAngle) => (
+    function(d) {
+      const interpolator = interpolate(d.endAngle, newAngle);
+
+      return t => {
+        d.endAngle = interpolator(t); // eslint-disable-line no-param-reassign
+
+        return arc(d);
+      };
+    }
+  )
+
   render() {
+    const { value, label } = this.props;
+
     return (
-      <div ref={node => { this.rootNode = node; }} />
+      <Chart innerRef={node => { this.container = select(node); }}>
+        <Value>{value}</Value>
+        {label && <Label>{label}</Label>}
+      </Chart>
     );
   }
 }
