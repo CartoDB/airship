@@ -44,7 +44,15 @@ You can override the color of the progress bar:
 ### Props
 
 #### **categories** (array required)
-Array of categories, each category should include a `name` and a `value`.
+Array of categories, each category should include a `name` and a `value`. For example:
+
+```
+[
+  { name: 'A New Hope', value: 359029623 },
+  { name: 'The Empire Strikes Back', value: 236513856 },
+  { name: 'Return of the Jedi', value: 204338075 },
+]
+```
 
 #### **max** (number required)
 Maximum value, used to calculate the `%` in the progress bar.

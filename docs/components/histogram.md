@@ -1,12 +1,6 @@
 Talk about the Histogram
 
 ```react
-  <Histogram data={data} />
-```
-
-The Histogram can be used along with the `<Widget />` component
-
-```react
 <Widget>
   <Widget.Title>Title</Widget.Title>
   <Widget.Description>Description</Widget.Description>
@@ -19,7 +13,15 @@ The Histogram can be used along with the `<Widget />` component
 
 #### **data** (array)
 
-Value that will be shown in the widget.
+Value that will be shown in the widget. Each category should include a `name` and a `value`. For example:
+
+```
+[
+  { name: 'A New Hope', value: 359029623 },
+  { name: 'The Empire Strikes Back', value: 236513856 },
+  { name: 'Return of the Jedi', value: 204338075 },
+]
+```
 
 #### **color** (array)
 

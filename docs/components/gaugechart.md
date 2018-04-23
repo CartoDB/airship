@@ -1,12 +1,6 @@
 Talk about the Gauge Chart
 
 ```react
-  <GaugeChart />
-```
-
-The Gauge Chart can be used along with the `<Widget />` component
-
-```react
 <Widget>
   <Widget.Title>Title</Widget.Title>
   <Widget.Description>Description</Widget.Description>
