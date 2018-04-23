@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { arc, pie } from 'd3-shape';
-import { select, selectAll } from 'd3-selection'; // eslint-disable-line
+import { select } from 'd3-selection';
 import { interpolate } from 'd3-interpolate';
-import { transition } from 'd3-transition'; // eslint-disable-line
 import { rgb } from 'd3-color';
+import 'd3-transition';
 import Base from '../Typography/base';
 import { theme, chartColors } from '../../constants';
 import { readableNumber, truncate } from '../../utils';
 
+const SIZE = 136;
 const ANIMATION_DURATION = 750;
 
 const START_ANGLE = {
@@ -54,10 +55,11 @@ const Item = styled.div`
   align-items: center;
 `;
 
-const Chart = styled.svg`
-  width: 136px;
-  min-width: 136px;
-  height: 136px;
+const Chart = styled.svg.attrs({
+  viewBox: '0 0 136 136',
+})`
+  width: 100%;
+  height: 100%;
   color: ${props => props.theme.type01};
 `;
 Chart.defaultProps = {
@@ -76,18 +78,16 @@ class DonutWidget extends Component {
     colors: chartColors,
     data: [],
     showLegend: true,
-    size: 136,
   };
 
   static propTypes = {
     colors: PropTypes.arrayOf(PropTypes.string),
     data: PropTypes.array,
     showLegend: PropTypes.bool,
-    size: PropTypes.number,
   };
 
   componentDidMount() {
-    const radius = this.props.size / 2;
+    const radius = SIZE / 2;
 
     this.donutContainer = this.container
       .append('g')
@@ -101,8 +101,8 @@ class DonutWidget extends Component {
   }
 
   renderDonut() {
-    const { colors, data, size } = this.props;
-    const radius = size / 2;
+    const { colors, data } = this.props;
+    const radius = SIZE / 2;
 
     // -- Setup arc and angles
     this.arc = arc()
