@@ -14,26 +14,6 @@ The Gauge Chart can be used along with the `<Widget />` component
 </Widget>
 ```
 
-By default, `maxValue` is `100` but we can change with so it works with bigger values
-
-```react
-<Widget>
-  <Widget.Title>Title</Widget.Title>
-  <Widget.Description>Description</Widget.Description>
-  <GaugeChart value={153} maxValue={200} />
-</Widget>
-```
-
-We can also add a label to describe the value of the chart
-
-```react
-<Widget>
-  <Widget.Title>Title</Widget.Title>
-  <Widget.Description>Description</Widget.Description>
-  <GaugeChart value={33} label="Some label" />
-</Widget>
-```
-
 ### Props
 
 #### **value** (number)
@@ -43,7 +23,36 @@ Value that will be shown in the widget.
 #### **maxValue** (number)
 
 Maximum value used to calculate the percentage of the current value.
+By default is `100`.
+
+```react
+<Widget>
+  <Widget.Title>Title</Widget.Title>
+  <Widget.Description>Description</Widget.Description>
+  <GaugeChart value={153} maxValue={200} />
+</Widget>
+```
 
 #### **label** (string)
 
-Label for the current value
+Label for the current value.
+
+```react
+<Widget>
+  <Widget.Title>Title</Widget.Title>
+  <Widget.Description>Description</Widget.Description>
+  <GaugeChart value={33} label="Some label" />
+</Widget>
+```
+
+#### **color** (string)
+
+Overrides the color of the progress bar.
+
+```react
+<Widget>
+  <Widget.Title>Title</Widget.Title>
+  <Widget.Description>Description</Widget.Description>
+  <GaugeChart value={91} color="#7E78E2" />
+</Widget>
+```
