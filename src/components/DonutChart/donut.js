@@ -50,7 +50,7 @@ const Title = Base.withComponent('p').extend`
   cursor: default;
 `;
 
-const Item = styled.div`
+const Item = styled.li`
   display: flex;
   align-items: center;
 `;
@@ -209,7 +209,7 @@ class DonutWidget extends Component {
     return (
       <Wrapper>
         <Chart innerRef={node => { this.container = select(node); }} {...others} />
-        { showLegend && this.renderLegend()}
+        {showLegend && this.renderLegend()}
       </Wrapper>
     );
   }

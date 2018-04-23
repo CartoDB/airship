@@ -110,7 +110,7 @@ exports[`<DonutChart /> render when data passed in renders the correct amount of
   <ul
     className="c2"
   >
-    <div
+    <li
       className="c3"
     >
       <div
@@ -121,8 +121,8 @@ exports[`<DonutChart /> render when data passed in renders the correct amount of
       >
         Entire home/apt
       </p>
-    </div>
-    <div
+    </li>
+    <li
       className="c3"
     >
       <div
@@ -133,8 +133,8 @@ exports[`<DonutChart /> render when data passed in renders the correct amount of
       >
         Private room
       </p>
-    </div>
-    <div
+    </li>
+    <li
       className="c3"
     >
       <div
@@ -145,7 +145,7 @@ exports[`<DonutChart /> render when data passed in renders the correct amount of
       >
         Shared room
       </p>
-    </div>
+    </li>
   </ul>
 </div>
 `;
@@ -303,7 +303,7 @@ exports[`<DonutChart /> update when data changes should call the update method o
   <ul
     className="c2"
   >
-    <div
+    <li
       className="c3"
     >
       <div
@@ -314,8 +314,8 @@ exports[`<DonutChart /> update when data changes should call the update method o
       >
         Entire home/apt
       </p>
-    </div>
-    <div
+    </li>
+    <li
       className="c3"
     >
       <div
@@ -326,8 +326,8 @@ exports[`<DonutChart /> update when data changes should call the update method o
       >
         Private room
       </p>
-    </div>
-    <div
+    </li>
+    <li
       className="c3"
     >
       <div
@@ -338,7 +338,7 @@ exports[`<DonutChart /> update when data changes should call the update method o
       >
         Shared room
       </p>
-    </div>
+    </li>
   </ul>
 </div>
 `;
