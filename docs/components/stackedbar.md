@@ -31,7 +31,7 @@ Value that will be shown in the widget.
 
 Keys to be used in each bar.
 
-#### **color** (array)
+#### **colors** (array)
 
 Colors used in the chart.
 

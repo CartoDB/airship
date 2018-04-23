@@ -1,10 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<StackedBar /> render when data passed in renders the correct amount of bars 1`] = `
-.c0 {
-  max-width: 248px;
-}
-
 .c0 .tick line {
   stroke: #747474;
   opacity: 0.1;
@@ -48,16 +44,11 @@ exports[`<StackedBar /> render when data passed in renders the correct amount of
       },
     ]
   }
-  height={160}
-  width={248}
+  viewBox="0 0 248 160"
 />
 `;
 
 exports[`<StackedBar /> update when data changes should call the update method or the chart 1`] = `
-.c0 {
-  max-width: 248px;
-}
-
 .c0 .tick line {
   stroke: #747474;
   opacity: 0.1;
@@ -101,16 +92,11 @@ exports[`<StackedBar /> update when data changes should call the update method o
       },
     ]
   }
-  height={160}
-  width={248}
+  viewBox="0 0 248 160"
 />
 `;
 
 exports[`<StackedBar /> update when data changes should call the update method or the chart 2`] = `
-.c0 {
-  max-width: 248px;
-}
-
 .c0 .tick line {
   stroke: #747474;
   opacity: 0.1;
@@ -127,7 +113,6 @@ exports[`<StackedBar /> update when data changes should call the update method o
 <svg
   className="c0"
   data={Array []}
-  height={160}
-  width={248}
+  viewBox="0 0 248 160"
 />
 `;

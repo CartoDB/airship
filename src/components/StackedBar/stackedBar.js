@@ -1,14 +1,23 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { select, selectAll, mouse, event } from 'd3-selection'; // eslint-disable-line
+import { select, event } from 'd3-selection';
 import { stack, stackOrderNone } from 'd3-shape';
 import { scaleBand, scaleLinear, scaleOrdinal } from 'd3-scale';
-import { min, max } from 'd3-array'; // eslint-disable-line
-import { transition } from 'd3-transition'; // eslint-disable-line
-import { axisBottom, axisLeft } from 'd3-axis'; // eslint-disable-line
+import { max } from 'd3-array';
+import { axisLeft } from 'd3-axis';
+import 'd3-transition';
 import { chartColors, theme } from '../../constants';
 import Base from '../Typography/base';
+
+const WIDTH = 208;
+const HEIGHT = 140;
+const MARGIN = {
+  TOP: 15,
+  RIGHT: 0,
+  BOTTOM: 5,
+  LEFT: 40,
+};
 
 const Tooltip = styled.ul`
   position: absolute;
@@ -77,9 +86,9 @@ const Item = styled.li`
   }
 `;
 
-const Svg = styled.svg`
-  max-width: 248px;
-
+const Svg = styled.svg.attrs({
+  viewBox: '0 0 248 160',
+})`
   .tick {
     line {
       stroke: ${props => props.theme.type02};
@@ -105,23 +114,12 @@ class Histogram extends Component {
   static defaultProps = {
     colors: chartColors,
     data: [],
-    width: 208,
-    height: 140,
-    margin: {
-      top: 15,
-      right: 0,
-      bottom: 5,
-      left: 40,
-    },
   };
 
   static propTypes = {
     colors: PropTypes.array,
     data: PropTypes.array,
-    height: PropTypes.number,
     keys: PropTypes.array,
-    margin: PropTypes.object,
-    width: PropTypes.number,
   };
 
   state = {
@@ -129,14 +127,12 @@ class Histogram extends Component {
   }
 
   componentDidMount() {
-    const { margin } = this.props;
-
     window.addEventListener('click', this.onWindowClick);
     window.addEventListener('touchstart', this.onWindowClick);
 
     this.barsContainer = this.svg
       .append('g')
-      .attr('transform', `translate(${margin.left}, ${margin.top})`);
+      .attr('transform', `translate(${MARGIN.LEFT}, ${MARGIN.TOP})`);
 
     this.renderAxis();
     this.renderBars();
@@ -160,8 +156,8 @@ class Histogram extends Component {
 
   updateAxis() {
     const { colors, data, keys } = this.props;
-    this.stack
-      .keys(keys);
+
+    this.stack.keys(keys);
 
     const layers = this.stack(data);
 
@@ -183,7 +179,7 @@ class Histogram extends Component {
   }
 
   renderAxis() {
-    const { data, height, margin, width, colors, keys } = this.props;
+    const { data, colors, keys } = this.props;
 
     // -- Stack
     this.stack = stack()
@@ -195,23 +191,23 @@ class Histogram extends Component {
       .paddingInner(0.05)
       .paddingOuter(0.1)
       .domain(data.map(d => d.name))
-      .range([0, width]);
+      .range([0, WIDTH]);
 
     // -- Y Axis
     const layers = this.stack(data);
 
     this.yScale = scaleLinear()
-      .range([height, 0])
+      .range([HEIGHT, 0])
       .domain([0, max(layers[layers.length - 1], d => d[1])])
       .nice();
 
     this.yAxis = axisLeft(this.yScale)
-      .tickSize(-width, 0, 0)
+      .tickSize(-WIDTH, 0, 0)
       .ticks(5);
 
     this.yAxisSelection = this.svg
       .append('g')
-      .attr('transform', `translate(${margin.left}, ${margin.top})`)
+      .attr('transform', `translate(${MARGIN.LEFT}, ${MARGIN.TOP})`)
       .call(this.yAxis);
 
     select('.domain').remove(); // Remove axis border
@@ -223,7 +219,7 @@ class Histogram extends Component {
   }
 
   renderBars() {
-    const { data, height, keys } = this.props;
+    const { data, keys } = this.props;
     const layers = this.stack(data);
 
     keys.forEach((key, index) => {
@@ -250,7 +246,7 @@ class Histogram extends Component {
           this.showTooltip(event.pageX, event.pageY);
         })
         .attr('class', () => `bar bar-${key}`)
-        .attr('y', height)
+        .attr('y', HEIGHT)
         .attr('x', d => this.xScale(d.data.name))
         .attr('fill', () => this.colorScale(key))
         .attr('width', this.xScale.bandwidth())
@@ -271,8 +267,7 @@ class Histogram extends Component {
   }
 
   getTooltipPosition(mouseX, mouseY) {
-    // const wrapper = this.wrapperNode.getBoundingClientRect();
-
+    const OFFSET = 25;
     let x = mouseX;
     let y = mouseY;
 
@@ -293,19 +288,20 @@ class Histogram extends Component {
     }
 
     if (viewportBoundaries.bottom < tooltipBoundaries.bottom) {
-      y = mouseY - tooltipContainerBoundingRect.height - 25;
+      y = mouseY - tooltipContainerBoundingRect.height - OFFSET;
     }
 
     return [x, y];
   }
 
   showTooltip(mouseX, mouseY) {
+    const OFFSET = 5;
     const [x, y] = this.getTooltipPosition(mouseX, mouseY);
 
     select(this.tooltipNode)
       .style('opacity', 1)
       .style('left', `${x}px`)
-      .style('top', `${y + 5}px`);
+      .style('top', `${y + OFFSET}px`);
   }
 
   renderTooltip() {
@@ -326,17 +322,11 @@ class Histogram extends Component {
   }
 
   render() {
-    const { width, height, margin, ...others } = this.props;
-    const fullHeight = height + margin.top + margin.bottom;
-    const fullWidth = width + margin.left + margin.right;
-
     return (
       <React.Fragment>
         <Svg
-          width={fullWidth}
-          height={fullHeight}
           innerRef={node => { this.svg = select(node); }}
-          {...others}
+          {...this.props}
         />
         {this.state.tooltip && this.renderTooltip()}
       </React.Fragment>
