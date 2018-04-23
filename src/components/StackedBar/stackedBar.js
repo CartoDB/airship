@@ -87,7 +87,6 @@ const TooltipItem = styled.li`
 const Legend = styled.ul`
   padding: 0;
   margin: 8px 0 0 16px;
-  height: 150px;
 `;
 
 const LegendItem = styled.li`
@@ -366,12 +365,13 @@ class Histogram extends Component {
   }
 
   render() {
-    const { showLegend } = this.props;
+    const { showLegend, labels } = this.props;
+    const renderLegend = showLegend && labels.length > 0;
 
     return (
       <React.Fragment>
         <Svg innerRef={node => { this.svg = select(node); }} />
-        {showLegend && this.renderLegend()}
+        {renderLegend && this.renderLegend()}
         {this.state.tooltip && this.renderTooltip()}
       </React.Fragment>
     );

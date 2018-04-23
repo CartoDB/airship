@@ -21,8 +21,7 @@ exports[`<StackedBar /> render when data passed in does not render the legend wh
 `;
 
 exports[`<StackedBar /> render when data passed in renders the correct amount of bars 1`] = `
-Array [
-  .c0 .tick line {
+.c0 .tick line {
   stroke: #747474;
   opacity: 0.1;
 }
@@ -36,19 +35,9 @@ Array [
 }
 
 <svg
-    className="c0"
-    viewBox="0 0 248 160"
-  />,
-  .c0 {
-  padding: 0;
-  margin: 8px 0 0 16px;
-  height: 150px;
-}
-
-<ul
-    className="c0"
-  />,
-]
+  className="c0"
+  viewBox="0 0 248 160"
+/>
 `;
 
 exports[`<StackedBar /> render when data passed in renders the legend 1`] = `
@@ -109,7 +98,6 @@ Array [
 .c0 {
   padding: 0;
   margin: 8px 0 0 16px;
-  height: 150px;
 }
 
 .c1 {
@@ -187,8 +175,7 @@ Array [
 `;
 
 exports[`<StackedBar /> update when data changes should call the update method or the chart 1`] = `
-Array [
-  .c0 .tick line {
+.c0 .tick line {
   stroke: #747474;
   opacity: 0.1;
 }
@@ -202,24 +189,13 @@ Array [
 }
 
 <svg
-    className="c0"
-    viewBox="0 0 248 160"
-  />,
-  .c0 {
-  padding: 0;
-  margin: 8px 0 0 16px;
-  height: 150px;
-}
-
-<ul
-    className="c0"
-  />,
-]
+  className="c0"
+  viewBox="0 0 248 160"
+/>
 `;
 
 exports[`<StackedBar /> update when data changes should call the update method or the chart 2`] = `
-Array [
-  .c0 .tick line {
+.c0 .tick line {
   stroke: #747474;
   opacity: 0.1;
 }
@@ -233,17 +209,7 @@ Array [
 }
 
 <svg
-    className="c0"
-    viewBox="0 0 248 160"
-  />,
-  .c0 {
-  padding: 0;
-  margin: 8px 0 0 16px;
-  height: 150px;
-}
-
-<ul
-    className="c0"
-  />,
-]
+  className="c0"
+  viewBox="0 0 248 160"
+/>
 `;
