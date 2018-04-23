@@ -1,63 +1,16 @@
-import React, { Component } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import Loading from '../Loading/loading';
 import { theme } from '../../constants';
 
-const StyledAvatar = styled.div`
+const Avatar = styled.div`
   border-radius: 100%;
   width: ${props => `${props.size}px`};
   height: ${props => `${props.size}px`};
   background-repeat: no-repeat;
   background-size: cover;
   background-image: url(${props => props.url});
-  background-color: ${props => props.theme.brand03};
-`;
-StyledAvatar.displayName = 'StyledAvatar';
-StyledAvatar.defaultProps = {
-  theme,
-};
-
-const StyledLoading = styled.div`
   background-color: ${props => props.theme.ui02};
-  border-radius: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: ${props => `${props.size}px`};
-  height: ${props => `${props.size}px`};
 `;
-StyledLoading.displayName = 'StyledLoading';
-StyledLoading.defaultProps = {
-  theme,
-};
-
-class Avatar extends Component {
-  state = {
-    loaded: false,
-  };
-
-  componentDidMount() {
-    const { url } = this.props;
-    const loaded = () => {
-      this.setState({ loaded: true });
-    };
-
-    url === '' ? loaded() : fetch(url).then(loaded); // eslint-disable-line no-unused-expressions
-  }
-
-  render() {
-    const { size, url } = this.props;
-
-    return this.state.loaded ? (
-      <StyledAvatar size={size} url={url} />
-    ) : (
-      <StyledLoading size={size}>
-        <Loading size={16} />
-      </StyledLoading>
-    );
-  }
-}
 
 Avatar.propTypes = {
   size: PropTypes.oneOf([24, 32, 48]),
@@ -66,6 +19,7 @@ Avatar.propTypes = {
 
 Avatar.defaultProps = {
   size: 24,
+  theme,
 };
 
 export default Avatar;
