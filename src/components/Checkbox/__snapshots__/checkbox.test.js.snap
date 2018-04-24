@@ -2,10 +2,10 @@
 
 exports[`render renders with label 1`] = `
 .c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -16,7 +16,7 @@ exports[`render renders with label 1`] = `
   position: relative;
 }
 
-.c8 {
+.c7 {
   margin-left: 4px;
   font: 400 12px/20px 'Roboto';
 }
@@ -26,25 +26,14 @@ exports[`render renders with label 1`] = `
   width: 16px;
   height: 16px;
   overflow: hidden;
-  border: 1px solid rgba(44,44,44,0.16);
   border-radius: 3px;
   position: relative;
   display: block;
   box-sizing: border-box;
 }
 
-.c5 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  position: relative;
-  -webkit-transform: translateX(1px) translateY(3px);
-  -ms-transform: translateX(1px) translateY(3px);
-  transform: translateX(1px) translateY(3px);
-}
-
-.c7 {
+.c6 {
+  fill: none;
   stroke-width: 2;
   stroke: #1785FB;
   -webkit-transform-origin: 50% 50%;
@@ -52,6 +41,9 @@ exports[`render renders with label 1`] = `
   transform-origin: 50% 50%;
   stroke-dasharray: 48;
   stroke-dashoffset: 48;
+  -webkit-transform: translate(2px,4px);
+  -ms-transform: translate(2px,4px);
+  transform: translate(2px,4px);
 }
 
 .c2 {
@@ -59,50 +51,46 @@ exports[`render renders with label 1`] = `
   -moz-appearance: none;
   appearance: none;
   background: none;
-  width: 16px;
-  height: 16px;
-  position: absolute;
-  top: 0;
-  left: 0;
+  border-radius: 3px;
+  border: 1px solid #D1D5D7;
   cursor: pointer;
+  height: 16px;
+  left: 0;
   margin: 0;
   padding: 0;
-  border-radius: 3px;
-  border: 1px solid rgba(44,44,44,0.16);
+  position: absolute;
+  top: 0;
+  -webkit-transition: border 0.2s ease;
+  transition: border 0.2s ease;
+  width: 16px;
 }
 
 .c2:focus {
   outline: none;
-}
-
-.c2:focus {
   border: 2px solid #1785FB;
 }
 
 .c2:hover {
-  border: 1px solid #47DB99;
-}
-
-.c2:disabled + .c3 {
-  background-color: #E2E6E3;
-}
-
-.c2:disabled:hover {
-  cursor: not-allowed;
-  border: 1px solid rgba(44,44,44,0.16);
+  border-color: #47DB99;
 }
 
 .c2:checked {
-  border: 1px solid #1785FB;
+  border-color: #1785FB;
 }
 
-.c2:checked + .c3 .c6 {
+.c2:checked + .c3 .c5 {
   -webkit-animation: gGaDtf 0.3s cubic-bezier(0.65,0,0.45,1) 300ms forwards;
   animation: gGaDtf 0.3s cubic-bezier(0.65,0,0.45,1) 300ms forwards;
 }
 
-.c2:disabled:checked + .c3 .c6 {
-  stroke: rgba(44,44,44,0.16);
+.c2:disabled {
+  background-color: #F5F5F5;
+  cursor: not-allowed;
+  border-color: #D1D5D7;
+}
+
+.c2:disabled:checked + .c3 .c5 {
+  stroke: #D1D5D7;
 }
 
 <label
@@ -121,27 +109,17 @@ exports[`render renders with label 1`] = `
       onChange={[Function]}
       type="checkbox"
     />
-    <span
+    <svg
       className="c3 c4"
     >
-      <svg
-        className="c5"
-        height="12px"
-        width="12px"
-      >
-        <g
-          fill="none"
-        >
-          <polyline
-            className="c6 c7"
-            points="1.65093994 3.80255127 4.48919678 6.97192383 10.3794556 0.717346191"
-          />
-        </g>
-      </svg>
-    </span>
+      <polyline
+        className="c5 c6"
+        points="1.65093994 3.80255127 4.48919678 6.97192383 10.3794556 0.717346191"
+      />
+    </svg>
   </div>
   <div
-    className="c8"
+    className="c7"
   >
     Hola
   </div>
@@ -150,10 +128,10 @@ exports[`render renders with label 1`] = `
 
 exports[`render renders without crashing 1`] = `
 .c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -169,25 +147,14 @@ exports[`render renders without crashing 1`] = `
   width: 16px;
   height: 16px;
   overflow: hidden;
-  border: 1px solid rgba(44,44,44,0.16);
   border-radius: 3px;
   position: relative;
   display: block;
   box-sizing: border-box;
 }
 
-.c5 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  position: relative;
-  -webkit-transform: translateX(1px) translateY(3px);
-  -ms-transform: translateX(1px) translateY(3px);
-  transform: translateX(1px) translateY(3px);
-}
-
-.c7 {
+.c6 {
+  fill: none;
   stroke-width: 2;
   stroke: #1785FB;
   -webkit-transform-origin: 50% 50%;
@@ -195,6 +162,9 @@ exports[`render renders without crashing 1`] = `
   transform-origin: 50% 50%;
   stroke-dasharray: 48;
   stroke-dashoffset: 48;
+  -webkit-transform: translate(2px,4px);
+  -ms-transform: translate(2px,4px);
+  transform: translate(2px,4px);
 }
 
 .c2 {
@@ -202,50 +172,46 @@ exports[`render renders without crashing 1`] = `
   -moz-appearance: none;
   appearance: none;
   background: none;
-  width: 16px;
-  height: 16px;
-  position: absolute;
-  top: 0;
-  left: 0;
+  border-radius: 3px;
+  border: 1px solid #D1D5D7;
   cursor: pointer;
+  height: 16px;
+  left: 0;
   margin: 0;
   padding: 0;
-  border-radius: 3px;
-  border: 1px solid rgba(44,44,44,0.16);
+  position: absolute;
+  top: 0;
+  -webkit-transition: border 0.2s ease;
+  transition: border 0.2s ease;
+  width: 16px;
 }
 
 .c2:focus {
   outline: none;
-}
-
-.c2:focus {
   border: 2px solid #1785FB;
 }
 
 .c2:hover {
-  border: 1px solid #47DB99;
-}
-
-.c2:disabled + .c3 {
-  background-color: #E2E6E3;
-}
-
-.c2:disabled:hover {
-  cursor: not-allowed;
-  border: 1px solid rgba(44,44,44,0.16);
+  border-color: #47DB99;
 }
 
 .c2:checked {
-  border: 1px solid #1785FB;
+  border-color: #1785FB;
 }
 
-.c2:checked + .c3 .c6 {
+.c2:checked + .c3 .c5 {
   -webkit-animation: gGaDtf 0.3s cubic-bezier(0.65,0,0.45,1) 300ms forwards;
   animation: gGaDtf 0.3s cubic-bezier(0.65,0,0.45,1) 300ms forwards;
 }
 
-.c2:disabled:checked + .c3 .c6 {
-  stroke: rgba(44,44,44,0.16);
+.c2:disabled {
+  background-color: #F5F5F5;
+  cursor: not-allowed;
+  border-color: #D1D5D7;
+}
+
+.c2:disabled:checked + .c3 .c5 {
+  stroke: #D1D5D7;
 }
 
 <label
@@ -264,34 +230,24 @@ exports[`render renders without crashing 1`] = `
       onChange={[Function]}
       type="checkbox"
     />
-    <span
+    <svg
       className="c3 c4"
     >
-      <svg
-        className="c5"
-        height="12px"
-        width="12px"
-      >
-        <g
-          fill="none"
-        >
-          <polyline
-            className="c6 c7"
-            points="1.65093994 3.80255127 4.48919678 6.97192383 10.3794556 0.717346191"
-          />
-        </g>
-      </svg>
-    </span>
+      <polyline
+        className="c5 c6"
+        points="1.65093994 3.80255127 4.48919678 6.97192383 10.3794556 0.717346191"
+      />
+    </svg>
   </div>
 </label>
 `;
 
 exports[`render uses htmlFor for the label, and adds it as the input id 1`] = `
 .c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -307,25 +263,14 @@ exports[`render uses htmlFor for the label, and adds it as the input id 1`] = `
   width: 16px;
   height: 16px;
   overflow: hidden;
-  border: 1px solid rgba(44,44,44,0.16);
   border-radius: 3px;
   position: relative;
   display: block;
   box-sizing: border-box;
 }
 
-.c5 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  position: relative;
-  -webkit-transform: translateX(1px) translateY(3px);
-  -ms-transform: translateX(1px) translateY(3px);
-  transform: translateX(1px) translateY(3px);
-}
-
-.c7 {
+.c6 {
+  fill: none;
   stroke-width: 2;
   stroke: #1785FB;
   -webkit-transform-origin: 50% 50%;
@@ -333,6 +278,9 @@ exports[`render uses htmlFor for the label, and adds it as the input id 1`] = `
   transform-origin: 50% 50%;
   stroke-dasharray: 48;
   stroke-dashoffset: 48;
+  -webkit-transform: translate(2px,4px);
+  -ms-transform: translate(2px,4px);
+  transform: translate(2px,4px);
 }
 
 .c2 {
@@ -340,50 +288,46 @@ exports[`render uses htmlFor for the label, and adds it as the input id 1`] = `
   -moz-appearance: none;
   appearance: none;
   background: none;
-  width: 16px;
-  height: 16px;
-  position: absolute;
-  top: 0;
-  left: 0;
+  border-radius: 3px;
+  border: 1px solid #D1D5D7;
   cursor: pointer;
+  height: 16px;
+  left: 0;
   margin: 0;
   padding: 0;
-  border-radius: 3px;
-  border: 1px solid rgba(44,44,44,0.16);
+  position: absolute;
+  top: 0;
+  -webkit-transition: border 0.2s ease;
+  transition: border 0.2s ease;
+  width: 16px;
 }
 
 .c2:focus {
   outline: none;
-}
-
-.c2:focus {
   border: 2px solid #1785FB;
 }
 
 .c2:hover {
-  border: 1px solid #47DB99;
-}
-
-.c2:disabled + .c3 {
-  background-color: #E2E6E3;
-}
-
-.c2:disabled:hover {
-  cursor: not-allowed;
-  border: 1px solid rgba(44,44,44,0.16);
+  border-color: #47DB99;
 }
 
 .c2:checked {
-  border: 1px solid #1785FB;
+  border-color: #1785FB;
 }
 
-.c2:checked + .c3 .c6 {
+.c2:checked + .c3 .c5 {
   -webkit-animation: gGaDtf 0.3s cubic-bezier(0.65,0,0.45,1) 300ms forwards;
   animation: gGaDtf 0.3s cubic-bezier(0.65,0,0.45,1) 300ms forwards;
 }
 
-.c2:disabled:checked + .c3 .c6 {
-  stroke: rgba(44,44,44,0.16);
+.c2:disabled {
+  background-color: #F5F5F5;
+  cursor: not-allowed;
+  border-color: #D1D5D7;
+}
+
+.c2:disabled:checked + .c3 .c5 {
+  stroke: #D1D5D7;
 }
 
 <label
@@ -402,24 +346,14 @@ exports[`render uses htmlFor for the label, and adds it as the input id 1`] = `
       onChange={[Function]}
       type="checkbox"
     />
-    <span
+    <svg
       className="c3 c4"
     >
-      <svg
-        className="c5"
-        height="12px"
-        width="12px"
-      >
-        <g
-          fill="none"
-        >
-          <polyline
-            className="c6 c7"
-            points="1.65093994 3.80255127 4.48919678 6.97192383 10.3794556 0.717346191"
-          />
-        </g>
-      </svg>
-    </span>
+      <polyline
+        className="c5 c6"
+        points="1.65093994 3.80255127 4.48919678 6.97192383 10.3794556 0.717346191"
+      />
+    </svg>
   </div>
 </label>
 `;

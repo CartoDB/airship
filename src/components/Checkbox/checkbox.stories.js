@@ -25,6 +25,16 @@ storiesOf('Checkbox', module)
       <Checkbox htmlFor="checked" checked>
         Hello there
       </Checkbox>
+
+      <h3 className="header">With error</h3>
+      <Checkbox htmlFor="error" error>
+        Hello there
+      </Checkbox>
+
+      <h3 className="header">Checked with error</h3>
+      <Checkbox htmlFor="checked-error" checked error>
+        Hello there
+      </Checkbox>
     </div>
   ))
   .add('Disabled', () => (
@@ -39,6 +49,16 @@ storiesOf('Checkbox', module)
 
       <h3 className="header">Checked</h3>
       <Checkbox htmlFor="checked" disabled checked>
+        Hello there
+      </Checkbox>
+
+      <h3 className="header">With error</h3>
+      <Checkbox htmlFor="checked" disabled error>
+        Hello there
+      </Checkbox>
+
+      <h3 className="header">With error checked</h3>
+      <Checkbox htmlFor="checked" disabled error checked>
         Hello there
       </Checkbox>
     </div>
