@@ -2,11 +2,23 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import { darken, lighten } from 'polished';
-import { colors } from '../../constants';
+import { theme } from '../../constants';
 import { readableNumber } from '../../utils';
 import Base from '../Typography/base';
 
 const CATEGORY_OTHER = 'Other';
+
+const background = ({ color, isOther, theme }) => {
+  if (isOther) return theme.type01;
+
+  return color || theme.brand03;
+};
+
+const hover = ({ color, isOther, theme }) => {
+  if (isOther) return lighten(0.4, theme.type01);
+
+  return darken(0.16, color || theme.brand03);
+};
 
 const Categories = styled.ul`
   padding: 0;
@@ -34,7 +46,7 @@ const Progress = styled.div`
   height: 4px;
   width: 100%;
   border-radius: 2px;
-  background: ${colors.ui02};
+  background: ${props => props.theme.ui02};
   position: relative;
 
   &::after {
@@ -48,6 +60,9 @@ const Progress = styled.div`
     left: 0;
   }
 `;
+Progress.defaultProps = {
+  theme,
+};
 
 const Category = styled.li`
   display: flex;
@@ -56,13 +71,13 @@ const Category = styled.li`
   margin-bottom: 8px;
 
   & > ${Progress}::after {
-    background: ${props => (props.isOther ? colors.type01 : props.color)};
+    background: ${background};
   }
 
   ${props => props.clickable && css`
     &:hover {
       & > ${Progress}::after {
-        background: ${props => (props.isOther ? lighten(0.4, colors.type01) : darken(0.16, props.color))};
+        background: ${hover};
       }
     }
   `};
@@ -70,22 +85,24 @@ const Category = styled.li`
   ${props => !props.selected && css`
     ${Amount},
     ${Name} {
-      color: ${colors.type02};
+      color: ${props => props.theme.type02};
     }
 
     ${Progress}::after {
-      background: ${colors.ui03};
+      background: ${props => props.theme.ui03};
     }
 
     &:hover {
       & > ${Progress}::after {
-        background: ${colors.ui04}
+        background: ${props => props.theme.ui04}
       }
     }
   `}
 `;
-
 Category.displayName = 'Category';
+Category.defaultProps = {
+  theme,
+};
 
 class CategoryWidget extends Component {
   constructor(props) {
@@ -156,7 +173,6 @@ CategoryWidget.propTypes = {
 };
 
 CategoryWidget.defaultProps = {
-  color: colors.brand03,
   categories: [],
   selected: [],
 };

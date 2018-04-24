@@ -166,6 +166,7 @@ exports[`render renders without crashing 1`] = `
   margin: 0;
   padding: 0 3px;
   font: 500 12px/20px 'Roboto';
+  color: #2C2C2C;
   background-color: #fff;
 }
 
