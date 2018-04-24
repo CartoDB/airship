@@ -31,6 +31,7 @@ const TabButton = styled.button`
   font: ${font};
   padding: 8px;
   cursor: pointer;
+  margin: 0;
 
   &:focus {
     outline: none;

@@ -19,6 +19,7 @@ exports[`render renders with large param 1`] = `
   font: 400 16px/24px 'Roboto';
   padding: 8px;
   cursor: pointer;
+  margin: 0;
 }
 
 .c1:focus {
@@ -42,6 +43,7 @@ exports[`render renders with large param 1`] = `
   font: 400 16px/24px 'Roboto';
   padding: 8px;
   cursor: pointer;
+  margin: 0;
 }
 
 .c2:focus {
@@ -100,6 +102,7 @@ exports[`render renders with selected as number 1`] = `
   font: 400 12px/20px 'Roboto';
   padding: 8px;
   cursor: pointer;
+  margin: 0;
 }
 
 .c2:focus {
@@ -123,6 +126,7 @@ exports[`render renders with selected as number 1`] = `
   font: 400 12px/20px 'Roboto';
   padding: 8px;
   cursor: pointer;
+  margin: 0;
 }
 
 .c1:focus {
@@ -181,6 +185,7 @@ exports[`render renders with selected as string 1`] = `
   font: 400 12px/20px 'Roboto';
   padding: 8px;
   cursor: pointer;
+  margin: 0;
 }
 
 .c2:focus {
@@ -204,6 +209,7 @@ exports[`render renders with selected as string 1`] = `
   font: 400 12px/20px 'Roboto';
   padding: 8px;
   cursor: pointer;
+  margin: 0;
 }
 
 .c1:focus {
@@ -262,6 +268,7 @@ exports[`render renders without crashing 1`] = `
   font: 400 12px/20px 'Roboto';
   padding: 8px;
   cursor: pointer;
+  margin: 0;
 }
 
 .c1:focus {
@@ -285,6 +292,7 @@ exports[`render renders without crashing 1`] = `
   font: 400 12px/20px 'Roboto';
   padding: 8px;
   cursor: pointer;
+  margin: 0;
 }
 
 .c2:focus {
