@@ -3,10 +3,10 @@ import DayPicker, { DateUtils } from 'react-day-picker';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { darken } from 'polished';
-import { colors, shadows } from '../../constants';
+import { theme, shadows } from '../../constants';
 
 const StyledDatepicker = styled.div`
-  background-color: ${colors.white};
+  background-color: ${props => props.theme.ui01};
   border-radius: 4px;
   box-shadow: ${shadows.shadow8};
   display: inline-flex;
@@ -24,7 +24,7 @@ const StyledDatepicker = styled.div`
   }
 
   .DayPicker-Weekday {
-    color: ${colors.type02};
+    color: ${props => props.theme.type02};
     font: 500 10px/24px 'Roboto';
     text-transform: uppercase;
     width: 24px;
@@ -41,8 +41,8 @@ const StyledDatepicker = styled.div`
   }
 
   .DayPicker-Day {
-    background-color: ${colors.ui02};
-    color: ${colors.brand01};
+    background-color: ${props => props.theme.ui02};
+    color: ${props => props.theme.brand01};
     font: 400 12px/24px 'Roboto';
     width: 24px;
     height: 24px;
@@ -57,7 +57,7 @@ const StyledDatepicker = styled.div`
 
   .DayPicker-Day--outside {
     background-color: transparent;
-    color: ${colors.type03};
+    color: ${props => props.theme.type03};
   }
 
   .DayPicker-Week + .DayPicker-Week {
@@ -65,27 +65,27 @@ const StyledDatepicker = styled.div`
   }
 
   .DayPicker-Day--selected {
-    background-color: ${colors.brand01};
-    color: ${colors.type04};
-    box-shadow: ${colors.brand01} 4px 0 0, ${colors.brand01} -4px 0 0;
+    background-color: ${props => props.theme.brand01};
+    color: ${props => props.theme.type04};
+    box-shadow: ${props => props.theme.brand01} 4px 0 0, ${props => props.theme.brand01} -4px 0 0;
   }
 
   .DayPicker-Day--selected:last-child {
-    box-shadow: ${colors.brand01} -4px 0 0;
+    box-shadow: ${props => props.theme.brand01} -4px 0 0;
   }
 
   .DayPicker-Day--selected.not(.DayPicker-Day--start):first-child {
-    box-shadow: ${colors.brand01} 4px 0 0;
+    box-shadow: ${props => props.theme.brand01} 4px 0 0;
   }
 
   .DayPicker-Day--selected.not(.DayPicker-Day--end):last-child {
-    box-shadow: ${colors.brand01} -4px 0 0;
+    box-shadow: ${props => props.theme.brand01} -4px 0 0;
   }
 
   .DayPicker-Day--start {
     border-radius: 4px 0 0 4px;
-    background-color: ${darken(0.16, colors.brand01)};
-    box-shadow: ${darken(0.16, colors.brand01)} 4px 0 0;
+    background-color: ${props => darken(0.16, props.theme.brand01)};
+    box-shadow: ${props => darken(0.16, props.theme.brand01)} 4px 0 0;
   }
 
   .DayPicker-Day--start:last-child {
@@ -94,7 +94,7 @@ const StyledDatepicker = styled.div`
 
   .DayPicker-Day--end {
     border-radius: 0 4px 4px 0;
-    background-color: ${darken(0.16, colors.brand01)};
+    background-color: ${props => darken(0.16, props.theme.brand01)};
     box-shadow: none;
   }
 
@@ -103,7 +103,7 @@ const StyledDatepicker = styled.div`
   }
 
   .DayPicker-Day--disabled {
-    color: ${colors.type02};
+    color: ${props => props.theme.type02};
     cursor: not-allowed;
   }
 
@@ -157,7 +157,8 @@ const StyledDatepicker = styled.div`
     margin: 0;
     padding: 0 3px;
     font: 500 12px/20px 'Roboto';
-    background-color: #fff;
+    color: ${props => props.theme.type01};
+    background-color: ${props => props.theme.ui01};
   }
 
   .DayPicker-Caption select {
@@ -170,6 +171,9 @@ const StyledDatepicker = styled.div`
     opacity: 0;
   }
 `;
+StyledDatepicker.defaultProps = {
+  theme,
+};
 
 const YearMonthForm = ({
   date,
