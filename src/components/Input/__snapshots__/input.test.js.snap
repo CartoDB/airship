@@ -948,6 +948,7 @@ exports[`render renders with an error 1`] = `
 }
 
 .c2 > span {
+  -webkit-font-smoothing: antialiased;
   font: 600 10px/12px 'Roboto';
   color: #F3522B;
   margin-left: 4px;

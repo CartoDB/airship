@@ -27,6 +27,7 @@ const ErrorMessage = styled.div`
   margin-top: 8px;
 
   & > span {
+    -webkit-font-smoothing: antialiased;
     font: 600 10px/12px 'Roboto';
     color: ${props => props.theme.support01};
     margin-left: 4px;
