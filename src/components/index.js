@@ -35,6 +35,7 @@ export { default as Histogram } from './Histogram/histogram';
 export { default as Popup } from './Popup/popup';
 export { default as StackedBar } from './StackedBar/stackedBar';
 export { default as ThemeProvider } from './ThemeProvider';
+export { default as Icon } from './Icon/icon';
 
 // -- Icons
 export { default as PlusIcon } from './Icons/plus';
