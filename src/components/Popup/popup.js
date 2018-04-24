@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { colors } from '../../constants';
+import { theme } from '../../constants';
 
 const Wrapper = styled.div`
   position: relative;
@@ -9,9 +9,12 @@ const Wrapper = styled.div`
   min-height: 40px;
   border-radius: 4px 4px 4px 0;
   box-shadow: 0 2px 8px 0 rgba(44, 44, 44, 0.16);
-  background: ${props => props.background};
-  color: ${props => props.background};
+  background: ${props => props.background || props.theme.ui01};
+  color: ${props => props.background || props.theme.ui01};
 `;
+Wrapper.defaultProps = {
+  theme,
+};
 
 const Image = styled.img`
   width: 260px;
@@ -21,9 +24,12 @@ const Image = styled.img`
 
 const Content = styled.div`
   padding: 16px;
-  color: black;
+  color: ${props => props.theme.type01};
   font: 400 12px/20px 'Roboto';
 `;
+Content.defaultProps = {
+  theme,
+};
 
 const Hook = styled.div`
   position: absolute;
@@ -156,10 +162,6 @@ class Popup extends Component {
       : this.renderWithContent();
   }
 }
-
-Popup.defaultProps = {
-  background: colors.white,
-};
 
 Popup.propTypes = {
   background: PropTypes.string,

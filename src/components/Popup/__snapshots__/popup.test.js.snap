@@ -13,7 +13,7 @@ exports[`render renders with a different background color 1`] = `
 
 .c1 {
   padding: 16px;
-  color: black;
+  color: #2C2C2C;
   font: 400 12px/20px 'Roboto';
 }
 
@@ -83,7 +83,7 @@ exports[`render renders with an image and content 1`] = `
 
 .c2 {
   padding: 16px;
-  color: black;
+  color: #2C2C2C;
   font: 400 12px/20px 'Roboto';
 }
 
@@ -152,6 +152,8 @@ exports[`render renders with an image only 1`] = `
   min-height: 40px;
   border-radius: 4px 4px 4px 0;
   box-shadow: 0 2px 8px 0 rgba(44,44,44,0.16);
+  background: #fff;
+  color: #fff;
 }
 
 .c1 {
@@ -243,7 +245,7 @@ exports[`render renders with content 1`] = `
 
 .c1 {
   padding: 16px;
-  color: black;
+  color: #2C2C2C;
   font: 400 12px/20px 'Roboto';
 }
 
@@ -314,7 +316,7 @@ exports[`render renders without crashing 1`] = `
 
 .c1 {
   padding: 16px;
-  color: black;
+  color: #2C2C2C;
   font: 400 12px/20px 'Roboto';
 }
 
