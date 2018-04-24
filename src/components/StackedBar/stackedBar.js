@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { select, event, mouse } from 'd3-selection';
+import { select, event } from 'd3-selection';
 import { stack, stackOrderNone } from 'd3-shape';
 import { scaleBand, scaleLinear, scaleOrdinal } from 'd3-scale';
 import { max } from 'd3-array';
