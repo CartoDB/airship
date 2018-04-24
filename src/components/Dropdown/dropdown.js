@@ -3,22 +3,8 @@ import ReactDOM, { findDOMNode } from 'react-dom';
 import styled from 'styled-components';
 import { rgba } from 'polished';
 import PropTypes from 'prop-types';
-import { colors, shadows } from '../../constants';
+import { theme, shadows } from '../../constants';
 import { offset } from '../../utils';
-
-/*
-  <Dropdown>
-    <Dropdown.Trigger>Click me</Dropdown.Trigger>
-    <Dropdown.Content>
-      <Dropdown.Menu>
-        <Dropdown.Item>All</Dropdown.Item>
-        <Dropdown.Item>Open</Dropdown.Item>
-        <Dropdown.Item>Fullfilled</Dropdown.Item>
-        <Dropdown.Item>Close</Dropdown.Item>
-      </Dropdown.Menu>
-    </Dropdown.Content>
-  </Dropdown>
-*/
 
 const TriggerWrapper = styled.div`
   display: inline-flex;
@@ -37,29 +23,32 @@ DropdownTrigger.displayName = 'Dropdown.Trigger';
 
 const DropdownButton = styled.button`
   appearance: none;
-  background-color: ${colors.white};
+  background-color: ${props => props.theme.ui01};
   border-radius: 4px;
-  border: 1px solid ${rgba(colors.type01, 0.16)};
+  border: 1px solid ${props => rgba(props.theme.type01, 0.16)};
   display: inline-flex;
   align-items: center;
   font: 400 12px/18px 'Roboto';
-  color: ${colors.type01};
+  color: ${props => props.theme.type01};
   padding: 6px 12px;
   width: 100%;
   outline: none;
 
   &:focus {
-    border: 1px solid ${colors.brand01};
-    box-shadow: 0 0 0 1px ${colors.brand01};
+    border: 1px solid ${props => props.theme.brand01};
+    box-shadow: 0 0 0 1px ${props => props.theme.brand01};
   }
 
   svg {
     margin-left: auto;
   }
 `;
+DropdownButton.defaultProps = {
+  theme,
+};
 
 const DropdownContent = styled.div`
-  background: ${colors.white};
+  background: ${props => props.theme.white};
   box-shadow: ${shadows.shadow8};
   display: inline-flex;
   left: ${props => `${props.position.left}px`};
@@ -68,6 +57,9 @@ const DropdownContent = styled.div`
   width: ${props => (props.size ? `${props.size}px` : 'auto')};
   min-width: 200px;
 `;
+DropdownContent.defaultProps = {
+  theme,
+};
 
 const Content = ({ children, node, ...props }) => {
   let domNode = document.getElementById('modals');
@@ -99,7 +91,7 @@ const StyledList = styled.ul`
 `;
 
 const StyledListItem = styled.li`
-  border: 1px solid ${colors.grey};
+  border: 1px solid ${props => props.theme.grey};
   margin-top: -1px;
   overflow: hidden;
 
@@ -112,15 +104,18 @@ const StyledListItem = styled.li`
   }
 
   &:hover {
-    border: 1px solid ${rgba(colors.complementaryColor, 0.5)};
+    border: 1px solid ${props => rgba(props.theme.brand03, 0.5)};
     z-index: 1;
   }
 `;
+StyledListItem.defaultProps = {
+  theme,
+};
 
 const DropdownItem = styled.button`
   border: 0;
-  background: ${colors.white};
-  color: ${colors.black};
+  background: ${props => props.theme.white};
+  color: ${props => props.theme.black};
   font: 400 12px/20px 'Roboto';
   padding: 12px;
   width: 100%;
@@ -128,11 +123,14 @@ const DropdownItem = styled.button`
 
   &:focus,
   &:hover {
-    background: ${rgba(colors.complementaryColor, 0.16)}; {
+    background: ${props => rgba(props.theme.brand03, 0.16)};
     outline: none;
   }
 `;
 DropdownItem.displayName = 'Dropdown.Item';
+DropdownItem.defaultProps = {
+  theme,
+};
 
 const DropdownMenu = ({ children }) => {
   const items = React.Children.map(children, child => <StyledListItem>{child}</StyledListItem>);
