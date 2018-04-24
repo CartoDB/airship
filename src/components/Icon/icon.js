@@ -3,43 +3,13 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { theme, ICONS } from '../../constants';
 
-export const ICON_LIST = [
-  'twitter',
-  'linkedin',
-  'facebook',
-  'magnify',
-  'question',
-  'points',
-  'marker',
-  'plus',
-  'minus',
-  'home',
-  'pencil',
-  'close',
-  'tick',
-  'tick_circle',
-  'tick_circle_fill',
-  'hamburguer',
-  'arrow_up',
-  'arrow_right',
-  'arrow_down',
-  'arrow_left',
-  'alert',
-  'alert_fill',
-  'settings',
-  'info',
-  'undo',
-  'redo',
-  'chevron_up',
-  'chevron_right',
-  'chevron_down',
-  'chevron_left',
-];
+const ICON_LIST = Object.keys(ICONS).map(icon => icon.toLowerCase());
 
 const Svg = styled.svg.attrs({
   viewBox: '0 0 16 16',
 })`
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   height: ${props => props.size}px;
   vertical-align: middle;
   width: ${props => props.size}px;
@@ -52,12 +22,12 @@ Svg.defaultProps = {
   theme,
 };
 
-const Icon = props => {
-  const icon = props.path || ICONS[props.icon.toUpperCase()];
+const Icon = ({ path, icon, ...others }) => {
+  const iconPath = path || ICONS[icon.toUpperCase()];
 
   return (
-    <Svg {...props}>
-      <path d={icon} />
+    <Svg {...others}>
+      <path d={iconPath} />
     </Svg>
   );
 };
@@ -70,6 +40,7 @@ Icon.propTypes = {
 };
 
 Icon.defaultProps = {
+  icon: 'info',
   size: 16,
 };
 

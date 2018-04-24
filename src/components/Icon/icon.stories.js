@@ -1,8 +1,10 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import styled, { ThemeProvider } from 'styled-components';
-import Icon, { ICON_LIST } from './icon';
-import { theme } from '../../constants';
+import Icon from './icon';
+import { theme, ICONS } from '../../constants';
+
+const ICON_LIST = Object.keys(ICONS).map(icon => icon.toLowerCase());
 
 const Grid = styled.div`
   display: grid;
