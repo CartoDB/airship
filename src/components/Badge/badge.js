@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { theme } from '../../constants';
-import CloseIcon from '../Icons/close';
+import Icon from '../Icon/icon';
 
 const StyledBadge = styled.li`
   background: ${props => props.color || props.theme.ui03};
@@ -39,7 +39,7 @@ const Badge = ({ color, closeColor, children, onClose, as }) => {
       {children}
       {onClose ? (
         <button onClick={event => onClose(event)}>
-          <CloseIcon width={12} height={12} color={closeColor} />
+          <Icon icon="close" size={12} color={closeColor} />
         </button>
       ) : null}
     </Wrapper>

@@ -1,8 +1,7 @@
 import React, { Component, Children } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import ChevronLeft from '../Icons/chevron-left';
-import ChevronRight from '../Icons/chevron-right';
+import Icon from '../Icon/icon';
 
 const Header = styled.div`
   display: flex;
@@ -27,23 +26,19 @@ const StyledControl = styled.ul`
   padding: 0;
   align-items: center;
   font: 500 10px/12px 'Roboto';
-
-  li + li {
-    margin-left: 4px;
-  }
 `;
 
 const Control = ({ up, down, children }) => (
   <StyledControl>
     <li>
       <button onClick={() => down()}>
-        <ChevronLeft width={6} height={12} />
+        <Icon icon="chevron_left" size={12} />
       </button>
     </li>
     <li>{children}</li>
     <li>
       <button onClick={() => up()}>
-        <ChevronRight width={6} height={12} />
+        <Icon icon="chevron_right" size={12} />
       </button>
     </li>
   </StyledControl>

@@ -14,9 +14,6 @@ Array [
   height: 16px;
   vertical-align: middle;
   width: 16px;
-}
-
-.c0 path {
   fill: #1785FB;
 }
 
@@ -41,9 +38,6 @@ Array [
   height: 16px;
   vertical-align: middle;
   width: 16px;
-}
-
-.c0 path {
   fill: #1785FB;
 }
 
@@ -68,9 +62,6 @@ Array [
   height: 16px;
   vertical-align: middle;
   width: 16px;
-}
-
-.c0 path {
   fill: #1785FB;
 }
 
@@ -95,9 +86,6 @@ Array [
   height: 16px;
   vertical-align: middle;
   width: 16px;
-}
-
-.c0 path {
   fill: #1785FB;
 }
 
@@ -122,9 +110,6 @@ Array [
   height: 16px;
   vertical-align: middle;
   width: 16px;
-}
-
-.c0 path {
   fill: #1785FB;
 }
 
@@ -149,9 +134,6 @@ Array [
   height: 16px;
   vertical-align: middle;
   width: 16px;
-}
-
-.c0 path {
   fill: #1785FB;
 }
 
@@ -176,9 +158,6 @@ Array [
   height: 16px;
   vertical-align: middle;
   width: 16px;
-}
-
-.c0 path {
   fill: #1785FB;
 }
 
@@ -203,9 +182,6 @@ Array [
   height: 16px;
   vertical-align: middle;
   width: 16px;
-}
-
-.c0 path {
   fill: #1785FB;
 }
 
@@ -230,9 +206,6 @@ Array [
   height: 16px;
   vertical-align: middle;
   width: 16px;
-}
-
-.c0 path {
   fill: #1785FB;
 }
 
@@ -257,9 +230,6 @@ Array [
   height: 16px;
   vertical-align: middle;
   width: 16px;
-}
-
-.c0 path {
   fill: #1785FB;
 }
 
@@ -284,9 +254,6 @@ Array [
   height: 16px;
   vertical-align: middle;
   width: 16px;
-}
-
-.c0 path {
   fill: #1785FB;
 }
 
@@ -311,9 +278,6 @@ Array [
   height: 16px;
   vertical-align: middle;
   width: 16px;
-}
-
-.c0 path {
   fill: #1785FB;
 }
 
@@ -338,9 +302,6 @@ Array [
   height: 16px;
   vertical-align: middle;
   width: 16px;
-}
-
-.c0 path {
   fill: #1785FB;
 }
 
@@ -365,9 +326,6 @@ Array [
   height: 16px;
   vertical-align: middle;
   width: 16px;
-}
-
-.c0 path {
   fill: #1785FB;
 }
 
@@ -392,9 +350,6 @@ Array [
   height: 16px;
   vertical-align: middle;
   width: 16px;
-}
-
-.c0 path {
   fill: #1785FB;
 }
 
@@ -419,9 +374,6 @@ Array [
   height: 16px;
   vertical-align: middle;
   width: 16px;
-}
-
-.c0 path {
   fill: #1785FB;
 }
 
@@ -446,9 +398,6 @@ Array [
   height: 16px;
   vertical-align: middle;
   width: 16px;
-}
-
-.c0 path {
   fill: #1785FB;
 }
 
@@ -473,9 +422,6 @@ Array [
   height: 16px;
   vertical-align: middle;
   width: 16px;
-}
-
-.c0 path {
   fill: #1785FB;
 }
 
@@ -500,9 +446,6 @@ Array [
   height: 16px;
   vertical-align: middle;
   width: 16px;
-}
-
-.c0 path {
   fill: #1785FB;
 }
 
@@ -527,9 +470,6 @@ Array [
   height: 16px;
   vertical-align: middle;
   width: 16px;
-}
-
-.c0 path {
   fill: #1785FB;
 }
 
@@ -554,9 +494,6 @@ Array [
   height: 16px;
   vertical-align: middle;
   width: 16px;
-}
-
-.c0 path {
   fill: #1785FB;
 }
 
@@ -581,9 +518,6 @@ Array [
   height: 16px;
   vertical-align: middle;
   width: 16px;
-}
-
-.c0 path {
   fill: #1785FB;
 }
 
@@ -608,9 +542,6 @@ Array [
   height: 16px;
   vertical-align: middle;
   width: 16px;
-}
-
-.c0 path {
   fill: #1785FB;
 }
 
@@ -635,9 +566,6 @@ Array [
   height: 16px;
   vertical-align: middle;
   width: 16px;
-}
-
-.c0 path {
   fill: #1785FB;
 }
 
@@ -662,9 +590,6 @@ Array [
   height: 16px;
   vertical-align: middle;
   width: 16px;
-}
-
-.c0 path {
   fill: #1785FB;
 }
 
@@ -689,9 +614,6 @@ Array [
   height: 16px;
   vertical-align: middle;
   width: 16px;
-}
-
-.c0 path {
   fill: #1785FB;
 }
 
@@ -716,9 +638,6 @@ Array [
   height: 16px;
   vertical-align: middle;
   width: 16px;
-}
-
-.c0 path {
   fill: #1785FB;
 }
 
@@ -743,9 +662,6 @@ Array [
   height: 16px;
   vertical-align: middle;
   width: 16px;
-}
-
-.c0 path {
   fill: #1785FB;
 }
 
@@ -770,9 +686,6 @@ Array [
   height: 16px;
   vertical-align: middle;
   width: 16px;
-}
-
-.c0 path {
   fill: #1785FB;
 }
 
@@ -797,9 +710,6 @@ Array [
   height: 16px;
   vertical-align: middle;
   width: 16px;
-}
-
-.c0 path {
   fill: #1785FB;
 }
 
@@ -828,9 +738,6 @@ exports[`render renders with custom color 1`] = `
   height: 16px;
   vertical-align: middle;
   width: 16px;
-}
-
-.c0 path {
   fill: #FABADA;
 }
 
@@ -859,9 +766,6 @@ exports[`render renders with custom size 1`] = `
   height: 32px;
   vertical-align: middle;
   width: 32px;
-}
-
-.c0 path {
   fill: #1785FB;
 }
 
@@ -889,9 +793,6 @@ exports[`render renders without crashing 1`] = `
   height: 16px;
   vertical-align: middle;
   width: 16px;
-}
-
-.c0 path {
   fill: #1785FB;
 }
 

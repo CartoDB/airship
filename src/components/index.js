@@ -1,4 +1,3 @@
-// -- Components
 export { default as Jumbo } from './Typography/jumbo';
 export { default as Display } from './Typography/display';
 export { default as Title } from './Typography/title';
@@ -36,30 +35,3 @@ export { default as Popup } from './Popup/popup';
 export { default as StackedBar } from './StackedBar/stackedBar';
 export { default as ThemeProvider } from './ThemeProvider';
 export { default as Icon } from './Icon/icon';
-
-// -- Icons
-export { default as PlusIcon } from './Icons/plus';
-export { default as SearchIcon } from './Icons/search';
-export { default as PointIcon } from './Icons/point';
-export { default as LeftArrowIcon } from './Icons/left-arrow';
-export { default as RightArrowIcon } from './Icons/right-arrow';
-export { default as TopArrowIcon } from './Icons/top-arrow';
-export { default as BottomArrowIcon } from './Icons/bottom-arrow';
-export { default as ChevronDownIcon } from './Icons/chevron-down';
-export { default as ChevronUpIcon } from './Icons/chevron-up';
-export { default as ChevronLeftIcon } from './Icons/chevron-left';
-export { default as ChevronRightIcon } from './Icons/chevron-right';
-export { default as MenuIcon } from './Icons/menu';
-export { default as CloseIcon } from './Icons/close';
-export { default as CheckIcon } from './Icons/check';
-export { default as PencilIcon } from './Icons/pencil';
-export { default as HomeIcon } from './Icons/home';
-export { default as InfoIcon } from './Icons/info';
-export { default as MinusIcon } from './Icons/minus';
-export { default as PointsIcon } from './Icons/points';
-export { default as QuestionIcon } from './Icons/question';
-export { default as SettingsIcon } from './Icons/settings';
-export { default as CheckFillIcon } from './Icons/check-fill';
-export { default as CheckRoundedIcon } from './Icons/check-rounded';
-export { default as AlertIcon } from './Icons/alert';
-export { default as AlertFillIcon } from './Icons/alert-fill';

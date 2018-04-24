@@ -2,14 +2,14 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import ButtonGroup from './button-group';
 import Button from './button';
-import PlusIcon from '../Icons/plus';
+import Icon from '../Icon/icon';
 
 describe('render', () => {
   it('renders without crashing', () => {
     const component = renderer.create(
       <ButtonGroup>
         <Button>
-          <PlusIcon />
+          <Icon icon="plus" />
         </Button>
         <Button>Mundo</Button>
         <Button>Happy</Button>
@@ -23,7 +23,7 @@ describe('render', () => {
     const component = renderer.create(
       <ButtonGroup secondary>
         <Button>
-          <PlusIcon />
+          <Icon icon="plus" />
         </Button>
         <Button>Mundo</Button>
         <Button>Happy</Button>

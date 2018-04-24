@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions';
 import { ThemeProvider } from 'styled-components';
 import Button from './button';
 import ButtonGroup from './button-group';
-import PlusIcon from '../Icons/plus';
+import Icon from '../Icon/icon';
 import { theme } from '../../constants';
 
 const CUSTOM_THEME = {
@@ -30,7 +30,7 @@ storiesOf('Button', module)
       <h3 className="header">Grouped</h3>
       <ButtonGroup>
         <Button>
-          <PlusIcon />
+          <Icon icon="plus" />
         </Button>
         <Button>Edit</Button>
         <Button>
@@ -41,7 +41,7 @@ storiesOf('Button', module)
       <h3 className="header">Grouped Secondary</h3>
       <ButtonGroup secondary>
         <Button>
-          <PlusIcon />
+          <Icon icon="plus" />
         </Button>
         <Button>Edit</Button>
         <Button>
@@ -68,7 +68,7 @@ storiesOf('Button', module)
         <h3 className="header">Grouped</h3>
         <ButtonGroup>
           <Button>
-            <PlusIcon />
+            <Icon icon="plus" />
           </Button>
           <Button>Edit</Button>
           <Button>
@@ -79,7 +79,7 @@ storiesOf('Button', module)
         <h3 className="header">Grouped Secondary</h3>
         <ButtonGroup secondary>
           <Button>
-            <PlusIcon />
+            <Icon icon="plus" />
           </Button>
           <Button>Edit</Button>
           <Button>

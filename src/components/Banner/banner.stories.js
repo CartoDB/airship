@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { ThemeProvider } from 'styled-components';
 import Banner from './banner';
-import AlertFillIcon from '../Icons/alert-fill';
+import Icon from '../Icon/icon';
 import Text from '../Typography/text';
 import { theme } from '../../constants';
 
@@ -16,7 +16,7 @@ storiesOf('Banner', module)
   .add('Default', () => (
     <Banner>
       <Banner.Icon>
-        <AlertFillIcon width={12} height={12} />
+        <Icon icon="alert_fill" size={12} />
       </Banner.Icon>
       <Banner.Content>
         <Text>
@@ -28,7 +28,7 @@ storiesOf('Banner', module)
   .add('With custom color', () => (
     <Banner color="#4f1091">
       <Banner.Icon>
-        <AlertFillIcon color="#fff" width={12} height={12} />
+        <Icon icon="alert_fill" color="#fff" size={12} />
       </Banner.Icon>
       <Banner.Content>
         <Text color="#fff">
@@ -41,7 +41,7 @@ storiesOf('Banner', module)
     <ThemeProvider theme={CUSTOM_THEME}>
       <Banner color="#333">
         <Banner.Icon>
-          <AlertFillIcon width={12} height={12} />
+          <Icon icon="alert_fill" color="#fff" size={12} />
         </Banner.Icon>
         <Banner.Content>
           <Text>

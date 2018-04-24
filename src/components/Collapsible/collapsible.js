@@ -2,15 +2,7 @@ import React, { Component, Children } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { isComponentOfType } from '../../utils';
-import ChevronDown from '../Icons/chevron-down';
-import ChevronUp from '../Icons/chevron-up';
-
-/*
-  <Collapsible>
-    <Collapsible.Header>Header</Collapsible.Header>
-    <Collapsible.Content>Content</Collapsible.Content>
-  </Collapsible>
-*/
+import Icon from '../Icon/icon';
 
 const Header = styled.div`
   display: flex;
@@ -69,7 +61,7 @@ class Collapsible extends Component {
               <Collapsible.Header>
                 <div>{child.props.children}</div>
                 <button onClick={() => this.toggle()} >
-                  {open ? <ChevronUp /> : <ChevronDown />}
+                  <Icon icon={open ? 'chevron_up' : 'chevron_down'} />
                 </button>
               </Collapsible.Header>
             );

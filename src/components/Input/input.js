@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import { rgba } from 'polished';
 import { theme } from '../../constants';
-import AlertIcon from '../Icons/alert';
+import Icon from '../Icon/icon';
 
 const Wrapper = styled.label`
   display: block;
@@ -193,7 +193,7 @@ class Input extends Component {
 
         {error && (
           <ErrorMessage>
-            <AlertIcon width={12} height={12} />
+            <Icon icon="alert" size={12} />
             <span>{error}</span>
           </ErrorMessage>
         )}

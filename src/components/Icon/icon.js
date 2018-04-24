@@ -13,10 +13,7 @@ const Svg = styled.svg.attrs({
   height: ${props => props.size}px;
   vertical-align: middle;
   width: ${props => props.size}px;
-
-  path {
-    fill: ${props => props.color || props.theme.brand01}
-  }
+  fill: ${props => props.color || props.theme.brand01}
 `;
 Svg.defaultProps = {
   theme,

@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { ThemeProvider } from 'styled-components';
 import Flag from './flag';
-import AlertFillIcon from '../Icons/alert-fill';
+import Icon from '../Icon/icon';
 import Text from '../Typography/text';
 import { theme } from '../../constants';
 
@@ -17,7 +17,7 @@ storiesOf('Flag', module)
   .add('Default', () => (
     <Flag onClick={action('Closed!')}>
       <Flag.Icon>
-        <AlertFillIcon color="#80B622" width={12} height={12} />
+        <Icon icon="alert_fill" size={12} color="#80B622" />
       </Flag.Icon>
       <Flag.Content>
         <Text weight="medium">
@@ -33,7 +33,7 @@ storiesOf('Flag', module)
     <ThemeProvider theme={CUSTOM_THEME}>
       <Flag onClick={action('Closed!')}>
         <Flag.Icon>
-          <AlertFillIcon color="#80B622" width={12} height={12} />
+          <Icon icon="alert_fill" size={12} color="#80B622" />
         </Flag.Icon>
         <Flag.Content>
           <Text weight="medium">

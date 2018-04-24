@@ -75,6 +75,21 @@ exports[`render renders secondary button 1`] = `
   border-right: 0;
 }
 
+.c3 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 16px;
+  vertical-align: middle;
+  width: 16px;
+  fill: currentColor;
+}
+
 <ul
   className="c0"
   data-component="ButtonGroup"
@@ -88,13 +103,13 @@ exports[`render renders secondary button 1`] = `
       radius={0}
     >
       <svg
-        fill="currentColor"
-        height={16}
-        viewBox="0 0 15 15"
-        width={16}
+        className="c3"
+        color="currentColor"
+        size={16}
+        viewBox="0 0 16 16"
       >
-        <polygon
-          points="0.020904541 7.00476178 7.01217651 7.00476178 7.06573917 0.0133888789 8.00093254 0.0133888789 8.00093254 7.00476178 15.0067139 7.00476178 15.0067139 8.00007932 8.00093254 8.00007932 8.00093254 14.9849872 7.01217651 14.9849872 7.01217651 8.00007932 0.020904541 8.00007932"
+        <path
+          d="M8,8 L8,1 L9,1 L9,8 L16,8 L16,9 L9,9 L9,16 L8,16 L8,9 L1,9 L1,8 L8,8 Z"
         />
       </svg>
     </button>
@@ -199,6 +214,21 @@ exports[`render renders without crashing 1`] = `
   border-right: 0;
 }
 
+.c3 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 16px;
+  vertical-align: middle;
+  width: 16px;
+  fill: currentColor;
+}
+
 <ul
   className="c0"
   data-component="ButtonGroup"
@@ -212,13 +242,13 @@ exports[`render renders without crashing 1`] = `
       radius={0}
     >
       <svg
-        fill="currentColor"
-        height={16}
-        viewBox="0 0 15 15"
-        width={16}
+        className="c3"
+        color="currentColor"
+        size={16}
+        viewBox="0 0 16 16"
       >
-        <polygon
-          points="0.020904541 7.00476178 7.01217651 7.00476178 7.06573917 0.0133888789 8.00093254 0.0133888789 8.00093254 7.00476178 15.0067139 7.00476178 15.0067139 8.00007932 8.00093254 8.00007932 8.00093254 14.9849872 7.01217651 14.9849872 7.01217651 8.00007932 0.020904541 8.00007932"
+        <path
+          d="M8,8 L8,1 L9,1 L9,8 L16,8 L16,9 L9,9 L9,16 L8,16 L8,9 L1,9 L1,8 L8,8 Z"
         />
       </svg>
     </button>

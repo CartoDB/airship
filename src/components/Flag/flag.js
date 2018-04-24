@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import CloseIcon from '../Icons/close';
+import Icon from '../Icon/icon';
 import { theme, shadows } from '../../constants';
 
 const Wrapper = styled.div`
@@ -15,9 +15,12 @@ const Wrapper = styled.div`
   button {
     border: 0;
     background: transparent;
-    box-shadow: 0;
+    box-shadow: none;
     outline: none;
     padding: 0;
+    margin: 0;
+    cursor: pointer;
+    display: flex;
   }
 `;
 Wrapper.displayName = 'Flag';
@@ -41,7 +44,7 @@ const Flag = ({ children, onClick }) => (
     {children}
     <FlagIcon key="flagButton">
       <button onClick={event => onClick(event)}>
-        <CloseIcon width={12} height={12} />
+        <Icon icon="close" size={12} />
       </button>
     </FlagIcon>
   </Wrapper>
