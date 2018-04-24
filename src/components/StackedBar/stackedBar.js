@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { select, event } from 'd3-selection';
+import { select, event, mouse } from 'd3-selection';
 import { stack, stackOrderNone } from 'd3-shape';
 import { scaleBand, scaleLinear, scaleOrdinal } from 'd3-scale';
 import { max } from 'd3-array';
@@ -264,12 +264,12 @@ class Histogram extends Component {
         .on('mouseenter', d => {
           this.setState(
             { tooltip: { d } },
-            () => this.showTooltip(event.pageX, event.pageY)
+            () => this.showTooltip(event.layerX, event.layerY)
           );
         })
         .on('mousemove', () => {
           select(this.tooltipNode).style('opacity', 0);
-          this.showTooltip(event.pageX, event.pageY);
+          this.showTooltip(event.layerX, event.layerY);
         })
         .attr('class', () => `bar bar-${key}`)
         .attr('y', HEIGHT)
@@ -321,13 +321,12 @@ class Histogram extends Component {
   }
 
   showTooltip(mouseX, mouseY) {
-    const OFFSET = 5;
     const [x, y] = this.getTooltipPosition(mouseX, mouseY);
 
     select(this.tooltipNode)
       .style('opacity', 1)
-      .style('left', `${x}px`)
-      .style('top', `${y + OFFSET}px`);
+      .style('left', `${x + 10}px`)
+      .style('top', `${y + 5}px`);
   }
 
   renderTooltip() {
