@@ -66,6 +66,7 @@ const StyledButton = styled.button`
   font: ${font};
   display: flex;
   align-items: center;
+  margin: 0;
 
   &[disabled],
   &.is-disabled {

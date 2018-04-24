@@ -18,6 +18,7 @@ exports[`render renders borderless button 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  margin: 0;
 }
 
 .c0[disabled],
@@ -75,6 +76,7 @@ exports[`render renders secondary button 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  margin: 0;
 }
 
 .c0[disabled],
@@ -132,6 +134,7 @@ exports[`render renders with large param 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  margin: 0;
 }
 
 .c0[disabled],
@@ -189,6 +192,7 @@ exports[`render renders with small param 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  margin: 0;
 }
 
 .c0[disabled],
@@ -246,6 +250,7 @@ exports[`render renders without crashing 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  margin: 0;
 }
 
 .c0[disabled],
