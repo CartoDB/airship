@@ -20,16 +20,20 @@ export const ICON_LIST = [
   'tick_circle',
   'tick_circle_fill',
   'hamburguer',
-  'arrow_left',
+  'arrow_up',
   'arrow_right',
+  'arrow_down',
+  'arrow_left',
   'alert',
   'alert_fill',
   'settings',
   'info',
+  'undo',
   'redo',
   'chevron_up',
   'chevron_right',
   'chevron_down',
+  'chevron_left',
 ];
 
 const Svg = styled.svg.attrs({
