@@ -6,14 +6,20 @@ exports[`<GaugeChart /> render when data passed in renders the correct amount of
 }
 
 .c1 {
+  -webkit-transform: translate(114px,100px);
+  -ms-transform: translate(114px,100px);
+  transform: translate(114px,100px);
+}
+
+.c2 {
   color: #2C2C2C;
   margin: 0;
   font-family: Roboto,sans-serif;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
-  -webkit-transform: translate(50%,65%);
-  -ms-transform: translate(50%,65%);
-  transform: translate(50%,65%);
+  -webkit-transform: translate(0,-25px);
+  -ms-transform: translate(0,-25px);
+  transform: translate(0,-25px);
   font-size: 40px;
   font-weight: 300;
   text-anchor: middle;
@@ -24,12 +30,16 @@ exports[`<GaugeChart /> render when data passed in renders the correct amount of
   className="c0"
   viewBox="0 0 228 100"
 >
-  <text
+  <g
     className="c1"
   >
-    12
-  </text>
-  
+    <text
+      className="c2"
+    >
+      12
+    </text>
+    
+  </g>
 </svg>
 `;
 
@@ -38,30 +48,36 @@ exports[`<GaugeChart /> render when data passed in renders with a label 1`] = `
   color: #2C2C2C;
 }
 
-.c2 {
+.c1 {
+  -webkit-transform: translate(114px,100px);
+  -ms-transform: translate(114px,100px);
+  transform: translate(114px,100px);
+}
+
+.c3 {
   color: #2C2C2C;
   margin: 0;
   font-family: Roboto,sans-serif;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
-  -webkit-transform: translate(50%,85%);
-  -ms-transform: translate(50%,85%);
-  transform: translate(50%,85%);
+  -webkit-transform: translate(0,-5px);
+  -ms-transform: translate(0,-5px);
+  transform: translate(0,-5px);
   font-size: 12px;
   font-weight: 300;
   text-anchor: middle;
   fill: #2C2C2C;
 }
 
-.c1 {
+.c2 {
   color: #2C2C2C;
   margin: 0;
   font-family: Roboto,sans-serif;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
-  -webkit-transform: translate(50%,65%);
-  -ms-transform: translate(50%,65%);
-  transform: translate(50%,65%);
+  -webkit-transform: translate(0,-25px);
+  -ms-transform: translate(0,-25px);
+  transform: translate(0,-25px);
   font-size: 40px;
   font-weight: 300;
   text-anchor: middle;
@@ -72,16 +88,20 @@ exports[`<GaugeChart /> render when data passed in renders with a label 1`] = `
   className="c0"
   viewBox="0 0 228 100"
 >
-  <text
+  <g
     className="c1"
   >
-    12
-  </text>
-  <text
-    className="c2"
-  >
-    Parsecs
-  </text>
+    <text
+      className="c2"
+    >
+      12
+    </text>
+    <text
+      className="c3"
+    >
+      Parsecs
+    </text>
+  </g>
 </svg>
 `;
 
@@ -90,30 +110,36 @@ exports[`<GaugeChart /> render when data passed in renders with max and min valu
   color: #2C2C2C;
 }
 
-.c2 {
+.c1 {
+  -webkit-transform: translate(114px,100px);
+  -ms-transform: translate(114px,100px);
+  transform: translate(114px,100px);
+}
+
+.c3 {
   color: #2C2C2C;
   margin: 0;
   font-family: Roboto,sans-serif;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
-  -webkit-transform: translate(50%,85%);
-  -ms-transform: translate(50%,85%);
-  transform: translate(50%,85%);
+  -webkit-transform: translate(0,-5px);
+  -ms-transform: translate(0,-5px);
+  transform: translate(0,-5px);
   font-size: 12px;
   font-weight: 300;
   text-anchor: middle;
   fill: #2C2C2C;
 }
 
-.c1 {
+.c2 {
   color: #2C2C2C;
   margin: 0;
   font-family: Roboto,sans-serif;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
-  -webkit-transform: translate(50%,65%);
-  -ms-transform: translate(50%,65%);
-  transform: translate(50%,65%);
+  -webkit-transform: translate(0,-25px);
+  -ms-transform: translate(0,-25px);
+  transform: translate(0,-25px);
   font-size: 40px;
   font-weight: 300;
   text-anchor: middle;
@@ -124,16 +150,20 @@ exports[`<GaugeChart /> render when data passed in renders with max and min valu
   className="c0"
   viewBox="0 0 228 100"
 >
-  <text
+  <g
     className="c1"
   >
-    1337
-  </text>
-  <text
-    className="c2"
-  >
-    Leet
-  </text>
+    <text
+      className="c2"
+    >
+      1337
+    </text>
+    <text
+      className="c3"
+    >
+      Leet
+    </text>
+  </g>
 </svg>
 `;
 
@@ -143,14 +173,20 @@ exports[`<GaugeChart /> update when data changes should call the update method o
 }
 
 .c1 {
+  -webkit-transform: translate(114px,100px);
+  -ms-transform: translate(114px,100px);
+  transform: translate(114px,100px);
+}
+
+.c2 {
   color: #2C2C2C;
   margin: 0;
   font-family: Roboto,sans-serif;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
-  -webkit-transform: translate(50%,65%);
-  -ms-transform: translate(50%,65%);
-  transform: translate(50%,65%);
+  -webkit-transform: translate(0,-25px);
+  -ms-transform: translate(0,-25px);
+  transform: translate(0,-25px);
   font-size: 40px;
   font-weight: 300;
   text-anchor: middle;
@@ -161,12 +197,16 @@ exports[`<GaugeChart /> update when data changes should call the update method o
   className="c0"
   viewBox="0 0 228 100"
 >
-  <text
+  <g
     className="c1"
   >
-    12
-  </text>
-  
+    <text
+      className="c2"
+    >
+      12
+    </text>
+    
+  </g>
 </svg>
 `;
 
@@ -176,14 +216,20 @@ exports[`<GaugeChart /> update when data changes should call the update method o
 }
 
 .c1 {
+  -webkit-transform: translate(114px,100px);
+  -ms-transform: translate(114px,100px);
+  transform: translate(114px,100px);
+}
+
+.c2 {
   color: #2C2C2C;
   margin: 0;
   font-family: Roboto,sans-serif;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
-  -webkit-transform: translate(50%,65%);
-  -ms-transform: translate(50%,65%);
-  transform: translate(50%,65%);
+  -webkit-transform: translate(0,-25px);
+  -ms-transform: translate(0,-25px);
+  transform: translate(0,-25px);
   font-size: 40px;
   font-weight: 300;
   text-anchor: middle;
@@ -194,11 +240,15 @@ exports[`<GaugeChart /> update when data changes should call the update method o
   className="c0"
   viewBox="0 0 228 100"
 >
-  <text
+  <g
     className="c1"
   >
-    70
-  </text>
-  
+    <text
+      className="c2"
+    >
+      70
+    </text>
+    
+  </g>
 </svg>
 `;

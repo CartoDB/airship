@@ -23,8 +23,12 @@ Chart.defaultProps = {
   theme,
 };
 
+const Group = styled.g`
+  transform: translate(${WIDTH / 2}px, ${HEIGHT}px);
+`;
+
 const Label = Base.withComponent('text').extend`
-  transform: translate(50%, 85%);
+  transform: translate(0, -5px);
   font-size: 12px;
   font-weight: 300;
   text-anchor: middle;
@@ -32,7 +36,7 @@ const Label = Base.withComponent('text').extend`
 `;
 
 const Value = Base.withComponent('text').extend`
-  transform: translate(50%, 65%);
+  transform: translate(0, -25px);
   font-size: 40px;
   font-weight: 300;
   text-anchor: middle;
@@ -59,10 +63,6 @@ class GaugeWidget extends Component {
   };
 
   componentDidMount() {
-    this.chartContainer = this.container
-      .append('g')
-      .attr('transform', `translate(${WIDTH / 2},${HEIGHT})`);
-
     this.renderChart();
   }
 
@@ -79,13 +79,13 @@ class GaugeWidget extends Component {
       .startAngle(-90 * (Math.PI / 180))
       .cornerRadius(30);
 
-    this.background = this.chartContainer
+    this.background = this.container
       .append('path')
       .datum({ endAngle: 90 * (Math.PI / 180) })
       .style('fill', theme.ui02)
       .attr('d', this.arc);
 
-    this.foreground = this.chartContainer
+    this.foreground = this.container
       .append('path')
       .datum({ endAngle: -90 * (Math.PI / 180) });
 
@@ -120,9 +120,11 @@ class GaugeWidget extends Component {
     const { value, label } = this.props;
 
     return (
-      <Chart innerRef={node => { this.container = select(node); }}>
-        <Value>{value}</Value>
-        {label && <Label>{label}</Label>}
+      <Chart>
+        <Group innerRef={node => { this.container = select(node); }}>
+          <Value>{value}</Value>
+          {label && <Label>{label}</Label>}
+        </Group>
       </Chart>
     );
   }
