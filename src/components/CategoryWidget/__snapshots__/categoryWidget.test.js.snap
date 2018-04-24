@@ -393,7 +393,7 @@ exports[`<CategoryWidget /> renders with data 1`] = `
 >
   <li
     className="c1"
-    color="#47DB99"
+    color={undefined}
     onClick={[Function]}
     selected={true}
   >
@@ -413,7 +413,7 @@ exports[`<CategoryWidget /> renders with data 1`] = `
   </li>
   <li
     className="c1"
-    color="#47DB99"
+    color={undefined}
     onClick={[Function]}
     selected={true}
   >
@@ -433,7 +433,7 @@ exports[`<CategoryWidget /> renders with data 1`] = `
   </li>
   <li
     className="c1"
-    color="#47DB99"
+    color={undefined}
     onClick={[Function]}
     selected={true}
   >
@@ -453,7 +453,7 @@ exports[`<CategoryWidget /> renders with data 1`] = `
   </li>
   <li
     className="c1"
-    color="#47DB99"
+    color={undefined}
     onClick={[Function]}
     selected={true}
   >
@@ -473,7 +473,7 @@ exports[`<CategoryWidget /> renders with data 1`] = `
   </li>
   <li
     className="c1"
-    color="#47DB99"
+    color={undefined}
     onClick={[Function]}
     selected={true}
   >
@@ -493,7 +493,7 @@ exports[`<CategoryWidget /> renders with data 1`] = `
   </li>
   <li
     className="c1"
-    color="#47DB99"
+    color={undefined}
     onClick={[Function]}
     selected={true}
   >
@@ -513,7 +513,7 @@ exports[`<CategoryWidget /> renders with data 1`] = `
   </li>
   <li
     className="c1"
-    color="#47DB99"
+    color={undefined}
     onClick={[Function]}
     selected={true}
   >
@@ -533,7 +533,7 @@ exports[`<CategoryWidget /> renders with data 1`] = `
   </li>
   <li
     className="c1"
-    color="#47DB99"
+    color={undefined}
     onClick={[Function]}
     selected={true}
   >
@@ -553,7 +553,7 @@ exports[`<CategoryWidget /> renders with data 1`] = `
   </li>
   <li
     className="c1"
-    color="#47DB99"
+    color={undefined}
     onClick={[Function]}
     selected={true}
   >
@@ -573,7 +573,7 @@ exports[`<CategoryWidget /> renders with data 1`] = `
   </li>
   <li
     className="c6"
-    color="#47DB99"
+    color={undefined}
     onClick={[Function]}
     selected={true}
   >
