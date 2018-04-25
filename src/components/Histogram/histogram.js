@@ -230,7 +230,7 @@ class Histogram extends Component {
     select(this.tooltipNode)
       .style('opacity', 1)
       .style('left', `${x + 10}px`)
-      .style('top', `${y + 5}px`);
+      .style('top', `${y + 20}px`);
   }
 
   renderTooltip() {
