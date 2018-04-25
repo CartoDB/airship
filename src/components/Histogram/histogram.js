@@ -65,11 +65,12 @@ class Histogram extends Component {
   };
 
   componentDidMount() {
+    this.renderAxis();
+
     this.barsContainer = this.container
       .append('g')
       .attr('transform', `translate(${MARGIN.LEFT}, ${MARGIN.TOP})`);
 
-    this.renderAxis();
     this.renderBars();
   }
 
