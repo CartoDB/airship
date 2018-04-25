@@ -22,6 +22,7 @@ exports[`render renders secondary button 1`] = `
   padding: 6px 12px;
   -webkit-transition: background 0.2s ease;
   transition: background 0.2s ease;
+  vertical-align: top;
   border-radius: 0;
 }
 
@@ -138,6 +139,7 @@ exports[`render renders without crashing 1`] = `
   padding: 6px 12px;
   -webkit-transition: background 0.2s ease;
   transition: background 0.2s ease;
+  vertical-align: top;
   border-radius: 0;
 }
 

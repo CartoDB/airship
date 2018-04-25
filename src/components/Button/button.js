@@ -47,6 +47,7 @@ const Button = styled.button`
   margin: 0;
   padding: ${padding};
   transition: background 0.2s ease;
+  vertical-align: top;
 
   ${props => props.grouped && css`
     border-radius: 0;

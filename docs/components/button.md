@@ -1,11 +1,26 @@
-Button component explanation here.
+A button clearly communicates what action will occur when the user touches it. It consists of text, an icon, or both, designed in accordance with your app's color theme.
 
 ```react
 <div>
-  <Button>Click me</Button>
+  <Button>
+    Default
+  </Button>
+</div>
+```
+
+```react
+<div>
   <Button>
     <Icon icon="plus" style={{ marginRight: '0.5rem' }} />
-    Click me as well
+    With icon
+  </Button>
+</div>
+```
+
+```react
+<div>
+  <Button>
+    <Icon icon="pencil" />
   </Button>
 </div>
 ```
@@ -17,7 +32,7 @@ Button component explanation here.
 Sets the button as large one.
 
 ```react
-<Button large>Click me</Button>
+<Button large>Large</Button>
 ```
 
 #### **small** (boolean)
@@ -25,7 +40,7 @@ Sets the button as large one.
 Sets the button as small one.
 
 ```react
-<Button small>Click me</Button>
+<Button small>Small</Button>
 ```
 
 #### **secondary** (boolean)
@@ -33,7 +48,7 @@ Sets the button as small one.
 Theme the button as a secondary one.
 
 ```react
-<Button secondary>Click me</Button>
+<Button secondary>Secondary</Button>
 ```
 
 #### **borderless** (boolean)
@@ -41,5 +56,5 @@ Theme the button as a secondary one.
 Theme the button as a borderless one.
 
 ```react
-<Button borderless>Click me</Button>
+<Button borderless>Without border</Button>
 ```

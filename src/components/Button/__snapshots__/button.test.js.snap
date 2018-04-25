@@ -22,6 +22,7 @@ exports[`render renders borderless button 1`] = `
   padding: 6px 12px;
   -webkit-transition: background 0.2s ease;
   transition: background 0.2s ease;
+  vertical-align: top;
 }
 
 .c0:hover {
@@ -77,6 +78,7 @@ exports[`render renders secondary button 1`] = `
   padding: 6px 12px;
   -webkit-transition: background 0.2s ease;
   transition: background 0.2s ease;
+  vertical-align: top;
 }
 
 .c0:hover {
@@ -132,6 +134,7 @@ exports[`render renders with large param 1`] = `
   padding: 8px 16px;
   -webkit-transition: background 0.2s ease;
   transition: background 0.2s ease;
+  vertical-align: top;
 }
 
 .c0:hover {
@@ -187,6 +190,7 @@ exports[`render renders with small param 1`] = `
   padding: 6px 8px;
   -webkit-transition: background 0.2s ease;
   transition: background 0.2s ease;
+  vertical-align: top;
 }
 
 .c0:hover {
@@ -242,6 +246,7 @@ exports[`render renders without crashing 1`] = `
   padding: 6px 12px;
   -webkit-transition: background 0.2s ease;
   transition: background 0.2s ease;
+  vertical-align: top;
 }
 
 .c0:hover {
