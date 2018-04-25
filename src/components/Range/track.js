@@ -38,11 +38,15 @@ TrackFront.defaultProps = {
 };
 
 class Track extends Component {
-  constructor(props) {
-    super(props);
+  trackDragEvent = null;
 
-    this.node = null;
-    this.trackDragEvent = null;
+  handleRef = node => {
+    if (!node) return;
+
+    this.node = node;
+
+    this.node.addEventListener('mousedown', this.handleMouseDown);
+    this.node.addEventListener('touchstart', this.handleTouchStart);
   }
 
   componentWillUnmount() {
@@ -132,9 +136,7 @@ class Track extends Component {
     return (
       <TrackBack
         disabled={disabled}
-        innerRef={node => { this.node = node; }}
-        onMouseDown={this.handleMouseDown}
-        onTouchStart={this.handleTouchStart}
+        innerRef={this.handleRef}
       >
         <TrackFront disabled={disabled} left={left} width={width} />
         {children}

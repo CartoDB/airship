@@ -49,10 +49,13 @@ SliderBullet.defaultProps = {
 };
 
 class Slider extends Component {
-  constructor(props) {
-    super(props);
+  handleRef = node => {
+    if (!node) return;
 
-    this.node = null;
+    this.node = node;
+
+    this.node.addEventListener('mousedown', this.handleMouseDown);
+    this.node.addEventListener('touchmove', this.handleTouchMove);
   }
 
   componentWillUnmount() {
@@ -109,12 +112,10 @@ class Slider extends Component {
 
     return (
       <SliderContainer
-        innerRef={node => { this.node = node; }}
+        innerRef={this.handleRef}
         left={percentage}
         draggable={draggable}
         disabled={disabled}
-        onMouseDown={this.handleMouseDown}
-        onTouchMove={this.handleTouchMove}
       >
         <SliderBullet tabIndex="0" disabled={disabled} />
         <Label formatLabel={formatLabel} type="value" disabled={disabled}>

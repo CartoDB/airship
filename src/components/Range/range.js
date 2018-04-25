@@ -37,6 +37,15 @@ class Range extends Component {
   isSliderDragging = false;
   lastKeyMoved = null;
 
+  handleRef = node => {
+    if (!node) return;
+
+    this.node = node;
+
+    this.node.addEventListener('mousedown', this.handleMouseDown);
+    this.node.addEventListener('touchstart', this.handleTouchStart);
+  }
+
   componentWillUnmount() {
     this.removeDocumentMouseUpListener();
     this.removeDocumentTouchEndListener();
@@ -324,11 +333,7 @@ class Range extends Component {
     const percentages = utils.getPercentagesFromValues(this.state.value, minValue, maxValue);
 
     return (
-      <Wrapper
-        innerRef={node => { this.node = node; }}
-        onMouseDown={this.handleMouseDown}
-        onTouchStart={this.handleTouchStart}
-      >
+      <Wrapper innerRef={this.handleRef}>
         <Track
           draggable={this.isMultiValue() ? draggable : false}
           ref={trackNode => { this.trackNode = trackNode; }}

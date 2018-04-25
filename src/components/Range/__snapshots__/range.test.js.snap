@@ -124,14 +124,10 @@ exports[`Range disabled 1`] = `
 
 <div
   className="c0"
-  onMouseDown={[Function]}
-  onTouchStart={[Function]}
 >
   <div
     className="c1"
     disabled={true}
-    onMouseDown={[Function]}
-    onTouchStart={[Function]}
   >
     <div
       className="c2"
@@ -142,8 +138,6 @@ exports[`Range disabled 1`] = `
       className="c3"
       disabled={true}
       draggable={undefined}
-      onMouseDown={[Function]}
-      onTouchMove={[Function]}
     >
       <span
         className="c4"
@@ -272,14 +266,10 @@ exports[`Range maxValue 1`] = `
 
 <div
   className="c0"
-  onMouseDown={[Function]}
-  onTouchStart={[Function]}
 >
   <div
     className="c1"
     disabled={false}
-    onMouseDown={[Function]}
-    onTouchStart={[Function]}
   >
     <div
       className="c2"
@@ -290,8 +280,6 @@ exports[`Range maxValue 1`] = `
       className="c3"
       disabled={false}
       draggable={undefined}
-      onMouseDown={[Function]}
-      onTouchMove={[Function]}
     >
       <span
         className="c4"
@@ -420,14 +408,10 @@ exports[`Range minValue 1`] = `
 
 <div
   className="c0"
-  onMouseDown={[Function]}
-  onTouchStart={[Function]}
 >
   <div
     className="c1"
     disabled={false}
-    onMouseDown={[Function]}
-    onTouchStart={[Function]}
   >
     <div
       className="c2"
@@ -438,8 +422,6 @@ exports[`Range minValue 1`] = `
       className="c3"
       disabled={false}
       draggable={undefined}
-      onMouseDown={[Function]}
-      onTouchMove={[Function]}
     >
       <span
         className="c4"
@@ -568,14 +550,10 @@ exports[`Range renders without crashing 1`] = `
 
 <div
   className="c0"
-  onMouseDown={[Function]}
-  onTouchStart={[Function]}
 >
   <div
     className="c1"
     disabled={false}
-    onMouseDown={[Function]}
-    onTouchStart={[Function]}
   >
     <div
       className="c2"
@@ -586,8 +564,6 @@ exports[`Range renders without crashing 1`] = `
       className="c3"
       disabled={false}
       draggable={undefined}
-      onMouseDown={[Function]}
-      onTouchMove={[Function]}
     >
       <span
         className="c4"
@@ -716,14 +692,10 @@ exports[`Range value 1`] = `
 
 <div
   className="c0"
-  onMouseDown={[Function]}
-  onTouchStart={[Function]}
 >
   <div
     className="c1"
     disabled={false}
-    onMouseDown={[Function]}
-    onTouchStart={[Function]}
   >
     <div
       className="c2"
@@ -734,8 +706,6 @@ exports[`Range value 1`] = `
       className="c3"
       disabled={false}
       draggable={undefined}
-      onMouseDown={[Function]}
-      onTouchMove={[Function]}
     >
       <span
         className="c4"
