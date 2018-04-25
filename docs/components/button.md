@@ -4,7 +4,7 @@ Button component explanation here.
 <div>
   <Button>Click me</Button>
   <Button>
-    <PlusIcon style={{ marginRight: '0.5rem' }} />
+    <Icon icon="plus" style={{ marginRight: '0.5rem' }} />
     Click me as well
   </Button>
 </div>

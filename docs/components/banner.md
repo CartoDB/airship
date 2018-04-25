@@ -3,7 +3,7 @@ A Banner displays information that explains nearby content.
 ```react
 <Banner color="red">
   <Banner.Icon>
-    <AlertFillIcon color='#fff' width={12} height={12} />
+    <Icon icon="alert_fill" color='#fff' size={12} />
   </Banner.Icon>
   <Banner.Content>
     <Text color='#fff'>

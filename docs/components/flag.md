@@ -3,7 +3,7 @@ Flag displays contextual information about events on the page.
 ```react
 <Flag onClick={(e) => console.log('flag closed')}>
   <Flag.Icon>
-    <AlertFillIcon color='#80B622' width={12} height={12} />
+    <Icon icon="alert_fill" color='#80B622' size={12} />
   </Flag.Icon>
   <Flag.Content>
     <Text color='#2c2c2c' weight="medium">

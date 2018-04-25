@@ -99,7 +99,7 @@ const pages = [
         imports: {
           Banner: require('../src/components/Banner/banner'),
           Text: require('../src/components/Typography/text'),
-          AlertFillIcon: require('../src/components/Icons/alert-fill'),
+          Icon: require('../src/components/Icon/icon'),
         },
       },
       {
@@ -116,7 +116,7 @@ const pages = [
         component: require('./components/button.md'),
         imports: {
           Button: require('../src/components/Button/button'),
-          PlusIcon: require('../src/components/Icons/plus'),
+          Icon: require('../src/components/Icon/icon'),
         },
       },
       {
@@ -126,7 +126,7 @@ const pages = [
         imports: {
           ButtonGroup: require('../src/components/Button/button-group'),
           Button: require('../src/components/Button/button'),
-          PlusIcon: require('../src/components/Icons/plus'),
+          Icon: require('../src/components/Icon/icon'),
         },
       },
       {
@@ -184,7 +184,7 @@ const pages = [
         imports: {
           Dropdown: require('../src/components/Dropdown/dropdown'),
           Button: require('../src/components/Button/button'),
-          ChevronIcon: require('../src/components/Icons/chevron-down'),
+          Icon: require('../src/components/Icon/icon'),
         },
       },
       {
@@ -202,7 +202,7 @@ const pages = [
         imports: {
           Flag: require('../src/components/Flag/flag'),
           Text: require('../src/components/Typography/text'),
-          AlertFillIcon: require('../src/components/Icons/alert-fill'),
+          Icon: require('../src/components/Icon/icon'),
         },
       },
       {

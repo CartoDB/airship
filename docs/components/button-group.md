@@ -3,7 +3,7 @@ Button group component explanation here.
 ```react
 <ButtonGroup>
   <Button>
-    <PlusIcon />
+    <Icon icon="plus" />
   </Button>
   <Button>Hello</Button>
   <Button>
@@ -21,7 +21,7 @@ Theme the button group as a secondary one.
 ```react
 <ButtonGroup secondary>
   <Button>
-    <PlusIcon />
+    <Icon icon="plus" />
   </Button>
   <Button>Hello</Button>
   <Button>

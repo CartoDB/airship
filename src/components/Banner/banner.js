@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { theme } from '../../constants';
 
 const BannerIcon = styled.div`
+  display: flex;
   flex: 0 0 auto;
 `;
 BannerIcon.displayName = 'Banner.Handle';

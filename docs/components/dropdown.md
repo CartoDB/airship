@@ -24,7 +24,7 @@ Action allows the user to handle the interaction to open the dropdown content. I
 <Dropdown action="over">
   <Dropdown.Trigger>
     <Button borderless>
-      Hover me&nbsp;<ChevronIcon width={8} height={4} />
+      Hover me&nbsp;<Icon icon="chevron_down" size={8} />
     </Button>
   </Dropdown.Trigger>
   <Dropdown.Content>
@@ -66,7 +66,7 @@ To handle trigger's and content's width.
 <Dropdown action="click" size={300}>
   <Dropdown.Trigger>
     <Dropdown.Button>
-      Dropdown <ChevronIcon width={12} height={12} />
+      Dropdown <Icon icon="chevron_down" size={12} />
     </Dropdown.Button>
   </Dropdown.Trigger>
   <Dropdown.Content>
