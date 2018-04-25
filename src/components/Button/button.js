@@ -34,6 +34,7 @@ const focus = props => (!!props.borderless || !!props.secondary
   : darken(0.24, props.theme.brand01));
 
 const Button = styled.button`
+  -webkit-font-smoothing: antialiased;
   border: ${props => (props.secondary ? `1px solid ${props.theme.brand01}` : 0)};
   box-shadow: none;
   border-radius: 4px;
