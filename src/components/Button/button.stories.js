@@ -50,6 +50,43 @@ storiesOf('Button', module)
       </ButtonGroup>
     </div>
   ))
+  .add('Disabled', () => (
+    <div>
+      <h3 className="header">Primary</h3>
+      <Button disabled>Click me</Button>
+
+      <h3 className="header">Scondary</h3>
+      <Button disabled secondary>Click me</Button>
+
+      <h3 className="header">Borderless</h3>
+      <Button disabled borderless>Click me</Button>
+
+      <h3 className="header">With event</h3>
+      <Button disabled onClick={action('click')}>Click me</Button>
+
+      <h3 className="header">Grouped</h3>
+      <ButtonGroup>
+        <Button disabled>
+          <Icon icon="plus" />
+        </Button>
+        <Button disabled>Edit</Button>
+        <Button disabled>
+          Delete
+        </Button>
+      </ButtonGroup>
+
+      <h3 className="header">Grouped Secondary</h3>
+      <ButtonGroup secondary>
+        <Button disabled>
+          <Icon icon="plus" />
+        </Button>
+        <Button disabled>Edit</Button>
+        <Button disabled>
+          Delete
+        </Button>
+      </ButtonGroup>
+    </div>
+  ))
   .add('With custom theme', () => (
     <ThemeProvider theme={CUSTOM_THEME}>
       <div>

@@ -1,10 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`render renders secondary button 1`] = `
-.c2 {
-  border: 0;
+.c1 {
+  border: 1px solid #1785FB;
   box-shadow: none;
-  border-radius: 0px;
+  border-radius: 4px;
   background: transparent;
   color: #1785FB;
   cursor: pointer;
@@ -19,63 +19,57 @@ exports[`render renders secondary button 1`] = `
   -ms-flex-align: center;
   align-items: center;
   margin: 0;
+  border-radius: 0;
 }
 
-.c2[disabled],
-.c2.is-disabled {
-  opacity: 0.24;
-  cursor: default;
+.c1:not(:last-child) {
+  border-right: none;
 }
 
-.c2:hover {
+.c1:first-child {
+  border-radius: 4px 0 0 4px;
+}
+
+.c1:last-child {
+  border-radius: 0 4px 4px 0;
+}
+
+.c1:hover {
   background: #f9fcff;
 }
 
-.c2:focus {
+.c1:focus {
   background: #e0eefe;
   outline: none;
 }
 
-.c2.is-disabled:hover,
-.c2.is-disabled:focus {
+.c1:disabled {
+  opacity: 0.24;
+  cursor: not-allowed;
+}
+
+.c1:disabled:hover,
+.c1:disabled:focus {
   background: transparent;
   color: #1785FB;
 }
 
-.c2 .button-media {
-  margin: 0 -6px;
-}
-
-.c2 svg + * {
-  margin-left: 8px;
+.c1 svg {
+  fill: currentColor;
 }
 
 .c0 {
-  border: 1px solid #1785FB;
   border-radius: 4px;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
-  list-style: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
 }
 
-.c1 {
-  border-right: 1px solid #1785FB;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.c1:last-child {
-  border-right: 0;
-}
-
-.c3 {
+.c2 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -87,63 +81,43 @@ exports[`render renders secondary button 1`] = `
   height: 16px;
   vertical-align: middle;
   width: 16px;
-  fill: currentColor;
+  fill: #1785FB;
 }
 
-<ul
+<div
   className="c0"
-  data-component="ButtonGroup"
 >
-  <li
+  <button
     className="c1"
   >
-    <button
+    <svg
       className="c2"
-      data-component="Button"
-      radius={0}
+      size={16}
+      viewBox="0 0 16 16"
     >
-      <svg
-        className="c3"
-        color="currentColor"
-        size={16}
-        viewBox="0 0 16 16"
-      >
-        <path
-          d="M8,8 L8,1 L9,1 L9,8 L16,8 L16,9 L9,9 L9,16 L8,16 L8,9 L1,9 L1,8 L8,8 Z"
-        />
-      </svg>
-    </button>
-  </li>
-  <li
+      <path
+        d="M8,8 L8,1 L9,1 L9,8 L16,8 L16,9 L9,9 L9,16 L8,16 L8,9 L1,9 L1,8 L8,8 Z"
+      />
+    </svg>
+  </button>
+  <button
     className="c1"
   >
-    <button
-      className="c2"
-      data-component="Button"
-      radius={0}
-    >
-      Mundo
-    </button>
-  </li>
-  <li
+    Mundo
+  </button>
+  <button
     className="c1"
   >
-    <button
-      className="c2"
-      data-component="Button"
-      radius={0}
-    >
-      Happy
-    </button>
-  </li>
-</ul>
+    Happy
+  </button>
+</div>
 `;
 
 exports[`render renders without crashing 1`] = `
-.c2 {
+.c1 {
   border: 0;
   box-shadow: none;
-  border-radius: 0px;
+  border-radius: 4px;
   background: #1785FB;
   color: #fff;
   cursor: pointer;
@@ -158,63 +132,57 @@ exports[`render renders without crashing 1`] = `
   -ms-flex-align: center;
   align-items: center;
   margin: 0;
+  border-radius: 0;
 }
 
-.c2[disabled],
-.c2.is-disabled {
-  opacity: 0.24;
-  cursor: default;
+.c1:not(:last-child) {
+  border-right: none;
 }
 
-.c2:hover {
+.c1:first-child {
+  border-radius: 4px 0 0 4px;
+}
+
+.c1:last-child {
+  border-radius: 0 4px 4px 0;
+}
+
+.c1:hover {
   background: #035dbd;
 }
 
-.c2:focus {
+.c1:focus {
   background: #034995;
   outline: none;
 }
 
-.c2.is-disabled:hover,
-.c2.is-disabled:focus {
+.c1:disabled {
+  opacity: 0.24;
+  cursor: not-allowed;
+}
+
+.c1:disabled:hover,
+.c1:disabled:focus {
   background: #1785FB;
   color: #fff;
 }
 
-.c2 .button-media {
-  margin: 0 -6px;
-}
-
-.c2 svg + * {
-  margin-left: 8px;
+.c1 svg {
+  fill: currentColor;
 }
 
 .c0 {
-  border: 1px solid #1785FB;
   border-radius: 4px;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
-  list-style: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
 }
 
-.c1 {
-  border-right: 1px solid #035dbd;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.c1:last-child {
-  border-right: 0;
-}
-
-.c3 {
+.c2 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -226,54 +194,34 @@ exports[`render renders without crashing 1`] = `
   height: 16px;
   vertical-align: middle;
   width: 16px;
-  fill: currentColor;
+  fill: #1785FB;
 }
 
-<ul
+<div
   className="c0"
-  data-component="ButtonGroup"
 >
-  <li
+  <button
     className="c1"
   >
-    <button
+    <svg
       className="c2"
-      data-component="Button"
-      radius={0}
+      size={16}
+      viewBox="0 0 16 16"
     >
-      <svg
-        className="c3"
-        color="currentColor"
-        size={16}
-        viewBox="0 0 16 16"
-      >
-        <path
-          d="M8,8 L8,1 L9,1 L9,8 L16,8 L16,9 L9,9 L9,16 L8,16 L8,9 L1,9 L1,8 L8,8 Z"
-        />
-      </svg>
-    </button>
-  </li>
-  <li
+      <path
+        d="M8,8 L8,1 L9,1 L9,8 L16,8 L16,9 L9,9 L9,16 L8,16 L8,9 L1,9 L1,8 L8,8 Z"
+      />
+    </svg>
+  </button>
+  <button
     className="c1"
   >
-    <button
-      className="c2"
-      data-component="Button"
-      radius={0}
-    >
-      Mundo
-    </button>
-  </li>
-  <li
+    Mundo
+  </button>
+  <button
     className="c1"
   >
-    <button
-      className="c2"
-      data-component="Button"
-      radius={0}
-    >
-      Happy
-    </button>
-  </li>
-</ul>
+    Happy
+  </button>
+</div>
 `;

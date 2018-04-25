@@ -1,51 +1,29 @@
-import React, { Component } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import { darken, lighten } from 'polished';
 import { theme } from '../../constants';
 
 const font = props => {
-  let font = "500 12px/20px 'Roboto'";
+  if (props.large) return "500 16px/24px 'Roboto'";
+  if (props.small) return "400 10px/12px 'Roboto'";
 
-  if (props.large) {
-    font = "500 16px/24px 'Roboto'";
-  }
-
-  if (props.small) {
-    font = "400 10px/12px 'Roboto'";
-  }
-
-  return font;
+  return "500 12px/20px 'Roboto'";
 };
 
 const padding = props => {
-  let padding = '6px 12px';
-  if (props.large) {
-    padding = '8px 16px';
-  }
-  if (props.small) {
-    padding = '6px 8px';
-  }
-  return padding;
+  if (props.large) return '8px 16px';
+  if (props.small) return '6px 8px';
+
+  return '6px 12px';
 };
 
 const background = props => (!!props.borderless || !!props.secondary
   ? 'transparent'
   : props.theme.brand01);
 
-const radius = props => {
-  const { radius } = props;
-
-  return radius != null && typeof radius === 'number'
-    ? `${props.radius}px`
-    : '4px';
-};
-
 const color = props => (!!props.borderless || !!props.secondary
   ? props.theme.brand01
   : props.theme.white);
-
-const border = props => (props.secondary ? `1px solid ${props.theme.brand01}` : 0);
 
 const hover = props => (!!props.borderless || !!props.secondary
   ? lighten(0.45, props.theme.brand01)
@@ -55,10 +33,10 @@ const focus = props => (!!props.borderless || !!props.secondary
   ? lighten(0.4, props.theme.brand01)
   : darken(0.24, props.theme.brand01));
 
-const StyledButton = styled.button`
-  border: ${border};
+const Button = styled.button`
+  border: ${props => (props.secondary ? `1px solid ${props.theme.brand01}` : 0)};
   box-shadow: none;
-  border-radius: ${radius};
+  border-radius: 4px;
   background: ${background};
   color: ${color};
   cursor: pointer;
@@ -68,11 +46,21 @@ const StyledButton = styled.button`
   align-items: center;
   margin: 0;
 
-  &[disabled],
-  &.is-disabled {
-    opacity: 0.24;
-    cursor: default;
-  }
+  ${props => props.grouped && css`
+    border-radius: 0;
+
+    &:not(:last-child) {
+      border-right: none;
+    }
+
+    &:first-child {
+      border-radius: 4px 0 0 4px;
+    }
+
+    &:last-child {
+      border-radius: 0 4px 4px 0;
+    }
+  `}
 
   &:hover {
     background: ${hover};
@@ -83,41 +71,25 @@ const StyledButton = styled.button`
     outline: none;
   }
 
-  &.is-disabled:hover,
-  &.is-disabled:focus {
-    background: ${background};
-    color: ${color};
+  &:disabled {
+    opacity: 0.24;
+    cursor: not-allowed;
+
+    &:hover,
+    &:focus {
+      background: ${background};
+      color: ${color};
+    }
   }
 
-  .button-media {
-    margin: 0 -6px;
-  }
-
-  svg + * {
-    margin-left: 8px;
+  svg {
+    fill: currentColor;
   }
 `;
-StyledButton.defaultProps = {
+
+Button.defaultProps = {
   theme,
 };
-
-class Button extends Component {
-  renderChildren() {
-    return React.Children.map(this.props.children, child => {
-      if (typeof child === 'string') return child;
-      return React.cloneElement(child, { color: 'currentColor' });
-    });
-  }
-
-  render() {
-    const { children, ...other } = this.props;
-    return (
-      <StyledButton {...other} data-component="Button">
-        {this.renderChildren()}
-      </StyledButton>
-    );
-  }
-}
 
 Button.propTypes = {
   children: PropTypes.node,
@@ -125,7 +97,6 @@ Button.propTypes = {
   small: PropTypes.bool,
   secondary: PropTypes.bool,
   borderless: PropTypes.bool,
-  radius: PropTypes.number,
   grouped: PropTypes.bool,
 };
 

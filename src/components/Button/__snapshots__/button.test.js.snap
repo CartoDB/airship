@@ -21,12 +21,6 @@ exports[`render renders borderless button 1`] = `
   margin: 0;
 }
 
-.c0[disabled],
-.c0.is-disabled {
-  opacity: 0.24;
-  cursor: default;
-}
-
 .c0:hover {
   background: #f9fcff;
 }
@@ -36,23 +30,23 @@ exports[`render renders borderless button 1`] = `
   outline: none;
 }
 
-.c0.is-disabled:hover,
-.c0.is-disabled:focus {
+.c0:disabled {
+  opacity: 0.24;
+  cursor: not-allowed;
+}
+
+.c0:disabled:hover,
+.c0:disabled:focus {
   background: transparent;
   color: #1785FB;
 }
 
-.c0 .button-media {
-  margin: 0 -6px;
-}
-
-.c0 svg + * {
-  margin-left: 8px;
+.c0 svg {
+  fill: currentColor;
 }
 
 <button
   className="c0"
-  data-component="Button"
 >
   Button
 </button>
@@ -79,12 +73,6 @@ exports[`render renders secondary button 1`] = `
   margin: 0;
 }
 
-.c0[disabled],
-.c0.is-disabled {
-  opacity: 0.24;
-  cursor: default;
-}
-
 .c0:hover {
   background: #f9fcff;
 }
@@ -94,23 +82,23 @@ exports[`render renders secondary button 1`] = `
   outline: none;
 }
 
-.c0.is-disabled:hover,
-.c0.is-disabled:focus {
+.c0:disabled {
+  opacity: 0.24;
+  cursor: not-allowed;
+}
+
+.c0:disabled:hover,
+.c0:disabled:focus {
   background: transparent;
   color: #1785FB;
 }
 
-.c0 .button-media {
-  margin: 0 -6px;
-}
-
-.c0 svg + * {
-  margin-left: 8px;
+.c0 svg {
+  fill: currentColor;
 }
 
 <button
   className="c0"
-  data-component="Button"
 >
   Button
 </button>
@@ -137,12 +125,6 @@ exports[`render renders with large param 1`] = `
   margin: 0;
 }
 
-.c0[disabled],
-.c0.is-disabled {
-  opacity: 0.24;
-  cursor: default;
-}
-
 .c0:hover {
   background: #035dbd;
 }
@@ -152,23 +134,23 @@ exports[`render renders with large param 1`] = `
   outline: none;
 }
 
-.c0.is-disabled:hover,
-.c0.is-disabled:focus {
+.c0:disabled {
+  opacity: 0.24;
+  cursor: not-allowed;
+}
+
+.c0:disabled:hover,
+.c0:disabled:focus {
   background: #1785FB;
   color: #fff;
 }
 
-.c0 .button-media {
-  margin: 0 -6px;
-}
-
-.c0 svg + * {
-  margin-left: 8px;
+.c0 svg {
+  fill: currentColor;
 }
 
 <button
   className="c0"
-  data-component="Button"
 >
   Button
 </button>
@@ -195,12 +177,6 @@ exports[`render renders with small param 1`] = `
   margin: 0;
 }
 
-.c0[disabled],
-.c0.is-disabled {
-  opacity: 0.24;
-  cursor: default;
-}
-
 .c0:hover {
   background: #035dbd;
 }
@@ -210,23 +186,23 @@ exports[`render renders with small param 1`] = `
   outline: none;
 }
 
-.c0.is-disabled:hover,
-.c0.is-disabled:focus {
+.c0:disabled {
+  opacity: 0.24;
+  cursor: not-allowed;
+}
+
+.c0:disabled:hover,
+.c0:disabled:focus {
   background: #1785FB;
   color: #fff;
 }
 
-.c0 .button-media {
-  margin: 0 -6px;
-}
-
-.c0 svg + * {
-  margin-left: 8px;
+.c0 svg {
+  fill: currentColor;
 }
 
 <button
   className="c0"
-  data-component="Button"
 >
   Button
 </button>
@@ -253,12 +229,6 @@ exports[`render renders without crashing 1`] = `
   margin: 0;
 }
 
-.c0[disabled],
-.c0.is-disabled {
-  opacity: 0.24;
-  cursor: default;
-}
-
 .c0:hover {
   background: #035dbd;
 }
@@ -268,23 +238,23 @@ exports[`render renders without crashing 1`] = `
   outline: none;
 }
 
-.c0.is-disabled:hover,
-.c0.is-disabled:focus {
+.c0:disabled {
+  opacity: 0.24;
+  cursor: not-allowed;
+}
+
+.c0:disabled:hover,
+.c0:disabled:focus {
   background: #1785FB;
   color: #fff;
 }
 
-.c0 .button-media {
-  margin: 0 -6px;
-}
-
-.c0 svg + * {
-  margin-left: 8px;
+.c0 svg {
+  fill: currentColor;
 }
 
 <button
   className="c0"
-  data-component="Button"
 >
   Button
 </button>
