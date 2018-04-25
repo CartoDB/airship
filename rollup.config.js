@@ -3,6 +3,8 @@ import commonjs from 'rollup-plugin-commonjs';
 import uglify from 'rollup-plugin-uglify';
 import babel from 'rollup-plugin-babel';
 
+const { version } = require('./package.json');
+
 export default {
   input: 'src/components/index.js',
   output: {
@@ -25,7 +27,15 @@ export default {
         '@babel/plugin-proposal-class-properties',
       ],
     }),
-    uglify(),
+    uglify({
+      output: {
+        preamble: `/*!
+ * CARTO Airship https://carto.com/
+ * Version: ${version}
+ * 
+ */`,
+      },
+    }),
   ],
   external: [
     'react',
