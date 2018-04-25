@@ -26,7 +26,7 @@ const color = props => (!!props.borderless || !!props.secondary
   : props.theme.white);
 
 const hover = props => (!!props.borderless || !!props.secondary
-  ? lighten(0.45, props.theme.brand01)
+  ? lighten(0.40, props.theme.brand01)
   : darken(0.16, props.theme.brand01));
 
 const focus = props => (!!props.borderless || !!props.secondary
@@ -35,17 +35,18 @@ const focus = props => (!!props.borderless || !!props.secondary
 
 const Button = styled.button`
   -webkit-font-smoothing: antialiased;
+  align-items: center;
+  background: ${background};
+  border-radius: 4px;
   border: ${props => (props.secondary ? `1px solid ${props.theme.brand01}` : 0)};
   box-shadow: none;
-  border-radius: 4px;
-  background: ${background};
   color: ${color};
   cursor: pointer;
-  padding: ${padding};
+  display: inline-flex;
   font: ${font};
-  display: flex;
-  align-items: center;
   margin: 0;
+  padding: ${padding};
+  transition: background 0.2s ease;
 
   ${props => props.grouped && css`
     border-radius: 0;
@@ -73,8 +74,8 @@ const Button = styled.button`
   }
 
   &:disabled {
-    opacity: 0.24;
     cursor: not-allowed;
+    opacity: 0.24;
 
     &:hover,
     &:focus {

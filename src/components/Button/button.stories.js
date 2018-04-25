@@ -16,13 +16,19 @@ storiesOf('Button', module)
   .add('Default', () => (
     <div>
       <h3 className="header">Primary</h3>
+      <Button large>Click me</Button>
       <Button>Click me</Button>
+      <Button small>Click me</Button>
 
       <h3 className="header">Scondary</h3>
+      <Button large secondary>Click me</Button>
       <Button secondary>Click me</Button>
+      <Button small secondary>Click me</Button>
 
       <h3 className="header">Borderless</h3>
+      <Button large borderless>Click me</Button>
       <Button borderless>Click me</Button>
+      <Button small borderless>Click me</Button>
 
       <h3 className="header">With event</h3>
       <Button onClick={action('click')}>Click me</Button>
@@ -53,13 +59,19 @@ storiesOf('Button', module)
   .add('Disabled', () => (
     <div>
       <h3 className="header">Primary</h3>
+      <Button disabled large>Click me</Button>
       <Button disabled>Click me</Button>
+      <Button disabled small>Click me</Button>
 
       <h3 className="header">Scondary</h3>
+      <Button disabled large secondary>Click me</Button>
       <Button disabled secondary>Click me</Button>
+      <Button disabled small secondary>Click me</Button>
 
       <h3 className="header">Borderless</h3>
+      <Button disabled large borderless>Click me</Button>
       <Button disabled borderless>Click me</Button>
+      <Button disabled small borderless>Click me</Button>
 
       <h3 className="header">With event</h3>
       <Button disabled onClick={action('click')}>Click me</Button>
