@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { darken } from 'polished';
-import { select } from 'd3-selection';
+import { select, event } from 'd3-selection';
 import { scaleBand, scaleLinear } from 'd3-scale';
 import { max } from 'd3-array';
 import { axisLeft } from 'd3-axis';
 import 'd3-transition';
+import Base from '../Typography/base';
 import { theme } from '../../constants';
+import { readableNumber } from '../../utils';
 
 const WIDTH = 208;
 const HEIGHT = 140;
@@ -18,10 +20,37 @@ const MARGIN = {
   LEFT: 40,
 };
 
+const Tooltip = styled.div`
+  position: absolute;
+  background: ${props => props.theme.black};
+  border-radius: 4px;
+  padding: 0.5rem;
+  opacity: 0;
+  z-index: 100;
+`;
+Tooltip.displayName = 'Tooltip';
+Tooltip.defaultProps = {
+  theme,
+};
+
+const TooltipValue = Base.extend`
+  font-size: 14px;
+  line-height: 14px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: left;
+  width: 100%;
+  cursor: default;
+  color: ${props => props.theme.white};
+`;
+TooltipValue.defaultProps = {
+  theme,
+};
+
 const Svg = styled.svg.attrs({
   viewBox: '0 0 248 160',
 })`
-
   .tick {
     line {
       opacity: 0.1;
@@ -63,6 +92,10 @@ class Histogram extends Component {
     color: PropTypes.string,
     data: PropTypes.array,
   };
+
+  state = {
+    tooltip: null,
+  }
 
   componentDidMount() {
     this.renderAxis();
@@ -124,18 +157,29 @@ class Histogram extends Component {
   }
 
   renderBars() {
-    // Draw bars
+    // -- Draw bars
     this.bars = this.barsContainer
       .selectAll('rect')
       .data(this.props.data);
 
-    // Exit
+    // -- Exit
     this.bars.exit().remove();
 
-    // Enter
+    // -- Enter
     this.bars
       .enter()
       .append('rect')
+      .on('mouseout', () => this.setState({ tooltip: null }))
+      .on('mouseenter', d => {
+        this.setState(
+          { tooltip: { d } },
+          () => this.showTooltip(event.layerX, event.layerY)
+        );
+      })
+      .on('mousemove', () => {
+        select(this.tooltipNode).style('opacity', 0);
+        this.showTooltip(event.layerX, event.layerY);
+      })
       .merge(this.bars)
       .attr('class', 'bar')
       .attr('y', HEIGHT)
@@ -146,18 +190,65 @@ class Histogram extends Component {
       .attr('y', d => this.yScale(d.value))
       .attr('height', d => HEIGHT - this.yScale(d.value));
 
-    // Update
+    // -- Update
     this.bars
       .attr('y', d => this.yScale(d.value))
       .attr('height', d => HEIGHT - this.yScale(d.value));
   }
 
+  getTooltipPosition(mouseX, mouseY) {
+    const OFFSET = 25;
+    let x = mouseX;
+    let y = mouseY;
+
+    const viewportBoundaries = {
+      right: window.innerWidth + window.pageXOffset,
+      bottom: window.innerHeight + window.pageYOffset,
+    };
+
+    const tooltipContainerBoundingRect = this.tooltipNode.getBoundingClientRect();
+
+    const tooltipBoundaries = {
+      right: mouseX + tooltipContainerBoundingRect.width,
+      bottom: mouseY + tooltipContainerBoundingRect.height,
+    };
+
+    if (viewportBoundaries.right < tooltipBoundaries.right) {
+      x = mouseX - tooltipContainerBoundingRect.width;
+    }
+
+    if (viewportBoundaries.bottom < tooltipBoundaries.bottom) {
+      y = mouseY - tooltipContainerBoundingRect.height - OFFSET;
+    }
+
+    return [x, y];
+  }
+
+  showTooltip(mouseX, mouseY) {
+    const [x, y] = this.getTooltipPosition(mouseX, mouseY);
+
+    select(this.tooltipNode)
+      .style('opacity', 1)
+      .style('left', `${x + 10}px`)
+      .style('top', `${y + 5}px`);
+  }
+
+  renderTooltip() {
+    const { d } = this.state.tooltip;
+
+    return (
+      <Tooltip innerRef={node => { this.tooltipNode = node; }}>
+        <TooltipValue>{readableNumber(d.value)}</TooltipValue>
+      </Tooltip>
+    );
+  }
+
   render() {
     return (
-      <Svg
-        innerRef={node => { this.container = select(node); }}
-        {...this.props}
-      />
+      <React.Fragment>
+        <Svg innerRef={node => { this.container = select(node); }} {...this.props} />
+        {this.state.tooltip && this.renderTooltip()}
+      </React.Fragment>
     );
   }
 }
