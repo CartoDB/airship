@@ -22,6 +22,30 @@ const Wrapper = styled.div`
  * by dragging its sliders.
  */
 class Range extends Component {
+  static defaultProps = {
+    disabled: false,
+    draggable: false,
+    maxValue: 10,
+    minValue: 0,
+    value: 0,
+    step: 1,
+  };
+
+  static propTypes = {
+    classNames: PropTypes.array,
+    disabled: PropTypes.bool,
+    draggable: PropTypes.bool,
+    formatLabel: PropTypes.func,
+    maxValue: PropTypes.number,
+    minValue: PropTypes.number,
+    name: PropTypes.string,
+    onChangeStart: PropTypes.func,
+    onChange: PropTypes.func,
+    onChangeComplete: PropTypes.func,
+    step: PropTypes.number,
+    value: PropTypes.oneOfType([PropTypes.number, PropTypes.object]),
+  };
+
   state = {
     value: this.isMultiValue()
       ? this.props.value
@@ -49,6 +73,15 @@ class Range extends Component {
   componentWillUnmount() {
     this.removeDocumentMouseUpListener();
     this.removeDocumentTouchEndListener();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { minValue, value } = nextProps;
+    const nextValue = { min: minValue, max: value || minValue };
+
+    if (this.state.value !== value && this.isWithinRange(nextValue)) {
+      this.setState({ value: nextValue });
+    }
   }
 
   getTrackClientRect() {
@@ -349,29 +382,5 @@ class Range extends Component {
     );
   }
 }
-
-Range.defaultProps = {
-  disabled: false,
-  draggable: false,
-  maxValue: 10,
-  minValue: 0,
-  value: 0,
-  step: 1,
-};
-
-Range.propTypes = {
-  classNames: PropTypes.array,
-  disabled: PropTypes.bool,
-  draggable: PropTypes.bool,
-  formatLabel: PropTypes.func,
-  maxValue: PropTypes.number,
-  minValue: PropTypes.number,
-  name: PropTypes.string,
-  onChangeStart: PropTypes.func,
-  onChange: PropTypes.func,
-  onChangeComplete: PropTypes.func,
-  step: PropTypes.number,
-  value: PropTypes.oneOfType([PropTypes.number, PropTypes.object]),
-};
 
 export default Range;
