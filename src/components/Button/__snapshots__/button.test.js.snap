@@ -26,11 +26,11 @@ exports[`render renders borderless button 1`] = `
 }
 
 .c0:hover {
-  background: #e0eefe;
+  background: rgba(23,133,251,0.16);
 }
 
 .c0:focus {
-  background: #e0eefe;
+  background: rgba(23,133,251,0.32);
   outline: none;
 }
 
@@ -82,11 +82,11 @@ exports[`render renders secondary button 1`] = `
 }
 
 .c0:hover {
-  background: #e0eefe;
+  background: rgba(23,133,251,0.16);
 }
 
 .c0:focus {
-  background: #e0eefe;
+  background: rgba(23,133,251,0.32);
   outline: none;
 }
 

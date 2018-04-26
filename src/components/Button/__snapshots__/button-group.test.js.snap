@@ -28,6 +28,7 @@ exports[`render renders secondary button 1`] = `
 
 .c1:not(:last-child) {
   border-right: none;
+  border-right: none;
 }
 
 .c1:first-child {
@@ -39,11 +40,11 @@ exports[`render renders secondary button 1`] = `
 }
 
 .c1:hover {
-  background: #e0eefe;
+  background: rgba(23,133,251,0.16);
 }
 
 .c1:focus {
-  background: #e0eefe;
+  background: rgba(23,133,251,0.32);
   outline: none;
 }
 
@@ -145,6 +146,7 @@ exports[`render renders without crashing 1`] = `
 
 .c1:not(:last-child) {
   border-right: none;
+  border-right: 1px solid #035dbd;
 }
 
 .c1:first-child {

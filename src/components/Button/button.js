@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
-import { darken, lighten } from 'polished';
+import { darken, rgba } from 'polished';
 import { theme } from '../../constants';
 
 const font = props => {
@@ -17,21 +17,25 @@ const padding = props => {
   return '6px 12px';
 };
 
-const background = props => (!!props.borderless || !!props.secondary
+const background = props => (props.borderless || props.secondary
   ? 'transparent'
   : props.theme.brand01);
 
-const color = props => (!!props.borderless || !!props.secondary
+const color = props => (props.borderless || props.secondary
   ? props.theme.brand01
   : props.theme.white);
 
-const hover = props => (!!props.borderless || !!props.secondary
-  ? lighten(0.40, props.theme.brand01)
+const hover = props => (props.borderless || props.secondary
+  ? rgba(props.theme.brand01, 0.16)
   : darken(0.16, props.theme.brand01));
 
-const focus = props => (!!props.borderless || !!props.secondary
-  ? lighten(0.4, props.theme.brand01)
+const focus = props => (props.borderless || props.secondary
+  ? rgba(props.theme.brand01, 0.32)
   : darken(0.24, props.theme.brand01));
+
+const groupBorder = props => (props.borderless || props.secondary
+  ? 'none'
+  : `1px solid ${darken(0.16, props.theme.brand01)}`);
 
 const Button = styled.button`
   -webkit-font-smoothing: antialiased;
@@ -54,6 +58,7 @@ const Button = styled.button`
 
     &:not(:last-child) {
       border-right: none;
+      border-right: ${groupBorder};
     }
 
     &:first-child {
