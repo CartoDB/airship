@@ -3,20 +3,22 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { darken } from 'polished';
 import { select, event } from 'd3-selection';
-import { scaleBand, scaleLinear } from 'd3-scale';
-import { max } from 'd3-array';
+import { scaleLinear } from 'd3-scale';
+import { max, range } from 'd3-array';
 import { axisLeft } from 'd3-axis';
 import 'd3-transition';
 import Base from '../Typography/base';
 import { theme } from '../../constants';
 import { readableNumber } from '../../utils';
 
-const WIDTH = 208;
-const HEIGHT = 140;
+const WIDTH = 205;
+const HEIGHT = 125;
+const DIVISION_WIDTH = 80;
+const BARS_SEPARATION = 1;
 const MARGIN = {
   TOP: 15,
-  RIGHT: 0,
-  BOTTOM: 5,
+  RIGHT: 3,
+  BOTTOM: 20,
   LEFT: 40,
 };
 
@@ -57,10 +59,6 @@ const Svg = styled.svg.attrs({
       stroke: ${props => props.theme.type02};
     }
 
-    text {
-      fill: ${props => props.theme.type02};
-    }
-
     :first-child {
       line {
         opacity: 0.5;
@@ -77,6 +75,14 @@ const Svg = styled.svg.attrs({
     :hover {
       fill: ${props => darken(0.16, props.color || props.theme.brand03)};
     }
+  }
+
+  text {
+    font-size: 10px;
+    font-weight: 300;
+    fill: ${props => props.theme.type01};
+    font-family: Roboto, sans-serif};
+    -webkit-font-smoothing: antialiased;
   }
 `;
 Svg.defaultProps = {
@@ -98,7 +104,8 @@ class Histogram extends Component {
   }
 
   componentDidMount() {
-    this.renderAxis();
+    this.renderYAxis();
+    this.renderXAxis();
 
     this.barsContainer = this.container
       .append('g')
@@ -112,31 +119,45 @@ class Histogram extends Component {
     this.renderBars();
   }
 
-  updateAxis() {
-    const { data } = this.props;
-
-    this.yScale
-      .domain([0, max(data, d => d.value)])
-      .nice();
-
-    this.xScale
-      .domain(data.map(d => d.name));
-
-    this.yAxisSelection
-      .call(this.yAxis);
-
-    select('.domain').remove(); // Remove axis border
+  barWidth() {
+    return WIDTH / this.props.data.length;
   }
 
-  renderAxis() {
+  renderXAxis() {
     const { data } = this.props;
+    const { start } = data[0];
+    const { end } = data[data.length - 1];
+    const divisions = Math.round(WIDTH / DIVISION_WIDTH);
+    const step = WIDTH / divisions;
+    const stop = WIDTH + step;
 
     // -- X Axis
-    this.xScale = scaleBand()
-      .paddingInner(0.05)
-      .paddingOuter(0.1)
-      .domain(data.map(d => d.name))
+    this.xScale = scaleLinear()
+      .domain([start, end])
       .range([0, WIDTH]);
+
+    this.xAxis = range(0, stop, step).slice(0, divisions + 1);
+
+    this.xAxisSelection = this.container
+      .append('g')
+      .attr('transform', `translate(${MARGIN.LEFT}, ${MARGIN.TOP})`)
+      .selectAll('text')
+      .data(this.xAxis)
+      .enter()
+      .append('text')
+      .attr('x', d => d)
+      .attr('y', () => HEIGHT + 15)
+      .attr('text-anchor', (d, index) => {
+        if (index === 0) return 'start';
+        if (index === (this.xAxis.length - 1)) return 'end';
+
+        return 'middle';
+      })
+      .text(d => readableNumber(this.xScale.invert(d)));
+  }
+
+  renderYAxis() {
+    const { data } = this.props;
 
     // -- Y Axis
     this.yScale = scaleLinear()
@@ -183,8 +204,9 @@ class Histogram extends Component {
       .merge(this.bars)
       .attr('class', 'bar')
       .attr('y', HEIGHT)
-      .attr('x', d => this.xScale(d.name))
-      .attr('width', () => this.xScale.bandwidth())
+      .attr('x', (d, index) => index * this.barWidth())
+      .attr('width', () => Math.max(0, this.barWidth() - BARS_SEPARATION))
+      .attr('height', 0)
       .transition()
       .delay(200)
       .attr('y', d => this.yScale(d.value))
@@ -194,6 +216,29 @@ class Histogram extends Component {
     this.bars
       .attr('y', d => this.yScale(d.value))
       .attr('height', d => HEIGHT - this.yScale(d.value));
+  }
+
+  updateAxis() {
+    const { data } = this.props;
+    const { start } = data[0];
+    const { end } = data[data.length - 1];
+
+    // -- Update scales
+    this.yScale
+      .domain([0, max(data, d => d.value)])
+      .nice();
+
+    this.xScale
+      .domain([start, end]);
+
+    // -- Update axis
+    this.xAxisSelection
+      .text(d => readableNumber(this.xScale.invert(d)));
+
+    this.yAxisSelection
+      .call(this.yAxis);
+
+    select('.domain').remove(); // Remove axis border
   }
 
   getTooltipPosition(mouseX, mouseY) {

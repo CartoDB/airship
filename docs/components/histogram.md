@@ -13,13 +13,13 @@ Talk about the Histogram
 
 #### **data** (array)
 
-Value that will be shown in the widget. Each category should include a `name` and a `value`. For example:
+Value that will be shown in the widget. Each bin should include `start`, `end` and `value` keys. For example:
 
 ```
 [
-  { name: 'A New Hope', value: 359029623 },
-  { name: 'The Empire Strikes Back', value: 236513856 },
-  { name: 'Return of the Jedi', value: 204338075 },
+  { start: 8, end: 48, value: 6318 },
+  { start: 49, end: 88, value: 5922 },
+  { start: 89, end: 128, value: 2363 },
 ]
 ```
 

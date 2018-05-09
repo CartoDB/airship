@@ -33,7 +33,7 @@ describe('<Histogram />', () => {
         expect(component.toJSON()).toMatchSnapshot();
 
         // Changing properties should trigger a componentDidUpdate
-        component.update(<Histogram data={[]} />);
+        component.update(<Histogram data={[{ start: 0, end: 10, value: 500 }]} />);
 
         expect(component.toJSON()).toMatchSnapshot();
       });

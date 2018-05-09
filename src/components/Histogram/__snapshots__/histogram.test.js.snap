@@ -1,13 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Histogram /> render when data passed in renders the correct amount of bars 1`] = `
+.c0 {
+  -webkit-font-smoothing: antialiased;
+}
+
 .c0 .tick line {
   opacity: 0.1;
   stroke: #747474;
-}
-
-.c0 .tick text {
-  fill: #747474;
 }
 
 .c0 .tick:first-child line {
@@ -26,33 +26,96 @@ exports[`<Histogram /> render when data passed in renders the correct amount of 
   fill: #22ae70;
 }
 
+.c0 text {
+  font-size: 10px;
+  font-weight: 300;
+  fill: #2C2C2C;
+  font-family: Roboto,sans-serif;
+}
+
 <svg
   className="c0"
   data={
     Array [
       Object {
-        "name": 0,
-        "value": 24.083983203359328,
+        "end": 48,
+        "start": 8,
+        "value": 6318,
       },
       Object {
-        "name": 1,
-        "value": 44.31979215871516,
+        "end": 88,
+        "start": 49,
+        "value": 5922,
       },
       Object {
-        "name": 2,
-        "value": 66.23076923076923,
+        "end": 128,
+        "start": 89,
+        "value": 2363,
       },
       Object {
-        "name": 3,
-        "value": 89.14472455648927,
+        "end": 168,
+        "start": 129,
+        "value": 801,
       },
       Object {
-        "name": 4,
-        "value": 116.11572700296736,
+        "end": 207,
+        "start": 169,
+        "value": 441,
       },
       Object {
-        "name": 5,
-        "value": 136.61666666666667,
+        "end": 248,
+        "start": 210,
+        "value": 118,
+      },
+      Object {
+        "end": 285,
+        "start": 249,
+        "value": 92,
+      },
+      Object {
+        "end": 328,
+        "start": 289,
+        "value": 77,
+      },
+      Object {
+        "end": 369,
+        "start": 330,
+        "value": 48,
+      },
+      Object {
+        "end": 408,
+        "start": 370,
+        "value": 34,
+      },
+      Object {
+        "end": 440,
+        "start": 414,
+        "value": 10,
+      },
+      Object {
+        "end": 480,
+        "start": 450,
+        "value": 20,
+      },
+      Object {
+        "end": 525,
+        "start": 490,
+        "value": 16,
+      },
+      Object {
+        "end": 556,
+        "start": 536,
+        "value": 6,
+      },
+      Object {
+        "end": 600,
+        "start": 579,
+        "value": 10,
+      },
+      Object {
+        "end": 650,
+        "start": 650,
+        "value": 2,
       },
     ]
   }
@@ -61,13 +124,13 @@ exports[`<Histogram /> render when data passed in renders the correct amount of 
 `;
 
 exports[`<Histogram /> update when data changes should call the update method or the chart 1`] = `
+.c0 {
+  -webkit-font-smoothing: antialiased;
+}
+
 .c0 .tick line {
   opacity: 0.1;
   stroke: #747474;
-}
-
-.c0 .tick text {
-  fill: #747474;
 }
 
 .c0 .tick:first-child line {
@@ -86,33 +149,96 @@ exports[`<Histogram /> update when data changes should call the update method or
   fill: #22ae70;
 }
 
+.c0 text {
+  font-size: 10px;
+  font-weight: 300;
+  fill: #2C2C2C;
+  font-family: Roboto,sans-serif;
+}
+
 <svg
   className="c0"
   data={
     Array [
       Object {
-        "name": 0,
-        "value": 24.083983203359328,
+        "end": 48,
+        "start": 8,
+        "value": 6318,
       },
       Object {
-        "name": 1,
-        "value": 44.31979215871516,
+        "end": 88,
+        "start": 49,
+        "value": 5922,
       },
       Object {
-        "name": 2,
-        "value": 66.23076923076923,
+        "end": 128,
+        "start": 89,
+        "value": 2363,
       },
       Object {
-        "name": 3,
-        "value": 89.14472455648927,
+        "end": 168,
+        "start": 129,
+        "value": 801,
       },
       Object {
-        "name": 4,
-        "value": 116.11572700296736,
+        "end": 207,
+        "start": 169,
+        "value": 441,
       },
       Object {
-        "name": 5,
-        "value": 136.61666666666667,
+        "end": 248,
+        "start": 210,
+        "value": 118,
+      },
+      Object {
+        "end": 285,
+        "start": 249,
+        "value": 92,
+      },
+      Object {
+        "end": 328,
+        "start": 289,
+        "value": 77,
+      },
+      Object {
+        "end": 369,
+        "start": 330,
+        "value": 48,
+      },
+      Object {
+        "end": 408,
+        "start": 370,
+        "value": 34,
+      },
+      Object {
+        "end": 440,
+        "start": 414,
+        "value": 10,
+      },
+      Object {
+        "end": 480,
+        "start": 450,
+        "value": 20,
+      },
+      Object {
+        "end": 525,
+        "start": 490,
+        "value": 16,
+      },
+      Object {
+        "end": 556,
+        "start": 536,
+        "value": 6,
+      },
+      Object {
+        "end": 600,
+        "start": 579,
+        "value": 10,
+      },
+      Object {
+        "end": 650,
+        "start": 650,
+        "value": 2,
       },
     ]
   }
@@ -121,13 +247,13 @@ exports[`<Histogram /> update when data changes should call the update method or
 `;
 
 exports[`<Histogram /> update when data changes should call the update method or the chart 2`] = `
+.c0 {
+  -webkit-font-smoothing: antialiased;
+}
+
 .c0 .tick line {
   opacity: 0.1;
   stroke: #747474;
-}
-
-.c0 .tick text {
-  fill: #747474;
 }
 
 .c0 .tick:first-child line {
@@ -146,9 +272,24 @@ exports[`<Histogram /> update when data changes should call the update method or
   fill: #22ae70;
 }
 
+.c0 text {
+  font-size: 10px;
+  font-weight: 300;
+  fill: #2C2C2C;
+  font-family: Roboto,sans-serif;
+}
+
 <svg
   className="c0"
-  data={Array []}
+  data={
+    Array [
+      Object {
+        "end": 10,
+        "start": 0,
+        "value": 500,
+      },
+    ]
+  }
   viewBox="0 0 248 160"
 />
 `;
