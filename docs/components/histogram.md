@@ -17,16 +17,19 @@ Value that will be shown in the widget. Each bin should include `start`, `end` a
 
 ```
 [
-  { start: 8, end: 48, value: 6318 },
-  { start: 49, end: 88, value: 5922 },
-  { start: 89, end: 128, value: 2363 },
+  { start: 0, end: 10, value: 63 },
+  { start: 10, end: 20, value: 59 },
+  { start: 20, end: 30, value: 0 },
+  { start: 40, end: 40, value: 23 }
 ]
 ```
 
-Bin data should be provided sorted and complete:
+Bins must be consecutive, adjacent, complete and of equal size to provide a meaningful representation:
 
-- Sorted: bin order must respect data order. `bin[0]` should start before `bin[1]` and so on
+- Consecutive: bin order must respect data order. `bin[0]` should start before `bin[1]` and so on.
+- Adjacent: leave no gaps. `end` property of a bin must be equal to `start` property of the next bin.
 - Complete: if a bin doesn't have any value, it must be provided anyway with the proper start and end properties and a value of 0
+- Equal size: bins interval must be of equal size. That is, `end` - `start` of each bin should be equal.
 
 #### **color** (array)
 
