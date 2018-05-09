@@ -123,10 +123,6 @@ class Histogram extends Component {
     this.renderBars();
   }
 
-  barWidth() {
-    return WIDTH / this.props.data.length;
-  }
-
   renderXAxis() {
     const { data } = this.props;
     const { start } = data[0];
@@ -182,10 +178,13 @@ class Histogram extends Component {
   }
 
   renderBars() {
+    const { data } = this.props;
+    const barWidth = WIDTH / data.length;
+
     // -- Draw bars
     this.bars = this.barsContainer
       .selectAll('rect')
-      .data(this.props.data);
+      .data(data);
 
     // -- Exit
     this.bars.exit().remove();
@@ -208,8 +207,8 @@ class Histogram extends Component {
       .merge(this.bars)
       .attr('class', 'bar')
       .attr('y', HEIGHT)
-      .attr('x', (d, index) => index * this.barWidth())
-      .attr('width', () => Math.max(0, this.barWidth() - BARS_SEPARATION))
+      .attr('x', (d, index) => index * barWidth)
+      .attr('width', () => Math.max(0, barWidth - BARS_SEPARATION))
       .attr('height', 0)
       .transition()
       .delay(200)
