@@ -23,6 +23,11 @@ Value that will be shown in the widget. Each bin should include `start`, `end` a
 ]
 ```
 
+Bin data should be provided sorted and complete:
+
+- Sorted: bin order must respect data order. `bin[0]` should start before `bin[1]` and so on
+- Complete: if a bin doesn't have any value, it must be provided anyway with the proper start and end properties and a value of 0
+
 #### **color** (array)
 
 Colors used in the histogram bars.
