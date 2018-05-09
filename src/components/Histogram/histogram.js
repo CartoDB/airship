@@ -96,7 +96,11 @@ class Histogram extends Component {
 
   static propTypes = {
     color: PropTypes.string,
-    data: PropTypes.array,
+    data: PropTypes.arrayOf(PropTypes.shape({
+      start: PropTypes.number,
+      end: PropTypes.number,
+      value: PropTypes.number,
+    })),
   };
 
   state = {
