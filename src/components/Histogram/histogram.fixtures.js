@@ -1,26 +1,82 @@
 export default [
   {
-    name: 0,
-    value: 24.083983203359328,
+    start: 8,
+    end: 48,
+    value: 6318,
   },
   {
-    name: 1,
-    value: 44.31979215871516,
+    start: 48,
+    end: 88,
+    value: 5922,
   },
   {
-    name: 2,
-    value: 66.23076923076923,
+    start: 88,
+    end: 128,
+    value: 2363,
   },
   {
-    name: 3,
-    value: 89.14472455648927,
+    start: 128,
+    end: 168,
+    value: 801,
   },
   {
-    name: 4,
-    value: 116.11572700296736,
+    start: 168,
+    end: 208,
+    value: 441,
   },
   {
-    name: 5,
-    value: 136.61666666666667,
+    start: 208,
+    end: 248,
+    value: 118,
+  },
+  {
+    start: 248,
+    end: 288,
+    value: 92,
+  },
+  {
+    start: 288,
+    end: 328,
+    value: 77,
+  },
+  {
+    start: 328,
+    end: 368,
+    value: 48,
+  },
+  {
+    start: 368,
+    end: 408,
+    value: 34,
+  },
+  {
+    start: 408,
+    end: 448,
+    value: 10,
+  },
+  {
+    start: 448,
+    end: 488,
+    value: 20,
+  },
+  {
+    start: 488,
+    end: 528,
+    value: 16,
+  },
+  {
+    start: 528,
+    end: 568,
+    value: 6,
+  },
+  {
+    start: 568,
+    end: 608,
+    value: 10,
+  },
+  {
+    start: 608,
+    end: 648,
+    value: 2,
   },
 ];
