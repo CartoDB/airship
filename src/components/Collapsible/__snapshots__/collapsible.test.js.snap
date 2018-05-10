@@ -21,7 +21,6 @@ exports[`render renders without crashing 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  margin-bottom: 12px;
 }
 
 .c0 button {
@@ -40,7 +39,13 @@ exports[`render renders without crashing 1`] = `
   outline: none;
 }
 
-<div>
+.c2 {
+  margin-top: 12px;
+}
+
+<div
+  className=""
+>
   <div
     className="c0"
   >
@@ -61,6 +66,10 @@ exports[`render renders without crashing 1`] = `
       </svg>
     </button>
   </div>
-  Content
+  <div
+    className="c2"
+  >
+    Content
+  </div>
 </div>
 `;

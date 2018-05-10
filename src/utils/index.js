@@ -10,3 +10,4 @@ export { default as readableNumber } from './readable-number';
 export { default as truncate } from './truncate';
 export { default as isComponentOfType } from './is-component-of-type';
 export { default as nodeMock } from './nodeMock';
+export { default as withOverride } from './withOverride';
