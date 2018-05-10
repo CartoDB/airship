@@ -31,15 +31,15 @@ It allows us to override the styles of the component. It needs an object where t
 
 ```react
 <Collapsible overrides={{
-  Collapsible: css`
+  Collapsible: `
     background: #EFEFEF;
     width: 400px;
   `,
-  'Collapsible.Header': css`
+  'Collapsible.Header': `
     background: #CCC;
     padding: 1rem;
   `,
-  'Collapsible.Content': css`
+  'Collapsible.Content': `
     padding: 1rem;
   `,
 }}>
