@@ -38,4 +38,28 @@ describe('render', () => {
 
     expect(spy).toHaveBeenCalled();
   });
+
+  it('renders with overrides', () => {
+    const overrides = {
+      Collapsible: `
+        background: #CCC;
+        width: 400px;
+      `,
+      'Collapsible.Header': `
+        background: #AAA;
+        padding: 1rem;
+      `,
+      'Collapsible.Content': `
+        padding: 1rem;
+      `,
+    };
+
+    const component = shallow(
+      <Collapsible open overrides={overrides}>
+        <Collapsible.Header>Header</Collapsible.Header>
+        <Collapsible.Content>Content</Collapsible.Content>
+      </Collapsible>
+    );
+    expect(component.find(Collapsible.Content).length).toBe(1);
+  });
 });
