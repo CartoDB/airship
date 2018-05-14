@@ -4,6 +4,12 @@
 [![npm version](https://badge.fury.io/js/%40carto%2Fairship.svg)](https://badge.fury.io/js/%40carto%2Fairship)
 [![CircleCI](https://circleci.com/gh/CartoDB/airship/tree/master.svg?style=svg)](https://circleci.com/gh/CartoDB/airship/tree/master)
 
+## ⚠️ WARNING ⚠️
+
+This library is in ALPHA stage.
+
+Breaking changes are expected.
+
 ## Installation
 Airship is available as an [npm package](https://www.npmjs.com/package/@carto/airship).
 
