@@ -76,11 +76,10 @@ class Range extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { minValue, value } = nextProps;
-    const nextValue = { min: minValue, max: value || minValue };
+    const { minValue, maxValue, value } = nextProps;
 
-    if (this.state.value !== value && this.isWithinRange(nextValue)) {
-      this.setState({ value: nextValue });
+    if (this.state.value !== value && this.isWithinRange(value, minValue, maxValue)) {
+      this.setState({ value });
     }
   }
 
@@ -128,22 +127,23 @@ class Range extends Component {
     return isObject(this.props.value);
   }
 
-  isWithinRange(values) {
+  isWithinRange(values, minValue, maxValue) {
     if (this.isMultiValue()) {
       return (
-        values.min >= this.props.minValue &&
-        values.max <= this.props.maxValue &&
+        values.min >= minValue &&
+        values.max <= maxValue &&
         values.min < values.max
       );
     }
 
     return (
-      values.max >= this.props.minValue && values.max <= this.props.maxValue
+      values.max >= minValue && values.max <= maxValue
     );
   }
 
   shouldUpdate(values) {
-    return this.isWithinRange(values) && this.hasStepDifference(values);
+    const { minValue, maxValue } = this.props;
+    return this.isWithinRange(values, minValue, maxValue) && this.hasStepDifference(values);
   }
 
   updatePosition(key, position) {
