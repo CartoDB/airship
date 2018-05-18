@@ -10,6 +10,38 @@ const CUSTOM_THEME = {
   brand01: '#FABADA',
 };
 
+class UpdatedRange extends React.Component {
+  state = {
+    value: { min: 5, max: 15 },
+    minValue: 0,
+    maxValue: 100,
+  }
+
+  changeState = () => {
+    this.setState({
+      value: { min: 0, max: 200 },
+      minValue: 0,
+      maxValue: 200,
+    });
+  }
+
+  render() {
+    const { value, minValue, maxValue } = this.state;
+
+    return (
+      <div>
+        <Range
+          draggable
+          value={value}
+          minValue={minValue}
+          maxValue={maxValue}
+        />
+        <button onClick={this.changeState}>Click me</button>
+      </div>
+    );
+  }
+}
+
 storiesOf('Range', module)
   .add('Default', () => (
     <div style={{ padding: '1rem' }}>
@@ -43,4 +75,7 @@ storiesOf('Range', module)
     <ThemeProvider theme={CUSTOM_THEME}>
       <Range />
     </ThemeProvider>
+  ))
+  .add('Updating range', () => (
+    <UpdatedRange />
   ));
