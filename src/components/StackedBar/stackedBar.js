@@ -180,7 +180,8 @@ class Histogram extends Component {
   }
 
   onWindowClick = event => {
-    if (event.target !== this.svg) {
+    console.log('click');
+    if (event.target == this.svg.node()) {
       this.setState({ tooltip: null });
     }
   }
