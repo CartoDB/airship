@@ -1,0 +1,295 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SelectableHistogram /> render when data passed in renders the correct amount of bars 1`] = `
+.c0 {
+  -webkit-font-smoothing: antialiased;
+}
+
+.c0 .tick line {
+  opacity: 0.1;
+  stroke: #747474;
+}
+
+.c0 .tick:first-child line {
+  opacity: 0.5;
+}
+
+.c0 .bar {
+  fill: #47DB99;
+  cursor: pointer;
+  opacity: 0.7;
+  -webkit-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+}
+
+.c0 .bar:hover {
+  fill: #22ae70;
+}
+
+.c0 text {
+  font-size: 10px;
+  font-weight: 300;
+  fill: #2C2C2C;
+  font-family: Roboto,sans-serif;
+}
+
+<svg
+  className="c0"
+  data={
+    Array [
+      Object {
+        "end": 48,
+        "start": 8,
+        "value": 6318,
+      },
+      Object {
+        "end": 88,
+        "start": 48,
+        "value": 5922,
+      },
+      Object {
+        "end": 128,
+        "start": 88,
+        "value": 2363,
+      },
+      Object {
+        "end": 168,
+        "start": 128,
+        "value": 801,
+      },
+      Object {
+        "end": 208,
+        "start": 168,
+        "value": 441,
+      },
+      Object {
+        "end": 248,
+        "start": 208,
+        "value": 118,
+      },
+      Object {
+        "end": 288,
+        "start": 248,
+        "value": 92,
+      },
+      Object {
+        "end": 328,
+        "start": 288,
+        "value": 77,
+      },
+      Object {
+        "end": 368,
+        "start": 328,
+        "value": 48,
+      },
+      Object {
+        "end": 408,
+        "start": 368,
+        "value": 34,
+      },
+      Object {
+        "end": 448,
+        "start": 408,
+        "value": 10,
+      },
+      Object {
+        "end": 488,
+        "start": 448,
+        "value": 20,
+      },
+      Object {
+        "end": 528,
+        "start": 488,
+        "value": 16,
+      },
+      Object {
+        "end": 568,
+        "start": 528,
+        "value": 6,
+      },
+      Object {
+        "end": 608,
+        "start": 568,
+        "value": 10,
+      },
+      Object {
+        "end": 648,
+        "start": 608,
+        "value": 2,
+      },
+    ]
+  }
+  viewBox="0 0 248 160"
+/>
+`;
+
+exports[`<Histogram /> update when data changes should call the update method or the chart 1`] = `
+.c0 {
+  -webkit-font-smoothing: antialiased;
+}
+
+.c0 .tick line {
+  opacity: 0.1;
+  stroke: #747474;
+}
+
+.c0 .tick:first-child line {
+  opacity: 0.5;
+}
+
+.c0 .bar {
+  fill: #47DB99;
+  cursor: pointer;
+  opacity: 0.7;
+  -webkit-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+}
+
+.c0 .bar:hover {
+  fill: #22ae70;
+}
+
+.c0 text {
+  font-size: 10px;
+  font-weight: 300;
+  fill: #2C2C2C;
+  font-family: Roboto,sans-serif;
+}
+
+<svg
+  className="c0"
+  data={
+    Array [
+      Object {
+        "end": 48,
+        "start": 8,
+        "value": 6318,
+      },
+      Object {
+        "end": 88,
+        "start": 48,
+        "value": 5922,
+      },
+      Object {
+        "end": 128,
+        "start": 88,
+        "value": 2363,
+      },
+      Object {
+        "end": 168,
+        "start": 128,
+        "value": 801,
+      },
+      Object {
+        "end": 208,
+        "start": 168,
+        "value": 441,
+      },
+      Object {
+        "end": 248,
+        "start": 208,
+        "value": 118,
+      },
+      Object {
+        "end": 288,
+        "start": 248,
+        "value": 92,
+      },
+      Object {
+        "end": 328,
+        "start": 288,
+        "value": 77,
+      },
+      Object {
+        "end": 368,
+        "start": 328,
+        "value": 48,
+      },
+      Object {
+        "end": 408,
+        "start": 368,
+        "value": 34,
+      },
+      Object {
+        "end": 448,
+        "start": 408,
+        "value": 10,
+      },
+      Object {
+        "end": 488,
+        "start": 448,
+        "value": 20,
+      },
+      Object {
+        "end": 528,
+        "start": 488,
+        "value": 16,
+      },
+      Object {
+        "end": 568,
+        "start": 528,
+        "value": 6,
+      },
+      Object {
+        "end": 608,
+        "start": 568,
+        "value": 10,
+      },
+      Object {
+        "end": 648,
+        "start": 608,
+        "value": 2,
+      },
+    ]
+  }
+  viewBox="0 0 248 160"
+/>
+`;
+
+exports[`<SelectableHistogram /> update when data changes should call the update method or the chart 2`] = `
+.c0 {
+  -webkit-font-smoothing: antialiased;
+}
+
+.c0 .tick line {
+  opacity: 0.1;
+  stroke: #747474;
+}
+
+.c0 .tick:first-child line {
+  opacity: 0.5;
+}
+
+.c0 .bar {
+  fill: #47DB99;
+  cursor: pointer;
+  opacity: 0.7;
+  -webkit-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+}
+
+.c0 .bar:hover {
+  fill: #22ae70;
+}
+
+.c0 text {
+  font-size: 10px;
+  font-weight: 300;
+  fill: #2C2C2C;
+  font-family: Roboto,sans-serif;
+}
+
+<svg
+  className="c0"
+  data={
+    Array [
+      Object {
+        "end": 10,
+        "start": 0,
+        "value": 500,
+      },
+    ]
+  }
+  viewBox="0 0 248 160"
+/>
+`;
