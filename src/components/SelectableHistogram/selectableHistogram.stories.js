@@ -36,7 +36,10 @@ class HistogramUpdated extends React.Component {
 
 storiesOf('SelectableHistogram', module)
   .add('Default', () => (
-    <SelectableHistogram data={mockData} selectedData={action('category clicked')} />
+    <SelectableHistogram data={mockData}/>
+  ))
+  .add('selectable', () => (
+    <SelectableHistogram data={mockData} onSelectedData={action('selected')} />
   ))
   .add('With custom color', () => (
     <SelectableHistogram data={mockData} color="#7E78E2" />

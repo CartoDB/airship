@@ -123,7 +123,6 @@ class SelectableHistogram extends Component {
         .call(brushX()
             .extent([[0, 0], [WIDTH, HEIGHT]])
             .on("brush",  function ()  {
-
                 if (event.sourceEvent.type === "brush") return;
                 const d0 = event.selection.map(self.xScale.invert);
                 console.log('data', self.props.data);
@@ -131,8 +130,10 @@ class SelectableHistogram extends Component {
                     const element = self.props.data.find(bar => value > bar.start && value < bar.end);
                     return element ? element.start : value;
                 });
-                console.log(d1);
-                // self.props.selectedData = d1;
+                if (self.props.onSelectedData) {
+                    self.props.onSelectedData({ min:d1[0], max:d1[1]});
+                };
+
                 select(this).call(event.target.move, d1.map(self.xScale));
             }));
     this.renderBars();
