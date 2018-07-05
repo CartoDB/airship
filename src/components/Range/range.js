@@ -25,10 +25,10 @@ class Range extends Component {
   static defaultProps = {
     disabled: false,
     draggable: false,
-    maxValue: 10,
+    maxValue: 1000,
     minValue: 0,
     value: 0,
-    step: 1,
+    step: 20,
   };
 
   static propTypes = {
