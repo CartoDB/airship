@@ -2,6 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { ThemeProvider } from 'styled-components';
 import SelectableHistogram from './selectableHistogram';
+import { action } from '@storybook/addon-actions';
 import Widget from '../Widget/widget';
 import mockData from './selectableHistogram.fixtures';
 import { theme } from '../../constants';
@@ -35,7 +36,7 @@ class HistogramUpdated extends React.Component {
 
 storiesOf('SelectableHistogram', module)
   .add('Default', () => (
-    <SelectableHistogram data={mockData} />
+    <SelectableHistogram data={mockData} selectedData={action('category clicked')} />
   ))
   .add('With custom color', () => (
     <SelectableHistogram data={mockData} color="#7E78E2" />

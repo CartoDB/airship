@@ -5,6 +5,7 @@ import { darken } from 'polished';
 import { select, event } from 'd3-selection';
 import { scaleLinear } from 'd3-scale';
 import { max, range } from 'd3-array';
+import { brushX } from 'd3-brush';
 import { axisLeft } from 'd3-axis';
 import 'd3-transition';
 import Base from '../Typography/base';
@@ -114,7 +115,26 @@ class SelectableHistogram extends Component {
     this.barsContainer = this.container
       .append('g')
       .attr('transform', `translate(${MARGIN.LEFT}, ${MARGIN.TOP})`);
+    const self = this;
+    this.brushContainer = this.container
+        .append('g')
+        .attr("class", "brush")
+        .attr('transform', `translate(${MARGIN.LEFT}, ${MARGIN.TOP})`)
+        .call(brushX()
+            .extent([[0, 0], [WIDTH, HEIGHT]])
+            .on("brush",  function ()  {
 
+                if (event.sourceEvent.type === "brush") return;
+                const d0 = event.selection.map(self.xScale.invert);
+                console.log('data', self.props.data);
+                const d1 = d0.map(value => {
+                    const element = self.props.data.find(bar => value > bar.start && value < bar.end);
+                    return element ? element.start : value;
+                });
+                console.log(d1);
+                // self.props.selectedData = d1;
+                select(this).call(event.target.move, d1.map(self.xScale));
+            }));
     this.renderBars();
   }
 
