@@ -1,6 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { ThemeProvider } from 'styled-components';
+import { action } from '@storybook/addon-actions';
 import StackedBar from './stackedBar';
 import Widget from '../Widget/widget';
 import mockData from './stackedBar.fixtures';
@@ -35,7 +36,11 @@ class StackedBarUpdated extends React.Component {
 
 storiesOf('StackedBar', module)
   .add('Default', () => (
-    <StackedBar data={mockData} keys={['private_rooms', 'shared_rooms', 'entire_homes']} />
+    <StackedBar
+        data={mockData}
+        keys={['private_rooms', 'shared_rooms', 'entire_homes']}
+        selectedData={action('selected data')}
+    />
   ))
   .add('Inside a widget', () => (
     <Widget>

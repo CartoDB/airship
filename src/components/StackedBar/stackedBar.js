@@ -248,7 +248,7 @@ class Histogram extends Component {
   renderBars() {
     const { data, keys } = this.props;
     const layers = this.stack(data);
-
+    // console.log(data)
     keys.forEach((key, index) => {
       const bar = this.barsContainer
         .selectAll(`.bar-${key}`)
@@ -271,6 +271,9 @@ class Histogram extends Component {
         .on('mousemove', () => {
           select(this.tooltipNode).style('opacity', 0);
           this.showTooltip(event.layerX, event.layerY);
+        })
+        .on('click', () => {
+          this.props.selectedData(this.state.tooltip.d.data.name)
         })
         .attr('class', () => `bar bar-${key}`)
         .attr('y', HEIGHT)
@@ -369,10 +372,11 @@ class Histogram extends Component {
     const renderLegend = showLegend && labels.length > 0;
 
     return (
-      <React.Fragment>
+      <React.Fragment >
         <Svg innerRef={node => { this.svg = select(node); }} />
         {renderLegend && this.renderLegend()}
         {this.state.tooltip && this.renderTooltip()}
+        
       </React.Fragment>
     );
   }
