@@ -26,6 +26,8 @@ const Content = styled.div`
   padding: 16px;
   color: ${props => props.theme.type01};
   font: 400 12px/20px 'Roboto';
+  max-height: 200px;
+  overflow: scroll;
 `;
 Content.defaultProps = {
   theme,
