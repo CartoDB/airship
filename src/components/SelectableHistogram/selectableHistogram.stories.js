@@ -1,65 +1,55 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { ThemeProvider } from 'styled-components';
+import SelectableHistogram from './selectableHistogram';
 import { action } from '@storybook/addon-actions';
-import StackedBar from './stackedBar';
 import Widget from '../Widget/widget';
-import mockData from './stackedBar.fixtures';
+import mockData from './selectableHistogram.fixtures';
 import { theme } from '../../constants';
 
 const CUSTOM_THEME = {
   ...theme,
   ui01: '#333',
   type01: 'white',
-  type02: 'white',
+  type02: '#F5F5F5',
 };
-class StackedBarUpdated extends React.Component {
+class HistogramUpdated extends React.Component {
   state = {
     data: mockData,
   }
 
   changeState = () => {
     this.setState(prevState => ({
-      data: prevState.data.length !== 2 ? mockData.slice(1, 3) : mockData,
+      data: prevState.data.length !== 3 ? mockData.slice(2, 5) : mockData,
     }));
   }
 
   render() {
     return (
       <div>
-        <StackedBar data={this.state.data} keys={['private_rooms', 'shared_rooms', 'entire_homes']} />
+        <SelectableHistogram data={this.state.data} />
         <button onClick={this.changeState}>Click me</button>
       </div>
     );
   }
 }
 
-storiesOf('StackedBar', module)
+storiesOf('SelectableHistogram', module)
   .add('Default', () => (
-    <StackedBar
-        data={mockData}
-        keys={['private_rooms', 'shared_rooms', 'entire_homes']}
-        selectedData={action('selected data')}
-    />
+    <SelectableHistogram data={mockData}/>
+  ))
+  .add('selectable', () => (
+    <SelectableHistogram data={mockData} onSelectedData={action('selected')} />
+  ))
+  .add('With custom color', () => (
+    <SelectableHistogram data={mockData} color="#7E78E2" />
   ))
   .add('Inside a widget', () => (
     <Widget>
       <Widget.Title>Suffer score</Widget.Title>
       <Widget.Description>Just a widget</Widget.Description>
 
-      <StackedBar data={mockData} keys={['private_rooms', 'shared_rooms', 'entire_homes']} />
-    </Widget>
-  ))
-  .add('With legend', () => (
-    <Widget>
-      <Widget.Title>Suffer score</Widget.Title>
-      <Widget.Description>Just a widget</Widget.Description>
-
-      <StackedBar
-        data={mockData}
-        keys={['private_rooms', 'shared_rooms', 'entire_homes']}
-        labels={['Private rooms', 'Shared rooms', 'Entire home/apt']}
-      />
+      <SelectableHistogram data={mockData} />
     </Widget>
   ))
   .add('Updating data', () => (
@@ -67,7 +57,7 @@ storiesOf('StackedBar', module)
       <Widget.Title>Suffer score</Widget.Title>
       <Widget.Description>Just a widget</Widget.Description>
 
-      <StackedBarUpdated />
+      <HistogramUpdated />
     </Widget>
   ))
   .add('With custom theme', () => (
@@ -76,7 +66,7 @@ storiesOf('StackedBar', module)
         <Widget.Title>Suffer score</Widget.Title>
         <Widget.Description>Just a widget</Widget.Description>
 
-        <StackedBar data={mockData} keys={['private_rooms', 'shared_rooms', 'entire_homes']} />
+        <SelectableHistogram data={mockData} />
       </Widget>
     </ThemeProvider>
   ));

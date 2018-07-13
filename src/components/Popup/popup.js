@@ -11,6 +11,8 @@ const Wrapper = styled.div`
   box-shadow: 0 2px 8px 0 rgba(44, 44, 44, 0.16);
   background: ${props => props.background || props.theme.ui01};
   color: ${props => props.background || props.theme.ui01};
+  max-height: 300px;
+  overflow: scroll;
 `;
 Wrapper.defaultProps = {
   theme,

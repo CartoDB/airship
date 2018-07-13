@@ -16,6 +16,7 @@ const ANIMATION_DURATION = 750;
 
 const Chart = styled.svg.attrs({
   viewBox: '0 0 228 100',
+  height: '125px'
 })`
   color: ${props => props.theme.type01};
 `;
