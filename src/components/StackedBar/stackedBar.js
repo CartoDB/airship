@@ -139,6 +139,9 @@ class Histogram extends Component {
     data: [],
     labels: [],
     showLegend: true,
+    selectedData: ()=> {return},
+    mouseIn: ()=> {return},
+    mouseOut: ()=> {return}
   };
 
   static propTypes = {
@@ -261,19 +264,24 @@ class Histogram extends Component {
       bar
         .enter()
         .append('rect')
-        .on('mouseout', () => this.setState({ tooltip: null }))
+        .on('mouseout', () => {
+          this.setState({ tooltip: null })
+          this.props.mouseOut()
+        })
         .on('mouseenter', d => {
           this.setState(
             { tooltip: { d } },
             () => this.showTooltip(event.layerX, event.layerY)
           );
+          this.props.mouseIn(this.state.tooltip.d.data)
         })
+
         .on('mousemove', () => {
           select(this.tooltipNode).style('opacity', 0);
           this.showTooltip(event.layerX, event.layerY);
         })
         .on('click', () => {
-          this.props.selectedData(this.state.tooltip.d.data.name)
+          this.props.selectedData()
         })
         .attr('class', () => `bar bar-${key}`)
         .attr('y', HEIGHT)
