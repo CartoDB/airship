@@ -263,6 +263,7 @@ class Histogram extends Component {
         .append('rect')
         .on('mouseout', () => this.setState({ tooltip: null }))
         .on('mouseenter', d => {
+          console.log('mouseenter', this.props.data);
           this.setState(
             { tooltip: { d } },
             () => this.showTooltip(event.layerX, event.layerY)

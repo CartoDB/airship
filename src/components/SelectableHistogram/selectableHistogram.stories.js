@@ -35,22 +35,8 @@ class HistogramUpdated extends React.Component {
 }
 
 storiesOf('SelectableHistogram', module)
-  .add('Default', () => (
-    <SelectableHistogram data={mockData}/>
-  ))
   .add('selectable', () => (
-    <SelectableHistogram data={mockData} onSelectedData={action('selected')} />
-  ))
-  .add('With custom color', () => (
-    <SelectableHistogram data={mockData} color="#7E78E2" />
-  ))
-  .add('Inside a widget', () => (
-    <Widget>
-      <Widget.Title>Suffer score</Widget.Title>
-      <Widget.Description>Just a widget</Widget.Description>
-
-      <SelectableHistogram data={mockData} />
-    </Widget>
+    <SelectableHistogram data={mockData} selected={{min:8, max:88}} onSelectedData={action('selected')} />
   ))
   .add('Updating data', () => (
     <Widget>

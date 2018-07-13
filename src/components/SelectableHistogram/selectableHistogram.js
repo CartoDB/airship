@@ -116,32 +116,42 @@ class SelectableHistogram extends Component {
       .append('g')
       .attr('transform', `translate(${MARGIN.LEFT}, ${MARGIN.TOP})`);
     const self = this;
+    this.brush = brushX()
+        .extent([[0, 0], [WIDTH, HEIGHT]])
+        .on("brush",  function ()  {
+            if (! event.sourceEvent) return;
+            if (event.sourceEvent && event.sourceEvent.type === "brush") return;
+            const d0 = event.selection.map(self.xScale.invert);
+            const d1 = d0.map(value => {
+                const element = self.props.data.find(bar => value > bar.start && value < bar.end);
+                return element ? element.start : value;
+            });
+            if (self.props.onSelectedData) {
+               self.props.onSelectedData({ min:d1[0], max:d1[1]});
+            };
+            select(this).call(event.target.move, d1.map(self.xScale));
+        });
     this.brushContainer = this.container
         .append('g')
         .attr("class", "brush")
         .attr('transform', `translate(${MARGIN.LEFT}, ${MARGIN.TOP})`)
-        .call(brushX()
-            .extent([[0, 0], [WIDTH, HEIGHT]])
-            .on("brush",  function ()  {
-                if (event.sourceEvent.type === "brush") return;
-                const d0 = event.selection.map(self.xScale.invert);
-                console.log('data', self.props.data);
-                const d1 = d0.map(value => {
-                    const element = self.props.data.find(bar => value > bar.start && value < bar.end);
-                    return element ? element.start : value;
-                });
-                if (self.props.onSelectedData) {
-                    self.props.onSelectedData({ min:d1[0], max:d1[1]});
-                };
-
-                select(this).call(event.target.move, d1.map(self.xScale));
-            }));
+        .call(this.brush)
+    if (this.props.selected) {
+      this.brushContainer.call(this.brush.move, [this.props.selected.min, this.props.selected.max].map(this.xScale));
+    }
     this.renderBars();
   }
 
   componentDidUpdate() {
     this.updateAxis();
     this.renderBars();
+    if (this.props.selected) {
+        const {min, max} = this.props.selected;
+        this.brushContainer.call(this.brush.move, [min, max].map(this.xScale));
+    }else {
+        console.log('no selection');
+        this.brushContainer.call(this.brush.move, [0,0]);
+    }
   }
 
   renderXAxis() {
