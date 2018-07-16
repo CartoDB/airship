@@ -1,0 +1,13 @@
+{
+  "name": "usage-from-sass",
+  "version": "0.0.0",
+  "description": "Testing how to use airship elements and sass",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "node-sass": "^4.9.2"
+  },
+  "scripts": {
+    "build": "node-sass main.scss main.css"
+  }
+}

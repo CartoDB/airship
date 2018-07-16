@@ -1,0 +1,9 @@
+.as-button {
+  padding: 30px;
+  border: none; }
+  .as-button--primary {
+    background-color: blue;
+    color: white; }
+  .as-button--secondary {
+    background-color: red;
+    color: white; }
