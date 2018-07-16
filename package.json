@@ -5,5 +5,14 @@
   "main": "index.js",
   "repository": "git@github.com:CartoDB/airship.git",
   "author": "Carto Dev Team",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "lerna": "^2.11.0"
+  },
+  "scripts": {
+    "postinstall": "lerna bootstrap --hoist",
+    "build:styles": "node-sass packages/styles/src -o packages/styles/dist",
+    "build:components": "stencil build",
+    "watch:components": "stencil build --dev --watch --serve -c packages/components/stencil.config.js"
+  }
 }
