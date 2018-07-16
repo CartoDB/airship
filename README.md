@@ -6,9 +6,11 @@
 
 ## ⚠️ WARNING ⚠️
 
-This library is in ALPHA stage.
+We're changing the approach of Airship. After gathering feedback from several partners and users, we are recoding the widgets as Web Components and providing a CSS framework for layout and simple components. In our tests this has been easily integrated with React, Angular or vanilla and will help us to broaden our partners support. A React components-only library has not worked as well as we thought initially.
 
-Breaking changes are expected.
+That means that this current Airship branch is stale and no further development on React is expected. Feel free to fork the current project and make whatever change you need in case you need the widgets as React components.
+
+Sorry for the inconveniences.
 
 ## Installation
 Airship is available as an [npm package](https://www.npmjs.com/package/@carto/airship).
