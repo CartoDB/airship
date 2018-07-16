@@ -1,0 +1,17 @@
+{
+  "name": "@carto/airship-style",
+  "version": "0.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "files": [
+    "src",
+    "dist"
+  ],
+  "devDependencies": {
+    "node-sass": "^4.9.2"
+  },
+  "scripts": {
+    "build": "yarn build:all",
+    "build:all": "node-sass src -o dist"
+  }
+}
