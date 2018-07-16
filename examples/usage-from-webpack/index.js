@@ -1,1 +1,1 @@
-import '@carto/airship-style/src/button/button.scss';
+import '@carto/airship-style/button.scss';
