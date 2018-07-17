@@ -17,6 +17,7 @@
     "declaration-empty-line-before": null,
     "block-no-empty": true,
     "shorthand-property-no-redundant-values": true,
-    "declaration-block-no-redundant-longhand-properties": null
+    "declaration-block-no-redundant-longhand-properties": null,
+    "selector-type-no-unknown": [true, { ignore: ["custom-elements"] }]
   }
 }
