@@ -11,7 +11,7 @@
   },
   "scripts": {
     "postinstall": "lerna bootstrap --hoist",
-    "build": "lerna run build",
+    "build": "lerna run --parallel build",
     "dev": "lerna run --parallel dev",
     "test": "lerna run test",
     "test:watch": "lerna run --parallel test:watch",
