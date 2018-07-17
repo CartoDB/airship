@@ -17,6 +17,7 @@
     "lint": "npm run lint:ts & npm run lint:css",
     "lint:ts": "tslint -c tslint.json 'src/**/*.ts'",
     "lint:css": "stylelint 'src/components/**/*.scss'",
+    "lint:fix": "npm run lint:css-fix",
     "lint:css-fix": "stylelint 'src/components/**/*.scss' --fix"
   },
   "devDependencies": {

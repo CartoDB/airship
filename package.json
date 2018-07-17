@@ -15,6 +15,7 @@
     "dev": "lerna run --parallel dev",
     "test": "lerna run test",
     "test:watch": "lerna run --parallel test:watch",
-    "lint": "lerna run lint"
+    "lint": "lerna run lint",
+    "lint:fix": "lerna run lint:fix"
   }
 }
