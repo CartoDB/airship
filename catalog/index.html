@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+  <base href="/catalog/">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Airship</title>
+
+  <link rel="stylesheet" href="../../packages/styles/dist/airship.css">
+</head>
+<body>
+  <div id="catalog" />
+
+  <!-- Use the development version to get helpful errors in your console -->
+  <!-- <script src="https://unpkg.com/catalog@3/dist/catalog-standalone.development.js"></script> -->
+
+  <!-- Use the minified production version to get optimal performance -->
+  <script src="https://unpkg.com/catalog@3/dist/catalog-standalone.min.js"></script>
+
+  <script src="../packages/components/dist/airship.js"></script>
+
+  <script>
+    Catalog.render({
+      title: 'Airship',
+      pages: [
+        {
+          path: '/',             // The path where the page can be accessed
+          title: 'Introduction', // The page title
+          src: 'docs/intro.md'   // Path to the Markdown document
+        },
+        {
+          title: 'Components',
+          pages: [
+            {
+              path: '/components/switch',
+              title: 'Switch',
+              src: 'docs/components/switch.md'
+            }
+          ]
+        },
+        {
+          title: 'Styles',
+          pages: [
+            {
+              path: '/styles/button',
+              title: 'Button',
+              src: 'docs/styles/button.md'
+            }
+          ]
+        }
+      ]
+    }, document.getElementById('catalog'));
+  </script>
+</body>
+</html>
