@@ -11,17 +11,17 @@
   ],
   "scripts": {
     "build": "stencil build",
-    "start": "stencil build --dev --watch --serve",
+    "dev": "stencil build --dev --watch --serve",
     "test": "jest",
-    "test.watch": "jest --watch"
-  },
-  "dependencies": {
-    "@stencil/sass": "0.0.5"
+    "test:watch": "jest --watch",
+    "lint": "echo 'No linter available yet.'"
   },
   "devDependencies": {
     "@stencil/core": "^0.10.0",
     "@types/jest": "^21.1.1",
-    "jest": "^21.2.1"
+    "@stencil/sass": "0.0.5",
+    "jest": "^21.2.1",
+    "lerna": "^2.11.0"
   },
   "repository": {
     "type": "git",

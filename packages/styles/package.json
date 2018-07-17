@@ -1,0 +1,20 @@
+{
+  "name": "@carto/airship-style",
+  "version": "0.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "files": [
+    "src",
+    "dist"
+  ],
+  "devDependencies": {
+    "node-sass": "^4.9.2"
+  },
+  "scripts": {
+    "build": "node-sass src -o dist",
+    "dev": "node-sass src -o dist -w",
+    "test": "echo 'No tests available yet.'",
+    "test:watch": "echo 'No tests available yet.'",
+    "lint": "echo 'No linter available yet.'"
+  }
+}
