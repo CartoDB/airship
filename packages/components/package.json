@@ -14,7 +14,10 @@
     "dev": "stencil build --dev --watch --serve",
     "test": "jest",
     "test:watch": "jest --watch",
-    "lint": "tslint -c tslint.json 'src/**/*.ts'"
+    "lint": "npm run lint:ts & npm run lint:css",
+    "lint:ts": "tslint -c tslint.json 'src/**/*.ts'",
+    "lint:css": "stylelint 'src/components/**/*.scss'",
+    "lint:css-fix": "stylelint 'src/components/**/*.scss' --fix"
   },
   "devDependencies": {
     "@stencil/core": "^0.10.0",
@@ -23,7 +26,10 @@
     "jest": "^21.2.1",
     "lerna": "^2.11.0",
     "tslint": "^5.11.0",
-    "typescript": "^2.9.2"
+    "typescript": "^2.9.2",
+    "stylelint": "^9.3.0",
+    "stylelint-config-standard": "^18.2.0",
+    "stylelint-config-property-sort-order-smacss": "^4.0.0"
   },
   "repository": {
     "type": "git",
