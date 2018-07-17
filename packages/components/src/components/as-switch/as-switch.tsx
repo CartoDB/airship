@@ -5,7 +5,7 @@ import { Component } from '@stencil/core';
   styleUrl:'./as-switch.scss',
   shadow: false
 })
-export class MyComponent {
+export class Switch {
   render() {
     return (
       <label class="switch">
