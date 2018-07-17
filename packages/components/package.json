@@ -1,7 +1,7 @@
 {
   "name": "@carto/airship-components",
-  "version": "0.0.1",
-  "description": "Stencil Component Starter",
+  "version": "0.0.0",
+  "description": "CARTO Airship components",
   "module": "dist/esm/index.js",
   "main": "dist/index.js",
   "types": "dist/types/components.d.ts",
@@ -12,13 +12,14 @@
   "scripts": {
     "build": "stencil build",
     "dev": "stencil build --dev --watch --serve",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "lint": "npm run lint:ts & npm run lint:css",
-    "lint:ts": "tslint -c tslint.json 'src/**/*.ts'",
+    "lint:css-fix": "stylelint 'src/components/**/*.scss' --fix",
     "lint:css": "stylelint 'src/components/**/*.scss'",
     "lint:fix": "npm run lint:css-fix",
-    "lint:css-fix": "stylelint 'src/components/**/*.scss' --fix"
+    "lint:ts": "tslint -c tslint.json 'src/**/*.ts'",
+    "lint": "npm run lint:ts & npm run lint:css",
+    "serve": "serve -p 5001",
+    "test:watch": "jest --watch",
+    "test": "jest"
   },
   "devDependencies": {
     "@stencil/core": "^0.10.0",
@@ -34,14 +35,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ionic-team/stencil-component-starter.git"
+    "url": "git+https://github.com/CartoDB/airship.git"
   },
-  "author": "Ionic Team",
-  "license": "MIT",
+  "author": "CARTO Dev Team",
+  "license": "BSD-3-Clause",
   "bugs": {
-    "url": "https://github.com/ionic-team/stencil"
+    "url": "https://github.com/CartoDB/airship/issues"
   },
-  "homepage": "https://github.com/ionic-team/stencil",
+  "homepage": "https://github.com/CartoDB/airship",
   "jest": {
     "transform": {
       "^.+\\.(ts|tsx)$": "<rootDir>/node_modules/@stencil/core/testing/jest.preprocessor.js"
