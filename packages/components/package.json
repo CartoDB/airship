@@ -12,17 +12,26 @@
   "scripts": {
     "build": "stencil build",
     "dev": "stencil build --dev --watch --serve",
-    "test": "jest",
+    "lint:css-fix": "stylelint 'src/components/**/*.scss' --fix",
+    "lint:css": "stylelint 'src/components/**/*.scss'",
+    "lint:fix": "npm run lint:css-fix",
+    "lint:ts": "tslint -c tslint.json 'src/**/*.ts'",
+    "lint": "npm run lint:ts & npm run lint:css",
+    "serve": "serve -p 5001",
     "test:watch": "jest --watch",
-    "lint": "echo 'No linter available yet.'",
-    "serve": "serve -p 5001"
+    "test": "jest"
   },
   "devDependencies": {
     "@stencil/core": "^0.10.0",
-    "@types/jest": "^21.1.1",
     "@stencil/sass": "0.0.5",
+    "@types/jest": "^21.1.1",
     "jest": "^21.2.1",
-    "lerna": "^2.11.0"
+    "lerna": "^2.11.0",
+    "tslint": "^5.11.0",
+    "typescript": "^2.9.2",
+    "stylelint": "^9.3.0",
+    "stylelint-config-standard": "^18.2.0",
+    "stylelint-config-property-sort-order-smacss": "^4.0.0"
   },
   "repository": {
     "type": "git",
