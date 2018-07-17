@@ -1,4 +1,10 @@
+@import 'variables';
+
 * {
   box-sizing: border-box;
   font-family: sans-serif;
+}
+
+:root {
+  --primary-color: #{$primary-color};
 }

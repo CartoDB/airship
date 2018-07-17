@@ -29,30 +29,30 @@ declare global {
 declare global {
 
   namespace StencilComponents {
-    interface AsButton {
+    interface AsSwitch {
 
     }
   }
 
-  interface HTMLAsButtonElement extends StencilComponents.AsButton, HTMLStencilElement {}
+  interface HTMLAsSwitchElement extends StencilComponents.AsSwitch, HTMLStencilElement {}
 
-  var HTMLAsButtonElement: {
-    prototype: HTMLAsButtonElement;
-    new (): HTMLAsButtonElement;
+  var HTMLAsSwitchElement: {
+    prototype: HTMLAsSwitchElement;
+    new (): HTMLAsSwitchElement;
   };
   interface HTMLElementTagNameMap {
-    'as-button': HTMLAsButtonElement;
+    'as-switch': HTMLAsSwitchElement;
   }
   interface ElementTagNameMap {
-    'as-button': HTMLAsButtonElement;
+    'as-switch': HTMLAsSwitchElement;
   }
   namespace JSX {
     interface IntrinsicElements {
-      'as-button': JSXElements.AsButtonAttributes;
+      'as-switch': JSXElements.AsSwitchAttributes;
     }
   }
   namespace JSXElements {
-    export interface AsButtonAttributes extends HTMLAttributes {
+    export interface AsSwitchAttributes extends HTMLAttributes {
 
     }
   }

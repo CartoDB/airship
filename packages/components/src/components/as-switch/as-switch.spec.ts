@@ -1,9 +1,9 @@
 import { TestWindow } from '@stencil/core/testing';
-import { MyComponent } from './my-component';
+import { Switch } from './as-switch';
 
-describe('my-component', () => {
+describe('as-switch', () => {
   it('should build', () => {
-    expect(new MyComponent()).toBeTruthy();
+    expect(new Switch()).toBeTruthy();
   });
 
   describe('rendering', () => {
@@ -12,8 +12,8 @@ describe('my-component', () => {
     beforeEach(async () => {
       testWindow = new TestWindow();
       element = await testWindow.load({
-        components: [MyComponent],
-        html: '<my-component></my-component>'
+        components: [Switch],
+        html: '<as-switch></as-switch>'
       });
     });
 
