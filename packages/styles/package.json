@@ -18,6 +18,7 @@
     "dev": "node-sass src -o dist -w",
     "test": "echo 'No tests available yet.'",
     "test:watch": "echo 'No tests available yet.'",
-    "lint": "stylelint 'src/**/*.scss'"
+    "lint": "stylelint 'src/**/*.scss'",
+    "lint:fix": "stylelint 'src/**/*.scss' --fix"
   }
 }
