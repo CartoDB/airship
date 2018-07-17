@@ -1,12 +1,14 @@
 .as-button {
-    padding: 30px;
-    border: none;
-    &--primary {
-        background-color: blue;
-        color: white;
-    }
-    &--secondary {
-        background-color: red;
-        color: white;
-    }
+  padding: 30px;
+  border: none;
+
+  &--primary {
+    background-color: blue;
+    color: white;
+  }
+
+  &--secondary {
+    background-color: red;
+    color: white;
+  }
 }
