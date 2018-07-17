@@ -11,9 +11,10 @@
   ],
   "scripts": {
     "build": "stencil build",
-    "start": "stencil build --dev --watch --serve",
+    "dev": "stencil build --dev --watch --serve",
     "test": "jest",
-    "test.watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "lint": "echo 'No linter available yet.'"
   },
   "devDependencies": {
     "@stencil/core": "^0.10.0",

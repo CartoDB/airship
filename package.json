@@ -11,8 +11,10 @@
   },
   "scripts": {
     "postinstall": "lerna bootstrap --hoist",
-    "build:styles": "node-sass packages/styles/src -o packages/styles/dist",
-    "build:components": "stencil build",
-    "watch:components": "stencil build --dev --watch --serve -c packages/components/stencil.config.js"
+    "build": "lerna run build",
+    "dev": "lerna run --parallel dev",
+    "test": "lerna run test",
+    "test:watch": "lerna run --parallel test:watch",
+    "lint": "lerna run lint"
   }
 }
