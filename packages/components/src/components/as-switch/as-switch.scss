@@ -1,53 +1,53 @@
 as-switch {
   /* The switch - the box around the slider */
   .switch {
-    position: relative;
     display: inline-block;
+    position: relative;
     width: 60px;
     height: 34px;
   }
 
   /* Hide default HTML checkbox */
   .switch input {
-    display:none;
+    display: none;
   }
 
   /* The slider */
   .slider {
     position: absolute;
-    cursor: pointer;
     top: 0;
-    left: 0;
     right: 0;
     bottom: 0;
-    background-color: #ccc;
-    transition: .4s;
+    left: 0;
+    transition: 0.4s;
     border-radius: 34px;
+    background-color: #CCC;
+    cursor: pointer;
   }
 
-  .slider:before {
-    position: absolute;
+  .slider::before {
     content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
+    position: absolute;
     bottom: 4px;
-    background-color: white;
-    transition: .4s;
+    left: 4px;
+    width: 26px;
+    height: 26px;
+    transition: 0.4s;
     border-radius: 50%;
+    background-color: white;
   }
 
   input:checked + .slider {
-    background-color: #49d49d;
-    background-color: var(--primary-color, #49d49d);
+    background-color: #49D49D;
+    background-color: var(--primary-color, #49D49D);
   }
 
   input:focus + .slider {
-    box-shadow: 0 0 1px#49d49d;
-    box-shadow: 0 0 1px var(--primary-color, #49d49d);
+    box-shadow: 0 0 1px #49D49D;
+    box-shadow: 0 0 1px var(--primary-color, #49D49D);
   }
 
-  input:checked + .slider:before {
+  input:checked + .slider::before {
     transform: translateX(26px);
   }
 }
