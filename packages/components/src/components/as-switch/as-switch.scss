@@ -38,11 +38,13 @@ as-switch {
   }
 
   input:checked + .slider {
-    background-color: #2196F3;
+    background-color: #49d49d;
+    background-color: var(--primary-color, #49d49d);
   }
 
   input:focus + .slider {
-    box-shadow: 0 0 1px #2196F3;
+    box-shadow: 0 0 1px#49d49d;
+    box-shadow: 0 0 1px var(--primary-color, #49d49d);
   }
 
   input:checked + .slider:before {
