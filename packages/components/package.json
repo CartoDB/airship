@@ -1,7 +1,7 @@
 {
   "name": "@carto/airship-components",
-  "version": "0.0.1",
-  "description": "Stencil Component Starter",
+  "version": "0.0.0",
+  "description": "CARTO Airship components",
   "module": "dist/esm/index.js",
   "main": "dist/index.js",
   "types": "dist/types/components.d.ts",
@@ -26,14 +26,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ionic-team/stencil-component-starter.git"
+    "url": "git+https://github.com/CartoDB/airship.git"
   },
-  "author": "Ionic Team",
-  "license": "MIT",
+  "author": "CARTO Dev Team",
+  "license": "BSD-3-Clause",
   "bugs": {
-    "url": "https://github.com/ionic-team/stencil"
+    "url": "https://github.com/CartoDB/airship/issues"
   },
-  "homepage": "https://github.com/ionic-team/stencil",
+  "homepage": "https://github.com/CartoDB/airship",
   "jest": {
     "transform": {
       "^.+\\.(ts|tsx)$": "<rootDir>/node_modules/@stencil/core/testing/jest.preprocessor.js"
