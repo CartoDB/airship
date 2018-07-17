@@ -1,0 +1,28 @@
+{
+  "extends": [
+    "tslint:recommended"
+  ],
+  "jsRules": {},
+  "rules": {
+    "quotemark": [
+      true,
+      "single"
+    ],
+    "interface-name": [
+      true,
+      "never-prefix"
+    ],
+    "no-empty-interface": null,
+    "no-consecutive-blank-lines": null,
+    "eofline": null,
+    "trailing-comma": [
+      true,
+      {
+        "multiline": {
+          "arguments": "never"
+        }
+      }
+    ]
+  },
+  "rulesDirectory": []
+}
