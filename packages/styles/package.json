@@ -18,7 +18,6 @@
     "dev": "node-sass src -o dist -w",
     "test": "echo 'No tests available yet.'",
     "test:watch": "echo 'No tests available yet.'",
-    "lint": "echo 'No linter available yet.'",
-    "lint:css": "stylelint 'src/**/*.scss'"
+    "lint": "stylelint 'src/**/*.scss'"
   }
 }
