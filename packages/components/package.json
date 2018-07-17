@@ -14,7 +14,8 @@
     "dev": "stencil build --dev --watch --serve",
     "test": "jest",
     "test:watch": "jest --watch",
-    "lint": "echo 'No linter available yet.'"
+    "lint": "echo 'No linter available yet.'",
+    "serve": "serve -p 5001"
   },
   "devDependencies": {
     "@stencil/core": "^0.10.0",

@@ -7,7 +7,8 @@
   "author": "Carto Dev Team",
   "license": "MIT",
   "devDependencies": {
-    "lerna": "^2.11.0"
+    "lerna": "^2.11.0",
+    "serve": "^9.2.0"
   },
   "scripts": {
     "postinstall": "lerna bootstrap --hoist",
@@ -15,6 +16,7 @@
     "dev": "lerna run --parallel dev",
     "test": "lerna run test",
     "test:watch": "lerna run --parallel test:watch",
-    "lint": "lerna run lint"
+    "lint": "lerna run lint",
+    "serve": "lerna run --parallel serve"
   }
 }
