@@ -8,6 +8,8 @@ exports.config = {
     { type: 'www', serviceWorker: false }
   ],
   plugins: [
-    sass()
+    sass({
+      outFile: path.join(__dirname, '.generated-styles')
+    })
   ]
 };
