@@ -13,8 +13,10 @@
   "scripts": {
     "build": "lerna run --parallel build",
     "dev": "lerna run --parallel dev",
-    "lint:fix": "lerna run lint:fix",
+    "test:components": "lerna exec --scope @carto/airship-components -- npm run test",
+    "test:components:watch": "lerna exec -- npm run test:watch",
     "lint": "lerna run lint",
+    "lint:fix": "lerna run lint:fix",
     "postinstall": "lerna bootstrap --hoist",
     "serve": "lerna run --parallel serve",
     "test:watch": "lerna run --parallel test:watch",
