@@ -6,9 +6,10 @@ describe('as-switch', () => {
     expect(new Switch()).toBeTruthy();
   });
 
-  describe('rendering', () => {
-    let element: HTMLMyComponentElement;
+  describe('Behaviour', () => {
+    let element: HTMLSwitchElement;
     let testWindow: TestWindow;
+
     beforeEach(async () => {
       testWindow = new TestWindow();
       element = await testWindow.load({
@@ -17,27 +18,14 @@ describe('as-switch', () => {
       });
     });
 
-    it('should work without parameters', () => {
-      expect(element.textContent.trim()).toEqual('Hello, World! I\'m');
-    });
+    it('should emit an event with current status when component toggles', () => {
+      const spy = jest.fn();
+      element.addEventListener('onToggle', spy);
 
-    it('should work with a first name', async () => {
-      element.first = 'Peter';
-      await testWindow.flush();
-      expect(element.textContent.trim()).toEqual('Hello, World! I\'m Peter');
-    });
+      element.querySelector('input').click();
 
-    it('should work with a last name', async () => {
-      element.last = 'Parker';
-      await testWindow.flush();
-      expect(element.textContent.trim()).toEqual('Hello, World! I\'m  Parker');
-    });
-
-    it('should work with both a first and a last name', async () => {
-      element.first = 'Peter';
-      element.last = 'Parker';
-      await testWindow.flush();
-      expect(element.textContent.trim()).toEqual('Hello, World! I\'m Peter Parker');
+      expect(spy).toHaveBeenCalled();
+      expect(spy.mock.calls[0][0].detail).toBe(true);
     });
   });
 });
