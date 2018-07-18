@@ -8,8 +8,7 @@
   "license": "BSD-3-Clause",
   "devDependencies": {
     "lerna": "^2.11.0",
-    "serve": "^9.2.0",
-    "testcafe": "^0.20.4"
+    "serve": "^9.2.0"
   },
   "scripts": {
     "build": "lerna run --parallel build",
