@@ -20,6 +20,7 @@
     "postinstall": "lerna bootstrap --hoist",
     "serve": "lerna run --parallel serve",
     "test:watch": "lerna run --parallel test:watch",
-    "test": "lerna run test"
+    "test": "lerna run test",
+    "test:styles": "lerna run test:styles"
   }
 }
