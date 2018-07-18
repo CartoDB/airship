@@ -31,6 +31,7 @@ require('colors');
       console.log(`  ✔ ${url}`.green);
     } catch (err) {
       console.error(`  ✖ ${url}`.red);
+      console.error(`${err}`);
       process.exit(-1);
     }
   }
