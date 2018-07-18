@@ -8,14 +8,15 @@
     "dist"
   ],
   "devDependencies": {
+    "concurrently": "^3.6.0",
     "node-sass": "^4.9.2",
     "stylelint": "^9.3.0",
-    "stylelint-config-standard": "^18.2.0",
-    "stylelint-config-property-sort-order-smacss": "^4.0.0"
+    "stylelint-config-property-sort-order-smacss": "^4.0.0",
+    "stylelint-config-standard": "^18.2.0"
   },
   "scripts": {
     "build": "node-sass src -o dist",
-    "dev": "node-sass src -o dist -w",
+    "dev": "concurrently 'node-sass src -o dist -w' 'node-sass src/airship.scss -o ../../www/build'",
     "lint:fix": "stylelint 'src/**/*.scss' --fix",
     "lint": "stylelint 'src/**/*.scss'",
     "serve": "serve -p 5000",
