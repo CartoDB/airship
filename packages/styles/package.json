@@ -23,7 +23,7 @@
     "lint": "stylelint 'src/**/*.scss'",
     "serve": "serve -p 5000",
     "test:watch": "echo 'No tests available yet.'",
-    "test": "testcafe chrome src/**/*.spec.js -s .screenshots ",
+    "test": "testcafe chrome src/**/*.spec.js -s .screenshots",
     "test:styles": "npm run test"
   },
   "repository": {
