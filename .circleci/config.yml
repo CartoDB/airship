@@ -17,8 +17,8 @@ jobs:
           - v1-dependencies-{{ checksum "package.json" }}
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
-      - run: yarn install
-      - run: yarn lint
+      - run: npm install
+      - run: npm run lint
 
   test-unit:
     docker:
@@ -32,8 +32,8 @@ jobs:
           - v1-dependencies-{{ checksum "package.json" }}
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
-      - run: yarn install
-      - run: yarn test
+      - run: npm install
+      - run: npm test
       - save_cache:
           paths:
             - node_modules
