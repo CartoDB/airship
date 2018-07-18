@@ -7,6 +7,7 @@
   "author": "Carto Dev Team",
   "license": "BSD-3-Clause",
   "devDependencies": {
+    "exquisite-sst": "^1.4.0",
     "lerna": "^2.11.0",
     "serve": "^9.2.0"
   },
