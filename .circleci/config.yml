@@ -33,7 +33,7 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
       - run: npm install
-      - run: npm test:components
+      - run: npm run test:components
       - save_cache:
           paths:
             - node_modules
@@ -52,7 +52,7 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
       - run: npm install
-      - run: npm test:styles
+      - run: npm run test:styles
       - save_cache:
           paths:
             - node_modules
