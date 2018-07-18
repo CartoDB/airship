@@ -9,7 +9,7 @@ const colors = require('colors');
 
 (async () => {
   try {
-    var browser = await exquisite.browser();
+    var browser = await exquisite.browser({ headless: false });
     const files = glob.sync(path.resolve(__dirname, '**/*.spec.js'));
     await Promise.all(files.map(test));
   } catch (err) {
