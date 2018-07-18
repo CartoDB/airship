@@ -2,6 +2,7 @@
 .env
 .idea/
 .sass-cache/
+.screenshots
 .stencil/
 .versions/
 .vscode/

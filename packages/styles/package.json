@@ -8,10 +8,14 @@
     "dist"
   ],
   "devDependencies": {
+    "jest-image-snapshot": "^2.4.3",
     "node-sass": "^4.9.2",
+    "pixelmatch": "^4.0.2",
+    "pngjs": "^3.3.3",
     "stylelint": "^9.3.0",
+    "stylelint-config-property-sort-order-smacss": "^4.0.0",
     "stylelint-config-standard": "^18.2.0",
-    "stylelint-config-property-sort-order-smacss": "^4.0.0"
+    "testcafe": "^0.20.4"
   },
   "scripts": {
     "build": "node-sass src -o dist",
@@ -20,7 +24,8 @@
     "lint": "stylelint 'src/**/*.scss'",
     "serve": "serve -p 5000",
     "test:watch": "echo 'No tests available yet.'",
-    "test": "echo 'No tests available yet.'"
+    "test": "testcafe chrome src/**/*.spec.js -s .screenshots ",
+    "test:styles": "npm run test"
   },
   "repository": {
     "type": "git",
