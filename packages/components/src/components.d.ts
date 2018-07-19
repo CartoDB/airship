@@ -53,7 +53,7 @@ declare global {
   }
   namespace JSXElements {
     export interface AsSwitchAttributes extends HTMLAttributes {
-
+      'onOnToggle'?: (event: CustomEvent) => void;
     }
   }
 }
