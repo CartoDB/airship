@@ -1,0 +1,22 @@
+# Developers notes
+
+## Continuous Integration
+We're using CircleCI as our Continuous Integration server. It currently runs several jobs after each commit at github, to run lint and unit tests for 'components' and 'styles' (see `.circleci/config.yml` for more details).
+
+### ⚠️ WARNING: Reference images for tests
+CircleCI currently passes all checks. But it will fail when new *reference images* will be created for our tests. 
+
+Follow these manual steps to fix the problem, as snapshots generated at local dev and remote-linux CircleCI machine may differ, and we want CircleCI ones to be the authoritative source:
+- [x] comment img deletion from the test code (`//fs.unlinkSync(output);` LIN 29 from `/airship/packages/styles/src/test.js`)
+- [x] commit & push, to force new CircleCI run
+- [x] ssh connection to new docker machine generated for the job. See [ssh reference](https://circleci.com/docs/2.0/ssh-access-jobs/) for troubleshooting.
+- [x] download new `reference.png` img with scp:
+    - You must connect with your 'github' credentials to the temporal machine for the job, using the IP AND port displayed by CircleCI Web console (let's assume ip is **52.90.13.2** and port is **64546**). To check the public key being used: `ssh -v -p 64546 52.90.13.2`
+    - And then copy with something like `scp -P 64546 52.90.13.2:airship/packages/styles/src/button/img/button.png ./reference.png`
+
+### CircleCI Tools for developers
+CircleCI has a local CLI to run / test the jobs: See https://circleci.com/docs/2.0/local-cli/
+To (locally) Run a single JOB: `circleci build --job JOB_NAME` eg:
+`circleci build --job test-unit:components` or `circleci build --job test-unit:styles``
+
+> It seems it is not possible (yet) to run locally the whole workflow
