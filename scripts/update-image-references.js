@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 
 const { exec } = require('child_process');
+const rimraf = require('rimraf');
+const vfs = require('vinyl-fs');
+const sysPath = require('path');
 const chalk = require('chalk');
 const fs = require('fs');
-const sysPath = require('path');
-const vfs = require('vinyl-fs');
 
 const serverAddress = process.argv[2];
 const port = process.argv[3];
@@ -83,12 +84,15 @@ getImagePaths()
     imagePaths.map((image, index) => {
       console.log(chalk.green(`Downloading image ${index} to local machine...`));
       console.log(image);
-      return scpToLocalMachine(image, '.tmp')
+      return scpToLocalMachine(image, '.tmp_reference')
     })
   )
 })
 .then(localPaths => {
   console.log(chalk.blue('Replacing previous image reference with the one obtained from the server...'), '\n');
-  return copyFilesTo('.tmp/**/*', sysPath.join(process.cwd(), 'packages/styles/src'));
+  return copyFilesTo('.tmp_reference/**/*', sysPath.join(process.cwd(), 'packages/styles/src'));
 })
-.then(() => console.timeEnd('✨ Finished in'));
+.then(() => {
+  rimraf('./tmp_reference');
+  console.timeEnd('✨ Finished in')
+});
