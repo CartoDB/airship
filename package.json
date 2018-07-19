@@ -22,6 +22,7 @@
     "lint:fix": "lerna run lint:fix",
     "lint": "lerna run lint",
     "postinstall": "lerna bootstrap --hoist",
+    "release": "lerna publish --npm-tag prerelease",
     "serve": "lerna run --parallel serve",
     "test:components:watch": "lerna exec --scope @carto/airship-components -- npm run test:watch",
     "test:components": "lerna exec --scope @carto/airship-components -- npm run test",

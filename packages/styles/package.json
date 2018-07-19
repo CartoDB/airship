@@ -1,6 +1,6 @@
 {
   "name": "@carto/airship-style",
-  "version": "0.0.0",
+  "version": "1.0.0-alpha.26",
   "description": "CARTO Airship styles",
   "main": "src/airship.scss",
   "files": [
@@ -33,5 +33,8 @@
   "bugs": {
     "url": "https://github.com/CartoDB/airship/issues"
   },
-  "homepage": "https://github.com/CartoDB/airship"
+  "homepage": "https://github.com/CartoDB/airship",
+  "publishConfig": {
+    "access": "public"
+  }
 }
