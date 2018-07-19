@@ -10,6 +10,11 @@ const fs = require('fs');
 const serverAddress = process.argv[2];
 const port = process.argv[3];
 
+if (!serverAddress || !port) {
+  console.error('Usage: npm run update-styles-reference {ip} {port}');
+  process.exit(-1);
+}
+
 const sshString = `ssh -p ${port} ${serverAddress} -oStrictHostKeyChecking=no`;
 
 const executeTerminalCommand = function (command) {
@@ -34,17 +39,19 @@ const getImagePaths = function () {
   const command = `${sshString} "${findImagesCommand}"`;
 
   return executeTerminalCommand(command)
-  .then(paths => {
-    const allPaths = paths.split('\n');
-    allPaths.splice(-1, 1);
+  .then(paths => paths.split('\n').filter(path => Boolean(path)));
+};
 
-    return allPaths;
-  });
+const createDirectoryIfNotExists = function (directory) {
+  if (!fs.existsSync(directory)) {
+    return executeTerminalCommand(`mkdir -p ${directory}`);
+  }
+
+  return Promise.resolve();
 };
 
 const scpToLocalMachine = function (image, path) {
   const imagePath = image.replace('airship/packages/styles/src/', '');
-
   const localSystemPath = sysPath.join(process.cwd(), path, imagePath);
 
   // Create directory if not exists
@@ -52,18 +59,13 @@ const scpToLocalMachine = function (image, path) {
   directory.pop()
   directory = directory.join('/');
 
-  let flow = Promise.resolve();
 
-  if (!fs.existsSync(directory)) {
-    flow = executeTerminalCommand(`mkdir -p ${directory}`);
-  }
-
-  return flow.then(() => {
+  return createDirectoryIfNotExists(directory)
+  .then(() => {
     const command = `scp -P ${port} ${serverAddress}:${image} ${localSystemPath}`;
-
     return executeTerminalCommand(command)
-    .then(() => localSystemPath);
-  });
+  })
+  .then(() => localSystemPath);
 };
 
 
@@ -88,7 +90,7 @@ getImagePaths()
     })
   )
 })
-.then(localPaths => {
+.then(() => {
   console.log(chalk.blue('Replacing previous image reference with the one obtained from the server...'), '\n');
   return copyFilesTo('.tmp/**/*', sysPath.join(process.cwd(), 'packages/styles/src'));
 })
