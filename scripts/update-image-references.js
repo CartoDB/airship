@@ -84,15 +84,16 @@ getImagePaths()
     imagePaths.map((image, index) => {
       console.log(chalk.green(`Downloading image ${index} to local machine...`));
       console.log(image);
-      return scpToLocalMachine(image, '.tmp_reference')
+      return scpToLocalMachine(image, '.tmp')
     })
   )
 })
 .then(localPaths => {
   console.log(chalk.blue('Replacing previous image reference with the one obtained from the server...'), '\n');
-  return copyFilesTo('.tmp_reference/**/*', sysPath.join(process.cwd(), 'packages/styles/src'));
+  return copyFilesTo('.tmp/**/*', sysPath.join(process.cwd(), 'packages/styles/src'));
 })
 .then(() => {
-  rimraf('./tmp_reference');
-  console.timeEnd('✨ Finished in')
+  rimraf('./tmp', () => {
+    console.timeEnd('✨ Finished in')
+  });
 });
