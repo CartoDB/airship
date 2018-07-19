@@ -13,15 +13,16 @@
   },
   "scripts": {
     "build": "lerna run --parallel build",
+    "build:styles": "lerna exec --scope @carto/airship-style -- npm run build",
     "dev": "lerna run --parallel dev",
+    "test": "lerna run test",
+    "test:watch": "lerna run --parallel test:watch",
     "test:styles": "lerna exec --scope @carto/airship-style -- npm run test",
     "test:components": "lerna exec --scope @carto/airship-components -- npm run test",
     "test:components:watch": "lerna exec --scope @carto/airship-components -- npm run test:watch",
     "lint": "lerna run lint",
     "lint:fix": "lerna run lint:fix",
     "postinstall": "lerna bootstrap --hoist",
-    "serve": "lerna run --parallel serve",
-    "test:watch": "lerna run --parallel test:watch",
-    "test": "lerna run test"
+    "serve": "lerna run --parallel serve"
   }
 }
