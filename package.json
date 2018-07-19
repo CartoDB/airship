@@ -15,16 +15,18 @@
     "vinyl-fs": "^3.0.3"
   },
   "scripts": {
+    "build:styles": "lerna exec --scope @carto/airship-style -- npm run build",
     "build": "lerna run --parallel build",
+    "clean:www": "rimraf www",
     "dev": "npm run clean:www && concurrently 'lerna run --parallel dev' 'node ./scripts/copy-styles-html-to-www.js' --kill-others",
-    "test:components": "lerna exec --scope @carto/airship-components -- npm run test",
-    "test:components:watch": "lerna exec --scope @carto/airship-components -- npm run test:watch",
-    "lint": "lerna run lint",
     "lint:fix": "lerna run lint:fix",
+    "lint": "lerna run lint",
     "postinstall": "lerna bootstrap --hoist",
     "serve": "lerna run --parallel serve",
+    "test:components:watch": "lerna exec --scope @carto/airship-components -- npm run test:watch",
+    "test:components": "lerna exec --scope @carto/airship-components -- npm run test",
+    "test:styles": "lerna exec --scope @carto/airship-style -- npm run test",
     "test:watch": "lerna run --parallel test:watch",
-    "test": "lerna run test",
-    "clean:www": "rimraf www"
+    "test": "lerna run test"
   }
 }
