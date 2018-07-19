@@ -3,7 +3,8 @@ const glob = require("glob")
 const assert = require('assert');
 const fs = require('fs');
 const path = require('path');
-const colors = require('colors');
+require('colors');
+
 
 
 
@@ -30,6 +31,8 @@ const colors = require('colors');
       console.log(`  ✔ ${url}`.green);
     } catch (err) {
       console.error(`  ✖ ${url}`.red);
+      console.error(err);
+      process.exit(-1);
     }
   }
 })();
