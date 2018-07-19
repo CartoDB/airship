@@ -26,7 +26,7 @@ require('colors');
       var { input, output, url } = require(filename);
 
       const diff = await exquisite.test({ input, output, url, delay: 100, browser });
-      //fs.unlinkSync(output);
+      fs.unlinkSync(output);
       assert.equal(diff, 0);
       console.log(`  ✔ ${url}`.green);
     } catch (err) {
