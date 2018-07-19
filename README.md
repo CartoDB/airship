@@ -4,8 +4,8 @@
 [![CircleCI](https://circleci.com/gh/CartoDB/airship/tree/master.svg?style=svg)](https://circleci.com/gh/CartoDB/airship/tree/master)
 
 There are two npm packages, for easier reuse:
-* @carto/airship-components [![npm version](https://badge.fury.io/js/%40carto%2Fairship-components.svg)](https://badge.fury.io/js/%40carto%2Fairship-components)
-* @carto/airship-style [![npm version](https://badge.fury.io/js/%40carto%2Fairship-style.svg)](https://badge.fury.io/js/%40carto%2Fairship-style)
+* [![npm version](https://badge.fury.io/js/%40carto%2Fairship-components.svg)](https://badge.fury.io/js/%40carto%2Fairship-components)
+* [![npm version](https://badge.fury.io/js/%40carto%2Fairship-style.svg)](https://badge.fury.io/js/%40carto%2Fairship-style)
 
 
 ## ⚠️ WARNING ⚠️
