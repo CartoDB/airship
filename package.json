@@ -14,12 +14,13 @@
   "scripts": {
     "build": "lerna run --parallel build",
     "dev": "lerna run --parallel dev",
-    "test:components": "lerna exec --scope @carto/airship-components -- npm run test",
-    "test:components:watch": "lerna exec --scope @carto/airship-components -- npm run test:watch",
-    "lint": "lerna run lint",
     "lint:fix": "lerna run lint:fix",
+    "lint": "lerna run lint",
     "postinstall": "lerna bootstrap --hoist",
+    "release": "lerna publish --npm-tag prerelease",
     "serve": "lerna run --parallel serve",
+    "test:components:watch": "lerna exec --scope @carto/airship-components -- npm run test:watch",
+    "test:components": "lerna exec --scope @carto/airship-components -- npm run test",
     "test:watch": "lerna run --parallel test:watch",
     "test": "lerna run test"
   }

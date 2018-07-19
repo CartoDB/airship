@@ -55,5 +55,8 @@
       "json",
       "jsx"
     ]
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

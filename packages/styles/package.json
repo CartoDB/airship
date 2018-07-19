@@ -32,5 +32,8 @@
   "bugs": {
     "url": "https://github.com/CartoDB/airship/issues"
   },
-  "homepage": "https://github.com/CartoDB/airship"
+  "homepage": "https://github.com/CartoDB/airship",
+  "publishConfig": {
+    "access": "public"
+  }
 }
