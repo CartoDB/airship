@@ -21,7 +21,8 @@
     "lint": "stylelint 'src/**/*.scss'",
     "serve": "serve -p 5000",
     "test:watch": "echo 'No tests available yet.'",
-    "test": "node src/test.js"
+    "test": "node src/test.js",
+    "test:styles": "npm run test"
   },
   "repository": {
     "type": "git",
