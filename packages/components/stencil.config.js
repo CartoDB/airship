@@ -3,9 +3,15 @@ const sass = require('@stencil/sass');
 
 exports.config = {
   namespace: 'airship',
+  copy: [{ src: 'components/**/*.html' }],
   outputTargets:[
     { type: 'dist' },
-    { type: 'www', serviceWorker: false }
+    {
+      type: 'www',
+      serviceWorker: false,
+      empty: false,
+      dir: path.join(__dirname, '../../www')
+    }
   ],
   plugins: [
     sass({
