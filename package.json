@@ -7,11 +7,12 @@
   "author": "Carto Dev Team",
   "license": "BSD-3-Clause",
   "devDependencies": {
+    "chalk": "^2.4.1",
+    "chokidar": "^2.0.4",
+    "concurrently": "^3.6.0",
     "exquisite-sst": "^1.4.0",
     "lerna": "^2.11.0",
     "serve": "^9.2.0",
-    "concurrently": "^3.6.0",
-    "chokidar": "^2.0.4",
     "vinyl-fs": "^3.0.3"
   },
   "scripts": {
