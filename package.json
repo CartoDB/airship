@@ -13,7 +13,7 @@
   },
   "scripts": {
     "build": "lerna run --parallel build",
-    "dev": "npm run clean:www && concurrently 'lerna run --parallel dev' 'node ./scripts/copy-elements-html-to-www.js' --kill-others",
+    "dev": "npm run clean:www && concurrently 'lerna run --parallel dev' 'node ./scripts/copy-styles-html-to-www.js' --kill-others",
     "test:components": "lerna exec --scope @carto/airship-components -- npm run test",
     "test:components:watch": "lerna exec --scope @carto/airship-components -- npm run test:watch",
     "lint": "lerna run lint",
