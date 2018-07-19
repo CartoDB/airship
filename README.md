@@ -1,6 +1,13 @@
 # Airship
 > Airship is a components library built by CARTO
 
+[![CircleCI](https://circleci.com/gh/CartoDB/airship/tree/master.svg?style=svg)](https://circleci.com/gh/CartoDB/airship/tree/master)
+
+There are two npm packages, for easier reuse:
+* @carto/airship-components [![npm version](https://badge.fury.io/js/%40carto%2Fairship-components.svg)](https://badge.fury.io/js/%40carto%2Fairship-components)
+* @carto/airship-style [![npm version](https://badge.fury.io/js/%40carto%2Fairship-style.svg)](https://badge.fury.io/js/%40carto%2Fairship-style)
+
+
 ## ⚠️ WARNING ⚠️
 
 We're currently changing the approach of Airship. After gathering feedback from several partners and users, we are recoding the widgets as Web Components and providing a CSS framework for layout and simple components. In our tests this has been easily integrated with React, Angular or vanilla and will help us to broaden our partners support. A React components-only library has not worked as well as we thought initially.
