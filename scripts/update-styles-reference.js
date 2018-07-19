@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-
 const { exec } = require('child_process');
 const rimraf = require('rimraf');
 const vfs = require('vinyl-fs');
@@ -50,11 +49,10 @@ const createDirectoryIfNotExists = function (directory) {
   return Promise.resolve();
 };
 
-const scpToLocalMachine = function (image, path) {
-  const imagePath = image.replace('airship/packages/styles/src/', '');
-  const localSystemPath = sysPath.join(process.cwd(), path, imagePath);
+const scpToLocalMachine = function (image, ) {
+  const imagePath = image.replace('airship/', '');
+  const localSystemPath = sysPath.join(process.cwd(), imagePath);
 
-  // Create directory if not exists
   let directory = localSystemPath.split('/');
   directory.pop()
   directory = directory.join('/');
@@ -68,34 +66,21 @@ const scpToLocalMachine = function (image, path) {
   .then(() => localSystemPath);
 };
 
-
-const copyFilesTo = function (filePaths, outputPath) {
-  return vfs.src(filePaths)
-  .pipe(vfs.dest(outputPath));
-};
-
 // Main Execution
-
 console.log(chalk.white('Update Image References · Airship Script'), '\n');
 console.log(chalk.blue('Retrieving image paths from CircleCI server...'))
 console.time('✨ Finished in');
 
 getImagePaths()
-.then(imagePaths => {
-  return Promise.all(
+.then(imagePaths =>
+  Promise.all(
     imagePaths.map((image, index) => {
       console.log(chalk.green(`Downloading image ${index} to local machine...`));
       console.log(image);
-      return scpToLocalMachine(image, '.tmp')
+      return scpToLocalMachine(image)
     })
   )
-})
+)
 .then(() => {
-  console.log(chalk.blue('Replacing previous image reference with the one obtained from the server...'), '\n');
-  return copyFilesTo('.tmp/**/*', sysPath.join(process.cwd(), 'packages/styles/src'));
-})
-.then(() => {
-  rimraf('./tmp', () => {
-    console.timeEnd('✨ Finished in')
-  });
+  console.timeEnd('✨ Finished in')
 });
