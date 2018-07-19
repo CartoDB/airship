@@ -12,11 +12,11 @@
   "scripts": {
     "build": "stencil build",
     "dev": "stencil build --dev --watch --serve",
-    "lint:css-fix": "stylelint 'src/components/**/*.scss' --fix",
+    "lint:css:fix": "stylelint 'src/components/**/*.scss' --fix",
     "lint:css": "stylelint 'src/components/**/*.scss'",
-    "lint:fix": "npm run lint:css-fix",
-    "lint:ts": "tslint -c tslint.json 'src/**/*.ts'",
-    "lint": "npm run lint:ts & npm run lint:css",
+    "lint:fix": "npm run lint:css:fix",
+    "lint:ts": "tslint -c tslint.json src/components/**/*.{ts,tsx}",
+    "lint": "npm run lint:ts && npm run lint:css",
     "serve": "serve -p 5001",
     "test:watch": "jest --watch",
     "test": "jest"
