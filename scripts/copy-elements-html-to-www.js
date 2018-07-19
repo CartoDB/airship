@@ -15,15 +15,10 @@ const watchDirectory = function (directory, callback) {
 
 const serverPath = path.join(cwd, './www');
 
-const componentsPath = path.join(cwd, './packages/components/src/components');
-const outputComponentsPath = path.join(serverPath, 'components');
-copyFilesToOutput([`${componentsPath}/**/*.html`], outputComponentsPath);
-
 const elementsPath = path.join(cwd, './packages/styles/src');
 const outputElementsPath = path.join(serverPath, 'elements');
 copyFilesToOutput([`${elementsPath}/**/*.html`], outputElementsPath);
 
 watchDirectory(serverPath, () => {
-  copyFilesToOutput([`${componentsPath}/**/*.html`], outputComponentsPath);
   copyFilesToOutput([`${elementsPath}/**/*.html`], outputElementsPath);
 });
