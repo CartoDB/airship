@@ -2,7 +2,7 @@ const path = require('path');
 
 
 // Reference image
-const input = path.resolve(__dirname, 'img/reference.png');
+const input = path.resolve(__dirname, 'img/button-reference.png');
 // Path where the screenshot will be saved
 const output = path.resolve(__dirname, 'img/button.png');
 

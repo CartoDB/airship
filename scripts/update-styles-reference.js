@@ -6,6 +6,8 @@ const sysPath = require('path');
 const chalk = require('chalk');
 const fs = require('fs');
 
+const REFERENCE_IMG_SUFFIX = '-reference';
+
 const serverAddress = process.argv[2];
 const port = process.argv[3];
 
@@ -34,11 +36,11 @@ const executeTerminalCommand = function (command) {
 };
 
 const getImagePaths = function () {
-  const findImagesCommand = "find airship/packages/styles/src/ -name '*' -path '*.png'";
+  const findImagesCommand = `find airship/packages/styles/src/ -path '*.png' -not -path '*${REFERENCE_IMG_SUFFIX}.png'`;
   const command = `${sshString} "${findImagesCommand}"`;
 
   return executeTerminalCommand(command)
-  .then(paths => paths.split('\n').filter(path => Boolean(path)));
+    .then(paths => paths.split('\n').filter(path => Boolean(path)));
 };
 
 const createDirectoryIfNotExists = function (directory) {
@@ -51,16 +53,17 @@ const createDirectoryIfNotExists = function (directory) {
 
 const scpToLocalMachine = function (image) {
   const imagePath = image.replace('airship/', '');
-  const localSystemPath = sysPath.join(process.cwd(), imagePath);
+  const referenceImagePath = imagePath.replace('.png', `${REFERENCE_IMG_SUFFIX}.png`);
+  const localSystemPath = sysPath.join(process.cwd(), referenceImagePath);
 
   const destDirectory = localSystemPath.substring(0, localSystemPath.lastIndexOf('/'));
 
   return createDirectoryIfNotExists(destDirectory)
-  .then(() => {
-    const command = `scp -P ${port} ${serverAddress}:${image} ${localSystemPath}`;
-    return executeTerminalCommand(command)
-  })
-  .then(() => localSystemPath);
+    .then(() => {
+      const command = `scp -P ${port} ${serverAddress}:${image} ${localSystemPath}`;
+      return executeTerminalCommand(command)
+    })
+    .then(() => localSystemPath);
 };
 
 // Main Execution
@@ -69,18 +72,18 @@ console.log(chalk.blue('Retrieving image paths from CircleCI server...'))
 console.time('✨ Finished in');
 
 getImagePaths()
-.then(imagePaths =>
-  Promise.all(
-    imagePaths.map((image, index) => {
-      console.log(chalk.green(`Downloading image ${index} to local machine...`));
-      console.log(image);
-      return scpToLocalMachine(image)
-    })
+  .then(imagePaths =>
+    Promise.all(
+      imagePaths.map((image, index) => {
+        console.log(chalk.green(`Downloading image ${index} to local machine...`));
+        console.log(image);
+        return scpToLocalMachine(image)
+      })
+    )
   )
-)
-.then(() => {
-  console.timeEnd('✨ Finished in')
-})
-.catch(error => {
-  throw error;
-});
+  .then(() => {
+    console.timeEnd('✨ Finished in')
+  })
+  .catch(error => {
+    throw error;
+  });
