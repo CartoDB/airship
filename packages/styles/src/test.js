@@ -1,10 +1,10 @@
-const exquisite = require('exquisite-sst');
-const glob = require("glob")
+const { execSync } = require('child_process');
 const assert = require('assert');
+const exquisite = require('exquisite-sst');
 const fs = require('fs');
+const glob = require("glob")
 const path = require('path');
 require('colors');
-
 
 
 (async () => {
@@ -27,6 +27,8 @@ require('colors');
       if (!fs.existsSync(reference)) {
         console.warn(`Reference image not found, generating a new one: ${reference}`.yellow);
         await exquisite.getReference({ output: reference, url, delay: 100, browser });
+        execSync(`chmod +x ${path.join(__dirname, '../../../scripts/circleci-screenshots.sh')}`);
+        execSync(path.join(__dirname, '../../../scripts/circleci-screenshots.sh'));
       }
 
       const diff = await exquisite.test({ input: reference, output: screenshot, url, delay: 100, browser });

@@ -8,15 +8,12 @@ We're using CircleCI as our Continuous Integration server. It currently runs sev
 CircleCI currently passes all checks. But it will fail when new *reference images* will be created for our tests.
 
 Follow these manual steps to fix the problem, as snapshots generated at local dev and remote CircleCI machine may differ, and we want CircleCI ones to be the authoritative source:
-1. comment img deletion from the test code (`/airship/packages/styles/src/test.js` >> LIN 29: `//fs.unlinkSync(output);`)
-2. commit & push, to force new CircleCI run
-3. ssh connection to new docker machine generated for the job. See [ssh reference](https://circleci.com/docs/2.0/ssh-access-jobs/) for troubleshooting.
-4. download new image reference with our **npm script**:
-    - execute `npm run update-styles-reference -- {ip} {port}` with your SSH credentials in CircleCI
-5. commit the new images
-6. uncomment the line in step 1.
-7. commit both changes and push to github
-8. a new CircleCI execution will run and all checks should pass
+
+1. Create your component.
+2. If you want circleCI to generate the reference generate a`ìmg` directory with a empty `.gitkeep` file inside.
+3. Open a PR/commit
+4. CircleCI will generate a branch with the same name adding the new reference in a commit.
+5. Merge this branch into yours when ready.
 
 
 ### CircleCI Tools for developers
