@@ -6,8 +6,6 @@ const path = require('path');
 require('colors');
 
 
-
-
 (async () => {
   try {
     var browser = await exquisite.browser({ headless: false });
@@ -30,9 +28,12 @@ require('colors');
         process.exit(-1);
       }
 
-      const diff = await exquisite.test({ reference, snapshot, url, delay: 100, browser });
-      fs.unlinkSync(snapshot);
+      const diff = await exquisite.test({ input: reference, output: snapshot, url, delay: 100, browser });
       assert.equal(diff, 0);
+
+      if (!process.env.CI) {
+        fs.unlinkSync(snapshot);
+      }
       console.log(`  ✔ ${url}`.green);
     } catch (err) {
       console.error(`  ✖ ${url}`.red);
