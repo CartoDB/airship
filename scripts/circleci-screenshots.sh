@@ -9,7 +9,7 @@ if [[ "$branch" == *-circleci-screenshot ]]
 then
   git add .
   git commit --amend -no-edit
-  git push origin head -f
+  git push origin $branch -f
 
 else
   echo "Checking if branch exists"
@@ -24,6 +24,6 @@ else
   git checkout -b $ssbranch
   git add .
   git commit -m "Add screenshot references"
-  git push origin head
+  git push origin $ssbranch
 fi
 
