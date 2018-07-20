@@ -14,7 +14,7 @@ if (!serverAddress || !port) {
   process.exit(-1);
 }
 
-const sshString = `ssh -p ${port} ${serverAddress} -oStrictHostKeyChecking=no`;
+const sshString = `ssh -p ${port} ${serverAddress} -o StrictHostKeyChecking=no`;
 
 const executeTerminalCommand = function (command) {
   return new Promise((resolve, reject) => {
@@ -49,16 +49,13 @@ const createDirectoryIfNotExists = function (directory) {
   return Promise.resolve();
 };
 
-const scpToLocalMachine = function (image, ) {
+const scpToLocalMachine = function (image) {
   const imagePath = image.replace('airship/', '');
   const localSystemPath = sysPath.join(process.cwd(), imagePath);
 
-  let directory = localSystemPath.split('/');
-  directory.pop()
-  directory = directory.join('/');
+  const destDirectory = localSystemPath.substring(0, localSystemPath.lastIndexOf('/'));
 
-
-  return createDirectoryIfNotExists(directory)
+  return createDirectoryIfNotExists(destDirectory)
   .then(() => {
     const command = `scp -P ${port} ${serverAddress}:${image} ${localSystemPath}`;
     return executeTerminalCommand(command)
@@ -83,4 +80,7 @@ getImagePaths()
 )
 .then(() => {
   console.timeEnd('✨ Finished in')
+})
+.catch(error => {
+  throw error;
 });
