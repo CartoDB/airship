@@ -24,8 +24,8 @@ require('colors');
       var { reference, screenshot, url } = require(spec);
 
       if (!fs.existsSync(reference)) {
-        console.error(`Reference image not found: ${reference}`.red);
-        process.exit(-1);
+        console.warn(`Reference image not found, generating a new one: ${reference}`.yellow);
+        await exquisite.getReference({ output: screenshot, url, delay: 100, browser });
       }
 
       const diff = await exquisite.test({ input: reference, output: screenshot, url, delay: 100, browser });
