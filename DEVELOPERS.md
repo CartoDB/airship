@@ -25,3 +25,10 @@ Follow these manual steps to fix the problem, as snapshots generated at local de
 - To (locally) Run a single JOB: `circleci build --job JOB_NAME` eg:
 `circleci build --job test-unit:components` or `circleci build --job test-unit:styles``
 - It seems it is not possible (yet) to run locally the whole workflow
+
+
+### Releasing a new version
+
+We use [lerna](https://lernajs.io/) to keep two internal packages in sync.
+
+Once you have your changes merged to master branch run `npm run release` and follow the given instructions.
