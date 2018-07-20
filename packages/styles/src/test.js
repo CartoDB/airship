@@ -6,6 +6,7 @@ const path = require('path');
 require('colors');
 
 
+
 (async () => {
   try {
     var browser = await exquisite.browser({ headless: false });
@@ -25,8 +26,7 @@ require('colors');
 
       if (!fs.existsSync(reference)) {
         console.warn(`Reference image not found, generating a new one: ${reference}`.yellow);
-        await exquisite.getReference({ output: screenshot, url, delay: 100, browser });
-        process.exit(-1);
+        await exquisite.getReference({ output: reference, url, delay: 100, browser });
       }
 
       const diff = await exquisite.test({ input: reference, output: screenshot, url, delay: 100, browser });
