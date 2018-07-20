@@ -9,7 +9,7 @@ There are two npm packages, for easier reuse:
 | module | status | version | description |
 |---|---|---|---|
 |  [airship-style](https://www.npmjs.com/package/@carto/airship-style) | ![status](https://img.shields.io/badge/status-in%20progress-orange.svg) | [![npm version](https://badge.fury.io/js/%40carto%2Fairship-style.svg)](https://badge.fury.io/js/%40carto%2Fairship-style)| A complete CSS framework to build location intelligence apps. |
-|  [airship-components](https://www.npmjs.com/package/@carto/airship-components) | ![status](https://img.shields.io/badge/status-in%20progress-orange.svg) | [![npm version](https://badge.fury.io/js/%40carto%2Fairship-components.svg)](https://badge.fury.io/js/%40carto%2Fairship-components) | Reusable and easy to use web components. |
+|  [airship-components](https://www.npmjs.com/package/@carto/airship-components) | ![status](https://img.shields.io/badge/status-in%20progress-orange.svg) | [![npm version](https://badge.fury.io/js/%40carto%2Fairship-components.svg)](https://badge.fury.io/js/%40carto%2Fairship-components) | Web components for Location Intelligence apps. |
 
 
 ## ⚠️ WARNING ⚠️
