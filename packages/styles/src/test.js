@@ -21,11 +21,16 @@ require('colors');
   }
 
 
-  async function test(filename) {
+  async function test(spec) {
     try {
-      var { input, output, url } = require(filename);
+      var { reference, snapshot, url } = require(spec);
 
-      const diff = await exquisite.test({ input, output, url, delay: 100, browser });
+      if (!fs.existsSync(reference)) {
+        console.error(`Reference image not found: ${reference}`.red);
+        process.exit(-1);
+      }
+
+      const diff = await exquisite.test({ reference, snapshot, url, delay: 100, browser });
       fs.unlinkSync(output);
       assert.equal(diff, 0);
       console.log(`  ✔ ${url}`.green);
