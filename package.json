@@ -20,6 +20,6 @@
     "serve": "lerna run --parallel serve",
     "test:watch": "lerna run --parallel test:watch",
     "test": "lerna run test",
-    "showcase": "concurrently 'serve' 'open http://localhost:5000/catalog'"
+    "showcase": "npm run build && concurrently 'serve' 'open http://localhost:5000/catalog'"
   }
 }
