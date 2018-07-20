@@ -22,5 +22,5 @@ Follow these manual steps to fix the problem, as snapshots generated at local de
 ### CircleCI Tools for developers
 - CircleCI has a local CLI to run / test the jobs: See https://circleci.com/docs/2.0/local-cli/
 - To (locally) Run a single JOB: `circleci build --job JOB_NAME` eg:
-`circleci build --job test-unit:components` or `circleci build --job test-unit:styles``
+`circleci build --job test-unit:components` or `circleci build --job test-unit:styles`
 - It seems it is not possible (yet) to run locally the whole workflow
