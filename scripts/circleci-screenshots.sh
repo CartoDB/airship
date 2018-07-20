@@ -1,5 +1,6 @@
 #!/bin/bash
 
+echo "Starting"
 
 branch=$(git rev-parse --abbrev-ref HEAD)
 ssbranch=$branch"-circleci-screenshot"
