@@ -1,6 +1,6 @@
 {
   "name": "@carto/airship-style",
-  "version": "0.0.0",
+  "version": "1.0.0-alpha.26",
   "description": "CARTO Airship styles",
   "main": "src/airship.scss",
   "files": [
@@ -8,19 +8,21 @@
     "dist"
   ],
   "devDependencies": {
+    "colors": "^1.3.0",
     "node-sass": "^4.9.2",
     "stylelint": "^9.3.0",
-    "stylelint-config-standard": "^18.2.0",
-    "stylelint-config-property-sort-order-smacss": "^4.0.0"
+    "stylelint-config-property-sort-order-smacss": "^4.0.0",
+    "stylelint-config-standard": "^18.2.0"
   },
   "scripts": {
     "build": "node-sass src -o dist",
-    "dev": "node-sass src -o dist -w",
+    "dev": "sass --watch src:../../www/dist src:dist",
     "lint:fix": "stylelint 'src/**/*.scss' --fix",
     "lint": "stylelint 'src/**/*.scss'",
     "serve": "serve -p 5000",
-    "test:watch": "echo 'No tests available yet.'",
-    "test": "echo 'No tests available yet.'"
+    "test:styles": "node src/test.js",
+    "test:watch": "echo 'No watch available yet.'",
+    "test": "npm run test:styles"
   },
   "repository": {
     "type": "git",
@@ -31,5 +33,8 @@
   "bugs": {
     "url": "https://github.com/CartoDB/airship/issues"
   },
-  "homepage": "https://github.com/CartoDB/airship"
+  "homepage": "https://github.com/CartoDB/airship",
+  "publishConfig": {
+    "access": "public"
+  }
 }

@@ -19,7 +19,6 @@ dist/
 log.txt
 node_modules
 node_modules/
-styles/
 Thumbs.db
 UserInterfaceState.xcuserstate
 www/

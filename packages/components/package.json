@@ -1,6 +1,6 @@
 {
   "name": "@carto/airship-components",
-  "version": "0.0.0",
+  "version": "1.0.0-alpha.26",
   "description": "CARTO Airship components",
   "module": "dist/esm/index.js",
   "main": "dist/index.js",
@@ -12,11 +12,11 @@
   "scripts": {
     "build": "stencil build",
     "dev": "stencil build --dev --watch --serve",
-    "lint:css-fix": "stylelint 'src/components/**/*.scss' --fix",
+    "lint:css:fix": "stylelint 'src/components/**/*.scss' --fix",
     "lint:css": "stylelint 'src/components/**/*.scss'",
-    "lint:fix": "npm run lint:css-fix",
-    "lint:ts": "tslint -c tslint.json 'src/**/*.ts'",
-    "lint": "npm run lint:ts & npm run lint:css",
+    "lint:fix": "npm run lint:css:fix",
+    "lint:ts": "tslint -c tslint.json src/components/**/*.{ts,tsx}",
+    "lint": "npm run lint:ts && npm run lint:css",
     "serve": "serve -p 5001",
     "test:watch": "jest --watch",
     "test": "jest"
@@ -27,11 +27,11 @@
     "@types/jest": "^21.1.1",
     "jest": "^21.2.1",
     "lerna": "^2.11.0",
-    "tslint": "^5.11.0",
-    "typescript": "^2.9.2",
     "stylelint": "^9.3.0",
+    "stylelint-config-property-sort-order-smacss": "^4.0.0",
     "stylelint-config-standard": "^18.2.0",
-    "stylelint-config-property-sort-order-smacss": "^4.0.0"
+    "tslint": "^5.11.0",
+    "typescript": "^2.9.2"
   },
   "repository": {
     "type": "git",
@@ -45,7 +45,7 @@
   "homepage": "https://github.com/CartoDB/airship",
   "jest": {
     "transform": {
-      "^.+\\.(ts|tsx)$": "<rootDir>/node_modules/@stencil/core/testing/jest.preprocessor.js"
+      "^.+\\.(ts|tsx)$": "../../node_modules/@stencil/core/testing/jest.preprocessor.js"
     },
     "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(tsx?|jsx?)$",
     "moduleFileExtensions": [
@@ -55,5 +55,8 @@
       "json",
       "jsx"
     ]
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
