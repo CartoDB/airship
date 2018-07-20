@@ -31,7 +31,7 @@ require('colors');
       }
 
       const diff = await exquisite.test({ reference, snapshot, url, delay: 100, browser });
-      fs.unlinkSync(output);
+      fs.unlinkSync(snapshot);
       assert.equal(diff, 0);
       console.log(`  ✔ ${url}`.green);
     } catch (err) {
