@@ -9,7 +9,6 @@ CircleCI currently passes all checks. But it could fail if we change the styles 
 
 The main point here is that, as snapshots generated at local dev and remote CircleCI machine may differ, we want **CircleCI** ones to be the authoritative source. And to get that working we will have to keep a set of committed images in our project, coming from the CI (e.g. `button-reference.png`). Those images should be periodically inspected by the developer, to check they are fine.
 
-Workflows:
 A. New style
 B. Update style
 
