@@ -21,3 +21,15 @@ Follow these manual steps to fix the problem, as snapshots generated at local de
 - To (locally) Run a single JOB: `circleci build --job JOB_NAME` eg:
 `circleci build --job test-unit:components` or `circleci build --job test-unit:styles`
 - It seems it is not possible (yet) to run locally the whole workflow
+
+### Releasing a new version
+
+We use [lerna](https://lernajs.io/) to keep two internal packages in sync.
+
+Once you have your changes merged to master branch run `npm run release` and follow the given instructions.
+
+## Airship Showcase
+We use Catalog to showcase our components and styles, as well as having some documentation to know how to use them.
+If you want to launch it, execute `npm run showcase`. It doesn't livereload or shows changes in source code when refreshing the page. To see those changes you need to `CTRL + C`, and execute the command again.
+
+There might be some times that the browser says the page is not available, it is due to `serve` script. You don't need to worry about that, press `F5` or `CMD + R` and Catalog will be there.
