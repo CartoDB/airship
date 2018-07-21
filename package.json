@@ -7,7 +7,6 @@
   "author": "Carto Dev Team",
   "license": "BSD-3-Clause",
   "devDependencies": {
-    "chalk": "^2.4.1",
     "chokidar": "^2.0.4",
     "concurrently": "^3.6.0",
     "exquisite-sst": "^1.5.0",
@@ -30,7 +29,6 @@
     "test:components": "lerna exec --scope @carto/airship-components -- npm run test",
     "test:styles": "lerna exec --scope @carto/airship-style -- npm run test",
     "test:watch": "lerna run --parallel test:watch",
-    "test": "lerna run test",
-    "update-styles-reference": "node ./scripts/update-styles-reference.js"
+    "test": "lerna run test"
   }
 }
