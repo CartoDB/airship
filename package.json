@@ -7,10 +7,10 @@
   "author": "Carto Dev Team",
   "license": "BSD-3-Clause",
   "devDependencies": {
+    "concurrently": "^3.6.0",
     "exquisite-sst": "^1.4.0",
     "lerna": "^2.11.0",
     "serve": "^9.2.0",
-    "concurrently": "^3.6.0",
     "chokidar": "^2.0.4",
     "vinyl-fs": "^3.0.3"
   },
@@ -28,6 +28,7 @@
     "test:components": "lerna exec --scope @carto/airship-components -- npm run test",
     "test:styles": "lerna exec --scope @carto/airship-style -- npm run test",
     "test:watch": "lerna run --parallel test:watch",
-    "test": "lerna run test"
+    "test": "lerna run test",
+    "showcase": "npm run build && concurrently 'serve' 'open http://localhost:5000/catalog'"
   }
 }

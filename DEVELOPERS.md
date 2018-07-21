@@ -5,7 +5,7 @@ We're using CircleCI as our Continuous Integration server. It currently runs sev
 
 
 ### ⚠️ WARNING: Reference images for tests
-CircleCI currently passes all checks. But it will fail when new *reference images* will be created for our tests. 
+CircleCI currently passes all checks. But it will fail when new *reference images* will be created for our tests.
 
 Follow these manual steps to fix the problem, as snapshots generated at local dev and remote CircleCI machine may differ, and we want CircleCI ones to be the authoritative source:
 1. comment img deletion from the test code (`/airship/packages/styles/src/test.js` >> LIN 29: `//fs.unlinkSync(output);`)
@@ -26,9 +26,14 @@ Follow these manual steps to fix the problem, as snapshots generated at local de
 `circleci build --job test-unit:components` or `circleci build --job test-unit:styles``
 - It seems it is not possible (yet) to run locally the whole workflow
 
-
 ### Releasing a new version
 
 We use [lerna](https://lernajs.io/) to keep two internal packages in sync.
 
 Once you have your changes merged to master branch run `npm run release` and follow the given instructions.
+
+## Airship Showcase
+We use Catalog to showcase our components and styles, as well as having some documentation to know how to use them.
+If you want to launch it, execute `npm run showcase`. It doesn't livereload or shows changes in source code when refreshing the page. To see those changes you need to `CTRL + C`, and execute the command again.
+
+There might be some times that the browser says the page is not available, it is due to `serve` script. You don't need to worry about that, press `F5` or `CMD + R` and Catalog will be there.
