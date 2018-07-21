@@ -25,6 +25,6 @@ else
   git checkout -b $ssbranch
   git add .
   git commit -m "Add screenshot references"
-  git push origin $ssbranch
+  git push origin $ssbranch -f
 fi
 
