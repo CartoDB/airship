@@ -50,3 +50,16 @@ Or you can load all our styles at once:
 ```
 
 ### Usage from NPM
+
+Just install our package and use it as you wish:
+
+    npm i @carto/airship-style
+
+We provide both `dist` and `src` files so you can create a custom [sass](https://sass-lang.com/) build.
+
+
+## Customization
+
+TBD
+
+
