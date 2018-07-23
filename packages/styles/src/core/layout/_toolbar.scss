@@ -1,40 +1,6 @@
-@mixin __vertical() {
-  width: 60px;
-  height: 100%;
-  float: left;
-  overflow-x: hidden;
-
-  .as-toolbar__item {
-    padding-top: 4px;
-  }
-}
-
-@mixin __horizontal() {
-  width: 100%;
-  height: 60px;
-  overflow-y: hidden;
-
-  .as-toolbar__item {
-    padding-left: 4px;
-  }
-}
-
 .as-toolbar {
-  padding: 4px;
+  padding: 12px;
   background-color: var(--brand-02-color, $brand-02-color);
-
-  // Modifiers
-  &--vertical {
-    @include __vertical();
-  }
-
-  &--horizontal {
-    @include __horizontal();
-  }
-
-  &--responsive {
-    @include __horizontal();
-  }
 
   &--bg-brand-1 {
     background-color: var(--brand-01-color, $brand-01-color);
@@ -52,13 +18,12 @@
   &__item {
     max-width: 100%;
     max-height: 100%;
+    padding: 4px;
   }
 
   // Media queries
   @media all and (min-width: $tablet-breakpoint) {
-    &--responsive {
-      @include __vertical();
-    }
+
   }
 
   @media all and (min-width: $desktop-breakpoint) {}

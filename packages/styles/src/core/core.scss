@@ -2,8 +2,10 @@
 @import 'variables/_variables';
 
 // Layout Elements
-@import 'layout/_bottom-bar';
-@import 'layout/_map';
+@import 'layout/_generic';
+
+// @import 'layout/_bottom-bar';
+// @import 'layout/_map';
 @import 'layout/_sidebar';
 @import 'layout/_toolbar';
 
@@ -11,20 +13,4 @@
   --brand-01-color: #{$brand-01-color};
   --brand-02-color: #{$brand-02-color};
   --brand-03-color: #{$brand-03-color};
-}
-
-.airship-app {
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-}
-
-.as-map-container {
-  display: flex;
-  flex-direction: row;
-  height: 100%;
-}
-
-.as-map-wrapper {
-  flex: 1;
 }
