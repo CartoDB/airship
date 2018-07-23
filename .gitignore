@@ -5,6 +5,7 @@
 .stencil/
 .versions/
 .vscode/
+*-out.png
 *.lock
 *.log
 *.log
