@@ -1,3 +1,37 @@
+// Block
 .as-sidebar {
+  will-change: flex;
+  flex: 0;
+  width: 0;
+  height: 100%;
+  overflow: hidden;
+  transition: flex 0.3s;
+  border-right: 1px solid gray;
+  background: aliceblue;
 
+  &--right {
+    order: 1;
+    border-left: 1px solid gray;
+  }
+
+  &--visible {
+    z-index: 1;
+    flex: 1 0 100%;
+    width: 100%;
+  }
+
+  // Media
+  @media all and (min-width: $tablet-breakpoint) {
+    &--l {
+      flex: 1 0 360px;
+      width: 360px;
+    }
+
+    &--xl {
+      flex: 1 0 432px;
+      width: 432px;
+    }
+  }
+
+  @media all and (min-width: $desktop-breakpoint) {}
 }

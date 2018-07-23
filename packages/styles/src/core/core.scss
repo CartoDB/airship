@@ -14,9 +14,17 @@
 }
 
 .airship-app {
-  position: relative;
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
+}
 
-  border: 2px solid red;
+.as-map-container {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+
+.as-map-wrapper {
+  flex: 1;
 }
