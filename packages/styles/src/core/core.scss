@@ -8,7 +8,9 @@
 @import 'layout/_toolbar';
 
 :root {
-  --primary-color: #{$primary-color};
+  --brand-01-color: #{$brand-01-color};
+  --brand-02-color: #{$brand-02-color};
+  --brand-03-color: #{$brand-03-color};
 }
 
 .airship-app {

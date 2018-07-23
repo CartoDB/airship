@@ -1,4 +1,6 @@
 .as-toolbar {
+  background-color: var(--brand-02-color, $brand-02-color);
+
   &--vertical {
     width: 60px;
     height: 100%;
@@ -10,14 +12,14 @@
   }
 
   &--bg-brand-1 {
-    background-color: #1785FB;
+    background-color: var(--brand-01-color, $brand-01-color);
   }
 
   &--bg-brand-2 {
-    background-color: #0F2D53;
+    background-color: var(--brand-02-color, $brand-02-color);
   }
 
   &--bg-brand-3 {
-    background-color: #47DB99;
+    background-color: var(--brand-03-color, $brand-03-color);
   }
 }
