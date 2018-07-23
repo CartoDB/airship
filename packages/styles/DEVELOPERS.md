@@ -8,5 +8,5 @@
     - **helpers**: Contains all `sass` helpers and mixings used in the project
     - **variables**: Contains all `sass` variables.
     - **base:** Basic style reset for native elements
-  - **components:** Every component has its own folder
+  - **elements:** Every css element has its own folder
   - **utils:** Styles
