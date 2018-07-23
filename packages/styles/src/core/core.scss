@@ -1,10 +1,20 @@
+@import 'lib/_reset';
 @import 'variables/_variables';
 
-* {
-  box-sizing: border-box;
-  font-family: sans-serif;
-}
+// Layout Elements
+@import 'layout/_bottom-bar';
+@import 'layout/_map';
+@import 'layout/_sidebar';
+@import 'layout/_toolbar';
 
 :root {
   --primary-color: #{$primary-color};
+}
+
+.airship-app {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+
+  border: 2px solid red;
 }

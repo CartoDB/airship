@@ -1,0 +1,23 @@
+.as-toolbar {
+  &--vertical {
+    width: 60px;
+    height: 100%;
+  }
+
+  &--horizontal {
+    width: 100%;
+    height: 60px;
+  }
+
+  &--bg-brand-1 {
+    background-color: #1785FB;
+  }
+
+  &--bg-brand-2 {
+    background-color: #0F2D53;
+  }
+
+  &--bg-brand-3 {
+    background-color: #47DB99;
+  }
+}
