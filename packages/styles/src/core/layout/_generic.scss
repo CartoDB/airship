@@ -31,6 +31,14 @@
         overflow-x: hidden;
       }
     }
+
+    &--nav-left,
+    &--nav-right {
+      .as-toolbar__actions {
+        flex-direction: column;
+        justify-content: flex-start;
+      }
+    }
   }
 
   @media all and (min-width: $desktop-breakpoint) {}
