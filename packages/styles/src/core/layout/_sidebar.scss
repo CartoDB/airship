@@ -1,17 +1,17 @@
 // Block
 .as-sidebar {
   position: absolute;
-  z-index: 1;
+  z-index: 2;
   top: 104px;
   width: 100%;
   height: calc(100% - 104px);
   transition: opacity 0.3s;
   opacity: 0;
   background-color: white;
-  box-shadow: rgba(44, 44, 44, 0.16) 0 1px 4px 0;
 
   &--left {
     left: -100%;
+    box-shadow: rgba(44, 44, 44, 0.16) 1px 0 4px 0;
 
     &--visible {
       left: 0;
@@ -21,6 +21,7 @@
 
   &--right {
     right: -100%;
+    box-shadow: rgba(44, 44, 44, 0.16) 0 1px 4px 0;
 
     &--visible {
       right: 0;
