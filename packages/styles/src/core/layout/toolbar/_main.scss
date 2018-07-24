@@ -1,0 +1,33 @@
+.as-toolbar-main {
+  display: flex;
+  height: 52px;
+  background-color: var(--brand-02-color, $brand-02-color);
+
+  &--bg-brand-1 {
+    background-color: var(--brand-01-color, $brand-01-color);
+  }
+
+  &--bg-brand-2 {
+    background-color: var(--brand-02-color, $brand-02-color);
+  }
+
+  &--bg-brand-3 {
+    background-color: var(--brand-03-color, $brand-03-color);
+  }
+
+  &__item {
+    filter: invert(100%);
+    width: 48px;
+    min-width: 48px;
+    height: 48px;
+    min-height: 48px;
+    padding: 8px;
+  }
+
+  // Media queries
+  @media all and (min-width: $tablet-breakpoint) {
+    &__toggle {
+      display: none;
+    }
+  }
+}

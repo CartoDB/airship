@@ -6,7 +6,7 @@
   height: 100vh;
   overflow: hidden;
 
-  .as-toolbar {
+  .as-toolbar-main {
     width: 100%;
   }
 
@@ -15,7 +15,7 @@
     &--nav-left {
       flex-direction: row;
 
-      .as-toolbar {
+      .as-toolbar-main {
         width: 60px;
         height: 100%;
         overflow-x: hidden;
@@ -25,7 +25,7 @@
     &--nav-right {
       flex-direction: row-reverse;
 
-      .as-toolbar {
+      .as-toolbar-main {
         width: 60px;
         height: 100%;
         overflow-x: hidden;
@@ -34,7 +34,7 @@
 
     &--nav-left,
     &--nav-right {
-      .as-toolbar__actions {
+      .as-toolbar-actions {
         flex-direction: column;
         justify-content: flex-start;
       }

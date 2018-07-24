@@ -1,0 +1,38 @@
+.as-toolbar-tabs {
+  display: flex;
+  justify-content: space-around;
+  height: 52px;
+  background-color: var(--brand-02-color, $brand-02-color);
+
+  &--bg-brand-1 {
+    background-color: var(--brand-01-color, $brand-01-color);
+  }
+
+  &--bg-brand-2 {
+    background-color: var(--brand-02-color, $brand-02-color);
+  }
+
+  &--bg-brand-3 {
+    background-color: var(--brand-03-color, $brand-03-color);
+  }
+
+  &__item {
+    flex: 1;
+    height: 100%;
+    border-bottom: 4px solid transparent;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    line-height: 52px;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  &__item--active {
+    border-bottom: 4px solid white;
+  }
+
+  // Media queries
+  @media all and (min-width: $tablet-breakpoint) {
+    display: none;
+  }
+}
