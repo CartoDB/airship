@@ -23,7 +23,7 @@
 
 </head>
 
-<body class="airship-app airship-app--nav-left">
+<body class="airship-app airship-app--nav-top">
 
 
   <header>
@@ -52,15 +52,16 @@
     </nav>
     <!-- tabs -->
     <nav class="as-toolbar-tabs">
-      <span onclick="_showTab0(event)" class="as-toolbar-tabs__item">LEFT SIDEBAR</span>
-      <span onclick="_showTab1(event)" class="as-toolbar-tabs__item as-toolbar-tabs__item--active">MAP</span>
-      <span onclick="_showTab2(event)" class="as-toolbar-tabs__item">RIGHT SIDEBAR</span>
+      <span onclick="_showTab0(event)" class="as-toolbar-tabs__item">LEFT LONG NAME </span>
+      <span onclick="_showTab1(event)" class="as-toolbar-tabs__item as-toolbar-tabs__item--active">MAP LONG NAME</span>
+      <span onclick="_showTab2(event)" class="as-toolbar-tabs__item">RIGHT LONG NAME</span>
+      <span onclick="_showTab3(event)" class="as-toolbar-tabs__item">BOTTOM LONG NAME </span>
     </nav>
   </header>
 
 
   <div class="as-app-container">
-    <aside class="as-sidebar as-sidebar--left as-sidebar--xl">
+    <aside class="as-sidebar as-sidebar--left">
       LEFT-SIDEBAR
     </aside>
 
@@ -69,6 +70,10 @@
       <div class="as-bottom-bar">
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, quaerat earum quia ab nam velit cupiditate est
           ex temporibus reiciendis ut aspernatur voluptas nobis tempora qui eius. Architecto, repudiandae aliquam!</p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis ipsa quo ex adipisci. Deleniti quae dolorum tenetur quod
+        blanditiis veniam sapiente assumenda at sunt facere placeat suscipit, enim distinctio nesciunt?
+
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Et sed fugit iusto recusandae quis pariatur perferendis aspernatur, eius tenetur, ab harum impedit amet minima in odio hic nihil saepe dolorem.
       </div>
     </div>
 
@@ -112,6 +117,7 @@
     function _showTab0(event) {
       document.querySelector('.as-sidebar.as-sidebar--left').classList.add('as-sidebar--left--visible');
       document.querySelector('.as-sidebar.as-sidebar--right').classList.remove('as-sidebar--right--visible');
+      document.querySelector('.as-bottom-bar').classList.remove('as-bottom-bar--visible');
       document.querySelector('.as-toolbar-tabs .as-toolbar-tabs__item--active').classList.remove('as-toolbar-tabs__item--active');
       event.target.classList.add('as-toolbar-tabs__item--active');
     }
@@ -119,6 +125,7 @@
     function _showTab1(event) {
       document.querySelector('.as-sidebar.as-sidebar--left').classList.remove('as-sidebar--left--visible');
       document.querySelector('.as-sidebar.as-sidebar--right').classList.remove('as-sidebar--right--visible');
+      document.querySelector('.as-bottom-bar').classList.remove('as-bottom-bar--visible');
       document.querySelector('.as-toolbar-tabs .as-toolbar-tabs__item--active').classList.remove('as-toolbar-tabs__item--active');
       event.target.classList.add('as-toolbar-tabs__item--active');
     }
@@ -126,6 +133,15 @@
     function _showTab2(event) {
       document.querySelector('.as-sidebar.as-sidebar--right').classList.add('as-sidebar--right--visible');
       document.querySelector('.as-sidebar.as-sidebar--left').classList.remove('as-sidebar--left--visible');
+      document.querySelector('.as-bottom-bar').classList.remove('as-bottom-bar--visible');
+      document.querySelector('.as-toolbar-tabs .as-toolbar-tabs__item--active').classList.remove('as-toolbar-tabs__item--active');
+      event.target.classList.add('as-toolbar-tabs__item--active');
+    }
+
+     function _showTab3(event) {
+      document.querySelector('.as-sidebar.as-sidebar--right').classList.remove('as-sidebar--right--visible');
+      document.querySelector('.as-sidebar.as-sidebar--left').classList.remove('as-sidebar--left--visible');
+      document.querySelector('.as-bottom-bar').classList.add('as-bottom-bar--visible');
       document.querySelector('.as-toolbar-tabs .as-toolbar-tabs__item--active').classList.remove('as-toolbar-tabs__item--active');
       event.target.classList.add('as-toolbar-tabs__item--active');
     }

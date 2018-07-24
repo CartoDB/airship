@@ -58,6 +58,39 @@ declare global {
   }
 }
 
+
+declare global {
+
+  namespace StencilComponents {
+    interface AsToolbar {
+
+    }
+  }
+
+  interface HTMLAsToolbarElement extends StencilComponents.AsToolbar, HTMLStencilElement {}
+
+  var HTMLAsToolbarElement: {
+    prototype: HTMLAsToolbarElement;
+    new (): HTMLAsToolbarElement;
+  };
+  interface HTMLElementTagNameMap {
+    'as-toolbar': HTMLAsToolbarElement;
+  }
+  interface ElementTagNameMap {
+    'as-toolbar': HTMLAsToolbarElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'as-toolbar': JSXElements.AsToolbarAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface AsToolbarAttributes extends HTMLAttributes {
+
+    }
+  }
+}
+
 declare global { namespace JSX { interface StencilJSX {} } }
 
 export declare function defineCustomElements(window: any): void;
