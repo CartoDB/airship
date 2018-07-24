@@ -1,20 +1,20 @@
-import { TestWindow } from '@stencil/core/testing';
-import { Switch } from './as-switch';
+import { TestWindow } from '@stencil/core/dist/testing';
+import { Toolbar } from './as-toolbar';
 
 describe('as-switch', () => {
   it('should build', () => {
-    expect(new Switch()).toBeTruthy();
+    expect(new Toolbar()).toBeTruthy();
   });
 
   describe('Behaviour', () => {
-    let element: HTMLSwitchElement;
+    let element: HTMLAsToolbarElement;
     let testWindow: TestWindow;
 
     beforeEach(async () => {
       testWindow = new TestWindow();
       element = await testWindow.load({
-        components: [Switch],
-        html: '<as-switch></as-switch>'
+        components: [Toolbar],
+        html: '<as-toolbar></as-toolbar>'
       });
     });
 

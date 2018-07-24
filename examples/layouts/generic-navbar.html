@@ -27,40 +27,15 @@
 
 <body class="airship-app airship-app--nav-top">
 
-
-  <header>
-    <!-- main -->
-    <nav class="as-toolbar-main">
-      <img onclick="_toggleDrawer()" class="as-toolbar-main__item as-toolbar-main__toggle" src="https://material.io/tools/icons/static/icons/baseline-menu-24px.svg"
-        alt="">
-      <div class="as-toolbar-actions">
-        <span class="as-toolbar-main__item">
-          <img src="https://material.io/tools/icons/static/icons/baseline-fingerprint-24px.svg" alt="Ajustes">
-          <p>Ajustes</p>
-        </span>
-        <span class="as-toolbar-main__item">
-          <img src="https://material.io/tools/icons/static/icons/baseline-add_location-24px.svg" alt="Ajustes">
-          <p>Ajustes</p>
-        </span>
-        <span class="as-toolbar-main__item">
-          <img src="https://material.io/tools/icons/static/icons/baseline-account_circle-24px.svg" alt="User">
-          <p>User</p>
-        </span>
-        <span class="as-toolbar-main__item">
-          <img src="https://material.io/tools/icons/static/icons/baseline-power_settings_new-24px.svg" alt="Rendimiento">
-          <p>Rendimiento</p>
-        </span>
-      </div>
-    </nav>
-    <!-- tabs -->
-    <nav class="as-toolbar-tabs">
-      <span onclick="_showTab0(event)" class="as-toolbar-tabs__item">LEFT LONG NAME </span>
-      <span onclick="_showTab1(event)" class="as-toolbar-tabs__item as-toolbar-tabs__item--active">MAP LONG NAME</span>
-      <span onclick="_showTab2(event)" class="as-toolbar-tabs__item">RIGHT LONG NAME</span>
-      <span onclick="_showTab3(event)" class="as-toolbar-tabs__item">BOTTOM LONG NAME </span>
-    </nav>
-  </header>
-
+  <as-toolbar>
+    <img onclick="_toggleDrawer()" class="as-toolbar-main__item as-toolbar-main__toggle" src="https://material.io/tools/icons/static/icons/baseline-menu-24px.svg" alt="">
+    <div class="as-toolbar-actions">
+      <as-toolbar-item src="https://material.io/tools/icons/static/icons/baseline-fingerprint-24px.svg" text="Ajustes"></as-toolbar-item>
+      <as-toolbar-item src="https://material.io/tools/icons/static/icons/baseline-add_location-24px.svg" text="Ajustes"></as-toolbar-item>
+      <as-toolbar-item src="https://material.io/tools/icons/static/icons/baseline-account_circle-24px.svg" text="User"></as-toolbar-item>
+      <as-toolbar-item src="https://material.io/tools/icons/static/icons/baseline-power_settings_new-24px.svg" text="Rendimiento"></as-toolbar-item>
+    </div>
+  </as-toolbar>
 
   <div class="as-app-container">
     <aside class="as-sidebar as-sidebar--left">
@@ -73,9 +48,9 @@
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, quaerat earum quia ab nam velit cupiditate est
           ex temporibus reiciendis ut aspernatur voluptas nobis tempora qui eius. Architecto, repudiandae aliquam!</p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis ipsa quo ex adipisci. Deleniti quae dolorum tenetur quod
-        blanditiis veniam sapiente assumenda at sunt facere placeat suscipit, enim distinctio nesciunt?
-
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Et sed fugit iusto recusandae quis pariatur perferendis aspernatur, eius tenetur, ab harum impedit amet minima in odio hic nihil saepe dolorem.
+        blanditiis veniam sapiente assumenda at sunt facere placeat suscipit, enim distinctio nesciunt? Lorem, ipsum dolor
+        sit amet consectetur adipisicing elit. Et sed fugit iusto recusandae quis pariatur perferendis aspernatur, eius tenetur,
+        ab harum impedit amet minima in odio hic nihil saepe dolorem.
       </div>
     </div>
 
@@ -140,7 +115,7 @@
       event.target.classList.add('as-toolbar-tabs__item--active');
     }
 
-     function _showTab3(event) {
+    function _showTab3(event) {
       document.querySelector('.as-sidebar.as-sidebar--right').classList.remove('as-sidebar--right--visible');
       document.querySelector('.as-sidebar.as-sidebar--left').classList.remove('as-sidebar--left--visible');
       document.querySelector('.as-bottom-bar').classList.add('as-bottom-bar--visible');

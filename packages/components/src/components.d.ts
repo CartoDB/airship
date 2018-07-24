@@ -62,6 +62,41 @@ declare global {
 declare global {
 
   namespace StencilComponents {
+    interface AsToolbarItem {
+      'src': string;
+      'text': string;
+    }
+  }
+
+  interface HTMLAsToolbarItemElement extends StencilComponents.AsToolbarItem, HTMLStencilElement {}
+
+  var HTMLAsToolbarItemElement: {
+    prototype: HTMLAsToolbarItemElement;
+    new (): HTMLAsToolbarItemElement;
+  };
+  interface HTMLElementTagNameMap {
+    'as-toolbar-item': HTMLAsToolbarItemElement;
+  }
+  interface ElementTagNameMap {
+    'as-toolbar-item': HTMLAsToolbarItemElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'as-toolbar-item': JSXElements.AsToolbarItemAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface AsToolbarItemAttributes extends HTMLAttributes {
+      'src'?: string;
+      'text'?: string;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
     interface AsToolbar {
 
     }
