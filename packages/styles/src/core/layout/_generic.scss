@@ -8,10 +8,10 @@
 
   .as-toolbar {
     width: 100%;
-    height: 60px;
   }
 
   @media all and (min-width: $tablet-breakpoint) {
+    // MODIFIERS
     &--nav-left {
       flex-direction: row;
 

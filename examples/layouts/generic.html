@@ -7,6 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Generic Layout</title>
   <link rel="stylesheet" href="../../packages/styles/dist/airship.css">
+  <!-- INCLUDE TYPOGRAFY -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
   <!-- CARTO.js -->
   <!-- Include Leaflet -->
@@ -21,18 +23,32 @@
 
 </head>
 
-<body class="airship-app airship-app--nav-left">
+<body class="airship-app airship-app--nav-top">
 
-  <nav class="as-toolbar as-toolbar--bg-brand-2">
-    <img class="as-toolbar__item" src="https://cdn2.iconfinder.com/data/icons/circle-icons-1/64/blimp-512.png" alt="">
-    <img onclick="_toggleLeft()" class="as-toolbar__item" src="https://www.99games.in/resources/images/icons/icon-hamburger-light.svg" alt="">
-    <img onclick="_toggleRight()" class="as-toolbar__item" src="https://www.99games.in/resources/images/icons/icon-hamburger-light.svg" alt="">
-  </nav>
+
+  <header class="as-toolbar">
+    <nav class="as-toolbar__main">
+        <img onclick="_toggleDrawer()" class="as-toolbar__item as-toolbar__toggle" src="https://material.io/tools/icons/static/icons/baseline-menu-24px.svg" alt="">
+        <div class="as-toolbar__actions">
+            <img class="as-toolbar__item" src="https://material.io/tools/icons/static/icons/baseline-fingerprint-24px.svg" alt="Ajustes">
+            <img class="as-toolbar__item" src="https://material.io/tools/icons/static/icons/baseline-add_location-24px.svg" alt="Ajustes">
+            <img class="as-toolbar__item" src="https://material.io/tools/icons/static/icons/baseline-account_circle-24px.svg" alt="User">
+            <img class="as-toolbar__item" src="https://material.io/tools/icons/static/icons/baseline-power_settings_new-24px.svg" alt="Rendimiento">
+        </div>
+    </nav>
+    <nav class="as-toolbar__tabs">
+      <span onclick="_toggleLeft()" class="as-toolbar__tab-item">LEFT SIDEBAR</span>
+      <span class="as-toolbar__tab-item as-toolbar__tab-item--active">MAP</span>
+      <span onclick="_toggleRight()"  class="as-toolbar__tab-item">RIGHT SIDEBAR</span>
+    </nav>
+  </header>
+
 
   <div class="as-app-container">
-    <aside class="as-sidebar as-sidebar--left">
+    <aside class="as-sidebar as-sidebar--left as-sidebar--xl">
       LEFT-SIDEBAR
     </aside>
+
     <div class="as-map-wrapper">
       <div id="map"></div>
     </div>
@@ -70,8 +86,11 @@
     client.getLeafletLayer().addTo(map);
 
 
+    function _toggleDrawer() {
+      document.querySelector('.as-toolbar__actions').classList.toggle('as-toolbar__actions--visible');
+    }
+
     function _toggleLeft() {
-      console.log('togle left');
       document.querySelector('.as-sidebar.as-sidebar--left').classList.toggle('as-sidebar--left--visible');
     }
 

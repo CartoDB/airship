@@ -1,5 +1,4 @@
 .as-toolbar {
-  padding: 12px;
   background-color: var(--brand-02-color, $brand-02-color);
 
   &--bg-brand-1 {
@@ -15,15 +14,78 @@
   }
 
   // Elements
+  &__actions {
+    display: flex;
+    position: absolute;
+    z-index: 1;
+    top: 52px;
+    right: 0;
+    bottom: 0;
+    left: -100%;
+    flex-direction: column;
+    width: 100%;
+    transition: left 0.3s;
+    background-color: var(--brand-02-color, $brand-02-color);
+  }
+
+  &__actions--visible {
+    left: 0;
+  }
+
+  &__toggle {
+    display: initial;
+  }
+
   &__item {
-    max-width: 100%;
-    max-height: 100%;
-    padding: 4px;
+    filter: invert(100%);
+    width: 48px;
+    height: 48px;
+    padding: 8px;
+  }
+
+  &__main {
+    display: flex;
+    height: 52px;
+  }
+
+  &__tabs {
+    display: flex;
+    justify-content: space-around;
+    height: 52px;
+  }
+
+  &__tab-item {
+    flex: 1;
+    height: 100%;
+    border-bottom: 4px solid transparent;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    line-height: 52px;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  &__tab-item--active {
+    border-bottom: 4px solid white;
   }
 
   // Media queries
   @media all and (min-width: $tablet-breakpoint) {
+    &__tabs {
+      display: none;
+    }
 
+    &__actions {
+      position: initial;
+      z-index: 1;
+      flex-direction: row;
+      justify-content: flex-end;
+      margin-right: 16px;
+    }
+
+    &__toggle {
+      display: none;
+    }
   }
 
   @media all and (min-width: $desktop-breakpoint) {}
