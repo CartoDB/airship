@@ -39,9 +39,9 @@
     </nav>
     <!-- tabs -->
     <nav class="as-toolbar-tabs">
-      <span onclick="_toggleLeft()" class="as-toolbar-tabs__item">LEFT SIDEBAR</span>
-      <span class="as-toolbar-tabs__item as-toolbar-tabs__item--active">MAP</span>
-      <span onclick="_toggleRight()"  class="as-toolbar-tabs__item">RIGHT SIDEBAR</span>
+      <span onclick="_showTab0(event)" class="as-toolbar-tabs__item">LEFT SIDEBAR</span>
+      <span onclick="_showTab1(event)" class="as-toolbar-tabs__item as-toolbar-tabs__item--active">MAP</span>
+      <span onclick="_showTab2(event)" class="as-toolbar-tabs__item">RIGHT SIDEBAR</span>
     </nav>
   </header>
 
@@ -92,12 +92,25 @@
       document.querySelector('.as-toolbar-actions').classList.toggle('as-toolbar-actions--visible');
     }
 
-    function _toggleLeft() {
-      document.querySelector('.as-sidebar.as-sidebar--left').classList.toggle('as-sidebar--left--visible');
+    function _showTab0(event) {
+      document.querySelector('.as-sidebar.as-sidebar--left').classList.add('as-sidebar--left--visible');
+      document.querySelector('.as-sidebar.as-sidebar--right').classList.remove('as-sidebar--right--visible');
+      document.querySelector('.as-toolbar-tabs .as-toolbar-tabs__item--active').classList.remove('as-toolbar-tabs__item--active');
+      event.target.classList.add('as-toolbar-tabs__item--active');
     }
 
-    function _toggleRight() {
-      document.querySelector('.as-sidebar.as-sidebar--right').classList.toggle('as-sidebar--right--visible');
+    function _showTab1(event) {
+      document.querySelector('.as-sidebar.as-sidebar--left').classList.remove('as-sidebar--left--visible');
+      document.querySelector('.as-sidebar.as-sidebar--right').classList.remove('as-sidebar--right--visible');
+      document.querySelector('.as-toolbar-tabs .as-toolbar-tabs__item--active').classList.remove('as-toolbar-tabs__item--active');
+      event.target.classList.add('as-toolbar-tabs__item--active');
+    }
+
+    function _showTab2(event) {
+      document.querySelector('.as-sidebar.as-sidebar--right').classList.add('as-sidebar--right--visible');
+      document.querySelector('.as-sidebar.as-sidebar--left').classList.remove('as-sidebar--left--visible');
+      document.querySelector('.as-toolbar-tabs .as-toolbar-tabs__item--active').classList.remove('as-toolbar-tabs__item--active');
+      event.target.classList.add('as-toolbar-tabs__item--active');
     }
   </script>
 </body>
