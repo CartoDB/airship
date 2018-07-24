@@ -28,13 +28,13 @@
   @media all and (min-width: $tablet-breakpoint) {
     position: initial;
     z-index: 1;
-    flex-direction: row;
-    justify-content: flex-end;
-    margin-right: 16px;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
+    flex-direction: row;
+    justify-content: flex-end;
     width: 100%;
+    margin-right: 16px;
   }
 }
