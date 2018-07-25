@@ -1,11 +1,6 @@
 @import 'lib/_reset';
 @import 'variables/_variables';
-
-// Layout Elements
-@import 'layout/_generic';
-@import 'layout/_floating-containers';
-@import 'layout/_sidebar';
-@import 'layout/toolbar/_toolbar';
+@import 'layout/_layout';
 
 :root {
   --brand-01-color: #{$brand-01-color};
