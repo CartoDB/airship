@@ -4,7 +4,7 @@ Airhip is designed to develop Location Intelligence apps with the least possible
 
 ## Overview
 
-An airship app should always be wrapped inside an element with the `.airship-app` class. 
+An airship app should always be wrapped inside an element with the `.as-app` class. 
 
 You usually have the following elements:
 
@@ -26,7 +26,7 @@ responsive: true
 lang: html
 collapsed: true
 ---
-  <body class="airship-app airship-app--nav-top">
+  <body class="as-app as-app--nav-top">
     <header>
       <nav class="as-toolbar-main"></nav>
     </header>
@@ -50,7 +50,7 @@ responsive: true
 lang: html
 collapsed: true
 ---
-<body class="airship-app airship-app--nav-top">
+<body class="as-app as-app--nav-top">
   <header>
     <nav class="as-toolbar-main">
     </nav>
