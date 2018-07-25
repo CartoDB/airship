@@ -91,15 +91,39 @@ responsive: true
 lang: html
 collapsed: true
 ---
-  <body class="airship-app airship-app--nav-top">
-    <header>
-      <nav class="as-toolbar-main"></nav>
-    </header>
+<body class="as-app as-app--nav-top">
+  <header>
+    <nav class="as-toolbar-main">
+      <img onclick="openSideMenu()" class="as-toolbar-main__item as-toolbar-main__toggle" src="https://material.io/tools/icons/static/icons/baseline-menu-24px.svg"
+      alt="Open side menu">
 
-    <div class="as-app-container">
-      <div id="map"></div>
-    </div>
-  </body>
+      <div class="as-toolbar-actions">
+        <span class="as-toolbar-main__item">
+          <img src="https://material.io/tools/icons/static/icons/baseline-fingerprint-24px.svg" alt="Ajustes">
+          <p>Ajustes</p>
+        </span>
+        <span class="as-toolbar-main__item">
+          <img src="https://material.io/tools/icons/static/icons/baseline-add_location-24px.svg" alt="Ajustes">
+          <p>Ajustes</p>
+        </span>
+        <span class="as-toolbar-main__item">
+          <img src="https://material.io/tools/icons/static/icons/baseline-account_circle-24px.svg" alt="User">
+          <p>User</p>
+        </span>
+        <span class="as-toolbar-main__item">
+          <img src="https://material.io/tools/icons/static/icons/baseline-power_settings_new-24px.svg" alt="Rendimiento">
+          <p>Rendimiento</p>
+        </span>
+      </div>
+    </nav>
+  </header>
+
+  <script>
+    function openSideMenu() {
+      document.querySelector('.as-toolbar-actions').classList.toggle('as-toolbar-actions--visible');
+    }
+  </script>
+</body>
 ```
 
 ## Sidebar
