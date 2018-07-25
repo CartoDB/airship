@@ -1,16 +1,16 @@
 # Layouts
 
-Airhip is designed to develop Location Intelligence apps with the least possible effort. To do this, it provides the most common layouts by default so that they can be easily included.
+Airship is designed to develop Location Intelligence apps without effort. To do this, it provides a set of the most common layouts by default, so that they can be easily used to create your application.
 
 ## Overview
 
-An airship app should always be wrapped inside an element with the `.airship-app` class. 
+An airship app should always be wrapped inside an element with the `.as-app` class.
 
-You usually have the following elements:
+These are the most common elements:
 
-- **Toolbar**: A small bar where the main navigation and options are located, only icons, text and the app logo should be placed here.
-- **Sidebar**: Sidebars are located beside the map wrapper, you can place almost everything you want in the sidebars. 
-- **Map Wrapper**: This is the area where the map will be placed. Airship has some utilities to place floating panels over the map.
+- **Toolbar**: where the main navigation and options are located. Only icons, text and the app logo should be placed here.
+- **Sidebar**: a section of content beside the map wrapper, where you can place your desired content.
+- **Map Wrapper**: the area where the map will be placed. Airship includes some floating panels to be positioned over the map with your custom content.
 
 
 ### Basic Layout
@@ -20,6 +20,71 @@ noSource: true
 responsive: true
 ---
 <iframe src="/examples/layouts/basic-layout.html" style="width: 100%; height: 100%;">
+```
+
+```code
+lang: html
+collapsed: true
+---
+  <body class="as-app as-app--nav-top">
+    <header>
+      <nav class="as-toolbar-main"></nav>
+    </header>
+
+    <div class="as-app-container">
+      <div id="map"></div>
+    </div>
+  </body>
+```
+
+### Toolbar
+Toolbar is a generic bar that can be used as a header to put your application logo and some options to navigate throughout your application.
+
+The toolbar is placed in the top of your application unless you modify its position by using `left` or `right` modifiers in `airship-app` styles.
+  - `airship-app--nav-left`: Push the toolbar to the left of the viewport.
+  - `airship-app--nav-right`: Push the toolbar to the right of the viewport.
+
+### Toolbar Actions
+
+Your toolbar can contain several buttons to trigger actions in your application. These actions need to be grouped in an element with `.as-toolbar-actions` class.
+
+```code
+lang:html
+---
+<nav class="as-toolbar-main">
+  <div class="as-toolbar-actions">
+    <span class="as-toolbar-main__item">
+      <img src="https://material.io/tools/icons/static/icons/baseline-fingerprint-24px.svg" alt="Ajustes">
+      <p>Ajustes</p>
+    </span>
+  </div>
+</nav>
+```
+
+When seeing it in mobile, these actions are grouped in a hamburger menu, needing a button to show the menu.
+
+```code
+lang:html
+---
+<nav class="as-toolbar-main">
+  <img onclick="openSideMenu()" class="as-toolbar-main__item as-toolbar-main__toggle" src="https://material.io/tools/icons/static/icons/baseline-menu-24px.svg"
+  alt="Open side menu">
+
+  <div class="as-toolbar-actions">
+    <span class="as-toolbar-main__item">
+      <img src="https://material.io/tools/icons/static/icons/baseline-fingerprint-24px.svg" alt="Ajustes">
+      <p>Ajustes</p>
+    </span>
+  </div>
+</div>
+```
+
+### Toolbar Example
+```html
+noSource: true
+responsive: true
+---
+<iframe src="/examples/layouts/layout-with-actions.html" style="width: 100%; height: 100%;">
 ```
 
 ```code
@@ -37,68 +102,18 @@ collapsed: true
   </body>
 ```
 
-### Layout with Sidebar
-
-```html
-noSource: true
-responsive: true
----
-<iframe src="/examples/layouts/with-sidebar.html" style="width: 100%; height: 100%;">
-```
-
-```code
-lang: html
-collapsed: true
----
-<body class="airship-app airship-app--nav-top">
-  <header>
-    <nav class="as-toolbar-main">
-    </nav>
-    <nav class="as-toolbar-tabs">
-      <span onclick="_showMap(event)" class="as-toolbar-tabs__item as-toolbar-tabs__item--active">Map</span>
-      <span onclick="_showLegends(event)" class="as-toolbar-tabs__item">Legends</span>
-    </nav>
-  </header>
-
-
-  <div class="as-app-container">
-    <aside class="as-sidebar as-sidebar--left">
-      Legends
-    </aside>
-
-    <div class="as-map-wrapper">
-      <div id="map"></div>
-    </div>
-  </div>
-
-  <script>
-    function _showLegends(event) {
-      document.querySelector('.as-sidebar.as-sidebar--left').classList.add('as-sidebar--left--visible');
-      document.querySelector('.as-toolbar-tabs .as-toolbar-tabs__item--active').classList.remove('as-toolbar-tabs__item--active');
-      event.target.classList.add('as-toolbar-tabs__item--active');
-    }
-
-    function _showMap(event) {
-      document.querySelector('.as-sidebar.as-sidebar--left').classList.remove('as-sidebar--left--visible');
-      document.querySelector('.as-toolbar-tabs .as-toolbar-tabs__item--active').classList.remove('as-toolbar-tabs__item--active');
-      event.target.classList.add('as-toolbar-tabs__item--active');
-    }
-  </script>
-</body>
-```
-
 ## Sidebar
 
-Sidebars are located beside the map wrapper and should be located inside the `as-map-wrapper`. There is no restrictions regarding to the contents of a sidebar.
+Sidebars are beside the map wrapper and its code is located inside `as-map-wrapper`. There are no restrictions regarding the contents of a sidebar.
 
-Sidebars have to kinds of modifiers: position and size.
+Sidebars allow you to modify its position and size.
 
 - Position:
   - `as-sidebar--left`: Puts the sidebar on the left of the map.
   - `as-sidebar--right`: Puts the sidebar on the right of the map.
 - Size:
--  `as-sidebar--l`: Makes the sidebar width to be `360px` 
--  `as-sidebar--xl`: Makes the sidebar width to be `460px` 
+  - `as-sidebar--l`: Makes the sidebar width to be `360px`
+  - `as-sidebar--xl`: Makes the sidebar width to be `460px`
 
 
 ```html

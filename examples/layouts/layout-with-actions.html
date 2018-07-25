@@ -32,19 +32,31 @@
 <body class="airship-app airship-app--nav-top">
   <header>
     <nav class="as-toolbar-main">
-    </nav>
-    <nav class="as-toolbar-tabs">
-      <span onclick="_showMap(event)" class="as-toolbar-tabs__item as-toolbar-tabs__item--active">Map</span>
-      <span onclick="_showLegends(event)" class="as-toolbar-tabs__item">Legends</span>
+      <img onclick="openSideMenu()" class="as-toolbar-main__item as-toolbar-main__toggle" src="https://material.io/tools/icons/static/icons/baseline-menu-24px.svg"
+      alt="Open side menu">
+      <div class="as-toolbar-actions">
+        <span class="as-toolbar-main__item">
+          <img src="https://material.io/tools/icons/static/icons/baseline-fingerprint-24px.svg" alt="Ajustes">
+          <p>Ajustes</p>
+        </span>
+        <span class="as-toolbar-main__item">
+          <img src="https://material.io/tools/icons/static/icons/baseline-add_location-24px.svg" alt="Ajustes">
+          <p>Ajustes</p>
+        </span>
+        <span class="as-toolbar-main__item">
+          <img src="https://material.io/tools/icons/static/icons/baseline-account_circle-24px.svg" alt="User">
+          <p>User</p>
+        </span>
+        <span class="as-toolbar-main__item">
+          <img src="https://material.io/tools/icons/static/icons/baseline-power_settings_new-24px.svg" alt="Rendimiento">
+          <p>Rendimiento</p>
+        </span>
+      </div>
     </nav>
   </header>
 
 
   <div class="as-app-container">
-    <aside class="as-sidebar as-sidebar--left">
-      Legends
-    </aside>
-
     <div class="as-map-wrapper">
       <div id="map"></div>
     </div>
@@ -66,27 +78,19 @@
 
     const source = new carto.source.Dataset('ne_10m_populated_places_simple');
     const style = new carto.style.CartoCSS(`
-        #layer {
-          marker-width: 7;
-          marker-fill: #EE4D5A;
-          marker-line-color: #FFFFFF;
-        }
-      `);
+      #layer {
+        marker-width: 7;
+        marker-fill: #EE4D5A;
+        marker-line-color: #FFFFFF;
+      }
+    `);
     const layer = new carto.layer.Layer(source, style);
 
     client.addLayer(layer);
     client.getLeafletLayer().addTo(map);
 
-    function _showLegends(event) {
-      document.querySelector('.as-sidebar.as-sidebar--left').classList.add('as-sidebar--left--visible');
-      document.querySelector('.as-toolbar-tabs .as-toolbar-tabs__item--active').classList.remove('as-toolbar-tabs__item--active');
-      event.target.classList.add('as-toolbar-tabs__item--active');
-    }
-
-    function _showMap(event) {
-      document.querySelector('.as-sidebar.as-sidebar--left').classList.remove('as-sidebar--left--visible');
-      document.querySelector('.as-toolbar-tabs .as-toolbar-tabs__item--active').classList.remove('as-toolbar-tabs__item--active');
-      event.target.classList.add('as-toolbar-tabs__item--active');
+    function openSideMenu() {
+      document.querySelector('.as-toolbar-actions').classList.toggle('as-toolbar-actions--visible');
     }
   </script>
 </body>
