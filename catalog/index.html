@@ -1,5 +1,6 @@
 <!doctype html>
 <html>
+
 <head>
   <base href="/catalog/">
   <meta charset="utf-8">
@@ -9,6 +10,7 @@
   <link href="https://fonts.googleapis.com/css?family=Overpass+Mono|Roboto:300,400,500" rel="stylesheet">
   <link rel="stylesheet" href="../packages/styles/dist/airship.css">
 </head>
+
 <body>
   <div id="catalog" />
 
@@ -17,7 +19,6 @@
 
   <!-- Use the minified production version to get optimal performance -->
   <script src="https://unpkg.com/catalog@3/dist/catalog-standalone.min.js"></script>
-
   <script src="../packages/components/dist/airship.js"></script>
 
   <script>
@@ -48,6 +49,11 @@
               src: '../packages/styles/src/button/README.md'
             },
             {
+              path: '/styles/colors',
+              title: 'Colors',
+              src: '../packages/styles/src/core/variables/colors.md'
+            },
+            {
               path: '/styles/typography',
               title: 'Typography',
               src: '../packages/styles/src/core/typography/README.md'
@@ -57,5 +63,11 @@
       ]
     }, document.getElementById('catalog'));
   </script>
+  <style>
+      .catalog-1xsujkn-PageHeader-PageHeader {
+        background: #0F2D53;
+      }
+    </style>
 </body>
+
 </html>
