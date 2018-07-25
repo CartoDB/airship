@@ -5,8 +5,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Main Layout CDN</title>
+  <title>Generic Layout</title>
   <link rel="stylesheet" href="../../packages/styles/dist/airship.css">
+  <script src="../../packages/components/dist/airship.js"></script>
+
+  <!-- INCLUDE TYPOGRAFY -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
   <!-- CARTO.js -->
   <!-- Include Leaflet -->
@@ -21,57 +25,105 @@
 
 </head>
 
-<body class="airship-app">
-  <nav class="as-toolbar as-toolbar--responsive as-toolbar--bg-brand-2">
-    <img class="as-toolbar__item" src="https://cdn2.iconfinder.com/data/icons/circle-icons-1/64/blimp-512.png" alt="">
-    <img class="as-toolbar__item" src="https://cdn2.iconfinder.com/data/icons/circle-icons-1/64/blimp-512.png" alt="">
-    <img class="as-toolbar__item" src="https://cdn2.iconfinder.com/data/icons/circle-icons-1/64/blimp-512.png" alt="">
-  </nav>
+<body class="airship-app airship-app--nav-top">
 
 
+  <header>
+    <!-- main -->
+    <nav class="as-toolbar-main"></nav>
+    <!-- tabs -->
+    <nav class="as-toolbar-tabs">
+      <span onclick="_showTab0(event)" class="as-toolbar-tabs__item">LEFT </span>
+      <span onclick="_showTab1(event)" class="as-toolbar-tabs__item as-toolbar-tabs__item--active">MAP</span>
+      <span onclick="_showTab2(event)" class="as-toolbar-tabs__item">RIGHT</span>
+    </nav>
+  </header>
 
-  <div class="as-map-container">
-    <aside class="as-sidebar as-sidebar--right as-sidebar--l">
-      <div style="background:red; width: 150px; height: 50px"></div>
+
+  <div class="as-app-container">
+    <aside class="as-sidebar as-sidebar--left as-sidebar--xl">
+      <h1>Left Sidebar (XL)</h1>
+      <p>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt aliquam nihil nulla quo, cum excepturi commodi saepe dicta
+        impedit accusamus, nisi adipisci repellendus expedita rem dolores suscipit! Cumque, nulla culpa?
+      </p>
     </aside>
-    <main class="as-map-wrapper">
-      <div id="map">
-    </main>
-    <aside class="as-bottom-bar"></aside>
+
+    <div class="as-map-wrapper">
+      <div id="map"></div>
     </div>
 
+    <aside class="as-sidebar as-sidebar--right">
+      <h1>Right Sidebar</h1>
+      <p>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt aliquam nihil nulla quo, cum excepturi commodi saepe dicta
+        impedit accusamus, nisi adipisci repellendus expedita rem dolores suscipit! Cumque, nulla culpa?
+      </p>
+    </aside>
+  </div>
 
 
+  <script defer>
+    const map = L.map('map').setView([30, 0], 3);
+    map.scrollWheelZoom.disable();
 
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}.png', {
+      maxZoom: 18
+    }).addTo(map);
 
+    const client = new carto.Client({
+      apiKey: 'default_public',
+      username: 'cartojs-test'
+    });
 
-
-    <script>
-      const map = L.map('map').setView([30, 0], 3);
-      map.scrollWheelZoom.disable();
-
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}.png', {
-        maxZoom: 18
-      }).addTo(map);
-
-      const client = new carto.Client({
-        apiKey: 'default_public',
-        username: 'cartojs-test'
-      });
-
-      const source = new carto.source.Dataset('ne_10m_populated_places_simple');
-      const style = new carto.style.CartoCSS(`
+    const source = new carto.source.Dataset('ne_10m_populated_places_simple');
+    const style = new carto.style.CartoCSS(`
         #layer {
           marker-width: 7;
           marker-fill: #EE4D5A;
           marker-line-color: #FFFFFF;
         }
       `);
-      const layer = new carto.layer.Layer(source, style);
+    const layer = new carto.layer.Layer(source, style);
 
-      client.addLayer(layer);
-      client.getLeafletLayer().addTo(map);
-    </script>
+    client.addLayer(layer);
+    client.getLeafletLayer().addTo(map);
+
+
+    function _toggleDrawer() {
+      document.querySelector('.as-toolbar-actions').classList.toggle('as-toolbar-actions--visible');
+    }
+
+    function _showTab0(event) {
+      document.querySelector('.as-sidebar.as-sidebar--left').classList.add('as-sidebar--left--visible');
+      document.querySelector('.as-sidebar.as-sidebar--right').classList.remove('as-sidebar--right--visible');
+      document.querySelector('.as-toolbar-tabs .as-toolbar-tabs__item--active').classList.remove('as-toolbar-tabs__item--active');
+      event.target.classList.add('as-toolbar-tabs__item--active');
+    }
+
+    function _showTab1(event) {
+      document.querySelector('.as-sidebar.as-sidebar--left').classList.remove('as-sidebar--left--visible');
+      document.querySelector('.as-sidebar.as-sidebar--right').classList.remove('as-sidebar--right--visible');
+      document.querySelector('.as-toolbar-tabs .as-toolbar-tabs__item--active').classList.remove('as-toolbar-tabs__item--active');
+      event.target.classList.add('as-toolbar-tabs__item--active');
+    }
+
+    function _showTab2(event) {
+      document.querySelector('.as-sidebar.as-sidebar--right').classList.add('as-sidebar--right--visible');
+      document.querySelector('.as-sidebar.as-sidebar--left').classList.remove('as-sidebar--left--visible');
+      document.querySelector('.as-toolbar-tabs .as-toolbar-tabs__item--active').classList.remove('as-toolbar-tabs__item--active');
+      event.target.classList.add('as-toolbar-tabs__item--active');
+    }
+
+    function _showTab3(event) {
+      document.querySelector('.as-sidebar.as-sidebar--right').classList.remove('as-sidebar--right--visible');
+      document.querySelector('.as-sidebar.as-sidebar--left').classList.remove('as-sidebar--left--visible');
+      document.querySelector('.as-panels').classList.add('as-panels--visible');
+      document.querySelector('.as-toolbar-tabs .as-toolbar-tabs__item--active').classList.remove('as-toolbar-tabs__item--active');
+      event.target.classList.add('as-toolbar-tabs__item--active');
+    }
+
+  </script>
 </body>
 
 </html>
