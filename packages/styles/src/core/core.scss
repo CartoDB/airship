@@ -1,4 +1,5 @@
 @import 'variables/_variables';
+@import 'typography/_typography';
 
 * {
   box-sizing: border-box;
@@ -6,5 +7,5 @@
 }
 
 :root {
-  --primary-color: #{$primary-color};
+  --primary-color: #{$color-brand-10};
 }
