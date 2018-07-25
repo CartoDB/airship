@@ -89,7 +89,7 @@ collapsed: true
 
 ## Sidebar
 
-Sidebars are located beside the map wrapper and should be located inside the `as-map-wrapper`. There is no restrictions regardint to the contents of a sidebar.
+Sidebars are located beside the map wrapper and should be located inside the `as-map-wrapper`. There is no restrictions regarding to the contents of a sidebar.
 
 Sidebars have to kinds of modifiers: position and size.
 
