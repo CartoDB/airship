@@ -1,0 +1,83 @@
+.as-panels {
+  display: none;
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+
+  &--visible {
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media all and (min-width: $tablet-breakpoint) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: initial;
+    pointer-events: none;
+
+    &--h {
+      display: flex;
+      flex-direction: row;
+    }
+
+    &--v {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &--left {
+      position: absolute;
+      left: 0;
+    }
+
+    &--mid-left {
+      position: absolute;
+      top: 50%;
+      left: 0;
+    }
+
+    &--top {
+      position: absolute;
+      top: 0;
+    }
+
+    &--right {
+      position: absolute;
+      right: 0;
+    }
+
+    &--mid-right {
+      position: absolute;
+      top: 50%;
+      right: 0;
+    }
+
+    &--bot {
+      position: absolute;
+      bottom: 0;
+    }
+
+    &__bottom {
+      position: absolute;
+      z-index: 2;
+      bottom: 0;
+      max-height: 200px;
+      background-color: white;
+      pointer-events: auto;
+    }
+
+
+    &__element {
+      max-width: 200px;
+      margin: 4px;
+      padding: 4px;
+      border-radius: 4px;
+      background: white;
+      box-shadow: rgba(44, 44, 44, 0.16) 0 1px 4px 0;
+    }
+  }
+}
