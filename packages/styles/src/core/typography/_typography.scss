@@ -1,32 +1,32 @@
 .as-caption,
 .font-xs {
-  font: 10px/12px "Roboto", sans-serif;
+  font: 10px/12px $font-base;
 }
 
 .as-body,
 .font-s {
-  font: 12px/20px "Roboto", sans-serif;
+  font: 12px/20px $font-base;
 }
 
 .as-subheader,
 .font-m {
-  font: 16px/24px "Roboto", sans-serif;
+  font: 16px/24px $font-base;
 }
 
 .as-title,
 .font-l {
-  font: 24px/32px "Roboto", sans-serif;
+  font: 24px/32px $font-base;
 }
 
 .as-display,
 .font-xl {
-  font: 40px/56px "Roboto", sans-serif;
+  font: 40px/56px $font-base;
   font-weight: 300;
 }
 
 .as-jumbo,
 .font-xxl {
-  font: 72px/80px "Roboto", sans-serif;
+  font: 72px/80px $font-base;
   font-weight: 300;
 }
 
@@ -35,5 +35,5 @@
 }
 
 .as-font-mono {
-  font-family: 'Overpass Mono', sans-serif;
+  font-family: $font-monospace-base;
 }
