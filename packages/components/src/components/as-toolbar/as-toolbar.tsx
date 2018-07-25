@@ -3,7 +3,7 @@ import { Component } from '@stencil/core';
 @Component({
   shadow: false,
   styleUrls: [
-    '../../../../styles/src/core/layout/toolbar/_toolbar.scss',
+    // '../../../../styles/src/core/layout/toolbar/_toolbar.scss',
     './as-toolbar.scss'
   ],
   tag: 'as-toolbar',

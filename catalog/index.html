@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Airship</title>
 
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"/>
   <link rel="stylesheet" href="../packages/styles/dist/airship.css">
 </head>
 <body>
@@ -23,6 +24,10 @@
   <script>
     Catalog.render({
       title: 'Airship',
+      responsiveSizes: [
+        {name: 'mobile', width: 375, height: 667},
+        {name: 'desktop', width: 1920, height: 1080},
+      ],
       pages: [
         {
           path: '/',             // The path where the page can be accessed
@@ -42,6 +47,11 @@
         {
           title: 'Styles',
           pages: [
+            {
+              path: '/styles/layout',
+              title: 'Layouts',
+              src: '../packages/styles/src/core/layout/README.md'
+            },
             {
               path: '/styles/button',
               title: 'Button',
