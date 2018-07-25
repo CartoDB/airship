@@ -71,14 +71,33 @@
     <div class="as-map-wrapper">
       <div id="map"></div>
       <div class="as-panels">
-          <div class="as-panels__bottom">
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, quaerat earum quia ab nam velit cupiditate est
-                ex temporibus reiciendis ut aspernatur voluptas nobis tempora qui eius. Architecto, repudiandae aliquam!</p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis ipsa quo ex adipisci. Deleniti quae dolorum tenetur quod
-              blanditiis veniam sapiente assumenda at sunt facere placeat suscipit, enim distinctio nesciunt?
 
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Et sed fugit iusto recusandae quis pariatur perferendis aspernatur, eius tenetur, ab harum impedit amet minima in odio hic nihil saepe dolorem.
-            </div>
+        <div class="as-panels--right as-panels--h">
+          <div class="as-panels__element">
+            <p>Title</p>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore possimus nam quam necessitatibus omnis, est sequi rem
+              quibusdam molestiae, at saepe odit voluptatem quae debitis consequatur iste ducimus quaerat dolorum.
+            </p>
+          </div>
+          <div class="as-panels__element"> PANEL 1 </div>
+        </div>
+
+        <div class="as-panels--mid-right  as-panels--v">
+          <div class="as-panels__element">
+            <p>Title</p>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore possimus nam quam necessitatibus omnis, est sequi rem
+              quibusdam molestiae, at saepe odit voluptatem quae debitis consequatur iste ducimus quaerat dolorum.
+            </p>
+          </div>
+          <div class="as-panels__element"> PANEL 1 </div>
+        </div>
+
+        <div class="as-panels__bottom">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo delectus ullam laudantium necessitatibus pariatur repellendus
+          nemo ipsam minus. Delectus quidem sequi recusandae culpa deleniti molestias amet consequatur aspernatur eos exercitationem.
+        </div>
       </div>
     </div>
 
@@ -143,7 +162,7 @@
       event.target.classList.add('as-toolbar-tabs__item--active');
     }
 
-     function _showTab3(event) {
+    function _showTab3(event) {
       document.querySelector('.as-sidebar.as-sidebar--right').classList.remove('as-sidebar--right--visible');
       document.querySelector('.as-sidebar.as-sidebar--left').classList.remove('as-sidebar--left--visible');
       document.querySelector('.as-panels').classList.add('as-panels--visible');
