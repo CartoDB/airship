@@ -1,5 +1,18 @@
 # Layouts
 
+Airhip is designed to develop Location Intelligence apps with the least possible effort. To do this, it provides the most common layouts by default so that they can be easily included.
+
+## Overview
+
+An airship app should always be wrapped inside an element with the `.airship-app` class. 
+
+You usually have the following elements:
+
+- **Toolbar**: A small bar where the main navigation and options are located, only icons, text and the app logo should be placed here.
+- **Sidebar**: Sidebars are located beside the map wrapper, you can place almost everything you want in the sidebars. 
+- **Map Wrapper**: This is the area where the map will be placed. Airship has some utilities to place floating panels over the map.
+
+
 ### Basic Layout
 
 ```html
@@ -19,9 +32,7 @@ collapsed: true
     </header>
 
     <div class="as-app-container">
-      <div id="map">
-        <!-- HERE GOES YOUR MAP-->
-      </div>
+      <div id="map"></div>
     </div>
   </body>
 ```
