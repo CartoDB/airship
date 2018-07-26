@@ -1,8 +1,42 @@
-@import '_main';
 @import '_actions';
 @import '_tabs';
 
 .as-toolbar {
   --toolbar-bg-color: $brand-02-color;
   --toolbar__tabs-bg-color: $brand-02-color;
+
+  display: flex;
+  height: $toolbar-size;
+  background-color: var(--brand-02-color, $brand-02-color);
+
+  &__toggle {
+    position: absolute;
+    z-index: 1;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: $toolbar-size;
+    min-height: $toolbar-size;
+    filter: invert(100%);
+    text-align: center;
+    cursor: pointer;
+  }
+
+  &__icon-text {
+    margin-left: 8px;
+  }
+
+  &--logo {
+    flex: 1;
+  }
+
+  @media all and (min-width: $tablet-breakpoint) {
+    &__icon-text,
+    &__menu-toggle {
+      display: none;
+    }
+  }
 }
