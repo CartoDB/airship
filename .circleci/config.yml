@@ -77,7 +77,7 @@ jobs:
       - run: npm install
       - run: npm run build
       - store_artifacts:
-        path: catalog
+           path: catalog
 
 workflows:
   version: 2
