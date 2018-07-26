@@ -3,7 +3,7 @@ $_toolbar-height: 13 * $u1;
 .as-toolbar-tabs {
   display: flex;
   justify-content: space-around;
-  height: $header-height;
+  height: $toolbar-size;
   background-color: var(--brand-02-color, $brand-02-color);
 
   &__item {
@@ -14,7 +14,7 @@ $_toolbar-height: 13 * $u1;
     border-bottom: $u1 solid transparent;
     color: white;
     font-family: 'Roboto', sans-serif;
-    line-height: $header-height;
+    line-height: $toolbar-size;
     text-align: center;
     text-transform: uppercase;
     cursor: pointer;
