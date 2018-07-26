@@ -1,10 +1,9 @@
-// Block
 .as-sidebar {
   position: absolute;
   z-index: 2;
-  top: 104px;
+  top: 0;
   width: 100%;
-  height: calc(100% - 104px);
+  height: 100%;
   transition: opacity 0.3s;
   opacity: 0;
   background-color: white;
