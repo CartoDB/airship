@@ -23,6 +23,8 @@
     &--nav-left,
     &--nav-right {
       .as-toolbar {
+        flex-direction: column;
+        align-items: center;
         width: $toolbar-size;
         height: 100%;
         overflow-x: hidden;

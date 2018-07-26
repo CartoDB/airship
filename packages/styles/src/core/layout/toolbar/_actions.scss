@@ -14,6 +14,9 @@
 
   ul {
     display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: $u3;
   }
 
   &--visible {
@@ -28,5 +31,10 @@
     flex-direction: row;
     align-items: center;
     justify-content: flex-end;
+
+    ul {
+      flex-direction: row;
+      padding-left: 0;
+    }
   }
 }
