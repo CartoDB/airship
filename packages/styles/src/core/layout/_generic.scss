@@ -23,7 +23,7 @@
     &--nav-left,
     &--nav-right {
       .as-toolbar {
-        width: 60px;
+        width: $header-height;
         height: 100%;
         overflow-x: hidden;
       }
