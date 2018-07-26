@@ -1,7 +1,7 @@
 .as-toolbar-tabs {
   display: flex;
   justify-content: space-around;
-  height: 52px;
+  height: $header-height;
   background-color: var(--brand-02-color, $brand-02-color);
 
   &--bg-brand-1 {
@@ -24,7 +24,7 @@
     border-bottom: 4px solid transparent;
     color: white;
     font-family: 'Roboto', sans-serif;
-    line-height: 52px;
+    line-height: $header-height;
     text-align: center;
     text-transform: uppercase;
     cursor: pointer;

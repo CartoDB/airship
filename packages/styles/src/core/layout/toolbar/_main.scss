@@ -1,6 +1,6 @@
-.as-toolbar-main {
+.as-toolbar {
   display: flex;
-  height: 52px;
+  height: $header-height;
   background-color: var(--brand-02-color, $brand-02-color);
 
   &--bg-brand-1 {
@@ -18,23 +18,23 @@
   &__item {
     display: flex;
     align-items: center;
+    // TODO: Remove this filter, the icons need to be
+    // colored from the outside
     filter: invert(100%);
-    width: 48px;
-    min-width: 48px;
-    height: 48px;
-    min-height: 48px;
-    padding: 8px;
+    max-width: $header-height - 8px;
+    max-height: $header-height - 8px;
+    margin: 8px;
     cursor: pointer;
+  }
 
-    p {
-      margin-left: 8px;
-    }
+  &__icon-text {
+    margin-left: 8px;
   }
 
   // Media queries
   @media all and (min-width: $tablet-breakpoint) {
-    &__item p,
-    &__toggle {
+    &__icon-text,
+    &__menu-toggle {
       display: none;
     }
   }
