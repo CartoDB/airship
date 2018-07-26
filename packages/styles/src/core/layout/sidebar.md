@@ -35,7 +35,7 @@ collapsed: true
   </header>
 
 
-  <div class="as-app-container">
+  <div class="as-app-content">
     <aside class="as-sidebar as-sidebar--left as-sidebar--xl">
       <h1>Left Sidebar (XL)</h1>
       <p>

@@ -28,7 +28,7 @@ collapsed: true
       <nav class="as-toolbar-main"></nav>
     </header>
 
-    <div class="as-app-container">
+    <div class="as-app-content">
       <div id="map"></div>
     </div>
   </body>
