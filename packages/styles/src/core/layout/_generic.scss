@@ -22,13 +22,13 @@
 
     &--nav-left,
     &--nav-right {
-      .as-toolbar-main {
+      .as-toolbar {
         width: 60px;
         height: 100%;
         overflow-x: hidden;
       }
 
-      .as-toolbar-actions {
+      .as-toolbar__actions {
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
