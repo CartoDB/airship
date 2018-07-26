@@ -12,6 +12,10 @@
   transition: left 0.3s;
   background-color: var(--toolbar-tabs-bg-color, $brand-02-color);
 
+  ul {
+    display: flex;
+  }
+
   &--visible {
     left: 0;
   }
