@@ -84,3 +84,4 @@ workflows:
       - lint
       - test-unit:components
       - test-unit:styles
+      - showcase
