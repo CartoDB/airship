@@ -2,11 +2,7 @@
   display: flex;
   position: absolute;
   z-index: 3;
-<<<<<<< HEAD
-  top: 13 * $u1;
-=======
   top: $header-height;
->>>>>>> test-layouts
   right: 0;
   bottom: 0;
   left: -100%;
@@ -26,6 +22,7 @@
     top: 0;
     left: 0;
     flex-direction: row;
+    align-items: center;
     justify-content: flex-end;
   }
 }
