@@ -26,44 +26,40 @@
 </head>
 
 <body class="as-app as-app--nav-top">
+  <header class="as-toolbar">
+    <img onclick="_toggleDrawer()" class="as-toolbar__item as-toolbar__menu-toggle" src="https://material.io/tools/icons/static/icons/baseline-menu-24px.svg" alt="">
+    <!-- <span onclick="_toggleDrawer()" class="as-toolbar__item as-toolbar__menu-toggle">
+      <i class="as-icon__hamburger-menu"></i>
+    </span> -->
 
-
-  <header>
-    <!-- main -->
-    <nav class="as-toolbar-main">
-      <img onclick="_toggleDrawer()" class="as-toolbar-main__item as-toolbar-main__toggle" src="https://material.io/tools/icons/static/icons/baseline-menu-24px.svg"
-        alt="">
-      <div class="as-toolbar-actions">
-        <span class="as-toolbar-main__item">
-          <img src="https://material.io/tools/icons/static/icons/baseline-fingerprint-24px.svg" alt="Ajustes">
-          <p>Ajustes</p>
-        </span>
-        <span class="as-toolbar-main__item">
-          <img src="https://material.io/tools/icons/static/icons/baseline-add_location-24px.svg" alt="Ajustes">
-          <p>Ajustes</p>
-        </span>
-        <span class="as-toolbar-main__item">
-          <img src="https://material.io/tools/icons/static/icons/baseline-account_circle-24px.svg" alt="User">
-          <p>User</p>
-        </span>
-        <span class="as-toolbar-main__item">
-          <img src="https://material.io/tools/icons/static/icons/baseline-power_settings_new-24px.svg" alt="Rendimiento">
-          <p>Rendimiento</p>
-        </span>
-      </div>
-    </nav>
-    <!-- tabs -->
-    <nav class="as-toolbar-tabs">
-      <span onclick="_showTab0(event)" class="as-toolbar-tabs__item">LEFT </span>
-      <span onclick="_showTab1(event)" class="as-toolbar-tabs__item as-toolbar-tabs__item--active">MAP</span>
-      <span onclick="_showTab2(event)" class="as-toolbar-tabs__item">RIGHT</span>
-      <span onclick="_showTab3(event)" class="as-toolbar-tabs__item">PANELS </span>
-
+    <nav class="as-toolbar__actions">
+      <span class="as-toolbar__item">
+        <img src="https://material.io/tools/icons/static/icons/baseline-fingerprint-24px.svg" alt="Ajustes">
+        <p class="as-toolbar__icon-text">Ajustes</p>
+      </span>
+      <span class="as-toolbar__item">
+        <img src="https://material.io/tools/icons/static/icons/baseline-add_location-24px.svg" alt="Ajustes">
+        <p class="as-toolbar__icon-text">Ajustes</p>
+      </span>
+      <span class="as-toolbar__item">
+        <img src="https://material.io/tools/icons/static/icons/baseline-account_circle-24px.svg" alt="User">
+        <p class="as-toolbar__icon-text">User</p>
+      </span>
+      <span class="as-toolbar__item">
+        <img src="https://material.io/tools/icons/static/icons/baseline-power_settings_new-24px.svg" alt="Rendimiento">
+        <p class="as-toolbar__icon-text">Rendimiento</p>
+      </span>
     </nav>
   </header>
 
+  <nav class="as-toolbar-tabs">
+    <span onclick="_showTab1(event)" class="as-toolbar-tabs__item as-toolbar-tabs__item--active">MAP</span>
+    <span onclick="_showTab0(event)" class="as-toolbar-tabs__item">LEFT</span>
+    <span onclick="_showTab2(event)" class="as-toolbar-tabs__item">RIGHT</span>
+    <span onclick="_showTab3(event)" class="as-toolbar-tabs__item">PANELS</span>
+  </nav>
 
-  <div class="as-app-container">
+  <div class="as-app-content">
     <aside class="as-sidebar as-sidebar--left">
       LEFT-SIDEBAR
     </aside>
@@ -83,7 +79,7 @@
           <div class="as-panels__element"> PANEL 1 </div>
         </div>
 
-        <div class="as-panels--mid-right  as-panels--v">
+        <div class="as-panels--mid-right as-panels--v">
           <div class="as-panels__element">
             <p>Title</p>
             <p>
@@ -105,7 +101,6 @@
       RIGHT-SIDEBAR
     </aside>
   </div>
-
 
   <script defer>
     const map = L.map('map').setView([30, 0], 3);
@@ -135,7 +130,7 @@
 
 
     function _toggleDrawer() {
-      document.querySelector('.as-toolbar-actions').classList.toggle('as-toolbar-actions--visible');
+      document.querySelector('.as-toolbar__actions').classList.toggle('as-toolbar__actions--visible');
     }
 
     function _showTab0(event) {
