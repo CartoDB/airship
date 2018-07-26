@@ -2,14 +2,15 @@
   display: flex;
   position: absolute;
   z-index: 3;
-  top: 52px;
+  top: 13 * $u1;
   right: 0;
   bottom: 0;
   left: -100%;
   flex-direction: column;
+  align-items: flex-start;
   width: 100%;
   transition: left 0.3s;
-  background-color: var(--brand-02-color, $brand-02-color);
+  background-color: var(--toolbar-tabs-bg-color, $brand-02-color);
 
   &--visible {
     left: 0;
