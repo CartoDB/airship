@@ -24,12 +24,6 @@
 </head>
 
 <body class="as-app as-app--nav-top">
-  <nav class="as-toolbar-tabs">
-    <span onclick="_showTab0(event)" class="as-toolbar-tabs__item">LEFT </span>
-    <span onclick="_showTab1(event)" class="as-toolbar-tabs__item as-toolbar-tabs__item--active">MAP</span>
-    <span onclick="_showTab2(event)" class="as-toolbar-tabs__item">RIGHT</span>
-  </nav>
-
   <div class="as-app-content">
     <aside class="as-sidebar as-sidebar--left as-sidebar--xl">
       <h1>Left Sidebar (XL)</h1>
@@ -50,8 +44,15 @@
         impedit accusamus, nisi adipisci repellendus expedita rem dolores suscipit! Cumque, nulla culpa?
       </p>
     </aside>
+
+
   </div>
 
+  <nav class="as-toolbar-tabs">
+    <span onclick="_showTab0(event)" class="as-toolbar-tabs__item">LEFT </span>
+    <span onclick="_showTab1(event)" class="as-toolbar-tabs__item as-toolbar-tabs__item--active">MAP</span>
+    <span onclick="_showTab2(event)" class="as-toolbar-tabs__item">RIGHT</span>
+  </nav>
 
   <script defer>
     const map = L.map('map').setView([30, 0], 3);
