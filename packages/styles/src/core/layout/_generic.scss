@@ -6,7 +6,7 @@
   height: 100vh;
   overflow: hidden;
 
-  .as-toolbar-main {
+  .as-toolbar {
     width: 100%;
   }
 
@@ -14,26 +14,20 @@
     // MODIFIERS
     &--nav-left {
       flex-direction: row;
-
-      .as-toolbar-main {
-        width: 60px;
-        height: 100%;
-        overflow-x: hidden;
-      }
     }
 
     &--nav-right {
       flex-direction: row-reverse;
+    }
 
+    &--nav-left,
+    &--nav-right {
       .as-toolbar-main {
         width: 60px;
         height: 100%;
         overflow-x: hidden;
       }
-    }
 
-    &--nav-left,
-    &--nav-right {
       .as-toolbar-actions {
         flex-direction: column;
         align-items: center;
@@ -43,8 +37,9 @@
   }
 }
 
-.as-app-container {
+.as-app-content {
   display: flex;
+  position: relative;
   flex: 1;
   height: 100%;
 }
