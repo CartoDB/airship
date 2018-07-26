@@ -10,8 +10,8 @@
   background-color: var(--brand-02-color, $brand-02-color);
 
   &__toggle {
-    position: absolute;
-    z-index: 1;
+    border: none;
+    background: transparent;
   }
 
   &__item {
@@ -35,7 +35,7 @@
 
   @media all and (min-width: $tablet-breakpoint) {
     &__icon-text,
-    &__menu-toggle {
+    &__toggle {
       display: none;
     }
   }
