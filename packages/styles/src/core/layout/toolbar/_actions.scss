@@ -1,8 +1,12 @@
-.as-toolbar-actions {
+.as-toolbar__actions {
   display: flex;
   position: absolute;
   z-index: 3;
+<<<<<<< HEAD
   top: 13 * $u1;
+=======
+  top: $header-height;
+>>>>>>> test-layouts
   right: 0;
   bottom: 0;
   left: -100%;
