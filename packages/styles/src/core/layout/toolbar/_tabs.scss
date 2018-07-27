@@ -7,19 +7,20 @@
   &__item {
     flex: 1;
     height: 100%;
-    padding: 0 $u2;
     transition: border 0.3s;
-    border-bottom: $u1 solid transparent;
+    border-bottom: get-spacing(1) solid transparent;
     color: white;
     font-family: 'Roboto', sans-serif;
     line-height: $toolbar-size;
     text-align: center;
     text-transform: uppercase;
     cursor: pointer;
+
+    @include padding(0 2);
   }
 
   &__item--active {
-    border-bottom: $u1 solid white;
+    border-bottom: get-spacing(1) solid white;
   }
 
   // Media queries
