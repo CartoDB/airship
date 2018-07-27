@@ -10,6 +10,7 @@
   &.is-visible {
     display: flex;
     flex-direction: column;
+    overflow: scroll;
   }
 
   @media all and (min-width: $tablet-breakpoint) {
@@ -29,6 +30,16 @@
       flex-direction: column;
     }
 
+    &--top {
+      position: absolute;
+      top: 0;
+    }
+
+    &--bot {
+      position: absolute;
+      bottom: 0;
+    }
+
     &--left {
       position: absolute;
       left: 0;
@@ -40,25 +51,14 @@
       left: 0;
     }
 
-    &--top {
-      position: absolute;
-      top: 0;
-    }
-
     &--right {
       position: absolute;
       right: 0;
     }
 
     &--mid-right {
-      position: absolute;
       top: 50%;
       right: 0;
-    }
-
-    &--bot {
-      position: absolute;
-      bottom: 0;
     }
 
     &__bottom {
