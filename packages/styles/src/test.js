@@ -11,7 +11,7 @@ require('colors');
   try {
     var browser = await exquisite.browser({ headless: false });
     const files = glob.sync(path.resolve(__dirname, '**/*.spec.js'));
-    await Promise.all(files.map(test));
+    await Promise.all(files.forEach(test));
   } catch (err) {
     console.error(`${err}`.red);
   }
@@ -20,9 +20,21 @@ require('colors');
   }
 
 
-  async function test(spec) {
+  function test(spec) {
+    const testSpecification = require(spec);
+
+    if (Array.isArray(testSpecification)) {
+      testSpecification.forEach(runTest);
+      return;
+    }
+
+    runTest(testSpecification);
+  }
+
+  async function runTest(testSpecification) {
     try {
-      var { reference, screenshot, url, viewportWidth, viewportHeight } = require(spec);
+      var { reference, screenshot, url, viewportWidth, viewportHeight } = testSpecification;
+
       if (!fs.existsSync(reference)) {
         console.warn(`Reference image not found, generating a new one: ${reference}`.yellow);
         await exquisite.getReference({ output: reference, url, delay: 100, browser, viewportWidth, viewportHeight });
@@ -44,4 +56,3 @@ require('colors');
     }
   }
 })();
-
