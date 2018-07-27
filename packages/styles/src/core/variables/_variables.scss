@@ -1,9 +1,6 @@
+// Base Spacing Unit
+$su: 4px;
+
 @import '_colors';
 @import '_breakpoints';
 @import '_sizes';
-
-$u1: 4px;
-$u2: 2 * $u1; // 8
-$u3: 2 * $u2; // 16
-$u4: 2 * $u3; // 32
-$u5: 2 * $u4; // 64
