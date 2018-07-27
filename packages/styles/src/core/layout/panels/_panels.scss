@@ -61,15 +61,6 @@
       right: 0;
     }
 
-    &__bottom-bar {
-      position: absolute;
-      z-index: 2;
-      bottom: 0;
-      max-height: 200px;
-      background-color: white;
-      pointer-events: auto;
-    }
-
     &__element {
       max-width: 200px;
       border-radius: 4px;
@@ -81,4 +72,13 @@
       @include padding(1);
     }
   }
+}
+
+.as-bottom-bar {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-height: 200px;
+  background-color: white;
+  pointer-events: auto;
 }

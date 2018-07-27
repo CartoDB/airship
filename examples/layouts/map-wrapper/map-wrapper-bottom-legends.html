@@ -23,29 +23,46 @@
 
 </head>
 
-<body class="as-app as-app--nav-top">
+<body class="as-app">
+  <nav class="as-toolbar-tabs">
+    <span onclick="_showMap(event)" class="as-toolbar-tabs__item as-toolbar-tabs__item--active">MAP</span>
+    <span onclick="_showBottomPanel(event)" class="as-toolbar-tabs__item">PANEL</span>
+  </nav>
+
   <main class="as-app-content">
-    <aside class="as-sidebar as-sidebar--left as-sidebar--xl">
-      <h1>Left Sidebar (XL)</h1>
-      <p>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt aliquam nihil nulla quo, cum excepturi commodi saepe dicta
-        impedit accusamus, nisi adipisci repellendus expedita rem dolores suscipit! Cumque, nulla culpa?
-      </p>
-    </aside>
-
     <div class="as-map-wrapper">
-      <div id="map"></div>
+      <div class="as-map">
+        <div id="map"></div>
+        <div class="as-panels" data-usage="legends">
+          <div class="as-panel as-panel--top">
+            <div class="as-panel__element">
+              Top Left legend growing horizontally
+            </div>
+            <div class="as-panel__element">
+              Some content at Top Left
+            </div>
+          </div>
+          <div class="as-panel as-panel--top as-panel--right as-panel--vertical">
+            <div class="as-panel__element">
+              Top Right legend growing vertically
+            </div>
+            <div class="as-panel__element">
+              Some other content at Top Right
+            </div>
+          </div>
+          <div class="as-panel as-panel--bottom">
+            <div class="as-panel__element">
+              Bottom Left content
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="as-bottom-bar" data-usage="bottom">
+        <h1>LEGEND</h1>
+        <p>Lorem ipsum</p>
+      </div>
     </div>
-
-    <aside class="as-sidebar as-sidebar--right">
-      <h1>Right Sidebar</h1>
-      <p>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt aliquam nihil nulla quo, cum excepturi commodi saepe dicta
-        impedit accusamus, nisi adipisci repellendus expedita rem dolores suscipit! Cumque, nulla culpa?
-      </p>
-    </aside>
   </main>
-
 
   <script defer>
     const map = L.map('map').setView([30, 0], 3);
@@ -72,6 +89,21 @@
 
     client.addLayer(layer);
     client.getLeafletLayer().addTo(map);
+
+    function _showMap(event) {
+      document.querySelector('.as-panels').classList.remove('is-visible');
+      setActiveTab(event.target);
+    }
+
+    function _showBottomPanel(event) {
+      document.querySelector('.as-panels').classList.add('is-visible');
+      setActiveTab(event.target);
+    }
+
+    function setActiveTab(target) {
+      document.querySelector('.as-toolbar-tabs .as-toolbar-tabs__item--active').classList.remove('as-toolbar-tabs__item--active');
+      target.classList.add('as-toolbar-tabs__item--active');
+    }
   </script>
 </body>
 
