@@ -19,49 +19,49 @@
     align-items: flex-start;
     background-color: initial;
     pointer-events: none;
+  }
+}
 
-    &--h {
-      display: flex;
+.as-panel {
+  display: flex;
+  position: absolute;
+
+  @media all and (min-width: $tablet-breakpoint) {
+    // Panels alignment
+    &--horizontal {
       flex-direction: row;
     }
 
-    &--v {
-      display: flex;
+    &--vertical {
       flex-direction: column;
     }
 
     &--top {
-      position: absolute;
       top: 0;
     }
 
-    &--bot {
-      position: absolute;
+    &--middle {
+      top: 50%;
+    }
+
+    &--bottom {
       bottom: 0;
     }
 
     &--left {
-      position: absolute;
       left: 0;
     }
 
-    &--mid-left {
-      position: absolute;
-      top: 50%;
-      left: 0;
+    &--center {
+      left: 50%;
+      transform: translate3d(-50%, 0, 0);
     }
 
     &--right {
-      position: absolute;
       right: 0;
     }
 
-    &--mid-right {
-      top: 50%;
-      right: 0;
-    }
-
-    &__bottom {
+    &__bottom-bar {
       position: absolute;
       z-index: 2;
       bottom: 0;
