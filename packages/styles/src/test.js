@@ -11,7 +11,7 @@ require('colors');
   try {
     var browser = await exquisite.browser({ headless: false });
     const files = glob.sync(path.resolve(__dirname, '**/*.spec.js'));
-    await Promise.all(files.forEach(test));
+    await Promise.all(files.map(test));
   } catch (err) {
     console.error(`${err}`.red);
   }
@@ -20,15 +20,15 @@ require('colors');
   }
 
 
-  function test(spec) {
+  async function test(spec) {
     const testSpecification = require(spec);
 
     if (Array.isArray(testSpecification)) {
-      testSpecification.forEach(runTest);
+      await Promise.all(testSpecification.map(runTest));
       return;
     }
 
-    runTest(testSpecification);
+    await runTest(testSpecification);
   }
 
   async function runTest(testSpecification) {

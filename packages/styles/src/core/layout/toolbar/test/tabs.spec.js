@@ -19,6 +19,6 @@ const url = `file://${path.resolve(__dirname, 'tabs.html')}`;
 
 
 module.exports = [
-  { reference, screenshot, url }, // Desktop
-  { reference: mobileReference, screenshot: mobileScreenshot, url, viewportWidth, viewportHeight } // Mobile
+  { reference, screenshot, url },
+  { reference: mobileReference, screenshot: mobileScreenshot, url, viewportWidth, viewportHeight }
 ];
