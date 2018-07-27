@@ -21,8 +21,20 @@ require('colors');
 
 
   async function test(spec) {
+    const testSpecification = require(spec);
+
+    if (Array.isArray(testSpecification)) {
+      await Promise.all(testSpecification.map(runTest));
+      return;
+    }
+
+    await runTest(testSpecification);
+  }
+
+  async function runTest(testSpecification) {
     try {
-      var { reference, screenshot, url, viewportWidth, viewportHeight } = require(spec);
+      var { reference, screenshot, url, viewportWidth, viewportHeight } = testSpecification;
+
       if (!fs.existsSync(reference)) {
         console.warn(`Reference image not found, generating a new one: ${reference}`.yellow);
         await exquisite.getReference({ output: reference, url, delay: 100, browser, viewportWidth, viewportHeight });
@@ -44,4 +56,3 @@ require('colors');
     }
   }
 })();
-
