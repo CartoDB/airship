@@ -22,16 +22,15 @@ require('colors');
 
   async function test(spec) {
     try {
-      var { reference, screenshot, url } = require(spec);
-
+      var { reference, screenshot, url, viewportWidth, viewportHeight } = require(spec);
       if (!fs.existsSync(reference)) {
         console.warn(`Reference image not found, generating a new one: ${reference}`.yellow);
-        await exquisite.getReference({ output: reference, url, delay: 100, browser });
+        await exquisite.getReference({ output: reference, url, delay: 100, browser, viewportWidth, viewportHeight });
         execSync(`chmod +x ${path.join(__dirname, '../../../scripts/circleci-screenshots.sh')}`);
         execSync(path.join(__dirname, '../../../scripts/circleci-screenshots.sh'));
       }
 
-      const diff = await exquisite.test({ input: reference, output: screenshot, url, delay: 100, browser });
+      const diff = await exquisite.test({ input: reference, output: screenshot, url, delay: 100, browser, viewportWidth, viewportHeight });
       assert.equal(diff, 0);
 
       if (!process.env.CI) {
