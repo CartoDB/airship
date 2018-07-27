@@ -25,8 +25,9 @@
 
 <body class="as-app">
   <nav class="as-toolbar-tabs">
-    <span onclick="_showMap(event)" class="as-toolbar-tabs__item as-toolbar-tabs__item--active">MAP</span>
-    <span onclick="_showBottomPanel(event)" class="as-toolbar-tabs__item">PANEL</span>
+    <span onclick="showMap(event)" class="as-toolbar-tabs__item as-toolbar-tabs__item--active">MAP</span>
+    <span onclick="showLegends(event)" class="as-toolbar-tabs__item">LEGENDS</span>
+    <span onclick="showBottom(event)" class="as-toolbar-tabs__item">BOTTOM</span>
   </nav>
 
   <main class="as-app-content">
@@ -90,14 +91,30 @@
     client.addLayer(layer);
     client.getLeafletLayer().addTo(map);
 
-    function _showMap(event) {
-      document.querySelector('.as-panels').classList.remove('is-visible');
+    function showMap(event) {
+      showPanel('.as-panels', false);
+      showPanel('.as-bottom-bar', false);
       setActiveTab(event.target);
     }
 
-    function _showBottomPanel(event) {
-      document.querySelector('.as-panels').classList.add('is-visible');
+    function showLegends(event) {
+      showPanel('.as-panels', true);
+      showPanel('.as-bottom-bar', false);
       setActiveTab(event.target);
+    }
+
+    function showBottom(event) {
+      showPanel('.as-panels', false);
+      showPanel('.as-bottom-bar', true);
+      setActiveTab(event.target);
+    }
+
+    function showPanel(selector, visible) {
+      var element = document.querySelector(selector)
+      var visibleClass = 'is-visible';
+      visible
+        ? element.classList.add(visibleClass)
+        : element.classList.remove(visibleClass);
     }
 
     function setActiveTab(target) {
