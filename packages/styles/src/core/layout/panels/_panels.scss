@@ -23,25 +23,23 @@
 }
 
 .as-panel {
-  display: flex;
-  position: absolute;
-
   @media all and (min-width: $tablet-breakpoint) {
-    // Panels alignment
-    &--horizontal {
-      flex-direction: row;
-    }
+    display: flex;
+    position: absolute;
 
+    // Panels stack mode
     &--vertical {
       flex-direction: column;
     }
 
+    // Panels alignment
     &--top {
       top: 0;
     }
 
     &--middle {
       top: 50%;
+      transform: translate3d(0, -50%, 0);
     }
 
     &--bottom {
