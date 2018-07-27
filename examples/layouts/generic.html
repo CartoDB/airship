@@ -66,10 +66,11 @@
   </header>
 
   <nav class="as-toolbar-tabs">
-    <span onclick="_showTab1(event)" class="as-toolbar-tabs__item as-toolbar-tabs__item--active">MAP</span>
-    <span onclick="_showTab0(event)" class="as-toolbar-tabs__item">LEFT</span>
-    <span onclick="_showTab2(event)" class="as-toolbar-tabs__item">RIGHT</span>
-    <span onclick="_showTab3(event)" class="as-toolbar-tabs__item">PANELS</span>
+    <span onclick="showMap(event)" class="as-toolbar-tabs__item as-toolbar-tabs__item--active">MAP</span>
+    <span onclick="showLeft(event)" class="as-toolbar-tabs__item">LEFT</span>
+    <span onclick="showRight(event)" class="as-toolbar-tabs__item">RIGHT</span>
+    <span onclick="showLegends(event)" class="as-toolbar-tabs__item">LEGENDS</span>
+    <span onclick="showBottom(event)" class=" as-toolbar-tabs__item">BOTTOM</span>
   </nav>
 
   <main class="as-app-content">
@@ -79,7 +80,7 @@
 
     <div class="as-map-wrapper">
       <div id="map"></div>
-      <div class="as-panels">
+      <div class="as-panels" data-usage="legends">
 
         <div class="as-panels--right as-panels--h">
           <div class="as-panels__element">
@@ -102,7 +103,8 @@
           </div>
           <div class="as-panels__element"> PANEL 1 </div>
         </div>
-
+      </div>
+      <div class="as-panels" data-usage="bottom-panel">
         <div class="as-panels__bottom">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo delectus ullam laudantium necessitatibus pariatur repellendus
           nemo ipsam minus. Delectus quidem sequi recusandae culpa deleniti molestias amet consequatur aspernatur eos exercitationem.
@@ -146,36 +148,73 @@
       document.querySelector('.as-toolbar__actions').classList.toggle('as-toolbar__actions--visible');
     }
 
-    function _showTab0(event) {
-      document.querySelector('.as-sidebar.as-sidebar--left').classList.add('as-sidebar--left--visible');
-      document.querySelector('.as-sidebar.as-sidebar--right').classList.remove('as-sidebar--right--visible');
-      document.querySelector('.as-panels').classList.remove('as-panels--visible');
-      document.querySelector('.as-toolbar-tabs .as-toolbar-tabs__item--active').classList.remove('as-toolbar-tabs__item--active');
-      event.target.classList.add('as-toolbar-tabs__item--active');
+    function showMap(event) {
+      showLeftPanel(false);
+      showRightPanel(false);
+      showLegendsPanel(false);
+      showBottomPanel(false);
+      setActiveTab(event.target);
     }
 
-    function _showTab1(event) {
-      document.querySelector('.as-sidebar.as-sidebar--left').classList.remove('as-sidebar--left--visible');
-      document.querySelector('.as-sidebar.as-sidebar--right').classList.remove('as-sidebar--right--visible');
-      document.querySelector('.as-panels').classList.remove('as-panels--visible');
-      document.querySelector('.as-toolbar-tabs .as-toolbar-tabs__item--active').classList.remove('as-toolbar-tabs__item--active');
-      event.target.classList.add('as-toolbar-tabs__item--active');
+    function showLeft(event) {
+      showLeftPanel(true);
+      showRightPanel(false);
+      showLegendsPanel(false);
+      showBottomPanel(false);
+      setActiveTab(event.target);
     }
 
-    function _showTab2(event) {
-      document.querySelector('.as-sidebar.as-sidebar--right').classList.add('as-sidebar--right--visible');
-      document.querySelector('.as-sidebar.as-sidebar--left').classList.remove('as-sidebar--left--visible');
-      document.querySelector('.as-panels').classList.remove('as-panels--visible');
-      document.querySelector('.as-toolbar-tabs .as-toolbar-tabs__item--active').classList.remove('as-toolbar-tabs__item--active');
-      event.target.classList.add('as-toolbar-tabs__item--active');
+    function showRight(event) {
+      showLeftPanel(false);
+      showRightPanel(true);
+      showLegendsPanel(false);
+      showBottomPanel(false);
+      setActiveTab(event.target);
     }
 
-    function _showTab3(event) {
-      document.querySelector('.as-sidebar.as-sidebar--right').classList.remove('as-sidebar--right--visible');
-      document.querySelector('.as-sidebar.as-sidebar--left').classList.remove('as-sidebar--left--visible');
-      document.querySelector('.as-panels').classList.add('as-panels--visible');
+    function showLegends(event) {
+      showLeftPanel(false);
+      showRightPanel(false);
+      showLegendsPanel(true);
+      showBottomPanel(false);
+      setActiveTab(event.target);
+    }
+
+    function showBottom(event) {
+      showLeftPanel(false);
+      showRightPanel(false);
+      showLegendsPanel(false);
+      showBottomPanel(true);
+      setActiveTab(event.target);
+    }
+
+    function showLeftPanel(visible) {
+      showPanel('.as-sidebar.as-sidebar--left', visible);
+    }
+
+    function showRightPanel(visible) {
+      showPanel('.as-sidebar.as-sidebar--right', visible);
+    }
+
+    function showLegendsPanel(visible) {
+      showPanel('[data-usage="legends"]', visible);
+    }
+
+    function showBottomPanel(visible) {
+      showPanel('[data-usage="bottom-panel"]', visible);
+    }
+
+    function showPanel(selector, visible) {
+      var element = document.querySelector(selector)
+      var visibleClass = 'is-visible';
+      visible
+        ? element.classList.add(visibleClass)
+        : element.classList.remove(visibleClass);
+    }
+
+    function setActiveTab(target) {
       document.querySelector('.as-toolbar-tabs .as-toolbar-tabs__item--active').classList.remove('as-toolbar-tabs__item--active');
-      event.target.classList.add('as-toolbar-tabs__item--active');
+      target.classList.add('as-toolbar-tabs__item--active');
     }
   </script>
 </body>

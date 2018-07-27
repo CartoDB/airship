@@ -7,7 +7,7 @@
   height: 100%;
   background-color: white;
 
-  &--visible {
+  &.is-visible {
     display: flex;
     flex-direction: column;
   }
