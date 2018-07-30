@@ -24,6 +24,12 @@
 </head>
 
 <body class="as-app as-app--nav-top">
+  <nav class="as-toolbar-tabs">
+    <span onclick="showMap(event)" class="as-toolbar-tabs__item as-toolbar-tabs__item--active">MAP</span>
+    <span onclick="showLeft(event)" class="as-toolbar-tabs__item">LEFT </span>
+    <span onclick="showRight(event)" class="as-toolbar-tabs__item">RIGHT</span>
+  </nav>
+
   <main class="as-app-content">
     <aside class="as-sidebar as-sidebar--left as-sidebar--xl">
       <h1>Left Sidebar (XL)</h1>
@@ -72,6 +78,46 @@
 
     client.addLayer(layer);
     client.getLeafletLayer().addTo(map);
+
+    function showMap(event) {
+      showLeftPanel(false);
+      showRightPanel(false);
+      setActiveTab(event.target);
+    }
+
+    function showLeft(event) {
+      showLeftPanel(true);
+      showRightPanel(false);
+      setActiveTab(event.target);
+    }
+
+    function showRight(event) {
+      showLeftPanel(false);
+      showRightPanel(true);
+      setActiveTab(event.target);
+    }
+
+    function showLeftPanel(visible) {
+      showPanel('.as-sidebar.as-sidebar--left', visible);
+    }
+
+    function showRightPanel(visible) {
+      showPanel('.as-sidebar.as-sidebar--right', visible);
+    }
+
+    function showPanel(selector, visible) {
+      var element = document.querySelector(selector)
+      var visibleClass = 'is-visible';
+      visible
+        ? element.classList.add(visibleClass)
+        : element.classList.remove(visibleClass);
+    }
+
+    function setActiveTab(target) {
+      document.querySelector('.as-toolbar-tabs .as-toolbar-tabs__item--active').classList.remove('as-toolbar-tabs__item--active');
+      target.classList.add('as-toolbar-tabs__item--active');
+    }
+
   </script>
 </body>
 
