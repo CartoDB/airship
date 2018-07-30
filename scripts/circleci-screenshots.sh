@@ -9,7 +9,7 @@ ssbranch=$branch"-circleci-screenshot"
 if [[ "$branch" == *-circleci-screenshot ]]
 then
   git add .
-  git commit --amend -no-edit
+  git commit --amend --no-edit
   git push origin $branch -f
 
 else

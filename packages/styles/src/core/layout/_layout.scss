@@ -1,0 +1,52 @@
+@import 'panels/_panels';
+@import 'sidebar/_sidebar';
+@import 'toolbar/_toolbar';
+@import 'map-wrapper/_map-wrapper';
+
+.as-app {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+
+  .as-app-content {
+    display: flex;
+    position: relative;
+    flex: 1;
+    height: 100%;
+  }
+
+  .as-toolbar {
+    width: 100%;
+  }
+
+  @media all and (min-width: $tablet-breakpoint) {
+    &--nav-left {
+      flex-direction: row;
+    }
+
+    &--nav-right {
+      flex-direction: row-reverse;
+    }
+
+    &--nav-left,
+    &--nav-right {
+      .as-toolbar {
+        flex-direction: column;
+        align-items: center;
+        width: $toolbar-size;
+        height: 100%;
+        overflow-x: hidden;
+      }
+
+      .as-toolbar__actions ul,
+      .as-toolbar__actions {
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+      }
+    }
+  }
+}

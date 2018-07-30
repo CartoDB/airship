@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Generic Layout</title>
+    <link rel="stylesheet" href="../../../../../dist/airship.css">
+
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+
+  <body class="as-app">
+    <nav class="as-toolbar-tabs">
+      <span onclick="_showTab1(event)" class="as-toolbar-tabs__item as-toolbar-tabs__item--active">MAP</span>
+      <span onclick="_showTab0(event)" class="as-toolbar-tabs__item">LEFT</span>
+      <span onclick="_showTab2(event)" class="as-toolbar-tabs__item">RIGHT</span>
+      <span onclick="_showTab3(event)" class="as-toolbar-tabs__item">PANELS</span>
+    </nav>
+  </body>
+</html>

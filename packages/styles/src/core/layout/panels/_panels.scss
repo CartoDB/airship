@@ -1,0 +1,94 @@
+.as-panels {
+  display: none;
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+
+  &--visible {
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+  }
+
+  @media all and (min-width: $tablet-breakpoint) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: initial;
+    pointer-events: none;
+  }
+}
+
+.as-panel {
+  @media all and (min-width: $tablet-breakpoint) {
+    display: flex;
+    position: absolute;
+
+    // Panels stack mode
+    &--vertical {
+      flex-direction: column;
+    }
+
+    // Panels alignment
+    &--top {
+      top: 0;
+    }
+
+    &--middle {
+      top: 50%;
+      transform: translate3d(0, -50%, 0);
+    }
+
+    &--bottom {
+      bottom: 0;
+    }
+
+    &--left {
+      left: 0;
+    }
+
+    &--center {
+      left: 50%;
+      transform: translate3d(-50%, 0, 0);
+    }
+
+    &--right {
+      right: 0;
+    }
+
+    &__element {
+      max-width: 200px;
+      border-radius: 4px;
+      background: white;
+      box-shadow: rgba(44, 44, 44, 0.16) 0 1px 4px 0;
+      pointer-events: auto;
+
+      @include margin(1);
+      @include padding(1);
+    }
+  }
+}
+
+.as-bottom-bar {
+  display: none;
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  pointer-events: auto;
+
+  &--visible {
+    display: initial;
+  }
+
+  @media all and (min-width: $tablet-breakpoint) {
+    display: initial;
+    position: initial;
+    height: initial;
+    max-height: 200px;
+  }
+}

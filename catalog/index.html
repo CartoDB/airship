@@ -24,11 +24,40 @@
   <script>
     Catalog.render({
       title: 'Airship',
+      responsiveSizes: [
+        {name: 'mobile', width: 375, height: 667},
+        {name: 'desktop', width: 1920, height: 1080},
+      ],
       pages: [
         {
           path: '/',             // The path where the page can be accessed
           title: 'Introduction', // The page title
           src: 'intro.md'   // Path to the Markdown document
+        },
+        {
+          title: 'Layout',
+          pages: [
+            {
+              path: '/layout',
+              title: 'Overview',
+              src: '../packages/styles/src/core/layout/README.md'
+            },
+            {
+              path: '/layout/toolbar',
+              title: 'Toolbar',
+              src: '../packages/styles/src/core/layout/toolbar/README.md'
+            },
+            {
+              path: '/layout/sidebar',
+              title: 'Sidebar',
+              src: '../packages/styles/src/core/layout/sidebar/README.md'
+            },
+            {
+              path: '/layout/map-wrapper',
+              title: 'Map Wrapper',
+              src: '../packages/styles/src/core/layout/map-wrapper/README.md'
+            }
+          ]
         },
         {
           title: 'Components',

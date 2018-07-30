@@ -1,11 +1,17 @@
+@import 'tools/_mixins';
+@import 'lib/_reset';
 @import 'variables/_variables';
+@import 'layout/_layout';
 @import 'typography/_typography';
+
+:root {
+  --primary-color: #{$color-brand-10};
+  --color-brand-10: #{$color-brand-10};
+  --color-brand-20: #{$color-brand-20};
+  --color-brand-30: #{$color-brand-30};
+}
 
 * {
   box-sizing: border-box;
   font-family: sans-serif;
-}
-
-:root {
-  --primary-color: #{$color-brand-10};
 }
