@@ -71,12 +71,12 @@
     client.getLeafletLayer().addTo(map);
 
     function _showMap(event) {
-      document.querySelector('.as-bottom-bar').classList.remove('is-visible');
+      document.querySelector('.as-bottom-bar').classList.remove('as-bottom-bar--visible');
       setActiveTab(event.target);
     }
 
     function _showBottomPanel(event) {
-      document.querySelector('.as-bottom-bar').classList.add('is-visible');
+      document.querySelector('.as-bottom-bar').classList.add('as-bottom-bar--visible');
       setActiveTab(event.target);
     }
 

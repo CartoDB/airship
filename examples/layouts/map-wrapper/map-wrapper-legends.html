@@ -87,18 +87,17 @@
     client.getLeafletLayer().addTo(map);
 
     function showMap(event) {
-      showPanel('.as-panels', false);
+      showPanel('.as-panels', 'as-panels--visible',false);
       setActiveTab(event.target);
     }
 
     function showLegends(event) {
-      showPanel('.as-panels', true);
+      showPanel('.as-panels', 'as-panels--visible', true);
       setActiveTab(event.target);
     }
 
-    function showPanel(selector, visible) {
+    function showPanel(selector, visibleClass, visible) {
       var element = document.querySelector(selector)
-      var visibleClass = 'is-visible';
       visible
         ? element.classList.add(visibleClass)
         : element.classList.remove(visibleClass);

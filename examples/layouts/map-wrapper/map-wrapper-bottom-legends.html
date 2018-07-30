@@ -92,26 +92,25 @@
     client.getLeafletLayer().addTo(map);
 
     function showMap(event) {
-      showPanel('.as-panels', false);
-      showPanel('.as-bottom-bar', false);
+      showPanel('.as-panels', 'as-panels--visible', false);
+      showPanel('.as-bottom-bar', 'as-bottom-bar--visible', false);
       setActiveTab(event.target);
     }
 
     function showLegends(event) {
-      showPanel('.as-panels', true);
-      showPanel('.as-bottom-bar', false);
+      showPanel('.as-panels', 'as-panels--visible', true);
+      showPanel('.as-bottom-bar', 'as-bottom-bar--visible', false);
       setActiveTab(event.target);
     }
 
     function showBottom(event) {
-      showPanel('.as-panels', false);
-      showPanel('.as-bottom-bar', true);
+      showPanel('.as-panels', 'as-panels--visible', false);
+      showPanel('.as-bottom-bar', 'as-bottom-bar--visible', true);
       setActiveTab(event.target);
     }
 
-    function showPanel(selector, visible) {
+    function showPanel(selector, visibleClass, visible) {
       var element = document.querySelector(selector)
-      var visibleClass = 'is-visible';
       visible
         ? element.classList.add(visibleClass)
         : element.classList.remove(visibleClass);
