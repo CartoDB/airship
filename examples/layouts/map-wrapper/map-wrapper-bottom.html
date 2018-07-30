@@ -31,14 +31,15 @@
 
   <main class="as-app-content">
     <div class="as-map-wrapper">
-      <div id="map"></div>
-      <div class="as-panels">
-        <div class="as-panel__bottom-bar">
-          <h1>STATS</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi porttitor quis risus at euismod. Aenean non dictum nisi. Fusce sit amet dictum est. Proin non sem mollis, tristique turpis sed, scelerisque massa. Nulla risus nulla, molestie et urna sed, iaculis aliquet nisl. Vestibulum at metus et massa iaculis ultricies. Cras dictum condimentum iaculis. Curabitur quam justo, euismod a eleifend non, facilisis varius sapien. Quisque ut accumsan justo, eget efficitur ex. Suspendisse ullamcorper libero leo, non semper est pretium sit amet. Vivamus odio purus, euismod et dolor at, cursus vulputate mauris. Suspendisse et dolor eget enim mattis molestie et sit amet lacus. Duis blandit ex eu odio ornare, a faucibus mauris tristique.</p>
-          <p>Aenean congue neque mattis, pharetra lectus a, viverra odio. Sed ex mauris, dictum vitae semper non, placerat sed diam. Morbi ac magna dapibus elit gravida consequat eu at sapien. Etiam venenatis tempus augue, sit amet accumsan tellus egestas luctus. Nunc ut ex sit amet metus mollis aliquet vel nec nulla. Donec bibendum nec metus ac egestas. Aenean posuere nibh lacus, et mattis eros cursus sit amet. Integer auctor semper metus, vel viverra dui. Mauris eget laoreet orci. Suspendisse at eleifend elit. Duis vel magna quis justo ullamcorper consequat in sit amet ipsum. Nam euismod purus ac luctus vestibulum. Vivamus nunc justo, feugiat nec mauris id, lobortis dignissim tortor. Aliquam sapien justo, tempor sed semper at, consequat vitae ipsum. Etiam rutrum pellentesque nisi sed pulvinar.</p>
-          <p>Sed dolor felis, vestibulum eu suscipit non, condimentum in felis. Cras quis eros pellentesque, accumsan dui non, pharetra leo. Quisque vestibulum rutrum nulla eget venenatis. Integer tristique, quam eget ornare sagittis, nulla elit venenatis sem, ut viverra enim tellus luctus lorem. Curabitur sagittis rutrum ipsum vitae ullamcorper. Morbi aliquet tempor eros eget cursus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean et erat in eros congue euismod at vel nulla. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur nec ex posuere elit hendrerit posuere. Morbi aliquet nisi ac tortor mollis, sed pharetra nibh ultricies. Morbi viverra ex tortor, non blandit massa rutrum at. Cras egestas blandit mauris vel vulputate. Nam quis enim eu ex convallis dapibus. Nunc vulputate quam lacus, at malesuada nibh imperdiet vitae.</p>
-        </div>
+      <div class="as-map">
+        <div id="map"></div>
+      </div>
+
+      <div class="as-bottom-bar">
+        <h1>STATS</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi porttitor quis risus at euismod. Aenean non dictum nisi. Fusce sit amet dictum est. Proin non sem mollis, tristique turpis sed, scelerisque massa. Nulla risus nulla, molestie et urna sed, iaculis aliquet nisl. Vestibulum at metus et massa iaculis ultricies. Cras dictum condimentum iaculis. Curabitur quam justo, euismod a eleifend non, facilisis varius sapien. Quisque ut accumsan justo, eget efficitur ex. Suspendisse ullamcorper libero leo, non semper est pretium sit amet. Vivamus odio purus, euismod et dolor at, cursus vulputate mauris. Suspendisse et dolor eget enim mattis molestie et sit amet lacus. Duis blandit ex eu odio ornare, a faucibus mauris tristique.</p>
+        <p>Aenean congue neque mattis, pharetra lectus a, viverra odio. Sed ex mauris, dictum vitae semper non, placerat sed diam. Morbi ac magna dapibus elit gravida consequat eu at sapien. Etiam venenatis tempus augue, sit amet accumsan tellus egestas luctus. Nunc ut ex sit amet metus mollis aliquet vel nec nulla. Donec bibendum nec metus ac egestas. Aenean posuere nibh lacus, et mattis eros cursus sit amet. Integer auctor semper metus, vel viverra dui. Mauris eget laoreet orci. Suspendisse at eleifend elit. Duis vel magna quis justo ullamcorper consequat in sit amet ipsum. Nam euismod purus ac luctus vestibulum. Vivamus nunc justo, feugiat nec mauris id, lobortis dignissim tortor. Aliquam sapien justo, tempor sed semper at, consequat vitae ipsum. Etiam rutrum pellentesque nisi sed pulvinar.</p>
+        <p>Sed dolor felis, vestibulum eu suscipit non, condimentum in felis. Cras quis eros pellentesque, accumsan dui non, pharetra leo. Quisque vestibulum rutrum nulla eget venenatis. Integer tristique, quam eget ornare sagittis, nulla elit venenatis sem, ut viverra enim tellus luctus lorem. Curabitur sagittis rutrum ipsum vitae ullamcorper. Morbi aliquet tempor eros eget cursus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean et erat in eros congue euismod at vel nulla. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur nec ex posuere elit hendrerit posuere. Morbi aliquet nisi ac tortor mollis, sed pharetra nibh ultricies. Morbi viverra ex tortor, non blandit massa rutrum at. Cras egestas blandit mauris vel vulputate. Nam quis enim eu ex convallis dapibus. Nunc vulputate quam lacus, at malesuada nibh imperdiet vitae.</p>
       </div>
     </div>
   </main>
@@ -70,12 +71,12 @@
     client.getLeafletLayer().addTo(map);
 
     function _showMap(event) {
-      document.querySelector('.as-panels').classList.remove('is-visible');
+      document.querySelector('.as-bottom-bar').classList.remove('is-visible');
       setActiveTab(event.target);
     }
 
     function _showBottomPanel(event) {
-      document.querySelector('.as-panels').classList.add('is-visible');
+      document.querySelector('.as-bottom-bar').classList.add('is-visible');
       setActiveTab(event.target);
     }
 
