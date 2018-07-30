@@ -189,24 +189,24 @@
     }
 
     function showLeftPanel(visible) {
-      showPanel('.as-sidebar.as-sidebar--left', visible);
+      showPanel('as-sidebar--left', visible);
     }
 
     function showRightPanel(visible) {
-      showPanel('.as-sidebar.as-sidebar--right', visible);
+      showPanel('as-sidebar--right', visible);
     }
 
     function showLegendsPanel(visible) {
-      showPanel('[data-usage="legends"]', visible);
+      showPanel('as-panels', visible);
     }
 
     function showBottomPanel(visible) {
-      showPanel('[data-usage="bottom-panel"]', visible);
+      showPanel('as-bottom-bar', visible);
     }
 
-    function showPanel(selector, visible) {
-      var element = document.querySelector(selector)
-      var visibleClass = 'is-visible';
+    function showPanel(className, visible) {
+      var element = document.querySelector(`.${className}`)
+      var visibleClass = className + '--visible';
       visible
         ? element.classList.add(visibleClass)
         : element.classList.remove(visibleClass);
