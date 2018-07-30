@@ -22,16 +22,15 @@
     text-align: center;
     cursor: pointer;
 
-
-    &--active {
-      border-bottom: 2px solid $color-brand-20;
-      color: $color-type-10;
+    &:focus,
+    &:hover {
+      border-bottom: 2px solid $color-brand-30;
     }
 
-    &:focus,
-    &:hover,
+    &--active,
     &:active {
-      border-bottom: 2px solid $color-brand-30;
+      border-bottom: 2px solid $color-brand-20;
+      color: $color-type-10;
     }
   }
 
