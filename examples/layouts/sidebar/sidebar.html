@@ -24,11 +24,11 @@
 </head>
 
 <body class="as-app as-app--nav-top">
-  <nav class="as-toolbar-tabs">
-    <span onclick="showMap(event)" class="as-toolbar-tabs__item as-toolbar-tabs__item--active">MAP</span>
-    <span onclick="showLeft(event)" class="as-toolbar-tabs__item">LEFT </span>
-    <span onclick="showRight(event)" class="as-toolbar-tabs__item">RIGHT</span>
-  </nav>
+  <div role="tablist" class="as-toolbar-tabs as-tabs">
+    <button onclick="showMap(event)" role="tab" class="as-tabs__item as-tabs__item--active">MAP</button>
+    <button onclick="showLeft(event)" role="tab" class="as-tabs__item">LEFT</button>
+    <button onclick="showRight(event)" role="tab" class="as-tabs__item">RIGHT</button>
+  </div>
 
   <main class="as-app-content">
     <aside class="as-sidebar as-sidebar--left as-sidebar--xl">
