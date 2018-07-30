@@ -1,6 +1,9 @@
 # Tabs
 
-The tabs structure consists of an unordered list of tabs that have hashes corresponding to tab ids
+Tabs are an element used in navigation.
+
+You can use tabs to create a [menu element](https://www.w3.org/WAI/tutorials/menus/) or a [tabs element](https://www.w3.org/TR/wai-aria-practices/examples/tabs/tabs-2/tabs.html) both with a very similar look and feel.
+
 
 ```html
 responsive: true

@@ -1,20 +1,26 @@
 .as-tabs {
-  ul {
+  ul,
+  &[role="tablist"] {
     display: flex;
     flex-direction: row;
+    flex-wrap: nowrap;
     align-items: center;
+    overflow-x: auto;
     border-bottom: 1px solid $color-ui-30;
     background: $color-ui-10;
   }
 
   &__item {
     @include padding(3);
+    flex-shrink: 0;
     transition: border 0.2s;
     border-bottom: 2px solid transparent;
+    outline: none;
     color: $color-brand-10;
     font: 12px/20px $font-base;
     text-align: center;
     cursor: pointer;
+
 
     &--active {
       border-bottom: 2px solid $color-brand-20;
