@@ -1,0 +1,23 @@
+@function get-spacing($spacingUnits) {
+  @return $spacingUnits * $su;
+}
+
+@mixin padding($values) {
+  $padding: ();
+
+  @each $value in $values {
+    $padding: append($padding, get-spacing($value));
+  }
+
+  padding: $padding;
+}
+
+@mixin margin($values) {
+  $margin: ();
+
+  @each $value in $values {
+    $margin: append($margin, get-spacing($value));
+  }
+
+  margin: $margin;
+}

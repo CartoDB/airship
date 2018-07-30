@@ -1,0 +1,40 @@
+.as-toolbar__actions {
+  display: flex;
+  position: absolute;
+  z-index: 3;
+  top: $toolbar-size;
+  right: 0;
+  bottom: 0;
+  left: -100%;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  transition: left 0.3s;
+  background-color: var(--toolbar-tabs-bg-color, $color-brand-20);
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: get-spacing(4);
+  }
+
+  &--visible {
+    left: 0;
+  }
+
+  // Media queries
+  @media all and (min-width: $tablet-breakpoint) {
+    position: initial;
+    top: 0;
+    left: 0;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+
+    ul {
+      flex-direction: row;
+      padding-left: 0;
+    }
+  }
+}

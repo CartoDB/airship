@@ -1,4 +1,4 @@
-import { TestWindow } from '@stencil/core/testing';
+import { TestWindow } from '@stencil/core/dist/testing';
 import { Switch } from './as-switch';
 
 describe('as-switch', () => {
@@ -7,7 +7,7 @@ describe('as-switch', () => {
   });
 
   describe('Behaviour', () => {
-    let element: HTMLSwitchElement;
+    let element: HTMLAsToolbarElement;
     let testWindow: TestWindow;
 
     beforeEach(async () => {

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Sidebar bottom tabs</title>
+  <link rel="stylesheet" href="../../../packages/styles/dist/airship.css">
+  <script src="../../../packages/components/dist/airship.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+  <!-- CARTO.js -->
+  <!-- Include Leaflet -->
+  <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+  <link href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" rel="stylesheet">
+  <!-- Include CARTO.js -->
+  <script src="https://libs.cartocdn.com/carto.js/v4.1/carto.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:600" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link href="https://carto.com/developers/carto-js/examples/maps/public/style.css" rel="stylesheet">
+  <!-- / CARTO.js -->
+
+</head>
+
+<body class="as-app as-app--nav-top">
+  <main class="as-app-content">
+    <aside class="as-sidebar as-sidebar--left as-sidebar--xl">
+      <h1>Left Sidebar (XL)</h1>
+      <p>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt aliquam nihil nulla quo, cum excepturi commodi saepe dicta
+        impedit accusamus, nisi adipisci repellendus expedita rem dolores suscipit! Cumque, nulla culpa?
+      </p>
+    </aside>
+
+    <div class="as-map-wrapper">
+      <div id="map"></div>
+    </div>
+
+    <aside class="as-sidebar as-sidebar--right">
+      <h1>Right Sidebar</h1>
+      <p>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt aliquam nihil nulla quo, cum excepturi commodi saepe dicta
+        impedit accusamus, nisi adipisci repellendus expedita rem dolores suscipit! Cumque, nulla culpa?
+      </p>
+    </aside>
+  </main>
+
+  <nav class="as-toolbar-tabs">
+    <span onclick="showMap(event)" class="as-toolbar-tabs__item as-toolbar-tabs__item--active">MAP</span>
+    <span onclick="showLeft(event)" class="as-toolbar-tabs__item">LEFT </span>
+    <span onclick="showRight(event)" class="as-toolbar-tabs__item">RIGHT</span>
+  </nav>
+
+  <script defer src="../common/map.js"></script>
+  <script defer src="../common/tabs.js"></script>
+</body>
+
+</html>
