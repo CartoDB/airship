@@ -15,7 +15,7 @@
   <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
   <link href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" rel="stylesheet">
   <!-- Include CARTO.js -->
-  <script src="https://libs.cartocdn.com/carto.js/v4.1.1/carto.min.js"></script>
+  <script src="https://libs.cartocdn.com/carto.js/v4.1/carto.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Montserrat:600" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
   <link href="https://carto.com/developers/carto-js/examples/maps/public/style.css" rel="stylesheet">
@@ -44,15 +44,12 @@
         impedit accusamus, nisi adipisci repellendus expedita rem dolores suscipit! Cumque, nulla culpa?
       </p>
     </aside>
-
-
   </main>
 
-  <!-- Tabs on bottom! -->
   <nav class="as-toolbar-tabs">
-    <span onclick="_showTab0(event)" class="as-toolbar-tabs__item">LEFT </span>
-    <span onclick="_showTab1(event)" class="as-toolbar-tabs__item as-toolbar-tabs__item--active">MAP</span>
-    <span onclick="_showTab2(event)" class="as-toolbar-tabs__item">RIGHT</span>
+    <span onclick="showMap(event)" class="as-toolbar-tabs__item as-toolbar-tabs__item--active">MAP</span>
+    <span onclick="showLeft(event)" class="as-toolbar-tabs__item">LEFT </span>
+    <span onclick="showRight(event)" class="as-toolbar-tabs__item">RIGHT</span>
   </nav>
 
   <script defer>
@@ -81,31 +78,45 @@
     client.addLayer(layer);
     client.getLeafletLayer().addTo(map);
 
-
-    function _toggleDrawer() {
-      document.querySelector('.as-toolbar-actions').classList.toggle('as-toolbar-actions--visible');
+    function showMap(event) {
+      showLeftPanel(false);
+      showRightPanel(false);
+      setActiveTab(event.target);
     }
 
-    function _showTab0(event) {
-      document.querySelector('.as-sidebar.as-sidebar--left').classList.add('as-sidebar--left--visible');
-      document.querySelector('.as-sidebar.as-sidebar--right').classList.remove('as-sidebar--right--visible');
+    function showLeft(event) {
+      showLeftPanel(true);
+      showRightPanel(false);
+      setActiveTab(event.target);
+    }
+
+    function showRight(event) {
+      showLeftPanel(false);
+      showRightPanel(true);
+      setActiveTab(event.target);
+    }
+
+    function showLeftPanel(visible) {
+      showPanel('as-sidebar--left', visible);
+    }
+
+    function showRightPanel(visible) {
+      showPanel('as-sidebar--right', visible);
+    }
+
+    function showPanel(className, visible) {
+      var element = document.querySelector(`.${className}`)
+      var visibleClass = className + '--visible';
+      visible
+        ? element.classList.add(visibleClass)
+        : element.classList.remove(visibleClass);
+    }
+
+    function setActiveTab(target) {
       document.querySelector('.as-toolbar-tabs .as-toolbar-tabs__item--active').classList.remove('as-toolbar-tabs__item--active');
-      event.target.classList.add('as-toolbar-tabs__item--active');
+      target.classList.add('as-toolbar-tabs__item--active');
     }
 
-    function _showTab1(event) {
-      document.querySelector('.as-sidebar.as-sidebar--left').classList.remove('as-sidebar--left--visible');
-      document.querySelector('.as-sidebar.as-sidebar--right').classList.remove('as-sidebar--right--visible');
-      document.querySelector('.as-toolbar-tabs .as-toolbar-tabs__item--active').classList.remove('as-toolbar-tabs__item--active');
-      event.target.classList.add('as-toolbar-tabs__item--active');
-    }
-
-    function _showTab2(event) {
-      document.querySelector('.as-sidebar.as-sidebar--right').classList.add('as-sidebar--right--visible');
-      document.querySelector('.as-sidebar.as-sidebar--left').classList.remove('as-sidebar--left--visible');
-      document.querySelector('.as-toolbar-tabs .as-toolbar-tabs__item--active').classList.remove('as-toolbar-tabs__item--active');
-      event.target.classList.add('as-toolbar-tabs__item--active');
-    }
   </script>
 </body>
 
