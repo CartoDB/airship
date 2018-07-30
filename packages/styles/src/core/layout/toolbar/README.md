@@ -1,5 +1,5 @@
 ### Toolbar
-hola
+
 Toolbar is a generic bar that can be used as a header to put your application logo and some options to navigate throughout your application.
 
 On mobile devices, the toolbar is always placed on top, but its position can be modified on desktop by using `left` or `right` modifiers in `as-app` styles.
