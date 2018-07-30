@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-around;
   height: $toolbar-size;
-  background-color: var(--brand-02-color, $brand-02-color);
+  background-color: var(--brand-02-color, $color-brand-20);
 
   &__item {
     flex: 1;

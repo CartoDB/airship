@@ -10,7 +10,7 @@
   align-items: flex-start;
   width: 100%;
   transition: left 0.3s;
-  background-color: var(--toolbar-tabs-bg-color, $brand-02-color);
+  background-color: var(--toolbar-tabs-bg-color, $color-brand-20);
 
   ul {
     display: flex;

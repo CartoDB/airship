@@ -2,9 +2,16 @@
 @import 'lib/_reset';
 @import 'variables/_variables';
 @import 'layout/_layout';
+@import 'typography/_typography';
 
 :root {
-  --brand-01-color: #{$brand-01-color};
-  --brand-02-color: #{$brand-02-color};
-  --brand-03-color: #{$brand-03-color};
+  --primary-color: #{$color-brand-10};
+  --color-brand-10: #{$color-brand-10};
+  --color-brand-20: #{$color-brand-20};
+  --color-brand-30: #{$color-brand-30};
+}
+
+* {
+  box-sizing: border-box;
+  font-family: sans-serif;
 }

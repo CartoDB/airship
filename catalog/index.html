@@ -1,15 +1,16 @@
 <!doctype html>
 <html>
+
 <head>
   <base href="/catalog/">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Airship</title>
-
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"/>
+  <link href="https://fonts.googleapis.com/css?family=Overpass+Mono|Roboto:300,400,500" rel="stylesheet">
   <link rel="stylesheet" href="../packages/styles/dist/airship.css">
 </head>
+
 <body>
   <div id="catalog" />
 
@@ -18,7 +19,6 @@
 
   <!-- Use the minified production version to get optimal performance -->
   <script src="https://unpkg.com/catalog@3/dist/catalog-standalone.min.js"></script>
-
   <script src="../packages/components/dist/airship.js"></script>
 
   <script>
@@ -76,6 +76,16 @@
               path: '/styles/button',
               title: 'Button',
               src: '../packages/styles/src/button/README.md'
+            },
+            {
+              path: '/styles/colors',
+              title: 'Colors',
+              src: '../packages/styles/src/core/variables/colors.md'
+            },
+            {
+              path: '/styles/typography',
+              title: 'Typography',
+              src: '../packages/styles/src/core/typography/README.md'
             }
           ]
         }
@@ -83,4 +93,5 @@
     }, document.getElementById('catalog'));
   </script>
 </body>
+
 </html>

@@ -1,0 +1,33 @@
+.as-caption {
+  font: 10px/12px $font-base;
+}
+
+.as-body {
+  font: 12px/20px $font-base;
+}
+
+.as-subheader {
+  font: 16px/24px $font-base;
+}
+
+.as-title {
+  font: 24px/32px $font-base;
+}
+
+.as-display {
+  font: 40px/56px $font-base;
+  font-weight: 300;
+}
+
+.as-jumbo {
+  font: 72px/80px $font-base;
+  font-weight: 300;
+}
+
+.as-font-medium {
+  font-weight: 500;
+}
+
+.as-font-mono {
+  font-family: $font-monospace-base;
+}

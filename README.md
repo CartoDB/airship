@@ -3,7 +3,7 @@
 
 [![CircleCI](https://circleci.com/gh/CartoDB/airship/tree/master.svg?style=svg)](https://circleci.com/gh/CartoDB/airship/tree/master)
 
-There are two npm packages, for easier reuse:
+There are two npm packages for easier use:
 
 
 | module | status | version | description |

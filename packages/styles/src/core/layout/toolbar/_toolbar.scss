@@ -2,11 +2,11 @@
 @import '_tabs';
 
 .as-toolbar {
-  --toolbar-bg-color: $brand-02-color;
+  --toolbar-bg-color: $color-brand-20;
 
   display: flex;
   height: $toolbar-size;
-  background-color: var(--brand-02-color, $brand-02-color);
+  background-color: var(--brand-02-color, $color-brand-20);
 
   &__toggle {
     border: none;
