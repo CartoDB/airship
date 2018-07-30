@@ -2,28 +2,33 @@
   ul {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
-    background: white;
+    align-items: center;
+    border-bottom: 1px solid $color-ui-30;
+    background: $color-ui-10;
   }
 
   &__item {
-    flex: 1;
-    padding: 16px;
-    border-bottom: 2px solid $color-ui-30;
+    @include padding(3);
+    transition: border 0.2s;
+    border-bottom: 2px solid transparent;
     color: $color-brand-10;
-    font-family: $font-base;
+    font: 12px/20px $font-base;
     text-align: center;
     cursor: pointer;
 
     &--active {
-      border-bottom: 3px solid $color-brand-20;
+      border-bottom: 2px solid $color-brand-20;
       color: $color-type-10;
     }
 
     &:focus,
     &:hover,
     &:active {
-      border-bottom: 3px solid $color-brand-30;
+      border-bottom: 2px solid $color-brand-30;
     }
+  }
+
+  &--xl .as-tabs__item {
+    font: 16px/24px $font-base;
   }
 }
