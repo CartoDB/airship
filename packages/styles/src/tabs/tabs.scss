@@ -1,6 +1,7 @@
 .as-tabs {
   ul,
   &[role="tablist"] {
+    @include padding(0 3);
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;

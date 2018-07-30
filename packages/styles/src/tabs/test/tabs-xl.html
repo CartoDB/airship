@@ -20,13 +20,12 @@
 </head>
 
 <body>
-  <nav class="as-tabs">
-    <ul>
-      <li class="as-tabs__item as-tabs__item--active">Tab 0</li>
-      <li class="as-tabs__item">Tab 1</li>
-      <li class="as-tabs__item">Tab 2</li>
-    </ul>
-  </nav>
+  <!-- ARIA COMPATIBLE -->
+  <div class="as-tabs as-tabs--xl" role="tablist">
+    <button role="tab" class="as-tabs__item as-tabs__item--active">Tab 0</button>
+    <button role="tab" class="as-tabs__item">Tab 1</button>
+    <button role="tab" class="as-tabs__item">Tab 2</button>
+  </div>
 </body>
 
 </html>
