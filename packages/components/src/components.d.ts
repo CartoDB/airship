@@ -29,6 +29,54 @@ declare global {
 declare global {
 
   namespace StencilComponents {
+    interface AsCategoryWidget {
+      'categories': object[];
+      'clearSelection': () => void;
+      'defaultBarColor': string;
+      'getSelectedCategories': () => string[];
+      'showClearButton': boolean;
+      'showHeader': boolean;
+      'useTotalPercentage': boolean;
+      'widgetDescription': string;
+      'widgetTitle': string;
+    }
+  }
+
+  interface HTMLAsCategoryWidgetElement extends StencilComponents.AsCategoryWidget, HTMLStencilElement {}
+
+  var HTMLAsCategoryWidgetElement: {
+    prototype: HTMLAsCategoryWidgetElement;
+    new (): HTMLAsCategoryWidgetElement;
+  };
+  interface HTMLElementTagNameMap {
+    'as-category-widget': HTMLAsCategoryWidgetElement;
+  }
+  interface ElementTagNameMap {
+    'as-category-widget': HTMLAsCategoryWidgetElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'as-category-widget': JSXElements.AsCategoryWidgetAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface AsCategoryWidgetAttributes extends HTMLAttributes {
+      'categories'?: object[];
+      'defaultBarColor'?: string;
+      'onCategoriesSelected'?: (event: CustomEvent) => void;
+      'showClearButton'?: boolean;
+      'showHeader'?: boolean;
+      'useTotalPercentage'?: boolean;
+      'widgetDescription'?: string;
+      'widgetTitle'?: string;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
     interface AsSwitch {
 
     }
