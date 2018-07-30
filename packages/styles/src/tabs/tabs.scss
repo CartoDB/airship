@@ -1,2 +1,29 @@
 .as-tabs {
+  ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background: white;
+  }
+
+  &__item {
+    flex: 1;
+    padding: 16px;
+    border-bottom: 2px solid $color-ui-30;
+    color: $color-brand-10;
+    font-family: $font-base;
+    text-align: center;
+    cursor: pointer;
+
+    &--active {
+      border-bottom: 3px solid $color-brand-20;
+      color: $color-type-10;
+    }
+
+    &:focus,
+    &:hover,
+    &:active {
+      border-bottom: 3px solid $color-brand-30;
+    }
+  }
 }
