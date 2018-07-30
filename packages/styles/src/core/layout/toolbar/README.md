@@ -15,54 +15,54 @@ responsive: true
 
 ```code
 lang: html
-collapsed: true
 ---
 <body class="as-app as-app--nav-top">
-  <header>
-    <nav class="as-toolbar-main">
-      <img onclick="openSideMenu()" class="as-toolbar-main__item as-toolbar-main__toggle" src="https://material.io/tools/icons/static/icons/baseline-menu-24px.svg"
-      alt="Open side menu">
+  <header class="as-toolbar">
+    <button onclick="_toggleDrawer()" class="as-toolbar__item as-toolbar__toggle">
+        <img src="https://material.io/tools/icons/static/icons/baseline-menu-24px.svg" alt="">
+    </button>
+    <li class="as-toolbar__item"> APP LOGO </li>
 
-      <div class="as-toolbar-actions">
-        <span class="as-toolbar-main__item">
-          <img src="https://material.io/tools/icons/static/icons/baseline-fingerprint-24px.svg" alt="Ajustes">
-          <p>Ajustes</p>
-        </span>
-        <span class="as-toolbar-main__item">
-          <img src="https://material.io/tools/icons/static/icons/baseline-add_location-24px.svg" alt="Ajustes">
-          <p>Ajustes</p>
-        </span>
-        <span class="as-toolbar-main__item">
-          <img src="https://material.io/tools/icons/static/icons/baseline-account_circle-24px.svg" alt="User">
-          <p>User</p>
-        </span>
-        <span class="as-toolbar-main__item">
-          <img src="https://material.io/tools/icons/static/icons/baseline-power_settings_new-24px.svg" alt="Rendimiento">
-          <p>Rendimiento</p>
-        </span>
-      </div>
+    <nav class="as-toolbar__actions">
+      <ul>
+        <li class="as-toolbar__item">
+          <a href="http://www.google.es">SOME LINK</a>
+        </li>
+        <li class="as-toolbar__item">
+          <img src="https://material.io/tools/icons/static/icons/baseline-add_location-24px.svg" alt="Action 2">
+          <p class="as-toolbar__icon-text">Action 2</p>
+        </li>
+        <li class="as-toolbar__item">
+          <img src="https://material.io/tools/icons/static/icons/baseline-account_circle-24px.svg" alt="Action 3">
+          <p class="as-toolbar__icon-text">Action 3</p>
+        </li>
+        <li class="as-toolbar__item">
+          <img src="https://material.io/tools/icons/static/icons/baseline-power_settings_new-24px.svg" alt="Action 4">
+          <p class="as-toolbar__icon-text">Action 4</p>
+        </li>
+      </ul>
     </nav>
   </header>
 
-  <script>
-    function openSideMenu() {
-      document.querySelector('.as-toolbar-actions').classList.toggle('as-toolbar-actions--visible');
-    }
-  </script>
+  <main class="as-app-content">
+    <div class="as-map-wrapper">
+      <div id="map"></div>
+    </div>
+  </main>
 </body>
 ```
 
 ### Toolbar Content
 
-The toolbar can be customized as you want to include your branding and some other application elements mainly, using `.as-toolbar-main__item`.
+The toolbar can be customized as you want to include your branding and some other application elements mainly, using `.as-toolbar__item`.
 
-All the content within `.as-toolbar-main` will be aligned to the left (depending on the toolbar position), except actions which are always aligned to the opposite side.
+All the content within `.as-toolbar` will be aligned to the left (depending on the toolbar position), except actions which are always aligned to the opposite side.
 
 Here you have the code to add your main logo (click on the <> to see the code):
 
 ```html
 <header class="as-toolbar">
-  <li class="as-toolbar__item">
+  <div class="as-toolbar__item">
     <!-- HERE GOES YOUR LOGO -->
     <svg width="130px" height="36px" viewBox="0 0 92 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="filter: invert(1);">
       <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -74,7 +74,7 @@ Here you have the code to add your main logo (click on the <> to see the code):
         </g>
       </g>
     </svg>
-  </li>
+  </div>
 </header>
 ```
 
@@ -85,7 +85,7 @@ Toolbar actions are the main toolbar's content, usually icons or links to anothe
 In order to fit the [W3C Accessibility guidelines](https://www.w3.org/WAI/tutorials/menus/), we use an `ul` element to layout the menu elements without an specific order, containing `li` elements with a `as-toolbar__item` class.
 
 ```code
-lang:html
+lang: html
 ---
 <nav class="as-toolbar__actions">
   <ul>
@@ -104,44 +104,47 @@ lang:html
 When seeing it in mobile, these actions are grouped in a hamburger menu, needing a button to show the menu.
 
 ```code
-lang:html
+lang: html
 ---
-<nav class="as-toolbar-main">
-  <img onclick="openSideMenu()" class="as-toolbar-main__item as-toolbar-main__toggle" src="https://material.io/tools/icons/static/icons/baseline-menu-24px.svg"
-  alt="Open side menu">
+<header class="as-toolbar">
+  <button onclick="_toggleDrawer()" class="as-toolbar__item as-toolbar__toggle">
+      <img src="https://material.io/tools/icons/static/icons/baseline-menu-24px.svg" alt="">
+  </button>
 
-  <div class="as-toolbar-actions">
-    <span class="as-toolbar-main__item">
-      <img src="https://material.io/tools/icons/static/icons/baseline-fingerprint-24px.svg" alt="Ajustes">
-      <p>Ajustes</p>
-    </span>
-  </div>
-</div>
+  <div class="as-toolbar__item"> APP LOGO </div>
+
+  <nav class="as-toolbar__actions">
+    <ul>
+      <li class="as-toolbar__item">
+        <a href="http://www.google.es">SOME LINK</a>
+      </li>
+      <li class="as-toolbar__item">
+        <img src="https://material.io/tools/icons/static/icons/baseline-add_location-24px.svg" alt="Action 2">
+        <p class="as-toolbar__icon-text">Action 2</p>
+      </li>
+      <li class="as-toolbar__item">
+        <img src="https://material.io/tools/icons/static/icons/baseline-account_circle-24px.svg" alt="Action 3">
+        <p class="as-toolbar__icon-text">Action 3</p>
+      </li>
+      <li class="as-toolbar__item">
+        <img src="https://material.io/tools/icons/static/icons/baseline-power_settings_new-24px.svg" alt="Action 4">
+        <p class="as-toolbar__icon-text">Action 4</p>
+      </li>
+    </ul>
+  </nav>
+</header>
 
 <script>
-  function openSideMenu() {
-    document.querySelector('.as-toolbar-actions').classList.toggle('as-toolbar-actions--visible');
+  function _toggleDrawer() {
+    document.querySelector('.as-toolbar__actions').classList.toggle('as-toolbar__actions--visible');
   }
 </script>
 ```
 
 ### Tabs
-You can add [sidebars]() and [floating containers]() to your application layout, which are hidden when seeing it from a mobile device. To shift from the main container to other content sections, you need to use tabs.
+TODO: Add a better explanation
 
-These tabs allow you to provide a good mobile experience to your users, letting them change the content in a easy way.
-
-The markup you need is:
-```code
-lang: html
----
-<nav class="as-toolbar__actions">
-  <ul>
-    <li class="as-toolbar__item">
-      <img src="https://material.io/tools/icons/static/icons/baseline-fingerprint-24px.svg" alt="Fingerprint Auth">
-      <p class="as-toolbar__icon-text">Fingerprint Auth</p>
-    </li>
-  </ul>
-</nav>
-```
-
-Similar to the menu structure, the `<nav>` element holds the whole menu structure, and you need to add as many `.as-toolbar__item` as the number of tabs that you want to have.
+- Tabs are only CSS
+- Tabs are hidden by default
+- Tabs are visible with the `--visible` modifier
+- You need to define custom javascript to control tab visibility

@@ -21,15 +21,14 @@ responsive: true
 
 ```code
 lang: html
-collapsed: true
 ---
-  <body class="as-app as-app--nav-top">
-    <header>
-      <nav class="as-toolbar-main"></nav>
-    </header>
+<body class="as-app as-app--nav-top">
+  <header class="as-toolbar"></header>
 
-    <div class="as-app-container">
+  <main class="as-app-content">
+    <div class="as-map-wrapper">
       <div id="map"></div>
     </div>
-  </body>
+  </main>
+</body>
 ```
