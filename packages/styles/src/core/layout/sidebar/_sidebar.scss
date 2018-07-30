@@ -12,7 +12,7 @@
     left: -100%;
     box-shadow: rgba(44, 44, 44, 0.16) 1px 0 4px 0;
 
-    &.is-visible {
+    &--visible {
       left: 0;
       opacity: 1;
     }
@@ -22,7 +22,7 @@
     right: -100%;
     box-shadow: rgba(44, 44, 44, 0.16) 0 1px 4px 0;
 
-    &.is-visible {
+    &--visible {
       right: 0;
       opacity: 1;
     }
