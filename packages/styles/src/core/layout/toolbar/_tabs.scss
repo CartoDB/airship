@@ -1,37 +1,26 @@
 .as-toolbar-tabs {
   display: flex;
   justify-content: space-around;
-  height: $header-height;
+  height: $toolbar-size;
   background-color: var(--brand-02-color, $brand-02-color);
-
-  &--bg-brand-1 {
-    background-color: var(--brand-01-color, $brand-01-color);
-  }
-
-  &--bg-brand-2 {
-    background-color: var(--brand-02-color, $brand-02-color);
-  }
-
-  &--bg-brand-3 {
-    background-color: var(--brand-03-color, $brand-03-color);
-  }
 
   &__item {
     flex: 1;
     height: 100%;
-    padding: 0 8px;
     transition: border 0.3s;
-    border-bottom: 4px solid transparent;
+    border-bottom: get-spacing(1) solid transparent;
     color: white;
     font-family: 'Roboto', sans-serif;
-    line-height: $header-height;
+    line-height: $toolbar-size;
     text-align: center;
     text-transform: uppercase;
     cursor: pointer;
+
+    @include padding(0 2);
   }
 
   &__item--active {
-    border-bottom: 4px solid white;
+    border-bottom: get-spacing(1) solid white;
   }
 
   // Media queries

@@ -1,9 +1,9 @@
 import { TestWindow } from '@stencil/core/dist/testing';
-import { Toolbar } from './as-toolbar';
+import { Switch } from './as-switch';
 
 describe('as-switch', () => {
   it('should build', () => {
-    expect(new Toolbar()).toBeTruthy();
+    expect(new Switch()).toBeTruthy();
   });
 
   describe('Behaviour', () => {
@@ -13,8 +13,8 @@ describe('as-switch', () => {
     beforeEach(async () => {
       testWindow = new TestWindow();
       element = await testWindow.load({
-        components: [Toolbar],
-        html: '<as-toolbar></as-toolbar>'
+        components: [Switch],
+        html: '<as-switch></as-switch>'
       });
     });
 

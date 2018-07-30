@@ -6,13 +6,15 @@ Airship style is a css framework oriented to develop your Location Intelligence 
 
 ## Getting Started
 
-You can install airship-style using `npm` or downloading from a `CDN`.
+You can install airship-style using `npm` or downloading it from a `CDN`.
 
 Airship styles are distributed in small files so you can choose to load only the components that you are going to use improving your [page speed performance](https://developers.google.com/speed/docs/insights/OptimizeCSSDelivery). We also provide an `airship.css` file with all the styles packaged in a single file.
 
-- `core.css`:
-- `utilities.css`:
-- `element.css`:
+The following files are available:
+
+- `core.css`: Common CSS, including layouts, fonts, etc
+- `utilities.css`: CSS helpers
+- `<element>.css`: The specific styles for an element, for example the button styles would be in `button.css`
 
 
 ### Usage from a CDN
@@ -21,9 +23,9 @@ The simplest way to use airship styles is just load them from a CDN this way you
 
 ```html
 <head>
-    <!-- Include Core first -->
+    <!-- Include core first -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@carto/airship-style/dist/core/core.css">
-    <!-- Include The needed components -->
+    <!-- Include the needed components -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@carto/airship-style/dist/button/button.css">
     <!-- Include utils at the end -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@carto/airship-style/dist/utils/utils.css">

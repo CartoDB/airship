@@ -1,6 +1,9 @@
+@import '../core/_dev';
+
 .as-button {
-  padding: 30px;
   border: none;
+
+  @include padding(8);
 
   &--primary {
     background-color: blue;
