@@ -25,8 +25,8 @@
 
 <body class="as-app">
   <nav class="as-toolbar-tabs">
-    <span onclick="_showMap(event)" class="as-toolbar-tabs__item as-toolbar-tabs__item--active">MAP</span>
-    <span onclick="_showBottomPanel(event)" class="as-toolbar-tabs__item">PANEL</span>
+    <span onclick="showMap(event)" class="as-toolbar-tabs__item as-toolbar-tabs__item--active">MAP</span>
+    <span onclick="showBottomPanel(event)" class="as-toolbar-tabs__item">PANEL</span>
   </nav>
 
   <main class="as-app-content">
@@ -44,47 +44,8 @@
     </div>
   </main>
 
-  <script defer>
-    const map = L.map('map').setView([30, 0], 3);
-    map.scrollWheelZoom.disable();
-
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}.png', {
-      maxZoom: 18
-    }).addTo(map);
-
-    const client = new carto.Client({
-      apiKey: 'default_public',
-      username: 'cartojs-test'
-    });
-
-    const source = new carto.source.Dataset('ne_10m_populated_places_simple');
-    const style = new carto.style.CartoCSS(`
-        #layer {
-          marker-width: 7;
-          marker-fill: #EE4D5A;
-          marker-line-color: #FFFFFF;
-        }
-      `);
-    const layer = new carto.layer.Layer(source, style);
-
-    client.addLayer(layer);
-    client.getLeafletLayer().addTo(map);
-
-    function _showMap(event) {
-      document.querySelector('.as-bottom-bar').classList.remove('as-bottom-bar--visible');
-      setActiveTab(event.target);
-    }
-
-    function _showBottomPanel(event) {
-      document.querySelector('.as-bottom-bar').classList.add('as-bottom-bar--visible');
-      setActiveTab(event.target);
-    }
-
-    function setActiveTab(target) {
-      document.querySelector('.as-toolbar-tabs .as-toolbar-tabs__item--active').classList.remove('as-toolbar-tabs__item--active');
-      target.classList.add('as-toolbar-tabs__item--active');
-    }
-  </script>
+  <script defer src="../common/map.js"></script>
+  <script defer src="../common/tabs.js"></script>
 </body>
 
 </html>
