@@ -15,6 +15,7 @@
 
   &__item {
     @include padding(2 3);
+    display: inline-block;
     flex-shrink: 0;
     transition: border 0.2s;
     border-bottom: 2px solid transparent;
@@ -22,6 +23,7 @@
     background: none;
     color: $color-brand-10;
     font: 12px/20px $font-base;
+    text-decoration: none;
     cursor: pointer;
 
     &:focus,
