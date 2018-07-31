@@ -8,7 +8,7 @@
   align-items: center;
   overflow-x: auto;
   background: var(--as-color-ui-01, #{$color-ui-01});
-  box-shadow: inset 0 -1px 0 0 $color-ui-30;
+  box-shadow: inset 0 -1px 0 0 var(--as-color-ui-03, #{$color-ui-03});
 
   &__item {
     @include padding(2 3);
@@ -30,7 +30,7 @@
     &--active,
     &:active {
       border-bottom: 2px solid var(--as-color-secondary, #{$color-secondary});
-      color: var(--as-color-type-01, #{$color-type-91});
+      color: var(--as-color-type-01, #{$color-type-01});
 
       &:focus,
       &:hover {
@@ -53,7 +53,7 @@
       &--active,
       &:active {
         border-bottom: 4px solid var(--as-color-secondary, #{$color-secondary});
-        color: var(--as-color-type-01, #{$color-type-91});
+        color: var(--as-color-type-01, #{$color-type-01});
       }
     }
   }
