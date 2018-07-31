@@ -10,20 +10,25 @@
   </head>
 
   <body>
-    <as-category-widget></as-category-widget>
+    <as-category-widget
+      heading="Business Volume"
+      description="Description"></as-category-widget>
 
     <script>
       var categoryWidget = document.getElementsByTagName('as-category-widget')[0];
-      categoryWidget.widgetTitle = 'Business Volume';
-      categoryWidget.widgetDescription = 'Description';
+      categoryWidget.showClearButton = true;
+      categoryWidget.showHeader = true;
       categoryWidget.categories = [
         { name: 'Bars & Restaurants', value: 1000, color: '#FABADA' },
         { name: 'Fashion', value: 900 },
         { name: 'Grocery', value: 800 },
         { name: 'Health', value: 400 },
         { name: 'Shopping mall', value: 250 },
-        { name: 'Transportation', value: 550 }
+        { name: 'Transportation', value: 550 },
+        { name: '1', value: 340 },
+        { name: '2', value: 1900 }
       ];
+      categoryWidget.useTotalPercentage = true;
       categoryWidget.addEventListener('categoriesSelected', function(event) {
         console.log('Categories Selected', event.detail)
       });

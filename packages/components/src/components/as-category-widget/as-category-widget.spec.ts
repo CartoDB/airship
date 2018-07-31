@@ -1,5 +1,5 @@
 import { TestWindow } from '@stencil/core/dist/testing';
-import { CategoryWidget } from './as-category-widget';
+import { Category, CategoryWidget } from './as-category-widget';
 
 describe('as-category-widget', () => {
   let categoryWidget;
@@ -22,6 +22,10 @@ describe('as-category-widget', () => {
   });
 
   describe('clearSelection', () => {
+    beforeEach(() => {
+      spyOn(categoryWidget, '_onCategoriesChanged');
+    });
+
     it('should clear selected categories', () => {
       const selectedCategories = ['Category 1'];
       categoryWidget.selectedCategories = selectedCategories;
@@ -29,6 +33,20 @@ describe('as-category-widget', () => {
       categoryWidget.clearSelection();
 
       expect(categoryWidget.getSelectedCategories()).toEqual([]);
+      expect(categoryWidget._onCategoriesChanged).toHaveBeenCalled();
+    });
+  });
+
+  describe('_isSelected', () => {
+    it('should return true if category is selected', () => {
+      const category = 'Category 1';
+      categoryWidget.selectedCategories = [category];
+
+      expect(categoryWidget._isSelected(category)).toBe(true);
+    });
+
+    it('should return false if category is not selected', () => {
+      expect(categoryWidget._isSelected('Fake Category')).toBe(false);
     });
   });
 
@@ -55,17 +73,71 @@ describe('as-category-widget', () => {
     });
   });
 
-  // describe('_onCategoriesChanged', () => {
-  //   beforeEach(() => {
-  //     spyOn(categoryWidget.categoriesSelected, 'emit');
-  //   });
+  describe('_onCategoriesChanged', () => {
+    let element: HTMLAsCategoryWidgetElement;
+    let testWindow: TestWindow;
 
-  //   it('should emit an event containing selected categories', () => {
-  //     categoryWidget.selectedCategories = ['Category 1'];
+    beforeEach(async () => {
+      testWindow = new TestWindow();
+      element = await testWindow.load({
+        components: [CategoryWidget],
+        html: '<as-category-widget></as-category-widget>'
+      });
+    });
 
-  //     this._onCategoriesChanged();
+    it('should emit an event containing selected categories', () => {
+      categoryWidget.categories = exampleCategories;
 
-  //     expect(categoryWidget.categoriesSelected.emit).toHaveBeenCalledWith(categoryWidget.selectedCategories);
-  //   });
-  // });
+      const spy = jest.fn();
+      element.addEventListener('categoriesSelected', spy);
+
+      categoryWidget._toggleCategory(exampleCategories[1]);
+
+      expect(spy).toHaveBeenCalled();
+    });
+  });
+
+  describe('_getCategoriesMaximumValue', () => {
+    it('should return maximum value of visible categories', () => {
+      categoryWidget.categories = exampleCategories;
+      categoryWidget.useTotalPercentage = false;
+
+      expect(categoryWidget._getCategoriesMaximumValue()).toEqual(1000);
+    });
+
+    it('should return maximum value of all categories', () => {
+      categoryWidget.categories = exampleCategories;
+      categoryWidget.useTotalPercentage = true;
+
+      expect(categoryWidget._getCategoriesMaximumValue()).toEqual(1550);
+    });
+  });
+
+  describe('_getOtherCategorySum', () => {
+    it('should return sum of categories that are not visible in the widget', () => {
+      categoryWidget.categories = exampleCategories;
+
+      expect(categoryWidget._getOtherCategorySum()).toEqual(2750);
+    });
+  });
+
+  describe('_getBarColor', () => {
+    it('should return provided color if category is not selected', () => {
+      expect(categoryWidget._getBarColor('#FFFFFF')).toBe('#FFFFFF');
+    });
+
+    it('should return darker color if category is selected', () => {
+      expect(categoryWidget._getBarColor('#FFFFFF', { isSelected: true })).toBe('#d6d6d6');
+    });
+  });
 });
+
+const exampleCategories: Category[] = [
+  { name: 'Bars & Restaurants', value: 1000, color: '#FABADA' },
+  { name: 'Fashion', value: 900 },
+  { name: 'Grocery', value: 800 },
+  { name: 'Health', value: 400 },
+  { name: 'Shopping mall', value: 250 },
+  { name: 'Transportation', value: 1550 },
+  { name: 'Leisure', value: 1200 }
+];

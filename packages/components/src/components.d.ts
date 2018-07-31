@@ -33,12 +33,12 @@ declare global {
       'categories': object[];
       'clearSelection': () => void;
       'defaultBarColor': string;
+      'description': string;
       'getSelectedCategories': () => string[];
+      'heading': string;
       'showClearButton': boolean;
       'showHeader': boolean;
       'useTotalPercentage': boolean;
-      'widgetDescription': string;
-      'widgetTitle': string;
     }
   }
 
@@ -63,12 +63,12 @@ declare global {
     export interface AsCategoryWidgetAttributes extends HTMLAttributes {
       'categories'?: object[];
       'defaultBarColor'?: string;
+      'description'?: string;
+      'heading'?: string;
       'onCategoriesSelected'?: (event: CustomEvent) => void;
       'showClearButton'?: boolean;
       'showHeader'?: boolean;
       'useTotalPercentage'?: boolean;
-      'widgetDescription'?: string;
-      'widgetTitle'?: string;
     }
   }
 }
