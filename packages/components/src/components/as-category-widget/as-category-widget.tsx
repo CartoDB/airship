@@ -17,7 +17,7 @@ export class CategoryWidget {
   @Prop() public showHeader: boolean = true;
   @Prop() public useTotalPercentage: boolean = false;
 
-  @Event() public categoriesSelected: EventEmitter;
+  @Event() public categoriesSelected: EventEmitter<string[]>;
 
   @State() private selectedCategories: string[] = [];
   @State() private numberOfVisibleCategories: number = 5;
@@ -53,6 +53,7 @@ export class CategoryWidget {
   }
 
   private _renderCategories() {
+    let otherCategoryTemplate;
     const moreCategoriesThanVisible = this.categories.length > this.numberOfVisibleCategories;
 
     const categoriesToRender =  moreCategoriesThanVisible
@@ -63,10 +64,13 @@ export class CategoryWidget {
       ? this._getCategoriesTotalValue(this.categories)
       : this._getVisibleCategoriesMaximumValue();
 
-    let otherCategoryTemplate;
     if (moreCategoriesThanVisible) {
       otherCategoryTemplate = this._renderCategory(
-        { name: 'Other', value: this._getCategoriesTotalValue(this.categories) },
+        { name: 'Other',
+          value: this._getCategoriesTotalValue(
+            this.categories.slice(this.numberOfVisibleCategories, this.categories.length)
+          )
+        },
         { maximumValue, isOther: true }
       );
     }

@@ -65,7 +65,7 @@ declare global {
       'defaultBarColor'?: string;
       'description'?: string;
       'heading'?: string;
-      'onCategoriesSelected'?: (event: CustomEvent) => void;
+      'onCategoriesSelected'?: (event: CustomEvent<string[]>) => void;
       'showClearButton'?: boolean;
       'showHeader'?: boolean;
       'useTotalPercentage'?: boolean;

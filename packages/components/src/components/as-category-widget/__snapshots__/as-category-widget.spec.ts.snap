@@ -137,7 +137,7 @@ exports[`as-category-widget Rendering should render bars according to total valu
     >
       <p
         class="as-category-widget__category-title as-body"
-        data-value="6.1K"
+        data-value="2.8K"
       >
         Other
       </p>
@@ -146,7 +146,7 @@ exports[`as-category-widget Rendering should render bars according to total valu
       >
         <div
           class="as-category-widget__value"
-          style="background-color: rgb(116, 116, 116); width: 100%;"
+          style="background-color: rgb(116, 116, 116); width: 45.08196721311475%;"
         />
       </div>
     </li>
@@ -277,7 +277,7 @@ exports[`as-category-widget Rendering should render clear button 1`] = `
     >
       <p
         class="as-category-widget__category-title as-body"
-        data-value="6.1K"
+        data-value="2.8K"
       >
         Other
       </p>
@@ -286,7 +286,7 @@ exports[`as-category-widget Rendering should render clear button 1`] = `
       >
         <div
           class="as-category-widget__value"
-          style="background-color: rgb(116, 116, 116); width: 610%;"
+          style="background-color: rgb(116, 116, 116); width: 275%;"
         />
       </div>
     </li>
@@ -421,7 +421,7 @@ exports[`as-category-widget Rendering should render properly 1`] = `
     >
       <p
         class="as-category-widget__category-title as-body"
-        data-value="6.1K"
+        data-value="2.8K"
       >
         Other
       </p>
@@ -430,7 +430,7 @@ exports[`as-category-widget Rendering should render properly 1`] = `
       >
         <div
           class="as-category-widget__value"
-          style="background-color: rgb(116, 116, 116); width: 610%;"
+          style="background-color: rgb(116, 116, 116); width: 275%;"
         />
       </div>
     </li>

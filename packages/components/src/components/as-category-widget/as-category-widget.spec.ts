@@ -133,15 +133,18 @@ describe('as-category-widget', () => {
       });
     });
 
-    it('should emit an event containing selected categories', () => {
-      categoryWidget.categories = exampleCategories;
+    it('should emit an event containing selected categories', async () => {
+      element.categories = exampleCategories;
+      await testWindow.flush();
 
       const spy = jest.fn();
       element.addEventListener('categoriesSelected', spy);
 
-      categoryWidget._toggleCategory(exampleCategories[1]);
+      const categoryElement = element.querySelector('.as-category-widget__category') as HTMLDivElement;
+      categoryElement.click();
 
       expect(spy).toHaveBeenCalled();
+      expect(spy.mock.calls[0][0].detail).toEqual([exampleCategories[0].name]);
     });
   });
 
