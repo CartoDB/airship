@@ -14,7 +14,7 @@
   }
 
   &__item {
-    @include padding(3);
+    @include padding(2 3);
     flex-shrink: 0;
     transition: border 0.2s;
     border-bottom: 2px solid transparent;
