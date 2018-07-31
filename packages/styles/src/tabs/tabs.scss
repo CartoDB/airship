@@ -42,19 +42,21 @@
     }
   }
 
-  &--xl .as-tabs__item {
-    border-bottom: 4px solid transparent;
-    font: 16px/24px $font-base;
+  &--xl {
+    &__item {
+      border-bottom: 4px solid transparent;
+      font: 16px/24px $font-base;
 
-    &:focus,
-    &:hover {
-      border-bottom: 4px solid $color-brand-30;
-    }
+      &:focus,
+      &:hover {
+        border-bottom: 4px solid $color-brand-30;
+      }
 
-    &--active,
-    &:active {
-      border-bottom: 4px solid $color-brand-20;
-      color: $color-type-10;
+      &--active,
+      &:active {
+        border-bottom: 4px solid $color-brand-20;
+        color: $color-type-10;
+      }
     }
   }
 }
