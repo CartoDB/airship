@@ -1,11 +1,13 @@
 .as-panels {
+  --panels-bg-color: var(--color-ui01);
+
   display: none;
   position: absolute;
   z-index: 2;
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: white;
+  background-color: var(--panels-bg-color);
 
   &--visible {
     display: flex;
@@ -63,7 +65,7 @@
       max-width: 200px;
       border-radius: 4px;
       background: white;
-      box-shadow: rgba(44, 44, 44, 0.16) 0 1px 4px 0;
+      box-shadow: rgba(var(--color-type-01), 0.16) 0 1px 4px 0;
       pointer-events: auto;
 
       @include margin(1);
@@ -78,7 +80,7 @@
   z-index: 2;
   width: 100%;
   height: 100%;
-  background-color: white;
+  background-color: var(--panels-bg-color);
   pointer-events: auto;
 
   &--visible {

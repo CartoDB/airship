@@ -2,14 +2,14 @@
   display: flex;
   justify-content: space-around;
   height: $toolbar-size;
-  background-color: var(--brand-02-color, $color-brand-20);
+  background-color: var(--color-primary);
 
   &__item {
     flex: 1;
     height: 100%;
     transition: border 0.3s;
     border-bottom: get-spacing(1) solid transparent;
-    color: white;
+    color: var(--color-ui-01);
     font-family: 'Roboto', sans-serif;
     line-height: $toolbar-size;
     text-align: center;
@@ -20,7 +20,7 @@
   }
 
   &__item--active {
-    border-bottom: get-spacing(1) solid white;
+    border-bottom: get-spacing(1) solid var(--color-ui-01);
   }
 
   // Media queries
