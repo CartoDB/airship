@@ -1,17 +1,14 @@
 @import "../core/_dev";
 
 .as-tabs {
-  ul,
-  &[role="tablist"] {
-    @include padding(0 3);
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-items: center;
-    overflow-x: auto;
-    background: $color-ui-10;
-    box-shadow: inset 0 -1px 0 0 $color-ui-30;
-  }
+  @include padding(0 3);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  overflow-x: auto;
+  background: $color-ui-10;
+  box-shadow: inset 0 -1px 0 0 $color-ui-30;
 
   &__item {
     @include padding(2 3);

@@ -14,8 +14,8 @@ To hightlight the current tab you can use `as-tabs__item--active` class modifier
 ```code
 lang: html
 ---
-<nav class="as-tabs">
-  <ul>
+<nav>
+  <ul class="as-tabs">
     <li>
       <a class="as-tabs__item as-tabs__item--active" href="#">Map</a>
     </li>
@@ -45,8 +45,8 @@ You can use the `as-tabs--xl` class modifier to create a slightly bigger tab ele
 ```code
 lang: html
 ---
-<nav class="as-tabs as-tabs--xl">
-  <ul>
+<nav>
+  <ul class="as-tabs as-tabs--xl">
     <li>
       <a class="as-tabs__item as-tabs__item--active" href="#">Map</a>
     </li>
