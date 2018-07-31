@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Tabs XL</title>
+  <title>ARIA compatible Tabs</title>
   <link href="https://fonts.googleapis.com/css?family=Overpass+Mono|Roboto:300,400,500" rel="stylesheet">
   <link rel="stylesheet" href="../../../dist/airship.css">
 
@@ -20,13 +20,11 @@
 </head>
 
 <body>
-  <nav class="as-tabs as-tabs--xl">
-    <ul>
-      <li class="as-tabs__item as-tabs__item--active">Maps</li>
-      <li class="as-tabs__item">Legends</li>
-      <li class="as-tabs__item">Widgets</li>
-    </ul>
-  </nav>
+  <div class="as-tabs" role="tablist">
+    <button role="tab" class="as-tabs__item as-tabs__item--active">Maps</button>
+    <button role="tab" class="as-tabs__item">Legends</button>
+    <button role="tab" class="as-tabs__item">Widgets</button>
+  </div>
 </body>
 
 </html>
