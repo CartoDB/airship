@@ -1,5 +1,4 @@
 @import '_actions';
-@import '_tabs';
 
 .as-toolbar {
   --toolbar-bg-color: $color-brand-20;
@@ -37,5 +36,11 @@
     &__toggle {
       display: none;
     }
+  }
+}
+
+.as-toolbar-tabs {
+  @media all and (min-width: $tablet-breakpoint) {
+    display: none !important;
   }
 }

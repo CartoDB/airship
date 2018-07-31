@@ -26,6 +26,12 @@ responsive: true
 lang: html
 ---
 <body class="as-app as-app--nav-top">
+  <div role="tablist" class="as-toolbar-tabs as-tabs">
+    <button onclick="showMap(event)" role="tab" class="as-tabs__item as-tabs__item--active">MAP</button>
+    <button onclick="showLeft(event)" role="tab" class="as-tabs__item">LEFT</button>
+    <button onclick="showRight(event)" role="tab" class="as-tabs__item">RIGHT</button>
+  </div>
+
   <main class="as-app-content">
     <aside class="as-sidebar as-sidebar--left as-sidebar--xl">
       <h1>Left Sidebar (XL)</h1>
@@ -61,7 +67,7 @@ responsive: true
 ```
 
 
-```code 
+```code
 lang: html
 ---
 <body class="as-app as-app--nav-top">
@@ -86,12 +92,12 @@ lang: html
       </p>
     </aside>
   </main>
-  
+
   <!-- Tabs on bottom! -->
-  <nav class="as-toolbar-tabs">
-    <span onclick="_showTab0(event)" class="as-toolbar-tabs__item">LEFT </span>
-    <span onclick="_showTab1(event)" class="as-toolbar-tabs__item as-toolbar-tabs__item--active">MAP</span>
-    <span onclick="_showTab2(event)" class="as-toolbar-tabs__item">RIGHT</span>
-  </nav>
-</body> 
+  <div role="tablist" class="as-toolbar-tabs as-tabs">
+    <button onclick="showMap(event)" role="tab" class="as-tabs__item as-tabs__item--active">MAP</button>
+    <button onclick="showLeft(event)" role="tab" class="as-tabs__item">LEFT</button>
+    <button onclick="showRight(event)" role="tab" class="as-tabs__item">RIGHT</button>
+  </div>
+</body>
   ```
