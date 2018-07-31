@@ -12,7 +12,7 @@
 
   &--left {
     left: -100%;
-    box-shadow: rgba(var(--color-type-01), 0.16) 1px 0 4px 0;
+    box-shadow: rgba($color-type-01, 0.16) 1px 0 4px 0;
 
     &--visible {
       left: 0;
@@ -22,7 +22,7 @@
 
   &--right {
     right: -100%;
-    box-shadow: rgba(var(--color-type-01), 0.16) 0 1px 4px 0;
+    box-shadow: rgba($color-type-01, 0.16) 0 1px 4px 0;
 
     &--visible {
       right: 0;
