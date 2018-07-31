@@ -2,7 +2,7 @@
 @import '_tabs';
 
 .as-toolbar {
-  --toolbar-bg-color: var(--color-secondary);
+  --toolbar-bg-color: var(--color-secondary, #{$color-secondary});
 
   display: flex;
   height: $toolbar-size;
