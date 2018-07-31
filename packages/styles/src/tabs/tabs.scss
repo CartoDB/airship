@@ -34,6 +34,11 @@
     &:active {
       border-bottom: 2px solid $color-brand-20;
       color: $color-type-10;
+
+      &:focus,
+      &:hover {
+        border-bottom: 2px solid $color-brand-20;
+      }
     }
   }
 
