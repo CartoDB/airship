@@ -3,9 +3,12 @@
 @import 'variables/_variables';
 @import 'layout/_layout';
 @import 'typography/_typography';
+@import 'containers/_containers';
 
 :root {
   --primary-color: #{$color-brand-10};
+  --secondary-color: #{$color-brand-20};
+  --complimentary-color: #{$color-brand-30};
   --color-brand-10: #{$color-brand-10};
   --color-brand-20: #{$color-brand-20};
   --color-brand-30: #{$color-brand-30};

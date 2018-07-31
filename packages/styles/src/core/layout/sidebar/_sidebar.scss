@@ -1,7 +1,9 @@
 .as-sidebar {
+  display: flex;
   position: absolute;
   z-index: 2;
   top: 0;
+  flex-direction: column;
   width: 100%;
   height: 100%;
   transition: opacity 0.3s;

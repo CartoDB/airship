@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Sidebar</title>
+  <link rel="stylesheet" href="../../../packages/styles/dist/airship.css">
+  <script src="../../../packages/components/dist/airship.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+  <!-- CARTO.js -->
+  <!-- Include Leaflet -->
+  <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+  <link href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" rel="stylesheet">
+  <!-- Include CARTO.js -->
+  <script src="https://libs.cartocdn.com/carto.js/v4.1/carto.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:600" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link href="https://carto.com/developers/carto-js/examples/maps/public/style.css" rel="stylesheet">
+  <!-- / CARTO.js -->
+
+</head>
+
+<body class="as-app as-app--nav-top">
+  <nav class="as-toolbar-tabs">
+    <span onclick="showMap(event)" class="as-toolbar-tabs__item as-toolbar-tabs__item--active">MAP</span>
+    <span onclick="showRight(event)" class="as-toolbar-tabs__item">RIGHT</span>
+    <span onclick="showBottom(event)" class="as-toolbar-tabs__item">BOTTOM</span>
+    <span onclick="showLegends(event)" class="as-toolbar-tabs__item">LEGENDS</span>
+  </nav>
+
+  <main class="as-app-content">
+    <div class="as-map-wrapper">
+      <div class="as-map">
+        <div id="map"></div>
+        <div class="as-panels">
+          <div class="as-panel as-panel--top as-panel--right">
+            <div class="as-panel__element">
+              <section class="as-box">
+                <p class="as-title">LEGEND 1a</p>
+                <p class="as-body">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore possimus nam quam necessitatibus omnis, est sequi rem
+                  quibusdam molestiae, at saepe odit voluptatem quae debitis consequatur iste ducimus quaerat dolorum.
+                </p>
+              </section>
+              <section class="as-box">
+                <p class="as-title">LEGEND 1b</p>
+                <p class="as-body">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore possimus nam quam necessitatibus omnis, est sequi rem
+                  quibusdam molestiae.
+                </p>
+              </section>
+            </div>
+            <div class="as-panel__element">
+              <section class="as-box">
+                <p class="as-title">LEGEND 2</p>
+                <p class="as-body">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur iste ducimus quaerat dolorum.
+                </p>
+              </section>
+            </div>
+          </div>
+          <div class="as-panel as-panel--top as-panel--left as-panel--vertical">
+            <div class="as-panel__element">
+              <section class="as-box">
+                <p class="as-title">LEGEND 3a</p>
+                <p class="as-body">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore possimus nam quam necessitatibus omnis, est sequi rem
+                  quibusdam molestiae, at saepe odit voluptatem quae debitis consequatur iste ducimus quaerat dolorum.
+                </p>
+              </section>
+              <section class="as-box">
+                <p class="as-title">LEGEND 3b</p>
+                <p class="as-body">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore possimus nam quam necessitatibus omnis, est sequi rem
+                  quibusdam molestiae.
+                </p>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="as-bottom-bar">
+        <div class="as-container as-container--horizontal as-container--border">
+          <section class="as-box">
+            <h1 class="as-title">Geo stuff</h1>
+            <p class="as-body">
+              Create powerfulandflexiblelocationsolutionswithfullycustomizedlookand feel. Skip the complicated GIS developer libraries and backend setup to focus on creating elegant and responsive business user experiences. Jumpstart location app development and deliver business outcomes exactly as required.
+            </p>
+          </section>
+        </div>
+        <div class="as-container as-container--scrollable">
+          <section class="as-box">
+            <h1 class="as-title">Geo stuff</h1>
+            <p class="as-body">
+              Create powerful and flexible location solutions with fully customized look and feel.
+            </p>
+            <p class="as-body">
+              Skip the complicated GIS developer libraries and backend setup to focus on creating elegant and responsive business user experiences.
+            </p>
+            <p class="as-body">
+              Jumpstart location app development and deliver business outcomes exactly as required.
+            </p>
+          </section>
+          <section class="as-box">
+            <h1 class="as-title">Geo stuff</h1>
+            <p class="as-body">
+              Create powerful and flexible location solutions with fully customized look and feel. Skip the complicated GIS developer libraries and backend setup to focus on creating elegant and responsive business user experiences. Jumpstart location app development and deliver business outcomes exactly as required.
+            </p>
+          </section>
+          <section class="as-box">
+            <h1 class="as-title">Geo stuff</h1>
+            <p class="as-body">
+              Create powerful and flexible location solutions with fully customized look and feel. Skip the complicated GIS developer libraries and backend setup to focus on creating elegant and responsive business user experiences. Jumpstart location app development and deliver business outcomes exactly as required.
+            </p>
+          </section>
+        </div>
+      </div>
+    </div>
+
+    <aside class="as-sidebar as-sidebar--right">
+      <div class="as-container as-container--border">
+        <section class="as-box">
+          <h1 class="as-title">Right Sidebar</h1>
+          <p class="as-body">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt aliquam nihil nulla quo, cum excepturi commodi saepe dicta
+            impedit accusamus, nisi adipisci repellendus expedita rem dolores suscipit! Cumque, nulla culpa?
+          </p>
+        </section>
+      </div>
+      <div class="as-container as-container--scrollable">
+        <section class="as-box">
+          <h1 class="as-title">More content</h1>
+          <p class="as-body">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt aliquam nihil nulla quo, cum excepturi commodi saepe dicta
+            impedit accusamus, nisi adipisci repellendus expedita rem dolores suscipit! Cumque, nulla culpa?
+          </p>
+        </section>
+        <section class="as-box">
+          <h1 class="as-title">More content</h1>
+          <p class="as-body">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt aliquam nihil nulla quo, cum excepturi commodi saepe dicta
+            impedit accusamus, nisi adipisci repellendus expedita rem dolores suscipit! Cumque, nulla culpa?
+          </p>
+        </section>
+        <section class="as-box">
+          <h1 class="as-title">More content</h1>
+          <p class="as-body">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt aliquam nihil nulla quo, cum excepturi commodi saepe dicta
+            impedit accusamus, nisi adipisci repellendus expedita rem dolores suscipit! Cumque, nulla culpa?
+          </p>
+        </section>
+        <section class="as-box">
+          <h1 class="as-title">More content</h1>
+          <p class="as-body">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt aliquam nihil nulla quo, cum excepturi commodi saepe dicta
+            impedit accusamus, nisi adipisci repellendus expedita rem dolores suscipit! Cumque, nulla culpa?
+          </p>
+        </section>
+      </div>
+      <div class="as-container as-container--shadow">
+        <section class="as-box">
+          <h1 class="as-title">Even More content</h1>
+          <p class="as-body">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt aliquam nihil nulla quo, cum excepturi commodi saepe dicta
+            impedit accusamus, nisi adipisci repellendus expedita rem dolores suscipit! Cumque, nulla culpa?
+          </p>
+        </section>
+      </div>
+    </aside>
+  </main>
+
+
+  <script src="../layouts/common/map.js"></script>
+  <script src="../layouts/common/tabs.js"></script>
+</body>
+
+</html>
