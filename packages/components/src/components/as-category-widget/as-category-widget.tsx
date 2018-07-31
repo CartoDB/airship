@@ -61,7 +61,7 @@ export class CategoryWidget {
 
     const maximumValue = this.useTotalPercentage
       ? this._getCategoriesTotalValue(this.categories)
-      : this._getCategoriesMaximumValue();
+      : this._getVisibleCategoriesMaximumValue();
 
     let otherCategoryTemplate;
     if (moreCategoriesThanVisible) {
@@ -138,10 +138,8 @@ export class CategoryWidget {
     this.categoriesSelected.emit(this.selectedCategories);
   }
 
-  private _getCategoriesMaximumValue() {
-    const categories = this.useTotalPercentage
-      ? this.categories
-      : this.categories.slice(0, this.numberOfVisibleCategories);
+  private _getVisibleCategoriesMaximumValue() {
+    const categories = this.categories.slice(0, this.numberOfVisibleCategories);
 
     return categories.reduce(
       (maximum, currentCategory: Category) => currentCategory.value > maximum ? currentCategory.value : maximum, 0

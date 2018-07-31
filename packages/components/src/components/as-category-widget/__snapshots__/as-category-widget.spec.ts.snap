@@ -1,0 +1,453 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`as-category-widget Rendering should not render header when showHeader is false 1`] = `
+<as-category-widget
+  class="hydrated"
+>
+  
+  
+  <ul
+    class="as-category-widget__list"
+  >
+    
+  </ul>
+  <footer
+    class="as-category-widget__footer"
+  >
+    <div
+      class="as-category-widget__count as-body"
+    >
+      All selected
+    </div>
+    
+  </footer>
+</as-category-widget>
+`;
+
+exports[`as-category-widget Rendering should render bars according to total value 1`] = `
+<as-category-widget
+  class="hydrated"
+>
+  
+  <h2
+    class="as-subheader"
+  >
+    
+  </h2>
+  <p
+    class="as-category-widget__description as-body"
+  >
+    
+  </p>
+  <ul
+    class="as-category-widget__list"
+  >
+    <li
+      class="as-category-widget__category"
+    >
+      <p
+        class="as-category-widget__category-title as-body"
+        data-value="1.0K"
+      >
+        Bars & Restaurants
+      </p>
+      <div
+        class="as-category-widget__bar"
+      >
+        <div
+          class="as-category-widget__value"
+          style="background-color: rgb(250, 186, 218); width: 16.39344262295082%;"
+        />
+      </div>
+    </li>
+    <li
+      class="as-category-widget__category"
+    >
+      <p
+        class="as-category-widget__category-title as-body"
+        data-value="900"
+      >
+        Fashion
+      </p>
+      <div
+        class="as-category-widget__bar"
+      >
+        <div
+          class="as-category-widget__value"
+          style="background-color: rgb(71, 219, 153); width: 14.754098360655737%;"
+        />
+      </div>
+    </li>
+    <li
+      class="as-category-widget__category"
+    >
+      <p
+        class="as-category-widget__category-title as-body"
+        data-value="800"
+      >
+        Grocery
+      </p>
+      <div
+        class="as-category-widget__bar"
+      >
+        <div
+          class="as-category-widget__value"
+          style="background-color: rgb(71, 219, 153); width: 13.114754098360656%;"
+        />
+      </div>
+    </li>
+    <li
+      class="as-category-widget__category"
+    >
+      <p
+        class="as-category-widget__category-title as-body"
+        data-value="400"
+      >
+        Health
+      </p>
+      <div
+        class="as-category-widget__bar"
+      >
+        <div
+          class="as-category-widget__value"
+          style="background-color: rgb(71, 219, 153); width: 6.557377049180328%;"
+        />
+      </div>
+    </li>
+    <li
+      class="as-category-widget__category"
+    >
+      <p
+        class="as-category-widget__category-title as-body"
+        data-value="250"
+      >
+        Shopping mall
+      </p>
+      <div
+        class="as-category-widget__bar"
+      >
+        <div
+          class="as-category-widget__value"
+          style="background-color: rgb(71, 219, 153); width: 4.098360655737705%;"
+        />
+      </div>
+    </li>
+    <li
+      class="as-category-widget__category as-category-widget__category--other"
+    >
+      <p
+        class="as-category-widget__category-title as-body"
+        data-value="6.1K"
+      >
+        Other
+      </p>
+      <div
+        class="as-category-widget__bar"
+      >
+        <div
+          class="as-category-widget__value"
+          style="background-color: rgb(116, 116, 116); width: 100%;"
+        />
+      </div>
+    </li>
+  </ul>
+  <footer
+    class="as-category-widget__footer"
+  >
+    <div
+      class="as-category-widget__count as-body"
+    >
+      All selected
+    </div>
+    
+  </footer>
+</as-category-widget>
+`;
+
+exports[`as-category-widget Rendering should render clear button 1`] = `
+<as-category-widget
+  class="hydrated"
+>
+  
+  <h2
+    class="as-subheader"
+  >
+    
+  </h2>
+  <p
+    class="as-category-widget__description as-body"
+  >
+    
+  </p>
+  <ul
+    class="as-category-widget__list"
+  >
+    <li
+      class="as-category-widget__category"
+    >
+      <p
+        class="as-category-widget__category-title as-body"
+        data-value="1.0K"
+      >
+        Bars & Restaurants
+      </p>
+      <div
+        class="as-category-widget__bar"
+      >
+        <div
+          class="as-category-widget__value"
+          style="background-color: rgb(250, 186, 218); width: 100%;"
+        />
+      </div>
+    </li>
+    <li
+      class="as-category-widget__category"
+    >
+      <p
+        class="as-category-widget__category-title as-body"
+        data-value="900"
+      >
+        Fashion
+      </p>
+      <div
+        class="as-category-widget__bar"
+      >
+        <div
+          class="as-category-widget__value"
+          style="background-color: rgb(71, 219, 153); width: 90%;"
+        />
+      </div>
+    </li>
+    <li
+      class="as-category-widget__category"
+    >
+      <p
+        class="as-category-widget__category-title as-body"
+        data-value="800"
+      >
+        Grocery
+      </p>
+      <div
+        class="as-category-widget__bar"
+      >
+        <div
+          class="as-category-widget__value"
+          style="background-color: rgb(71, 219, 153); width: 80%;"
+        />
+      </div>
+    </li>
+    <li
+      class="as-category-widget__category"
+    >
+      <p
+        class="as-category-widget__category-title as-body"
+        data-value="400"
+      >
+        Health
+      </p>
+      <div
+        class="as-category-widget__bar"
+      >
+        <div
+          class="as-category-widget__value"
+          style="background-color: rgb(71, 219, 153); width: 40%;"
+        />
+      </div>
+    </li>
+    <li
+      class="as-category-widget__category"
+    >
+      <p
+        class="as-category-widget__category-title as-body"
+        data-value="250"
+      >
+        Shopping mall
+      </p>
+      <div
+        class="as-category-widget__bar"
+      >
+        <div
+          class="as-category-widget__value"
+          style="background-color: rgb(71, 219, 153); width: 25%;"
+        />
+      </div>
+    </li>
+    <li
+      class="as-category-widget__category as-category-widget__category--other"
+    >
+      <p
+        class="as-category-widget__category-title as-body"
+        data-value="6.1K"
+      >
+        Other
+      </p>
+      <div
+        class="as-category-widget__bar"
+      >
+        <div
+          class="as-category-widget__value"
+          style="background-color: rgb(116, 116, 116); width: 610%;"
+        />
+      </div>
+    </li>
+  </ul>
+  <footer
+    class="as-category-widget__footer"
+  >
+    <div
+      class="as-category-widget__count as-body"
+    >
+      All selected
+    </div>
+    <button
+      class=""
+    >
+      Clear selection
+    </button>
+  </footer>
+</as-category-widget>
+`;
+
+exports[`as-category-widget Rendering should render properly 1`] = `
+<as-category-widget
+  class="hydrated"
+>
+  
+  <h2
+    class="as-subheader"
+  >
+    Category Widget Example
+  </h2>
+  <p
+    class="as-category-widget__description as-body"
+  >
+    Description for Category Widget
+  </p>
+  <ul
+    class="as-category-widget__list"
+  >
+    <li
+      class="as-category-widget__category"
+    >
+      <p
+        class="as-category-widget__category-title as-body"
+        data-value="1.0K"
+      >
+        Bars & Restaurants
+      </p>
+      <div
+        class="as-category-widget__bar"
+      >
+        <div
+          class="as-category-widget__value"
+          style="background-color: rgb(250, 186, 218); width: 100%;"
+        />
+      </div>
+    </li>
+    <li
+      class="as-category-widget__category"
+    >
+      <p
+        class="as-category-widget__category-title as-body"
+        data-value="900"
+      >
+        Fashion
+      </p>
+      <div
+        class="as-category-widget__bar"
+      >
+        <div
+          class="as-category-widget__value"
+          style="background-color: rgb(71, 219, 153); width: 90%;"
+        />
+      </div>
+    </li>
+    <li
+      class="as-category-widget__category"
+    >
+      <p
+        class="as-category-widget__category-title as-body"
+        data-value="800"
+      >
+        Grocery
+      </p>
+      <div
+        class="as-category-widget__bar"
+      >
+        <div
+          class="as-category-widget__value"
+          style="background-color: rgb(71, 219, 153); width: 80%;"
+        />
+      </div>
+    </li>
+    <li
+      class="as-category-widget__category"
+    >
+      <p
+        class="as-category-widget__category-title as-body"
+        data-value="400"
+      >
+        Health
+      </p>
+      <div
+        class="as-category-widget__bar"
+      >
+        <div
+          class="as-category-widget__value"
+          style="background-color: rgb(71, 219, 153); width: 40%;"
+        />
+      </div>
+    </li>
+    <li
+      class="as-category-widget__category"
+    >
+      <p
+        class="as-category-widget__category-title as-body"
+        data-value="250"
+      >
+        Shopping mall
+      </p>
+      <div
+        class="as-category-widget__bar"
+      >
+        <div
+          class="as-category-widget__value"
+          style="background-color: rgb(71, 219, 153); width: 25%;"
+        />
+      </div>
+    </li>
+    <li
+      class="as-category-widget__category as-category-widget__category--other"
+    >
+      <p
+        class="as-category-widget__category-title as-body"
+        data-value="6.1K"
+      >
+        Other
+      </p>
+      <div
+        class="as-category-widget__bar"
+      >
+        <div
+          class="as-category-widget__value"
+          style="background-color: rgb(116, 116, 116); width: 610%;"
+        />
+      </div>
+    </li>
+  </ul>
+  <footer
+    class="as-category-widget__footer"
+  >
+    <div
+      class="as-category-widget__count as-body"
+    >
+      All selected
+    </div>
+    <button
+      class=""
+    >
+      Clear selection
+    </button>
+  </footer>
+</as-category-widget>
+`;

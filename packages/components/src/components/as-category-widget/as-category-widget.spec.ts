@@ -12,7 +12,55 @@ describe('as-category-widget', () => {
     expect(new CategoryWidget()).toBeTruthy();
   });
 
-  describe('getSelectedCategories', () => {
+  describe('Rendering', () => {
+    let element: HTMLAsCategoryWidgetElement;
+    let testWindow: TestWindow;
+
+    beforeEach(async () => {
+      testWindow = new TestWindow();
+      element = await testWindow.load({
+        components: [CategoryWidget],
+        html: '<as-category-widget></as-category-widget>'
+      });
+    });
+
+    it('should render properly', async () => {
+      element.heading = 'Category Widget Example';
+      element.description = 'Description for Category Widget';
+      element.categories = exampleCategories;
+      element.showClearButton = true;
+      await testWindow.flush();
+
+      expect(element).toMatchSnapshot();
+    });
+
+    it('should not render header when showHeader is false', async () => {
+      element.heading = 'Category Widget Example';
+      element.description = 'Description for Category Widget';
+      element.showHeader = false;
+      await testWindow.flush();
+
+      expect(element).toMatchSnapshot();
+    });
+
+    it('should render clear button', async () => {
+      element.showClearButton = true;
+      element.categories = exampleCategories;
+      await testWindow.flush();
+
+      expect(element).toMatchSnapshot();
+    });
+
+    it('should render bars according to total value', async () => {
+      element.categories = exampleCategories;
+      element.useTotalPercentage = true;
+      await testWindow.flush();
+
+      expect(element).toMatchSnapshot();
+    });
+  });
+
+  describe('.getSelectedCategories', () => {
     it('should return selectedCategories', () => {
       const selectedCategories = ['Category 1'];
       categoryWidget.selectedCategories = selectedCategories;
@@ -21,7 +69,7 @@ describe('as-category-widget', () => {
     });
   });
 
-  describe('clearSelection', () => {
+  describe('.clearSelection', () => {
     beforeEach(() => {
       spyOn(categoryWidget, '_onCategoriesChanged');
     });
@@ -37,7 +85,7 @@ describe('as-category-widget', () => {
     });
   });
 
-  describe('_isSelected', () => {
+  describe('._isSelected', () => {
     it('should return true if category is selected', () => {
       const category = 'Category 1';
       categoryWidget.selectedCategories = [category];
@@ -50,7 +98,7 @@ describe('as-category-widget', () => {
     });
   });
 
-  describe('_toggleCategory', () => {
+  describe('._toggleCategory', () => {
     beforeEach(() => {
       spyOn(categoryWidget, '_onCategoriesChanged');
     });
@@ -73,7 +121,7 @@ describe('as-category-widget', () => {
     });
   });
 
-  describe('_onCategoriesChanged', () => {
+  describe('._onCategoriesChanged', () => {
     let element: HTMLAsCategoryWidgetElement;
     let testWindow: TestWindow;
 
@@ -97,31 +145,22 @@ describe('as-category-widget', () => {
     });
   });
 
-  describe('_getCategoriesMaximumValue', () => {
+  describe('._getVisibleCategoriesMaximumValue', () => {
     it('should return maximum value of visible categories', () => {
       categoryWidget.categories = exampleCategories;
       categoryWidget.useTotalPercentage = false;
 
-      expect(categoryWidget._getCategoriesMaximumValue()).toEqual(1000);
-    });
-
-    it('should return maximum value of all categories', () => {
-      categoryWidget.categories = exampleCategories;
-      categoryWidget.useTotalPercentage = true;
-
-      expect(categoryWidget._getCategoriesMaximumValue()).toEqual(1550);
+      expect(categoryWidget._getVisibleCategoriesMaximumValue()).toEqual(1000);
     });
   });
 
-  describe('_getOtherCategorySum', () => {
-    it('should return sum of categories that are not visible in the widget', () => {
-      categoryWidget.categories = exampleCategories;
-
-      expect(categoryWidget._getOtherCategorySum()).toEqual(2750);
+  describe('._getCategoriesTotalValue', () => {
+    it('should return value sum of passed categories', () => {
+      expect(categoryWidget._getCategoriesTotalValue(exampleCategories)).toEqual(6100);
     });
   });
 
-  describe('_getBarColor', () => {
+  describe('._getBarColor', () => {
     it('should return provided color if category is not selected', () => {
       expect(categoryWidget._getBarColor('#FFFFFF')).toBe('#FFFFFF');
     });
