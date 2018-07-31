@@ -3,6 +3,7 @@
   position: absolute;
   z-index: 2;
   top: 0;
+  flex: 0 1 auto;
   flex-direction: column;
   width: 100%;
   height: 100%;
@@ -35,6 +36,7 @@
   @media all and (min-width: $tablet-breakpoint) {
     position: initial;
     top: 0;
+    flex: 0 0 auto;
     width: 260px;
     height: 100%;
     overflow-y: initial;

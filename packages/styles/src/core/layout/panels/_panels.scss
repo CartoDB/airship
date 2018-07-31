@@ -28,6 +28,7 @@
   @media all and (min-width: $tablet-breakpoint) {
     display: flex;
     position: absolute;
+    align-items: flex-start;
 
     // Panels stack mode
     &--vertical {
