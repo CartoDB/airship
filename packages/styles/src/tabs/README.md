@@ -16,9 +16,18 @@ lang: html
 ---
 <nav class="as-tabs">
   <ul>
-    <li class="as-tabs__item as-tabs__item--active">Map</li>
-    <li class="as-tabs__item">Legends</li>
-    <li class="as-tabs__item">Widgets</li>
+    <li>
+      <a class="as-tabs__item as-tabs__item--active" href="#">Map</a>
+    </li>
+    <li>
+      <a class="as-tabs__item" href="#">Legends</a>
+    </li>
+    <li>
+      <a class="as-tabs__item" href="#">Widgets</a>
+    </li>
+    <li>
+      <a class="as-tabs__item" href="#">Sidebar</a>
+    </li>
   </ul>
 </nav>
 ```
@@ -38,9 +47,18 @@ lang: html
 ---
 <nav class="as-tabs as-tabs--xl">
   <ul>
-    <li class="as-tabs__item as-tabs__item--active">Map</li>
-    <li class="as-tabs__item">Legends</li>
-    <li class="as-tabs__item">Widgets</li>
+    <li>
+      <a class="as-tabs__item as-tabs__item--active" href="#">Map</a>
+    </li>
+    <li>
+      <a class="as-tabs__item" href="#">Legends</a>
+    </li>
+    <li>
+      <a class="as-tabs__item" href="#">Widgets</a>
+    </li>
+    <li>
+      <a class="as-tabs__item" href="#">Sidebar</a>
+    </li>
   </ul>
 </nav>
 ```
