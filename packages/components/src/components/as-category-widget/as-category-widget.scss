@@ -3,15 +3,15 @@
 $bar--height: get-spacing(1);
 
 as-category-widget {
+  --category-widget--description--color: #{$color-type-20};
+  --category-widget--bar--height: #{$bar--height};
+  --category-widget--background-color: #{$color-ui-10};
+  --category-bar--background-color: #{$color-ui-20};
+
   display: block;
+  background: var(--category-widget--background-color, $color-ui-10);
 
   @include padding(4);
-
-  :root {
-    --description--color: $color-type-20;
-    --category-bar--background-color: $color-ui-20;
-    --bar--height: $bar--height;
-  }
 
   .as-category-widget__description,
   .as-category-widget__count {
