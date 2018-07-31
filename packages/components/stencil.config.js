@@ -4,6 +4,7 @@ const sass = require('@stencil/sass');
 exports.config = {
   namespace: 'airship',
   copy: [{ src: 'components/**/*.html' }],
+  globalStyle: path.join(__dirname, '../styles/src/core/_dev.scss'),
   outputTargets:[
     { type: 'dist' },
     {

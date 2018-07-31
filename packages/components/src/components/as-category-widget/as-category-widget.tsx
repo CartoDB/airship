@@ -1,5 +1,6 @@
 import { Component, Event, EventEmitter, Method, Prop, State } from '@stencil/core';
 import readableNumber from '../../utils/readable-number';
+import { shadeOrBlend } from '../../utils/styles';
 
 const OTHER_COLOR = '#747474';
 @Component({
@@ -10,16 +11,16 @@ const OTHER_COLOR = '#747474';
 export class CategoryWidget {
   @Prop() public categories: object[] = [];
   @Prop() public defaultBarColor: string = '#47DB99';
+  @Prop() public description: string;
+  @Prop() public heading: string;
   @Prop() public showClearButton: boolean;
   @Prop() public showHeader: boolean = true;
   @Prop() public useTotalPercentage: boolean = false;
-  @Prop() public widgetDescription: string;
-  @Prop() public widgetTitle: string;
+
+  @Event() public categoriesSelected: EventEmitter;
 
   @State() private selectedCategories: string[] = [];
   @State() private numberOfVisibleCategories: number = 5;
-
-  @Event() private categoriesSelected: EventEmitter;
 
   @Method()
   public getSelectedCategories() {
@@ -46,39 +47,41 @@ export class CategoryWidget {
     }
 
     return [
-      <h2 class='as-subheader'>{this.widgetTitle}</h2>,
-      <p class='as-category-widget__description as-body'>{this.widgetDescription}</p>,
+      <h2 class='as-subheader'>{this.heading}</h2>,
+      <p class='as-category-widget__description as-body'>{this.description}</p>,
     ];
   }
 
   private _renderCategories() {
-    const maximumValue = this._getCategoriesMaximumValue();
     const moreCategoriesThanVisible = this.categories.length > this.numberOfVisibleCategories;
 
     const categoriesToRender =  moreCategoriesThanVisible
       ? this.categories.slice(0, this.numberOfVisibleCategories)
       : this.categories;
 
-    const JSXTemplate = categoriesToRender.map(
-      (category: Category) => this._renderCategory(category, { maximumValue})
-    );
+    const maximumValue = this.useTotalPercentage
+      ? this._getCategoriesTotalValue(this.categories)
+      : this._getCategoriesMaximumValue();
 
+    let otherCategoryTemplate;
     if (moreCategoriesThanVisible) {
-      JSXTemplate.push(
-        this._renderCategory(
-          { name: 'Other', value: this._getOtherCategorySum() },
-          { maximumValue, isOther: true }
-        )
+      otherCategoryTemplate = this._renderCategory(
+        { name: 'Other', value: this._getCategoriesTotalValue(this.categories) },
+        { maximumValue, isOther: true }
       );
     }
 
-    return JSXTemplate;
+    return [
+      categoriesToRender.map((category: Category) => this._renderCategory(category, { maximumValue })),
+      otherCategoryTemplate
+    ];
   }
 
   private _renderCategory(category: Category, options: CategoryOptions) {
     const isSelected = this._isSelected(category.name);
+    const isAnyCategorySelected = this.selectedCategories.length > 0;
     const barColor = !options.isOther
-      ? this.getBarColor(category.color, { isSelected })
+      ? this._getBarColor(category.color || this.defaultBarColor, { isSelected })
       : OTHER_COLOR;
 
     const progressStyles = {
@@ -86,14 +89,15 @@ export class CategoryWidget {
       width: `${(category.value / options.maximumValue) * 100}%`
     };
 
-    const classes = {
+    const cssClasses = {
       'as-category-widget__category': true,
+      'as-category-widget__category--not-selected': isAnyCategorySelected && (!isSelected || options.isOther),
       'as-category-widget__category--other': options.isOther,
       'as-category-widget__category--selected': isSelected
     };
 
     return (
-      <li class={classes}
+      <li class={cssClasses}
           onClick={() => this._toggleCategory(category)}>
         <p class='as-category-widget__category-title as-body' data-value={readableNumber(category.value)}>
           {category.name}
@@ -144,25 +148,18 @@ export class CategoryWidget {
     );
   }
 
-  private _getOtherCategorySum() {
-    const categories = this.categories.slice(this.numberOfVisibleCategories, this.categories.length);
-
+  private _getCategoriesTotalValue(categories: object[]) {
     return categories.reduce(
-      (sum, currentCategory: Category) => currentCategory.value + sum, 0
+      (maximum, currentCategory: Category) => currentCategory.value + maximum, 0
     );
   }
 
-  private getBarColor(color, options) {
-    if (options.isSelected || options.isHovered) {
-      // darken color
-      return '#000';
+  private _getBarColor(color: string, options: { isSelected?: boolean } = {}) {
+    if (options.isSelected) {
+      return shadeOrBlend(-0.16, color);
     }
 
-    if (color) {
-      return color;
-    }
-
-    return this.defaultBarColor;
+    return color;
   }
 }
 
