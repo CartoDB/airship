@@ -2,7 +2,10 @@ import { Component, Event, EventEmitter, Method, Prop, State } from '@stencil/co
 import readableNumber from '../../utils/readable-number';
 import { shadeOrBlend } from '../../utils/styles';
 
-const OTHER_COLOR = '#747474';
+const OTHER_CATEGORY_COLOR = '#747474';
+const OTHER_CATEGORY_NAME = 'Other';
+const DEFAULT_BAR_COLOR = '#47DB99';
+
 @Component({
   shadow: false,
   styleUrl: './as-category-widget.scss',
@@ -10,7 +13,7 @@ const OTHER_COLOR = '#747474';
 })
 export class CategoryWidget {
   @Prop() public categories: object[] = [];
-  @Prop() public defaultBarColor: string = '#47DB99';
+  @Prop() public defaultBarColor: string = DEFAULT_BAR_COLOR;
   @Prop() public description: string;
   @Prop() public heading: string;
   @Prop() public showClearButton: boolean;
@@ -55,24 +58,18 @@ export class CategoryWidget {
   private _renderCategories() {
     let otherCategoryTemplate;
     const moreCategoriesThanVisible = this.categories.length > this.numberOfVisibleCategories;
+    const { categories, otherCategory } = this.parseCategories();
 
     const categoriesToRender =  moreCategoriesThanVisible
-      ? this.categories.slice(0, this.numberOfVisibleCategories)
-      : this.categories;
+      ? categories.slice(0, this.numberOfVisibleCategories)
+      : categories;
 
     const maximumValue = this.useTotalPercentage
       ? this._getCategoriesTotalValue(this.categories)
       : this._getVisibleCategoriesMaximumValue();
 
-    if (moreCategoriesThanVisible) {
-      otherCategoryTemplate = this._renderCategory(
-        { name: 'Other',
-          value: this._getCategoriesTotalValue(
-            this.categories.slice(this.numberOfVisibleCategories, this.categories.length)
-          )
-        },
-        { maximumValue, isOther: true }
-      );
+    if (otherCategory || moreCategoriesThanVisible) {
+      otherCategoryTemplate = this._renderOtherCategory(otherCategory, { maximumValue });
     }
 
     return [
@@ -86,7 +83,7 @@ export class CategoryWidget {
     const isAnyCategorySelected = this.selectedCategories.length > 0;
     const barColor = !options.isOther
       ? this._getBarColor(category.color || this.defaultBarColor, { isSelected })
-      : OTHER_COLOR;
+      : OTHER_CATEGORY_COLOR;
 
     const progressStyles = {
       backgroundColor: barColor,
@@ -101,8 +98,7 @@ export class CategoryWidget {
     };
 
     return (
-      <li class={cssClasses}
-          onClick={() => this._toggleCategory(category)}>
+      <li class={cssClasses} onClick={() => this._toggleCategory(category)}>
         <p class='as-category-widget__category-title as-body' data-value={readableNumber(category.value)}>
           {category.name}
         </p>
@@ -112,6 +108,17 @@ export class CategoryWidget {
         </div>
       </li>
     );
+  }
+
+  private _renderOtherCategory(category: Category, options: CategoryOptions) {
+    const categoryData = category || {
+      name: 'Other',
+      value: this._getCategoriesTotalValue(
+        this.categories.slice(this.numberOfVisibleCategories, this.categories.length)
+      )
+    };
+
+    return this._renderCategory(categoryData, { maximumValue: options.maximumValue, isOther: true });
   }
 
   private _renderFooter() {
@@ -162,6 +169,18 @@ export class CategoryWidget {
     }
 
     return color;
+  }
+
+  private parseCategories() {
+    const newCategories = [...this.categories];
+    const otherCategoryIndex = this.categories.findIndex((category: Category) => category.name === OTHER_CATEGORY_NAME);
+
+    if (otherCategoryIndex >= 0) {
+      const otherCategory = newCategories.splice(otherCategoryIndex, 1)[0] as Category;
+      return { categories: newCategories, otherCategory };
+    }
+
+    return { categories: newCategories };
   }
 }
 
