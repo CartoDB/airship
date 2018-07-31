@@ -43,7 +43,8 @@
   }
 
   &--xl {
-    &__item {
+    /* stylelint-disable-next-line */
+    .as-tabs__item {
       border-bottom: 4px solid transparent;
       font: 16px/24px $font-base;
 
