@@ -29,6 +29,7 @@
     "test:components": "lerna exec --scope @carto/airship-components -- npm run test",
     "test:styles": "lerna exec --scope @carto/airship-style -- npm run test",
     "test:watch": "lerna run --parallel test:watch",
-    "test": "lerna run test"
+    "test": "lerna run test",
+    "postcss": "lerna run postcss"
   }
 }
