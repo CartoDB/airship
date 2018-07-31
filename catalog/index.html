@@ -25,14 +25,14 @@
     Catalog.render({
       title: 'Airship',
       responsiveSizes: [
-        {name: 'mobile', width: 375, height: 667},
-        {name: 'desktop', width: 1920, height: 1080},
+        { name: 'mobile', width: 375, height: 667 },
+        { name: 'desktop', width: 1920, height: 1080 },
       ],
       pages: [
         {
-          path: '/',             // The path where the page can be accessed
-          title: 'Introduction', // The page title
-          src: 'intro.md'   // Path to the Markdown document
+          path: '/',
+          title: 'Introduction',
+          src: 'intro.md'
         },
         {
           title: 'Layout',
@@ -86,6 +86,11 @@
               path: '/styles/typography',
               title: 'Typography',
               src: '../packages/styles/src/core/typography/README.md'
+            },
+            {
+              path: '/styles/tabs',
+              title: 'Tabs',
+              src: '../packages/styles/src/tabs/README.md'
             }
           ]
         }

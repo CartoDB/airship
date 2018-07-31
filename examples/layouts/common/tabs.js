@@ -68,8 +68,8 @@ function showPanel(className, visible) {
 }
 
 function setActiveTab(target) {
-  document.querySelector('.as-toolbar-tabs .as-toolbar-tabs__item--active').classList.remove('as-toolbar-tabs__item--active');
-  target.classList.add('as-toolbar-tabs__item--active');
+  document.querySelector('.as-toolbar-tabs .as-tabs__item--active').classList.remove('as-tabs__item--active');
+  target.classList.add('as-tabs__item--active');
 }
 
 function _toggleDrawer() {
