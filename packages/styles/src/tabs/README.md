@@ -1,8 +1,9 @@
 # Tabs
 
-Tabs are an element used in navigation, it allows you to create a [menu element](https://www.w3.org/WAI/tutorials/menus/) or a [tabs element](https://www.w3.org/TR/wai-aria-practices/examples/tabs/tabs-2/tabs.html) both with a very similar look and feel.
+Tabs are an element used in navigation, it allows you to create a [menu element](https://www.w3.org/WAI/tutorials/menus/) or a [tabs element](https://www.w3.org/TR/wai-aria-practices/examples/tabs/tabs-2/tabs.html) both with a very similar look and feel. In order to create a tab element you just need to add the `as-tabs` class.
 
-To hightlight the current tab you can use `as-tabs__item--active` class modifier.
+
+To highlight the current tab you can use `as-tabs__item--active` class modifier.
 
 ## Regular Tabs
 

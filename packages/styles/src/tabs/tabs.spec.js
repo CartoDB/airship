@@ -1,4 +1,3 @@
-// TODO: Add UI test
 const path = require('path');
 
 
