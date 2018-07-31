@@ -1,5 +1,5 @@
 .as-sidebar {
-  --sidebar-bg-color: var(--color-ui-01, #{$color-ui-01});
+  --sidebar-bg-color: var(--as-color-ui-01, #{$color-ui-01});
 
   position: absolute;
   z-index: 2;

@@ -1,5 +1,5 @@
 .as-panels {
-  --panels-bg-color: var(--color-ui-01, #{$color-ui-01});
+  --panels-bg-color: var(--as-color-ui-01, #{$color-ui-01});
 
   display: none;
   position: absolute;
@@ -62,7 +62,7 @@
     }
 
     &__element {
-      --panels-element-bg-color: var(--color-ui-01, #{$color-ui-01});
+      --panels-element-bg-color: var(--as-color-ui-01, #{$color-ui-01});
 
       max-width: 200px;
       border-radius: 4px;
@@ -77,7 +77,7 @@
 }
 
 .as-bottom-bar {
-  --bottom-bar-bg-color: var(--color-ui-01, #{$color-ui-01});
+  --bottom-bar-bg-color: var(--as-color-ui-01, #{$color-ui-01});
 
   display: none;
   position: absolute;

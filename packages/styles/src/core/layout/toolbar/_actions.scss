@@ -1,5 +1,5 @@
 .as-toolbar__actions {
-  --toolbar-tabs-bg-color: var(--color-secondary, #{$color-secondary});
+  --toolbar-tabs-bg-color: var(--as-color-secondary, #{$color-secondary});
 
   display: flex;
   position: absolute;
