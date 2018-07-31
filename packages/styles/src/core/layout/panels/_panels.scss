@@ -5,6 +5,7 @@
   top: 0;
   width: 100%;
   height: 100%;
+  overflow-y: auto;
   background-color: white;
 
   &--visible {
@@ -17,6 +18,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    overflow-y: initial;
     background-color: initial;
     pointer-events: none;
   }
@@ -80,6 +82,7 @@ $bottom-bar-max-height: 200px;
   z-index: 2;
   width: 100%;
   height: 100%;
+  overflow-x: auto;
   background-color: white;
   pointer-events: auto;
 
@@ -92,5 +95,6 @@ $bottom-bar-max-height: 200px;
     position: initial;
     height: initial;
     max-height: $bottom-bar-max-height;
+    overflow-x: initial;
   }
 }
