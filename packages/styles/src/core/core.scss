@@ -1,5 +1,4 @@
 @import 'tools/_mixins';
-@import 'lib/_reset';
 @import 'variables/_variables';
 @import 'layout/_layout';
 @import 'typography/_typography';
@@ -37,5 +36,8 @@
 
 * {
   box-sizing: border-box;
-  font-family: sans-serif;
+}
+
+main {
+  display: block;
 }
