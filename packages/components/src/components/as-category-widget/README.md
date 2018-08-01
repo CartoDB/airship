@@ -15,7 +15,7 @@ showSource: false
   description="Description"></as-category-widget>
 
 <script>
-  var categoryWidget = document.querySelector('as-category-widget');
+  const categoryWidget = document.querySelector('as-category-widget');
   categoryWidget.showClearButton = true;
   categoryWidget.categories = [
     { name: 'Bars & Restaurants', value: 1000, color: '#FABADA' },
@@ -150,4 +150,18 @@ Default: $color-ui-20 (`#F5F5F5`)
 lang: javascript
 ---
 document.body.style.setProperty('--category-bar--background-color', '#E2E6E3')
+```
+
+### Events
+
+#### **categoriesSelected**
+Fired when selected categories changed or selected categories are cleared.
+
+```code
+lang: javascript
+---
+const categoryWidget = document.querySelector('as-category-widget');
+categoryWidget.addEventListener('categoriesSelected', event => {
+  console.log('Categories Selected', event.detail)
+});
 ```
