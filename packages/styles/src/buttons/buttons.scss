@@ -2,23 +2,61 @@
   padding: 8px 12px;
   border: none;
   border-radius: 4px;
+  outline: none;
   background-color: $color-ui-01;
   color: $color-primary;
-  font-size: 32px;
+  font: $font-body;
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.24;
+  }
+
+  &:hover,
+  &:focus {
+    background-color: $color-ui-02;
+  }
+
+  &:active {
+    background-color: $color-ui-03;
+  }
 
   &--primary {
     background-color: $color-primary;
+    color: $color-ui-01;
+
+    &:hover,
+    &:focus {
+      background-color: darken($color-primary, 20%);
+      color: darken($color-ui-01, 20%);
+    }
+
+    &:active {
+      background-color: darken($color-primary, 40%);
+      color: darken($color-ui-01, 40%);
+    }
   }
 
   &--secondary {
-    background-color: $color-secondary;
+    border: 1px solid $color-primary;
+    background-color: $color-ui-01;
+    color: $color-primary;
+
+    &:hover,
+    &:focus {
+      background-color: darken($color-ui-01, 10%);
+    }
+
+    &:active {
+      background-color: darken($color-ui-01, 20%);
+    }
   }
 
   &--s {
-    font-size: 24px;
+    font: $font-caption;
   }
 
   &--l {
-    font-size: 40px;
+    font: $font-subheader;
   }
 }

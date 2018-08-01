@@ -15,13 +15,14 @@
   &__item {
     @include padding(2 3);
     display: inline-block;
+    margin: 0;
     transition: border 0.2s;
     border: none;
     border-bottom: 2px solid transparent;
     outline: none;
     background: none;
     color: var(--as-color-primary, #{$color-primary});
-    font: 12px/20px $font-base;
+    font: $font-body;
     text-decoration: none;
     cursor: pointer;
 
@@ -46,7 +47,7 @@
     /* stylelint-disable-next-line */
     .as-tabs__item {
       border-bottom: 4px solid transparent;
-      font: 16px/24px $font-base;
+      font: $font-subheader;
 
       &:focus,
       &:hover {
