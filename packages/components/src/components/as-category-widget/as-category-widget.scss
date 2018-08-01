@@ -27,14 +27,18 @@ as-category-widget {
     margin-top: get-spacing(4);
   }
 
-  .as-category-widget__category-title {
-    position: relative;
+  .as-category-widget__info {
+    display: flex;
+    justify-content: space-between;
+  }
 
-    &::after {
-      content: attr(data-value);
-      position: absolute;
-      right: 0;
-    }
+  .as-category-widget__title {
+    flex: 1;
+    width: 100%;
+    padding-right: get-spacing(2);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .as-category-widget__bar {
@@ -46,7 +50,7 @@ as-category-widget {
     background-color: $color-ui-20;
   }
 
-  .as-category-widget__value {
+  .as-category-widget__bar-value {
     position: absolute;
     left: 0;
     max-width: 100%;

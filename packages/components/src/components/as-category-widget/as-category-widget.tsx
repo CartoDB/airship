@@ -107,12 +107,13 @@ export class CategoryWidget {
 
     return (
       <li class={cssClasses} onClick={() => this._toggleCategory(category)}>
-        <p class='as-category-widget__category-title as-body' data-value={readableNumber(category.value)}>
-          {category.name}
+        <p class='as-category-widget__info as-body'>
+          <div class='as-category-widget__title'>{category.name}</div>
+          <span>{readableNumber(category.value)}</span>
         </p>
 
         <div class='as-category-widget__bar'>
-          <div class='as-category-widget__value' style={progressStyles}></div>
+          <div class='as-category-widget__bar-value' style={progressStyles}></div>
         </div>
       </li>
     );
