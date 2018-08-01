@@ -5,7 +5,8 @@ function image (filename) {
 }
 
 function html (filename) {
-  return `file://${path.resolve(__dirname, '${filename}')}`;
+  const filePath = path.resolve(__dirname, `${filename}`);
+  return `file://${filePath}`;
 }
 
 function spec (reference, screenshot, url, mobile) {
