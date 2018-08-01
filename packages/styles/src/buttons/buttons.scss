@@ -30,12 +30,10 @@
     &:enabled:hover,
     &:enabled:focus {
       background-color: darken($color-primary, 20%);
-      color: darken($color-ui-01, 20%);
     }
 
     &:enabled:active {
       background-color: darken($color-primary, 40%);
-      color: darken($color-ui-01, 40%);
     }
   }
 
