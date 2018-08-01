@@ -43,7 +43,7 @@ export class CategoryWidget {
   public render() {
     return [
       this._renderHeader(),
-      <ul class='as-category-widget__list'>{this._renderCategories()}</ul>,
+      this._renderCategoryList(),
       this._renderFooter()
     ];
   }
@@ -57,6 +57,10 @@ export class CategoryWidget {
       <h2 class='as-subheader'>{this.heading}</h2>,
       <p class='as-category-widget__description as-body'>{this.description}</p>,
     ];
+  }
+
+  private _renderCategoryList() {
+    return <ul class='as-category-widget__list'>{this._renderCategories()}</ul>;
   }
 
   private _renderCategories() {

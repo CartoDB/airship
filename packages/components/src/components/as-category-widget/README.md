@@ -165,3 +165,26 @@ categoryWidget.addEventListener('categoriesSelected', event => {
   console.log('Categories Selected', event.detail)
 });
 ```
+
+### Methods
+
+#### **getSelectedCategories**
+Get current selected categories
+`Returns: Category[]`
+
+```code
+lang: javascript
+---
+const categoryWidget = document.querySelector('as-category-widget');
+categoryWidget.getSelectedCategories();
+```
+
+#### **clearSelection**
+Clear current selected categories
+
+```code
+lang: javascript
+---
+const categoryWidget = document.querySelector('as-category-widget');
+categoryWidget.clearSelection();
+```
