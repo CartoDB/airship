@@ -15,6 +15,7 @@
   &__item {
     @include padding(2 3);
     display: inline-block;
+    margin: 0;
     transition: border 0.2s;
     border: none;
     border-bottom: 2px solid transparent;
