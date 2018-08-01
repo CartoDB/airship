@@ -109,7 +109,7 @@ export class CategoryWidget {
       <li class={cssClasses} onClick={() => this._toggleCategory(category)}>
         <p class='as-category-widget__info as-body'>
           <div class='as-category-widget__title'>{category.name}</div>
-          <span>{readableNumber(category.value)}</span>
+          {readableNumber(category.value)}
         </p>
 
         <div class='as-category-widget__bar'>
