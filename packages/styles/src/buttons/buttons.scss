@@ -12,12 +12,12 @@
     opacity: 0.24;
   }
 
-  &:hover,
-  &:focus {
+  &:enabled:hover,
+  &:enabled:focus {
     background-color: $color-ui-02;
   }
 
-  &:active {
+  &:enabled:active {
     background-color: $color-ui-03;
   }
 
@@ -25,13 +25,13 @@
     background-color: $color-primary;
     color: $color-ui-01;
 
-    &:hover,
-    &:focus {
+    &:enabled:hover,
+    &:enabled:focus {
       background-color: darken($color-primary, 20%);
       color: darken($color-ui-01, 20%);
     }
 
-    &:active {
+    &:enabled:active {
       background-color: darken($color-primary, 40%);
       color: darken($color-ui-01, 40%);
     }
@@ -42,12 +42,12 @@
     background-color: $color-ui-01;
     color: $color-primary;
 
-    &:hover,
-    &:focus {
+    &:enabled:hover,
+    &:enabled:focus {
       background-color: darken($color-ui-01, 10%);
     }
 
-    &:active {
+    &:enabled:active {
       background-color: darken($color-ui-01, 20%);
     }
   }
