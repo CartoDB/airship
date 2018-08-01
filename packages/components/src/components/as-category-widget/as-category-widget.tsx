@@ -32,6 +32,10 @@ export class CategoryWidget {
 
   @Method()
   public clearSelection() {
+    if (!this.selectedCategories.length) {
+      return;
+    }
+
     this.selectedCategories = [];
     this._onCategoriesChanged();
   }
@@ -127,7 +131,9 @@ export class CategoryWidget {
     return (
       <footer class='as-category-widget__footer'>
         <div class='as-category-widget__count as-body'>{selectedCount} selected</div>
-        { this.showClearButton ? <button class='' onClick={() => this.clearSelection()}>Clear selection</button> : '' }
+        { this.showClearButton
+          ? <button class='as-category-widget__clear' onClick={() => this.clearSelection()}>Clear selection</button>
+          : '' }
       </footer>
     );
   }
@@ -150,16 +156,14 @@ export class CategoryWidget {
   }
 
   private _getVisibleCategoriesMaximumValue() {
-    const categories = this.categories.slice(0, this.numberOfVisibleCategories);
-
-    return categories.reduce(
+    return this._getVisibleCategories().reduce(
       (maximum, currentCategory: Category) => currentCategory.value > maximum ? currentCategory.value : maximum, 0
     );
   }
 
   private _getCategoriesTotalValue(categories: object[]) {
     return categories.reduce(
-      (maximum, currentCategory: Category) => currentCategory.value + maximum, 0
+      (currentMaximum, currentCategory: Category) => currentCategory.value + currentMaximum, 0
     );
   }
 
@@ -181,6 +185,10 @@ export class CategoryWidget {
     }
 
     return { categories: newCategories };
+  }
+
+  private _getVisibleCategories() {
+    return this.categories.slice(0, this.numberOfVisibleCategories);
   }
 }
 

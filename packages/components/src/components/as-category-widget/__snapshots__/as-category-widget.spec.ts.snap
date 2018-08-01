@@ -300,7 +300,7 @@ exports[`as-category-widget Rendering should render clear button 1`] = `
       All selected
     </div>
     <button
-      class=""
+      class="as-category-widget__clear"
     >
       Clear selection
     </button>
@@ -444,7 +444,7 @@ exports[`as-category-widget Rendering should render properly 1`] = `
       All selected
     </div>
     <button
-      class=""
+      class="as-category-widget__clear"
     >
       Clear selection
     </button>

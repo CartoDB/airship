@@ -81,7 +81,6 @@ describe('as-category-widget', () => {
       categoryWidget.clearSelection();
 
       expect(categoryWidget.getSelectedCategories()).toEqual([]);
-      expect(categoryWidget._onCategoriesChanged).toHaveBeenCalled();
     });
   });
 
@@ -106,7 +105,7 @@ describe('as-category-widget', () => {
     it('should select category if it is not selected', () => {
       const category = { name: 'Category 1', value: 10, color: '#000' };
       categoryWidget._toggleCategory(category);
-      expect(categoryWidget._onCategoriesChanged).toHaveBeenCalled();
+
       expect(categoryWidget.getSelectedCategories()).toEqual([category.name]);
     });
 
@@ -116,12 +115,11 @@ describe('as-category-widget', () => {
 
       categoryWidget._toggleCategory(category);
 
-      expect(categoryWidget._onCategoriesChanged).toHaveBeenCalled();
       expect(categoryWidget.getSelectedCategories()).toEqual([]);
     });
   });
 
-  describe('._onCategoriesChanged', () => {
+  describe('Behaviour', () => {
     let element: HTMLAsCategoryWidgetElement;
     let testWindow: TestWindow;
 
@@ -133,18 +131,36 @@ describe('as-category-widget', () => {
       });
     });
 
-    it('should emit an event containing selected categories', async () => {
+    it('should emit an event containing selected categories when a new category is selected', async () => {
       element.categories = exampleCategories;
-      await testWindow.flush();
 
-      const spy = jest.fn();
-      element.addEventListener('categoriesSelected', spy);
+      const categoriesSelectedSpy = jest.fn();
+      element.addEventListener('categoriesSelected', categoriesSelectedSpy);
+      await testWindow.flush();
 
       const categoryElement = element.querySelector('.as-category-widget__category') as HTMLDivElement;
       categoryElement.click();
 
+      expect(categoriesSelectedSpy).toHaveBeenCalled();
+      expect(categoriesSelectedSpy.mock.calls[0][0].detail).toEqual([exampleCategories[0].name]);
+    });
+
+    it('should emit an event containing selected categories when categories are cleared', async () => {
+      element.categories = exampleCategories;
+      element.showClearButton = true;
+      await testWindow.flush();
+
+      const categoryElement = element.querySelector('.as-category-widget__category') as HTMLDivElement;
+      categoryElement.click();
+
+      const spy = jest.fn();
+      element.addEventListener('categoriesSelected', spy);
+
+      const clearButton = element.querySelector('.as-category-widget__clear') as HTMLButtonElement;
+      clearButton.click();
+
       expect(spy).toHaveBeenCalled();
-      expect(spy.mock.calls[0][0].detail).toEqual([exampleCategories[0].name]);
+      expect(spy.mock.calls[0][0].detail).toEqual([]);
     });
   });
 
