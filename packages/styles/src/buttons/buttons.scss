@@ -2,7 +2,7 @@
 
 .as-btn {
   padding: 8px 12px;
-  border: none;
+  border: 1px solid transparent;
   border-radius: 4px;
   outline: none;
   background-color: $color-ui-01;
@@ -28,7 +28,7 @@
     color: $color-ui-01;
 
     &:enabled:hover,
-    &:enabled:focus {
+    &:enabled:focus, {
       background-color: darken($color-primary, 20%);
     }
 
@@ -58,5 +58,38 @@
 
   &--l {
     font: $font-subheader;
+  }
+}
+
+a.as-btn {
+  &:hover,
+  &:focus {
+    background-color: $color-ui-02;
+  }
+
+  &:active {
+    background-color: $color-ui-03;
+  }
+}
+
+a.as-btn.as-btn--primary {
+  &:hover,
+  &:focus {
+    background-color: darken($color-primary, 20%);
+  }
+
+  &:active {
+    background-color: darken($color-primary, 40%);
+  }
+}
+
+a.as-btn.as-btn--secondary {
+  &:hover,
+  &:focus {
+    background-color: darken($color-ui-01, 10%);
+  }
+
+  &:active {
+    background-color: darken($color-ui-01, 12%);
   }
 }
