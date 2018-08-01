@@ -25,6 +25,8 @@
 }
 
 .as-panel {
+  $panel-selector: &;
+
   @media all and (min-width: $tablet-breakpoint) {
     display: flex;
     position: absolute;
@@ -37,7 +39,7 @@
 
     // Panels alignment
     &--top {
-      top: 0;
+      top: $su * 6;
     }
 
     &--middle {
@@ -46,11 +48,15 @@
     }
 
     &--bottom {
-      bottom: 0;
+      bottom: $su * 6;
     }
 
     &--left {
-      left: 0;
+      left: $su * 6;
+
+      #{$panel-selector}__element {
+        @include margin(0 2 0 0);
+      }
     }
 
     &--center {
@@ -59,7 +65,11 @@
     }
 
     &--right {
-      right: 0;
+      right: $su * 6;
+
+      #{$panel-selector}__element {
+        @include margin(0 0 0 2);
+      }
     }
 
     &__element {
@@ -68,9 +78,18 @@
       background: white;
       box-shadow: rgba(44, 44, 44, 0.16) 0 1px 4px 0;
       pointer-events: auto;
+    }
 
-      @include margin(1);
-      @include padding(1);
+    &--top#{&}--vertical {
+      #{$panel-selector}__element {
+        @include margin(0 0 2 0);
+      }
+    }
+
+    &--bottom#{&}--vertical {
+      #{$panel-selector}__element {
+        @include margin(2 0 0 0);
+      }
     }
   }
 }
