@@ -1,0 +1,10 @@
+.as-list {
+  padding-left: 24px;
+  font-size: 12px;
+  line-height: 20px;
+  font-family: var(--font-base, #{$font-base});
+
+  &__item {
+    padding-left: 12px;
+  }
+}
