@@ -74,3 +74,24 @@ Each button has two size modifiers:
 ---
 <button disabled class="as-btn as-btn--secondary"> I'm a disabled secondary button</button>
 ```
+
+
+## HTMLElements
+
+The `as-btn` class can be used on the following Html Elements:
+
+- [button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button)
+- [input type="button"](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/button)
+- [link](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link)
+
+```html
+---
+<h1 class="as-title">Link</h1>
+<a class="as-btn"> Link button </a>
+<a class="as-btn as-btn--primary "> Link button primary </a>
+<a class="as-btn as-btn--secondary "> Link button secondary </a>
+<h1 class="as-title">Input</h1>
+<input type="button" value="Input button" class="as-btn"/>
+<input type="button" value="Input button primary" class="as-btn as-btn--primary"/>
+<input type="button" value="Input button secondary" class="as-btn as-btn--secondary"/>
+```
