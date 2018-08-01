@@ -1,33 +1,66 @@
-.as-caption {
-  font: 10px/12px $font-base;
-}
-
-.as-body {
-  font: 12px/20px $font-base;
-}
-
-.as-subheader {
-  font: 16px/24px $font-base;
-}
-
-.as-title {
-  font: 24px/32px $font-base;
+// -- Font types
+.as-jumbo {
+  font-size: 72px;
+  line-height: 80px;
+  font-family: var(--font-base, #{$font-base});
+  font-weight: 300;
 }
 
 .as-display {
-  font: 40px/56px $font-base;
+  font-size: 40px;
+  line-height: 56px;
+  font-family: var(--font-base, #{$font-base});
   font-weight: 300;
 }
 
-.as-jumbo {
-  font: 72px/80px $font-base;
-  font-weight: 300;
+.as-title {
+  font-size: 24px;
+  line-height: 32px;
+  font-family: var(--font-base, #{$font-base});
 }
 
-.as-font-medium {
-  font-weight: 500;
+.as-subheader {
+  font-size: 16px;
+  line-height: 24px;
+  font-family: var(--font-base, #{$font-base});
 }
 
-.as-font-mono {
-  font-family: $font-monospace-base;
+.as-body {
+  font-size: 12px;
+  line-height: 20px;
+  font-family: var(--font-base, #{$font-base});
+}
+
+.as-caption {
+  font-size: 10px;
+  line-height: 12px;
+  font-family: var(--font-base, #{$font-base});
+}
+
+// -- Modifiers
+
+.as-font {
+  &--medium {
+    font-weight: 500;
+  }
+
+  &--mono {
+    font-family: var(--font-mono, #{$font-mono});
+  }
+
+  &--type-01 {
+    color: var(--color-type-01, #{$color-type-01});
+  }
+
+  &--type-02 {
+    color: var(--color-type-02, #{$color-type-02});
+  }
+
+  &--type-03 {
+    color: var(--color-type-03, #{$color-type-03});
+  }
+
+  &--type-04 {
+    color: var(--color-type-04, #{$color-type-04});
+  }
 }

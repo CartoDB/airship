@@ -3,6 +3,7 @@
 @import 'variables/_variables';
 @import 'layout/_layout';
 @import 'typography/_typography';
+@import 'lists/_lists';
 
 :root {
   // -- Colors
@@ -28,6 +29,11 @@
   --as-color-support-01: #{$color-support-01};
   --as-color-support-02: #{$color-support-02};
   --as-color-support-03: #{$color-support-03};
+
+
+  // -- Fonts
+  --as-font-base: #{$font-base};
+  --as-font-mono:#{$font-mono};
 }
 
 * {
