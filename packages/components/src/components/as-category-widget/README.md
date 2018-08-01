@@ -3,20 +3,25 @@ Category widget displays the categories passed to the component as a list with a
 ```html
 noSource: true
 ---
-<iframe src="/examples/components/as-category-widget/simple.html" style="width: 100%; height: 330px;">
+<iframe src="/examples/components/as-category-widget/simple.html" style="width: 100%; height: 354px;">
 ```
 
 ```code
 lang: html
 showSource: false
 ---
+<!-- Example with all default values and showing clear button -->
 <as-category-widget
   heading="Business Volume"
-  description="Description"></as-category-widget>
+  description="Description"
+  default-bar-color="#47DB99"></as-category-widget>
 
 <script>
   const categoryWidget = document.querySelector('as-category-widget');
+  categoryWidget.showHeader = true;
   categoryWidget.showClearButton = true;
+  categoryWidget.useTotalPercentage = false;
+  categoryWidget.visibleCategories = Infinity;
   categoryWidget.categories = [
     { name: 'Bars & Restaurants', value: 1000, color: '#FABADA' },
     { name: 'Fashion', value: 900 },
@@ -31,8 +36,10 @@ showSource: false
 
 ### Props
 
-#### **categories** (array required)
-Array of categories, each category should include a `name` and a `value`. You can also override the bar color for each category with `color`. For example:
+#### **categories**: Category[] = []
+Array of categories, each category should include a `name` and a `value`. You can also override the bar color for each category with `color`.
+
+For example:
 
 ```code
 lang: javascript
@@ -43,7 +50,7 @@ categoryWidget.categories = [
   { name: 'Return of the Jedi', value: 204338075 },
 ];
 ```
-#### **defaultBarColor** (string)
+#### **defaultBarColor**: string = '#47DB99'
 Overrides default color to draw the bars. Default value is `#47DB99`.
 
 ```code
@@ -57,7 +64,7 @@ lang: javascript
 categoryWidget.defaultBarColor = `#47DB99`;
 ```
 
-#### **description** (string)
+#### **description**: string
 Description text of the widget
 
 ```code
@@ -71,7 +78,7 @@ lang: javascript
 categoryWidget.description = 'Description';
 ```
 
-#### **heading** (string)
+#### **heading**: string
 Heading text of the widget
 
 ```code
@@ -85,7 +92,7 @@ lang: javascript
 categoryWidget.heading = 'Business Volume';
 ```
 
-#### **showClearButton** (boolean)
+#### **showClearButton**: boolean = false
 If truthy, it'll show a button to clear selected categories when there are any. Default value is `false`.
 
 ```code
@@ -94,7 +101,7 @@ lang: javascript
 categoryWidget.showClearButton = true;
 ```
 
-#### **showHeader** (boolean)
+#### **showHeader**: boolean = true
 If truthy, it'll render the heading and the component's description. Default value is `true`.
 
 ```code
@@ -103,7 +110,7 @@ lang: javascript
 categoryWidget.showHeader = false;
 ```
 
-#### **useTotalPercentage** (boolean)
+#### **useTotalPercentage**: boolean = false
 If truthy, we'll use the sum of all categories' value to render the bar percentage.
 By default, we use the maximum category value to render the bar percentage.
 
@@ -111,6 +118,15 @@ By default, we use the maximum category value to render the bar percentage.
 lang: javascript
 ---
 categoryWidget.useTotalPercentage = true;
+```
+
+#### **visibleCategories**: number = Infinity
+The number of visible categories without aggregation.
+
+```code
+lang: javascript
+---
+categoryWidget.visibleCategories = 5;
 ```
 
 ### Styles

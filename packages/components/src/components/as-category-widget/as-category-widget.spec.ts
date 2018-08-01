@@ -60,6 +60,51 @@ describe('as-category-widget', () => {
     });
   });
 
+  describe('Behaviour', () => {
+    let element: HTMLAsCategoryWidgetElement;
+    let testWindow: TestWindow;
+
+    beforeEach(async () => {
+      testWindow = new TestWindow();
+      element = await testWindow.load({
+        components: [CategoryWidget],
+        html: '<as-category-widget></as-category-widget>'
+      });
+    });
+
+    it('should emit an event containing selected categories when a new category is selected', async () => {
+      element.categories = exampleCategories;
+
+      const categoriesSelectedSpy = jest.fn();
+      element.addEventListener('categoriesSelected', categoriesSelectedSpy);
+      await testWindow.flush();
+
+      const categoryElement = element.querySelector('.as-category-widget__category') as HTMLDivElement;
+      categoryElement.click();
+
+      expect(categoriesSelectedSpy).toHaveBeenCalled();
+      expect(categoriesSelectedSpy.mock.calls[0][0].detail).toEqual([exampleCategories[0].name]);
+    });
+
+    it('should emit an event containing selected categories when categories are cleared', async () => {
+      element.categories = exampleCategories;
+      element.showClearButton = true;
+      await testWindow.flush();
+
+      const categoryElement = element.querySelector('.as-category-widget__category') as HTMLDivElement;
+      categoryElement.click();
+
+      const spy = jest.fn();
+      element.addEventListener('categoriesSelected', spy);
+
+      const clearButton = element.querySelector('.as-category-widget__clear') as HTMLButtonElement;
+      clearButton.click();
+
+      expect(spy).toHaveBeenCalled();
+      expect(spy.mock.calls[0][0].detail).toEqual([]);
+    });
+  });
+
   describe('.getSelectedCategories', () => {
     it('should return selectedCategories', () => {
       const selectedCategories = ['Category 1'];
@@ -119,55 +164,11 @@ describe('as-category-widget', () => {
     });
   });
 
-  describe('Behaviour', () => {
-    let element: HTMLAsCategoryWidgetElement;
-    let testWindow: TestWindow;
-
-    beforeEach(async () => {
-      testWindow = new TestWindow();
-      element = await testWindow.load({
-        components: [CategoryWidget],
-        html: '<as-category-widget></as-category-widget>'
-      });
-    });
-
-    it('should emit an event containing selected categories when a new category is selected', async () => {
-      element.categories = exampleCategories;
-
-      const categoriesSelectedSpy = jest.fn();
-      element.addEventListener('categoriesSelected', categoriesSelectedSpy);
-      await testWindow.flush();
-
-      const categoryElement = element.querySelector('.as-category-widget__category') as HTMLDivElement;
-      categoryElement.click();
-
-      expect(categoriesSelectedSpy).toHaveBeenCalled();
-      expect(categoriesSelectedSpy.mock.calls[0][0].detail).toEqual([exampleCategories[0].name]);
-    });
-
-    it('should emit an event containing selected categories when categories are cleared', async () => {
-      element.categories = exampleCategories;
-      element.showClearButton = true;
-      await testWindow.flush();
-
-      const categoryElement = element.querySelector('.as-category-widget__category') as HTMLDivElement;
-      categoryElement.click();
-
-      const spy = jest.fn();
-      element.addEventListener('categoriesSelected', spy);
-
-      const clearButton = element.querySelector('.as-category-widget__clear') as HTMLButtonElement;
-      clearButton.click();
-
-      expect(spy).toHaveBeenCalled();
-      expect(spy.mock.calls[0][0].detail).toEqual([]);
-    });
-  });
-
   describe('._getVisibleCategoriesMaximumValue', () => {
     it('should return maximum value of visible categories', () => {
       categoryWidget.categories = exampleCategories;
       categoryWidget.useTotalPercentage = false;
+      categoryWidget.visibleCategories = 5;
 
       expect(categoryWidget._getVisibleCategoriesMaximumValue()).toEqual(1000);
     });

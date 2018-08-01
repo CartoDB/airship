@@ -39,6 +39,7 @@ declare global {
       'showClearButton': boolean;
       'showHeader': boolean;
       'useTotalPercentage': boolean;
+      'visibleCategories': number;
     }
   }
 
@@ -69,6 +70,7 @@ declare global {
       'showClearButton'?: boolean;
       'showHeader'?: boolean;
       'useTotalPercentage'?: boolean;
+      'visibleCategories'?: number;
     }
   }
 }

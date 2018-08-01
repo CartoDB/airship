@@ -16,14 +16,14 @@ export class CategoryWidget {
   @Prop() public defaultBarColor: string = DEFAULT_BAR_COLOR;
   @Prop() public description: string;
   @Prop() public heading: string;
-  @Prop() public showClearButton: boolean;
+  @Prop() public showClearButton: boolean = false;
   @Prop() public showHeader: boolean = true;
   @Prop() public useTotalPercentage: boolean = false;
+  @Prop() public visibleCategories: number = Infinity;
 
   @Event() public categoriesSelected: EventEmitter<string[]>;
 
   @State() private selectedCategories: string[] = [];
-  @State() private numberOfVisibleCategories: number = 5;
 
   @Method()
   public getSelectedCategories() {
@@ -64,12 +64,12 @@ export class CategoryWidget {
   }
 
   private _renderCategories() {
-    let otherCategoryTemplate;
-    const moreCategoriesThanVisible = this.categories.length > this.numberOfVisibleCategories;
+    const moreCategoriesThanVisible = this.categories.length > this.visibleCategories;
     const { categories, otherCategory } = this._parseCategories();
+    let otherCategoryTemplate;
 
     const categoriesToRender =  moreCategoriesThanVisible
-      ? categories.slice(0, this.numberOfVisibleCategories)
+      ? categories.slice(0, this.visibleCategories)
       : categories;
 
     const maximumValue = this.useTotalPercentage
@@ -122,7 +122,7 @@ export class CategoryWidget {
     const categoryData = category || {
       name: 'Other',
       value: this._getCategoriesTotalValue(
-        this.categories.slice(this.numberOfVisibleCategories, this.categories.length)
+        this.categories.slice(this.visibleCategories, this.categories.length)
       )
     };
 
@@ -179,19 +179,22 @@ export class CategoryWidget {
   }
 
   private _parseCategories() {
-    const newCategories = [...this.categories];
-    const otherCategoryIndex = this.categories.findIndex((category: Category) => category.name === OTHER_CATEGORY_NAME);
+    const otherCategory = this.categories.find(
+      (category: Category) => category.name === OTHER_CATEGORY_NAME
+    ) as Category;
 
-    if (otherCategoryIndex >= 0) {
-      const otherCategory = newCategories.splice(otherCategoryIndex, 1)[0] as Category;
-      return { categories: newCategories, otherCategory };
+    if (otherCategory) {
+      const categories = this.categories
+        .filter((category: Category) => category.name !== otherCategory.name);
+
+      return { categories, otherCategory };
     }
 
-    return { categories: newCategories };
+    return { categories: this.categories };
   }
 
   private _getVisibleCategories() {
-    return this.categories.slice(0, this.numberOfVisibleCategories);
+    return this.categories.slice(0, this.visibleCategories);
   }
 }
 
