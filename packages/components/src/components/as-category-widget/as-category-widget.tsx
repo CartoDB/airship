@@ -66,7 +66,7 @@ export class CategoryWidget {
   private _renderCategories() {
     let otherCategoryTemplate;
     const moreCategoriesThanVisible = this.categories.length > this.numberOfVisibleCategories;
-    const { categories, otherCategory } = this.parseCategories();
+    const { categories, otherCategory } = this._parseCategories();
 
     const categoriesToRender =  moreCategoriesThanVisible
       ? categories.slice(0, this.numberOfVisibleCategories)
@@ -89,9 +89,9 @@ export class CategoryWidget {
   private _renderCategory(category: Category, options: CategoryOptions) {
     const isSelected = this._isSelected(category.name);
     const isAnyCategorySelected = this.selectedCategories.length > 0;
-    const barColor = !options.isOther
-      ? this._getBarColor(category.color || this.defaultBarColor, { isSelected })
-      : OTHER_CATEGORY_COLOR;
+    const barColor = options.isOther
+      ? OTHER_CATEGORY_COLOR
+      : this._getBarColor(category.color || this.defaultBarColor, { isSelected });
 
     const progressStyles = {
       backgroundColor: barColor,
@@ -130,7 +130,7 @@ export class CategoryWidget {
   }
 
   private _renderFooter() {
-    const selectedCount = this.selectedCategories.length ? this.selectedCategories.length : 'All';
+    const selectedCount = this.selectedCategories.length || 'All';
 
     return (
       <footer class='as-category-widget__footer'>
@@ -143,15 +143,14 @@ export class CategoryWidget {
   }
 
   private _isSelected(categoryName: string) {
-    return this.selectedCategories.indexOf(categoryName) > -1;
+    return this.selectedCategories.includes(categoryName);
   }
 
   private _toggleCategory(category: Category) {
-    const newSelectedCategories = this._isSelected(category.name)
+    this.selectedCategories = this._isSelected(category.name)
       ? this.selectedCategories.filter((currentCategory) => currentCategory !== category.name)
       : [...this.selectedCategories, category.name];
 
-    this.selectedCategories = newSelectedCategories;
     this._onCategoriesChanged();
   }
 
@@ -179,7 +178,7 @@ export class CategoryWidget {
     return color;
   }
 
-  private parseCategories() {
+  private _parseCategories() {
     const newCategories = [...this.categories];
     const otherCategoryIndex = this.categories.findIndex((category: Category) => category.name === OTHER_CATEGORY_NAME);
 
