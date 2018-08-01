@@ -3,13 +3,6 @@
 ## Default input
 
 ```html
----
-<iframe src="/packages/styles/src/inputs/test/input.html" style="width: 100%; height: 100%;">
-```
-
-```code
-lang: html
----
 <p>
   <span class="as-caption">Default</span>
   <input class="as-input" type="text">
@@ -29,13 +22,6 @@ lang: html
 This styles will be applied to `disabled` inputs.
 
 ```html
----
-<iframe src="/packages/styles/src/inputs/test/input-disabled.html" style="width: 100%; height: 100%;">
-```
-
-```code
-lang: html
----
 <p>
   <span class="as-caption">Default</span>
   <input class="as-input" type="text" disabled>
@@ -55,13 +41,6 @@ lang: html
 This styles will be applied to `readonly`.
 
 ```html
----
-<iframe src="/packages/styles/src/inputs/test/input-readonly.html" style="width: 100%; height: 100%;">
-```
-
-```code
-lang: html
----
 <p>
   <span class="as-caption">Default</span>
   <input class="as-input" type="text" readonly>
@@ -81,13 +60,6 @@ lang: html
 This styles will be applied to `invalid` inputs.
 
 ```html
----
-<iframe src="/packages/styles/src/inputs/test/input-invalid.html" style="width: 100%; height: 100%;">
-```
-
-```code
-lang: html
----
 <p>
   <span class="as-caption">Default</span>
   <input class="as-input" type="text" required>
