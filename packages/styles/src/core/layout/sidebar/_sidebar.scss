@@ -32,6 +32,19 @@
     }
   }
 
+  // Containers
+  .as-box {
+    @include margin(10 10 0 10);
+  }
+
+  .as-container {
+    flex: 0 1 auto;
+  }
+
+  .as-container--scrollable {
+    flex: 0 1 auto;
+  }
+
   // Media
   @media all and (min-width: $tablet-breakpoint) {
     position: initial;
@@ -48,6 +61,24 @@
 
     &--xl {
       width: 460px;
+    }
+
+    // Containers
+    .as-container {
+      flex-grow: 0;
+    }
+
+    .as-container--scrollable {
+      flex-grow: 1;
+      overflow-y: auto;
+    }
+
+    .as-container--border {
+      border-bottom: 1px solid $color-ui-40;
+    }
+
+    .as-box {
+      @include margin(10 10 10 10);
     }
   }
 }
