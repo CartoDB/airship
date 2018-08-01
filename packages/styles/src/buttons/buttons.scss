@@ -62,6 +62,8 @@
 }
 
 a.as-btn {
+  text-decoration: none;
+
   &:hover,
   &:focus {
     background-color: $color-ui-02;
