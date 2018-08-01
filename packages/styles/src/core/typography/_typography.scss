@@ -1,33 +1,54 @@
-.as-caption {
-  font: 10px/12px $font-base;
-}
-
-.as-body {
-  font: 12px/20px $font-base;
-}
-
-.as-subheader {
-  font: 16px/24px $font-base;
-}
-
-.as-title {
-  font: 24px/32px $font-base;
+// -- Font types
+.as-jumbo {
+  font: $font-jumbo;
+  font-weight: 300;
 }
 
 .as-display {
-  font: 40px/56px $font-base;
+  font: $font-display;
   font-weight: 300;
 }
 
-.as-jumbo {
-  font: 72px/80px $font-base;
-  font-weight: 300;
+.as-title {
+  font: $font-title;
 }
 
-.as-font-medium {
-  font-weight: 500;
+.as-subheader {
+  font: $font-subheader;
 }
 
-.as-font-mono {
-  font-family: $font-monospace-base;
+.as-body {
+  font: $font-body;
+}
+
+.as-caption {
+  font: $font-caption;
+}
+
+// -- Modifiers
+
+.as-font {
+  &--medium {
+    font-weight: 500;
+  }
+
+  &--mono {
+    font-family: var(--font-family-mono, #{$font-family-mono});
+  }
+
+  &--type-01 {
+    color: var(--color-type-01, #{$color-type-01});
+  }
+
+  &--type-02 {
+    color: var(--color-type-02, #{$color-type-02});
+  }
+
+  &--type-03 {
+    color: var(--color-type-03, #{$color-type-03});
+  }
+
+  &--type-04 {
+    color: var(--color-type-04, #{$color-type-04});
+  }
 }
