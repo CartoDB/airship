@@ -13,9 +13,9 @@
 
   &__item {
     @include padding(2 3);
-    border: none;
     display: inline-block;
     transition: border 0.2s;
+    border: none;
     border-bottom: 2px solid transparent;
     outline: none;
     background: none;
