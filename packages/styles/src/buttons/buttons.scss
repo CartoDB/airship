@@ -1,26 +1,24 @@
 .as-btn {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  background-color: $color-ui-01;
+  color: $color-primary;
+  font-size: 32px;
 
   &--primary {
-
+    background-color: $color-primary;
   }
 
   &--secondary {
-
-  }
-
-  &--primary {
-
+    background-color: $color-secondary;
   }
 
   &--s {
-
-  }
-
-  &--m {
-
+    font-size: 24px;
   }
 
   &--l {
-
+    font-size: 40px;
   }
 }
