@@ -1,40 +1,28 @@
 // -- Font types
 .as-jumbo {
-  font-size: 72px;
-  line-height: 80px;
-  font-family: var(--font-base, #{$font-base});
+  font: $font-jumbo;
   font-weight: 300;
 }
 
 .as-display {
-  font-size: 40px;
-  line-height: 56px;
-  font-family: var(--font-base, #{$font-base});
+  font: $font-display;
   font-weight: 300;
 }
 
 .as-title {
-  font-size: 24px;
-  line-height: 32px;
-  font-family: var(--font-base, #{$font-base});
+  font: $font-title;
 }
 
 .as-subheader {
-  font-size: 16px;
-  line-height: 24px;
-  font-family: var(--font-base, #{$font-base});
+  font: $font-subheader;
 }
 
 .as-body {
-  font-size: 12px;
-  line-height: 20px;
-  font-family: var(--font-base, #{$font-base});
+  font: $font-body;
 }
 
 .as-caption {
-  font-size: 10px;
-  line-height: 12px;
-  font-family: var(--font-base, #{$font-base});
+  font: $font-caption;
 }
 
 // -- Modifiers
@@ -45,7 +33,7 @@
   }
 
   &--mono {
-    font-family: var(--font-mono, #{$font-mono});
+    font-family: var(--font-family-mono, #{$font-family-mono});
   }
 
   &--type-01 {
