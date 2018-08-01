@@ -117,7 +117,7 @@ categoryWidget.useTotalPercentage = true;
 There are some CSS Variables that you can override to change visual styles.
 
 #### **--category-widget--description--color**
-Default: `#1785FB`
+Default: $color-type-20 (`#1785FB`)
 
 ```code
 lang: javascript
@@ -135,7 +135,7 @@ document.body.style.setProperty('--category-widget--bar--height', '8px')
 ```
 
 #### **--category-widget--background-color**
-Default: `#FFF`
+Default: $color-ui-10 (`#FFF`)
 
 ```code
 lang: javascript
@@ -144,7 +144,7 @@ document.body.style.setProperty('--category-widget--background-color', '#F5F5F5'
 ```
 
 #### **--category-bar--background-color**
-Default: `#F5F5F5`
+Default: $color-ui-20 (`#F5F5F5`)
 
 ```code
 lang: javascript

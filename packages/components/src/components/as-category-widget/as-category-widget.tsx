@@ -163,7 +163,7 @@ export class CategoryWidget {
 
   private _getCategoriesTotalValue(categories: object[]) {
     return categories.reduce(
-      (currentMaximum, currentCategory: Category) => currentCategory.value + currentMaximum, 0
+      (sum, currentCategory: Category) => currentCategory.value + sum, 0
     );
   }
 
