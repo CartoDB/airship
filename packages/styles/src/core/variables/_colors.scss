@@ -1,20 +1,23 @@
-// Color variables
+// -- Colors
 
 // Brand
-$color-brand-10: #1785FB;
-$color-brand-20: #0F2D53;
-$color-brand-30: #47DB99;
+$color-primary: #1785FB !default;
+$color-secondary: #0F2D53 !default;
+$color-complementary: #47DB99 !default;
 
-$color-type-10: #2C2C2C;
-$color-type-20: #747474;
-$color-type-30: #BABABA;
-$color-type-40: #FFF;
+// Typography
+$color-type-01: #2C2C2C !default;
+$color-type-02: #747474 !default;
+$color-type-03: #BABABA !default;
+$color-type-04: #FFF !default;
 
-$color-ui-10: #FFF;
-$color-ui-20:#F5F5F5;
-$color-ui-30:#E2E6E3;
-$color-ui-40:#D1D5D7;
+// UI
+$color-ui-01: #FFF !default;
+$color-ui-02:#F5F5F5 !default;
+$color-ui-03:#E2E6E3 !default;
+$color-ui-04:#D1D5D7 !default;
 
-$color-support-10: #F3522B;
-$color-support-20: #FDB32B;
-$color-support-30: #80B622;
+// Support
+$color-support-01: #F3522B !default;
+$color-support-02: #FDB32B !default;
+$color-support-03: #80B622 !default;

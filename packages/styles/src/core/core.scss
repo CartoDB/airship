@@ -5,10 +5,29 @@
 @import 'typography/_typography';
 
 :root {
-  --primary-color: #{$color-brand-10};
-  --color-brand-10: #{$color-brand-10};
-  --color-brand-20: #{$color-brand-20};
-  --color-brand-30: #{$color-brand-30};
+  // -- Colors
+
+  // Brand
+  --as-color-primary: #{$color-primary};
+  --as-color-secondary: #{$color-secondary};
+  --as-color-complementary: #{$color-complementary};
+
+  // Typography
+  --as-color-type-01: #{$color-type-01};
+  --as-color-type-02: #{$color-type-02};
+  --as-color-type-03: #{$color-type-03};
+  --as-color-type-04: #{$color-type-04};
+
+  // UI
+  --as-color-ui-01: #{$color-ui-01};
+  --as-color-ui-02: #{$color-ui-02};
+  --as-color-ui-03: #{$color-ui-03};
+  --as-color-ui-04: #{$color-ui-04};
+
+  // Support
+  --as-color-support-01: #{$color-support-01};
+  --as-color-support-02: #{$color-support-02};
+  --as-color-support-03: #{$color-support-03};
 }
 
 * {

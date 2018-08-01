@@ -7,8 +7,8 @@
   flex-wrap: nowrap;
   align-items: center;
   overflow-x: auto;
-  background: $color-ui-10;
-  box-shadow: inset 0 -1px 0 0 $color-ui-30;
+  background: var(--as-color-ui-01, #{$color-ui-01});
+  box-shadow: inset 0 -1px 0 0 var(--as-color-ui-03, #{$color-ui-03});
 
   &__item {
     @include padding(2 3);
@@ -17,24 +17,24 @@
     border-bottom: 2px solid transparent;
     outline: none;
     background: none;
-    color: $color-brand-10;
+    color: var(--as-color-primary, #{$color-primary});
     font: 12px/20px $font-base;
     text-decoration: none;
     cursor: pointer;
 
     &:focus,
     &:hover {
-      border-bottom: 2px solid $color-brand-30;
+      border-bottom: 2px solid var(--as-color-complementary, #{$color-complementary});
     }
 
     &--active,
     &:active {
-      border-bottom: 2px solid $color-brand-20;
-      color: $color-type-10;
+      border-bottom: 2px solid var(--as-color-secondary, #{$color-secondary});
+      color: var(--as-color-type-01, #{$color-type-01});
 
       &:focus,
       &:hover {
-        border-bottom: 2px solid $color-brand-20;
+        border-bottom: 2px solid var(--as-color-secondary, #{$color-secondary});
       }
     }
   }
@@ -47,13 +47,13 @@
 
       &:focus,
       &:hover {
-        border-bottom: 4px solid $color-brand-30;
+        border-bottom: 4px solid var(--as-color-complementary, #{$color-complementary});
       }
 
       &--active,
       &:active {
-        border-bottom: 4px solid $color-brand-20;
-        color: $color-type-10;
+        border-bottom: 4px solid var(--as-color-secondary, #{$color-secondary});
+        color: var(--as-color-type-01, #{$color-type-01});
       }
     }
   }

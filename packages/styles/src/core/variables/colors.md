@@ -2,19 +2,19 @@
 
 ```color
 span: 1
-name: "Brand 01"
+name: "Primary"
 value: "#1785FB"
 ```
 
 ```color
 span: 1
-name: "Brand 02"
+name: "Secondary"
 value: "#0F2D53"
 ```
 
 ```color
 span: 1
-name: "Brand 03"
+name: "Complementary"
 value: "#47DB99"
 ```
 

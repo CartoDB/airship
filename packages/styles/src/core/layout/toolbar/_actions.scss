@@ -1,4 +1,6 @@
 .as-toolbar__actions {
+  --toolbar-tabs-bg-color: var(--as-color-secondary, #{$color-secondary});
+
   display: flex;
   position: absolute;
   z-index: 3;
@@ -10,7 +12,7 @@
   align-items: flex-start;
   width: 100%;
   transition: left 0.3s;
-  background-color: var(--toolbar-tabs-bg-color, $color-brand-20);
+  background-color: var(--toolbar-tabs-bg-color);
 
   ul {
     display: flex;

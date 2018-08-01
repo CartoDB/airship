@@ -1,11 +1,13 @@
 .as-panels {
+  --panels-bg-color: var(--as-color-ui-01, #{$color-ui-01});
+
   display: none;
   position: absolute;
   z-index: 2;
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: white;
+  background-color: var(--panels-bg-color);
 
   &--visible {
     display: flex;
@@ -60,10 +62,12 @@
     }
 
     &__element {
+      --panels-element-bg-color: var(--as-color-ui-01, #{$color-ui-01});
+
       max-width: 200px;
       border-radius: 4px;
-      background: white;
-      box-shadow: rgba(44, 44, 44, 0.16) 0 1px 4px 0;
+      background: var(--panels-element-bg-color);
+      box-shadow: rgba($color-type-01, 0.16) 0 1px 4px 0;
       pointer-events: auto;
 
       @include margin(1);
@@ -73,12 +77,14 @@
 }
 
 .as-bottom-bar {
+  --bottom-bar-bg-color: var(--as-color-ui-01, #{$color-ui-01});
+
   display: none;
   position: absolute;
   z-index: 2;
   width: 100%;
   height: 100%;
-  background-color: white;
+  background-color: var(--bottom-bar-bg-color);
   pointer-events: auto;
 
   &--visible {

@@ -1,4 +1,6 @@
 .as-sidebar {
+  --sidebar-bg-color: var(--as-color-ui-01, #{$color-ui-01});
+
   position: absolute;
   z-index: 2;
   top: 0;
@@ -6,11 +8,11 @@
   height: 100%;
   transition: opacity 0.3s;
   opacity: 0;
-  background-color: white;
+  background-color: var(--sidebar-bg-color);
 
   &--left {
     left: -100%;
-    box-shadow: rgba(44, 44, 44, 0.16) 1px 0 4px 0;
+    box-shadow: rgba($color-type-01, 0.16) 1px 0 4px 0;
 
     &--visible {
       left: 0;
@@ -20,7 +22,7 @@
 
   &--right {
     right: -100%;
-    box-shadow: rgba(44, 44, 44, 0.16) 0 1px 4px 0;
+    box-shadow: rgba($color-type-01, 0.16) 0 1px 4px 0;
 
     &--visible {
       right: 0;
