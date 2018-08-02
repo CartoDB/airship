@@ -5,7 +5,7 @@
   border: 1px solid transparent;
   border-radius: 4px;
   outline: none;
-  background-color: $color-ui-01;
+  background-color: var(--as-color-ui-01, $color-ui-01);
   color: $color-primary;
   font: $font-body;
   cursor: pointer;
@@ -25,30 +25,30 @@
 
   &--primary {
     background-color: $color-primary;
-    color: $color-ui-01;
+    color: var(--as-color-ui-01, $color-ui-01);
 
     &:enabled:hover,
     &:enabled:focus, {
-      background-color: darken($color-primary, 20%);
+      background-color: var(--as-button-primary-color-focus, darken($color-primary, 20%));
     }
 
     &:enabled:active {
-      background-color: darken($color-primary, 40%);
+      background-color: var(--as-button-primary-color-focus, darken($color-primary, 40%));
     }
   }
 
   &--secondary {
     border: 1px solid $color-primary;
-    background-color: $color-ui-01;
+    background-color: var(--as-color-ui-01, $color-ui-01);
     color: $color-primary;
 
     &:enabled:hover,
     &:enabled:focus {
-      background-color: darken($color-ui-01, 10%);
+      background-color: var(--as-button-secondary-color-focus, darken($color-ui-01, 10%));
     }
 
     &:enabled:active {
-      background-color: darken($color-ui-01, 20%);
+      background-color: var(--as-button-secondary-color-active, darken($color-ui-01, 10%));
     }
   }
 
@@ -66,32 +66,32 @@ a.as-btn {
 
   &:hover,
   &:focus {
-    background-color: $color-ui-02;
+    background-color: var(--as-button-color-focus, $color-ui-02);
   }
 
   &:active {
-    background-color: $color-ui-03;
+    background-color: var(--as-button-color-focus, $color-ui-03);
   }
 }
 
 a.as-btn.as-btn--primary {
   &:hover,
   &:focus {
-    background-color: darken($color-primary, 20%);
+    background-color: var(--as-button-primary-color-focus, darken($color-primary, 20%));
   }
 
   &:active {
-    background-color: darken($color-primary, 40%);
+    background-color: var(--as-button-primary-color-focus, darken($color-primary, 40%));
   }
 }
 
 a.as-btn.as-btn--secondary {
   &:hover,
   &:focus {
-    background-color: darken($color-ui-01, 10%);
+    background-color: var(--as-button-secondary-color-active, darken($color-ui-01, 10%));
   }
 
   &:active {
-    background-color: darken($color-ui-01, 12%);
+    background-color: var(--as-button-secondary-color-active, darken($color-ui-01, 12%));
   }
 }
