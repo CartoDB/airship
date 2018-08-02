@@ -1,0 +1,29 @@
+.as-flag {
+  display: flex;
+  max-width: 260px;
+  padding: 16px;
+  border-radius: 4px;
+  background: var(--as-color-ui-01, #{$color-ui-01});
+  box-shadow: $shadow-16;
+  font: $font-body;
+
+  &__icon {
+    flex: 0 0 auto;
+  }
+
+  &__content {
+    flex: 1;
+    padding: 0 8px;
+  }
+
+  &__button {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: none;
+    background: transparent;
+    box-shadow: none;
+    cursor: pointer;
+  }
+}
