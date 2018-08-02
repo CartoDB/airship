@@ -4,7 +4,6 @@
   padding: 8px 12px;
   border: 1px solid transparent;
   border-radius: 4px;
-  outline: none;
   background-color: var(--as-color-ui-01, $color-ui-01);
   color: $color-primary;
   font: $font-body;
@@ -14,8 +13,7 @@
     opacity: 0.24;
   }
 
-  &:enabled:hover,
-  &:enabled:focus {
+  &:enabled:hover {
     background-color: $color-ui-02;
   }
 
@@ -27,8 +25,7 @@
     background-color: $color-primary;
     color: var(--as-color-ui-01, $color-ui-01);
 
-    &:enabled:hover,
-    &:enabled:focus, {
+    &:enabled:hover, {
       background-color: var(--as-button-primary-color-focus, darken($color-primary, 20%));
     }
 
@@ -42,8 +39,7 @@
     background-color: var(--as-color-ui-01, $color-ui-01);
     color: $color-primary;
 
-    &:enabled:hover,
-    &:enabled:focus {
+    &:enabled:hover {
       background-color: var(--as-button-secondary-color-focus, darken($color-ui-01, 10%));
     }
 
@@ -64,8 +60,7 @@
 a.as-btn {
   text-decoration: none;
 
-  &:hover,
-  &:focus {
+  &:hover {
     background-color: var(--as-button-color-focus, $color-ui-02);
   }
 
@@ -75,8 +70,7 @@ a.as-btn {
 }
 
 a.as-btn.as-btn--primary {
-  &:hover,
-  &:focus {
+  &:hover {
     background-color: var(--as-button-primary-color-focus, darken($color-primary, 20%));
   }
 
@@ -86,8 +80,7 @@ a.as-btn.as-btn--primary {
 }
 
 a.as-btn.as-btn--secondary {
-  &:hover,
-  &:focus {
+  &:hover {
     background-color: var(--as-button-secondary-color-active, darken($color-ui-01, 10%));
   }
 
