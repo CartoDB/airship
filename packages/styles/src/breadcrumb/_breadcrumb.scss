@@ -21,14 +21,14 @@
     &:last-child::after {
       display: none;
     }
-  }
 
-  &__link {
-    color: var(--as-color-primary, #{$color-primary});
-    text-decoration: none;
+    a {
+      color: var(--as-color-primary, #{$color-primary});
+      text-decoration: none;
 
-    :hover {
-      text-decoration: underline;
+      :hover {
+        text-decoration: underline;
+      }
     }
   }
 }
