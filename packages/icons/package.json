@@ -1,0 +1,24 @@
+{
+  "name": "@carto/airship-icons",
+  "version": "1.0.0",
+  "description": "CARTO Airship icons",
+  "files": [
+    "dist/"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CartoDB/airship.git"
+  },
+  "author": "CARTO Dev Team",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/CartoDB/airship/issues"
+  },
+  "homepage": "https://github.com/CartoDB/airship",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "node src/generate-src.js"
+  }
+}
