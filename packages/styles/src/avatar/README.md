@@ -1,5 +1,7 @@
 # Avatar
 
+Avatars are used to represent people. They can be used in tables, menus, etc.
+
 ## Default
 
 ```html
