@@ -1,0 +1,17 @@
+.as-avatar {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  border-radius: 100%;
+  background-color: var(--as-color-ui-02, #{$color-ui-02});
+
+  &--l {
+    width: 32px;
+    height: 32px;
+  }
+
+  &--xl {
+    width: 48px;
+    height: 48px;
+  }
+}
