@@ -1,6 +1,7 @@
 @import "../core/_dev";
 
 .as-btn {
+  margin: 0;
   padding: 8px 12px;
   transition: background-color 0.2s;
   border: 1px solid transparent;
@@ -12,6 +13,8 @@
 
   &:disabled {
     opacity: 0.24;
+    cursor: not-allowed;
+    pointer-events: none;
   }
 
   &:enabled:hover {
