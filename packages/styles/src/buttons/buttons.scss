@@ -2,6 +2,7 @@
 
 .as-btn {
   padding: 8px 12px;
+  transition: background-color 0.2s;
   border: 1px solid transparent;
   border-radius: 4px;
   background-color: var(--as-color-ui-01, $color-ui-01);
