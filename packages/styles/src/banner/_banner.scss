@@ -1,9 +1,11 @@
+@import "../core/_dev";
+
 .as-banner {
   display: flex;
   box-sizing: border-box;
   align-items: center;
   width: 100%;
-  padding: 12px;
+  padding: get-spacing(3);
   border-radius: 0;
   background-color: var(--as-color-ui-04, #{$color-ui-04});
   font: $font-body;
