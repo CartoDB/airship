@@ -1,0 +1,11 @@
+// -- Font families
+$font-family-base: "Roboto", sans-serif;
+$font-family-mono: "Overpass Mono", sans-serif;
+
+// -- Fonts
+$font-jumbo: 72px/80px var(--font-family-base, #{$font-family-base});
+$font-display: 40px/56px var(--font-family-base, #{$font-family-base});
+$font-title: 24px/32px var(--font-family-base, #{$font-family-base});
+$font-subheader: 16px/24px var(--font-family-base, #{$font-family-base});
+$font-body: 12px/20px var(--font-family-base, #{$font-family-base});
+$font-caption: 10px/12px var(--font-family-base, #{$font-family-base});

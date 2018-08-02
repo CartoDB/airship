@@ -1,20 +1,44 @@
 @import 'tools/_mixins';
-@import 'lib/_reset';
 @import 'variables/_variables';
 @import 'layout/_layout';
 @import 'typography/_typography';
 @import 'containers/_containers';
+@import 'lists/_lists';
 
 :root {
-  --primary-color: #{$color-brand-10};
-  --secondary-color: #{$color-brand-20};
-  --complimentary-color: #{$color-brand-30};
-  --color-brand-10: #{$color-brand-10};
-  --color-brand-20: #{$color-brand-20};
-  --color-brand-30: #{$color-brand-30};
+  // -- Colors
+
+  // Brand
+  --as-color-primary: #{$color-primary};
+  --as-color-secondary: #{$color-secondary};
+  --as-color-complementary: #{$color-complementary};
+
+  // Typography
+  --as-color-type-01: #{$color-type-01};
+  --as-color-type-02: #{$color-type-02};
+  --as-color-type-03: #{$color-type-03};
+  --as-color-type-04: #{$color-type-04};
+
+  // UI
+  --as-color-ui-01: #{$color-ui-01};
+  --as-color-ui-02: #{$color-ui-02};
+  --as-color-ui-03: #{$color-ui-03};
+  --as-color-ui-04: #{$color-ui-04};
+
+  // Support
+  --as-color-support-01: #{$color-support-01};
+  --as-color-support-02: #{$color-support-02};
+  --as-color-support-03: #{$color-support-03};
+
+  // -- Fonts
+  --as-font-family-base: #{$font-family-base};
+  --as-font-family-mono: #{$font-family-mono};
 }
 
 * {
   box-sizing: border-box;
-  font-family: sans-serif;
+}
+
+main {
+  display: block;
 }
