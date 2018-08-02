@@ -1,17 +1,17 @@
 .as-avatar {
   position: relative;
-  width: 24px;
-  height: 24px;
+  width: get-spacingg(6);
+  height: get-spacingg(6);
   border-radius: 100%;
   background-color: var(--as-color-ui-02, #{$color-ui-02});
 
   &--l {
-    width: 32px;
-    height: 32px;
+    width: get-spacing(8);
+    height: get-spacing(8);
   }
 
   &--xl {
-    width: 48px;
-    height: 48px;
+    width: get-spacing(12);
+    height: get-spacing(12);
   }
 }
