@@ -7,13 +7,12 @@
   top: 0;
   width: 100%;
   height: 100%;
-  overflow-y: auto;
   background-color: var(--panels-bg-color);
 
   &--visible {
     display: flex;
     flex-direction: column;
-    overflow: scroll;
+    overflow-y: auto;
   }
 
   @media all and (min-width: $tablet-breakpoint) {
@@ -28,12 +27,6 @@
 
 .as-panel {
   $panel-selector: &;
-
-  &__element {
-    .as-box {
-      @include margin(10 10 0 10);
-    }
-  }
 
   @media all and (min-width: $tablet-breakpoint) {
     display: flex;
@@ -112,21 +105,15 @@
   --bottom-bar-bg-color: var(--as-color-ui-01, #{$color-ui-01});
 
   display: none;
-  position: relative;
   z-index: 2;
   width: 100%;
   height: 100%;
-  overflow-x: auto;
   background-color: var(--bottom-bar-bg-color);
   pointer-events: auto;
 
   &--visible {
     display: initial;
-  }
-
-  // Containers
-  .as-box {
-    @include margin(10 10 0 10);
+    overflow-x: auto;
   }
 
   // Media
