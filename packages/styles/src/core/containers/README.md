@@ -53,6 +53,12 @@ The same behavious applies here. By default, they are fixed and you need to add 
 
 To add the actual content to a container, you need to add as much `as-box` elements as blocks of content you want to put inside the container. `as-box` containers add space to make your content shine with the correct spacing.
 
+In the bottom bar, depending on the box content, we run can in very wide boxes. That's why there are modifiers of `as-box` that set the maximum width of the element. This modifiers only are applied within a `as-bottom-bar`:
+- `as-box--small`: max width of 128px;
+- `as-box--medium`: max width of 256px;
+- `as-box--large`: max width of 320px;
+- `as-box--xlarge`: max width of 400px;
+
 ```html
 noSource: true
 responsive: [tablet, mobile]
@@ -65,12 +71,12 @@ lang: html
 ---
 <aside class="as-bottom-bar">
   <div class="as-container as-container--horizontal as-container--border">
-    <section class="as-box">
+    <section class="as-box as-box--medium">
       <h1 class="as-title">Fixed container</h1>
     </section>
   </div>
   <div class="as-container as-container--scrollable">
-    <section class="as-box">
+    <section class="as-box as-box--large">
       <h1 class="as-title">Scrollable container</h1>
     </section>
     <section class="as-box">
@@ -181,3 +187,9 @@ Modifiers
 `as-box`
 
 Applies correct spacing to its content.
+
+Modifiers (only applied inside `as-bottom-bar`)
+- `as-box--small`: max width of 128px;
+- `as-box--medium`: max width of 256px;
+- `as-box--large`: max width of 320px;
+- `as-box--xlarge`: max width of 400px;

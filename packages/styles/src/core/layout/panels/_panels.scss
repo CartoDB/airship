@@ -148,5 +148,22 @@
       flex-shrink: 0;
       overflow: auto;
     }
+
+    .as-box--small {
+      max-width: 128px;
+    }
+
+    .as-box--medium {
+      max-width: 256px;
+    }
+
+    .as-box--large {
+      max-width: 320px;
+    }
+
+    .as-box--xlarge {
+      max-width: 400px;
+    }
+
   }
 }
