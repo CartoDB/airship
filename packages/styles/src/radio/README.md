@@ -1,5 +1,7 @@
 # Radio buttons
 
+Radio Buttons are used when the user must make only one selection out of a group of items.
+
 ```html
 <ul>
   <li class="as-radio">
