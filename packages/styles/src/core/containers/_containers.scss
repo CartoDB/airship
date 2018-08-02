@@ -1,11 +1,11 @@
 .as-container--primary {
-  background-color: var(--primary-color, $color-brand-10);
+  background-color: var(--as-color-primary, $color-primary);
 }
 
 .as-container--secondary {
-  background-color: var(--secondary-color, $color-brand-20);
+  background-color: var(--as-color-secondary, $color-secondary);
 }
 
-.as-container--complimentary {
-  background-color: var(--complimentary-color, $color-brand-30);
+.as-container--complementary {
+  background-color: var(--as-color-complementary, $color-complementary);
 }

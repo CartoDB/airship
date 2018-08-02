@@ -123,7 +123,7 @@ lang: html
 There are three modifiers to change the background color of the containers:
 - `as-container--primary`
 - `as-container--secondary`
-- `as-container--complimentary`
+- `as-container--complementary`
 
 They work at `as-container` level.
 
@@ -152,10 +152,10 @@ lang: html
       <p class="as-body">Adding 'as-container--secondary' will set the background to the secondary color</p>
     </section>
   </div>
-  <div class="as-container as-container--border as-container--complimentary">
+  <div class="as-container as-container--border as-container--complementary">
     <section class="as-box">
       <h1 class="as-title">Secondary</h1>
-      <p class="as-body">Adding 'as-container--complimentary' will set the background to the complimentary color</p>
+      <p class="as-body">Adding 'as-container--complementary' will set the background to the complementary color</p>
     </section>
   </div>
 </aside>
@@ -174,7 +174,7 @@ Modifiers
 - `as-container--scrollable`: make its content scrollable.
 - `as-container--primary`: applies primary color as background.
 - `as-container--secondary`: applies secondary color as background.
-- `as-container--complimentary`: applies complimentary color as background.
+- `as-container--complementary`: applies complementary color as background.
 
 **Boxes (inside containers and floating panels)**
 
