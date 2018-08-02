@@ -1,8 +1,10 @@
+@import "../core/_dev";
+
 .as-flag {
   display: flex;
   max-width: 260px;
-  padding: 16px;
-  border-radius: 4px;
+  padding: get-spacing(4);
+  border-radius: get-spacing(1);
   background: var(--as-color-ui-01, #{$color-ui-01});
   box-shadow: $shadow-16;
   font: $font-body;
@@ -13,7 +15,7 @@
 
   &__content {
     flex: 1;
-    padding: 0 8px;
+    padding: 0 get-spacing(2);
   }
 
   &__button {
