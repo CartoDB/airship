@@ -24,10 +24,10 @@
 </head>
 
 <body class="as-app as-app--nav-top">
-  <nav class="as-toolbar-tabs">
-    <span onclick="showMap(event)" class="as-toolbar-tabs__item as-toolbar-tabs__item--active">MAP</span>
-    <span onclick="showLegends(event)" class="as-toolbar-tabs__item">LEGENDS</span>
-  </nav>
+  <div role="tablist" class="as-toolbar-tabs as-tabs">
+    <button onclick="showMap(event)" role="tab" class="as-tabs__item as-tabs__item--active">MAP</button>
+    <button onclick="showLegendsPanel(event)" role="tab" class="as-tabs__item">LEGENDS</button>
+  </div>
   <main class="as-app-content">
     <div class="as-map-wrapper">
       <div class="as-map">

@@ -23,11 +23,11 @@
 </head>
 
 <body class="as-app as-app--nav-top">
-  <nav class="as-toolbar-tabs">
-    <span onclick="showMap(event)" class="as-toolbar-tabs__item as-toolbar-tabs__item--active">MAP</span>
-    <span onclick="showRight(event)" class="as-toolbar-tabs__item">RIGHT</span>
-    <span onclick="showBottom(event)" class="as-toolbar-tabs__item">BOTTOM</span>
-  </nav>
+  <div role="tablist" class="as-toolbar-tabs as-tabs">
+    <button onclick="showMap(event)" role="tab" class="as-tabs__item as-tabs__item--active">MAP</button>
+    <button onclick="showRightPanel(event)" role="tab" class="as-tabs__item">RIGHT</button>
+    <button onclick="showBottomPanel(event)" role="tab" class="as-tabs__item">BOTTOM</button>
+  </div>
 
   <main class="as-app-content">
     <div class="as-map-wrapper">
