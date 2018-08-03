@@ -1,4 +1,6 @@
-const map = L.map('map').setView([30, 0], 3);
+const map = L.map('map', {
+  zoomControl: false
+}).setView([30, 0], 3);
 map.scrollWheelZoom.disable();
 
 L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}.png', {
