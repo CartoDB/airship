@@ -1,3 +1,5 @@
+@import "../core/_dev";
+
 .as-radio {
   display: flex;
   align-items: center;
@@ -30,27 +32,27 @@
     }
 
     &:hover {
-      box-shadow: inset 0 0 0 1px var(--color-complementary, #{$color-complementary});
+      box-shadow: inset 0 0 0 1px var(--as-color-complementary, #{$color-complementary});
     }
 
     &:checked {
-      box-shadow: inset 0 0 0 1px var(--color-primary, #{$color-primary});
+      box-shadow: inset 0 0 0 1px var(--as-color-primary, #{$color-primary});
 
       &::after {
         animation: radioIn 300ms;
         opacity: 1;
         animation-fill-mode: forwards;
-        background-color: var(--color-primary, #{$color-primary});
+        background-color: var(--as-color-primary, #{$color-primary});
       }
     }
 
     &:focus {
       outline: none;
-      box-shadow: inset 0 0 0 2px var(--color-primary, #{$color-primary});
+      box-shadow: inset 0 0 0 2px var(--as-color-primary, #{$color-primary});
     }
 
     &:disabled {
-      background-color: var(--color-ui-03, #{$color-ui-03});
+      background-color: var(--as-color-ui-03, #{$color-ui-03});
       box-shadow: inset 0 0 0 1px rgba($color-type-01, 0.16);
       cursor: not-allowed;
     }
