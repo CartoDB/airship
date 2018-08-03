@@ -1,20 +1,21 @@
-const path = require('path');
+const Utils = require('../../../../test-utils');
+const u = new Utils(__dirname);
 
 // Desktop
-const reference = path.resolve(__dirname, 'img/layout.withactions-reference.png');
-const screenshot = path.resolve(__dirname, 'img/layout.withactions-out.png');
-const url = `file://${path.resolve(__dirname, 'with-actions.html')}`;
+const reference = u.image('layout.withactions-reference.png');
+const screenshot = u.image('layout.withactions-out.png');
+const url = u.html('with-actions.html');
 
 // Mobile
 const viewportWidth = 375;
 const viewportHeight = 667;
 
-const mobileReference = path.resolve(__dirname, 'img/layout.withactionsmobile-reference.png');
-const mobileScreenshot = path.resolve(__dirname, 'img/layout.withactionsmobile-out.png');
-const mobileURL = `file://${path.resolve(__dirname, 'with-actions-mobile.html')}`;
+const mobileReference = u.image('layout.withactionsmobile-reference.png');
+const mobileScreenshot = u.image('layout.withactionsmobile-out.png');
+const mobileURL = u.html('with-actions-mobile.html');
 
 
 module.exports = [
-  { reference, screenshot, url },
-  { reference: mobileReference, screenshot: mobileScreenshot, url: mobileURL, viewportWidth, viewportHeight }
+  u.spec(reference, screenshot, url),
+  u.spec(mobileReference, mobileScreenshot, mobileURL, true)
 ];
