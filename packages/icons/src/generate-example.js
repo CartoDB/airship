@@ -6,7 +6,7 @@ const icons = fs.readdirSync(path.join(__dirname, '../dist/icons')).map(file => 
   const iconName = file.replace('.svg', '');
   return `
     <div class="icon-wrapper">
-      <i class="as-${iconName}"></i>
+      <i class="as-icon-${iconName}"></i>
       <p class="as-body">${iconName}</p>
     </div>
   `;

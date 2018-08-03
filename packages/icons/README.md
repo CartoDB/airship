@@ -14,7 +14,7 @@ All you need to do is to include our `icons.css` file in your html and you are r
 
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@carto/airship-icons/dist/icons.css">
-<i class="as-twitter"></i>
+<i class="as-icon-twitter"></i>
 ```
 
 
