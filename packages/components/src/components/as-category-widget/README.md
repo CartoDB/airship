@@ -133,7 +133,7 @@ categoryWidget.visibleCategories = 5;
 There are some CSS Variables that you can override to change visual styles.
 
 #### **--category-widget--description--color**
-Default: $color-type-20 (`#1785FB`)
+Default: $color-type-02 (`#1785FB`)
 
 ```code
 lang: javascript
