@@ -75,17 +75,6 @@ Each button has two size modifiers:
 <button disabled class="as-btn as-btn--secondary"> I'm a disabled secondary button</button>
 ```
 
-
-## HTMLElements
-
-The `as-btn` class can be used on the following Html Elements:
-
-- [button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button)
-- [input type="button"](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/button)
-- [link](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link)
-
-
-
 ## Icons + Buttons
 
 
@@ -125,6 +114,13 @@ To easily create button groups the following modifiers are defined:
 </button>
 ```
 
+## HTMLElements
+
+The `as-btn` class can be used on the following Html Elements:
+
+- [button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button)
+- [input type="button"](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/button)
+- [link](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link)
 
 ```html
 ---
