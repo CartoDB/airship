@@ -1,28 +1,33 @@
 // -- Font types
 .as-jumbo {
+  margin: get-margin(0 0 5);
   font: $font-jumbo;
   font-weight: 300;
 }
 
 .as-display {
+  margin: get-margin(0 0 4);
   font: $font-display;
   font-weight: 300;
 }
 
 .as-title {
-  margin-top: 0;
+  margin: get-margin(0 0 3);
   font: $font-title;
 }
 
 .as-subheader {
+  margin: get-margin(0 0 2);
   font: $font-subheader;
 }
 
 .as-body {
+  margin: get-margin(0 0 1);
   font: $font-body;
 }
 
 .as-caption {
+  margin: 0;
   font: $font-caption;
 }
 
