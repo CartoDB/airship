@@ -1,3 +1,4 @@
+!packages/icons/dist
 .DS_Store
 .env
 .idea/
@@ -16,12 +17,10 @@
 *.tmp.*
 *~
 $RECYCLE.BIN/
-examples/**/dist
+dist
 log.txt
 node_modules
 node_modules/
-packages/components/dist
-packages/styles/dist
 Thumbs.db
 UserInterfaceState.xcuserstate
 www/
