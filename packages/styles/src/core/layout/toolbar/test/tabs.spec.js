@@ -1,24 +1,20 @@
-const path = require('path');
-
-// Mobile Viewport Settings
-const viewportWidth = 375;
-const viewportHeight = 667;
+const Utils = require('../../../../test-utils');
+const u = new Utils(__dirname);
 
 // Desktop test
 // Tabs should be hidden
-const reference = path.resolve(__dirname, 'img/layout.tabs-reference.png');
-const screenshot = path.resolve(__dirname, 'img/layout.tabs-out.png');
+const reference = u.image('layout.tabs-reference.png');
+const screenshot = u.image('layout.tabs-out.png');
 
 // Desktop test
 // Tabs should be hidden
-const mobileReference = path.resolve(__dirname, 'img/layout.tabs-mobile-reference.png');
-const mobileScreenshot = path.resolve(__dirname, 'img/layout.tabs-mobile-out.png');
+const mobileReference = u.image('layout.tabs-mobile-reference.png');
+const mobileScreenshot = u.image('layout.tabs-mobile-out.png');
 
 // URL to take the screenshot from
-const url = `file://${path.resolve(__dirname, 'tabs.html')}`;
-
+const url = u.html('tabs.html');
 
 module.exports = [
-  { reference, screenshot, url },
-  { reference: mobileReference, screenshot: mobileScreenshot, url, viewportWidth, viewportHeight }
+  u.spec(reference, screenshot, url),
+  u.spec(mobileReference, mobileScreenshot, url, true)
 ];
