@@ -3,20 +3,20 @@
 $bar--height: get-spacing(1);
 
 as-category-widget {
-  --category-widget--description--color: #{$color-type-20};
+  --category-widget--description--color: #{$color-type-02};
   --category-widget--bar--height: #{$bar--height};
-  --category-widget--background-color: #{$color-ui-10};
-  --category-bar--background-color: #{$color-ui-20};
+  --category-widget--background-color: #{$color-ui-01};
+  --category-bar--background-color: #{$color-ui-02};
 
   display: block;
-  background: var(--category-widget--background-color, $color-ui-10);
+  background: var(--category-widget--background-color, $color-ui-01);
 
   @include padding(4);
 
   .as-category-widget__description,
   .as-category-widget__count {
-    color: var(--description--color, $color-type-20);
-    color: $color-type-20;
+    color: var(--description--color, $color-type-02);
+    color: $color-type-02;
   }
 
   .as-category-widget__list {
@@ -46,8 +46,8 @@ as-category-widget {
     width: 100%;
     height: $bar--height;
     border-radius: get-spacing(0.5);
-    background-color: var(--category-bar--background-color, $color-ui-20);
-    background-color: $color-ui-20;
+    background-color: var(--category-bar--background-color, $color-ui-02);
+    background-color: $color-ui-02;
   }
 
   .as-category-widget__bar-value {
