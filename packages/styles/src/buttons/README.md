@@ -105,6 +105,14 @@ The `as-btn` class can be used on the following Html Elements:
 </button>
 ```
 
+### Button groups
+
+To easily create button groups the following modifiers are defined:
+
+- `as-btn--first`: Removes the border radius on the right side.
+- `as-btn--middle`: Removes the border radius on both sides.
+- `as-btn--last`: Removes the border radius on the left side. 
+
 
 ```html
 ---
