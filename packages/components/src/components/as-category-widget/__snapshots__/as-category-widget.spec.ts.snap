@@ -30,7 +30,7 @@ exports[`as-category-widget Rendering should render bars according to total valu
 >
   
   <h2
-    class="as-subheader"
+    class="as-category-widget__heading"
   >
     
   </h2>
@@ -217,7 +217,7 @@ exports[`as-category-widget Rendering should render clear button 1`] = `
 >
   
   <h2
-    class="as-subheader"
+    class="as-category-widget__heading"
   >
     
   </h2>
@@ -408,7 +408,7 @@ exports[`as-category-widget Rendering should render properly 1`] = `
 >
   
   <h2
-    class="as-subheader"
+    class="as-category-widget__heading"
   >
     Category Widget Example
   </h2>
