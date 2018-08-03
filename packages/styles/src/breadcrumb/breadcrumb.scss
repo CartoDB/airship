@@ -14,7 +14,7 @@
 
     &::after {
       content: '›';
-      margin: 0 get-spacing(1);
+      margin: 0 get-spacing(2);
       color: var(--as-color-primary, #{$color-primary});
       font-size: 12px;
     }
