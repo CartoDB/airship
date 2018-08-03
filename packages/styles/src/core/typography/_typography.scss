@@ -41,7 +41,9 @@
   &--mono {
     font-family: var(--font-family-mono, #{$font-family-mono});
   }
+}
 
+.as-color {
   &--type-01 {
     color: var(--color-type-01, #{$color-type-01});
   }

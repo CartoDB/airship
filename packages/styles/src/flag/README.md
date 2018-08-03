@@ -10,8 +10,8 @@ Flag displays contextual information about events on the page.
     <i style="color: #80B622;" class="as-alert-fill"></i>
   </div>
   <div class="as-flag__content">
-    <h4 class="as-body as-font--type-01">You are now connected</h4>
-    <p class="as-body as-font--type-03">You have been added to the group “New Store on this region”</p>
+    <h4 class="as-body as-color--type-01">You are now connected</h4>
+    <p class="as-body as-color--type-03">You have been added to the group “New Store on this region”</p>
   </div>
 </div>
 ```
@@ -24,8 +24,8 @@ Flag displays contextual information about events on the page.
     <i style="color: #80B622;" class="as-alert-fill"></i>
   </div>
   <div class="as-flag__content">
-    <h4 class="as-body as-font--type-01">You are now connected</h4>
-    <p class="as-body as-font--type-03">You have been added to the group “New Store on this region”</p>
+    <h4 class="as-body as-color--type-01">You are now connected</h4>
+    <p class="as-body as-color--type-03">You have been added to the group “New Store on this region”</p>
   </div>
   <div class="as-flag__icon">
     <button class="as-flag__button">
@@ -45,8 +45,8 @@ You can use the `as-flag--l` modifier to get a flag with a `width` of `320px`.
     <i style="color: #80B622;" class="as-alert-fill"></i>
   </div>
   <div class="as-flag__content">
-    <h4 class="as-body as-font--type-01">You are now connected</h4>
-    <p class="as-body as-font--type-03">You have been added to the group “New Store on this region”</p>
+    <h4 class="as-body as-color--type-01">You are now connected</h4>
+    <p class="as-body as-color--type-03">You have been added to the group “New Store on this region”</p>
   </div>
   <div class="as-flag__icon">
     <button class="as-flag__button">
@@ -64,8 +64,8 @@ You can use the `as-flag--xl` modifier to get a flag with a `width` of `400px`.
     <i style="color: #80B622;" class="as-alert-fill"></i>
   </div>
   <div class="as-flag__content">
-    <h4 class="as-body as-font--type-01">You are now connected</h4>
-    <p class="as-body as-font--type-03">You have been added to the group “New Store on this region”</p>
+    <h4 class="as-body as-color--type-01">You are now connected</h4>
+    <p class="as-body as-color--type-03">You have been added to the group “New Store on this region”</p>
   </div>
   <div class="as-flag__icon">
     <button class="as-flag__button">
@@ -83,8 +83,8 @@ You can use the `as-flag--l` modifier to get a flag with a `width` of `100%`.
     <i style="color: #80B622;" class="as-alert-fill"></i>
   </div>
   <div class="as-flag__content">
-    <h4 class="as-body as-font--type-01">You are now connected</h4>
-    <p class="as-body as-font--type-03">You have been added to the group “New Store on this region”</p>
+    <h4 class="as-body as-color--type-01">You are now connected</h4>
+    <p class="as-body as-color--type-03">You have been added to the group “New Store on this region”</p>
   </div>
   <div class="as-flag__icon">
     <button class="as-flag__button">
