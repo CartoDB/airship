@@ -1,0 +1,17 @@
+@import "../_dev";
+
+.as-container--primary {
+  background-color: var(--as-color-primary, $color-primary);
+}
+
+.as-container--secondary {
+  background-color: var(--as-color-secondary, $color-secondary);
+}
+
+.as-container--complementary {
+  background-color: var(--as-color-complementary, $color-complementary);
+}
+
+.as-box {
+  @include margin(10 10 0 10);
+}

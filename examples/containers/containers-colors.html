@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Sidebar</title>
+  <link rel="stylesheet" href="../../packages/styles/dist/airship.css">
+  <script src="../../packages/components/dist/airship.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <!-- CARTO.js -->
+  <!-- Include Leaflet -->
+  <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+  <link href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" rel="stylesheet">
+  <!-- Include CARTO.js -->
+  <script src="https://libs.cartocdn.com/carto.js/v4.1/carto.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:600" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link href="https://carto.com/developers/carto-js/examples/maps/public/style.css" rel="stylesheet">
+  <!-- / CARTO.js -->
+
+</head>
+
+<body class="as-app as-app--nav-top">
+  <div role="tablist" class="as-toolbar-tabs as-tabs">
+    <button onclick="showMap(event)" role="tab" class="as-tabs__item as-tabs__item--active">MAP</button>
+    <button onclick="showRightPanel(event)" role="tab" class="as-tabs__item">RIGHT</button>
+    <button onclick="showBottomPanel(event)" role="tab" class="as-tabs__item">BOTTOM</button>
+  </div>
+
+  <main class="as-app-content">
+    <div class="as-map-wrapper">
+      <div class="as-map">
+        <div id="map"></div>
+      </div>
+      <div class="as-bottom-bar">
+        <div class="as-container as-container--horizontal as-container--border as-container--primary" style="color: #FFF;">
+          <section class="as-box">
+            <h1 class="as-title">Primary</h1>
+            <p class="as-body">Adding 'as-container--primary' will set the background to the primary color</p>
+          </section>
+        </div>
+      </div>
+    </div>
+    <aside class="as-sidebar as-sidebar--right">
+      <div class="as-container as-container--border as-container--secondary" style="color: #FFF;">
+        <section class="as-box">
+          <h1 class="as-title">Secondary</h1>
+          <p class="as-body">Adding 'as-container--secondary' will set the background to the secondary color</p>
+        </section>
+      </div>
+      <div class="as-container as-container--scrollable as-container--complementary">
+        <section class="as-box">
+          <h1 class="as-title">Complementary</h1>
+          <p class="as-body">Adding 'as-container--complementary' will set the background to the complementary color</p>
+        </section>
+      </div>
+    </aside>
+  </main>
+
+  <script src="../layouts/common/map.js"></script>
+  <script src="../layouts/common/tabs.js"></script>
+</body>
+</html>

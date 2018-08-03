@@ -6,13 +6,13 @@ const glob = require("glob")
 const path = require('path');
 require('colors');
 
-
 (async () => {
   try {
     var browser = await exquisite.browser({ headless: false });
     const files = glob.sync(path.resolve(__dirname, '**/*.spec.js'));
     await Promise.all(files.map(test));
   } catch (err) {
+    throw err;
     console.error(`${err}`.red);
   }
   finally {
