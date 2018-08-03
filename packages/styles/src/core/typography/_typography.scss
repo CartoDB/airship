@@ -35,26 +35,28 @@
 
 .as-font {
   &--medium {
-    font-weight: 500;
+    font-weight: 500 !important;
   }
 
   &--mono {
-    font-family: var(--font-family-mono, #{$font-family-mono});
+    font-family: var(--font-family-mono, #{$font-family-mono}) !important;
   }
+}
 
+.as-color {
   &--type-01 {
-    color: var(--color-type-01, #{$color-type-01});
+    color: var(--color-type-01, #{$color-type-01}) !important;
   }
 
   &--type-02 {
-    color: var(--color-type-02, #{$color-type-02});
+    color: var(--color-type-02, #{$color-type-02}) !important;
   }
 
   &--type-03 {
-    color: var(--color-type-03, #{$color-type-03});
+    color: var(--color-type-03, #{$color-type-03}) !important;
   }
 
   &--type-04 {
-    color: var(--color-type-04, #{$color-type-04});
+    color: var(--color-type-04, #{$color-type-04}) !important;
   }
 }

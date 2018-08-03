@@ -5,8 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Error banner</title>
+  <title>Base banner</title>
   <link href="https://fonts.googleapis.com/css?family=Overpass+Mono|Roboto:300,400,500" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@carto/airship-icons/dist/icons.css">
   <link rel="stylesheet" href="../../../dist/airship.css">
 
   <style>
@@ -20,14 +21,9 @@
 </head>
 
 <body>
-  <div class="as-banner as-banner--support-01 as-font--type-04">
+  <div class="as-banner as-bg--error as-color--type-04">
     <div class="as-banner__icon">
-      <svg width="16px" height="15px" viewBox="0 0 16 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-        <g fill="white">
-          <path d="M6.72032497,0.707591795 C7.23355392,-0.276368434 8.06537876,-0.276912364 8.57889142,0.707591795 L15.10446,13.2183824 C15.617689,14.2023426 15.1322082,15 14.0277536,15 L1.27146279,15 C0.163585301,15 -0.318756294,14.2028866 0.194756371,13.2183824 L6.72032497,0.707591795 Z M7,12 L7,13 L8,13 L8,12 L7,12 Z M7,6 L7,11 L8,11 L8,6 L7,6 Z"
-            id="path-1"></path>
-        </g>
-      </svg>
+      <i class="as-alert-fill"></i>
     </div>
     <div class="as-banner__content">An error has ocurred. Could not retreive customer information</div>
   </div>

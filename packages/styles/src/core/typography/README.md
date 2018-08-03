@@ -91,11 +91,11 @@ Or the `as-font--mono` modifier to use a monospaced font
 
 ### Colors
 
-You can use the `as-font--type-[01-04]` modifiers to change the color of the font
+You can use the `as-color--type-[01-04]` modifiers to change the color of the font
 
 ```html
-  <p class="as-subheader as-font--type-01">Using color type 01</p>
-  <p class="as-subheader as-font--type-02">Using color type 02</p>
-  <p class="as-subheader as-font--type-03">Using color type 03</p>
-  <p class="as-subheader as-font--type-04">Using color type 04</p>
+  <p class="as-subheader as-color--type-01">Using color type 01</p>
+  <p class="as-subheader as-color--type-02">Using color type 02</p>
+  <p class="as-subheader as-color--type-03">Using color type 03</p>
+  <p class="as-subheader as-color--type-04">Using color type 04</p>
 ```
