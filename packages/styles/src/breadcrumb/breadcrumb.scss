@@ -7,13 +7,14 @@
   list-style-type: none;
 
   &__item {
+    display: flex;
     color: var(--as-color-type-01, #{$color-type-01});
     font: $font-body;
     cursor: default;
 
     &::after {
       content: '›';
-      margin: 0 6px;
+      margin: 0 get-spacing(1);
       color: var(--as-color-primary, #{$color-primary});
       font-size: 12px;
     }
