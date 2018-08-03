@@ -131,21 +131,21 @@ a.as-btn.as-btn--secondary {
   box-shadow: 0 0 0 1px var(--as-color-primary, #{$color-primary});
   list-style: none;
 
-  &__item {
-    /* stylelint-disable-next-line no-descending-specificity  */
-    .as-btn {
-      border-left: 1px solid var(--as-color-primary, #{$color-primary});
-      border-radius: 0;
-      box-shadow: none;
-    }
+  .as-btn:first-child {
+    border-left: 0;
+    border-radius: 4px 0 0 4px;
+    box-shadow: none;
+  }
 
-    &:first-child .as-btn {
-      border-left: 0;
-      border-radius: 4px 0 0 4px;
-    }
+  .as-btn:last-child {
+    border-left: 1px solid var(--as-color-primary, #{$color-primary});
+    border-radius: 0 4px 4px 0;
+    box-shadow: none;
+  }
 
-    &:last-child .as-btn {
-      border-radius: 0 4px 4px 0;
-    }
+  .as-btn:not(:first-child):not(:last-child) {
+    border-left: 1px solid var(--as-color-primary, #{$color-primary});
+    border-radius: 0;
+    box-shadow: none;
   }
 }

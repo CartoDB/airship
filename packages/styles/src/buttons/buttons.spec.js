@@ -21,15 +21,9 @@ const BUTTON_ELEMENTS_REFERENCE = path.resolve(__dirname, 'test/img/button-eleme
 const BUTTON_ELEMENTS_SCREENSHOT = path.resolve(__dirname, 'test/img/button-elements-out.png');
 const BUTTON_ELEMENTS_URL = `file://${path.resolve(__dirname, 'test/button-elements.html')}`;
 
-// group
-const BUTTON_GROUP_REFERENCE = path.resolve(__dirname, 'test/img/button-group-reference.png');
-const BUTTON_GROUP_SCREENSHOT = path.resolve(__dirname, 'test/img/button-group-out.png');
-const BUTTON_GROUP_URL = `file://${path.resolve(__dirname, 'test/button-group.html')}`;
-
 module.exports = [
   { reference: BUTTON_BASE_REFERENCE, screenshot: BUTTON_BASE_SCREENSHOT, url: BUTTON_BASE_URL },
   { reference: BUTTON_PRIMARY_REFERENCE, screenshot: BUTTON_PRIMARY_SCREENSHOT, url: BUTTON_PRIMARY_URL },
   { reference: BUTTON_SECONDARY_REFERENCE, screenshot: BUTTON_SECONDARY_SCREENSHOT, url: BUTTON_SECONDARY_URL },
   { reference: BUTTON_ELEMENTS_REFERENCE, screenshot: BUTTON_ELEMENTS_SCREENSHOT, url: BUTTON_ELEMENTS_URL },
-  { reference: BUTTON_GROUP_REFERENCE, screenshot: BUTTON_GROUP_SCREENSHOT, url: BUTTON_GROUP_URL },
 ];
