@@ -8,6 +8,7 @@
   width: 100%;
   min-height: 32px;
   padding: get-spacing(2);
+  transition: all 0.3s;
   border: 0;
   border-radius: get-spacing(1);
   background: var(--as-color-ui-01, #{$color-ui-01});
