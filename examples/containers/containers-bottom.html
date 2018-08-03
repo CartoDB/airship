@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Bottom bar</title>
+  <link rel="stylesheet" href="../../packages/styles/dist/airship.css">
+  <script src="../../packages/components/dist/airship.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+  <!-- CARTO.js -->
+  <!-- Include Leaflet -->
+  <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+  <link href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" rel="stylesheet">
+  <!-- Include CARTO.js -->
+  <script src="https://libs.cartocdn.com/carto.js/v4.1/carto.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:600" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link href="https://carto.com/developers/carto-js/examples/maps/public/style.css" rel="stylesheet">
+  <!-- / CARTO.js -->
+
+</head>
+
+<body class="as-app as-app--nav-top">
+  <div role="tablist" class="as-toolbar-tabs as-tabs">
+    <button onclick="showMap(event)" role="tab" class="as-tabs__item as-tabs__item--active">MAP</button>
+    <button onclick="showBottomPanel(event)" role="tab" class="as-tabs__item">BOTTOM</button>
+  </div>
+  <main class="as-app-content">
+    <div class="as-map-wrapper">
+      <div class="as-map">
+        <div id="map"></div>
+      </div>
+      <aside class="as-bottom-bar">
+        <div class="as-container as-container--horizontal as-container--border">
+          <section class="as-box as-box--medium">
+            <h1 class="as-title">Fixed container</h1>
+            <p class="as-body">Use this container when you need to present fixed content.</p>
+          </section>
+        </div>
+        <div class="as-container as-container--scrollable">
+          <section class="as-box as-box--large">
+            <h1 class="as-title">Scrollable container</h1>
+            <p class="as-body">When you need to present lots of content that don't fit
+            in the available space, use a scrollable container.
+            It'll take the space left by the fixed containers.</p>
+          </section>
+          <section class="as-box">
+            <h1 class="as-title">A box</h1>
+            <p class="as-body">
+              This content is here to fill up more space.
+            </p>
+          </section>
+          <section class="as-box">
+            <h1 class="as-title">A box</h1>
+            <p class="as-body">
+              This content is here to fill up more space.
+            </p>
+          </section>
+          <section class="as-box">
+            <h1 class="as-title">A box</h1>
+            <p class="as-body">
+              This content is here to fill up more space.
+            </p>
+          </section>
+          <section class="as-box">
+            <h1 class="as-title">A box</h1>
+            <p class="as-body">
+              This content is here to fill up more space.
+            </p>
+          </section>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../layouts/common/map.js"></script>
+  <script src="../layouts/common/tabs.js"></script>
+</body>
+
+</html>
