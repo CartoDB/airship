@@ -6,30 +6,119 @@ const OTHER_CATEGORY_COLOR = '#747474';
 const OTHER_CATEGORY_NAME = 'Other';
 const DEFAULT_BAR_COLOR = '#47DB99';
 
+
+/**
+ * Category Widget
+ *
+ * @export
+ * @class CategoryWidget
+ */
 @Component({
   shadow: false,
   styleUrl: './as-category-widget.scss',
   tag: 'as-category-widget',
 })
 export class CategoryWidget {
+  /**
+   * Array of categories to display in the widget.
+   * Each category should include a `name` and a `value`.
+   * You can also override the bar color for each category with `color`.
+   *
+   * @type {object[]}
+   * @memberof CategoryWidget
+   */
   @Prop() public categories: object[] = [];
+
+  /**
+   * Default color to draw the bars. Default value is `#47DB99`.
+   *
+   * @type {string}
+   * @memberof CategoryWidget
+   */
   @Prop() public defaultBarColor: string = DEFAULT_BAR_COLOR;
+
+  /**
+   * Description text of the widget
+   *
+   * @type {string}
+   * @memberof CategoryWidget
+   */
   @Prop() public description: string;
+
+
+  /**
+   * Heading text of the widget
+   *
+   * @type {string}
+   * @memberof CategoryWidget
+   */
   @Prop() public heading: string;
+
+
+  /**
+   * If truthy, it'll show a button to clear selected categories when there are any. Default value is `false`.
+   *
+   * @type {boolean}
+   * @memberof CategoryWidget
+   */
   @Prop() public showClearButton: boolean = false;
+
+  /**
+   * If truthy, it'll render the heading and component's description. Default value is `true`.
+   *
+   * @type {boolean}
+   * @memberof CategoryWidget
+   */
   @Prop() public showHeader: boolean = true;
+
+
+  /**
+   * If truthy, we'll use the sum of all categories' value to render the bar percentage.
+   * By default, we use the maximum category value to render the bar percentage.
+   *
+   * @type {boolean}
+   * @memberof CategoryWidget
+   */
   @Prop() public useTotalPercentage: boolean = false;
+
+
+  /**
+   * The number of visible categories without aggregation.
+   *
+   * @type {number}
+   * @memberof CategoryWidget
+   */
   @Prop() public visibleCategories: number = Infinity;
 
+  /**
+   * Fired when selected categories changed or selected categories are cleared.
+   *
+   * @event categoriesSelected
+   * @type {EventEmitter<string[]>}
+   * @memberof CategoryWidget
+   */
   @Event() public categoriesSelected: EventEmitter<string[]>;
 
   @State() private selectedCategories: string[] = [];
 
+  /**
+   * Get current selected categories
+   *
+   * @returns
+   * @memberof CategoryWidget
+   */
   @Method()
   public getSelectedCategories() {
     return this.selectedCategories;
   }
 
+
+  /**
+   * Clear current selected categories
+   *
+   * @returns
+   * @memberof CategoryWidget
+   */
   @Method()
   public clearSelection() {
     if (!this.selectedCategories.length) {
@@ -68,9 +157,7 @@ export class CategoryWidget {
     const { categories, otherCategory } = this._parseCategories();
     let otherCategoryTemplate;
 
-    const categoriesToRender =  moreCategoriesThanVisible
-      ? categories.slice(0, this.visibleCategories)
-      : categories;
+    const categoriesToRender =  categories.slice(0, this.visibleCategories);
 
     const maximumValue = this.useTotalPercentage
       ? this._getCategoriesTotalValue(this.categories)
@@ -89,9 +176,10 @@ export class CategoryWidget {
   private _renderCategory(category: Category, options: CategoryOptions) {
     const isSelected = this._isSelected(category.name);
     const isAnyCategorySelected = this.selectedCategories.length > 0;
-    const barColor = options.isOther
-      ? OTHER_CATEGORY_COLOR
-      : this._getBarColor(category.color || this.defaultBarColor, { isSelected });
+    const barColor = this._getBarColor(
+      category.color || this.defaultBarColor,
+      { isSelected, isOther: options.isOther }
+    );
 
     const progressStyles = {
       backgroundColor: barColor,
@@ -136,9 +224,8 @@ export class CategoryWidget {
     return (
       <footer class='as-category-widget__footer'>
         <div class='as-category-widget__count as-body'>{selectedCount} selected</div>
-        { this.showClearButton
-          ? <button class='as-category-widget__clear' onClick={() => this.clearSelection()}>Clear selection</button>
-          : '' }
+        { this.showClearButton &&
+            <button class='as-category-widget__clear' onClick={() => this.clearSelection()}>Clear selection</button>}
       </footer>
     );
   }
@@ -171,7 +258,11 @@ export class CategoryWidget {
     );
   }
 
-  private _getBarColor(color: string, options: { isSelected?: boolean } = {}) {
+  private _getBarColor(color: string, options: { isSelected?: boolean, isOther?: boolean } = {}) {
+    if (options.isOther) {
+      return OTHER_CATEGORY_COLOR;
+    }
+
     if (options.isSelected) {
       return shadeOrBlend(-0.16, color);
     }
