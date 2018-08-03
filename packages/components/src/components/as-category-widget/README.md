@@ -204,3 +204,72 @@ lang: javascript
 const categoryWidget = document.querySelector('as-category-widget');
 categoryWidget.clearSelection();
 ```
+
+### Examples
+
+#### Total Percentage
+```html
+noSource: true
+---
+<iframe src="/examples/components/as-category-widget/total-percentage.html" style="width: 100%; height: 230px;">
+```
+
+```code
+lang: html
+showSource: false
+---
+<!-- Example using total sum to calculate bar percentages -->
+<as-category-widget
+  heading="Business Volume"
+  description="Description"
+  default-bar-color="#47DB99"></as-category-widget>
+
+<script>
+  const categoryWidget = document.querySelector('as-category-widget');
+  categoryWidget.useTotalPercentage = true;
+  categoryWidget.visibleCategories = 2;
+  categoryWidget.categories = [
+    { name: 'Bars & Restaurants', value: 1000, color: '#FABADA' },
+    { name: 'Fashion', value: 900 },
+    { name: 'Grocery', value: 800 },
+    { name: 'Health', value: 400 },
+    { name: 'Shopping mall', value: 250 },
+    { name: 'Transportation', value: 1000 },
+    { name: 'Leisure', value: 760 }
+  ];
+</script>
+```
+
+#### Bar only widget
+```html
+noSource: true
+---
+<iframe src="/examples/components/as-category-widget/bar-only.html" style="width: 100%; height: 256px;">
+```
+
+```code
+lang: html
+showSource: false
+---
+<!-- Example widget showing only category bars and footer -->
+<as-category-widget
+  heading="Business Volume"
+  description="Description"
+  default-bar-color="#47DB99"></as-category-widget>
+
+<script>
+  const categoryWidget = document.querySelector('as-category-widget');
+  categoryWidget.showClearButton = true;
+  categoryWidget.showHeader = false;
+  categoryWidget.visibleCategories = 5;
+  categoryWidget.categories = [
+    { name: 'Bars & Restaurants', value: 1000, color: '#FABADA' },
+    { name: 'Fashion', value: 900 },
+    { name: 'Grocery', value: 800 },
+    { name: 'Health', value: 400 },
+    { name: 'Shopping mall', value: 250 },
+    { name: 'Transportation', value: 1000 },
+    { name: 'Leisure', value: 760 }
+  ];
+</script>
+```

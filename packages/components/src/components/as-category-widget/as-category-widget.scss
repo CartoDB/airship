@@ -72,7 +72,7 @@ as-category-widget {
     }
 
     &:not(.as-category-widget__category--selected):hover {
-      .as-category-widget__value {
+      .as-category-widget__bar-value {
         opacity: 0.6;
       }
     }
