@@ -13,6 +13,11 @@ as-category-widget {
 
   @include padding(4);
 
+  .as-category-widget__heading {
+    margin: 0;
+    font: $font-subheader;
+  }
+
   .as-category-widget__description,
   .as-category-widget__count {
     color: var(--description--color, $color-type-02);
@@ -21,6 +26,7 @@ as-category-widget {
 
   .as-category-widget__list {
     @include padding(0 0 4);
+    list-style: none;
   }
 
   .as-category-widget__description + .as-category-widget__list {

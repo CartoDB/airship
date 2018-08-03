@@ -143,7 +143,7 @@ export class CategoryWidget {
     }
 
     return [
-      <h2 class='as-subheader'>{this.heading}</h2>,
+      <h2 class='as-category-widget__heading'>{this.heading}</h2>,
       <p class='as-category-widget__description as-body'>{this.description}</p>,
     ];
   }
