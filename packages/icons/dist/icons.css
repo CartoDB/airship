@@ -1,7 +1,9 @@
 @font-face {
   font-family: 'airship';
-   /* Use CDN here if required */
-  src: url('fonts/airship.ttf?68veb9') format('truetype'), url('fonts/airship.woff?68veb9') format('woff'), url('fonts/airship.svg?68veb9#airship') format('svg');
+  src:
+    url('fonts/airship.ttf?6nj4gp') format('truetype'),
+    url('fonts/airship.woff?6nj4gp') format('woff'),
+    url('fonts/airship.svg?6nj4gp#airship') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -15,127 +17,99 @@ i {
   font-variant: normal;
   text-transform: none;
   line-height: 1;
+
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-.as-alert-fill:before {
+.as-icon-alert-fill:before {
   content: "\e900";
 }
-
-.as-alert:before {
+.as-icon-alert:before {
   content: "\e901";
 }
-
-.as-arrow-down:before {
+.as-icon-arrow-down:before {
   content: "\e902";
 }
-
-.as-arrow-left:before {
+.as-icon-arrow-left:before {
   content: "\e903";
 }
-
-.as-arrow-right:before {
+.as-icon-arrow-right:before {
   content: "\e904";
 }
-
-.as-arrow-up:before {
+.as-icon-arrow-up:before {
   content: "\e905";
 }
-
-.as-chevron-down:before {
+.as-icon-chevron-down:before {
   content: "\e906";
 }
-
-.as-chevron-left:before {
+.as-icon-chevron-left:before {
   content: "\e907";
 }
-
-.as-chevron-right:before {
+.as-icon-chevron-right:before {
   content: "\e908";
 }
-
-.as-chevron-up:before {
+.as-icon-chevron-up:before {
   content: "\e909";
 }
-
-.as-close:before {
+.as-icon-close:before {
   content: "\e90a";
 }
-
-.as-facebook:before {
+.as-icon-facebook:before {
   content: "\e90b";
 }
-
-.as-hamburguer:before {
+.as-icon-hamburguer:before {
   content: "\e90c";
 }
-
-.as-home:before {
+.as-icon-home:before {
   content: "\e90d";
 }
-
-.as-info:before {
+.as-icon-info:before {
   content: "\e90e";
 }
-
-.as-linkedin:before {
+.as-icon-linkedin:before {
   content: "\e90f";
 }
-
-.as-magnify:before {
+.as-icon-magnify:before {
   content: "\e910";
 }
-
-.as-marker:before {
+.as-icon-marker:before {
   content: "\e911";
 }
-
-.as-minus:before {
+.as-icon-minus:before {
   content: "\e912";
 }
-
-.as-pencil:before {
+.as-icon-pencil:before {
   content: "\e913";
 }
-
-.as-plus:before {
+.as-icon-plus:before {
   content: "\e914";
 }
-
-.as-points:before {
+.as-icon-points:before {
   content: "\e915";
 }
-
-.as-question:before {
+.as-icon-question:before {
   content: "\e916";
 }
-
-.as-redo:before {
+.as-icon-redo:before {
   content: "\e917";
 }
-
-.as-settings:before {
+.as-icon-settings:before {
   content: "\e918";
 }
-
-.as-tick-circle-fill:before {
+.as-icon-tick-circle-fill:before {
   content: "\e919";
 }
-
-.as-tick-circle:before {
+.as-icon-tick-circle:before {
   content: "\e91a";
 }
-
-.as-tick:before {
+.as-icon-tick:before {
   content: "\e91b";
 }
-
-.as-twitter:before {
+.as-icon-twitter:before {
   content: "\e91c";
 }
-
-.as-undo:before {
+.as-icon-undo:before {
   content: "\e91d";
 }
