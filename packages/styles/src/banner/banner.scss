@@ -1,0 +1,29 @@
+@import "../core/_dev";
+
+.as-banner {
+  display: flex;
+  box-sizing: border-box;
+  align-items: flex-start;
+  padding: get-spacing(3);
+  border-radius: 0;
+  background-color: var(--as-color-ui-04, #{$color-ui-04});
+  font: $font-body;
+
+  &__content {
+    flex: 1;
+    padding: 0 8px;
+  }
+
+  &__icon {
+    display: flex;
+    padding-top: get-spacing(1);
+  }
+
+  @media all and (min-width: $tablet-breakpoint) {
+    align-items: center;
+
+    &__icon {
+      padding: 0;
+    }
+  }
+}
