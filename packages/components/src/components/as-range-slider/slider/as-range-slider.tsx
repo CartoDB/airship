@@ -109,8 +109,13 @@ export class RangeSlider {
       return;
     }
 
+    const cssClasses = {
+      'as-range-slider': true,
+      'as-range-slider--disabled': this.disabled
+    };
+
     return (
-      <div class='as-range-slider'>
+      <div class={cssClasses}>
         <div class='as-range-slider__rail'>
           { this.thumbs.map((thumb) => this.renderThumb(thumb)) }
           { this.renderRangeBar() }
@@ -123,7 +128,11 @@ export class RangeSlider {
     return <as-range-slider-thumb
               value={thumb.value}
               percentage={thumb.percentage}
-              onThumbMove={(event) => this.onThumbMove(thumb, event.detail)}>
+              disabled={this.disabled}
+              formatValue={this.formatValue}
+              onThumbMove={(event) => this.onThumbMove(thumb, event.detail)}
+              onChangeStart={() => this.emitChangeIn(this.changeStart)}
+              onChangeEnd={() => this.emitChangeIn(this.changeEnd)}>
            </as-range-slider-thumb>;
   }
 
@@ -135,6 +144,9 @@ export class RangeSlider {
              rangeStartPercentage={firstThumbPercentage}
              rangeEndPercentage={lastThumbPercentage}
              draggable={this.draggable}
+             disabled={this.disabled}
+             onChangeStart={() => this.emitChangeIn(this.changeStart)}
+             onChangeEnd={() => this.emitChangeIn(this.changeEnd)}
              onBarMove={(event) => this.onBarMove(event)}></as-range-slider-bar>;
   }
 
@@ -195,6 +207,8 @@ export class RangeSlider {
     thumb.value = value;
     thumb.percentage = percentage;
     this.thumbs = [...this.thumbs];
+
+    this.emitChangeIn(this.change);
   }
 
   private onBarMove(percentage) {
@@ -204,6 +218,13 @@ export class RangeSlider {
       { value: this.getValueFromPercentage(percentageRange[0]), percentage: percentageRange[0] },
       { value: this.getValueFromPercentage(percentageRange[1]), percentage: percentageRange[1] }
     ];
+
+    this.emitChangeIn(this.change);
+  }
+
+  private emitChangeIn(eventEmitterInstance: EventEmitter<number | number[]>) {
+    const values = this.thumbs.map((thumb) => thumb.value);
+    return eventEmitterInstance.emit(values);
   }
 
   private _getPercentage(value) {

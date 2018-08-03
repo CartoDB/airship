@@ -9,11 +9,12 @@ import { MouseTrack } from '../MouseTrack';
 export class RangeSliderThumb extends MouseTrack {
   @Prop() public percentage: number;
   @Prop() public value: number;
+  @Prop() public disabled: boolean;
   @Prop() public formatValue: (value: number) => void;
 
   @Event() public thumbMove: EventEmitter<number>;
-  @Event() public changeStart: EventEmitter<number | number[]>;
-  @Event() public changeEnd: EventEmitter<number | number[]>;
+  @Event() public changeStart: EventEmitter<void>;
+  @Event() public changeEnd: EventEmitter<void>;
 
   @Element() public element: HTMLElement;
   public railElement: HTMLElement;
@@ -23,8 +24,12 @@ export class RangeSliderThumb extends MouseTrack {
       left: `${this.percentage}%`
     };
 
+    const cssClasses = {
+      'as-range-slider__thumb': true,
+      'as-range-slider__thumb--disabled': this.disabled
+    };
     return (
-      <div class='as-range-slider__thumb' style={thumbStyles} data-value={this.value}>
+      <div class={cssClasses} style={thumbStyles} data-value={this.value}>
           <span class='as-range-slider__value as-caption as-font-medium'>
             {this._getDisplayValue(this.value)}
           </span>
@@ -34,6 +39,7 @@ export class RangeSliderThumb extends MouseTrack {
   @Listen('mousedown')
   @Listen('touchstart')
   public onMouseDown(event: MouseEvent) {
+    this.changeStart.emit();
     this.railElement = document.querySelector('.as-range-slider__rail');
 
     const thumb = event.target as HTMLElement;
@@ -53,17 +59,18 @@ export class RangeSliderThumb extends MouseTrack {
     if (barPercentage < 0 || barPercentage > 100) {
       return;
     }
-    // console.log('bar percentage start:', barPercentage);
+
     this.thumbMove.emit(barPercentage);
   }
 
   private onRelease(thumb: HTMLElement) {
     thumb.classList.remove('as-range-slider__thumb--moving');
+    this.changeEnd.emit();
   }
 
   private _getDisplayValue(value: number) {
     const displayValue = Math.round(value);
-    return (this.formatValue && this.formatValue(value)) || displayValue;
+    return (this.formatValue && this.formatValue(displayValue)) || displayValue;
   }
 }
 

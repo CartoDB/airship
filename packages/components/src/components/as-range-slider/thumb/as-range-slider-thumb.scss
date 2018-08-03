@@ -28,6 +28,15 @@ as-range-slider-thumb {
     }
   }
 
+  .as-range-slider__thumb--disabled {
+    border: 1px solid var(--color-ui-03, #{$color-ui-03});
+    background: var(--color-ui-02, #{$color-ui-02});
+
+    .as-range-slider__value {
+      color: var(--color-type-03, #{$color-type-03});
+    }
+  }
+
   .as-range-slider__thumb + .as-range-slider__thumb {
     &:hover {
       transform: translate3d(-6px, 0, 0) scale(1.33);

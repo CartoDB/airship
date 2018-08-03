@@ -20,9 +20,12 @@
 
     <script>
       const rangeSlider = document.querySelector('as-range-slider');
+      rangeSlider.range = [30, 70];
       rangeSlider.draggable = true;
-      rangeSlider.value = 30;
       rangeSlider.formatValue = (value) => (`${value}€`);
+      rangeSlider.addEventListener('change', (event) => console.log('Changed:', event.detail));
+      rangeSlider.addEventListener('changeStart', (event) => console.log('Change Start:', event.detail));
+      rangeSlider.addEventListener('changeEnd', (event) => console.log('Change End:', event.detail));
     </script>
   </body>
 </html>

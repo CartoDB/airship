@@ -128,6 +128,7 @@ declare global {
 
   namespace StencilComponents {
     interface AsRangeSliderThumb {
+      'disabled': boolean;
       'formatValue': (value: number) => void;
       'percentage': number;
       'value': number;
@@ -153,9 +154,10 @@ declare global {
   }
   namespace JSXElements {
     export interface AsRangeSliderThumbAttributes extends HTMLAttributes {
+      'disabled'?: boolean;
       'formatValue'?: (value: number) => void;
-      'onChangeEnd'?: (event: CustomEvent<number | number[]>) => void;
-      'onChangeStart'?: (event: CustomEvent<number | number[]>) => void;
+      'onChangeEnd'?: (event: CustomEvent<void>) => void;
+      'onChangeStart'?: (event: CustomEvent<void>) => void;
       'onThumbMove'?: (event: CustomEvent<number>) => void;
       'percentage'?: number;
       'value'?: number;
@@ -168,6 +170,7 @@ declare global {
 
   namespace StencilComponents {
     interface AsRangeSliderBar {
+      'disabled': boolean;
       'draggable': boolean;
       'rangeEndPercentage': number;
       'rangeStartPercentage': number;
@@ -193,8 +196,11 @@ declare global {
   }
   namespace JSXElements {
     export interface AsRangeSliderBarAttributes extends HTMLAttributes {
+      'disabled'?: boolean;
       'draggable'?: boolean;
       'onBarMove'?: (event: CustomEvent<number[]>) => void;
+      'onChangeEnd'?: (event: CustomEvent<void>) => void;
+      'onChangeStart'?: (event: CustomEvent<void>) => void;
       'rangeEndPercentage'?: number;
       'rangeStartPercentage'?: number;
     }

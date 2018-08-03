@@ -10,8 +10,11 @@ export class RangeSliderBar extends MouseTrack {
   @Prop({ mutable: true }) public rangeStartPercentage: number;
   @Prop({ mutable: true }) public rangeEndPercentage: number;
   @Prop() public draggable: boolean;
+  @Prop() public disabled: boolean;
 
   @Event() public barMove: EventEmitter<number[]>;
+  @Event() public changeStart: EventEmitter<void>;
+  @Event() public changeEnd: EventEmitter<void>;
 
   @Element() public element: HTMLElement;
   private rangeBarElement: HTMLElement;
@@ -27,6 +30,7 @@ export class RangeSliderBar extends MouseTrack {
 
     const cssClasses = {
       'as-range-slider__range-bar': true,
+      'as-range-slider__range-bar--disabled': this.disabled,
       'as-range-slider__range-bar--draggable': this.draggable
     };
 
@@ -39,6 +43,8 @@ export class RangeSliderBar extends MouseTrack {
     if (!this.draggable) {
       return;
     }
+
+    this.changeStart.emit();
 
     this.railElement = document.querySelector('.as-range-slider__rail');
     this.rangeBarElement = this.element.querySelector('.as-range-slider__range-bar');
@@ -77,6 +83,7 @@ export class RangeSliderBar extends MouseTrack {
 
   private onRelease() {
     this.previousMouseEvent = undefined;
+    this.changeEnd.emit();
   }
 
   private getMovementDelta(currentEvent: MouseEvent, previousEvent: MouseEvent) {

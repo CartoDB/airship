@@ -1,6 +1,8 @@
 @import '../../../../../styles/src/core/_dev';
 
 as-range-slider-bar {
+  --slider--rail-color--disabled: #{$color-ui-03};
+
   .as-range-slider__range-bar {
     position: absolute;
     z-index: 1;
@@ -8,6 +10,23 @@ as-range-slider-bar {
     height: 2px;
     transform: translate3d(0, -50%, 0);
     background-color: var(--slider--range-color, #{$color-primary});
+  }
+
+  .as-range-slider__range-bar--disabled {
+    background-color: var(--slider--rail-color--disabled, #{$color-ui-03});
+  }
+
+  .as-range-slider__range-bar--draggable {
     cursor: grab;
+
+    &::after {
+      content: ' ';
+      position: absolute;
+      top: -6px;
+      left: 0;
+      width: calc(100% - 20px);
+      height: 12px;
+      transform: translate3d(10px, 0, 0);
+    }
   }
 }
