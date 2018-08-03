@@ -1,0 +1,50 @@
+@import "../core/_dev";
+
+.as-flag {
+  display: flex;
+  max-width: get-spacing(65);
+  padding: get-spacing(4);
+  border-radius: get-spacing(1);
+  background: var(--as-color-ui-01, #{$color-ui-01});
+  box-shadow: $shadow-16;
+  font: $font-body;
+
+  &__icon {
+    flex: 0 0 auto;
+    padding-top: get-spacing(1);
+    font-size: get-spacing(3);
+
+    i {
+      display: flex;
+    }
+  }
+
+  &__content {
+    flex: 1;
+    padding: 0 get-spacing(2);
+  }
+
+  &__button {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: none;
+    background: transparent;
+    box-shadow: none;
+    color: var(--as-color-primary, #{$color-primary});
+    cursor: pointer;
+  }
+
+  &--l {
+    max-width: get-spacing(80);
+  }
+
+  &--xl {
+    max-width: get-spacing(100);
+  }
+
+  &--block {
+    max-width: 100%;
+  }
+}

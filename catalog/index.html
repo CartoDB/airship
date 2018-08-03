@@ -8,7 +8,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Airship</title>
   <link href="https://fonts.googleapis.com/css?family=Overpass+Mono|Roboto:300,400,500" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@carto/airship-icons/dist/icons.css">
   <link rel="stylesheet" href="../packages/styles/dist/airship.css">
+  <link rel="stylesheet" href="../packages/icons/dist/icons.css">
+
   <style>
     body {
       margin: 0;
@@ -31,6 +34,7 @@
       title: 'Airship',
       responsiveSizes: [
         { name: 'mobile', width: 375, height: 667 },
+        { name: 'tablet', width: 1024, height: 768 },
         { name: 'desktop', width: 1920, height: 1080 },
       ],
       pages: [
@@ -61,6 +65,11 @@
               path: '/layout/map-wrapper',
               title: 'Map Wrapper',
               src: '../packages/styles/src/core/layout/map-wrapper/README.md'
+            },
+            {
+              path: '/layout/containers',
+              title: 'Containers',
+              src: '../packages/styles/src/core/containers/README.md'
             }
           ]
         },
@@ -81,15 +90,41 @@
               path: '/styles/colors',
               title: 'Colors',
               src: '../packages/styles/src/core/variables/colors.md'
-            }, {
+            },
+            {
+              path: '/styles/avatar',
+              title: 'Avatar',
+              src: '../packages/styles/src/avatar/README.md'
+            },
+            {
               path: '/styles/banner',
               title: 'Banner',
               src: '../packages/styles/src/banner/README.md'
             },
             {
+              path: '/styles/breadcrumb',
+              title: 'Breadcrumb',
+              src: '../packages/styles/src/breadcrumb/README.md'
+            },
+            {
+              path: '/styles/flag',
+              title: 'Flag',
+              src: '../packages/styles/src/flag/README.md'
+            },
+            {
+              path: '/styles/inputs',
+              title: 'Inputs',
+              src: '../packages/styles/src/inputs/README.md'
+            },
+            {
               path: '/styles/lists',
               title: 'Lists',
               src: '../packages/styles/src/core/lists/README.md'
+            },
+            {
+              path: '/styles/radio',
+              title: 'Radio button',
+              src: '../packages/styles/src/radio/README.md'
             },
             {
               path: '/styles/typography',
@@ -101,6 +136,16 @@
               title: 'Tabs',
               src: '../packages/styles/src/tabs/README.md'
             }
+          ]
+        },
+        {
+          title: 'Icons',
+          pages: [
+            {
+              path: '/icons/icons',
+              title: 'Icons',
+              src: '../packages/icons/README.md'
+            },
           ]
         }
       ]
