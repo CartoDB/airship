@@ -71,7 +71,12 @@ export class RangeSlider {
    */
   @Prop() public value: number = 0;
 
-  @State() private thumbs: Thumb[] = [];
+  @Watch('value')
+  public validateValue(newValue: number) {
+    if (!this._isBetweenValidValues(newValue)) {
+      throw new Error(`RangeSlider: Value ${newValue} has to be between maxValue and minValue`);
+    }
+  }
 
   /**
    * Initial value.
@@ -82,13 +87,6 @@ export class RangeSlider {
    */
   @Prop() public range: number[] = [];
 
-  @Watch('value')
-  public validateValue(newValue: number) {
-    if (!this._isBetweenValidValues(newValue)) {
-      throw new Error(`RangeSlider: Value ${newValue} has to be between maxValue and minValue`);
-    }
-  }
-
   @Watch('range')
   public validateRange(newRange: number[]) {
     if (!this._sliderHasRange()) {
@@ -98,6 +96,7 @@ export class RangeSlider {
     newRange.map((value) => this.validateValue(value));
   }
 
+  @State() private thumbs: Thumb[] = [];
 
   public componentWillLoad() {
     this._validateValues();
