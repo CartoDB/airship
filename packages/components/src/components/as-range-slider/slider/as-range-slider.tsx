@@ -117,26 +117,26 @@ export class RangeSlider {
     return (
       <div class={cssClasses}>
         <div class='as-range-slider__rail'>
-          { this.thumbs.map((thumb) => this.renderThumb(thumb)) }
-          { this.renderRangeBar() }
+          { this.thumbs.map((thumb) => this._renderThumb(thumb)) }
+          { this._renderRangeBar() }
         </div>
       </div>
     );
   }
 
-  private renderThumb(thumb: Thumb) {
+  private _renderThumb(thumb: Thumb) {
     return <as-range-slider-thumb
               value={thumb.value}
               percentage={thumb.percentage}
               disabled={this.disabled}
               formatValue={this.formatValue}
-              onThumbMove={(event) => this.onThumbMove(thumb, event.detail)}
-              onChangeStart={() => this.emitChangeIn(this.changeStart)}
-              onChangeEnd={() => this.emitChangeIn(this.changeEnd)}>
+              onThumbMove={(event) => this._onThumbMove(thumb, event.detail)}
+              onChangeStart={() => this._emitChangeIn(this.changeStart)}
+              onChangeEnd={() => this._emitChangeIn(this.changeEnd)}>
            </as-range-slider-thumb>;
   }
 
-  private renderRangeBar() {
+  private _renderRangeBar() {
     const firstThumbPercentage = this._sliderHasRange() ? this.thumbs[0].percentage : 0;
     const lastThumbPercentage = this.thumbs[this.thumbs.length - 1].percentage;
 
@@ -145,9 +145,9 @@ export class RangeSlider {
              rangeEndPercentage={lastThumbPercentage}
              draggable={this.draggable}
              disabled={this.disabled}
-             onChangeStart={() => this.emitChangeIn(this.changeStart)}
-             onChangeEnd={() => this.emitChangeIn(this.changeEnd)}
-             onBarMove={(event) => this.onBarMove(event)}></as-range-slider-bar>;
+             onChangeStart={() => this._emitChangeIn(this.changeStart)}
+             onChangeEnd={() => this._emitChangeIn(this.changeEnd)}
+             onBarMove={(event) => this._onBarMove(event)}></as-range-slider-bar>;
   }
 
   private _validateValues() {
@@ -166,13 +166,13 @@ export class RangeSlider {
     const hasRangeValues = this.range.length;
 
     if (!hasRangeValues) {
-      return [this.getThumbData(this.value)];
+      return [this._getThumbData(this.value)];
     }
 
-    return this.range.map((value) => this.getThumbData(value));
+    return this.range.map((value) => this._getThumbData(value));
   }
 
-  private getThumbData(value) {
+  private _getThumbData(value) {
     return {
       percentage: this._isBetweenValidValues(value) ?
         this._getPercentage(value)
@@ -189,12 +189,12 @@ export class RangeSlider {
     return this.range.length === 2;
   }
 
-  private onThumbMove(thumb: Thumb, percentage: number) {
+  private _onThumbMove(thumb: Thumb, percentage: number) {
     const [leftThumb, rightThumb] = this.thumbs;
     const isLeftThumb = leftThumb === thumb;
     const isRightThumb = rightThumb === thumb;
 
-    const value = this.getValueFromPercentage(percentage);
+    const value = this._getValueFromPercentage(percentage);
 
     if (this._sliderHasRange() && isLeftThumb && ((rightThumb.value - 1) < value)) {
       return;
@@ -208,21 +208,21 @@ export class RangeSlider {
     thumb.percentage = percentage;
     this.thumbs = [...this.thumbs];
 
-    this.emitChangeIn(this.change);
+    this._emitChangeIn(this.change);
   }
 
-  private onBarMove(percentage) {
+  private _onBarMove(percentage) {
     const percentageRange = percentage.detail;
 
     this.thumbs = [
-      { value: this.getValueFromPercentage(percentageRange[0]), percentage: percentageRange[0] },
-      { value: this.getValueFromPercentage(percentageRange[1]), percentage: percentageRange[1] }
+      { value: this._getValueFromPercentage(percentageRange[0]), percentage: percentageRange[0] },
+      { value: this._getValueFromPercentage(percentageRange[1]), percentage: percentageRange[1] }
     ];
 
-    this.emitChangeIn(this.change);
+    this._emitChangeIn(this.change);
   }
 
-  private emitChangeIn(eventEmitterInstance: EventEmitter<number | number[]>) {
+  private _emitChangeIn(eventEmitterInstance: EventEmitter<number | number[]>) {
     const values = this.thumbs.map((thumb) => thumb.value);
     return eventEmitterInstance.emit(values);
   }
@@ -231,7 +231,7 @@ export class RangeSlider {
     return ((value - this.minValue) / (this.maxValue - this.minValue)) * 100;
   }
 
-  private getValueFromPercentage(percentage) {
+  private _getValueFromPercentage(percentage) {
     return ((percentage * (this.maxValue - this.minValue)) / 100) + this.minValue;
   }
 }

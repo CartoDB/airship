@@ -52,19 +52,19 @@ export class RangeSliderBar extends MouseTrack {
     this.previousMouseEvent = event;
 
     super.handleMouseDown({
-      move: (moveEvent) => this.onMove(moveEvent),
-      release: () => this.onRelease()
+      move: (moveEvent) => this._onMove(moveEvent),
+      release: () => this._onRelease()
     });
   }
 
-  private onMove(event: MouseEvent) {
+  private _onMove(event: MouseEvent) {
     if (!this.previousMouseEvent) {
       this.previousMouseEvent = event;
       return;
     }
 
     const rangeDifference = this.rangeEndPercentage - this.rangeStartPercentage;
-    const movementDelta = this.getMovementDelta(event, this.previousMouseEvent);
+    const movementDelta = this._getMovementDelta(event, this.previousMouseEvent);
     const barXPosition = this.rangeBarElement.offsetLeft + movementDelta;
 
     const leftPercentage = (barXPosition) * 100 / this.railElement.offsetWidth;
@@ -81,12 +81,12 @@ export class RangeSliderBar extends MouseTrack {
     this.barMove.emit([this.rangeStartPercentage, this.rangeEndPercentage]);
   }
 
-  private onRelease() {
+  private _onRelease() {
     this.previousMouseEvent = undefined;
     this.changeEnd.emit();
   }
 
-  private getMovementDelta(currentEvent: MouseEvent, previousEvent: MouseEvent) {
+  private _getMovementDelta(currentEvent: MouseEvent, previousEvent: MouseEvent) {
     return currentEvent.clientX - previousEvent.clientX;
   }
 }
