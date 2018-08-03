@@ -8,6 +8,7 @@
   transition: background-color 0.2s;
   border: 1px solid transparent;
   border-radius: 4px;
+  outline: none;
   background-color: var(--as-color-ui-01, #{$color-ui-01});
   color: $color-primary;
   font: $font-body;
@@ -39,6 +40,7 @@
     background-color: $color-ui-02;
   }
 
+  &:enabled:focus,
   &:enabled:active {
     background-color: $color-ui-03;
   }
@@ -51,6 +53,7 @@
       background-color: var(--as-button-primary-color-focus, darken($color-primary, 20%));
     }
 
+    &:enabled:focus,
     &:enabled:active {
       background-color: var(--as-button-primary-color-focus, darken($color-primary, 40%));
     }
@@ -65,6 +68,7 @@
       background-color: var(--as-button-secondary-color-focus, darken($color-ui-01, 10%));
     }
 
+    &:enabled:focus,
     &:enabled:active {
       background-color: var(--as-button-secondary-color-active, darken($color-ui-01, 10%));
     }
@@ -100,6 +104,7 @@ a.as-btn {
     background-color: var(--as-button-color-focus, #{$color-ui-02});
   }
 
+  &:focus,
   &:active {
     background-color: var(--as-button-color-focus, #{$color-ui-03});
   }
@@ -110,6 +115,7 @@ a.as-btn.as-btn--primary {
     background-color: var(--as-button-primary-color-focus, darken($color-primary, 20%));
   }
 
+  &:focus,
   &:active {
     background-color: var(--as-button-primary-color-focus, darken($color-primary, 40%));
   }
@@ -120,6 +126,7 @@ a.as-btn.as-btn--secondary {
     background-color: var(--as-button-secondary-color-active, darken($color-ui-01, 10%));
   }
 
+  &:focus,
   &:active {
     background-color: var(--as-button-secondary-color-active, darken($color-ui-01, 12%));
   }
