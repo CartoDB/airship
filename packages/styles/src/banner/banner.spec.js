@@ -3,7 +3,7 @@ const path = require('path');
 // -- Banner
 const BANNER_REFERENCE = path.resolve(__dirname, 'test/img/banner-reference.png');
 const BANNER_SCREENSHOT = path.resolve(__dirname, 'test/img/banner-out.png');
-const BANNER_URL = `file://${path.resolve(__dirname, 'test/banner.html')}`;
+const BANNER_URL = `file://${path.resolve(__dirname, 'test/banner-base.html')}`;
 
 // -- Banner notification
 const BANNER_NOTIFICATION_REFERENCE = path.resolve(__dirname, 'test/img/banner-notification-reference.png');
