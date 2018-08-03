@@ -36,5 +36,8 @@
   "homepage": "https://github.com/CartoDB/airship",
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "conventional-changelog-cli": "^2.0.1"
   }
 }

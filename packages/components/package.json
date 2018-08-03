@@ -58,5 +58,8 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "conventional-changelog-cli": "^2.0.1"
   }
 }
