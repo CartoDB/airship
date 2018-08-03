@@ -12,12 +12,12 @@
   padding: $padding;
 }
 
-@mixin margin($values) {
+@function get-margin($values) {
   $margin: ();
 
   @each $value in $values {
     $margin: append($margin, get-spacing($value));
   }
 
-  margin: $margin;
+  @return $margin;
 }

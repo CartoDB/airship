@@ -1,0 +1,19 @@
+@import "../core/_dev";
+
+.as-avatar {
+  position: relative;
+  width: get-spacing(6);
+  height: get-spacing(6);
+  border-radius: 100%;
+  background-color: var(--as-color-ui-02, #{$color-ui-02});
+
+  &--l {
+    width: get-spacing(8);
+    height: get-spacing(8);
+  }
+
+  &--xl {
+    width: get-spacing(12);
+    height: get-spacing(12);
+  }
+}
