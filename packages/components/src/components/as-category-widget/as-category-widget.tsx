@@ -174,22 +174,20 @@ export class CategoryWidget {
   }
 
   private _renderCategory(category: Category, options: CategoryOptions) {
+    const { isOther, maximumValue } = options;
     const isSelected = this._isSelected(category.name);
     const isAnyCategorySelected = this.selectedCategories.length > 0;
-    const barColor = this._getBarColor(
-      category.color || this.defaultBarColor,
-      { isSelected, isOther: options.isOther }
-    );
+    const barColor = this._getBarColor(category.color || this.defaultBarColor, { isSelected, isOther });
 
     const progressStyles = {
       backgroundColor: barColor,
-      width: `${(category.value / options.maximumValue) * 100}%`
+      width: `${(category.value / maximumValue) * 100}%`
     };
 
     const cssClasses = {
       'as-category-widget__category': true,
-      'as-category-widget__category--not-selected': isAnyCategorySelected && (!isSelected || options.isOther),
-      'as-category-widget__category--other': options.isOther,
+      'as-category-widget__category--not-selected': isAnyCategorySelected && (!isSelected || isOther),
+      'as-category-widget__category--other': isOther,
       'as-category-widget__category--selected': isSelected
     };
 
