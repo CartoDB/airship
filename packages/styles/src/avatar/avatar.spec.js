@@ -3,7 +3,7 @@ const path = require('path');
 // -- Avatar
 const AVATAR_REFERENCE = path.resolve(__dirname, 'test/img/avatar-reference.png');
 const AVATAR_SCREENSHOT = path.resolve(__dirname, 'test/img/avatar-out.png');
-const AVATAR_URL = `file://${path.resolve(__dirname, 'test/avatar.html')}`;
+const AVATAR_URL = `file://${path.resolve(__dirname, 'test/avatar-base.html')}`;
 
 // -- Avatar L
 const AVATAR_L_REFERENCE = path.resolve(__dirname, 'test/img/avatar-l-reference.png');
