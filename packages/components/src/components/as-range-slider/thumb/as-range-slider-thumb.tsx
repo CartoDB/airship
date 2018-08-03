@@ -1,26 +1,26 @@
 import { Component, Element, Event, EventEmitter, Listen, Prop } from '@stencil/core';
+import { MouseTrack } from '../MouseTrack';
 
 @Component({
   shadow: false,
   styleUrl: './as-range-slider-thumb.scss',
   tag: 'as-range-slider-thumb',
 })
-export class RangeSliderThumb {
-  @Prop() public maxValue: number;
-  @Prop() public minValue: number;
+export class RangeSliderThumb extends MouseTrack {
+  @Prop() public percentage: number;
   @Prop() public value: number;
   @Prop() public formatValue: (value: number) => void;
 
-  @Event() public valueUpdate: EventEmitter<number>;
+  @Event() public thumbMove: EventEmitter<number>;
   @Event() public changeStart: EventEmitter<number | number[]>;
   @Event() public changeEnd: EventEmitter<number | number[]>;
 
-  @Element() public thumbElement: HTMLElement;
+  @Element() public element: HTMLElement;
   public railElement: HTMLElement;
 
   public render() {
     const thumbStyles = {
-      left: `${this._getPercentage(this.value)}%`
+      left: `${this.percentage}%`
     };
 
     return (
@@ -39,39 +39,26 @@ export class RangeSliderThumb {
     const thumb = event.target as HTMLElement;
     thumb.classList.add('as-range-slider__thumb--moving');
 
-    const handleMove = (eventProperties) => this._handleMove(eventProperties);
-    const handleRelease = () => this._handleRelease(thumb, { mouseMove: handleMove, mouseDown: handleRelease });
+    super.handleMouseDown({
+      move: (moveEvent) => this.onMove(moveEvent),
+      release: () => this.onRelease(thumb)
+    });
 
-    document.addEventListener('mousemove', handleMove);
-    document.addEventListener('touchmove', handleMove);
-    document.addEventListener('mouseup', handleRelease);
-    document.addEventListener('touchend', handleRelease);
-
-    this.thumbElement.focus();
+    thumb.focus();
   }
 
-  private _handleMove(event: MouseEvent) {
+  private onMove(event: MouseEvent) {
     const barPercentage = (event.pageX - this.railElement.offsetLeft) * 100 / this.railElement.offsetWidth;
-    const newValue = (barPercentage * (this.maxValue - this.minValue)) / 100;
 
-    if (newValue < 0 || newValue > this.maxValue) {
+    if (barPercentage < 0 || barPercentage > 100) {
       return;
     }
-
-    this.valueUpdate.emit(newValue);
+    // console.log('bar percentage start:', barPercentage);
+    this.thumbMove.emit(barPercentage);
   }
 
-  private _handleRelease(
-    thumb: HTMLElement,
-    listeners: { mouseMove: (eventProperties) => void, mouseDown: () => void}
-  ) {
-    document.removeEventListener('mousemove', listeners.mouseMove);
-    document.removeEventListener('mouseup', listeners.mouseDown);
+  private onRelease(thumb: HTMLElement) {
     thumb.classList.remove('as-range-slider__thumb--moving');
-  }
-
-  private _getPercentage(value: number) {
-    return ((value - this.minValue) / (this.maxValue - this.minValue)) * 100;
   }
 
   private _getDisplayValue(value: number) {
@@ -82,4 +69,5 @@ export class RangeSliderThumb {
 
 export interface Thumb {
   value: number;
+  percentage: number;
 }

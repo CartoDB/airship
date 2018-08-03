@@ -1,5 +1,5 @@
 import { Component, Event, EventEmitter, Prop, State, Watch } from '@stencil/core';
-import { Thumb } from '../as-range-slider-thumb/as-range-slider-thumb';
+import { Thumb } from '../thumb/as-range-slider-thumb';
 
 @Component({
   shadow: false,
@@ -122,23 +122,20 @@ export class RangeSlider {
   private renderThumb(thumb: Thumb) {
     return <as-range-slider-thumb
               value={thumb.value}
-              minValue={this.minValue}
-              maxValue={this.maxValue}
-              onValueUpdate={(event) => this.onValueUpdated(thumb, event.detail)}>
+              percentage={thumb.percentage}
+              onThumbMove={(event) => this.onThumbMove(thumb, event.detail)}>
            </as-range-slider-thumb>;
   }
 
   private renderRangeBar() {
-    const firstThumbPercentage = this._getPercentage(this.thumbs[0].value);
-    const lastThumbPercentage = this._getPercentage(this.thumbs[this.thumbs.length - 1].value);
+    const firstThumbPercentage = this.thumbs[0].percentage;
+    const lastThumbPercentage = this.thumbs[this.thumbs.length - 1].percentage;
 
     return <as-range-slider-bar
              rangeStartPercentage={firstThumbPercentage}
-             rangeEndPercentage={lastThumbPercentage}></as-range-slider-bar>;
-  }
-
-  private _getPercentage(value) {
-    return ((value - this.minValue) / (this.maxValue - this.minValue)) * 100;
+             rangeEndPercentage={lastThumbPercentage}
+             draggable={this.draggable}
+             onBarMove={(event) => this.onBarMove(event)}></as-range-slider-bar>;
   }
 
   private _validateValues() {
@@ -157,14 +154,19 @@ export class RangeSlider {
     const hasRangeValues = this.range.length;
 
     if (!hasRangeValues) {
-      return [{
-        value: this._isBetweenValidValues(this.value) ? this.value : this.minValue
-      }];
+      return [this.getThumbData(this.value)];
     }
 
-    return this.range.map((value) => ({
+    return this.range.map((value) => this.getThumbData(value));
+  }
+
+  private getThumbData(value) {
+    return {
+      percentage: this._isBetweenValidValues(value) ?
+        this._getPercentage(value)
+        : this._getPercentage(this.minValue),
       value: this._isBetweenValidValues(value) ? value : this.minValue
-    }));
+    };
   }
 
   private _isBetweenValidValues(value: number) {
@@ -175,10 +177,12 @@ export class RangeSlider {
     return this.range.length === 2;
   }
 
-  private onValueUpdated(thumb: Thumb, value: number) {
+  private onThumbMove(thumb: Thumb, percentage: number) {
     const [leftThumb, rightThumb] = this.thumbs;
     const isLeftThumb = leftThumb === thumb;
     const isRightThumb = rightThumb === thumb;
+
+    const value = this.getValueFromPercentage(percentage);
 
     if (isLeftThumb && ((rightThumb.value - 1) < value)) {
       return;
@@ -189,6 +193,24 @@ export class RangeSlider {
     }
 
     thumb.value = value;
+    thumb.percentage = percentage;
     this.thumbs = [...this.thumbs];
+  }
+
+  private onBarMove(percentage) {
+    const percentageRange = percentage.detail;
+
+    this.thumbs = [
+      { value: this.getValueFromPercentage(percentageRange[0]), percentage: percentageRange[0] },
+      { value: this.getValueFromPercentage(percentageRange[1]), percentage: percentageRange[1] }
+    ];
+  }
+
+  private _getPercentage(value) {
+    return ((value - this.minValue) / (this.maxValue - this.minValue)) * 100;
+  }
+
+  private getValueFromPercentage(percentage) {
+    return ((percentage * (this.maxValue - this.minValue)) / 100) + this.minValue;
   }
 }

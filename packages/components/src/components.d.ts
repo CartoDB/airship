@@ -29,83 +29,6 @@ declare global {
 declare global {
 
   namespace StencilComponents {
-    interface AsRangeSliderBar {
-      'rangeEndPercentage': number;
-      'rangeStartPercentage': number;
-    }
-  }
-
-  interface HTMLAsRangeSliderBarElement extends StencilComponents.AsRangeSliderBar, HTMLStencilElement {}
-
-  var HTMLAsRangeSliderBarElement: {
-    prototype: HTMLAsRangeSliderBarElement;
-    new (): HTMLAsRangeSliderBarElement;
-  };
-  interface HTMLElementTagNameMap {
-    'as-range-slider-bar': HTMLAsRangeSliderBarElement;
-  }
-  interface ElementTagNameMap {
-    'as-range-slider-bar': HTMLAsRangeSliderBarElement;
-  }
-  namespace JSX {
-    interface IntrinsicElements {
-      'as-range-slider-bar': JSXElements.AsRangeSliderBarAttributes;
-    }
-  }
-  namespace JSXElements {
-    export interface AsRangeSliderBarAttributes extends HTMLAttributes {
-      'rangeEndPercentage'?: number;
-      'rangeStartPercentage'?: number;
-    }
-  }
-}
-
-
-declare global {
-
-  namespace StencilComponents {
-    interface AsRangeSliderThumb {
-      'formatValue': (value: number) => void;
-      'maxValue': number;
-      'minValue': number;
-      'value': number;
-    }
-  }
-
-  interface HTMLAsRangeSliderThumbElement extends StencilComponents.AsRangeSliderThumb, HTMLStencilElement {}
-
-  var HTMLAsRangeSliderThumbElement: {
-    prototype: HTMLAsRangeSliderThumbElement;
-    new (): HTMLAsRangeSliderThumbElement;
-  };
-  interface HTMLElementTagNameMap {
-    'as-range-slider-thumb': HTMLAsRangeSliderThumbElement;
-  }
-  interface ElementTagNameMap {
-    'as-range-slider-thumb': HTMLAsRangeSliderThumbElement;
-  }
-  namespace JSX {
-    interface IntrinsicElements {
-      'as-range-slider-thumb': JSXElements.AsRangeSliderThumbAttributes;
-    }
-  }
-  namespace JSXElements {
-    export interface AsRangeSliderThumbAttributes extends HTMLAttributes {
-      'formatValue'?: (value: number) => void;
-      'maxValue'?: number;
-      'minValue'?: number;
-      'onChangeEnd'?: (event: CustomEvent<number | number[]>) => void;
-      'onChangeStart'?: (event: CustomEvent<number | number[]>) => void;
-      'onValueUpdate'?: (event: CustomEvent<number>) => void;
-      'value'?: number;
-    }
-  }
-}
-
-
-declare global {
-
-  namespace StencilComponents {
     interface AsRangeSlider {
       /**
        * Disables component if truthy
@@ -196,6 +119,84 @@ declare global {
        * Initial value. By default, the value is 0 or the minValue.
        */
       'value'?: number;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
+    interface AsRangeSliderThumb {
+      'formatValue': (value: number) => void;
+      'percentage': number;
+      'value': number;
+    }
+  }
+
+  interface HTMLAsRangeSliderThumbElement extends StencilComponents.AsRangeSliderThumb, HTMLStencilElement {}
+
+  var HTMLAsRangeSliderThumbElement: {
+    prototype: HTMLAsRangeSliderThumbElement;
+    new (): HTMLAsRangeSliderThumbElement;
+  };
+  interface HTMLElementTagNameMap {
+    'as-range-slider-thumb': HTMLAsRangeSliderThumbElement;
+  }
+  interface ElementTagNameMap {
+    'as-range-slider-thumb': HTMLAsRangeSliderThumbElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'as-range-slider-thumb': JSXElements.AsRangeSliderThumbAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface AsRangeSliderThumbAttributes extends HTMLAttributes {
+      'formatValue'?: (value: number) => void;
+      'onChangeEnd'?: (event: CustomEvent<number | number[]>) => void;
+      'onChangeStart'?: (event: CustomEvent<number | number[]>) => void;
+      'onThumbMove'?: (event: CustomEvent<number>) => void;
+      'percentage'?: number;
+      'value'?: number;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
+    interface AsRangeSliderBar {
+      'draggable': boolean;
+      'rangeEndPercentage': number;
+      'rangeStartPercentage': number;
+    }
+  }
+
+  interface HTMLAsRangeSliderBarElement extends StencilComponents.AsRangeSliderBar, HTMLStencilElement {}
+
+  var HTMLAsRangeSliderBarElement: {
+    prototype: HTMLAsRangeSliderBarElement;
+    new (): HTMLAsRangeSliderBarElement;
+  };
+  interface HTMLElementTagNameMap {
+    'as-range-slider-bar': HTMLAsRangeSliderBarElement;
+  }
+  interface ElementTagNameMap {
+    'as-range-slider-bar': HTMLAsRangeSliderBarElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'as-range-slider-bar': JSXElements.AsRangeSliderBarAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface AsRangeSliderBarAttributes extends HTMLAttributes {
+      'draggable'?: boolean;
+      'onBarMove'?: (event: CustomEvent<number[]>) => void;
+      'rangeEndPercentage'?: number;
+      'rangeStartPercentage'?: number;
     }
   }
 }

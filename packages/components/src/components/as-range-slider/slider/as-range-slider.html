@@ -16,11 +16,12 @@
   </head>
 
   <body>
-    <as-range-slider min-value="0" max-value="100"></as-range-slider>
+    <as-range-slider min-value="25" max-value="75"></as-range-slider>
 
     <script>
       const rangeSlider = document.querySelector('as-range-slider');
-      rangeSlider.range = [33, 66];
+      rangeSlider.draggable = true;
+      rangeSlider.range = [30, 70];
       rangeSlider.formatValue = (value) => (`${value}€`);
     </script>
   </body>

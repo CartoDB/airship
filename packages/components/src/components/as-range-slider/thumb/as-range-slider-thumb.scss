@@ -1,0 +1,44 @@
+@import '../../../../../styles/src/core/_dev';
+
+as-range-slider-thumb {
+  .as-range-slider__thumb {
+    position: absolute;
+    z-index: 2;
+    width: 12px;
+    height: 12px;
+    transform: translate3d(-6px, 0, 0);
+    transition: transform 200ms ease, opacity 200ms ease;
+    border: 1px solid #1785FB;
+    border-radius: 50%;
+    background: #FFF;
+    cursor: grab;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: -15px;
+      left: -15px;
+      width: 30px;
+      height: 30px;
+    }
+
+    &:hover,
+    &.as-range-slider__thumb--moving {
+      transform: translate3d(-6px, 0, 0) scale(1.33);
+    }
+  }
+
+  .as-range-slider__thumb + .as-range-slider__thumb {
+    &:hover {
+      transform: translate3d(-6px, 0, 0) scale(1.33);
+    }
+  }
+
+  .as-range-slider__value {
+    position: absolute;
+    bottom: -16px;
+    left: 50%;
+    transform: translate3d(-53%, 0, 0);
+    pointer-events: none;
+  }
+}

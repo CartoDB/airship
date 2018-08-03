@@ -1,0 +1,13 @@
+@import '../../../../../styles/src/core/_dev';
+
+as-range-slider-bar {
+  .as-range-slider__range-bar {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    height: 2px;
+    transform: translate3d(0, -50%, 0);
+    background-color: var(--slider--range-color, #{$color-primary});
+    cursor: grab;
+  }
+}
