@@ -84,6 +84,40 @@ The `as-btn` class can be used on the following Html Elements:
 - [input type="button"](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/button)
 - [link](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link)
 
+
+
+## Icons + Buttons
+
+
+```html
+---
+<button class="as-btn as-btn--primary">
+  <i aria-hidden class="as-plus"></i>
+  <p>Icon button</p>
+</button>
+```
+
+```html
+---
+<button class="as-btn as-btn--secondary">  
+  <p>Icon button</p>
+  <i aria-hidden class="as-twitter"></i>
+</button>
+```
+
+
+```html
+---
+<button aria-label="twitter" class="as-btn as-btn--secondary as-btn--first">
+   <i aria-hidden class="as-twitter"></i> 
+</button><button aria-label="facebook" class="as-btn as-btn--secondary as-btn--middle">
+   <i aria-hidden class="as-facebook"></i> 
+</button><button aria-label="home" class="as-btn as-btn--secondary as-btn--last">
+   <i aria-hidden class="as-home"></i> 
+</button>
+```
+
+
 ```html
 ---
 <h1 class="as-title">Link</h1>

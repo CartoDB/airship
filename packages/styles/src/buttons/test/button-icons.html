@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Base buttons</title>
+  <link rel="stylesheet" href="../../../dist/airship.css">
+  <link rel="stylesheet" href="../../../../icons/dist/icons.css">
+
+
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+
+<body style="background: #f2f2f2;">
+  <section>
+    <p>Icon First:</p>
+
+    <button class="as-btn as-btn--primary">
+      <i class="as-plus"></i>
+      <p>Icon button</p>
+    </button>
+
+    <p>Icon Last:</p>
+
+    <button class="as-btn as-btn--secondary">
+      <p>Icon button</p>
+      <i aria-hidden class="as-twitter"></i>
+    </button>
+
+    <p>Icon Group:</p>
+    <button aria-label="twitter" class="as-btn as-btn--secondary as-btn--first">
+      <i aria-hidden class="as-twitter"></i>
+    </button><button aria-label="facebook" class="as-btn as-btn--secondary as-btn--middle">
+      <i aria-hidden class="as-facebook"></i>
+    </button><button aria-label="home" class="as-btn as-btn--secondary as-btn--last">
+      <i aria-hidden class="as-home"></i>
+    </button>
+  </section>
+</body>
+
+</html>

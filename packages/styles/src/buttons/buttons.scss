@@ -1,6 +1,8 @@
 @import "../core/_dev";
 
 .as-btn {
+  display: inline-flex;
+  align-items: center;
   margin: 0;
   padding: 8px 12px;
   transition: background-color 0.2s;
@@ -10,6 +12,22 @@
   color: $color-primary;
   font: $font-body;
   cursor: pointer;
+
+  p {
+    margin: 0;
+  }
+
+  i:first-child {
+    margin-right: 8px;
+  }
+
+  i:last-child {
+    margin-left: 8px;
+  }
+
+  i:only-child {
+    margin: 4px auto;
+  }
 
   &:disabled {
     opacity: 0.24;
@@ -58,6 +76,20 @@
 
   &--l {
     font: $font-subheader;
+  }
+
+  &--first {
+    border-radius: 4px 0 0 4px;
+  }
+
+  &--middle {
+    border-left: none;
+    border-radius: 0;
+  }
+
+  &--last {
+    border-left: none;
+    border-radius: 0 4px 4px 0;
   }
 }
 
