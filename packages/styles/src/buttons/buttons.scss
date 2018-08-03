@@ -82,18 +82,9 @@
     font: $font-subheader;
   }
 
-  &--first {
-    border-radius: 4px 0 0 4px;
-  }
-
   &--middle {
     border-left: none;
     border-radius: 0;
-  }
-
-  &--last {
-    border-left: none;
-    border-radius: 0 4px 4px 0;
   }
 }
 
@@ -129,5 +120,32 @@ a.as-btn.as-btn--secondary {
   &:focus,
   &:active {
     background-color: var(--as-button-secondary-color-active, darken($color-ui-01, 12%));
+  }
+}
+
+.as-button-group {
+  display: inline-flex;
+  margin: 0;
+  padding: 0;
+  border-radius: 4px;
+  box-shadow: 0 0 0 1px var(--as-color-primary, #{$color-primary});
+  list-style: none;
+
+  &__item {
+    /* stylelint-disable-next-line no-descending-specificity  */
+    .as-btn {
+      border-left: 1px solid var(--as-color-primary, #{$color-primary});
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    &:first-child .as-btn {
+      border-left: 0;
+      border-radius: 4px 0 0 4px;
+    }
+
+    &:last-child .as-btn {
+      border-radius: 0 4px 4px 0;
+    }
   }
 }

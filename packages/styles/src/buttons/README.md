@@ -1,4 +1,4 @@
-There are 3 kinds of buttons described in Airship: `Base`, `Primary` and `Secondary`. 
+There are 3 kinds of buttons described in Airship: `Base`, `Primary` and `Secondary`.
 
 Each button has two size modifiers:
 
@@ -88,7 +88,7 @@ Each button has two size modifiers:
 
 ```html
 ---
-<button class="as-btn as-btn--secondary">  
+<button class="as-btn as-btn--secondary">
   <p>Icon button</p>
   <i aria-hidden class="as-twitter"></i>
 </button>
@@ -100,18 +100,28 @@ To easily create button groups the following modifiers are defined:
 
 - `as-btn--first`: Removes the border radius on the right side.
 - `as-btn--middle`: Removes the border radius on both sides.
-- `as-btn--last`: Removes the border radius on the left side. 
+- `as-btn--last`: Removes the border radius on the left side.
 
 
 ```html
 ---
-<button aria-label="twitter" class="as-btn as-btn--secondary as-btn--first">
-   <i aria-hidden class="as-twitter"></i> 
-</button><button aria-label="facebook" class="as-btn as-btn--secondary as-btn--middle">
-   <i aria-hidden class="as-facebook"></i> 
-</button><button aria-label="home" class="as-btn as-btn--secondary as-btn--last">
-   <i aria-hidden class="as-home"></i> 
-</button>
+<ul class="as-button-group">
+  <li class="as-button-group__item">
+    <button aria-label="twitter" class="as-btn as-btn--primary">
+      <i aria-hidden class="as-twitter"></i>
+    </button>
+  </li>
+  <li class="as-button-group__item">
+    <button aria-label="facebook" class="as-btn as-btn--primary">
+      <i aria-hidden class="as-facebook"></i>
+    </button>
+  </li>
+  <li class="as-button-group__item">
+    <button aria-label="home" class="as-btn as-btn--primary">
+      <i aria-hidden class="as-home"></i>
+    </button>
+  </li>
+</ul>
 ```
 
 ## HTMLElements
