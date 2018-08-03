@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+    <base href="/">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+    <title>Airship</title>
+    <link rel="stylesheet" href="/dist/core/core.css">
+    <script src="/build/airship.js"></script>
+
+    <style>
+      body {
+        margin: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <as-range-slider min-value="0" max-value="100"></as-range-slider>
+
+    <script>
+      const rangeSlider = document.querySelector('as-range-slider');
+      rangeSlider.range = [33, 66];
+      rangeSlider.formatValue = (value) => (`${value}€`);
+    </script>
+  </body>
+</html>
