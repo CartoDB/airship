@@ -6,7 +6,7 @@
   transition: background-color 0.2s;
   border: 1px solid transparent;
   border-radius: 4px;
-  background-color: var(--as-color-ui-01, $color-ui-01);
+  background-color: var(--as-color-ui-01, #{$color-ui-01});
   color: $color-primary;
   font: $font-body;
   cursor: pointer;
@@ -27,7 +27,7 @@
 
   &--primary {
     background-color: $color-primary;
-    color: var(--as-color-ui-01, $color-ui-01);
+    color: var(--as-color-ui-01, #{$color-ui-01});
 
     &:enabled:hover, {
       background-color: var(--as-button-primary-color-focus, darken($color-primary, 20%));
@@ -40,7 +40,7 @@
 
   &--secondary {
     border: 1px solid $color-primary;
-    background-color: var(--as-color-ui-01, $color-ui-01);
+    background-color: var(--as-color-ui-01, #{$color-ui-01});
     color: $color-primary;
 
     &:enabled:hover {
@@ -65,11 +65,11 @@ a.as-btn {
   text-decoration: none;
 
   &:hover {
-    background-color: var(--as-button-color-focus, $color-ui-02);
+    background-color: var(--as-button-color-focus, #{$color-ui-02});
   }
 
   &:active {
-    background-color: var(--as-button-color-focus, $color-ui-03);
+    background-color: var(--as-button-color-focus, #{$color-ui-03});
   }
 }
 
