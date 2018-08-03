@@ -128,7 +128,7 @@ export class RangeSlider {
   }
 
   private renderRangeBar() {
-    const firstThumbPercentage = this.thumbs[0].percentage;
+    const firstThumbPercentage = this._sliderHasRange() ? this.thumbs[0].percentage : 0;
     const lastThumbPercentage = this.thumbs[this.thumbs.length - 1].percentage;
 
     return <as-range-slider-bar
@@ -184,11 +184,11 @@ export class RangeSlider {
 
     const value = this.getValueFromPercentage(percentage);
 
-    if (isLeftThumb && ((rightThumb.value - 1) < value)) {
+    if (this._sliderHasRange() && isLeftThumb && ((rightThumb.value - 1) < value)) {
       return;
     }
 
-    if (isRightThumb && ((leftThumb.value + 1) > value)) {
+    if (this._sliderHasRange() && isRightThumb && ((leftThumb.value + 1) > value)) {
       return;
     }
 
