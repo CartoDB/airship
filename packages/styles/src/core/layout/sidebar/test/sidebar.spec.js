@@ -3,7 +3,7 @@ const u = new Utils(__dirname);
 
 module.exports = [
   u.spec('sidebar'),
-  u.spec('sidebar', true),
+  u.spec('sidebar', { mobile: true }),
   u.spec('sidebar-mobile-visible'),
-  u.spec('sidebar-mobile-visible', true),
+  u.spec('sidebar-mobile-visible', { mobile: true }),
 ];
