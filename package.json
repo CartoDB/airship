@@ -28,10 +28,10 @@
     "showcase": "npm run build && concurrently 'serve' 'open http://localhost:5000/catalog'",
     "test:components:watch": "lerna exec --scope @carto/airship-components -- npm run test:watch",
     "test:components": "lerna exec --scope @carto/airship-components -- npm run test",
-    "test:styles": "backstopjs test",
+    "test:styles": "backstop test",
     "test:watch": "lerna run --parallel test:watch",
     "test": "lerna run test",
     "visual": "docker run --rm -v $(pwd):/src backstopjs/backstopjs test",
-    "backup_test_styles": "lerna exec --scope @carto/airship-style -- npm run test"
+    "backup_test_styles": "lerna exec --scope @carto/airship-style -- npm run test",
   }
 }
