@@ -1,65 +1,83 @@
+Use checkboxes when looking for yes or no answers. The `for` attribute is necessary to bind our custom checkbox with the input.
+
+A checkbox consist in 3 sub-elements wrapped inside an `as-checkbox` parent.
+
+- `as-checkbox-input` Native Input element handeling the logic.
+- `as-checkbox-decoration`: Custom animated svg used to achieve the tick effect.
+- `label`: Optional but recommended for a better UI and accesibility.
+
+
 ```html
-<section style="padding: 30px;">
-    <h2 class="as-title">Checkbox</h2>
-    
-    <div class="as-checkbox">
-      <input class="as-checkbox-input" type="checkbox" id="checkbox0" name="checkbox0" value="checkbox0">
-      <span class="as-checkbox-decoration">
-        <svg class="as-checkbox-media">
-          <polyline class="as-checkbox-check" points="1.65093994 3.80255127 4.48919678 6.97192383 10.3794556 0.717346191"></polyline>
-        </svg>
-      </span>
-      <label class="as-caption" for="checkbox0"> Input</label>
-    </div>
+<div class="as-checkbox">
+  <input class="as-checkbox-input" type="checkbox" id="checkbox-0" name="checkbox-0" value="checkbox-0">
+  <span class="as-checkbox-decoration">
+    <svg class="as-checkbox-media">
+      <polyline class="as-checkbox-check" points="1.65093994 3.80255127 4.48919678 6.97192383 10.3794556 0.717346191"></polyline>
+    </svg>
+  </span>
+  <label class="as-caption" for="checkbox-0"> Checkbox</label>
+</div>
 
-    <div class="as-checkbox">
-      <input checked class="as-checkbox-input" type="checkbox" id="checkbox1" name="checkbox1" value="checkbox1">
-      <span class="as-checkbox-decoration">
-        <svg class="as-checkbox-media">
-          <polyline class="as-checkbox-check" points="1.65093994 3.80255127 4.48919678 6.97192383 10.3794556 0.717346191"></polyline>
-        </svg>
-      </span>
-      <label class="as-caption" for="checkbox1"> Input checked</label>
-    </div>
+<div class="as-checkbox">
+  <input class="as-checkbox-input" type="checkbox" id="checkbox-1" name="checkbox-1" value="checkbox-1">
+  <span class="as-checkbox-decoration">
+    <svg class="as-checkbox-media">
+      <polyline class="as-checkbox-check" points="1.65093994 3.80255127 4.48919678 6.97192383 10.3794556 0.717346191"></polyline>
+    </svg>
+  </span>
+  <label class="as-caption" for="checkbox-1"> Checkbox checked</label>
+</div>
+```
 
-    <div class="as-checkbox">
-      <input disabled class="as-checkbox-input" type="checkbox" id="checkbox2" name="checkbox2" value="checkbox2">
-      <span class="as-checkbox-decoration">
-        <svg class="as-checkbox-media">
-          <polyline class="as-checkbox-check" points="1.65093994 3.80255127 4.48919678 6.97192383 10.3794556 0.717346191"></polyline>
-        </svg>
-      </span>
-      <label class="as-caption" for="checkbox2"> Input Disabled</label>
-    </div>
+## Checkbox errors
+You can give checkbos an error-status using the `as-checkbox-input--error` class modifier on the `input` element.
 
-    <div class="as-checkbox">
-      <input disabled checked class="as-checkbox-input" type="checkbox" id="checkbox3" name="checkbox3" value="checkbox3">
-      <span class="as-checkbox-decoration">
-        <svg class="as-checkbox-media">
-          <polyline class="as-checkbox-check" points="1.65093994 3.80255127 4.48919678 6.97192383 10.3794556 0.717346191"></polyline>
-        </svg>
-      </span>
-      <label class="as-caption" for="checkbox3"> Input Disabled Selected</label>
-    </div>
 
-    <div class="as-checkbox">
-      <input class="as-checkbox-input as-checkbox-input--error" type="checkbox" id="checkbox3" name="checkbox3" value="checkbox3">
-      <span class="as-checkbox-decoration">
-        <svg class="as-checkbox-media">
-          <polyline class="as-checkbox-check" points="1.65093994 3.80255127 4.48919678 6.97192383 10.3794556 0.717346191"></polyline>
-        </svg>
-      </span>
-      <label class="as-caption" for="checkbox3"> Input Error</label>
-    </div>
+```html
+<div class="as-checkbox">
+    <input class="as-checkbox-input as-checkbox-input--error" type="checkbox" id="checkbox3" name="checkbox3" value="checkbox3">
+    <span class="as-checkbox-decoration">
+      <svg class="as-checkbox-media">
+        <polyline class="as-checkbox-check" points="1.65093994 3.80255127 4.48919678 6.97192383 10.3794556 0.717346191"></polyline>
+      </svg>
+    </span>
+    <label class="as-caption" for="checkbox3"> Checkbox Error</label>
+  </div>
 
-    <div class="as-checkbox">
-      <input checked class="as-checkbox-input as-checkbox-input--error" type="checkbox" id="checkbox4" name="checkbox4" value="checkbox4">
-      <span class="as-checkbox-decoration">
-        <svg class="as-checkbox-media">
-          <polyline class="as-checkbox-check" points="1.65093994 3.80255127 4.48919678 6.97192383 10.3794556 0.717346191"></polyline>
-        </svg>
-      </span>
-      <label class="as-caption" for="checkbox4"> Input Error Selected</label>
-    </div>
-  </section>
-  ```
+  <div class="as-checkbox">
+    <input checked class="as-checkbox-input as-checkbox-input--error" type="checkbox" id="checkbox4" name="checkbox4" value="checkbox4">
+    <span class="as-checkbox-decoration">
+      <svg class="as-checkbox-media">
+        <polyline class="as-checkbox-check" points="1.65093994 3.80255127 4.48919678 6.97192383 10.3794556 0.717346191"></polyline>
+      </svg>
+    </span>
+    <label class="as-caption" for="checkbox4"> Checkbox Error checked</label>
+  </div>
+</section>
+```
+
+## Checkbox status
+
+The checkbox appearance will change when you add attributes like `disabled` or `checked`.
+
+```html
+ <div class="as-checkbox">
+  <input disabled class="as-checkbox-input" type="checkbox" id="checkbox2" name="checkbox2" value="checkbox2">
+  <span class="as-checkbox-decoration">
+    <svg class="as-checkbox-media">
+      <polyline class="as-checkbox-check" points="1.65093994 3.80255127 4.48919678 6.97192383 10.3794556 0.717346191"></polyline>
+    </svg>
+  </span>
+  <label class="as-caption" for="checkbox2"> Checkbox Disabled</label>
+</div>
+
+<div class="as-checkbox">
+  <input disabled class="as-checkbox-input as-checkbox-input--error" type="checkbox" id="checkbox3" name="checkbox3" value="checkbox3">
+  <span class="as-checkbox-decoration">
+    <svg class="as-checkbox-media">
+      <polyline class="as-checkbox-check" points="1.65093994 3.80255127 4.48919678 6.97192383 10.3794556 0.717346191"></polyline>
+    </svg>
+  </span>
+  <label class="as-caption" for="checkbox3"> Checkbox Error Disabled</label>
+</div>
+```

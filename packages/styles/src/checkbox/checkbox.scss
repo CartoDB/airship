@@ -84,6 +84,7 @@
 
       .as-checkbox-check {
         animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 300ms forwards;
+        animation-delay: -20ms;
       }
     }
 
