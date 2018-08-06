@@ -1,0 +1,128 @@
+@import "../core/_dev";
+
+.as-checkbox {
+  display: flex;
+  position: relative;
+  align-items: center;
+  margin: 8px auto;
+  transition: all 0.3s;
+
+  .as-checkbox-decoration {
+    display: inline-block;
+    position: relative;
+    width: 16px;
+    height: 16px;
+    overflow: hidden;
+    border: 1px solid rgba($color-type-02, 0.16);
+    border-radius: 3px;
+    pointer-events: none;
+  }
+
+  .as-checkbox-check {
+    transform-origin: 50% 50%;
+    stroke-width: 2;
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+  }
+
+  .as-checkbox-media {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform: translateX(1.5px) translateY(2.5px);
+    fill: none;
+  }
+
+  .as-checkbox-input {
+    -webkit-appearance: none;
+    position: absolute;
+    appearance: none;
+    top: 0;
+    left: 0;
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    padding: 0;
+    border-radius: 3px;
+    background: none;
+    cursor: pointer;
+
+    &:focus {
+      border-width: 2px;
+    }
+
+    &:disabled {
+      background: #F4F4F4;
+      cursor: not-allowed;
+    }
+
+    &--error + .as-checkbox-decoration {
+      border-color: $color-support-01;
+      stroke: $color-support-01;
+      background: rgba($color-support-01, 0.16);
+    }
+
+    &:checked + .as-checkbox-decoration {
+      &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: calc(50% - 8px);
+        left: calc(50% - 8px);
+        width: 16px;
+        height: 16px;
+        animation: radioIn 300ms;
+        border-radius: 3px;
+        opacity: 1;
+        animation-fill-mode: forwards;
+      }
+
+      .as-checkbox-check {
+        animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 300ms forwards;
+      }
+    }
+
+    &:checked:not(.as-checkbox-input--error) + .as-checkbox-decoration {
+      border: 1px solid $color-primary;
+      stroke: $color-primary;
+    }
+
+    &:disabled:checked + {
+      background: #F4F4F4;
+      cursor: not-allowed;
+    }
+
+    &:disabled:checked + .as-checkbox-decoration {
+      border-color: rgba(116, 116, 116, 0.16);
+      stroke: rgba(116, 116, 116, 0.16);
+    }
+
+    &:enabled:not(:checked):not(.as-checkbox-input--error):hover + .as-checkbox-decoration {
+      border: 1px solid $color-complementary;
+    }
+  }
+
+  label {
+    margin-left: 8px;
+  }
+}
+
+@keyframes stroke {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes radioIn {
+  from {
+    transform: scale3d(0.3, 0.3, 0.3);
+    transform-origin: 50% 50%;
+    opacity: 0;
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+    opacity: 1;
+  }
+}
+
