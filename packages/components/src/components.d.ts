@@ -25,6 +25,10 @@ declare global {
   interface HTMLAttributes {}
 }
 
+import {
+  HistogramColorRange,
+  HistogramData,
+} from './components/as-histogram-widget/as-histogram-widget';
 
 declare global {
 
@@ -128,6 +132,85 @@ declare global {
        * The number of visible categories without aggregation.
        */
       'visibleCategories'?: number;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
+    interface AsHistogramWidget {
+      /**
+       * Color range for histogram data
+       */
+      'colorRange': HistogramColorRange[];
+      /**
+       * Histogram data to be displayed
+       */
+      'data': HistogramData[];
+      /**
+       * Bar color to be used by default
+       */
+      'defaultBarColor': string;
+      /**
+       * Description of the widget to be displayed
+       */
+      'description': string;
+      /**
+       * Toggles displaying title and description
+       */
+      'showHeader': boolean;
+      /**
+       * Title of the widget to be displayed
+       */
+      'title': string;
+    }
+  }
+
+  interface HTMLAsHistogramWidgetElement extends StencilComponents.AsHistogramWidget, HTMLStencilElement {}
+
+  var HTMLAsHistogramWidgetElement: {
+    prototype: HTMLAsHistogramWidgetElement;
+    new (): HTMLAsHistogramWidgetElement;
+  };
+  interface HTMLElementTagNameMap {
+    'as-histogram-widget': HTMLAsHistogramWidgetElement;
+  }
+  interface ElementTagNameMap {
+    'as-histogram-widget': HTMLAsHistogramWidgetElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'as-histogram-widget': JSXElements.AsHistogramWidgetAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface AsHistogramWidgetAttributes extends HTMLAttributes {
+      /**
+       * Color range for histogram data
+       */
+      'colorRange'?: HistogramColorRange[];
+      /**
+       * Histogram data to be displayed
+       */
+      'data'?: HistogramData[];
+      /**
+       * Bar color to be used by default
+       */
+      'defaultBarColor'?: string;
+      /**
+       * Description of the widget to be displayed
+       */
+      'description'?: string;
+      /**
+       * Toggles displaying title and description
+       */
+      'showHeader'?: boolean;
+      /**
+       * Title of the widget to be displayed
+       */
+      'title'?: string;
     }
   }
 }
