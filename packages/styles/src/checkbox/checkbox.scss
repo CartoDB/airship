@@ -44,11 +44,16 @@
     margin: 0;
     padding: 0;
     border-radius: 3px;
+    outline: none;
     background: none;
     cursor: pointer;
 
     &:focus {
-      border-width: 2px;
+      border: 2px solid $color-primary;
+    }
+
+    &:focus.as-checkbox-input--error {
+      border: 2px solid $color-support-01;
     }
 
     &:disabled {
