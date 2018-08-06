@@ -34,6 +34,6 @@
     "ci:styles": "backstop test --configPath=backstop.config.js --report=ci",
     "visual:reference": "docker run --rm -v $(pwd):/src backstopjs/backstopjs reference --i --configPath=backstop.config.js",
     "visual:reset": "docker run --rm -v $(pwd):/src backstopjs/backstopjs reference --configPath=backstop.config.js",
-    "visual:test": "docker run --rm -v $(pwd):/src backstopjs/backstopjs test --configPath=backstop.config.js && open ./backstop_data/html_report/index.html"
+    "visual:test": "docker run --rm -v $(pwd):/src backstopjs/backstopjs test --configPath=backstop.config.js; open ./backstop_data/html_report/index.html"
   }
 }

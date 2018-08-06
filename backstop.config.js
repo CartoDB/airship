@@ -8,7 +8,8 @@ if (argv.report === 'ci') {
 
 const defaultScenarioOptions = {
   misMatchThreshold: 0,
-  requireSameDimensions: true
+  requireSameDimensions: true,
+  delay: 50
 };
 
 let defaultOptions = {
@@ -59,7 +60,6 @@ const specDefinitions = specs.reduce((accum, spec) => {
 }, []);
 
 const scenarios = specDefinitions.map(definition => {
-  definition.misMatchThreshold = 5;
   return { ...defaultScenarioOptions, ...definition };
 });
 
