@@ -1,26 +1,57 @@
 const glob = require("glob")
 const path = require('path');
 
-const tests = [
-  '',
-  '/packages/styles/src/core/layout/toolbar/test/with-actions.html
-];
+const defaultScenarioOptions = {
+  misMatchThreshold: 0,
+  requireSameDimensions: true
+};
 
-module.exports = options => {
-  options.scenarios = [
+let defaultOptions = {
+  "id": "airship",
+  "viewports": [
     {
-      "label": "Tabs",
-      "url": "/packages/styles/src/core/layout/toolbar/test/tabs.html",
-      "misMatchThreshold" : 0.1,
-      "requireSameDimensions": true
+      "label": "phone",
+      "width": 320,
+      "height": 480
     },
     {
-      "label": "With actions",
-      "url": "/packages/styles/src/core/layout/toolbar/test/with-actions.html",
-      "misMatchThreshold" : 0.1,
-      "requireSameDimensions": true
+      "label": "tablet",
+      "width": 1024,
+      "height": 768
     }
-  ];
+  ],
+  "onBeforeScript": "puppet/onBefore.js",
+  "onReadyScript": "puppet/onReady.js",
+  "paths": {
+    "bitmaps_reference": "backstop_data/bitmaps_reference",
+    "bitmaps_test": "backstop_data/bitmaps_test",
+    "engine_scripts": "backstop_data/engine_scripts",
+    "html_report": "backstop_data/html_report",
+    "ci_report": "backstop_data/ci_report"
+  },
+  "report": ["browser"],
+  "engine": "puppeteer",
+  "engineOptions": {
+    "args": ["--no-sandbox"]
+  },
+  "asyncCaptureLimit": 5,
+  "asyncCompareLimit": 50,
+  "debug": false,
+  "debugWindow": false
+};
 
-  return options;
-}
+const specs = glob.sync(path.resolve(__dirname, 'packages/styles/src', '**/*.spec.js'));
+
+const specDefinitions = specs.reduce((accum, spec) => {
+  const files = require(spec);
+  return [...accum, ...files];
+}, []);
+
+const scenarios = specDefinitions.map(definition => {
+  definition.misMatchThreshold = 5;
+  return { ...defaultScenarioOptions, ...definition };
+});
+
+const options = { ...defaultOptions, scenarios };
+
+module.exports = options;
