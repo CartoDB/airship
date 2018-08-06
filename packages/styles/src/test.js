@@ -24,8 +24,7 @@ require('colors');
     const testSpecification = require(spec);
 
     if (Array.isArray(testSpecification)) {
-      await Promise.all(testSpecification.map(runTest));
-      return;
+      return await Promise.all(testSpecification.map(runTest));
     }
 
     await runTest(testSpecification);
