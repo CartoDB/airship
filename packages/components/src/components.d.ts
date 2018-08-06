@@ -51,7 +51,7 @@ declare global {
        */
       'minValue': number;
       /**
-       * Initial range. By default, the range is [minValue, maxValue]
+       * Initial range.
        */
       'range': number[];
       /**
@@ -108,7 +108,7 @@ declare global {
       'onChangeEnd'?: (event: CustomEvent<number | number[]>) => void;
       'onChangeStart'?: (event: CustomEvent<number | number[]>) => void;
       /**
-       * Initial range. By default, the range is [minValue, maxValue]
+       * Initial range.
        */
       'range'?: number[];
       /**

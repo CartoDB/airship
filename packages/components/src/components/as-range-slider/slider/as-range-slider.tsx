@@ -76,11 +76,11 @@ export class RangeSlider {
     if (!this._isBetweenValidValues(newValue)) {
       throw new Error(`RangeSlider: Value ${newValue} has to be between maxValue and minValue`);
     }
+    this._updateThumbs();
   }
 
   /**
    * Initial range.
-   * By default, the range is [minValue, maxValue]
    *
    * @type {number}
    * @memberof RangeSlider
@@ -94,13 +94,14 @@ export class RangeSlider {
     }
 
     newRange.map((value) => this.validateValue(value));
+    this._updateThumbs();
   }
 
   @State() private thumbs: Thumb[] = [];
 
   public componentWillLoad() {
     this._validateValues();
-    this.thumbs = this._createThumbs();
+    this._updateThumbs();
   }
 
   public render() {
@@ -121,6 +122,10 @@ export class RangeSlider {
         </div>
       </div>
     );
+  }
+
+  private _updateThumbs() {
+    this.thumbs = this._createThumbs();
   }
 
   private _renderThumb(thumb: Thumb) {
