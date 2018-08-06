@@ -69,7 +69,7 @@ export class RangeSlider {
    * @type {number}
    * @memberof RangeSlider
    */
-  @Prop() public value: number = 0;
+  @Prop() public value: number;
 
   @Watch('value')
   public validateValue(newValue: number) {
@@ -79,17 +79,17 @@ export class RangeSlider {
   }
 
   /**
-   * Initial value.
-   * By default, the value is 0 or the minValue.
+   * Initial range.
+   * By default, the range is [minValue, maxValue]
    *
    * @type {number}
    * @memberof RangeSlider
    */
-  @Prop() public range: number[] = [];
+  @Prop() public range: number[];
 
   @Watch('range')
   public validateRange(newRange: number[]) {
-    if (!this._sliderHasRange()) {
+    if (newRange.length !== 2) {
       throw new Error(`RangeSlider: Range ${newRange} need two values at most`);
     }
 
@@ -116,8 +116,8 @@ export class RangeSlider {
     return (
       <div class={cssClasses}>
         <div class='as-range-slider__rail'>
-          { this.thumbs.map((thumb) => this._renderThumb(thumb)) }
-          { this._renderRangeBar() }
+          {this.thumbs.map((thumb) => this._renderThumb(thumb))}
+          {this._renderRangeBar()}
         </div>
       </div>
     );
@@ -125,14 +125,16 @@ export class RangeSlider {
 
   private _renderThumb(thumb: Thumb) {
     return <as-range-slider-thumb
-              value={thumb.value}
-              percentage={thumb.percentage}
-              disabled={this.disabled}
-              formatValue={this.formatValue}
-              onThumbMove={(event) => this._onThumbMove(thumb, event.detail)}
-              onChangeStart={() => this._emitChangeIn(this.changeStart)}
-              onChangeEnd={() => this._emitChangeIn(this.changeEnd)}>
-           </as-range-slider-thumb>;
+      value={thumb.value}
+      valueMin={thumb.valueMin}
+      valueMax={thumb.valueMax}
+      percentage={thumb.percentage}
+      disabled={this.disabled}
+      formatValue={this.formatValue}
+      onThumbMove={(event) => this._onThumbMove(thumb, event.detail)}
+      onChangeStart={() => this._emitChangeIn(this.changeStart)}
+      onChangeEnd={() => this._emitChangeIn(this.changeEnd)}>
+    </as-range-slider-thumb>;
   }
 
   private _renderRangeBar() {
@@ -140,13 +142,13 @@ export class RangeSlider {
     const lastThumbPercentage = this.thumbs[this.thumbs.length - 1].percentage;
 
     return <as-range-slider-bar
-             rangeStartPercentage={firstThumbPercentage}
-             rangeEndPercentage={lastThumbPercentage}
-             draggable={this.draggable}
-             disabled={this.disabled}
-             onChangeStart={() => this._emitChangeIn(this.changeStart)}
-             onChangeEnd={() => this._emitChangeIn(this.changeEnd)}
-             onBarMove={(event) => this._onBarMove(event)}></as-range-slider-bar>;
+      rangeStartPercentage={firstThumbPercentage}
+      rangeEndPercentage={lastThumbPercentage}
+      draggable={this.draggable}
+      disabled={this.disabled}
+      onChangeStart={() => this._emitChangeIn(this.changeStart)}
+      onChangeEnd={() => this._emitChangeIn(this.changeEnd)}
+      onBarMove={(event) => this._onBarMove(event)}></as-range-slider-bar>;
   }
 
   private _validateValues() {
@@ -162,13 +164,16 @@ export class RangeSlider {
   }
 
   private _createThumbs() {
-    const hasRangeValues = this.range.length;
+    const hasRangeValues = this.range && this.range.length;
 
     if (!hasRangeValues) {
       return [this._getThumbData(this.value)];
     }
 
-    return this.range.map((value) => this._getThumbData(value));
+    const thumbs = this.range.map((value) => this._getThumbData(value));
+    this._fixMinMaxValues(thumbs);
+
+    return thumbs;
   }
 
   private _getThumbData(value) {
@@ -176,7 +181,9 @@ export class RangeSlider {
       percentage: this._isBetweenValidValues(value) ?
         this._getPercentage(value)
         : this._getPercentage(this.minValue),
-      value: this._isBetweenValidValues(value) ? value : this.minValue
+      value: this._isBetweenValidValues(value) ? value : this.minValue,
+      valueMax: this.maxValue,
+      valueMin: this.minValue
     };
   }
 
@@ -185,7 +192,7 @@ export class RangeSlider {
   }
 
   private _sliderHasRange() {
-    return this.range.length === 2;
+    return this.range && this.range.length === 2;
   }
 
   private _onThumbMove(thumb: Thumb, percentage: number) {
@@ -194,17 +201,28 @@ export class RangeSlider {
     const isRightThumb = rightThumb === thumb;
 
     const value = this._getValueFromPercentage(percentage);
+    let valueMin = this.minValue;
+    let valueMax = this.maxValue;
 
-    if (this._sliderHasRange() && isLeftThumb && ((rightThumb.value - 1) < value)) {
-      return;
+    if (this._sliderHasRange() && isLeftThumb) {
+      valueMax = (rightThumb.value - this.step);
+      if (valueMax < value) {
+        return;
+      }
     }
 
-    if (this._sliderHasRange() && isRightThumb && ((leftThumb.value + 1) > value)) {
-      return;
+    if (this._sliderHasRange() && isRightThumb) {
+      valueMin = (leftThumb.value + this.step);
+      if (valueMin > value) {
+        return;
+      }
     }
 
     thumb.value = value;
+    thumb.valueMin = valueMin;
+    thumb.valueMax = valueMax;
     thumb.percentage = percentage;
+
     this.thumbs = [...this.thumbs];
 
     this._emitChangeIn(this.change);
@@ -213,12 +231,25 @@ export class RangeSlider {
   private _onBarMove(percentage) {
     const percentageRange = percentage.detail;
 
-    this.thumbs = [
-      { value: this._getValueFromPercentage(percentageRange[0]), percentage: percentageRange[0] },
-      { value: this._getValueFromPercentage(percentageRange[1]), percentage: percentageRange[1] }
-    ];
+    const thumbs = percentageRange.map((p) => ({
+      percentage: p,
+      value: this._getValueFromPercentage(p)
+    }));
+    this._fixMinMaxValues(thumbs);
+
+    this.thumbs = thumbs;
 
     this._emitChangeIn(this.change);
+  }
+
+  private _fixMinMaxValues(thumbs) {
+    const [leftThumb, rightThumb] = thumbs;
+
+    leftThumb.valueMin = this.minValue;
+    leftThumb.valueMax = Math.min(rightThumb.value - this.step, this.maxValue);
+
+    rightThumb.valueMin = Math.max(this.minValue, leftThumb.value + this.step);
+    rightThumb.valueMax = this.maxValue;
   }
 
   private _emitChangeIn(eventEmitterInstance: EventEmitter<number | number[]>) {

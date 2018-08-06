@@ -9,6 +9,8 @@ import { MouseTrack } from '../MouseTrack';
 export class RangeSliderThumb extends MouseTrack {
   @Prop() public percentage: number;
   @Prop() public value: number;
+  @Prop() public valueMin: number;
+  @Prop() public valueMax: number;
   @Prop() public disabled: boolean;
   @Prop() public formatValue: (value: number) => void;
 
@@ -29,10 +31,15 @@ export class RangeSliderThumb extends MouseTrack {
       'as-range-slider__thumb--disabled': this.disabled
     };
     return (
-      <div class={cssClasses} style={thumbStyles} data-value={this.value}>
-          <span class='as-range-slider__value as-caption as-font-medium'>
-            {this._getDisplayValue(this.value)}
-          </span>
+      <div role='slider'
+        aria-valuetext={this._getDisplayValue(this.value)}
+        aria-valuenow={this.value}
+        aria-valuemin={this.valueMin}
+        aria-valuemax={this.valueMax}
+        class={cssClasses} style={thumbStyles} data-value={this.value}>
+        <span class='as-range-slider__value as-caption as-font-medium'>
+          {this._getDisplayValue(this.value)}
+        </span>
       </div>);
   }
 
@@ -76,5 +83,7 @@ export class RangeSliderThumb extends MouseTrack {
 
 export interface Thumb {
   value: number;
+  valueMin: number;
+  valueMax: number;
   percentage: number;
 }

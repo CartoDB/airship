@@ -51,7 +51,7 @@ declare global {
        */
       'minValue': number;
       /**
-       * Initial value. By default, the value is 0 or the minValue.
+       * Initial range. By default, the range is [minValue, maxValue]
        */
       'range': number[];
       /**
@@ -108,7 +108,7 @@ declare global {
       'onChangeEnd'?: (event: CustomEvent<number | number[]>) => void;
       'onChangeStart'?: (event: CustomEvent<number | number[]>) => void;
       /**
-       * Initial value. By default, the value is 0 or the minValue.
+       * Initial range. By default, the range is [minValue, maxValue]
        */
       'range'?: number[];
       /**
@@ -132,6 +132,8 @@ declare global {
       'formatValue': (value: number) => void;
       'percentage': number;
       'value': number;
+      'valueMax': number;
+      'valueMin': number;
     }
   }
 
@@ -161,6 +163,8 @@ declare global {
       'onThumbMove'?: (event: CustomEvent<number>) => void;
       'percentage'?: number;
       'value'?: number;
+      'valueMax'?: number;
+      'valueMin'?: number;
     }
   }
 }
