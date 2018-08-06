@@ -1,5 +1,5 @@
 {
-  "id": "backstop_default",
+  "id": "Airship",
   "viewports": [
     {
       "label": "phone",
@@ -18,13 +18,13 @@
     {
       "label": "Tabs",
       "url": "/packages/styles/src/core/layout/toolbar/test/tabs.html",
-      "misMatchThreshold" : 0.1,
+      "misMatchThreshold" : 0,
       "requireSameDimensions": true
     },
     {
       "label": "With actions",
       "url": "/packages/styles/src/core/layout/toolbar/test/with-actions.html",
-      "misMatchThreshold" : 0.1,
+      "misMatchThreshold" : 0,
       "requireSameDimensions": true
     }
   ],

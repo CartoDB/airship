@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuites errors="1" failures="1"><testsuite name="BackstopJS" tests="4" errors="1" failures="1"><testcase name=" ›› Tabs" classname="document"><error message="Design deviation ›› Tabs (document) component" type="CSS component"/><failure message="Design deviation ›› Tabs (document) component" type="CSS component"/></testcase><testcase name=" ›› Tabs" classname="document"/><testcase name=" ›› With actions" classname="document"/><testcase name=" ›› With actions" classname="document"/></testsuite></testsuites>
