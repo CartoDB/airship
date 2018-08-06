@@ -32,6 +32,7 @@
     "test:watch": "lerna run --parallel test:watch",
     "test": "lerna run test",
     "visual": "docker run --rm -v $(pwd):/src backstopjs/backstopjs test",
+    "reference": "docker run --rm -v $(pwd):/src backstopjs/backstopjs reference",
     "backup_test_styles": "lerna exec --scope @carto/airship-style -- npm run test"
   }
 }
