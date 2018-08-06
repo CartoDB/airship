@@ -48,7 +48,6 @@ jobs:
       - run: git config --global user.email "frontend@carto.com"
       - run: git config --global user.name "CircleCI"
       - checkout
-      - run: Xvfb :98 &
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "package.json" }}
@@ -56,7 +55,6 @@ jobs:
           - v1-dependencies-
       - run: npm install
       - run: npm run build:styles
-      - run: xvfb-run -a npm run test:styles
       - save_cache:
           paths:
             - node_modules
