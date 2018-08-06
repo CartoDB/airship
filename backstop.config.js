@@ -1,5 +1,10 @@
 const glob = require("glob")
 const path = require('path');
+const argv = require('minimist')(process.argv.slice(2));
+
+if (argv.report === 'ci') {
+  console.log('CI CI CI CI CI');
+}
 
 const defaultScenarioOptions = {
   misMatchThreshold: 0,
@@ -40,6 +45,12 @@ let defaultOptions = {
   "debugWindow": false
 };
 
+const report = {
+  report: argv.report === 'ci'
+    ? ['ci']
+    : ['browser']
+};
+
 const specs = glob.sync(path.resolve(__dirname, 'packages/styles/src', '**/*.spec.js'));
 
 const specDefinitions = specs.reduce((accum, spec) => {
@@ -52,6 +63,6 @@ const scenarios = specDefinitions.map(definition => {
   return { ...defaultScenarioOptions, ...definition };
 });
 
-const options = { ...defaultOptions, scenarios };
+const options = { ...defaultOptions, scenarios, ...report };
 
 module.exports = options;
