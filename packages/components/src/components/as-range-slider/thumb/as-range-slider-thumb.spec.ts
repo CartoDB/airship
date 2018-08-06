@@ -38,7 +38,7 @@ describe('as-range-slider-thumb', () => {
             expect(div.getAttribute('aria-valuenow')).toEqual('5');
             expect(div.getAttribute('aria-valuemin')).toEqual('0');
             expect(div.getAttribute('aria-valuemax')).toEqual('10');
-            expect(div.getAttribute('aria-valuetext')).toEqual('5€ ');
+            expect(div.getAttribute('aria-valuetext')).toEqual('5€');
         });
     });
 });
