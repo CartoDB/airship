@@ -19,7 +19,7 @@ A checkbox consist in 3 sub-elements wrapped inside an `as-checkbox` parent.
 </div>
 
 <div class="as-checkbox">
-  <input class="as-checkbox-input" type="checkbox" id="checkbox-1" name="checkbox-1" value="checkbox-1">
+  <input checked class="as-checkbox-input" type="checkbox" id="checkbox-1" name="checkbox-1" value="checkbox-1">
   <span class="as-checkbox-decoration">
     <svg class="as-checkbox-media">
       <polyline class="as-checkbox-check" points="1.65093994 3.80255127 4.48919678 6.97192383 10.3794556 0.717346191"></polyline>

@@ -4,14 +4,14 @@
   display: flex;
   position: relative;
   align-items: center;
-  margin: 8px auto;
+  margin: get-spacing(2) auto;
   transition: all 0.3s;
 
   .as-checkbox-decoration {
     display: inline-block;
     position: relative;
-    width: 16px;
-    height: 16px;
+    width: get-spacing(4);
+    height: get-spacing(4);
     overflow: hidden;
     border: 1px solid rgba($color-type-02, 0.16);
     border-radius: 3px;
@@ -39,8 +39,8 @@
     appearance: none;
     top: 0;
     left: 0;
-    width: 16px;
-    height: 16px;
+    width: get-spacing(4);
+    height: get-spacing(4);
     margin: 0;
     padding: 0;
     border-radius: 3px;
@@ -49,11 +49,11 @@
     cursor: pointer;
 
     &:focus {
-      border: 2px solid $color-primary;
+      border: 2px solid var(--as-color-primary, #{$color-primary});
     }
 
     &:focus.as-checkbox-input--error {
-      border: 2px solid $color-support-01;
+      border: 2px solid var(--as-color-support-01, #{$color-support-01});
     }
 
     &:disabled {
@@ -62,8 +62,8 @@
     }
 
     &--error + .as-checkbox-decoration {
-      border-color: $color-support-01;
-      stroke: $color-support-01;
+      border-color: var(--as-color-support-01, #{$color-support-01});
+      stroke: var(--as-color-support-01, #{$color-support-01});
       background: rgba($color-support-01, 0.16);
     }
 
@@ -74,8 +74,8 @@
         position: absolute;
         top: calc(50% - 8px);
         left: calc(50% - 8px);
-        width: 16px;
-        height: 16px;
+        width: get-spacing(4);
+        height: get-spacing(4);
         animation: radioIn 300ms;
         border-radius: 3px;
         opacity: 1;
@@ -89,12 +89,12 @@
     }
 
     &:checked:not(.as-checkbox-input--error) + .as-checkbox-decoration {
-      border: 1px solid $color-primary;
-      stroke: $color-primary;
+      border: 1px solid var(--as-color-primary, #{$color-primary});
+      stroke: var(--as-color-primary, #{$color-primary});
     }
 
     &:disabled:checked + {
-      background: #F4F4F4;
+      background: var(--as-color-ui-02, #{$color-ui-02});
       cursor: not-allowed;
     }
 
@@ -104,7 +104,7 @@
     }
 
     &:enabled:not(:checked):not(.as-checkbox-input--error):hover + .as-checkbox-decoration {
-      border: 1px solid $color-complementary;
+      border: 1px solid var(--as-color-complementary, #{$color-complementary});
     }
   }
 
