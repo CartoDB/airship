@@ -3,6 +3,7 @@
 .as-radio {
   display: flex;
   align-items: center;
+  margin-bottom: get-spacing(2);
 
   &__input {
     display: block;
