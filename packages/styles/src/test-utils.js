@@ -15,7 +15,8 @@ function utils(dirname) {
     return `file://${filePath}.html`;
   };
 
-  this.spec = function (name, options = {}) {
+  this.spec = function (name, options) {
+    options = options || {};
     reference = options.mobile ? `${this.image(name)}-mobile-reference.png` : `${this.image(name)}-reference.png`;
     screenshot = options.mobile ? `${this.image(name)}-mobile-out.png` : `${this.image(name)}-out.png`;
     url = this.html(name);
@@ -23,8 +24,8 @@ function utils(dirname) {
       reference,
       screenshot,
       url,
-      viewportWidth: mobile ? mobileWidth : desktopWidth,
-      viewportHeight: mobile ? mobileHeight : desktopHeight
+      viewportWidth: options.mobile ? mobileWidth : desktopWidth,
+      viewportHeight: options.mobile ? mobileHeight : desktopHeight
     };
   };
 }
