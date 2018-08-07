@@ -1,5 +1,5 @@
 const Utils = require('../../../test-utils');
-const u = new Utils(__dirname);
+const utils = new Utils(__dirname);
 
 module.exports = [
   u.spec('Containers in sidebar', 'containers-in-sidebar.html'),

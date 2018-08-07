@@ -4,6 +4,7 @@ const sass = require('@stencil/sass');
 exports.config = {
   namespace: 'airship',
   copy: [{ src: 'components/**/*.html' }],
+  globalStyle: path.join(__dirname, '../styles/src/core/_dev.scss'),
   outputTargets:[
     { type: 'dist' },
     {
@@ -15,7 +16,10 @@ exports.config = {
   ],
   plugins: [
     sass({
-      outFile: path.join(__dirname, '.generated-styles')
+      outFile: path.join(__dirname, '.generated-styles'),
+      injectGlobalPaths: [
+        path.join(__dirname, '../styles/src/core/variables/_variables.scss')
+      ]
     })
   ]
 };

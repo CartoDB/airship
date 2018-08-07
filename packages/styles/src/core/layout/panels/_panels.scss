@@ -56,7 +56,7 @@
       left: get-spacing(6);
 
       #{$panel-selector}__element {
-        @include margin(0 2 0 0);
+        margin: get-margin(0 2 0 0);
       }
     }
 
@@ -69,7 +69,7 @@
       right: get-spacing(6);
 
       #{$panel-selector}__element {
-        @include margin(0 0 0 2);
+        margin: get-margin(0 0 0 2);
       }
     }
 
@@ -83,19 +83,19 @@
       pointer-events: auto;
 
       .as-box {
-        @include margin(5);
+        margin: get-margin(5);
       }
     }
 
     &--top#{&}--vertical {
       #{$panel-selector}__element {
-        @include margin(0 0 2 0);
+        margin: get-margin(0 0 2 0);
       }
     }
 
     &--bottom#{&}--vertical {
       #{$panel-selector}__element {
-        @include margin(2 0 0 0);
+        margin: get-margin(2 0 0 0);
       }
     }
   }
