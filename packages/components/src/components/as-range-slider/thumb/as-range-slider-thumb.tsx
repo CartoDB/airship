@@ -66,6 +66,9 @@ export class RangeSliderThumb extends MouseTrack {
 
   @Listen('keydown')
   public onKeyDown(event: KeyboardEvent) {
+    if (this.disabled) {
+      return;
+    }
 
     const KEY = {
       DOWN: 40,
