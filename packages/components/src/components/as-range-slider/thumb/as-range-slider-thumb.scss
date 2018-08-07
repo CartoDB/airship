@@ -8,7 +8,7 @@ as-range-slider-thumb {
     height: 12px;
     transform: translate3d(-6px, 0, 0);
     transition: transform 200ms ease, opacity 200ms ease;
-    border: 1px solid #1785FB;
+    border: 1px solid var(--as-color-primary, #{$color-primary});
     border-radius: 50%;
     background: #FFF;
     cursor: grab;
@@ -26,14 +26,23 @@ as-range-slider-thumb {
     &.as-range-slider__thumb--moving {
       transform: translate3d(-6px, 0, 0) scale(1.33);
     }
+
+    &:focus {
+      outline: none;
+      background: var(--as-color-primary, #{$color-primary});
+    }
   }
 
   .as-range-slider__thumb--disabled {
-    border: 1px solid var(--color-ui-03, #{$color-ui-03});
-    background: var(--color-ui-02, #{$color-ui-02});
+    border: 1px solid var(--as-color-ui-03, #{$color-ui-03});
+    background: var(--as-color-ui-02, #{$color-ui-02});
+
+    &:focus {
+      background: var(--as-color-ui-02, #{$color-ui-02});
+    }
 
     .as-range-slider__value {
-      color: var(--color-type-03, #{$color-type-03});
+      color: var(--as-color-type-03, #{$color-type-03});
     }
   }
 

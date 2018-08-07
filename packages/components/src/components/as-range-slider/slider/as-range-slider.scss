@@ -1,8 +1,8 @@
 @import '../../../../../styles/src/core/_dev';
 
 as-range-slider {
-  --slider--rail-color: #{$color-ui-03};
-  --slider--range-color: #{$color-primary};
+  --slider--rail-color: var(--as-color-ui-03, #{$color-ui-03});
+  --slider--range-color: var(--as-color-primary, #{$color-primary});
 
   display: block;
 
