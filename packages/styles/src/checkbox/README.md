@@ -1,10 +1,10 @@
 Use checkboxes when looking for yes or no answers. The `for` attribute is necessary to bind our custom checkbox with the input.
 
-A checkbox consist in 3 sub-elements wrapped inside an `as-checkbox` parent.
+A checkbox consists of 3 sub-elements wrapped inside an `as-checkbox` parent.
 
-- `as-checkbox-input` Native Input element handeling the logic.
+- `as-checkbox-input` Native Input element handling the logic.
 - `as-checkbox-decoration`: Custom animated svg used to achieve the tick effect.
-- `label`: Optional but recommended for a better UI and accesibility.
+- `label`: Optional but recommended for a better UI and accessibility.
 
 
 ```html
@@ -30,7 +30,7 @@ A checkbox consist in 3 sub-elements wrapped inside an `as-checkbox` parent.
 ```
 
 ## Checkbox errors
-You can give checkbos an error-status using the `as-checkbox-input--error` class modifier on the `input` element.
+You can give checkboxes an error-status using the `as-checkbox-input--error` class modifier on the `input` element.
 
 
 ```html
