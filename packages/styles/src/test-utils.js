@@ -15,9 +15,9 @@ function utils(dirname) {
     return `file://${filePath}.html`;
   };
 
-  this.spec = function (name, { mobile = false }) {
-    reference = mobile ? `${this.image(name)}-mobile-reference.png` : `${this.image(name)}-reference.png`;
-    screenshot = mobile ? `${this.image(name)}-mobile-out.png` : `${this.image(name)}-out.png`;
+  this.spec = function (name, options = {}) {
+    reference = options.mobile ? `${this.image(name)}-mobile-reference.png` : `${this.image(name)}-reference.png`;
+    screenshot = options.mobile ? `${this.image(name)}-mobile-out.png` : `${this.image(name)}-out.png`;
     url = this.html(name);
     return {
       reference,
