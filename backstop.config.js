@@ -1,6 +1,5 @@
 const glob = require("glob")
 const path = require('path');
-const argv = require('minimist')(process.argv.slice(2));
 
 const defaultScenarioOptions = {
   misMatchThreshold: 0,
@@ -8,7 +7,7 @@ const defaultScenarioOptions = {
   delay: 100
 };
 
-let defaultOptions = {
+const defaultOptions = {
   "id": "airship",
   "viewports": [
     {
@@ -43,7 +42,7 @@ let defaultOptions = {
 };
 
 const report = {
-  report: argv.report === 'ci'
+  report: process.env.REPORT === 'ci'
     ? ['ci']
     : ['browser']
 };

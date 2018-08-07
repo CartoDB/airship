@@ -29,11 +29,11 @@ module.exports = [
 ];
 ```
 
-- Run `npm run visual:reference`. This will create the new references. Check them and, if they're OK, commit them to the project. `BackstopJS` will use these references from now on.
+- Run `npm run test:build-references`. This will create the new references. Check them and, if they're OK, commit them to the project. `BackstopJS` will use these references from now on.
 
 **Recreate image references**
 
-If you make any change in an existing visual spec, run `npm run visual:reference`. This command recreates the reference and if there's any difference, the current git diff will tell you that there are changes in an existing reference.
+If you make any change in an existing visual spec, run `npm run test:build-references`. This command recreates the reference and if there's any difference, the current git diff will tell you that there are changes in an existing reference.
 
 If you're OK with the reference image, commit it.
 
