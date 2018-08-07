@@ -6,11 +6,17 @@ function utils (dirname) {
     return `file://${filePath}`;
   };
 
-  this.spec = function (label, filename) {
-    return {
+  this.spec = function (label, filename, readySelector) {
+    let options = {
       label,
       url: this.html(filename)
     };
+
+    if (readySelector) {
+      options.readySelector = readySelector;
+    }
+
+    return options;
   }
 }
 

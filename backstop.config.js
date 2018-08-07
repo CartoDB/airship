@@ -2,14 +2,10 @@ const glob = require("glob")
 const path = require('path');
 const argv = require('minimist')(process.argv.slice(2));
 
-if (argv.report === 'ci') {
-  console.log('CI CI CI CI CI');
-}
-
 const defaultScenarioOptions = {
   misMatchThreshold: 0,
   requireSameDimensions: true,
-  delay: 50
+  delay: 100
 };
 
 let defaultOptions = {
