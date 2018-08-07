@@ -145,9 +145,7 @@ export class RangeSlider {
   }
 
   private _renderRangeBar() {
-    const firstThumbPercentage = this._sliderHasRange() ? this.thumbs[0].percentage : 0;
-    const lastThumbPercentage = this.thumbs[this.thumbs.length - 1].percentage;
-
+    const [firstThumbPercentage, lastThumbPercentage] = this._getCurrentThumbPercentages();
     return <as-range-slider-bar
       rangeStartPercentage={firstThumbPercentage}
       rangeEndPercentage={lastThumbPercentage}
@@ -156,6 +154,12 @@ export class RangeSlider {
       onChangeStart={() => this._emitChangeIn(this.changeStart)}
       onChangeEnd={() => this._emitChangeIn(this.changeEnd)}
       onBarMove={(event) => this._onBarMove(event)}></as-range-slider-bar>;
+  }
+
+  private _getCurrentThumbPercentages() {
+    const firstThumbPercentage = this._sliderHasRange() ? this.thumbs[0].percentage : 0;
+    const lastThumbPercentage = this.thumbs[this.thumbs.length - 1].percentage;
+    return [firstThumbPercentage, lastThumbPercentage];
   }
 
   private _validateValues() {
@@ -204,6 +208,7 @@ export class RangeSlider {
 
   private _onThumbMove(thumb: Thumb, percentage: number) {
     const value = this._getValueFromPercentage(percentage);
+    const stepPercentage = this._getPercentage(value);
 
     const [leftThumb, rightThumb] = this.thumbs;
     const isLeftThumb = leftThumb === thumb;
@@ -229,7 +234,7 @@ export class RangeSlider {
     thumb.value = value;
     thumb.valueMin = valueMin;
     thumb.valueMax = valueMax;
-    thumb.percentage = percentage;
+    thumb.percentage = stepPercentage;
 
     this.thumbs = [...this.thumbs];
 
@@ -286,6 +291,11 @@ export class RangeSlider {
   }
 
   private _getValueFromPercentage(percentage) {
-    return ((percentage * (this.maxValue - this.minValue)) / 100) + this.minValue;
+    const value = ((percentage * (this.maxValue - this.minValue)) / 100) + this.minValue;
+    return this._getStepValueFromValue(value);
+  }
+
+  private _getStepValueFromValue(value) {
+    return Math.round(value / this.step) * this.step;
   }
 }
