@@ -53,7 +53,7 @@
     // range
     const rangeSlider = document.querySelector('#range');
     rangeSlider.range = [30, 70];
-    rangeSlider.step = 2;
+    rangeSlider.step = 5;
     rangeSlider.draggable = true;
     rangeSlider.formatValue = (value) => (`${value}€`);
     rangeSlider.addEventListener('change', (event) => console.log('Changed:', event.detail));
