@@ -17,6 +17,9 @@ export class RangeSliderThumb extends MouseTrack {
   @Event() public thumbMove: EventEmitter<number>;
   @Event() public changeStart: EventEmitter<void>;
   @Event() public changeEnd: EventEmitter<void>;
+  @Event() public thumbIncrease: EventEmitter<number>;
+  @Event() public thumbDecrease: EventEmitter<number>;
+
 
   @Element() public element: HTMLElement;
   public railElement: HTMLElement;
@@ -32,6 +35,7 @@ export class RangeSliderThumb extends MouseTrack {
     };
     return (
       <div role='slider'
+        tabindex='0'
         aria-valuetext={this._getDisplayValue(this.value)}
         aria-valuenow={this.value}
         aria-valuemin={this.valueMin}
@@ -58,6 +62,38 @@ export class RangeSliderThumb extends MouseTrack {
     });
 
     thumb.focus();
+  }
+
+  @Listen('keydown')
+  public onKeyDown(event: KeyboardEvent) {
+
+    const KEY = {
+      DOWN: 40,
+      LEFT: 37,
+      RIGHT: 39,
+      UP: 38
+    };
+
+    let flag = false;
+    switch (event.keyCode) {
+      case KEY.DOWN:
+      case KEY.LEFT:
+        this.thumbDecrease.emit();
+        flag = true;
+        break;
+      case KEY.UP:
+      case KEY.RIGHT:
+        this.thumbIncrease.emit();
+        flag = true;
+        break;
+      default:
+        break;
+    }
+
+    if (flag) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
   }
 
   private _onMove(event: MouseEvent) {

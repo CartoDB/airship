@@ -137,6 +137,8 @@ export class RangeSlider {
       disabled={this.disabled}
       formatValue={this.formatValue}
       onThumbMove={(event) => this._onThumbMove(thumb, event.detail)}
+      onThumbIncrease={() => this._onThumbIncrease(thumb)}
+      onThumbDecrease={() => this._onThumbDecrease(thumb)}
       onChangeStart={() => this._emitChangeIn(this.changeStart)}
       onChangeEnd={() => this._emitChangeIn(this.changeEnd)}>
     </as-range-slider-thumb>;
@@ -201,11 +203,12 @@ export class RangeSlider {
   }
 
   private _onThumbMove(thumb: Thumb, percentage: number) {
+    const value = this._getValueFromPercentage(percentage);
+
     const [leftThumb, rightThumb] = this.thumbs;
     const isLeftThumb = leftThumb === thumb;
     const isRightThumb = rightThumb === thumb;
 
-    const value = this._getValueFromPercentage(percentage);
     let valueMin = this.minValue;
     let valueMax = this.maxValue;
 
@@ -231,6 +234,22 @@ export class RangeSlider {
     this.thumbs = [...this.thumbs];
 
     this._emitChangeIn(this.change);
+  }
+
+  private _onThumbIncrease(thumb: Thumb) {
+    const percentage = this._getPercentage(thumb.value + this.step);
+    if (percentage < 0 || percentage > 100) {
+      return;
+    }
+    this._onThumbMove(thumb, percentage);
+  }
+
+  private _onThumbDecrease(thumb: Thumb) {
+    const percentage = this._getPercentage(thumb.value - this.step);
+    if (percentage < 0 || percentage > 100) {
+      return;
+    }
+    this._onThumbMove(thumb, percentage);
   }
 
   private _onBarMove(percentage) {

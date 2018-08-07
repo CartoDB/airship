@@ -160,6 +160,8 @@ declare global {
       'formatValue'?: (value: number) => void;
       'onChangeEnd'?: (event: CustomEvent<void>) => void;
       'onChangeStart'?: (event: CustomEvent<void>) => void;
+      'onThumbDecrease'?: (event: CustomEvent<number>) => void;
+      'onThumbIncrease'?: (event: CustomEvent<number>) => void;
       'onThumbMove'?: (event: CustomEvent<number>) => void;
       'percentage'?: number;
       'value'?: number;
