@@ -9,7 +9,9 @@ function utils (dirname) {
   this.spec = function (label, filename, readySelector) {
     let options = {
       label,
-      url: this.html(filename)
+      url: filename
+        ? this.html(filename)
+        : this.html(label)
     };
 
     if (readySelector) {
