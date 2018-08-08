@@ -68,9 +68,8 @@ export class RangeSlider {
   @Prop() public draggable: boolean = false;
 
   /**
-   * If this property is set to true, and it has multiple value, you can drag the entire track.
-   *
-   * @type {number}
+   * If this property receives a function, it will be used to format the numbers (eg. for adding $ or €).
+   * @type {function (value: number)}
    * @memberof RangeSlider
    */
   @Prop() public formatValue: (value: number) => void;
@@ -146,12 +145,13 @@ export class RangeSlider {
   private _renderRangeBar() {
     const [firstThumbPercentage, lastThumbPercentage] = this._getCurrentThumbPercentages();
 
+    const draggable = this.draggable && this.range !== undefined;
     const stepPercentage = this._getStepPercentage();
     return <as-range-slider-bar
       rangeStartPercentage={firstThumbPercentage}
       rangeEndPercentage={lastThumbPercentage}
       stepPercentage={stepPercentage}
-      draggable={this.draggable}
+      draggable={draggable}
       disabled={this.disabled}
       onChangeStart={() => this._emitChangeIn(this.changeStart)}
       onChangeEnd={() => this._emitChangeIn(this.changeEnd)}
