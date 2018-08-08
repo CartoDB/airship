@@ -35,7 +35,7 @@ export class RangeSliderThumb extends MouseTrack {
     };
     return (
       <div role='slider'
-        tabindex='0'
+        tabindex={this.disabled ? '-1' : '0'}
         aria-valuetext={this._getDisplayValue(this.value)}
         aria-valuenow={this.value}
         aria-valuemin={this.valueMin}
