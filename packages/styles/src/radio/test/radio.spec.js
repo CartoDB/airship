@@ -3,6 +3,6 @@ const u = new Utils(__dirname);
 
 module.exports = [
   u.spec('Radio base', 'radio-base', {
-    misMatchThreshold: 0.0001
+    misMatchThreshold: 0.02
   })
 ];
