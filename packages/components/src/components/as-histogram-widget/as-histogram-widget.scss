@@ -1,0 +1,24 @@
+@import '../../../../styles/src/core/_dev';
+
+as-histogram-widget {
+  svg {
+    display: block;
+
+    .yAxis .tick {
+      line {
+        stroke: $color-ui-04;
+        opacity: 0.5;
+      }
+
+      &:first-of-type {
+        line {
+          opacity: 1;
+        }
+      }
+    }
+    
+    text {
+      fill: $color-ui-04;
+    }
+  }
+}

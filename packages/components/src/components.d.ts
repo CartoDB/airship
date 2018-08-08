@@ -158,13 +158,13 @@ declare global {
        */
       'description': string;
       /**
+       * Title of the widget to be displayed
+       */
+      'heading': string;
+      /**
        * Toggles displaying title and description
        */
       'showHeader': boolean;
-      /**
-       * Title of the widget to be displayed
-       */
-      'title': string;
     }
   }
 
@@ -204,13 +204,13 @@ declare global {
        */
       'description'?: string;
       /**
+       * Title of the widget to be displayed
+       */
+      'heading'?: string;
+      /**
        * Toggles displaying title and description
        */
       'showHeader'?: boolean;
-      /**
-       * Title of the widget to be displayed
-       */
-      'title'?: string;
     }
   }
 }
