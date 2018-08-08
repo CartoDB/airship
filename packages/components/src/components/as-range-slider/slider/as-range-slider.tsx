@@ -182,7 +182,7 @@ export class RangeSlider {
     }
 
     const thumbs = this.range.map((value) => this._getThumbData(value));
-    this._fixMinMaxValues(thumbs);
+    this._fixMinMaxValuesIn(thumbs);
 
     return thumbs;
   }
@@ -208,7 +208,8 @@ export class RangeSlider {
 
   private _onThumbMove(thumb: Thumb, percentage: number) {
     const value = this._getValueFromPercentage(percentage);
-    const stepPercentage = this._getPercentage(value);
+    const stepValue = this._getStepValueFromValue(value);
+    const stepPercentage = this._getPercentage(stepValue);
 
     const [leftThumb, rightThumb] = this.thumbs;
     const isLeftThumb = leftThumb === thumb;
@@ -219,19 +220,19 @@ export class RangeSlider {
 
     if (this._sliderHasRange() && isLeftThumb) {
       valueMax = (rightThumb.value - this.step);
-      if (valueMax < value) {
+      if (valueMax < stepValue) {
         return;
       }
     }
 
     if (this._sliderHasRange() && isRightThumb) {
       valueMin = (leftThumb.value + this.step);
-      if (valueMin > value) {
+      if (valueMin > stepValue) {
         return;
       }
     }
 
-    thumb.value = value;
+    thumb.value = stepValue;
     thumb.valueMin = valueMin;
     thumb.valueMax = valueMax;
     thumb.percentage = stepPercentage;
@@ -259,19 +260,28 @@ export class RangeSlider {
 
   private _onBarMove(percentage) {
     const percentageRange = percentage.detail;
+    const newValues = percentageRange.map((p) => this._getValueFromPercentage(p));
+    const newStepValues = newValues.map((value) => this._getStepValueFromValue(value));
 
-    const thumbs = percentageRange.map((p) => ({
-      percentage: p,
-      value: this._getValueFromPercentage(p)
+
+    const currentValues = this.thumbs.map((thumb) => thumb.value);
+    if (Math.abs(newStepValues[0] - currentValues[0]) < this.step &&
+      Math.abs(newStepValues[1] - currentValues[1]) < this.step) {
+      return;
+    }
+
+    const thumbs = newStepValues.map((stepValue) => ({
+      percentage: this._getPercentage(stepValue),
+      value: stepValue
     }));
-    this._fixMinMaxValues(thumbs);
+    this._fixMinMaxValuesIn(thumbs);
 
     this.thumbs = thumbs;
 
     this._emitChangeIn(this.change);
   }
 
-  private _fixMinMaxValues(thumbs) {
+  private _fixMinMaxValuesIn(thumbs) {
     const [leftThumb, rightThumb] = thumbs;
 
     leftThumb.valueMin = this.minValue;
@@ -291,8 +301,7 @@ export class RangeSlider {
   }
 
   private _getValueFromPercentage(percentage) {
-    const value = ((percentage * (this.maxValue - this.minValue)) / 100) + this.minValue;
-    return this._getStepValueFromValue(value);
+    return ((percentage * (this.maxValue - this.minValue)) / 100) + this.minValue;
   }
 
   private _getStepValueFromValue(value) {
