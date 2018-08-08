@@ -5,5 +5,5 @@ module.exports = [
   u.spec('input-base'),
   u.spec('input-disabled'),
   u.spec('input-invalid'),
-  u.spec('input-readonly'),
+  u.spec('input-readonly')
 ];
