@@ -4,7 +4,7 @@ const path = require('path');
 const defaultScenarioOptions = {
   misMatchThreshold: 0,
   requireSameDimensions: true,
-  delay: 100
+  delay: 50
 };
 
 const defaultOptions = {
