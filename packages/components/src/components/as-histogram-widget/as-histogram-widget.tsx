@@ -1,4 +1,4 @@
-import { Component, Prop, Element } from '@stencil/core';
+import { Component, Prop, Element, Watch } from '@stencil/core';
 import readableNumber from '../../utils/readable-number';
 import { select } from 'd3-selection';
 import { scaleLinear } from 'd3-scale';
@@ -61,6 +61,12 @@ export class HistogramWidget {
    */
   @Prop() public data: HistogramData[];
 
+  @Watch('data')
+  onDataChanged(newValue: HistogramData[], oldValue: HistogramData[]) {
+    console.log('onDataChanged', newValue, oldValue);
+    this._updateAxes();
+  }
+
   /**
    * Bar color to be used by default
    *
@@ -102,6 +108,7 @@ export class HistogramWidget {
   private _renderGraph() {
     this._renderYAxis();
     this._renderXAxis();
+    this._cleanAxes();
   }
 
   private _renderYAxis() {
@@ -123,8 +130,6 @@ export class HistogramWidget {
       .attr('class', 'yAxis')
       .attr('transform', `translate(${MARGIN.LEFT}, ${MARGIN.TOP})`)
       .call(this.yAxis);
-
-    this.yAxisSelection.select('.domain').remove();
   }
 
   private _renderXAxis() {
@@ -146,9 +151,35 @@ export class HistogramWidget {
       .attr('class', 'xAxis')
       .attr('transform', `translate(${MARGIN.LEFT}, ${HEIGHT + MARGIN.BOTTOM})`)
       .call(this.xAxis);
+  }
 
+  private _cleanAxes() {
+    this.yAxisSelection.select('.domain').remove();
     this.xAxisSelection.select('.domain').remove();
     this.xAxisSelection.selectAll('line').remove();
+  }
+
+  private _updateAxes() {
+    const data = this.data;
+    const { start } = data[0];
+    const { end } = data[data.length - 1];
+
+    // -- Update scales
+    this.yScale
+      .domain([0, max(data, d => d.value)])
+      .nice();
+
+    this.xScale
+      .domain([start, end]);
+
+    // -- Update axes
+    this.xAxisSelection
+      .call(this.xAxis);
+
+    this.yAxisSelection
+      .call(this.yAxis);
+
+    this._cleanAxes();
   }
 
   _renderHeader() {
