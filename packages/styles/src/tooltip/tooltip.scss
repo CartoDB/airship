@@ -18,25 +18,25 @@
     border-color: var(--as-color-type-01, #{$color-type-01});
   }
 
-  &--top::after {
+  &--bot::after {
     top: 100%;
     left: 50%;
     transform: translateY(-6px) translateX(-5px) rotateZ(45deg);
   }
 
-  &--bot::after {
+  &--top::after {
     bottom: 100%;
     left: 50%;
     transform: translateY(6px) translateX(-5px) rotateZ(45deg);
   }
 
-  &--right::after {
+  &--left::after {
     top: 50%;
     left: 0;
     transform: translateY(-5px) translateX(-4px) rotateZ(45deg);
   }
 
-  &--left::after {
+  &--right::after {
     top: 50%;
     right: 0;
     transform: translateY(-4px) translateX(4px) rotateZ(45deg);
