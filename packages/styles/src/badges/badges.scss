@@ -1,12 +1,11 @@
 @import "../core/_dev";
 
 .as-badge {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   margin: get-spacing(2);
   padding: 0 get-spacing(2);
   border-radius: get-spacing(5);
-  background: $color-primary;
   font: $font-body;
 
   i {
@@ -19,6 +18,11 @@
 
   i:last-child {
     margin-left: get-spacing(2);
+  }
+
+  &--0 {
+    background-color: $color-primary;
+    color: white;
   }
 
   &--1 {
