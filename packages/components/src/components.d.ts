@@ -59,7 +59,7 @@ declare global {
        */
       'step': number;
       /**
-       * Initial value. By default, the value is 0 or the minValue.
+       * Initial value.
        */
       'value': number;
     }
@@ -116,7 +116,7 @@ declare global {
        */
       'step'?: number;
       /**
-       * Initial value. By default, the value is 0 or the minValue.
+       * Initial value.
        */
       'value'?: number;
     }
@@ -180,6 +180,7 @@ declare global {
       'draggable': boolean;
       'rangeEndPercentage': number;
       'rangeStartPercentage': number;
+      'stepPercentage': number;
     }
   }
 
@@ -209,6 +210,7 @@ declare global {
       'onChangeStart'?: (event: CustomEvent<void>) => void;
       'rangeEndPercentage'?: number;
       'rangeStartPercentage'?: number;
+      'stepPercentage'?: number;
     }
   }
 }

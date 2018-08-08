@@ -9,6 +9,7 @@ import { MouseTrack } from '../MouseTrack';
 export class RangeSliderBar extends MouseTrack {
   @Prop({ mutable: true }) public rangeStartPercentage: number;
   @Prop({ mutable: true }) public rangeEndPercentage: number;
+  @Prop() public stepPercentage: number;
   @Prop() public draggable: boolean;
   @Prop() public disabled: boolean;
 
@@ -74,11 +75,24 @@ export class RangeSliderBar extends MouseTrack {
       return;
     }
 
-    this.rangeStartPercentage = leftPercentage;
-    this.rangeEndPercentage = rightPercentage;
+    this._updateRangePercentages([leftPercentage, rightPercentage]);
     this.previousMouseEvent = event;
 
     this.barMove.emit([this.rangeStartPercentage, this.rangeEndPercentage]);
+  }
+
+  private _updateRangePercentages(percentages: number[]) {
+    const leftPercentage = percentages[0];
+
+    const direction = (leftPercentage < this.rangeStartPercentage) ? -1 : 1;
+    const delta = Math.abs(leftPercentage - this.rangeStartPercentage);
+    const threshold = (this.stepPercentage / 5); // the smaller, the bigger sensitivity
+
+    if (delta > threshold) {
+      this.rangeStartPercentage += direction * this.stepPercentage;
+      this.rangeEndPercentage += direction * this.stepPercentage;
+      return;
+    }
   }
 
   private _onRelease() {

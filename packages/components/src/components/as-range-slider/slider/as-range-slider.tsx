@@ -7,6 +7,23 @@ import { Thumb } from '../thumb/as-range-slider-thumb';
   tag: 'as-range-slider',
 })
 export class RangeSlider {
+
+  /**
+   * Initial value.
+   *
+   * @type {number}
+   * @memberof RangeSlider
+   */
+  @Prop() public value: number;
+
+  /**
+   * Initial range.
+   *
+   * @type {number}
+   * @memberof RangeSlider
+   */
+  @Prop() public range: number[];
+
   /**
    * Top limit of the range.
    * You cannot drag your slider beyond this value. By default the value is 10.
@@ -58,37 +75,21 @@ export class RangeSlider {
    */
   @Prop() public formatValue: (value: number) => void;
 
+
   @Event() public change: EventEmitter<number | number[]>;
   @Event() public changeStart: EventEmitter<number | number[]>;
   @Event() public changeEnd: EventEmitter<number | number[]>;
 
-  /**
-   * Initial value.
-   * By default, the value is 0 or the minValue.
-   *
-   * @type {number}
-   * @memberof RangeSlider
-   */
-  @Prop() public value: number;
+  @State() private thumbs: Thumb[] = [];
 
-  @Watch('value')
-  public validateValue(newValue: number) {
+
+  @Watch('value') public validateValue(newValue: number) {
     if (!this._isBetweenValidValues(newValue)) {
       throw new Error(`RangeSlider: Value ${newValue} has to be between maxValue and minValue`);
     }
     this._updateThumbs();
   }
-
-  /**
-   * Initial range.
-   *
-   * @type {number}
-   * @memberof RangeSlider
-   */
-  @Prop() public range: number[];
-
-  @Watch('range')
-  public validateRange(newRange: number[]) {
+  @Watch('range') public validateRange(newRange: number[]) {
     if (newRange.length !== 2) {
       throw new Error(`RangeSlider: Range ${newRange} need two values at most`);
     }
@@ -96,8 +97,6 @@ export class RangeSlider {
     newRange.map((value) => this.validateValue(value));
     this._updateThumbs();
   }
-
-  @State() private thumbs: Thumb[] = [];
 
   public componentWillLoad() {
     this._validateValues();
@@ -146,9 +145,12 @@ export class RangeSlider {
 
   private _renderRangeBar() {
     const [firstThumbPercentage, lastThumbPercentage] = this._getCurrentThumbPercentages();
+
+    const stepPercentage = this._getStepPercentage();
     return <as-range-slider-bar
       rangeStartPercentage={firstThumbPercentage}
       rangeEndPercentage={lastThumbPercentage}
+      stepPercentage={stepPercentage}
       draggable={this.draggable}
       disabled={this.disabled}
       onChangeStart={() => this._emitChangeIn(this.changeStart)}
@@ -208,7 +210,7 @@ export class RangeSlider {
 
   private _onThumbMove(thumb: Thumb, percentage: number) {
     const value = this._getValueFromPercentage(percentage);
-    const stepValue = this._getStepValueFromValue(value);
+    const stepValue = this._getStepValueFrom(value);
     const stepPercentage = this._getPercentage(stepValue);
 
     const [leftThumb, rightThumb] = this.thumbs;
@@ -243,15 +245,15 @@ export class RangeSlider {
   }
 
   private _onThumbIncrease(thumb: Thumb) {
-    const percentage = this._getPercentage(thumb.value + this.step);
-    if (percentage < 0 || percentage > 100) {
-      return;
-    }
-    this._onThumbMove(thumb, percentage);
+    this._stepMoveThumb(thumb, +1);
   }
 
   private _onThumbDecrease(thumb: Thumb) {
-    const percentage = this._getPercentage(thumb.value - this.step);
+    this._stepMoveThumb(thumb, -1);
+  }
+
+  private _stepMoveThumb(thumb: Thumb, direction: number) {
+    const percentage = this._getPercentage(thumb.value + (direction * this.step));
     if (percentage < 0 || percentage > 100) {
       return;
     }
@@ -261,23 +263,15 @@ export class RangeSlider {
   private _onBarMove(percentage) {
     const percentageRange = percentage.detail;
     const newValues = percentageRange.map((p) => this._getValueFromPercentage(p));
-    const newStepValues = newValues.map((value) => this._getStepValueFromValue(value));
+    const newStepValues = newValues.map((value) => this._getStepValueFrom(value));
 
-
-    const currentValues = this.thumbs.map((thumb) => thumb.value);
-    if (Math.abs(newStepValues[0] - currentValues[0]) < this.step &&
-      Math.abs(newStepValues[1] - currentValues[1]) < this.step) {
-      return;
-    }
-
-    const thumbs = newStepValues.map((stepValue) => ({
-      percentage: this._getPercentage(stepValue),
-      value: stepValue
+    const thumbs = newStepValues.map((newStepValue) => ({
+      percentage: this._getPercentage(newStepValue),
+      value: newStepValue
     }));
     this._fixMinMaxValuesIn(thumbs);
 
-    this.thumbs = thumbs;
-
+    this.thumbs = [...thumbs];
     this._emitChangeIn(this.change);
   }
 
@@ -300,11 +294,17 @@ export class RangeSlider {
     return ((value - this.minValue) / (this.maxValue - this.minValue)) * 100;
   }
 
+  private _getStepPercentage() {
+    const range = (this.maxValue - this.minValue);
+    return this.step * 100 / range;
+  }
+
   private _getValueFromPercentage(percentage) {
     return ((percentage * (this.maxValue - this.minValue)) / 100) + this.minValue;
   }
 
-  private _getStepValueFromValue(value) {
+  private _getStepValueFrom(value) {
     return Math.round(value / this.step) * this.step;
   }
+
 }
