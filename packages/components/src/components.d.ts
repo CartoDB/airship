@@ -39,7 +39,7 @@ declare global {
        */
       'draggable': boolean;
       /**
-       * If this property is set to true, and it has multiple value, you can drag the entire track.
+       * If this property receives a function, it will be used to format the numbers (eg. for adding $ or €).
        */
       'formatValue': (value: number) => void;
       /**
@@ -93,7 +93,7 @@ declare global {
        */
       'draggable'?: boolean;
       /**
-       * If this property is set to true, and it has multiple value, you can drag the entire track.
+       * If this property receives a function, it will be used to format the numbers (eg. for adding $ or €).
        */
       'formatValue'?: (value: number) => void;
       /**

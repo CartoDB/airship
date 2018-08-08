@@ -1,206 +1,91 @@
-Category widget displays the categories passed to the component as a list with a bar representing the percentage of each category in relation to the maximum category value.
+# as-range-slider
 
+It displays a control to select a range of two numbers from a predefined interval, dragging a slider. Selection can be determined using one or two values. When using one value, the range goes from the minimum to the selected value. When using two, the minimum value can be also configured.
+
+### Examples
+
+#### Simple (one value)
 ```html
 noSource: true
 ---
-<iframe src="/examples/components/as-category-widget/simple.html" style="width: 100%; height: 354px;">
+<iframe  frameborder="0" marginwidth="10" src="/examples/components/as-range-slider/simple.html" style="width: 100%; height: 40px;">
 ```
 
 ```code
 lang: html
 showSource: false
 ---
-<!-- Example with all default values and showing clear button -->
-<as-category-widget
-  heading="Business Volume"
-  description="Description"
-  default-bar-color="#47DB99"></as-category-widget>
+<!-- Example using one value -->
+<as-range-slider></as-range-slider>
 
 <script>
-  const categoryWidget = document.querySelector('as-category-widget');
-  categoryWidget.showHeader = true;
-  categoryWidget.showClearButton = true;
-  categoryWidget.useTotalPercentage = false;
-  categoryWidget.visibleCategories = Infinity;
-  categoryWidget.categories = [
-    { name: 'Bars & Restaurants', value: 1000, color: '#FABADA' },
-    { name: 'Fashion', value: 900 },
-    { name: 'Grocery', value: 800 },
-    { name: 'Health', value: 400 },
-    { name: 'Shopping mall', value: 250 },
-    { name: 'Transportation', value: 1000 }
-    { name: 'Leisure', value: 760 }
-  ];
+    var rangeSliderWidget = document.querySelector('as-range-slider');
+    rangeSliderWidget.minValue = 10;
+    rangeSliderWidget.maxValue = 20;
+    rangeSliderWidget.value = 12;
+    rangeSliderWidget.step = 2;
 </script>
 ```
 
+#### Multivalue (range mode)
+```html
+noSource: true
+---
+<iframe  frameborder="0" marginwidth="10" src="/examples/components/as-range-slider/multivalue.html" style="width: 100%; height: 40px;">
+```
+
+```code
+lang: html
+showSource: false
+---
+<!-- Example using a range and handling events -->
+<as-range-slider min-value="25" max-value="75"></as-range-slider>
+<script>
+    const rangeSliderWidget = document.querySelector('as-range-slider');
+    rangeSliderWidget.range = [30, 70];
+    rangeSliderWidget.step = 5;
+    rangeSliderWidget.draggable = true;
+    rangeSliderWidget.formatValue = (value) => (`${value}€`);
+    rangeSliderWidget.addEventListener('change', (event) => console.log('Changed:', event.detail));
+    rangeSliderWidget.addEventListener('changeStart', (event) => console.log('Change Start:', event.detail));
+    rangeSliderWidget.addEventListener('chang
+    eEnd', (event) => console.log('Change End:', event.detail);
+</script>
+```
+
+
 ### Props
 
-#### **categories**: Category[] = []
-Array of categories, each category should include a `name` and a `value`. You can also override the bar color for each category with `color`.
+#### value: number
+Value to use as maximum in a range defined with just one number (minimum will be set to `minValue`)
 
-For example:
+#### range: number[]
+Pair of numbers used to define a range.
 
-```code
-lang: javascript
----
-categoryWidget.categories = [
-  { name: 'A New Hope', value: 359029623, color: '#FABADA' },
-  { name: 'The Empire Strikes Back', value: 236513856 },
-  { name: 'Return of the Jedi', value: 204338075 },
-];
-```
-#### **defaultBarColor**: string = '#47DB99'
-Overrides default color to draw the bars. Default value is `#47DB99`.
+#### minValue: number = 0
+Bottom limit of the range. You cannot drag your slider below this value. By default the value is 0.
 
-```code
-lang: html
----
-<as-category-widget defaultBarColor="#47DB99"></as-category-widget>
-```
-```code
-lang: javascript
----
-categoryWidget.defaultBarColor = `#47DB99`;
-```
+#### maxValue: number = 10
+Top limit of the range. You cannot drag your slider beyond this value. By default the value is 10.
 
-#### **description**: string
-Description text of the widget
+#### disabled: boolean = false
+Disables component if truthy. False by default.
 
-```code
-lang: html
----
-<as-category-widget description="Description"></as-category-widget>
-```
-```code
-lang: javascript
----
-categoryWidget.description = 'Description';
-```
+#### step: number = 1
+Increment/decrement step of the slider. You can change the step setting a different number to this property. Defaults to 1.
 
-#### **heading**: string
-Heading text of the widget
+####  draggable: boolean = false
+If this property is set to true, and it has multiple value, you can drag the entire track. False by default
 
-```code
-lang: html
----
-<as-category-widget heading="Heading"></as-category-widget>
-```
-```code
-lang: javascript
----
-categoryWidget.heading = 'Business Volume';
-```
+#### formatValue: (value: number) => void
+Optional function to format the numbers (eg. for adding $ or €). Undefined by default (original value will be displayed, without formatting)
 
-#### **showClearButton**: boolean = false
-If truthy, it'll show a button to clear selected categories when there are any. Default value is `false`.
-
-```code
-lang: javascript
----
-categoryWidget.showClearButton = true;
-```
-
-#### **showHeader**: boolean = true
-If truthy, it'll render the heading and the component's description. Default value is `true`.
-
-```code
-lang: javascript
----
-categoryWidget.showHeader = false;
-```
-
-#### **useTotalPercentage**: boolean = false
-If truthy, we'll use the sum of all categories' value to render the bar percentage.
-By default, we use the maximum category value to render the bar percentage.
-
-```code
-lang: javascript
----
-categoryWidget.useTotalPercentage = true;
-```
-
-#### **visibleCategories**: number = Infinity
-The number of visible categories without aggregation.
-
-```code
-lang: javascript
----
-categoryWidget.visibleCategories = 5;
-```
-
-### Styles
-There are some CSS Variables that you can override to change visual styles.
-
-#### **--category-widget--description--color**
-Default: $color-type-20 (`#1785FB`)
-
-```code
-lang: javascript
----
-document.body.style.setProperty('--category-widget--description--color', '#1785FB')
-```
-
-#### **--category-widget--bar--height**
-Default: `4px`
-
-```code
-lang: javascript
----
-document.body.style.setProperty('--category-widget--bar--height', '8px')
-```
-
-#### **--category-widget--background-color**
-Default: $color-ui-10 (`#FFF`)
-
-```code
-lang: javascript
----
-document.body.style.setProperty('--category-widget--background-color', '#F5F5F5')
-```
-
-#### **--category-bar--background-color**
-Default: $color-ui-20 (`#F5F5F5`)
-
-```code
-lang: javascript
----
-document.body.style.setProperty('--category-bar--background-color', '#E2E6E3')
-```
 
 ### Events
+#### change: EventEmitter<number | number[ ]>
+#### changeStart: EventEmitter<number | number[ ]>
+#### changeEnd: EventEmitter<number | number[ ]>
 
-#### **categoriesSelected**
-Fired when selected categories changed or selected categories are cleared.
-
-```code
-lang: javascript
----
-const categoryWidget = document.querySelector('as-category-widget');
-categoryWidget.addEventListener('categoriesSelected', event => {
-  console.log('Categories Selected', event.detail)
-});
-```
 
 ### Methods
-
-#### **getSelectedCategories**
-Get current selected categories
-`Returns: Category[]`
-
-```code
-lang: javascript
----
-const categoryWidget = document.querySelector('as-category-widget');
-categoryWidget.getSelectedCategories();
-```
-
-#### **clearSelection**
-Clear current selected categories
-
-```code
-lang: javascript
----
-const categoryWidget = document.querySelector('as-category-widget');
-categoryWidget.clearSelection();
-```
+None
