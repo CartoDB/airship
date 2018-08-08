@@ -1,7 +1,7 @@
 Tooltips are small, interactive, textual hints for mainly graphical elements.
 
-Notice we only provide the `styles` and `css classes` required to display a tooltip you need to control the placement
-and visibility logic using javascript.
+Notice we only provide the `styles` and `css classes` required to display a tooltip.
+You need to control the placement and visibility logic using javascript.
 
 
 ## Positions
