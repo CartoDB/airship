@@ -5,5 +5,5 @@ module.exports = [
   u.spec('flag'),
   u.spec('flag-block'),
   u.spec('flag-l'),
-  u.spec('flag-xl'),
+  u.spec('flag-xl')
 ];

@@ -2,10 +2,13 @@ const Utils = require('../../test-utils');
 const u = new Utils(__dirname);
 
 module.exports = [
-  u.spec('tabs'),
-  u.spec('tabs', { mobile: true }),
-  u.spec('tabs-xl'),
-  u.spec('tabs-xl', { mobile: true }),
-  u.spec('tabs-accesible'),
-  u.spec('tabs-accesible', { mobile: true })
+  u.spec('Tabs', 'tabs', {
+    readySelector: '.as-tabs .as-tabs__item'
+  }),
+  u.spec('Tabs XL', 'tabs-xl', {
+    readySelector: '.as-tabs .as-tabs__item'
+  }),
+  u.spec('Tabs accesible', 'tabs-accesible', {
+    readySelector: '.as-tabs .as-tabs__item'
+  })
 ];
