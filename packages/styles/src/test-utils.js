@@ -6,6 +6,10 @@ function utils (dirname) {
     return type === 'function' || type === 'object' && !!obj;
   }
 
+  function isString (obj) {
+    return toString.call(obj) === '[object String]';
+  }
+
   this.html = function (filename) {
     const filePath = path.resolve(dirname, `${filename}`);
     return `file://${filePath}.html`;
@@ -18,6 +22,10 @@ function utils (dirname) {
         ? this.html(filename)
         : this.html(label)
     };
+
+    if (filename && !isString(filename)) {
+      throw new Error('filename must be a string.');
+    }
 
     if (options && !isObject(options)) {
       throw new Error('options arguments must be an object.');
