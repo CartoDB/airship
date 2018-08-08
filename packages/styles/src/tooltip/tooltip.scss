@@ -1,0 +1,42 @@
+.as-tooltip {
+  display: inline-flex;
+  position: relative;
+  padding: get-spacing(1) get-spacing(2);
+  border-radius: get-spacing(1);
+  background: var(--as-color-type-01, #{$color-type-01});
+  color: var(--as-color-ui-04, #{$color-ui-04});
+  font: $font-subheader;
+
+  &::after {
+    content: "";
+    position: absolute;
+    border-width: 5px;
+    border-style: solid;
+    border-radius: 2px;
+    border-color: var(--as-color-type-01, #{$color-type-01});
+  }
+
+  &--bot::after {
+    top: 100%;
+    left: 50%;
+    transform: translateY(-6px) translateX(-5px) rotateZ(45deg);
+  }
+
+  &--top::after {
+    bottom: 100%;
+    left: 50%;
+    transform: translateY(6px) translateX(-5px) rotateZ(45deg);
+  }
+
+  &--left::after {
+    top: 50%;
+    left: 0;
+    transform: translateY(-5px) translateX(-4px) rotateZ(45deg);
+  }
+
+  &--right::after {
+    top: 50%;
+    right: 0;
+    transform: translateY(-4px) translateX(4px) rotateZ(45deg);
+  }
+}
