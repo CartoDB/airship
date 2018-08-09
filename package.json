@@ -31,7 +31,7 @@
     "test:styles": "docker run --rm -v $(pwd):/src backstopjs/backstopjs test --configPath=backstop.config.js; open ./backstop_data/html_report/index.html",
     "test:build:references": "docker run --rm -v $(pwd):/src backstopjs/backstopjs reference --i --configPath=backstop.config.js",
     "test:reset:references": "docker run --rm -v $(pwd):/src backstopjs/backstopjs reference --configPath=backstop.config.js",
-    "test:ci": "REPORT=ci backstop test --configPath=backstop.config.js",
+    "test:ci": "backstop test --configPath=backstop.config.js",
     "test:watch": "lerna run --parallel test:watch",
     "test": "lerna run test"
   }

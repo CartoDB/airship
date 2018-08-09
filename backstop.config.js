@@ -43,9 +43,7 @@ const defaultOptions = {
 };
 
 const report = {
-  report: process.env.REPORT === 'ci'
-    ? ['ci']
-    : ['browser']
+  report: process.env.CI ? ['ci'] : ['browser']
 };
 
 const specs = glob.sync(path.resolve(__dirname, 'packages/styles/src', '**/*.spec.js'));
