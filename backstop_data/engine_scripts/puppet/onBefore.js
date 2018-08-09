@@ -1,14 +1,9 @@
 module.exports = async (page, scenario, vp) => {
-  page.evaluate(() => {
-    window.addEventListener('load', () => {
+  page.on('load', function () {
+    page.evaluate(() => {
       document.fonts.ready.then(() => {
-        console.log('backstopjs_ready');
-      })
+        console.log('_READY');
+      });
     });
-    if (document.readyState == 'complete') {
-      document.fonts.ready.then(() => {
-        console.log('backstopjs_ready');
-      })
-    }
   });
 };
