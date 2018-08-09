@@ -8,8 +8,7 @@ import 'd3-transition';
 
 const WIDTH = 205;
 const HEIGHT = 125;
-const DIVISION_WIDTH = 80;
-// const BARS_SEPARATION = 1;
+const BARS_SEPARATION = 1;
 const MARGIN = {
   TOP: 15,
   RIGHT: 3,
@@ -62,9 +61,9 @@ export class HistogramWidget {
   @Prop() public data: HistogramData[];
 
   @Watch('data')
-  onDataChanged(newValue: HistogramData[], oldValue: HistogramData[]) {
-    console.log('onDataChanged', newValue, oldValue);
+  onDataChanged() {
     this._updateAxes();
+    this._renderBars();
   }
 
   /**
@@ -93,12 +92,18 @@ export class HistogramWidget {
   private xAxis: any;
   private yAxisSelection: any;
   private xAxisSelection: any;
+  private barsContainer: any;
+  private bars: any;
 
   componentDidLoad() {
     this.container = select(this.histogramEl.querySelector('svg'));
     // This is probably not necessary for production, but HMR causes this method
     // to be called on each file change
     this.container.selectAll('*').remove();
+
+    this.barsContainer = this.container
+      .append('g')
+      .attr('transform', `translate(${MARGIN.LEFT}, ${MARGIN.TOP})`);
 
     if (this.data) {
       this._renderGraph();
@@ -108,6 +113,7 @@ export class HistogramWidget {
   private _renderGraph() {
     this._renderYAxis();
     this._renderXAxis();
+    this._renderBars();
     this._cleanAxes();
   }
 
@@ -151,6 +157,51 @@ export class HistogramWidget {
       .attr('class', 'xAxis')
       .attr('transform', `translate(${MARGIN.LEFT}, ${HEIGHT + MARGIN.BOTTOM})`)
       .call(this.xAxis);
+  }
+
+  private _renderBars() {
+    const data = this.data;
+    const barWidth = WIDTH / data.length;
+
+    // -- Draw bars
+    this.bars = this.barsContainer
+      .selectAll('rect')
+      .data(data);
+
+    // -- Exit
+    this.bars.exit().remove();
+
+    // -- Enter
+    this.bars
+      .enter()
+      .append('rect')
+      // .on('mouseout', () => this.setState({ tooltip: null }))
+      // .on('mouseenter', d => {
+      //   this.setState(
+      //     { tooltip: { d } },
+      //     () => this.showTooltip(event.layerX, event.layerY)
+      //   );
+      // })
+      // .on('mousemove', () => {
+      //   select(this.tooltipNode).style('opacity', 0);
+      //   this.showTooltip(event.layerX, event.layerY);
+      // })
+      .merge(this.bars)
+      .attr('class', 'bar')
+      .attr('y', HEIGHT)
+      .attr('x', (d, index) => index * barWidth)
+      .attr('width', () => Math.max(0, barWidth - BARS_SEPARATION))
+      .attr('height', 0)
+      .transition()
+      .delay(200)
+      .attr('y', d => this.yScale(d.value))
+      .attr('height', d => HEIGHT - this.yScale(d.value));
+
+    // -- Update
+    this.bars
+      .attr('y', d => this.yScale(d.value))
+      .attr('height', d => HEIGHT - this.yScale(d.value));
+
   }
 
   private _cleanAxes() {

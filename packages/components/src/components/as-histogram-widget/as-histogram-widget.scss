@@ -4,6 +4,15 @@ as-histogram-widget {
   svg {
     display: block;
 
+    .bar {
+      transition: all 0.3s linear;
+      fill: $color-primary;
+
+      &:hover {
+        fill: darken($color-primary, 16%);
+      }
+    }
+
     .yAxis .tick {
       line {
         stroke: $color-ui-04;

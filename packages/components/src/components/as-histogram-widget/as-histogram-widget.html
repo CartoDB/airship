@@ -16,14 +16,15 @@
         heading="Business Volume"
         description="Description">
       </as-histogram-widget>
-      <button id="mutateBtn">Change data</button>
+      <button id="changeBtn">Change data</button>
+      <button id="mutateBtn">Mutate data</button>
     </div>
 
     <script>
       // Generate random data for the histogram
       function randomData() {
         // Number of buckets
-        var size = Math.floor(Math.random() * 10) + 2;
+        var size = Math.floor(Math.random() * 10) + 5;
         // 'Width' of each bucket
         var bucketSize = Math.floor(Math.random() * 20) + 2;
         var data = [];
@@ -43,8 +44,16 @@
       var categoryWidget = document.querySelector('as-histogram-widget');
       categoryWidget.data = randomData();
 
-      document.querySelector('#mutateBtn').addEventListener('click', function () {
+      document.querySelector('#changeBtn').addEventListener('click', function () {
         categoryWidget.data = randomData();
+      });
+      document.querySelector('#mutateBtn').addEventListener('click', function () {
+        categoryWidget.data = categoryWidget.data.map(function (entry) {
+          return {
+            ...entry,
+            value: Math.floor(Math.random() * 30) + 1
+          };
+        });
       });
     </script>
   </body>
