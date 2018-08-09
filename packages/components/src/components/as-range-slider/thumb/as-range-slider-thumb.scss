@@ -33,6 +33,14 @@ as-range-slider-thumb {
     }
   }
 
+  .as-range-slider__value {
+    position: absolute;
+    bottom: -16px;
+    left: 50%;
+    transform: translate3d(-53%, 0, 0);
+    pointer-events: none;
+  }
+
   .as-range-slider__thumb--disabled {
     border: 1px solid var(--as-color-ui-03, #{$color-ui-03});
     background: var(--as-color-ui-02, #{$color-ui-02});
@@ -50,13 +58,5 @@ as-range-slider-thumb {
     &:hover {
       transform: translate3d(-6px, 0, 0) scale(1.33);
     }
-  }
-
-  .as-range-slider__value {
-    position: absolute;
-    bottom: -16px;
-    left: 50%;
-    transform: translate3d(-53%, 0, 0);
-    pointer-events: none;
   }
 }
