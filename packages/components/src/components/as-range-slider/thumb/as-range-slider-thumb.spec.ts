@@ -6,7 +6,7 @@ describe('as-range-slider-thumb', () => {
         expect(new RangeSliderThumb()).toBeTruthy();
     });
 
-    describe('rendering', () => {
+    describe('Rendering', () => {
         let element: HTMLAsRangeSliderThumbElement;
         let testWindow: TestWindow;
 
@@ -23,7 +23,7 @@ describe('as-range-slider-thumb', () => {
             element.formatValue = () => `${element.value}€`;
 
             await testWindow.flush();
-            expect(element.textContent).toBe('5€');
+            expect(element).toMatchSnapshot();
         });
 
         it('should have aria attributes', async () => {
@@ -33,12 +33,7 @@ describe('as-range-slider-thumb', () => {
             element.formatValue = () => `${element.value}€`;
             await testWindow.flush();
 
-            const div = element.querySelector('div');
-            expect(div.getAttribute('role')).toEqual('slider');
-            expect(div.getAttribute('aria-valuenow')).toEqual('5');
-            expect(div.getAttribute('aria-valuemin')).toEqual('0');
-            expect(div.getAttribute('aria-valuemax')).toEqual('10');
-            expect(div.getAttribute('aria-valuetext')).toEqual('5€');
+            expect(element).toMatchSnapshot();
         });
     });
 });
