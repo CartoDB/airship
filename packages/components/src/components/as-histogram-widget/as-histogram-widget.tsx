@@ -1,8 +1,8 @@
-import { Component, Prop, Element, Watch } from '@stencil/core';
+import { Component, Prop, Watch, State } from '@stencil/core';
 import readableNumber from '../../utils/readable-number';
-import { select } from 'd3-selection';
+import { select, Selection } from 'd3-selection';
 import { scaleLinear } from 'd3-scale';
-import { max, range } from 'd3-array';
+import { max } from 'd3-array';
 import { axisLeft, axisBottom } from 'd3-axis';
 import 'd3-transition';
 
@@ -82,9 +82,10 @@ export class HistogramWidget {
    */
   @Prop() public colorRange: HistogramColorRange[];
 
-  @Element() histogramEl: HTMLElement;
+  @State() tooltip: string;
   
-  private container;
+  private container: Selection<HTMLElement, {}, null, undefined>;
+  private tooltipElement: HTMLElement;
 
   private xScale: any;
   private yScale: any;
@@ -96,14 +97,9 @@ export class HistogramWidget {
   private bars: any;
 
   componentDidLoad() {
-    this.container = select(this.histogramEl.querySelector('svg'));
     // This is probably not necessary for production, but HMR causes this method
     // to be called on each file change
     this.container.selectAll('*').remove();
-
-    this.barsContainer = this.container
-      .append('g')
-      .attr('transform', `translate(${MARGIN.LEFT}, ${MARGIN.TOP})`);
 
     if (this.data) {
       this._renderGraph();
@@ -113,6 +109,11 @@ export class HistogramWidget {
   private _renderGraph() {
     this._renderYAxis();
     this._renderXAxis();
+
+    this.barsContainer = this.container
+      .append('g')
+      .attr('transform', `translate(${MARGIN.LEFT}, ${MARGIN.TOP})`);
+
     this._renderBars();
     this._cleanAxes();
   }
@@ -127,7 +128,7 @@ export class HistogramWidget {
       .nice();
 
     this.yAxis = axisLeft(this.yScale)
-      .tickSize(-WIDTH, 0, 0)
+      .tickSize(-WIDTH)
       .ticks(5)
       .tickPadding(10);
 
@@ -148,7 +149,7 @@ export class HistogramWidget {
       .range([0, WIDTH]);
 
     this.xAxis = axisBottom(this.xScale)
-      .tickSize(-WIDTH, 0, 0)
+      .tickSize(-WIDTH)
       .ticks(3)
       .tickPadding(10);
 
@@ -175,17 +176,15 @@ export class HistogramWidget {
     this.bars
       .enter()
       .append('rect')
-      // .on('mouseout', () => this.setState({ tooltip: null }))
-      // .on('mouseenter', d => {
-      //   this.setState(
-      //     { tooltip: { d } },
-      //     () => this.showTooltip(event.layerX, event.layerY)
-      //   );
-      // })
-      // .on('mousemove', () => {
-      //   select(this.tooltipNode).style('opacity', 0);
-      //   this.showTooltip(event.layerX, event.layerY);
-      // })
+      .on('mouseout', () => this.tooltip = null)
+      .on('mouseenter', d => {
+        this.tooltip = d.value;
+        this._showTooltip(event as MouseEvent);
+      })
+      .on('mousemove', () => {
+        select(this.tooltipElement).style('opacity', 0);
+        this._showTooltip(event as MouseEvent);
+      })
       .merge(this.bars)
       .attr('class', 'bar')
       .attr('y', HEIGHT)
@@ -202,6 +201,43 @@ export class HistogramWidget {
       .attr('y', d => this.yScale(d.value))
       .attr('height', d => HEIGHT - this.yScale(d.value));
 
+  }
+
+  private _getTooltipPosition(mouseX: number, mouseY: number) {
+    const OFFSET = 25;
+    let x = mouseX;
+    let y = mouseY;
+
+    const viewportBoundaries = {
+      right: window.innerWidth + window.pageXOffset,
+      bottom: window.innerHeight + window.pageYOffset,
+    };
+
+    const tooltipContainerBoundingRect = this.tooltipElement.getBoundingClientRect();
+
+    const tooltipBoundaries = {
+      right: mouseX + tooltipContainerBoundingRect.width,
+      bottom: mouseY + tooltipContainerBoundingRect.height,
+    };
+
+    if (viewportBoundaries.right < tooltipBoundaries.right) {
+      x = mouseX - tooltipContainerBoundingRect.width;
+    }
+
+    if (viewportBoundaries.bottom < tooltipBoundaries.bottom) {
+      y = mouseY - tooltipContainerBoundingRect.height - OFFSET;
+    }
+
+    return [x, y];
+  }
+
+  private _showTooltip(event: MouseEvent) {
+    const [x, y] = this._getTooltipPosition(event.layerX, event.layerY);
+
+    select(this.tooltipElement)
+      .style('opacity', '1')
+      .style('left', `${x + 10}px`)
+      .style('top', `${y + 20}px`)
   }
 
   private _cleanAxes() {
@@ -244,10 +280,24 @@ export class HistogramWidget {
     ];
   }
 
+  _renderTooltip() {
+    if (this.tooltip === null) {
+      return;
+    }
+
+    return (<span
+      ref={(ref: HTMLElement) => this.tooltipElement = ref}
+      role="tooltip"
+      class="as-histogram-widget__tooltip">
+        {readableNumber(this.tooltip)}
+      </span>);
+  }
+
   render() {
     return [
       this._renderHeader(),
-      <svg viewBox='0 0 248 160'></svg>
+      <svg ref={(ref: HTMLElement) => this.container = select(ref)} viewBox='0 0 248 160'></svg>,
+      this._renderTooltip()
     ];
   }
 }
