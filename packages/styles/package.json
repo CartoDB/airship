@@ -8,6 +8,7 @@
     "dist"
   ],
   "devDependencies": {
+    "conventional-changelog-cli": "^2.0.1",
     "node-sass": "^4.9.2",
     "stylelint": "^9.3.0",
     "stylelint-config-property-sort-order-smacss": "^4.0.0",
@@ -36,8 +37,5 @@
   "homepage": "https://github.com/CartoDB/airship",
   "publishConfig": {
     "access": "public"
-  },
-  "dependencies": {
-    "conventional-changelog-cli": "^2.0.1"
   }
 }

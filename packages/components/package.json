@@ -25,6 +25,7 @@
     "@stencil/core": "^0.10.0",
     "@stencil/sass": "0.0.5",
     "@types/jest": "^21.1.1",
+    "conventional-changelog-cli": "^2.0.1",
     "jest": "^21.2.1",
     "lerna": "^2.11.0",
     "stylelint": "^9.3.0",
@@ -58,8 +59,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "dependencies": {
-    "conventional-changelog-cli": "^2.0.1"
   }
 }
