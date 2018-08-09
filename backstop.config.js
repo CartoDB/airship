@@ -4,8 +4,7 @@ const path = require('path');
 const defaultScenarioOptions = {
   misMatchThreshold: 0,
   requireSameDimensions: true,
-  readyEvent: 'backstopjs_ready',
-  delay: 200
+  readyEvent: 'backstopjs_ready'
 };
 
 const defaultOptions = {
@@ -46,7 +45,7 @@ const report = {
   report: process.env.CI ? ['ci'] : ['browser']
 };
 
-const specs = glob.sync(path.resolve(__dirname, 'packages/styles/src', '**/*.spec.js'));
+const specs = glob.sync(path.resolve(__dirname, 'packages/styles/src', '**/*.spuc.js'));
 
 const specDefinitions = specs.reduce((accum, spec) => {
   const files = require(spec);
