@@ -7,10 +7,10 @@ import '@stencil/core';
 
 declare global {
   namespace JSX {
-    interface Element {}
-    export interface IntrinsicElements {}
+    interface Element { }
+    export interface IntrinsicElements { }
   }
-  namespace JSXElements {}
+  namespace JSXElements { }
 
   interface HTMLElement {
     componentOnReady?: () => Promise<this | null>;
@@ -22,195 +22,112 @@ declare global {
     forceUpdate(): void;
   }
 
-  interface HTMLAttributes {}
+  interface HTMLAttributes { }
 }
 
 
 declare global {
 
   namespace StencilComponents {
-    interface AsRangeSlider {
+    interface AsCategoryWidget {
       /**
-       * Disables component if truthy
+       * Array of categories to display in the widget. Each category should include a `name` and a `value`. You can also override the bar color for each category with `color`.
        */
-      'disabled': boolean;
+      'categories': object[];
       /**
-       * If this property is set to true, and it has multiple value, you can drag the entire track.
+       * Clear current selected categories
        */
-      'draggable': boolean;
+      'clearSelection': () => void;
       /**
-       * If this property receives a function, it will be used to format the numbers (eg. for adding $ or €).
+       * Default color to draw the bars. Default value is `#47DB99`.
        */
-      'formatValue': (value: number) => void;
+      'defaultBarColor': string;
       /**
-       * Top limit of the range. You cannot drag your slider beyond this value. By default the value is 10.
+       * Description text of the widget
        */
-      'maxValue': number;
+      'description': string;
       /**
-       * Bottom limit of the range. You cannot drag your slider below this value. By default the value is 0.
+       * Get current selected categories
        */
-      'minValue': number;
+      'getSelectedCategories': () => string[];
       /**
-       * Initial range.
+       * Heading text of the widget
        */
-      'range': number[];
+      'heading': string;
       /**
-       * Increment/decrement step of the slider. You can change the step setting a different number to this property. Defaults to 1.
+       * If truthy, it'll show a button to clear selected categories when there are any. Default value is `false`.
        */
-      'step': number;
+      'showClearButton': boolean;
       /**
-       * Initial value.
+       * If truthy, it'll render the heading and component's description. Default value is `true`.
        */
-      'value': number;
+      'showHeader': boolean;
+      /**
+       * If truthy, we'll use the sum of all categories' value to render the bar percentage. By default, we use the maximum category value to render the bar percentage.
+       */
+      'useTotalPercentage': boolean;
+      /**
+       * The number of visible categories without aggregation.
+       */
+      'visibleCategories': number;
     }
   }
 
-  interface HTMLAsRangeSliderElement extends StencilComponents.AsRangeSlider, HTMLStencilElement {}
+  interface HTMLAsCategoryWidgetElement extends StencilComponents.AsCategoryWidget, HTMLStencilElement { }
 
-  var HTMLAsRangeSliderElement: {
-    prototype: HTMLAsRangeSliderElement;
-    new (): HTMLAsRangeSliderElement;
+  var HTMLAsCategoryWidgetElement: {
+    prototype: HTMLAsCategoryWidgetElement;
+    new(): HTMLAsCategoryWidgetElement;
   };
   interface HTMLElementTagNameMap {
-    'as-range-slider': HTMLAsRangeSliderElement;
+    'as-category-widget': HTMLAsCategoryWidgetElement;
   }
   interface ElementTagNameMap {
-    'as-range-slider': HTMLAsRangeSliderElement;
+    'as-category-widget': HTMLAsCategoryWidgetElement;
   }
   namespace JSX {
     interface IntrinsicElements {
-      'as-range-slider': JSXElements.AsRangeSliderAttributes;
+      'as-category-widget': JSXElements.AsCategoryWidgetAttributes;
     }
   }
   namespace JSXElements {
-    export interface AsRangeSliderAttributes extends HTMLAttributes {
+    export interface AsCategoryWidgetAttributes extends HTMLAttributes {
       /**
-       * Disables component if truthy
+       * Array of categories to display in the widget. Each category should include a `name` and a `value`. You can also override the bar color for each category with `color`.
        */
-      'disabled'?: boolean;
+      'categories'?: object[];
       /**
-       * If this property is set to true, and it has multiple value, you can drag the entire track.
+       * Default color to draw the bars. Default value is `#47DB99`.
        */
-      'draggable'?: boolean;
+      'defaultBarColor'?: string;
       /**
-       * If this property receives a function, it will be used to format the numbers (eg. for adding $ or €).
+       * Description text of the widget
        */
-      'formatValue'?: (value: number) => void;
+      'description'?: string;
       /**
-       * Top limit of the range. You cannot drag your slider beyond this value. By default the value is 10.
+       * Heading text of the widget
        */
-      'maxValue'?: number;
+      'heading'?: string;
       /**
-       * Bottom limit of the range. You cannot drag your slider below this value. By default the value is 0.
+       * Fired when selected categories changed or selected categories are cleared.
        */
-      'minValue'?: number;
-      'onChange'?: (event: CustomEvent<number[]>) => void;
-      'onChangeEnd'?: (event: CustomEvent<number[]>) => void;
-      'onChangeStart'?: (event: CustomEvent<number[]>) => void;
+      'onCategoriesSelected'?: (event: CustomEvent<string[]>) => void;
       /**
-       * Initial range.
+       * If truthy, it'll show a button to clear selected categories when there are any. Default value is `false`.
        */
-      'range'?: number[];
+      'showClearButton'?: boolean;
       /**
-       * Increment/decrement step of the slider. You can change the step setting a different number to this property. Defaults to 1.
+       * If truthy, it'll render the heading and component's description. Default value is `true`.
        */
-      'step'?: number;
+      'showHeader'?: boolean;
       /**
-       * Initial value.
+       * If truthy, we'll use the sum of all categories' value to render the bar percentage. By default, we use the maximum category value to render the bar percentage.
        */
-      'value'?: number;
-    }
-  }
-}
-
-
-declare global {
-
-  namespace StencilComponents {
-    interface AsRangeSliderThumb {
-      'disabled': boolean;
-      'formatValue': (value: number) => void;
-      'percentage': number;
-      'value': number;
-      'valueMax': number;
-      'valueMin': number;
-    }
-  }
-
-  interface HTMLAsRangeSliderThumbElement extends StencilComponents.AsRangeSliderThumb, HTMLStencilElement {}
-
-  var HTMLAsRangeSliderThumbElement: {
-    prototype: HTMLAsRangeSliderThumbElement;
-    new (): HTMLAsRangeSliderThumbElement;
-  };
-  interface HTMLElementTagNameMap {
-    'as-range-slider-thumb': HTMLAsRangeSliderThumbElement;
-  }
-  interface ElementTagNameMap {
-    'as-range-slider-thumb': HTMLAsRangeSliderThumbElement;
-  }
-  namespace JSX {
-    interface IntrinsicElements {
-      'as-range-slider-thumb': JSXElements.AsRangeSliderThumbAttributes;
-    }
-  }
-  namespace JSXElements {
-    export interface AsRangeSliderThumbAttributes extends HTMLAttributes {
-      'disabled'?: boolean;
-      'formatValue'?: (value: number) => void;
-      'onChangeEnd'?: (event: CustomEvent<void>) => void;
-      'onChangeStart'?: (event: CustomEvent<void>) => void;
-      'onThumbDecrease'?: (event: CustomEvent<number>) => void;
-      'onThumbIncrease'?: (event: CustomEvent<number>) => void;
-      'onThumbMove'?: (event: CustomEvent<number>) => void;
-      'percentage'?: number;
-      'value'?: number;
-      'valueMax'?: number;
-      'valueMin'?: number;
-    }
-  }
-}
-
-
-declare global {
-
-  namespace StencilComponents {
-    interface AsRangeSliderBar {
-      'disabled': boolean;
-      'draggable': boolean;
-      'rangeEndPercentage': number;
-      'rangeStartPercentage': number;
-      'stepPercentage': number;
-    }
-  }
-
-  interface HTMLAsRangeSliderBarElement extends StencilComponents.AsRangeSliderBar, HTMLStencilElement {}
-
-  var HTMLAsRangeSliderBarElement: {
-    prototype: HTMLAsRangeSliderBarElement;
-    new (): HTMLAsRangeSliderBarElement;
-  };
-  interface HTMLElementTagNameMap {
-    'as-range-slider-bar': HTMLAsRangeSliderBarElement;
-  }
-  interface ElementTagNameMap {
-    'as-range-slider-bar': HTMLAsRangeSliderBarElement;
-  }
-  namespace JSX {
-    interface IntrinsicElements {
-      'as-range-slider-bar': JSXElements.AsRangeSliderBarAttributes;
-    }
-  }
-  namespace JSXElements {
-    export interface AsRangeSliderBarAttributes extends HTMLAttributes {
-      'disabled'?: boolean;
-      'draggable'?: boolean;
-      'onBarMove'?: (event: CustomEvent<number[]>) => void;
-      'onChangeEnd'?: (event: CustomEvent<void>) => void;
-      'onChangeStart'?: (event: CustomEvent<void>) => void;
-      'rangeEndPercentage'?: number;
-      'rangeStartPercentage'?: number;
-      'stepPercentage'?: number;
+      'useTotalPercentage'?: boolean;
+      /**
+       * The number of visible categories without aggregation.
+       */
+      'visibleCategories'?: number;
     }
   }
 }
@@ -224,11 +141,11 @@ declare global {
     }
   }
 
-  interface HTMLAsSwitchElement extends StencilComponents.AsSwitch, HTMLStencilElement {}
+  interface HTMLAsSwitchElement extends StencilComponents.AsSwitch, HTMLStencilElement { }
 
   var HTMLAsSwitchElement: {
     prototype: HTMLAsSwitchElement;
-    new (): HTMLAsSwitchElement;
+    new(): HTMLAsSwitchElement;
   };
   interface HTMLElementTagNameMap {
     'as-switch': HTMLAsSwitchElement;
@@ -258,11 +175,11 @@ declare global {
     }
   }
 
-  interface HTMLAsToolbarItemElement extends StencilComponents.AsToolbarItem, HTMLStencilElement {}
+  interface HTMLAsToolbarItemElement extends StencilComponents.AsToolbarItem, HTMLStencilElement { }
 
   var HTMLAsToolbarItemElement: {
     prototype: HTMLAsToolbarItemElement;
-    new (): HTMLAsToolbarItemElement;
+    new(): HTMLAsToolbarItemElement;
   };
   interface HTMLElementTagNameMap {
     'as-toolbar-item': HTMLAsToolbarItemElement;
@@ -292,11 +209,11 @@ declare global {
     }
   }
 
-  interface HTMLAsToolbarElement extends StencilComponents.AsToolbar, HTMLStencilElement {}
+  interface HTMLAsToolbarElement extends StencilComponents.AsToolbar, HTMLStencilElement { }
 
   var HTMLAsToolbarElement: {
     prototype: HTMLAsToolbarElement;
-    new (): HTMLAsToolbarElement;
+    new(): HTMLAsToolbarElement;
   };
   interface HTMLElementTagNameMap {
     'as-toolbar': HTMLAsToolbarElement;
@@ -316,6 +233,6 @@ declare global {
   }
 }
 
-declare global { namespace JSX { interface StencilJSX {} } }
+declare global { namespace JSX { interface StencilJSX { } } }
 
 export declare function defineCustomElements(window: any): void;

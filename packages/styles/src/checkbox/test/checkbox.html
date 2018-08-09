@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Checkbox</title>
+  <link href="https://fonts.googleapis.com/css?family=Overpass+Mono|Roboto:300,400,500" rel="stylesheet">
+  <link rel="stylesheet" href="../../../dist/airship.css">
+
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <section style="padding: 30px;">
+    <h2 class="as-title">Checkbox</h2>
+    <div class="as-checkbox">
+      <input class="as-checkbox-input" type="checkbox" id="checkbox0" name="checkbox0" value="checkbox0">
+      <span class="as-checkbox-decoration">
+        <svg class="as-checkbox-media">
+          <polyline class="as-checkbox-check" points="1.65093994 3.80255127 4.48919678 6.97192383 10.3794556 0.717346191"></polyline>
+        </svg>
+      </span>
+      <label class="as-caption" for="checkbox0"> Checkbox</label>
+    </div>
+
+    <div class="as-checkbox">
+      <input checked class="as-checkbox-input" type="checkbox" id="checkbox1" name="checkbox1" value="checkbox1">
+      <span class="as-checkbox-decoration">
+        <svg class="as-checkbox-media">
+          <polyline class="as-checkbox-check" points="1.65093994 3.80255127 4.48919678 6.97192383 10.3794556 0.717346191"></polyline>
+        </svg>
+      </span>
+      <label class="as-caption" for="checkbox1"> Checkbox checked</label>
+    </div>
+
+    <div class="as-checkbox">
+      <input disabled class="as-checkbox-input" type="checkbox" id="checkbox2" name="checkbox2" value="checkbox2">
+      <span class="as-checkbox-decoration">
+        <svg class="as-checkbox-media">
+          <polyline class="as-checkbox-check" points="1.65093994 3.80255127 4.48919678 6.97192383 10.3794556 0.717346191"></polyline>
+        </svg>
+      </span>
+      <label class="as-caption" for="checkbox2"> Checkbox Disabled</label>
+    </div>
+
+    <div class="as-checkbox">
+      <input disabled checked class="as-checkbox-input" type="checkbox" id="checkbox3" name="checkbox3" value="checkbox3">
+      <span class="as-checkbox-decoration">
+        <svg class="as-checkbox-media">
+          <polyline class="as-checkbox-check" points="1.65093994 3.80255127 4.48919678 6.97192383 10.3794556 0.717346191"></polyline>
+        </svg>
+      </span>
+      <label class="as-caption" for="checkbox3"> Checkbox Disabled Selected</label>
+    </div>
+
+    <div class="as-checkbox">
+      <input class="as-checkbox-input as-checkbox-input--error" type="checkbox" id="checkbox3" name="checkbox3" value="checkbox3">
+      <span class="as-checkbox-decoration">
+        <svg class="as-checkbox-media">
+          <polyline class="as-checkbox-check" points="1.65093994 3.80255127 4.48919678 6.97192383 10.3794556 0.717346191"></polyline>
+        </svg>
+      </span>
+      <label class="as-caption" for="checkbox3"> Checkbox Error</label>
+    </div>
+
+    <div class="as-checkbox">
+      <input checked class="as-checkbox-input as-checkbox-input--error" type="checkbox" id="checkbox4" name="checkbox4" value="checkbox4">
+      <span class="as-checkbox-decoration">
+        <svg class="as-checkbox-media">
+          <polyline class="as-checkbox-check" points="1.65093994 3.80255127 4.48919678 6.97192383 10.3794556 0.717346191"></polyline>
+        </svg>
+      </span>
+      <label class="as-caption" for="checkbox4"> Checkbox Error Selected</label>
+    </div>
+  </section>
+</body>
+
+</html>

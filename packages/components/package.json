@@ -1,6 +1,6 @@
 {
   "name": "@carto/airship-components",
-  "version": "1.0.0",
+  "version": "1.0.0-alpha-27.0",
   "description": "CARTO Airship components",
   "module": "dist/esm/index.js",
   "main": "dist/index.js",
@@ -45,7 +45,7 @@
   "homepage": "https://github.com/CartoDB/airship",
   "jest": {
     "transform": {
-      "^.+\\.(ts|tsx)$": "../../node_modules/@stencil/core/testing/jest.preprocessor.js"
+      "^.+\\.(ts|tsx|js)$": "../../node_modules/@stencil/core/testing/jest.preprocessor.js"
     },
     "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(tsx?|jsx?)$",
     "moduleFileExtensions": [
@@ -58,5 +58,8 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "conventional-changelog-cli": "^2.0.1"
   }
 }

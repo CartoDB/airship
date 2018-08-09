@@ -9,6 +9,8 @@
   <title>Airship</title>
   <link href="https://fonts.googleapis.com/css?family=Overpass+Mono|Roboto:300,400,500" rel="stylesheet">
   <link rel="stylesheet" href="../packages/styles/dist/airship.css">
+  <link rel="stylesheet" href="../packages/icons/dist/icons.css">
+
   <style>
     body {
       margin: 0;
@@ -25,6 +27,8 @@
   <!-- Use the minified production version to get optimal performance -->
   <script src="https://unpkg.com/catalog@3/dist/catalog-standalone.min.js"></script>
   <script src="../packages/components/dist/airship.js"></script>
+  <script src="../packages/styles/dist/airship.css"></script>
+
 
   <script>
     Catalog.render({
@@ -82,6 +86,11 @@
               path: '/components/as-range-slider',
               title: 'Range slider',
               src: '../packages/components/src/components/as-range-slider/slider/README.md'
+            },
+            {
+              path: '/components/category-widget',
+              title: 'Category Widget',
+              src: '../packages/components/src/components/as-category-widget/README.md'
             }
           ]
         },
@@ -94,9 +103,54 @@
               src: '../packages/styles/src/core/variables/colors.md'
             },
             {
+              path: '/styles/buttons',
+              title: 'Buttons',
+              src: '../packages/styles/src/buttons/README.md'
+            },
+            {
+              path: '/styles/avatar',
+              title: 'Avatar',
+              src: '../packages/styles/src/avatar/README.md'
+            },
+            {
+              path: '/styles/banner',
+              title: 'Banner',
+              src: '../packages/styles/src/banner/README.md'
+            },
+            {
+              path: '/styles/breadcrumb',
+              title: 'Breadcrumb',
+              src: '../packages/styles/src/breadcrumb/README.md'
+            },
+            {
+              path: '/styles/checkbox',
+              title: 'Checkbox',
+              src: '../packages/styles/src/checkbox/README.md'
+            },
+            {
+              path: '/styles/flag',
+              title: 'Flag',
+              src: '../packages/styles/src/flag/README.md'
+            },
+            {
+              path: '/styles/inputs',
+              title: 'Inputs',
+              src: '../packages/styles/src/inputs/README.md'
+            },
+            {
               path: '/styles/lists',
               title: 'Lists',
               src: '../packages/styles/src/core/lists/README.md'
+            },
+            {
+              path: '/styles/radio',
+              title: 'Radio button',
+              src: '../packages/styles/src/radio/README.md'
+            },
+            {
+              path: '/layout/tooltips',
+              title: 'Tooltips',
+              src: '../packages/styles/src/tooltip/README.md'
             },
             {
               path: '/styles/typography',
@@ -108,6 +162,16 @@
               title: 'Tabs',
               src: '../packages/styles/src/tabs/README.md'
             }
+          ]
+        },
+        {
+          title: 'Icons',
+          pages: [
+            {
+              path: '/icons/icons',
+              title: 'Icons',
+              src: '../packages/icons/README.md'
+            },
           ]
         }
       ]

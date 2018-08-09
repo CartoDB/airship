@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+    <base href="/">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+    <title>Airship</title>
+    <link rel="stylesheet" href="/dist/core/core.css">
+    <script src="/build/airship.js"></script>
+  </head>
+
+  <body>
+    <as-category-widget
+      heading="Business Volume"
+      description="Description"></as-category-widget>
+
+    <script>
+      var categoryWidget = document.querySelector('as-category-widget');
+      categoryWidget.showClearButton = true;
+      categoryWidget.categories = [
+        { name: 'Bars & Restaurants', value: 1000, color: '#FABADA' },
+        { name: 'Fashion', value: 900 },
+        { name: 'Grocery', value: 800 },
+        { name: 'Health', value: 400 },
+        { name: 'Shopping mall', value: 250 },
+        { name: 'Transportation', value: 650 }
+      ];
+      categoryWidget.addEventListener('categoriesSelected', function(event) {
+        console.log('Categories Selected', event.detail)
+      });
+    </script>
+  </body>
+</html>
