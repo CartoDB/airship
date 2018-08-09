@@ -142,6 +142,10 @@ declare global {
   namespace StencilComponents {
     interface AsHistogramWidget {
       /**
+       * Override color for the histogram bars
+       */
+      'color': string;
+      /**
        * Color range for histogram data
        */
       'colorRange': HistogramColorRange[];
@@ -187,6 +191,10 @@ declare global {
   }
   namespace JSXElements {
     export interface AsHistogramWidgetAttributes extends HTMLAttributes {
+      /**
+       * Override color for the histogram bars
+       */
+      'color'?: string;
       /**
        * Color range for histogram data
        */

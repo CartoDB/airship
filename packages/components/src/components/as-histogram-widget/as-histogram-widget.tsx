@@ -1,11 +1,13 @@
 import { Component, Prop, Watch, State } from '@stencil/core';
 import readableNumber from '../../utils/readable-number';
+import { shadeOrBlend } from '../../utils/styles';
 import { select, Selection } from 'd3-selection';
 import { scaleLinear } from 'd3-scale';
 import { max } from 'd3-array';
 import { axisLeft, axisBottom } from 'd3-axis';
 import 'd3-transition';
 
+const DEFAULT_BAR_COLOR = '#1785FB';
 const WIDTH = 205;
 const HEIGHT = 125;
 const BARS_SEPARATION = 1;
@@ -60,11 +62,13 @@ export class HistogramWidget {
    */
   @Prop() public data: HistogramData[];
 
-  @Watch('data')
-  onDataChanged() {
-    this._updateAxes();
-    this._renderBars();
-  }
+  /**
+   * Override color for the histogram bars
+   *
+   * @type {string}
+   * @memberof HistogramWidget
+   */
+  @Prop() public color: string = DEFAULT_BAR_COLOR;
 
   /**
    * Bar color to be used by default
@@ -83,6 +87,17 @@ export class HistogramWidget {
   @Prop() public colorRange: HistogramColorRange[];
 
   @State() tooltip: string;
+
+  @Watch('data')
+  onDataChanged() {
+    this._updateAxes();
+    this._renderBars();
+  }
+
+  @Watch('color')
+  onColorChanged() {
+    this._renderBars();
+  }
   
   private container: Selection<HTMLElement, {}, null, undefined>;
   private tooltipElement: HTMLElement;
@@ -176,12 +191,16 @@ export class HistogramWidget {
     this.bars
       .enter()
       .append('rect')
-      .on('mouseout', () => this.tooltip = null)
+      .on('mouseout', (_data, index, nodes) => {
+        select(nodes[index]).style('fill', this.color)
+        this.tooltip = null;
+      })
       .on('mouseenter', d => {
         this.tooltip = d.value;
         this._showTooltip(event as MouseEvent);
       })
-      .on('mousemove', () => {
+      .on('mousemove', (_data, index, nodes) => {
+        select(nodes[index]).style('fill', shadeOrBlend(-0.16, this.color))
         select(this.tooltipElement).style('opacity', 0);
         this._showTooltip(event as MouseEvent);
       })
@@ -191,6 +210,7 @@ export class HistogramWidget {
       .attr('x', (d, index) => index * barWidth)
       .attr('width', () => Math.max(0, barWidth - BARS_SEPARATION))
       .attr('height', 0)
+      .style('fill', this.color)
       .transition()
       .delay(200)
       .attr('y', d => this.yScale(d.value))

@@ -18,12 +18,7 @@ as-histogram-widget {
 
     .bar {
       transition: all 0.3s linear;
-      fill: $color-primary;
       opacity: 0.7;
-
-      &:hover {
-        fill: darken($color-primary, 16%);
-      }
     }
 
     .yAxis .tick {
