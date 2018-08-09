@@ -104,9 +104,9 @@ declare global {
        * Bottom limit of the range. You cannot drag your slider below this value. By default the value is 0.
        */
       'minValue'?: number;
-      'onChange'?: (event: CustomEvent<number | number[]>) => void;
-      'onChangeEnd'?: (event: CustomEvent<number | number[]>) => void;
-      'onChangeStart'?: (event: CustomEvent<number | number[]>) => void;
+      'onChange'?: (event: CustomEvent<number[]>) => void;
+      'onChangeEnd'?: (event: CustomEvent<number[]>) => void;
+      'onChangeStart'?: (event: CustomEvent<number[]>) => void;
       /**
        * Initial range.
        */

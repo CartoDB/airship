@@ -82,10 +82,16 @@ Optional function to format the numbers (eg. for adding $ or €). Undefined by 
 
 
 ### Events
-#### change: EventEmitter<number | number[ ]>
-#### changeStart: EventEmitter<number | number[ ]>
-#### changeEnd: EventEmitter<number | number[ ]>
+All events return an array with one value (simple mode) or two (range).
 
+#### change: number[ ]
+Triggered when the user is dragging a slider.
+
+#### changeStart: number[ ]
+Triggered when the user starts dragging a slider.
+
+#### changeEnd: number[ ]
+Triggered when the user ends dragging a slider.
 
 ### Methods
 None

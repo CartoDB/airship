@@ -75,9 +75,9 @@ export class RangeSlider {
   @Prop() public formatValue: (value: number) => void;
 
 
-  @Event() public change: EventEmitter<number | number[]>;
-  @Event() public changeStart: EventEmitter<number | number[]>;
-  @Event() public changeEnd: EventEmitter<number | number[]>;
+  @Event() public change: EventEmitter<number[]>;
+  @Event() public changeStart: EventEmitter<number[]>;
+  @Event() public changeEnd: EventEmitter<number[]>;
 
   @State() private thumbs: Thumb[] = [];
 
