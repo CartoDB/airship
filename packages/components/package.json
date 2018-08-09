@@ -60,6 +60,7 @@
     "access": "public"
   },
   "dependencies": {
+    "@types/d3": "^5.0.0",
     "conventional-changelog-cli": "^2.0.1",
     "d3-array": "^1.2.1",
     "d3-axis": "^1.0.8",
