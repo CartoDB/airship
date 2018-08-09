@@ -53,6 +53,28 @@ showSource: false
 </script>
 ```
 
+#### Disabled
+```html
+noSource: true
+---
+<iframe  frameborder="0" marginwidth="10" src="/examples/components/as-range-slider/disabled.html" style="width: 100%; height: 80px;">
+```
+
+```code
+lang: html
+showSource: false
+---
+<!-- Example using disabled property -->
+<as-range-slider value="5" disabled="true"></as-range-slider>
+    <br/>
+<button>Toggle disabled</button>
+<script>
+    document.querySelector('button').addEventListener('click', () => {
+        const rangeSliderWidget = document.querySelector('as-range-slider');
+        rangeSliderWidget.disabled = !rangeSliderWidget.disabled;
+    })
+</script>
+````
 
 ### Props
 
@@ -68,30 +90,34 @@ Bottom limit of the range. You cannot drag your slider below this value. By defa
 #### maxValue: number = 10
 Top limit of the range. You cannot drag your slider beyond this value. By default the value is 10.
 
-#### disabled: boolean = false
-Disables component if truthy. False by default.
-
 #### step: number = 1
 Increment/decrement step of the slider. You can change the step setting a different number to this property. Defaults to 1.
+
+#### disabled: boolean = false
+Disables component if truthy. False by default.
 
 ####  draggable: boolean = false
 If this property is set to true, and it has multiple value, you can drag the entire track. False by default
 
 #### formatValue: (value: number) => void
-Optional function to format the numbers (eg. for adding $ or €). Undefined by default (original value will be displayed, without formatting)
+Optional function to format the numbers (eg. for adding $ or € after the figure). Undefined by default (original value will be displayed, without formatting)
 
 
 ### Events
 All events return an array with one value (simple mode) or two (range).
 
-#### change: number[ ]
+#### change
+Returns number []
 Triggered when the user is dragging a slider.
 
-#### changeStart: number[ ]
+#### changeStart
+Returns number[ ]
 Triggered when the user starts dragging a slider.
 
-#### changeEnd: number[ ]
+#### changeEnd
+Returns number[ ]
 Triggered when the user ends dragging a slider.
 
+
 ### Methods
-None
+There are currently no methods, but you can change some of the previous properties and the component will react appropriately
