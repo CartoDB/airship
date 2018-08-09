@@ -1,10 +1,10 @@
 import { Component, Prop, Watch, State } from '@stencil/core';
 import readableNumber from '../../utils/readable-number';
 import { shadeOrBlend } from '../../utils/styles';
-import { select, Selection } from 'd3-selection';
-import { scaleLinear } from 'd3-scale';
+import { select, Selection, BaseType } from 'd3-selection';
+import { scaleLinear, ScaleLinear } from 'd3-scale';
 import { max } from 'd3-array';
-import { axisLeft, axisBottom } from 'd3-axis';
+import { axisLeft, axisBottom, Axis } from 'd3-axis';
 import 'd3-transition';
 
 const DEFAULT_BAR_COLOR = '#1785FB';
@@ -102,14 +102,14 @@ export class HistogramWidget {
   private container: Selection<HTMLElement, {}, null, undefined>;
   private tooltipElement: HTMLElement;
 
-  private xScale: any;
-  private yScale: any;
-  private yAxis: any;
-  private xAxis: any;
-  private yAxisSelection: any;
-  private xAxisSelection: any;
-  private barsContainer: any;
-  private bars: any;
+  private xScale: ScaleLinear<number, number>;
+  private yScale: ScaleLinear<number, number>;
+  private yAxis: Axis<{ valueOf(): number }>;
+  private xAxis: Axis<{ valueOf(): number }>;
+  private yAxisSelection: Selection<BaseType, {}, null, undefined>;
+  private xAxisSelection: Selection<BaseType, {}, null, undefined>;
+  private barsContainer: Selection<BaseType, {}, null, undefined>;
+  private bars: Selection<BaseType, HistogramData, BaseType, {}>;
 
   componentDidLoad() {
     // This is probably not necessary for production, but HMR causes this method
@@ -191,15 +191,15 @@ export class HistogramWidget {
     this.bars
       .enter()
       .append('rect')
-      .on('mouseout', (_data, index, nodes) => {
+      .on('mouseout', (_data: HistogramData, index: number, nodes: BaseType[]) => {
         select(nodes[index]).style('fill', this.color)
         this.tooltip = null;
       })
-      .on('mouseenter', d => {
-        this.tooltip = d.value;
+      .on('mouseenter', (data: HistogramData) => {
+        this.tooltip = `${data.value}`;
         this._showTooltip(event as MouseEvent);
       })
-      .on('mousemove', (_data, index, nodes) => {
+      .on('mousemove', (_data: HistogramData, index: number, nodes: BaseType[]) => {
         select(nodes[index]).style('fill', shadeOrBlend(-0.16, this.color))
         select(this.tooltipElement).style('opacity', 0);
         this._showTooltip(event as MouseEvent);
@@ -207,14 +207,14 @@ export class HistogramWidget {
       .merge(this.bars)
       .attr('class', 'bar')
       .attr('y', HEIGHT)
-      .attr('x', (d, index) => index * barWidth)
+      .attr('x', (_d: HistogramData, index: number) => index * barWidth)
       .attr('width', () => Math.max(0, barWidth - BARS_SEPARATION))
       .attr('height', 0)
       .style('fill', this.color)
       .transition()
       .delay(200)
-      .attr('y', d => this.yScale(d.value))
-      .attr('height', d => HEIGHT - this.yScale(d.value));
+      .attr('y', (data: HistogramData) => this.yScale(data.value))
+      .attr('height', (data: HistogramData) => HEIGHT - this.yScale(data.value));
 
     // -- Update
     this.bars
