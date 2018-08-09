@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Base banner</title>
-  <link href="https://fonts.googleapis.com/css?family=Overpass+Mono|Roboto:300,400,500" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400" rel="stylesheet">
   <link rel="stylesheet" href="../../../../icons/dist/icons.css">
   <link rel="stylesheet" href="../../../dist/airship.css">
 
@@ -21,6 +21,15 @@
 </head>
 
 <body>
+  <script>
+    setInterval(() => {
+      if (document.fonts.check("12px Roboto")) {
+        console.log('loaded');
+      } else {
+        console.log('not loaded');
+      }
+    }, 50);
+  </script>
   <div class="as-banner">
     <div class="as-banner__icon">
       <i class="as-icon-info"></i>
