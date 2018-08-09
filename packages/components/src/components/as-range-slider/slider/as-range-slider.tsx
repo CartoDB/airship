@@ -25,15 +25,6 @@ export class RangeSlider {
   @Prop() public range: number[];
 
   /**
-   * Top limit of the range.
-   * You cannot drag your slider beyond this value. By default the value is 10.
-   *
-   * @type {number}
-   * @memberof RangeSlider
-   */
-  @Prop() public maxValue: number = 10;
-
-  /**
    * Bottom limit of the range.
    * You cannot drag your slider below this value. By default the value is 0.
    *
@@ -43,12 +34,13 @@ export class RangeSlider {
   @Prop() public minValue: number = 0;
 
   /**
-   * Disables component if truthy
+   * Top limit of the range.
+   * You cannot drag your slider beyond this value. By default the value is 10.
    *
    * @type {number}
    * @memberof RangeSlider
    */
-  @Prop() public disabled: boolean = false;
+  @Prop() public maxValue: number = 10;
 
   /**
    * Increment/decrement step of the slider.
@@ -58,6 +50,14 @@ export class RangeSlider {
    * @memberof RangeSlider
    */
   @Prop() public step: number = 1;
+
+  /**
+   * Disables component if truthy
+   *
+   * @type {number}
+   * @memberof RangeSlider
+   */
+  @Prop() public disabled: boolean = false;
 
   /**
    * If this property is set to true, and it has multiple value, you can drag the entire track.
@@ -84,7 +84,9 @@ export class RangeSlider {
 
   @Watch('value') public validateValue(newValue: number) {
     if (!this._isBetweenValidValues(newValue)) {
-      throw new Error(`RangeSlider: Value ${newValue} has to be between maxValue and minValue`);
+      throw new Error(`RangeSlider: Value ${newValue} has to be between ` +
+        `minValue (${this.minValue}) and maxValue (${this.maxValue})`
+      );
     }
     this._updateThumbs();
   }
