@@ -4,7 +4,8 @@ const path = require('path');
 const defaultScenarioOptions = {
   misMatchThreshold: 0,
   requireSameDimensions: true,
-  delay: 50
+  readyEvent: 'backstopjs_ready',
+  delay: 200
 };
 
 const defaultOptions = {
