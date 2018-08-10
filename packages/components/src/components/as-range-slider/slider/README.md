@@ -74,48 +74,48 @@ showSource: false
         rangeSliderWidget.disabled = !rangeSliderWidget.disabled;
     })
 </script>
-````
+```
 
 ### Props
 
-#### value: number
+#### **value**: number
 Value to use as maximum in a range defined with just one number (minimum will be set to `minValue`)
 
-#### range: number[]
+#### **range**: number[]
 Pair of numbers used to define a range.
 
-#### minValue: number = 0
+#### **minValue**: number = 0
 Bottom limit of the range. You cannot drag your slider below this value. By default the value is 0.
 
-#### maxValue: number = 10
+#### **maxValue**: number = 10
 Top limit of the range. You cannot drag your slider beyond this value. By default the value is 10.
 
-#### step: number = 1
+#### **step**: number = 1
 Increment/decrement step of the slider. You can change the step setting a different number to this property. Defaults to 1.
 
-#### disabled: boolean = false
+#### **disabled**: boolean = false
 Disables component if truthy. False by default.
 
-####  draggable: boolean = false
+#### **draggable**: boolean = false
 If this property is set to true, and it has multiple value, you can drag the entire track. False by default
 
-#### formatValue: (value: number) => void
+#### **formatValue**: (value: number) => void
 Optional function to format the numbers (eg. for adding $ or € after the figure). Undefined by default (original value will be displayed, without formatting)
 
 
 ### Events
 All events return an array with one value (simple mode) or two (range).
 
-#### change
-Returns number []
+#### **change**
+`event.detail = number []`
 Triggered when the user is dragging a slider.
 
-#### changeStart
-Returns number[ ]
+#### **changeStart**
+`event.detail = number []`
 Triggered when the user starts dragging a slider.
 
-#### changeEnd
-Returns number[ ]
+#### **changeEnd**
+`event.detail = number []`
 Triggered when the user ends dragging a slider.
 
 
