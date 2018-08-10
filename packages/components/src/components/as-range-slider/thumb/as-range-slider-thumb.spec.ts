@@ -75,9 +75,6 @@ describe('as-range-slider-thumb', () => {
             expect(onThumbIncreaseSpy).toHaveBeenCalled();
         });
 
-        //   // TODO. keyboard events:
-        //   // https://github.com/ionic-team/stencil/issues/572
-        //   // https://stackoverflow.com/questions/33638385/simulate-keydown-on-document-for-jest-unit-testing
-        //   // https://stackoverflow.com/questions/51660360/is-there-any-way-write-the-test-cases-of-mouse-keyboard-events-in-jest
+        // Keyboard events: https://github.com/ionic-team/stencil/issues/572
     });
 });
