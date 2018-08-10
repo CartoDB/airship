@@ -13,6 +13,7 @@ exports[`as-range-slider-thumb Rendering should have aria attributes 1`] = `
     class="as-range-slider__thumb"
     data-value="5"
     role="slider"
+    style="left: 10%;"
     tabindex="0"
   >
     <span

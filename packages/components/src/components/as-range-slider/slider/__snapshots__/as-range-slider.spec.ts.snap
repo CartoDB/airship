@@ -68,20 +68,20 @@ exports[`as-range-slider Rendering should render 2 thumbs + 1 bar when using a r
       class="as-range-slider__rail"
     >
       <as-range-slider-thumb
-        percentage="0"
+        percentage="20"
         value="2"
         valuemax="3"
-        valuemin="2"
+        valuemin="0"
       />
       <as-range-slider-thumb
-        percentage="11.11111111111111"
+        percentage="40"
         value="4"
-        valuemax="20"
+        valuemax="10"
         valuemin="3"
       />
       <as-range-slider-bar
-        rangeendpercentage="11.11111111111111"
-        rangestartpercentage="0"
+        rangeendpercentage="40"
+        rangestartpercentage="20"
         steppercentage="11.11111111111111"
       />
     </div>

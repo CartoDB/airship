@@ -18,16 +18,6 @@ describe('as-range-slider', () => {
       expect(rangeSlider.maxValue).toEqual(10);
     });
 
-    // it('should honor min and max values when setting a value', () => {
-    //   rangeSlider.minValue = 50;
-    //   rangeSlider.maxValue = 100;
-
-    //   const outOfBoundsRange = () => {
-    //     rangeSlider.value = 2;
-    //   };
-    //   expect(outOfBoundsRange).toThrow(); // TODO this doesn't work, despite of throw new Error
-    // });
-
     it('should emit a change event on thumb move', async () => {
       rangeSlider.minValue = 0;
       rangeSlider.maxValue = 1000;
@@ -56,7 +46,7 @@ describe('as-range-slider', () => {
       const onChangeSpy = jest.fn();
       rangeSlider.change = { emit: onChangeSpy };
 
-      rangeSlider._updateThumbs(); // >> ctor ?
+      rangeSlider._updateThumbs();
 
       rangeSlider._onBarMove({ detail: [40, 50] });
       expect(onChangeSpy).toHaveBeenCalledWith([400, 500]);
@@ -107,5 +97,18 @@ describe('as-range-slider', () => {
 
       expect(element).toMatchSnapshot();
     });
+
+    // it('should honor min and max values when setting a value', async () => {
+    //   element.minValue = 50;
+    //   element.maxValue = 100;
+    //   element.value = 75;
+    //   await testWindow.flush();
+
+    //   const outOfBounds = async () => {
+    //     element.value = 2;
+    //     // await testWindow.flush();
+    //   };
+    //   expect(outOfBounds).toThrow(); // TODO this doesn't work, despite of new Error inside a Watch
+    // });
   });
 });
