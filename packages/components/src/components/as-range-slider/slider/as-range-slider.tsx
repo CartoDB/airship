@@ -82,7 +82,8 @@ export class RangeSlider {
   @State() private thumbs: Thumb[] = [];
 
 
-  @Watch('value') public validateValue(newValue: number) {
+  @Watch('value')
+  public validateValue(newValue: number) {
     if (!this._isBetweenValidValues(newValue)) {
       throw new Error(`RangeSlider: Value ${newValue} has to be between ` +
         `minValue (${this.minValue}) and maxValue (${this.maxValue})`
@@ -91,26 +92,13 @@ export class RangeSlider {
     this._updateThumbs();
   }
 
-  @Watch('range') public validateRange(newRange: number[]) {
+  @Watch('range')
+  public validateRange(newRange: number[]) {
     if (newRange.length !== 2) {
       throw new Error(`RangeSlider: Range ${newRange} need two values at most`);
     }
 
     newRange.map((value) => this.validateValue(value));
-    this._updateThumbs();
-  }
-
-  @Watch('maxValue') public validateMaxValue(newMaxValue: number) {
-    if (newMaxValue <= this.minValue) {
-      throw new Error(`RangeSlider: maxValue ${newMaxValue} is not bigger than current minValue`);
-    }
-    this._updateThumbs();
-  }
-
-  @Watch('minValue') public validateMinValue(newMinValue: number) {
-    if (newMinValue >= this.maxValue) {
-      throw new Error(`RangeSlider: minValue ${newMinValue} is not smaller than current maxValue`);
-    }
     this._updateThumbs();
   }
 
