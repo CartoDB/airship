@@ -108,32 +108,4 @@ describe('as-range-slider', () => {
       expect(element).toMatchSnapshot();
     });
   });
-
-  describe('Interaction', () => {
-    let element: HTMLAsRangeSliderElement;
-    let testWindow: TestWindow;
-
-    beforeEach(async () => {
-      testWindow = new TestWindow();
-      element = await testWindow.load({
-        components: [RangeSlider],
-        html: '<as-range-slider></as-range-slider>'
-      });
-    });
-
-    // it('should emit an event containing new values when slider is clicked', async () => {
-    //   element.minValue = 0;
-    //   element.maxValue = 10;
-    //   element.value = 5;
-
-    //   const onChangeSpy = jest.fn();
-    //   element.addEventListener('change', onChangeSpy);
-    //   await testWindow.flush();
-
-    // });
-
-    // TODO. keyboard events:
-    // https://stackoverflow.com/questions/33638385/simulate-keydown-on-document-for-jest-unit-testing
-
-  });
 });
