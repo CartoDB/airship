@@ -1,4 +1,4 @@
-import { Component, Prop, Watch, State } from '@stencil/core';
+import { Component, Prop, Watch, State, Method } from '@stencil/core';
 import readableNumber from '../../utils/readable-number';
 import { shadeOrBlend } from '../../utils/styles';
 import { select, Selection, BaseType } from 'd3-selection';
@@ -85,6 +85,26 @@ export class HistogramWidget {
    * @memberof HistogramWidget
    */
   @Prop() public colorRange: HistogramColorRange[];
+
+  /**
+   * Function that formats the tooltip. Receives HistogramData and outputs a string
+   * 
+   * @type {(HistogramData) => string}
+   * @memberof HistogramWidget
+   */
+  @Prop() public tooltipFormatter: (value: HistogramData) => string = this.defaultFormatter;
+
+  /**
+   * Default formatting function. Makes the value a readable number and
+   * converts it into a string. Useful to compose with your own formatting
+   * function.
+   * 
+   * @memberof HistogramWidget
+   */
+  @Method()
+  defaultFormatter(data: HistogramData) {
+    return `${readableNumber(data.value)}`;
+  }
 
   @State() tooltip: string;
 
@@ -196,7 +216,7 @@ export class HistogramWidget {
         this.tooltip = null;
       })
       .on('mouseenter', (data: HistogramData) => {
-        this.tooltip = `${data.value}`;
+        this.tooltip = this.tooltipFormatter(data);
         this._showTooltip(event as MouseEvent);
       })
       .on('mousemove', (_data: HistogramData, index: number, nodes: BaseType[]) => {
@@ -309,7 +329,7 @@ export class HistogramWidget {
       ref={(ref: HTMLElement) => this.tooltipElement = ref}
       role="tooltip"
       class="as-histogram-widget__tooltip">
-        {readableNumber(this.tooltip)}
+        {this.tooltip}
       </span>);
   }
 

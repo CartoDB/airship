@@ -41,14 +41,14 @@
         return data;
       }
 
-      var categoryWidget = document.querySelector('as-histogram-widget');
-      categoryWidget.data = randomData();
+      var histogramWidget = document.querySelector('as-histogram-widget');
+      histogramWidget.data = randomData();
 
       document.querySelector('#changeBtn').addEventListener('click', function () {
-        categoryWidget.data = randomData();
+        histogramWidget.data = randomData();
       });
       document.querySelector('#mutateBtn').addEventListener('click', function () {
-        categoryWidget.data = categoryWidget.data.map(function (entry) {
+        histogramWidget.data = histogramWidget.data.map(function (entry) {
           return {
             ...entry,
             value: Math.floor(Math.random() * 30) + 1

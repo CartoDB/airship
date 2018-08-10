@@ -158,6 +158,10 @@ declare global {
        */
       'defaultBarColor': string;
       /**
+       * Default formatting function. Makes the value a readable number and converts it into a string. Useful to compose with your own formatting function.
+       */
+      'defaultFormatter': (data: HistogramData) => string;
+      /**
        * Description of the widget to be displayed
        */
       'description': string;
@@ -169,6 +173,10 @@ declare global {
        * Toggles displaying title and description
        */
       'showHeader': boolean;
+      /**
+       * Function that formats the tooltip. Receives HistogramData and outputs a string
+       */
+      'tooltipFormatter': (value: HistogramData) => string;
     }
   }
 
@@ -219,6 +227,10 @@ declare global {
        * Toggles displaying title and description
        */
       'showHeader'?: boolean;
+      /**
+       * Function that formats the tooltip. Receives HistogramData and outputs a string
+       */
+      'tooltipFormatter'?: (value: HistogramData) => string;
     }
   }
 }
