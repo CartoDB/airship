@@ -4,7 +4,7 @@ import { shadeOrBlend } from '../../utils/styles';
 import { select, event as d3event, Selection, BaseType } from 'd3-selection';
 import { scaleLinear, ScaleLinear } from 'd3-scale';
 import { max } from 'd3-array';
-import { brushX } from 'd3-brush';
+import { brushX, BrushBehavior } from 'd3-brush';
 import { axisLeft, axisBottom, Axis } from 'd3-axis';
 import 'd3-transition';
 
@@ -54,6 +54,14 @@ export class HistogramWidget {
    * @memberof HistogramWidget
    */
   @Prop() public showHeader: boolean;
+
+  /**
+   * Display a clear button that clears the histogram selection.
+   *
+   * @type {boolean}
+   * @memberof HistogramWidget
+   */
+  @Prop() public showClear: boolean;
 
   /**
    * Histogram data to be displayed
@@ -131,6 +139,8 @@ export class HistogramWidget {
   private xAxisSelection: Selection<BaseType, {}, null, undefined>;
   private barsContainer: Selection<BaseType, {}, null, undefined>;
   private bars: Selection<BaseType, HistogramData, BaseType, {}>;
+  private brush: BrushBehavior<{}>;
+  private brushArea: Selection<BaseType, {}, null, undefined>;
 
   componentDidLoad() {
     // This is probably not necessary for production, but HMR causes this method
@@ -150,14 +160,15 @@ export class HistogramWidget {
       .append('g')
       .attr('transform', `translate(${MARGIN.LEFT}, ${MARGIN.TOP})`);
     
-    this.container
+    this.brush = brushX()
+      .handleSize(BARS_SEPARATION + 4)
+      .extent([[MARGIN.LEFT, MARGIN.TOP], [WIDTH + MARGIN.LEFT, HEIGHT + MARGIN.TOP]])
+      .on('brush', this._onBrush.bind(this));
+
+    this.brushArea = this.container
       .append('g')
       .attr('class', 'brush')
-      .call(brushX()
-        .handleSize(BARS_SEPARATION + 4)
-        .extent([[MARGIN.LEFT, MARGIN.TOP], [WIDTH + MARGIN.LEFT, HEIGHT + MARGIN.TOP]])
-        .on('brush', this._onBrush.bind(this))
-        );
+      .call(this.brush);
 
     this._renderBars();
     this._cleanAxes();
@@ -197,6 +208,7 @@ export class HistogramWidget {
 
   private _onBrush (_d, index: number, nodes: SVGElement[]) {
     const evt = d3event as any; // I can't cast this properly :(
+    if (!evt.sourceEvent) return; // I don't know why this happens
     if (evt.sourceEvent.type === "brush") return;
     const d0 = evt.selection
       .map(e => e - MARGIN.LEFT)
@@ -390,10 +402,28 @@ export class HistogramWidget {
       </span>);
   }
 
+  _renderClearBtn() {
+    if (!this.showClear) {
+      return;
+    }
+
+    return (
+      <button onClick={(event: UIEvent) => this._onClear(event) }>Clear selection</button>
+    );
+  }
+
+  _onClear(_event: UIEvent) {
+    // Clear the brush
+    this.brushArea.call(this.brush.move, null);
+
+    // TODO: clear selection & notify
+  }
+
   render() {
     return [
       this._renderHeader(),
       <svg ref={(ref: HTMLElement) => this.container = select(ref)} viewBox='0 0 248 160'></svg>,
+      this._renderClearBtn(),
       this._renderTooltip()
     ];
   }

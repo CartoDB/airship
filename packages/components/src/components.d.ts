@@ -170,6 +170,10 @@ declare global {
        */
       'heading': string;
       /**
+       * Display a clear button that clears the histogram selection.
+       */
+      'showClear': boolean;
+      /**
        * Toggles displaying title and description
        */
       'showHeader': boolean;
@@ -223,6 +227,10 @@ declare global {
        * Title of the widget to be displayed
        */
       'heading'?: string;
+      /**
+       * Display a clear button that clears the histogram selection.
+       */
+      'showClear'?: boolean;
       /**
        * Toggles displaying title and description
        */
