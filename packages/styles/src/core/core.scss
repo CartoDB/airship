@@ -33,6 +33,12 @@
   // -- Fonts
   --as-font-family-base: #{$font-family-base};
   --as-font-family-mono: #{$font-family-mono};
+
+  // Badge colors
+  --as-color-badge-gray: #{$color-badge-gray};
+  --as-color-badge-green: #{$color-badge-green};
+  --as-color-badge-blue: #{$color-badge-blue};
+  --as-color-badge-pink: #{$color-badge-pink};
 }
 
 * {

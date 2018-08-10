@@ -6,6 +6,7 @@
   margin: get-spacing(2);
   padding: 0 get-spacing(2);
   border-radius: get-spacing(5);
+  background-color: var(--as-color-badge-blue, #{$color-badge-blue});
   font: $font-body;
 
   i {
@@ -18,31 +19,5 @@
 
   i:last-child {
     margin-left: get-spacing(2);
-  }
-
-  &--0 {
-    background-color: $color-primary;
-    color: white;
-  }
-
-  &--1 {
-    background-color: #E2E6E3;
-  }
-
-  &--2 {
-    background-color: #E1EDCB;
-  }
-
-  &--3 {
-    background-color: #B5E0F9;
-  }
-
-  &--4 {
-    background-color: #D6CBDC;
-  }
-
-  &--5 {
-    background-color: #2C2C2C;
-    color: white;
   }
 }
