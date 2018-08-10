@@ -16,6 +16,17 @@ as-histogram-widget {
   svg {
     display: block;
 
+    .brush {
+      .selection {
+        fill: none;
+        stroke: none;
+      }
+
+      .handle {
+        stroke: fuchsia;
+      }
+    }
+
     .bar {
       transition: all 0.3s linear;
       opacity: 0.7;

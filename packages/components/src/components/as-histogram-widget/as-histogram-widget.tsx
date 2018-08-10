@@ -1,9 +1,10 @@
 import { Component, Prop, Watch, State, Method } from '@stencil/core';
 import readableNumber from '../../utils/readable-number';
 import { shadeOrBlend } from '../../utils/styles';
-import { select, Selection, BaseType } from 'd3-selection';
+import { select, event as d3event, Selection, BaseType } from 'd3-selection';
 import { scaleLinear, ScaleLinear } from 'd3-scale';
 import { max } from 'd3-array';
+import { brushX } from 'd3-brush';
 import { axisLeft, axisBottom, Axis } from 'd3-axis';
 import 'd3-transition';
 
@@ -148,9 +149,65 @@ export class HistogramWidget {
     this.barsContainer = this.container
       .append('g')
       .attr('transform', `translate(${MARGIN.LEFT}, ${MARGIN.TOP})`);
+    
+    this.container
+      .append('g')
+      .attr('class', 'brush')
+      .call(brushX()
+        .handleSize(BARS_SEPARATION + 4)
+        .extent([[MARGIN.LEFT, MARGIN.TOP], [WIDTH + MARGIN.LEFT, HEIGHT + MARGIN.TOP]])
+        .on('brush', this._onBrush.bind(this))
+        );
 
     this._renderBars();
     this._cleanAxes();
+  }
+
+  private _adjustSelectionLower (value: number) {
+    if (value <= this.data[0].start) {
+      return this.data[0].start;
+    }
+
+    if (value >= this.data[this.data.length - 1].end) {
+      return this.data[this.data.length - 1].start;
+    }
+
+    for (var i = 0; i < this.data.length; i++) {
+      if (value >= this.data[i].start && value < this.data[i].end) {
+        return this.data[i].start;
+      }
+    }
+  }
+
+  private _adjustSelectionUpper (value: number) {
+    if (value <= this.data[0].start) {
+      return this.data[0].end;
+    }
+
+    if (value >= this.data[this.data.length - 1].end) {
+      return this.data[this.data.length - 1].end;
+    }
+
+    for (var i = 0; i < this.data.length; i++) {
+      if (value > this.data[i].start && value <= this.data[i].end) {
+        return this.data[i].end;
+      }
+    }
+  }
+
+  private _onBrush (_d, index: number, nodes: SVGElement[]) {
+    const evt = d3event as any; // I can't cast this properly :(
+    if (evt.sourceEvent.type === "brush") return;
+    const d0 = evt.selection
+      .map(e => e - MARGIN.LEFT)
+      .map(this.xScale.invert)
+      .map(e => Math.round(e));
+
+    const d1 = [this._adjustSelectionLower(d0[0]), this._adjustSelectionUpper(d0[1])];
+
+    console.log(d0, d1);
+  
+    select(nodes[index]).call(evt.target.move, d1.map(this.xScale).map(e => e + MARGIN.LEFT));
   }
 
   private _renderYAxis() {
