@@ -40,6 +40,8 @@
 
 ## Stripped table
 
+Use the `as-table--stripped` class modifier to create a bordered table.
+
 
 ```html
 <table class="as-table as-table--stripped">
