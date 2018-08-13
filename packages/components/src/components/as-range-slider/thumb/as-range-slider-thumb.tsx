@@ -41,6 +41,7 @@ export class RangeSliderThumb extends MouseTrack {
         aria-valuemin={this.valueMin}
         aria-valuemax={this.valueMax}
         class={cssClasses} style={thumbStyles} data-value={this.value}>
+        <div class='as-range-slider__thumb-handle'></div>
         <span class='as-range-slider__value as-caption as-font-medium'>
           {this._getDisplayValue(this.value)}
         </span>
