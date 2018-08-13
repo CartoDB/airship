@@ -18,18 +18,29 @@
 </head>
 
 <body>
-  <!-- <h1> Content </h1> -->
+
+  <script>
+    function onFoo(e) {
+      console.log(e.getAttribute('data-value'));
+    }
+  </script>
   <div class="as-dropdown">
     <button aria-haspopup="listbox" class="as-dropdown--input"> Im a dropdown </button>
     <ul role="listbox" class="as-dropdown--options">
-      <li tabindex="0" role="option">All</li>
-      <li tabindex="0" role="option">spent</li>
-      <li tabindex="0" role="option">Loaded</li>
-      <li tabindex="0" role="option">Waiting</li>
+      <li onclick="onFoo(this)" role="option" data-value="all">
+        <button>All</button>
+      </li>
+      <li onclick="onFoo(this)" role="option" data-value="spent">
+        <button>spent</button>
+      </li>
+      <li onclick="onFoo(this)" role="option" data-value="loaded">
+        <button>Loaded</button>
+      </li>
+      <li onclick="onFoo(this)" role="option" data-value="waiting">
+        <button>Waiting</button>
+      </li>
     </ul>
   </div>
-
-  <!-- <h1> More content </h1> -->
 </body>
 
 </html>
