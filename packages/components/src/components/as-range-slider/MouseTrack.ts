@@ -16,6 +16,8 @@ export class MouseTrack {
     document.addEventListener('touchmove', handleMove);
     document.addEventListener('mouseup', handleRelease);
     document.addEventListener('touchend', handleRelease);
+
+    document.addEventListener('dragstart', this.preventAndStop);
   }
 
   private _handleRelease(eventProperties: MouseEvent, listeners: MouseListeners, customListeners: MouseListeners) {
@@ -29,6 +31,11 @@ export class MouseTrack {
     if (customListeners.release) {
       customListeners.release(eventProperties);
     }
+  }
+
+  private preventAndStop(event: MouseEvent) {
+    event.preventDefault();
+    event.stopPropagation();
   }
 }
 

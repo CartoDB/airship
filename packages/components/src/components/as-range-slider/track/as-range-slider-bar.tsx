@@ -1,6 +1,9 @@
 import { Component, Element, Event, EventEmitter, Listen, Prop } from '@stencil/core';
 import { MouseTrack } from '../MouseTrack';
 
+const MAX_PERCENTAGE = 100;
+const MIN_PERCENTAGE = 0;
+
 @Component({
   shadow: false,
   styleUrl: './as-range-slider-bar.scss',
@@ -64,43 +67,68 @@ export class RangeSliderBar extends MouseTrack {
       return;
     }
 
-    const rangeDifference = this.rangeEndPercentage - this.rangeStartPercentage;
+    const rangeDifference = this._getRangeDifference();
     const movementDelta = this._getMovementDelta(event, this.previousMouseEvent);
     const barXPosition = this.rangeBarElement.offsetLeft + movementDelta;
 
-    const leftPercentage = (barXPosition) * 100 / this.railElement.offsetWidth;
-    const rightPercentage = leftPercentage + rangeDifference;
+    let leftPercentage = barXPosition * 100 / this.railElement.offsetWidth;
+    let rightPercentage = leftPercentage + rangeDifference;
 
-    if (leftPercentage < 0 || rightPercentage > 100) {
-      return;
+    if (leftPercentage < MIN_PERCENTAGE) {
+      leftPercentage = MIN_PERCENTAGE;
+      rightPercentage = leftPercentage + rangeDifference;
     }
 
-    this._updateRangePercentages([leftPercentage, rightPercentage]);
-    this.previousMouseEvent = event;
+    if (rightPercentage > MAX_PERCENTAGE) {
+      rightPercentage = MAX_PERCENTAGE;
+      leftPercentage = rightPercentage - rangeDifference;
+    }
+
+    const thresholdPassed = this._updateRangePercentages([leftPercentage, rightPercentage]);
+
+    if (thresholdPassed) {
+      this.previousMouseEvent = event;
+    }
 
     this.barMove.emit([this.rangeStartPercentage, this.rangeEndPercentage]);
   }
 
   private _updateRangePercentages(percentages: number[]) {
-    const leftPercentage = percentages[0];
+    const [leftPercentage, rightPercentage] = percentages;
 
     const direction = (leftPercentage < this.rangeStartPercentage) ? -1 : 1;
-    const delta = Math.abs(leftPercentage - this.rangeStartPercentage);
-    const threshold = (this.stepPercentage / 5); // the smaller, the bigger sensitivity
+    const delta = Math.abs(this.rangeStartPercentage - leftPercentage);
+    const threshold = this.stepPercentage;
+    const rangeDifference = this._getRangeDifference();
 
-    if (delta > threshold) {
-      this.rangeStartPercentage += direction * this.stepPercentage;
-      this.rangeEndPercentage += direction * this.stepPercentage;
-      return;
+    if (delta >= threshold) {
+      this.rangeStartPercentage += direction * delta;
+      this.rangeEndPercentage += direction * delta;
+      return true;
+    }
+
+    if (rightPercentage > (MAX_PERCENTAGE - threshold)) {
+      this.rangeStartPercentage = MAX_PERCENTAGE - rangeDifference;
+      this.rangeEndPercentage = MAX_PERCENTAGE;
+      return false;
+    }
+
+    if (leftPercentage < (MIN_PERCENTAGE + threshold)) {
+      this.rangeStartPercentage = MIN_PERCENTAGE;
+      this.rangeEndPercentage = MIN_PERCENTAGE + rangeDifference;
+      return false;
     }
   }
 
   private _onRelease() {
-    this.previousMouseEvent = undefined;
     this.changeEnd.emit();
   }
 
   private _getMovementDelta(currentEvent: MouseEvent, previousEvent: MouseEvent) {
     return currentEvent.clientX - previousEvent.clientX;
+  }
+
+  private _getRangeDifference() {
+    return this.rangeEndPercentage - this.rangeStartPercentage;
   }
 }

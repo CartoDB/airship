@@ -7,7 +7,6 @@ import { Thumb } from '../thumb/as-range-slider-thumb';
   tag: 'as-range-slider',
 })
 export class RangeSlider {
-
   /**
    * Initial value.
    *
@@ -140,8 +139,8 @@ export class RangeSlider {
       disabled={this.disabled}
       formatValue={this.formatValue}
       onThumbMove={(event) => this._onThumbMove(thumb, event.detail)}
-      onThumbIncrease={() => this._onThumbIncrease(thumb)}
-      onThumbDecrease={() => this._onThumbDecrease(thumb)}
+      onThumbIncrease={() => this._onKeyboardThumbMove(thumb, +1)}
+      onThumbDecrease={() => this._onKeyboardThumbMove(thumb, -1)}
       onChangeStart={() => this._emitChangeIn(this.changeStart)}
       onChangeEnd={() => this._emitChangeIn(this.changeEnd)}>
     </as-range-slider-thumb>;
@@ -149,18 +148,16 @@ export class RangeSlider {
 
   private _renderRangeBar() {
     const [firstThumbPercentage, lastThumbPercentage] = this._getCurrentThumbPercentages();
-
     const draggable = this.draggable && this.range !== undefined;
-    const stepPercentage = this._getStepPercentage();
     return <as-range-slider-bar
-      rangeStartPercentage={firstThumbPercentage}
-      rangeEndPercentage={lastThumbPercentage}
-      stepPercentage={stepPercentage}
-      draggable={draggable}
-      disabled={this.disabled}
-      onChangeStart={() => this._emitChangeIn(this.changeStart)}
-      onChangeEnd={() => this._emitChangeIn(this.changeEnd)}
-      onBarMove={(event) => this._onBarMove(event)}></as-range-slider-bar>;
+             rangeStartPercentage={firstThumbPercentage}
+             rangeEndPercentage={lastThumbPercentage}
+             draggable={draggable}
+             disabled={this.disabled}
+             stepPercentage={this._getStepPercentage()}
+             onChangeStart={() => this._emitChangeIn(this.changeStart)}
+             onChangeEnd={() => this._emitChangeIn(this.changeEnd)}
+             onBarMove={(event) => this._onBarMove(event)}></as-range-slider-bar>;
   }
 
   private _getCurrentThumbPercentages() {
@@ -189,8 +186,7 @@ export class RangeSlider {
     }
 
     const thumbs = this.range.map((value) => this._getThumbData(value));
-    this._fixMinMaxValuesIn(thumbs);
-
+    this._clampThumbValues(thumbs);
     return thumbs;
   }
 
@@ -213,14 +209,24 @@ export class RangeSlider {
     return this.range && this.range.length === 2;
   }
 
-  private _onThumbMove(thumb: Thumb, percentage: number) {
-    const value = this._getValueFromPercentage(percentage);
-    const stepValue = this._getStepValueFrom(value);
-    const stepPercentage = this._getPercentage(stepValue);
+  private _onKeyboardThumbMove(thumb: Thumb, direction: number) {
+    const percentage = this._getPercentage(thumb.value + (direction * this.step));
 
+    if (percentage < 0 || percentage > 100) {
+      return;
+    }
+
+    this._onThumbMove(thumb, percentage);
+  }
+
+  private _onThumbMove(thumb: Thumb, percentage: number) {
     const [leftThumb, rightThumb] = this.thumbs;
     const isLeftThumb = leftThumb === thumb;
     const isRightThumb = rightThumb === thumb;
+
+    const value = this._getValueFromPercentage(percentage);
+    const stepValue = this._getStepValue(value);
+    const stepPercentage = this._getPercentage(stepValue);
 
     let valueMin = this.minValue;
     let valueMax = this.maxValue;
@@ -249,45 +255,21 @@ export class RangeSlider {
     this._emitChangeIn(this.change);
   }
 
-  private _onThumbIncrease(thumb: Thumb) {
-    this._stepMoveThumb(thumb, +1);
-  }
-
-  private _onThumbDecrease(thumb: Thumb) {
-    this._stepMoveThumb(thumb, -1);
-  }
-
-  private _stepMoveThumb(thumb: Thumb, direction: number) {
-    const percentage = this._getPercentage(thumb.value + (direction * this.step));
-    if (percentage < 0 || percentage > 100) {
-      return;
-    }
-    this._onThumbMove(thumb, percentage);
-  }
 
   private _onBarMove(percentage) {
     const percentageRange = percentage.detail;
-    const newValues = percentageRange.map((p) => this._getValueFromPercentage(p));
-    const newStepValues = newValues.map((value) => this._getStepValueFrom(value));
+    const rangeValues = percentageRange.map((p) => this._getValueFromPercentage(p));
+    const stepValues = rangeValues.map((value) => this._getStepValue(value));
 
-    const thumbs = newStepValues.map((newStepValue) => ({
-      percentage: this._getPercentage(newStepValue),
-      value: newStepValue
+    const thumbs = stepValues.map((stepValue) => ({
+      percentage: this._getPercentage(stepValue),
+      value: stepValue
     }));
-    this._fixMinMaxValuesIn(thumbs);
 
+    this._clampThumbValues(thumbs);
     this.thumbs = [...thumbs];
+
     this._emitChangeIn(this.change);
-  }
-
-  private _fixMinMaxValuesIn(thumbs) {
-    const [leftThumb, rightThumb] = thumbs;
-
-    leftThumb.valueMin = this.minValue;
-    leftThumb.valueMax = Math.min(rightThumb.value - this.step, this.maxValue);
-
-    rightThumb.valueMin = Math.max(this.minValue, leftThumb.value + this.step);
-    rightThumb.valueMax = this.maxValue;
   }
 
   private _emitChangeIn(eventEmitterInstance: EventEmitter<number | number[]>) {
@@ -299,17 +281,26 @@ export class RangeSlider {
     return ((value - this.minValue) / (this.maxValue - this.minValue)) * 100;
   }
 
+  private _getValueFromPercentage(percentage) {
+    return ((percentage * (this.maxValue - this.minValue)) / 100) + this.minValue;
+  }
+
   private _getStepPercentage() {
     const range = (this.maxValue - this.minValue);
     return this.step * 100 / range;
   }
 
-  private _getValueFromPercentage(percentage) {
-    return ((percentage * (this.maxValue - this.minValue)) / 100) + this.minValue;
+  private _clampThumbValues(thumbs) {
+    const [leftThumb, rightThumb] = thumbs;
+
+    leftThumb.valueMin = this.minValue;
+    leftThumb.valueMax = Math.min(rightThumb.value - this.step, this.maxValue);
+
+    rightThumb.valueMin = Math.max(this.minValue, leftThumb.value + this.step);
+    rightThumb.valueMax = this.maxValue;
   }
 
-  private _getStepValueFrom(value) {
+  private _getStepValue(value) {
     return Math.round(value / this.step) * this.step;
   }
-
 }
