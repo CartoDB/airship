@@ -25,18 +25,18 @@
     }
   </script>
   <div class="as-dropdown">
-    <button aria-haspopup="listbox" class="as-dropdown--input"> Im a dropdown </button>
-    <ul role="listbox" class="as-dropdown--options">
-      <li onclick="onFoo(this)" role="option" data-value="all">
+    <button aria-haspopup="listbox" class="as-dropdown--input"> I'm a dropdown </button>
+    <ul tabindex="-1" class="as-dropdown--options">
+      <li onclick="onFoo(this)" data-value="all">
         <button>All</button>
       </li>
-      <li onclick="onFoo(this)" role="option" data-value="spent">
+      <li onclick="onFoo(this)" data-value="spent">
         <button>spent</button>
       </li>
-      <li onclick="onFoo(this)" role="option" data-value="loaded">
+      <li onclick="onFoo(this)" data-value="loaded">
         <button>Loaded</button>
       </li>
-      <li onclick="onFoo(this)" role="option" data-value="waiting">
+      <li onclick="onFoo(this)" data-value="waiting">
         <button>Waiting</button>
       </li>
     </ul>
