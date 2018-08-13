@@ -26,7 +26,7 @@ You can also use any other background utility class, like `as-bg--warning`.
 <span class="as-badge as-bg--badge-green"> Green badge</span>
 <span class="as-badge as-bg--badge-yellow"> Yellow badge</span>
 <span class="as-badge as-bg--warning">Warning badge</span>
-<span class="as-badge as-bg--as-complementary">Complementary badge</span>
+<span class="as-badge as-bg--complementary">Complementary badge</span>
 ```
 
 If you need contrast between the badge background color and the text color, use a type utility class to use a specific color.
