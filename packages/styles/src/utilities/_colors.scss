@@ -62,4 +62,8 @@
   &--badge-pink {
     background-color: var(--as-color-badge-pink, #{$color-badge-pink});
   }
+
+  &--badge-yellow {
+    background-color: var(--as-color-badge-yellow, #{$color-badge-yellow});
+  }
 }

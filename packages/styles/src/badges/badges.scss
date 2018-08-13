@@ -9,6 +9,10 @@
   background-color: var(--as-color-badge-blue, #{$color-badge-blue});
   font: $font-body;
 
+  p {
+    margin: 0;
+  }
+
   i {
     cursor: pointer;
   }
