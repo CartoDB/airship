@@ -62,6 +62,9 @@ export class RangeSliderBar extends MouseTrack {
   }
 
   public onMove(event: MouseEvent) {
+    document.body.style.cursor = 'grabbing';
+    this.rangeBarElement.classList.add('as-range-slider__range-bar--moving');
+
     if (!this.previousMouseEvent) {
       this.previousMouseEvent = event;
       return;
@@ -121,6 +124,8 @@ export class RangeSliderBar extends MouseTrack {
   }
 
   private _onRelease() {
+    document.body.style.cursor = '';
+    this.rangeBarElement.classList.remove('as-range-slider__range-bar--moving');
     this.barChangeEnd.emit();
   }
 

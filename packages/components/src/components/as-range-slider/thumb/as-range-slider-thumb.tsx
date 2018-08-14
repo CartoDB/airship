@@ -113,6 +113,8 @@ export class RangeSliderThumb extends MouseTrack {
   }
 
   private _onMove(event: MouseEvent) {
+    document.body.style.cursor = 'grabbing';
+
     const barPercentage = (event.pageX - this.railElement.offsetLeft) * 100 / this.railElement.offsetWidth;
 
     if (barPercentage < 0 || barPercentage > 100) {
@@ -125,6 +127,9 @@ export class RangeSliderThumb extends MouseTrack {
   private _onRelease(thumb: HTMLElement) {
     thumb.classList.remove('as-range-slider__thumb-handle--moving');
     this.thumbValue.classList.remove('as-range-slider__value--moving');
+
+    document.body.style.cursor = '';
+
     this.thumbChangeEnd.emit();
   }
 

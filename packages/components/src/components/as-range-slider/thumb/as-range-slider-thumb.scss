@@ -8,7 +8,6 @@ as-range-slider-thumb {
     height: 12px;
     transform: translate3d(-6px, 0, 0);
     transition: transform 200ms ease, opacity 200ms ease;
-    cursor: grab;
   }
 
   .as-range-slider__value {
@@ -35,6 +34,7 @@ as-range-slider-thumb {
     border: 1px solid var(--as-color-primary, #{$color-primary});
     border-radius: 50%;
     background: #FFF;
+    cursor: grab;
 
     &::before {
       content: '';
@@ -49,7 +49,12 @@ as-range-slider-thumb {
     &.as-range-slider__thumb-handle--moving {
       transform: scale(1.33);
     }
+
+    &--moving {
+      cursor: grabbing;
+    }
   }
+
 
   .as-range-slider__thumb--disabled {
     .as-range-slider__thumb-handle {

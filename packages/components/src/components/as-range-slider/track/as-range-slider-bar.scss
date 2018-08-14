@@ -29,4 +29,8 @@ as-range-slider-bar {
       transform: translate3d(10px, 0, 0);
     }
   }
+
+  .as-range-slider__range-bar--moving {
+    cursor: grabbing;
+  }
 }
