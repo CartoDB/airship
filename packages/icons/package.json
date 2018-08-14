@@ -21,7 +21,7 @@
   "scripts": {
     "build": "node src/generate-src.js"
   },
-  "dependencies": {
+  "devDependencies": {
     "conventional-changelog-cli": "^2.0.1"
   }
 }
