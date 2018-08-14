@@ -62,12 +62,14 @@ export class RangeSliderBar extends MouseTrack {
   }
 
   public onMove(event: MouseEvent) {
-    document.body.style.cursor = 'grabbing';
-    this.rangeBarElement.classList.add('as-range-slider__range-bar--moving');
-
     if (!this.previousMouseEvent) {
       this.previousMouseEvent = event;
       return;
+    }
+
+    this.setCursorTo('grabbing');
+    if (this.rangeBarElement && this.rangeBarElement.classList) {
+      this.rangeBarElement.classList.add('as-range-slider__range-bar--moving');
     }
 
     const rangeDifference = this._getRangeDifference();
@@ -124,8 +126,11 @@ export class RangeSliderBar extends MouseTrack {
   }
 
   private _onRelease() {
-    document.body.style.cursor = '';
-    this.rangeBarElement.classList.remove('as-range-slider__range-bar--moving');
+    this.setCursorTo('');
+    if (this.rangeBarElement && this.rangeBarElement.classList) {
+      this.rangeBarElement.classList.remove('as-range-slider__range-bar--moving');
+    }
+
     this.barChangeEnd.emit();
   }
 
@@ -136,4 +141,9 @@ export class RangeSliderBar extends MouseTrack {
   private _getRangeDifference() {
     return this.rangeEndPercentage - this.rangeStartPercentage;
   }
+
+  private setCursorTo(value) {
+    document.body.style.cursor = value;
+  }
+
 }
