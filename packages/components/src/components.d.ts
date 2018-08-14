@@ -166,6 +166,10 @@ declare global {
        */
       'description': string;
       /**
+       * Returns the current selection
+       */
+      'getSelection': () => number[];
+      /**
        * Title of the widget to be displayed
        */
       'heading': string;
@@ -231,6 +235,7 @@ declare global {
        * Title of the widget to be displayed
        */
       'heading'?: string;
+      'onSelectionChanged'?: (event: CustomEvent) => void;
       /**
        * Override color for the selected histogram bars
        */

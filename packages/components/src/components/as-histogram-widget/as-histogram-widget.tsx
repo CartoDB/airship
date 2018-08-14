@@ -1,4 +1,4 @@
-import { Component, Prop, Watch, State, Method } from '@stencil/core';
+import { Component, Prop, Watch, State, Method, Event, EventEmitter } from '@stencil/core';
 import readableNumber from '../../utils/readable-number';
 import { shadeOrBlend } from '../../utils/styles';
 import { select, event as d3event, Selection, BaseType } from 'd3-selection';
@@ -130,12 +130,31 @@ export class HistogramWidget {
   onDataChanged() {
     this._updateAxes();
     this._renderBars();
+
+    if (this.selection !== null) {
+      this._setSelection([this._adjustSelectionLower(this.selection[0]), this._adjustSelectionUpper(this.selection[1])]);
+      this._updateHandles(this.selection);
+    }
   }
 
   @Watch('color')
   onColorChanged() {
     this._renderBars();
   }
+
+  /**
+   * Returns the current selection
+   *
+   * @returns {number[]}
+   * @memberof HistogramWidget
+   */
+  @Method()
+  getSelection() : number[] {
+    return this.selection;
+  }
+
+  @Event()
+  selectionChanged: EventEmitter;
   
   private container: Selection<HTMLElement, {}, null, undefined>;
   private tooltipElement: HTMLElement;
@@ -152,6 +171,7 @@ export class HistogramWidget {
   private brushArea: Selection<BaseType, {}, null, undefined>;
   private customHandlers: Selection<BaseType, { type: string }, BaseType, {}>;
   private bottomLine: Selection<BaseType, {}, BaseType, {}>;
+  private selection: number[] = null;
 
   componentDidLoad() {
     // This is probably not necessary for production, but HMR causes this method
@@ -251,8 +271,6 @@ export class HistogramWidget {
       return;
     }
 
-    console.log(evt.selection);
-
     if (!evt.sourceEvent) return; // I don't know why this happens
     if (evt.sourceEvent.type === "brush") return;
     
@@ -269,24 +287,35 @@ export class HistogramWidget {
       return;
     }
     
+    this._setSelection(d1);
+
+    this._updateHandles(d1);
+  }
+
+  private _setSelection (selection: number[]) {
+    this.selection = selection;
+    this.selectionChanged.emit(this.selection);
+  }
+
+  private _updateHandles(values: number[]) {
     // Convert back to space coordinates
-    const d1Space = d1.map(this.xScale).map(e => e + MARGIN.LEFT);
+    const valuesSpace = values.map(this.xScale).map(e => e + MARGIN.LEFT);
   
-    select(nodes[index]).call(evt.target.move, d1Space);
+    this.brushArea.call(this.brush.move, valuesSpace);
 
     this.customHandlers
       .style('opacity', 1)
-      .attr('transform', (_d, i) => `translate(${d1Space[i] - 5},${HEIGHT + MARGIN.TOP - 5})`);
+      .attr('transform', (_d, i) => `translate(${valuesSpace[i] - 5},${HEIGHT + MARGIN.TOP - 5})`);
     this.bottomLine
       .style('opacity', 1)
-      .attr('x1', d1Space[0])
-      .attr('x2', d1Space[1]);
+      .attr('x1', valuesSpace[0])
+      .attr('x2', valuesSpace[1]);
 
     this.barsContainer.selectAll('.bar')
       .style('fill', (_d, i) => {
         const d = this.data[i];
-        return (d1[0] <= d.start && d.end <= d1[1]) ? this.selectedColor : this.color;
-      })
+        return (values[0] <= d.start && d.end <= values[1]) ? this.selectedColor : this.color;
+      });
   }
 
   private _renderYAxis() {
@@ -483,8 +512,7 @@ export class HistogramWidget {
     // Clear the brush
     this.brushArea.call(this.brush.move, null);
     this.barsContainer.selectAll('rect').style('fill', this.color);
-
-    // TODO: clear selection & notify
+    this._setSelection(null);
   }
 
   render() {

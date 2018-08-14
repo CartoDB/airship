@@ -17,9 +17,10 @@
         heading="Business Volume"
         description="Description">
       </as-histogram-widget>
-      <button id="changeBtn">Change data</button>
-      <button id="mutateBtn">Mutate data</button>
     </div>
+    <button id="changeBtn">Change data</button>
+    <button id="mutateBtn">Mutate data</button>
+    <p id="selection"></p>
 
     <script>
       // Generate random data for the histogram
@@ -55,6 +56,15 @@
             value: Math.floor(Math.random() * 30) + 1
           };
         });
+      });
+
+      var selectionP = document.querySelector('#selection');
+      histogramWidget.addEventListener('selectionChanged', function (event) {
+        if (event.detail === null) {
+          selectionP.innerText = 'Nothing selected';
+        } else {
+          selectionP.innerText = 'Selection is: ' + event.detail[0] + ',' + event.detail[1];
+        }
       });
     </script>
   </body>
