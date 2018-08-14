@@ -1,0 +1,53 @@
+.as-loading {
+  display: inline-block;
+  transform: translateZ(0);
+
+  &--s {
+    width: get-spacing(8);
+    height: get-spacing(8);
+  }
+
+  &--m {
+    width: get-spacing(16);
+    height: get-spacing(16);
+  }
+
+  &--l {
+    width: get-spacing(26);
+    height: get-spacing(26);
+  }
+
+  svg {
+    animation: rotate 2s linear infinite;
+  }
+
+  circle {
+    animation: dash 1.5s ease-in-out infinite;
+    stroke-width: 4px;
+    stroke-linecap: round;
+    stroke: var(--as-color-type-01, #{$color-type-01});
+  }
+
+  @keyframes dash {
+    0% {
+      stroke-dasharray: 1, 150;
+      stroke-dashoffset: 0;
+    }
+
+    50% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -35;
+    }
+
+    100% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -124;
+    }
+  }
+
+  @keyframes rotate {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
