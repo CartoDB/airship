@@ -6,8 +6,8 @@
 
   &__thumb {
     position: absolute;
-    top: 4px;
-    left: 4px;
+    top: get-spacing(1);
+    left: get-spacing(1);
     transition: opacity 0.2s ease;
     opacity: 0;
     color: $color-ui-01;
@@ -28,10 +28,10 @@
   input + &__toggle {
     display: block;
     position: relative;
-    width: 32px;
-    height: 16px;
+    width: get-spacing(8);
+    height: get-spacing(4);
     transition: all 0.4s ease;
-    border-radius: 40px;
+    border-radius: get-spacing(10);
     outline: 0;
     background: $color-type-03;
     cursor: pointer;
@@ -43,8 +43,8 @@
     display: block;
     position: relative;
     top: 2px;
-    width: 12px;
-    height: 12px;
+    width: get-spacing(3);
+    height: get-spacing(3);
     transform: translateX(2px);
     transition: all 0.2s ease;
     border-radius: 50%;
