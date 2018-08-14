@@ -21,8 +21,8 @@ export class RangeSliderBar extends MouseTrack {
   @Event() public changeEnd: EventEmitter<void>;
 
   @Element() public element: HTMLElement;
-  private rangeBarElement: HTMLElement;
-  private railElement: HTMLElement;
+  public rangeBarElement: HTMLElement;
+  public railElement: HTMLElement;
 
   private previousMouseEvent: MouseEvent;
 
@@ -56,12 +56,12 @@ export class RangeSliderBar extends MouseTrack {
     this.previousMouseEvent = event;
 
     super.handleMouseDown({
-      move: (moveEvent) => this._onMove(moveEvent),
+      move: (moveEvent) => this.onMove(moveEvent),
       release: () => this._onRelease()
     });
   }
 
-  private _onMove(event: MouseEvent) {
+  public onMove(event: MouseEvent) {
     if (!this.previousMouseEvent) {
       this.previousMouseEvent = event;
       return;

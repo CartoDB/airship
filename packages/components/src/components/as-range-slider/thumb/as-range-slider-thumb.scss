@@ -9,14 +9,6 @@ as-range-slider-thumb {
     transform: translate3d(-6px, 0, 0);
     transition: transform 200ms ease, opacity 200ms ease;
     cursor: grab;
-
-    &:focus {
-      outline: none;
-
-      .as-range-slider__thumb-handle {
-        background: var(--as-color-primary, #{$color-primary});
-      }
-    }
   }
 
   .as-range-slider__thumb-handle {
@@ -36,12 +28,9 @@ as-range-slider-thumb {
       height: 30px;
     }
 
-    &:hover {
+    &:hover,
+    .as-range-slider__thumb-handle--moving {
       transform: scale(1.33);
-
-      & + .as-range-slider__value {
-        transform: translate3d(-53%, 4px, 0);
-      }
     }
   }
 
@@ -69,17 +58,21 @@ as-range-slider-thumb {
     }
   }
 
+  .as-range-slider__thumb:focus {
+    outline: none;
+
+    .as-range-slider__thumb-handle {
+      background: var(--as-color-primary, #{$color-primary});
+    }
+  }
+
   .as-range-slider__thumb + .as-range-slider__thumb {
     &:hover {
       transform: translate3d(-6px, 0, 0) scale(1.33);
     }
   }
 
-  .as-range-slider__thumb--moving {
-    transform: scale(1.33);
-
-    & + .as-range-slider__value {
-      transform: translate3d(-53%, 4px, 0);
-    }
+  .as-range-slider__thumb-handle--moving + .as-range-slider__value--moving {
+    transform: translate3d(-53%, 4px, 0);
   }
 }

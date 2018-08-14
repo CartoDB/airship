@@ -23,6 +23,7 @@ export class RangeSliderThumb extends MouseTrack {
 
   @Element() public element: HTMLElement;
   public railElement: HTMLElement;
+  public thumbValue: HTMLElement;
 
   public render() {
     const thumbStyles = {
@@ -55,7 +56,10 @@ export class RangeSliderThumb extends MouseTrack {
     this.railElement = document.querySelector('.as-range-slider__rail');
 
     const thumb = event.target as HTMLElement;
-    thumb.classList.add('as-range-slider__thumb--moving');
+    thumb.classList.add('as-range-slider__thumb-handle--moving');
+
+    this.thumbValue = thumb.parentElement.querySelector('.as-range-slider__value');
+    this.thumbValue.classList.add('as-range-slider__value--moving');
 
     super.handleMouseDown({
       move: (moveEvent) => this._onMove(moveEvent),
@@ -111,7 +115,8 @@ export class RangeSliderThumb extends MouseTrack {
   }
 
   private _onRelease(thumb: HTMLElement) {
-    thumb.classList.remove('as-range-slider__thumb--moving');
+    thumb.classList.remove('as-range-slider__thumb-handle--moving');
+    this.thumbValue.classList.remove('as-range-slider__value--moving');
     this.changeEnd.emit();
   }
 

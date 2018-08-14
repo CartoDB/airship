@@ -51,10 +51,10 @@ describe('as-range-slider-bar', () => {
         const secondEvent = { clientX: 0 } as MouseEvent;
 
         // Set the mouse position to the current bar position
-        element._onMove(firstEvent);
+        element.onMove(firstEvent);
 
         // Move it to the left
-        element._onMove(secondEvent);
+        element.onMove(secondEvent);
 
         expect(element.rangeStartPercentage).toBe(0);
         expect(element.rangeEndPercentage).toBe(60);
@@ -75,9 +75,9 @@ describe('as-range-slider-bar', () => {
         const secondEvent = { clientX: 1000 } as MouseEvent;
 
         // Set the mouse position to the current bar position
-        element._onMove(firstEvent);
+        element.onMove(firstEvent);
 
-        element._onMove(secondEvent);
+        element.onMove(secondEvent);
 
         expect(element.rangeStartPercentage).toBe(40);
         expect(element.rangeEndPercentage).toBe(100);
@@ -98,9 +98,9 @@ describe('as-range-slider-bar', () => {
         const secondEvent = { clientX: -1000 } as MouseEvent;
 
         // Set the mouse position to the current bar position
-        element._onMove(firstEvent);
+        element.onMove(firstEvent);
 
-        element._onMove(secondEvent);
+        element.onMove(secondEvent);
 
         expect(element.rangeStartPercentage).toBe(0);
         expect(element.rangeEndPercentage).toBe(60);
