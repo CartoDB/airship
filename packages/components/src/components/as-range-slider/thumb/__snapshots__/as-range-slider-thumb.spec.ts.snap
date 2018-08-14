@@ -20,7 +20,7 @@ exports[`as-range-slider-thumb Rendering should have aria attributes 1`] = `
       class="as-range-slider__thumb-handle"
     />
     <span
-      class="as-range-slider__value as-caption as-font-medium"
+      class="as-caption as-font-medium as-range-slider__value"
     >
       5€
     </span>
@@ -45,7 +45,7 @@ exports[`as-range-slider-thumb Rendering should render a text with its value 1`]
       class="as-range-slider__thumb-handle"
     />
     <span
-      class="as-range-slider__value as-caption as-font-medium"
+      class="as-caption as-font-medium as-range-slider__value"
     >
       5€
     </span>

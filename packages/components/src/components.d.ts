@@ -265,8 +265,8 @@ declare global {
     export interface AsRangeSliderThumbAttributes extends HTMLAttributes {
       'disabled'?: boolean;
       'formatValue'?: (value: number) => void;
-      'onChangeEnd'?: (event: CustomEvent<void>) => void;
-      'onChangeStart'?: (event: CustomEvent<void>) => void;
+      'onThumbChangeEnd'?: (event: CustomEvent<void>) => void;
+      'onThumbChangeStart'?: (event: CustomEvent<void>) => void;
       'onThumbDecrease'?: (event: CustomEvent<number>) => void;
       'onThumbIncrease'?: (event: CustomEvent<number>) => void;
       'onThumbMove'?: (event: CustomEvent<number>) => void;
@@ -312,9 +312,9 @@ declare global {
     export interface AsRangeSliderBarAttributes extends HTMLAttributes {
       'disabled'?: boolean;
       'draggable'?: boolean;
+      'onBarChangeEnd'?: (event: CustomEvent<void>) => void;
+      'onBarChangeStart'?: (event: CustomEvent<void>) => void;
       'onBarMove'?: (event: CustomEvent<number[]>) => void;
-      'onChangeEnd'?: (event: CustomEvent<void>) => void;
-      'onChangeStart'?: (event: CustomEvent<void>) => void;
       'rangeEndPercentage'?: number;
       'rangeStartPercentage'?: number;
       'stepPercentage'?: number;

@@ -89,12 +89,12 @@ describe('as-range-slider-thumb', () => {
 
         it('should emit changeStart event when using mousemove', async () => {
             const onChangeStartSpy = jest.fn();
-            element.addEventListener('changeStart', onChangeStartSpy);
+            element.addEventListener('thumbChangeStart', onChangeStartSpy);
             await testWindow.flush();
 
             this.simulateMouseEvent(element, 'mousedown');
             expect(onChangeStartSpy).toHaveBeenCalled();
-            expect(element.classList).toContain('as-range-slider__thumb--moving');
+            expect(element.classList.contains('as-range-slider__thumb-handle--moving')).toBe(true);
         });
 
         // it('should emit thumbMove event when using mouse', async () => {

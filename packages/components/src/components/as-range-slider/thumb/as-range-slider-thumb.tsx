@@ -15,8 +15,8 @@ export class RangeSliderThumb extends MouseTrack {
   @Prop() public formatValue: (value: number) => void;
 
   @Event() public thumbMove: EventEmitter<number>;
-  @Event() public changeStart: EventEmitter<void>;
-  @Event() public changeEnd: EventEmitter<void>;
+  @Event() public thumbChangeStart: EventEmitter<void>;
+  @Event() public thumbChangeEnd: EventEmitter<void>;
   @Event() public thumbIncrease: EventEmitter<number>;
   @Event() public thumbDecrease: EventEmitter<number>;
 
@@ -34,6 +34,14 @@ export class RangeSliderThumb extends MouseTrack {
       'as-range-slider__thumb': true,
       'as-range-slider__thumb--disabled': this.disabled
     };
+
+    const cssValueClasses = {
+      'as-caption': true,
+      'as-font-medium': true,
+      'as-range-slider__value': true,
+      'as-range-slider__value--disabled': this.disabled,
+    };
+
     return (
       <div role='slider'
         tabindex={this.disabled ? '-1' : '0'}
@@ -43,7 +51,7 @@ export class RangeSliderThumb extends MouseTrack {
         aria-valuemax={this.valueMax}
         class={cssClasses} style={thumbStyles} data-value={this.value}>
         <div class='as-range-slider__thumb-handle'></div>
-        <span class='as-range-slider__value as-caption as-font-medium'>
+        <span class={cssValueClasses}>
           {this._getDisplayValue(this.value)}
         </span>
       </div>);
@@ -52,7 +60,7 @@ export class RangeSliderThumb extends MouseTrack {
   @Listen('mousedown')
   @Listen('touchstart')
   public onMouseDown(event: MouseEvent) {
-    this.changeStart.emit();
+    this.thumbChangeStart.emit();
     this.railElement = document.querySelector('.as-range-slider__rail');
 
     const thumb = event.target as HTMLElement;
@@ -117,7 +125,7 @@ export class RangeSliderThumb extends MouseTrack {
   private _onRelease(thumb: HTMLElement) {
     thumb.classList.remove('as-range-slider__thumb-handle--moving');
     this.thumbValue.classList.remove('as-range-slider__value--moving');
-    this.changeEnd.emit();
+    this.thumbChangeEnd.emit();
   }
 
   private _getDisplayValue(value: number) {

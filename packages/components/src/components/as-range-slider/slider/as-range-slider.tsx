@@ -142,8 +142,8 @@ export class RangeSlider {
       onThumbMove={(event) => this._onThumbMove(thumb, event.detail)}
       onThumbIncrease={() => this._onKeyboardThumbMove(thumb, +1)}
       onThumbDecrease={() => this._onKeyboardThumbMove(thumb, -1)}
-      onChangeStart={() => this._emitChangeIn(this.changeStart)}
-      onChangeEnd={() => this._emitChangeIn(this.changeEnd)}>
+      onThumbChangeStart={() => this._emitChangeIn(this.changeStart)}
+      onThumbChangeEnd={() => this._emitChangeIn(this.changeEnd)}>
     </as-range-slider-thumb>;
   }
 
@@ -156,8 +156,8 @@ export class RangeSlider {
              draggable={draggable}
              disabled={this.disabled}
              stepPercentage={this._getStepPercentage()}
-             onChangeStart={() => this._emitChangeIn(this.changeStart)}
-             onChangeEnd={() => this._emitChangeIn(this.changeEnd)}
+             onBarChangeStart={() => this._emitChangeIn(this.changeStart)}
+             onBarChangeEnd={() => this._emitChangeIn(this.changeEnd)}
              onBarMove={(event) => this._onBarMove(event)}></as-range-slider-bar>;
   }
 
