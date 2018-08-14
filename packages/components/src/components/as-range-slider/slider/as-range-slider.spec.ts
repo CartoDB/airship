@@ -97,18 +97,24 @@ describe('as-range-slider', () => {
 
       expect(element).toMatchSnapshot();
     });
+  });
 
-    // it('should honor min and max values when setting a value', async () => {
-    //   element.minValue = 50;
-    //   element.maxValue = 100;
-    //   element.value = 75;
-    //   await testWindow.flush();
+  describe('Validation', async () => {
+    let element: RangeSlider;
 
-    //   const outOfBounds = async () => {
-    //     element.value = 2;
-    //     // await testWindow.flush();
-    //   };
-    //   expect(outOfBounds).toThrow(); // TODO this doesn't work, despite of new Error inside a Watch
-    // });
+    beforeEach(async () => {
+      element = new RangeSlider();
+    });
+
+    it('should honor min and max values when setting a value', async () => {
+      element.minValue = 50;
+      element.maxValue = 100;
+
+      const outOfBounds = () => {
+        element.validateValue(2);
+      };
+
+      expect(outOfBounds).toThrow(); // TODO this doesn't work, despite of new Error inside a Watch
+    });
   });
 });

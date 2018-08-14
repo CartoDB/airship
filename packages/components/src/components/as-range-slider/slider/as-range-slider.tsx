@@ -88,6 +88,7 @@ export class RangeSlider {
         `minValue (${this.minValue}) and maxValue (${this.maxValue})`
       );
     }
+
     this._updateThumbs();
   }
 

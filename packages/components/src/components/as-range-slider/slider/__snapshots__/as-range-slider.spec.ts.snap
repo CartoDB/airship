@@ -20,6 +20,7 @@ exports[`as-range-slider Rendering can be rendered disabled 1`] = `
       />
       <as-range-slider-bar
         disabled=""
+        draggable="false"
         rangeendpercentage="0"
         rangestartpercentage="0"
         steppercentage="10"
@@ -47,6 +48,7 @@ exports[`as-range-slider Rendering should render 1 thumb + 1 bar when using a va
         valuemin="0"
       />
       <as-range-slider-bar
+        draggable="false"
         rangeendpercentage="50"
         rangestartpercentage="0"
         steppercentage="10"
@@ -80,6 +82,7 @@ exports[`as-range-slider Rendering should render 2 thumbs + 1 bar when using a r
         valuemin="3"
       />
       <as-range-slider-bar
+        draggable="false"
         rangeendpercentage="40"
         rangestartpercentage="20"
         steppercentage="11.11111111111111"
@@ -107,6 +110,7 @@ exports[`as-range-slider Rendering should render without parameters, using defau
         valuemin="0"
       />
       <as-range-slider-bar
+        draggable="false"
         rangeendpercentage="0"
         rangestartpercentage="0"
         steppercentage="10"
