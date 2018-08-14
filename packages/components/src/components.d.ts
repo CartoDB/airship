@@ -170,6 +170,10 @@ declare global {
        */
       'heading': string;
       /**
+       * Override color for the selected histogram bars
+       */
+      'selectedColor': string;
+      /**
        * Display a clear button that clears the histogram selection.
        */
       'showClear': boolean;
@@ -227,6 +231,10 @@ declare global {
        * Title of the widget to be displayed
        */
       'heading'?: string;
+      /**
+       * Override color for the selected histogram bars
+       */
+      'selectedColor'?: string;
       /**
        * Display a clear button that clears the histogram selection.
        */

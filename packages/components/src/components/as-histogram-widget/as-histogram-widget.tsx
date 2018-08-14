@@ -4,11 +4,12 @@ import { shadeOrBlend } from '../../utils/styles';
 import { select, event as d3event, Selection, BaseType } from 'd3-selection';
 import { scaleLinear, ScaleLinear } from 'd3-scale';
 import { max } from 'd3-array';
-import { brushX, BrushBehavior } from 'd3-brush';
+import { brushX, brushSelection, BrushBehavior } from 'd3-brush';
 import { axisLeft, axisBottom, Axis } from 'd3-axis';
 import 'd3-transition';
 
 const DEFAULT_BAR_COLOR = '#1785FB';
+const DEFAULT_SELECTED_BAR_COLOR = '#fabada';
 const WIDTH = 205;
 const HEIGHT = 125;
 const BARS_SEPARATION = 1;
@@ -80,6 +81,14 @@ export class HistogramWidget {
   @Prop() public color: string = DEFAULT_BAR_COLOR;
 
   /**
+   * Override color for the selected histogram bars
+   *
+   * @type {string}
+   * @memberof HistogramWidget
+   */
+  @Prop() public selectedColor: string = DEFAULT_SELECTED_BAR_COLOR;
+
+  /**
    * Bar color to be used by default
    *
    * @type {string}
@@ -141,6 +150,8 @@ export class HistogramWidget {
   private bars: Selection<BaseType, HistogramData, BaseType, {}>;
   private brush: BrushBehavior<{}>;
   private brushArea: Selection<BaseType, {}, null, undefined>;
+  private customHandlers: Selection<BaseType, { type: string }, BaseType, {}>;
+  private bottomLine: Selection<BaseType, {}, BaseType, {}>;
 
   componentDidLoad() {
     // This is probably not necessary for production, but HMR causes this method
@@ -169,6 +180,27 @@ export class HistogramWidget {
       .append('g')
       .attr('class', 'brush')
       .call(this.brush);
+
+    this.customHandlers = this.brushArea.selectAll('.handle--custom')
+      .data([{type: 'w'}, {type: 'e'}])
+      .enter().append('rect')
+        .style('opacity', 0)
+        .attr('class', 'handle--custom')
+        .attr('fill', this.selectedColor)
+        .attr('cursor', 'ew-resize')
+        .attr('width', '10')
+        .attr('height', '10')
+        .attr('rx', '100')
+        .attr('ry', '100');
+    
+    this.bottomLine = this.brushArea.append('line')
+        .attr('class', 'bottomline')
+        .attr('stroke', this.selectedColor)
+        .attr('stroke-width', 2)
+        .attr('y1', HEIGHT + MARGIN.TOP)
+        .attr('y2', HEIGHT + MARGIN.TOP)
+        .style('opacity', 0)
+        .attr('pointer-events', 'none');
 
     this._renderBars();
     this._cleanAxes();
@@ -206,20 +238,55 @@ export class HistogramWidget {
     }
   }
 
+  _hideCustomHandlers() {
+    this.customHandlers.style('opacity', 0);
+    this.bottomLine.style('opacity', 0);
+  }
+
   private _onBrush (_d, index: number, nodes: SVGElement[]) {
     const evt = d3event as any; // I can't cast this properly :(
+
+    if (evt.selection === null) {
+      this._hideCustomHandlers();
+      return;
+    }
+
+    console.log(evt.selection);
+
     if (!evt.sourceEvent) return; // I don't know why this happens
     if (evt.sourceEvent.type === "brush") return;
+    
+    // Convert to our data's domain
     const d0 = evt.selection
       .map(e => e - MARGIN.LEFT)
       .map(this.xScale.invert)
       .map(e => Math.round(e));
 
+    // Round to most approximate bucket
     const d1 = [this._adjustSelectionLower(d0[0]), this._adjustSelectionUpper(d0[1])];
 
-    console.log(d0, d1);
+    if (d1[0] === d1[1]) {
+      return;
+    }
+    
+    // Convert back to space coordinates
+    const d1Space = d1.map(this.xScale).map(e => e + MARGIN.LEFT);
   
-    select(nodes[index]).call(evt.target.move, d1.map(this.xScale).map(e => e + MARGIN.LEFT));
+    select(nodes[index]).call(evt.target.move, d1Space);
+
+    this.customHandlers
+      .style('opacity', 1)
+      .attr('transform', (_d, i) => `translate(${d1Space[i] - 5},${HEIGHT + MARGIN.TOP - 5})`);
+    this.bottomLine
+      .style('opacity', 1)
+      .attr('x1', d1Space[0])
+      .attr('x2', d1Space[1]);
+
+    this.barsContainer.selectAll('.bar')
+      .style('fill', (_d, i) => {
+        const d = this.data[i];
+        return (d1[0] <= d.start && d.end <= d1[1]) ? this.selectedColor : this.color;
+      })
   }
 
   private _renderYAxis() {
@@ -408,13 +475,14 @@ export class HistogramWidget {
     }
 
     return (
-      <button onClick={(event: UIEvent) => this._onClear(event) }>Clear selection</button>
+      <button onClick={() => this._onClear() }>Clear selection</button>
     );
   }
 
-  _onClear(_event: UIEvent) {
+  _onClear() {
     // Clear the brush
     this.brushArea.call(this.brush.move, null);
+    this.barsContainer.selectAll('rect').style('fill', this.color);
 
     // TODO: clear selection & notify
   }
