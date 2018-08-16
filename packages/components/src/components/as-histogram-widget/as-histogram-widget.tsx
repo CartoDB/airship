@@ -4,10 +4,11 @@ import { shadeOrBlend } from '../../utils/styles';
 import { select, event as d3event, Selection, BaseType } from 'd3-selection';
 import { scaleLinear, ScaleLinear } from 'd3-scale';
 import { max } from 'd3-array';
-import { brushX, brushSelection, BrushBehavior } from 'd3-brush';
+import { brushX, BrushBehavior } from 'd3-brush';
 import { axisLeft, axisBottom, Axis } from 'd3-axis';
 import 'd3-transition';
 
+const CUSTOM_HANDLE_SIZE = 15;
 const DEFAULT_BAR_COLOR = '#1785FB';
 const DEFAULT_SELECTED_BAR_COLOR = '#fabada';
 const WIDTH = 205;
@@ -19,6 +20,7 @@ const MARGIN = {
   BOTTOM: 15,
   LEFT: 30,
 };
+const CUSTOM_HANDLE_Y_COORD = HEIGHT + MARGIN.TOP - (CUSTOM_HANDLE_SIZE / 2);
 
 /**
  * Histogram Widget
@@ -225,6 +227,41 @@ export class HistogramWidget {
       .append('g')
       .attr('class', 'brush')
       .call(this.brush);
+    
+    this.brushArea.on('mousemove', () => {
+      const evt = d3event as MouseEvent;
+      const { clientX, clientY } = evt;
+      let any = false;
+
+      this.barsContainer.selectAll('rect')
+        .each((data: HistogramData, i, nodes) => {
+          const selected = this._isSelected(data);
+          const nodeSelection = select(nodes[i]);
+          const node = nodes[i] as Element;
+          const bb = node.getBoundingClientRect();
+
+          if (bb.left <= clientX &&
+              clientX <= bb.right &&
+              bb.top <= clientY &&
+              clientY <= bb.bottom) {
+            nodeSelection.style('fill', shadeOrBlend(-0.16, selected ? this.selectedColor : this.color))
+            this.tooltip = this.tooltipFormatter(data);
+            this._showTooltip(evt);
+            any = true;
+          } else {
+            nodeSelection.style('fill', selected ? this.selectedColor : this.color);
+          }
+        });
+
+      if (!any) {
+        this.tooltip = null;
+      }
+    })
+    .on('mouseout', () => {
+      this.tooltip = null;
+      this.barsContainer.selectAll('rect')
+        .style('fill', (data: HistogramData) => this._isSelected(data) ? this.selectedColor : this.color);
+    });
 
     this.customHandlers = this.brushArea.selectAll('.handle--custom')
       .data([{type: 'w'}, {type: 'e'}])
@@ -233,15 +270,15 @@ export class HistogramWidget {
         .attr('class', 'handle--custom')
         .attr('fill', this.selectedColor)
         .attr('cursor', 'ew-resize')
-        .attr('width', '10')
-        .attr('height', '10')
+        .attr('width', CUSTOM_HANDLE_SIZE)
+        .attr('height', CUSTOM_HANDLE_SIZE)
         .attr('rx', '100')
         .attr('ry', '100');
     
     this.bottomLine = this.brushArea.append('line')
         .attr('class', 'bottomline')
         .attr('stroke', this.selectedColor)
-        .attr('stroke-width', 2)
+        .attr('stroke-width', 4)
         .attr('y1', HEIGHT + MARGIN.TOP)
         .attr('y2', HEIGHT + MARGIN.TOP)
         .style('opacity', 0)
@@ -306,9 +343,7 @@ export class HistogramWidget {
     
     // Convert to our data's domain
     const d0 = evt.selection
-      .map(e => e - MARGIN.LEFT)
-      .map(this.xScale.invert)
-      .map(e => Math.round(e));
+      .map(e => Math.round(this.xScale.invert(e - MARGIN.LEFT)));
 
     // Round to most approximate bucket
     const d1 = this._adjustSelection(d0);
@@ -343,6 +378,14 @@ export class HistogramWidget {
     return inData.some(e => e);
   }
 
+  private _isSelected (data: HistogramData) {
+    if (this.selection === null) {
+      return false
+    };
+
+    return data.start >= this.selection[0] && data.end <= this.selection[1];
+  }
+
   private _updateHandles(values: number[] | null) {
     if (values === null) {
       this.barsContainer.selectAll('rect').style('fill', this.color);
@@ -358,7 +401,7 @@ export class HistogramWidget {
 
     this.customHandlers
       .style('opacity', 1)
-      .attr('transform', (_d, i) => `translate(${valuesSpace[i] - 5},${HEIGHT + MARGIN.TOP - 5})`);
+      .attr('transform', (_d, i) => `translate(${valuesSpace[i] - (CUSTOM_HANDLE_SIZE / 2)},${CUSTOM_HANDLE_Y_COORD})`);
     this.bottomLine
       .style('opacity', 1)
       .attr('x1', valuesSpace[0])
@@ -429,19 +472,6 @@ export class HistogramWidget {
     this.bars
       .enter()
       .append('rect')
-      .on('mouseout', (_data: HistogramData, index: number, nodes: BaseType[]) => {
-        select(nodes[index]).style('fill', this.color)
-        this.tooltip = null;
-      })
-      .on('mouseenter', (data: HistogramData) => {
-        this.tooltip = this.tooltipFormatter(data);
-        this._showTooltip(event as MouseEvent);
-      })
-      .on('mousemove', (_data: HistogramData, index: number, nodes: BaseType[]) => {
-        select(nodes[index]).style('fill', shadeOrBlend(-0.16, this.color))
-        select(this.tooltipElement).style('opacity', 0);
-        this._showTooltip(event as MouseEvent);
-      })
       .merge(this.bars)
       .attr('class', 'bar')
       .attr('y', HEIGHT)
@@ -490,6 +520,8 @@ export class HistogramWidget {
   }
 
   private _showTooltip(event: MouseEvent) {
+    if (!this.tooltipElement) return;
+
     const [x, y] = this._getTooltipPosition(event.layerX, event.layerY);
 
     select(this.tooltipElement)
