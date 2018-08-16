@@ -1,6 +1,9 @@
 @import "../core/_dev";
 
 .as-table {
+  --as-color-table-row-hover: #E2F9EE;
+  --as-color-table-cell-hover: #C8F3DF;
+
   border-collapse: collapse;
   border: 1px solid var(--as-color-ui-04, #{$color-ui-04});
   background: var(--as-color-ui-01, #{$color-ui-01});
@@ -10,6 +13,7 @@
   th,
   td {
     padding: get-spacing(2) get-spacing(4);
+    border: 1px solid transparent;
   }
 
   th {
@@ -27,17 +31,13 @@
     }
   }
 
-  td:hover {
-    background: var(--as-color-ui-02, #{$color-ui-02});
+  tr:hover {
+    border-top: 1px solid var(--as-color-table-cell-hover, #C8F3DF);
+    border-bottom: 1px solid var(--as-color-table-cell-hover, #C8F3DF);
+    background-color: var(--as-color-table-row-hover, #E2F9EE);
   }
 
-  tr:nth-child(even) {
-    border-top: 1px solid #C8F3DF;
-    border-bottom: 1px solid #C8F3DF;
-    background-color: #E2F9EE;
-
-    td:hover {
-      background: #C8F3DF;
-    }
+  td:hover {
+    background: var(--as-color-table-cell-hover, #C8F3DF);
   }
 }
