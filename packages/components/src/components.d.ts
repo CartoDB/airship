@@ -142,6 +142,10 @@ declare global {
   namespace StencilComponents {
     interface AsHistogramWidget {
       /**
+       * Clears the Histogram selection
+       */
+      'clearSelection': () => void;
+      /**
        * Override color for the histogram bars
        */
       'color': string;
@@ -177,6 +181,10 @@ declare global {
        * Override color for the selected histogram bars
        */
       'selectedColor': string;
+      /**
+       * Programmatically set the selection. It will be adjusted to the buckets present in {@link data}. To clear see {@link clearSelection} or call with null
+       */
+      'setSelection': (values: number[]) => void;
       /**
        * Display a clear button that clears the histogram selection.
        */

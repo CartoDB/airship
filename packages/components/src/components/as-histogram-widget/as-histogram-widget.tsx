@@ -132,8 +132,11 @@ export class HistogramWidget {
     this._renderBars();
 
     if (this.selection !== null) {
-      this._setSelection([this._adjustSelectionLower(this.selection[0]), this._adjustSelectionUpper(this.selection[1])]);
-      this._updateHandles(this.selection);
+      if (this._selectionInData(this.selection)) {
+        this._setSelection(this._adjustSelection(this.selection));
+      } else {
+        this._setSelection(null);
+      }
     }
   }
 
@@ -151,6 +154,28 @@ export class HistogramWidget {
   @Method()
   getSelection() : number[] {
     return this.selection;
+  }
+
+  /**
+   * Programmatically set the selection. It will be adjusted to the buckets
+   * present in {@link data}. To clear see {@link clearSelection} or call with null
+   *
+   * @param {number[] | null} values
+   * @memberof HistogramWidget
+   */
+  @Method()
+  setSelection(values: number[] | null) {
+    this._setSelection(values === null ? values : this._adjustSelection(values));
+  }
+
+  /**
+   * Clears the Histogram selection
+   *
+   * @memberof HistogramWidget
+   */
+  @Method()
+  clearSelection() {
+    this._setSelection(null);
   }
 
   @Event()
@@ -226,6 +251,11 @@ export class HistogramWidget {
     this._cleanAxes();
   }
 
+  private _adjustSelection(values: number[]): number[] {
+    return [this._adjustSelectionLower(values[0]),
+      this._adjustSelectionUpper(values[1])];
+  }
+
   private _adjustSelectionLower (value: number) {
     if (value <= this.data[0].start) {
       return this.data[0].start;
@@ -263,7 +293,7 @@ export class HistogramWidget {
     this.bottomLine.style('opacity', 0);
   }
 
-  private _onBrush (_d, index: number, nodes: SVGElement[]) {
+  private _onBrush () {
     const evt = d3event as any; // I can't cast this properly :(
 
     if (evt.selection === null) {
@@ -281,23 +311,46 @@ export class HistogramWidget {
       .map(e => Math.round(e));
 
     // Round to most approximate bucket
-    const d1 = [this._adjustSelectionLower(d0[0]), this._adjustSelectionUpper(d0[1])];
+    const d1 = this._adjustSelection(d0);
 
     if (d1[0] === d1[1]) {
       return;
     }
     
     this._setSelection(d1);
-
-    this._updateHandles(d1);
   }
 
   private _setSelection (selection: number[]) {
     this.selection = selection;
     this.selectionChanged.emit(this.selection);
+    
+    this._updateHandles(selection);
   }
 
-  private _updateHandles(values: number[]) {
+  private _selectionInData (selection: number[]) {
+    const inData = selection.map(selectionValue => {
+      for (const value of this.data) {
+        if (selectionValue >= value.start && selectionValue <= value.end) {
+          return true;
+        }
+      }
+
+      return false;
+    });
+
+    // True if any of the selection values is inside the data
+    // Using inData.every(e => e) would be more restrictive
+    return inData.some(e => e);
+  }
+
+  private _updateHandles(values: number[] | null) {
+    if (values === null) {
+      this.barsContainer.selectAll('rect').style('fill', this.color);
+      this.brushArea.call(this.brush.move, null);
+
+      return;
+    }
+
     // Convert back to space coordinates
     const valuesSpace = values.map(this.xScale).map(e => e + MARGIN.LEFT);
   
@@ -504,15 +557,8 @@ export class HistogramWidget {
     }
 
     return (
-      <button onClick={() => this._onClear() }>Clear selection</button>
+      <button onClick={() => this._setSelection(null) }>Clear selection</button>
     );
-  }
-
-  _onClear() {
-    // Clear the brush
-    this.brushArea.call(this.brush.move, null);
-    this.barsContainer.selectAll('rect').style('fill', this.color);
-    this._setSelection(null);
   }
 
   render() {
