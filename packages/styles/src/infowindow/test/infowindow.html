@@ -12,32 +12,54 @@
     html,
     body {
       display: flex;
-      justify-content: center;
+      justify-content: space;
       margin: 0;
       padding: 50px;
       background: #F2F2F2;
+    }
+
+    .as-infowindow .as-title,
+    .as-infowindow .as-subheader,
+    .as-infowindow .as-body {
+      margin: 16px;
+    }
+
+    .as-infowindow {
+      margin: 16px;
     }
   </style>
 </head>
 
 <body>
-  <div class="as-infowindow-1">
-    <h1 class="as-title">Title container</h1>
-    <p class="as-body">
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus ipsa sapiente odit vel, exercitationem deleniti doloremque
-      debitis natus, voluptatum tempora sit? Earum dolores consequuntur doloribus, quisquam dignissimos eligendi numquam
-      odit!
-    </p>
-  </div>
-
-  <div class="as-infowindow-2">
-      <h1 class="as-title">Title container</h1>
+  <div class="as-infowindow">
+    <div class="as-infowindow__content">
       <p class="as-body">
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus ipsa sapiente odit vel, exercitationem deleniti doloremque
-        debitis natus, voluptatum tempora sit? Earum dolores consequuntur doloribus, quisquam dignissimos eligendi numquam
-        odit!
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi, distinctio? Dolorem quia illum quasi fugit beatae accusantium
+        optio ex consequuntur labore ducimus eligendi ad, perferendis nisi tempore repudiandae aspernatur assumenda.
       </p>
     </div>
+    <div class="as-infowindow__hook"></div>
+  </div>
+
+  <div class="as-infowindow as-infowindow--full-img">
+    <img class="img-fill" src="https://placekitten.com/640/360" alt="Image">
+  </div>
+
+  <div class="as-infowindow as-infowindow--grow">
+      <div class="as-infowindow__content">
+        <img class="as-infowindow__cover-img" width="100%" src="https://placekitten.com/640/360" alt="Image">
+
+        <h1 class="as-title">Title</h1>
+        <h1 class="as-subheader">This is a subheader</h1>
+        <p class="as-body">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi, distinctio? Dolorem quia illum quasi fugit beatae accusantium
+          optio ex consequuntur labore ducimus eligendi ad, perferendis nisi tempore repudiandae aspernatur assumenda.
+        </p>
+      </div>
+      <div class="as-infowindow__hook"></div>
+    </div>
+
+
 </body>
 
 </html>

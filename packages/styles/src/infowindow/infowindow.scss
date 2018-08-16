@@ -1,45 +1,67 @@
 @import "../core/_dev";
 
-.as-infowindow-1 {
+.as-infowindow {
   position: relative;
   width: 260px;
-  margin: 16px;
-  padding: 16px;
-  background: var(--as-color-ui-01, #{color-ui-01});
-  box-shadow: $shadow-8;
+  height: 150px;
+  min-height: 40px;
+  border-radius: 4px 4px 4px 0;
+  background: $color-ui-01;
+  box-shadow: 0 2px 8px 0 rgba(44, 44, 44, 0.16);
 
-  &::after {
-    content: '';
-    display: block;
-    position: absolute;
-    bottom: -21px;
-    left: 0;
-    width: 48px;
-    height: 48px;
-    background: white;
-    box-shadow: 0 9px 25px 0 rgba(44, 44, 44, 0.16);
-    clip-path: polygon(0 50%, 0% 100%, 50% 50%);
+  &--grow {
+    height: auto;
   }
-}
 
-.as-infowindow-2 {
-  position: relative;
-  width: 260px;
-  margin: 16px;
-  padding: 16px;
-  background: var(--as-color-ui-01, #{color-ui-01});
-  box-shadow: $shadow-8;
+  &--full-img {
+    height: 167px;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 90%, 8% 90%, 0 98%, 0% 100%, 0% 100%);
+    box-shadow: 0 2px 8px 0 rgba(44, 44, 44, 0.16);
 
-  &::after {
-    content: '';
-    display: block;
+    .img-fill {
+      display: block;
+      min-width: 100%;
+      max-width: 100%;
+      min-height: 100%;
+      border-radius: 4px;
+    }
+  }
+
+  &__content {
+    overflow: auto;
+  }
+
+  &__hook {
     position: absolute;
-    bottom: -24px;
+    z-index: 10;
+    bottom: 1px;
     left: 0;
-    width: 24px;
-    height: 24px;
-    border-radius: 0 0 36px;
     background: white;
-    box-shadow: 0 5px 4px 0 rgba(44, 44, 44, 0.16);
+    color: white;
+
+    &::before {
+      content: '';
+      position: absolute;
+      z-index: 3;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-top: 12px solid white;
+      border-right: 18px solid transparent;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      z-index: 2;
+      top: 3px;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-top: 12px solid rgba(44, 44, 44, 0.16);
+      border-right: 18px solid transparent;
+      filter: blur(2px);
+    }
   }
 }
