@@ -1,5 +1,5 @@
 import { TestWindow } from '@stencil/core/dist/testing';
-import { ApplicationContent } from './as-application';
+import { ApplicationContent } from './as-application-content';
 
 describe('as-category-widget', () => {
   it('should build', () => {

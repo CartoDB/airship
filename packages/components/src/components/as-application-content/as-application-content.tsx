@@ -8,7 +8,7 @@ import { Component, Element, Event, EventEmitter, Method, State } from '@stencil
  */
 @Component({
   shadow: false,
-  styleUrl: './as-application.scss',
+  styleUrl: './as-application-content.scss',
   tag: 'as-application-content'
 })
 export class ApplicationContent {
