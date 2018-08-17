@@ -30,7 +30,8 @@ declare global {
 
   namespace StencilComponents {
     interface AsApplicationContent {
-
+      'getSections': () => object[];
+      'setVisible': (sectionName: string) => void;
     }
   }
 
@@ -54,6 +55,7 @@ declare global {
   namespace JSXElements {
     export interface AsApplicationContentAttributes extends HTMLAttributes {
       'onLoad'?: (event: CustomEvent<void>) => void;
+      'onSectionChange'?: (event: CustomEvent<object>) => void;
     }
   }
 }

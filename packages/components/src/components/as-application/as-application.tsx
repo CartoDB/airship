@@ -1,4 +1,4 @@
-import { Component, Element, Event, EventEmitter, State } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, Method, State } from '@stencil/core';
 
 /**
  * Category Widget
@@ -11,12 +11,15 @@ import { Component, Element, Event, EventEmitter, State } from '@stencil/core';
   styleUrl: './as-application.scss',
   tag: 'as-application-content'
 })
-export class ApplicationContainer {
+export class ApplicationContent {
   @Element() private element: HTMLElement;
 
   @State() private sections: ApplicationSection[] = [];
 
   @Event() private load: EventEmitter<void>;
+  @Event() private sectionChange: EventEmitter<object>;
+
+  private activeSection: ApplicationSection;
 
   public render() {
     return [
@@ -39,6 +42,20 @@ export class ApplicationContainer {
 
   public componentDidLoad() {
     this.load.emit();
+  }
+
+  @Method()
+  public getSections(): object[] {
+    return this.sections;
+  }
+
+  @Method()
+  public setVisible(sectionName: string) {
+    const sectionFound = this.sections.find((section) => section.name === sectionName);
+
+    if (sectionFound) {
+      this.setActive(sectionFound);
+    }
   }
 
   private renderTabs() {
@@ -72,23 +89,25 @@ export class ApplicationContainer {
       section.active = true;
     }
 
+    this.activeSection = section;
     this.sections = [...this.sections];
+    this.sectionChange.emit(section);
   }
 
   private disableActiveSection() {
-    const activeSection = this.sections.find((section) => section.active);
-
-    if (!activeSection) {
+    if (!this.activeSection) {
       return;
     }
 
-    if (activeSection.disableAction) {
-      activeSection.disableAction(activeSection);
+    if (this.activeSection.disableAction) {
+      this.activeSection.disableAction(this.activeSection);
       return;
     }
 
-    activeSection.element.classList.remove(activeSection.activeClass || ACTIVE_CLASSES[activeSection.type]);
-    activeSection.active = false;
+    this.activeSection.element.classList.remove(
+      this.activeSection.activeClass || ACTIVE_CLASSES[this.activeSection.type]
+    );
+    this.activeSection.active = false;
   }
 
   private getContentSections() {
@@ -99,9 +118,8 @@ export class ApplicationContainer {
       this.getBottomBar()
     ];
 
-    sections.sort((a, b) => a.tabOrder - b.tabOrder);
-
     if (sections.length) {
+      sections.sort((a, b) => a.tabOrder - b.tabOrder);
       this.setActive(sections[0]);
     }
 
@@ -111,13 +129,13 @@ export class ApplicationContainer {
   private getMap() {
     const mapWrapper = this.element.querySelector('.as-map-wrapper');
 
-    const activeAction = (section: ApplicationSection) => {
+    function activeAction(section: ApplicationSection) {
       section.active = true;
-    };
+    }
 
-    const disableAction = (section: ApplicationSection) => {
+    function disableAction(section: ApplicationSection) {
       section.active = false;
-    };
+    }
 
     return {
       activeAction,
