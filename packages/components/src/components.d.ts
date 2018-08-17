@@ -136,6 +136,39 @@ declare global {
 declare global {
 
   namespace StencilComponents {
+    interface AsInfowindow {
+      'src': string;
+    }
+  }
+
+  interface HTMLAsInfowindowElement extends StencilComponents.AsInfowindow, HTMLStencilElement {}
+
+  var HTMLAsInfowindowElement: {
+    prototype: HTMLAsInfowindowElement;
+    new (): HTMLAsInfowindowElement;
+  };
+  interface HTMLElementTagNameMap {
+    'as-infowindow': HTMLAsInfowindowElement;
+  }
+  interface ElementTagNameMap {
+    'as-infowindow': HTMLAsInfowindowElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'as-infowindow': JSXElements.AsInfowindowAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface AsInfowindowAttributes extends HTMLAttributes {
+      'src'?: string;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
     interface AsRangeSlider {
       /**
        * Disables component if truthy

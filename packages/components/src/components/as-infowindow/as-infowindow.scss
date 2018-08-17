@@ -1,0 +1,24 @@
+.as-infowindow {
+  display: inline-block;
+  position: relative;
+  width: 260px;
+  border-radius: 4px;
+  box-shadow: 0 4px 16px 0 rgba(#2C2C2C, 0.16);
+
+  img {
+    display: block;
+    width: 100%;
+    border-radius: 4px;
+  }
+
+  &__media {
+    overflow: hidden;
+    border-radius: 4px;
+  }
+
+  &__hook {
+    position: absolute;
+    top: 0;
+    clip-path: polygon(0 0, 0% 100%, 100% 0);
+  }
+}
