@@ -118,27 +118,6 @@ export class HistogramWidget {
     return `${readableNumber(data.value)}`;
   }
 
-  @State() tooltip: string;
-
-  @Watch('data')
-  onDataChanged() {
-    this._updateAxes();
-    this._renderBars();
-
-    if (this.selection !== null) {
-      if (this._selectionInData(this.selection)) {
-        this._setSelection(this._adjustSelection(this.selection));
-      } else {
-        this._setSelection(null);
-      }
-    }
-  }
-
-  @Watch('color')
-  onColorChanged() {
-    this._renderBars();
-  }
-
   /**
    * Returns the current selection
    *
@@ -172,8 +151,35 @@ export class HistogramWidget {
     this._setSelection(null);
   }
 
+  /**
+   * Fired when user update or clear the widget selection.
+   *
+   * @type {EventEmitter<number[]>}
+   * @memberof HistogramWidget
+   */
   @Event()
-  selectionChanged: EventEmitter;
+  selectionChanged: EventEmitter<number[]>;
+
+  @State() tooltip: string;
+
+  @Watch('data')
+  onDataChanged() {
+    this._updateAxes();
+    this._renderBars();
+
+    if (this.selection !== null) {
+      if (this._selectionInData(this.selection)) {
+        this._setSelection(this._adjustSelection(this.selection));
+      } else {
+        this._setSelection(null);
+      }
+    }
+  }
+
+  @Watch('color')
+  onColorChanged() {
+    this._renderBars();
+  }
   
   private container: Selection<HTMLElement, {}, null, undefined>;
   private tooltipElement: HTMLElement;
