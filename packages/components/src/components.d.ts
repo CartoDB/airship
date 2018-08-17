@@ -29,6 +29,39 @@ declare global {
 declare global {
 
   namespace StencilComponents {
+    interface AsApplicationContent {
+
+    }
+  }
+
+  interface HTMLAsApplicationContentElement extends StencilComponents.AsApplicationContent, HTMLStencilElement {}
+
+  var HTMLAsApplicationContentElement: {
+    prototype: HTMLAsApplicationContentElement;
+    new (): HTMLAsApplicationContentElement;
+  };
+  interface HTMLElementTagNameMap {
+    'as-application-content': HTMLAsApplicationContentElement;
+  }
+  interface ElementTagNameMap {
+    'as-application-content': HTMLAsApplicationContentElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'as-application-content': JSXElements.AsApplicationContentAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface AsApplicationContentAttributes extends HTMLAttributes {
+      'onLoad'?: (event: CustomEvent<void>) => void;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
     interface AsCategoryWidget {
       /**
        * Array of categories to display in the widget. Each category should include a `name` and a `value`. You can also override the bar color for each category with `color`.
