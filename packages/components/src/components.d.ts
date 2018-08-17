@@ -158,10 +158,6 @@ declare global {
        */
       'data': HistogramData[];
       /**
-       * Bar color to be used by default
-       */
-      'defaultBarColor': string;
-      /**
        * Default formatting function. Makes the value a readable number and converts it into a string. Useful to compose with your own formatting function.
        */
       'defaultFormatter': (data: HistogramData) => string;
@@ -231,10 +227,6 @@ declare global {
        * Histogram data to be displayed
        */
       'data'?: HistogramData[];
-      /**
-       * Bar color to be used by default
-       */
-      'defaultBarColor'?: string;
       /**
        * Description of the widget to be displayed
        */

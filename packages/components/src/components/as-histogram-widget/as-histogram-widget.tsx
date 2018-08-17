@@ -56,7 +56,7 @@ export class HistogramWidget {
    * @type {boolean}
    * @memberof HistogramWidget
    */
-  @Prop() public showHeader: boolean;
+  @Prop() public showHeader: boolean = true;
 
   /**
    * Display a clear button that clears the histogram selection.
@@ -89,14 +89,6 @@ export class HistogramWidget {
    * @memberof HistogramWidget
    */
   @Prop() public selectedColor: string = DEFAULT_SELECTED_BAR_COLOR;
-
-  /**
-   * Bar color to be used by default
-   *
-   * @type {string}
-   * @memberof HistogramWidget
-   */
-  @Prop() public defaultBarColor: string;
 
   /**
    * Color range for histogram data
