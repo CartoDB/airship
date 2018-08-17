@@ -34,11 +34,37 @@ export class Switch {
     imageElement.onload = () => {
       const imageHeight = imageElement.height;
 
-      const imageWrapper = this.element.querySelector('.as-infowindow__media') as HTMLDivElement;
+      const imageWidth = imageElement.width;
+      const ratio = (imageHeight / imageWidth) * 20;
+
+      const media = this.element.querySelector('.as-infowindow__media') as HTMLDivElement;
+      const hook = this.element.querySelector('.as-infowindow__hook') as HTMLDivElement;
+
 
       const newHeight = imageHeight - 10;
-      imageWrapper.style.height = `${newHeight}px`;
+      media.style.height = `${newHeight}px`;
+
+
+      hook.style.clipPath = this._computeClipPath(ratio);
     };
+
+  }
+
+  /**
+   * Compute the hook form factor depending on the aspect ratio of the image.
+   * (Values are totally empirical)
+   */
+  private _computeClipPath(ratio: number): string {
+    if (ratio < 10) {
+      return 'polygon(0 0, 0% 100%, 40% 0%)';
+    }
+
+    if (ratio < 30) {
+      return 'polygon(0 0, 0% 100%, 100% 0%)';
+    }
+
+    return 'polygon(0 0, 0% 100%, 100% 60%)';
+
 
   }
 }
