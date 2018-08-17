@@ -12,22 +12,41 @@ export class Switch {
   @Element() private element: HTMLElement;
 
   public render() {
+    if (this.src) {
+      return this._renderImageInfoWindow();
+    }
+    return this._renderStandarInfowindow();
+  }
+
+  public componentDidLoad() {
+    if (this.src) {
+      this._setupHook();
+    }
+  }
+
+  private _renderStandarInfowindow() {
+    return (
+      <div class='as-infowindow'>
+        <div class='as-infowindow__content'>
+          <slot />
+        </div>
+        <div class='as-infowindow__hook'></div>
+      </div>
+    );
+  }
+
+  private _renderImageInfoWindow() {
     return (
       <div class='as-infowindow'>
         <div class='as-infowindow__media'>
           <img src={this.src} class='as-infowindow-media-item' />
         </div>
-        <div class='as-infowindow__hook'>
+        <div class='as-infowindow__hook--img'>
           <img src={this.src} />
         </div>
       </div>
     );
   }
-
-  public componentDidLoad() {
-    this._setupHook();
-  }
-
 
   private _setupHook() {
     const imageElement = this.element.querySelector('.as-infowindow__media img') as HTMLImageElement;
@@ -38,7 +57,7 @@ export class Switch {
       const ratio = (imageHeight / imageWidth) * 20;
 
       const media = this.element.querySelector('.as-infowindow__media') as HTMLDivElement;
-      const hook = this.element.querySelector('.as-infowindow__hook') as HTMLDivElement;
+      const hook = this.element.querySelector('.as-infowindow__hook--img') as HTMLDivElement;
 
 
       const newHeight = imageHeight - 10;
