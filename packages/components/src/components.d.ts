@@ -235,7 +235,10 @@ declare global {
        * Title of the widget to be displayed
        */
       'heading'?: string;
-      'onSelectionChanged'?: (event: CustomEvent) => void;
+      /**
+       * Fired when user update or clear the widget selection.
+       */
+      'onSelectionChanged'?: (event: CustomEvent<number[]>) => void;
       /**
        * Override color for the selected histogram bars
        */

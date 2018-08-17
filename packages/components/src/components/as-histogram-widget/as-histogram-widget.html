@@ -12,60 +12,20 @@
   <body>
     <div style="width: 250px;">
       <as-histogram-widget
-        show-header
         show-clear
         heading="Business Volume"
         description="Description">
       </as-histogram-widget>
     </div>
-    <button id="changeBtn">Change data</button>
-    <button id="mutateBtn">Mutate data</button>
-    <p id="selection"></p>
 
     <script>
-      // Generate random data for the histogram
-      function randomData() {
-        // Number of buckets
-        var size = Math.floor(Math.random() * 10) + 5;
-        // 'Width' of each bucket
-        var bucketSize = Math.floor(Math.random() * 20) + 2;
-        var data = [];
-
-        for (var i = 0; i < size; i++) {
-          var start = i === 0 ? Math.floor(Math.random() * 15) : data[i-1].end; 
-          data[i] = {
-            start: start,
-            end: start + bucketSize,
-            value: Math.floor(Math.random() * 30) + 1
-          }
-        }
-
-        return data;
-      }
-
       var histogramWidget = document.querySelector('as-histogram-widget');
-      histogramWidget.data = randomData();
-
-      document.querySelector('#changeBtn').addEventListener('click', function () {
-        histogramWidget.data = randomData();
-      });
-      document.querySelector('#mutateBtn').addEventListener('click', function () {
-        histogramWidget.data = histogramWidget.data.map(function (entry) {
-          return {
-            ...entry,
-            value: Math.floor(Math.random() * 30) + 1
-          };
-        });
-      });
-
-      var selectionP = document.querySelector('#selection');
-      histogramWidget.addEventListener('selectionChanged', function (event) {
-        if (event.detail === null) {
-          selectionP.innerText = 'Nothing selected';
-        } else {
-          selectionP.innerText = 'Selection is: ' + event.detail[0] + ',' + event.detail[1];
-        }
-      });
+      histogramWidget.data = [
+        { start: 0, end: 10, value: 5 },
+        { start: 10, end: 20, value: 10 },
+        { start: 20, end: 30, value: 15 },
+        { start: 30, end: 40, value: 20 },
+      ];
     </script>
   </body>
 </html>
