@@ -1,0 +1,32 @@
+@import '../../../../../styles/src/core/_dev';
+
+as-range-slider {
+  --slider--rail-color: var(--as-color-ui-03, #{$color-ui-03});
+  --slider--range-color: var(--as-color-primary, #{$color-primary});
+
+  display: block;
+
+  .as-range-slider--disabled {
+    pointer-events: none;
+  }
+
+  .as-range-slider__rail {
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: 12px;
+
+    &::before {
+      content: ' ';
+      position: absolute;
+      z-index: -1;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      transform: translate3d(0, -50%, 0);
+      background-color: var(--slider--rail-color, #{$color-ui-03});
+      pointer-events: none;
+    }
+  }
+}
