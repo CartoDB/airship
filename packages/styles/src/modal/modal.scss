@@ -1,7 +1,9 @@
 @import "../core/_dev";
 
+$modal-background: rgba($color-type-01, 0.8);
+
 .as-modal {
-  --as-modal-background: rgba($color-type-01, 0.8);
+  --as-modal-background: #{$modal-background};
 
   display: flex;
   position: absolute;
@@ -12,7 +14,7 @@
   left: 0;
   align-items: center;
   justify-content: center;
-  background: var(--as-modal-background, rgba($color-type-01, 0.8));
+  background: var(--as-modal-background, #{$modal-background});
 
   &__content {
     max-width: 450px;
