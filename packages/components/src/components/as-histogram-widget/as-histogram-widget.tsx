@@ -72,7 +72,7 @@ export class HistogramWidget {
    * @type {HistogramData[]}
    * @memberof HistogramWidget
    */
-  @Prop() public data: HistogramData[];
+  @Prop() public data: HistogramData[] = [];
 
   /**
    * Override color for the histogram bars
@@ -203,9 +203,7 @@ export class HistogramWidget {
     // to be called on each file change
     this.container.selectAll('*').remove();
 
-    if (this.data) {
-      this._renderGraph();
-    }
+    this._renderGraph();
   }
 
   private _renderGraph() {
@@ -236,7 +234,7 @@ export class HistogramWidget {
           const selected = this._isSelected(data);
           const nodeSelection = select(nodes[i]);
           const node = nodes[i] as Element;
-          const bb = node.getBoundingClientRect();
+          const bb = node.getBoundingClientRect();          
 
           if (bb.left <= clientX &&
               clientX <= bb.right &&
@@ -435,8 +433,9 @@ export class HistogramWidget {
 
   private _renderXAxis() {
     const data = this.data;
-    const { start } = data[0];
-    const { end } = data[data.length - 1];
+
+    const { start } = data.length > 0 ? data[0] : { start: 0 };
+    const { end } = data.length > 0 ? data[data.length - 1] : { end: 0 };
 
     this.xScale = scaleLinear()
       .domain([start, end])
@@ -456,7 +455,7 @@ export class HistogramWidget {
 
   private _renderBars() {
     const data = this.data;
-    const barWidth = WIDTH / data.length;
+    const barWidth = data.length === 0 ? WIDTH : WIDTH / data.length;
 
     // -- Draw bars
     this.bars = this.barsContainer
