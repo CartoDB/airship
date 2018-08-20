@@ -1,10 +1,12 @@
 @import "../core/_dev";
 
 .as-infowindow {
+  display: inline-block;
   position: relative;
   width: 260px;
   height: 150px;
   min-height: 40px;
+  overflow: hidden;
   border-radius: 4px 4px 4px 0;
   background: $color-ui-01;
   box-shadow: 0 2px 8px 0 rgba(44, 44, 44, 0.16);
