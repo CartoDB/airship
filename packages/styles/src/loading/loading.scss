@@ -2,32 +2,32 @@
 
 .as-loading {
   display: inline-block;
-  transform: translateZ(0);
-
-  &--s {
-    width: get-spacing(8);
-    height: get-spacing(8);
-  }
-
-  &--m {
-    width: get-spacing(16);
-    height: get-spacing(16);
-  }
-
-  &--l {
-    width: get-spacing(26);
-    height: get-spacing(26);
-  }
+  width: get-spacing(10);
+  height: get-spacing(10);
+  overflow: hidden;
 
   svg {
+    width: 100%;
     animation: rotate 2s linear infinite;
   }
 
   circle {
     animation: dash 1.5s ease-in-out infinite;
     stroke-width: 4px;
-    stroke-linecap: round;
-    stroke: var(--as-color-type-01, #{$color-type-01});
+    stroke-linecap: square;
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: 0;
+    stroke: var(--as-color-primary, #{$color-primary});
+  }
+
+  &--s {
+    width: get-spacing(4);
+    height: get-spacing(4);
+  }
+
+  &--l {
+    width: get-spacing(18);
+    height: get-spacing(18);
   }
 
   @keyframes dash {
@@ -48,6 +48,10 @@
   }
 
   @keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+
     100% {
       transform: rotate(360deg);
     }
