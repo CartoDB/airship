@@ -6,7 +6,7 @@ import { Component, Element, Prop, } from '@stencil/core';
   tag: 'as-infowindow',
 })
 
-export class Switch {
+export class Infowindow {
 
   @Prop() public src: string;
   @Element() private element: HTMLElement;
