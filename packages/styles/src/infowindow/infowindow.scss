@@ -28,7 +28,13 @@
   }
 
   &__content {
+    height: 100%;
+    padding: get-spacing(4);
     overflow: auto;
+  }
+
+  &__media {
+    width: 100%;
   }
 
   &__hook {
