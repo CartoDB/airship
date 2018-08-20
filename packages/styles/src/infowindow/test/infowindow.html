@@ -12,14 +12,13 @@
     html,
     body {
       display: flex;
-      justify-content: space;
+      flex-direction: column;
       margin: 0;
-      padding: 50px;
       background: #F2F2F2;
     }
 
     .as-infowindow {
-      margin: 16px;
+      margin: 16px auto;
     }
   </style>
 </head>
@@ -36,11 +35,11 @@
   </div>
 
   <div class="as-infowindow as-infowindow--full-img">
-    <img src="https://placekitten.com/640/360" alt="Image">
+    <img src="https://via.placeholder.com/640x360" alt="Image">
   </div>
 
   <div class="as-infowindow as-infowindow--grow">
-    <img class="as-infowindow__media" src="https://placekitten.com/640/360" alt="Image">
+    <img class="as-infowindow__media" src="https://via.placeholder.com/640x360" alt="Image">
     <div class="as-infowindow__content">
       <h1 class="as-title">Title</h1>
       <h1 class="as-subheader">This is a subheader</h1>
