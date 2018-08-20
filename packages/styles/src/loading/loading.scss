@@ -1,7 +1,7 @@
 @import "../core/_dev";
 
 .as-loading {
-  display: inline-block;
+  display: inline-flex;
   width: get-spacing(10);
   height: get-spacing(10);
   overflow: hidden;
