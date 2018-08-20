@@ -15,7 +15,7 @@ Since the modal has absolute positioning should be placed under the `body` tag o
         natus voluptatem praesentium itaque sunt commodi odio incidunt fugiat, cupiditate ipsum officiis eligendi?
       </p>
       <hr>
-      <h2 class="as-subheader">I have no padding</h2>
+      <h2 class="as-subheader">I have padding</h2>
       <p class="as-body">
         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque voluptas vitae praesentium itaque corporis, soluta iure optio
         labore minus modi ab quibusdam accusamus delectus dolores rem impedit cupiditate tenetur illum?

@@ -1,6 +1,8 @@
 @import "../core/_dev";
 
 .as-modal {
+  --as-modal-background: rgba(44, 44, 44, 0.8);
+
   display: flex;
   position: absolute;
   top: 0;
@@ -9,11 +11,12 @@
   left: 0;
   align-items: center;
   justify-content: center;
-  background: rgba(44, 44, 44, 0.8);
+  background: var(--as-modal-background, rgba(44, 44, 44, 0.8));
 
   &__content {
     max-width: 450px;
     max-height: 80vh;
+    padding: get-spacing(4);
     border-radius: get-spacing(1);
     background: var(--as-color-ui-01, #{$color-ui-01});
     box-shadow: $shadow-8;
