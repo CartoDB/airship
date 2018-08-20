@@ -24,6 +24,11 @@ as-infowindow {
       top: 0;
     }
 
+    &__content {
+      height: 100%;
+      overflow: auto;
+    }
+
     &__hook {
       position: absolute;
       z-index: 10;
