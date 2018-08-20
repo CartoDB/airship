@@ -3,6 +3,8 @@
 ```html
 <div class="as-infowindow">
   <div class="as-infowindow__content">
+    <h1 class="as-title"> Infowindow </h1>
+
     <p class="as-body">
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi, distinctio? Dolorem quia illum quasi fugit beatae accusantium
       optio ex consequuntur labore ducimus eligendi ad, perferendis nisi tempore repudiandae aspernatur assumenda.

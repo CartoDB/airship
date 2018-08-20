@@ -28,7 +28,7 @@
   }
 
   &__content {
-    height: 100%;
+    height: calc(100% - #{get-spacing(4)});
     padding: get-spacing(4);
     overflow: auto;
   }
