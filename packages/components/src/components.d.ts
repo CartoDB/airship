@@ -33,6 +33,41 @@ import {
 declare global {
 
   namespace StencilComponents {
+    interface AsApplicationContent {
+      'getSections': () => object[];
+      'setVisible': (sectionName: string) => void;
+    }
+  }
+
+  interface HTMLAsApplicationContentElement extends StencilComponents.AsApplicationContent, HTMLStencilElement {}
+
+  var HTMLAsApplicationContentElement: {
+    prototype: HTMLAsApplicationContentElement;
+    new (): HTMLAsApplicationContentElement;
+  };
+  interface HTMLElementTagNameMap {
+    'as-application-content': HTMLAsApplicationContentElement;
+  }
+  interface ElementTagNameMap {
+    'as-application-content': HTMLAsApplicationContentElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'as-application-content': JSXElements.AsApplicationContentAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface AsApplicationContentAttributes extends HTMLAttributes {
+      'onLoad'?: (event: CustomEvent<void>) => void;
+      'onSectionChange'?: (event: CustomEvent<object>) => void;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
     interface AsCategoryWidget {
       /**
        * Array of categories to display in the widget. Each category should include a `name` and a `value`. You can also override the bar color for each category with `color`.
@@ -263,6 +298,39 @@ declare global {
 declare global {
 
   namespace StencilComponents {
+    interface AsInfowindow {
+      'src': string;
+    }
+  }
+
+  interface HTMLAsInfowindowElement extends StencilComponents.AsInfowindow, HTMLStencilElement {}
+
+  var HTMLAsInfowindowElement: {
+    prototype: HTMLAsInfowindowElement;
+    new (): HTMLAsInfowindowElement;
+  };
+  interface HTMLElementTagNameMap {
+    'as-infowindow': HTMLAsInfowindowElement;
+  }
+  interface ElementTagNameMap {
+    'as-infowindow': HTMLAsInfowindowElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'as-infowindow': JSXElements.AsInfowindowAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface AsInfowindowAttributes extends HTMLAttributes {
+      'src'?: string;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
     interface AsRangeSlider {
       /**
        * Disables component if truthy
@@ -445,39 +513,6 @@ declare global {
       'rangeEndPercentage'?: number;
       'rangeStartPercentage'?: number;
       'stepPercentage'?: number;
-    }
-  }
-}
-
-
-declare global {
-
-  namespace StencilComponents {
-    interface AsSwitch {
-
-    }
-  }
-
-  interface HTMLAsSwitchElement extends StencilComponents.AsSwitch, HTMLStencilElement {}
-
-  var HTMLAsSwitchElement: {
-    prototype: HTMLAsSwitchElement;
-    new (): HTMLAsSwitchElement;
-  };
-  interface HTMLElementTagNameMap {
-    'as-switch': HTMLAsSwitchElement;
-  }
-  interface ElementTagNameMap {
-    'as-switch': HTMLAsSwitchElement;
-  }
-  namespace JSX {
-    interface IntrinsicElements {
-      'as-switch': JSXElements.AsSwitchAttributes;
-    }
-  }
-  namespace JSXElements {
-    export interface AsSwitchAttributes extends HTMLAttributes {
-      'onOnToggle'?: (event: CustomEvent) => void;
     }
   }
 }

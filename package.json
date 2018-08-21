@@ -4,7 +4,7 @@
   "description": "CARTO Airship framework",
   "main": "index.js",
   "repository": "git@github.com:CartoDB/airship.git",
-  "author": "Carto Dev Team",
+  "author": "CARTO Dev Team",
   "license": "BSD-3-Clause",
   "devDependencies": {
     "backstopjs": "^3.5.2",
