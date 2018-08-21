@@ -27,7 +27,7 @@
 
 <body class="as-app">
   <as-application-content>
-    <aside class="as-sidebar as-sidebar--left" data-name="Stores">
+    <aside class="as-sidebar as-sidebar--left" data-name="Stores" data-tab-order="2">
       <div class="as-container">
         <section class="as-box">
           <h1 class="as-title">Store 1</h1>
@@ -56,11 +56,11 @@
       </div>
     </aside>
 
-    <div class="as-map-wrapper">
+    <div class="as-map-wrapper" data-tab-order="0">
       <div class="as-map">
         <div id="map"></div>
 
-        <div class="as-panels" data-name="Legends">
+        <div class="as-panels" data-name="Legends" data-tab-order="1">
           <div class="as-panel as-panel--top as-panel--right">
             <div class="as-panel__element">
               <section class="as-box">
@@ -81,7 +81,7 @@
       </div>
     </div>
 
-    <aside class="as-sidebar as-sidebar--right" data-name="Containers">
+    <aside class="as-sidebar as-sidebar--right" data-name="Containers" data-tab-order="3">
       <div class="as-container as-container--border">
         <section class="as-box">
           <h1 class="as-title">Fixed container</h1>
