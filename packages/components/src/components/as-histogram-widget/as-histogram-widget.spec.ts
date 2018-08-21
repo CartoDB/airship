@@ -112,10 +112,10 @@ describe('as-histogram-widget', () => {
       element.data = histogramData;
       await testWindow.flush();
 
-      element.setSelection([5, 22]);
+      element.setSelection([4, 22]);
       await testWindow.flush();
 
-      expect(element.getSelection()).toEqual([0, 30]);
+      expect(element.getSelection()).toEqual([0, 20]);
     });
   });
 });

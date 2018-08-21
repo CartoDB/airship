@@ -300,37 +300,24 @@ export class HistogramWidget {
   }
 
   private _adjustSelection(values: number[]): number[] {
-    return [this._adjustSelectionLower(values[0]),
-      this._adjustSelectionUpper(values[1])];
+    return [this._adjustSelectionFor(values[0], 'start'),
+      this._adjustSelectionFor(values[1], 'end')];
   }
 
-  private _adjustSelectionLower(value: number) {
+  private _adjustSelectionFor(value: number, fieldName: 'start' | 'end') {
     if (value <= this.data[0].start) {
-      return this.data[0].start;
+      return this.data[0][fieldName];
     }
 
     if (value >= this.data[this.data.length - 1].end) {
-      return this.data[this.data.length - 1].start;
+      return this.data[this.data.length - 1][fieldName];
     }
 
     for (const iterator of this.data) {
-      if (value >= iterator.start && value < iterator.end) {
+      const breakPoint = iterator.start + Math.floor((iterator.end - iterator.start) / 2);
+      if (value >= iterator.start && value < breakPoint) {
         return iterator.start;
-      }
-    }
-  }
-
-  private _adjustSelectionUpper(value: number) {
-    if (value <= this.data[0].start) {
-      return this.data[0].end;
-    }
-
-    if (value >= this.data[this.data.length - 1].end) {
-      return this.data[this.data.length - 1].end;
-    }
-
-    for (const iterator of this.data) {
-      if (value > iterator.start && value <= iterator.end) {
+      } else if (value >= breakPoint && value < iterator.end) {
         return iterator.end;
       }
     }
