@@ -60,14 +60,20 @@ export class ApplicationContent {
 
   private renderTabs() {
     const tabs = this.sections.map((section, index) => {
+      if (!section.element) {
+        return;
+      }
+
       const cssClasses = {
         'as-tabs__item': true,
         'as-tabs__item--active': section.active
       };
 
-      return <button onClick={() => this.setActive(section)} role='tab' class={cssClasses}>
-        {section.name || index}
-      </button>;
+      return (
+        <button onClick={() => this.setActive(section)} role='tab' class={cssClasses}>
+          {section.name || index}
+        </button>
+      );
     });
 
     return (
@@ -117,6 +123,8 @@ export class ApplicationContent {
       ...this.getPanels(),
       this.getBottomBar()
     ];
+
+    console.log(sections)
 
     if (sections.length) {
       sections.sort((a, b) => a.tabOrder - b.tabOrder);
@@ -184,8 +192,8 @@ export class ApplicationContent {
 
     return {
       element: bottomBar,
-      name: bottomBar.getAttribute('data-name') || 'Bottom Bar',
-      tabOrder: bottomBar.getAttribute('data-tab-order') || 0,
+      name: bottomBar && bottomBar.getAttribute('data-name') || 'Bottom Bar',
+      tabOrder: bottomBar && bottomBar.getAttribute('data-tab-order') || 0,
       type: 'bottomBar'
     } as ApplicationSection;
   }
