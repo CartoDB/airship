@@ -1,6 +1,6 @@
 {
   "name": "@carto/airship-components",
-  "version": "1.0.0-alpha-27.0",
+  "version": "1.0.0-alpha.28",
   "description": "CARTO Airship components",
   "module": "dist/esm/index.js",
   "main": "dist/index.js",
