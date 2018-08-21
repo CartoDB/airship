@@ -1,13 +1,12 @@
 import { TestWindow } from '@stencil/core/dist/testing';
 import { HistogramWidget } from './as-histogram-widget';
-import { histogram } from 'd3';
 
 describe('as-category-widget', () => {
   let histogramWidget;
 
   beforeEach(() => {
     histogramWidget = new HistogramWidget();
-  });histogramWidget
+  });
 
   it('should build', () => {
     expect(histogramWidget).toBeTruthy();
@@ -29,8 +28,6 @@ describe('as-category-widget', () => {
       element.heading = 'Histogram Widget Example';
       element.description = 'Description for Histogram Widget';
       element.showClear = true;
-      await testWindow.flush();
-
       element.data = histogramData;
       await testWindow.flush();
 
@@ -48,10 +45,28 @@ describe('as-category-widget', () => {
 
     it('should render clear button', async () => {
       element.showClear = true;
-      await testWindow.flush();
-
       element.data = histogramData;
       await testWindow.flush();
+
+      expect(element).toMatchSnapshot();
+    });
+
+    it('should render selection properly', async() => {
+      element.data = histogramData;
+      await testWindow.flush();
+
+      element.setSelection([0, 20]);
+
+      expect(element).toMatchSnapshot();
+    });
+
+    it('should render colors properly', async() => {
+      element.color = '#FFAAAA';
+      element.selectedColor = '#EEFFFF'
+      element.data = histogramData;
+      await testWindow.flush();
+
+      element.setSelection([0, 20]);
 
       expect(element).toMatchSnapshot();
     });
@@ -77,9 +92,30 @@ describe('as-category-widget', () => {
 
       element.setSelection([0, 20]);
 
-      const brushElement = element.querySelector('.brush') as HTMLDivElement;
-      console.log(brushElement.click);
       expect(selectionChanged).toHaveBeenCalled();
+    });
+
+    it('should clear the selection', async () => {
+      element.data = histogramData;
+      await testWindow.flush();
+
+      element.setSelection([0, 20]);
+
+      expect(element.getSelection()).toEqual([0, 20]);
+
+      element.clearSelection();
+
+      expect(element.getSelection()).toBe(null);
+    });
+
+    it('should adjust the selection to the closest buckets', async () => {
+      element.data = histogramData;
+      await testWindow.flush();
+
+      element.setSelection([5, 22]);
+      await testWindow.flush();
+
+      expect(element.getSelection()).toEqual([0, 30]);
     });
   });
 });
