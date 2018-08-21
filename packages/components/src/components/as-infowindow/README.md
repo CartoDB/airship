@@ -1,19 +1,42 @@
-# as-infowindow
+Use this component to show extra information about the data.
 
-## Regular 
+## Regular
 
 ```html
 <as-infowindow>
-  <h1 class="as-title">Infowindow</h1>
+  <h1 class="as-title">Cat</h1>
+  <p>
+    <span class="as-badge">mammal</span>
+    <span class="as-badge as-bg--badge-pink">carnivorous</span>
+  </p>
   <p class="as-body">
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque, iure sunt quia nam, totam officia labore enim corporis
-    accusamus distinctio nesciunt perferendis dolore cupiditate facere non molestias expedita. Maxime, dignissimos!
+    The domestic cat is a small, typically furry, carnivorous mammal. They are often called house cats when kept as indoor pets or simply cats when there is no need to distinguish them from other felids and felines.
   </p>
 </as-infowindow>
 ```
 
-## Image
+## With an image
 
 ```html
-<as-infowindow src="http://funnypicture.org/wallpaper/2015/05/funny-baby-cats-11-hd-wallpaper.jpg"></as-infowindow>
+<as-infowindow src="http://on-desktop.com/wps/Animals___Cats_Black_Cat_Panther_043844_.jpg">
+  <h1 class="as-title">Cat</h1>
+  <p>
+    <span class="as-badge">mammal</span>
+    <span class="as-badge as-bg--badge-pink">carnivorous</span>
+  </p>
+  <p class="as-body">
+    The domestic cat is a small, typically furry, carnivorous mammal. They are often called house cats when kept as indoor pets or simply cats when there is no need to distinguish them from other felids and felines.
+  </p>
+</as-infowindow>
 ```
+
+## With only an image
+
+```html
+<as-infowindow src="http://on-desktop.com/wps/Animals___Cats_Black_Cat_Panther_043844_.jpg"></as-infowindow>
+```
+
+### Props
+
+#### **src**: string
+The url for the image shown at the top of the content.
