@@ -10,10 +10,6 @@ describe('as-infowindow', () => {
     let element: HTMLAsCategoryWidgetElement;
     let testWindow: TestWindow;
 
-    beforeEach(async () => {
-
-    });
-
     it('should render content', async () => {
       testWindow = new TestWindow();
       element = await testWindow.load({
