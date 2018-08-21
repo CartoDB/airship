@@ -171,6 +171,39 @@ declare global {
 declare global {
 
   namespace StencilComponents {
+    interface AsInfowindow {
+      'src': string;
+    }
+  }
+
+  interface HTMLAsInfowindowElement extends StencilComponents.AsInfowindow, HTMLStencilElement {}
+
+  var HTMLAsInfowindowElement: {
+    prototype: HTMLAsInfowindowElement;
+    new (): HTMLAsInfowindowElement;
+  };
+  interface HTMLElementTagNameMap {
+    'as-infowindow': HTMLAsInfowindowElement;
+  }
+  interface ElementTagNameMap {
+    'as-infowindow': HTMLAsInfowindowElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'as-infowindow': JSXElements.AsInfowindowAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface AsInfowindowAttributes extends HTMLAttributes {
+      'src'?: string;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
     interface AsRangeSlider {
       /**
        * Disables component if truthy
@@ -353,39 +386,6 @@ declare global {
       'rangeEndPercentage'?: number;
       'rangeStartPercentage'?: number;
       'stepPercentage'?: number;
-    }
-  }
-}
-
-
-declare global {
-
-  namespace StencilComponents {
-    interface AsSwitch {
-
-    }
-  }
-
-  interface HTMLAsSwitchElement extends StencilComponents.AsSwitch, HTMLStencilElement {}
-
-  var HTMLAsSwitchElement: {
-    prototype: HTMLAsSwitchElement;
-    new (): HTMLAsSwitchElement;
-  };
-  interface HTMLElementTagNameMap {
-    'as-switch': HTMLAsSwitchElement;
-  }
-  interface ElementTagNameMap {
-    'as-switch': HTMLAsSwitchElement;
-  }
-  namespace JSX {
-    interface IntrinsicElements {
-      'as-switch': JSXElements.AsSwitchAttributes;
-    }
-  }
-  namespace JSXElements {
-    export interface AsSwitchAttributes extends HTMLAttributes {
-      'onOnToggle'?: (event: CustomEvent) => void;
     }
   }
 }
