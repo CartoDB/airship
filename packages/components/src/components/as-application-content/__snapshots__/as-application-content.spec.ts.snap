@@ -1,0 +1,126 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`as-category-widget Rendering should render properly 1`] = `
+<as-application-content
+  class="hydrated"
+>
+  
+  
+  
+  
+  
+  
+  
+  
+  <div
+    class="as-toolbar-tabs as-tabs as-tabs--xl"
+    role="tablist"
+  >
+    <button
+      class="as-tabs__item as-tabs__item--active"
+      role="tab"
+    >
+      Map
+    </button>
+    <button
+      class="as-tabs__item"
+      role="tab"
+    >
+      Sidebar 0
+    </button>
+    <button
+      class="as-tabs__item"
+      role="tab"
+    >
+      Sidebar 1
+    </button>
+    <button
+      class="as-tabs__item"
+      role="tab"
+    >
+      Panel 0
+    </button>
+    <button
+      class="as-tabs__item"
+      role="tab"
+    >
+      Bottom Bar
+    </button>
+  </div>
+  <main
+    class="as-app-content"
+  >
+    
+    
+  
+    <aside
+      class="as-sidebar as-sidebar--left"
+    >
+      Left Sidebar
+    </aside>
+    
+
+  
+    <div
+      class="as-map-wrapper"
+    >
+      
+    
+      <div
+        class="as-map"
+      >
+        
+      
+        <div
+          id="map"
+        />
+        
+      
+        <div
+          class="as-panels"
+        >
+          
+        
+          <div
+            class="as-panel as-panel--top as-panel--right"
+          >
+            
+          
+            <div
+              class="as-panel__element"
+            >
+              Floating Panel
+            </div>
+            
+        
+          </div>
+          
+      
+        </div>
+        
+    
+      </div>
+      
+
+    
+      <div
+        class="as-bottom-bar"
+      >
+        Bottom Bar
+      </div>
+      
+  
+    </div>
+    
+
+  
+    <aside
+      class="as-sidebar as-sidebar--right"
+    >
+      Right Sidebar
+    </aside>
+    
+
+  </main>
+</as-application-content>
+`;
