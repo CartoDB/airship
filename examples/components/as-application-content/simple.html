@@ -27,46 +27,109 @@
 
 <body class="as-app">
   <as-application-content>
-    <aside class="as-sidebar as-sidebar--left">
-      LEFT-SIDEBAR
+    <aside class="as-sidebar as-sidebar--left" data-name="Stores">
+      <div class="as-container">
+        <section class="as-box">
+          <h1 class="as-title">Store 1</h1>
+          <div class="as-badge">Test</div>
+          <p class="as-body">
+            Inventore possimus nam quam necessitatibus omnis, est sequi rem quibusdam molestiae, at saepe odit voluptatem quae debitis consequatur iste ducimus quaerat dolorum.
+          </p>
+          <button class="as-btn as-btn--secondary as-btn--s">Visit</button>
+        </section>
+        <section class="as-box">
+          <h1 class="as-title">Store 2</h1>
+          <div class="as-badge">Test</div>
+          <p class="as-body">
+            Inventore possimus nam quam necessitatibus omnis, est sequi rem quibusdam molestiae, at saepe odit voluptatem quae debitis consequatur iste ducimus quaerat dolorum.
+          </p>
+          <button class="as-btn as-btn--secondary as-btn--s">Visit</button>
+        </section>
+        <section class="as-box">
+          <h1 class="as-title">Store 3</h1>
+          <div class="as-badge">Test</div>
+          <p class="as-body">
+            Inventore possimus nam quam necessitatibus omnis, est sequi rem quibusdam molestiae, at saepe odit voluptatem quae debitis consequatur iste ducimus quaerat dolorum.
+          </p>
+          <button class="as-btn as-btn--secondary as-btn--s">Visit</button>
+        </section>
+      </div>
     </aside>
 
     <div class="as-map-wrapper">
       <div class="as-map">
         <div id="map"></div>
-        <div class="as-panels">
+
+        <div class="as-panels" data-name="Legends">
           <div class="as-panel as-panel--top as-panel--right">
             <div class="as-panel__element">
-              <p>Title</p>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore possimus nam quam necessitatibus omnis, est sequi rem
-                quibusdam molestiae, at saepe odit voluptatem quae debitis consequatur iste ducimus quaerat dolorum.
-              </p>
+              <section class="as-box">
+                <p class="as-subheader">LEGEND 1</p>
+                <p class="as-body">
+                  There are no special containers for legends. Just add an 'as-box' element to an 'as-panel__element'
+                </p>
+              </section>
+              <section class="as-box">
+                <p class="as-subheader">LEGEND 2</p>
+                <p class="as-body">
+                  There are no special containers for legends. Just add an 'as-box' element to an 'as-panel__element'
+                </p>
+              </section>
             </div>
-            <div class="as-panel__element"> PANEL 1 </div>
-          </div>
-
-          <div class="as-panel as-panel--middle as-panel--right as-panel--vertical">
             <div class="as-panel__element">
-              <p>Title</p>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore possimus nam quam necessitatibus omnis, est sequi rem
-                quibusdam molestiae, at saepe odit voluptatem quae debitis consequatur iste ducimus quaerat dolorum.
-              </p>
+              <section class="as-box">
+                <p class="as-subheader">LEGEND 3</p>
+                <p class="as-body">
+                  There are no special containers for legends. Just add an 'as-box' element to an 'as-panel__element'
+                </p>
+              </section>
             </div>
-            <div class="as-panel__element"> PANEL 1 </div>
           </div>
         </div>
       </div>
-
-      <div class="as-bottom-bar">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo delectus ullam laudantium necessitatibus pariatur repellendus
-        nemo ipsam minus. Delectus quidem sequi recusandae culpa deleniti molestias amet consequatur aspernatur eos exercitationem.
-      </div>
     </div>
 
-    <aside class="as-sidebar as-sidebar--right">
-      RIGHT-SIDEBAR
+    <aside class="as-sidebar as-sidebar--right" data-name="Containers">
+      <div class="as-container as-container--border">
+        <section class="as-box">
+          <h1 class="as-title">Fixed container</h1>
+          <p class="as-body">Use this container when you need to present fixed content. This content will occupy as much vertical
+            space as needed.</p>
+        </section>
+      </div>
+      <div class="as-container as-container--scrollable">
+        <section class="as-box">
+          <h1 class="as-title">Scrollable container</h1>
+          <p class="as-body">
+            When you need to present lots of content that don't fit in the available space, use a scrollable container. It'll take the
+            space left by the fixed containers.
+          </p>
+        </section>
+        <section class="as-box">
+          <h1 class="as-title">A box</h1>
+          <p class="as-body">
+            This content is here to fill up more space than available so you can scroll.
+          </p>
+        </section>
+        <section class="as-box">
+          <h1 class="as-title">A box</h1>
+          <p class="as-body">
+            This content is here to fill up more space than available so you can scroll.
+          </p>
+        </section>
+        <section class="as-box">
+          <h1 class="as-title">A box</h1>
+          <p class="as-body">
+            This content is here to fill up more space than available so you can scroll.
+          </p>
+        </section>
+        <section class="as-box">
+          <h1 class="as-title">A box</h1>
+          <p class="as-body">
+            This content is here to fill up more space than available so you can scroll.
+          </p>
+        </section>
+      </div>
     </aside>
   </as-application-content>
 
