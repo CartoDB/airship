@@ -124,8 +124,6 @@ export class ApplicationContent {
       this.getBottomBar()
     ];
 
-    console.log(sections)
-
     if (sections.length) {
       sections.sort((a, b) => a.tabOrder - b.tabOrder);
       this.setActive(sections[0]);
