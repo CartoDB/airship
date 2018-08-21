@@ -51,7 +51,7 @@ describe('as-category-widget', () => {
       expect(element).toMatchSnapshot();
     });
 
-    it('should render selection properly', async() => {
+    it('should render selection properly', async () => {
       element.data = histogramData;
       await testWindow.flush();
 
@@ -60,9 +60,9 @@ describe('as-category-widget', () => {
       expect(element).toMatchSnapshot();
     });
 
-    it('should render colors properly', async() => {
+    it('should render colors properly', async () => {
       element.color = '#FFAAAA';
-      element.selectedColor = '#EEFFFF'
+      element.selectedColor = '#EEFFFF';
       element.data = histogramData;
       await testWindow.flush();
 

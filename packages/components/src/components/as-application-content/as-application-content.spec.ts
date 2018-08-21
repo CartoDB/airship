@@ -14,7 +14,7 @@ describe('as-category-widget', () => {
       testWindow = new TestWindow();
       element = await testWindow.load({
         components: [ApplicationContent],
-        html: `<as-application-content>${DOMExample}</as-application-content>`
+        html: `<as-application-content>${domExample}</as-application-content>`
       });
 
       await testWindow.flush();
@@ -36,7 +36,7 @@ describe('as-category-widget', () => {
 
     it('should render child content inside .as-app-content', () => {
       const asAppContentNode = element.querySelector('.as-app-content');
-      expect(asAppContentNode.innerHTML).toContain(DOMExample);
+      expect(asAppContentNode.innerHTML).toContain(domExample);
     });
   });
 
@@ -48,7 +48,7 @@ describe('as-category-widget', () => {
       testWindow = new TestWindow();
       element = await testWindow.load({
         components: [ApplicationContent],
-        html: `<as-application-content>${DOMExample}</as-application-content>`
+        html: `<as-application-content>${domExample}</as-application-content>`
       });
 
       await testWindow.flush();
@@ -84,7 +84,7 @@ describe('as-category-widget', () => {
       testWindow = new TestWindow();
       element = await testWindow.load({
         components: [ApplicationContent],
-        html: `<as-application-content>${DOMExample}</as-application-content>`
+        html: `<as-application-content>${domExample}</as-application-content>`
       });
     });
 
@@ -102,7 +102,7 @@ describe('as-category-widget', () => {
   });
 });
 
-const DOMExample = `
+const domExample = `
   <aside class="as-sidebar as-sidebar--left">Left Sidebar</aside>
 
   <div class="as-map-wrapper">

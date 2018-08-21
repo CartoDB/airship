@@ -21,7 +21,7 @@ as-histogram-widget {
     position: absolute;
     opacity: 0;
 
-    &:after {
+    &::after {
       opacity: 0;
     }
   }
@@ -31,8 +31,8 @@ as-histogram-widget {
 
     .brush {
       .selection {
-        fill: none;
         stroke: none;
+        fill: none;
       }
     }
 
@@ -54,7 +54,7 @@ as-histogram-widget {
         }
       }
     }
-    
+
     text {
       fill: $color-ui-04;
     }
