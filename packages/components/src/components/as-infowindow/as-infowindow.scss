@@ -1,4 +1,9 @@
+@import '../../../../../styles/src/core/_dev';
+
 as-infowindow {
+  --infowindow--shadow-color: #{rgba($as-color-type-01, 0.16)};
+  --infowindow--bg-color: var(--as-color-ui-01, #{$color-ui-01});
+
   display: inline-block;
 
   .as-infowindow {
@@ -6,8 +11,8 @@ as-infowindow {
     position: relative;
     width: 260px;
     border-radius: 4px;
-    background: white;
-    box-shadow: 0 4px 16px 0 rgba(#2C2C2C, 0.16);
+    background: var(--infowindow--bg-color);
+    box-shadow: 0 4px 16px 0 var(--infowindow--shadow-color);
 
     img {
       display: block;
@@ -32,18 +37,17 @@ as-infowindow {
       z-index: 10;
       bottom: 1px;
       left: 0;
-      background: white;
-      color: white;
+      background: var(--infowindow--bg-color);
 
       &::before {
         content: '';
         position: absolute;
         z-index: 3;
-        top: -1px;
+        top: 0;
         left: 0;
         width: 0;
         height: 0;
-        border-top: 12px solid white;
+        border-top: 12px solid var(--infowindow--bg-color);
         border-right: 18px solid transparent;
         border-radius: 0 0 0 4px;
       }
@@ -56,7 +60,7 @@ as-infowindow {
         left: 0;
         width: 0;
         height: 0;
-        border-top: 12px solid rgba(44, 44, 44, 0.16);
+        border-top: 12px solid var(--infowindow--shadow-color);
         border-right: 18px solid transparent;
         filter: blur(2px);
       }
@@ -75,7 +79,7 @@ as-infowindow {
         left: 0;
         width: 0;
         height: 0;
-        border-top: 12px solid rgba(44, 44, 44, 0.16);
+        border-top: 12px solid var(--infowindow--shadow-color);
         border-right: 18px solid transparent;
         filter: blur(2px);
       }
@@ -84,6 +88,7 @@ as-infowindow {
     &__imageHook--inner {
       position: absolute;
       z-index: 3;
+      top: -1px;
       width: 18px;
       height: 12px;
       overflow: hidden;
