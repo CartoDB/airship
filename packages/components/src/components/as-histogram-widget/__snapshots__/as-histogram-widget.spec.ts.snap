@@ -78,7 +78,7 @@ exports[`as-histogram-widget Rendering should not render header when showHeader 
       <rect
         class="handle--custom"
         cursor="ew-resize"
-        fill="#fabada"
+        fill="#47DB99"
         height="15"
         rx="100"
         ry="100"
@@ -88,7 +88,7 @@ exports[`as-histogram-widget Rendering should not render header when showHeader 
       <rect
         class="handle--custom"
         cursor="ew-resize"
-        fill="#fabada"
+        fill="#47DB99"
         height="15"
         rx="100"
         ry="100"
@@ -98,7 +98,7 @@ exports[`as-histogram-widget Rendering should not render header when showHeader 
       <line
         class="bottomline"
         pointer-events="none"
-        stroke="#fabada"
+        stroke="#47DB99"
         stroke-width="4"
         style="opacity: 0;"
         y1="140"
@@ -374,7 +374,7 @@ exports[`as-histogram-widget Rendering should render clear button 1`] = `
       <rect
         class="handle--custom"
         cursor="ew-resize"
-        fill="#fabada"
+        fill="#47DB99"
         height="15"
         rx="100"
         ry="100"
@@ -384,7 +384,7 @@ exports[`as-histogram-widget Rendering should render clear button 1`] = `
       <rect
         class="handle--custom"
         cursor="ew-resize"
-        fill="#fabada"
+        fill="#47DB99"
         height="15"
         rx="100"
         ry="100"
@@ -394,7 +394,7 @@ exports[`as-histogram-widget Rendering should render clear button 1`] = `
       <line
         class="bottomline"
         pointer-events="none"
-        stroke="#fabada"
+        stroke="#47DB99"
         stroke-width="4"
         style="opacity: 0;"
         y1="140"
@@ -684,7 +684,7 @@ exports[`as-histogram-widget Rendering should render colors properly 1`] = `
       <rect
         class="handle--custom"
         cursor="ew-resize"
-        fill="#fabada"
+        fill="#47DB99"
         height="15"
         rx="100"
         ry="100"
@@ -695,7 +695,7 @@ exports[`as-histogram-widget Rendering should render colors properly 1`] = `
       <rect
         class="handle--custom"
         cursor="ew-resize"
-        fill="#fabada"
+        fill="#47DB99"
         height="15"
         rx="100"
         ry="100"
@@ -706,7 +706,7 @@ exports[`as-histogram-widget Rendering should render colors properly 1`] = `
       <line
         class="bottomline"
         pointer-events="none"
-        stroke="#fabada"
+        stroke="#47DB99"
         stroke-width="4"
         style="opacity: 1;"
         x1="30"
@@ -984,7 +984,7 @@ exports[`as-histogram-widget Rendering should render properly 1`] = `
       <rect
         class="handle--custom"
         cursor="ew-resize"
-        fill="#fabada"
+        fill="#47DB99"
         height="15"
         rx="100"
         ry="100"
@@ -994,7 +994,7 @@ exports[`as-histogram-widget Rendering should render properly 1`] = `
       <rect
         class="handle--custom"
         cursor="ew-resize"
-        fill="#fabada"
+        fill="#47DB99"
         height="15"
         rx="100"
         ry="100"
@@ -1004,7 +1004,7 @@ exports[`as-histogram-widget Rendering should render properly 1`] = `
       <line
         class="bottomline"
         pointer-events="none"
-        stroke="#fabada"
+        stroke="#47DB99"
         stroke-width="4"
         style="opacity: 0;"
         y1="140"
@@ -1216,7 +1216,7 @@ exports[`as-histogram-widget Rendering should render selection properly 1`] = `
       <rect
         class="bar"
         height="0"
-        style="fill: #fabada;"
+        style="fill: #47DB99;"
         width="50.25"
         x="0"
         y="125"
@@ -1224,7 +1224,7 @@ exports[`as-histogram-widget Rendering should render selection properly 1`] = `
       <rect
         class="bar"
         height="0"
-        style="fill: #fabada;"
+        style="fill: #47DB99;"
         width="50.25"
         x="51.25"
         y="125"
@@ -1294,7 +1294,7 @@ exports[`as-histogram-widget Rendering should render selection properly 1`] = `
       <rect
         class="handle--custom"
         cursor="ew-resize"
-        fill="#fabada"
+        fill="#47DB99"
         height="15"
         rx="100"
         ry="100"
@@ -1305,7 +1305,7 @@ exports[`as-histogram-widget Rendering should render selection properly 1`] = `
       <rect
         class="handle--custom"
         cursor="ew-resize"
-        fill="#fabada"
+        fill="#47DB99"
         height="15"
         rx="100"
         ry="100"
@@ -1316,7 +1316,7 @@ exports[`as-histogram-widget Rendering should render selection properly 1`] = `
       <line
         class="bottomline"
         pointer-events="none"
-        stroke="#fabada"
+        stroke="#47DB99"
         stroke-width="4"
         style="opacity: 1;"
         x1="30"

@@ -59,7 +59,7 @@ lang: javascript
 histogramWidget.color = `#FABADA`;
 ```
 
-#### **selectedColor**: string = '#FABADA'
+#### **selectedColor**: string = '#47DB99'
 Overrides default bar color for bars that are currently selected. It's also the color for the selection elements.
 
 ```code

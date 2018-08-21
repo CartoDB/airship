@@ -15,7 +15,7 @@ import { shadeOrBlend } from '../../utils/styles';
 
 const CUSTOM_HANDLE_SIZE = 15;
 const DEFAULT_BAR_COLOR = '#1785FB';
-const DEFAULT_SELECTED_BAR_COLOR = '#fabada';
+const DEFAULT_SELECTED_BAR_COLOR = '#47DB99';
 const WIDTH = 205;
 const HEIGHT = 125;
 const BARS_SEPARATION = 1;
