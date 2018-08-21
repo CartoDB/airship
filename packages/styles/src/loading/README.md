@@ -25,7 +25,7 @@ You can use the `as-loading--s` to display a slightly smaller indicator.
 
 ## Large
 
-You can use the `as-loading--s` to display a slightly bigger indicator.
+You can use the `as-loading--l` to display a slightly bigger indicator.
 
 ```html
 <span class="as-loading as-loading--l">
