@@ -1,7 +1,7 @@
 import { TestWindow } from '@stencil/core/dist/testing';
 import { ApplicationContent } from './as-application-content';
 
-describe('as-category-widget', () => {
+describe('as-application-content', () => {
   it('should build', () => {
     expect(new ApplicationContent()).toBeTruthy();
   });

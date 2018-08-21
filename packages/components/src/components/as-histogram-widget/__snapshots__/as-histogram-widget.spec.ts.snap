@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`as-category-widget Rendering should not render header when showHeader is false 1`] = `
+exports[`as-histogram-widget Rendering should not render header when showHeader is false 1`] = `
 <as-histogram-widget
   class="hydrated"
 >
@@ -32,7 +32,7 @@ exports[`as-category-widget Rendering should not render header when showHeader i
       >
         <text
           dy="0.71em"
-          fill="#000"
+          fill="currentColor"
           y="10"
         >
           0
@@ -116,7 +116,7 @@ exports[`as-category-widget Rendering should not render header when showHeader i
 </as-histogram-widget>
 `;
 
-exports[`as-category-widget Rendering should render clear button 1`] = `
+exports[`as-histogram-widget Rendering should render clear button 1`] = `
 <as-histogram-widget
   class="hydrated"
 >
@@ -148,12 +148,12 @@ exports[`as-category-widget Rendering should render clear button 1`] = `
         transform="translate(0,125.5)"
       >
         <line
-          stroke="#000"
+          stroke="currentColor"
           x2="205"
         />
         <text
           dy="0.32em"
-          fill="#000"
+          fill="currentColor"
           x="-10"
         >
           0
@@ -165,12 +165,12 @@ exports[`as-category-widget Rendering should render clear button 1`] = `
         transform="translate(0,94.25)"
       >
         <line
-          stroke="#000"
+          stroke="currentColor"
           x2="205"
         />
         <text
           dy="0.32em"
-          fill="#000"
+          fill="currentColor"
           x="-10"
         >
           5
@@ -182,12 +182,12 @@ exports[`as-category-widget Rendering should render clear button 1`] = `
         transform="translate(0,63)"
       >
         <line
-          stroke="#000"
+          stroke="currentColor"
           x2="205"
         />
         <text
           dy="0.32em"
-          fill="#000"
+          fill="currentColor"
           x="-10"
         >
           10
@@ -199,12 +199,12 @@ exports[`as-category-widget Rendering should render clear button 1`] = `
         transform="translate(0,31.75)"
       >
         <line
-          stroke="#000"
+          stroke="currentColor"
           x2="205"
         />
         <text
           dy="0.32em"
-          fill="#000"
+          fill="currentColor"
           x="-10"
         >
           15
@@ -216,12 +216,12 @@ exports[`as-category-widget Rendering should render clear button 1`] = `
         transform="translate(0,0.5)"
       >
         <line
-          stroke="#000"
+          stroke="currentColor"
           x2="205"
         />
         <text
           dy="0.32em"
-          fill="#000"
+          fill="currentColor"
           x="-10"
         >
           20
@@ -243,7 +243,7 @@ exports[`as-category-widget Rendering should render clear button 1`] = `
       >
         <text
           dy="0.71em"
-          fill="#000"
+          fill="currentColor"
           y="10"
         >
           0
@@ -256,7 +256,7 @@ exports[`as-category-widget Rendering should render clear button 1`] = `
       >
         <text
           dy="0.71em"
-          fill="#000"
+          fill="currentColor"
           y="10"
         >
           10
@@ -269,7 +269,7 @@ exports[`as-category-widget Rendering should render clear button 1`] = `
       >
         <text
           dy="0.71em"
-          fill="#000"
+          fill="currentColor"
           y="10"
         >
           20
@@ -282,7 +282,7 @@ exports[`as-category-widget Rendering should render clear button 1`] = `
       >
         <text
           dy="0.71em"
-          fill="#000"
+          fill="currentColor"
           y="10"
         >
           30
@@ -295,7 +295,7 @@ exports[`as-category-widget Rendering should render clear button 1`] = `
       >
         <text
           dy="0.71em"
-          fill="#000"
+          fill="currentColor"
           y="10"
         >
           40
@@ -414,7 +414,7 @@ exports[`as-category-widget Rendering should render clear button 1`] = `
 </as-histogram-widget>
 `;
 
-exports[`as-category-widget Rendering should render colors properly 1`] = `
+exports[`as-histogram-widget Rendering should render colors properly 1`] = `
 <as-histogram-widget
   class="hydrated"
 >
@@ -446,12 +446,12 @@ exports[`as-category-widget Rendering should render colors properly 1`] = `
         transform="translate(0,125.5)"
       >
         <line
-          stroke="#000"
+          stroke="currentColor"
           x2="205"
         />
         <text
           dy="0.32em"
-          fill="#000"
+          fill="currentColor"
           x="-10"
         >
           0
@@ -463,12 +463,12 @@ exports[`as-category-widget Rendering should render colors properly 1`] = `
         transform="translate(0,94.25)"
       >
         <line
-          stroke="#000"
+          stroke="currentColor"
           x2="205"
         />
         <text
           dy="0.32em"
-          fill="#000"
+          fill="currentColor"
           x="-10"
         >
           5
@@ -480,12 +480,12 @@ exports[`as-category-widget Rendering should render colors properly 1`] = `
         transform="translate(0,63)"
       >
         <line
-          stroke="#000"
+          stroke="currentColor"
           x2="205"
         />
         <text
           dy="0.32em"
-          fill="#000"
+          fill="currentColor"
           x="-10"
         >
           10
@@ -497,12 +497,12 @@ exports[`as-category-widget Rendering should render colors properly 1`] = `
         transform="translate(0,31.75)"
       >
         <line
-          stroke="#000"
+          stroke="currentColor"
           x2="205"
         />
         <text
           dy="0.32em"
-          fill="#000"
+          fill="currentColor"
           x="-10"
         >
           15
@@ -514,12 +514,12 @@ exports[`as-category-widget Rendering should render colors properly 1`] = `
         transform="translate(0,0.5)"
       >
         <line
-          stroke="#000"
+          stroke="currentColor"
           x2="205"
         />
         <text
           dy="0.32em"
-          fill="#000"
+          fill="currentColor"
           x="-10"
         >
           20
@@ -541,7 +541,7 @@ exports[`as-category-widget Rendering should render colors properly 1`] = `
       >
         <text
           dy="0.71em"
-          fill="#000"
+          fill="currentColor"
           y="10"
         >
           0
@@ -554,7 +554,7 @@ exports[`as-category-widget Rendering should render colors properly 1`] = `
       >
         <text
           dy="0.71em"
-          fill="#000"
+          fill="currentColor"
           y="10"
         >
           10
@@ -567,7 +567,7 @@ exports[`as-category-widget Rendering should render colors properly 1`] = `
       >
         <text
           dy="0.71em"
-          fill="#000"
+          fill="currentColor"
           y="10"
         >
           20
@@ -580,7 +580,7 @@ exports[`as-category-widget Rendering should render colors properly 1`] = `
       >
         <text
           dy="0.71em"
-          fill="#000"
+          fill="currentColor"
           y="10"
         >
           30
@@ -593,7 +593,7 @@ exports[`as-category-widget Rendering should render colors properly 1`] = `
       >
         <text
           dy="0.71em"
-          fill="#000"
+          fill="currentColor"
           y="10"
         >
           40
@@ -726,7 +726,7 @@ exports[`as-category-widget Rendering should render colors properly 1`] = `
 </as-histogram-widget>
 `;
 
-exports[`as-category-widget Rendering should render properly 1`] = `
+exports[`as-histogram-widget Rendering should render properly 1`] = `
 <as-histogram-widget
   class="hydrated"
 >
@@ -758,12 +758,12 @@ exports[`as-category-widget Rendering should render properly 1`] = `
         transform="translate(0,125.5)"
       >
         <line
-          stroke="#000"
+          stroke="currentColor"
           x2="205"
         />
         <text
           dy="0.32em"
-          fill="#000"
+          fill="currentColor"
           x="-10"
         >
           0
@@ -775,12 +775,12 @@ exports[`as-category-widget Rendering should render properly 1`] = `
         transform="translate(0,94.25)"
       >
         <line
-          stroke="#000"
+          stroke="currentColor"
           x2="205"
         />
         <text
           dy="0.32em"
-          fill="#000"
+          fill="currentColor"
           x="-10"
         >
           5
@@ -792,12 +792,12 @@ exports[`as-category-widget Rendering should render properly 1`] = `
         transform="translate(0,63)"
       >
         <line
-          stroke="#000"
+          stroke="currentColor"
           x2="205"
         />
         <text
           dy="0.32em"
-          fill="#000"
+          fill="currentColor"
           x="-10"
         >
           10
@@ -809,12 +809,12 @@ exports[`as-category-widget Rendering should render properly 1`] = `
         transform="translate(0,31.75)"
       >
         <line
-          stroke="#000"
+          stroke="currentColor"
           x2="205"
         />
         <text
           dy="0.32em"
-          fill="#000"
+          fill="currentColor"
           x="-10"
         >
           15
@@ -826,12 +826,12 @@ exports[`as-category-widget Rendering should render properly 1`] = `
         transform="translate(0,0.5)"
       >
         <line
-          stroke="#000"
+          stroke="currentColor"
           x2="205"
         />
         <text
           dy="0.32em"
-          fill="#000"
+          fill="currentColor"
           x="-10"
         >
           20
@@ -853,7 +853,7 @@ exports[`as-category-widget Rendering should render properly 1`] = `
       >
         <text
           dy="0.71em"
-          fill="#000"
+          fill="currentColor"
           y="10"
         >
           0
@@ -866,7 +866,7 @@ exports[`as-category-widget Rendering should render properly 1`] = `
       >
         <text
           dy="0.71em"
-          fill="#000"
+          fill="currentColor"
           y="10"
         >
           10
@@ -879,7 +879,7 @@ exports[`as-category-widget Rendering should render properly 1`] = `
       >
         <text
           dy="0.71em"
-          fill="#000"
+          fill="currentColor"
           y="10"
         >
           20
@@ -892,7 +892,7 @@ exports[`as-category-widget Rendering should render properly 1`] = `
       >
         <text
           dy="0.71em"
-          fill="#000"
+          fill="currentColor"
           y="10"
         >
           30
@@ -905,7 +905,7 @@ exports[`as-category-widget Rendering should render properly 1`] = `
       >
         <text
           dy="0.71em"
-          fill="#000"
+          fill="currentColor"
           y="10"
         >
           40
@@ -1024,7 +1024,7 @@ exports[`as-category-widget Rendering should render properly 1`] = `
 </as-histogram-widget>
 `;
 
-exports[`as-category-widget Rendering should render selection properly 1`] = `
+exports[`as-histogram-widget Rendering should render selection properly 1`] = `
 <as-histogram-widget
   class="hydrated"
 >
@@ -1056,12 +1056,12 @@ exports[`as-category-widget Rendering should render selection properly 1`] = `
         transform="translate(0,125.5)"
       >
         <line
-          stroke="#000"
+          stroke="currentColor"
           x2="205"
         />
         <text
           dy="0.32em"
-          fill="#000"
+          fill="currentColor"
           x="-10"
         >
           0
@@ -1073,12 +1073,12 @@ exports[`as-category-widget Rendering should render selection properly 1`] = `
         transform="translate(0,94.25)"
       >
         <line
-          stroke="#000"
+          stroke="currentColor"
           x2="205"
         />
         <text
           dy="0.32em"
-          fill="#000"
+          fill="currentColor"
           x="-10"
         >
           5
@@ -1090,12 +1090,12 @@ exports[`as-category-widget Rendering should render selection properly 1`] = `
         transform="translate(0,63)"
       >
         <line
-          stroke="#000"
+          stroke="currentColor"
           x2="205"
         />
         <text
           dy="0.32em"
-          fill="#000"
+          fill="currentColor"
           x="-10"
         >
           10
@@ -1107,12 +1107,12 @@ exports[`as-category-widget Rendering should render selection properly 1`] = `
         transform="translate(0,31.75)"
       >
         <line
-          stroke="#000"
+          stroke="currentColor"
           x2="205"
         />
         <text
           dy="0.32em"
-          fill="#000"
+          fill="currentColor"
           x="-10"
         >
           15
@@ -1124,12 +1124,12 @@ exports[`as-category-widget Rendering should render selection properly 1`] = `
         transform="translate(0,0.5)"
       >
         <line
-          stroke="#000"
+          stroke="currentColor"
           x2="205"
         />
         <text
           dy="0.32em"
-          fill="#000"
+          fill="currentColor"
           x="-10"
         >
           20
@@ -1151,7 +1151,7 @@ exports[`as-category-widget Rendering should render selection properly 1`] = `
       >
         <text
           dy="0.71em"
-          fill="#000"
+          fill="currentColor"
           y="10"
         >
           0
@@ -1164,7 +1164,7 @@ exports[`as-category-widget Rendering should render selection properly 1`] = `
       >
         <text
           dy="0.71em"
-          fill="#000"
+          fill="currentColor"
           y="10"
         >
           10
@@ -1177,7 +1177,7 @@ exports[`as-category-widget Rendering should render selection properly 1`] = `
       >
         <text
           dy="0.71em"
-          fill="#000"
+          fill="currentColor"
           y="10"
         >
           20
@@ -1190,7 +1190,7 @@ exports[`as-category-widget Rendering should render selection properly 1`] = `
       >
         <text
           dy="0.71em"
-          fill="#000"
+          fill="currentColor"
           y="10"
         >
           30
@@ -1203,7 +1203,7 @@ exports[`as-category-widget Rendering should render selection properly 1`] = `
       >
         <text
           dy="0.71em"
-          fill="#000"
+          fill="currentColor"
           y="10"
         >
           40

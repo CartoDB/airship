@@ -1,7 +1,7 @@
 import { TestWindow } from '@stencil/core/dist/testing';
 import { HistogramWidget } from './as-histogram-widget';
 
-describe('as-category-widget', () => {
+describe('as-histogram-widget', () => {
   let histogramWidget;
 
   beforeEach(() => {
