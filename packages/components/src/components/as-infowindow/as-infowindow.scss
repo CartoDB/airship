@@ -6,22 +6,19 @@ as-infowindow {
     position: relative;
     width: 260px;
     border-radius: 4px;
+    background: white;
     box-shadow: 0 4px 16px 0 rgba(#2C2C2C, 0.16);
 
     img {
       display: block;
       width: 100%;
-      border-radius: 4px;
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
     }
 
     &__media {
       overflow: hidden;
-      border-radius: 4px;
-    }
-
-    &__hook--img {
-      position: absolute;
-      top: 0;
+      border-radius: 4px 4px 4px 0;
     }
 
     &__content {
@@ -62,6 +59,38 @@ as-infowindow {
         border-top: 12px solid rgba(44, 44, 44, 0.16);
         border-right: 18px solid transparent;
         filter: blur(2px);
+      }
+    }
+
+    &__imageHook {
+      position: absolute;
+      z-index: 10;
+      bottom: 0;
+
+      &::after {
+        content: '';
+        position: absolute;
+        z-index: 1;
+        top: 3px;
+        left: 0;
+        width: 0;
+        height: 0;
+        border-top: 12px solid rgba(44, 44, 44, 0.16);
+        border-right: 18px solid transparent;
+        filter: blur(2px);
+      }
+    }
+
+    &__imageHook--inner {
+      position: absolute;
+      z-index: 3;
+      width: 18px;
+      height: 12px;
+      overflow: hidden;
+      clip-path: polygon(0 0, 0% 100%, 100% 0);
+
+      & > img {
+        width: 260px;
       }
     }
   }
