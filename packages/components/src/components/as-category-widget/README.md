@@ -29,7 +29,7 @@ showSource: false
     { name: 'Grocery', value: 800 },
     { name: 'Health', value: 400 },
     { name: 'Shopping mall', value: 250 },
-    { name: 'Transportation', value: 1000 }
+    { name: 'Transportation', value: 1000 },
     { name: 'Leisure', value: 760 }
   ];
 </script>
