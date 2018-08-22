@@ -29,23 +29,23 @@ Similar to the contextual text color classes, easily set the background of an el
 
 ```html
 <!-- Brand colors -->
-<div class="u-p--12 u-mb--12 as-subheader as-bg--primary">.as-bg--primary</div>
-<div class="u-p--12 u-mb--12 as-subheader as-color--type-04 as-bg--secondary">.as-bg--secondary</div>
-<div class="u-p--12 u-mb--12 as-subheader as-bg--complementary">.as-bg--complementary</div>
+<div class="as-p--12 as-mb--12 as-subheader as-bg--primary">.as-bg--primary</div>
+<div class="as-p--12 as-mb--12 as-subheader as-color--type-04 as-bg--secondary">.as-bg--secondary</div>
+<div class="as-p--12 as-mb--12 as-subheader as-bg--complementary">.as-bg--complementary</div>
 
 <!-- Type colors -->
-<div class="u-p--12 u-mb--12 as-subheader as-bg--ui-01">.as-bg--ui-01</div>
-<div class="u-p--12 u-mb--12 as-subheader as-bg--ui-02">.as-bg--ui-02</div>
-<div class="u-p--12 u-mb--12 as-subheader as-bg--ui-03">.as-bg--ui-03</div>
-<div class="u-p--12 u-mb--12 as-subheader as-bg--ui-04">.as-bg--ui-04</div>
+<div class="as-p--12 as-mb--12 as-subheader as-bg--ui-01">.as-bg--ui-01</div>
+<div class="as-p--12 as-mb--12 as-subheader as-bg--ui-02">.as-bg--ui-02</div>
+<div class="as-p--12 as-mb--12 as-subheader as-bg--ui-03">.as-bg--ui-03</div>
+<div class="as-p--12 as-mb--12 as-subheader as-bg--ui-04">.as-bg--ui-04</div>
 
 <!-- Support colors -->
-<div class="u-p--12 u-mb--12 as-subheader as-bg--support-01">.as-bg--support-01</div>
-<div class="u-p--12 u-mb--12 as-subheader as-bg--error">.as-bg--error</div>
-<div class="u-p--12 u-mb--12 as-subheader as-bg--support-02">.as-bg--support-02</div>
-<div class="u-p--12 u-mb--12 as-subheader as-bg--warning">.as-bg--warning</div>
-<div class="u-p--12 u-mb--12 as-subheader as-bg--support-03">.as-bg--support-03</div>
-<div class="u-p--12 u-mb--12 as-subheader as-bg--success">.as-bg--success</div>
+<div class="as-p--12 as-mb--12 as-subheader as-bg--support-01">.as-bg--support-01</div>
+<div class="as-p--12 as-mb--12 as-subheader as-bg--error">.as-bg--error</div>
+<div class="as-p--12 as-mb--12 as-subheader as-bg--support-02">.as-bg--support-02</div>
+<div class="as-p--12 as-mb--12 as-subheader as-bg--warning">.as-bg--warning</div>
+<div class="as-p--12 as-mb--12 as-subheader as-bg--support-03">.as-bg--support-03</div>
+<div class="as-p--12 as-mb--12 as-subheader as-bg--success">.as-bg--success</div>
 ```
 
 # Spacing utilities
@@ -56,7 +56,7 @@ Assign `margin` or `padding` values to an element or a subset of its sides with 
 
 ### Notation
 
-The classes are named using the format `u-{property}{sides}--{size}`.
+The classes are named using the format `as-{property}{sides}--{size}`.
 
 Where *property* is one of:
 
@@ -86,20 +86,51 @@ Here are some representative examples of these classes:
 ```code
 lang: css
 ---
-.u-mt--0 {
+.as-mt--0 {
   margin-top: 0;
 }
 
-.u-ml--4 {
+.as-ml--4 {
   margin-left: 4px;
 }
 
-.u-px--8 {
+.as-px--8 {
   padding-left: 8px;
   padding-right: 8px;
 }
 
-.u-p--16 {
+.as-p--16 {
   padding: 16px;
 }
+```
+
+# Display utilities
+Quickly toggle the display value of components and more with our display utilities. Includes support for some of the more common values.
+
+The classes are named using the format:
+
+* `.as-display--{value}`
+
+Where *value* is one of:
+
+* `none`
+* `inline`
+* `inline-block`
+* `block`
+* `table`
+* `table-cell`
+* `table-row`
+* `flex`
+* `inline-flex`
+
+### Examples
+
+```html
+<div class="as-display--inline as-p--12 as-subheader as-bg--primary">.as-display--inline</div>
+<div class="as-display--inline as-p--12 as-subheader as-bg--complementary">.as-display--inline</div>
+```
+
+```html
+<span class="as-display--block as-p--12 as-subheader as-bg--primary">.as-display--block</span>
+<span class="as-display--block as-p--12 as-subheader as-bg--complementary">.as-display--block</span>
 ```

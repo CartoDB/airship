@@ -3,64 +3,64 @@ $sizes: (0, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 48, 60, 64, 72, 80, 96, 100, 1
 @each $size in $sizes {
   // -- Margings
 
-  .u-m--#{$size} {
+  .as-m--#{$size} {
     margin: #{$size}px;
   }
 
-  .u-mt--#{$size} {
+  .as-mt--#{$size} {
     margin-top: #{$size}px;
   }
 
-  .u-mr--#{$size} {
+  .as-mr--#{$size} {
     margin-right: #{$size}px;
   }
 
-  .u-mb--#{$size} {
+  .as-mb--#{$size} {
     margin-bottom: #{$size}px;
   }
 
-  .u-ml--#{$size} {
+  .as-ml--#{$size} {
     margin-left: #{$size}px;
   }
 
-  .u-my--#{$size} {
+  .as-my--#{$size} {
     margin-top: #{$size}px;
     margin-bottom: #{$size}px;
   }
 
-  .u-mx--#{$size} {
+  .as-mx--#{$size} {
     margin-right: #{$size}px;
     margin-left: #{$size}px;
   }
 
   // -- Paddings
 
-  .u-p--#{$size} {
+  .as-p--#{$size} {
     padding: #{$size}px;
   }
 
-  .u-pt--#{$size} {
+  .as-pt--#{$size} {
     padding-top: #{$size}px;
   }
 
-  .u-pr--#{$size} {
+  .as-pr--#{$size} {
     padding-right: #{$size}px;
   }
 
-  .u-pb--#{$size} {
+  .as-pb--#{$size} {
     padding-bottom: #{$size}px;
   }
 
-  .u-pl--#{$size} {
+  .as-pl--#{$size} {
     padding-left: #{$size}px;
   }
 
-  .u-py--#{$size} {
+  .as-py--#{$size} {
     padding-top: #{$size}px;
     padding-bottom: #{$size}px;
   }
 
-  .u-px--#{$size} {
+  .as-px--#{$size} {
     padding-right: #{$size}px;
     padding-left: #{$size}px;
   }
