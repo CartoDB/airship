@@ -34,29 +34,67 @@
 // -- Modifiers
 
 .as-font {
+  &--bold {
+    font-weight: 700;
+  }
+
   &--medium {
     font-weight: 500;
   }
 
+  &--light {
+    font-weight: 300;
+  }
+
   &--mono {
-    font-family: var(--font-family-mono, #{$font-family-mono});
+    font-family: var(--as-font-family-mono, #{$font-family-mono});
   }
 }
 
 .as-color {
+  // Brand
+  &--primary {
+    color: var(--as-color-primary, #{$color-primary});
+  }
+
+  &--secondary {
+    color: var(--as-color-secondary, #{$color-secondary});
+  }
+
+  &--complementary {
+    color: var(--as-color-complementary, #{$color-complementary});
+  }
+
+  // Type
   &--type-01 {
-    color: var(--color-type-01, #{$color-type-01});
+    color: var(--as-color-type-01, #{$color-type-01});
   }
 
   &--type-02 {
-    color: var(--color-type-02, #{$color-type-02});
+    color: var(--as-color-type-02, #{$color-type-02});
   }
 
   &--type-03 {
-    color: var(--color-type-03, #{$color-type-03});
+    color: var(--as-color-type-03, #{$color-type-03});
   }
 
   &--type-04 {
-    color: var(--color-type-04, #{$color-type-04});
+    color: var(--as-color-type-04, #{$color-type-04});
+  }
+
+  // Support
+  &--success,
+  &--support-03 {
+    color: var(--as-color-support-03, #{$color-support-03});
+  }
+
+  &--warning,
+  &--support-02 {
+    color: var(--as-color-support-02, #{$color-support-02});
+  }
+
+  &--error,
+  &--support-01 {
+    color: var(--as-color-support-01, #{$color-support-01});
   }
 }
