@@ -12,6 +12,7 @@ showSource: false
 ---
 <!-- Example with all default values and showing clear button -->
 <as-category-widget
+  class="as-p--16"
   heading="Business Volume"
   description="Description"
   default-bar-color="#47DB99"></as-category-widget>
