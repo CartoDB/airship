@@ -252,11 +252,12 @@ export class HistogramWidget {
           const nodeSelection = select(nodes[i]);
           const node = nodes[i] as Element;
           const bb = node.getBoundingClientRect();
+          const isInsideBB = bb.left <= clientX &&
+            clientX <= bb.right &&
+            bb.top <= clientY &&
+            clientY <= bb.bottom;
 
-          if (bb.left <= clientX &&
-              clientX <= bb.right &&
-              bb.top <= clientY &&
-              clientY <= bb.bottom) {
+          if (isInsideBB) {
             nodeSelection.style('fill', shadeOrBlend(-0.16, selected ? this.selectedColor : this.color));
             this.tooltip = this.tooltipFormatter(data);
             this._showTooltip(evt);
@@ -343,11 +344,7 @@ export class HistogramWidget {
     }
 
     // I don't know why this happens
-    if (!evt.sourceEvent) {
-      return;
-    }
-
-    if (evt.sourceEvent.type === 'brush') {
+    if (!evt.sourceEvent || evt.sourceEvent.type === 'brush') {
       return;
     }
 
@@ -373,13 +370,7 @@ export class HistogramWidget {
 
   private _selectionInData(selection: number[]) {
     const inData = selection.map((selectionValue) => {
-      for (const value of this.data) {
-        if (selectionValue >= value.start && selectionValue <= value.end) {
-          return true;
-        }
-      }
-
-      return false;
+      return this.data.some(value => selectionValue >= value.start && selectionValue <= value.end);
     });
 
     // True if any of the selection values is inside the data
