@@ -172,7 +172,7 @@ export class HistogramWidget {
    */
   @Method()
   public setSelection(values: number[] | null) {
-    this._setSelection(this._adjustSelection(values));
+    this._setSelection(values);
   }
 
   /**
@@ -189,13 +189,15 @@ export class HistogramWidget {
   public onDataChanged() {
     this._updateAxes();
     this._renderBars();
+    
+    if (this.selection === null) {
+      return;
+    }
 
-    if (this.selection !== null) {
-      if (this._selectionInData(this.selection)) {
-        this._setSelection(this._adjustSelection(this.selection));
-      } else {
-        this._setSelection(null);
-      }
+    if (this._selectionInData(this.selection)) {
+      this._setSelection(this.selection)
+    } else {
+      this.clearSelection();
     }
   }
 
@@ -299,7 +301,7 @@ export class HistogramWidget {
     this._cleanAxes();
   }
 
-  private _adjustSelection(values: number[] | null): number[] {
+  private _adjustSelection(values: number[] | null): number[] | null {
     if (values === null) {
       return null;
     }
@@ -353,21 +355,20 @@ export class HistogramWidget {
     const d0 = evt.selection
       .map((e) => Math.round(this.xScale.invert(e - MARGIN.LEFT)));
 
-    // Round to most approximate bucket
-    const d1 = this._adjustSelection(d0);
-
-    if (d1[0] === d1[1]) {
-      return;
-    }
-
-    this._setSelection(d1);
+    this._setSelection(d0);
   }
 
   private _setSelection(selection: number[]) {
-    this.selection = selection;
+    const adjustedSelection = this._adjustSelection(selection);
+
+    if (adjustedSelection !== null && (adjustedSelection[0] === adjustedSelection[1])) {
+      return;
+    }
+
+    this.selection = adjustedSelection;
     this.selectionChanged.emit(this.selection);
 
-    this._updateHandles(selection);
+    this._updateHandles(adjustedSelection);
   }
 
   private _selectionInData(selection: number[]) {
