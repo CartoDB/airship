@@ -6,11 +6,11 @@ as-histogram-widget {
   background: var(--histogram-widget--background-color, $color-ui-01);
 
   .as-histogram-widget__header {
-    font: #{$font-subheader};
+    font: $font-subheader;
   }
 
   .as-histogram-widget__description {
-    font: #{$font-body};
+    font: $font-body;
   }
 
   .as-histogram-widget__tooltip {
