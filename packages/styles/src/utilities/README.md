@@ -147,6 +147,8 @@ For justifying text:
 For left, right, and center alignment:
 
 ```html
+showSource: true
+---
 <p class="as-text--left as-subheader">Left aligned text.</p>
 <p class="as-text--center as-subheader">Center aligned text.</p>
 <p class="as-text--right as-subheader">Right aligned text.</p>
@@ -156,6 +158,8 @@ For left, right, and center alignment:
 Transform text in components with text capitalization classes.
 
 ```html
+showSource: true
+---
 <p class="as-text--lowercase as-subheader">Lowercased text.</p>
 <p class="as-text--uppercase as-subheader">Uppercased text.</p>
 <p class="as-text--capitalize as-subheader">capitalized text.</p>
@@ -166,6 +170,8 @@ Transform text in components with text capitalization classes.
 Quickly change the weight (boldness) of text or italicize text.
 
 ```html
+showSource: true
+---
 <p class="as-font--bold as-subheader">Bold text.</p>
 <p class="as-font--medium as-subheader">Medium weight text.</p>
 <p class="as-font--normal as-subheader">Normal weight text.</p>
@@ -178,6 +184,8 @@ Quickly change the weight (boldness) of text or italicize text.
 Change a selection to our monospace font stack with `.text-monospace`.
 
 ```html
+showSource: true
+---
 <p class="as-font--mono as-subheader">This is in monospace.</p>
 ```
 
@@ -191,7 +199,7 @@ Apply `display` utilities to create a flexbox container and transform **direct c
 ```code
 lang: html
 ---
-<div class="as-display--flex">I'm a flexbox container!</div>
+<div class="as-flex">I'm a flexbox container!</div>
 <div class="as-display--inline-flex">I'm an inline flexbox container!</div>
 ```
 
@@ -199,30 +207,30 @@ lang: html
 
 Set the direction of flex items in a flex container with direction utilities. In most cases you can omit the horizontal class here as the browser default is `row`. However, you may encounter situations where you needed to explicitly set this value (like responsive layouts).
 
-Use `.as-flex--row` to set a horizontal direction (the browser default), or `.as-flex--row-reverse` to start the horizontal direction from the opposite side.
+Use `.as-flex-row` to set a horizontal direction (the browser default), or `.as-flex-row-reverse` to start the horizontal direction from the opposite side.
 
 ```html
-<div class="as-display--flex as-flex--row as-bg--ui-03 as-mb--12">
+<div class="as-flex as-flex-row as-bg--ui-03 as-mb--12">
   <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item 1</div>
   <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item 2</div>
   <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item 3</div>
 </div>
-<div class="as-display--flex as-flex--row-reverse as-bg--ui-03 as-mb--12">
+<div class="as-flex as-flex-row-reverse as-bg--ui-03 as-mb--12">
   <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item 1</div>
   <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item 2</div>
   <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item 3</div>
 </div>
 ```
 
-Use `.as-flex--column` to set a vertical direction, or `.as-flex--column-reverse` to start the vertical direction from the opposite side.
+Use `.as-flex-column` to set a vertical direction, or `.as-flex-column-reverse` to start the vertical direction from the opposite side.
 
 ```html
-<div class="as-display--flex as-flex--column as-bg--ui-03 as-mb--12">
+<div class="as-flex as-flex-column as-bg--ui-03 as-mb--12">
   <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item 1</div>
   <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item 2</div>
   <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item 3</div>
 </div>
-<div class="as-display--flex as-flex--column-reverse as-bg--ui-03 as-mb--12">
+<div class="as-flex as-flex-column-reverse as-bg--ui-03 as-mb--12">
   <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item 1</div>
   <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item 2</div>
   <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item 3</div>
@@ -235,27 +243,27 @@ Use `justify-content` utilities on flexbox containers to change the alignment of
 
 ```html
 <div class="bd-example">
-  <div class="as-display--flex as-flex--justify-content-start as-bg--ui-03 as-mb--12">
+  <div class="as-flex as-justify-start as-bg--ui-03 as-mb--12">
     <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item</div>
     <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item</div>
     <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item</div>
   </div>
-  <div class="as-display--flex as-flex--justify-content-end as-bg--ui-03  as-mb--12">
+  <div class="as-flex as-justify-end as-bg--ui-03  as-mb--12">
     <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item</div>
     <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item</div>
     <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item</div>
   </div>
-  <div class="as-display--flex as-flex--justify-content-center as-bg--ui-03 as-mb--12">
+  <div class="as-flex as-justify-center as-bg--ui-03 as-mb--12">
     <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item</div>
     <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item</div>
     <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item</div>
   </div>
-  <div class="as-display--flex as-flex--justify-content-between as-bg--ui-03  as-mb--12">
+  <div class="as-flex as-justify-between as-bg--ui-03  as-mb--12">
     <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item</div>
     <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item</div>
     <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item</div>
   </div>
-  <div class="as-display--flex as-flex--justify-content-around as-bg--ui-03 ">
+  <div class="as-flex as-justify-around as-bg--ui-03 ">
     <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item</div>
     <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item</div>
     <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item</div>
@@ -266,11 +274,11 @@ Use `justify-content` utilities on flexbox containers to change the alignment of
 ```code
 lang: html
 ---
-<div class="as-display--flex as-flex--justify-content-start">...</div>
-<div class="as-display--flex as-flex--justify-content-end">...</div>
-<div class="as-display--flex as-flex--justify-content-center">...</div>
-<div class="as-display--flex as-flex--justify-content-between">...</div>
-<div class="as-display--flex as-flex--justify-content-around">...</div>
+<div class="as-flex as-justify-start">...</div>
+<div class="as-flex as-justify-end">...</div>
+<div class="as-flex as-justify-center">...</div>
+<div class="as-flex as-justify-between">...</div>
+<div class="as-flex as-justify-around">...</div>
 ```
 
 ## Align items
@@ -279,27 +287,27 @@ Use `align-items` utilities on flexbox containers to change the alignment of fle
 
 ```html
 <div class="bd-example">
-  <div class="as-display--flex as-flex--align-items-start as-bg--ui-03 as-mb--12" style="height: 100px;">
+  <div class="as-flex as-items-start as-bg--ui-03 as-mb--12" style="height: 100px;">
     <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item</div>
     <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item</div>
     <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item</div>
   </div>
-  <div class="as-display--flex as-flex--align-items-end as-bg--ui-03 as-mb--12" style="height: 100px;">
+  <div class="as-flex as-items-end as-bg--ui-03 as-mb--12" style="height: 100px;">
     <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item</div>
     <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item</div>
     <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item</div>
   </div>
-  <div class="as-display--flex as-flex--align-items-center as-bg--ui-03 as-mb--12" style="height: 100px;">
+  <div class="as-flex as-items-center as-bg--ui-03 as-mb--12" style="height: 100px;">
     <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item</div>
     <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item</div>
     <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item</div>
   </div>
-  <div class="as-display--flex as-flex--align-items-baseline as-bg--ui-03 as-mb--12" style="height: 100px;">
+  <div class="as-flex as-items-baseline as-bg--ui-03 as-mb--12" style="height: 100px;">
     <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item</div>
     <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item</div>
     <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item</div>
   </div>
-  <div class="as-display--flex as-flex--align-items-stretch as-bg--ui-03" style="height: 100px;">
+  <div class="as-flex as-items-stretch as-bg--ui-03" style="height: 100px;">
     <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item</div>
     <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item</div>
     <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item</div>
@@ -310,11 +318,11 @@ Use `align-items` utilities on flexbox containers to change the alignment of fle
 ```code
 lang: html
 ---
-<div class="as-display--flex as-flex--align-items-start">...</div>
-<div class="as-display--flex as-flex--align-items-end">...</div>
-<div class="as-display--flex as-flex--align-items-center">...</div>
-<div class="as-display--flex as-flex--align-items-baseline">...</div>
-<div class="as-display--flex as-flex--align-items-stretch">...</div>
+<div class="as-flex as-items-start">...</div>
+<div class="as-flex as-items-end">...</div>
+<div class="as-flex as-items-center">...</div>
+<div class="as-flex as-items-baseline">...</div>
+<div class="as-flex as-items-stretch">...</div>
 ```
 
 ## Align self
@@ -322,29 +330,29 @@ lang: html
 Use `align-self` utilities on flexbox items to individually change their alignment on the cross axis (the y-axis to start, x-axis if `flex-direction: column`). Choose from the same options as `align-items`: `start`, `end`, `center`, `baseline`, or `stretch` (browser default).
 
 ```html
-<div class="as-display--flex as-bg--ui-03 as-mb--12" style="height: 100px;">
+<div class="as-flex as-bg--ui-03 as-mb--12" style="height: 100px;">
   <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item</div>
-  <div class="as-flex--align-self-start as-p--12 as-bg--ui-04 as-subheader as-m--0">Aligned flex item</div>
-  <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item</div>
-</div>
-<div class="as-display--flex as-bg--ui-03 as-mb--12" style="height: 100px;">
-  <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item</div>
-  <div class="as-flex--align-self-end as-p--12 as-bg--ui-04 as-subheader as-m--0">Aligned flex item</div>
+  <div class="as-self-start as-p--12 as-bg--ui-04 as-subheader as-m--0">Aligned flex item</div>
   <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item</div>
 </div>
-<div class="as-display--flex as-bg--ui-03 as-mb--12" style="height: 100px;">
+<div class="as-flex as-bg--ui-03 as-mb--12" style="height: 100px;">
   <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item</div>
-  <div class="as-flex--align-self-center as-p--12 as-bg--ui-04 as-subheader as-m--0">Aligned flex item</div>
-  <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item</div>
-</div>
-<div class="as-display--flex as-bg--ui-03 as-mb--12" style="height: 100px;">
-  <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item</div>
-  <div class="as-flex--align-self-baseline as-p--12 as-bg--ui-04 as-subheader as-m--0">Aligned flex item</div>
+  <div class="as-self-end as-p--12 as-bg--ui-04 as-subheader as-m--0">Aligned flex item</div>
   <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item</div>
 </div>
-<div class="as-display--flex as-bg--ui-03" style="height: 100px;">
+<div class="as-flex as-bg--ui-03 as-mb--12" style="height: 100px;">
   <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item</div>
-  <div class="as-flex--align-self-stretch as-p--12 as-bg--ui-04 as-subheader as-m--0">Aligned flex item</div>
+  <div class="as-self-center as-p--12 as-bg--ui-04 as-subheader as-m--0">Aligned flex item</div>
+  <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item</div>
+</div>
+<div class="as-flex as-bg--ui-03 as-mb--12" style="height: 100px;">
+  <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item</div>
+  <div class="as-self-baseline as-p--12 as-bg--ui-04 as-subheader as-m--0">Aligned flex item</div>
+  <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item</div>
+</div>
+<div class="as-flex as-bg--ui-03" style="height: 100px;">
+  <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item</div>
+  <div class="as-self-stretch as-p--12 as-bg--ui-04 as-subheader as-m--0">Aligned flex item</div>
   <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item</div>
 </div>
 ```
@@ -353,20 +361,20 @@ Use `align-self` utilities on flexbox items to individually change their alignme
 ```code
 lang: html
 ---
-<div class="as-display--flex as-flex--align-self-start">...</div>
-<div class="as-display--flex as-flex--align-self-end">...</div>
-<div class="as-display--flex as-flex--align-self-center">...</div>
-<div class="as-display--flex as-flex--align-self-baseline">...</div>
-<div class="as-display--flex as-flex--align-self-stretch">...</div>
+<div class="as-flex as-self-start">...</div>
+<div class="as-flex as-self-end">...</div>
+<div class="as-flex as-self-center">...</div>
+<div class="as-flex as-self-baseline">...</div>
+<div class="as-flex as-self-stretch">...</div>
 ```
 
 ## Wrap
 
-Change how flex items wrap in a flex container. Choose from no wrapping at all (the browser default) with `.as-flex--nowrap`, wrapping with `.as-flex--wrap`, or reverse wrapping with `.as-flex--wrap-reverse`.
+Change how flex items wrap in a flex container. Choose from no wrapping at all (the browser default) with `.as-flex-nowrap`, wrapping with `.as-flex-wrap`, or reverse wrapping with `.as-flex-wrap-reverse`.
 
 No wrap:
 ```html
-<div class="as-display--flex as-flex--nowrap as-bg--ui-03" style="width: 8rem;">
+<div class="as-flex as-flex-nowrap as-bg--ui-03" style="width: 8rem;">
   <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item</div>
   <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item</div>
   <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item</div>
@@ -377,7 +385,7 @@ No wrap:
 
 Wrap:
 ```html
-<div class="as-display--flex as-flex--wrap as-bg--ui-03">
+<div class="as-flex as-flex-wrap as-bg--ui-03">
   <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item</div>
   <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item</div>
   <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item</div>
@@ -398,7 +406,7 @@ Wrap:
 
 Wrap reverse:
 ```html
-<div class="as-display--flex as-flex--wrap-reverse as-bg--ui-03">
+<div class="as-flex as-flex-wrap-reverse as-bg--ui-03">
   <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item</div>
   <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item</div>
   <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item</div>

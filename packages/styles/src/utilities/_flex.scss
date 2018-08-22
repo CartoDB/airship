@@ -1,93 +1,95 @@
 .as-flex {
-  &--row {
-    flex-direction: row;
-  }
+  display: flex;
+}
 
-  &--column {
-    flex-direction: column;
-  }
+.as-flex-row {
+  flex-direction: row;
+}
 
-  &--row-reverse {
-    flex-direction: row-reverse;
-  }
+.as-flex-column {
+  flex-direction: column;
+}
 
-  &--column-reverse {
-    flex-direction: column-reverse;
-  }
+.as-flex-row-reverse {
+  flex-direction: row-reverse;
+}
 
-  &--wrap {
-    flex-wrap: wrap;
-  }
+.as-flex-column-reverse {
+  flex-direction: column-reverse;
+}
 
-  &--nowrap {
-    flex-wrap: nowrap;
-  }
+.as-flex-wrap {
+  flex-wrap: wrap;
+}
 
-  &--wrap-reverse {
-    flex-wrap: wrap-reverse;
-  }
+.as-flex-nowrap {
+  flex-wrap: nowrap;
+}
 
-  &--justify-content-start {
-    justify-content: flex-start;
-  }
+.as-flex-wrap-reverse {
+  flex-wrap: wrap-reverse;
+}
 
-  &--justify-content-end {
-    justify-content: flex-end;
-  }
+.as-justify-start {
+  justify-content: flex-start;
+}
 
-  &--justify-content-center {
-    justify-content: center;
-  }
+.as-justify-end {
+  justify-content: flex-end;
+}
 
-  &--justify-content-between {
-    justify-content: space-between;
-  }
+.as-justify-center {
+  justify-content: center;
+}
 
-  &--justify-content-around {
-    justify-content: space-around;
-  }
+.as-justify-between {
+  justify-content: space-between;
+}
 
-  &--align-items-start {
-    align-items: flex-start;
-  }
+.as-justify-around {
+  justify-content: space-around;
+}
 
-  &--align-items-end {
-    align-items: flex-end;
-  }
+.as-items-start {
+  align-items: flex-start;
+}
 
-  &--align-items-center {
-    align-items: center;
-  }
+.as-items-end {
+  align-items: flex-end;
+}
 
-  &--align-items-baseline {
-    align-items: baseline;
-  }
+.as-items-center {
+  align-items: center;
+}
 
-  &--align-items-stretch {
-    align-items: stretch;
-  }
+.as-items-baseline {
+  align-items: baseline;
+}
 
-  &--align-self-auto {
-    align-self: auto;
-  }
+.as-items-stretch {
+  align-items: stretch;
+}
 
-  &--align-self-start {
-    align-self: flex-start;
-  }
+.as-self-auto {
+  align-self: auto;
+}
 
-  &--align-self-end {
-    align-self: flex-end;
-  }
+.as-self-start {
+  align-self: flex-start;
+}
 
-  &--align-self-center {
-    align-self: center;
-  }
+.as-self-end {
+  align-self: flex-end;
+}
 
-  &--align-self-baseline {
-    align-self: baseline;
-  }
+.as-self-center {
+  align-self: center;
+}
 
-  &--align-self-stretch {
-    align-self: stretch;
-  }
+.as-self-baseline {
+  align-self: baseline;
+}
+
+.as-self-stretch {
+  align-self: stretch;
 }
