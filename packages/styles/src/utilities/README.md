@@ -181,7 +181,7 @@ showSource: true
 
 ## Monospace
 
-Change a selection to our monospace font stack with `.text-monospace`.
+Change a selection to our monospace font stack with `.as-font--mono`.
 
 ```html
 showSource: true
