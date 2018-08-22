@@ -50,8 +50,6 @@ Similar to the contextual text color classes, easily set the background of an el
 
 # Spacing utilities
 
-### How it works
-
 Assign `margin` or `padding` values to an element or a subset of its sides with shorthand classes. Includes support for individual properties, all properties, and vertical and horizontal properties.
 
 ### Notation
@@ -133,4 +131,52 @@ Where *value* is one of:
 ```html
 <span class="as-display--block as-p--12 as-subheader as-bg--primary">.as-display--block</span>
 <span class="as-display--block as-p--12 as-subheader as-bg--complementary">.as-display--block</span>
+```
+
+# Text utilities
+Quickly change the styles of a text with our text utilities. Includes support for some of the more common values.
+
+## Text align
+Easily realign text to components with text alignment classes.
+
+For justifying text:
+```html
+<p class="as-text--justify">Ambitioni dedisse scripsisse iudicaretur. Cras mattis iudicium purus sit amet fermentum. Donec sed odio operae, eu vulputate felis rhoncus. Praeterea iter est quasdam res quas ex communi. At nos hinc posthac, sitientis piros Afros. Petierunt uti sibi concilium totius Galliae in diem certam indicere. Cras mattis iudicium purus sit amet fermentum.</p>
+```
+
+For left, right, and center alignment:
+
+```html
+<p class="as-text--left as-subheader">Left aligned text.</p>
+<p class="as-text--center as-subheader">Center aligned text.</p>
+<p class="as-text--right as-subheader">Right aligned text.</p>
+```
+## Text transform
+
+Transform text in components with text capitalization classes.
+
+```html
+<p class="as-text--lowercase as-subheader">Lowercased text.</p>
+<p class="as-text--uppercase as-subheader">Uppercased text.</p>
+<p class="as-text--capitalize as-subheader">capitalized text.</p>
+```
+
+## Font weight
+
+Quickly change the weight (boldness) of text or italicize text.
+
+```html
+<p class="as-font--bold as-subheader">Bold text.</p>
+<p class="as-font--medium as-subheader">Medium weight text.</p>
+<p class="as-font--normal as-subheader">Normal weight text.</p>
+<p class="as-font--light as-subheader">Light weight text.</p>
+<p class="as-font--italic as-subheader">Italic text.</p>
+```
+
+## Monospace
+
+Change a selection to our monospace font stack with `.text-monospace`.
+
+```html
+<p class="as-font--mono as-subheader">This is in monospace.</p>
 ```

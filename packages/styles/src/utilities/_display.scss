@@ -1,43 +1,45 @@
-.as-display--none {
-  display: none;
-}
+.as-display {
+  &--none {
+    display: none;
+  }
 
-.as-display--inline {
-  display: inline;
-}
+  &--inline {
+    display: inline;
+  }
 
-.as-display--inline-block {
-  display: inline-block;
-}
+  &--inline-block {
+    display: inline-block;
+  }
 
-.as-display--block {
-  display: block;
-}
+  &--block {
+    display: block;
+  }
 
-.as-display--table {
-  display: table;
-}
+  &--table {
+    display: table;
+  }
 
-.as-display--table-row {
-  display: table-row;
-}
+  &--table-row {
+    display: table-row;
+  }
 
-.as-display--table-cell {
-  display: table-cell;
-}
+  &--table-cell {
+    display: table-cell;
+  }
 
-.as-display--flex {
-  display: flex;
-}
+  &--flex {
+    display: flex;
+  }
 
-.as-display--inline-flex {
-  display: inline-flex;
-}
+  &--inline-flex {
+    display: inline-flex;
+  }
 
-.as-display--grid {
-  display: grid;
-}
+  &--grid {
+    display: grid;
+  }
 
-.as-display--inline-grid {
-  display: inline-grid;
+  &--inline-grid {
+    display: inline-grid;
+  }
 }

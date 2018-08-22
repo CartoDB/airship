@@ -38,12 +38,20 @@
     font-weight: 700;
   }
 
+  &--normal {
+    font-weight: 400;
+  }
+
   &--medium {
     font-weight: 500;
   }
 
   &--light {
     font-weight: 300;
+  }
+
+  &--italic {
+    font-style: italic;
   }
 
   &--mono {
