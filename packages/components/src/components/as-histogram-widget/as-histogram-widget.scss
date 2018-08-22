@@ -2,8 +2,6 @@
 @import '../../../../styles/src/tooltip/tooltip';
 
 as-histogram-widget {
-  --histogram-widget--background-color: #{$color-ui-01};
-
   display: block;
   background: var(--histogram-widget--background-color, $color-ui-01);
 
@@ -16,7 +14,6 @@ as-histogram-widget {
   }
 
   .as-histogram-widget__tooltip {
-    // ATT REVIEWER: do we want to do this?
     @extend .as-tooltip;
     position: absolute;
     opacity: 0;
