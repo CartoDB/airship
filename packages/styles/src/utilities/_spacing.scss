@@ -1,0 +1,67 @@
+$sizes: (0, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 48, 60, 64, 72, 80, 96, 100, 120, 128, 140, 148, 152, 240);
+
+@each $size in $sizes {
+  // -- Margings
+
+  .as-m--#{$size} {
+    margin: #{$size}px;
+  }
+
+  .as-mt--#{$size} {
+    margin-top: #{$size}px;
+  }
+
+  .as-mr--#{$size} {
+    margin-right: #{$size}px;
+  }
+
+  .as-mb--#{$size} {
+    margin-bottom: #{$size}px;
+  }
+
+  .as-ml--#{$size} {
+    margin-left: #{$size}px;
+  }
+
+  .as-my--#{$size} {
+    margin-top: #{$size}px;
+    margin-bottom: #{$size}px;
+  }
+
+  .as-mx--#{$size} {
+    margin-right: #{$size}px;
+    margin-left: #{$size}px;
+  }
+
+  // -- Paddings
+
+  .as-p--#{$size} {
+    padding: #{$size}px;
+  }
+
+  .as-pt--#{$size} {
+    padding-top: #{$size}px;
+  }
+
+  .as-pr--#{$size} {
+    padding-right: #{$size}px;
+  }
+
+  .as-pb--#{$size} {
+    padding-bottom: #{$size}px;
+  }
+
+  .as-pl--#{$size} {
+    padding-left: #{$size}px;
+  }
+
+  .as-py--#{$size} {
+    padding-top: #{$size}px;
+    padding-bottom: #{$size}px;
+  }
+
+  .as-px--#{$size} {
+    padding-right: #{$size}px;
+    padding-left: #{$size}px;
+  }
+}
