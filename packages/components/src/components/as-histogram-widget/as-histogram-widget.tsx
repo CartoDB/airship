@@ -172,7 +172,7 @@ export class HistogramWidget {
    */
   @Method()
   public setSelection(values: number[] | null) {
-    this._setSelection(values === null ? values : this._adjustSelection(values));
+    this._setSelection(this._adjustSelection(values));
   }
 
   /**
@@ -299,7 +299,11 @@ export class HistogramWidget {
     this._cleanAxes();
   }
 
-  private _adjustSelection(values: number[]): number[] {
+  private _adjustSelection(values: number[] | null): number[] {
+    if (values === null) {
+      return null;
+    }
+
     return [this._adjustSelectionFor(values[0], 'start'),
       this._adjustSelectionFor(values[1], 'end')];
   }
