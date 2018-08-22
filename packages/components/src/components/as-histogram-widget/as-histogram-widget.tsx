@@ -189,13 +189,13 @@ export class HistogramWidget {
   public onDataChanged() {
     this._updateAxes();
     this._renderBars();
-    
+
     if (this.selection === null) {
       return;
     }
 
     if (this._selectionInData(this.selection)) {
-      this._setSelection(this.selection)
+      this._setSelection(this.selection);
     } else {
       this.clearSelection();
     }
@@ -370,7 +370,7 @@ export class HistogramWidget {
 
   private _selectionInData(selection: number[]) {
     const inData = selection.map((selectionValue) => {
-      return this.data.some(value => selectionValue >= value.start && selectionValue <= value.end);
+      return this.data.some((value) => selectionValue >= value.start && selectionValue <= value.end);
     });
 
     // True if any of the selection values is inside the data
