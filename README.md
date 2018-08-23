@@ -14,7 +14,7 @@ There are three npm packages for easier use:
 
 ## Documentation
 
-The library is documented with [Catalog](https://www.catalog.style), check out our [documentation website](https://carto-airship.netlify.com/#/)
+Check out our [documentation website](https://carto-airship.netlify.com/#/)
 
 ## ⚠️ WARNING ⚠️
 
