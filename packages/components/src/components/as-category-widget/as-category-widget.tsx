@@ -219,15 +219,11 @@ export class CategoryWidget {
   private _renderFooter() {
     const selectedCount = this.selectedCategories.length;
 
-    if (selectedCount === 0) {
-      return;
-    }
-
     return (
       <footer class='as-category-widget__footer'>
-        <div class='as-category-widget__count as-body'>{selectedCount} selected</div>
+        <div class='as-category-widget__count as-body'>{selectedCount || 'All'} selected</div>
         { this.showClearButton &&
-            <button class='as-btn as-btn--primary as-btn--s' onClick={() => this.clearSelection()}>Clear selection</button>}
+          <button class='as-btn as-btn--primary as-btn--s' disabled={!selectedCount} onClick={() => this.clearSelection()}>Clear selection</button>}
       </footer>
     );
   }
