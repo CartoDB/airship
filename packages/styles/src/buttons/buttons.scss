@@ -4,7 +4,7 @@
   display: inline-flex;
   align-items: center;
   margin: 0;
-  padding: 10px 12px;
+  padding: get-spacing(1.5) get-spacing(3);
   transition: background-color 0.2s;
   border: none;
   border-radius: 4px;
@@ -19,11 +19,11 @@
   }
 
   i:first-child {
-    margin-right: 8px;
+    margin-right: get-spacing(2);
   }
 
   i:last-child {
-    margin-left: 8px;
+    margin-left: get-spacing(2);
   }
 
   i:only-child {
@@ -75,10 +75,12 @@
   }
 
   &--s {
+    padding: get-spacing(1.5) get-spacing(2);
     font: $font-caption;
   }
 
   &--l {
+    padding: get-spacing(2) get-spacing(4);
     font: $font-subheader;
   }
 
