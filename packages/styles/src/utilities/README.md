@@ -424,3 +424,15 @@ Wrap reverse:
   <div class="as-p--12 as-bg--ui-04 as-subheader as-m--0">Flex item</div>
 </div>
 ```
+
+# Positioning utilities
+
+`.as-row` applies the `align-items` and `justify-content` flex rules to make the child nodes centered vertically and separated horizontally.
+
+```html
+<div class="as-row as-color--type-04 as-p--12 as-bg--complementary">
+  <p class="as-subheader as-m--0">Aligned to the left</p>
+  <p class="as-subheader as-m--0">Aligned to the right</p>
+</div>
+
+```
