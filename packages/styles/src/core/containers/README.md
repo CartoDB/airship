@@ -126,12 +126,7 @@ lang: html
 
 ### Background colors
 
-There are three modifiers to change the background color of the containers:
-- `as-container--primary`
-- `as-container--secondary`
-- `as-container--complementary`
-
-They work at `as-container` level.
+To change the background of the container you can use the [background color utilities](/catalog/#/styles/utilities?a=background-color)
 
 ```html
 noSource: true
@@ -144,24 +139,24 @@ responsive: [tablet, mobile]
 lang: html
 ---
 <div class="as-bottom-bar">
-  <div class="as-container as-container--horizontal as-container--border as-container--primary" style="color: #FFF;">
+  <div class="as-container as-container--horizontal as-container--border as-bg--primary" style="color: #FFF;">
     <section class="as-box">
       <h1 class="as-title">Primary</h1>
-      <p class="as-body">Adding 'as-container--primary' will set the background to the primary color</p>
+      <p class="as-body">Adding 'as-bg--primary' will set the background to the primary color</p>
     </section>
   </div>
 </div>
 <aside class="as-sidebar as-sidebar--right">
-  <div class="as-container as-container--border as-container--secondary" style="color: #FFF;">
+  <div class="as-container as-container--border as-bg--secondary" style="color: #FFF;">
     <section class="as-box">
       <h1 class="as-title">Secondary</h1>
-      <p class="as-body">Adding 'as-container--secondary' will set the background to the secondary color</p>
+      <p class="as-body">Adding 'as-bg--secondary' will set the background to the secondary color</p>
     </section>
   </div>
-  <div class="as-container as-container--border as-container--complementary">
+  <div class="as-container as-container--border as-bg--complementary">
     <section class="as-box">
       <h1 class="as-title">Secondary</h1>
-      <p class="as-body">Adding 'as-container--complementary' will set the background to the complementary color</p>
+      <p class="as-body">Adding 'as-bg--complementary' will set the background to the complementary color</p>
     </section>
   </div>
 </aside>
@@ -178,9 +173,6 @@ Fixed content container.
 Modifiers
 - `as-container--border`: add a border to separate from the next container.
 - `as-container--scrollable`: make its content scrollable.
-- `as-container--primary`: applies primary color as background.
-- `as-container--secondary`: applies secondary color as background.
-- `as-container--complementary`: applies complementary color as background.
 
 **Boxes (inside containers and floating panels)**
 
