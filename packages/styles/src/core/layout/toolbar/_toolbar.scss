@@ -1,9 +1,10 @@
 @import '_actions';
 
 .as-toolbar {
-  --toolbar-bg-color: var(--as-color-secondary, #{$color-secondary});
+  --toolbar-bg-color: var(--as-color--secondary, #{$color-secondary});
 
   display: flex;
+  justify-content: space-between;
   height: $toolbar-size;
   background-color: var(--toolbar-bg-color);
 
@@ -16,11 +17,22 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: $toolbar-size;
     min-height: $toolbar-size;
-    filter: invert(100%);
-    text-align: center;
+    padding: 0 get-spacing(3);
+    color: var(--as-color--type-04, #{$color-type-04});
+    font: $font-body;
     cursor: pointer;
+
+    a {
+      color: var(--as-color--complementary, #{$color-complementary});
+      text-decoration: none;
+    }
+  }
+
+  &__group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   &__icon-text {
@@ -35,6 +47,11 @@
     &__icon-text,
     &__toggle {
       display: none;
+    }
+
+    &__group {
+      flex-direction: row;
+      align-items: center;
     }
   }
 }
