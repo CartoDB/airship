@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`as-category-widget Rendering should render properly 1`] = `
+exports[`as-application-content Rendering should render properly 1`] = `
 <as-application-content
   class="hydrated"
 >

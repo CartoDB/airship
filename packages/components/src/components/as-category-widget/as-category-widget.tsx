@@ -217,13 +217,20 @@ export class CategoryWidget {
   }
 
   private _renderFooter() {
-    const selectedCount = this.selectedCategories.length || 'All';
+    const selectedCount = this.selectedCategories.length;
 
     return (
       <footer class='as-category-widget__footer'>
-        <div class='as-category-widget__count as-body'>{selectedCount} selected</div>
-        { this.showClearButton &&
-            <button class='as-category-widget__clear' onClick={() => this.clearSelection()}>Clear selection</button>}
+        <div class='as-category-widget__count as-body'>{selectedCount || 'All'} selected</div>
+        { this.showClearButton && (
+          <button
+            class='as-btn as-btn--primary as-btn--s as-category-widget__clear'
+            disabled={!selectedCount}
+            onClick={() => this.clearSelection()}
+          >
+            Clear selection
+          </button>
+        )}
       </footer>
     );
   }
