@@ -74,3 +74,5 @@ In this example you can see 3 different ways of using this class:
   </footer>
 </div>
 ```
+
+I you need a different or more customized positioning check out our [flex utilities](/catalog/#/styles/utilities?a=flex-utilities).
