@@ -25,6 +25,10 @@ declare global {
   interface HTMLAttributes {}
 }
 
+import {
+  HistogramColorRange,
+  HistogramData,
+} from './components/as-histogram-widget/as-histogram-widget';
 
 declare global {
 
@@ -163,6 +167,129 @@ declare global {
        * The number of visible categories without aggregation.
        */
       'visibleCategories'?: number;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
+    interface AsHistogramWidget {
+      /**
+       * Clears the Histogram selection
+       */
+      'clearSelection': () => void;
+      /**
+       * Override color for the histogram bars
+       */
+      'color': string;
+      /**
+       * Color range for histogram data
+       */
+      'colorRange': HistogramColorRange[];
+      /**
+       * Histogram data to be displayed
+       */
+      'data': HistogramData[];
+      /**
+       * Default formatting function. Makes the value a readable number and converts it into a string. Useful to compose with your own formatting function.
+       */
+      'defaultFormatter': (data: HistogramData) => string;
+      /**
+       * Description of the widget to be displayed
+       */
+      'description': string;
+      /**
+       * Returns the current selection
+       */
+      'getSelection': () => number[];
+      /**
+       * Title of the widget to be displayed
+       */
+      'heading': string;
+      /**
+       * Override color for the selected histogram bars
+       */
+      'selectedColor': string;
+      /**
+       * Programmatically set the selection. It will be adjusted to the buckets present in {@link data}. To clear see {@link clearSelection} or call with null
+       */
+      'setSelection': (values: number[]) => void;
+      /**
+       * Display a clear button that clears the histogram selection.
+       */
+      'showClear': boolean;
+      /**
+       * Toggles displaying title and description
+       */
+      'showHeader': boolean;
+      /**
+       * Function that formats the tooltip. Receives HistogramData and outputs a string
+       */
+      'tooltipFormatter': (value: HistogramData) => string;
+    }
+  }
+
+  interface HTMLAsHistogramWidgetElement extends StencilComponents.AsHistogramWidget, HTMLStencilElement {}
+
+  var HTMLAsHistogramWidgetElement: {
+    prototype: HTMLAsHistogramWidgetElement;
+    new (): HTMLAsHistogramWidgetElement;
+  };
+  interface HTMLElementTagNameMap {
+    'as-histogram-widget': HTMLAsHistogramWidgetElement;
+  }
+  interface ElementTagNameMap {
+    'as-histogram-widget': HTMLAsHistogramWidgetElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'as-histogram-widget': JSXElements.AsHistogramWidgetAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface AsHistogramWidgetAttributes extends HTMLAttributes {
+      /**
+       * Override color for the histogram bars
+       */
+      'color'?: string;
+      /**
+       * Color range for histogram data
+       */
+      'colorRange'?: HistogramColorRange[];
+      /**
+       * Histogram data to be displayed
+       */
+      'data'?: HistogramData[];
+      /**
+       * Description of the widget to be displayed
+       */
+      'description'?: string;
+      /**
+       * Title of the widget to be displayed
+       */
+      'heading'?: string;
+      /**
+       * Fired when user update or clear the widget selection.
+       */
+      'onSelectionChanged'?: (event: CustomEvent<number[]>) => void;
+      /**
+       * Override color for the selected histogram bars
+       */
+      'selectedColor'?: string;
+      /**
+       * Display a clear button that clears the histogram selection.
+       */
+      'showClear'?: boolean;
+      /**
+       * Toggles displaying title and description
+       */
+      'showHeader'?: boolean;
+      /**
+       * Function that formats the tooltip. Receives HistogramData and outputs a string
+       */
+      'tooltipFormatter'?: (value: HistogramData) => string;
     }
   }
 }
