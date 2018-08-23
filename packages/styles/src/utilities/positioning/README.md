@@ -1,7 +1,10 @@
 
 # Positioning
 
+`.as-row` class helps you to position elements in a single row. This helps you to layout content very easily and be sure it will look great.
+
 `.as-row` applies the `align-items` and `justify-content` flex rules to make the child nodes centered vertically and separated horizontally.
+
 
 ```html
 <div class="as-row as-color--type-04 as-p--12 as-bg--complementary">
@@ -75,4 +78,4 @@ In this example you can see 3 different ways of using this class:
 </div>
 ```
 
-I you need a different or more customized positioning check out our [flex utilities](/catalog/#/styles/utilities?a=flex-utilities).
+I you need a different or more sophisticated positioning check out our [flex utilities](/catalog/#/styles/utilities?a=flex-utilities).
