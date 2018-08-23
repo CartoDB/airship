@@ -28,6 +28,44 @@ applicationContent.addEventListener('load', () => {
 
   client.addLayer(layer);
   client.getLeafletLayer().addTo(map);
+
+  const histogramDataview = new carto.dataview.Histogram(source, 'price', {
+    bins: 10
+  });
+
+  const categoryDataview = new carto.dataview.Category(source, 'neighbourhood_group', {
+    limit: 6
+  });
+
+  const bboxFilter = new carto.filter.BoundingBoxLeaflet(map);
+  histogramDataview.addFilter(bboxFilter);
+  categoryDataview.addFilter(bboxFilter);
+
+  histogramDataview.on('dataChanged', data => {
+    const histogramWidget = document.querySelector('.js-histogram');
+    const widgetData = data.bins.map(bin => {
+      return {
+        start: bin.start,
+        end: bin.end,
+        value: bin.freq
+      };
+    });
+    histogramWidget.data = widgetData;
+  });
+
+  categoryDataview.on('dataChanged', data => {
+    const categoryWidget = document.querySelector('.js-category');
+    const widgetData = data.categories.map(category => {
+      return {
+        name: category.name,
+        value: category.value
+      };
+    });
+    categoryWidget.categories = widgetData;
+  });
+
+  client.addDataview(histogramDataview);
+  client.addDataview(categoryDataview);
 });
 
 applicationContent.addEventListener('sectionChange', (section) => {
