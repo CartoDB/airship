@@ -94,6 +94,8 @@ describe('as-category-widget', () => {
       const categoryElement = element.querySelector('.as-category-widget__category') as HTMLDivElement;
       categoryElement.click();
 
+      await testWindow.flush();
+
       const spy = jest.fn();
       element.addEventListener('categoriesSelected', spy);
 
