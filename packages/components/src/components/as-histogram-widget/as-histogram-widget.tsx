@@ -21,7 +21,7 @@ const HEIGHT = 125;
 const BARS_SEPARATION = 1;
 const MARGIN = {
   BOTTOM: 15,
-  LEFT: 30,
+  LEFT: 40,
   RIGHT: 3,
   TOP: 15,
 };
@@ -173,6 +173,7 @@ export class HistogramWidget {
   @Method()
   public setSelection(values: number[] | null) {
     this._setSelection(values);
+    this.selectionChanged.emit(this.selection);
   }
 
   /**
@@ -182,7 +183,7 @@ export class HistogramWidget {
    */
   @Method()
   public clearSelection() {
-    this._setSelection(null);
+    this.setSelection(null);
   }
 
   @Watch('data')
@@ -217,9 +218,11 @@ export class HistogramWidget {
   public render() {
     return [
       this._renderHeader(),
-      <svg ref={(ref: HTMLElement) => this.container = select(ref)} viewBox='0 0 248 160'></svg>,
+      <div class='as-histogram-widget__wrapper'>
+        {this._renderTooltip()}
+        <svg ref={(ref: HTMLElement) => this.container = select(ref)} viewBox='0 0 248 160'></svg>
+      </div>,
       this._renderClearBtn(),
-      this._renderTooltip()
     ];
   }
 
@@ -234,7 +237,8 @@ export class HistogramWidget {
     this.brush = brushX()
       .handleSize(BARS_SEPARATION + 4)
       .extent([[MARGIN.LEFT, MARGIN.TOP], [WIDTH + MARGIN.LEFT, HEIGHT + MARGIN.TOP]])
-      .on('brush', this._onBrush.bind(this));
+      .on('brush', this._onBrush.bind(this))
+      .on('end', this._onBrushEnd.bind(this));
 
     this.brushArea = this.container
       .append('g')
@@ -355,6 +359,10 @@ export class HistogramWidget {
     this._setSelection(d0);
   }
 
+  private _onBrushEnd() {
+    this.selectionChanged.emit(this.selection);
+  }
+
   private _setSelection(selection: number[]) {
     const adjustedSelection = this._adjustSelection(selection);
 
@@ -363,8 +371,6 @@ export class HistogramWidget {
     }
 
     this.selection = adjustedSelection;
-    this.selectionChanged.emit(this.selection);
-
     this._updateHandles(adjustedSelection);
   }
 
@@ -425,7 +431,7 @@ export class HistogramWidget {
 
     this.yAxis = axisLeft(this.yScale)
       .tickSize(-WIDTH)
-      .ticks(5)
+      .ticks(5, ',.0s')
       .tickPadding(10);
 
     this.yAxisSelection = this.container
@@ -592,7 +598,10 @@ export class HistogramWidget {
     }
 
     return (
-      <button onClick={() => this._setSelection(null) }>Clear selection</button>
+      <button
+        class='as-btn as-btn--primary as-btn--s as-category-widget__clear'
+        onClick={() => this._setSelection(null) }>Clear selection
+      </button>
     );
   }
 }
