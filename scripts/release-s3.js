@@ -3,6 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const zlib = require('zlib');
 const semver = require('semver');
+const mime = require('mime');
 const secrets = require('../secrets.json');
 
 const { promisify } = require('util');
@@ -19,6 +20,16 @@ AWS.config.update({
 const S3 = new AWS.S3();
 const DRY_RUN = process.argv.some(arg => arg === '--dry');
 const VERBOSE = process.argv.some(arg => arg === '--verbose');
+
+// Woff is a zipped format.
+// If we ever have raster images we should probably put them here as well
+function shouldZip (ext) {
+  if (ext === '.woff') {
+    return false;
+  }
+
+  return true;
+}
 
 function log (what) {
   if (!VERBOSE) {
@@ -91,11 +102,30 @@ async function uploadAllFiles (dir, version, destination, subfolder='') {
     if (fs.lstatSync(filePath).isDirectory()) {
       await uploadAllFiles(filePath, version, destination, fileName);
     } else {
-      let fileContent;
       const dst = path.join(subfolder, fileName);
+      const extension = path.extname(filePath);
+      const objectConfig = {
+        ACL: 'public-read',
+        Bucket: secrets.AWS_S3_BUCKET
+      };
+      let fileLength = 0; // uncompressed size
+      let fileContent;
+      let ratio = 0;
+
+      objectConfig.ContentType = mime.getType(filePath);
+
       try {
         fileContent = await readFile(filePath);
-        fileContent = await gzip(fileContent);
+        fileLength = fileContent.length;
+
+        if (shouldZip(extension)) {
+          fileContent = await gzip(fileContent);
+          objectConfig.ContentEncoding = 'gzip';
+        }
+
+        objectConfig.fileContent = fileContent;
+
+        ratio = Math.round((fileContent.length / fileLength) * 100);
       } catch (e) {
         console.error(e);
         continue;
@@ -109,19 +139,15 @@ async function uploadAllFiles (dir, version, destination, subfolder='') {
       }
 
       for (vers of versions) {
-        const key = `${destination}/v${vers}/${dst}`;
+        objectConfig.Key = `${destination}/v${vers}/${dst}`;
         try {
           if (!DRY_RUN) {
-            await putObject({
-              Key: key,
-              Bucket: secrets.AWS_S3_BUCKET,
-              Body: fileContent
-            });
+            await putObject(objectConfig);
           }
   
-          log(`Uploaded ${key} (${fileContent.length} bytes)`);
+          log(`✅  ${objectConfig.Key} ${fileContent.length} bytes. Compressed ${ratio > 100 ? `⚠️  \x1b[33m${ratio}` : ratio}%\x1b[0m`);
         } catch (e) {
-          console.error(`Failed to upload ${dst}`, e);
+          console.error(`❌  ${dst}`, e);
         }
       }
     }
@@ -129,6 +155,11 @@ async function uploadAllFiles (dir, version, destination, subfolder='') {
 }
 
 async function upload () {
+  if (DRY_RUN) {
+    log(`🌵 🌵 🌵 🌵 🌵 🌵 🌵 🌵 🌵 🌵 🌵`)
+    log(`🌵 THIS IS A DRY RUN 🌵`)
+    log(`🌵 🌵 🌵 🌵 🌵 🌵 🌵 🌵 🌵 🌵 🌵`)
+  }
   for ({ version, src, name, dst } of UPLOAD) {
     log(`Uploading files for ${name}(v${version})`);
     await uploadAllFiles(src, version, dst);
