@@ -64,6 +64,22 @@ applicationContent.addEventListener('load', () => {
     categoryWidget.categories = widgetData;
   });
 
+  // Filters
+  let priceFilter = new carto.filter.Range('price');
+  source.addFilter(priceFilter);
+
+  const histogramWidget = document.querySelector('.js-histogram');
+  histogramWidget.addEventListener('selectionChanged', event => {
+    if (event.detail) {
+      const [min, max] = event.detail;
+      priceFilter.setFilters({ between: { min, max }});
+    } else {
+      source.removeFilter(priceFilter);
+      priceFilter = new carto.filter.Range('price');
+      source.addFilter(priceFilter);
+    }
+  });
+
   client.addDataview(histogramDataview);
   client.addDataview(categoryDataview);
 });
