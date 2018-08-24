@@ -21,7 +21,7 @@ const HEIGHT = 125;
 const BARS_SEPARATION = 1;
 const MARGIN = {
   BOTTOM: 15,
-  LEFT: 30,
+  LEFT: 40,
   RIGHT: 3,
   TOP: 15,
 };
@@ -431,7 +431,7 @@ export class HistogramWidget {
 
     this.yAxis = axisLeft(this.yScale)
       .tickSize(-WIDTH)
-      .ticks(5)
+      .ticks(5, ',.0s')
       .tickPadding(10);
 
     this.yAxisSelection = this.container
