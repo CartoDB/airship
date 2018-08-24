@@ -8,4 +8,12 @@
 .as-map {
   position: relative;
   flex: 1 0 auto;
+
+  &--hidden {
+    opacity: 0;
+
+    @media all and (min-width: $tablet-breakpoint) {
+      opacity: 1;
+    }
+  }
 }

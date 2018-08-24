@@ -27,7 +27,7 @@
     "lint:fix": "lerna run lint:fix",
     "lint": "lerna run lint",
     "postinstall": "lerna bootstrap --hoist",
-    "release": "lerna publish --npm-tag prerelease",
+    "release": "npm run build && lerna publish --npm-tag prerelease",
     "publish": "./release.sh",
     "serve": "lerna run --parallel serve",
     "showcase": "npm run build && concurrently 'serve' 'open http://localhost:5000/catalog'",

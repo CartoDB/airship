@@ -25,7 +25,7 @@ responsive: true
 ```code
 lang: html
 ---
-<body class="as-app as-app--nav-top">
+<body class="as-app">
   <div role="tablist" class="as-toolbar-tabs as-tabs">
     <button onclick="showMap(event)" role="tab" class="as-tabs__item as-tabs__item--active">MAP</button>
     <button onclick="showLeft(event)" role="tab" class="as-tabs__item">LEFT</button>
@@ -70,7 +70,7 @@ responsive: true
 ```code
 lang: html
 ---
-<body class="as-app as-app--nav-top">
+<body class="as-app">
   <main class="as-app-content">
     <aside class="as-sidebar as-sidebar--left as-sidebar--xl">
       <h1>Left Sidebar (XL)</h1>
