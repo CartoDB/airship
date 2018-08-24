@@ -13,6 +13,10 @@ as-histogram-widget {
     font: $font-body;
   }
 
+  .as-histogram-widget__wrapper {
+    position: relative;
+  }
+
   .as-histogram-widget__tooltip {
     @extend .as-tooltip;
     position: absolute;
