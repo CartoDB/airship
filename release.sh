@@ -20,7 +20,7 @@ npm build
 echo "Uploading to CDN..."
 
 node scripts/release-s3 --dry --verbose
-nose scripts/invalidate-cache --dry --verbose
+node scripts/invalidate-cache --dry --verbose
 
 echo "All done."
 echo "CDN at https://cartodb-libs.global.ssl.fastly.net and https://libs.cartocdn.com/"
