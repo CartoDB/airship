@@ -90,3 +90,7 @@ applicationContent.addEventListener('sectionChange', (section) => {
     ? mapElement.classList.remove('as-map--hidden')
     : mapElement.classList.add('as-map--hidden')
 });
+
+function toggleDrawer() {
+  document.querySelector('.as-toolbar__actions').classList.toggle('as-toolbar__actions--visible');
+}

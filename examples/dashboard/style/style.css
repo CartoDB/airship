@@ -7,6 +7,7 @@ body {
 
 #map {
   position: absolute;
+  z-index: 0;
   width: 100%;
   height: 100%;
 }
@@ -48,4 +49,8 @@ body {
   background: #1785FB;
   color: #FFF;
   font-size: 12px;
+}
+
+.airship-logo {
+  height: 24px;
 }

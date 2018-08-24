@@ -24,42 +24,34 @@
 
 <body class="as-app as-app--nav-left">
   <header class="as-toolbar as-color--type-04">
-    <button onclick="_toggleDrawer()" class="as-toolbar__item as-toolbar__toggle">
+    <button onclick="toggleDrawer()" class="as-toolbar__item as-toolbar__toggle">
       <i class="as-icon-hamburguer"></i>
     </button>
 
-    <div class="as-toolbar__item">
-      <img src="img/reveal-symbol-white.svg" alt="Reveal">
+    <div class="as-toolbar__group">
+      <div class="as-toolbar__item">
+        <img src="img/airship.svg" class="airship-logo" alt="airship">
+      </div>
+
+      <nav class="as-toolbar__actions">
+        <ul>
+          <li class="as-toolbar__item">
+            <i class="as-icon-home"></i>
+            <p class="as-toolbar__icon-text">Home</p>
+          </li>
+          <li class="as-toolbar__item">
+            <i class="as-icon-pencil"></i>
+            <p class="as-toolbar__icon-text">Edit</p>
+          </li>
+          <li class="as-toolbar__item">
+            <i class="as-icon-magnify"></i>
+            <p class="as-toolbar__icon-text">Search</p>
+          </li>
+        </ul>
+      </nav>
     </div>
 
-    <nav class="as-toolbar__actions">
-      <ul>
-        <li class="as-toolbar__item">
-          <i class="as-icon-home"></i>
-          <p class="as-toolbar__icon-text">Home</p>
-        </li>
-        <li class="as-toolbar__item">
-          <i class="as-icon-pencil"></i>
-          <p class="as-toolbar__icon-text">Edit</p>
-        </li>
-        <li class="as-toolbar__item">
-          <i class="as-icon-magnify"></i>
-          <p class="as-toolbar__icon-text">Search</p>
-        </li>
-      </ul>
-
-      <!-- I added a div here with the margin-top: auto trick to push it to the bottom -->
-      <ul class="as-toolbar__actions--footer">
-        <li class="as-toolbar__item">
-          <i class="as-icon-info"></i>
-          <p class="as-toolbar__icon-text">Help</p>
-        </li>
-        <li class="as-toolbar__item">
-          <i class="as-icon-settings"></i>
-          <p class="as-toolbar__icon-text">Settings</p>
-        </li>
-      </ul>
-    </nav>
+    <i class="as-icon-settings as-m--16"></i>
   </header>
 
   <as-application-content>
@@ -157,32 +149,6 @@
     </aside>
 
   </as-application-content>
-
-  <script>
-    const categoryWidget1 = document.querySelector('#category-1');
-    categoryWidget1.showHeader = true;
-    categoryWidget1.showClearButton = true;
-    categoryWidget1.useTotalPercentage = false;
-    categoryWidget1.visibleCategories = Infinity;
-    categoryWidget1.categories = [
-      { name: 'Bars & Restaurants', value: 1000 },
-      { name: 'Fashion', value: 900 },
-      { name: 'Grocery', value: 800 },
-      { name: 'Health', value: 400 },
-      { name: 'Shopping mall', value: 250 },
-      { name: 'Transportation', value: 1000 },
-      { name: 'Leisure', value: 760 }
-    ];
-
-    const histogramWidget = document.querySelector('.js-histogram');
-    histogramWidget.data = [
-      { start: 0, end: 10, value: 5 },
-      { start: 10, end: 20, value: 10 },
-      { start: 20, end: 30, value: 15 },
-      { start: 30, end: 40, value: 20 },
-      { start: 40, end: 50, value: 30 },
-    ];
-  </script>
 
   <!-- Airship components -->
   <script src="./src/index.js"></script>
