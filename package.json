@@ -7,7 +7,7 @@
   "author": "CARTO Dev Team",
   "license": "BSD-3-Clause",
   "devDependencies": {
-    "aws-sdk": "^2.299.0",
+    "aws-sdk": "^2.300.0",
     "backstopjs": "^3.5.5",
     "chokidar": "^2.0.4",
     "concurrently": "^3.6.1",
