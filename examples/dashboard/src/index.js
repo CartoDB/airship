@@ -14,7 +14,8 @@ applicationContent.addEventListener('load', () => {
     username: 'cartojs-test'
   });
 
-  const source = new carto.source.SQL('SELECT * FROM airbnb_listings');
+  // const source = new carto.source.SQL('SELECT * FROM airbnb_listings');
+  const source = new carto.source.Dataset('airbnb_listings');
 
   const style = new carto.style.CartoCSS(`
     #layer {
@@ -65,18 +66,35 @@ applicationContent.addEventListener('load', () => {
   });
 
   // Filters
-  let priceFilter = new carto.filter.Range('price');
-  source.addFilter(priceFilter);
+  let priceFilter = null;
+  let neighbourhoodFilter = null;
 
   const histogramWidget = document.querySelector('.js-histogram');
   histogramWidget.addEventListener('selectionChanged', event => {
-    if (event.detail) {
+    if (!event.detail && priceFilter !== null) {
+      source.removeFilter(priceFilter);
+      priceFilter = null;
+    } else if (event.detail && priceFilter === null) {
+      const [min, max] = event.detail;
+      priceFilter = new carto.filter.Range('price', { between: { min, max }});
+      source.addFilter(priceFilter);
+    } else {
       const [min, max] = event.detail;
       priceFilter.setFilters({ between: { min, max }});
+    }
+  });
+
+  const categoryWidget = document.querySelector('.js-category');
+  categoryWidget.addEventListener('categoriesSelected', event => {
+    const categories = event.detail;
+    if (!event.detail.length && neighbourhoodFilter !== null) {
+      source.removeFilter(neighbourhoodFilter);
+      neighbourhoodFilter = null;
+    } else if (event.detail.length && neighbourhoodFilter === null) {
+      neighbourhoodFilter = new carto.filter.Category('neighbourhood_group', { in: categories });
+      source.addFilter(neighbourhoodFilter);
     } else {
-      source.removeFilter(priceFilter);
-      priceFilter = new carto.filter.Range('price');
-      source.addFilter(priceFilter);
+      neighbourhoodFilter.setFilters({ in: categories});
     }
   });
 
