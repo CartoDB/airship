@@ -31,7 +31,7 @@
 
   &__group {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
   }
 
@@ -47,11 +47,6 @@
     &__icon-text,
     &__toggle {
       display: none;
-    }
-
-    &__group {
-      flex-direction: row;
-      align-items: center;
     }
   }
 }
