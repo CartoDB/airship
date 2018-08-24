@@ -18,6 +18,6 @@ if (!DRY_RUN) {
       return;
     }
   
-    log(`Cache invalidated: ${obj}`);
+    log(`Cache invalidated!`);
   });
 }
