@@ -1,0 +1,56 @@
+body {
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#map {
+  position: absolute;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* AIRSHIP OVERRIDES */
+
+.as-toolbar__item {
+  /* We shouldn't use filter: invert, since it breaks the logo and some colors */
+  filter: none !important;
+  /* We need styles for selected/hover/default items */
+  color: white;
+}
+
+.as-toolbar__toggle {
+  font-size: 24px;
+}
+
+.as-toolbar__actions {
+  justify-content: space-between !important;
+  height: 100% !important;
+}
+
+.as-bottom-bar {
+  max-height: none !important;
+}
+
+/* CUSTOM CLASSES */
+
+.custom-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  min-width: 24px;
+  height: 24px;
+  min-height: 24px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: #1785FB;
+  color: #FFF;
+  font-size: 12px;
+}
+
+.airship-logo {
+  height: 24px;
+}
