@@ -123,7 +123,7 @@ async function uploadAllFiles (dir, version, destination, subfolder='') {
           objectConfig.ContentEncoding = 'gzip';
         }
 
-        objectConfig.fileContent = fileContent;
+        objectConfig.Body = fileContent;
 
         ratio = Math.round((fileContent.length / fileLength) * 100);
       } catch (e) {
