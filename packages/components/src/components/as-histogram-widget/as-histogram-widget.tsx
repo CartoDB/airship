@@ -2,6 +2,7 @@ import { Component, Event, EventEmitter, Method, Prop, State, Watch } from '@ste
 import { max } from 'd3-array';
 import { Axis, axisBottom, axisLeft } from 'd3-axis';
 import { BrushBehavior, brushX } from 'd3-brush';
+import { format } from 'd3-format';
 import { scaleLinear, ScaleLinear } from 'd3-scale';
 import {
   BaseType,
@@ -431,8 +432,9 @@ export class HistogramWidget {
 
     this.yAxis = axisLeft(this.yScale)
       .tickSize(-WIDTH)
-      .ticks(5, ',.0s')
-      .tickPadding(10);
+      .ticks(5)
+      .tickPadding(10)
+      .tickFormat(format('.2~s'));
 
     this.yAxisSelection = this.container
       .append('g')
