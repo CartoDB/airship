@@ -29,6 +29,7 @@ as-histogram-widget {
 
   svg {
     display: block;
+    overflow: visible;
 
     .brush {
       .selection {
