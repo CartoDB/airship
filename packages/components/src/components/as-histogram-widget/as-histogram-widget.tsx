@@ -22,7 +22,7 @@ const HEIGHT = 125;
 const BARS_SEPARATION = 1;
 const MARGIN = {
   BOTTOM: 15,
-  LEFT: 40,
+  LEFT: 35,
   RIGHT: 3,
   TOP: 15,
 };
