@@ -576,8 +576,8 @@ export class HistogramWidget {
     }
 
     return [
-      <h3 class='as-histogram-widget__header'>{this.heading}</h3>,
-      <p class='as-histogram-widget__description'>{this.description}</p>,
+      <h2 class='as-histogram-widget__header'>{this.heading}</h2>,
+      <p class='as-histogram-widget__description as-body'>{this.description}</p>,
     ];
   }
 

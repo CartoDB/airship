@@ -125,13 +125,13 @@ exports[`as-histogram-widget Rendering should render clear button 1`] = `
   class="hydrated"
 >
   
-  <h3
+  <h2
     class="as-histogram-widget__header"
   >
     
-  </h3>
+  </h2>
   <p
-    class="as-histogram-widget__description"
+    class="as-histogram-widget__description as-body"
   >
     
   </p>
@@ -429,13 +429,13 @@ exports[`as-histogram-widget Rendering should render colors properly 1`] = `
   class="hydrated"
 >
   
-  <h3
+  <h2
     class="as-histogram-widget__header"
   >
     
-  </h3>
+  </h2>
   <p
-    class="as-histogram-widget__description"
+    class="as-histogram-widget__description as-body"
   >
     
   </p>
@@ -745,13 +745,13 @@ exports[`as-histogram-widget Rendering should render properly 1`] = `
   class="hydrated"
 >
   
-  <h3
+  <h2
     class="as-histogram-widget__header"
   >
     Histogram Widget Example
-  </h3>
+  </h2>
   <p
-    class="as-histogram-widget__description"
+    class="as-histogram-widget__description as-body"
   >
     Description for Histogram Widget
   </p>
@@ -1049,13 +1049,13 @@ exports[`as-histogram-widget Rendering should render selection properly 1`] = `
   class="hydrated"
 >
   
-  <h3
+  <h2
     class="as-histogram-widget__header"
   >
     
-  </h3>
+  </h2>
   <p
-    class="as-histogram-widget__description"
+    class="as-histogram-widget__description as-body"
   >
     
   </p>
