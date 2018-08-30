@@ -2,6 +2,7 @@ import { Component, Event, EventEmitter, Method, Prop, State, Watch } from '@ste
 import { max } from 'd3-array';
 import { Axis, axisBottom, axisLeft } from 'd3-axis';
 import { BrushBehavior, brushX } from 'd3-brush';
+import { format } from 'd3-format';
 import { scaleLinear, ScaleLinear } from 'd3-scale';
 import {
   BaseType,
@@ -21,7 +22,7 @@ const HEIGHT = 125;
 const BARS_SEPARATION = 1;
 const MARGIN = {
   BOTTOM: 15,
-  LEFT: 40,
+  LEFT: 35,
   RIGHT: 3,
   TOP: 15,
 };
@@ -431,8 +432,9 @@ export class HistogramWidget {
 
     this.yAxis = axisLeft(this.yScale)
       .tickSize(-WIDTH)
-      .ticks(5, ',.0s')
-      .tickPadding(10);
+      .ticks(5)
+      .tickPadding(10)
+      .tickFormat(format('.2~s'));
 
     this.yAxisSelection = this.container
       .append('g')
@@ -574,8 +576,8 @@ export class HistogramWidget {
     }
 
     return [
-      <h3 class='as-histogram-widget__header'>{this.heading}</h3>,
-      <p class='as-histogram-widget__description'>{this.description}</p>,
+      <h2 class='as-histogram-widget__header'>{this.heading}</h2>,
+      <p class='as-histogram-widget__description as-body'>{this.description}</p>,
     ];
   }
 

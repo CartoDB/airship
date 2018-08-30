@@ -6,11 +6,12 @@ as-histogram-widget {
   background: var(--histogram-widget--background-color, $color-ui-01);
 
   .as-histogram-widget__header {
+    margin: 0;
     font: $font-subheader;
   }
 
   .as-histogram-widget__description {
-    font: $font-body;
+    color: var(--description--color, $color-type-02);
   }
 
   .as-histogram-widget__wrapper {
@@ -29,6 +30,7 @@ as-histogram-widget {
 
   svg {
     display: block;
+    overflow: visible;
 
     .brush {
       .selection {
