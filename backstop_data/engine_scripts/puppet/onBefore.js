@@ -1,3 +1,9 @@
 module.exports = async (page, scenario, vp) => {
-  await require('./loadCookies')(page, scenario);
+  page.on('load', function () {
+    page.evaluate(() => {
+      document.fonts.ready.then(() => {
+        console.log('_READY');
+      });
+    });
+  });
 };

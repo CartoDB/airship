@@ -1,0 +1,22 @@
+@import "../core/_dev";
+
+.as-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 get-spacing(2);
+  border-radius: get-spacing(5);
+  background-color: var(--as-color-badge-blue, #{$color-badge-blue});
+  font: $font-body;
+
+  p {
+    margin: 0;
+  }
+
+  i:first-child {
+    margin-right: get-spacing(2);
+  }
+
+  i:last-child {
+    margin-left: get-spacing(2);
+  }
+}

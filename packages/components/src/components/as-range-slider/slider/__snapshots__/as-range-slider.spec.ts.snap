@@ -1,0 +1,117 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`as-range-slider Rendering can be rendered disabled 1`] = `
+<as-range-slider
+  class="hydrated"
+>
+  
+  <div
+    class="as-range-slider as-range-slider--disabled"
+  >
+    <div
+      class="as-range-slider__rail"
+    >
+      <as-range-slider-thumb
+        disabled=""
+        percentage="0"
+        value="0"
+        valuemax="10"
+        valuemin="0"
+      />
+      <as-range-slider-bar
+        disabled=""
+        rangeendpercentage="0"
+        rangestartpercentage="0"
+        steppercentage="10"
+      />
+    </div>
+  </div>
+</as-range-slider>
+`;
+
+exports[`as-range-slider Rendering should render 1 thumb + 1 bar when using a value 1`] = `
+<as-range-slider
+  class="hydrated"
+>
+  
+  <div
+    class="as-range-slider"
+  >
+    <div
+      class="as-range-slider__rail"
+    >
+      <as-range-slider-thumb
+        percentage="50"
+        value="5"
+        valuemax="10"
+        valuemin="0"
+      />
+      <as-range-slider-bar
+        rangeendpercentage="50"
+        rangestartpercentage="0"
+        steppercentage="10"
+      />
+    </div>
+  </div>
+</as-range-slider>
+`;
+
+exports[`as-range-slider Rendering should render 2 thumbs + 1 bar when using a range 1`] = `
+<as-range-slider
+  class="hydrated"
+>
+  
+  <div
+    class="as-range-slider"
+  >
+    <div
+      class="as-range-slider__rail"
+    >
+      <as-range-slider-thumb
+        percentage="20"
+        value="2"
+        valuemax="3"
+        valuemin="0"
+      />
+      <as-range-slider-thumb
+        percentage="40"
+        value="4"
+        valuemax="10"
+        valuemin="3"
+      />
+      <as-range-slider-bar
+        rangeendpercentage="40"
+        rangestartpercentage="20"
+        steppercentage="11.11111111111111"
+      />
+    </div>
+  </div>
+</as-range-slider>
+`;
+
+exports[`as-range-slider Rendering should render without parameters, using defaults 1`] = `
+<as-range-slider
+  class="hydrated"
+>
+  
+  <div
+    class="as-range-slider"
+  >
+    <div
+      class="as-range-slider__rail"
+    >
+      <as-range-slider-thumb
+        percentage="0"
+        value="0"
+        valuemax="10"
+        valuemin="0"
+      />
+      <as-range-slider-bar
+        rangeendpercentage="0"
+        rangestartpercentage="0"
+        steppercentage="10"
+      />
+    </div>
+  </div>
+</as-range-slider>
+`;

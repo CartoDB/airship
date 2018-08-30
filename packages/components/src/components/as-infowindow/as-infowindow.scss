@@ -1,0 +1,102 @@
+@import '../../../../styles/src/core/_dev';
+
+as-infowindow {
+  --infowindow--shadow-color: #{rgba($color-type-01, 0.16)};
+  --infowindow--bg-color: var(--as-color-ui-01, #{$color-ui-01});
+
+  display: inline-block;
+
+  .as-infowindow {
+    display: inline-block;
+    position: relative;
+    width: 260px;
+    border-radius: 4px;
+    background: var(--infowindow--bg-color);
+    box-shadow: 0 4px 16px 0 var(--infowindow--shadow-color);
+
+    img {
+      display: block;
+      width: 100%;
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
+    }
+
+    &__media {
+      overflow: hidden;
+      border-radius: 4px 4px 4px 0;
+    }
+
+    &__content {
+      height: 100%;
+      padding: 16px;
+      overflow: auto;
+    }
+
+    &__hook {
+      position: absolute;
+      z-index: 10;
+      bottom: 1px;
+      left: 0;
+      background: var(--infowindow--bg-color);
+
+      &::before {
+        content: '';
+        position: absolute;
+        z-index: 3;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 0;
+        border-top: 12px solid var(--infowindow--bg-color);
+        border-right: 18px solid transparent;
+        border-radius: 0 0 0 4px;
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        z-index: 2;
+        top: 3px;
+        left: 0;
+        width: 0;
+        height: 0;
+        border-top: 12px solid var(--infowindow--shadow-color);
+        border-right: 18px solid transparent;
+        filter: blur(2px);
+      }
+    }
+
+    &__imageHook {
+      position: absolute;
+      z-index: 10;
+      bottom: 0;
+
+      &::after {
+        content: '';
+        position: absolute;
+        z-index: 1;
+        top: 3px;
+        left: 0;
+        width: 0;
+        height: 0;
+        border-top: 12px solid var(--infowindow--shadow-color);
+        border-right: 18px solid transparent;
+        filter: blur(2px);
+      }
+    }
+
+    &__imageHook--inner {
+      position: absolute;
+      z-index: 3;
+      top: -1px;
+      width: 18px;
+      height: 12px;
+      overflow: hidden;
+      clip-path: polygon(0 0, 0% 100%, 100% 0);
+
+      & > img {
+        width: 260px;
+      }
+    }
+  }
+}

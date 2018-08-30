@@ -1,0 +1,65 @@
+@import '../../../../styles/src/core/_dev';
+@import '../../../../styles/src/tooltip/tooltip';
+
+as-histogram-widget {
+  display: block;
+  background: var(--histogram-widget--background-color, $color-ui-01);
+
+  .as-histogram-widget__header {
+    margin: 0;
+    font: $font-subheader;
+  }
+
+  .as-histogram-widget__description {
+    color: var(--description--color, $color-type-02);
+  }
+
+  .as-histogram-widget__wrapper {
+    position: relative;
+  }
+
+  .as-histogram-widget__tooltip {
+    @extend .as-tooltip;
+    position: absolute;
+    opacity: 0;
+
+    &::after {
+      opacity: 0;
+    }
+  }
+
+  svg {
+    display: block;
+    overflow: visible;
+
+    .brush {
+      .selection {
+        stroke: none;
+        fill: none;
+      }
+    }
+
+    .bar {
+      transition: all 0.3s linear;
+      opacity: 0.7;
+      cursor: pointer;
+    }
+
+    .yAxis .tick {
+      line {
+        stroke: var(--as-color-type-02, #{$color-type-02});
+        opacity: 0.1;
+      }
+
+      &:first-of-type {
+        line {
+          opacity: 0.5;
+        }
+      }
+    }
+
+    text {
+      fill: $color-ui-04;
+    }
+  }
+}

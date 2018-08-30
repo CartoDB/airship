@@ -22,7 +22,7 @@ responsive: true
 ```code
 lang: html
 ---
-<body class="as-app as-app--nav-top">
+<body class="as-app">
   <header class="as-toolbar"></header>
 
   <main class="as-app-content">

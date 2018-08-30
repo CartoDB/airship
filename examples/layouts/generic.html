@@ -9,23 +9,18 @@
   <link rel="stylesheet" href="../../packages/styles/dist/airship.css">
   <script src="../../packages/components/dist/airship.js"></script>
 
-  <!-- INCLUDE TYPOGRAFY -->
-  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-
   <!-- CARTO.js -->
   <!-- Include Leaflet -->
   <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
   <link href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" rel="stylesheet">
   <!-- Include CARTO.js -->
-  <script src="https://libs.cartocdn.com/carto.js/v4.1.1/carto.min.js"></script>
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:600" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <script src="https://libs.cartocdn.com/carto.js/v4.1.2/carto.min.js"></script>
   <link href="https://carto.com/developers/carto-js/examples/maps/public/style.css" rel="stylesheet">
   <!-- / CARTO.js -->
 
 </head>
 
-<body class="as-app as-app--nav-top">
+<body class="as-app">
   <header class="as-toolbar">
     <button onclick="_toggleDrawer()" class="as-toolbar__item as-toolbar__toggle">
       <img src="https://material.io/tools/icons/static/icons/baseline-menu-24px.svg" alt="">
@@ -68,7 +63,7 @@
     </nav>
   </header>
 
-  <div role="tablist" class="as-toolbar-tabs as-tabs as-tabs--xl" >
+  <div role="tablist" class="as-toolbar-tabs as-tabs as-tabs--xl">
     <button onclick="showMap(event)" role="tab" class="as-tabs__item as-tabs__item--active">MAP</button>
     <button onclick="showLeft(event)" role="tab" class="as-tabs__item">LEFT</button>
     <button onclick="showRight(event)" role="tab" class="as-tabs__item">RIGHT</button>

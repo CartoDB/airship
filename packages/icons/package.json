@@ -1,6 +1,6 @@
 {
   "name": "@carto/airship-icons",
-  "version": "1.0.0-alpha-27.0",
+  "version": "1.0.0-alpha.37",
   "description": "CARTO Airship icons",
   "files": [
     "dist/"
@@ -21,7 +21,7 @@
   "scripts": {
     "build": "node src/generate-src.js"
   },
-  "dependencies": {
+  "devDependencies": {
     "conventional-changelog-cli": "^2.0.1"
   }
 }

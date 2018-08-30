@@ -25,6 +25,45 @@ declare global {
   interface HTMLAttributes {}
 }
 
+import {
+  HistogramColorRange,
+  HistogramData,
+} from './components/as-histogram-widget/as-histogram-widget';
+
+declare global {
+
+  namespace StencilComponents {
+    interface AsApplicationContent {
+      'getSections': () => object[];
+      'setVisible': (sectionName: string) => void;
+    }
+  }
+
+  interface HTMLAsApplicationContentElement extends StencilComponents.AsApplicationContent, HTMLStencilElement {}
+
+  var HTMLAsApplicationContentElement: {
+    prototype: HTMLAsApplicationContentElement;
+    new (): HTMLAsApplicationContentElement;
+  };
+  interface HTMLElementTagNameMap {
+    'as-application-content': HTMLAsApplicationContentElement;
+  }
+  interface ElementTagNameMap {
+    'as-application-content': HTMLAsApplicationContentElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'as-application-content': JSXElements.AsApplicationContentAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface AsApplicationContentAttributes extends HTMLAttributes {
+      'onLoad'?: (event: CustomEvent<void>) => void;
+      'onSectionChange'?: (event: CustomEvent<object>) => void;
+    }
+  }
+}
+
 
 declare global {
 
@@ -136,31 +175,344 @@ declare global {
 declare global {
 
   namespace StencilComponents {
-    interface AsSwitch {
-
+    interface AsHistogramWidget {
+      /**
+       * Clears the Histogram selection
+       */
+      'clearSelection': () => void;
+      /**
+       * Override color for the histogram bars
+       */
+      'color': string;
+      /**
+       * Color range for histogram data
+       */
+      'colorRange': HistogramColorRange[];
+      /**
+       * Histogram data to be displayed
+       */
+      'data': HistogramData[];
+      /**
+       * Default formatting function. Makes the value a readable number and converts it into a string. Useful to compose with your own formatting function.
+       */
+      'defaultFormatter': (data: HistogramData) => string;
+      /**
+       * Description of the widget to be displayed
+       */
+      'description': string;
+      /**
+       * Returns the current selection
+       */
+      'getSelection': () => number[];
+      /**
+       * Title of the widget to be displayed
+       */
+      'heading': string;
+      /**
+       * Override color for the selected histogram bars
+       */
+      'selectedColor': string;
+      /**
+       * Programmatically set the selection. It will be adjusted to the buckets present in {@link data}. To clear see {@link clearSelection} or call with null
+       */
+      'setSelection': (values: number[]) => void;
+      /**
+       * Display a clear button that clears the histogram selection.
+       */
+      'showClear': boolean;
+      /**
+       * Toggles displaying title and description
+       */
+      'showHeader': boolean;
+      /**
+       * Function that formats the tooltip. Receives HistogramData and outputs a string
+       */
+      'tooltipFormatter': (value: HistogramData) => string;
     }
   }
 
-  interface HTMLAsSwitchElement extends StencilComponents.AsSwitch, HTMLStencilElement {}
+  interface HTMLAsHistogramWidgetElement extends StencilComponents.AsHistogramWidget, HTMLStencilElement {}
 
-  var HTMLAsSwitchElement: {
-    prototype: HTMLAsSwitchElement;
-    new (): HTMLAsSwitchElement;
+  var HTMLAsHistogramWidgetElement: {
+    prototype: HTMLAsHistogramWidgetElement;
+    new (): HTMLAsHistogramWidgetElement;
   };
   interface HTMLElementTagNameMap {
-    'as-switch': HTMLAsSwitchElement;
+    'as-histogram-widget': HTMLAsHistogramWidgetElement;
   }
   interface ElementTagNameMap {
-    'as-switch': HTMLAsSwitchElement;
+    'as-histogram-widget': HTMLAsHistogramWidgetElement;
   }
   namespace JSX {
     interface IntrinsicElements {
-      'as-switch': JSXElements.AsSwitchAttributes;
+      'as-histogram-widget': JSXElements.AsHistogramWidgetAttributes;
     }
   }
   namespace JSXElements {
-    export interface AsSwitchAttributes extends HTMLAttributes {
-      'onOnToggle'?: (event: CustomEvent) => void;
+    export interface AsHistogramWidgetAttributes extends HTMLAttributes {
+      /**
+       * Override color for the histogram bars
+       */
+      'color'?: string;
+      /**
+       * Color range for histogram data
+       */
+      'colorRange'?: HistogramColorRange[];
+      /**
+       * Histogram data to be displayed
+       */
+      'data'?: HistogramData[];
+      /**
+       * Description of the widget to be displayed
+       */
+      'description'?: string;
+      /**
+       * Title of the widget to be displayed
+       */
+      'heading'?: string;
+      /**
+       * Fired when user update or clear the widget selection.
+       */
+      'onSelectionChanged'?: (event: CustomEvent<number[]>) => void;
+      /**
+       * Override color for the selected histogram bars
+       */
+      'selectedColor'?: string;
+      /**
+       * Display a clear button that clears the histogram selection.
+       */
+      'showClear'?: boolean;
+      /**
+       * Toggles displaying title and description
+       */
+      'showHeader'?: boolean;
+      /**
+       * Function that formats the tooltip. Receives HistogramData and outputs a string
+       */
+      'tooltipFormatter'?: (value: HistogramData) => string;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
+    interface AsInfowindow {
+      'src': string;
+    }
+  }
+
+  interface HTMLAsInfowindowElement extends StencilComponents.AsInfowindow, HTMLStencilElement {}
+
+  var HTMLAsInfowindowElement: {
+    prototype: HTMLAsInfowindowElement;
+    new (): HTMLAsInfowindowElement;
+  };
+  interface HTMLElementTagNameMap {
+    'as-infowindow': HTMLAsInfowindowElement;
+  }
+  interface ElementTagNameMap {
+    'as-infowindow': HTMLAsInfowindowElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'as-infowindow': JSXElements.AsInfowindowAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface AsInfowindowAttributes extends HTMLAttributes {
+      'src'?: string;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
+    interface AsRangeSlider {
+      /**
+       * Disables component if truthy
+       */
+      'disabled': boolean;
+      /**
+       * If this property is set to true, and it has multiple value, you can drag the entire track.
+       */
+      'draggable': boolean;
+      /**
+       * If this property receives a function, it will be used to format the numbers (eg. for adding $ or €).
+       */
+      'formatValue': (value: number) => void;
+      /**
+       * Top limit of the range. You cannot drag your slider beyond this value. By default the value is 10.
+       */
+      'maxValue': number;
+      /**
+       * Bottom limit of the range. You cannot drag your slider below this value. By default the value is 0.
+       */
+      'minValue': number;
+      /**
+       * Initial range.
+       */
+      'range': number[];
+      /**
+       * Increment/decrement step of the slider. You can change the step setting a different number to this property. Defaults to 1.
+       */
+      'step': number;
+      /**
+       * Initial value.
+       */
+      'value': number;
+    }
+  }
+
+  interface HTMLAsRangeSliderElement extends StencilComponents.AsRangeSlider, HTMLStencilElement {}
+
+  var HTMLAsRangeSliderElement: {
+    prototype: HTMLAsRangeSliderElement;
+    new (): HTMLAsRangeSliderElement;
+  };
+  interface HTMLElementTagNameMap {
+    'as-range-slider': HTMLAsRangeSliderElement;
+  }
+  interface ElementTagNameMap {
+    'as-range-slider': HTMLAsRangeSliderElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'as-range-slider': JSXElements.AsRangeSliderAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface AsRangeSliderAttributes extends HTMLAttributes {
+      /**
+       * Disables component if truthy
+       */
+      'disabled'?: boolean;
+      /**
+       * If this property is set to true, and it has multiple value, you can drag the entire track.
+       */
+      'draggable'?: boolean;
+      /**
+       * If this property receives a function, it will be used to format the numbers (eg. for adding $ or €).
+       */
+      'formatValue'?: (value: number) => void;
+      /**
+       * Top limit of the range. You cannot drag your slider beyond this value. By default the value is 10.
+       */
+      'maxValue'?: number;
+      /**
+       * Bottom limit of the range. You cannot drag your slider below this value. By default the value is 0.
+       */
+      'minValue'?: number;
+      'onChange'?: (event: CustomEvent<number[]>) => void;
+      'onChangeEnd'?: (event: CustomEvent<number[]>) => void;
+      'onChangeStart'?: (event: CustomEvent<number[]>) => void;
+      /**
+       * Initial range.
+       */
+      'range'?: number[];
+      /**
+       * Increment/decrement step of the slider. You can change the step setting a different number to this property. Defaults to 1.
+       */
+      'step'?: number;
+      /**
+       * Initial value.
+       */
+      'value'?: number;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
+    interface AsRangeSliderThumb {
+      'disabled': boolean;
+      'formatValue': (value: number) => void;
+      'percentage': number;
+      'value': number;
+      'valueMax': number;
+      'valueMin': number;
+    }
+  }
+
+  interface HTMLAsRangeSliderThumbElement extends StencilComponents.AsRangeSliderThumb, HTMLStencilElement {}
+
+  var HTMLAsRangeSliderThumbElement: {
+    prototype: HTMLAsRangeSliderThumbElement;
+    new (): HTMLAsRangeSliderThumbElement;
+  };
+  interface HTMLElementTagNameMap {
+    'as-range-slider-thumb': HTMLAsRangeSliderThumbElement;
+  }
+  interface ElementTagNameMap {
+    'as-range-slider-thumb': HTMLAsRangeSliderThumbElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'as-range-slider-thumb': JSXElements.AsRangeSliderThumbAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface AsRangeSliderThumbAttributes extends HTMLAttributes {
+      'disabled'?: boolean;
+      'formatValue'?: (value: number) => void;
+      'onThumbChangeEnd'?: (event: CustomEvent<void>) => void;
+      'onThumbChangeStart'?: (event: CustomEvent<void>) => void;
+      'onThumbDecrease'?: (event: CustomEvent<number>) => void;
+      'onThumbIncrease'?: (event: CustomEvent<number>) => void;
+      'onThumbMove'?: (event: CustomEvent<number>) => void;
+      'percentage'?: number;
+      'value'?: number;
+      'valueMax'?: number;
+      'valueMin'?: number;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
+    interface AsRangeSliderBar {
+      'disabled': boolean;
+      'draggable': boolean;
+      'rangeEndPercentage': number;
+      'rangeStartPercentage': number;
+      'stepPercentage': number;
+    }
+  }
+
+  interface HTMLAsRangeSliderBarElement extends StencilComponents.AsRangeSliderBar, HTMLStencilElement {}
+
+  var HTMLAsRangeSliderBarElement: {
+    prototype: HTMLAsRangeSliderBarElement;
+    new (): HTMLAsRangeSliderBarElement;
+  };
+  interface HTMLElementTagNameMap {
+    'as-range-slider-bar': HTMLAsRangeSliderBarElement;
+  }
+  interface ElementTagNameMap {
+    'as-range-slider-bar': HTMLAsRangeSliderBarElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'as-range-slider-bar': JSXElements.AsRangeSliderBarAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface AsRangeSliderBarAttributes extends HTMLAttributes {
+      'disabled'?: boolean;
+      'draggable'?: boolean;
+      'onBarChangeEnd'?: (event: CustomEvent<void>) => void;
+      'onBarChangeStart'?: (event: CustomEvent<void>) => void;
+      'onBarMove'?: (event: CustomEvent<number[]>) => void;
+      'rangeEndPercentage'?: number;
+      'rangeStartPercentage'?: number;
+      'stepPercentage'?: number;
     }
   }
 }

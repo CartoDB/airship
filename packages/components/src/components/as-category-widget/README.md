@@ -12,6 +12,7 @@ showSource: false
 ---
 <!-- Example with all default values and showing clear button -->
 <as-category-widget
+  class="as-p--16"
   heading="Business Volume"
   description="Description"
   default-bar-color="#47DB99"></as-category-widget>
@@ -28,7 +29,7 @@ showSource: false
     { name: 'Grocery', value: 800 },
     { name: 'Health', value: 400 },
     { name: 'Shopping mall', value: 250 },
-    { name: 'Transportation', value: 1000 }
+    { name: 'Transportation', value: 1000 },
     { name: 'Leisure', value: 760 }
   ];
 </script>

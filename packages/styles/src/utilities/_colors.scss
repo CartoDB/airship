@@ -9,7 +9,7 @@
     background-color: var(--as-color-secondary, #{$color-secondary});
   }
 
-  &--as-complementary {
+  &--complementary {
     background-color: var(--as-color-complementary, #{$color-complementary});
   }
 
@@ -44,5 +44,26 @@
   &--error,
   &--support-01 {
     background-color: var(--as-color-support-01, #{$color-support-01});
+  }
+
+  // Badges
+  &--badge-gray {
+    background-color: var(--as-color-badge-gray, #{$color-badge-gray});
+  }
+
+  &--badge-green {
+    background-color: var(--as-color-badge-green, #{$color-badge-green});
+  }
+
+  &--badge-blue {
+    background-color: var(--as-color-badge-blue, #{$color-badge-blue});
+  }
+
+  &--badge-pink {
+    background-color: var(--as-color-badge-pink, #{$color-badge-pink});
+  }
+
+  &--badge-yellow {
+    background-color: var(--as-color-badge-yellow, #{$color-badge-yellow});
   }
 }
