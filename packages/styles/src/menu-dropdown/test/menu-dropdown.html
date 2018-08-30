@@ -24,9 +24,29 @@
       console.log(e.getAttribute('data-value'));
     }
   </script>
-  <div class="as-dropdown">
-    <button aria-haspopup="listbox" class="as-dropdown--input"> I'm a dropdown </button>
-    <ul tabindex="-1" class="as-dropdown--options">
+
+  <div class="as-menu-dropdown">
+    <button aria-haspopup="listbox" class="as-menu-dropdown--input"> I'm a full width dropdown </button>
+    <ul tabindex="-1" class="as-menu-dropdown--options">
+      <li onclick="onFoo(this)" data-value="all">
+        <button>All</button>
+      </li>
+      <li onclick="onFoo(this)" data-value="spent">
+        <button>spent</button>
+      </li>
+      <li onclick="onFoo(this)" data-value="loaded">
+        <button>Loaded</button>
+      </li>
+      <li onclick="onFoo(this)" data-value="waiting">
+        <button>Waiting</button>
+      </li>
+    </ul>
+  </div>
+
+
+  <div style="width: 240px;" class="as-menu-dropdown">
+    <button aria-haspopup="listbox" class="as-menu-dropdown--input"> I'm a dropdown </button>
+    <ul tabindex="-1" class="as-menu-dropdown--options">
       <li onclick="onFoo(this)" data-value="all">
         <button>All</button>
       </li>
