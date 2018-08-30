@@ -24,7 +24,7 @@ exports[`as-histogram-widget Rendering should not render header when showHeader 
         font-family="sans-serif"
         font-size="10"
         text-anchor="end"
-        transform="translate(40, 15)"
+        transform="translate(35, 15)"
       />
       <g
         class="xAxis"
@@ -32,7 +32,7 @@ exports[`as-histogram-widget Rendering should not render header when showHeader 
         font-family="sans-serif"
         font-size="10"
         text-anchor="middle"
-        transform="translate(40, 140)"
+        transform="translate(35, 140)"
       >
         <g
           class="tick"
@@ -49,7 +49,7 @@ exports[`as-histogram-widget Rendering should not render header when showHeader 
         </g>
       </g>
       <g
-        transform="translate(40, 15)"
+        transform="translate(35, 15)"
       />
       <g
         class="brush"
@@ -62,7 +62,7 @@ exports[`as-histogram-widget Rendering should not render header when showHeader 
           height="125"
           pointer-events="all"
           width="205"
-          x="40"
+          x="35"
           y="15"
         />
         <rect
@@ -125,13 +125,13 @@ exports[`as-histogram-widget Rendering should render clear button 1`] = `
   class="hydrated"
 >
   
-  <h3
+  <h2
     class="as-histogram-widget__header"
   >
     
-  </h3>
+  </h2>
   <p
-    class="as-histogram-widget__description"
+    class="as-histogram-widget__description as-body"
   >
     
   </p>
@@ -153,7 +153,7 @@ exports[`as-histogram-widget Rendering should render clear button 1`] = `
         font-family="sans-serif"
         font-size="10"
         text-anchor="end"
-        transform="translate(40, 15)"
+        transform="translate(35, 15)"
       >
         <g
           class="tick"
@@ -247,7 +247,7 @@ exports[`as-histogram-widget Rendering should render clear button 1`] = `
         font-family="sans-serif"
         font-size="10"
         text-anchor="middle"
-        transform="translate(40, 140)"
+        transform="translate(35, 140)"
       >
         <g
           class="tick"
@@ -316,7 +316,7 @@ exports[`as-histogram-widget Rendering should render clear button 1`] = `
         </g>
       </g>
       <g
-        transform="translate(40, 15)"
+        transform="translate(35, 15)"
       >
         <rect
           class="bar"
@@ -362,7 +362,7 @@ exports[`as-histogram-widget Rendering should render clear button 1`] = `
           height="125"
           pointer-events="all"
           width="205"
-          x="40"
+          x="35"
           y="15"
         />
         <rect
@@ -429,13 +429,13 @@ exports[`as-histogram-widget Rendering should render colors properly 1`] = `
   class="hydrated"
 >
   
-  <h3
+  <h2
     class="as-histogram-widget__header"
   >
     
-  </h3>
+  </h2>
   <p
-    class="as-histogram-widget__description"
+    class="as-histogram-widget__description as-body"
   >
     
   </p>
@@ -457,7 +457,7 @@ exports[`as-histogram-widget Rendering should render colors properly 1`] = `
         font-family="sans-serif"
         font-size="10"
         text-anchor="end"
-        transform="translate(40, 15)"
+        transform="translate(35, 15)"
       >
         <g
           class="tick"
@@ -551,7 +551,7 @@ exports[`as-histogram-widget Rendering should render colors properly 1`] = `
         font-family="sans-serif"
         font-size="10"
         text-anchor="middle"
-        transform="translate(40, 140)"
+        transform="translate(35, 140)"
       >
         <g
           class="tick"
@@ -620,7 +620,7 @@ exports[`as-histogram-widget Rendering should render colors properly 1`] = `
         </g>
       </g>
       <g
-        transform="translate(40, 15)"
+        transform="translate(35, 15)"
       >
         <rect
           class="bar"
@@ -666,7 +666,7 @@ exports[`as-histogram-widget Rendering should render colors properly 1`] = `
           height="125"
           pointer-events="all"
           width="205"
-          x="40"
+          x="35"
           y="15"
         />
         <rect
@@ -679,7 +679,7 @@ exports[`as-histogram-widget Rendering should render colors properly 1`] = `
           stroke="#fff"
           style=""
           width="102.5"
-          x="40"
+          x="35"
           y="15"
         />
         <rect
@@ -688,7 +688,7 @@ exports[`as-histogram-widget Rendering should render colors properly 1`] = `
           height="130"
           style=""
           width="5"
-          x="140"
+          x="135"
           y="12.5"
         />
         <rect
@@ -697,7 +697,7 @@ exports[`as-histogram-widget Rendering should render colors properly 1`] = `
           height="130"
           style=""
           width="5"
-          x="37.5"
+          x="32.5"
           y="12.5"
         />
         <rect
@@ -708,7 +708,7 @@ exports[`as-histogram-widget Rendering should render colors properly 1`] = `
           rx="100"
           ry="100"
           style="opacity: 1;"
-          transform="translate(32.5,132.5)"
+          transform="translate(27.5,132.5)"
           width="15"
         />
         <rect
@@ -719,7 +719,7 @@ exports[`as-histogram-widget Rendering should render colors properly 1`] = `
           rx="100"
           ry="100"
           style="opacity: 1;"
-          transform="translate(135,132.5)"
+          transform="translate(130,132.5)"
           width="15"
         />
         <line
@@ -728,8 +728,8 @@ exports[`as-histogram-widget Rendering should render colors properly 1`] = `
           stroke="#47DB99"
           stroke-width="4"
           style="opacity: 1;"
-          x1="40"
-          x2="142.5"
+          x1="35"
+          x2="137.5"
           y1="140"
           y2="140"
         />
@@ -745,13 +745,13 @@ exports[`as-histogram-widget Rendering should render properly 1`] = `
   class="hydrated"
 >
   
-  <h3
+  <h2
     class="as-histogram-widget__header"
   >
     Histogram Widget Example
-  </h3>
+  </h2>
   <p
-    class="as-histogram-widget__description"
+    class="as-histogram-widget__description as-body"
   >
     Description for Histogram Widget
   </p>
@@ -773,7 +773,7 @@ exports[`as-histogram-widget Rendering should render properly 1`] = `
         font-family="sans-serif"
         font-size="10"
         text-anchor="end"
-        transform="translate(40, 15)"
+        transform="translate(35, 15)"
       >
         <g
           class="tick"
@@ -867,7 +867,7 @@ exports[`as-histogram-widget Rendering should render properly 1`] = `
         font-family="sans-serif"
         font-size="10"
         text-anchor="middle"
-        transform="translate(40, 140)"
+        transform="translate(35, 140)"
       >
         <g
           class="tick"
@@ -936,7 +936,7 @@ exports[`as-histogram-widget Rendering should render properly 1`] = `
         </g>
       </g>
       <g
-        transform="translate(40, 15)"
+        transform="translate(35, 15)"
       >
         <rect
           class="bar"
@@ -982,7 +982,7 @@ exports[`as-histogram-widget Rendering should render properly 1`] = `
           height="125"
           pointer-events="all"
           width="205"
-          x="40"
+          x="35"
           y="15"
         />
         <rect
@@ -1049,13 +1049,13 @@ exports[`as-histogram-widget Rendering should render selection properly 1`] = `
   class="hydrated"
 >
   
-  <h3
+  <h2
     class="as-histogram-widget__header"
   >
     
-  </h3>
+  </h2>
   <p
-    class="as-histogram-widget__description"
+    class="as-histogram-widget__description as-body"
   >
     
   </p>
@@ -1077,7 +1077,7 @@ exports[`as-histogram-widget Rendering should render selection properly 1`] = `
         font-family="sans-serif"
         font-size="10"
         text-anchor="end"
-        transform="translate(40, 15)"
+        transform="translate(35, 15)"
       >
         <g
           class="tick"
@@ -1171,7 +1171,7 @@ exports[`as-histogram-widget Rendering should render selection properly 1`] = `
         font-family="sans-serif"
         font-size="10"
         text-anchor="middle"
-        transform="translate(40, 140)"
+        transform="translate(35, 140)"
       >
         <g
           class="tick"
@@ -1240,7 +1240,7 @@ exports[`as-histogram-widget Rendering should render selection properly 1`] = `
         </g>
       </g>
       <g
-        transform="translate(40, 15)"
+        transform="translate(35, 15)"
       >
         <rect
           class="bar"
@@ -1286,7 +1286,7 @@ exports[`as-histogram-widget Rendering should render selection properly 1`] = `
           height="125"
           pointer-events="all"
           width="205"
-          x="40"
+          x="35"
           y="15"
         />
         <rect
@@ -1299,7 +1299,7 @@ exports[`as-histogram-widget Rendering should render selection properly 1`] = `
           stroke="#fff"
           style=""
           width="102.5"
-          x="40"
+          x="35"
           y="15"
         />
         <rect
@@ -1308,7 +1308,7 @@ exports[`as-histogram-widget Rendering should render selection properly 1`] = `
           height="130"
           style=""
           width="5"
-          x="140"
+          x="135"
           y="12.5"
         />
         <rect
@@ -1317,7 +1317,7 @@ exports[`as-histogram-widget Rendering should render selection properly 1`] = `
           height="130"
           style=""
           width="5"
-          x="37.5"
+          x="32.5"
           y="12.5"
         />
         <rect
@@ -1328,7 +1328,7 @@ exports[`as-histogram-widget Rendering should render selection properly 1`] = `
           rx="100"
           ry="100"
           style="opacity: 1;"
-          transform="translate(32.5,132.5)"
+          transform="translate(27.5,132.5)"
           width="15"
         />
         <rect
@@ -1339,7 +1339,7 @@ exports[`as-histogram-widget Rendering should render selection properly 1`] = `
           rx="100"
           ry="100"
           style="opacity: 1;"
-          transform="translate(135,132.5)"
+          transform="translate(130,132.5)"
           width="15"
         />
         <line
@@ -1348,8 +1348,8 @@ exports[`as-histogram-widget Rendering should render selection properly 1`] = `
           stroke="#47DB99"
           stroke-width="4"
           style="opacity: 1;"
-          x1="40"
-          x2="142.5"
+          x1="35"
+          x2="137.5"
           y1="140"
           y2="140"
         />

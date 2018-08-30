@@ -22,7 +22,7 @@ const HEIGHT = 125;
 const BARS_SEPARATION = 1;
 const MARGIN = {
   BOTTOM: 15,
-  LEFT: 40,
+  LEFT: 35,
   RIGHT: 3,
   TOP: 15,
 };
@@ -576,8 +576,8 @@ export class HistogramWidget {
     }
 
     return [
-      <h3 class='as-histogram-widget__header'>{this.heading}</h3>,
-      <p class='as-histogram-widget__description'>{this.description}</p>,
+      <h2 class='as-histogram-widget__header'>{this.heading}</h2>,
+      <p class='as-histogram-widget__description as-body'>{this.description}</p>,
     ];
   }
 
