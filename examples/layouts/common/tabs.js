@@ -54,14 +54,14 @@ function showBottomPanel(visible) {
   showPanel('as-bottom-bar', visible);
 }
 
-function showPanel(className, visible) {
+function showPanel(className, visible, visibleClassName) {
   var element = document.querySelector(`.${className}`)
 
   if (!element) {
     return;
   }
 
-  var visibleClass = className + '--visible';
+  var visibleClass = visibleClassName || (className + '--visible');
   visible
     ? element.classList.add(visibleClass)
     : element.classList.remove(visibleClass);

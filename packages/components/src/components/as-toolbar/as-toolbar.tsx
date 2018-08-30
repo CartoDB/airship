@@ -33,8 +33,8 @@ export class Toolbar {
   }
 
   private _showTab0(event) {
-    document.querySelector('.as-sidebar.as-sidebar--left').classList.add('as-sidebar--left--visible');
-    document.querySelector('.as-sidebar.as-sidebar--right').classList.remove('as-sidebar--right--visible');
+    document.querySelector('.as-sidebar.as-sidebar--left').classList.add('as-sidebar--visible');
+    document.querySelector('.as-sidebar.as-sidebar--right').classList.remove('as-sidebar--visible');
     document.querySelector('.as-bottom-bar').classList.remove('as-bottom-bar--visible');
     document.querySelector('.as-toolbar-tabs .as-toolbar-tabs__item--active')
       .classList.remove('as-toolbar-tabs__item--active');
@@ -42,8 +42,8 @@ export class Toolbar {
   }
 
   private _showTab1(event) {
-    document.querySelector('.as-sidebar.as-sidebar--left').classList.remove('as-sidebar--left--visible');
-    document.querySelector('.as-sidebar.as-sidebar--right').classList.remove('as-sidebar--right--visible');
+    document.querySelector('.as-sidebar.as-sidebar--left').classList.remove('as-sidebar--visible');
+    document.querySelector('.as-sidebar.as-sidebar--right').classList.remove('as-sidebar--visible');
     document.querySelector('.as-bottom-bar').classList.remove('as-bottom-bar--visible');
     document.querySelector('.as-toolbar-tabs .as-toolbar-tabs__item--active')
       .classList.remove('as-toolbar-tabs__item--active');
@@ -51,8 +51,8 @@ export class Toolbar {
   }
 
   private _showTab2(event) {
-    document.querySelector('.as-sidebar.as-sidebar--right').classList.add('as-sidebar--right--visible');
-    document.querySelector('.as-sidebar.as-sidebar--left').classList.remove('as-sidebar--left--visible');
+    document.querySelector('.as-sidebar.as-sidebar--right').classList.add('as-sidebar--visible');
+    document.querySelector('.as-sidebar.as-sidebar--left').classList.remove('as-sidebar--visible');
     document.querySelector('.as-bottom-bar').classList.remove('as-bottom-bar--visible');
     document.querySelector('.as-toolbar-tabs .as-toolbar-tabs__item--active'
     ).classList.remove('as-toolbar-tabs__item--active');
@@ -60,8 +60,8 @@ export class Toolbar {
   }
 
   private _showTab3(event) {
-    document.querySelector('.as-sidebar.as-sidebar--right').classList.remove('as-sidebar--right--visible');
-    document.querySelector('.as-sidebar.as-sidebar--left').classList.remove('as-sidebar--left--visible');
+    document.querySelector('.as-sidebar.as-sidebar--right').classList.remove('as-sidebar--visible');
+    document.querySelector('.as-sidebar.as-sidebar--left').classList.remove('as-sidebar--visible');
     document.querySelector('.as-bottom-bar').classList.add('as-bottom-bar--visible');
     document.querySelector('.as-toolbar-tabs .as-toolbar-tabs__item--active')
       .classList.remove('as-toolbar-tabs__item--active');

@@ -72,7 +72,7 @@ describe('as-application-content', () => {
 
       expect(mapTab).toMatchClasses(['as-tabs__item']);
       expect(leftSidebarTab).toMatchClasses(['as-tabs__item', 'as-tabs__item--active']);
-      expect(leftSidebarNode).toMatchClasses(['as-sidebar', 'as-sidebar--left', 'as-sidebar--left--visible']);
+      expect(leftSidebarNode).toMatchClasses(['as-sidebar', 'as-sidebar--left', 'as-sidebar--visible']);
     });
   });
 

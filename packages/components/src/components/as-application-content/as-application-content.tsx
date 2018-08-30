@@ -157,10 +157,8 @@ export class ApplicationContent {
     const sidebars = Array.from(this.element.querySelectorAll('.as-sidebar'));
 
     const sidebarSections = sidebars.map((sidebar, index) => {
-      const sidebarPosition = sidebar.classList.contains('as-sidebar--left') ? 'left' : 'right';
-
       return {
-        activeClass: `as-sidebar--${sidebarPosition}--visible`,
+        activeClass: `as-sidebar--visible`,
         element: sidebar,
         name: sidebar.getAttribute('data-name') || `Sidebar ${index}`,
         tabOrder: sidebar.getAttribute('data-tab-order') || 0,
