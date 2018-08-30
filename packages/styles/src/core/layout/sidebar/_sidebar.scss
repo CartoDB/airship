@@ -15,9 +15,10 @@
 
   &--left {
     left: -100%;
+    order: -1;
     box-shadow: rgba($color-type-01, 0.16) 1px 0 4px 0;
 
-    &--visible {
+    &.as-sidebar--visible {
       left: 0;
       opacity: 1;
     }
@@ -25,9 +26,10 @@
 
   &--right {
     right: -100%;
+    order: 9999;
     box-shadow: rgba($color-type-01, 0.16) 0 1px 4px 0;
 
-    &--visible {
+    &.as-sidebar--visible {
       right: 0;
       opacity: 1;
     }
