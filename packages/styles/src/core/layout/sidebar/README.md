@@ -13,7 +13,7 @@ Sidebar position and size can be changed with the following class modifiers.
 
 
 
-Sidebars are hidden by default in mobile devices and only will be shown when the modifier class `as-sidebar--left--visible` or `as-sidebar--right--visible`  is present.
+Sidebars are hidden by default in mobile devices and only will be shown when the modifier class `as-sidebar--visible` is present.
 
 ```html
 noSource: true
