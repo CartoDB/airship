@@ -39,11 +39,11 @@ function showBottom(event) {
 }
 
 function showLeftPanel(visible) {
-  showPanel('as-sidebar--left', visible);
+  showPanel('as-sidebar--left', visible, 'as-sidebar--visible');
 }
 
 function showRightPanel(visible) {
-  showPanel('as-sidebar--right', visible);
+  showPanel('as-sidebar--right', visible, 'as-sidebar--visible');
 }
 
 function showLegendsPanel(visible) {
