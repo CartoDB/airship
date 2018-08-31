@@ -1,7 +1,7 @@
 @import "../core/_dev";
 
 .as-menu-dropdown {
-  --as-dropdown-menu-hover-color: #D3F6E6;
+  --as-menu-dropdown-hover-color: #{rgba($color-complementary, 0.16)};
   position: relative;
 
   &--input {
@@ -31,6 +31,7 @@
     padding: 0;
     overflow: hidden;
     border-radius: 4px;
+    background: white;
     box-shadow: $shadow-8;
 
     li {
@@ -59,7 +60,7 @@
 
       &:hover,
       &:focus-within {
-        background: var(--as-dropdown-menu-hover-color, #D3F6E6);
+        background: var(--as-menu-dropdown-hover-color, #{rgba($color-complementary, 0.16)});
       }
 
       button {
