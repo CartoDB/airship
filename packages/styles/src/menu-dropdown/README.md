@@ -5,16 +5,16 @@ Use a dropdown menu to group a set of options that are only visible when the men
 <div style="width: 240px;" class="as-menu-dropdown">
   <button aria-haspopup="listbox" class="as-menu-dropdown--input"> I'm a dropdown </button>
   <ul tabindex="-1" class="as-menu-dropdown--options">
-    <li onclick="onFoo(this)" data-value="all">
+    <li>
       <button>All</button>
     </li>
-    <li onclick="onFoo(this)" data-value="spent">
+    <li>
       <button>spent</button>
     </li>
-    <li onclick="onFoo(this)" data-value="loaded">
+    <li>
       <button>Loaded</button>
     </li>
-    <li onclick="onFoo(this)" data-value="waiting">
+    <li>
       <button>Waiting</button>
     </li>
   </ul>
