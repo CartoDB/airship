@@ -120,10 +120,48 @@ This event fires when the component has finished loading. Useful to load Leaflet
 
 ```code
 lang: javascript
-showSource: false
 ---
 const applicationContent = document.querySelector('as-application-content');
 applicationContent.addEventListener('load', () => {});
+```
+
+```hint|directive
+To avoid errors with layout dependent JavaScript code, we recommend you to execute all your JavaScript code inside the load event.
+```
+
+So, if you want to load a Leaflet map with some CARTO.js layers, you better put that code inside load event handler, like this:
+```code
+lang: javascript
+---
+const applicationContent = document.querySelector('as-application-content');
+applicationContent.addEventListener('load', () => {
+  const map = L.map('map', {
+    zoomControl: false
+  }).setView([30, 0], 3);
+  map.scrollWheelZoom.disable();
+
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}.png', {
+    maxZoom: 18
+  }).addTo(map);
+
+  const client = new carto.Client({
+    apiKey: 'default_public',
+    username: 'cartojs-test'
+  });
+
+  const source = new carto.source.Dataset('ne_10m_populated_places_simple');
+  const style = new carto.style.CartoCSS(`
+    #layer {
+      marker-width: 7;
+      marker-fill: #EE4D5A;
+      marker-line-color: #FFFFFF;
+    }
+  `);
+  const layer = new carto.layer.Layer(source, style);
+
+  client.addLayer(layer);
+  client.getLeafletLayer().addTo(map);
+});
 ```
 
 ### **sectionChanged**
@@ -132,7 +170,6 @@ This event fires when the content section is changed via clicking a tab or via t
 
 ```code
 lang: javascript
-showSource: false
 ---
 const applicationContent = document.querySelector('as-application-content');
 applicationContent.addEventListener('sectionChanged', (section) => { console.log(section); });
@@ -146,7 +183,6 @@ This method return a list of the sections discovered throughout the content with
 
 ```code
 lang: typescript
-showSource: false
 ---
 interface ApplicationSection {
   active?: boolean;
