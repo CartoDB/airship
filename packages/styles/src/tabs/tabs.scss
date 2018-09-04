@@ -35,27 +35,16 @@
     text-decoration: none;
     cursor: pointer;
 
-    &:focus,
     &:hover {
       border-bottom: 2px solid var(--as-color-complementary, #{$color-complementary});
     }
 
-    &--active,
-    &:active {
+    &--active {
       border-bottom: 2px solid var(--as-color-secondary, #{$color-secondary});
       color: var(--as-color-type-01, #{$color-type-01});
 
-      &:focus,
       &:hover {
         border-bottom: 2px solid var(--as-color-secondary, #{$color-secondary});
-      }
-    }
-
-    a {
-      text-decoration: none;
-
-      &:visited {
-        color: var(--as-color-primary, #{$color-primary});
       }
     }
   }
