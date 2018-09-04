@@ -5,6 +5,7 @@ as-range-slider {
   --slider--range-color: var(--as-color-primary, #{$color-primary});
 
   display: block;
+  height: get-spacing(8);
 
   .as-range-slider--disabled {
     pointer-events: none;
