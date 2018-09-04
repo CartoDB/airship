@@ -18,7 +18,7 @@
 
     &:hover,
     &:focus {
-      // Pending focus
+      background: var(--as-menu-dropdown-hover-color, #{rgba($color-complementary, 0.16)});
     }
   }
 
