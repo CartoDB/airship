@@ -1,0 +1,99 @@
+@import "../core/_dev";
+
+.as-menu-dropdown {
+  --as-menu-dropdown-hover-color: #{rgba($color-complementary, 0.16)};
+  position: relative;
+
+  &--input {
+    width: 100%;
+    min-height: 32px;
+    margin: 0;
+    padding: 0 get-spacing(3);
+    border: 0;
+    background: var(--as-color-ui-01, #{$color-ui-01});
+    color: var(--as-color-primary, #{$color-primary});
+    font: $font-body;
+    text-align: left;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+      background: var(--as-menu-dropdown-hover-color, #{rgba($color-complementary, 0.16)});
+    }
+  }
+
+  &--options {
+    position: absolute;
+    z-index: 3;
+    width: 100%;
+    height: 0;
+    margin: 0 auto;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 4px;
+    background: white;
+    box-shadow: $shadow-8;
+
+    li {
+      display: flex;
+      align-items: flex-start;
+      width: 100%;
+      padding: 0 get-spacing(3);
+      transition: background-color 0.3s;
+      border: 0;
+      border-bottom: 1px solid var(--as-color-ui-04, #{$color-ui-04});
+      outline: none;
+      background: var(--as-color-ui-01, #{$color-ui-01});
+      color: var(--as-color-type-01, #{$color-type-01});
+      font: $font-body;
+      list-style: none;
+      cursor: pointer;
+
+      &:first-child {
+        border-top: 1px solid #F0F0F0;
+        border-radius: 4px 4px 0 0;
+      }
+
+      &:last-child {
+        border-radius: 0 0 4px 4px;
+      }
+
+      &:hover,
+      &:focus-within {
+        background: var(--as-menu-dropdown-hover-color, #{rgba($color-complementary, 0.16)});
+      }
+
+      button {
+        width: 100%;
+        height: 100%;
+        min-height: get-spacing(8);
+        padding: 0;
+        border: none;
+        outline: none;
+        background: none;
+        text-align: left;
+        cursor: pointer;
+      }
+    }
+
+    &:hover {
+      height: auto;
+    }
+
+    &:focus {
+      height: auto;
+    }
+
+    &:focus-within {
+      height: auto;
+    }
+  }
+
+  &--input:hover + &--options {
+    height: auto;
+  }
+
+  &--input:focus + &--options {
+    height: auto;
+  }
+}
