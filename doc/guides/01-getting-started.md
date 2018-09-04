@@ -139,3 +139,40 @@ For example a range slider
   slider.addEventListener('change', event => console.log('New value:', event.detail));
 </script>
 ```
+
+
+# Basic template
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> Airship app</title>
+  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-styles/<VERSION>/airship.css">
+  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-icons/<VERSION>/icons.css">
+  <script src="https://libs.cartocdn.com/airship-components/<VERSION>/airship.js"></script>
+
+  <style>
+    #map {
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+  </style>
+</head>
+
+<body class="as-app">
+  <main class="as-app-content">
+    <div class="as-map-wrapper">
+      <div id="map"></div>
+    </div>
+  </main>
+</body>
+
+</html>
+```
