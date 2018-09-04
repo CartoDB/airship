@@ -66,3 +66,60 @@ import { defineCustomElements } from '@carto/airship-components';
 
 defineCustomElements(window);
 ```
+
+# Using Airship
+Using airship once included in your webpage is very straightforward. 
+
+## Airship Styles
+
+To use airship styles you only need to add CSS classes to the desired HTML fragment.
+
+For example a button can become a Airhip button adding the `as-btn` class.
+
+```html
+<button class="as-btn"> Button </button>
+```
+
+Airship classes follow [BEM](http://getbem.com/introduction/) conventions, this means that the classes can be of the following types:
+
+- **Block**: Standalone entity that is meaningful on its own. (`.block`)
+- **Element**: A part of a block that has no standalone meaning and is semantically tied to its block. (`.block__element`)
+- **Modifier**: Modifies the block appearance or behavior. (`.block--modifier`)
+
+For example to create tabs we use the following classes:
+
+`.as-toolbar-tabs` and `.as-tabs` to generate a **tab** block. `.as-tabs__item` to indicate the items and `.as-tabs__item--active` to highlight the active item.
+
+```html
+ <div class="as-toolbar-tabs as-tabs" role="tablist">
+    <button role="tab" class="as-tabs__item as-tabs__item--active">MAP</button>
+    <button role="tab" class="as-tabs__item">LEFT</button>
+    <button role="tab" class="as-tabs__item">RIGHT</button>
+    <button role="tab" class="as-tabs__item">PANELS</button>
+  </div>
+```
+
+## Airship Icons
+You can use airship icons in two different ways.
+
+### As web font
+
+To display an icon only a class and an `i` tag is required.
+
+```html
+<i class="as-icon-twitter"></i>
+```
+
+
+### As svg
+
+> There is no need to include the `icons.css` file when using the icons this way.
+
+
+Just include the icons from a CDN as regular SVG images. 
+
+```html
+<img src="https://libs.cartocdn.com/airship-icons/<VERSION>/icons/twitter.svg" alt="Twitter logo">
+```
+
+## Web componenets
