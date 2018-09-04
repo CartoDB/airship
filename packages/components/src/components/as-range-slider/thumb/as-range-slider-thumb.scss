@@ -23,10 +23,6 @@ as-range-slider-thumb {
     }
   }
 
-  .as-range-slider__thumb:hover .as-range-slider__value {
-    transform: translate3d(-53%, 4px, 0);
-  }
-
   .as-range-slider__thumb-handle {
     width: 12px;
     height: 12px;
@@ -78,9 +74,5 @@ as-range-slider-thumb {
     &:hover {
       transform: translate3d(-6px, 0, 0) scale(1.33);
     }
-  }
-
-  .as-range-slider__thumb-handle--moving + .as-range-slider__value--moving {
-    transform: translate3d(-53%, 4px, 0);
   }
 }
