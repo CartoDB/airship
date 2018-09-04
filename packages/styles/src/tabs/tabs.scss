@@ -39,6 +39,10 @@
       border-bottom: 2px solid var(--as-color-complementary, #{$color-complementary});
     }
 
+    a {
+      text-decoration: none;
+    }
+
     &--active {
       border-bottom: 2px solid var(--as-color-secondary, #{$color-secondary});
       color: var(--as-color-type-01, #{$color-type-01});
