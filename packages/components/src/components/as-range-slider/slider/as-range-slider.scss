@@ -13,8 +13,9 @@ as-range-slider {
   .as-range-slider__rail {
     display: flex;
     position: relative;
-    width: 100%;
+    width: calc(100% - 12px);
     height: 12px;
+    margin: auto;
 
     &::before {
       content: ' ';
