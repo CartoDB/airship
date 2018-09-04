@@ -17,17 +17,17 @@ lang: html
 ---
 <nav>
   <ul class="as-tabs">
-    <li>
-      <a class="as-tabs__item as-tabs__item--active" href="#">Map</a>
+    <li class="as-tabs__item as-tabs__item--active">
+      <a href="#">Map</a>
     </li>
-    <li>
-      <a class="as-tabs__item" href="#">Legends</a>
+    <li class="as-tabs__item">
+      <a href="#">Legends</a>
     </li>
-    <li>
-      <a class="as-tabs__item" href="#">Widgets</a>
+    <li class="as-tabs__item">
+      <a href="#">Widgets</a>
     </li>
-    <li>
-      <a class="as-tabs__item" href="#">Sidebar</a>
+    <li class="as-tabs__item">
+      <a href="#">Sidebar</a>
     </li>
   </ul>
 </nav>
@@ -48,10 +48,18 @@ lang: html
 ---
 <nav>
   <ul class="as-tabs as-tabs--xl">
-    <li class="as-tabs__item as-tabs__item--active">Map</li>
-    <li class="as-tabs__item">Legends</li>
-    <li class="as-tabs__item">Widgets</li>
-    <li class="as-tabs__item">Sidebar</li>
+    <li class="as-tabs__item as-tabs__item--active">
+      <a href="#">Map</a>
+    </li>
+    <li class="as-tabs__item">
+      <a href="#">Legends</a>
+    </li>
+    <li class="as-tabs__item">
+      <a href="#">Widgets</a>
+    </li>
+    <li class="as-tabs__item">
+      <a href="#">Sidebar</a>
+    </li>
   </ul>
 </nav>
 ```
