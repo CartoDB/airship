@@ -74,6 +74,7 @@ lang: html
 ```
 
 ### Toolbar positioning
+Toolbar is positioned to the top of the page by default.
 
 You can specify a different toolbar position with the `as-app--nav-{position}` modifiers, the available options are `left` and `right`. Add the class to the `as-app` element.
 
@@ -85,8 +86,9 @@ noSource: true
 
 ### Toolbar Content
 
-The toolbar will contain typically your logo and action items. To add an item, use the class
-`as-toolbar__item`
+The toolbar will typically contain your logo and action items. All the elements inside the toolbar need to be within any element with `.as-toolbar` class, as you can see in the example above.
+
+To add an item to the toolbar, use `as-toolbar__item` class.
 
 #### Toolbar positioning
 
