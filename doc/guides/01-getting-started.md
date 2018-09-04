@@ -123,3 +123,19 @@ Just include the icons from a CDN as regular SVG images.
 ```
 
 ## Web componenets
+
+Web components should be treated as regular HTML Elements. 
+
+A web component is just an HTML tag with some attributes that control it's behaviour. Simply include the HTML tag, and edit its properties through attributes or through javascript.
+
+
+For example a range slider
+
+
+```html
+<as-range-slider id="range-slider"></as-range-slider>
+<script>
+  const slider = document.querySelector('#range-slider');
+  slider.addEventListener('change', event => console.log('New value:', event.detail));
+</script>
+```
