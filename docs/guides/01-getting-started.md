@@ -48,11 +48,23 @@ While Airship will automatically inject necessary components as soon as they are
 
 ### Styles and fonts
 
-Just install our packages and use it as you wish:
+Just install our packages and use it as you wish. We recommend to use [webpack loaders](https://github.com/webpack-contrib/css-loader) to inject the styles in your app.
 
     npm i @carto/airship-style @carto/airship-icons
 
-Take a look at [sass-loader](https://github.com/webpack-contrib/sass-loader) if you are using webpack. We provide both `dist` and `src` files so you can create a custom [sass](https://sass-lang.com/) build.
+Once installed you can just import all the files or only a small subset.
+
+
+```js
+// Import all styles
+import '@carto/airship-styles';
+```
+
+```js
+// Import only core styles and tables
+import '@carto/airship-styles/dist/core/core.css';
+import '@carto/airship-styles/dist/table/table.css';
+```
 
 ### Web components
 
