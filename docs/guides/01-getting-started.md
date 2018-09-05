@@ -11,13 +11,13 @@ Airship is composed of 3 packages that can be used independently:
 
 ## Usage from a CDN
 
-The simplest way to use airship styles is just load them from a CDN including the following in the head of your web-application.
+The simplest way to use Airship is to load it from CARTO CDN by including the following snippet in the head of your web application.
 
 ```html
 <head>
   <!-- Include CSS  -->
   <link rel="stylesheet" href="https://libs.cartocdn.com/airship-styles/<VERSION>/airship.css">
-  <!-- Include icons -->
+  <!-- Include Icons -->
   <link rel="stylesheet" href="https://libs.cartocdn.com/airship-icons/<VERSION>/icons.css">
   <!-- Include Web Components -->
   <script src="https://libs.cartocdn.com/airship-components/<VERSION>/airship.js"></script>
@@ -26,15 +26,15 @@ The simplest way to use airship styles is just load them from a CDN including th
 
 ### Reducing bundle size
 
-To get a better [page speed performance](https://developers.google.com/speed/docs/insights/OptimizeCSSDelivery) we suggest to include only the items that are being used in your app.
+To get a better [page speed performance](https://developers.google.com/speed/docs/insights/OptimizeCSSDelivery), we suggest you to only include the styles that are being used in your app.
 
-While the `web-component loader` will only inject required web components for the styles you need to specify which elements you want to load:
+While Airship will automatically inject necessary components as soon as they are inserted in the DOM, you need to specify which CSS elements you want to load in advance. Here's an example:
 
 ```html
 <head>
   <!-- Always Include core first -->
   <link rel="stylesheet" href="https://libs.cartocdn.com/airship-styles/dist/core/core.css">
-  <!-- Include the components used by your app -->
+  <!-- Include the elements used by your app -->
   <link rel="stylesheet" href="https://libs.cartocdn.com/airship-styles/dist/button/button.css">
   <link rel="stylesheet" href="https://libs.cartocdn.com/airship-styles/dist/table/table.css">
   <link rel="stylesheet" href="https://libs.cartocdn.com/airship-styles/dist/tabs/tabs.css">
@@ -74,7 +74,7 @@ Using airship once included in your webpage is very straightforward.
 
 To use airship styles you only need to add CSS classes to the desired HTML fragment.
 
-For example a button can become a Airhip button adding the `as-btn` class.
+For example a simple button can become an Airship button by simply adding the `as-btn` class.
 
 ```html
 <button class="as-btn"> Button </button>
@@ -111,7 +111,7 @@ To display an icon only a class and an `i` tag is required.
 ```
 
 
-### As svg
+### As SVG
 
 > There is no need to include the `icons.css` file when using the icons this way.
 
@@ -126,7 +126,7 @@ Just include the icons from a CDN as regular SVG images.
 
 Web components should be treated as regular HTML Elements. 
 
-A web component is just an HTML tag with some attributes that control it's behaviour. Simply include the HTML tag, and edit its properties through attributes or through javascript.
+A web component is just an HTML tag with some attributes that control its behaviour. Simply include the HTML tag, and edit its properties through attributes or through javascript.
 
 
 For example a range slider
