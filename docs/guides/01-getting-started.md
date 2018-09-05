@@ -84,7 +84,7 @@ Using airship once included in your webpage is very straightforward.
 
 ## Airship Styles
 
-To use airship styles you only need to add CSS classes to the desired HTML fragment.
+To use airship styles you only need to add CSS classes to your HTML.
 
 For example a simple button can become an Airship button by simply adding the `as-btn` class.
 
