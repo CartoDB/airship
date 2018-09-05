@@ -5,6 +5,8 @@
   "files": [
     "dist/"
   ],
+  "main": "dist/icons.css",
+  "style": "dist/icons.css",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/CartoDB/airship.git"
