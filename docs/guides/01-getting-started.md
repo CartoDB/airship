@@ -98,7 +98,7 @@ Airship classes follow [BEM](http://getbem.com/introduction/) conventions, this 
 - **Element**: A part of a block that has no standalone meaning and is semantically tied to its block. (`.block__element`)
 - **Modifier**: Modifies the block appearance or behavior. (`.block--modifier`)
 
-For example to create tabs we use the following classes:
+The following classes are part of a tabs element:
 
 `.as-toolbar-tabs` and `.as-tabs` to generate a **tab** block. `.as-tabs__item` to indicate the items and `.as-tabs__item--active` to highlight the active item.
 
