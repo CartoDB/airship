@@ -80,11 +80,11 @@ defineCustomElements(window);
 ```
 
 # Using Airship
-Using airship once included in your webpage is very straightforward. 
+Using Airship once included in your webpage is very straightforward. 
 
 ## Airship Styles
 
-To use airship styles you only need to add CSS classes to your HTML.
+To use Airship styles you only need to add CSS classes to your HTML.
 
 For example a simple button can become an Airship button by simply adding the `as-btn` class.
 
@@ -112,7 +112,7 @@ The following classes are part of a tabs element:
 ```
 
 ## Airship Icons
-You can use airship icons in two different ways.
+You can use Airship icons in two different ways.
 
 ### As web font
 
