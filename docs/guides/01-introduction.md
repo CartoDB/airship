@@ -21,11 +21,11 @@ The easiest way to include airship is through our CDN, adding the tags in the he
 <html>
 <head>
   <!-- Include CSS elements -->
-  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-styles/v1.0.0-alpha.37/airship.css">
+  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-styles/<VERSION>/airship.css">
   <!-- Include icons -->
-  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-icons/v1.0.0-alpha.37/icons.css">
+  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-icons/<VERSION>/icons.css">
   <!-- Include airship components -->
-  <script src="https://libs.cartocdn.com/airship-components/v1.0.0-alpha.37/airship.js"></script>
+  <script src="https://libs.cartocdn.com/airship-components/<VERSION>/airship.js"></script>
 </head>
 <body>
   <div class="as-p--16">
