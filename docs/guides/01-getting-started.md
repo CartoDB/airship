@@ -58,7 +58,7 @@ Take a look at [sass-loader](https://github.com/webpack-contrib/sass-loader) if 
 
     npm i @carto/airship-components
 
-You need to call the `defineCustomElements` function to use the web components from npm.
+You need to call the `defineCustomElements` function (better in the app entry point) to use the web components from npm.
 
 
 ```js
