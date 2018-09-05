@@ -24,7 +24,7 @@
     cursor: pointer;
 
     a {
-      color: var(--as-color--complementary, #{$color-complementary});
+      color: var(--as-color-ui-01, #{$color-ui-01});
       text-decoration: none;
     }
   }
