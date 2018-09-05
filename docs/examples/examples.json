@@ -1,18 +1,13 @@
 {
-    "main": {
-        "file": "file.md"
-    },
-    "categories": [
-        {
-            "title": "title",
-            "samples": [
-                {
-                    "title": "title",
-                    "desc": "desc",
-                    "file": "file.md"
-                }
-            ]
-        }
-        }
-    ]
+  "main": {
+    "file": "file.md"
+  },
+  "categories": [{
+    "title": "title",
+    "samples": [{
+      "title": "title",
+      "desc": "desc",
+      "file": "file.md"
+    }]
+  }]
 }
