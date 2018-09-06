@@ -11,13 +11,13 @@ You can use the icons directly from our CDN in an img tag.
 <img src="https://libs.cartocdn.com/airship-icons/<VERSION>/icons/twitter.svg" alt="Twitter logo">
 ```
 
-> You can check the full list of icons [in the github repo](https://github.com/CartoDB/airship/tree/<VERSION>/packages/icons/dist/icons)
+> You can check the full list of icons [in the GitHub repo](https://github.com/CartoDB/airship/tree/<VERSION>/packages/icons/dist/icons)
 
 ### Usage as web font
 
-You can put icons on your app as a web-font.
+You can put icons on your app as a web font.
 
-First you need to include our `icons.css` file in the head of your app.
+First, you need to include our `icons.css` file in the head of your app.
 
 ```html
 <head>
