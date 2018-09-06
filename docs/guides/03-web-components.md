@@ -52,7 +52,7 @@ Loading and using web components is very easy, you just need to include our comp
 
 ### List of Web Components
 
-> Link to the reference
+> See the most recent list in [the github repo](https://github.com/CartoDB/airship/tree/master/packages/components/src/components)
 
 - Widgets
   - category-widget
