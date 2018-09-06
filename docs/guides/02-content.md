@@ -2,14 +2,14 @@
 
 Airship is divided into three main packages:
 
-- @carto/airship-components: Web components ready to use in your application.
-- @carto/airship-style: CSS classes to provide the foundation for your application's look and feel.
-- @carto/airship-icons: Icon set to use in your HTML.
+- [@carto/airship-components](https://www.npmjs.com/package/@carto/airship-components): Web components ready to use in your application.
+- [@carto/airship-style](https://www.npmjs.com/package/@carto/airship-style): CSS classes to provide the foundation for your application's look and feel.
+- [@carto/airship-icons](https://www.npmjs.com/package/@carto/airship-icons): Icon set to use in your HTML.
 
 These three packages are what Airship provides to build your own location intelligence application.
 
 ## Components
-Airship components are built on top of StencilJS, which allows us to provide lightweight and easy to use components.
+Airship components are built on top of [StencilJS](https://stenciljs.com/), which allows us to provide lightweight and easy to use components.
 
 You can find the components' source code in [`src/components`](https://github.com/CartoDB/airship/tree/master/packages/components/src/components) folder. Each component has several files associated:
 - TSX component file: Main component file where the logic and template is.
@@ -24,8 +24,8 @@ By importing `@carto/airship-components` package, the components loader will be 
 Airship styles are split into several folders to allow importing the whole bundle or each style separately, aiming to give flexibility and the possibility to reduce the size of the application's final bundle.
 
 **Styles are provided in two different flavours:**
-- **SASS**: raw uncompiled styles to process on the build process, allowing you to modify variables and customize Airship styles.
-- **CSS**: plain CSS styles to import in your bundle or your HTML directly avoiding the build step.
+- **SASS**: Uncompiled styles to process on the build step, allowing you to modify variables and customize Airship styles.
+- **CSS**: CSS styles to import in your bundle or your HTML directly, avoiding the build step.
 
 We follow the same directory scaffolding in both cases, whether they are SASS styles or CSS styles. The root directory for each flavour is:
 - CSS: `@carto/airship-style/dist/{path}`
@@ -35,9 +35,7 @@ In case you want to import the whole bundle, you need to import:
 - JavaScript: `import '@carto/airship-style';`
 - CSS: `@import '~@carto/airship-style';`
 
-If you want to include any of the styles separately, you need to look for the path and append it to the root directory folder.
-
-As of now, we have 16 style components as well as some core styles related to application layout. You can find all of them [here](https://github.com/CartoDB/airship/tree/master/packages/styles/src).
+If you want to include any of the styles separately, you need to look for the path and append it to the root directory folder. You can find all of them [here](https://github.com/CartoDB/airship/tree/master/packages/styles/src).
 
 All directories have a similar structure:
 - Style file: the main styles for the component, named like the folder.
@@ -70,8 +68,8 @@ Airship includes a set of icons to place into your application. These icons can 
 Each SVG is automatically generated from a path set in [`paths.js`](https://github.com/CartoDB/airship/blob/master/packages/icons/src/paths.js).
 
 Similarly to styles, we provide icons in two flavours:
-- **SVG files**: plain SVG files to include within an `<img>` tag.
-- **Web Font**: icon font containing icon glyphs to style them with CSS.
+- **SVG files**: SVG files to include within an `<img>` tag.
+- **Web Font**: Icon font containing glyphs to style them with CSS.
 
 While SVG files are easier and lightweight to use, using the Web Font approach provides multiple possibilities for customization with CSS.
 
