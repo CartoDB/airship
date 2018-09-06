@@ -11,6 +11,15 @@ These three packages are what Airship provides to build your own location intell
 ## Components
 Airship components are built on top of StencilJS, which allow us to provide lightweight and easy to use components.
 
+You can find the source for all components in [`src/components`](https://github.com/CartoDB/airship/tree/master/packages/components/src/components) folder. Each component has several files associated:
+- TSX component file: Main component file where the logic and template is located.
+- SASS styles file: Provided component styles.
+- Component Tests file: Unit component tests.
+- Example HTML file: Component showcase showing all the component variants and behaviour.
+
+Airship components are always lazy loaded, so there is no need to worry about importing the whole bundle or each component separately.
+By importing `@carto/airship-components` package, the components loader will be included in your bundle and it will lazy load components by injecting them as soon as they are present in the DOM.
+
 ## Styles
 Airship styles are split into several folders to allow importing the whole bundle or each style separately, aiming to give flexibility and the possibility to reduce the size of the application's final bundle.
 
@@ -46,6 +55,7 @@ CSS styles:
 - SASS import: `@import '~@carto/airship-style/dist/{path}';`
 
 So, let's say that you want to import badges component, these will be the snippets you can choose from:
+
 SASS styles:
 - JavaScript import: `import '@carto/airship-style/src/badges/badges';`
 - SASS import: `@import '~@carto/airship-style/src/badges/badges';`
@@ -55,3 +65,16 @@ CSS styles:
 - SASS import: `@import '~@carto/airship-style/dist/badges/badges';`
 
 ## Icons
+Airship includes a set of icons to place into your application. These icons can be found in [this folder](https://github.com/CartoDB/airship/tree/master/packages/icons/src/icons).
+
+Each SVG is automatically generated from a path set in [`paths.js`](https://github.com/CartoDB/airship/blob/master/packages/icons/src/paths.js).
+
+Similarly to styles, we provide the icons in two flavours:
+- SVG files: the plain SVG files to include within an `<img>` tag.
+- Web Font: the icon font containing the icon glyphs to style them with CSS.
+
+While the SVG files are easier and lightweight to use, the Web Font provides multiple possibilities for customization with CSS.
+
+When including icons package in CSS or SASS via Webpack or another bundler, it will use Web Font by default. If you prefer to use each SVG file separately, you will need to use via CDN or importing it from node_modules folder wherever you want.
+
+Icons' [`dist/` folder](https://github.com/CartoDB/airship/tree/master/packages/icons/dist) is the root content of the npm package. To include each icon separately you need to require the path starting from that folder, like this: `@carto/airship-icons/icons/{icon_name}.svg`. Replacing `{icon_name}` with the desired icon name.
