@@ -3,28 +3,28 @@
 Airship is divided into three main packages:
 
 - @carto/airship-components: Web components ready to use in your application.
-- @carto/airship-style: CSS classes to provide the foundation for the look and feel of your application.
+- @carto/airship-style: CSS classes to provide the foundation for your application's look and feel.
 - @carto/airship-icons: Icon set to use in your HTML.
 
 These three packages are what Airship provides to build your own location intelligence application.
 
 ## Components
-Airship components are built on top of StencilJS, which allow us to provide lightweight and easy to use components.
+Airship components are built on top of StencilJS, which allows us to provide lightweight and easy to use components.
 
-You can find the source for all components in [`src/components`](https://github.com/CartoDB/airship/tree/master/packages/components/src/components) folder. Each component has several files associated:
-- TSX component file: Main component file where the logic and template is located.
+You can find the components' source code in [`src/components`](https://github.com/CartoDB/airship/tree/master/packages/components/src/components) folder. Each component has several files associated:
+- TSX component file: Main component file where the logic and template is.
 - SASS styles file: Provided component styles.
 - Component Tests file: Unit component tests.
 - Example HTML file: Component showcase showing all the component variants and behaviour.
 
 Airship components are always lazy loaded, so there is no need to worry about importing the whole bundle or each component separately.
-By importing `@carto/airship-components` package, the components loader will be included in your bundle and it will lazy load components by injecting them as soon as they are present in the DOM.
+By importing `@carto/airship-components` package, the components loader will be included in your bundle and it will lazy-load components by injecting them as soon as they are present in the DOM.
 
 ## Styles
 Airship styles are split into several folders to allow importing the whole bundle or each style separately, aiming to give flexibility and the possibility to reduce the size of the application's final bundle.
 
 Styles are provided in two different flavours:
-- SASS: raw uncompiled styles to process on your own, allowing you to modify variables and customize Airship styles.
+- SASS: raw uncompiled styles to process on the build process, allowing you to modify variables and customize Airship styles.
 - CSS: plain CSS styles to import in your bundle or your HTML directly avoiding the build step.
 
 We follow the same directory scaffolding in both cases, whether they are SASS styles or CSS styles. The root directory for each flavour is:
@@ -54,7 +54,7 @@ CSS styles:
 - JavaScript import: `import '@carto/airship-style/dist/{path}';`
 - SASS import: `@import '~@carto/airship-style/dist/{path}';`
 
-So, let's say that you want to import badges component, these will be the snippets you can choose from:
+So, let's say that you want to import badges component, these are the snippets you can choose from:
 
 SASS styles:
 - JavaScript import: `import '@carto/airship-style/src/badges/badges';`
@@ -69,11 +69,11 @@ Airship includes a set of icons to place into your application. These icons can 
 
 Each SVG is automatically generated from a path set in [`paths.js`](https://github.com/CartoDB/airship/blob/master/packages/icons/src/paths.js).
 
-Similarly to styles, we provide the icons in two flavours:
-- SVG files: the plain SVG files to include within an `<img>` tag.
-- Web Font: the icon font containing the icon glyphs to style them with CSS.
+Similarly to styles, we provide icons in two flavours:
+- SVG files: plain SVG files to include within an `<img>` tag.
+- Web Font: icon font containing icon glyphs to style them with CSS.
 
-While the SVG files are easier and lightweight to use, the Web Font provides multiple possibilities for customization with CSS.
+While SVG files are easier and lightweight to use, using the Web Font approach provides multiple possibilities for customization with CSS.
 
 When including icons package in CSS or SASS via Webpack or another bundler, it will use Web Font by default. If you prefer to use each SVG file separately, you will need to use via CDN or importing it from node_modules folder wherever you want.
 
