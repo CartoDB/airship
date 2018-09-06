@@ -23,9 +23,9 @@ By importing `@carto/airship-components` package, the components loader will be 
 ## Styles
 Airship styles are split into several folders to allow importing the whole bundle or each style separately, aiming to give flexibility and the possibility to reduce the size of the application's final bundle.
 
-Styles are provided in two different flavours:
-- SASS: raw uncompiled styles to process on the build process, allowing you to modify variables and customize Airship styles.
-- CSS: plain CSS styles to import in your bundle or your HTML directly avoiding the build step.
+**Styles are provided in two different flavours:**
+- **SASS**: raw uncompiled styles to process on the build process, allowing you to modify variables and customize Airship styles.
+- **CSS**: plain CSS styles to import in your bundle or your HTML directly avoiding the build step.
 
 We follow the same directory scaffolding in both cases, whether they are SASS styles or CSS styles. The root directory for each flavour is:
 - CSS: `@carto/airship-style/dist/{path}`
@@ -46,23 +46,23 @@ All directories have a similar structure:
 
 Whenever you need to import any of those components, include the appropriate snippet in your code:
 
-SASS styles:
-- JavaScript import: `import '@carto/airship-style/src/{path}';`
-- SASS import: `@import '~@carto/airship-style/src/{path}';`
+- SASS styles:
+  - JavaScript import: `import '@carto/airship-style/src/{path}';`
+  - SASS import: `@import '~@carto/airship-style/src/{path}';`
 
-CSS styles:
-- JavaScript import: `import '@carto/airship-style/dist/{path}';`
-- SASS import: `@import '~@carto/airship-style/dist/{path}';`
+- CSS styles:
+  - JavaScript import: `import '@carto/airship-style/dist/{path}';`
+  - SASS import: `@import '~@carto/airship-style/dist/{path}';`
 
 So, let's say that you want to import badges component, these are the snippets you can choose from:
 
-SASS styles:
-- JavaScript import: `import '@carto/airship-style/src/badges/badges';`
-- SASS import: `@import '~@carto/airship-style/src/badges/badges';`
+- SASS styles:
+  - JavaScript import: `import '@carto/airship-style/src/badges/badges';`
+  - SASS import: `@import '~@carto/airship-style/src/badges/badges';`
 
-CSS styles:
-- JavaScript import: `import '@carto/airship-style/dist/badges/badges';`
-- SASS import: `@import '~@carto/airship-style/dist/badges/badges';`
+- CSS styles:
+  - JavaScript import: `import '@carto/airship-style/dist/badges/badges';`
+  - SASS import: `@import '~@carto/airship-style/dist/badges/badges';`
 
 ## Icons
 Airship includes a set of icons to place into your application. These icons can be found in [this folder](https://github.com/CartoDB/airship/tree/master/packages/icons/src/icons).
@@ -70,11 +70,11 @@ Airship includes a set of icons to place into your application. These icons can 
 Each SVG is automatically generated from a path set in [`paths.js`](https://github.com/CartoDB/airship/blob/master/packages/icons/src/paths.js).
 
 Similarly to styles, we provide icons in two flavours:
-- SVG files: plain SVG files to include within an `<img>` tag.
-- Web Font: icon font containing icon glyphs to style them with CSS.
+- **SVG files**: plain SVG files to include within an `<img>` tag.
+- **Web Font**: icon font containing icon glyphs to style them with CSS.
 
 While SVG files are easier and lightweight to use, using the Web Font approach provides multiple possibilities for customization with CSS.
 
-When including icons package in CSS or SASS via Webpack or another bundler, it will use Web Font by default. If you prefer to use each SVG file separately, you will need to use via CDN or importing it from node_modules folder wherever you want.
+When including icons package in CSS or SASS via Webpack or another bundler, it will use Web Font by default. If you prefer to use each SVG file separately, you will need to reference the file via CDN or require the file from node_modules folder wherever you want.
 
 Icons' [`dist/` folder](https://github.com/CartoDB/airship/tree/master/packages/icons/dist) is the root content of the npm package. To include each icon separately you need to require the path starting from that folder, like this: `@carto/airship-icons/icons/{icon_name}.svg`. Replacing `{icon_name}` with the desired icon name.
