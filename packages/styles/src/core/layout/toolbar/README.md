@@ -104,19 +104,19 @@ Toolbar actions are the main toolbar's content, usually icons or links to anothe
 
 Actions are hidden by default on mobile devices and they are only visible when the `.as-toolbar-actions--visible` modifier class is present. This way you can have a contextual menu easily.
 
-In order to fit the [W3C Accessibility guidelines](https://www.w3.org/WAI/tutorials/menus/), we recomend to use `nav` and `ul` element to layout the menu elements containing `li` elements with a `as-toolbar__item` class.
+In order to fit the [W3C Accessibility guidelines](https://www.w3.org/WAI/tutorials/menus/), we recomend to use `nav` and `ul` element to layout the menu elements containing `li` elements with a link with a `as-toolbar__item` class.
 
 ```html
 <header class="as-toolbar">
   <pre href="#" class="as-toolbar__item">APP NAME</pre>
   <nav class="as-toolbar__actions">
     <ul>
-    <li>
-      <a href="#" class="as-toolbar__item">Link 1</a>
-    </li>
-    <li>
-      <a href="#" class="as-toolbar__item">Link 2</a>
-    </li>
+      <li>
+        <a href="#" class="as-toolbar__item">Link 1</a>
+      </li>
+      <li>
+        <a href="#" class="as-toolbar__item">Link 2</a>
+      </li>
   </ul>
   </nav>
 </header>
