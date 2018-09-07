@@ -8,16 +8,14 @@
   <title>Sidebar</title>
   <link rel="stylesheet" href="../../../packages/styles/dist/airship.css">
   <script src="../../../packages/components/dist/airship.js"></script>
-  
+
   <!-- CARTO.js -->
   <!-- Include Leaflet -->
   <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
   <link href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" rel="stylesheet">
   <!-- Include CARTO.js -->
   <script src="https://libs.cartocdn.com/carto.js/v4.1/carto.min.js"></script>
-  <link href="https://carto.com/developers/carto-js/examples/maps/public/style.css" rel="stylesheet">
   <!-- / CARTO.js -->
-
 </head>
 
 <body class="as-app">
@@ -29,29 +27,27 @@
 
   <main class="as-app-content">
     <div class="as-map-wrapper">
-      <div class="as-map">
-        <div id="map"></div>
-        <div class="as-panels" data-usage="legends">
-          <div class="as-panel as-panel--top">
-            <div class="as-panel__element">
-              Top Left legend growing horizontally
-            </div>
-            <div class="as-panel__element">
-              Some content at Top Left
-            </div>
+      <div id="map"></div>
+      <div class="as-panels" data-usage="legends">
+        <div class="as-panel as-panel--top as-panel--left">
+          <div class="as-panel__element">
+            Top Left legend growing horizontally
           </div>
-          <div class="as-panel as-panel--top as-panel--right as-panel--vertical">
-            <div class="as-panel__element">
-              Top Right legend growing vertically
-            </div>
-            <div class="as-panel__element">
-              Some other content at Top Right
-            </div>
+          <div class="as-panel__element">
+            Some content at Top Left
           </div>
-          <div class="as-panel as-panel--bottom">
-            <div class="as-panel__element">
-              Bottom Left content
-            </div>
+        </div>
+        <div class="as-panel as-panel--top as-panel--right as-panel--vertical">
+          <div class="as-panel__element">
+            Top Right legend growing vertically
+          </div>
+          <div class="as-panel__element">
+            Some other content at Top Right
+          </div>
+        </div>
+        <div class="as-panel as-panel--bottom">
+          <div class="as-panel__element">
+            Bottom Left content
           </div>
         </div>
       </div>
