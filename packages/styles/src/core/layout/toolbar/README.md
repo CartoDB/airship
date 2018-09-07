@@ -79,8 +79,11 @@ Elements grouped in the middle:
 ```html
 <header class="as-toolbar">
   <a href="#" class="as-toolbar__item">Link 0</a>
-  <a href="#" class="as-toolbar__item">Link 1</a>
-  <a href="#" class="as-toolbar__item">Link 2</a>
+  <div class="as-toolbar__group">
+    <a href="#" class="as-toolbar__item">Link 1</a>
+    <a href="#" class="as-toolbar__item">Link 2</a>
+  </div>
+  <a href="#" class="as-toolbar__item">Link 3</a>
 </header>
 ```
 
