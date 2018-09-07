@@ -40,7 +40,7 @@ The toolbar will typically contain your logo and action items.  All elements ins
 
 ### .as-toolbar__item
 
-Use the `.as-toolbar__item` class to put content inside the toolbar. This class can be used on `icons`, `links`, paragraphs, or as a `img` wrapper.
+Use the `.as-toolbar__item` class to put content inside the toolbar. This class can be used on `icons`, `links`, paragraphs, or as a content wrapper.
 
 ```html
 <header class="as-toolbar">
@@ -111,10 +111,10 @@ In order to fit the [W3C Accessibility guidelines](https://www.w3.org/WAI/tutori
   <pre href="#" class="as-toolbar__item">APP NAME</pre>
   <nav class="as-toolbar__actions">
     <ul>
-    <li class="as-toolbar__item">
+    <li>
       <a href="#" class="as-toolbar__item">Link 1</a>
     </li>
-    <li class="as-toolbar__item">
+    <li>
       <a href="#" class="as-toolbar__item">Link 2</a>
     </li>
   </ul>
