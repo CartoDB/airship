@@ -45,7 +45,7 @@ Use the `.as-toolbar__item` class to put content inside the toolbar. This class 
 ```html
 <header class="as-toolbar">
   <div class="as-toolbar__item">
-    <img src="http://localhost:5000/examples/layouts/common/logo-circle.svg" alt="Logo"/>
+    <img src="/examples/layouts/common/logo-circle.svg" alt="Logo"/>
   </div>
   <a href="#" class="as-toolbar__item">Link</a>
   <p class="as-toolbar__item">Paragraph</p>
