@@ -45,30 +45,28 @@ showSource: false
   </aside>
 
   <div class="as-map-wrapper">
-    <div class="as-map">
-      <div id="map"></div>
-      <div class="as-panels" data-name="Legends">
-        <div class="as-panel as-panel--top as-panel--right">
-          <div class="as-panel__element">
-            <p>Title</p>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore possimus nam quam necessitatibus omnis, est sequi rem
-              quibusdam molestiae, at saepe odit voluptatem quae debitis consequatur iste ducimus quaerat dolorum.
-            </p>
-          </div>
-          <div class="as-panel__element"> PANEL 1 </div>
+    <div id="map"></div>
+    <div class="as-panels" data-name="Legends">
+      <div class="as-panel as-panel--top as-panel--right">
+        <div class="as-panel__element">
+          <p>Title</p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore possimus nam quam necessitatibus omnis, est sequi rem
+            quibusdam molestiae, at saepe odit voluptatem quae debitis consequatur iste ducimus quaerat dolorum.
+          </p>
         </div>
+        <div class="as-panel__element"> PANEL 1 </div>
+      </div>
 
-        <div class="as-panel as-panel--middle as-panel--right as-panel--vertical">
-          <div class="as-panel__element">
-            <p>Title</p>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore possimus nam quam necessitatibus omnis, est sequi rem
-              quibusdam molestiae, at saepe odit voluptatem quae debitis consequatur iste ducimus quaerat dolorum.
-            </p>
-          </div>
-          <div class="as-panel__element"> PANEL 1 </div>
+      <div class="as-panel as-panel--middle as-panel--right as-panel--vertical">
+        <div class="as-panel__element">
+          <p>Title</p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore possimus nam quam necessitatibus omnis, est sequi rem
+            quibusdam molestiae, at saepe odit voluptatem quae debitis consequatur iste ducimus quaerat dolorum.
+          </p>
         </div>
+        <div class="as-panel__element"> PANEL 1 </div>
       </div>
     </div>
 

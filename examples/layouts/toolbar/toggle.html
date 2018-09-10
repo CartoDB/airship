@@ -22,45 +22,29 @@
   <!-- / CARTO.js -->
 
 </head>
+<script>
+  function toggleDrawer() {
+    document.querySelector('.as-toolbar__actions').classList.toggle('as-toolbar__actions--visible');
+  }
+
+</script>
 
 <body class="as-app as-app--nav-top">
   <header class="as-toolbar">
-    <button onclick="_toggleDrawer()" class="as-toolbar__item as-toolbar__toggle">
+    <button onclick="toggleDrawer()" class="as-toolbar__item as-toolbar__toggle">
       <i class="as-icon-hamburguer as-title as-m--0"></i>
     </button>
-
-    <div class="as-toolbar__group">
-      <div class="as-toolbar__item">
-        <img src="../common/logo.svg" alt="CARTO LOGO">
-      </div>
-
-      <nav class="as-toolbar__actions">
-        <ul>
-          <li class="as-toolbar__item">
-            <a href="http://www.carto.com">Home</a>
-          </li>
-          <li class="as-toolbar__item">
-            <a href="http://www.carto.com">About</a>
-          </li>
-          <li class="as-toolbar__item">
-            <i class="as-icon-magnify as-subheader as-m--0"></i>
-            <p class="as-toolbar__icon-text">Search</p>
-          </li>
-          <li class="as-toolbar__item">
-            <i class="as-icon-info as-subheader as-m--0"></i>
-            <p class="as-toolbar__icon-text">Help</p>
-          </li>
-          <li class="as-toolbar__item">
-            <i class="as-icon-twitter as-subheader as-m--0"></i>
-            <p class="as-toolbar__icon-text">Twitter</p>
-          </li>
-        </ul>
-      </nav>
-    </div>
-
-    <div class="as-toolbar__item as-body">
-      <i class="as-icon-points as-subheader as-m--0"></i>
-    </div>
+    <div href="#" class="as-toolbar__item">LOGO</div>
+    <nav class="as-toolbar__actions">
+      <ul>
+        <li>
+          <a href="#" class="as-toolbar__item">Link 1</a>
+        </li>
+        <li>
+          <a href="#" class="as-toolbar__item">Link 2</a>
+        </li>
+      </ul>
+    </nav>
   </header>
 
   <main class="as-app-content">

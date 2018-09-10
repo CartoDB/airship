@@ -18,15 +18,16 @@
     align-items: center;
     justify-content: center;
     min-height: $toolbar-size;
+    margin: 0;
     padding: 0 get-spacing(3);
     color: var(--as-color--type-04, #{$color-type-04});
     font: $font-body;
     cursor: pointer;
+  }
 
-    a {
-      color: var(--as-color-ui-01, #{$color-ui-01});
-      text-decoration: none;
-    }
+  a {
+    color: var(--as-color-ui-01, #{$color-ui-01});
+    text-decoration: none;
   }
 
   &__group {

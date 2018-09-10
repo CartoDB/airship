@@ -23,9 +23,7 @@ lang: html
 <body class="as-app">
   <main class="as-app-content">
     <div class="as-map-wrapper">
-      <div id="as-map">
-        <div id="map"></div>
-      </div>
+      <div id="map"></div>
     </div>
   </main>
 </body>
@@ -58,9 +56,7 @@ lang: html
 
   <main class="as-app-content">
     <div class="as-map-wrapper">
-      <div class="as-map">
-        <div id="map"></div>
-      </div>
+      <div id="map"></div>
       <div class="as-bottom-bar">
         Bottom panel content.
       </div>
@@ -115,7 +111,6 @@ lang: html
 ---
 <main class="as-app-content">
   <div class="as-map-wrapper">
-    <div class="as-map">
       <div id="map"></div>
       <div class="as-panels" data-usage="legends">
         <div class="as-panel as-panel--top">
@@ -140,7 +135,6 @@ lang: html
           </div>
         </div>
       </div>
-    </div>
   </div>
 </main>
 ```
@@ -161,21 +155,19 @@ lang: html
 ---
 <main class="as-app-content">
   <div class="as-map-wrapper">
-    <div class="as-map">
-      <div id="map"></div>
-      <div class="as-panels">
-        <div class="as-panel as-panel--top">
-          <div class="as-panel__element">
-            Top left legend
-          </div>
+    <div id="map"></div>
+    <div class="as-panels">
+      <div class="as-panel as-panel--top">
+        <div class="as-panel__element">
+          Top left legend
         </div>
-        <div class="as-panel as-panel--top as-panel--right as-panel--vertical">
-          <div class="as-panel__element">
-            Top Right legend growing vertically
-          </div>
-          <div class="as-panel__element">
-            Some other content at Top Right
-          </div>
+      </div>
+      <div class="as-panel as-panel--top as-panel--right as-panel--vertical">
+        <div class="as-panel__element">
+          Top Right legend growing vertically
+        </div>
+        <div class="as-panel__element">
+          Some other content at Top Right
         </div>
       </div>
     </div>

@@ -3,17 +3,9 @@
   position: relative;
   flex-direction: column;
   flex-grow: 1;
-}
 
-.as-map {
-  position: relative;
-  flex: 1 0 auto;
-
-  &--hidden {
-    opacity: 0;
-
-    @media all and (min-width: $tablet-breakpoint) {
-      opacity: 1;
-    }
+  #map {
+    z-index: 0;
+    flex: 1;
   }
 }
