@@ -1,6 +1,5 @@
 .as-toolbar__actions {
   --toolbar-tabs-bg-color: var(--as-color-secondary, #{$color-secondary});
-
   display: flex;
   position: absolute;
   z-index: 3;
@@ -18,8 +17,14 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    width: 100%;
     margin: 0;
-    padding-left: get-spacing(4);
+    padding: 0;
+    list-style-type: none;
+
+    .as-toolbar__item {
+      width: 100%;
+    }
   }
 
   &--visible {
@@ -37,7 +42,11 @@
 
     ul {
       flex-direction: row;
-      padding-left: 0;
+      width: initial;
+
+      .as-toolbar__item {
+        width: auto;
+      }
     }
   }
 }
