@@ -1,93 +1,75 @@
-## Map wrapper
+The map wrapper is used as the container for the `map-wrapper` and the `bottom-bar`
 
-The map wrapper is used as the container for the map area and the bottom panel. The bottom panel is useful for long horizontal content.
 
-Inside the map area, you can add also floating panels, typically used for legends. These panels can be located in any of the four corners of the map.
+- The bottom bar works similar to a sidebar but is positioned horizontally below the map.
+- The map-wrapper is the area where the map is placed allowing floating panels to be placed on it.
 
-### Single map wrapper
 
-The most basic usage of the `as-map-wrapper` element is when you only need to show a map. No other panel. The map will cover the whole viewport.
 
-The map needs to be inside a `as-map` element like in this code snippet.
+
+## .as-map-wrapper
+
+The most basic usage of the `as-map-wrapper` element is when you only need to show a map. The map will cover the whole viewport.
 
 ```html
-noSource: true
-responsive: true
----
-<iframe src="/examples/layouts/map-wrapper/single-map-wrapper.html" style="width: 100%; height: 100%;">
-```
-
-```code
-lang: html
----
-<body class="as-app">
+<div class="as-app" style="width:100%; height:300px;">
   <main class="as-app-content">
-    <div class="as-map-wrapper">
-      <div id="map"></div>
+    <div class="as-map-wrapper" style="background: #B5E0F9;">
+      <!-- CARTO.js or CARTO-VL will place the map on this div  -->
+      <div id="map"></div> 
     </div>
   </main>
-</body>
+</div>
 ```
 
 
-### Map wrapper + Bottom panel
+## .as-bottom-bar
 
-To add a bottom panel you need to add an element with class `as-bottom-bar` as a child of `as-map-wrapper`.
+To add a bottom bar you need to add an element with class `as-bottom-bar` as a child of `as-map-wrapper`.
 
-The bottom panel is hidden in mobile and visible in desktop size. The reason is to have the most visible map area possible in small screens. To make the panel visible you need to add the class `as-bottom-bar--visible` to the element that contains the `as-panels__bottom` panel.
+The bottom bar is hidden in mobile and visible in desktop size. The reason is to have the most visible map area possible in small screens. To make the bar visible you need to add the class `as-bottom-bar--visible` to the element that contains the `as-panels__bottom` bar.
 
 You can toggle the `as-bottom-bar--visible` class the way you prefer but we recommend using `as-toolbar-tabs`.
 
+
 ```html
-noSource: true
-responsive: true
----
-<iframe src="/examples/layouts/map-wrapper/map-wrapper-bottom.html" style="width: 100%; height: 100%;">
-```
-
-```code
-lang: html
----
-<body class="as-app">
-  <nav class="as-toolbar-tabs">
-    <span onclick="_showMap(event)" class="as-toolbar-tabs__item as-toolbar-tabs__item--active">MAP</span>
-    <span onclick="_showBottomPanel(event)" class="as-toolbar-tabs__item">PANEL</span>
-  </nav>
-
+<div class="as-app" style="width:100%; height:300px;">
   <main class="as-app-content">
-    <div class="as-map-wrapper">
-      <div id="map"></div>
-      <div class="as-bottom-bar">
-        Bottom panel content.
+    <div class="as-map-wrapper" style="background: #B5E0F9;">
+      <!-- CARTO.js or CARTO-VL will place the map on this div  -->
+      <div id="map"></div> 
+      <div class="as-bottom-bar" style="background: #F8E71C; height: 100px;">
+        .as-bottom-bar
       </div>
     </div>
   </main>
-</body>
-```
-
-### Map wrapper + Floating panels
-
-To add floating panels to the map area, to use them for legends for example, you need to add first an element with class `as-panels` inside the `as-map` element.
-
-Then you need to add as much elements you want to contains the actual floating panels. The possible positions are set with a combination of place modifiers. For instance, if we want a container to place legends at the top right corner, you need to write:
-
-```code
-lang: html
----
-<div class="as-panels">
-  <div class="as-panel as-panel--top as-panel--right">
-    <div class="as-panel__element">
-      Top Right legend
-    </div>
-    <div class="as-panel__element">
-      Some other content at Top Right
-    </div>
-  </div>
 </div>
-
 ```
 
-The possible modifiers for positioning are:
+## .as-panels
+
+Use this class as a child of the `as-map-wrapper` element. The `as-panels` wrapper covers the map area but wont interfer the UI. This element should only be used as a container for the panels.
+
+```html
+<div class="as-app" style="width:100%; height:300px;">
+  <main class="as-app-content">
+    <div class="as-map-wrapper" style="background: #B5E0F9;">
+      <!-- CARTO.js or CARTO-VL will place the map on this div  -->
+      <div id="map"></div> 
+      <div class="as-panels" style="background: rgba(0, 0, 0, 0.5);">
+        as panels
+      </div>
+    </div>
+  </main>
+</div>
+```
+
+## .as-panel
+
+An `as-panel` element is a container for the `as-panel__element` that allows to specify the position and how the panel elements will be stacked.
+
+You can combine two of the following class modifiers to specify the panel position:
+
 - `as-panel--top`
 - `as-panel--middle`
 - `as-panel--bottom`
@@ -95,25 +77,117 @@ The possible modifiers for positioning are:
 - `as-panel--center`
 - `as-panel--right`
 
-You can add an aditional modifier class to allow the panels grow vertically. This way, Airship will stack `as-panel__element` one above the other.
 
-- `as-panel--vertical`
+```html
+<div class="as-app" style="width:100%; height:300px;">
+  <main class="as-app-content">
+    <div class="as-map-wrapper" style="background: #B5E0F9;">
+      <!-- CARTO.js or CARTO-VL will place the map on this div  -->
+      <div id="map"></div> 
+      <div class="as-panels">
+        <div class="as-panel as-panel--top as-panel--left">left top panel</div>
+        <div class="as-panel as-panel--top as-panel--center">center top panel</div>
+        <div class="as-panel as-panel--top as-panel--right">right top panel</div>
+        <div class="as-panel as-panel--middle as-panel--left">left middle panel</div>
+        <div class="as-panel as-panel--middle as-panel--center">center middle panel</div>
+        <div class="as-panel as-panel--middle as-panel--right">right middle panel</div>
+        <div class="as-panel as-panel--bottom as-panel--left">left bottom panel</div>
+        <div class="as-panel as-panel--bottom as-panel--center">center bottom panel</div>
+        <div class="as-panel as-panel--bottom as-panel--right">right bottom panel</div>
+      </div>
+    </div>
+  </main>
+</div>
+```
+
+### .as-panel__element
+
+This class creates a wrapper that allows to place content like widgets, text or legends over the map.
+
+
+```html
+<div class="as-app" style="width:100%; height:300px;">
+  <main class="as-app-content">
+    <div class="as-map-wrapper" style="background: #B5E0F9;">
+      <!-- CARTO.js or CARTO-VL will place the map on this div  -->
+      <div id="map"></div> 
+      <div class="as-panels">
+       
+        <div class="as-panel as-panel--middle as-panel--center">
+          <div class="as-panel__element"> 
+            <p class="as-body"> Im a panel element </p>
+          </div>
+        </div>
+       
+      </div>
+    </div>
+  </main>
+</div>
+```
+
+
+### .as-panel--vertical
+
+By default panels grow horizontally. Add this class to make the panels grow vertically.
+
+```html
+<div class="as-app" style="width:100%; height:300px;">
+  <main class="as-app-content">
+    <div class="as-map-wrapper" style="background: #B5E0F9;">
+      <!-- CARTO.js or CARTO-VL will place the map on this div  -->
+      <div id="map"></div> 
+      <div class="as-panels">
+       
+        <div class="as-panel as-panel--top as-panel--left">
+          <div class="as-panel__element"> 
+            <p class="as-body"> First horizontal panel </p>
+          </div>
+          <div class="as-panel__element"> 
+            <p class="as-body"> Second horizontal panel </p>
+          </div>
+        </div>
+
+        <div class="as-panel as-panel--vertical as-panel--middle as-panel--right">
+          <div class="as-panel__element"> 
+            <p class="as-body"> First vertical panel </p>
+          </div>
+          <div class="as-panel__element"> 
+            <p class="as-body"> Second vertical panel </p>
+          </div>
+        </div>
+       
+      </div>
+    </div>
+  </main>
+</div>
+```
+
+
+## Full example 
 
 ```html
 noSource: true
 responsive: true
 ---
-<iframe src="/examples/layouts/map-wrapper/map-wrapper-legends.html" style="width: 100%; height: 100%;">
+<iframe src="/examples/layouts/map-wrapper/map-wrapper-bottom-legends.html" style="width: 100%; height: 100%;">
 ```
 
 ```code
 lang: html
 ---
-<main class="as-app-content">
-  <div class="as-map-wrapper">
+<!-- This code-snippet has some missing scripts  -->
+<body class="as-app">
+  <div role="tablist" class="as-toolbar-tabs as-tabs">
+    <button onclick="showMap(event)" role="tab" class="as-tabs__item as-tabs__item--active">MAP</button>
+    <button onclick="showLegends(event)" role="tab" class="as-tabs__item">LEGENDS</button>
+    <button onclick="showBottom(event)" role="tab" class="as-tabs__item">BOTTOM</button>
+  </div>
+
+  <main class="as-app-content">
+    <div class="as-map-wrapper">
       <div id="map"></div>
       <div class="as-panels" data-usage="legends">
-        <div class="as-panel as-panel--top">
+        <div class="as-panel as-panel--top as-panel--left">
           <div class="as-panel__element">
             Top Left legend growing horizontally
           </div>
@@ -135,45 +209,11 @@ lang: html
           </div>
         </div>
       </div>
-  </div>
-</main>
-```
-
-### Map wrapper + Bottom panel + Floating panels
-
-Needless to say, both bottom and floating panels can be present in the same `as-map-wrapper` container.
-
-```html
-noSource: true
-responsive: true
----
-<iframe src="/examples/layouts/map-wrapper/map-wrapper-bottom-legends.html" style="width: 100%; height: 100%;">
-```
-
-```code
-lang: html
----
-<main class="as-app-content">
-  <div class="as-map-wrapper">
-    <div id="map"></div>
-    <div class="as-panels">
-      <div class="as-panel as-panel--top">
-        <div class="as-panel__element">
-          Top left legend
-        </div>
-      </div>
-      <div class="as-panel as-panel--top as-panel--right as-panel--vertical">
-        <div class="as-panel__element">
-          Top Right legend growing vertically
-        </div>
-        <div class="as-panel__element">
-          Some other content at Top Right
-        </div>
+      <div class="as-bottom-bar" data-usage="bottom">
+        <h1>LEGEND</h1>
+        <p>Lorem ipsum</p>
       </div>
     </div>
-    <div class="as-bottom-bar" data-usage="bottom">
-      Bottom panel
-    </div>
-  </div>
-</main>
+  </main>
+</body>
 ```
