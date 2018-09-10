@@ -1,5 +1,12 @@
 <a name="0.0.0"></a>
-# [0.0.0](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.38...v0.0.0) (2018-09-05)
+# [0.0.0](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.38...v0.0.0) (2018-09-10)
+
+
+### Features
+
+* **docs:** Add icons guide ([#258](https://github.com/CartoDB/airship/issues/258)) ([fa67101](https://github.com/CartoDB/airship/commit/fa67101))
+* **docs:** Add web components guide ([#256](https://github.com/CartoDB/airship/issues/256)) ([e45da60](https://github.com/CartoDB/airship/commit/e45da60))
+* **docs:** Content guide ([#255](https://github.com/CartoDB/airship/issues/255)) ([47d3fc7](https://github.com/CartoDB/airship/commit/47d3fc7))
 
 
 
