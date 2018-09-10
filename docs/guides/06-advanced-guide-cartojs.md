@@ -197,15 +197,6 @@ categoryWidget.addEventListener('categoriesSelected', (event) => {
           padding: 0;
         }
 
-        .as-map {
-          flex: 1;
-        }
-
-        #map {
-          width: 100%;
-          height: 100%;
-        }
-
         .widgets {
           padding: 10px;
         }
@@ -216,9 +207,7 @@ categoryWidget.addEventListener('categoriesSelected', (event) => {
     <main class="as-app">
       <section class="as-app-content">
         <div class="as-map-wrapper">
-          <div class="as-map">
-            <div id="map"></div>
-          </div>
+          <div id="map"></div>
         </div>
 
         <aside class="widgets as-sidebar as-sidebar--right as-sidebar">
