@@ -1,4 +1,7 @@
 # CSS Elements
+One of the packages we provide within Airship is Airship Styles.
+
+Airship Styles offer CSS elements for you to build LI applications, giving a good look and feel to your users without effort. You can build the foundation of your app leveraging these styles and customize them to match your brand identity.
 
 ## Installation
 
@@ -10,7 +13,7 @@
 
   #### Importing styles in SASS, PostCSS
   ```css
-  // Import whole bundle
+  // Import whole SASS bundle
   @import '~@carto/airship-style';
 
   // Import SASS element styles
@@ -22,7 +25,7 @@
 
   #### Importing styles in JavaScript
   ```javascript
-  // Import whole bundle
+  // Import whole SASS bundle
   import '@carto/airship-style';
 
   // Import SASS element styles
@@ -31,6 +34,8 @@
   // Import CSS element styles
   import '@carto/airship-style/dist/{path}';
   ```
+
+  **Warning:** Depending on the version you want to use, you will need a CSS loader or SASS loader for Webpack to be able to parse those files.
 
 ### From CDN
 Copy-paste the stylesheet `<link>` tag into your `<head>` tag before other stylesheets to load Airship CSS.
@@ -53,11 +58,6 @@ Please check [styles documentation]() (missing link) out and see how to use Airs
 
 ## Framework integration
 To integrate Airship into your framework you only need to import the styles in the way you prefer from the ones stated above.
-
-## Browser Compatibility
-Airship Styles is known to work in latest stable version of all major browsers, and Internet Explorer 11 on Windows.
-
-However, we use CSS Variables to provide customization, and they might not be available in all browsers. We provide a fallback for those browsers in order to give the same experience to users, but take it into account when customizing Airship.
 
 ## Basic Customization
 > If you want advanced customization of Airship styles, please take a look at [this guide]() (missing link).
@@ -125,3 +125,8 @@ To override a CSS class, create a selector matching the element you want to modi
   background-color: #FABADA;
 }
 ```
+
+## Browser Compatibility
+Airship styles are known to work in latest stable version of all major browsers, and Internet Explorer 11 on Windows.
+
+However, we use CSS Variables to provide customization, and they might not be available in all browsers. We provide a fallback for those browsers in order to give the same experience to users, but take it into account when customizing Airship.
