@@ -17,7 +17,7 @@ Let's start from scratch creating an empty `index.html` file with this scaffoldi
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
   </head>
 
-  <body>
+  <body class="as-app">
 
   </body>
 </html>
@@ -43,14 +43,14 @@ The layout will always be wrapped by a block element with `.as-app-content` clas
 So, to create our layout we need a right sidebar and a block element wrapped by `.as-map-wrapper` class for our map.
 
 ```html
-<section class="as-app-content">
+<main class="as-app-content">
   <div class="as-map-wrapper">
     <div id="map"></div>
   </div>
 
   <aside class="as-sidebar as-sidebar--right">
   </aside>
-</section>
+</main>
 ```
 
 Including it in our body will create the desired layout while waiting for the map and the widget.
@@ -203,20 +203,18 @@ categoryWidget.addEventListener('categoriesSelected', (event) => {
       </style>
   </head>
 
-  <body>
-    <main class="as-app">
-      <section class="as-app-content">
-        <div class="as-map-wrapper">
-          <div id="map"></div>
-        </div>
+  <body class="as-app">
+    <main class="as-app-content">
+      <div class="as-map-wrapper">
+        <div id="map"></div>
+      </div>
 
-        <aside class="widgets as-sidebar as-sidebar--right as-sidebar">
-            <as-category-widget
-            heading="Populated places"
-            description="Sum of the population grouped by country"
-            default-bar-color="#47DB99"></as-category-widget>
-        </aside>
-      </section>
+      <aside class="widgets as-sidebar as-sidebar--right as-sidebar">
+          <as-category-widget
+          heading="Populated places"
+          description="Sum of the population grouped by country"
+          default-bar-color="#47DB99"></as-category-widget>
+      </aside>
     </main>
 
     <script>
