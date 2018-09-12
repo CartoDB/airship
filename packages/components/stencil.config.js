@@ -1,5 +1,6 @@
 const path = require('path');
 const sass = require('@stencil/sass');
+const version = require('./package.json').version;
 
 exports.config = {
   namespace: 'airship',
@@ -21,5 +22,9 @@ exports.config = {
         path.join(__dirname, '../styles/src/core/variables/_variables.scss')
       ]
     })
-  ]
+  ],
+  preamble: [
+    'Airship Components · CARTO · https://carto.com',
+    `Version ${version}`
+  ].join('\n')
 };
