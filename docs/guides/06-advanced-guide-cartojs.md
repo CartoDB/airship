@@ -122,7 +122,7 @@ client.getLeafletLayer().addTo(map);
 Widgets are the best way to show data from our visualization. You can create a dashboard with a map and several widgets that will allow you to visualize and explore your data in a clearer and better way.
 
 ### Adding a Category Widget
-Adding a Category Widget is as simple as including `<as-category-widget>` tag within our `<body>` tag, setting the options you prefer.
+Adding a Category Widget is as simple as including `<as-category-widget>` tag within our sidebar tag, setting the options you prefer.
 
 ```html
 <body>
