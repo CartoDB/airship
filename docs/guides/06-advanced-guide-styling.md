@@ -115,8 +115,29 @@ const componentElement = document.querySelectorAll('.as-panel__element');
 componentElement.forEach(element => element.style.setProperty('--panels-bg-color', '#EEE'));
 ```
 
+## Customizing Airship with SASS variables
+Even though you have customization through CSS Variables, they might not be suitable for all cases. When supporting IE11, you cannot use CSS variables, and hence you might need to customize styles in build time.
+
+Our SASS variables are defined like this:
+```css
+$color-primary: #FFF !default;
+```
+
+It means the variable will only be defined if there were no previously defined variable with the same name.
+
+As we did with CSS variables, you will need to override SASS variables **before** Airship ones are defined in your `.scss` file.
+```css
+$color-primary: #E1E2E3;
+
+@import '~@carto/airship-style';
+```
+
+Doing it that way, it will take first defined variables as the one to use to generate styles.
+
+Please find SASS variables to override within each style reference documentation.
+
 ## Overriding any rule with CSS
-CSS variables are powerful, but they don't allow you to modify every rule of Airship Styles. So, if you want to customize Airship beyond CSS variables, you will need to override rules by targeting specific selectors.
+CSS and SASS variables are powerful, but they don't allow you to modify each rule within Airship Styles. So, if you want to customize Airship beyond variables, you will need to override rules by targeting specific selectors.
 
 As you might now, every DOM node should have one or many CSS classes set, so whenever you want to modify something you will need write a selector that targets that node.
 
@@ -125,10 +146,22 @@ Let's say that you want to make all title's font size bigger. Looking at the typ
 font: 24px/32px var(--font-family-base, Roboto, sans-serif);
 ```
 
-To change it to our desired value, you will need to write that selector **after** Airship Styles import, like:
+To change it to our desired value, you will need to write that selector **after** Airship Styles import in CSS, like:
 ```css
+@import '~@carto/airship-style';
 
+.as-title {
+  font: 32px/32px var(--font-family-base, Roboto, sans-serif);
+}
 ```
 
-## Customizing Airship with SASS variables
+or HTML version:
+```html
+<link rel="stylesheet" href="https://libs.cartocdn.com/airship-styles/<VERSION>/airship.css">
 
+<style>
+.as-title {
+  font: 32px/32px var(--font-family-base, Roboto, sans-serif);
+}
+</style>
+```
