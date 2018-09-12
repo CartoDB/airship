@@ -179,11 +179,11 @@ categoryWidget.addEventListener('categoriesSelected', (event) => {
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
       <!-- Include CSS  -->
-      <link rel="stylesheet" href="https://libs.cartocdn.com/airship-styles/v1.0.0-alpha.37/airship.css">
+      <link rel="stylesheet" href="https://libs.cartocdn.com/airship-styles/v1.0.0-alpha.39/airship.css">
       <!-- Include Icons -->
-      <link rel="stylesheet" href="https://libs.cartocdn.com/airship-icons/v1.0.0-alpha.37/icons.css">
+      <link rel="stylesheet" href="https://libs.cartocdn.com/airship-icons/v1.0.0-alpha.39/icons.css">
       <!-- Include Web Components -->
-      <script src="https://libs.cartocdn.com/airship-components/v1.0.0-alpha.37/airship.js"></script>
+      <script src="https://libs.cartocdn.com/airship-components/v1.0.0-alpha.39/airship.js"></script>
 
       <!-- Include Leaflet -->
       <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
@@ -212,15 +212,15 @@ categoryWidget.addEventListener('categoriesSelected', (event) => {
       <aside class="widgets as-sidebar as-sidebar--right as-sidebar">
           <as-category-widget
           heading="Populated places"
-          description="Sum of the population grouped by country"
+          description="Top populated cities ordered by descending population"
           default-bar-color="#47DB99"></as-category-widget>
       </aside>
     </main>
 
     <script>
       const client = new carto.Client({
-        apiKey: '{YOUR_API_KEY}',
-        username: '{username}'
+        apiKey: 'default_public',
+        username: 'cartojs-test'
       });
 
       const map = L.map('map').setView([30, 0], 3);
@@ -240,7 +240,7 @@ categoryWidget.addEventListener('categoriesSelected', (event) => {
         }
       `);
 
-      const dataView = new carto.dataview.Category(source, 'adm0name', {
+      const dataView = new carto.dataview.Category(source, 'name', {
         operation: carto.operation.SUM,
         operationColumn: 'pop_max'
       });
@@ -256,11 +256,11 @@ categoryWidget.addEventListener('categoriesSelected', (event) => {
       client.addLayer(layer);
       client.getLeafletLayer().addTo(map);
 
-      const selectedCountries = new carto.filter.Category('adm0name', {});
-      source.addFilter(selectedCountries);
+      const selectedCities = new carto.filter.Category('name', {});
+      source.addFilter(selectedCities);
 
       categoryWidget.addEventListener('categoriesSelected', (event) => {
-        selectedCountries.setFilters({ in: event.detail });
+        selectedCities.setFilters({ in: event.detail });
       });
     </script>
   </body>
