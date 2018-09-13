@@ -161,7 +161,7 @@ export class CategoryWidget {
 
     const maximumValue = this.useTotalPercentage
       ? this._getCategoriesTotalValue(this.categories)
-      : this._getVisibleCategoriesMaximumValue();
+      : this._getCategoriesMaximumValue(categories, Boolean(otherCategory));
 
     if (otherCategory || moreCategoriesThanVisible) {
       otherCategoryTemplate = this._renderOtherCategory(otherCategory, { maximumValue });
@@ -251,8 +251,8 @@ export class CategoryWidget {
     this.categoriesSelected.emit(this.selectedCategories);
   }
 
-  private _getVisibleCategoriesMaximumValue() {
-    return this._getVisibleCategories().reduce(
+  private _getCategoriesMaximumValue(categories: Category[], otherCategoryPresent: boolean = false) {
+    return this._getVisibleCategories(categories, otherCategoryPresent).reduce(
       (maximum, currentCategory: Category) => currentCategory.value > maximum ? currentCategory.value : maximum, 0
     );
   }
@@ -282,16 +282,20 @@ export class CategoryWidget {
 
     if (otherCategory) {
       const categories = this.categories
-        .filter((category: Category) => category.name !== otherCategory.name);
+        .filter((category: Category) => category.name !== otherCategory.name) as Category[];
 
       return { categories, otherCategory };
     }
 
-    return { categories: this.categories };
+    return { categories: this.categories as Category[] };
   }
 
-  private _getVisibleCategories() {
-    return this.categories.slice(0, this.visibleCategories);
+  private _getVisibleCategories(parsedCategories, otherCategoryPresent: boolean) {
+    if (otherCategoryPresent) {
+      return parsedCategories;
+    }
+
+    return parsedCategories.slice(0, this.visibleCategories);
   }
 }
 
