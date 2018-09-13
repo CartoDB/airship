@@ -19,9 +19,9 @@ Puts the sidebar on the left of the map.
 <div class="as-app"  style="height: 300px; width:100%;">
   <main class="as-app-content">
 
-    <aside class="as-sidebar as-sidebar--left" style="background: #80B622;"></aside>
+    <aside class="as-sidebar as-sidebar--left as-bg--support-03"></aside>
     
-    <div class="as-map-wrapper" style="background: #B5E0F9;">
+    <div class="as-map-wrapper as-bg--badge-blue">
       <!-- Put your map here -->
     </div>
   </main>
@@ -35,11 +35,11 @@ Puts the sidebar on the right of the map.
 ```html
 <div class="as-app"  style="height: 300px; width:100%;">
   <main class="as-app-content">
-    <div class="as-map-wrapper" style="background: #B5E0F9;">
+    <div class="as-map-wrapper as-bg--badge-blue">
       <!-- Put your map here -->
     </div>
 
-    <aside class="as-sidebar as-sidebar--right" style="background: #80B622;"></aside>
+    <aside class="as-sidebar as-sidebar--right as-bg--support-03"></aside>
   </main>
 </div>
 ```
@@ -54,9 +54,9 @@ Makes the sidebar to be 360px width.
 <div class="as-app"  style="height: 300px; width:100%;">
   <main class="as-app-content">
 
-    <aside class="as-sidebar as-sidebar--left as-sidebar--l" style="background: #80B622;"></aside>
+    <aside class="as-sidebar as-sidebar--left as-sidebar--l as-bg--support-03"></aside>
     
-    <div class="as-map-wrapper" style="background: #B5E0F9;">
+    <div class="as-map-wrapper as-bg--badge-blue">
       <!-- Put your map here -->
     </div>
   </main>
@@ -71,9 +71,9 @@ Makes the sidebar to be 460px width.
 <div class="as-app"  style="height: 300px; width:100%;">
   <main class="as-app-content">
 
-    <aside class="as-sidebar as-sidebar--left as-sidebar--xl" style="background: #80B622;"></aside>
+    <aside class="as-sidebar as-sidebar--left as-sidebar--xl as-bg--support-03"></aside>
     
-    <div class="as-map-wrapper" style="background: #B5E0F9;">
+    <div class="as-map-wrapper as-bg--badge-blue">
       <!-- Put your map here -->
     </div>
   </main>
@@ -83,16 +83,16 @@ Makes the sidebar to be 460px width.
 
 ### .as-sidebar--visible
 
-Makes the sidebar visible on small screens occupying all the space available in the`.app-content` and covering the map.
+Makes the sidebar visible on small screens filling all the space available in the `.app-content` and covering the map.
 
 
 ```html
 <div class="as-app"  style="height: 300px; width:100%;">
   <main class="as-app-content">
 
-    <aside class="as-sidebar as-sidebar--left as-sidebar--visible" style="background: #80B622;"></aside>
+    <aside class="as-sidebar as-sidebar--left as-sidebar--visible as-bg--support-03"></aside>
     
-    <div class="as-map-wrapper" style="background: #B5E0F9;">
+    <div class="as-map-wrapper as-bg--badge-blue">
       <!-- Put your map here -->
     </div>
   </main>
@@ -124,13 +124,13 @@ lang: html
   </div>
 
   <main class="as-app-content">
-    <aside class="as-sidebar as-sidebar--left as-sidebar--xl" style="background: #80B622;">.sidebar--left</aside>
+    <aside class="as-sidebar as-sidebar--left as-sidebar--xl as-bg--support-03">.sidebar--left</aside>
 
     <div class="as-map-wrapper">
       <div id="map"></div>
     </div>
 
-    <aside class="as-sidebar as-sidebar--right" style="background: #80B622;">.sidebar--right</aside>
+    <aside class="as-sidebar as-sidebar--right as-bg--support-03">.sidebar--right</aside>
 
   </main>
 </body>
