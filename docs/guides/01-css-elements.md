@@ -40,7 +40,7 @@ Airship Styles offer CSS elements for you to build LI applications, giving a goo
 ### From CDN
 Copy-paste the stylesheet `<link>` tag into your `<head>` tag before other stylesheets to load Airship CSS.
 ```html
-<link rel="stylesheet" href="https://libs.cartocdn.com/airship-styles/<VERSION>/airship.css" crossorigin="anonymous" integrity="">
+<link rel="stylesheet" href="https://libs.cartocdn.com/airship-style/<VERSION>/airship.css" crossorigin="anonymous" integrity="">
 ```
 
 ## Usage

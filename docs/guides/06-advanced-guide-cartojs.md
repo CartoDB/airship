@@ -29,7 +29,7 @@ To use Airship styles and components we need to include them in our HTML.
 Let's include Airship components and styles by including the following snippet in the `<head>` of our application.
 ```html
 <!-- Include CSS  -->
-<link rel="stylesheet" href="https://libs.cartocdn.com/airship-styles/<VERSION>/airship.css">
+<link rel="stylesheet" href="https://libs.cartocdn.com/airship-style/<VERSION>/airship.css">
 <!-- Include Icons -->
 <link rel="stylesheet" href="https://libs.cartocdn.com/airship-icons/<VERSION>/icons.css">
 <!-- Include Web Components -->
@@ -196,7 +196,7 @@ Using that Bounding Box filter, our widget will be automatically updated wheneve
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
       <!-- Include CSS  -->
-      <link rel="stylesheet" href="https://libs.cartocdn.com/airship-styles/v1.0.0-alpha.40/airship.css">
+      <link rel="stylesheet" href="https://libs.cartocdn.com/airship-style/v1.0.0-alpha.40/airship.css">
       <!-- Include Icons -->
       <link rel="stylesheet" href="https://libs.cartocdn.com/airship-icons/v1.0.0-alpha.40/icons.css">
       <!-- Include Web Components -->
