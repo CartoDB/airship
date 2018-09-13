@@ -117,7 +117,7 @@ Adding a Category Widget is as simple as including `<as-category-widget>` tag wi
   <as-category-widget
     id="cities-widget"
     heading="Populated places"
-    description="Sum of the population grouped by country">
+    description="Maximun population of the most pouplated cities">
   </as-category-widget>
 </aside>
 ```
