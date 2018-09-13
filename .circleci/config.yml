@@ -55,7 +55,7 @@ jobs:
           - visual-01-dependencies-
       - run: npm install
       - run: npm run build:styles
-      - run: npm run test:ci
+      - run: npm run test:styles:ci
       - save_cache:
           paths:
             - node_modules
