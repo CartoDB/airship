@@ -166,13 +166,12 @@ describe('as-category-widget', () => {
     });
   });
 
-  describe('._getVisibleCategoriesMaximumValue', () => {
+  describe('._getCategoriesMaximumValue', () => {
     it('should return maximum value of visible categories', () => {
-      categoryWidget.categories = exampleCategories;
       categoryWidget.useTotalPercentage = false;
       categoryWidget.visibleCategories = 5;
 
-      expect(categoryWidget._getVisibleCategoriesMaximumValue()).toEqual(1000);
+      expect(categoryWidget._getCategoriesMaximumValue(exampleCategories)).toEqual(1000);
     });
   });
 
