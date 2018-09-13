@@ -196,11 +196,11 @@ Using that Bounding Box filter, our widget will be automatically updated wheneve
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
       <!-- Include CSS  -->
-      <link rel="stylesheet" href="https://libs.cartocdn.com/airship-styles/v1.0.0-alpha.39/airship.css">
+      <link rel="stylesheet" href="https://libs.cartocdn.com/airship-styles/v1.0.0-alpha.40/airship.css">
       <!-- Include Icons -->
-      <link rel="stylesheet" href="https://libs.cartocdn.com/airship-icons/v1.0.0-alpha.39/icons.css">
+      <link rel="stylesheet" href="https://libs.cartocdn.com/airship-icons/v1.0.0-alpha.40/icons.css">
       <!-- Include Web Components -->
-      <script src="https://libs.cartocdn.com/airship-components/v1.0.0-alpha.39/airship.js"></script>
+      <script src="https://libs.cartocdn.com/airship-components/v1.0.0-alpha.40/airship.js"></script>
 
       <!-- Include Leaflet -->
       <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
