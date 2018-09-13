@@ -15,7 +15,9 @@
     "stylelint-config-standard": "^18.2.0"
   },
   "scripts": {
-    "build": "node-sass src -o dist",
+    "build": "npm run build:min && npm run build:css",
+    "build:css": "node-sass src -o dist",
+    "build:min": "node-sass src -o dist --output-style compressed && sh scripts/rename-css-files.sh",
     "dev": "sass --watch src:../../www/dist src:dist",
     "lint:fix": "stylelint 'src/**/*.scss' --fix",
     "lint": "stylelint 'src/**/*.scss'",
