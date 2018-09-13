@@ -169,6 +169,23 @@ categoryWidget.addEventListener('categoriesSelected', (event) => {
 });
 ```
 
+### Reacting to map changes in Category Widget
+You can use a Bounding Box filter to clean out data that is outside of browser's viewport, making results relevant to your current visualization.
+These are the steps to create and add the filter to our dataview:
+
+- **Create a Bounding Box filter**: Depending on the map rendering library you use (Leaflet or Google Maps) you will have to choose the right filter. As we are using Leaflet in our example, it will be created like this:
+```js
+const bboxFilter = new carto.filter.BoundingBoxLeaflet(map);
+```
+
+- **Add the filter to our dataview**:
+```js
+dataView.addFilter(bboxFilter);
+```
+
+Using that Bounding Box filter, our widget will be automatically updated whenever the map is panned or zoomed.
+
+
 ## Example HTML
 ```html
 <!DOCTYPE html>
@@ -223,7 +240,7 @@ categoryWidget.addEventListener('categoriesSelected', (event) => {
         username: 'cartojs-test'
       });
 
-      const map = L.map('map').setView([30, 0], 3);
+      const map = L.map('map').setView([30, 0], 5);
 
       L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}.png', {
         maxZoom: 18
@@ -240,6 +257,8 @@ categoryWidget.addEventListener('categoriesSelected', (event) => {
         }
       `);
 
+      const bboxFilter = new carto.filter.BoundingBoxLeaflet(map);
+
       const dataView = new carto.dataview.Category(source, 'name', {
         operation: carto.operation.SUM,
         operationColumn: 'pop_max'
@@ -249,6 +268,7 @@ categoryWidget.addEventListener('categoriesSelected', (event) => {
         categoryWidget.categories = newData.categories;
       });
 
+      dataView.addFilter(bboxFilter);
       client.addDataview(dataView);
 
       const layer = new carto.layer.Layer(source, style);
