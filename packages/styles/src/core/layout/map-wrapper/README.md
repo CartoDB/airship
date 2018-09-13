@@ -14,7 +14,7 @@ The most basic usage of the `as-map-wrapper` element is when you only need to sh
 ```html
 <div class="as-app" style="width:100%; height:300px;">
   <main class="as-app-content">
-    <div class="as-map-wrapper" style="background: #B5E0F9;">
+    <div class="as-map-wrapper as-bg--badge-blue">
       <!-- CARTO.js or CARTO-VL will place the map on this div  -->
       <div id="map"></div> 
     </div>
@@ -35,10 +35,10 @@ You can toggle the `as-bottom-bar--visible` class the way you prefer but we reco
 ```html
 <div class="as-app" style="width:100%; height:300px;">
   <main class="as-app-content">
-    <div class="as-map-wrapper" style="background: #B5E0F9;">
+    <div class="as-map-wrapper as-bg--badge-blue">
       <!-- CARTO.js or CARTO-VL will place the map on this div  -->
       <div id="map"></div> 
-      <div class="as-bottom-bar" style="background: #F8E71C; height: 100px;">
+      <div class="as-bottom-bar as-bg--badge-yellow" style="height: 100px;">
         .as-bottom-bar
       </div>
     </div>
@@ -53,7 +53,7 @@ Use this class as a child of the `as-map-wrapper` element. The `as-panels` wrapp
 ```html
 <div class="as-app" style="width:100%; height:300px;">
   <main class="as-app-content">
-    <div class="as-map-wrapper" style="background: #B5E0F9;">
+    <div class="as-map-wrapper as-bg--badge-blue">
       <!-- CARTO.js or CARTO-VL will place the map on this div  -->
       <div id="map"></div> 
       <div class="as-panels" style="background: rgba(0, 0, 0, 0.5);">
@@ -81,7 +81,7 @@ You can combine two of the following class modifiers to specify the panel positi
 ```html
 <div class="as-app" style="width:100%; height:300px;">
   <main class="as-app-content">
-    <div class="as-map-wrapper" style="background: #B5E0F9;">
+    <div class="as-map-wrapper as-bg--badge-blue">
       <!-- CARTO.js or CARTO-VL will place the map on this div  -->
       <div id="map"></div> 
       <div class="as-panels">
@@ -108,7 +108,7 @@ This class creates a wrapper that allows to place content like widgets, text or 
 ```html
 <div class="as-app" style="width:100%; height:300px;">
   <main class="as-app-content">
-    <div class="as-map-wrapper" style="background: #B5E0F9;">
+    <div class="as-map-wrapper as-bg--badge-blue">
       <!-- CARTO.js or CARTO-VL will place the map on this div  -->
       <div id="map"></div> 
       <div class="as-panels">
@@ -133,7 +133,7 @@ By default panels grow horizontally. Add this class to make the panels grow vert
 ```html
 <div class="as-app" style="width:100%; height:300px;">
   <main class="as-app-content">
-    <div class="as-map-wrapper" style="background: #B5E0F9;">
+    <div class="as-map-wrapper as-bg--badge-blue">
       <!-- CARTO.js or CARTO-VL will place the map on this div  -->
       <div id="map"></div> 
       <div class="as-panels">
