@@ -81,7 +81,7 @@ const UPLOAD = [
   {
     name: 'Airship Styles',
     src: path.join(__dirname, '../packages/styles/dist'),
-    dst: 'airship-styles',
+    dst: 'airship-style',
     version: require('../packages/styles/package.json').version
   }
 ];
@@ -144,7 +144,7 @@ async function uploadAllFiles (dir, version, destination, subfolder='') {
           if (!DRY_RUN) {
             await putObject(objectConfig);
           }
-  
+
           log(`✅  ${objectConfig.Key} ${fileContent.length} bytes. Compressed ${ratio > 100 ? `⚠️  \x1b[33m${ratio}` : ratio}%\x1b[0m`);
         } catch (e) {
           console.error(`❌  ${dst}`, e);
