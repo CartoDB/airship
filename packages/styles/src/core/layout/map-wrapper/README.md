@@ -1,10 +1,9 @@
-The map wrapper is used as the container for the `map-wrapper` and the `bottom-bar`
+The map wrapper is used as the container for the `#map` div, the `.as-bottom-bar` and the `.as-panels` area.
 
 
 - The bottom bar works similar to a sidebar but is positioned horizontally below the map.
-- The map-wrapper is the area where the map is placed allowing floating panels to be placed on it.
-
-
+- The `#map` div is the element where the map is placed.
+- The `.as-panels` element overlaps the `#map` allowing to place floating panels over the map.
 
 
 ## .as-map-wrapper
