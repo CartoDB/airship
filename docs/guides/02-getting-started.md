@@ -16,7 +16,7 @@ The simplest way to use Airship is to load it from CARTO CDN by including the fo
 ```html
 <head>
   <!-- Include CSS  -->
-  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-styles/<VERSION>/airship.css">
+  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-style/<VERSION>/airship.css">
   <!-- Include Icons -->
   <link rel="stylesheet" href="https://libs.cartocdn.com/airship-icons/<VERSION>/icons.css">
   <!-- Include Web Components -->
@@ -33,13 +33,13 @@ While Airship will automatically inject necessary components as soon as they are
 ```html
 <head>
   <!-- Always Include core first -->
-  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-styles/dist/core/core.css">
+  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-style/dist/core/core.css">
   <!-- Include the elements used by your app -->
-  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-styles/dist/button/button.css">
-  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-styles/dist/table/table.css">
-  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-styles/dist/tabs/tabs.css">
+  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-style/dist/button/button.css">
+  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-style/dist/table/table.css">
+  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-style/dist/tabs/tabs.css">
   <!-- (optional) Include utils at the end -->
-  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-styles/dist/utilities/utilities.css">
+  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-style/dist/utilities/utilities.css">
 <head>
 ```
 
@@ -62,8 +62,8 @@ import '@carto/airship-styles';
 
 ```js
 // Import only core styles and tables
-import '@carto/airship-styles/dist/core/core.css';
-import '@carto/airship-styles/dist/table/table.css';
+import '@carto/airship-style/dist/core/core.css';
+import '@carto/airship-style/dist/table/table.css';
 ```
 
 ### Web components
@@ -164,7 +164,7 @@ For example a range slider
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title> Airship app</title>
-  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-styles/<VERSION>/airship.css">
+  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-style/<VERSION>/airship.css">
   <link rel="stylesheet" href="https://libs.cartocdn.com/airship-icons/<VERSION>/icons.css">
   <script src="https://libs.cartocdn.com/airship-components/<VERSION>/airship.js"></script>
 

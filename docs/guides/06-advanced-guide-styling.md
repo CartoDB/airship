@@ -38,7 +38,7 @@ To override a global variable like `--as-color-primary`, which doesn't specifica
 
 ```html
 <!-- Include CSS -->
-<link rel="stylesheet" href="https://libs.cartocdn.com/airship-styles/<VERSION>/airship.css">
+<link rel="stylesheet" href="https://libs.cartocdn.com/airship-style/<VERSION>/airship.css">
 
 <!-- Override --as-color-primary -->
 <style>
@@ -56,7 +56,7 @@ So, we have `--panels-bg-color` in `_panels.scss`, and we want it to be `#EEE`. 
 
 ```html
 <!-- Include CSS -->
-<link rel="stylesheet" href="https://libs.cartocdn.com/airship-styles/<VERSION>/airship.css">
+<link rel="stylesheet" href="https://libs.cartocdn.com/airship-style/<VERSION>/airship.css">
 
 <!-- Override --panels-bg-color -->
 <style>
@@ -157,7 +157,7 @@ To change it to our desired value, you will need to write that selector **after*
 
 or HTML version:
 ```html
-<link rel="stylesheet" href="https://libs.cartocdn.com/airship-styles/<VERSION>/airship.css">
+<link rel="stylesheet" href="https://libs.cartocdn.com/airship-style/<VERSION>/airship.css">
 
 <style>
 .as-title {

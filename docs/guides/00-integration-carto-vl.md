@@ -24,7 +24,7 @@ To use Airship styles and components we need to include them in our HTML. Since 
 
 ```html
 <!-- Include CSS  -->
-<link rel="stylesheet" href="https://libs.cartocdn.com/airship-styles/<VERSION>/airship.css">
+<link rel="stylesheet" href="https://libs.cartocdn.com/airship-style/<VERSION>/airship.css">
 <!-- Include Icons -->
 <link rel="stylesheet" href="https://libs.cartocdn.com/airship-icons/<VERSION>/icons.css">
 <!-- Include Web Components -->
