@@ -21,7 +21,7 @@
   "scripts": {
     "build:styles": "lerna exec --scope @carto/airship-style -- npm run build",
     "build": "lerna run --parallel build",
-    "changelog": "conventional-changelog -p angular -o CHANGELOG.md -r 0",
+    "changelog": "git fetch && conventional-changelog -p angular -o CHANGELOG.md -r 0 && git add CHANGELOG.md && git commit -m \"Update CHANGELOG.md\"",
     "dev": "rimraf www && concurrently 'lerna run --parallel dev' 'node ./scripts/copy-styles-html-to-www.js' --kill-others",
     "lint:fix": "lerna run lint:fix",
     "lint": "lerna run lint",
