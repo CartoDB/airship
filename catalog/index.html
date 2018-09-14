@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <base href="/catalog/">
+  <!-- <base href="/catalog/"> -->
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -30,13 +30,33 @@
 
 
   <script>
+    function sendMessage (message) {
+      window.parent.postMessage(message, '*');
+    }
+
+    window.onhashchange = function (event) {
+      sendMessage(event.newURL);
+    };
+
     Catalog.render({
       title: 'Airship',
+      useBrowserHistory: false,
       responsiveSizes: [
         { name: 'mobile', width: 375, height: 667 },
         { name: 'tablet', width: 1024, height: 768 },
         { name: 'desktop', width: 1920, height: 1080 },
       ],
+      theme: {
+        background: "#FFFFFF",
+        linkColor: '#1FAC06',
+        textColor: '#2E3C43',
+        pageHeadingHeight: 0,
+        sidebarColor: '#F9F9F9',
+        sidebarColorActive: "#D1312E",
+        fontFamily: '"Open sans", "Helvetica Neue", Helvetica, Arial, sans-serif',
+        fontHeading: '"Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif',
+        baseFontSize: 16,
+      },
       pages: [
         {
           path: '/',
