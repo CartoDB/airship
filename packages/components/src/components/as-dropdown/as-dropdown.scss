@@ -6,7 +6,11 @@ as-dropdown {
 
   --dropdown-main-color: #{$color-primary};
 
-  .dropdown--control {
+  .as-dropdown {
+    position: relative;
+  }
+
+  .as-dropdown__control {
     position: relative;
     width: 100%;
     margin: 0;
@@ -14,6 +18,7 @@ as-dropdown {
     overflow: hidden;
     border: 0;
     border-radius: 4px;
+    background-color: $color-ui-01;
     box-shadow: inset 0 0 0 1px $color-ui-04;
     text-align: left;
     text-overflow: ellipsis;
@@ -21,7 +26,7 @@ as-dropdown {
     cursor: pointer;
   }
 
-  .dropdown--icon {
+  .as-dropdown__arrow {
     position: absolute;
     top: 50%;
     right: get-spacing(3);
@@ -34,7 +39,7 @@ as-dropdown {
     }
   }
 
-  .dropdown--list {
+  .as-dropdown__list {
     display: none;
     position: absolute;
     width: 100%;
@@ -43,11 +48,11 @@ as-dropdown {
     overflow: hidden;
     border: 1px solid #E2E6E3;
     border-radius: 4px;
-    background: #FFF;
+    background: $color-ui-01;
     box-shadow: 0 2px 8px 0 rgba(44, 44, 44, 0.16);
   }
 
-  .dropdown--list-item {
+  .as-dropdown__list-item {
     border: 0;
     outline: none;
     cursor: pointer;
@@ -63,6 +68,7 @@ as-dropdown {
       padding: get-spacing(2) get-spacing(3);
       border: 0;
       outline: none;
+      background-color: $color-ui-01;
       text-align: left;
       cursor: inherit;
 
@@ -73,21 +79,21 @@ as-dropdown {
     }
   }
 
-  .is-open {
-    .dropdown--control {
+  .as-dropdown--open {
+    .as-dropdown__control {
       box-shadow: inset 0 0 0 2px var(--dropdown-main-color, $color-primary);
     }
 
-    .dropdown--list {
+    .as-dropdown__list {
       display: block;
     }
   }
 
-  .can-clear {
+  .as-dropdown--clear {
     width: calc(100% - #{get-spacing(9)});
   }
 
-  .dropdown--clear {
+  .as-dropdown__clear {
     position: absolute;
     top: 50%;
     right: -24px;
@@ -97,6 +103,7 @@ as-dropdown {
     padding: 0;
     transform: translate3d(0, -50%, 0);
     border: 0;
+    background-color: $color-ui-01;
     cursor: pointer;
 
     path {
