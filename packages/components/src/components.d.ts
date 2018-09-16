@@ -184,6 +184,7 @@ declare global {
        * Default text to show when no option is selected
        */
       'defaultText': string;
+      'getSelectedOption': () => string;
       /**
        * Array of options to display in the dropdown
        */
