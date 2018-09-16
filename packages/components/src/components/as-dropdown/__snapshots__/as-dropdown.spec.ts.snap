@@ -6,15 +6,15 @@ exports[`as-category-widget Rendering should render clear button when canClear i
 >
   
   <div
-    class="as-dropdown can-clear"
+    class="as-dropdown as-dropdown--clear"
   >
     <button
       aria-haspopup="true"
-      class="dropdown--control as-body"
+      class="as-dropdown__control as-body"
     >
       Option 2
       <div
-        class="dropdown--icon"
+        class="as-dropdown__arrow"
       >
         <svg
           viewBox="2 6 12 6"
@@ -27,11 +27,11 @@ exports[`as-category-widget Rendering should render clear button when canClear i
       </div>
     </button>
     <ul
-      class="dropdown--list"
+      class="as-dropdown__list"
       tabindex="-1"
     >
       <li
-        class="dropdown--list-item"
+        class="as-dropdown__list-item"
         data-value="Option 1"
       >
         <button
@@ -41,7 +41,7 @@ exports[`as-category-widget Rendering should render clear button when canClear i
         </button>
       </li>
       <li
-        class="dropdown--list-item"
+        class="as-dropdown__list-item"
         data-value="Option 2"
       >
         <button
@@ -51,7 +51,7 @@ exports[`as-category-widget Rendering should render clear button when canClear i
         </button>
       </li>
       <li
-        class="dropdown--list-item"
+        class="as-dropdown__list-item"
         data-value="Option 3"
       >
         <button
@@ -62,7 +62,7 @@ exports[`as-category-widget Rendering should render clear button when canClear i
       </li>
     </ul>
     <button
-      class="dropdown--clear"
+      class="as-dropdown__clear"
     >
       <svg
         viewBox="2 2 12 12"
@@ -87,11 +87,11 @@ exports[`as-category-widget Rendering should render properly 1`] = `
   >
     <button
       aria-haspopup="true"
-      class="dropdown--control as-body"
+      class="as-dropdown__control as-body"
     >
       Option 2
       <div
-        class="dropdown--icon"
+        class="as-dropdown__arrow"
       >
         <svg
           viewBox="2 6 12 6"
@@ -104,11 +104,11 @@ exports[`as-category-widget Rendering should render properly 1`] = `
       </div>
     </button>
     <ul
-      class="dropdown--list"
+      class="as-dropdown__list"
       tabindex="-1"
     >
       <li
-        class="dropdown--list-item"
+        class="as-dropdown__list-item"
         data-value="Option 1"
       >
         <button
@@ -118,7 +118,7 @@ exports[`as-category-widget Rendering should render properly 1`] = `
         </button>
       </li>
       <li
-        class="dropdown--list-item"
+        class="as-dropdown__list-item"
         data-value="Option 2"
       >
         <button
@@ -128,7 +128,7 @@ exports[`as-category-widget Rendering should render properly 1`] = `
         </button>
       </li>
       <li
-        class="dropdown--list-item"
+        class="as-dropdown__list-item"
         data-value="Option 3"
       >
         <button
@@ -153,11 +153,11 @@ exports[`as-category-widget Rendering should show defaultText when there is no s
   >
     <button
       aria-haspopup="true"
-      class="dropdown--control as-body"
+      class="as-dropdown__control as-body"
     >
       Dropdown
       <div
-        class="dropdown--icon"
+        class="as-dropdown__arrow"
       >
         <svg
           viewBox="2 6 12 6"
@@ -170,11 +170,11 @@ exports[`as-category-widget Rendering should show defaultText when there is no s
       </div>
     </button>
     <ul
-      class="dropdown--list"
+      class="as-dropdown__list"
       tabindex="-1"
     >
       <li
-        class="dropdown--list-item"
+        class="as-dropdown__list-item"
         data-value="Option 1"
       >
         <button
@@ -184,7 +184,7 @@ exports[`as-category-widget Rendering should show defaultText when there is no s
         </button>
       </li>
       <li
-        class="dropdown--list-item"
+        class="as-dropdown__list-item"
         data-value="Option 2"
       >
         <button
@@ -194,7 +194,7 @@ exports[`as-category-widget Rendering should show defaultText when there is no s
         </button>
       </li>
       <li
-        class="dropdown--list-item"
+        class="as-dropdown__list-item"
         data-value="Option 3"
       >
         <button

@@ -2,12 +2,6 @@ import { TestWindow } from '@stencil/core/dist/testing';
 import { Dropdown } from './as-dropdown';
 
 describe('as-category-widget', () => {
-  // let dropdown;
-
-  // beforeEach(() => {
-  //   dropdown = new Dropdown();
-  // });
-
   it('should build', () => {
     expect(new Dropdown()).toBeTruthy();
   });
@@ -69,7 +63,7 @@ describe('as-category-widget', () => {
       element.addEventListener('optionChanged', optionChangedSpy);
       await testWindow.flush();
 
-      const optionElement = element.querySelector('.dropdown--list-item button') as HTMLButtonElement;
+      const optionElement = element.querySelector('.as-dropdown__list-item button') as HTMLButtonElement;
       optionElement.click();
 
       expect(optionChangedSpy).toHaveBeenCalled();
@@ -80,14 +74,13 @@ describe('as-category-widget', () => {
       element.options = ['Option 1', 'Option 2', 'Option 3'];
       await testWindow.flush();
 
-      const controlElement = element.querySelector('.dropdown--control') as HTMLButtonElement;
+      const controlElement = element.querySelector('.as-dropdown__control') as HTMLButtonElement;
       controlElement.click();
 
       await testWindow.flush();
 
-      const menuDropdown = element.querySelector('.as-dropdown') as HTMLButtonElement;
-
-      expect(menuDropdown.classList.contains('is-open')).toBe(true);
+      const menuDropdown = element.querySelector('.as-dropdown') as HTMLDivElement;
+      expect(menuDropdown.classList.contains('as-dropdown--open')).toBe(true);
     });
 
     it('should clear option when clear button is pressed', async () => {
@@ -96,7 +89,7 @@ describe('as-category-widget', () => {
       element.canClear = true;
       await testWindow.flush();
 
-      const clearButtonElement = element.querySelector('.dropdown--clear') as HTMLButtonElement;
+      const clearButtonElement = element.querySelector('.as-dropdown__clear') as HTMLButtonElement;
       clearButtonElement.click();
 
       await testWindow.flush();
