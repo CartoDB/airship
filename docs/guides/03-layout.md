@@ -21,8 +21,9 @@ LI apps should be responsive by default, we currently consider 2 different scree
 - **Medium screens:** Screens equal or higher than 812px width.
 
 
-We provide some responsive utilities by default, for example `sidebars` are hidden by default in small screens and only visible under the `--visible` class modifier.
+We provide some responsive utilities by default, for example `sidebars` are hidden by default in small screens and only visible adding the `--visible` class modifier.
 
+> We provide a web component named [application content](#) that makes easier the layout design.
 
 ## Examples
 
