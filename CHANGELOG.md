@@ -1,9 +1,36 @@
 <a name="0.0.0"></a>
-# [0.0.0](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.38...v0.0.0) (2018-09-10)
+# [0.0.0](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.42...v0.0.0) (2018-09-14)
+
+
+
+<a name="1.0.0-alpha.42"></a>
+# [1.0.0-alpha.42](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.41...v1.0.0-alpha.42) (2018-09-14)
 
 
 ### Bug Fixes
 
+* **styles:** Add sidebar scroll ([#273](https://github.com/CartoDB/airship/issues/273)) ([a2af1ec](https://github.com/CartoDB/airship/commit/a2af1ec))
+
+
+### Features
+
+* **components:** Add README.md to Components package ([#276](https://github.com/CartoDB/airship/issues/276)) ([2664429](https://github.com/CartoDB/airship/commit/2664429))
+* **docs:** Add carto-vl guide ([#271](https://github.com/CartoDB/airship/issues/271)) ([ef17835](https://github.com/CartoDB/airship/commit/ef17835))
+* **docs:** Advanced Styling guide ([#268](https://github.com/CartoDB/airship/issues/268)) ([b8ff342](https://github.com/CartoDB/airship/commit/b8ff342))
+* **docs:** Update map-wrapper docs ([#265](https://github.com/CartoDB/airship/issues/265)) ([8fcaa82](https://github.com/CartoDB/airship/commit/8fcaa82))
+* **docs:** Update sidebar docs ([#264](https://github.com/CartoDB/airship/issues/264)) ([1341ad3](https://github.com/CartoDB/airship/commit/1341ad3))
+* **styles:** 270 minify css ([#277](https://github.com/CartoDB/airship/issues/277)) ([56bb8b5](https://github.com/CartoDB/airship/commit/56bb8b5))
+* 259 rename cdn ([#278](https://github.com/CartoDB/airship/issues/278)) ([83be2a7](https://github.com/CartoDB/airship/commit/83be2a7))
+
+
+
+<a name="1.0.0-alpha.41"></a>
+# [1.0.0-alpha.41](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.38...v1.0.0-alpha.41) (2018-09-13)
+
+
+### Bug Fixes
+
+* **components:** Do not take Other category into account in total percentage sum ([f45ab2f](https://github.com/CartoDB/airship/commit/f45ab2f))
 * **style:** review as map class ([#263](https://github.com/CartoDB/airship/issues/263)) ([71e8638](https://github.com/CartoDB/airship/commit/71e8638))
 
 
@@ -11,7 +38,9 @@
 
 * **docs:** Add icons guide ([#258](https://github.com/CartoDB/airship/issues/258)) ([fa67101](https://github.com/CartoDB/airship/commit/fa67101))
 * **docs:** Add web components guide ([#256](https://github.com/CartoDB/airship/issues/256)) ([e45da60](https://github.com/CartoDB/airship/commit/e45da60))
+* **docs:** Advanced CARTO.js guide using Airship ([#266](https://github.com/CartoDB/airship/issues/266)) ([2abbe3d](https://github.com/CartoDB/airship/commit/2abbe3d))
 * **docs:** Content guide ([#255](https://github.com/CartoDB/airship/issues/255)) ([47d3fc7](https://github.com/CartoDB/airship/commit/47d3fc7))
+* **docs:** CSS Elements guide ([3fafc33](https://github.com/CartoDB/airship/commit/3fafc33))
 
 
 ### BREAKING CHANGES
