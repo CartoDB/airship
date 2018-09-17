@@ -201,6 +201,10 @@ declare global {
        */
       'description': string;
       /**
+       * Disables the selection brushes and events for the widget
+       */
+      'disableInteractivity': boolean;
+      /**
        * Returns the current selection
        */
       'getSelection': () => number[];
@@ -266,6 +270,10 @@ declare global {
        * Description of the widget to be displayed
        */
       'description'?: string;
+      /**
+       * Disables the selection brushes and events for the widget
+       */
+      'disableInteractivity'?: boolean;
       /**
        * Title of the widget to be displayed
        */
