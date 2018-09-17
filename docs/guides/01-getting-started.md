@@ -1,5 +1,5 @@
 
-# Installing Airship
+## Installing Airship
 
 You can install airship-style using `npm` or downloading it from a `CDN`. 
 
@@ -9,7 +9,7 @@ Airship is composed of 3 packages that can be used independently:
   - **airship-icons**: High quality icons set availiable as svg or web-font.
   - **airship-components**: Web components for Location Intelligence apps.
 
-## Usage from a CDN
+### Usage from a CDN
 
 The simplest way to use Airship is to load it from CARTO CDN by including the following snippet in the head of your web application.
 
@@ -44,9 +44,9 @@ While Airship will automatically inject necessary components as soon as they are
 ```
 
 
-## Usage from NPM
+### Usage from NPM
 
-### Styles and fonts
+**Styles and fonts**
 
 Just install our packages and use it as you wish. We recommend to use [webpack loaders](https://github.com/webpack-contrib/css-loader) to inject the styles in your app.
 
@@ -66,7 +66,7 @@ import '@carto/airship-style/dist/core/core.css';
 import '@carto/airship-style/dist/table/table.css';
 ```
 
-### Web components
+**Web components**
 
     npm i @carto/airship-components
 
@@ -79,10 +79,10 @@ import { defineCustomElements } from '@carto/airship-components';
 defineCustomElements(window);
 ```
 
-# Using Airship
+## Using Airship
 Using Airship once included in your webpage is very straightforward. 
 
-## Airship Styles
+### Airship Styles
 
 To use Airship styles, you only need to add CSS classes to your HTML.
 
@@ -111,10 +111,10 @@ The following classes are part of a tabs element:
   </div>
 ```
 
-## Airship Icons
+### Airship Icons
 You can use Airship icons in two different ways.
 
-### As web font
+**As web font**
 
 To display an icon only a class and an `i` tag is required.
 
@@ -123,7 +123,7 @@ To display an icon only a class and an `i` tag is required.
 ```
 
 
-### As SVG
+**As SVG**
 
 > There is no need to include the `icons.css` file when using the icons this way.
 
@@ -134,7 +134,7 @@ Just include the icons from a CDN as regular SVG images.
 <img src="https://libs.cartocdn.com/airship-icons/<VERSION>/icons/twitter.svg" alt="Twitter logo">
 ```
 
-## Web componenets
+### Web componenets
 
 Web components should be treated as regular HTML Elements. 
 
@@ -153,7 +153,7 @@ For example a range slider
 ```
 
 
-# Basic template
+## Basic template
 
 ```html
 <!DOCTYPE html>

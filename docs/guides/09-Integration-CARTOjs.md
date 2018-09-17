@@ -1,10 +1,10 @@
-# Advanced guide: Using Airship with CARTO.js
+## Advanced guide: Using Airship with CARTO.js
 
 In this guide, you will learn how to create a map and a Category Widget showing data coming from the map, and reacting to changes in the map, as well as filtering data by using Category Widget.
 
 We'll use CARTO.js v4 and Airship to show how they work together properly.
 
-## Airship setup
+### Airship setup
 Let's start from scratch creating an empty `index.html` file with this scaffolding for this guide.
 ```html
 > index.html
@@ -23,7 +23,8 @@ Let's start from scratch creating an empty `index.html` file with this scaffoldi
 </html>
 ```
 
-### How to import Airship in HTML
+**How to import Airship in HTML**
+
 To use Airship styles and components we need to include them in our HTML.
 
 Let's include Airship components and styles by including the following snippet in the `<head>` of our application.
@@ -36,7 +37,7 @@ Let's include Airship components and styles by including the following snippet i
 <script src="https://libs.cartocdn.com/airship-components/<VERSION>/airship.js"></script>
 ```
 
-## Setting a basic layout
+### Setting a basic layout
 A basic layout might include a container for our map and a sidebar for our future widget.
 
 The layout will always be wrapped by a block element with `.as-app-content` class, which will hold all of our content and elements.
@@ -55,7 +56,8 @@ So, to create our layout we need a right sidebar and a block element wrapped by 
 
 Including it in our body will create the desired layout while waiting for the map and the widget.
 
-## Configuring and creating a map with CARTO.js
+### Configuring and creating a map with CARTO.js
+
 The next step in our journey is to embed a CARTO.js containing a layer in our layout to fill the blank space.
 
 To load the Maps JavaScript API and Leaflet, use the following tags in the example:
@@ -68,7 +70,8 @@ To load the Maps JavaScript API and Leaflet, use the following tags in the examp
 <link href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" rel="stylesheet">
 ```
 
-### Credentials configuration
+**Credentials configuration**
+
 Once CARTO.js is properly loaded, we need to configure the client we are going to use for our visualizations.
 Please follow instructions in [CARTO.js guide](https://carto.com/developers/carto-js/guides/quickstart/#requesting-an-api-key) to include your own API key in CARTO.js client and import the dataset we are going to use (ne_10m_populated_places_simple).
 
@@ -82,7 +85,8 @@ Our script tag should look like this:
 </script>
 ```
 
-### Creating a map with a layer in CARTO.js
+**Creating a map with a layer in CARTO.js**
+
 First of all, we need to create a map with Leaflet, and set the coordinates we want the map to be in. After that, we are going to add a tile layer with a basemap.
 
 ```js
@@ -118,10 +122,12 @@ client.addLayer(layer);
 client.getLeafletLayer().addTo(map);
 ```
 
-## Widget creation
+### Widget creation
+
 Widgets are the best way to show data from our visualization. You can create a dashboard with a map and several widgets that will allow you to visualize and explore your data in a clearer and better way.
 
-### Adding a Category Widget
+**Adding a Category Widget**
+
 Adding a Category Widget is as simple as including `<as-category-widget>` tag within our sidebar tag, setting the options you prefer.
 
 ```html
@@ -135,7 +141,8 @@ Adding a Category Widget is as simple as including `<as-category-widget>` tag wi
 
 Although the widget is present in our layout, it lacks some data to display. Let's populate it with data from CARTO.js dataviews.
 
-### Populating Category Widget with CARTO.js dataviews
+**Populating Category Widget with CARTO.js dataviews**
+
 Dataviews are the way to get the data which is showed in the map. That way we'll be able to show it in our Category widget.
 Listening to `dataChanged` event will allow us to set the proper categories into category widget.
 
@@ -153,7 +160,8 @@ dataView.on('dataChanged', function (newData) {
 client.addDataview(dataView);
 ```
 
-### Filtering map geometries with Category widget
+**Filtering map geometries with Category widget**
+
 You can be aware of selected categories in your category widget by listening `categoriesSelected` event. It will fire an event whenever the selected categories change.
 
 Inside the event handler, there will be a `event` parameter containing the selected categories within `event.detail` property. So that we can tell CARTO.js which categories are the ones to be shown in the map.
@@ -169,7 +177,8 @@ categoryWidget.addEventListener('categoriesSelected', (event) => {
 });
 ```
 
-### Reacting to map changes in Category Widget
+**Reacting to map changes in Category Widget**
+
 You can use a Bounding Box filter to clean out data that is outside of browser's viewport, making results relevant to your current visualization.
 These are the steps to create and add the filter to our dataview:
 
@@ -186,7 +195,8 @@ dataView.addFilter(bboxFilter);
 Using that Bounding Box filter, our widget will be automatically updated whenever the map is panned or zoomed.
 
 
-## Example HTML
+### Example HTML
+
 ```html
 <!DOCTYPE html>
 <html>

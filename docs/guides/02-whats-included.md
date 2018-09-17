@@ -1,4 +1,4 @@
-# Airship Content
+## Airship Content
 
 Airship is divided into three main packages:
 
@@ -8,7 +8,7 @@ Airship is divided into three main packages:
 
 These three packages are what Airship provides to build your own location intelligence application.
 
-## Components
+### Components
 Airship components are built on top of [StencilJS](https://stenciljs.com/), which allows us to provide lightweight and easy to use components.
 
 You can find the components' source code in [`src/components`](https://github.com/CartoDB/airship/tree/master/packages/components/src/components) folder. Each component has several files associated:
@@ -20,7 +20,7 @@ You can find the components' source code in [`src/components`](https://github.co
 Airship components are always lazy loaded, so there is no need to worry about importing the whole bundle or each component separately.
 By importing `@carto/airship-components` package, the components loader will be included in your bundle and it will lazy-load components by injecting them as soon as they are present in the DOM.
 
-## Styles
+### Styles
 Airship styles are split into several folders to allow importing the whole bundle or each style separately, aiming to give flexibility and the possibility to reduce the size of the application's final bundle.
 
 **Styles are provided in two different flavours:**
@@ -62,7 +62,7 @@ So, let's say that you want to import badges component, these are the snippets y
   - JavaScript import: `import '@carto/airship-style/dist/badges/badges';`
   - SASS import: `@import '~@carto/airship-style/dist/badges/badges';`
 
-## Icons
+### Icons
 Airship includes a set of icons to place into your application. These icons can be found in [this folder](https://github.com/CartoDB/airship/tree/master/packages/icons/src/icons).
 
 Each SVG is automatically generated from a path set in [`paths.js`](https://github.com/CartoDB/airship/blob/master/packages/icons/src/paths.js).

@@ -1,4 +1,4 @@
-## Web components
+### Web components
 
 Airship provides a set of [web components](https://www.webcomponents.org/introduction). One of the key features of the Web Components standard is the ability to offer custom elements that encapsulate functionality on an HTML page, rather than having to make do with a long, nested batch of elements that together provide a custom page feature.
 
@@ -13,7 +13,7 @@ This is especially interesting to create geospatial widgets, such as a histogram
 </as-category-widget>
 ```
 
-### Attributes
+**Attributes**
 
 [Attributes](https://en.wikipedia.org/wiki/HTML_attribute) modify the default functionality of an element. The attributes will usually have a default value and using them will be optional. In the example above, heading and description are required attributes while the bar color is optional. 
 
@@ -33,7 +33,7 @@ const categoriesList = [
 $categoryWidget.categories = categoriesList;
 ```
 
-### Loading web components
+**Loading web components**
 
 Loading and using web components is very easy, you just need to include our component loader in the head of your app. Once the loader is included, it will automatically detect the use of web-components and load them on demand. It also detects browser capabilities and will automatically decide whether or not to include polyfills, leading to smaller bundles in modern browsers.
 
@@ -50,7 +50,7 @@ Loading and using web components is very easy, you just need to include our comp
 
 > The loader may conflict with the webpack bundler if the [publicPath](https://webpack.js.org/guides/public-path/) property is not configured correctly.
 
-### List of Web Components
+**List of Web Components**
 
 > See the most recent list in [the github repo](https://github.com/CartoDB/airship/tree/master/packages/components/src/components)
 
@@ -65,13 +65,13 @@ Loading and using web components is very easy, you just need to include our comp
   - toolbar
   - toolbar-action
 
-### Framework integration
+**Framework integration**
 
 You can use Airship components with another web frameworks like Angular, React or Vue. See [https://stenciljs.com/docs/framework-integration](https://stenciljs.com/docs/framework-integration).
 
 
 
-### Browser support
+**Browser support**
 
 Airship Components are build with Stencil, that run natively or near-natively in all widely used browsers.
 

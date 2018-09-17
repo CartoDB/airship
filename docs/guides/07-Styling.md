@@ -1,10 +1,10 @@
-# Advanced guide: Styling
+## Advanced guide: Styling
 
 In this guide, you'll learn how to apply custom styling to Airship components and styles letting them look like your brand.
 
 We'll show you three levels of customization, which will let you customize styles through different levels of difficulty.
 
-## Customizing Airship with CSS variables
+### Customizing Airship with CSS variables
 CSS variables are entities that contain values meant to be reused throughout the CSS styles. In Airship, we use them to create consistent design all over the components and styles.
 
 A CSS variable can be defined in CSS code, as well as in JavaScript code.
@@ -31,7 +31,8 @@ Let's say that we want to override our application primary's color, which is set
 
 As all CSS variables we want to override, we would need to override it after requiring Airship styles or each component style, depending on the case, in our HTML, JavaScript, or SASS, due to CSS cascade.
 
-### Customizing CSS variables in CSS
+**Customizing CSS variables in CSS**
+
 Customizing a CSS variable is simple. You just have to write the selector and put the variable to override inside that selector rules.
 
 To override a global variable like `--as-color-primary`, which doesn't specifically belong to any of the components, you need to put it into a `:root` selector.
@@ -66,7 +67,8 @@ So, we have `--panels-bg-color` in `_panels.scss`, and we want it to be `#EEE`. 
 </style>
 ```
 
-### Customizing CSS variables in SASS
+**Customizing CSS variables in SASS**
+
 Similarly to the example above, we can override CSS variables in SASS.
 
 After importing Airship Style bundle, or each of the styles separately, in our SCSS file, you can override CSS variables like as if you were in plain CSS.
@@ -91,7 +93,7 @@ Likewise, if you want to override a CSS variable inside a component selector, yo
 
 **Warning**: Assigning SASS variables to CSS variables won't work as you would expect. If you want to set CSS variable's value to a SASS variable, you will have to interpolate its value into the variable itself: `--css-variable: #{$sass-variable}`.
 
-### Customizing CSS variables in JavaScript
+**Customizing CSS variables in JavaScript**
 
 To customize a CSS variable within JavaScript code, you can use `.setProperty()` method.
 
@@ -115,7 +117,7 @@ const componentElement = document.querySelectorAll('.as-panel__element');
 componentElement.forEach(element => element.style.setProperty('--panels-bg-color', '#EEE'));
 ```
 
-## Customizing Airship with SASS variables
+### Customizing Airship with SASS variables
 Even though you have customization through CSS Variables, they might not be suitable for all cases. When supporting IE11, you cannot use CSS variables, and hence you might need to customize styles in build time.
 
 Our SASS variables are defined like this:
@@ -136,7 +138,7 @@ Doing it that way, it will take first defined variables as the one to use to gen
 
 Please find SASS variables to override within each style reference documentation.
 
-## Overriding any rule with CSS
+### Overriding any rule with CSS
 CSS and SASS variables are powerful, but they don't allow you to modify each rule within Airship Styles. So, if you want to customize Airship beyond variables, you will need to override rules by targeting specific selectors.
 
 As you might now, every DOM node should have one or many CSS classes set, so whenever you want to modify something you will need write a selector that targets that node.
