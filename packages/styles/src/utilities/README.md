@@ -73,7 +73,7 @@ Where *sides* is one of:
 
 Where *size* is one of:
 
-`4, 8, 16, 32, 64, 128`
+`0`, `4`, `8`, `12`, `16`, `20`, `24`, `28`, `32`, `36`, `40`
 
 The size is applied in `px`.
 
