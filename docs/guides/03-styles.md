@@ -6,7 +6,7 @@ Airship Styles offer CSS elements for you to build LI applications, giving a goo
 ### Installation
 
 **From NPM**
-  Install @carto/airship-style package from npm
+  Install [@carto/airship-style](https://www.npmjs.com/package/@carto/airship-style) package from npm
 
   ```
   npm i @carto/airship-style --save
@@ -45,7 +45,7 @@ Airship Styles offer CSS elements for you to build LI applications, giving a goo
 Copy-paste the stylesheet `<link>` tag into your `<head>` tag before other stylesheets to load Airship CSS.
 
 ```html
-<link rel="stylesheet" href="https://libs.cartocdn.com/airship-style/<VERSION>/airship.css" crossorigin="anonymous" integrity="">
+<link rel="stylesheet" href="https://libs.cartocdn.com/airship-style/%VERSION%/airship.css" crossorigin="anonymous" integrity="">
 ```
 
 ### Usage
@@ -60,19 +60,19 @@ For example, you can show a button with this HTML scaffolding:
 </button>
 ```
 
-Please check [styles documentation]() (missing link) out and see how to use Airship components.
+Please check [styles reference](../reference/#/styles/buttons) out and see how to use Airship CSS styles.
 
 ### Framework integration
-To integrate Airship into your framework you only need to import the styles in the way you prefer from the ones stated above.
+To integrate Airship into your framework you only need to import the styles in the way you prefer from the ones stated above and apply them to your generated HTML.
 
 ### Basic Customization
-> If you want advanced customization of Airship styles, please take a look at [this guide]() (missing link).
+> If you want advanced customization of Airship styles, please take a look at [this guide](styling).
 
 **CSS Variables**
 
 CSS Variables provide CSS foundation in Airship, making it fully customizable.
 
-There is a set of common Airship CSS variables which include primary color, secondary color, and font family, among others. Please check the list [here](https://github.com/CartoDB/airship/blob/master/packages/styles/src/core/core.scss#L8).
+There is a set of common Airship CSS variables which include `primary color`, `secondary color` and `font family`, among others. Please check the list [here](https://github.com/CartoDB/airship/blob/master/packages/styles/src/core/core.scss#L8).
 
 CSS Variables can be accessed and overriden in runtime using JavaScript using this syntax:
 

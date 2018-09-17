@@ -8,10 +8,10 @@ All icons are on [SVG](https://en.wikipedia.org/wiki/Scalable_Vector_Graphics) f
 You can use the icons directly from our CDN in an img tag.
 
 ```html
-<img src="https://libs.cartocdn.com/airship-icons/<VERSION>/icons/twitter.svg" alt="Twitter logo">
+<img src="https://libs.cartocdn.com/airship-icons/%VERSION%/icons/twitter.svg" alt="Twitter logo">
 ```
 
-> You can check the full list of icons [in the GitHub repo](https://github.com/CartoDB/airship/tree/<VERSION>/packages/icons/dist/icons)
+> You can check the full list of icons [in the GitHub repo](https://github.com/CartoDB/airship/tree/%VERSION%/packages/icons/dist/icons)
 
 ### Usage as web font
 
@@ -22,7 +22,7 @@ First, you need to include our `icons.css` file in the head of your app.
 ```html
 <head>
   <!-- Include Icons -->
-  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-icons/<VERSION>/icons.css">
+  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-icons/%VERSION%/icons.css">
 </head>
 
 Then you can use the icons inside an `i` tag by adding the `as-icon-` class followed by the icon name you want to use.
