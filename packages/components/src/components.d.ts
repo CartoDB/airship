@@ -175,6 +175,77 @@ declare global {
 declare global {
 
   namespace StencilComponents {
+    interface AsDropdown {
+      /**
+       * Default text to show when no option is selected
+       */
+      'defaultText': string;
+      /**
+       * Get current selected option
+       */
+      'getSelectedOption': () => string;
+      /**
+       * Array of options to display in the dropdown
+       */
+      'options': object[];
+      /**
+       * Selected option to show in the dropdown
+       */
+      'selectedOption': string;
+      /**
+       * Allow the user to clear selected option
+       */
+      'showClearButton': boolean;
+    }
+  }
+
+  interface HTMLAsDropdownElement extends StencilComponents.AsDropdown, HTMLStencilElement {}
+
+  var HTMLAsDropdownElement: {
+    prototype: HTMLAsDropdownElement;
+    new (): HTMLAsDropdownElement;
+  };
+  interface HTMLElementTagNameMap {
+    'as-dropdown': HTMLAsDropdownElement;
+  }
+  interface ElementTagNameMap {
+    'as-dropdown': HTMLAsDropdownElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'as-dropdown': JSXElements.AsDropdownAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface AsDropdownAttributes extends HTMLAttributes {
+      /**
+       * Default text to show when no option is selected
+       */
+      'defaultText'?: string;
+      /**
+       * Fired when selected option changes or option is cleared
+       */
+      'onOptionChanged'?: (event: CustomEvent<string>) => void;
+      /**
+       * Array of options to display in the dropdown
+       */
+      'options'?: object[];
+      /**
+       * Selected option to show in the dropdown
+       */
+      'selectedOption'?: string;
+      /**
+       * Allow the user to clear selected option
+       */
+      'showClearButton'?: boolean;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
     interface AsHistogramWidget {
       /**
        * Clears the Histogram selection
