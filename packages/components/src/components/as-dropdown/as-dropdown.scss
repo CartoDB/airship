@@ -5,6 +5,7 @@ as-dropdown {
   display: block;
 
   --dropdown-main-color: #{$color-primary};
+  --dropdown-secondary-color: #{$color-ui-04};
 
   .as-dropdown {
     position: relative;
@@ -19,7 +20,7 @@ as-dropdown {
     border: 0;
     border-radius: 4px;
     background-color: $color-ui-01;
-    box-shadow: inset 0 0 0 1px $color-ui-04;
+    box-shadow: inset 0 0 0 1px var(--dropdown-secondary-color, #{$color-ui-04});
     text-align: left;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -35,7 +36,7 @@ as-dropdown {
     background-repeat: no-repeat;
 
     path {
-      fill: var(--dropdown-main-color, $color-primary);
+      fill: var(--dropdown-main-color, #{$color-primary});
     }
   }
 
@@ -46,7 +47,7 @@ as-dropdown {
     margin: 8px 0 0;
     padding: 0;
     overflow: hidden;
-    border: 1px solid #E2E6E3;
+    border: 1px solid var(--as-color-ui-03, #{$color-ui-03});
     border-radius: 4px;
     background: $color-ui-01;
     box-shadow: 0 2px 8px 0 rgba(44, 44, 44, 0.16);
@@ -58,7 +59,7 @@ as-dropdown {
     cursor: pointer;
 
     &:not(:last-child) {
-      border-bottom: 1px solid var(--as-color-ui-04, #{$color-ui-04});
+      border-bottom: 1px solid var(--as-color-ui-03, #{$color-ui-03});
     }
 
     button {
@@ -74,14 +75,14 @@ as-dropdown {
 
       &:hover,
       &.is-selected {
-        background-color: var(--as-menu-dropdown-hover-color, #{rgba($color-complementary, 0.16)});
+        background-color: rgba($color-complementary, 0.16);
       }
     }
   }
 
   .as-dropdown--open {
     .as-dropdown__control {
-      box-shadow: inset 0 0 0 2px var(--dropdown-main-color, $color-primary);
+      box-shadow: inset 0 0 0 2px var(--dropdown-main-color, #{$color-primary});
     }
 
     .as-dropdown__list {
@@ -96,7 +97,7 @@ as-dropdown {
   .as-dropdown__clear {
     position: absolute;
     top: 50%;
-    right: -24px;
+    right: get-spacing(-6);
     width: 12px;
     height: 12px;
     margin: 0;
