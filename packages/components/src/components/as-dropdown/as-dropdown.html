@@ -14,8 +14,14 @@
 
     <script>
       const dropdown = document.querySelector('as-dropdown');
-      dropdown.canClear = true;
-      dropdown.options = ['All', 'Open', 'Unfulfilled', 'Unpaid'];
+      dropdown.showClearButton = true;
+      dropdown.options = [
+        { text: 'All modified', value: 'all' },
+        { text: 'Open modified', value: 'open' },
+        { value: 'unfulfilled' },
+        { value: 'unpaid' }
+      ];
+
       dropdown.addEventListener('optionChanged', function (event) {
         console.log('Selected Option:', event.detail);
       });

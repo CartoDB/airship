@@ -1,4 +1,4 @@
-import { Component, Event, EventEmitter, Method, Prop, State } from '@stencil/core';
+import { Component, Event, EventEmitter, Method, Prop, State, Watch } from '@stencil/core';
 
 /**
  * Dropdown Widget
@@ -18,7 +18,7 @@ export class Dropdown {
    * @type {string[]}
    * @memberof Dropdown
    */
-  @Prop() public options: string[] = [];
+  @Prop() public options: object[] = [];
 
   /**
    * Selected option to show in the dropdown
@@ -42,7 +42,7 @@ export class Dropdown {
    * @type {string}
    * @memberof Dropdown
    */
-  @Prop() public canClear: boolean = false;
+  @Prop() public showClearButton: boolean = false;
 
   /**
    * Fired when selected option changes or option is cleared
@@ -53,9 +53,21 @@ export class Dropdown {
   @Event() public optionChanged: EventEmitter<string>;
 
   @State() private isOpen: boolean = false;
+  @State() private selectedOptionObject: DropdownOption = {};
+
+  @Watch('selectedOption')
+  public onSelectionChanged() {
+    const selectedOption = this.options.find(
+      (option: DropdownOption) => option.value === this.selectedOption
+    ) as DropdownOption;
+
+    if (selectedOption) {
+      this.selectedOptionObject = selectedOption;
+    }
+  }
 
   public render() {
-    const allowRemoveSelectedOption = this.canClear && Boolean(this.selectedOption);
+    const allowRemoveSelectedOption = this.showClearButton && Boolean(this.selectedOption);
 
     const controlClasses = {
       'as-dropdown': true,
@@ -69,9 +81,7 @@ export class Dropdown {
              aria-haspopup='true'
              aria-expanded={this.isOpen}
              onClick={() => this.toggleList()}>
-          { this.isIncludedInOptions(this.selectedOption)
-            ? this.selectedOption
-            : this.defaultText }
+          {  this.selectedOptionObject.text || this.selectedOptionObject.value || this.defaultText }
 
           <div class='as-dropdown__arrow'>
             {/* tslint:disable-next-line */}
@@ -80,7 +90,7 @@ export class Dropdown {
         </button>
 
         <ul tabindex='-1' class='as-dropdown__list'>
-          { this.renderOptions(this.options) }
+          { this.renderOptions(this.options as DropdownOption[]) }
         </ul>
 
         { allowRemoveSelectedOption ?
@@ -103,7 +113,7 @@ export class Dropdown {
     return this.selectedOption;
   }
 
-  private renderOptions(options: string[]) {
+  private renderOptions(options: DropdownOption[]) {
     return options.map((option) => {
       const buttonClasses = {
         'as-body': true,
@@ -111,19 +121,17 @@ export class Dropdown {
       };
 
       return (
-        <li class='as-dropdown__list-item' data-value={option}>
-          <button class={buttonClasses} onClick={() => this.select(option)}>{option}</button>
+        <li class='as-dropdown__list-item' data-value={option.value}>
+          <button class={buttonClasses} onClick={() => this.select(option)}>
+            {option.text || option.value}
+          </button>
         </li>
       );
     });
   }
 
-  private isIncludedInOptions(option) {
-    return this.options.includes(option);
-  }
-
   private isSelected(option) {
-    return option === this.selectedOption;
+    return option === this.selectedOptionObject;
   }
 
   private select(option) {
@@ -131,7 +139,8 @@ export class Dropdown {
       return;
     }
 
-    this.selectedOption = option;
+    this.selectedOption = option.value;
+    this.selectedOptionObject = option;
 
     this.closeList();
     this.emitOption();
@@ -146,7 +155,7 @@ export class Dropdown {
   }
 
   private clearOption() {
-    this.selectedOption = '';
+    this.selectedOption = undefined;
 
     this.emitOption();
   }
@@ -156,3 +165,7 @@ export class Dropdown {
   }
 }
 
+interface DropdownOption {
+  text?: string;
+  value?: string;
+}

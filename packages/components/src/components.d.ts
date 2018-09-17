@@ -177,22 +177,25 @@ declare global {
   namespace StencilComponents {
     interface AsDropdown {
       /**
-       * Allow the user to clear selected option
-       */
-      'canClear': boolean;
-      /**
        * Default text to show when no option is selected
        */
       'defaultText': string;
+      /**
+       * Get current selected option
+       */
       'getSelectedOption': () => string;
       /**
        * Array of options to display in the dropdown
        */
-      'options': string[];
+      'options': object[];
       /**
        * Selected option to show in the dropdown
        */
       'selectedOption': string;
+      /**
+       * Allow the user to clear selected option
+       */
+      'showClearButton': boolean;
     }
   }
 
@@ -216,10 +219,6 @@ declare global {
   namespace JSXElements {
     export interface AsDropdownAttributes extends HTMLAttributes {
       /**
-       * Allow the user to clear selected option
-       */
-      'canClear'?: boolean;
-      /**
        * Default text to show when no option is selected
        */
       'defaultText'?: string;
@@ -230,11 +229,15 @@ declare global {
       /**
        * Array of options to display in the dropdown
        */
-      'options'?: string[];
+      'options'?: object[];
       /**
        * Selected option to show in the dropdown
        */
       'selectedOption'?: string;
+      /**
+       * Allow the user to clear selected option
+       */
+      'showClearButton'?: boolean;
     }
   }
 }
