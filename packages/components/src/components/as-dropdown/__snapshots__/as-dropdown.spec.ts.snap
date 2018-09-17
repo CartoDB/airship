@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`as-category-widget Rendering should render clear button when canClear is true and an option is selected 1`] = `
+exports[`as-category-widget Rendering should render clear button when showClearButton is true and an option is selected 1`] = `
 <as-dropdown
   class="hydrated"
 >
@@ -32,7 +32,7 @@ exports[`as-category-widget Rendering should render clear button when canClear i
     >
       <li
         class="as-dropdown__list-item"
-        data-value="Option 1"
+        data-value="option1"
       >
         <button
           class="as-body"
@@ -42,7 +42,7 @@ exports[`as-category-widget Rendering should render clear button when canClear i
       </li>
       <li
         class="as-dropdown__list-item"
-        data-value="Option 2"
+        data-value="option2"
       >
         <button
           class="as-body is-selected"
@@ -52,7 +52,7 @@ exports[`as-category-widget Rendering should render clear button when canClear i
       </li>
       <li
         class="as-dropdown__list-item"
-        data-value="Option 3"
+        data-value="option3"
       >
         <button
           class="as-body"
@@ -109,7 +109,7 @@ exports[`as-category-widget Rendering should render properly 1`] = `
     >
       <li
         class="as-dropdown__list-item"
-        data-value="Option 1"
+        data-value="option1"
       >
         <button
           class="as-body"
@@ -119,7 +119,7 @@ exports[`as-category-widget Rendering should render properly 1`] = `
       </li>
       <li
         class="as-dropdown__list-item"
-        data-value="Option 2"
+        data-value="option2"
       >
         <button
           class="as-body is-selected"
@@ -129,7 +129,7 @@ exports[`as-category-widget Rendering should render properly 1`] = `
       </li>
       <li
         class="as-dropdown__list-item"
-        data-value="Option 3"
+        data-value="option3"
       >
         <button
           class="as-body"
@@ -175,7 +175,7 @@ exports[`as-category-widget Rendering should show defaultText when there is no s
     >
       <li
         class="as-dropdown__list-item"
-        data-value="Option 1"
+        data-value="option1"
       >
         <button
           class="as-body"
@@ -185,7 +185,7 @@ exports[`as-category-widget Rendering should show defaultText when there is no s
       </li>
       <li
         class="as-dropdown__list-item"
-        data-value="Option 2"
+        data-value="option2"
       >
         <button
           class="as-body"
@@ -195,7 +195,7 @@ exports[`as-category-widget Rendering should show defaultText when there is no s
       </li>
       <li
         class="as-dropdown__list-item"
-        data-value="Option 3"
+        data-value="option3"
       >
         <button
           class="as-body"

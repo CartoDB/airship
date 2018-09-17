@@ -19,24 +19,24 @@ describe('as-category-widget', () => {
     });
 
     it('should render properly', async () => {
-      element.options = ['Option 1', 'Option 2', 'Option 3'];
-      element.selectedOption = 'Option 2';
+      element.options = exampleOptions;
+      element.selectedOption = 'option2';
       await testWindow.flush();
 
       expect(element).toMatchSnapshot();
     });
 
-    it('should render clear button when canClear is true and an option is selected', async () => {
-      element.options = ['Option 1', 'Option 2', 'Option 3'];
-      element.selectedOption = 'Option 2';
-      element.canClear = true;
+    it('should render clear button when showClearButton is true and an option is selected', async () => {
+      element.options = exampleOptions;
+      element.selectedOption = 'option2';
+      element.showClearButton = true;
       await testWindow.flush();
 
       expect(element).toMatchSnapshot();
     });
 
     it('should show defaultText when there is no selected option', async () => {
-      element.options = ['Option 1', 'Option 2', 'Option 3'];
+      element.options = exampleOptions;
       element.defaultText = 'Dropdown';
       await testWindow.flush();
 
@@ -57,7 +57,7 @@ describe('as-category-widget', () => {
     });
 
     it('should emit an event containing selected option when option changes', async () => {
-      element.options = ['Option 1', 'Option 2', 'Option 3'];
+      element.options = exampleOptions;
 
       const optionChangedSpy = jest.fn();
       element.addEventListener('optionChanged', optionChangedSpy);
@@ -67,11 +67,11 @@ describe('as-category-widget', () => {
       optionElement.click();
 
       expect(optionChangedSpy).toHaveBeenCalled();
-      expect(optionChangedSpy.mock.calls[0][0].detail).toEqual(element.options[0]);
+      expect(optionChangedSpy.mock.calls[0][0].detail).toEqual(exampleOptions[0].value);
     });
 
     it('should open dropdown when control is clicked', async () => {
-      element.options = ['Option 1', 'Option 2', 'Option 3'];
+      element.options = exampleOptions;
       await testWindow.flush();
 
       const controlElement = element.querySelector('.as-dropdown__control') as HTMLButtonElement;
@@ -84,9 +84,9 @@ describe('as-category-widget', () => {
     });
 
     it('should clear option when clear button is pressed', async () => {
-      element.options = ['Option 1', 'Option 2', 'Option 3'];
-      element.selectedOption = 'Option 2';
-      element.canClear = true;
+      element.options = exampleOptions;
+      element.selectedOption = 'option2';
+      element.showClearButton = true;
       await testWindow.flush();
 
       const clearButtonElement = element.querySelector('.as-dropdown__clear') as HTMLButtonElement;
@@ -94,7 +94,13 @@ describe('as-category-widget', () => {
 
       await testWindow.flush();
 
-      expect(element.getSelectedOption()).toBe('');
+      expect(element.getSelectedOption()).toBeUndefined();
     });
   });
 });
+
+const exampleOptions = [
+  { text: 'Option 1', value: 'option1' },
+  { text: 'Option 2', value: 'option2' },
+  { text: 'Option 3', value: 'option3' }
+];
