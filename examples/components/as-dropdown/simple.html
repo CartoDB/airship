@@ -14,7 +14,12 @@
 
     <script>
       const dropdown = document.querySelector('as-dropdown');
-      dropdown.options = ['All', 'Open', 'Unfulfilled', 'Unpaid'];
+      dropdown.options = [
+        { text: 'All', value: 'all' },
+        { text: 'Open', value: 'open' },
+        { text: 'Unfulfilled', value: 'unfulfilled' },
+        { text: 'Unpaid', value: 'unpaid' }
+      ];
     </script>
   </body>
 </html>

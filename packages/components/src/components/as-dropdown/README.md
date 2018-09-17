@@ -17,21 +17,40 @@ showSource: false
 
 <script>
   const dropdown = document.querySelector('as-dropdown');
-  dropdown.options = ['All', 'Open', 'Unfulfilled', 'Unpaid'];
+  dropdown.options = [
+    { text: 'All', value: 'all' },
+    { text: 'Open', value: 'open' },
+    { text: 'Unfulfilled', value: 'unfulfilled' },
+    { text: 'Unpaid', value: 'unpaid' }
+  ];
 </script>
 ```
 
 ### Props
 
-#### **options**: string[] = []
+#### **options**: DropdownOption[] = []
 Array of options to display in the dropdown
+
+The options should have the following format:
+```code
+lang:typescript
+---
+{ text: 'All', value: 'all' }
+```
+
+Text is the display value for the option, and value is the property which the component emits as the selected value.
 
 For example:
 
 ```code
 lang: javascript
 ---
-dropdown.options = ['All', 'Open', 'Unfulfilled', 'Unpaid'];
+dropdown.options = [
+  { text: 'All', value: 'all' },
+  { text: 'Open', value: 'open' },
+  { text: 'Unfulfilled', value: 'unfulfilled' },
+  { text: 'Unpaid', value: 'unpaid' }
+];
 ```
 
 #### **selectedOption**: string
