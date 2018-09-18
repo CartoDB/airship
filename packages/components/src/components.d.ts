@@ -592,6 +592,39 @@ declare global {
 declare global {
 
   namespace StencilComponents {
+    interface AsSwitch {
+
+    }
+  }
+
+  interface HTMLAsSwitchElement extends StencilComponents.AsSwitch, HTMLStencilElement {}
+
+  var HTMLAsSwitchElement: {
+    prototype: HTMLAsSwitchElement;
+    new (): HTMLAsSwitchElement;
+  };
+  interface HTMLElementTagNameMap {
+    'as-switch': HTMLAsSwitchElement;
+  }
+  interface ElementTagNameMap {
+    'as-switch': HTMLAsSwitchElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'as-switch': JSXElements.AsSwitchAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface AsSwitchAttributes extends HTMLAttributes {
+      'onOnToggle'?: (event: CustomEvent) => void;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
     interface AsToolbarItem {
       'src': string;
       'text': string;
