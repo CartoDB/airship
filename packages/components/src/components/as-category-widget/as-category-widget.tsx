@@ -51,7 +51,7 @@ export class CategoryWidget {
    * @type {string}
    * @memberof CategoryWidget
    */
-  @Prop() public disableInteraction: boolean = false;
+  @Prop() public disableInteractivity: boolean = false;
 
   /**
    * Heading text of the widget
@@ -136,7 +136,7 @@ export class CategoryWidget {
     return [
       this._renderHeader(),
       this._renderCategoryList(),
-      !this.disableInteraction ? this._renderFooter() : ''
+      !this.disableInteractivity ? this._renderFooter() : ''
     ];
   }
 
@@ -154,7 +154,7 @@ export class CategoryWidget {
   private _renderCategoryList() {
     const cssClasses = {
       'as-category-widget__list': true,
-      'as-category-widget__list--disabled': this.disableInteraction
+      'as-category-widget__list--disabled': this.disableInteractivity
     };
 
     return <ul class={cssClasses}>{this._renderCategories()}</ul>;
@@ -248,6 +248,10 @@ export class CategoryWidget {
   }
 
   private _toggleCategory(category: Category) {
+    if (this.disableInteractivity) {
+      return;
+    }
+
     this.selectedCategories = this._isSelected(category.name)
       ? this.selectedCategories.filter((currentCategory) => currentCategory !== category.name)
       : [...this.selectedCategories, category.name];

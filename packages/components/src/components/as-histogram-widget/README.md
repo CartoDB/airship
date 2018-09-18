@@ -87,6 +87,20 @@ lang: javascript
 histogramWidget.description = 'Description';
 ```
 
+#### **disableInteractivity**: boolean = false
+Disables selection brushes and events for the widget
+
+```code
+lang: html
+---
+<as-histogram-widget disable-interactivity></as-histogram-widget>
+```
+```code
+lang: javascript
+---
+histogramWidget.disableInteractivity = true;
+```
+
 #### **heading**: string
 Heading text of the widget
 
@@ -275,5 +289,36 @@ showSource: false
       selectionEl.innerText = 'Selected from ' + e.detail[0] + ' to ' + e.detail[1];
     }
   });
+</script>
+```
+
+#### Histogram with disabled interactivity
+
+```html
+noSource: true
+---
+<iframe src="/examples/components/as-histogram-widget/interaction-disabled.html" style="width: 100%; height: 300px;">
+```
+
+```code
+lang: html
+showSource: false
+---
+<as-histogram-widget
+  heading="Title"
+  description="Description"
+  show-header
+  show-clear>
+</as-histogram-widget>
+
+<script>
+  var histogramWidget = document.querySelector('as-histogram-widget');
+  histogramWidget.data = [
+    { start: 0, end: 10, value: 5 },
+    { start: 10, end: 20, value: 10 },
+    { start: 20, end: 30, value: 15 },
+    { start: 30, end: 40, value: 20 },
+    { start: 40, end: 50, value: 30 },
+  ];
 </script>
 ```

@@ -73,7 +73,7 @@ export class HistogramWidget {
   @Prop() public showClear: boolean;
 
   /**
-   * Disables the selection brushes and events for the widget
+   * Disables selection brushes and events for the widget
    *
    * @type {boolean}
    * @memberof HistogramWidget
@@ -236,7 +236,7 @@ export class HistogramWidget {
         {this._renderTooltip()}
         <svg ref={(ref: HTMLElement) => this.container = select(ref)} viewBox='0 0 248 160'></svg>
       </div>,
-      this._renderClearBtn(),
+      this.showClear && !this.disableInteractivity ? this._renderClearBtn() : '',
     ];
   }
 
@@ -622,10 +622,6 @@ export class HistogramWidget {
   }
 
   private _renderClearBtn() {
-    if (!this.showClear || this.disableInteractivity) {
-      return;
-    }
-
     return (
       <button
         class='as-btn as-btn--primary as-btn--s as-category-widget__clear'

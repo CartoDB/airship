@@ -164,6 +164,15 @@ describe('as-category-widget', () => {
 
       expect(categoryWidget.getSelectedCategories()).toEqual([]);
     });
+
+    it('should not toggle category if interaction is disabled', () => {
+      categoryWidget.disableInteractivity = true;
+
+      const category = { name: 'Category 1', value: 10, color: '#000' };
+      categoryWidget._toggleCategory(category);
+
+      expect(categoryWidget.getSelectedCategories()).toEqual([]);
+    });
   });
 
   describe('._getCategoriesMaximumValue', () => {

@@ -88,7 +88,7 @@ declare global {
       /**
        * Disable category selection in Widget
        */
-      'disableInteraction': boolean;
+      'disableInteractivity': boolean;
       /**
        * Get current selected categories
        */
@@ -150,7 +150,7 @@ declare global {
       /**
        * Disable category selection in Widget
        */
-      'disableInteraction'?: boolean;
+      'disableInteractivity'?: boolean;
       /**
        * Heading text of the widget
        */
@@ -209,7 +209,7 @@ declare global {
        */
       'description': string;
       /**
-       * Disables the selection brushes and events for the widget
+       * Disables selection brushes and events for the widget
        */
       'disableInteractivity': boolean;
       /**
@@ -279,7 +279,7 @@ declare global {
        */
       'description'?: string;
       /**
-       * Disables the selection brushes and events for the widget
+       * Disables selection brushes and events for the widget
        */
       'disableInteractivity'?: boolean;
       /**
