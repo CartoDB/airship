@@ -79,6 +79,20 @@ lang: javascript
 categoryWidget.description = 'Description';
 ```
 
+#### **disableInteractivity**: boolean = false
+Disable category selection in Widget
+
+```code
+lang: html
+---
+<as-category-widget disable-interactivity></as-category-widget>
+```
+```code
+lang: javascript
+---
+categoryWidget.disableInteractivity = true;
+```
+
 #### **heading**: string
 Heading text of the widget
 
@@ -265,6 +279,39 @@ showSource: false
   categoryWidget.visibleCategories = 5;
   categoryWidget.categories = [
     { name: 'Bars & Restaurants', value: 1000, color: '#FABADA' },
+    { name: 'Fashion', value: 900 },
+    { name: 'Grocery', value: 800 },
+    { name: 'Health', value: 400 },
+    { name: 'Shopping mall', value: 250 },
+    { name: 'Transportation', value: 1000 },
+    { name: 'Leisure', value: 760 }
+  ];
+</script>
+```
+
+#### Interaction disabled widget
+```html
+noSource: true
+---
+<iframe src="/examples/components/as-category-widget/interaction-disabled.html" style="width: 100%; height: 325px;">
+```
+
+```code
+lang: html
+showSource: false
+---
+<!-- Example widget with interaction disabled -->
+<as-category-widget
+  class="as-p--16"
+  heading="Business Volume"
+  description="Description"
+  visible-categories="5"
+  disable-interactivity></as-category-widget>
+
+<script>
+  var categoryWidget = document.querySelector('as-category-widget');
+  categoryWidget.categories = [
+    { name: 'Bars & Restaurants', value: 1000 },
     { name: 'Fashion', value: 900 },
     { name: 'Grocery', value: 800 },
     { name: 'Health', value: 400 },

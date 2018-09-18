@@ -23,11 +23,25 @@ as-category-widget {
   }
 
   .as-category-widget__list {
-    @include padding(0 0 4);
+    margin: 0;
+    padding: 0;
     list-style: none;
+
+    &.as-category-widget__list--disabled {
+      pointer-events: none;
+    }
+  }
+
+  .as-category-widget__footer {
+    display: flex;
+    justify-content: space-between;
   }
 
   .as-category-widget__description + .as-category-widget__list {
+    margin-top: get-spacing(4);
+  }
+
+  .as-category-widget__list + .as-category-widget__footer {
     margin-top: get-spacing(4);
   }
 
@@ -80,10 +94,5 @@ as-category-widget {
         opacity: 0.6;
       }
     }
-  }
-
-  .as-category-widget__footer {
-    display: flex;
-    justify-content: space-between;
   }
 }

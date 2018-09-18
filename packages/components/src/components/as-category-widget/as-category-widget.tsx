@@ -45,6 +45,13 @@ export class CategoryWidget {
    */
   @Prop() public description: string;
 
+  /**
+   * Disable category selection in Widget
+   *
+   * @type {string}
+   * @memberof CategoryWidget
+   */
+  @Prop() public disableInteractivity: boolean = false;
 
   /**
    * Heading text of the widget
@@ -53,7 +60,6 @@ export class CategoryWidget {
    * @memberof CategoryWidget
    */
   @Prop() public heading: string;
-
 
   /**
    * If truthy, it'll show a button to clear selected categories when there are any. Default value is `false`.
@@ -71,7 +77,6 @@ export class CategoryWidget {
    */
   @Prop() public showHeader: boolean = true;
 
-
   /**
    * If truthy, we'll use the sum of all categories' value to render the bar percentage.
    * By default, we use the maximum category value to render the bar percentage.
@@ -80,7 +85,6 @@ export class CategoryWidget {
    * @memberof CategoryWidget
    */
   @Prop() public useTotalPercentage: boolean = false;
-
 
   /**
    * The number of visible categories without aggregation.
@@ -112,7 +116,6 @@ export class CategoryWidget {
     return this.selectedCategories;
   }
 
-
   /**
    * Clear current selected categories
    *
@@ -133,7 +136,7 @@ export class CategoryWidget {
     return [
       this._renderHeader(),
       this._renderCategoryList(),
-      this._renderFooter()
+      !this.disableInteractivity ? this._renderFooter() : ''
     ];
   }
 
@@ -149,7 +152,12 @@ export class CategoryWidget {
   }
 
   private _renderCategoryList() {
-    return <ul class='as-category-widget__list'>{this._renderCategories()}</ul>;
+    const cssClasses = {
+      'as-category-widget__list': true,
+      'as-category-widget__list--disabled': this.disableInteractivity
+    };
+
+    return <ul class={cssClasses}>{this._renderCategories()}</ul>;
   }
 
   private _renderCategories() {
@@ -240,6 +248,10 @@ export class CategoryWidget {
   }
 
   private _toggleCategory(category: Category) {
+    if (this.disableInteractivity) {
+      return;
+    }
+
     this.selectedCategories = this._isSelected(category.name)
       ? this.selectedCategories.filter((currentCategory) => currentCategory !== category.name)
       : [...this.selectedCategories, category.name];

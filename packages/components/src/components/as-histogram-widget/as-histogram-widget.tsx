@@ -73,6 +73,14 @@ export class HistogramWidget {
   @Prop() public showClear: boolean;
 
   /**
+   * Disables selection brushes and events for the widget
+   *
+   * @type {boolean}
+   * @memberof HistogramWidget
+   */
+  @Prop() public disableInteractivity: boolean = false;
+
+  /**
    * Histogram data to be displayed
    *
    * @type {HistogramData[]}
@@ -217,13 +225,18 @@ export class HistogramWidget {
   }
 
   public render() {
+    const histogramClasses = {
+      'as-histogram-widget__wrapper': true,
+      'as-histogram-widget__wrapper--disabled': this.disableInteractivity
+    };
+
     return [
       this._renderHeader(),
-      <div class='as-histogram-widget__wrapper'>
+      <div class={histogramClasses}>
         {this._renderTooltip()}
         <svg ref={(ref: HTMLElement) => this.container = select(ref)} viewBox='0 0 248 160'></svg>
       </div>,
-      this._renderClearBtn(),
+      this.showClear && !this.disableInteractivity ? this._renderClearBtn() : '',
     ];
   }
 
@@ -241,12 +254,35 @@ export class HistogramWidget {
       .on('brush', this._onBrush.bind(this))
       .on('end', this._onBrushEnd.bind(this));
 
-    this.brushArea = this.container
-      .append('g')
-      .attr('class', 'brush')
-      .call(this.brush);
+    if (!this.disableInteractivity) {
+      this.brushArea = this.container
+        .append('g')
+        .attr('class', 'brush')
+        .call(this.brush);
 
-    this.brushArea.on('mousemove', () => {
+      this.customHandlers = this.brushArea.selectAll('.handle--custom')
+        .data([{type: 'w'}, {type: 'e'}])
+        .enter().append('rect')
+          .style('opacity', 0)
+          .attr('class', 'handle--custom')
+          .attr('fill', this.selectedColor)
+          .attr('cursor', 'ew-resize')
+          .attr('width', CUSTOM_HANDLE_SIZE)
+          .attr('height', CUSTOM_HANDLE_SIZE)
+          .attr('rx', '100')
+          .attr('ry', '100');
+
+      this.bottomLine = this.brushArea.append('line')
+        .attr('class', 'bottomline')
+        .attr('stroke', this.selectedColor)
+        .attr('stroke-width', 4)
+        .attr('y1', HEIGHT + MARGIN.TOP)
+        .attr('y2', HEIGHT + MARGIN.TOP)
+        .style('opacity', 0)
+        .attr('pointer-events', 'none');
+    }
+
+    this.container.on('mousemove', () => {
       const evt = d3event as MouseEvent;
       const { clientX, clientY } = evt;
       let anyHovered = false;
@@ -281,27 +317,6 @@ export class HistogramWidget {
       this.barsContainer.selectAll('rect')
         .style('fill', (data: HistogramData) => this._isSelected(data) ? this.selectedColor : this.color);
     });
-
-    this.customHandlers = this.brushArea.selectAll('.handle--custom')
-      .data([{type: 'w'}, {type: 'e'}])
-      .enter().append('rect')
-        .style('opacity', 0)
-        .attr('class', 'handle--custom')
-        .attr('fill', this.selectedColor)
-        .attr('cursor', 'ew-resize')
-        .attr('width', CUSTOM_HANDLE_SIZE)
-        .attr('height', CUSTOM_HANDLE_SIZE)
-        .attr('rx', '100')
-        .attr('ry', '100');
-
-    this.bottomLine = this.brushArea.append('line')
-        .attr('class', 'bottomline')
-        .attr('stroke', this.selectedColor)
-        .attr('stroke-width', 4)
-        .attr('y1', HEIGHT + MARGIN.TOP)
-        .attr('y2', HEIGHT + MARGIN.TOP)
-        .style('opacity', 0)
-        .attr('pointer-events', 'none');
 
     this._renderBars();
     this._cleanAxes();
@@ -341,6 +356,10 @@ export class HistogramWidget {
   }
 
   private _onBrush() {
+    if (this.disableInteractivity) {
+      return;
+    }
+
     const evt = d3event as any; // I can't cast this properly :(
 
     if (evt.selection === null) {
@@ -361,10 +380,18 @@ export class HistogramWidget {
   }
 
   private _onBrushEnd() {
+    if (this.disableInteractivity) {
+      return;
+    }
+
     this.selectionChanged.emit(this.selection);
   }
 
   private _setSelection(selection: number[]) {
+    if (this.disableInteractivity) {
+      return;
+    }
+
     const adjustedSelection = this._adjustSelection(selection);
 
     if (adjustedSelection !== null && (adjustedSelection[0] === adjustedSelection[1])) {
@@ -595,10 +622,6 @@ export class HistogramWidget {
   }
 
   private _renderClearBtn() {
-    if (!this.showClear) {
-      return;
-    }
-
     return (
       <button
         class='as-btn as-btn--primary as-btn--s as-category-widget__clear'
