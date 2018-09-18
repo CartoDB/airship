@@ -593,9 +593,17 @@ declare global {
 
   namespace StencilComponents {
     interface AsSwitch {
-      '_onClick': () => void;
+      /**
+       * Boolean flag to control if the input is checked or not
+       */
       'checked': boolean;
+      /**
+       * Boolean flag to control when the switch is disabled or not
+       */
       'disabled': boolean;
+      /**
+       * The input name
+       */
       'name': string;
     }
   }
@@ -619,9 +627,21 @@ declare global {
   }
   namespace JSXElements {
     export interface AsSwitchAttributes extends HTMLAttributes {
+      /**
+       * Boolean flag to control if the input is checked or not
+       */
       'checked'?: boolean;
+      /**
+       * Boolean flag to control when the switch is disabled or not
+       */
       'disabled'?: boolean;
+      /**
+       * The input name
+       */
       'name'?: string;
+      /**
+       * The input name
+       */
       'onChange'?: (event: CustomEvent) => void;
     }
   }

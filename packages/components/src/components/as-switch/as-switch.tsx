@@ -1,4 +1,4 @@
-import { Component, Element, Event, EventEmitter, Method, Prop } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, Prop } from '@stencil/core';
 
 @Component({
   shadow: false,
@@ -7,23 +7,60 @@ import { Component, Element, Event, EventEmitter, Method, Prop } from '@stencil/
 })
 
 export class Switch {
-  @Event() public change: EventEmitter;
+  /**
+   * HTMLElement wraper for the switch component
+   *
+   * @type {HTMLElement}
+   * @memberof Switch
+   */
+  @Element() public el: HTMLElement;
+
+  /**
+   * Boolean flag to control if the input is checked or not
+   *
+   * @type{boolean}
+   * @memberof Switch
+   */
   @Prop() public checked: boolean;
+
+  /**
+   * Boolean flag to control when the switch is disabled or not
+   *
+   * @type{boolean}
+   * @memberof Switch
+   */
   @Prop() public disabled: boolean;
+
+  /**
+   * The input name
+   *
+   * @type{string}
+   * @memberof Switch
+   */
   @Prop() public name: string;
-  @Element() private element: HTMLElement;
 
+  /**
+   * The input name
+   *
+   * @type{string}
+   * @memberof Switch
+   */
+  @Event() public change: EventEmitter;
 
+  /**
+   * When the component is attached to the DOM bind the onCLick function
+   */
   public componentDidLoad() {
-    this.element.addEventListener('click', this._onClick.bind(this));
+    this.el.addEventListener('click', this._onClick.bind(this));
   }
 
-
-  @Method()
+  /**
+   * Fire a 'change' event with a boolean parameter if the user clicks on an enabled component
+   */
   public _onClick() {
     if (!this.disabled) {
-      this.element.querySelector('input').checked = !this.element.querySelector('input').checked;
-      this.change.emit(this.element.querySelector('input').checked);
+      this.el.querySelector('input').checked = !this.el.querySelector('input').checked;
+      this.change.emit(this.el.querySelector('input').checked);
     }
   }
 
@@ -34,10 +71,10 @@ export class Switch {
         checked={this.checked}
         disabled={this.disabled}
         role='switch'
-        id={this.element.id}
+        id={this.el.id}
         name={this.name}
         type='checkbox'
-        title={this.element.title}
+        title={this.el.title}
       />),
       <label class='as-switch__toggle' htmlFor='switch_0'></label>,
       (<svg class='as-switch__thumb' width='10' height='8' xmlns='http://www.w3.org/2000/svg'>
