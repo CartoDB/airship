@@ -32,7 +32,7 @@ Let's include Airship components and styles by including the following snippet i
 <!-- Include CSS  -->
 <link rel="stylesheet" href="https://libs.cartocdn.com/airship-style/%AS-VERSION%/airship.css">
 <!-- Include Icons -->
-<link rel="stylesheet" href="https://libs.cartocdn.com/airship-airship-icons/%AS-VERSION%/icons.css">
+<link rel="stylesheet" href="https://libs.cartocdn.com/airship-icons/%AS-VERSION%/icons.css">
 <!-- Include Web Components -->
 <script src="https://libs.cartocdn.com/airship-components/%AS-VERSION%/airship.js"></script>
 ```

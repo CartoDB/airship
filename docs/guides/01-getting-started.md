@@ -18,7 +18,7 @@ The simplest way to use Airship is to load it from CARTO CDN by including the fo
   <!-- Include CSS  -->
   <link rel="stylesheet" href="https://libs.cartocdn.com/airship-style/%AS-VERSION%/airship.css">
   <!-- Include Icons -->
-  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-airship-icons/%AS-VERSION%/icons.css">
+  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-icons/%AS-VERSION%/icons.css">
   <!-- Include Web Components -->
   <script src="https://libs.cartocdn.com/airship-components/%AS-VERSION%/airship.js"></script>
 <head>
@@ -131,7 +131,7 @@ To display an icon only a class and an `i` tag is required.
 Just include the icons from a CDN as regular SVG images. 
 
 ```html
-<img src="https://libs.cartocdn.com/airship-airship-icons/%AS-VERSION%/icons/twitter.svg" alt="Twitter logo">
+<img src="https://libs.cartocdn.com/airship-icons/%AS-VERSION%/icons/twitter.svg" alt="Twitter logo">
 ```
 
 ### Web components
@@ -165,7 +165,7 @@ For example a range slider
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title> Airship app</title>
   <link rel="stylesheet" href="https://libs.cartocdn.com/airship-style/%AS-VERSION%/airship.css">
-  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-airship-icons/%AS-VERSION%/icons.css">
+  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-icons/%AS-VERSION%/icons.css">
   <script src="https://libs.cartocdn.com/airship-components/%AS-VERSION%/airship.js"></script>
 </head>
 
