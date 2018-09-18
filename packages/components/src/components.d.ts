@@ -593,7 +593,10 @@ declare global {
 
   namespace StencilComponents {
     interface AsSwitch {
-
+      '_onClick': () => void;
+      'checked': boolean;
+      'disabled': boolean;
+      'name': string;
     }
   }
 
@@ -616,7 +619,10 @@ declare global {
   }
   namespace JSXElements {
     export interface AsSwitchAttributes extends HTMLAttributes {
-      'onOnToggle'?: (event: CustomEvent) => void;
+      'checked'?: boolean;
+      'disabled'?: boolean;
+      'name'?: string;
+      'onChange'?: (event: CustomEvent) => void;
     }
   }
 }
