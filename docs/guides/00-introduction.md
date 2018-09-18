@@ -1,19 +1,19 @@
-# What is Airship ?
+## What is Airship ?
 
-Airship are a set of tools designed to facilitate the development of location intelligence apps by offering layouts, basic patterns, templates, css classes, components, widgets and much more. Apps created with airship will have a consistent UI and an propper UX validated and tested by CARTO.
+Airship are a set of tools designed to facilitate the development of location intelligence apps by offering layouts, basic patterns, templates, CSS classes, components, widgets and much more. Apps created with Airship will have a consistent UI and an propper UX validated and tested by CARTO.
 
-Airship is currently composed of three fundamental parts that can be used separately: A set of icons, a CSS framework and a series of web-components.
+Airship is currently composed of three fundamental parts that can be used separately: A CSS framework, a series of web-components and a set of icons.
 
-In a location intelligence application you can distinguish two parts, the map itself and everything else. Contrary to what you might think Airship is not used to render maps, to do this you have to use one of our map rendering libraries CARTO.js or CARTO-VL. 
+In a Location Intelligence application you can distinguish two parts: the map itself and everything else. Contrary to what you might think, Airship is not used to render maps, to do this you have to use one of our map rendering libraries [CARTO.js](/developers/carto-js/) or [CARTO-VL](/developers/carto-vl/).
 
-Airship is responsible for the layout and UI of the application, once you have the map, Airship is used to generate, a sidebar and its contents, or the map's legends.
+Airship is responsible for the layout and UI of the application. Once you have the map, Airship is used to generate, for instance, a sidebar and its contents or the map's legends.
 
-# How to use airship ?
+### How to use Airship ?
 
-> Read our [getting started]() guide for a detailed explanation
+> Read our [getting started](getting-started) guide for a detailed explanation
 
 
-The easiest way to include airship is through our CDN, adding the tags in the header of the web:
+The easiest way to include Airship is through our CDN, adding the tags in the header of the web:
 
 
 ```html
@@ -21,14 +21,14 @@ The easiest way to include airship is through our CDN, adding the tags in the he
 <html>
 <head>
   <!-- Include CSS elements -->
-  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-style/<VERSION>/airship.css">
+  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-style/%AS-VERSION%/airship.css">
   <!-- Include icons -->
-  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-icons/<VERSION>/icons.css">
+  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-icons/%AS-VERSION%/icons.css">
   <!-- Include airship components -->
-  <script src="https://libs.cartocdn.com/airship-components/<VERSION>/airship.js"></script>
+  <script src="https://libs.cartocdn.com/airship-components/%AS-VERSION%/airship.js"></script>
 </head>
 <body>
-  <div class="as-p--16">
+  <div>
     <h1 class="as-title">This is a range slider element</h1>
     <as-range-slider></as-range-slider>
     <h1 class="as-title">This is a button</h1>

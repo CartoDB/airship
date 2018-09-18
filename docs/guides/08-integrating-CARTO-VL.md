@@ -24,11 +24,11 @@ To use Airship styles and components we need to include them in our HTML. Since 
 
 ```html
 <!-- Include CSS  -->
-<link rel="stylesheet" href="https://libs.cartocdn.com/airship-style/<VERSION>/airship.css">
+<link rel="stylesheet" href="https://libs.cartocdn.com/airship-style/%AS-VERSION%/airship.css">
 <!-- Include Icons -->
-<link rel="stylesheet" href="https://libs.cartocdn.com/airship-icons/<VERSION>/icons.css">
+<link rel="stylesheet" href="https://libs.cartocdn.com/airship-icons/%AS-VERSION%/icons.css">
 <!-- Include Web Components -->
-<script src="https://libs.cartocdn.com/airship-components/<VERSION>/airship.js"></script>
+<script src="https://libs.cartocdn.com/airship-components/%AS-VERSION%/airship.js"></script>
 ```
 
 ## Including CARTO-VL
@@ -38,7 +38,7 @@ As pointed in the [CARTO-VL docs](https://carto.com/developers/carto-vl/guides/g
 ```html
 <head>
   <!-- Include CARTO VL JS -->
-  <script src="https://libs.cartocdn.com/carto-vl/v0.8.0/carto-vl.min.js"></script>
+  <script src="https://libs.cartocdn.com/carto-vl/%VL-VERSION%/carto-vl.min.js"></script>
   <!-- Include Mapbox GL JS -->
   <script src="https://libs.cartocdn.com/mapbox-gl/v0.48.0-carto1/mapbox-gl.js"></script>
   <!-- Include Mapbox GL CSS -->
@@ -162,4 +162,4 @@ function updateWidgets() {
 
 ### Reacting to data changes
 
-> Waiting for a new API in CARTO-VL
+> TODO

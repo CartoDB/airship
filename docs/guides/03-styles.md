@@ -1,17 +1,19 @@
-# CSS Elements
+## CSS Styles
 One of the packages we provide within Airship is Airship Styles.
 
 Airship Styles offer CSS elements for you to build LI applications, giving a good look and feel to your users without effort. You can build the foundation of your app leveraging these styles and customize them to match your brand identity.
 
-## Installation
+### Installation
 
-### From NPM
-  #### Install @carto/airship-style package from npm
+**From NPM**
+  Install [@carto/airship-style](https://www.npmjs.com/package/@carto/airship-style) package from npm
+
   ```
   npm i @carto/airship-style --save
   ```
 
-  #### Importing styles in SASS, PostCSS
+  Importing styles in SASS, PostCSS
+
   ```css
   // Import whole SASS bundle
   @import '~@carto/airship-style';
@@ -23,7 +25,8 @@ Airship Styles offer CSS elements for you to build LI applications, giving a goo
   @import '~@carto/airship-style/dist/{path}';
   ```
 
-  #### Importing styles in JavaScript
+  Importing styles in JavaScript
+
   ```javascript
   // Import whole SASS bundle
   import '@carto/airship-style';
@@ -37,35 +40,39 @@ Airship Styles offer CSS elements for you to build LI applications, giving a goo
 
   **Warning:** Depending on the version you want to use, you will need a CSS loader or SASS loader for Webpack to be able to parse those files.
 
-### From CDN
+**From CDN**
+
 Copy-paste the stylesheet `<link>` tag into your `<head>` tag before other stylesheets to load Airship CSS.
+
 ```html
-<link rel="stylesheet" href="https://libs.cartocdn.com/airship-style/<VERSION>/airship.css" crossorigin="anonymous" integrity="">
+<link rel="stylesheet" href="https://libs.cartocdn.com/airship-style/%AS-VERSION%/airship.css" crossorigin="anonymous" integrity="">
 ```
 
-## Usage
+### Usage
 
 After importing the package in your current application, you only need to set some CSS classes to your current HTML, or use a components' example HTML content to test it out.
 
 For example, you can show a button with this HTML scaffolding:
+
 ```html
 <button class="as-btn as-btn--primary">
   I'm a regular button
 </button>
 ```
 
-Please check [styles documentation]() (missing link) out and see how to use Airship components.
+Please check [styles reference](../reference/#/styles/buttons) out and see how to use Airship CSS styles.
 
-## Framework integration
-To integrate Airship into your framework you only need to import the styles in the way you prefer from the ones stated above.
+### Framework integration
+To integrate Airship into your framework you only need to import the styles in the way you prefer from the ones stated above and apply them to your generated HTML.
 
-## Basic Customization
-> If you want advanced customization of Airship styles, please take a look at [this guide]() (missing link).
+### Basic Customization
+> If you want advanced customization of Airship styles, please take a look at [this guide](styling).
 
-### CSS Variables
+**CSS Variables**
+
 CSS Variables provide CSS foundation in Airship, making it fully customizable.
 
-There is a set of common Airship CSS variables which include primary color, secondary color, and font family, among others. Please check the list [here](https://github.com/CartoDB/airship/blob/master/packages/styles/src/core/core.scss#L8).
+There is a set of common Airship CSS variables which include `primary color`, `secondary color` and `font family`, among others. Please check the list [here](https://github.com/CartoDB/airship/blob/master/packages/styles/src/core/core.scss#L8).
 
 CSS Variables can be accessed and overriden in runtime using JavaScript using this syntax:
 
@@ -85,7 +92,7 @@ document.body.style.setProperty('--as-color-primary', javaScriptVariable);
 
 There are many properties that can be customizable to create your own look and feel for your application, please dive into each element and component documentation to know all the properties that you can override
 
-### SASS Variables
+**SASS Variables**
 
 You can customize Airship even more using SASS Variables. There's a whole set of variables for colors, shadows, sizes and typography to customize within Airship. Please check them out [here](https://github.com/CartoDB/airship/tree/master/packages/styles/src/core/variables).
 
@@ -112,7 +119,7 @@ $color-primary: #FABADA;
 
 You can override variables no matter which flavour of styles you prefer, whether the whole bundle or custom importing of styles.
 
-### CSS Override
+**CSS Override**
 
 There is another way to customize Airship via overriding CSS classes.
 
@@ -126,7 +133,7 @@ To override a CSS class, create a selector matching the element you want to modi
 }
 ```
 
-## Browser Compatibility
+### Browser Compatibility
 Airship styles are known to work in latest stable version of all major browsers, and Internet Explorer 11 on Windows.
 
 However, we use CSS Variables to provide customization, and they might not be available in all browsers. We provide a fallback for those browsers in order to give the same experience to users, but take it into account when customizing Airship.
