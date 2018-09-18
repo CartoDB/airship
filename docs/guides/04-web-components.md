@@ -40,7 +40,7 @@ Loading and using web components is very easy, you just need to include our comp
 ```html
 <head>
   <!-- Include the loader on the header -->
-  <script src="https://libs.cartocdn.com/airship-components/%VERSION%/airship.js"></script>
+  <script src="https://libs.cartocdn.com/airship-components/%AS-VERSION%/airship.js"></script>
 </head>
 <body>
   <!-- Use Web components as a regular HTML Elements and the loader will take care of the rest -->

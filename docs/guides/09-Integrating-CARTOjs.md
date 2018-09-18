@@ -30,11 +30,11 @@ To use Airship styles and components we need to include them in our HTML.
 Let's include Airship components and styles by including the following snippet in the `<head>` of our application.
 ```html
 <!-- Include CSS  -->
-<link rel="stylesheet" href="https://libs.cartocdn.com/airship-style/%VERSION%/airship.css">
+<link rel="stylesheet" href="https://libs.cartocdn.com/airship-style/%AS-VERSION%/airship.css">
 <!-- Include Icons -->
-<link rel="stylesheet" href="https://libs.cartocdn.com/airship-icons/%VERSION%/icons.css">
+<link rel="stylesheet" href="https://libs.cartocdn.com/airship-airship-icons/%AS-VERSION%/icons.css">
 <!-- Include Web Components -->
-<script src="https://libs.cartocdn.com/airship-components/%VERSION%/airship.js"></script>
+<script src="https://libs.cartocdn.com/airship-components/%AS-VERSION%/airship.js"></script>
 ```
 
 ### Setting a basic layout
@@ -63,7 +63,7 @@ The next step in our journey is to embed a CARTO.js containing a layer in our la
 To load the Maps JavaScript API and Leaflet, use the following tags in the example:
 ```html
 <!-- Include CARTO.js -->
-<script src="https://libs.cartocdn.com/carto.js/%VERSION%/carto.min.js"></script>
+<script src="https://libs.cartocdn.com/carto.js/%JS-VERSION%/carto.min.js"></script>
 
 <!-- Include Leaflet -->
 <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
