@@ -15,8 +15,8 @@ import readableNumber from '../../utils/readable-number';
 import { shadeOrBlend } from '../../utils/styles';
 
 const CUSTOM_HANDLE_SIZE = 15;
-const DEFAULT_BAR_COLOR = '#1785FB';
-const DEFAULT_SELECTED_BAR_COLOR = '#47DB99';
+const DEFAULT_BAR_COLOR = 'var(--as-color-primary, #1785FB)';
+const DEFAULT_SELECTED_BAR_COLOR = 'var(--as-color-complementary, #47DB99)';
 const WIDTH = 205;
 const HEIGHT = 125;
 const BARS_SEPARATION = 1;
