@@ -79,6 +79,10 @@
       max-width: calc(100% - #{get-spacing(12)});
     }
 
+    &--middle.as-panel--center {
+      transform: translate3d(-50%, -50%, 0);
+    }
+
     &__element {
       --panels-element-bg-color: var(--as-color-ui-01, #{$color-ui-01});
 
