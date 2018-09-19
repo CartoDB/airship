@@ -32,12 +32,18 @@
     display: flex;
     position: absolute;
     align-items: flex-start;
-    overflow: auto;
+    padding-bottom: 4px;
+    overflow-x: auto;
     pointer-events: auto;
 
     // Panels stack mode
     &--vertical {
       flex-direction: column;
+      overflow-y: auto;
+
+      #{$panel-selector}__element:not(:last-child) {
+        margin-bottom: get-margin(2);
+      }
     }
 
     // Panels alignment
@@ -60,10 +66,6 @@
     &--left {
       left: get-spacing(6);
       max-width: calc(100% - #{get-spacing(12)});
-
-      #{$panel-selector}__element {
-        margin: get-margin(0 2 0 0);
-      }
     }
 
     &--center {
@@ -75,10 +77,6 @@
     &--right {
       right: get-spacing(6);
       max-width: calc(100% - #{get-spacing(12)});
-
-      #{$panel-selector}__element {
-        margin: get-margin(0 0 0 2);
-      }
     }
 
     &__element {
@@ -89,20 +87,12 @@
       background: var(--panels-element-bg-color);
       box-shadow: rgba($color-type-01, 0.16) 0 1px 4px 0;
 
+      &:not(:last-child) {
+        margin-right: get-spacing(2);
+      }
+
       .as-box {
         margin: get-margin(5);
-      }
-    }
-
-    &--top#{&}--vertical {
-      #{$panel-selector}__element {
-        margin: get-margin(0 0 2 0);
-      }
-    }
-
-    &--bottom#{&}--vertical {
-      #{$panel-selector}__element {
-        margin: get-margin(2 0 0 0);
       }
     }
   }
