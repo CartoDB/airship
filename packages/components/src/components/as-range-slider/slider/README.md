@@ -78,6 +78,8 @@ showSource: false
 
 ### Props
 
+> Note: Remember to use camelCase with javascript and dash-case with html attributes.
+
 #### **value**: number
 Value to use as maximum in a range defined with just one number (minimum will be set to `minValue`)
 
