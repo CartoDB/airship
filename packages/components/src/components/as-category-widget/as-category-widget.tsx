@@ -1,11 +1,9 @@
-import { Component, Event, EventEmitter, Method, Prop, State } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, Method, Prop, State } from '@stencil/core';
 import readableNumber from '../../utils/readable-number';
 import { shadeOrBlend } from '../../utils/styles';
 
 const OTHER_CATEGORY_COLOR = '#747474';
 const OTHER_CATEGORY_NAME = 'Other';
-const DEFAULT_BAR_COLOR = '#47DB99';
-
 
 /**
  * Category Widget
@@ -35,7 +33,7 @@ export class CategoryWidget {
    * @type {string}
    * @memberof CategoryWidget
    */
-  @Prop() public defaultBarColor: string = DEFAULT_BAR_COLOR;
+  @Prop() public defaultBarColor: string;
 
   /**
    * Description text of the widget
@@ -105,6 +103,8 @@ export class CategoryWidget {
 
   @State() private selectedCategories: string[] = [];
 
+  @Element() private el: HTMLElement;
+
   /**
    * Get current selected categories
    *
@@ -114,6 +114,10 @@ export class CategoryWidget {
   @Method()
   public getSelectedCategories() {
     return this.selectedCategories;
+  }
+
+  public componentWillLoad() {
+    this.el.style.setProperty('--category-bar-color', this.defaultBarColor ||  `var(--as-color-complementary)`);
   }
 
   /**
@@ -165,7 +169,7 @@ export class CategoryWidget {
     const { categories, otherCategory } = this._parseCategories();
     let otherCategoryTemplate;
 
-    const categoriesToRender =  categories.slice(0, this.visibleCategories);
+    const categoriesToRender = categories.slice(0, this.visibleCategories);
 
     const maximumValue = this.useTotalPercentage
       ? this._getCategoriesTotalValue(this.categories)
@@ -185,10 +189,11 @@ export class CategoryWidget {
     const { isOther, maximumValue } = options;
     const isSelected = this._isSelected(category.name);
     const isAnyCategorySelected = this.selectedCategories.length > 0;
-    const barColor = this._getBarColor(category.color || this.defaultBarColor, { isSelected, isOther });
+
+    const barColor = this._getBarColor(category.color, { isSelected, isOther });
 
     const progressStyles = {
-      backgroundColor: barColor,
+      backgroundColor: barColor ? barColor : `var(--category-bar-color)`,
       width: `${(category.value / maximumValue) * 100}%`
     };
 
@@ -230,7 +235,7 @@ export class CategoryWidget {
     return (
       <footer class='as-category-widget__footer'>
         <div class='as-category-widget__count as-body'>{selectedCount || 'All'} selected</div>
-        { this.showClearButton && (
+        {this.showClearButton && (
           <button
             class='as-btn as-btn--primary as-btn--s as-category-widget__clear'
             disabled={!selectedCount}
