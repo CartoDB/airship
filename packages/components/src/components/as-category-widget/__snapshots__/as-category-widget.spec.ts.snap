@@ -60,7 +60,7 @@ exports[`as-category-widget Rendering should render bars according to total valu
       >
         <div
           class="as-category-widget__bar-value"
-          style="width: 16.39344262295082%;"
+          style="background-color: rgb(250, 186, 218); width: 16.39344262295082%;"
         />
       </div>
     </li>
@@ -247,7 +247,7 @@ exports[`as-category-widget Rendering should render clear button 1`] = `
       >
         <div
           class="as-category-widget__bar-value"
-          style="width: 64.51612903225806%;"
+          style="background-color: rgb(250, 186, 218); width: 64.51612903225806%;"
         />
       </div>
     </li>
@@ -439,7 +439,7 @@ exports[`as-category-widget Rendering should render properly 1`] = `
       >
         <div
           class="as-category-widget__bar-value"
-          style="width: 64.51612903225806%;"
+          style="background-color: rgb(250, 186, 218); width: 64.51612903225806%;"
         />
       </div>
     </li>
