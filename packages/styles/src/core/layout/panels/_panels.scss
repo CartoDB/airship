@@ -32,45 +32,51 @@
     display: flex;
     position: absolute;
     align-items: flex-start;
+    padding-bottom: 4px;
+    overflow-x: auto;
+    pointer-events: auto;
 
     // Panels stack mode
     &--vertical {
       flex-direction: column;
+      overflow-y: auto;
+
+      #{$panel-selector}__element:not(:last-child) {
+        margin-bottom: get-margin(2);
+      }
     }
 
     // Panels alignment
     &--top {
       top: get-spacing(6);
+      max-height: calc(100% - #{get-spacing(12)});
     }
 
     &--middle {
       top: 50%;
+      max-height: calc(100% - #{get-spacing(12)});
       transform: translate3d(0, -50%, 0);
     }
 
     &--bottom {
       bottom: get-spacing(6);
+      max-height: calc(100% - #{get-spacing(12)});
     }
 
     &--left {
       left: get-spacing(6);
-
-      #{$panel-selector}__element {
-        margin: get-margin(0 2 0 0);
-      }
+      max-width: calc(100% - #{get-spacing(12)});
     }
 
     &--center {
       left: 50%;
+      max-width: calc(100% - #{get-spacing(12)});
       transform: translate3d(-50%, 0, 0);
     }
 
     &--right {
       right: get-spacing(6);
-
-      #{$panel-selector}__element {
-        margin: get-margin(0 0 0 2);
-      }
+      max-width: calc(100% - #{get-spacing(12)});
     }
 
     &__element {
@@ -80,22 +86,13 @@
       border-radius: 4px;
       background: var(--panels-element-bg-color);
       box-shadow: rgba($color-type-01, 0.16) 0 1px 4px 0;
-      pointer-events: auto;
+
+      &:not(:last-child) {
+        margin-right: get-spacing(2);
+      }
 
       .as-box {
         margin: get-margin(5);
-      }
-    }
-
-    &--top#{&}--vertical {
-      #{$panel-selector}__element {
-        margin: get-margin(0 0 2 0);
-      }
-    }
-
-    &--bottom#{&}--vertical {
-      #{$panel-selector}__element {
-        margin: get-margin(2 0 0 0);
       }
     }
   }
