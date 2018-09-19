@@ -21,7 +21,7 @@ export class Switch {
    * @type{boolean}
    * @memberof Switch
    */
-  @Prop() public checked: boolean;
+  @Prop({ mutable: true, reflectToAttr: true }) public checked: boolean;
 
   /**
    * Boolean flag to control when the switch is disabled or not
@@ -29,7 +29,7 @@ export class Switch {
    * @type{boolean}
    * @memberof Switch
    */
-  @Prop() public disabled: boolean;
+  @Prop({ reflectToAttr: true }) public disabled: boolean;
 
   /**
    * The input name
@@ -37,7 +37,7 @@ export class Switch {
    * @type{string}
    * @memberof Switch
    */
-  @Prop() public name: string;
+  @Prop({ reflectToAttr: true }) public name: string;
 
   /**
    * Event triggered by a enabled Switch component when the user clicks on it.
