@@ -604,6 +604,65 @@ declare global {
   }
 }
 
+
+declare global {
+
+  namespace StencilComponents {
+    interface AsSwitch {
+      /**
+       * Boolean flag to control if the input is checked or not
+       */
+      'checked': boolean;
+      /**
+       * Boolean flag to control when the switch is disabled or not
+       */
+      'disabled': boolean;
+      /**
+       * The input name
+       */
+      'name': string;
+    }
+  }
+
+  interface HTMLAsSwitchElement extends StencilComponents.AsSwitch, HTMLStencilElement {}
+
+  var HTMLAsSwitchElement: {
+    prototype: HTMLAsSwitchElement;
+    new (): HTMLAsSwitchElement;
+  };
+  interface HTMLElementTagNameMap {
+    'as-switch': HTMLAsSwitchElement;
+  }
+  interface ElementTagNameMap {
+    'as-switch': HTMLAsSwitchElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'as-switch': JSXElements.AsSwitchAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface AsSwitchAttributes extends HTMLAttributes {
+      /**
+       * Boolean flag to control if the input is checked or not
+       */
+      'checked'?: boolean;
+      /**
+       * Boolean flag to control when the switch is disabled or not
+       */
+      'disabled'?: boolean;
+      /**
+       * The input name
+       */
+      'name'?: string;
+      /**
+       * Event triggered by a enabled Switch component when the user clicks on it.
+       */
+      'onChange'?: (event: CustomEvent) => void;
+    }
+  }
+}
+
 declare global { namespace JSX { interface StencilJSX {} } }
 
 export declare function defineCustomElements(window: any): void;

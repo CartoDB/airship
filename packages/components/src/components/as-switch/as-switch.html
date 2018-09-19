@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+  <base href="/">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+  <title>Airship</title>
+  <script src="/build/airship.js"></script>
+</head>
+
+<body>
+  <as-switch id="switch-0" name="switch" title="switch"></as-switch>
+  <as-switch checked id="switch-1" name="switch-1" title="switch-1"></as-switch>
+  <as-switch disabled id="switch-2" name="switch-2" title="switch-2"></as-switch>
+
+  <script>
+    document.querySelector('#switch-0').addEventListener('change', console.warn);
+
+    document.querySelector('#switch-1').addEventListener('change', console.warn);
+
+  </script>
+</body>
+
+</html>
