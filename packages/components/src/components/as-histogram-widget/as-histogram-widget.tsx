@@ -1,4 +1,4 @@
-import { Component, Event, EventEmitter, Method, Prop, State, Watch } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, Method, Prop, State, Watch } from '@stencil/core';
 import { max } from 'd3-array';
 import { Axis, axisBottom, axisLeft } from 'd3-axis';
 import { BrushBehavior, brushX } from 'd3-brush';
@@ -119,6 +119,8 @@ export class HistogramWidget {
    * @memberof HistogramWidget
    */
   @Prop() public tooltipFormatter: (value: HistogramData) => string = this.defaultFormatter;
+
+  @Element() private el: HTMLElement;
 
   /**
    * Fired when user update or clear the widget selection.
@@ -299,7 +301,9 @@ export class HistogramWidget {
             clientY <= bb.bottom;
 
           if (isInsideBB) {
-            nodeSelection.style('fill', shadeOrBlend(-0.16, selected ? this.selectedColor : this.color));
+            let color = selected ? this._toColor(this.selectedColor) : this._toColor(this.color);
+            color = shadeOrBlend(-0.16, color);
+            nodeSelection.style('fill', color);
             this.tooltip = this.tooltipFormatter(data);
             this._showTooltip(evt);
             anyHovered = true;
@@ -628,6 +632,15 @@ export class HistogramWidget {
         onClick={() => this._setSelection(null) }>Clear selection
       </button>
     );
+  }
+
+  // If the parameter is a css variable will be evaluated to a color
+  private _toColor(color) {
+    if (color.startsWith('var(')) {
+      color = color.match(/--\S[^\|,)]*/)[0];
+      return getComputedStyle(this.el).getPropertyValue(color).toLowerCase().trim();
+    }
+    return color;
   }
 }
 
