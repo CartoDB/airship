@@ -23,6 +23,7 @@ function showRight(event) {
 }
 
 function showLegends(event) {
+  console.log('show legends');
   showLeftPanel(false);
   showRightPanel(false);
   showLegendsPanel(true);
@@ -47,11 +48,11 @@ function showRightPanel(visible) {
 }
 
 function showLegendsPanel(visible) {
-  showPanel('as-panels', visible);
+  showPanel('as-map-panels', visible);
 }
 
 function showBottomPanel(visible) {
-  showPanel('as-bottom-bar', visible);
+  showPanel('as-map-footer', visible);
 }
 
 function showPanel(className, visible, visibleClassName) {
