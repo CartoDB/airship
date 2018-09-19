@@ -86,6 +86,10 @@ declare global {
        */
       'description': string;
       /**
+       * Disable category selection in Widget
+       */
+      'disableInteractivity': boolean;
+      /**
        * Get current selected categories
        */
       'getSelectedCategories': () => string[];
@@ -143,6 +147,10 @@ declare global {
        * Description text of the widget
        */
       'description'?: string;
+      /**
+       * Disable category selection in Widget
+       */
+      'disableInteractivity'?: boolean;
       /**
        * Heading text of the widget
        */
@@ -272,6 +280,10 @@ declare global {
        */
       'description': string;
       /**
+       * Disables selection brushes and events for the widget
+       */
+      'disableInteractivity': boolean;
+      /**
        * Returns the current selection
        */
       'getSelection': () => number[];
@@ -337,6 +349,10 @@ declare global {
        * Description of the widget to be displayed
        */
       'description'?: string;
+      /**
+       * Disables selection brushes and events for the widget
+       */
+      'disableInteractivity'?: boolean;
       /**
        * Title of the widget to be displayed
        */

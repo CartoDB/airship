@@ -62,4 +62,10 @@ as-histogram-widget {
       fill: $color-ui-04;
     }
   }
+
+  .as-histogram-widget__wrapper--disabled {
+    svg .bar {
+      cursor: inherit;
+    }
+  }
 }
