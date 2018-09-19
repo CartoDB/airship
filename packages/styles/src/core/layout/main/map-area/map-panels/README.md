@@ -5,14 +5,6 @@ Map panels is the section where the `as-panels` element will be placed.
 The `map-panels` element must be a children of the `map-area` or the `as-div`.
 
 
-```html
-noSource: true
-responsive: [tablet]
----
-<iframe src="/examples/layouts/panels/panels.html" style="width: 100%; height: 100%;">
-```
-
-
 ## .as-panel
 
 An `as-panel` element is a container for the `as-panel__element` that allows to specify the position and how the panel elements will be stacked.
@@ -112,4 +104,15 @@ By default panels grow horizontally. Add this class to make the panels grow vert
     </main>
   </div>
 </div>
+```
+
+
+### Full example with tabs
+
+
+```html
+noSource: true
+responsive: true
+---
+<iframe src="/examples/layouts/panels/panels.html" style="width: 100%; height: 100%;">
 ```
