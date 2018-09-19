@@ -58,6 +58,13 @@ Selected option to show in the dropdown by default
 
 For example:
 
+
+```code
+lang: html
+---
+<as-dropdown selected-option="All"></as-dropdown>
+```
+
 ```code
 lang: javascript
 ---
@@ -70,6 +77,12 @@ Default text to show when no option is selected
 For example:
 
 ```code
+lang: html
+---
+<as-dropdown default="Dropdown"></as-dropdown>
+```
+
+```code
 lang: javascript
 ---
 dropdown.defaultText = 'Dropdown';
@@ -79,6 +92,12 @@ dropdown.defaultText = 'Dropdown';
 Allow the user to clear selected option
 
 For example:
+
+```code
+lang: html
+---
+<as-dropdown can-clear="true"></as-dropdown>
+```
 
 ```code
 lang: javascript

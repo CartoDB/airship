@@ -111,6 +111,12 @@ categoryWidget.heading = 'Business Volume';
 If truthy, it'll show a button to clear selected categories when there are any. Default value is `false`.
 
 ```code
+lang: html
+---
+<as-category-widget show-clear-button="true"></as-category-widget>
+```
+
+```code
 lang: javascript
 ---
 categoryWidget.showClearButton = true;
@@ -118,6 +124,12 @@ categoryWidget.showClearButton = true;
 
 #### **showHeader**: boolean = true
 If truthy, it'll render the heading and the component's description. Default value is `true`.
+
+```code
+lang: html
+---
+<as-category-widget show-header="true"></as-category-widget>
+```
 
 ```code
 lang: javascript
@@ -130,6 +142,12 @@ If truthy, we'll use the sum of all categories' value to render the bar percenta
 By default, we use the maximum category value to render the bar percentage.
 
 ```code
+lang: html
+---
+<as-category-widget use-total-percentage="true"></as-category-widget>
+```
+
+```code
 lang: javascript
 ---
 categoryWidget.useTotalPercentage = true;
@@ -137,6 +155,12 @@ categoryWidget.useTotalPercentage = true;
 
 #### **visibleCategories**: number = Infinity
 The number of visible categories without aggregation.
+
+```code
+lang: html
+---
+<as-category-widget visible-categories="5"></as-category-widget>
+```
 
 ```code
 lang: javascript
