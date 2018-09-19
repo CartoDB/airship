@@ -342,9 +342,9 @@ export class HistogramWidget {
 
     for (const iterator of this.data) {
       const breakPoint = iterator.start + Math.floor((iterator.end - iterator.start) / 2);
-      if (value >= iterator.start && value < breakPoint) {
+      if (value >= iterator.start && value <= breakPoint) {
         return iterator.start;
-      } else if (value >= breakPoint && value < iterator.end) {
+      } else if (value > breakPoint && value < iterator.end) {
         return iterator.end;
       }
     }
