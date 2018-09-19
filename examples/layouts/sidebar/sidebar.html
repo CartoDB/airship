@@ -21,23 +21,20 @@
 </head>
 
 <body class="as-app">
-  <div role="tablist" class="as-toolbar-tabs as-tabs">
+  <nav role="tablist" class="as-toolbar-tabs as-tabs">
     <button onclick="showMap(event)" role="tab" class="as-tabs__item as-tabs__item--active">MAP</button>
     <button onclick="showLeft(event)" role="tab" class="as-tabs__item">LEFT</button>
     <button onclick="showRight(event)" role="tab" class="as-tabs__item">RIGHT</button>
+  </nav>
+  <div class="as-content">
+    <aside class="as-sidebar as-sidebar--left as-bg--support-03"></aside>
+    <main class="as-main">
+      <div class="as-map-area">
+        <div id="map"></div>
+      </div>
+    </main>
+    <aside class="as-sidebar as-sidebar--right as-bg--support-02"></aside>
   </div>
-
-  <main class="as-app-content">
-    <aside class="as-sidebar as-sidebar--left as-sidebar--xl" style="background: #80B622;">.sidebar--left</aside>
-
-    <div class="as-map-wrapper">
-      <div id="map"></div>
-    </div>
-
-    <aside class="as-sidebar as-sidebar--right" style="background: #80B622;">.sidebar--right</aside>
-
-  </main>
-
 
   <script defer src="../common/map.js"></script>
   <script defer src="../common/tabs.js"></script>
