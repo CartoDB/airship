@@ -1,5 +1,51 @@
 <a name="0.0.0"></a>
-# [0.0.0](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.42...v0.0.0) (2018-09-14)
+# [0.0.0](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.43...v0.0.0) (2018-09-19)
+
+
+
+<a name="1.0.0-alpha.43"></a>
+# [1.0.0-alpha.43](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.42...v1.0.0-alpha.43) (2018-09-19)
+
+
+### Bug Fixes
+
+* **components:** 300 fix css vars ([#305](https://github.com/CartoDB/airship/issues/305)) ([ec35fae](https://github.com/CartoDB/airship/commit/ec35fae))
+* **components:** Adjust selection to bucket start when data changes ([#306](https://github.com/CartoDB/airship/issues/306)) ([f733076](https://github.com/CartoDB/airship/commit/f733076))
+* **docs:** Add dash case examples ([#310](https://github.com/CartoDB/airship/issues/310)) ([d2ada56](https://github.com/CartoDB/airship/commit/d2ada56))
+* **styles:** Allow panels to scroll when exceeding max-height ([#307](https://github.com/CartoDB/airship/issues/307)) ([8f2196c](https://github.com/CartoDB/airship/commit/8f2196c))
+* **styles:** Fix variable typos ([#280](https://github.com/CartoDB/airship/issues/280)) ([ea6413f](https://github.com/CartoDB/airship/commit/ea6413f))
+* **styles:** Reduce utilities size ([#283](https://github.com/CartoDB/airship/issues/283)) ([bafd230](https://github.com/CartoDB/airship/commit/bafd230))
+
+
+### Features
+
+* **components:** 298 recover switch component ([#308](https://github.com/CartoDB/airship/issues/308)) ([e7df9b9](https://github.com/CartoDB/airship/commit/e7df9b9))
+* **components:** Add disable widgets interactivity property ([#303](https://github.com/CartoDB/airship/issues/303)) ([6465d54](https://github.com/CartoDB/airship/commit/6465d54))
+* **components:** Add dropdown component ([#290](https://github.com/CartoDB/airship/issues/290)) ([cb8598c](https://github.com/CartoDB/airship/commit/cb8598c))
+* **docs:** Add basic layout guide ([#281](https://github.com/CartoDB/airship/issues/281)) ([b8fa9e2](https://github.com/CartoDB/airship/commit/b8fa9e2))
+
+
+### BREAKING CHANGES
+
+* **components:** The switch element is now a web component.
+
+* Revert "Remove as-switch component"
+
+This reverts commit acb63b2610d2d53c6af4c4e1dea631b125e99745.
+
+* Update switch component
+
+* Add switch component documentation
+
+* ignore linter in long line
+
+* Pr fixes
+
+* Reflect to attributes
+
+* Remove widget styles, add widget component doc
+
+* Fix styles
 
 
 
