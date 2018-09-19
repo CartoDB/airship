@@ -14,13 +14,13 @@ An airship app is composed of the following elements:
 - **Toolbar**: Where the main navigation and options are located. Only icons, text and the app logo should be placed here.
 - **Tabs**: Used to navigate the app on small screens and control what is displayed in the app-content element.
 - **Content:** The area where the app content will be visible.
-  - **Sidebar**: One or two sections beside the map wrapper where the main application contents should be placed.
   - **Main:**
-    - **Footer:** Content area located below the map without overlapping.
-    - **Area**
+    - **Map Area**
       - **Map:** The map itself.
-      - **Floating Panels:** Content areas that are displayed over the map.
-  
+      - **Map Panels:** Content areas that are displayed over the map.
+    - **Footer:** Content area located below the map without overlapping.
+  - **Sidebar**: One or two sections beside the map wrapper where the main application contents should be placed.
+
 
 ### Basic Layout
 
