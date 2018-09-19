@@ -8,28 +8,56 @@
   <title>Basic Layout</title>
   <link rel="stylesheet" href="../../packages/styles/dist/airship.css">
   <script src="../../packages/components/dist/airship.js"></script>
+  <!-- Include Mapbox GL JS -->
+  <script src="https://libs.cartocdn.com/mapbox-gl/v0.48.0-carto1/mapbox-gl.js"></script>
+  <!-- Include Mapbox GL CSS -->
+  <link href="https://libs.cartocdn.com/mapbox-gl/v0.48.0-carto1/mapbox-gl.css" rel="stylesheet" />
 
 
 </head>
 
 <body class="as-app">
   <header class="as-toolbar"></header>
+  <nav class="as-tabs"></nav>
+  <div class="as-content">
+    <aside class="as-sidebar as-sidebar--left"></aside>
 
-  <main class="as-app-content">
+    <main class="as-main">
+      <div class="as-map-area">
+        <div id="map"></div>
 
-    <aside class="as-sidebar as-sidebar--left" style="background: #80B622;">
+        <div class="as-map-panels">
+          <div class="as-panel as-panel--bottom as-panel--right">
+            <div class="as-panel__element as-p--32 as-bg--support-01"></div>
+            <div class="as-panel__element as-p--32 as-bg--support-02"></div>
+          </div>
+        </div>
 
-    </aside>
+      </div>
+      <footer class="as-map-footer as-bg--complementary" style="height: 100px;"></footer>
+    </main>
 
-    <div class="as-map-wrapper" style="background: #B5E0F9;">
-      <!-- Put your map here -->
-    </div>
+    <aside class="as-sidebar as-sidebar--right"></aside>
+  </div>
 
-    <aside class="as-sidebar as-sidebar--right" style="background: #80B622;">
+  <!-- Basic CARTO-VL MAP -->
+  <script>
+    const map = new mapboxgl.Map({
+      container: 'map',
+      style: 'https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json',
+      center: [0, 30],
+      zoom: 2,
+      scrollZoom: false,
+      dragRotate: false,
+      touchZoomRotate: false
+    });
 
-    </aside>
+    const nav = new mapboxgl.NavigationControl({
+      showCompass: false
+    });
+    map.addControl(nav, 'top-left');
 
-  </main>
+  </script>
 </body>
 
 </html>
