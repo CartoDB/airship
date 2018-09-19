@@ -28,11 +28,44 @@ It is a two state button that can be on or off. This component issues a "changed
 ### **checked**: boolean
 The presence of this boolean attribute controls whether the switch is checked by default or not.
 
+```code
+lang: html
+---
+<as-switch checked ></as-switch>
+```
+```code
+lang: javascript
+---
+switch.checked = true;
+```
+
 ### **disabled**: boolean
 The presence of this boolean attribute controls when the switch is enabled.
 
+```code
+lang: html
+---
+<as-switch disabled ></as-switch>
+```
+```code
+lang: javascript
+---
+switch.disabled = true;
+```
+
 ### **name**: boolean
 The name attribute specifies a name for the element. This name attribute can be used to reference the element in a JavaScript.
+
+```code
+lang: html
+---
+<as-switch name="toggle-layer" ></as-switch>
+```
+```code
+lang: javascript
+---
+switch.name = 'toggle-layer';
+```
 
 
 ## Events
@@ -40,15 +73,3 @@ The name attribute specifies a name for the element. This name attribute can be 
 ### **change** `event.detail = boolean`
 
 Triggered by a enabled switch when the user clicks on it.
-
-
-```html
-
-<as-switch id="switch-example" name="switch-example" title="switch-example"></as-switch>
-
-<script>
-  document.querySelector('#switch-example').addEventListener('change', event => {
-    console.log(event.detail); // true/false
-  });)
-</script>
-```
