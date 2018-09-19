@@ -39,3 +39,13 @@ Use this class to make the footer fill the `as-content` section in small screen 
   </main>
 </div>
 ```
+
+
+### Footer Example with tabs
+
+```html
+noSource: true
+responsive: true
+---
+<iframe src="/examples/layouts/footer/footer" style="width: 100%; height: 100%;">
+```
