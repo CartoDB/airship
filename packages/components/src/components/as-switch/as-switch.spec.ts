@@ -13,7 +13,7 @@ describe.only('as-switch', () => {
       element = await _prepareTest('<as-switch id="switch"></as-switch>');
     });
 
-    it('should emit an event with current status when component toggles', async () => {
+    it('should emit an event with current status when component toggles false->true', async () => {
       const spy = _spyOnElement(element);
 
       element.click();
@@ -22,7 +22,7 @@ describe.only('as-switch', () => {
       expect(spy.mock.calls[0][0].detail).toBe(true);
     });
 
-    it('should emit an event with current status when component toggles', async () => {
+    it('should emit an event with current status when component toggles false->true->false->true', async () => {
       const spy = _spyOnElement(element);
 
 

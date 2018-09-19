@@ -1,6 +1,6 @@
 # as-switch
 
-It displays a control to select a range of two numbers from a predefined interval, dragging a slider. Selection can be determined using one or two values. When using one value, the range goes from the minimum to the selected value. When using two, the minimum value can be also configured.
+It is a two state button that can be on or off. This component issues a "changed" event each time the user presses it, letting it know if it is on or off.
 
 ## Examples
 
@@ -26,17 +26,16 @@ It displays a control to select a range of two numbers from a predefined interva
 ## Props
 
 ### **checked**: boolean
-The presence of this boolean attribute controls when the switch is checked by default.
+The presence of this boolean attribute controls whether the switch is checked by default or not.
 
 ### **disabled**: boolean
-The presence of this boolean attribute controls when the switch is enabled.)
+The presence of this boolean attribute controls when the switch is enabled.
 
 ### **name**: boolean
 The name attribute specifies a name for the element. This name attribute can be used to reference the element in a JavaScript.
 
 
 ## Events
-All events return an array with one value (simple mode) or two (range).
 
 ### **change** `event.detail = boolean`
 

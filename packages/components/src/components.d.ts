@@ -640,7 +640,7 @@ declare global {
        */
       'name'?: string;
       /**
-       * The input name
+       * Event triggered by a enabled Switch component when the user clicks on it.
        */
       'onChange'?: (event: CustomEvent) => void;
     }
