@@ -6,17 +6,17 @@ Airship offers a restricted series of optimized layouts to create LI apps.
 
 An Airship app should always be wrapped inside an element with the `.as-app` class and is composed of the following elements:
 
-- **Toolbar**: Where the main navigation and options are located. Only icons, text and the app logo should be placed here.
-- **Tabs**: Used to navigate the app on small screens and control what is displayed in the app-content element.
-- **Content:** The area where the app content will be visible.
+- **Toolbar (1)**: Where the main navigation and options are located. Only icons, text and the app logo should be placed here.
+- **Tabs**: Used to navigate the app on small screens and control what is displayed in the app-content element. Hidden in desktop.
+- **Content (5):** The area where the app content will be visible.
   - **Main:**
     - **Map Area**
       - **Map:** The map itself.
-      - **Map Panels:** Content areas that are displayed over the map.
-    - **Footer:** Content area located below the map without overlapping.
-  - **Sidebar**: One or two sections beside the map wrapper where the main application contents should be placed.
+      - **Map Panels (6):** Content areas that are displayed over the map.
+    - **Map Footer (4):** Content area located below the map without overlapping.
+  - **Sidebar (2, 3)**: One or two sections beside the map wrapper where the main application contents should be placed.
 
-> Check the reference for a detailed description 
+> Check the reference for a detailed description
 
 ## Responsive design
 
