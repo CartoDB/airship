@@ -1,5 +1,19 @@
 <a name="0.0.0"></a>
-# [0.0.0](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.43...v0.0.0) (2018-09-19)
+# [0.0.0](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.43...v0.0.0) (2018-09-20)
+
+
+### Features
+
+* Refactor layout ([#313](https://github.com/CartoDB/airship/issues/313)) ([740bb97](https://github.com/CartoDB/airship/commit/740bb97))
+
+
+### BREAKING CHANGES
+
+* This commit introduces several changes:
+
+* Added default margin in Sidebar and Map Footer.
+* New layout scaffolding.
+* Changed component as-application-content to as-responsive-content.
 
 
 
