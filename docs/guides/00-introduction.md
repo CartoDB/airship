@@ -27,16 +27,44 @@ The easiest way to include Airship is through our CDN, adding the tags in the he
   <!-- Include airship components -->
   <script src="https://libs.cartocdn.com/airship-components/%AS-VERSION%/airship.js"></script>
 </head>
-<body>
-  <div>
-    <h1 class="as-title">This is a range slider element</h1>
-    <as-range-slider></as-range-slider>
-    <h1 class="as-title">This is a button</h1>
-    <button class="as-btn as-btn--primary">
-      <i aria-hidden class="as-icon-plus"></i>
-      <p>Im a button!</p>
-    </button>
+<body class="as-app">
+
+  <header class="as-toolbar"></header>
+  <nav class="as-tabs"></nav>
+
+  <div class="as-content">
+    <aside class="as-sidebar as-sidebar--left"></aside>
+
+    <main class="as-main">
+      <div class="as-map-area">
+        <div id="map"></div>
+
+        <div class="as-map-panels">
+          <div class="as-panel as-panel--top as-panel--right">
+            <div class="as-panel__element as-p--32 as-bg--support-02"></div>
+          </div>
+        </div>
+
+      </div>
+      <footer class="as-map-footer as-bg--complementary" style="height: 100px;"></footer>
+    </main>
+
+    <aside class="as-sidebar as-sidebar--right"></aside>
   </div>
+
+  <!-- Basic CARTO-VL MAP -->
+  <script>
+    const map = new mapboxgl.Map({
+      container: 'map',
+      style: 'https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json',
+      center: [0, 30],
+      zoom: 2,
+      scrollZoom: false,
+      dragRotate: false,
+      touchZoomRotate: false
+    });
+
+  </script>
 </body>
 </html>
 ```
