@@ -106,12 +106,168 @@ responsive: true
 </div>
 ```
 
-#### .as-container
+### .as-container
 
-##### .as-container--scrollable
+Use this class to create sections inside the footer. By default a container will occupy as much vertical space as needed.
 
-##### .as-container--border
+```html
+<div class="as-app" style="width:100%; height:300px;">
+  <div class="as-content">
+    <main class="as-main">
+      <div class="as-map-area as-bg--badge-blue">
+        <!-- CARTO.js or CARTO-VL will place the map on this div  -->
+        <div id="map"></div> 
+        <footer class="as-map-footer as-bg--badge-yellow">
+          <div class="as-container">
+            <section class="as-box as-box--medium">
+              <h1 class="as-title">Container 0 </h1>
+              <p class="as-body">Use this container when you need to present fixed content.</p>
+            </section>
+          </div>
+          <div class="as-container">
+            <section class="as-box as-box--medium">
+              <h1 class="as-title">Container 1 </h1>
+              <p class="as-body">Use this container when you need to present fixed content.</p>
+            </section>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </main>
+</div>
+```
 
-#### .as-box
+### .as-container--scrollable
 
-##### .as-box--<size>
+The `scrollable container` will take the space left by the fixed containers. Use this modifier to when you need to present lots of content that don't fit in the available space.
+
+```html
+<div class="as-app" style="width:100%; height:300px;">
+  <div class="as-content">
+    <main class="as-main">
+      <div class="as-map-area as-bg--badge-blue">
+        <!-- CARTO.js or CARTO-VL will place the map on this div  -->
+        <div id="map"></div> 
+        <footer class="as-map-footer as-bg--badge-yellow">
+          <div class="as-container">
+            <section class="as-box as-box--medium">
+              <h1 class="as-title">Container 0 </h1>
+              <p class="as-body">Use this container when you need to present fixed content.</p>
+            </section>
+          </div>
+          <div class="as-container as-container--scrollable">
+            <section class="as-box as-box--medium">
+              <h1 class="as-title">Scrollable 1 </h1>
+              <p class="as-body">This box is inside a scrollable container.</p>
+            </section>
+
+             <section class="as-box as-box--medium">
+              <h1 class="as-title">Scrollable 2 </h1>
+              <p class="as-body">This box is inside a scrollable container.</p>
+            </section>
+
+             <section class="as-box as-box--medium">
+              <h1 class="as-title">Scrollable 3 </h1>
+              <p class="as-body">This box is inside a scrollable container.</p>
+            </section>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </main>
+</div>
+```
+
+### .as-container--border
+
+```html
+<div class="as-app" style="width:100%; height:300px;">
+  <div class="as-content">
+    <main class="as-main">
+      <div class="as-map-area as-bg--badge-blue">
+        <!-- CARTO.js or CARTO-VL will place the map on this div  -->
+        <div id="map"></div> 
+        <footer class="as-map-footer as-bg--badge-yellow">
+          <div class="as-container as-container--border">
+            <section class="as-box as-box--medium">
+              <h1 class="as-title">Container 0 </h1>
+              <p class="as-body">This box is inside a border container</p>
+            </section>
+          </div>
+          <div class="as-container as-container--border">
+            <section class="as-box as-box--medium">
+              <h1 class="as-title">Box 1 </h1>
+              <p class="as-body">This box is inside a border container</p>
+            </section>
+            <section class="as-box as-box--medium">
+              <h1 class="as-title">Box 2 </h1>
+              <p class="as-body">This box is inside a border container</p>
+            </section>
+          </div>
+          <div class="as-container as-container--border">
+            <section class="as-box as-box--medium">
+              <h1 class="as-title">Box 3 </h1>
+              <p class="as-body">This box is inside a border container</p>
+            </section>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </main>
+</div>
+```
+
+
+## .as-box
+
+Use the `as-box` class to create groups inside a container.
+
+### .as-box--<size>
+
+Only on the `map-footer` you can specify the box-witdh with one of the following modifiers:
+
+- .as-box--s
+- .as-box--m
+- .as-box--l
+- .as-box--xl
+
+
+```html
+<div class="as-app" style="width:100%; height:300px;">
+  <div class="as-content">
+    <main class="as-main">
+      <div class="as-map-area as-bg--badge-blue">
+        <!-- CARTO.js or CARTO-VL will place the map on this div  -->
+        <div id="map"></div> 
+        <footer class="as-map-footer as-bg--badge-yellow">
+          <div class="as-container">
+            <section class="as-box as-box--xl">
+              <h1 class="as-title">Container 0 </h1>
+              <p class="as-body">
+                This box is has the --xl class modifier so will take more space than other boxes.
+              </p>
+            </section>
+          </div>
+          <div class="as-container">
+           <section class="as-box as-box--s">
+              <h1 class="as-title">Container 0 </h1>
+              <p class="as-body">
+                This box is has the --s class modifier so will be smaller than other boxes.
+              </p>
+            </section>
+          </div>
+          <div class="as-container">
+           <section class="as-box as-box--xl">
+              <h1 class="as-title">Container 0 </h1>
+              <p class="as-body">
+                This box is has the --xl class modifier so will take more space than other boxes.
+              </p>
+            </section>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </main>
+</div>
+```
+

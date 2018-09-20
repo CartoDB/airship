@@ -19,7 +19,7 @@
     position: initial;
     height: initial;
     max-height: $bottom-bar-max-height;
-    overflow-x: initial;
+    overflow-x: auto;
 
     .as-container {
       flex: 1 0 auto;
@@ -45,19 +45,23 @@
       flex-shrink: 0;
       overflow: auto;
 
-      &--small {
+      &--small,
+      &--s {
         max-width: 128px;
       }
 
-      &--medium {
+      &--medium,
+      &--m {
         max-width: 256px;
       }
 
-      &--large {
+      &--large,
+      &--l {
         max-width: 320px;
       }
 
-      &--xlarge {
+      &--xlarge,
+      &--xl {
         max-width: 400px;
       }
     }
