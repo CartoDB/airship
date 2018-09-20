@@ -165,10 +165,132 @@ responsive: true
 </div>
 ```
 
-#### .as-container
+### .as-container
 
-##### .as-container--scrollable
+Use this class to create sections inside the sidebar. By default a container will occupy as much vertical space as needed.
 
-##### .as-container--border
+```html
+<div class="as-app"  style="height: 400px; width:100%;">
+  <div class="as-content">
+    <main class="as-main as-bg--badge-blue">
+      <!-- Put your map here -->
+    </main>
+    <aside class="as-sidebar as-sidebar--right as-bg--support-02">
+      <div class="as-container">
+        <section class="as-box">
+          <h1 class="as-title">Container 0</h1>
+          <p class="as-body">
+            Use this container when you need to present fixed content. This content will occupy as
+            much vertical space as needed.
+          </p>
+        </section>
+      </div>
+      <div class="as-container">
+        <section class="as-box">
+          <h1 class="as-title">Container 1</h1>
+          <p class="as-body">
+            Use this container when you need to present fixed content. This content will occupy as
+            much vertical space as needed.
+          </p>
+        </section>
+        <section class="as-box">
+          <h1 class="as-title">Container 1</h1>
+          <p class="as-body">
+            Use this container when you need to present fixed content. This content will occupy as
+            much vertical space as needed.
+          </p>
+        </section>
+      </div>
+    </aside>
+  </div>
+</div>
+```
 
-#### .as-box
+#### .as-container--scrollable
+
+The `scrollable container` will take the space left by the fixed containers. Use this modifier to when you need to present lots of content that don't fit in the available space. 
+
+
+```html
+<div class="as-app"  style="height: 400px; width:100%;">
+  <div class="as-content">
+    <main class="as-main as-bg--badge-blue">
+      <!-- Put your map here -->
+    </main>
+    <aside class="as-sidebar as-sidebar--right as-bg--support-02">
+      <div class="as-container">
+        <section class="as-box">
+          <h1 class="as-title">Container 0</h1>
+          <p class="as-body">
+            Use this container when you need to present fixed content. This content will occupy as
+            much vertical space as needed.
+          </p>
+        </section>
+      </div>
+      <div class="as-container as-container--scrollable">
+        <section class="as-box">
+          <h1 class="as-title">Scrollable Container 1</h1>
+          <p class="as-body">
+            Use this container when you need to present fixed content. This content will occupy as
+            much vertical space as needed.
+          </p>
+        </section>
+        <section class="as-box">
+          <h1 class="as-title">Scrollable Container 1</h1>
+          <p class="as-body">
+            Use this container when you need to present fixed content. This content will occupy as
+            much vertical space as needed.
+          </p>
+        </section>
+      </div>
+    </aside>
+  </div>
+</div>
+```
+
+#### .as-container--border
+
+Use this modifier to create containers with a border separator on the bottom.
+
+```html
+<div class="as-app"  style="height: 400px; width:100%;">
+  <div class="as-content">
+    <main class="as-main as-bg--badge-blue">
+      <!-- Put your map here -->
+    </main>
+    <aside class="as-sidebar as-sidebar--right as-bg--support-02">
+      <div class="as-container as-container--border">
+        <section class="as-box">
+          <h1 class="as-title">Border container 0</h1>
+          <p class="as-body">
+            Use this container when you need to present fixed content. This content will occupy as
+            much vertical space as needed.
+          </p>
+        </section>
+      </div>
+      <div class="as-container as-container--border">
+        <section class="as-box">
+          <h1 class="as-title">Border container 1</h1>
+          <p class="as-body">
+            Use this container when you need to present fixed content. This content will occupy as
+            much vertical space as needed.
+          </p>
+        </section>
+      </div>
+      <div class="as-container as-container--border">
+        <section class="as-box">
+          <h1 class="as-title">Border container 2</h1>
+          <p class="as-body">
+            Use this container when you need to present fixed content. This content will occupy as
+            much vertical space as needed.
+          </p>
+        </section>
+      </div>
+    </aside>
+  </div>
+</div>
+```
+
+### .as-box
+
+Use this class to group the children of the containers.
