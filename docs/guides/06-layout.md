@@ -1,5 +1,9 @@
 Airship offers a restricted series of optimized layouts to create LI apps.
 
+
+<img src="./img/layout.png" alt="Basic layout with all airship elements"/>
+
+
 An Airship app should always be wrapped inside an element with the `.as-app` class and is composed of the following elements:
 
 - **Toolbar**: Where the main navigation and options are located. Only icons, text and the app logo should be placed here.
