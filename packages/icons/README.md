@@ -27,3 +27,10 @@ you can use our icons as regular SVG images
 ```
 
 
+## Icons
+```html
+noSource: true
+responsive: [tablet]
+---
+<iframe src="https://cartodb.github.io/airship/packages/icons/examples" style="width: 100%; height: 100%;">
+```
