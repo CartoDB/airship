@@ -1,4 +1,10 @@
-## CONTAINERS
+## Containers
+
+Explicar que se puede usar en el `footer` y en el `sidebar`.
+
+### Footer 
+
+### Sidebar
 
 ### .as-box
 
