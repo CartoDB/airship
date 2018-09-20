@@ -4,12 +4,13 @@ An Airship app should always be wrapped inside an element with the `.as-app` cla
 
 - **Toolbar**: Where the main navigation and options are located. Only icons, text and the app logo should be placed here.
 - **Tabs**: Used to navigate the app on small screens and control what is displayed in the app-content element.
-- **App Content:** The area where the app content will be visible.
+- **Content:** The area where the app content will be visible.
+  - **Main:**
+    - **Map Area**
+      - **Map:** The map itself.
+      - **Map Panels:** Content areas that are displayed over the map.
+    - **Footer:** Content area located below the map without overlapping.
   - **Sidebar**: One or two sections beside the map wrapper where the main application contents should be placed.
-  - **Map Wrapper**: The area where the map will be placed is composed by:
-    - **Map:** The map itself.
-    - **Floating Panels:** Content areas that are displayed over the map.
-    - **Bottom Bar:** Content area located below the map without overlapping.
 
 > Check the reference for a detailed description 
 
@@ -27,39 +28,57 @@ We provide some responsive utilities by default, for example `sidebars` are hidd
 
 ## Examples
 
-### Basic layout
+### Layout
 
 ```html
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Include CSS elements -->
+  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-style/%AS-VERSION%/airship.css">
+  <!-- Include icons -->
+  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-icons/%AS-VERSION%/icons.css">
+  <!-- Include airship components -->
+  <script src="https://libs.cartocdn.com/airship-components/%AS-VERSION%/airship.js"></script>
+</head>
 <body class="as-app">
-  <main class="as-app-content">
 
-    <aside class="as-sidebar as-sidebar--left">
-
-    </aside>
-
-    <div class="as-map-wrapper">
-      <!-- Put your map here -->
-    </div>
-  </main>
-</body>
-```
-
-
-### Basic layout with toolbar
-
-```html
-<body class="as-app">
   <header class="as-toolbar"></header>
+  <nav class="as-tabs"></nav>
 
-  <main class="as-app-content">
+  <div class="as-content">
+    <aside class="as-sidebar as-sidebar--left"></aside>
 
-    <aside class="as-sidebar as-sidebar--left">
+    <main class="as-main">
+      <div class="as-map-area">
+        <div id="map"></div>
 
-    </aside>
+        <div class="as-map-panels">
+          <div class="as-panel as-panel--top as-panel--right">
+            <div class="as-panel__element as-p--32 as-bg--support-02"></div>
+          </div>
+        </div>
 
-    <div class="as-map-wrapper">
-      <!-- Put your map here -->
-    </div>
-  </main>
+      </div>
+      <footer class="as-map-footer as-bg--complementary" style="height: 100px;"></footer>
+    </main>
+
+    <aside class="as-sidebar as-sidebar--right"></aside>
+  </div>
+
+  <!-- Basic CARTO-VL MAP -->
+  <script>
+    const map = new mapboxgl.Map({
+      container: 'map',
+      style: 'https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json',
+      center: [0, 30],
+      zoom: 2,
+      scrollZoom: false,
+      dragRotate: false,
+      touchZoomRotate: false
+    });
+
+  </script>
 </body>
+</html>
 ```
