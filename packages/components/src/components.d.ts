@@ -33,41 +33,6 @@ import {
 declare global {
 
   namespace StencilComponents {
-    interface AsApplicationContent {
-      'getSections': () => object[];
-      'setVisible': (sectionName: string) => void;
-    }
-  }
-
-  interface HTMLAsApplicationContentElement extends StencilComponents.AsApplicationContent, HTMLStencilElement {}
-
-  var HTMLAsApplicationContentElement: {
-    prototype: HTMLAsApplicationContentElement;
-    new (): HTMLAsApplicationContentElement;
-  };
-  interface HTMLElementTagNameMap {
-    'as-application-content': HTMLAsApplicationContentElement;
-  }
-  interface ElementTagNameMap {
-    'as-application-content': HTMLAsApplicationContentElement;
-  }
-  namespace JSX {
-    interface IntrinsicElements {
-      'as-application-content': JSXElements.AsApplicationContentAttributes;
-    }
-  }
-  namespace JSXElements {
-    export interface AsApplicationContentAttributes extends HTMLAttributes {
-      'onLoad'?: (event: CustomEvent<void>) => void;
-      'onSectionChange'?: (event: CustomEvent<object>) => void;
-    }
-  }
-}
-
-
-declare global {
-
-  namespace StencilComponents {
     interface AsCategoryWidget {
       /**
        * Array of categories to display in the widget. Each category should include a `name` and a `value`. You can also override the bar color for each category with `color`.
@@ -600,6 +565,41 @@ declare global {
       'rangeEndPercentage'?: number;
       'rangeStartPercentage'?: number;
       'stepPercentage'?: number;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
+    interface AsResponsiveContent {
+      'getSections': () => object[];
+      'setVisible': (sectionName: string) => void;
+    }
+  }
+
+  interface HTMLAsResponsiveContentElement extends StencilComponents.AsResponsiveContent, HTMLStencilElement {}
+
+  var HTMLAsResponsiveContentElement: {
+    prototype: HTMLAsResponsiveContentElement;
+    new (): HTMLAsResponsiveContentElement;
+  };
+  interface HTMLElementTagNameMap {
+    'as-responsive-content': HTMLAsResponsiveContentElement;
+  }
+  interface ElementTagNameMap {
+    'as-responsive-content': HTMLAsResponsiveContentElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'as-responsive-content': JSXElements.AsResponsiveContentAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface AsResponsiveContentAttributes extends HTMLAttributes {
+      'onReady'?: (event: CustomEvent<void>) => void;
+      'onSectionChange'?: (event: CustomEvent<object>) => void;
     }
   }
 }

@@ -19,53 +19,56 @@
   </head>
 
   <body class="as-app">
-    <as-application-content>
+    <as-responsive-content>
       <aside class="as-sidebar as-sidebar--left">
         LEFT-SIDEBAR
       </aside>
 
-      <div class="as-map-wrapper">
-        <div class="as-map">
-          <div id="map"></div>
-          <div class="as-panels">
-            <div class="as-panel as-panel--top as-panel--right">
-              <div class="as-panel__element">
-                <p>Title</p>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore possimus nam quam necessitatibus omnis, est sequi rem
-                  quibusdam molestiae, at saepe odit voluptatem quae debitis consequatur iste ducimus quaerat dolorum.
-                </p>
-              </div>
-              <div class="as-panel__element"> PANEL 1 </div>
-            </div>
+      <main class="as-main">
+        <div class="as-map-area">
+          <div class="as-map">
+            <div id="map"></div>
 
-            <div class="as-panel as-panel--middle as-panel--right as-panel--vertical">
-              <div class="as-panel__element">
-                <p>Title</p>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore possimus nam quam necessitatibus omnis, est sequi rem
-                  quibusdam molestiae, at saepe odit voluptatem quae debitis consequatur iste ducimus quaerat dolorum.
-                </p>
+            <div class="as-map-panels">
+              <div class="as-panel as-panel--top as-panel--right">
+                <div class="as-panel__element">
+                  <p>Title</p>
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore possimus nam quam necessitatibus omnis, est sequi rem
+                    quibusdam molestiae, at saepe odit voluptatem quae debitis consequatur iste ducimus quaerat dolorum.
+                  </p>
+                </div>
+                <div class="as-panel__element"> PANEL 1 </div>
               </div>
-              <div class="as-panel__element"> PANEL 1 </div>
+
+              <div class="as-panel as-panel--middle as-panel--right as-panel--vertical">
+                <div class="as-panel__element">
+                  <p>Title</p>
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore possimus nam quam necessitatibus omnis, est sequi rem
+                    quibusdam molestiae, at saepe odit voluptatem quae debitis consequatur iste ducimus quaerat dolorum.
+                  </p>
+                </div>
+                <div class="as-panel__element"> PANEL 1 </div>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="as-bottom-bar">
+        <footer class="as-map-footer">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo delectus ullam laudantium necessitatibus pariatur repellendus
           nemo ipsam minus. Delectus quidem sequi recusandae culpa deleniti molestias amet consequatur aspernatur eos exercitationem.
-        </div>
-      </div>
+        </footer>
+      </main>
 
       <aside class="as-sidebar as-sidebar--right">
         RIGHT-SIDEBAR
       </aside>
-    </as-application-content>
+    </as-responsive-content>
 
     <script type="text/javascript">
-      const applicationContent = document.querySelector('as-application-content');
-      applicationContent.addEventListener('load', () => {
+      const responsiveContent = document.querySelector('as-responsive-content');
+      responsiveContent.addEventListener('load', () => {
         const map = L.map('map', {
           zoomControl: false
         }).setView([30, 0], 3);
