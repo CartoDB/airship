@@ -51,20 +51,21 @@ As pointed in the [CARTO-VL docs](https://carto.com/developers/carto-vl/guides/g
 
 A basic layout will just include a container for our map and a sidebar for our future widget.
 
-An airship app always has a `main` tag with the `as-app-content` class.
+An airship app always has a container for our main content with `.as-content` class and a `main` tag with the `.as-main` class.
 
-In this case we add a `as-map-wrapper` where the map will be displayed and a `as-sidebar` to contain our widgets.
+In this case we add a `as-map-area` where the map will be displayed and a `as-sidebar` to contain our widgets.
 
  ```html
-<main class="as-app-content">
-    <div class="as-map-wrapper">
+<div class="as-content">
+  <main class="as-main">
+    <div class="as-map-area">
       <div id="map"></div>
     </div>
-
-    <aside class="as-sidebar as-sidebar--right">
-
-    </aside>
   </main>
+  <aside class="as-sidebar as-sidebar--right">
+
+  </aside>
+  </div>
 ```
 
 

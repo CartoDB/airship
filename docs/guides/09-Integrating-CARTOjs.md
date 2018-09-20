@@ -44,14 +44,16 @@ The layout will always be wrapped by a block element with `.as-app-content` clas
 So, to create our layout we need a right sidebar and a block element wrapped by `.as-map-wrapper` class for our map.
 
 ```html
-<main class="as-app-content">
-  <div class="as-map-wrapper">
-    <div id="map"></div>
-  </div>
+<div class="as-content">
+  <main class="as-main">
+    <div class="as-map-area">
+      <div id="map"></div>
+    </div>
+  </main>
 
   <aside class="as-sidebar as-sidebar--right">
   </aside>
-</main>
+</div>
 ```
 
 Including it in our body will create the desired layout while waiting for the map and the widget.
@@ -231,10 +233,12 @@ Using that Bounding Box filter, our widget will be automatically updated wheneve
   </head>
 
   <body class="as-app">
-    <main class="as-app-content">
-      <div class="as-map-wrapper">
-        <div id="map"></div>
-      </div>
+    <div class="as-content">
+      <main class="as-main">
+        <div class="as-map-area">
+          <div id="map"></div>
+        </div>
+      </main>
 
       <aside class="widgets as-sidebar as-sidebar--right as-sidebar">
           <as-category-widget
@@ -242,7 +246,7 @@ Using that Bounding Box filter, our widget will be automatically updated wheneve
           description="Top populated cities ordered by descending population"
           default-bar-color="#47DB99"></as-category-widget>
       </aside>
-    </main>
+    </div>
 
     <script>
       const client = new carto.Client({
