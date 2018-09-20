@@ -1,5 +1,120 @@
 ## CONTAINERS
 
+### .as-box
+
+```html
+<div class="as-app" style="height:400px; width:100%;">
+  <div class="as-content">
+    <main class="as-main">
+      <div class="as-map-area as-bg--badge-blue">
+        <div id="map"></div>
+        <div class="as-map-panels">
+          <div class="as-panel as-panel--top as-panel--right">
+            <div class="as-panel__element as-p--32 as-bg--support-02">
+              <p class="as-body as-box">Panel</p>
+            </div>
+            <div class="as-panel__element as-p--32 as-bg--support-03">
+              <p class="as-body as-box">Panel</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer class="as-footer"></footer>
+    </main>
+    <aside class="as-sidebar as-sidebar--right as-bg--support-02">
+      <p class="as-body as-box">Sidebar</p>
+    </aside>
+  </div>
+</div>
+```
+
+
+#### .as-box--small
+
+```html
+<main class="as-main" style="height:400px; width:100%;">
+  <div class="as-map-area as-bg--badge-blue">
+    <div id="map"></div>
+    <div class="as-map-panels">
+      <div class="as-panel as-panel--top as-panel--right">
+        <div class="as-panel__element as-p--32 as-bg--support-02">
+          <p class="as-body as-box as-box--small">small panel</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="as-footer"></footer>
+</main> 
+```
+
+#### .as-box--medium
+
+```html
+<main class="as-main" style="height:400px; width:100%;">
+  <div class="as-map-area as-bg--badge-blue">
+    <div id="map"></div>
+    <div class="as-map-panels">
+      <div class="as-panel as-panel--top as-panel--right">
+        <div class="as-panel__element as-p--32 as-bg--support-02">
+          <p class="as-body as-box as-box--medium">small panel</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="as-footer"></footer>
+</main> 
+```
+
+#### .as-box--large
+
+```html
+<main class="as-main" style="height:400px; width:100%;">
+  <div class="as-map-area as-bg--badge-blue">
+    <div id="map"></div>
+    <div class="as-map-panels">
+      <div class="as-panel as-panel--top as-panel--right">
+        <div class="as-panel__element as-p--32 as-bg--support-02">
+          <p class="as-body as-box as-box--large">large panel</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="as-footer"></footer>
+</main> 
+```
+
+#### .as-box--xlarge
+
+```html
+<main class="as-main" style="height:400px; width:100%;">
+  <div class="as-map-area as-bg--badge-blue">
+    <div id="map"></div>
+    <div class="as-map-panels">
+      <div class="as-panel as-panel--top as-panel--right">
+        <div class="as-panel__element as-p--32 as-bg--support-02">
+          <p class="as-body as-box as-box--xlarge">xlarge panel</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="as-footer"></footer>
+</main> 
+```
+
+
+
+### .as-container
+
+#### .as-container--scrollable
+
+#### .as-container--border
+
+
+
+
+
+
+
 Containers are positioning elements for content. Put them inside the layout elements to get your content good-looking.
 
 ### Containers within a sidebar

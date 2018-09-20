@@ -37,10 +37,10 @@
 
   .as-container {
     flex: 0 1 auto;
-  }
 
-  .as-container--scrollable {
-    flex: 0 1 auto;
+    &--scrollable {
+      flex: 0 1 auto;
+    }
   }
 
   // Media
@@ -63,15 +63,15 @@
     // Containers
     .as-container {
       flex-grow: 0;
-    }
 
-    .as-container--scrollable {
-      flex-grow: 1;
-      overflow-y: auto;
-    }
+      &--scrollable {
+        flex-grow: 1;
+        overflow-y: auto;
+      }
 
-    .as-container--border {
-      border-bottom: 1px solid $color-ui-04;
+      &--border {
+        border-bottom: 1px solid $color-ui-04;
+      }
     }
   }
 }

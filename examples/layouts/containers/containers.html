@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Basic Layout</title>
+  <link rel="stylesheet" href="../../../packages/styles/dist/airship.css">
+  <script src="../../../packages/components/dist/airship.js"></script>
+  <!-- Include Mapbox GL JS -->
+  <script src="https://libs.cartocdn.com/mapbox-gl/v0.48.0-carto1/mapbox-gl.js"></script>
+  <!-- Include Mapbox GL CSS -->
+  <link href="https://libs.cartocdn.com/mapbox-gl/v0.48.0-carto1/mapbox-gl.css" rel="stylesheet" />
+
+
+</head>
+
+<body class="as-app">
+  <div class="as-content">
+    <main class="as-main">
+      <div class="as-map-area">
+        <div id="map"></div>
+        <div class="as-map-panels">
+          <div class="as-panel as-panel--top as-panel--right">
+            <div class="as-panel__element as-p--32 as-bg--support-02">
+              <p class="as-body as-box">Panel</p>
+            </div>
+            <div class="as-panel__element as-p--32 as-bg--support-03">
+              <p class="as-body as-box">Panel</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer class="as-map-footer as-bg--badge-yellow">
+        <div class="as-container as-container--horizontal as-container--border">
+          <section class="as-box as-box--medium">
+            <h1 class="as-title">Fixed container</h1>
+            <p class="as-body">Use this container when you need to present fixed content.</p>
+          </section>
+        </div>
+        <div class="as-container as-container--scrollable">
+          <section class="as-box as-box--large">
+            <h1 class="as-title">Scrollable container</h1>
+            <p class="as-body">When you need to present lots of content that don't fit
+              in the available space, use a scrollable container.
+              It'll take the space left by the fixed containers.</p>
+          </section>
+          <section class="as-box">
+            <h1 class="as-title">A box</h1>
+            <p class="as-body">
+              This content is here to fill up more space.
+            </p>
+          </section>
+          <section class="as-box">
+            <h1 class="as-title">A box</h1>
+            <p class="as-body">
+              This content is here to fill up more space.
+            </p>
+          </section>
+          <section class="as-box">
+            <h1 class="as-title">A box</h1>
+            <p class="as-body">
+              This content is here to fill up more space.
+            </p>
+          </section>
+          <section class="as-box">
+            <h1 class="as-title">A box</h1>
+            <p class="as-body">
+              This content is here to fill up more space.
+            </p>
+          </section>
+        </div>
+      </footer>
+    </main>
+
+    <aside class="as-sidebar as-sidebar--right as-bg--support-02">
+      <div class="as-container as-container--border">
+        <section class="as-box">
+          <h1 class="as-title">Fixed container</h1>
+          <p class="as-body">Use this container when you need to present fixed content. This content will occupy as
+            much vertical space as needed.</p>
+        </section>
+      </div>
+      <div class="as-container as-container--scrollable">
+        <section class="as-box">
+          <h1 class="as-title">Scrollable container</h1>
+          <p class="as-body">
+            When you need to present lots of content that don't fit in the available space, use a scrollable container.
+            It'll take the space left by the fixed containers.
+          </p>
+        </section>
+        <section class="as-box">
+          <h1 class="as-title">A box</h1>
+          <p class="as-body">
+            This content is here to fill up more space than available so you can scroll.
+          </p>
+        </section>
+        <section class="as-box">
+          <h1 class="as-title">A box</h1>
+          <p class="as-body">
+            This content is here to fill up more space than available so you can scroll.
+          </p>
+        </section>
+        <section class="as-box">
+          <h1 class="as-title">A box</h1>
+          <p class="as-body">
+            This content is here to fill up more space than available so you can scroll.
+          </p>
+        </section>
+        <section class="as-box">
+          <h1 class="as-title">A box</h1>
+          <p class="as-body">
+            This content is here to fill up more space than available so you can scroll.
+          </p>
+        </section>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Basic CARTO-VL MAP -->
+  <script>
+    const map = new mapboxgl.Map({
+      container: 'map',
+      style: 'https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json',
+      center: [0, 30],
+      zoom: 2,
+      scrollZoom: false,
+      dragRotate: false,
+      touchZoomRotate: false
+    });
+
+  </script>
+</body>
+
+</html>
