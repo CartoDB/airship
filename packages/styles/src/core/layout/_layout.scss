@@ -1,7 +1,6 @@
-@import 'panels/_panels';
+@import 'main/_main';
 @import 'sidebar/_sidebar';
 @import 'toolbar/_toolbar';
-@import 'map-wrapper/_map-wrapper';
 
 .as-app {
   display: flex;
@@ -13,7 +12,7 @@
   padding: 0;
   overflow: hidden;
 
-  .as-app-content {
+  .as-content {
     display: flex;
     position: relative;
     flex: 1;

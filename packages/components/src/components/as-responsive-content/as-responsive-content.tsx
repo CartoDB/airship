@@ -8,15 +8,15 @@ import { Component, Element, Event, EventEmitter, Method, State } from '@stencil
  */
 @Component({
   shadow: false,
-  styleUrl: './as-application-content.scss',
-  tag: 'as-application-content'
+  styleUrl: './as-responsive-content.scss',
+  tag: 'as-responsive-content'
 })
-export class ApplicationContent {
+export class ResponsiveContent {
   @Element() private element: HTMLElement;
 
   @State() private sections: ApplicationSection[] = [];
 
-  @Event() private load: EventEmitter<void>;
+  @Event() private ready: EventEmitter<void>;
   @Event() private sectionChange: EventEmitter<object>;
 
   private activeSection: ApplicationSection;
@@ -30,9 +30,9 @@ export class ApplicationContent {
 
   public renderContent() {
     return (
-      <main class='as-app-content'>
+      <section class='as-content'>
         <slot />
-      </main>
+      </section>
     );
   }
 
@@ -41,7 +41,7 @@ export class ApplicationContent {
   }
 
   public componentDidLoad() {
-    this.load.emit();
+    this.ready.emit();
   }
 
   @Method()
@@ -121,7 +121,7 @@ export class ApplicationContent {
       this.getMap(),
       ...this.getSidebars(),
       ...this.getPanels(),
-      this.getBottomBar()
+      this.getMapFooter()
     ];
 
     if (sections.length) {
@@ -133,7 +133,7 @@ export class ApplicationContent {
   }
 
   private getMap() {
-    const mapWrapper = this.element.querySelector('.as-map-wrapper');
+    const mapWrapper = this.element.querySelector('.as-map-area');
 
     function activeAction(section: ApplicationSection) {
       section.active = true;
@@ -170,7 +170,7 @@ export class ApplicationContent {
   }
 
   private getPanels() {
-    const panels = Array.from(this.element.querySelectorAll('.as-panels'));
+    const panels = Array.from(this.element.querySelectorAll('.as-map-panels'));
 
     const panelsSections = panels.map((panel, index) => ({
         element: panel,
@@ -183,21 +183,21 @@ export class ApplicationContent {
     return panelsSections;
   }
 
-  private getBottomBar() {
-    const bottomBar = this.element.querySelector('.as-bottom-bar');
+  private getMapFooter() {
+    const mapFooter = this.element.querySelector('.as-map-footer');
 
     return {
-      element: bottomBar,
-      name: bottomBar && bottomBar.getAttribute('data-name') || 'Bottom Bar',
-      tabOrder: bottomBar && bottomBar.getAttribute('data-tab-order') || 0,
-      type: 'bottomBar'
+      element: mapFooter,
+      name: mapFooter && mapFooter.getAttribute('data-name') || 'Bottom Bar',
+      tabOrder: mapFooter && mapFooter.getAttribute('data-tab-order') || 0,
+      type: 'mapFooter'
     } as ApplicationSection;
   }
 }
 
 const ACTIVE_CLASSES = {
-  bottomBar: 'as-bottom-bar--visible',
-  panels: 'as-panels--visible'
+  mapFooter: 'as-map-footer--visible',
+  panels: 'as-map-panels--visible'
 };
 
 interface ApplicationSection {

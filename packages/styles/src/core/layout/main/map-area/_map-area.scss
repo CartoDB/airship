@@ -1,4 +1,6 @@
-.as-map-wrapper {
+@import 'map-panels/map-panels';
+
+.as-map-area {
   display: flex;
   position: relative;
   flex-direction: column;

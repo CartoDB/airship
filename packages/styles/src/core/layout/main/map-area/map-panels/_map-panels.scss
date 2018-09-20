@@ -1,4 +1,4 @@
-.as-panels {
+.as-map-panels {
   --panels-bg-color: var(--as-color-ui-01, #{$color-ui-01});
 
   display: none;
@@ -27,6 +27,10 @@
 
 .as-panel {
   $panel-selector: &;
+
+  &__element {
+    padding: get-spacing(4);
+  }
 
   @media all and (min-width: $tablet-breakpoint) {
     display: flex;
@@ -79,6 +83,10 @@
       max-width: calc(100% - #{get-spacing(12)});
     }
 
+    &--middle.as-panel--center {
+      transform: translate3d(-50%, -50%, 0);
+    }
+
     &__element {
       --panels-element-bg-color: var(--as-color-ui-01, #{$color-ui-01});
 
@@ -94,72 +102,6 @@
       .as-box {
         margin: get-margin(5);
       }
-    }
-  }
-}
-
-.as-bottom-bar {
-  --bottom-bar-bg-color: var(--as-color-ui-01, #{$color-ui-01});
-
-  display: none;
-  z-index: 2;
-  width: 100%;
-  height: 100%;
-  background-color: var(--bottom-bar-bg-color);
-  pointer-events: auto;
-
-  &--visible {
-    display: initial;
-    overflow-x: auto;
-  }
-
-  // Media
-  @media all and (min-width: $tablet-breakpoint) {
-    display: flex;
-    position: initial;
-    height: initial;
-    max-height: $bottom-bar-max-height;
-    overflow-x: initial;
-
-    .as-container {
-      flex: 1 0 auto;
-      overflow: auto;
-    }
-
-    .as-container--scrollable {
-      display: flex;
-      flex-basis: auto;
-      flex-direction: row;
-      flex-grow: 1;
-      flex-shrink: 1;
-      overflow-x: auto;
-    }
-
-    .as-container--border {
-      border-right: 1px solid $color-ui-04;
-    }
-
-    .as-box {
-      flex-basis: auto;
-      flex-grow: 1;
-      flex-shrink: 0;
-      overflow: auto;
-    }
-
-    .as-box--small {
-      max-width: 128px;
-    }
-
-    .as-box--medium {
-      max-width: 256px;
-    }
-
-    .as-box--large {
-      max-width: 320px;
-    }
-
-    .as-box--xlarge {
-      max-width: 400px;
     }
   }
 }

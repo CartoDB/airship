@@ -22,8 +22,8 @@
 </head>
 
 <body class="as-app">
-  <as-application-content>
-    <aside class="as-sidebar as-sidebar--left" data-name="Stores" data-tab-order="2">
+  <as-responsive-content>
+    <aside class="as-sidebar as-sidebar--left" data-name="Stores">
       <div class="as-container">
         <section class="as-box">
           <h1 class="as-title">Store 1</h1>
@@ -52,30 +52,32 @@
       </div>
     </aside>
 
-    <div class="as-map-wrapper" data-tab-order="0">
-      <div id="map"></div>
+    <main class="as-main">
+      <div class="as-map-area">
+        <div id="map"></div>
 
-      <div class="as-panels" data-name="Legends" data-tab-order="1">
-        <div class="as-panel as-panel--top as-panel--right">
-          <div class="as-panel__element">
-            <section class="as-box">
-              <p class="as-subheader">LEGEND 1</p>
-              <p class="as-body">
-                There are no special containers for legends. Just add an 'as-box' element to an 'as-panel__element'
-              </p>
-            </section>
-            <section class="as-box">
-              <p class="as-subheader">LEGEND 2</p>
-              <p class="as-body">
-                There are no special containers for legends. Just add an 'as-box' element to an 'as-panel__element'
-              </p>
-            </section>
+        <div class="as-map-panels" data-name="Legends">
+          <div class="as-panel as-panel--top as-panel--right">
+            <div class="as-panel__element">
+              <section class="as-box">
+                <p class="as-subheader">LEGEND 1</p>
+                <p class="as-body">
+                  There are no special containers for legends. Just add an 'as-box' element to an 'as-panel__element'
+                </p>
+              </section>
+              <section class="as-box">
+                <p class="as-subheader">LEGEND 2</p>
+                <p class="as-body">
+                  There are no special containers for legends. Just add an 'as-box' element to an 'as-panel__element'
+                </p>
+              </section>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </main>
 
-    <aside class="as-sidebar as-sidebar--right" data-name="Containers" data-tab-order="3">
+    <aside class="as-sidebar as-sidebar--right" data-name="Containers">
       <div class="as-container as-container--border">
         <section class="as-box">
           <h1 class="as-title">Fixed container</h1>
@@ -117,11 +119,11 @@
         </section>
       </div>
     </aside>
-  </as-application-content>
+  </as-responsive-content>
 
   <script type="text/javascript">
-    const applicationContent = document.querySelector('as-application-content');
-    applicationContent.addEventListener('load', () => {
+    const responsiveContent = document.querySelector('as-responsive-content');
+    responsiveContent.addEventListener('ready', () => {
       const map = L.map('map', {
         zoomControl: false
       }).setView([30, 0], 3);

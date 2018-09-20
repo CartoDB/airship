@@ -1,20 +1,20 @@
 import { TestWindow } from '@stencil/core/dist/testing';
-import { ApplicationContent } from './as-application-content';
+import { ResponsiveContent } from './as-responsive-content';
 
-describe('as-application-content', () => {
+describe('as-responsive-content', () => {
   it('should build', () => {
-    expect(new ApplicationContent()).toBeTruthy();
+    expect(new ResponsiveContent()).toBeTruthy();
   });
 
   describe('Rendering', async () => {
-    let element: HTMLAsApplicationContentElement;
+    let element: HTMLAsResponsiveContentElement;
     let testWindow: TestWindow;
 
     beforeEach(async () => {
       testWindow = new TestWindow();
       element = await testWindow.load({
-        components: [ApplicationContent],
-        html: `<as-application-content>${domExample}</as-application-content>`
+        components: [ResponsiveContent],
+        html: `<as-responsive-content>${domExample}</as-responsive-content>`
       });
 
       await testWindow.flush();
@@ -34,21 +34,21 @@ describe('as-application-content', () => {
       expect(tabsHTML).toContain('Bottom Bar');
     });
 
-    it('should render child content inside .as-app-content', () => {
-      const asAppContentNode = element.querySelector('.as-app-content');
+    it('should render child content inside .as-content', () => {
+      const asAppContentNode = element.querySelector('.as-content');
       expect(asAppContentNode.innerHTML).toContain(domExample);
     });
   });
 
   describe('Behaviour', () => {
-    let element: HTMLAsApplicationContentElement;
+    let element: HTMLAsResponsiveContentElement;
     let testWindow: TestWindow;
 
     beforeEach(async () => {
       testWindow = new TestWindow();
       element = await testWindow.load({
-        components: [ApplicationContent],
-        html: `<as-application-content>${domExample}</as-application-content>`
+        components: [ResponsiveContent],
+        html: `<as-responsive-content>${domExample}</as-responsive-content>`
       });
 
       await testWindow.flush();
@@ -77,14 +77,14 @@ describe('as-application-content', () => {
   });
 
   describe('Events', async () => {
-    let element: HTMLAsApplicationContentElement;
+    let element: HTMLAsResponsiveContentElement;
     let testWindow: TestWindow;
 
     beforeEach(async () => {
       testWindow = new TestWindow();
       element = await testWindow.load({
-        components: [ApplicationContent],
-        html: `<as-application-content>${domExample}</as-application-content>`
+        components: [ResponsiveContent],
+        html: `<as-responsive-content>${domExample}</as-responsive-content>`
       });
     });
 
@@ -105,18 +105,18 @@ describe('as-application-content', () => {
 const domExample = `
   <aside class="as-sidebar as-sidebar--left">Left Sidebar</aside>
 
-  <div class="as-map-wrapper">
-    <div class="as-map">
+  <main class="as-main">
+    <div class="as-map-area">
       <div id="map"></div>
-      <div class="as-panels">
+      <div class="as-map-panels">
         <div class="as-panel as-panel--top as-panel--right">
           <div class="as-panel__element">Floating Panel</div>
         </div>
       </div>
     </div>
 
-    <div class="as-bottom-bar">Bottom Bar</div>
-  </div>
+    <div class="as-map-footer">Bottom Bar</div>
+  </main>
 
   <aside class="as-sidebar as-sidebar--right">Right Sidebar</aside>
 `;

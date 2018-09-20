@@ -157,25 +157,53 @@ For example a range slider
 
 ```html
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title> Airship app</title>
+  <!-- Include CSS elements -->
   <link rel="stylesheet" href="https://libs.cartocdn.com/airship-style/%AS-VERSION%/airship.css">
+  <!-- Include icons -->
   <link rel="stylesheet" href="https://libs.cartocdn.com/airship-icons/%AS-VERSION%/icons.css">
+  <!-- Include airship components -->
   <script src="https://libs.cartocdn.com/airship-components/%AS-VERSION%/airship.js"></script>
 </head>
-
 <body class="as-app">
-  <main class="as-app-content">
-    <div class="as-map-wrapper">
-      <div id="map"></div>
-    </div>
-  </main>
-</body>
 
+  <header class="as-toolbar"></header>
+  <nav class="as-tabs"></nav>
+
+  <div class="as-content">
+    <aside class="as-sidebar as-sidebar--left"></aside>
+
+    <main class="as-main">
+      <div class="as-map-area">
+        <div id="map"></div>
+
+        <div class="as-map-panels">
+          <div class="as-panel as-panel--top as-panel--right">
+            <div class="as-panel__element as-p--32 as-bg--support-02"></div>
+          </div>
+        </div>
+
+      </div>
+      <footer class="as-map-footer as-bg--complementary" style="height: 100px;"></footer>
+    </main>
+
+    <aside class="as-sidebar as-sidebar--right"></aside>
+  </div>
+
+  <!-- Basic CARTO-VL MAP -->
+  <script>
+    const map = new mapboxgl.Map({
+      container: 'map',
+      style: 'https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json',
+      center: [0, 30],
+      zoom: 2,
+      scrollZoom: false,
+      dragRotate: false,
+      touchZoomRotate: false
+    });
+
+  </script>
+</body>
 </html>
 ```

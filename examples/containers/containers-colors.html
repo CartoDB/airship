@@ -25,11 +25,12 @@
     <button onclick="showBottomPanel(event)" role="tab" class="as-tabs__item">BOTTOM</button>
   </div>
 
-  <main class="as-app-content">
-    <div class="as-map-wrapper">
-      <div id="map"></div>
-
-      <div class="as-bottom-bar">
+  <div class="as-content">
+    <main class="as-main">
+      <div class="as-map-area">
+        <div id="map"></div>
+      </div>
+      <div class="as-map-footer">
         <div class="as-container as-container--horizontal as-container--border as-bg--primary" style="color: #FFF;">
           <section class="as-box">
             <h1 class="as-title">Primary</h1>
@@ -37,7 +38,7 @@
           </section>
         </div>
       </div>
-    </div>
+    </main>
     <aside class="as-sidebar as-sidebar--right">
       <div class="as-container as-container--border as-bg--secondary" style="color: #FFF;">
         <section class="as-box">
@@ -52,7 +53,7 @@
         </section>
       </div>
     </aside>
-  </main>
+  </div>
 
   <script src="../layouts/common/map.js"></script>
   <script src="../layouts/common/tabs.js"></script>
