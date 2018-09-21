@@ -1,4 +1,5 @@
 import { Component, Event, EventEmitter, Prop, State, Watch } from '@stencil/core';
+import getDecimalPlaces from '../../../utils/get-decimal-places';
 import { Thumb } from '../thumb/as-range-slider-thumb';
 
 @Component({
@@ -302,6 +303,11 @@ export class RangeSlider {
   }
 
   private _getStepValue(value) {
-    return Math.round(value / this.step) * this.step;
+    const stepValue = (value / this.step) * this.step;
+    return this.roundToStep(stepValue, this.step);
+  }
+
+  private roundToStep(numberToRound: number, step: number) {
+    return Number.parseFloat(numberToRound.toFixed(getDecimalPlaces(step)));
   }
 }
