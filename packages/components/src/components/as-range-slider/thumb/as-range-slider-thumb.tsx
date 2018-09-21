@@ -137,8 +137,7 @@ export class RangeSliderThumb extends MouseTrack {
   }
 
   private _getDisplayValue(value: number) {
-    const displayValue = Math.round(value);
-    return (this.formatValue && this.formatValue(displayValue)) || displayValue;
+    return (this.formatValue && this.formatValue(value)) || value;
   }
 
   private setCursorTo(value) {
