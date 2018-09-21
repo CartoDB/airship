@@ -55,6 +55,10 @@ declare global {
        */
       'disableInteractivity': boolean;
       /**
+       * If this property receives a function, it will be used to format the numbers (eg. for adding $ or €).
+       */
+      'formatValue': (value: number) => void;
+      /**
        * Get current selected categories
        */
       'getSelectedCategories': () => string[];
@@ -116,6 +120,10 @@ declare global {
        * Disable category selection in Widget
        */
       'disableInteractivity'?: boolean;
+      /**
+       * If this property receives a function, it will be used to format the numbers (eg. for adding $ or €).
+       */
+      'formatValue'?: (value: number) => void;
       /**
        * Heading text of the widget
        */

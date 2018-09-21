@@ -58,6 +58,14 @@ describe('as-category-widget', () => {
 
       expect(element).toMatchSnapshot();
     });
+
+    it('should format display value when formatValue prop is present', async () => {
+      element.categories = exampleCategories;
+      element.formatValue = (value) => `${value}€`;
+      await testWindow.flush();
+
+      expect(element).toMatchSnapshot();
+    });
   });
 
   describe('Behaviour', () => {

@@ -52,6 +52,14 @@ export class CategoryWidget {
   @Prop() public disableInteractivity: boolean = false;
 
   /**
+   * If this property receives a function, it will be used to format the numbers (eg. for adding $ or €).
+   *
+   * @type {function (value: number)}
+   * @memberof RangeSlider
+   */
+  @Prop() public formatValue: (value: number) => void;
+
+  /**
    * Heading text of the widget
    *
    * @type {string}
@@ -204,11 +212,13 @@ export class CategoryWidget {
       'as-category-widget__category--selected': isSelected
     };
 
+    const displayValue = this.formatValue ? this.formatValue(category.value) : readableNumber(category.value);
+
     return (
       <li class={cssClasses} onClick={() => this._toggleCategory(category)}>
         <p class='as-category-widget__info as-body'>
           <div class='as-category-widget__title'>{category.name}</div>
-          {readableNumber(category.value)}
+          {displayValue}
         </p>
 
         <div class='as-category-widget__bar'>

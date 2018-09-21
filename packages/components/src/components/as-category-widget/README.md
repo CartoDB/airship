@@ -93,6 +93,15 @@ lang: javascript
 categoryWidget.disableInteractivity = true;
 ```
 
+#### **formatValue**: (value: number) => string
+Optional function to format the numbers (eg. for adding $ or € after the figure). Undefined by default (original value will be displayed, without formatting).
+
+```code
+lang: javascript
+---
+categoryWidget.formatValue = (value) => `${value}€`;
+```
+
 #### **heading**: string
 Heading text of the widget
 
