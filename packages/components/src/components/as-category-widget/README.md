@@ -93,13 +93,17 @@ lang: javascript
 categoryWidget.disableInteractivity = true;
 ```
 
-#### **formatValue**: (value: number) => string
-Optional function to format the numbers (eg. for adding $ or € after the figure). Undefined by default (original value will be displayed, without formatting).
+#### **valueFormatter**: function
+Function that receives one of the **categories**' property value and returns a string that will be used for category value rendering.
+
+By default, it returns the _value_ field formatted sensibly.
+
+The default implementation is the method _defaultFormatter_, so you can use it to keep the original behaviour and add something extra.
 
 ```code
 lang: javascript
 ---
-categoryWidget.formatValue = (value) => `${value}€`;
+categoryWidget.valueFormatter = value => `${categoryWidget.defaultFormatter(value)}€`;
 ```
 
 #### **heading**: string
