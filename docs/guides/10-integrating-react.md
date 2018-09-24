@@ -1,8 +1,10 @@
-We are working on react bindings that offer a better user experience, meanwhile this guide contains the basic fundamentals of how to integrate Airhship components with [React.js](https://reactjs.org/).
+This guide contains the basic fundamentals of how to integrate Airhship components with [React.js](https://reactjs.org/).
+
+We are working on React bindings that offer a better developer experience in the future.
 
 ## Web components
 
-A web component is just an HTML tag with some attributes that control its behaviour. Simply include the HTML tag, and edit its properties through attributes or through javascript. 
+A web component is just an HTML tag with some attributes that control its behaviour. Simply include the HTML tag, and edit its properties through attributes or through javascript as you would do with a normal HTML element.
 
 To render a web component simply include its tag inside the REACT render function:
 
@@ -13,7 +15,7 @@ render() {
 }
 ```
 
-The problems come when it comes to managing the state, either listening to events or synchronizing the attributes.
+In order to manage the state, either listening to events or synchronizing the attributes we got two options.
 
 ## Option 1: Manage component logic in the parent layer.
 
@@ -46,7 +48,7 @@ With this option we are going to create a React component that wraps the origina
 
 
 First we create a new [React Component]() to represent our widget, in this case a `category-widget`. In the `render` function we will return
-the airship category widget referenced using a [ref](https://reactjs.org/docs/refs-and-the-dom.html).
+the Airship category widget referenced using a [ref](https://reactjs.org/docs/refs-and-the-dom.html).
 
 
 ```js
@@ -62,7 +64,7 @@ export default class App extends Component {
 }
 ```
 
-Then we will list all availiable properties using [React proptypes](https://reactjs.org/docs/typechecking-with-proptypes.html), this tells react
+Then we will list all available properties using [React proptypes](https://reactjs.org/docs/typechecking-with-proptypes.html), this tells react
 which attributes to accept.
 
 ```js
@@ -78,6 +80,8 @@ export default class App extends Component {
 ```
 
 Then we set up all the bindings in the `componentDidMount` function binding every React property to the corresponding in the web component. We also associate the events, adding a native listener that connects to `_onSelectedChanged` function.
+
+onSelectedChanged is a funcion pased to the component as an attribute and will be called everytime the web components fires an `categoriesSelected` event.
 
 ```js
 export default class App extends Component {
