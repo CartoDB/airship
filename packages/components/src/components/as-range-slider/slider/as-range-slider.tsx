@@ -69,6 +69,7 @@ export class RangeSlider {
 
   /**
    * If this property receives a function, it will be used to format the numbers (eg. for adding $ or €).
+   *
    * @type {function (value: number)}
    * @memberof RangeSlider
    */

@@ -156,7 +156,7 @@ The default implementation is the method _defaultFormatter_, so you can use it t
 lang: javascript
 ---
 histogramWidget.tooltipFormatter = function (data) {
-  return histogramWidget.defaultFormatter + ' schmeckles';
+  return histogramWidget.defaultFormatter(data) + ' schmeckles';
 };
 ```
 
