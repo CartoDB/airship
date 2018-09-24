@@ -1,4 +1,4 @@
-This guide contains the basic fundamentals of how to integrate Airhship components with [React.js](https://reactjs.org/).
+This guide contains the basic fundamentals of how to integrate Airship components with [React.js](https://reactjs.org/).
 
 We are working on React bindings that offer a better developer experience in the future.
 
