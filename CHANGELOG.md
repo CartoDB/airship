@@ -1,10 +1,17 @@
 <a name="0.0.0"></a>
-# [0.0.0](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.43...v0.0.0) (2018-09-20)
+# [0.0.0](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.43...v0.0.0) (2018-09-24)
+
+
+### Bug Fixes
+
+* **components:** Fix Range Slider position bug ([#316](https://github.com/CartoDB/airship/issues/316)) ([92c83c7](https://github.com/CartoDB/airship/commit/92c83c7))
 
 
 ### Features
 
 * Refactor layout ([#313](https://github.com/CartoDB/airship/issues/313)) ([740bb97](https://github.com/CartoDB/airship/commit/740bb97))
+* **components:** Add function to format display value in Category Widget ([#317](https://github.com/CartoDB/airship/issues/317)) ([25fc9cb](https://github.com/CartoDB/airship/commit/25fc9cb))
+* **docs:** Add icons list to reference ([#314](https://github.com/CartoDB/airship/issues/314)) ([6b35b3a](https://github.com/CartoDB/airship/commit/6b35b3a))
 
 
 ### BREAKING CHANGES
