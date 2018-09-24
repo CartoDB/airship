@@ -61,7 +61,7 @@ describe('as-category-widget', () => {
 
     it('should format display value when formatValue prop is present', async () => {
       element.categories = exampleCategories;
-      element.formatValue = (value) => `${value}€`;
+      element.valueFormatter = (value) => `${value}€`;
       await testWindow.flush();
 
       expect(element).toMatchSnapshot();
