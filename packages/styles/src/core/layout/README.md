@@ -24,4 +24,78 @@ An airship app is composed of the following elements:
 
 ### Basic Layout
 
-The following example contains a very basic layout with blue toolbar and two green sidebars.
+The following example contains a very basic layout with a toolbar and a sidebar.
+
+```code
+lang: html
+---
+<body class="as-app">
+  <header class="as-toolbar"></header>
+  <div class="as-content">
+    <main class="as-main">
+      <div class="as-map-area">
+        <div id="map"></div>
+      </div>
+    </main>
+    <aside class="as-sidebar as-sidebar--right"></aside>
+  </div>
+</body>
+```
+
+### Layout with toolbar, sidebar and map footer
+
+The following snippet lays out:
+- a toolbar.
+- a sidebar.
+- a map footer.
+
+```code
+lang: html
+---
+<body class="as-app">
+  <header class="as-toolbar"></header>
+  <div class="as-content">
+    <main class="as-main">
+      <div class="as-map-area">
+        <div id="map"></div>
+      </div>
+      <footer class="as-map-footer as-bg--complementary">
+        Footer content
+      </footer>
+    </main>
+
+    <aside class="as-sidebar as-sidebar--right"></aside>
+  </div>
+</body>
+```
+
+### Layout with everything
+
+The following snippet contains:
+- a toolbar.
+- a sidebar.
+- a map panel.
+- a map footer.
+
+```code
+lang: html
+---
+<body class="as-app">
+  <header class="as-toolbar"></header>
+  <div class="as-content">
+    <aside class="as-sidebar as-sidebar--left"></aside>
+
+    <main class="as-main">
+      <div class="as-map-area">
+        <div id="map"></div>
+        <div class="as-map-panels">
+          <div class="as-panel as-panel--top as-panel--right">
+            <div class="as-panel__element"></div>
+          </div>
+        </div>
+      </div>
+      <footer class="as-map-footer as-bg--complementary" style="height: 100px;"></footer>
+    </main>
+  </div>
+</body>
+```
