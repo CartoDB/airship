@@ -1,6 +1,20 @@
-This guide contains the basic fundamentals of how to integrate Airship components with [React.js](https://reactjs.org/).
+This guide will lead you through the process of integrating Airship in [React.js](https://reactjs.org/).
 
-We are working on React bindings that offer a better developer experience in the future.
+>  We are working on React bindings that offer a better developer experience in the future.
+
+## Including Styles
+
+Install `airship-style` package and 
+
+ ```
+npm i @carto/airship-style
+```
+
+Load the styles into your code
+
+```css
+@import '@carto/airship-style/dist/airship.css';
+```
 
 ## Web components
 
@@ -15,27 +29,74 @@ render() {
 }
 ```
 
+
+## Loading web components
+
+First of all you need to call `defineCustomElements` pasing `window` as a parameter.
+
+```js
+import { defineCustomElements } from '@carto/airship-components';
+defineCustomElements(window);
+```
+
 In order to manage the state, either listening to events or synchronizing the attributes we got two options.
 
 ## Option 1: Manage component logic in the parent layer.
 
 The simplest dirty-hack is to update all attributes, and re-render everything. Even so,  [content attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes#Content_versus_IDL_attributes) only accept strings as parameters forcing to set the element properties from javascript.
 
+
+Use the **Render** function you can bind `strings`, `numbers` and `boolean` values as parameters.
+Use the **componentDidMount** to setup event listeners and bind attributes that you cant bind in the `render` method.
+Use the **componentDidUpdate** to bind properties. 
+
 ```jsx
-render() {
-  // We can pass some properties as attributes
-  <as-range-slider id="range" min-value={this.state.minValue} max-value={this.state.maxValue}></as-range-slider>
-}
+constructor(props) {
+    super(props);
+    this.categoryWidget = React.createRef();
+    this.state = {
+      heading: 'Widget Heading',
+      description: 'Widget description',
+      visibleCategories: 10,
+      categories: [
+        { name: 'Bars & Restaurants', value: 1000, color: '#FABADA' },
+        { name: 'Fashion', value: 900 },
+        { name: 'Grocery', value: 800 },
+        { name: 'Health', value: 400 },
+        { name: 'Shopping mall', value: 250 },
+        { name: 'Transportation', value: 1000 },
+        { name: 'Leisure', value: 760 }
+      ]
+    }
+  }
 
-componentDidMount(){
-  // But we need to use javascript to set callbacks
-  const rangeSlider = document.querySelector('#range');
-  rangeSlider.addEventListener('change', this.onRangeChange.bind(this));
-}
+  render() {
+    return (
+      <React.Fragment>
+        <button onClick={() => this.setState({ categories: [{ name: 'Cat 0', value: 100 }, { name: 'Cat 1', value: 90 }] })}>More Categories</button>
+        <button onClick={() => this.setState({ visibleCategories: this.state.visibleCategories + 1 })}>More Categories</button>
+        <button onClick={() => this.setState({ visibleCategories: this.state.visibleCategories - 1 })}>Less Categories</button>
+        <as-category-widget ref={this.categoryWidget} visible-categories={this.state.visibleCategories} heading={this.state.heading} description={this.state.description} />
+      </React.Fragment>
+    );
+  }
 
-onRangeChange(event){
-  console.log(event.detail);
-}
+  /**
+   * Use this method to set element properties and callbacks
+   */
+  componentDidMount() {
+    this.categoryWidget.current.categories = this.state.categories;
+    this.categoryWidget.current.addEventListener('categoriesSelected', event => {
+      console.log('Categories Selected', event.detail)
+    });
+  }
+
+  /**
+   * Use this method to set element properties only.
+   */
+  componentDidUpdate() {
+    this.categoryWidget.current.categories = this.state.categories;
+  }
 ```
 
 
