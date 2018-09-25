@@ -32,7 +32,14 @@ render() {
 
 ## Loading web components
 
-First of all you need to call `defineCustomElements` pasing `window` as a parameter.
+Install `airship-components` package 
+
+```
+npm i @carto/airship-components
+```
+
+In the entry point of your application call `defineCustomElements` pasing `window` as a parameter. Once you do this this, all airship components
+will be available.
 
 ```js
 import { defineCustomElements } from '@carto/airship-components';
