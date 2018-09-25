@@ -50,15 +50,19 @@ In order to manage the state, either listening to events or synchronizing the at
 
 ## Option 1: Manage component logic in the parent layer.
 
-The simplest dirty-hack is to update all attributes, and re-render everything. Even so,  [content attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes#Content_versus_IDL_attributes) only accept strings as parameters forcing to set the element properties from javascript.
+The simplest way to link Ariship and React is to manually bind attributes and events. [Content attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes#Content_versus_IDL_attributes) only accept strings as parameters so we need to
+use javascript to add event listeners and pass complex objects as parameter.
 
 
-Use the **Render** function you can bind `strings`, `numbers` and `boolean` values as parameters.
-Use the **componentDidMount** to setup event listeners and bind attributes that you cant bind in the `render` method.
-Use the **componentDidUpdate** to bind properties. 
+In the **render** function you can bind `string`, `number`and `boolean` values as simple HTML attributes. Just as you do with a normal HTML tag.
+
+In the **componentDidMount** you can setup event listeners and bind attributes that are `arrays` or `objects`. Those type can't be passed as simple HTML attributes so you need to hook them up here.
+
+Use **componentDidUpdate** to update the bind properties values.
 
 ```jsx
-constructor(props) {
+export default class App extends Component {
+  constructor(props) {
     super(props);
     this.categoryWidget = React.createRef();
     this.state = {
@@ -80,6 +84,7 @@ constructor(props) {
   render() {
     return (
       <React.Fragment>
+        <button onClick={this.clearSelection.bind(this)}>Clear selection</button>
         <button onClick={() => this.setState({ categories: [{ name: 'Cat 0', value: 100 }, { name: 'Cat 1', value: 90 }] })}>More Categories</button>
         <button onClick={() => this.setState({ visibleCategories: this.state.visibleCategories + 1 })}>More Categories</button>
         <button onClick={() => this.setState({ visibleCategories: this.state.visibleCategories - 1 })}>Less Categories</button>
@@ -104,6 +109,14 @@ constructor(props) {
   componentDidUpdate() {
     this.categoryWidget.current.categories = this.state.categories;
   }
+
+  /**
+   * Delegate function calls
+   */
+  clearSelection() {
+    this.categoryWidget.current.clearSelection();
+  }
+}
 ```
 
 
