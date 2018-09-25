@@ -113,6 +113,20 @@ describe('as-category-widget', () => {
       expect(spy).toHaveBeenCalled();
       expect(spy.mock.calls[0][0].detail).toEqual([]);
     });
+
+    it('should clear the selectedCategories when the category list is changed', async () => {
+      element.categories = exampleCategories;
+      element.showClearButton = true;
+      await testWindow.flush();
+
+      const categoryElement = element.querySelector('.as-category-widget__category') as HTMLLIElement;
+      categoryElement.click();
+
+      expect(element.getSelectedCategories()).toEqual([exampleCategories[0].name]);
+
+      element.categories = [{ name: 'foo', value: 10 }];
+      expect(element.getSelectedCategories()).toEqual([]);
+    });
   });
 
   describe('.getSelectedCategories', () => {
