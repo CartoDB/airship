@@ -115,10 +115,10 @@ export class RangeSliderThumb extends MouseTrack {
     }
   }
 
-  private _onMove(event: MouseEvent) {
+  private _onMove(event: MouseEvent | TouchEvent) {
     this.setCursorTo('grabbing');
-
-    const barPercentage = (event.pageX - this.railBoundingClientRect.left) * 100 / this.railElement.offsetWidth;
+    const touchX = event instanceof TouchEvent ? event.changedTouches[0].pageX : event.pageX;
+    const barPercentage = (touchX - this.railBoundingClientRect.left) * 100 / this.railElement.offsetWidth;
 
     if (barPercentage < 0 || barPercentage > 100) {
       return;
