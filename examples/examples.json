@@ -1,12 +1,12 @@
 {
   "main": {
-    "file": "layouts/generic.html"
+    "file": "layouts/basic-layout.html"
   },
   "categories": [{
     "title": "Layouts",
     "samples": [{
-      "title": "Generic layout",
-      "file": "layouts/generic.html"
+      "title": "Basic layout",
+      "file": "layouts/basic-layout.html"
     }]
   }]
 }
