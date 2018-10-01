@@ -133,14 +133,22 @@ the Airship category widget referenced using a [ref](https://reactjs.org/docs/re
 
 
 ```js
-export default class App extends Component {
+export default class CategoryWidget extends Component {
   constructor(props) {
     super(props);
     this.ref = React.createRef();
   }
 
   render() {
-    <as-category-widget ref={this.ref} heading={this.props.heading} description={this.props.description}/>
+    <as-category-widget 
+      ref={this.ref}
+      heading={this.props.heading}
+      description={this.props.description}
+      show-header="false"
+      show-clear-button="false"
+      use-total-percentage="false"
+      visible-categories="10"
+    />
   }
 }
 ```
@@ -149,13 +157,15 @@ Then we will list all available properties using [React proptypes](https://react
 which attributes to accept.
 
 ```js
-export default class App extends Component {
+export default class CategoryWidget extends Component {
    static defaultProps = {
     categories: [],
     showHeader: true,
     showClearButton: true,
     useTotalPercentage: false,
     visibleCategories: Infinity,
+    heading: '',
+    description: '',
   }
 }
 ```
@@ -165,14 +175,11 @@ Then we set up all the bindings in the `componentDidMount` function binding ever
 onSelectedChanged is a funcion pased to the component as an attribute and will be called everytime the web components fires an `categoriesSelected` event.
 
 ```js
-export default class App extends Component {
+export default class CategoryWidget extends Component {
   componentDidMount() {
     const widget = ref.current;
 
-    widget.showHeader = this.props.showHeader;
-    widget.showClearButton = this.props.showClearButton;
-    widget.useTotalPercentage = this.props.useTotalPercentage;
-    widget.visibleCategories = this.props.visibleCategories;
+    // Bind complex objects and event listeners
     widget.categories = this.props.categories;
     widget.addEventListener('categoriesSelected', this._onSelectedChanged.bind(this));
   }
@@ -180,6 +187,13 @@ export default class App extends Component {
   _onSelectedChanged(event) {
     const { onSelectedChanged } = this.props;
     onSelectedChanged && onSelectedChanged(event);
+  }
+
+  /**
+   * Delegate function calls
+   */
+  clearSelection() {
+    this.ref.current.clearSelection();
   }
 }
 ```
