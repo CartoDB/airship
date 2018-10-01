@@ -135,7 +135,15 @@ export class RangeSliderBar extends MouseTrack {
   }
 
   private _getMovementDelta(currentEvent: MouseEvent, previousEvent: MouseEvent) {
-    return currentEvent.clientX - previousEvent.clientX;
+    const currentEventX = currentEvent instanceof TouchEvent
+      ? currentEvent.changedTouches[0].pageX
+      : currentEvent.pageX;
+
+    const previousEventX = previousEvent instanceof TouchEvent
+    ? previousEvent.changedTouches[0].pageX
+    : previousEvent.pageX;
+
+    return currentEventX - previousEventX;
   }
 
   private _getRangeDifference() {
