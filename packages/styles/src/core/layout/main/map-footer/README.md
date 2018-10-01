@@ -8,12 +8,14 @@ You can toggle the `as-map-footer--visible` class the way you prefer but we reco
 
 
 ```html
+showSource: true
+---
 <div class="as-app" style="width:100%; height:300px;">
   <div class="as-content">
     <main class="as-main">
       <div class="as-map-area as-bg--badge-blue">
         <!-- CARTO.js or CARTO-VL will place the map on this div  -->
-        <div id="map"></div> 
+        <div id="map"></div>
        <footer class="as-map-footer as-bg--badge-yellow" style="height: 100px;"></footer>
       </div>
     </div>
@@ -27,12 +29,14 @@ You can toggle the `as-map-footer--visible` class the way you prefer but we reco
 Use this class to make the footer fill the `as-content` section in small screen sizes.
 
 ```html
+showSource: true
+---
 <div class="as-app" style="width:100%; height:300px;">
   <div class="as-content">
     <main class="as-main">
       <div class="as-map-area as-bg--badge-blue">
         <!-- CARTO.js or CARTO-VL will place the map on this div  -->
-        <div id="map"></div> 
+        <div id="map"></div>
        <footer class="as-map-footer as-bg--badge-yellow as-map-footer--visible" style="min-height: 100px;"></footer>
       </div>
     </div>
@@ -54,12 +58,14 @@ responsive: true
 ## Footer Containers
 
 ```html
+showSource: true
+---
 <div class="as-app" style="width:100%; height:300px;">
   <div class="as-content">
     <main class="as-main">
       <div class="as-map-area as-bg--badge-blue">
         <!-- CARTO.js or CARTO-VL will place the map on this div  -->
-        <div id="map"></div> 
+        <div id="map"></div>
         <footer class="as-map-footer as-bg--badge-yellow">
           <div class="as-container as-container--border">
             <section class="as-box as-box--medium">
@@ -111,12 +117,14 @@ responsive: true
 Use this class to create sections inside the footer. By default a container will occupy as much vertical space as needed.
 
 ```html
+showSource: true
+---
 <div class="as-app" style="width:100%; height:300px;">
   <div class="as-content">
     <main class="as-main">
       <div class="as-map-area as-bg--badge-blue">
         <!-- CARTO.js or CARTO-VL will place the map on this div  -->
-        <div id="map"></div> 
+        <div id="map"></div>
         <footer class="as-map-footer as-bg--badge-yellow">
           <div class="as-container">
             <section class="as-box as-box--medium">
@@ -142,12 +150,14 @@ Use this class to create sections inside the footer. By default a container will
 The `scrollable container` will take the space left by the fixed containers. Use this modifier to when you need to present lots of content that don't fit in the available space.
 
 ```html
+showSource: true
+---
 <div class="as-app" style="width:100%; height:300px;">
   <div class="as-content">
     <main class="as-main">
       <div class="as-map-area as-bg--badge-blue">
         <!-- CARTO.js or CARTO-VL will place the map on this div  -->
-        <div id="map"></div> 
+        <div id="map"></div>
         <footer class="as-map-footer as-bg--badge-yellow">
           <div class="as-container">
             <section class="as-box as-box--medium">
@@ -181,12 +191,14 @@ The `scrollable container` will take the space left by the fixed containers. Use
 ### .as-container--border
 
 ```html
+showSource: true
+---
 <div class="as-app" style="width:100%; height:300px;">
   <div class="as-content">
     <main class="as-main">
       <div class="as-map-area as-bg--badge-blue">
         <!-- CARTO.js or CARTO-VL will place the map on this div  -->
-        <div id="map"></div> 
+        <div id="map"></div>
         <footer class="as-map-footer as-bg--badge-yellow">
           <div class="as-container as-container--border">
             <section class="as-box as-box--medium">
@@ -233,12 +245,14 @@ Only on the `map-footer` you can specify the box-witdh with one of the following
 
 
 ```html
+showSource: true
+---
 <div class="as-app" style="width:100%; height:300px;">
   <div class="as-content">
     <main class="as-main">
       <div class="as-map-area as-bg--badge-blue">
         <!-- CARTO.js or CARTO-VL will place the map on this div  -->
-        <div id="map"></div> 
+        <div id="map"></div>
         <footer class="as-map-footer as-bg--badge-yellow">
           <div class="as-container">
             <section class="as-box as-box--xl">

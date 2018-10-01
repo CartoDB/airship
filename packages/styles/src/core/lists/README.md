@@ -5,6 +5,8 @@ Airship provides utility classes to specify the typography look and feel. You ca
 ### Bullet list
 
 ```html
+showSource: true
+---
   <h1 class="as-subheader">This is a title</h1>
   <p class="as-body">
     I'm thinking two circus clowns dancing. You? Pretend. You pretend the feelings are there, for the world, for the people around you. Who knows? Maybe one day they will be. I'm really more an apartment person.
@@ -20,6 +22,8 @@ Airship provides utility classes to specify the typography look and feel. You ca
 ### Ordered
 
 ```html
+showSource: true
+---
   <p class="as-body">
     I'm thinking two circus clowns dancing. You? Pretend. You pretend the feelings are there, for the world, for the people around you. Who knows? Maybe one day they will be. I'm really more an apartment person.
   </p>
