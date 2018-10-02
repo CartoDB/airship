@@ -42,6 +42,11 @@
         overflow-x: hidden;
       }
 
+      img {
+        max-width: 100%;
+        object-fit: contain;
+      }
+
       .as-toolbar__group,
       .as-toolbar__actions ul,
       .as-toolbar__actions {
