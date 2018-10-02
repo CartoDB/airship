@@ -163,40 +163,22 @@ histogramWidget.tooltipFormatter = function (data) {
 ### Styles
 There are some CSS Variables that you can override to change visual styles.
 
-#### **--category-widget--description--color**
+#### **\--histogram-widget\--description-color**
 Default: $color-type-02 (`#1785FB`)
 
 ```code
 lang: javascript
 ---
-document.body.style.setProperty('--category-widget--description--color', '#1785FB')
+document.body.style.setProperty('--histogram-widget--description-color', '#1785FB')
 ```
 
-#### **--category-widget--bar--height**
-Default: `4px`
+#### **\--histogram-widget\--background-color**
+Default: $color-ui-01 (`#FFF`)
 
 ```code
 lang: javascript
 ---
-document.body.style.setProperty('--category-widget--bar--height', '8px')
-```
-
-#### **--category-widget--background-color**
-Default: $color-ui-10 (`#FFF`)
-
-```code
-lang: javascript
----
-document.body.style.setProperty('--category-widget--background-color', '#F5F5F5')
-```
-
-#### **--category-bar--background-color**
-Default: $color-ui-20 (`#F5F5F5`)
-
-```code
-lang: javascript
----
-document.body.style.setProperty('--category-bar--background-color', '#E2E6E3')
+document.body.style.setProperty('--histogram-widget--background-color', '#F5F5F5')
 ```
 
 ### Events

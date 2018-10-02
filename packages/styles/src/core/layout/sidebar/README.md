@@ -9,7 +9,7 @@ Sidebars are hidden by default in mobile devices and only will be shown when the
 
 Sidebar position and size can be changed with the following class modifiers.
 
-### .as-sidebar--left
+### .as-sidebar\--left
 
 Puts the sidebar on the left of the map.
 
@@ -28,7 +28,7 @@ showSource: true
 </div>
 ```
 
-### .as-sidebar--right
+### .as-sidebar\--right
 
 Puts the sidebar on the right of the map.
 
@@ -47,7 +47,7 @@ showSource: true
 
 
 
-### .as-sidebar--l
+### .as-sidebar\--l
 
 Makes the sidebar to be 360px width.
 
@@ -64,7 +64,7 @@ showSource: true
 </div>
 ```
 
-### .as-sidebar--xl
+### .as-sidebar\--xl
 
 Makes the sidebar to be 460px width.
 
@@ -82,7 +82,7 @@ showSource: true
 ```
 
 
-### .as-sidebar--visible
+### .as-sidebar\--visible
 
 Makes the sidebar visible on small screens, filling all the space available in the `.app-content` and covering the map.
 

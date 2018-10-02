@@ -108,7 +108,7 @@ dropdown.canClear = true;
 ### Styles
 There are some CSS Variables that you can override to change visual styles.
 
-#### **--dropdown-main-color**
+#### **\--dropdown-main-color**
 Default: $color-primary (`#1785FB`)
 
 ```code
