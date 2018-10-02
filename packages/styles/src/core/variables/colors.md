@@ -12,7 +12,7 @@ You can use `as-color--*` utility classes to modify text colors.
 
 ### .as-bg--*
 
-You can use the `as-bg--*` class to modify the background color.
+You can use `as-bg--*` utility classes to modify element's background color.
 
 ```html
 <p class="as-body as-bg--primary"></p>
