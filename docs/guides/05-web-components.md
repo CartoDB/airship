@@ -52,7 +52,7 @@ Loading and using web components is very easy, you just need to include our comp
 
 **List of Web Components**
 
-> See the most recent list in [the reference](../reference)
+> See the most recent list in [the reference](/developers/airship/reference)
 
 **Framework integration**
 
