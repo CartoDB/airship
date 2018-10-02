@@ -13,7 +13,7 @@ as-histogram-widget {
 
   .as-histogram-widget__description {
     margin-bottom: get-spacing(4);
-    color: var(--description--color, $color-type-02);
+    color: var(--histogram-widget--description-color, $color-type-02);
   }
 
   .as-histogram-widget__wrapper {
