@@ -38,8 +38,7 @@ Install `airship-components` package
 npm i @carto/airship-components
 ```
 
-In the entry point of your application call `defineCustomElements` pasing `window` as a parameter. Once you do this this, all airship components
-will be available.
+In the entry point of your application call `defineCustomElements` passing `window` as a parameter. Once you do this, all Airship components will be available.
 
 ```js
 import { defineCustomElements } from '@carto/airship-components';
@@ -50,13 +49,13 @@ In order to manage the state, either listening to events or synchronizing the at
 
 ## Option 1: Manage component logic in the parent layer.
 
-The simplest way to link Ariship and React is to manually bind attributes and events. [Content attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes#Content_versus_IDL_attributes) only accept strings as parameters so we need to
+The simplest way to link Airship and React is to manually bind attributes and events. [Content attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes#Content_versus_IDL_attributes) only accept strings as parameters so we need to
 use javascript to add event listeners and pass complex objects as parameter.
 
 
 In the **render** function you can bind `string`, `number`and `boolean` values as simple HTML attributes. Just as you do with a normal HTML tag.
 
-In the **componentDidMount** you can setup event listeners and bind attributes that are `arrays` or `objects`. Those type can't be passed as simple HTML attributes so you need to hook them up here.
+In the **componentDidMount** you can setup event listeners and bind attributes that are `arrays` or `objects`. Those types can't be passed as simple HTML attributes so you need to hook them up here.
 
 Use **componentDidUpdate** to update the bind properties values.
 
