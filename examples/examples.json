@@ -10,6 +10,18 @@
       }]
     },
     {
+      "title": "Responsive Content",
+      "samples": [{
+          "title": "Simple",
+          "file": "components/as-responsive-content/simple.html"
+        },
+        {
+          "title": "Custom Order",
+          "file": "components/as-responsive-content/custom-order.html"
+        }
+      ]
+    },
+    {
       "title": "Toolbar",
       "samples": [{
           "title": "toolbar-top",
@@ -108,6 +120,45 @@
         {
           "title": "Bar olny",
           "file": "components/as-category-widget/bar-only.html"
+        }
+      ]
+    },
+    {
+      "title": "Dropdown",
+      "samples": [{
+        "title": "Simple",
+        "file": "components/as-dropdown/simple.html"
+      }]
+    },
+    {
+      "title": "Histogram",
+      "samples": [{
+          "title": "Simple",
+          "file": "components/as-histogram-widget/simple.html"
+        },
+        {
+          "title": "Events",
+          "file": "components/as-histogram-widget/events.html"
+        },
+        {
+          "title": "Interaction disabled",
+          "file": "components/as-histogram-widget/interaction-disabled.html"
+        }
+      ]
+    },
+    {
+      "title": "Range Slider",
+      "samples": [{
+          "title": "Simple",
+          "file": "components/as-range-slider/simple.html"
+        },
+        {
+          "title": "Disabled",
+          "file": "components/as-range-slider/disabled.html"
+        },
+        {
+          "title": "Multivalue",
+          "file": "components/as-range-slider/multivalue.html"
         }
       ]
     }
