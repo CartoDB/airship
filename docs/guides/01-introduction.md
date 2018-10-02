@@ -26,6 +26,10 @@ The easiest way to include Airship is through our CDN, adding the tags in the he
   <link rel="stylesheet" href="https://libs.cartocdn.com/airship-icons/%AS-VERSION%/icons.css">
   <!-- Include airship components -->
   <script src="https://libs.cartocdn.com/airship-components/%AS-VERSION%/airship.js"></script>
+  <!-- Include Mapbox GL JS -->
+  <script src="https://libs.cartocdn.com/mapbox-gl/v0.48.0-carto1/mapbox-gl.js"></script>
+  <!-- Include Mapbox GL CSS -->
+  <link href="https://libs.cartocdn.com/mapbox-gl/v0.48.0-carto1/mapbox-gl.css" rel="stylesheet" />
 </head>
 <body class="as-app">
 
@@ -52,7 +56,7 @@ The easiest way to include Airship is through our CDN, adding the tags in the he
     <aside class="as-sidebar as-sidebar--right"></aside>
   </div>
 
-  <!-- Basic CARTO-VL MAP -->
+  <!-- Mapbox basemap -->
   <script>
     const map = new mapboxgl.Map({
       container: 'map',
