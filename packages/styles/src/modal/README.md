@@ -6,6 +6,8 @@ A modal is composed by two elements:
 Since the modal has absolute positioning should be placed under the `body` tag or under a `relative` container.
 
 ```html
+showSource: true
+---
 <main style="position: relative; display: block; height: 300px;">
   <div class="as-modal">
     <div class="as-modal__content">

@@ -89,10 +89,12 @@ showSource: true
 
 #### .as-container--scrollable
 
-The `scrollable container` will take the space left by the fixed containers. Use this modifier to when you need to present lots of content that don't fit in the available space. 
+The `scrollable container` will take the space left by the fixed containers. Use this modifier to when you need to present lots of content that don't fit in the available space.
 
 
 ```html
+showSource: true
+---
 <div class="as-app"  style="height: 400px; width:100%;">
   <div class="as-content">
     <main class="as-main as-bg--badge-blue">
@@ -134,6 +136,8 @@ The `scrollable container` will take the space left by the fixed containers. Use
 Use this modifier to create containers with a border separator on the bottom.
 
 ```html
+showSource: true
+---
 <div class="as-app"  style="height: 400px; width:100%;">
   <div class="as-content">
     <main class="as-main as-bg--badge-blue">

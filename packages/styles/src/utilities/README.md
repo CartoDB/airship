@@ -4,6 +4,8 @@ Convey meaning through color with a handful of color utility classes.
 ### Color
 
 ```html
+showSource: true
+---
 <!-- Brand colors -->
 <p class="as-subheader as-color--primary">.as-color--primary</p>
 <p class="as-subheader as-color--secondary">.as-color--secondary</p>
@@ -28,6 +30,8 @@ Convey meaning through color with a handful of color utility classes.
 Similar to the contextual text color classes, easily set the background of an element to any contextual class. Background utilities do not set `color`, so in some cases you’ll want to use `.as-color-*` utilities.
 
 ```html
+showSource: true
+---
 <!-- Brand colors -->
 <div class="as-p--12 as-mb--12 as-subheader as-bg--primary">.as-bg--primary</div>
 <div class="as-p--12 as-mb--12 as-subheader as-color--type-04 as-bg--secondary">.as-bg--secondary</div>
@@ -124,11 +128,15 @@ Where *value* is one of:
 ### Examples
 
 ```html
+showSource: true
+---
 <div class="as-display--inline as-p--12 as-subheader as-bg--primary">.as-display--inline</div>
 <div class="as-display--inline as-p--12 as-subheader as-bg--complementary">.as-display--inline</div>
 ```
 
 ```html
+showSource: true
+---
 <span class="as-display--block as-p--12 as-subheader as-bg--primary">.as-display--block</span>
 <span class="as-display--block as-p--12 as-subheader as-bg--complementary">.as-display--block</span>
 ```
