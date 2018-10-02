@@ -56,7 +56,7 @@ The easiest way to include Airship is through our CDN, adding the tags in the he
     <aside class="as-sidebar as-sidebar--right"></aside>
   </div>
 
-  <!-- Mapbox basemap -->
+  <!-- CARTO basemap -->
   <script>
     const map = new mapboxgl.Map({
       container: 'map',
