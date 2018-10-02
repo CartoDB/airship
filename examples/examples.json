@@ -3,10 +3,164 @@
     "file": "layouts/basic-layout.html"
   },
   "categories": [{
-    "title": "Layouts",
-    "samples": [{
-      "title": "Basic layout",
-      "file": "layouts/basic-layout.html"
-    }]
-  }]
+      "title": "Layouts",
+      "samples": [{
+        "title": "Basic layout",
+        "file": "layouts/basic-layout.html"
+      }]
+    },
+    {
+      "title": "Responsive Content",
+      "samples": [{
+          "title": "Simple",
+          "file": "components/as-responsive-content/simple.html"
+        },
+        {
+          "title": "Custom Order",
+          "file": "components/as-responsive-content/custom-order.html"
+        }
+      ]
+    },
+    {
+      "title": "Toolbar",
+      "samples": [{
+          "title": "toolbar-top",
+          "file": "layouts/toolbar/toolbar-top.html"
+        },
+        {
+          "title": "toolbar-left",
+          "file": "layouts/toolbar/toolbar-left.html"
+        },
+        {
+          "title": "toolbar-right",
+          "file": "layouts/toolbar/toolbar-right.html"
+        }
+      ]
+    },
+    {
+      "title": "Sidebar",
+      "samples": [{
+          "title": "Basic",
+          "file": "layouts/sidebar/sidebar.html"
+        },
+        {
+          "title": "sidebar-left",
+          "file": "layouts/sidebar/sidebar-left.html"
+        },
+        {
+          "title": "sidebar-right",
+          "file": "layouts/sidebar/sidebar-right.html"
+        },
+        {
+          "title": "sidebar-left-large",
+          "file": "layouts/sidebar/sidebar-left-l.html"
+        },
+        {
+          "title": "sidebar-right-xl",
+          "file": "layouts/sidebar/sidebar-right-xl.html"
+        }
+      ]
+    },
+    {
+      "title": "Footer",
+      "samples": [{
+        "title": "Basic",
+        "file": "layouts/footer/footer.html"
+      }]
+    },
+    {
+      "title": "Panels",
+      "samples": [{
+        "title": "Basic",
+        "file": "layouts/panel/panel.html"
+      }]
+    },
+    {
+      "title": "Containers",
+      "samples": [{
+          "title": "Basic",
+          "file": "layouts/containers/containers.html"
+        },
+        {
+          "title": "Basic2",
+          "file": "containers/containers.html"
+        },
+        {
+          "title": "Colors",
+          "file": "containers/containers-colors.html"
+        },
+        {
+          "title": "Bottom",
+          "file": "containers/containers-bottom.html"
+        },
+        {
+          "title": "Legends",
+          "file": "containers/containers-legends.html"
+        },
+        {
+          "title": "Sidebar",
+          "file": "containers/containers-sidebar.html"
+        }
+      ]
+    },
+    {
+      "title": "Category Widget",
+      "samples": [{
+          "title": "Simple",
+          "file": "components/as-category-widget/simple.html"
+        },
+        {
+          "title": "Disabled",
+          "file": "components/as-category-widget/interaction-disabled.html"
+        },
+        {
+          "title": "Total Percentage",
+          "file": "components/as-category-widget/total-percentage.html"
+        },
+        {
+          "title": "Bar olny",
+          "file": "components/as-category-widget/bar-only.html"
+        }
+      ]
+    },
+    {
+      "title": "Dropdown",
+      "samples": [{
+        "title": "Simple",
+        "file": "components/as-dropdown/simple.html"
+      }]
+    },
+    {
+      "title": "Histogram",
+      "samples": [{
+          "title": "Simple",
+          "file": "components/as-histogram-widget/simple.html"
+        },
+        {
+          "title": "Events",
+          "file": "components/as-histogram-widget/events.html"
+        },
+        {
+          "title": "Interaction disabled",
+          "file": "components/as-histogram-widget/interaction-disabled.html"
+        }
+      ]
+    },
+    {
+      "title": "Range Slider",
+      "samples": [{
+          "title": "Simple",
+          "file": "components/as-range-slider/simple.html"
+        },
+        {
+          "title": "Disabled",
+          "file": "components/as-range-slider/disabled.html"
+        },
+        {
+          "title": "Multivalue",
+          "file": "components/as-range-slider/multivalue.html"
+        }
+      ]
+    }
+  ]
 }
