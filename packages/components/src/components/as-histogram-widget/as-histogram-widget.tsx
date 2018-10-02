@@ -17,14 +17,14 @@ import { shadeOrBlend } from '../../utils/styles';
 const CUSTOM_HANDLE_SIZE = 15;
 const DEFAULT_BAR_COLOR = 'var(--as-color-primary, #1785FB)';
 const DEFAULT_SELECTED_BAR_COLOR = 'var(--as-color-complementary, #47DB99)';
-const WIDTH = 205;
 const HEIGHT = 125;
 const BARS_SEPARATION = 1;
 const MARGIN = {
   BOTTOM: 15,
-  LEFT: 35,
+  LEFT: 30,
   RIGHT: 3,
-  TOP: 15,
+  TOP: 5,
+  YAxis: 20
 };
 const CUSTOM_HANDLE_Y_COORD = HEIGHT + MARGIN.TOP - (CUSTOM_HANDLE_SIZE / 2);
 
@@ -151,6 +151,8 @@ export class HistogramWidget {
   private bottomLine: Selection<BaseType, {}, BaseType, {}>;
   private selection: number[] = null;
 
+  private chartWidth: number;
+
   /**
    * Default formatting function. Makes the value a readable number and
    * converts it into a string. Useful to compose with your own formatting
@@ -227,6 +229,8 @@ export class HistogramWidget {
   }
 
   public render() {
+    this.chartWidth = this.el.offsetWidth - MARGIN.YAxis;
+
     const histogramClasses = {
       'as-histogram-widget__wrapper': true,
       'as-histogram-widget__wrapper--disabled': this.disableInteractivity
@@ -236,7 +240,7 @@ export class HistogramWidget {
       this._renderHeader(),
       <div class={histogramClasses}>
         {this._renderTooltip()}
-        <svg ref={(ref: HTMLElement) => this.container = select(ref)} viewBox='0 0 248 160'></svg>
+        <svg ref={(ref: HTMLElement) => this.container = select(ref)}></svg>
       </div>,
       this.showClear && !this.disableInteractivity ? this._renderClearBtn() : '',
     ];
@@ -252,7 +256,7 @@ export class HistogramWidget {
 
     this.brush = brushX()
       .handleSize(BARS_SEPARATION + 4)
-      .extent([[MARGIN.LEFT, MARGIN.TOP], [WIDTH + MARGIN.LEFT, HEIGHT + MARGIN.TOP]])
+      .extent([[MARGIN.LEFT, MARGIN.TOP], [this.chartWidth + MARGIN.LEFT, HEIGHT + MARGIN.TOP]])
       .on('brush', this._onBrush.bind(this))
       .on('end', this._onBrushEnd.bind(this));
 
@@ -454,6 +458,7 @@ export class HistogramWidget {
 
   private _renderYAxis() {
     const data = this.data;
+    const barsWidth = this.chartWidth - MARGIN.YAxis;
 
     // -- Y Axis
     this.yScale = scaleLinear()
@@ -462,7 +467,7 @@ export class HistogramWidget {
       .nice();
 
     this.yAxis = axisLeft(this.yScale)
-      .tickSize(-WIDTH)
+      .tickSize(-barsWidth)
       .ticks(5)
       .tickPadding(10)
       .tickFormat(format('.2~s'));
@@ -476,30 +481,31 @@ export class HistogramWidget {
 
   private _renderXAxis() {
     const data = this.data;
+    const barsWidth = this.chartWidth - MARGIN.YAxis;
 
     const { start } = data.length > 0 ? data[0] : { start: 0 };
     const { end } = data.length > 0 ? data[data.length - 1] : { end: 0 };
 
     this.xScale = scaleLinear()
       .domain([start, end])
-      .range([0, WIDTH]);
+      .range([0, barsWidth]);
 
     this.xAxis = axisBottom(this.xScale)
-      .tickSize(-WIDTH)
+      .tickSize(-barsWidth)
       .ticks(3)
       .tickPadding(10);
 
     this.xAxisSelection = this.container
       .append('g')
       .attr('class', 'xAxis')
-      .attr('transform', `translate(${MARGIN.LEFT}, ${HEIGHT + MARGIN.BOTTOM})`)
+      .attr('transform', `translate(${MARGIN.LEFT}, ${HEIGHT + MARGIN.TOP})`)
       .call(this.xAxis);
   }
 
   private _renderBars() {
     const data = this.data;
-    const barWidth = data.length === 0 ? WIDTH : WIDTH / data.length;
-
+    const barsWidth = this.chartWidth - MARGIN.YAxis;
+    const barWidth = data.length === 0 ? barsWidth : barsWidth / data.length;
     // -- Draw bars
     this.bars = this.barsContainer
       .selectAll('rect')
@@ -628,7 +634,7 @@ export class HistogramWidget {
   private _renderClearBtn() {
     return (
       <button
-        class='as-btn as-btn--primary as-btn--s as-category-widget__clear'
+        class='as-btn as-btn--primary as-btn--s as-histogram-widget__clear'
         onClick={() => this._setSelection(null) }>Clear selection
       </button>
     );
