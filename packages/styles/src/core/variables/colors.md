@@ -1,6 +1,6 @@
 ## Using colors
 
-Airship brings a series of utilities and colors included by default.
+Airship brings a series of [utilities and colors](../reference/#/styles/utilities) included by default.
 
 ### .as-color--name
 
