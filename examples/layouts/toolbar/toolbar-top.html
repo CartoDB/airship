@@ -5,72 +5,41 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Generic Layout</title>
-  <link rel="stylesheet" href="../../../../packages/styles/dist/airship.css">
-  <link rel="stylesheet" href="../../../../packages/icons/dist/icons.css">
-  <script src="../../../../packages/components/dist/airship.js"></script>
-
-  <!-- INCLUDE TYPOGRAFY -->
-
-  <!-- CARTO.js -->
-  <!-- Include Leaflet -->
-  <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
-  <link href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" rel="stylesheet">
-  <!-- Include CARTO.js -->
-  <script src="https://libs.cartocdn.com/carto.js/v4.1.2/carto.min.js"></script>
-  <link href="https://carto.com/developers/carto-js/examples/maps/public/style.css" rel="stylesheet">
-  <!-- / CARTO.js -->
-
+  <title>Basic Layout</title>
+  <link rel="stylesheet" href="../../../packages/styles/dist/airship.css">
+  <script src="../../../packages/components/dist/airship.js"></script>
+  <!-- Include Mapbox GL JS -->
+  <script src="https://libs.cartocdn.com/mapbox-gl/v0.48.0-carto1/mapbox-gl.js"></script>
+  <!-- Include Mapbox GL CSS -->
+  <link href="https://libs.cartocdn.com/mapbox-gl/v0.48.0-carto1/mapbox-gl.css" rel="stylesheet" />
 </head>
 
-<body class="as-app as-app--nav-top">
-  <header class="as-toolbar">
-    <button onclick="_toggleDrawer()" class="as-toolbar__item as-toolbar__toggle">
-      <i class="as-icon-hamburguer as-title as-m--0"></i>
-    </button>
+<body class="as-app">
 
-    <div class="as-toolbar__group">
-      <div class="as-toolbar__item">
-        <img src="../common/logo.svg" alt="CARTO LOGO">
+  <header class="as-toolbar"></header>
+
+
+  <div class="as-content">
+    <main class="as-main">
+      <div class="as-map-area">
+        <div id="map"></div>
       </div>
+    </main>
+  </div>
 
-      <nav class="as-toolbar__actions">
-        <ul>
-          <li class="as-toolbar__item">
-            <a href="http://www.carto.com">Home</a>
-          </li>
-          <li class="as-toolbar__item">
-            <a href="http://www.carto.com">About</a>
-          </li>
-          <li class="as-toolbar__item">
-            <i class="as-icon-magnify as-subheader as-m--0"></i>
-            <p class="as-toolbar__icon-text">Search</p>
-          </li>
-          <li class="as-toolbar__item">
-            <i class="as-icon-info as-subheader as-m--0"></i>
-            <p class="as-toolbar__icon-text">Help</p>
-          </li>
-          <li class="as-toolbar__item">
-            <i class="as-icon-twitter as-subheader as-m--0"></i>
-            <p class="as-toolbar__icon-text">Twitter</p>
-          </li>
-        </ul>
-      </nav>
-    </div>
+  <!-- Basic CARTO-VL MAP -->
+  <script>
+    const map = new mapboxgl.Map({
+      container: 'map',
+      style: 'https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json',
+      center: [0, 30],
+      zoom: 2,
+      scrollZoom: false,
+      dragRotate: false,
+      touchZoomRotate: false
+    });
 
-    <div class="as-toolbar__item as-body">
-      <i class="as-icon-points as-subheader as-m--0"></i>
-    </div>
-  </header>
-
-  <main class="as-app-content">
-    <div class="as-map-wrapper">
-      <div id="map"></div>
-    </div>
-  </main>
-
-  <script defer src="../common/map.js"></script>
-  <script defer src="../common/tabs.js"></script>
+  </script>
 </body>
 
 </html>
