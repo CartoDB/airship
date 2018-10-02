@@ -188,7 +188,7 @@ showSource: true
 </div>
 ```
 
-### .as-container--border
+### .as-container\--border
 
 ```html
 showSource: true

@@ -8,11 +8,11 @@ showSource: true
 
 
 ## Toolbar positioning
-Toolbar is positioned to the top of the page by default. You can specify a different toolbar position using **class modifiers** in the `as-app` element. 
+Toolbar is positioned to the top of the page by default. You can specify a different toolbar position using **class modifiers** in the `as-app` element.
 
 > This modifiers wont affect mobile screens where the toolbar is always displayed on top.
 
-### .as-app-nav--left
+### .as-app-nav\--left
 
 
 
@@ -25,7 +25,7 @@ showSource: true
 </div>
 ```
 
-### .as-app-nav--right
+### .as-app-nav\--right
 
 
 
@@ -140,13 +140,13 @@ showSource: true
   </nav>
 </header>
 ```
-#### .as-toolbar__actions--visible
+#### .as-toolbar__actions\--visible
 
 Use this class modifier to display the toolbar-actions menu on small screens.
 
 ### .as-toolbar__toggle
 
-Use the `.as-toolbar__togle` modifier to create a button that controls the menu visibility.
+Use the `.as-toolbar__toggle` modifier to create a button that controls the menu visibility.
 
 
 ```html

@@ -184,7 +184,7 @@ categoryWidget.visibleCategories = 5;
 ### Styles
 There are some CSS Variables that you can override to change visual styles.
 
-#### **--category-widget--description--color**
+#### **\--category-widget\--description\--color**
 Default: $color-type-02 (`#1785FB`)
 
 ```code
@@ -193,7 +193,7 @@ lang: javascript
 document.body.style.setProperty('--category-widget--description--color', '#1785FB')
 ```
 
-#### **--category-widget--bar--height**
+#### **\--category-widget\--bar\--height**
 Default: `4px`
 
 ```code
@@ -202,7 +202,7 @@ lang: javascript
 document.body.style.setProperty('--category-widget--bar--height', '8px')
 ```
 
-#### **--category-widget--background-color**
+#### **\--category-widget\--background-color**
 Default: $color-ui-10 (`#FFF`)
 
 ```code
@@ -211,7 +211,7 @@ lang: javascript
 document.body.style.setProperty('--category-widget--background-color', '#F5F5F5')
 ```
 
-#### **--category-bar--background-color**
+#### **\--category-bar\--background-color**
 Default: $color-ui-20 (`#F5F5F5`)
 
 ```code
