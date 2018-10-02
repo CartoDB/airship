@@ -7,12 +7,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
   <title>Airship</title>
   <script src="/build/airship.js"></script>
+  <link rel="stylesheet" type="text/css" href="/dist/airship.css">
+
+  <style>
+    body {
+      margin: 10px;
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+    }
+
+    .with-label {
+      margin-top: 10px;
+    }
+  </style>
 </head>
 
 <body>
   <as-switch id="switch-0" name="switch" title="switch"></as-switch>
   <as-switch checked id="switch-1" name="switch-1" title="switch-1"></as-switch>
   <as-switch disabled id="switch-2" name="switch-2" title="switch-2"></as-switch>
+
+  <div class="with-label">
+    <as-switch checked id="switch-1" name="switch-1" title="switch-1" label="Private Room"></as-switch>
+  </div>
 
   <script>
     document.querySelector('#switch-0').addEventListener('change', console.warn);
