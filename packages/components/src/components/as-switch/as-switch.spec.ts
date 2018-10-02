@@ -6,8 +6,22 @@ describe.only('as-switch', () => {
     expect(new Switch()).toBeTruthy();
   });
 
+  describe('Rendering', () => {
+    it('should render properly', async () => {
+      const switchElement = await _prepareTest('<as-switch id="switch"></as-switch>');
+
+      expect(switchElement).toMatchSnapshot();
+    });
+
+    it('should render label if prop is present', async () => {
+      const switchElement = await _prepareTest('<as-switch id="switch" label="Switch Label"></as-switch>');
+
+      expect(switchElement).toMatchSnapshot();
+    });
+  });
+
   describe('when the component is enabled', () => {
-    let element: HTMLAsToolbarElement;
+    let element: HTMLAsSwitchElement;
 
     beforeEach(async () => {
       element = await _prepareTest('<as-switch id="switch"></as-switch>');
@@ -38,7 +52,7 @@ describe.only('as-switch', () => {
   });
 
   describe('when the component is disabled', () => {
-    let element: HTMLAsToolbarElement;
+    let element: HTMLAsSwitchElement;
 
     beforeEach(async () => {
       element = await _prepareTest('<as-switch disabled id="switch"></as-switch>');
@@ -54,7 +68,7 @@ describe.only('as-switch', () => {
   });
 
   describe('when the component is checked', () => {
-    let element: HTMLAsToolbarElement;
+    let element: HTMLAsSwitchElement;
 
     beforeEach(async () => {
       element = await _prepareTest('<as-switch checked id="switch"></as-switch>');
