@@ -90,6 +90,26 @@
           "file": "containers/containers-sidebar.html"
         }
       ]
+    },
+    {
+      "title": "Category Widget",
+      "samples": [{
+          "title": "Simple",
+          "file": "components/as-category-widget/simple.html"
+        },
+        {
+          "title": "Disabled",
+          "file": "components/as-category-widget/interaction-disabled.html"
+        },
+        {
+          "title": "Total Percentage",
+          "file": "components/as-category-widget/total-percentage.html"
+        },
+        {
+          "title": "Bar olny",
+          "file": "components/as-category-widget/bar-only.html"
+        }
+      ]
     }
   ]
 }
