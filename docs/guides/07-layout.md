@@ -1,7 +1,7 @@
-Airship offers a restricted series of optimized layouts to create LI apps.
+Airship offers a restricted series of [optimized layouts](/developers/airship/reference/#/layout) to create LI apps.
 
 
-<img src="/developers/airship/guides/img/layout.png" alt="Basic layout with all airship elements"/>
+<img src="https://raw.githubusercontent.com/CartoDB/airship/master/docs/guides/img/layout.png" alt="Basic layout with all airship elements"/>
 
 
 An Airship app should always be wrapped inside an element with the `.as-app` class and is composed of the following elements:
