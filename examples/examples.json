@@ -3,10 +3,27 @@
     "file": "layouts/basic-layout.html"
   },
   "categories": [{
-    "title": "Layouts",
-    "samples": [{
-      "title": "Basic layout",
-      "file": "layouts/basic-layout.html"
-    }]
-  }]
+      "title": "Layouts",
+      "samples": [{
+        "title": "Basic layout",
+        "file": "layouts/basic-layout.html"
+      }]
+    },
+    {
+      "title": "Toolbar",
+      "samples": [{
+          "title": "toolbar-top",
+          "file": "layouts/toolbar/toolbar-top.html"
+        },
+        {
+          "title": "toolbar-left",
+          "file": "layouts/toolbar/toolbar-left.html"
+        },
+        {
+          "title": "toolbar-right",
+          "file": "layouts/toolbar/toolbar-right.html"
+        }
+      ]
+    }
+  ]
 }
