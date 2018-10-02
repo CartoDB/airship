@@ -18,7 +18,7 @@ export class Switch {
   /**
    * Boolean flag to control if the input is checked or not
    *
-   * @type{boolean}
+   * @type {boolean}
    * @memberof Switch
    */
   @Prop({ mutable: true, reflectToAttr: true }) public checked: boolean;
@@ -26,15 +26,23 @@ export class Switch {
   /**
    * Boolean flag to control when the switch is disabled or not
    *
-   * @type{boolean}
+   * @type {boolean}
    * @memberof Switch
    */
   @Prop({ reflectToAttr: true }) public disabled: boolean;
 
   /**
+   * Input label
+   *
+   * @type {string}
+   * @memberof Switch
+   */
+  @Prop() public label: string;
+
+  /**
    * The input name
    *
-   * @type{string}
+   * @type {string}
    * @memberof Switch
    */
   @Prop({ reflectToAttr: true }) public name: string;
@@ -67,6 +75,23 @@ export class Switch {
   }
 
   public render() {
+    if (this.label) {
+      return (
+        <div class='as-switch'>
+          <div class='as-switch__element'>
+            {this._renderSwitch()}
+          </div>
+          <label class='as-switch__label as-body'>
+            {this.label}
+          </label>
+        </div>
+      );
+    }
+
+    return this._renderSwitch();
+  }
+
+  private _renderSwitch() {
     return [
       <input
         class='as-switch__input'
@@ -78,7 +103,7 @@ export class Switch {
         type='checkbox'
         title={this.el.title}
       />,
-      <label class='as-switch__toggle' htmlFor='switch_0'></label>,
+      <label class='as-switch__toggle' htmlFor={this.el.id}></label>,
       <svg class='as-switch__thumb' width='10' height='8' xmlns='http://www.w3.org/2000/svg'>
         <path
           fill='currentColor'

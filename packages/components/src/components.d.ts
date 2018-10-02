@@ -630,6 +630,10 @@ declare global {
        */
       'disabled': boolean;
       /**
+       * Input label
+       */
+      'label': string;
+      /**
        * The input name
        */
       'name': string;
@@ -663,6 +667,10 @@ declare global {
        * Boolean flag to control when the switch is disabled or not
        */
       'disabled'?: boolean;
+      /**
+       * Input label
+       */
+      'label'?: string;
       /**
        * The input name
        */

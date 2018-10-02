@@ -4,10 +4,20 @@ as-switch {
   display: inline-block;
   position: relative;
 
+  .as-switch {
+    display: flex;
+    align-items: center;
+  }
+
+  .as-switch__label {
+    margin: 0 0 0 get-spacing(1);
+  }
+
   .as-switch__thumb {
     position: absolute;
-    top: get-spacing(1);
+    top: 50%;
     left: get-spacing(1);
+    transform: translate3d(0, -50%, 0);
     transition: opacity 0.2s ease;
     opacity: 0;
     color: var(--as-color-ui-01, #{$color-ui-01});
