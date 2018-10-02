@@ -8,7 +8,6 @@ To highlight the current tab you can use `as-tabs__item--active` class modifier.
 ## Regular Tabs
 
 ```html
----
 <iframe src="/examples/styles/tabs/tabs.html" style="width: 100%; height: 100%;">
 ```
 

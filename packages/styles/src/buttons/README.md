@@ -9,16 +9,19 @@ Each button has two size modifiers:
 ## Base
 
 ```html
+showSource: true
 ---
 <button class="as-btn"> I'm a regular button</button>
 ```
 
 ```html
+showSource: true
 ---
 <button class="as-btn as-btn--s"> I'm a small button</button>
 ```
 
 ```html
+showSource: true
 ---
 <button class="as-btn as-btn--l"> I'm a large button</button>
 ```
@@ -26,16 +29,19 @@ Each button has two size modifiers:
 ## Primary
 
 ```html
+showSource: true
 ---
 <button class="as-btn as-btn--primary"> I'm a regular button</button>
 ```
 
 ```html
+showSource: true
 ---
 <button class="as-btn as-btn--primary as-btn--s"> I'm a small button</button>
 ```
 
 ```html
+showSource: true
 ---
 <button class="as-btn as-btn--primary as-btn--l"> I'm a large button</button>
 ```
@@ -44,16 +50,19 @@ Each button has two size modifiers:
 ## Secondary
 
 ```html
+showSource: true
 ---
 <button class="as-btn as-btn--secondary"> I'm a regular button</button>
 ```
 
 ```html
+showSource: true
 ---
 <button class="as-btn as-btn--secondary as-btn--s"> I'm a small button</button>
 ```
 
 ```html
+showSource: true
 ---
 <button class="as-btn as-btn--secondary as-btn--l"> I'm a large button</button>
 ```
@@ -61,16 +70,19 @@ Each button has two size modifiers:
 ## Disabled
 
 ```html
+showSource: true
 ---
 <button disabled class="as-btn"> I'm a disabled base button</button>
 ```
 
 ```html
+showSource: true
 ---
 <button disabled class="as-btn as-btn--primary"> I'm a disabled primary button</button>
 ```
 
 ```html
+showSource: true
 ---
 <button disabled class="as-btn as-btn--secondary"> I'm a disabled secondary button</button>
 ```
@@ -79,6 +91,7 @@ Each button has two size modifiers:
 
 
 ```html
+showSource: true
 ---
 <button class="as-btn as-btn--primary">
   <i aria-hidden class="as-icon-plus"></i>
@@ -87,6 +100,7 @@ Each button has two size modifiers:
 ```
 
 ```html
+showSource: true
 ---
 <button class="as-btn as-btn--secondary">
   <p>Icon button</p>
@@ -100,6 +114,7 @@ Use the `as-button-group` class to create a button group.
 
 
 ```html
+showSource: true
 ---
 <div class="as-button-group" role="group">
   <button aria-label="twitter" class="as-btn as-btn--secondary">
@@ -123,6 +138,7 @@ The `as-btn` class can be used on the following Html Elements:
 - [link](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link)
 
 ```html
+showSource: true
 ---
 <h1 class="as-title">Link</h1>
 <a href="˝#" class="as-btn"> Link button </a>

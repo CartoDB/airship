@@ -5,6 +5,8 @@ Flag displays contextual information about events on the page.
 ## Default
 
 ```html
+showSource: true
+---
 <div class="as-flag">
   <div class="as-flag__icon">
     <i style="color: #80B622;" class="as-icon-alert-fill"></i>
@@ -19,6 +21,8 @@ Flag displays contextual information about events on the page.
 ## With two icons
 
 ```html
+showSource: true
+---
 <div class="as-flag">
   <div class="as-flag__icon">
     <i style="color: #80B622;" class="as-icon-alert-fill"></i>
@@ -40,6 +44,8 @@ Flag displays contextual information about events on the page.
 You can use the `as-flag--l` modifier to get a flag with a `width` of `320px`.
 
 ```html
+showSource: true
+---
 <div class="as-flag as-flag--l">
   <div class="as-flag__icon">
     <i style="color: #80B622;" class="as-icon-alert-fill"></i>
@@ -59,6 +65,8 @@ You can use the `as-flag--l` modifier to get a flag with a `width` of `320px`.
 You can use the `as-flag--xl` modifier to get a flag with a `width` of `400px`.
 
 ```html
+showSource: true
+---
 <div class="as-flag as-flag--xl">
   <div class="as-flag__icon">
     <i style="color: #80B622;" class="as-icon-alert-fill"></i>
@@ -78,6 +86,8 @@ You can use the `as-flag--xl` modifier to get a flag with a `width` of `400px`.
 You can use the `as-flag--l` modifier to get a flag with a `width` of `100%`.
 
 ```html
+showSource: true
+---
 <div class="as-flag as-flag--block">
   <div class="as-flag__icon">
     <i style="color: #80B622;" class="as-icon-alert-fill"></i>

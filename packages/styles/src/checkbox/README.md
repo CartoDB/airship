@@ -8,6 +8,8 @@ A checkbox consists of 3 sub-elements wrapped inside an `as-checkbox` parent.
 
 
 ```html
+showSource: true
+---
 <div class="as-checkbox">
   <input class="as-checkbox-input" type="checkbox" id="checkbox-0" name="checkbox-0" value="checkbox-0">
   <span class="as-checkbox-decoration">
@@ -34,6 +36,8 @@ You can give checkboxes an error-status using the `as-checkbox-input--error` cla
 
 
 ```html
+showSource: true
+---
 <div class="as-checkbox">
     <input class="as-checkbox-input as-checkbox-input--error" type="checkbox" id="checkbox3" name="checkbox3" value="checkbox3">
     <span class="as-checkbox-decoration">
@@ -61,6 +65,8 @@ You can give checkboxes an error-status using the `as-checkbox-input--error` cla
 The checkbox appearance will change when you add attributes like `disabled` or `checked`.
 
 ```html
+showSource: true
+---
  <div class="as-checkbox">
   <input disabled class="as-checkbox-input" type="checkbox" id="checkbox2" name="checkbox2" value="checkbox2">
   <span class="as-checkbox-decoration">

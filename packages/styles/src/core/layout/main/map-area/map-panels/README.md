@@ -1,6 +1,6 @@
 ## .as-map-panels
 
-Map panels is the section where the `as-panels` element will be placed. 
+Map panels is the section where the `as-panels` element will be placed.
 
 The `map-panels` element must be a children of the `map-area` or the `as-div`.
 
@@ -28,13 +28,15 @@ You can combine two of the following class modifiers to specify the panel positi
 
 
 ```html
+showSource: true
+---
 <div class="as-app" style="width:100%; height:300px;">
   <div class="as-content">
     <main class="as-main as-bg--badge-blue">
       <div class="as-map-area">
       <div id="map"></div> 
-      <!-- element code starts here -->
       <div class="as-map-panels">
+        <!-- element code starts here -->
         <div class="as-panel as-panel--top as-panel--left">left top panel</div>
         <div class="as-panel as-panel--top as-panel--center">center top panel</div>
         <div class="as-panel as-panel--top as-panel--right">right top panel</div>
@@ -44,8 +46,8 @@ You can combine two of the following class modifiers to specify the panel positi
         <div class="as-panel as-panel--bottom as-panel--left">left bottom panel</div>
         <div class="as-panel as-panel--bottom as-panel--center">center bottom panel</div>
         <div class="as-panel as-panel--bottom as-panel--right">right bottom panel</div>
+        <!-- element code ends here -->
       </div>
-      <!-- element code ends here -->
     </main>
   </div>
 </div>
@@ -57,13 +59,14 @@ This class creates a wrapper that allows to place content like widgets, text or 
 
 
 ```html
+showSource: true
+---
 <div class="as-app" style="width:100%; height:300px;">
   <div class="as-content">
     <main class="as-main as-bg--badge-blue">
       <div class="as-map-area">
-        <div id="map"></div> 
+        <div id="map"></div>
         <div class="as-map-panels">
-        
           <div class="as-panel as-panel--middle as-panel--center">
             <!-- element code starts here -->
             <div class="as-panel__element as-p--32 as-bg--support-02">
@@ -84,27 +87,28 @@ This class creates a wrapper that allows to place content like widgets, text or 
 By default panels grow horizontally. Add this class to make the panels grow vertically.
 
 ```html
+showSource: true
+---
 <div class="as-app" style="width:100%; height:300px;">
   <div class="as-content">
     <main class="as-main as-bg--badge-blue">
       <div class="as-map-area">
-        <div id="map"></div> 
+        <div id="map"></div>
         <div class="as-map-panels">
-        
           <div class="as-panel as-panel--top as-panel--left">
-            <div class="as-panel__element as-p--32 as-bg--support-02"> 
+            <div class="as-panel__element as-p--32 as-bg--support-02">
               <p class="as-body"> Panel 0 </p>
             </div>
-            <div class="as-panel__element as-p--32 as-bg--support-03"> 
+            <div class="as-panel__element as-p--32 as-bg--support-03">
               <p class="as-body"> Panel 1 </p>
             </div>
           </div>
           <!-- element code starts here -->
           <div class="as-panel as-panel--vertical as-panel--middle as-panel--right">
-            <div class="as-panel__element as-p--32 as-bg--support-02"> 
+            <div class="as-panel__element as-p--32 as-bg--support-02">
               <p class="as-body"> Panel 2 </p>
             </div>
-            <div class="as-panel__element as-p--32 as-bg--support-03"> 
+            <div class="as-panel__element as-p--32 as-bg--support-03">
               <p class="as-body"> Panel 3 </p>
             </div>
           </div>

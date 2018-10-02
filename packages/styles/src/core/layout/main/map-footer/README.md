@@ -8,6 +8,8 @@ You can toggle the `as-map-footer--visible` class the way you prefer but we reco
 
 
 ```html
+showSource: true
+---
 <div class="as-app" style="width:100%; height:300px;">
   <div class="as-content">
     <main class="as-main">
@@ -28,6 +30,8 @@ You can toggle the `as-map-footer--visible` class the way you prefer but we reco
 Use this class to make the footer fill the `as-content` section in small screen sizes.
 
 ```html
+showSource: true
+---
 <div class="as-app" style="width:100%; height:300px;">
   <div class="as-content">
     <main class="as-main">
@@ -56,6 +60,8 @@ responsive: true
 ## Footer Containers
 
 ```html
+showSource: true
+---
 <div class="as-app" style="width:100%; height:300px;">
   <div class="as-content">
     <main class="as-main">
@@ -114,6 +120,8 @@ responsive: true
 Use this class to create sections inside the footer. By default a container will occupy as much vertical space as needed.
 
 ```html
+showSource: true
+---
 <div class="as-app" style="width:100%; height:300px;">
   <div class="as-content">
     <main class="as-main">
@@ -146,6 +154,8 @@ Use this class to create sections inside the footer. By default a container will
 The `scrollable container` will take the space left by the fixed containers. Use this modifier to when you need to present lots of content that don't fit in the available space.
 
 ```html
+showSource: true
+---
 <div class="as-app" style="width:100%; height:300px;">
   <div class="as-content">
     <main class="as-main">
@@ -186,6 +196,8 @@ The `scrollable container` will take the space left by the fixed containers. Use
 ### .as-container--border
 
 ```html
+showSource: true
+---
 <div class="as-app" style="width:100%; height:300px;">
   <div class="as-content">
     <main class="as-main">
@@ -239,6 +251,8 @@ Only on the `map-footer` you can specify the box-witdh with one of the following
 
 
 ```html
+showSource: true
+---
 <div class="as-app" style="width:100%; height:300px;">
   <div class="as-content">
     <main class="as-main">

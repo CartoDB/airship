@@ -22,7 +22,11 @@ export class MouseTrack {
 
   private _handleRelease(eventProperties: MouseEvent, listeners: MouseListeners, customListeners: MouseListeners) {
     document.removeEventListener('mousemove', listeners.move);
+    document.removeEventListener('touchmove', listeners.move);
     document.removeEventListener('mouseup', listeners.release);
+    document.removeEventListener('touchend', listeners.release);
+
+    document.removeEventListener('dragstart', this.preventAndStop);
 
     if (customListeners.move) {
       customListeners.move(eventProperties);

@@ -1,7 +1,7 @@
 Airship offers a restricted series of optimized layouts to create LI apps.
 
 
-<img src="./img/layout.png" alt="Basic layout with all airship elements"/>
+<img src="/developers/airship/guides/img/layout.png" alt="Basic layout with all airship elements"/>
 
 
 An Airship app should always be wrapped inside an element with the `.as-app` class and is composed of the following elements:
@@ -28,7 +28,7 @@ LI apps should be responsive by default, we currently consider 2 different scree
 
 We provide some responsive utilities by default, for example `sidebars` are hidden by default in small screens and only visible adding the `--visible` class modifier.
 
-> We provide a web component named [application content](#) that makes easier the layout design.
+> We provide a web component named [as-responsive-content](/developers/airship/reference/#/components/application-content) that makes easier the layout design.
 
 ## Examples
 
