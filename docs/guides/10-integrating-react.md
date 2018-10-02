@@ -144,10 +144,10 @@ export default class CategoryWidget extends Component {
       ref={this.ref}
       heading={this.props.heading}
       description={this.props.description}
-      show-header="false"
-      show-clear-button="false"
-      use-total-percentage="false"
-      visible-categories="10"
+      show-header={this.props.showHeader}
+      show-clear-button={this.props.showClearButton}
+      use-total-percentage={this.props.useTotalPercentage}
+      visible-categories={this.prop.visibleCategories}
     />
   }
 }
