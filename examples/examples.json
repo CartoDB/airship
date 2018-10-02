@@ -48,6 +48,13 @@
           "file": "layouts/sidebar/sidebar-right-xl.html"
         }
       ]
+    },
+    {
+      "title": "Footer",
+      "samples": [{
+        "title": "Basic",
+        "file": "layouts/footer/footer.html"
+      }]
     }
   ]
 }
