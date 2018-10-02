@@ -2,17 +2,17 @@
 
 Airship brings a series of [utilities and colors](../reference/#/styles/utilities) included by default.
 
-### .as-color--name
+### .as-color--*
 
-You can use the `as-color--name` class to modify text colors
+You can use `as-color--*` utility classes to modify text colors.
 
 ```html
 <p class="as-body as-color--primary"></p>
 ```
 
-### .as-bg--name
+### .as-bg--*
 
-You can use the `as-bg--name` class to modify the background color.
+You can use the `as-bg--*` class to modify the background color.
 
 ```html
 <p class="as-body as-bg--primary"></p>
