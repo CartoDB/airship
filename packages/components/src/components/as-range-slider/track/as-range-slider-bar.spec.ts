@@ -47,8 +47,8 @@ describe('as-range-slider-bar', () => {
         element.rangeBarElement = { offsetLeft: 20 } as HTMLElement;
         element.barMove = { emit: barMoveEmitSpy };
 
-        const firstEvent = { clientX: 20 } as MouseEvent;
-        const secondEvent = { clientX: 0 } as MouseEvent;
+        const firstEvent = { pageX: 20 } as MouseEvent;
+        const secondEvent = { pageX: 0 } as MouseEvent;
 
         // Set the mouse position to the current bar position
         element.onMove(firstEvent);
@@ -71,8 +71,8 @@ describe('as-range-slider-bar', () => {
         element.rangeBarElement = { offsetLeft: 20 } as HTMLElement;
         element.barMove = { emit: barMoveEmitSpy };
 
-        const firstEvent = { clientX: 20 } as MouseEvent;
-        const secondEvent = { clientX: 1000 } as MouseEvent;
+        const firstEvent = { pageX: 20 } as MouseEvent;
+        const secondEvent = { pageX: 1000 } as MouseEvent;
 
         // Set the mouse position to the current bar position
         element.onMove(firstEvent);
@@ -94,8 +94,8 @@ describe('as-range-slider-bar', () => {
         element.rangeBarElement = { offsetLeft: 20 } as HTMLElement;
         element.barMove = { emit: barMoveEmitSpy };
 
-        const firstEvent = { clientX: 20 } as MouseEvent;
-        const secondEvent = { clientX: -1000 } as MouseEvent;
+        const firstEvent = { pageX: 20 } as MouseEvent;
+        const secondEvent = { pageX: -1000 } as MouseEvent;
 
         // Set the mouse position to the current bar position
         element.onMove(firstEvent);
