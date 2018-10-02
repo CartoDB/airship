@@ -40,7 +40,7 @@ Let's include Airship components and styles by including the following snippet i
 ### Setting a basic layout
 A basic layout might include a container for our map and a sidebar for our future widget.
 
-The layout will always be wrapped by a block element with `.as-app-content` class, which will hold all of our content and elements.
+The layout will always be wrapped by a block element with `.as-content` class, which will hold all of our content and elements.
 So, to create our layout we need a right sidebar and a block element wrapped by `.as-map-wrapper` class for our map.
 
 ```html

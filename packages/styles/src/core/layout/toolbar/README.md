@@ -21,7 +21,7 @@ showSource: true
 ---
 <div class="as-app as-app--nav-left" style="height: 300px; width:100%;">
   <header class="as-toolbar"></header>
-  <main class="as-app-content"></main>
+  <main class="as-content"></main>
 </div>
 ```
 
@@ -34,7 +34,7 @@ showSource: true
 ---
 <div class="as-app as-app--nav-right" style="height: 300px; width:100%;">
   <header class="as-toolbar"></header>
-  <main class="as-app-content"></main>
+  <main class="as-content"></main>
 </div>
 ```
 
