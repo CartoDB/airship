@@ -55,6 +55,13 @@
         "title": "Basic",
         "file": "layouts/footer/footer.html"
       }]
+    },
+    {
+      "title": "Panels",
+      "samples": [{
+        "title": "Basic",
+        "file": "layouts/panel/panel.html"
+      }]
     }
   ]
 }
