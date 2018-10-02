@@ -1,4 +1,4 @@
-This guide will lead you through the process of integrating Airship in [Angular](https://angular.io).
+This guide will lead you through the process of integrating Airship in [Vue](https://vuejs.org/).
 
 ## Including Styles
 Airship styles need to be globally included within our Vue application, so that we can use styles everywhere instead of including them inside any component scope. We are going to import them in `main.js` via npm.
@@ -159,5 +159,39 @@ To mirror the Airship Component, we need to create a new Vue component like this
       }
     }
   }
+</script>
+```
+
+It includes all the logic management encapsulated in one component. You don't have to mimick all component's properties or events either, only the ones that you are going to use.
+
+And then, you will use that component as you would do with your other Vue components.
+
+```html
+<template>
+  <CategoryWidget
+    heading={heading}
+    description={description}
+    categories={categories} />
+</template>
+
+<script>
+import CategoryWidget from './components/CategoryWidget.vue';
+
+export default {
+  name: 'app',
+  components: {
+    CategoryWidget
+  },
+  data: function () {
+    return {
+      heading: 'Business Volume',
+      description: 'Description',
+      categories: [
+        { name: 'Category 1', value: 1000 }
+        { name: 'Category 2', value: 500 }
+      ]
+    };
+  }
+}
 </script>
 ```
