@@ -24,6 +24,30 @@
           "file": "layouts/toolbar/toolbar-right.html"
         }
       ]
+    },
+    {
+      "title": "Sidebar",
+      "samples": [{
+          "title": "Basic",
+          "file": "layouts/sidebar/sidebar.html"
+        },
+        {
+          "title": "sidebar-left",
+          "file": "layouts/sidebar/sidebar-left.html"
+        },
+        {
+          "title": "sidebar-right",
+          "file": "layouts/sidebar/sidebar-right.html"
+        },
+        {
+          "title": "sidebar-left-large",
+          "file": "layouts/sidebar/sidebar-left-l.html"
+        },
+        {
+          "title": "sidebar-right-xl",
+          "file": "layouts/sidebar/sidebar-right-xl.html"
+        }
+      ]
     }
   ]
 }
