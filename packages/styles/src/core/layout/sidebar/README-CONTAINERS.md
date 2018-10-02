@@ -57,6 +57,7 @@ showSource: true
       <!-- Put your map here -->
     </main>
     <aside class="as-sidebar as-sidebar--right as-bg--support-02">
+      <!-- element code starts here -->
       <div class="as-container">
         <section class="as-box">
           <h1 class="as-title">Container 0</h1>
@@ -66,6 +67,8 @@ showSource: true
           </p>
         </section>
       </div>
+      <!-- element code ends here -->
+      <!-- element code starts here -->
       <div class="as-container">
         <section class="as-box">
           <h1 class="as-title">Container 1</h1>
@@ -82,6 +85,7 @@ showSource: true
           </p>
         </section>
       </div>
+      <!-- element code ends here -->
     </aside>
   </div>
 </div>
@@ -108,6 +112,7 @@ The `scrollable container` will take the space left by the fixed containers. Use
           </p>
         </section>
       </div>
+      <!-- element code starts here -->
       <div class="as-container as-container--scrollable">
         <section class="as-box">
           <h1 class="as-title">Scrollable Container 1</h1>
@@ -124,6 +129,7 @@ The `scrollable container` will take the space left by the fixed containers. Use
           </p>
         </section>
       </div>
+      <!-- element code ends here -->
     </aside>
   </div>
 </div>
@@ -140,6 +146,7 @@ Use this modifier to create containers with a border separator on the bottom.
       <!-- Put your map here -->
     </main>
     <aside class="as-sidebar as-sidebar--right as-bg--support-02">
+      <!-- element code starts here -->
       <div class="as-container as-container--border">
         <section class="as-box">
           <h1 class="as-title">Border container 0</h1>
@@ -149,6 +156,8 @@ Use this modifier to create containers with a border separator on the bottom.
           </p>
         </section>
       </div>
+      <!-- element code ends here -->
+      <!-- element code starts here -->
       <div class="as-container as-container--border">
         <section class="as-box">
           <h1 class="as-title">Border container 1</h1>
@@ -158,6 +167,8 @@ Use this modifier to create containers with a border separator on the bottom.
           </p>
         </section>
       </div>
+      <!-- element code ends here -->
+      <!-- element code starts here -->
       <div class="as-container as-container--border">
         <section class="as-box">
           <h1 class="as-title">Border container 2</h1>
@@ -167,6 +178,7 @@ Use this modifier to create containers with a border separator on the bottom.
           </p>
         </section>
       </div>
+      <!-- element code ends here -->
     </aside>
   </div>
 </div>

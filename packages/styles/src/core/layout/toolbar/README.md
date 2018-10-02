@@ -76,10 +76,12 @@ Elements grouped at the beginning:
 showSource: true
 ---
 <header class="as-toolbar">
+  <!-- element code starts here -->
   <div class="as-toolbar__group">
     <a href="#" class="as-toolbar__item">Link 0</a>
     <a href="#" class="as-toolbar__item">Link 1</a>
   </div>
+  <!-- element code ends here -->
   <a href="#" class="as-toolbar__item">Link 2</a>
 </header>
 ```
@@ -91,10 +93,12 @@ showSource: true
 ---
 <header class="as-toolbar">
   <a href="#" class="as-toolbar__item">Link 0</a>
+  <!-- element code starts here -->
   <div class="as-toolbar__group">
     <a href="#" class="as-toolbar__item">Link 1</a>
     <a href="#" class="as-toolbar__item">Link 2</a>
   </div>
+  <!-- element code ends here -->
   <a href="#" class="as-toolbar__item">Link 3</a>
 </header>
 ```
@@ -106,10 +110,12 @@ showSource: true
 ---
 <header class="as-toolbar">
   <a href="#" class="as-toolbar__item">Link 0</a>
+  <!-- element code starts here -->
   <div class="as-toolbar__group">
     <a href="#" class="as-toolbar__item">Link 1</a>
     <a href="#" class="as-toolbar__item">Link 2</a>
   </div>
+  <!-- element code ends here -->
 </header>
 ```
 
@@ -128,6 +134,7 @@ showSource: true
 ---
 <header class="as-toolbar">
   <pre href="#" class="as-toolbar__item">APP NAME</pre>
+  <!-- element code starts here -->
   <nav class="as-toolbar__actions">
     <ul>
       <li>
@@ -136,8 +143,9 @@ showSource: true
       <li>
         <a href="#" class="as-toolbar__item">Link 2</a>
       </li>
-  </ul>
+    </ul>
   </nav>
+  <!-- element code ends here -->
 </header>
 ```
 #### .as-toolbar__actions--visible

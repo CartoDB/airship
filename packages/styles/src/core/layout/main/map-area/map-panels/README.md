@@ -32,8 +32,8 @@ You can combine two of the following class modifiers to specify the panel positi
   <div class="as-content">
     <main class="as-main as-bg--badge-blue">
       <div class="as-map-area">
-      <!-- CARTO.js or CARTO-VL will place the map on this div  -->
       <div id="map"></div> 
+      <!-- element code starts here -->
       <div class="as-map-panels">
         <div class="as-panel as-panel--top as-panel--left">left top panel</div>
         <div class="as-panel as-panel--top as-panel--center">center top panel</div>
@@ -45,6 +45,7 @@ You can combine two of the following class modifiers to specify the panel positi
         <div class="as-panel as-panel--bottom as-panel--center">center bottom panel</div>
         <div class="as-panel as-panel--bottom as-panel--right">right bottom panel</div>
       </div>
+      <!-- element code ends here -->
     </main>
   </div>
 </div>
@@ -60,14 +61,15 @@ This class creates a wrapper that allows to place content like widgets, text or 
   <div class="as-content">
     <main class="as-main as-bg--badge-blue">
       <div class="as-map-area">
-        <!-- CARTO.js or CARTO-VL will place the map on this div  -->
         <div id="map"></div> 
         <div class="as-map-panels">
         
           <div class="as-panel as-panel--middle as-panel--center">
+            <!-- element code starts here -->
             <div class="as-panel__element as-p--32 as-bg--support-02">
               <p class="as-body"> Center Panel </p>
             </div>
+            <!-- element code ends here -->
           </div>
         </div>
       </div>
@@ -86,7 +88,6 @@ By default panels grow horizontally. Add this class to make the panels grow vert
   <div class="as-content">
     <main class="as-main as-bg--badge-blue">
       <div class="as-map-area">
-        <!-- CARTO.js or CARTO-VL will place the map on this div  -->
         <div id="map"></div> 
         <div class="as-map-panels">
         
@@ -98,7 +99,7 @@ By default panels grow horizontally. Add this class to make the panels grow vert
               <p class="as-body"> Panel 1 </p>
             </div>
           </div>
-
+          <!-- element code starts here -->
           <div class="as-panel as-panel--vertical as-panel--middle as-panel--right">
             <div class="as-panel__element as-p--32 as-bg--support-02"> 
               <p class="as-body"> Panel 2 </p>
@@ -107,6 +108,7 @@ By default panels grow horizontally. Add this class to make the panels grow vert
               <p class="as-body"> Panel 3 </p>
             </div>
           </div>
+          <!-- element code ends here -->
         </div>
       </div>
     </main>

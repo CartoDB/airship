@@ -12,9 +12,10 @@ You can toggle the `as-map-footer--visible` class the way you prefer but we reco
   <div class="as-content">
     <main class="as-main">
       <div class="as-map-area as-bg--badge-blue">
-        <!-- CARTO.js or CARTO-VL will place the map on this div  -->
         <div id="map"></div> 
+        <!-- element code starts here -->
        <footer class="as-map-footer as-bg--badge-yellow" style="height: 100px;"></footer>
+       <!-- element code ends here -->
       </div>
     </div>
   </main>
@@ -31,9 +32,10 @@ Use this class to make the footer fill the `as-content` section in small screen 
   <div class="as-content">
     <main class="as-main">
       <div class="as-map-area as-bg--badge-blue">
-        <!-- CARTO.js or CARTO-VL will place the map on this div  -->
         <div id="map"></div> 
-       <footer class="as-map-footer as-bg--badge-yellow as-map-footer--visible" style="min-height: 100px;"></footer>
+        <!-- element code starts here -->
+        <footer class="as-map-footer as-bg--badge-yellow as-map-footer--visible" style="min-height: 100px;"></footer>
+        <!-- element code ends here -->
       </div>
     </div>
   </main>
@@ -58,8 +60,8 @@ responsive: true
   <div class="as-content">
     <main class="as-main">
       <div class="as-map-area as-bg--badge-blue">
-        <!-- CARTO.js or CARTO-VL will place the map on this div  -->
         <div id="map"></div> 
+        <!-- element code starts here -->
         <footer class="as-map-footer as-bg--badge-yellow">
           <div class="as-container as-container--border">
             <section class="as-box as-box--medium">
@@ -100,6 +102,7 @@ responsive: true
             </section>
           </div>
         </footer>
+        <!-- element code ends here -->
       </div>
     </div>
   </main>
@@ -115,8 +118,8 @@ Use this class to create sections inside the footer. By default a container will
   <div class="as-content">
     <main class="as-main">
       <div class="as-map-area as-bg--badge-blue">
-        <!-- CARTO.js or CARTO-VL will place the map on this div  -->
         <div id="map"></div> 
+        <!-- element code starts here -->
         <footer class="as-map-footer as-bg--badge-yellow">
           <div class="as-container">
             <section class="as-box as-box--medium">
@@ -131,6 +134,7 @@ Use this class to create sections inside the footer. By default a container will
             </section>
           </div>
         </footer>
+        <!-- element code ends here -->
       </div>
     </div>
   </main>
@@ -146,8 +150,8 @@ The `scrollable container` will take the space left by the fixed containers. Use
   <div class="as-content">
     <main class="as-main">
       <div class="as-map-area as-bg--badge-blue">
-        <!-- CARTO.js or CARTO-VL will place the map on this div  -->
         <div id="map"></div> 
+        <!-- element code starts here -->
         <footer class="as-map-footer as-bg--badge-yellow">
           <div class="as-container">
             <section class="as-box as-box--medium">
@@ -172,6 +176,7 @@ The `scrollable container` will take the space left by the fixed containers. Use
             </section>
           </div>
         </footer>
+        <!-- element code ends here -->
       </div>
     </div>
   </main>
@@ -185,8 +190,8 @@ The `scrollable container` will take the space left by the fixed containers. Use
   <div class="as-content">
     <main class="as-main">
       <div class="as-map-area as-bg--badge-blue">
-        <!-- CARTO.js or CARTO-VL will place the map on this div  -->
         <div id="map"></div> 
+        <!-- element code starts here -->
         <footer class="as-map-footer as-bg--badge-yellow">
           <div class="as-container as-container--border">
             <section class="as-box as-box--medium">
@@ -211,6 +216,7 @@ The `scrollable container` will take the space left by the fixed containers. Use
             </section>
           </div>
         </footer>
+        <!-- element code ends here -->
       </div>
     </div>
   </main>
@@ -237,8 +243,8 @@ Only on the `map-footer` you can specify the box-witdh with one of the following
   <div class="as-content">
     <main class="as-main">
       <div class="as-map-area as-bg--badge-blue">
-        <!-- CARTO.js or CARTO-VL will place the map on this div  -->
         <div id="map"></div> 
+        <!-- element code starts here -->
         <footer class="as-map-footer as-bg--badge-yellow">
           <div class="as-container">
             <section class="as-box as-box--xl">
@@ -265,6 +271,7 @@ Only on the `map-footer` you can specify the box-witdh with one of the following
             </section>
           </div>
         </footer>
+        <!-- element code ends here -->
       </div>
     </div>
   </main>
