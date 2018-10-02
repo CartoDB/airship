@@ -66,9 +66,30 @@
     {
       "title": "Containers",
       "samples": [{
-        "title": "Basic",
-        "file": "layouts/containers/containers.html"
-      }]
+          "title": "Basic",
+          "file": "layouts/containers/containers.html"
+        },
+        {
+          "title": "Basic2",
+          "file": "containers/containers.html"
+        },
+        {
+          "title": "Colors",
+          "file": "containers/containers-colors.html"
+        },
+        {
+          "title": "Bottom",
+          "file": "containers/containers-bottom.html"
+        },
+        {
+          "title": "Legends",
+          "file": "containers/containers-legends.html"
+        },
+        {
+          "title": "Sidebar",
+          "file": "containers/containers-sidebar.html"
+        }
+      ]
     }
   ]
 }
