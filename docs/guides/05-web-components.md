@@ -58,7 +58,10 @@ Loading and using web components is very easy, you just need to include our comp
 
 You can use Airship components with another web frameworks like Angular, React or Vue. See [https://stenciljs.com/docs/framework-integration](https://stenciljs.com/docs/framework-integration).
 
-[TODO: LINK TO AIRSHIP DEMOS]
+
+  - [Airship and Angular](/developers/airship/guides/Angular-integration)
+  - [Airship and React](/developers/airship/guides/React-integration)
+  - [Airship and Vue](/developers/airship/guides/Vue-integration)
 
 **Browser support**
 
