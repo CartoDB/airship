@@ -15,7 +15,7 @@
     "stylelint-config-standard": "^18.2.0"
   },
   "scripts": {
-    "build": "npm run build:min && npm run build:css",
+    "build": "npm run build:min && npm run build:css && node scripts/add-banner.js",
     "build:css": "node-sass src -o dist",
     "build:min": "node-sass src -o dist --output-style compressed && sh scripts/rename-css-files.sh",
     "dev": "sass --watch src:../../www/dist src:dist",
