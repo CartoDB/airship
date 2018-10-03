@@ -1,5 +1,7 @@
 ## Sidebar Containers
 
+Containers are used to wrap your content. Put them inside the layout elements to get your content good-looking.
+
 ```html
 showSource: true
 ---

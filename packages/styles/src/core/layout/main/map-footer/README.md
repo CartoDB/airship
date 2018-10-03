@@ -7,6 +7,9 @@ The map footer bar is hidden in mobile and visible in desktop size. The reason i
 You can toggle the `as-map-footer--visible` class the way you prefer but we recommend using `as-toolbar-tabs`.
 
 
+> The map-area must be a direct child of the `as-content` element at the same leve of `as-map-area`.
+
+
 ```html
 showSource: true
 ---

@@ -1,5 +1,8 @@
 Toolbar is a generic bar that can be used as a header to put your application logo and some options to navigate throughout your application. A basic toolbar toolbar is only a `<header>` with the `.as-toolbar` class:
 
+
+> A toolbar must be a direct child of the `as-app` element at the same level of `as-content`.
+
 ```html
 showSource: true
 ---

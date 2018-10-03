@@ -1,8 +1,10 @@
 ## .as-sidebar
 
-Use this class to create sidebars beside the map area. Sidebars are the area where your app content lives and should be placed inside an element with the class `as-content`. There are no restrictions regarding the contents of a sidebar.
+Use this class to create sidebars beside the map area. Sidebars are the area where your app content lives, there are no restrictions regarding the contents of a sidebar.
 
 Sidebars are hidden by default in mobile devices and only will be shown when the modifier class `as-sidebar--visible` is present.
+
+> A sidebar must be a direct child of the `as-content` element at the same level of `as-main`.
 
 
 ## Class modifiers
