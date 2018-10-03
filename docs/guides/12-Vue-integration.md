@@ -1,7 +1,7 @@
 This guide will lead you through the process of integrating Airship in [Vue](https://vuejs.org/).
 
 ## Including Styles
-Airship styles need to be globally included within our Vue application, so that we can use styles everywhere instead of including them inside any component scope. We are going to import them in `main.js` via npm.
+Airship styles need to be globally included within our Vue application, so that we can use styles everywhere instead of including them inside any component scope. We are going to import them in the application's entry point via npm.
 
 ```
 npm i @carto/airship-style
