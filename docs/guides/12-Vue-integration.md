@@ -1,4 +1,4 @@
-This guide will lead you through the process of integrating Airship in [Vue](https://vuejs.org/).
+This guide will lead you through the process of integrating Airship with [Vue](https://vuejs.org/).
 
 ## Including Styles
 Airship styles need to be globally included within our Vue application, so that we can use styles everywhere instead of including them inside any component scope. We are going to import them in the application's entry point via npm.
@@ -12,7 +12,24 @@ To import the styles, we need to include `airship.css` in the file:
 import '@carto/airship-style/dist/airship.css';
 ```
 
+If you are not using Vue CLI, you will need to include `css` webpack loader to be able to parse and include styles within your bundle as long as you haven't had them installed yet.
+
+To install CSS loader:
+```
+npm i css-loader style-loader -D
+```
+
+You will need to tell Webpack to use these loaders by changing the configuration file:
+```js
+{
+  test: /\.css$/,
+  use: [ 'style-loader', 'css-loader' ]
+}
+```
+
 ## Integrating Web Components
+On top of adding Airship styles, we need to load our components into your application. You can do it below our styles import in the main entry point of the application.
+
 First, we need to tell Vue to ignore elements starting with `as-`, which are our Airship components. We don't want Vue to raise an error everytime an Airship component is included in a template.
 
 ```js
@@ -77,7 +94,7 @@ export default {
 
 We create an easy-to-use reference to the widget so that we can reuse it in other parts of our component. Then, we listen to `categoriesSelected` event where you can put your own custom code to perform the action that you want.
 
-It will only listen once to component event and it won't create multiple unneeded event listeners by doing it in `mounted`callback`.
+It will only listen once to component event and it won't create multiple unneeded event listeners by doing it in `mounted` callback.
 
 ##### Passing complex properties to component
 The way to pass complex properties to the component is very similar to listening to events.
