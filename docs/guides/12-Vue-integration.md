@@ -40,12 +40,12 @@ Although Web Components are supported in Vue, there's one caveat when it comes t
 </as-category-widget>
 ```
 
-To pass complex properties such as Objects and Arrays or listen to component events, you need to do it via Vue element reference or create a mirror component.
+To pass complex properties such as Objects and Arrays or listen to component events, you need to do it via Vue element reference or creating a mirror component.
 
 #### Managing component with element reference
 There are some properties that we cannot pass or events that we cannot listen to in the example above, such as category property or categoriesSelected event.
 
-To get element reference, we need to set `ref` property in the component template node.
+To get the element reference, we need to set `ref` property in the component template node.
 
 ```html
 <template>
@@ -57,7 +57,7 @@ To get element reference, we need to set `ref` property in the component templat
 </template>
 ```
 
-We will find the element's reference in `refs` property in our component scope by doing that, hence will have full access to our component.
+Element's reference will be in our Vue component's `refs` property, hence we will have full access to our Airship component.
 
 ##### Listening to component events
 The best way to listen to component events is in `mounted` function in your desired component.
@@ -75,7 +75,7 @@ export default {
 }
 ```
 
-We create an easy-to-use reference to the widget so that we can reutilize it in other parts of our component. Then, we listen to `categoriesSelected` event where you can put your own custom code to perform the action that you want.
+We create an easy-to-use reference to the widget so that we can reuse it in other parts of our component. Then, we listen to `categoriesSelected` event where you can put your own custom code to perform the action that you want.
 
 It will only listen once to component event and it won't create multiple unneeded event listeners by doing it in `mounted`callback`.
 
