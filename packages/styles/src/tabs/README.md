@@ -8,8 +8,7 @@ To highlight the current tab you can use `as-tabs__item--active` class modifier.
 ## Regular Tabs
 
 ```html
----
-<iframe src="/packages/styles/src/tabs/test/tabs.html" style="width: 100%; height: 100%;">
+<iframe src="/examples/styles/tabs/tabs.html" style="width: 100%; height: 100%;">
 ```
 
 ```code
@@ -40,7 +39,7 @@ You can use the `as-tabs--xl` class modifier to create a slightly bigger tab ele
 
 ```html
 ---
-<iframe src="/packages/styles/src/tabs/test/tabs-xl.html" style="width: 100%; height: 100%;">
+<iframe src="/examples/styles/tabs/tabs-xl.html" style="width: 100%; height: 100%;">
 ```
 
 ```code
@@ -71,7 +70,7 @@ The tabs element is also ARIA compatible, using the roles `tablist` and `tabs` i
 
 ```html
 ---
-<iframe src="/packages/styles/src/tabs/test/tabs-accesible.html" style="width: 100%; height: 100%;">
+<iframe src="/examples/styles/tabs/tabs-accesible.html" style="width: 100%; height: 100%;">
 ```
 
 ```code

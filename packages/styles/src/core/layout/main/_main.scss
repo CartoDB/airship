@@ -1,0 +1,9 @@
+@import 'map-area/_map-area';
+@import 'map-footer/_map-footer';
+
+.as-main {
+  display: flex;
+  position: relative;
+  flex: 1;
+  flex-direction: column;
+}

@@ -1,5 +1,192 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`as-category-widget Rendering should format display value when formatValue prop is present 1`] = `
+<as-category-widget
+  class="hydrated"
+>
+  
+  <h2
+    class="as-category-widget__heading"
+  >
+    
+  </h2>
+  <p
+    class="as-category-widget__description as-body"
+  >
+    
+  </p>
+  <ul
+    class="as-category-widget__list"
+  >
+    <li
+      class="as-category-widget__category"
+    >
+      <p
+        class="as-category-widget__info as-body"
+      >
+        <div
+          class="as-category-widget__title"
+        >
+          Bars & Restaurants
+        </div>
+        1000€
+      </p>
+      <div
+        class="as-category-widget__bar"
+      >
+        <div
+          class="as-category-widget__bar-value"
+          style="background-color: rgb(250, 186, 218); width: 64.51612903225806%;"
+        />
+      </div>
+    </li>
+    <li
+      class="as-category-widget__category"
+    >
+      <p
+        class="as-category-widget__info as-body"
+      >
+        <div
+          class="as-category-widget__title"
+        >
+          Fashion
+        </div>
+        900€
+      </p>
+      <div
+        class="as-category-widget__bar"
+      >
+        <div
+          class="as-category-widget__bar-value"
+          style="width: 58.06451612903226%;"
+        />
+      </div>
+    </li>
+    <li
+      class="as-category-widget__category"
+    >
+      <p
+        class="as-category-widget__info as-body"
+      >
+        <div
+          class="as-category-widget__title"
+        >
+          Grocery
+        </div>
+        800€
+      </p>
+      <div
+        class="as-category-widget__bar"
+      >
+        <div
+          class="as-category-widget__bar-value"
+          style="width: 51.61290322580645%;"
+        />
+      </div>
+    </li>
+    <li
+      class="as-category-widget__category"
+    >
+      <p
+        class="as-category-widget__info as-body"
+      >
+        <div
+          class="as-category-widget__title"
+        >
+          Health
+        </div>
+        400€
+      </p>
+      <div
+        class="as-category-widget__bar"
+      >
+        <div
+          class="as-category-widget__bar-value"
+          style="width: 25.806451612903224%;"
+        />
+      </div>
+    </li>
+    <li
+      class="as-category-widget__category"
+    >
+      <p
+        class="as-category-widget__info as-body"
+      >
+        <div
+          class="as-category-widget__title"
+        >
+          Shopping mall
+        </div>
+        250€
+      </p>
+      <div
+        class="as-category-widget__bar"
+      >
+        <div
+          class="as-category-widget__bar-value"
+          style="width: 16.129032258064516%;"
+        />
+      </div>
+    </li>
+    <li
+      class="as-category-widget__category"
+    >
+      <p
+        class="as-category-widget__info as-body"
+      >
+        <div
+          class="as-category-widget__title"
+        >
+          Transportation
+        </div>
+        1550€
+      </p>
+      <div
+        class="as-category-widget__bar"
+      >
+        <div
+          class="as-category-widget__bar-value"
+          style="width: 100%;"
+        />
+      </div>
+    </li>
+    <li
+      class="as-category-widget__category"
+    >
+      <p
+        class="as-category-widget__info as-body"
+      >
+        <div
+          class="as-category-widget__title"
+        >
+          Leisure
+        </div>
+        1200€
+      </p>
+      <div
+        class="as-category-widget__bar"
+      >
+        <div
+          class="as-category-widget__bar-value"
+          style="width: 77.41935483870968%;"
+        />
+      </div>
+    </li>
+    
+  </ul>
+  <footer
+    class="as-category-widget__footer"
+  >
+    <div
+      class="as-category-widget__count as-body"
+    >
+      All selected
+    </div>
+    
+  </footer>
+</as-category-widget>
+`;
+
 exports[`as-category-widget Rendering should not render header when showHeader is false 1`] = `
 <as-category-widget
   class="hydrated"
@@ -82,7 +269,7 @@ exports[`as-category-widget Rendering should render bars according to total valu
       >
         <div
           class="as-category-widget__bar-value"
-          style="background-color: rgb(71, 219, 153); width: 14.754098360655737%;"
+          style="width: 14.754098360655737%;"
         />
       </div>
     </li>
@@ -104,7 +291,7 @@ exports[`as-category-widget Rendering should render bars according to total valu
       >
         <div
           class="as-category-widget__bar-value"
-          style="background-color: rgb(71, 219, 153); width: 13.114754098360656%;"
+          style="width: 13.114754098360656%;"
         />
       </div>
     </li>
@@ -126,7 +313,7 @@ exports[`as-category-widget Rendering should render bars according to total valu
       >
         <div
           class="as-category-widget__bar-value"
-          style="background-color: rgb(71, 219, 153); width: 6.557377049180328%;"
+          style="width: 6.557377049180328%;"
         />
       </div>
     </li>
@@ -148,7 +335,7 @@ exports[`as-category-widget Rendering should render bars according to total valu
       >
         <div
           class="as-category-widget__bar-value"
-          style="background-color: rgb(71, 219, 153); width: 4.098360655737705%;"
+          style="width: 4.098360655737705%;"
         />
       </div>
     </li>
@@ -170,7 +357,7 @@ exports[`as-category-widget Rendering should render bars according to total valu
       >
         <div
           class="as-category-widget__bar-value"
-          style="background-color: rgb(71, 219, 153); width: 25.40983606557377%;"
+          style="width: 25.40983606557377%;"
         />
       </div>
     </li>
@@ -192,7 +379,7 @@ exports[`as-category-widget Rendering should render bars according to total valu
       >
         <div
           class="as-category-widget__bar-value"
-          style="background-color: rgb(71, 219, 153); width: 19.672131147540984%;"
+          style="width: 19.672131147540984%;"
         />
       </div>
     </li>
@@ -269,7 +456,7 @@ exports[`as-category-widget Rendering should render clear button 1`] = `
       >
         <div
           class="as-category-widget__bar-value"
-          style="background-color: rgb(71, 219, 153); width: 58.06451612903226%;"
+          style="width: 58.06451612903226%;"
         />
       </div>
     </li>
@@ -291,7 +478,7 @@ exports[`as-category-widget Rendering should render clear button 1`] = `
       >
         <div
           class="as-category-widget__bar-value"
-          style="background-color: rgb(71, 219, 153); width: 51.61290322580645%;"
+          style="width: 51.61290322580645%;"
         />
       </div>
     </li>
@@ -313,7 +500,7 @@ exports[`as-category-widget Rendering should render clear button 1`] = `
       >
         <div
           class="as-category-widget__bar-value"
-          style="background-color: rgb(71, 219, 153); width: 25.806451612903224%;"
+          style="width: 25.806451612903224%;"
         />
       </div>
     </li>
@@ -335,7 +522,7 @@ exports[`as-category-widget Rendering should render clear button 1`] = `
       >
         <div
           class="as-category-widget__bar-value"
-          style="background-color: rgb(71, 219, 153); width: 16.129032258064516%;"
+          style="width: 16.129032258064516%;"
         />
       </div>
     </li>
@@ -357,7 +544,7 @@ exports[`as-category-widget Rendering should render clear button 1`] = `
       >
         <div
           class="as-category-widget__bar-value"
-          style="background-color: rgb(71, 219, 153); width: 100%;"
+          style="width: 100%;"
         />
       </div>
     </li>
@@ -379,7 +566,7 @@ exports[`as-category-widget Rendering should render clear button 1`] = `
       >
         <div
           class="as-category-widget__bar-value"
-          style="background-color: rgb(71, 219, 153); width: 77.41935483870968%;"
+          style="width: 77.41935483870968%;"
         />
       </div>
     </li>
@@ -461,7 +648,7 @@ exports[`as-category-widget Rendering should render properly 1`] = `
       >
         <div
           class="as-category-widget__bar-value"
-          style="background-color: rgb(71, 219, 153); width: 58.06451612903226%;"
+          style="width: 58.06451612903226%;"
         />
       </div>
     </li>
@@ -483,7 +670,7 @@ exports[`as-category-widget Rendering should render properly 1`] = `
       >
         <div
           class="as-category-widget__bar-value"
-          style="background-color: rgb(71, 219, 153); width: 51.61290322580645%;"
+          style="width: 51.61290322580645%;"
         />
       </div>
     </li>
@@ -505,7 +692,7 @@ exports[`as-category-widget Rendering should render properly 1`] = `
       >
         <div
           class="as-category-widget__bar-value"
-          style="background-color: rgb(71, 219, 153); width: 25.806451612903224%;"
+          style="width: 25.806451612903224%;"
         />
       </div>
     </li>
@@ -527,7 +714,7 @@ exports[`as-category-widget Rendering should render properly 1`] = `
       >
         <div
           class="as-category-widget__bar-value"
-          style="background-color: rgb(71, 219, 153); width: 16.129032258064516%;"
+          style="width: 16.129032258064516%;"
         />
       </div>
     </li>
@@ -549,7 +736,7 @@ exports[`as-category-widget Rendering should render properly 1`] = `
       >
         <div
           class="as-category-widget__bar-value"
-          style="background-color: rgb(71, 219, 153); width: 100%;"
+          style="width: 100%;"
         />
       </div>
     </li>
@@ -571,7 +758,7 @@ exports[`as-category-widget Rendering should render properly 1`] = `
       >
         <div
           class="as-category-widget__bar-value"
-          style="background-color: rgb(71, 219, 153); width: 77.41935483870968%;"
+          style="width: 77.41935483870968%;"
         />
       </div>
     </li>

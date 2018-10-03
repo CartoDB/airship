@@ -26,6 +26,7 @@
         { name: 'Shopping mall', value: 250 },
         { name: 'Transportation', value: 650 }
       ];
+      categoryWidget.formatValue = (value) => `${value}€`;
       categoryWidget.addEventListener('categoriesSelected', function(event) {
         console.log('Categories Selected', event.detail)
       });

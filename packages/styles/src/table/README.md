@@ -1,6 +1,8 @@
 ## Basic table
 
 ```html
+showSource: true
+---
 <table class="as-table">
   <thead>
     <tr>
@@ -44,6 +46,8 @@ Use the `as-table--stripped` class modifier to create a bordered table.
 
 
 ```html
+showSource: true
+---
 <table class="as-table as-table--stripped">
   <thead>
     <tr>

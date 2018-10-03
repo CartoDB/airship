@@ -3,6 +3,8 @@
 ## Default
 
 ```html
+showSource: true
+---
 <div class="as-banner">
   <div class="as-banner__icon">
     <i class="as-icon-info"></i>
@@ -14,6 +16,8 @@
 ## For notifications
 
 ```html
+showSource: true
+---
 <div class="as-banner as-bg--success as-color--type-04">
   <div class="as-banner__icon">
     <i class="as-icon-tick-circle-fill"></i>
@@ -25,6 +29,8 @@
 ## For warnings
 
 ```html
+showSource: true
+---
 <div class="as-banner as-bg--warning as-color--type-04">
   <div class="as-banner__icon">
     <i class="as-icon-alert-fill"></i>
@@ -36,6 +42,8 @@
 ## For errors
 
 ```html
+showSource: true
+---
 <div class="as-banner as-bg--error as-color--type-04">
   <div class="as-banner__icon">
     <i class="as-icon-alert-fill"></i>

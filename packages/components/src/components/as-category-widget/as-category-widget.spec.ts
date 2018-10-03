@@ -58,6 +58,14 @@ describe('as-category-widget', () => {
 
       expect(element).toMatchSnapshot();
     });
+
+    it('should format display value when formatValue prop is present', async () => {
+      element.categories = exampleCategories;
+      element.valueFormatter = (value) => `${value}€`;
+      await testWindow.flush();
+
+      expect(element).toMatchSnapshot();
+    });
   });
 
   describe('Behaviour', () => {
@@ -104,6 +112,20 @@ describe('as-category-widget', () => {
 
       expect(spy).toHaveBeenCalled();
       expect(spy.mock.calls[0][0].detail).toEqual([]);
+    });
+
+    it('should clear the selectedCategories when the category list is changed', async () => {
+      element.categories = exampleCategories;
+      element.showClearButton = true;
+      await testWindow.flush();
+
+      const categoryElement = element.querySelector('.as-category-widget__category') as HTMLLIElement;
+      categoryElement.click();
+
+      expect(element.getSelectedCategories()).toEqual([exampleCategories[0].name]);
+
+      element.categories = [{ name: 'foo', value: 10 }];
+      expect(element.getSelectedCategories()).toEqual([]);
     });
   });
 
@@ -160,6 +182,15 @@ describe('as-category-widget', () => {
       const category = { name: 'Category 1', value: 10, color: '#000' };
       categoryWidget.selectedCategories = [category.name];
 
+      categoryWidget._toggleCategory(category);
+
+      expect(categoryWidget.getSelectedCategories()).toEqual([]);
+    });
+
+    it('should not toggle category if interaction is disabled', () => {
+      categoryWidget.disableInteractivity = true;
+
+      const category = { name: 'Category 1', value: 10, color: '#000' };
       categoryWidget._toggleCategory(category);
 
       expect(categoryWidget.getSelectedCategories()).toEqual([]);

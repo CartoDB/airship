@@ -24,6 +24,7 @@ export class RangeSliderThumb extends MouseTrack {
   @Element() public element: HTMLElement;
   public railElement: HTMLElement;
   public thumbValue: HTMLElement;
+  public railBoundingClientRect: ClientRect | DOMRect;
 
   public render() {
     const thumbStyles = {
@@ -69,6 +70,8 @@ export class RangeSliderThumb extends MouseTrack {
     this.thumbValue = thumb.parentElement.querySelector('.as-range-slider__value');
     this.thumbValue.classList.add('as-range-slider__value--moving');
 
+    this.railBoundingClientRect = this.railElement.getBoundingClientRect();
+
     super.handleMouseDown({
       move: (moveEvent) => this._onMove(moveEvent),
       release: () => this._onRelease(thumb)
@@ -112,10 +115,10 @@ export class RangeSliderThumb extends MouseTrack {
     }
   }
 
-  private _onMove(event: MouseEvent) {
+  private _onMove(event: MouseEvent | TouchEvent) {
     this.setCursorTo('grabbing');
-
-    const barPercentage = (event.pageX - this.railElement.offsetLeft) * 100 / this.railElement.offsetWidth;
+    const eventX = event instanceof TouchEvent ? event.changedTouches[0].pageX : event.pageX;
+    const barPercentage = (eventX - this.railBoundingClientRect.left) * 100 / this.railElement.offsetWidth;
 
     if (barPercentage < 0 || barPercentage > 100) {
       return;
@@ -134,8 +137,7 @@ export class RangeSliderThumb extends MouseTrack {
   }
 
   private _getDisplayValue(value: number) {
-    const displayValue = Math.round(value);
-    return (this.formatValue && this.formatValue(displayValue)) || displayValue;
+    return (this.formatValue && this.formatValue(value)) || value;
   }
 
   private setCursorTo(value) {

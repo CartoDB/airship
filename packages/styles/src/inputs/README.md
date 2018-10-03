@@ -3,6 +3,8 @@
 ## Default input
 
 ```html
+showSource: true
+---
 <p>
   <span class="as-caption">Default</span>
   <input class="as-input" type="text">
@@ -22,6 +24,8 @@
 This styles will be applied to `disabled` inputs.
 
 ```html
+showSource: true
+---
 <p>
   <span class="as-caption">Default</span>
   <input class="as-input" type="text" disabled>
@@ -41,6 +45,8 @@ This styles will be applied to `disabled` inputs.
 This styles will be applied to `readonly`.
 
 ```html
+showSource: true
+---
 <p>
   <span class="as-caption">Default</span>
   <input class="as-input" type="text" readonly>
@@ -60,6 +66,8 @@ This styles will be applied to `readonly`.
 This styles will be applied to `invalid` inputs.
 
 ```html
+showSource: true
+---
 <p>
   <span class="as-caption">Default</span>
   <input class="as-input" type="text" required>

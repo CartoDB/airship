@@ -33,41 +33,6 @@ import {
 declare global {
 
   namespace StencilComponents {
-    interface AsApplicationContent {
-      'getSections': () => object[];
-      'setVisible': (sectionName: string) => void;
-    }
-  }
-
-  interface HTMLAsApplicationContentElement extends StencilComponents.AsApplicationContent, HTMLStencilElement {}
-
-  var HTMLAsApplicationContentElement: {
-    prototype: HTMLAsApplicationContentElement;
-    new (): HTMLAsApplicationContentElement;
-  };
-  interface HTMLElementTagNameMap {
-    'as-application-content': HTMLAsApplicationContentElement;
-  }
-  interface ElementTagNameMap {
-    'as-application-content': HTMLAsApplicationContentElement;
-  }
-  namespace JSX {
-    interface IntrinsicElements {
-      'as-application-content': JSXElements.AsApplicationContentAttributes;
-    }
-  }
-  namespace JSXElements {
-    export interface AsApplicationContentAttributes extends HTMLAttributes {
-      'onLoad'?: (event: CustomEvent<void>) => void;
-      'onSectionChange'?: (event: CustomEvent<object>) => void;
-    }
-  }
-}
-
-
-declare global {
-
-  namespace StencilComponents {
     interface AsCategoryWidget {
       /**
        * Array of categories to display in the widget. Each category should include a `name` and a `value`. You can also override the bar color for each category with `color`.
@@ -82,9 +47,17 @@ declare global {
        */
       'defaultBarColor': string;
       /**
+       * Default formatting function. Makes the value a readable number and converts it into a string. Useful to compose with your own formatting function.
+       */
+      'defaultFormatter': (value: number) => string;
+      /**
        * Description text of the widget
        */
       'description': string;
+      /**
+       * Disable category selection in Widget
+       */
+      'disableInteractivity': boolean;
       /**
        * Get current selected categories
        */
@@ -105,6 +78,10 @@ declare global {
        * If truthy, we'll use the sum of all categories' value to render the bar percentage. By default, we use the maximum category value to render the bar percentage.
        */
       'useTotalPercentage': boolean;
+      /**
+       * If this property receives a function, it will be used to format the numbers (eg. for adding $ or €).
+       */
+      'valueFormatter': (value: number) => string;
       /**
        * The number of visible categories without aggregation.
        */
@@ -144,6 +121,10 @@ declare global {
        */
       'description'?: string;
       /**
+       * Disable category selection in Widget
+       */
+      'disableInteractivity'?: boolean;
+      /**
        * Heading text of the widget
        */
       'heading'?: string;
@@ -164,9 +145,84 @@ declare global {
        */
       'useTotalPercentage'?: boolean;
       /**
+       * If this property receives a function, it will be used to format the numbers (eg. for adding $ or €).
+       */
+      'valueFormatter'?: (value: number) => string;
+      /**
        * The number of visible categories without aggregation.
        */
       'visibleCategories'?: number;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
+    interface AsDropdown {
+      /**
+       * Default text to show when no option is selected
+       */
+      'defaultText': string;
+      /**
+       * Get current selected option
+       */
+      'getSelectedOption': () => string;
+      /**
+       * Array of options to display in the dropdown
+       */
+      'options': object[];
+      /**
+       * Selected option to show in the dropdown
+       */
+      'selectedOption': string;
+      /**
+       * Allow the user to clear selected option
+       */
+      'showClearButton': boolean;
+    }
+  }
+
+  interface HTMLAsDropdownElement extends StencilComponents.AsDropdown, HTMLStencilElement {}
+
+  var HTMLAsDropdownElement: {
+    prototype: HTMLAsDropdownElement;
+    new (): HTMLAsDropdownElement;
+  };
+  interface HTMLElementTagNameMap {
+    'as-dropdown': HTMLAsDropdownElement;
+  }
+  interface ElementTagNameMap {
+    'as-dropdown': HTMLAsDropdownElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'as-dropdown': JSXElements.AsDropdownAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface AsDropdownAttributes extends HTMLAttributes {
+      /**
+       * Default text to show when no option is selected
+       */
+      'defaultText'?: string;
+      /**
+       * Fired when selected option changes or option is cleared
+       */
+      'onOptionChanged'?: (event: CustomEvent<string>) => void;
+      /**
+       * Array of options to display in the dropdown
+       */
+      'options'?: object[];
+      /**
+       * Selected option to show in the dropdown
+       */
+      'selectedOption'?: string;
+      /**
+       * Allow the user to clear selected option
+       */
+      'showClearButton'?: boolean;
     }
   }
 }
@@ -200,6 +256,10 @@ declare global {
        * Description of the widget to be displayed
        */
       'description': string;
+      /**
+       * Disables selection brushes and events for the widget
+       */
+      'disableInteractivity': boolean;
       /**
        * Returns the current selection
        */
@@ -266,6 +326,10 @@ declare global {
        * Description of the widget to be displayed
        */
       'description'?: string;
+      /**
+       * Disables selection brushes and events for the widget
+       */
+      'disableInteractivity'?: boolean;
       /**
        * Title of the widget to be displayed
        */
@@ -521,33 +585,33 @@ declare global {
 declare global {
 
   namespace StencilComponents {
-    interface AsToolbarItem {
-      'src': string;
-      'text': string;
+    interface AsResponsiveContent {
+      'getSections': () => object[];
+      'setVisible': (sectionName: string) => void;
     }
   }
 
-  interface HTMLAsToolbarItemElement extends StencilComponents.AsToolbarItem, HTMLStencilElement {}
+  interface HTMLAsResponsiveContentElement extends StencilComponents.AsResponsiveContent, HTMLStencilElement {}
 
-  var HTMLAsToolbarItemElement: {
-    prototype: HTMLAsToolbarItemElement;
-    new (): HTMLAsToolbarItemElement;
+  var HTMLAsResponsiveContentElement: {
+    prototype: HTMLAsResponsiveContentElement;
+    new (): HTMLAsResponsiveContentElement;
   };
   interface HTMLElementTagNameMap {
-    'as-toolbar-item': HTMLAsToolbarItemElement;
+    'as-responsive-content': HTMLAsResponsiveContentElement;
   }
   interface ElementTagNameMap {
-    'as-toolbar-item': HTMLAsToolbarItemElement;
+    'as-responsive-content': HTMLAsResponsiveContentElement;
   }
   namespace JSX {
     interface IntrinsicElements {
-      'as-toolbar-item': JSXElements.AsToolbarItemAttributes;
+      'as-responsive-content': JSXElements.AsResponsiveContentAttributes;
     }
   }
   namespace JSXElements {
-    export interface AsToolbarItemAttributes extends HTMLAttributes {
-      'src'?: string;
-      'text'?: string;
+    export interface AsResponsiveContentAttributes extends HTMLAttributes {
+      'onReady'?: (event: CustomEvent<void>) => void;
+      'onSectionChange'?: (event: CustomEvent<object>) => void;
     }
   }
 }
@@ -556,31 +620,65 @@ declare global {
 declare global {
 
   namespace StencilComponents {
-    interface AsToolbar {
-
+    interface AsSwitch {
+      /**
+       * Boolean flag to control if the input is checked or not
+       */
+      'checked': boolean;
+      /**
+       * Boolean flag to control when the switch is disabled or not
+       */
+      'disabled': boolean;
+      /**
+       * Input label
+       */
+      'label': string;
+      /**
+       * The input name
+       */
+      'name': string;
     }
   }
 
-  interface HTMLAsToolbarElement extends StencilComponents.AsToolbar, HTMLStencilElement {}
+  interface HTMLAsSwitchElement extends StencilComponents.AsSwitch, HTMLStencilElement {}
 
-  var HTMLAsToolbarElement: {
-    prototype: HTMLAsToolbarElement;
-    new (): HTMLAsToolbarElement;
+  var HTMLAsSwitchElement: {
+    prototype: HTMLAsSwitchElement;
+    new (): HTMLAsSwitchElement;
   };
   interface HTMLElementTagNameMap {
-    'as-toolbar': HTMLAsToolbarElement;
+    'as-switch': HTMLAsSwitchElement;
   }
   interface ElementTagNameMap {
-    'as-toolbar': HTMLAsToolbarElement;
+    'as-switch': HTMLAsSwitchElement;
   }
   namespace JSX {
     interface IntrinsicElements {
-      'as-toolbar': JSXElements.AsToolbarAttributes;
+      'as-switch': JSXElements.AsSwitchAttributes;
     }
   }
   namespace JSXElements {
-    export interface AsToolbarAttributes extends HTMLAttributes {
-
+    export interface AsSwitchAttributes extends HTMLAttributes {
+      /**
+       * Boolean flag to control if the input is checked or not
+       */
+      'checked'?: boolean;
+      /**
+       * Boolean flag to control when the switch is disabled or not
+       */
+      'disabled'?: boolean;
+      /**
+       * Input label
+       */
+      'label'?: string;
+      /**
+       * The input name
+       */
+      'name'?: string;
+      /**
+       * Event triggered by a enabled Switch component when the user clicks on it.
+       */
+      'onChange'?: (event: CustomEvent) => void;
     }
   }
 }

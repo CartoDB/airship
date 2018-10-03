@@ -1,3 +1,26 @@
+## Using colors
+
+Airship brings a series of [utilities and colors](../reference/#/styles/utilities) included by default.
+
+### .as-color--*
+
+You can use `as-color--*` utility classes to modify text colors.
+
+```html
+<p class="as-body as-color--primary"></p>
+```
+
+### .as-bg--*
+
+You can use `as-bg--*` utility classes to modify element's background color.
+
+```html
+<p class="as-body as-bg--primary"></p>
+```
+
+## Color list
+
+
 ### Brand Colors
 
 ```color

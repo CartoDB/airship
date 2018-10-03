@@ -1,4 +1,4 @@
-import { Component, Event, EventEmitter, Method, Prop, State, Watch } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, Method, Prop, State, Watch } from '@stencil/core';
 import { max } from 'd3-array';
 import { Axis, axisBottom, axisLeft } from 'd3-axis';
 import { BrushBehavior, brushX } from 'd3-brush';
@@ -15,16 +15,16 @@ import readableNumber from '../../utils/readable-number';
 import { shadeOrBlend } from '../../utils/styles';
 
 const CUSTOM_HANDLE_SIZE = 15;
-const DEFAULT_BAR_COLOR = '#1785FB';
-const DEFAULT_SELECTED_BAR_COLOR = '#47DB99';
-const WIDTH = 205;
+const DEFAULT_BAR_COLOR = 'var(--as-color-primary, #1785FB)';
+const DEFAULT_SELECTED_BAR_COLOR = 'var(--as-color-complementary, #47DB99)';
 const HEIGHT = 125;
 const BARS_SEPARATION = 1;
 const MARGIN = {
   BOTTOM: 15,
-  LEFT: 35,
+  LEFT: 30,
   RIGHT: 3,
-  TOP: 15,
+  TOP: 5,
+  YAxis: 20
 };
 const CUSTOM_HANDLE_Y_COORD = HEIGHT + MARGIN.TOP - (CUSTOM_HANDLE_SIZE / 2);
 
@@ -73,6 +73,14 @@ export class HistogramWidget {
   @Prop() public showClear: boolean;
 
   /**
+   * Disables selection brushes and events for the widget
+   *
+   * @type {boolean}
+   * @memberof HistogramWidget
+   */
+  @Prop() public disableInteractivity: boolean = false;
+
+  /**
    * Histogram data to be displayed
    *
    * @type {HistogramData[]}
@@ -112,6 +120,8 @@ export class HistogramWidget {
    */
   @Prop() public tooltipFormatter: (value: HistogramData) => string = this.defaultFormatter;
 
+  @Element() private el: HTMLElement;
+
   /**
    * Fired when user update or clear the widget selection.
    *
@@ -140,6 +150,8 @@ export class HistogramWidget {
   private customHandlers: Selection<BaseType, { type: string }, BaseType, {}>;
   private bottomLine: Selection<BaseType, {}, BaseType, {}>;
   private selection: number[] = null;
+
+  private chartWidth: number;
 
   /**
    * Default formatting function. Makes the value a readable number and
@@ -217,13 +229,20 @@ export class HistogramWidget {
   }
 
   public render() {
+    this.chartWidth = this.el.offsetWidth - MARGIN.YAxis;
+
+    const histogramClasses = {
+      'as-histogram-widget__wrapper': true,
+      'as-histogram-widget__wrapper--disabled': this.disableInteractivity
+    };
+
     return [
       this._renderHeader(),
-      <div class='as-histogram-widget__wrapper'>
+      <div class={histogramClasses}>
         {this._renderTooltip()}
-        <svg ref={(ref: HTMLElement) => this.container = select(ref)} viewBox='0 0 248 160'></svg>
+        <svg ref={(ref: HTMLElement) => this.container = select(ref)}></svg>
       </div>,
-      this._renderClearBtn(),
+      this.showClear && !this.disableInteractivity ? this._renderClearBtn() : '',
     ];
   }
 
@@ -237,16 +256,39 @@ export class HistogramWidget {
 
     this.brush = brushX()
       .handleSize(BARS_SEPARATION + 4)
-      .extent([[MARGIN.LEFT, MARGIN.TOP], [WIDTH + MARGIN.LEFT, HEIGHT + MARGIN.TOP]])
+      .extent([[MARGIN.LEFT, MARGIN.TOP], [this.chartWidth + MARGIN.LEFT, HEIGHT + MARGIN.TOP]])
       .on('brush', this._onBrush.bind(this))
       .on('end', this._onBrushEnd.bind(this));
 
-    this.brushArea = this.container
-      .append('g')
-      .attr('class', 'brush')
-      .call(this.brush);
+    if (!this.disableInteractivity) {
+      this.brushArea = this.container
+        .append('g')
+        .attr('class', 'brush')
+        .call(this.brush);
 
-    this.brushArea.on('mousemove', () => {
+      this.customHandlers = this.brushArea.selectAll('.handle--custom')
+        .data([{type: 'w'}, {type: 'e'}])
+        .enter().append('rect')
+          .style('opacity', 0)
+          .attr('class', 'handle--custom')
+          .attr('fill', this.selectedColor)
+          .attr('cursor', 'ew-resize')
+          .attr('width', CUSTOM_HANDLE_SIZE)
+          .attr('height', CUSTOM_HANDLE_SIZE)
+          .attr('rx', '100')
+          .attr('ry', '100');
+
+      this.bottomLine = this.brushArea.append('line')
+        .attr('class', 'bottomline')
+        .attr('stroke', this.selectedColor)
+        .attr('stroke-width', 4)
+        .attr('y1', HEIGHT + MARGIN.TOP)
+        .attr('y2', HEIGHT + MARGIN.TOP)
+        .style('opacity', 0)
+        .attr('pointer-events', 'none');
+    }
+
+    this.container.on('mousemove', () => {
       const evt = d3event as MouseEvent;
       const { clientX, clientY } = evt;
       let anyHovered = false;
@@ -263,7 +305,9 @@ export class HistogramWidget {
             clientY <= bb.bottom;
 
           if (isInsideBB) {
-            nodeSelection.style('fill', shadeOrBlend(-0.16, selected ? this.selectedColor : this.color));
+            let color = selected ? this._toColor(this.selectedColor) : this._toColor(this.color);
+            color = shadeOrBlend(-0.16, color);
+            nodeSelection.style('fill', color);
             this.tooltip = this.tooltipFormatter(data);
             this._showTooltip(evt);
             anyHovered = true;
@@ -281,27 +325,6 @@ export class HistogramWidget {
       this.barsContainer.selectAll('rect')
         .style('fill', (data: HistogramData) => this._isSelected(data) ? this.selectedColor : this.color);
     });
-
-    this.customHandlers = this.brushArea.selectAll('.handle--custom')
-      .data([{type: 'w'}, {type: 'e'}])
-      .enter().append('rect')
-        .style('opacity', 0)
-        .attr('class', 'handle--custom')
-        .attr('fill', this.selectedColor)
-        .attr('cursor', 'ew-resize')
-        .attr('width', CUSTOM_HANDLE_SIZE)
-        .attr('height', CUSTOM_HANDLE_SIZE)
-        .attr('rx', '100')
-        .attr('ry', '100');
-
-    this.bottomLine = this.brushArea.append('line')
-        .attr('class', 'bottomline')
-        .attr('stroke', this.selectedColor)
-        .attr('stroke-width', 4)
-        .attr('y1', HEIGHT + MARGIN.TOP)
-        .attr('y2', HEIGHT + MARGIN.TOP)
-        .style('opacity', 0)
-        .attr('pointer-events', 'none');
 
     this._renderBars();
     this._cleanAxes();
@@ -327,9 +350,9 @@ export class HistogramWidget {
 
     for (const iterator of this.data) {
       const breakPoint = iterator.start + Math.floor((iterator.end - iterator.start) / 2);
-      if (value >= iterator.start && value < breakPoint) {
+      if (value >= iterator.start && value <= breakPoint) {
         return iterator.start;
-      } else if (value >= breakPoint && value < iterator.end) {
+      } else if (value > breakPoint && value < iterator.end) {
         return iterator.end;
       }
     }
@@ -341,6 +364,10 @@ export class HistogramWidget {
   }
 
   private _onBrush() {
+    if (this.disableInteractivity) {
+      return;
+    }
+
     const evt = d3event as any; // I can't cast this properly :(
 
     if (evt.selection === null) {
@@ -361,10 +388,18 @@ export class HistogramWidget {
   }
 
   private _onBrushEnd() {
+    if (this.disableInteractivity) {
+      return;
+    }
+
     this.selectionChanged.emit(this.selection);
   }
 
   private _setSelection(selection: number[]) {
+    if (this.disableInteractivity) {
+      return;
+    }
+
     const adjustedSelection = this._adjustSelection(selection);
 
     if (adjustedSelection !== null && (adjustedSelection[0] === adjustedSelection[1])) {
@@ -423,6 +458,7 @@ export class HistogramWidget {
 
   private _renderYAxis() {
     const data = this.data;
+    const barsWidth = this.chartWidth - MARGIN.YAxis;
 
     // -- Y Axis
     this.yScale = scaleLinear()
@@ -431,7 +467,7 @@ export class HistogramWidget {
       .nice();
 
     this.yAxis = axisLeft(this.yScale)
-      .tickSize(-WIDTH)
+      .tickSize(-barsWidth)
       .ticks(5)
       .tickPadding(10)
       .tickFormat(format('.2~s'));
@@ -445,30 +481,31 @@ export class HistogramWidget {
 
   private _renderXAxis() {
     const data = this.data;
+    const barsWidth = this.chartWidth - MARGIN.YAxis;
 
     const { start } = data.length > 0 ? data[0] : { start: 0 };
     const { end } = data.length > 0 ? data[data.length - 1] : { end: 0 };
 
     this.xScale = scaleLinear()
       .domain([start, end])
-      .range([0, WIDTH]);
+      .range([0, barsWidth]);
 
     this.xAxis = axisBottom(this.xScale)
-      .tickSize(-WIDTH)
+      .tickSize(-barsWidth)
       .ticks(3)
       .tickPadding(10);
 
     this.xAxisSelection = this.container
       .append('g')
       .attr('class', 'xAxis')
-      .attr('transform', `translate(${MARGIN.LEFT}, ${HEIGHT + MARGIN.BOTTOM})`)
+      .attr('transform', `translate(${MARGIN.LEFT}, ${HEIGHT + MARGIN.TOP})`)
       .call(this.xAxis);
   }
 
   private _renderBars() {
     const data = this.data;
-    const barWidth = data.length === 0 ? WIDTH : WIDTH / data.length;
-
+    const barsWidth = this.chartWidth - MARGIN.YAxis;
+    const barWidth = data.length === 0 ? barsWidth : barsWidth / data.length;
     // -- Draw bars
     this.bars = this.barsContainer
       .selectAll('rect')
@@ -595,16 +632,21 @@ export class HistogramWidget {
   }
 
   private _renderClearBtn() {
-    if (!this.showClear) {
-      return;
-    }
-
     return (
       <button
-        class='as-btn as-btn--primary as-btn--s as-category-widget__clear'
+        class='as-btn as-btn--primary as-btn--s as-histogram-widget__clear'
         onClick={() => this._setSelection(null) }>Clear selection
       </button>
     );
+  }
+
+  // If the parameter is a css variable will be evaluated to a color
+  private _toColor(color) {
+    if (color.startsWith('var(')) {
+      color = color.match(/--\S[^\|,)]*/)[0];
+      return getComputedStyle(this.el).getPropertyValue(color).toLowerCase().trim();
+    }
+    return color;
   }
 }
 

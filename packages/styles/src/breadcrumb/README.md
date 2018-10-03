@@ -3,6 +3,8 @@
 A breadcrumb is used to show hierarchy between content.
 
 ```html
+showSource: true
+---
 <ul class="as-breadcrumb">
   <li class="as-breadcrumb__item">
     <a href="#">Home</a>

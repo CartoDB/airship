@@ -1,5 +1,5 @@
 
-# Installing Airship
+## Installing Airship
 
 You can install airship-style using `npm` or downloading it from a `CDN`. 
 
@@ -9,18 +9,18 @@ Airship is composed of 3 packages that can be used independently:
   - **airship-icons**: High quality icons set availiable as svg or web-font.
   - **airship-components**: Web components for Location Intelligence apps.
 
-## Usage from a CDN
+### Usage from a CDN
 
 The simplest way to use Airship is to load it from CARTO CDN by including the following snippet in the head of your web application.
 
 ```html
 <head>
   <!-- Include CSS  -->
-  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-styles/<VERSION>/airship.css">
+  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-style/%AS-VERSION%/airship.css">
   <!-- Include Icons -->
-  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-icons/<VERSION>/icons.css">
+  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-icons/%AS-VERSION%/icons.css">
   <!-- Include Web Components -->
-  <script src="https://libs.cartocdn.com/airship-components/<VERSION>/airship.js"></script>
+  <script src="https://libs.cartocdn.com/airship-components/%AS-VERSION%/airship.js"></script>
 <head>
 ```
 
@@ -33,20 +33,20 @@ While Airship will automatically inject necessary components as soon as they are
 ```html
 <head>
   <!-- Always Include core first -->
-  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-styles/dist/core/core.css">
+  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-style/dist/core/core.css">
   <!-- Include the elements used by your app -->
-  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-styles/dist/button/button.css">
-  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-styles/dist/table/table.css">
-  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-styles/dist/tabs/tabs.css">
+  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-style/dist/button/button.css">
+  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-style/dist/table/table.css">
+  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-style/dist/tabs/tabs.css">
   <!-- (optional) Include utils at the end -->
-  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-styles/dist/utilities/utilities.css">
+  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-style/dist/utilities/utilities.css">
 <head>
 ```
 
 
-## Usage from NPM
+### Usage from NPM
 
-### Styles and fonts
+**Styles and fonts**
 
 Just install our packages and use it as you wish. We recommend to use [webpack loaders](https://github.com/webpack-contrib/css-loader) to inject the styles in your app.
 
@@ -62,11 +62,11 @@ import '@carto/airship-styles';
 
 ```js
 // Import only core styles and tables
-import '@carto/airship-styles/dist/core/core.css';
-import '@carto/airship-styles/dist/table/table.css';
+import '@carto/airship-style/dist/core/core.css';
+import '@carto/airship-style/dist/table/table.css';
 ```
 
-### Web components
+**Web components**
 
     npm i @carto/airship-components
 
@@ -79,10 +79,10 @@ import { defineCustomElements } from '@carto/airship-components';
 defineCustomElements(window);
 ```
 
-# Using Airship
+## Using Airship
 Using Airship once included in your webpage is very straightforward. 
 
-## Airship Styles
+### Airship Styles
 
 To use Airship styles, you only need to add CSS classes to your HTML.
 
@@ -111,10 +111,10 @@ The following classes are part of a tabs element:
   </div>
 ```
 
-## Airship Icons
+### Airship Icons
 You can use Airship icons in two different ways.
 
-### As web font
+**As web font**
 
 To display an icon only a class and an `i` tag is required.
 
@@ -123,7 +123,7 @@ To display an icon only a class and an `i` tag is required.
 ```
 
 
-### As SVG
+**As SVG**
 
 > There is no need to include the `icons.css` file when using the icons this way.
 
@@ -131,10 +131,10 @@ To display an icon only a class and an `i` tag is required.
 Just include the icons from a CDN as regular SVG images. 
 
 ```html
-<img src="https://libs.cartocdn.com/airship-icons/<VERSION>/icons/twitter.svg" alt="Twitter logo">
+<img src="https://libs.cartocdn.com/airship-icons/%AS-VERSION%/icons/twitter.svg" alt="Twitter logo">
 ```
 
-## Web componenets
+### Web components
 
 Web components should be treated as regular HTML Elements. 
 
@@ -153,38 +153,57 @@ For example a range slider
 ```
 
 
-# Basic template
+### Basic template
 
 ```html
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title> Airship app</title>
-  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-styles/<VERSION>/airship.css">
-  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-icons/<VERSION>/icons.css">
-  <script src="https://libs.cartocdn.com/airship-components/<VERSION>/airship.js"></script>
-
-  <style>
-    #map {
-      z-index: 0;
-      width: 100%;
-      height: 100%;
-    }
-
-  </style>
+  <!-- Include CSS elements -->
+  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-style/%AS-VERSION%/airship.css">
+  <!-- Include icons -->
+  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-icons/%AS-VERSION%/icons.css">
+  <!-- Include airship components -->
+  <script src="https://libs.cartocdn.com/airship-components/%AS-VERSION%/airship.js"></script>
 </head>
-
 <body class="as-app">
-  <main class="as-app-content">
-    <div class="as-map-wrapper">
-      <div id="map"></div>
-    </div>
-  </main>
-</body>
 
+  <header class="as-toolbar"></header>
+  <nav class="as-tabs"></nav>
+
+  <div class="as-content">
+    <aside class="as-sidebar as-sidebar--left"></aside>
+
+    <main class="as-main">
+      <div class="as-map-area">
+        <div id="map"></div>
+
+        <div class="as-map-panels">
+          <div class="as-panel as-panel--top as-panel--right">
+            <div class="as-panel__element as-p--32 as-bg--support-02"></div>
+          </div>
+        </div>
+
+      </div>
+      <footer class="as-map-footer as-bg--complementary" style="height: 100px;"></footer>
+    </main>
+
+    <aside class="as-sidebar as-sidebar--right"></aside>
+  </div>
+
+  <!-- Basic CARTO-VL MAP -->
+  <script>
+    const map = new mapboxgl.Map({
+      container: 'map',
+      style: 'https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json',
+      center: [0, 30],
+      zoom: 2,
+      scrollZoom: false,
+      dragRotate: false,
+      touchZoomRotate: false
+    });
+
+  </script>
+</body>
 </html>
 ```

@@ -1,6 +1,6 @@
 {
   "name": "@carto/airship-icons",
-  "version": "1.0.0-alpha.41",
+  "version": "1.0.0-alpha.45",
   "description": "CARTO Airship icons",
   "files": [
     "dist/"

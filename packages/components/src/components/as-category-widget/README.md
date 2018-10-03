@@ -79,6 +79,33 @@ lang: javascript
 categoryWidget.description = 'Description';
 ```
 
+#### **disableInteractivity**: boolean = false
+Disable category selection in Widget
+
+```code
+lang: html
+---
+<as-category-widget disable-interactivity></as-category-widget>
+```
+```code
+lang: javascript
+---
+categoryWidget.disableInteractivity = true;
+```
+
+#### **valueFormatter**: function
+Function that receives one of the **categories**' property value and returns a string that will be used for category value rendering.
+
+By default, it returns the _value_ field formatted sensibly.
+
+The default implementation is the method _defaultFormatter_, so you can use it to keep the original behaviour and add something extra.
+
+```code
+lang: javascript
+---
+categoryWidget.valueFormatter = value => `${categoryWidget.defaultFormatter(value)}€`;
+```
+
 #### **heading**: string
 Heading text of the widget
 
@@ -97,6 +124,12 @@ categoryWidget.heading = 'Business Volume';
 If truthy, it'll show a button to clear selected categories when there are any. Default value is `false`.
 
 ```code
+lang: html
+---
+<as-category-widget show-clear-button="true"></as-category-widget>
+```
+
+```code
 lang: javascript
 ---
 categoryWidget.showClearButton = true;
@@ -104,6 +137,12 @@ categoryWidget.showClearButton = true;
 
 #### **showHeader**: boolean = true
 If truthy, it'll render the heading and the component's description. Default value is `true`.
+
+```code
+lang: html
+---
+<as-category-widget show-header="true"></as-category-widget>
+```
 
 ```code
 lang: javascript
@@ -116,6 +155,12 @@ If truthy, we'll use the sum of all categories' value to render the bar percenta
 By default, we use the maximum category value to render the bar percentage.
 
 ```code
+lang: html
+---
+<as-category-widget use-total-percentage="true"></as-category-widget>
+```
+
+```code
 lang: javascript
 ---
 categoryWidget.useTotalPercentage = true;
@@ -123,6 +168,12 @@ categoryWidget.useTotalPercentage = true;
 
 #### **visibleCategories**: number = Infinity
 The number of visible categories without aggregation.
+
+```code
+lang: html
+---
+<as-category-widget visible-categories="5"></as-category-widget>
+```
 
 ```code
 lang: javascript
@@ -133,7 +184,7 @@ categoryWidget.visibleCategories = 5;
 ### Styles
 There are some CSS Variables that you can override to change visual styles.
 
-#### **--category-widget--description--color**
+#### **\--category-widget\--description\--color**
 Default: $color-type-02 (`#1785FB`)
 
 ```code
@@ -142,7 +193,7 @@ lang: javascript
 document.body.style.setProperty('--category-widget--description--color', '#1785FB')
 ```
 
-#### **--category-widget--bar--height**
+#### **\--category-widget\--bar\--height**
 Default: `4px`
 
 ```code
@@ -151,7 +202,7 @@ lang: javascript
 document.body.style.setProperty('--category-widget--bar--height', '8px')
 ```
 
-#### **--category-widget--background-color**
+#### **\--category-widget\--background-color**
 Default: $color-ui-10 (`#FFF`)
 
 ```code
@@ -160,7 +211,7 @@ lang: javascript
 document.body.style.setProperty('--category-widget--background-color', '#F5F5F5')
 ```
 
-#### **--category-bar--background-color**
+#### **\--category-bar\--background-color**
 Default: $color-ui-20 (`#F5F5F5`)
 
 ```code
@@ -265,6 +316,39 @@ showSource: false
   categoryWidget.visibleCategories = 5;
   categoryWidget.categories = [
     { name: 'Bars & Restaurants', value: 1000, color: '#FABADA' },
+    { name: 'Fashion', value: 900 },
+    { name: 'Grocery', value: 800 },
+    { name: 'Health', value: 400 },
+    { name: 'Shopping mall', value: 250 },
+    { name: 'Transportation', value: 1000 },
+    { name: 'Leisure', value: 760 }
+  ];
+</script>
+```
+
+#### Interaction disabled widget
+```html
+noSource: true
+---
+<iframe src="/examples/components/as-category-widget/interaction-disabled.html" style="width: 100%; height: 325px;">
+```
+
+```code
+lang: html
+showSource: false
+---
+<!-- Example widget with interaction disabled -->
+<as-category-widget
+  class="as-p--16"
+  heading="Business Volume"
+  description="Description"
+  visible-categories="5"
+  disable-interactivity></as-category-widget>
+
+<script>
+  var categoryWidget = document.querySelector('as-category-widget');
+  categoryWidget.categories = [
+    { name: 'Bars & Restaurants', value: 1000 },
     { name: 'Fashion', value: 900 },
     { name: 'Grocery', value: 800 },
     { name: 'Health', value: 400 },

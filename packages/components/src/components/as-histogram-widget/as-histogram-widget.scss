@@ -3,6 +3,7 @@
 
 as-histogram-widget {
   display: block;
+  width: 100%;
   background: var(--histogram-widget--background-color, $color-ui-01);
 
   .as-histogram-widget__header {
@@ -11,11 +12,16 @@ as-histogram-widget {
   }
 
   .as-histogram-widget__description {
-    color: var(--description--color, $color-type-02);
+    margin-bottom: get-spacing(4);
+    color: var(--histogram-widget--description-color, $color-type-02);
   }
 
   .as-histogram-widget__wrapper {
     position: relative;
+  }
+
+  .as-histogram-widget__clear {
+    margin-top: get-spacing(2);
   }
 
   .as-histogram-widget__tooltip {
@@ -30,6 +36,7 @@ as-histogram-widget {
 
   svg {
     display: block;
+    width: 100%;
     overflow: visible;
 
     .brush {
@@ -59,7 +66,13 @@ as-histogram-widget {
     }
 
     text {
-      fill: $color-ui-04;
+      fill: $color-type-01;
+    }
+  }
+
+  .as-histogram-widget__wrapper--disabled {
+    svg .bar {
+      cursor: inherit;
     }
   }
 }

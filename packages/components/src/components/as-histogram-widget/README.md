@@ -87,6 +87,20 @@ lang: javascript
 histogramWidget.description = 'Description';
 ```
 
+#### **disableInteractivity**: boolean = false
+Disables selection brushes and events for the widget
+
+```code
+lang: html
+---
+<as-histogram-widget disable-interactivity></as-histogram-widget>
+```
+```code
+lang: javascript
+---
+histogramWidget.disableInteractivity = true;
+```
+
 #### **heading**: string
 Heading text of the widget
 
@@ -142,47 +156,29 @@ The default implementation is the method _defaultFormatter_, so you can use it t
 lang: javascript
 ---
 histogramWidget.tooltipFormatter = function (data) {
-  return histogramWidget.defaultFormatter + ' schmeckles';
+  return histogramWidget.defaultFormatter(data) + ' schmeckles';
 };
 ```
 
 ### Styles
 There are some CSS Variables that you can override to change visual styles.
 
-#### **--category-widget--description--color**
+#### **\--histogram-widget\--description-color**
 Default: $color-type-02 (`#1785FB`)
 
 ```code
 lang: javascript
 ---
-document.body.style.setProperty('--category-widget--description--color', '#1785FB')
+document.body.style.setProperty('--histogram-widget--description-color', '#1785FB')
 ```
 
-#### **--category-widget--bar--height**
-Default: `4px`
+#### **\--histogram-widget\--background-color**
+Default: $color-ui-01 (`#FFF`)
 
 ```code
 lang: javascript
 ---
-document.body.style.setProperty('--category-widget--bar--height', '8px')
-```
-
-#### **--category-widget--background-color**
-Default: $color-ui-10 (`#FFF`)
-
-```code
-lang: javascript
----
-document.body.style.setProperty('--category-widget--background-color', '#F5F5F5')
-```
-
-#### **--category-bar--background-color**
-Default: $color-ui-20 (`#F5F5F5`)
-
-```code
-lang: javascript
----
-document.body.style.setProperty('--category-bar--background-color', '#E2E6E3')
+document.body.style.setProperty('--histogram-widget--background-color', '#F5F5F5')
 ```
 
 ### Events
@@ -275,5 +271,36 @@ showSource: false
       selectionEl.innerText = 'Selected from ' + e.detail[0] + ' to ' + e.detail[1];
     }
   });
+</script>
+```
+
+#### Histogram with disabled interactivity
+
+```html
+noSource: true
+---
+<iframe src="/examples/components/as-histogram-widget/interaction-disabled.html" style="width: 100%; height: 300px;">
+```
+
+```code
+lang: html
+showSource: false
+---
+<as-histogram-widget
+  heading="Title"
+  description="Description"
+  show-header
+  show-clear>
+</as-histogram-widget>
+
+<script>
+  var histogramWidget = document.querySelector('as-histogram-widget');
+  histogramWidget.data = [
+    { start: 0, end: 10, value: 5 },
+    { start: 10, end: 20, value: 10 },
+    { start: 20, end: 30, value: 15 },
+    { start: 30, end: 40, value: 20 },
+    { start: 40, end: 50, value: 30 },
+  ];
 </script>
 ```

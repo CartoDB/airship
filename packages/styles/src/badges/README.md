@@ -5,6 +5,8 @@ Badges are useful for creating labels and tags. They are commonly used also for 
 ## Default
 
 ```html
+showSource: true
+---
 <span class="as-badge"> Basic badge</span>
 ```
 
@@ -20,6 +22,8 @@ You need to add a background color modifier to change the badge color. There are
 You can also use any other background utility class, like `as-bg--warning`.
 
 ```html
+showSource: true
+---
 <span class="as-badge as-bg--badge-gray"> Gray badge</span>
 <span class="as-badge as-bg--badge-blue"> Blue badge</span>
 <span class="as-badge as-bg--badge-pink"> Pink badge</span>
@@ -32,6 +36,8 @@ You can also use any other background utility class, like `as-bg--warning`.
 If you need contrast between the badge background color and the text color, use a type utility class to use a specific color.
 
 ```html
+showSource: true
+---
 <span class="as-badge as-bg--success as-color--type-04">Success badge</span>
 <span class="as-badge as-bg--error as-color--type-04">Error badge</span>
 <span class="as-badge as-bg--primary as-color--type-04">Primary badge</span>
@@ -49,6 +55,8 @@ If you need a broader selection of background colors for your badges, you can ad
 Then, use that class as you do with the ones that come with Airship.
 
 ```html
+showSource: true
+---
 <style>
   .as-bg--badge-magenta {
     background-color: #C05591;
@@ -65,6 +73,8 @@ Badges can be also used along with icons:
 - Enclose the text content into a `p` tag.
 
 ```html
+showSource: true
+---
 <span class="as-badge as-bg--warning as-color--type-04"><i class="as-icon-alert"></i><p>Warning</p></span>
 <span class="as-badge as-bg--success as-color--type-04"><p>Everything OK</p><i class="as-icon-info"></i></span>
 ```

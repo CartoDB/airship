@@ -1,11 +1,9 @@
-import { Component, Event, EventEmitter, Method, Prop, State } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, Method, Prop, State, Watch } from '@stencil/core';
 import readableNumber from '../../utils/readable-number';
 import { shadeOrBlend } from '../../utils/styles';
 
 const OTHER_CATEGORY_COLOR = '#747474';
 const OTHER_CATEGORY_NAME = 'Other';
-const DEFAULT_BAR_COLOR = '#47DB99';
-
 
 /**
  * Category Widget
@@ -35,7 +33,7 @@ export class CategoryWidget {
    * @type {string}
    * @memberof CategoryWidget
    */
-  @Prop() public defaultBarColor: string = DEFAULT_BAR_COLOR;
+  @Prop() public defaultBarColor: string;
 
   /**
    * Description text of the widget
@@ -45,6 +43,21 @@ export class CategoryWidget {
    */
   @Prop() public description: string;
 
+  /**
+   * Disable category selection in Widget
+   *
+   * @type {string}
+   * @memberof CategoryWidget
+   */
+  @Prop() public disableInteractivity: boolean = false;
+
+  /**
+   * If this property receives a function, it will be used to format the numbers (eg. for adding $ or €).
+   *
+   * @type {function (value: number)}
+   * @memberof RangeSlider
+   */
+  @Prop() public valueFormatter: (value: number) => string = this.defaultFormatter;
 
   /**
    * Heading text of the widget
@@ -53,7 +66,6 @@ export class CategoryWidget {
    * @memberof CategoryWidget
    */
   @Prop() public heading: string;
-
 
   /**
    * If truthy, it'll show a button to clear selected categories when there are any. Default value is `false`.
@@ -71,7 +83,6 @@ export class CategoryWidget {
    */
   @Prop() public showHeader: boolean = true;
 
-
   /**
    * If truthy, we'll use the sum of all categories' value to render the bar percentage.
    * By default, we use the maximum category value to render the bar percentage.
@@ -80,7 +91,6 @@ export class CategoryWidget {
    * @memberof CategoryWidget
    */
   @Prop() public useTotalPercentage: boolean = false;
-
 
   /**
    * The number of visible categories without aggregation.
@@ -101,6 +111,20 @@ export class CategoryWidget {
 
   @State() private selectedCategories: string[] = [];
 
+  @Element() private el: HTMLElement;
+
+  /**
+   * Default formatting function. Makes the value a readable number and
+   * converts it into a string. Useful to compose with your own formatting
+   * function.
+   *
+   * @memberof CategoryWidget
+   */
+  @Method()
+  public defaultFormatter(value: number) {
+    return `${readableNumber(value)}`;
+  }
+
   /**
    * Get current selected categories
    *
@@ -112,6 +136,16 @@ export class CategoryWidget {
     return this.selectedCategories;
   }
 
+  @Watch('categories')
+  public _watchCategories() {
+    this.clearSelection();
+  }
+
+  public componentWillLoad() {
+    this.el.style.setProperty(
+      '--category-bar-color',
+      this.defaultBarColor || `var(--as-color-complementary, #47db99)`);
+  }
 
   /**
    * Clear current selected categories
@@ -133,7 +167,7 @@ export class CategoryWidget {
     return [
       this._renderHeader(),
       this._renderCategoryList(),
-      this._renderFooter()
+      !this.disableInteractivity ? this._renderFooter() : ''
     ];
   }
 
@@ -149,7 +183,12 @@ export class CategoryWidget {
   }
 
   private _renderCategoryList() {
-    return <ul class='as-category-widget__list'>{this._renderCategories()}</ul>;
+    const cssClasses = {
+      'as-category-widget__list': true,
+      'as-category-widget__list--disabled': this.disableInteractivity
+    };
+
+    return <ul class={cssClasses}>{this._renderCategories()}</ul>;
   }
 
   private _renderCategories() {
@@ -157,7 +196,7 @@ export class CategoryWidget {
     const { categories, otherCategory } = this._parseCategories();
     let otherCategoryTemplate;
 
-    const categoriesToRender =  categories.slice(0, this.visibleCategories);
+    const categoriesToRender = categories.slice(0, this.visibleCategories);
 
     const maximumValue = this.useTotalPercentage
       ? this._getCategoriesTotalValue(this.categories)
@@ -177,10 +216,11 @@ export class CategoryWidget {
     const { isOther, maximumValue } = options;
     const isSelected = this._isSelected(category.name);
     const isAnyCategorySelected = this.selectedCategories.length > 0;
-    const barColor = this._getBarColor(category.color || this.defaultBarColor, { isSelected, isOther });
+
+    const barColor = this._getBarColor(category.color, { isSelected, isOther });
 
     const progressStyles = {
-      backgroundColor: barColor,
+      backgroundColor: barColor ? barColor : `var(--category-bar-color)`,
       width: `${(category.value / maximumValue) * 100}%`
     };
 
@@ -191,11 +231,13 @@ export class CategoryWidget {
       'as-category-widget__category--selected': isSelected
     };
 
+    const displayValue = this.valueFormatter(category.value);
+
     return (
       <li class={cssClasses} onClick={() => this._toggleCategory(category)}>
         <p class='as-category-widget__info as-body'>
           <div class='as-category-widget__title'>{category.name}</div>
-          {readableNumber(category.value)}
+          {displayValue}
         </p>
 
         <div class='as-category-widget__bar'>
@@ -222,7 +264,7 @@ export class CategoryWidget {
     return (
       <footer class='as-category-widget__footer'>
         <div class='as-category-widget__count as-body'>{selectedCount || 'All'} selected</div>
-        { this.showClearButton && (
+        {this.showClearButton && (
           <button
             class='as-btn as-btn--primary as-btn--s as-category-widget__clear'
             disabled={!selectedCount}
@@ -240,6 +282,10 @@ export class CategoryWidget {
   }
 
   private _toggleCategory(category: Category) {
+    if (this.disableInteractivity) {
+      return;
+    }
+
     this.selectedCategories = this._isSelected(category.name)
       ? this.selectedCategories.filter((currentCategory) => currentCategory !== category.name)
       : [...this.selectedCategories, category.name];

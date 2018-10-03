@@ -3,6 +3,8 @@
 Radio Buttons are used when the user must make only one selection out of a group of items.
 
 ```html
+showSource: true
+---
 <ul>
   <li class="as-radio">
     <input class="as-radio__input" type="radio" name="contact" id="first" value="first" checked />

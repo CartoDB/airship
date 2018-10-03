@@ -1,34 +1,40 @@
 Toolbar is a generic bar that can be used as a header to put your application logo and some options to navigate throughout your application. A basic toolbar toolbar is only a `<header>` with the `.as-toolbar` class:
 
 ```html
+showSource: true
+---
 <header class="as-toolbar"></header>
 ```
 
 
 ## Toolbar positioning
-Toolbar is positioned to the top of the page by default. You can specify a different toolbar position using **class modifiers** in the `as-app` element. 
+Toolbar is positioned to the top of the page by default. You can specify a different toolbar position using **class modifiers** in the `as-app` element.
 
 > This modifiers wont affect mobile screens where the toolbar is always displayed on top.
 
-### .as-app-nav--left
+### .as-app-nav\--left
 
 
 
 ```html
+showSource: true
+---
 <div class="as-app as-app--nav-left" style="height: 300px; width:100%;">
   <header class="as-toolbar"></header>
-  <main class="as-app-content"></main>
+  <main class="as-content"></main>
 </div>
 ```
 
-### .as-app-nav--right
+### .as-app-nav\--right
 
 
 
 ```html
+showSource: true
+---
 <div class="as-app as-app--nav-right" style="height: 300px; width:100%;">
   <header class="as-toolbar"></header>
-  <main class="as-app-content"></main>
+  <main class="as-content"></main>
 </div>
 ```
 
@@ -43,6 +49,8 @@ The toolbar will typically contain your logo and action items.  All elements ins
 Use the `.as-toolbar__item` class to put content inside the toolbar. This class can be used on `icons`, `links`, paragraphs, or as a content wrapper.
 
 ```html
+showSource: true
+---
 <header class="as-toolbar">
   <div class="as-toolbar__item">
     <img src="/examples/layouts/common/logo-circle.svg" alt="Logo"/>
@@ -65,6 +73,8 @@ With that in mind, if you need to layout the items in different positions you ca
 Elements grouped at the beginning:
 
 ```html
+showSource: true
+---
 <header class="as-toolbar">
   <div class="as-toolbar__group">
     <a href="#" class="as-toolbar__item">Link 0</a>
@@ -77,6 +87,8 @@ Elements grouped at the beginning:
 Elements grouped in the middle:
 
 ```html
+showSource: true
+---
 <header class="as-toolbar">
   <a href="#" class="as-toolbar__item">Link 0</a>
   <div class="as-toolbar__group">
@@ -90,6 +102,8 @@ Elements grouped in the middle:
 Elements grouped at the end:
 
 ```html
+showSource: true
+---
 <header class="as-toolbar">
   <a href="#" class="as-toolbar__item">Link 0</a>
   <div class="as-toolbar__group">
@@ -110,6 +124,8 @@ Actions are hidden by default on mobile devices and they are only visible when t
 In order to fit the [W3C Accessibility guidelines](https://www.w3.org/WAI/tutorials/menus/), we recomend to use `nav` and `ul` element to layout the menu elements containing `li` elements with a link with a `as-toolbar__item` class.
 
 ```html
+showSource: true
+---
 <header class="as-toolbar">
   <pre href="#" class="as-toolbar__item">APP NAME</pre>
   <nav class="as-toolbar__actions">
@@ -124,13 +140,13 @@ In order to fit the [W3C Accessibility guidelines](https://www.w3.org/WAI/tutori
   </nav>
 </header>
 ```
-#### .as-toolbar__actions--visible
+#### .as-toolbar__actions\--visible
 
 Use this class modifier to display the toolbar-actions menu on small screens.
 
 ### .as-toolbar__toggle
 
-Use the `.as-toolbar__togle` to create a button that controls the menu visibility.
+Use the `.as-toolbar__toggle` modifier to create a button that controls the menu visibility.
 
 
 ```html
@@ -140,6 +156,26 @@ responsive: true
 <iframe src="/examples/layouts/toolbar/toggle.html" style="width: 100%; height: 100%;">
 ```
 
+```code
+lang: html
+---
+<header class="as-toolbar">
+  <button onclick="toggleDrawer()" class="as-toolbar__item as-toolbar__toggle">
+    <i class="as-icon-hamburguer as-title as-m--0"></i>
+  </button>
+  <div href="#" class="as-toolbar__item">LOGO</div>
+  <nav class="as-toolbar__actions">
+    <ul>
+      <li>
+        <a href="#" class="as-toolbar__item">Link 1</a>
+      </li>
+      <li>
+        <a href="#" class="as-toolbar__item">Link 2</a>
+      </li>
+    </ul>
+  </nav>
+</header>
+```
 
 ## Example
 

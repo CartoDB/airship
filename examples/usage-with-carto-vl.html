@@ -14,11 +14,11 @@
   <link href="https://libs.cartocdn.com/mapbox-gl/v0.48.0-carto1/mapbox-gl.css" rel="stylesheet" />
 
   <!-- Include CSS  -->
-  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-styles/v1.0.0-alpha.39/airship.css">
+  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-style/v1.0.0-alpha.44/airship.css">
   <!-- Include Icons -->
-  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-icons/v1.0.0-alpha.39/icons.css">
+  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-icons/v1.0.0-alpha.44/icons.css">
   <!-- Include Web Components -->
-  <script src="https://libs.cartocdn.com/airship-components/v1.0.0-alpha.39/airship.js"></script>
+  <script src="https://libs.cartocdn.com/airship-components/v1.0.0-alpha.44/airship.js"></script>
 
   <style>
     as-category-widget {
@@ -31,18 +31,19 @@
 </head>
 
 <body class="as-app">
-  <main class="as-app-content">
-    <div class="as-map-wrapper" style="background: #B5E0F9;">
-      <div id="map"></div>
-    </div>
+  <div class="as-content">
+    <main class="as-main" style="background: #B5E0F9;">
+      <div class="as-map-area">
+        <div id="map"></div>
+      </div>
+    </main>
 
     <aside class="as-sidebar as-sidebar--right">
       <as-category-widget id="cities-widget" heading="Populated places" description="Maximun population of the most pouplated cities"
         visible-categories="10" show-clear-button="true">
       </as-category-widget>
     </aside>
-
-  </main>
+  </div>
 
   <script>
     const map = new mapboxgl.Map({
