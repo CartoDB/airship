@@ -60,13 +60,13 @@ For example, you can show a button with this HTML scaffolding:
 </button>
 ```
 
-Please check [styles reference](../reference/#/styles/buttons) out and see how to use Airship CSS styles.
+Please check [styles reference](/developers/airship/reference/#/styles/buttons) out and see how to use Airship CSS styles.
 
 ### Framework integration
 To integrate Airship into your framework you only need to import the styles in the way you prefer from the ones stated above and apply them to your generated HTML.
 
 ### Basic Customization
-> If you want advanced customization of Airship styles, please take a look at [this guide](styling).
+> If you want advanced customization of Airship styles, please take a look at [this guide](/developers/airship/guides/Styling).
 
 **CSS Variables**
 
