@@ -14,16 +14,11 @@ showSource: true
 ---
 <div class="as-app" style="width:100%; height:300px;">
     <main class="as-content">
-      <!-- element code starts here -->
+      <!-- map-area code starts here -->
       <div class="as-map-area as-bg--badge-blue">
-<<<<<<< HEAD
         <div id="map"></div> 
-=======
-        <!-- CARTO.js or CARTO-VL will place the map on this div  -->
-        <div id="map"></div>
->>>>>>> master
       </div>
-      <!-- element code ends here -->
+      <!-- map-area code ends here -->
     </main>
 </div>
 ```

@@ -57,7 +57,7 @@ showSource: true
       <!-- Put your map here -->
     </main>
     <aside class="as-sidebar as-sidebar--right as-bg--support-02">
-      <!-- element code starts here -->
+      <!-- as-container code starts here -->
       <div class="as-container">
         <section class="as-box">
           <h1 class="as-title">Container 0</h1>
@@ -67,8 +67,8 @@ showSource: true
           </p>
         </section>
       </div>
-      <!-- element code ends here -->
-      <!-- element code starts here -->
+      <!-- as-container code ends here -->
+      <!-- as-container code starts here -->
       <div class="as-container">
         <section class="as-box">
           <h1 class="as-title">Container 1</h1>
@@ -85,7 +85,7 @@ showSource: true
           </p>
         </section>
       </div>
-      <!-- element code ends here -->
+      <!-- as-container code ends here -->
     </aside>
   </div>
 </div>
@@ -114,7 +114,7 @@ showSource: true
           </p>
         </section>
       </div>
-      <!-- element code starts here -->
+      <!-- as-container--scrollable code starts here -->
       <div class="as-container as-container--scrollable">
         <section class="as-box">
           <h1 class="as-title">Scrollable Container 1</h1>
@@ -131,7 +131,7 @@ showSource: true
           </p>
         </section>
       </div>
-      <!-- element code ends here -->
+      <!-- as-container--scrollable code ends here -->
     </aside>
   </div>
 </div>
@@ -150,7 +150,7 @@ showSource: true
       <!-- Put your map here -->
     </main>
     <aside class="as-sidebar as-sidebar--right as-bg--support-02">
-      <!-- element code starts here -->
+      <!-- as-container--border code starts here -->
       <div class="as-container as-container--border">
         <section class="as-box">
           <h1 class="as-title">Border container 0</h1>
@@ -160,8 +160,8 @@ showSource: true
           </p>
         </section>
       </div>
-      <!-- element code ends here -->
-      <!-- element code starts here -->
+      <!-- as-container--border code ends here -->
+      <!-- as-container--border code starts here -->
       <div class="as-container as-container--border">
         <section class="as-box">
           <h1 class="as-title">Border container 1</h1>
@@ -171,8 +171,8 @@ showSource: true
           </p>
         </section>
       </div>
-      <!-- element code ends here -->
-      <!-- element code starts here -->
+      <!-- as-container--border code ends here -->
+      <!-- as-container--border code starts here -->
       <div class="as-container as-container--border">
         <section class="as-box">
           <h1 class="as-title">Border container 2</h1>
@@ -182,7 +182,7 @@ showSource: true
           </p>
         </section>
       </div>
-      <!-- element code ends here -->
+      <!-- as-container--border code ends here -->
     </aside>
   </div>
 </div>

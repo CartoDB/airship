@@ -15,9 +15,9 @@ showSource: true
     <main class="as-main">
       <div class="as-map-area as-bg--badge-blue">
         <div id="map"></div> 
-        <!-- element code starts here -->
-       <footer class="as-map-footer as-bg--badge-yellow" style="height: 100px;"></footer>
-       <!-- element code ends here -->
+        <!-- as-map-footer code starts here -->
+        <footer class="as-map-footer as-bg--badge-yellow" style="height: 100px;"></footer>
+        <!-- as-map-footer code ends here -->
       </div>
     </div>
   </main>
@@ -37,9 +37,9 @@ showSource: true
     <main class="as-main">
       <div class="as-map-area as-bg--badge-blue">
         <div id="map"></div> 
-        <!-- element code starts here -->
+        <!-- as-map-footer--visible code starts here -->
         <footer class="as-map-footer as-bg--badge-yellow as-map-footer--visible" style="min-height: 100px;"></footer>
-        <!-- element code ends here -->
+        <!-- as-map-footer--visible code ends here -->
       </div>
     </div>
   </main>
@@ -67,7 +67,7 @@ showSource: true
     <main class="as-main">
       <div class="as-map-area as-bg--badge-blue">
         <div id="map"></div> 
-        <!-- element code starts here -->
+        <!-- footer with containers code starts here -->
         <footer class="as-map-footer as-bg--badge-yellow">
           <div class="as-container as-container--border">
             <section class="as-box as-box--medium">
@@ -108,7 +108,7 @@ showSource: true
             </section>
           </div>
         </footer>
-        <!-- element code ends here -->
+        <!-- footer with containers code ends here -->
       </div>
     </div>
   </main>
@@ -127,8 +127,8 @@ showSource: true
     <main class="as-main">
       <div class="as-map-area as-bg--badge-blue">
         <div id="map"></div> 
-        <!-- element code starts here -->
         <footer class="as-map-footer as-bg--badge-yellow">
+          <!-- as-container code starts here -->
           <div class="as-container">
             <section class="as-box as-box--medium">
               <h1 class="as-title">Container 0 </h1>
@@ -141,8 +141,8 @@ showSource: true
               <p class="as-body">Use this container when you need to present fixed content.</p>
             </section>
           </div>
+          <!-- as-container code ends here -->
         </footer>
-        <!-- element code ends here -->
       </div>
     </div>
   </main>
@@ -161,7 +161,7 @@ showSource: true
     <main class="as-main">
       <div class="as-map-area as-bg--badge-blue">
         <div id="map"></div> 
-        <!-- element code starts here -->
+        <!-- as-container--scrollable code starts here -->
         <footer class="as-map-footer as-bg--badge-yellow">
           <div class="as-container">
             <section class="as-box as-box--medium">
@@ -186,7 +186,7 @@ showSource: true
             </section>
           </div>
         </footer>
-        <!-- element code ends here -->
+        <!-- as-container--scrollable code ends here -->
       </div>
     </div>
   </main>
@@ -203,7 +203,7 @@ showSource: true
     <main class="as-main">
       <div class="as-map-area as-bg--badge-blue">
         <div id="map"></div> 
-        <!-- element code starts here -->
+        <!-- as-container--border code starts here -->
         <footer class="as-map-footer as-bg--badge-yellow">
           <div class="as-container as-container--border">
             <section class="as-box as-box--medium">
@@ -228,7 +228,7 @@ showSource: true
             </section>
           </div>
         </footer>
-        <!-- element code ends here -->
+        <!-- as-container--border code ends here -->
       </div>
     </div>
   </main>
@@ -258,34 +258,38 @@ showSource: true
     <main class="as-main">
       <div class="as-map-area as-bg--badge-blue">
         <div id="map"></div> 
-        <!-- element code starts here -->
         <footer class="as-map-footer as-bg--badge-yellow">
           <div class="as-container">
+            <!-- as-box code starts here -->
             <section class="as-box as-box--xl">
               <h1 class="as-title">Container 0 </h1>
               <p class="as-body">
                 This box is has the --xl class modifier so will take more space than other boxes.
               </p>
             </section>
+            <!-- as-box code ends here -->
           </div>
           <div class="as-container">
+           <!-- as-box code starts here -->
            <section class="as-box as-box--s">
               <h1 class="as-title">Container 0 </h1>
               <p class="as-body">
                 This box is has the --s class modifier so will be smaller than other boxes.
               </p>
             </section>
+            <!-- as-box code ends here -->
           </div>
           <div class="as-container">
+           <!-- as-box code starts here -->
            <section class="as-box as-box--xl">
               <h1 class="as-title">Container 0 </h1>
               <p class="as-body">
                 This box is has the --xl class modifier so will take more space than other boxes.
               </p>
             </section>
+            <!-- as-box code ends here -->
           </div>
         </footer>
-        <!-- element code ends here -->
       </div>
     </div>
   </main>

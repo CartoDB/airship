@@ -36,7 +36,7 @@ showSource: true
       <div class="as-map-area">
       <div id="map"></div> 
       <div class="as-map-panels">
-        <!-- element code starts here -->
+        <!-- as-panel code starts here -->
         <div class="as-panel as-panel--top as-panel--left">left top panel</div>
         <div class="as-panel as-panel--top as-panel--center">center top panel</div>
         <div class="as-panel as-panel--top as-panel--right">right top panel</div>
@@ -46,7 +46,7 @@ showSource: true
         <div class="as-panel as-panel--bottom as-panel--left">left bottom panel</div>
         <div class="as-panel as-panel--bottom as-panel--center">center bottom panel</div>
         <div class="as-panel as-panel--bottom as-panel--right">right bottom panel</div>
-        <!-- element code ends here -->
+        <!-- as-panel code ends here -->
       </div>
     </main>
   </div>
@@ -68,11 +68,11 @@ showSource: true
         <div id="map"></div>
         <div class="as-map-panels">
           <div class="as-panel as-panel--middle as-panel--center">
-            <!-- element code starts here -->
+            <!-- as-panel__element code starts here -->
             <div class="as-panel__element as-p--32 as-bg--support-02">
               <p class="as-body"> Center Panel </p>
             </div>
-            <!-- element code ends here -->
+            <!-- as-panel__element code ends here -->
           </div>
         </div>
       </div>
@@ -103,7 +103,7 @@ showSource: true
               <p class="as-body"> Panel 1 </p>
             </div>
           </div>
-          <!-- element code starts here -->
+          <!-- as-panel--vertical code starts here -->
           <div class="as-panel as-panel--vertical as-panel--middle as-panel--right">
             <div class="as-panel__element as-p--32 as-bg--support-02">
               <p class="as-body"> Panel 2 </p>
@@ -112,7 +112,7 @@ showSource: true
               <p class="as-body"> Panel 3 </p>
             </div>
           </div>
-          <!-- element code ends here -->
+          <!-- as-panel--vertical code ends here -->
         </div>
       </div>
     </main>

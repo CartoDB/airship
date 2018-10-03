@@ -20,9 +20,9 @@ showSource: true
 ---
 <div class="as-app"  style="height: 300px; width:100%;">
   <div class="as-content">
-    <!-- element code starts here -->
+    <!-- as-sidebar--left code starts here -->
     <aside class="as-sidebar as-sidebar--left as-bg--support-03"></aside>
-    <!-- element code ends here -->
+    <!-- as-sidebar--left code ends here -->
     <main class="as-main as-bg--badge-blue">
       <!-- Map will be here -->
     </main>
@@ -42,9 +42,9 @@ showSource: true
     <main class="as-main as-bg--badge-blue">
       <!-- Put your map here -->
     </main>
-    <!-- element code starts here -->
+    <!-- as-sidebar--right code starts here -->
     <aside class="as-sidebar as-sidebar--right as-bg--support-02"></aside>
-    <!-- element code end here -->
+    <!-- as-sidebar--right code end here -->
   </div>
 </div>
 ```
@@ -60,9 +60,9 @@ showSource: true
 ---
 <div class="as-app"  style="height: 300px; width:100%;">
   <div class="as-content">
-    <!-- element code starts here -->
+    <!-- as-sidebar--l code starts here -->
     <aside class="as-sidebar as-sidebar--l as-sidebar--left as-bg--support-03"></aside>
-    <!-- element code ends here -->
+    <!-- as-sidebar--l code ends here -->
     <main class="as-main as-bg--badge-blue">
       <!-- Put your map here -->
     </main>
@@ -79,9 +79,9 @@ showSource: true
 ---
 <div class="as-app"  style="height: 300px; width:100%;">
   <div class="as-content">
-    <!-- element code starts here -->
+    <!-- as-sidebar--xl code starts here -->
     <aside class="as-sidebar as-sidebar--xl as-sidebar--left as-bg--support-03"></aside>
-    <!-- element code end here -->
+    <!-- as-sidebar--xl code end here -->
     <main class="as-main as-bg--badge-blue">
       <!-- Put your map here -->
     </main>
