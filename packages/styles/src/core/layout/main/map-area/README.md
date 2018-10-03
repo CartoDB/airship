@@ -5,6 +5,8 @@ The map area is the section used to contain the  `#map` div and the `map-panels`
 - The map panels section is used to place floating `panels` over the `#map`
 
 
+> The map-area must be a direct child of the `as-content` element.
+
 ## .as-map-area
 
 The most basic usage of the `as-map-wrapper` element is when you only need to show a map. The map will cover the whole viewport.

@@ -2,7 +2,7 @@
 
 Map panels is the section where the `as-panels` element will be placed.
 
-The `map-panels` element must be a children of the `map-area` or the `as-div`.
+> The `map-panels` element must be a direct child of the `map-area` at the same level of `#map`.
 
 
 ```html
