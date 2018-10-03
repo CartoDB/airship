@@ -14,6 +14,38 @@ The component searches for these classes in order to know how many tabs it must 
 
 As long as you follow the proper markup, as the `Layout` section shows, you won't have to worry about anything else.
 
+This component replaces `.as-content` HTML element, so it needs to wrap all your children elements to work properly. Here is an example:
+
+```code
+lang: html
+---
+<body class="as-app">
+  <!-- Here goes your toolbar -->
+
+  <as-responsive-content>
+    <aside class="as-sidebar as-sidebar--left">
+      LEFT-SIDEBAR
+    </aside>
+
+    <main class="as-main">
+      <div class="as-map-area">
+        <div class="as-map">
+          <div id="map"></div>
+        </div>
+
+        <div class="as-map-footer">
+          Map Footer
+        </div>
+      </div>
+    </main>
+  </as-responsive-content>
+</body>
+```
+
+```hint|directive
+Take into account that any layout dependent JavaScript code, like Leaflet or MapboxGL map, that use any elements inside the component will need to be executed after `ready` event is fired. Please check [`ready` event documentation](/developers/airship/reference/imported_content/catalog/#/components/application-content?a=ready).
+```
+
 ### Setting the tab names
 
 In order to set the tabs text, you need to add a data attribute with the desired name:
