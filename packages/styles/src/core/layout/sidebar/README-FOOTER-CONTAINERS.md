@@ -14,6 +14,7 @@ showSource: true
         <div id="map"></div>
       </div>
       <div class="as-map-footer as-bg--support-02">
+        <!-- as-container code starts here -->
         <div class="as-container">
           <section class="as-box as-box--medium">
             <h1 class="as-title">Fixed container</h1>
@@ -40,6 +41,7 @@ showSource: true
             </p>
           </section>
         </div>
+        <!-- as-container code ends here -->
       </div>
     </main>
   </div>
@@ -64,12 +66,14 @@ showSource: true
         <div id="map"></div>
       </div>
       <div class="as-map-footer as-bg--support-02">
+        <!-- as-container code starts here -->
         <div class="as-container">
           <section class="as-box as-box--medium">
             <h1 class="as-title">Fixed container</h1>
             <p class="as-body">Use this container when you need to present fixed content.</p>
           </section>
         </div>
+        <!-- as-container code ends here -->
       </div>
     </main>
   </div>
@@ -100,6 +104,7 @@ showSource: true
             <p class="as-body">Use this container when you need to present fixed content.</p>
           </section>
         </div>
+        <!-- as-container as-container--scrollable code starts here -->
         <div class="as-container as-container--scrollable">
           <section class="as-box as-box--large">
             <h1 class="as-title">Scrollable container</h1>
@@ -120,6 +125,7 @@ showSource: true
             </p>
           </section>
         </div>
+        <!-- as-container as-container--scrollable code ends here -->
       </div>
     </main>
   </div>
@@ -143,12 +149,14 @@ showSource: true
         <div id="map"></div>
       </div>
       <div class="as-map-footer as-bg--support-02">
+        <!-- as-container as-container--border code starts here -->
         <div class="as-container as-container--border">
           <section class="as-box as-box--medium">
             <h1 class="as-title">Container with border</h1>
             <p class="as-body">Use this container when you need to present a container with a border.</p>
           </section>
         </div>
+        <!-- as-container as-container--border code ends here -->
         <div class="as-container">
           <section class="as-box as-box--medium">
             <h1 class="as-title">Another container</h1>
