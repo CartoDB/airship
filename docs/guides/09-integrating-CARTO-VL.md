@@ -160,7 +160,3 @@ function updateWidgets() {
       .sort((a, b) => b.value - a.value);
   };
 ```
-
-### Reacting to data changes
-
-> TODO
