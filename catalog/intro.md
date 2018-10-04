@@ -5,6 +5,8 @@ The set of tools is currently composed of three fundamental parts that can be us
 
 You will learn how to use Airship by walking through this reference which describes all the uses and possibilities of every element in the toolset.
 
+Check out [our guides](/developers/airship/guides/introduction) if you want to know more about how to import Airship, tutorials to get started or integration with frameworks, our mapping tools, and styling.
+
 Reference is divided into four main sections: Layout, Components, Styles, and Icons.
 
 - [Layout](/developers/airship/reference/#/layout)
