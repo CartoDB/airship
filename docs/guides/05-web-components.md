@@ -59,8 +59,8 @@ Loading and using web components is very easy, you just need to include our comp
 You can use Airship components with another web frameworks like Angular, React or Vue. See [https://stenciljs.com/docs/overview/](https://stenciljs.com/docs/overview/).
 
 
-  - [Airship and Angular](/developers/airship/guides/integrating-Angular/)
-  - [Airship and React](/developers/airship/guides/integrating-React/)
+  - [Airship and Angular](/developers/airship/guides/integrating-Angular)
+  - [Airship and React](/developers/airship/guides/integrating-react/)
   - [Airship and Vue](/developers/airship/guides/integrating-Vue/)
 
 **Browser support**
@@ -78,6 +78,6 @@ Stencil uses a dynamic loader to load the custom elements polyfill only on brows
 Web Components are being used in production since 2017 with the above approach.
 
 
-| [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/) | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/) | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/) | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/) | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari-ios/safari-ios_48x48.png" alt="iOS Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/) |
+| [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/) IE / Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/) Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/) Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/) Safari | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari-ios/safari-ios_48x48.png" alt="iOS Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/) iOS Safari |
 | --------- | --------- | --------- | --------- | --------- |
 | IE11, Edge+| 63+ | 67+ | 11.1+ | 10.3+
