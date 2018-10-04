@@ -72,7 +72,7 @@
       "title": "Panels",
       "samples": [{
         "title": "Basic",
-        "file": "layouts/panel/panels.html"
+        "file": "layouts/panels/panels.html"
       }]
     },
     {
