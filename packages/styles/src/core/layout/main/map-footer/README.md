@@ -17,9 +17,10 @@ showSource: true
   <div class="as-content">
     <main class="as-main">
       <div class="as-map-area as-bg--badge-blue">
-        <!-- CARTO.js or CARTO-VL will place the map on this div  -->
-        <div id="map"></div>
-       <footer class="as-map-footer as-bg--badge-yellow" style="height: 100px;"></footer>
+        <div id="map"></div> 
+        <!-- as-map-footer code starts here -->
+        <footer class="as-map-footer as-bg--badge-yellow" style="height: 100px;"></footer>
+        <!-- as-map-footer code ends here -->
       </div>
     </div>
   </main>
@@ -38,9 +39,10 @@ showSource: true
   <div class="as-content">
     <main class="as-main">
       <div class="as-map-area as-bg--badge-blue">
-        <!-- CARTO.js or CARTO-VL will place the map on this div  -->
-        <div id="map"></div>
-       <footer class="as-map-footer as-bg--badge-yellow as-map-footer--visible" style="min-height: 100px;"></footer>
+        <div id="map"></div> 
+        <!-- as-map-footer--visible code starts here -->
+        <footer class="as-map-footer as-bg--badge-yellow as-map-footer--visible" style="min-height: 100px;"></footer>
+        <!-- as-map-footer--visible code ends here -->
       </div>
     </div>
   </main>
@@ -67,8 +69,8 @@ showSource: true
   <div class="as-content">
     <main class="as-main">
       <div class="as-map-area as-bg--badge-blue">
-        <!-- CARTO.js or CARTO-VL will place the map on this div  -->
-        <div id="map"></div>
+        <div id="map"></div> 
+        <!-- footer with containers code starts here -->
         <footer class="as-map-footer as-bg--badge-yellow">
           <div class="as-container as-container--border">
             <section class="as-box as-box--medium">
@@ -109,6 +111,7 @@ showSource: true
             </section>
           </div>
         </footer>
+        <!-- footer with containers code ends here -->
       </div>
     </div>
   </main>
@@ -126,9 +129,9 @@ showSource: true
   <div class="as-content">
     <main class="as-main">
       <div class="as-map-area as-bg--badge-blue">
-        <!-- CARTO.js or CARTO-VL will place the map on this div  -->
-        <div id="map"></div>
+        <div id="map"></div> 
         <footer class="as-map-footer as-bg--badge-yellow">
+          <!-- as-container code starts here -->
           <div class="as-container">
             <section class="as-box as-box--medium">
               <h1 class="as-title">Container 0 </h1>
@@ -141,6 +144,7 @@ showSource: true
               <p class="as-body">Use this container when you need to present fixed content.</p>
             </section>
           </div>
+          <!-- as-container code ends here -->
         </footer>
       </div>
     </div>
@@ -159,8 +163,8 @@ showSource: true
   <div class="as-content">
     <main class="as-main">
       <div class="as-map-area as-bg--badge-blue">
-        <!-- CARTO.js or CARTO-VL will place the map on this div  -->
-        <div id="map"></div>
+        <div id="map"></div> 
+        <!-- as-container--scrollable code starts here -->
         <footer class="as-map-footer as-bg--badge-yellow">
           <div class="as-container">
             <section class="as-box as-box--medium">
@@ -185,6 +189,7 @@ showSource: true
             </section>
           </div>
         </footer>
+        <!-- as-container--scrollable code ends here -->
       </div>
     </div>
   </main>
@@ -200,8 +205,8 @@ showSource: true
   <div class="as-content">
     <main class="as-main">
       <div class="as-map-area as-bg--badge-blue">
-        <!-- CARTO.js or CARTO-VL will place the map on this div  -->
-        <div id="map"></div>
+        <div id="map"></div> 
+        <!-- as-container--border code starts here -->
         <footer class="as-map-footer as-bg--badge-yellow">
           <div class="as-container as-container--border">
             <section class="as-box as-box--medium">
@@ -226,6 +231,7 @@ showSource: true
             </section>
           </div>
         </footer>
+        <!-- as-container--border code ends here -->
       </div>
     </div>
   </main>
@@ -254,32 +260,37 @@ showSource: true
   <div class="as-content">
     <main class="as-main">
       <div class="as-map-area as-bg--badge-blue">
-        <!-- CARTO.js or CARTO-VL will place the map on this div  -->
-        <div id="map"></div>
+        <div id="map"></div> 
         <footer class="as-map-footer as-bg--badge-yellow">
           <div class="as-container">
+            <!-- as-box code starts here -->
             <section class="as-box as-box--xl">
               <h1 class="as-title">Container 0 </h1>
               <p class="as-body">
                 This box is has the --xl class modifier so will take more space than other boxes.
               </p>
             </section>
+            <!-- as-box code ends here -->
           </div>
           <div class="as-container">
+           <!-- as-box code starts here -->
            <section class="as-box as-box--s">
               <h1 class="as-title">Container 0 </h1>
               <p class="as-body">
                 This box is has the --s class modifier so will be smaller than other boxes.
               </p>
             </section>
+            <!-- as-box code ends here -->
           </div>
           <div class="as-container">
+           <!-- as-box code starts here -->
            <section class="as-box as-box--xl">
               <h1 class="as-title">Container 0 </h1>
               <p class="as-body">
                 This box is has the --xl class modifier so will take more space than other boxes.
               </p>
             </section>
+            <!-- as-box code ends here -->
           </div>
         </footer>
       </div>

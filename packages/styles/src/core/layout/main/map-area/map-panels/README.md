@@ -34,9 +34,9 @@ showSource: true
   <div class="as-content">
     <main class="as-main as-bg--badge-blue">
       <div class="as-map-area">
-      <!-- CARTO.js or CARTO-VL will place the map on this div  -->
-      <div id="map"></div>
+      <div id="map"></div> 
       <div class="as-map-panels">
+        <!-- as-panel code starts here -->
         <div class="as-panel as-panel--top as-panel--left">left top panel</div>
         <div class="as-panel as-panel--top as-panel--center">center top panel</div>
         <div class="as-panel as-panel--top as-panel--right">right top panel</div>
@@ -46,6 +46,7 @@ showSource: true
         <div class="as-panel as-panel--bottom as-panel--left">left bottom panel</div>
         <div class="as-panel as-panel--bottom as-panel--center">center bottom panel</div>
         <div class="as-panel as-panel--bottom as-panel--right">right bottom panel</div>
+        <!-- as-panel code ends here -->
       </div>
     </main>
   </div>
@@ -64,14 +65,14 @@ showSource: true
   <div class="as-content">
     <main class="as-main as-bg--badge-blue">
       <div class="as-map-area">
-        <!-- CARTO.js or CARTO-VL will place the map on this div  -->
         <div id="map"></div>
         <div class="as-map-panels">
-
           <div class="as-panel as-panel--middle as-panel--center">
+            <!-- as-panel__element code starts here -->
             <div class="as-panel__element as-p--32 as-bg--support-02">
               <p class="as-body"> Center Panel </p>
             </div>
+            <!-- as-panel__element code ends here -->
           </div>
         </div>
       </div>
@@ -92,10 +93,8 @@ showSource: true
   <div class="as-content">
     <main class="as-main as-bg--badge-blue">
       <div class="as-map-area">
-        <!-- CARTO.js or CARTO-VL will place the map on this div  -->
         <div id="map"></div>
         <div class="as-map-panels">
-
           <div class="as-panel as-panel--top as-panel--left">
             <div class="as-panel__element as-p--32 as-bg--support-02">
               <p class="as-body"> Panel 0 </p>
@@ -104,7 +103,7 @@ showSource: true
               <p class="as-body"> Panel 1 </p>
             </div>
           </div>
-
+          <!-- as-panel--vertical code starts here -->
           <div class="as-panel as-panel--vertical as-panel--middle as-panel--right">
             <div class="as-panel__element as-p--32 as-bg--support-02">
               <p class="as-body"> Panel 2 </p>
@@ -113,6 +112,7 @@ showSource: true
               <p class="as-body"> Panel 3 </p>
             </div>
           </div>
+          <!-- as-panel--vertical code ends here -->
         </div>
       </div>
     </main>
