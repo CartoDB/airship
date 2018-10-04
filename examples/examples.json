@@ -40,7 +40,7 @@
     {
       "title": "Sidebar",
       "samples": [{
-          "title": "Basic",
+          "title": "Basic sidebar",
           "file": "layouts/sidebar/sidebar.html"
         },
         {
@@ -64,25 +64,25 @@
     {
       "title": "Footer",
       "samples": [{
-        "title": "Basic",
+        "title": "Basic footer",
         "file": "layouts/footer/footer.html"
       }]
     },
     {
       "title": "Panels",
       "samples": [{
-        "title": "Basic",
+        "title": "Basic panels",
         "file": "layouts/panels/panels.html"
       }]
     },
     {
       "title": "Containers",
       "samples": [{
-          "title": "Basic",
+          "title": "Basic containers layout",
           "file": "layouts/containers/containers.html"
         },
         {
-          "title": "Basic2",
+          "title": "Basic containers",
           "file": "containers/containers.html"
         },
         {
@@ -106,7 +106,7 @@
     {
       "title": "Category Widget",
       "samples": [{
-          "title": "Simple",
+          "title": "Simple category widget",
           "file": "components/as-category-widget/simple.html"
         },
         {
@@ -126,18 +126,18 @@
     {
       "title": "Dropdown",
       "samples": [{
-        "title": "Simple",
+        "title": "Simple Dropdown",
         "file": "components/as-dropdown/simple.html"
       }]
     },
     {
       "title": "Histogram",
       "samples": [{
-          "title": "Simple",
+          "title": "Simple Histogram",
           "file": "components/as-histogram-widget/simple.html"
         },
         {
-          "title": "Events",
+          "title": "Histogram Events",
           "file": "components/as-histogram-widget/events.html"
         },
         {
@@ -149,15 +149,15 @@
     {
       "title": "Range Slider",
       "samples": [{
-          "title": "Simple",
+          "title": "Simple range slider",
           "file": "components/as-range-slider/simple.html"
         },
         {
-          "title": "Disabled",
+          "title": "Disabled range slider",
           "file": "components/as-range-slider/disabled.html"
         },
         {
-          "title": "Multivalue",
+          "title": "Multivalue range slider",
           "file": "components/as-range-slider/multivalue.html"
         }
       ]
