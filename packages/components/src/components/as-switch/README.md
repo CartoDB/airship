@@ -72,8 +72,8 @@ lang: javascript
 switch.name = 'toggle-layer';
 ```
 
-### **label**: boolean
-Text for label. Positioned on the right of the switch.
+### **label**: string
+Text for label. When this attribute is set a label will appear on the right of the switch with the given value as text.
 
 ```code
 lang: html
