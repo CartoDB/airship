@@ -82,23 +82,19 @@
           "file": "layouts/containers/containers.html"
         },
         {
-          "title": "Basic containers",
-          "file": "containers/containers.html"
-        },
-        {
-          "title": "Colors",
+          "title": "Containers with colors",
           "file": "containers/containers-colors.html"
         },
         {
-          "title": "Bottom",
+          "title": "Containers in footer",
           "file": "containers/containers-bottom.html"
         },
         {
-          "title": "Legends",
+          "title": "Containers in panels",
           "file": "containers/containers-legends.html"
         },
         {
-          "title": "Sidebar",
+          "title": "Containers in sidebar",
           "file": "containers/containers-sidebar.html"
         }
       ]
@@ -106,19 +102,19 @@
     {
       "title": "Category Widget",
       "samples": [{
-          "title": "Simple category widget",
+          "title": "category-widget",
           "file": "components/as-category-widget/simple.html"
         },
         {
-          "title": "Disabled",
+          "title": "category-widget disabled",
           "file": "components/as-category-widget/interaction-disabled.html"
         },
         {
-          "title": "Total Percentage",
+          "title": "category-widget total-percentage",
           "file": "components/as-category-widget/total-percentage.html"
         },
         {
-          "title": "Bar olny",
+          "title": "category-widget bar-only",
           "file": "components/as-category-widget/bar-only.html"
         }
       ]
@@ -126,22 +122,22 @@
     {
       "title": "Dropdown",
       "samples": [{
-        "title": "Simple Dropdown",
+        "title": "as-dropdown",
         "file": "components/as-dropdown/simple.html"
       }]
     },
     {
       "title": "Histogram",
       "samples": [{
-          "title": "Simple Histogram",
+          "title": "as-histogram Simple",
           "file": "components/as-histogram-widget/simple.html"
         },
         {
-          "title": "Histogram Events",
+          "title": "as-histogram Events",
           "file": "components/as-histogram-widget/events.html"
         },
         {
-          "title": "Interaction disabled",
+          "title": "as-histogram Interaction disabled",
           "file": "components/as-histogram-widget/interaction-disabled.html"
         }
       ]
@@ -149,15 +145,15 @@
     {
       "title": "Range Slider",
       "samples": [{
-          "title": "Simple range slider",
+          "title": "range-slider",
           "file": "components/as-range-slider/simple.html"
         },
         {
-          "title": "Disabled range slider",
+          "title": "range-slider disabled",
           "file": "components/as-range-slider/disabled.html"
         },
         {
-          "title": "Multivalue range slider",
+          "title": "range-slider multivalue",
           "file": "components/as-range-slider/multivalue.html"
         }
       ]
