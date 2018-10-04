@@ -1,71 +1,23 @@
-# Airship Style
+# Introduction
+Airship is a set of tools designed to facilitate the development of location intelligence apps by offering layouts, basic patterns, templates, CSS classes, components, widgets and much more.
 
-Airship style is a css framework oriented to develop your Location Intelligence apps.
+The set of tools is currently composed of three fundamental parts that can be used separately: A CSS framework, a series of web-components and a set of icons.
 
-## Getting Started
+You will learn how to use Airship by walking through this reference which describes all the uses and possibilities of every element in the toolset.
 
-You can install airship-style using `npm` or downloading it from a `CDN`.
+Reference is divided into four main sections: Layout, Components, Styles, and Icons.
 
-Airship styles are distributed in small files so you can choose to load only the components that you are going to use improving your [page speed performance](https://developers.google.com/speed/docs/insights/OptimizeCSSDelivery). We also provide an `airship.css` file with all the styles packaged in a single file.
-
-The following files are available:
-
-- `core.css`: Common CSS, including layouts, fonts, etc
-- `utilities.css`: CSS helpers
-- `<element>.css`: The specific styles for an element, for example the button styles would be in `button.css`
+- [Layout](/developers/airship/reference/#/layout)
+  Reference of all layout elements that will help you to create LI apps.
 
 
-### Usage from a CDN
-
-The simplest way to use airship styles is just load them from a CDN this way you can choose which components to dowload. Remember to load the core first and the utils at the end.
-
-```code
-lang: html
----
-<head>
-  <!-- Include core first -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@carto/airship-style/dist/core/core.css">
-  <!-- Include the needed components -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@carto/airship-style/dist/button/button.css">
-  <!-- Include utils at the end -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@carto/airship-style/dist/utils/utils.css">
-<head>
-```
-
-You can use [jsDelivery to combine our files and generate a single request](https://www.jsdelivr.com/features#combine):
-
-```code
-lang: html
----
-<head>
-  <!-- Include Styles combined with jsDelivery -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/@carto/airship-style/dist/core/core.css,npm/@carto/airship-style/dist/button/button.css">
-<head>
-```
-
-Or you can load all our styles at once:
+- [Components](/developers/airship/reference/#/components/category-widget)
+  Reference of all Airship components to use within your application layout.
 
 
-```code
-lang: html
----
-<head>
-  <!-- Include all styles -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/@carto/airship-style/dist/airship.css">
-<head>
-```
-
-### Usage from NPM
-
-Just install our package and use it as you wish:
-
-    npm i @carto/airship-style
-
-We provide both `dist` and `src` files so you can create a custom [sass](https://sass-lang.com/) build.
+- [Styles](/developers/airship/reference/#/styles/avatar)
+  Reference of CSS classes that you can use to craft UI elements within your application.
 
 
-## Customization
-
-TBD
-
-
+- [Icons](/developers/airship/reference/#/icons/icons)
+  Reference of the Airship icon set.
