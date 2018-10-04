@@ -1,6 +1,7 @@
+## Integration guide: Using Airship with Angular
 This guide will lead you through the process of integrating Airship in [Angular](https://angular.io).
 
-## Including Styles
+### Including Styles
 We need to import styles in main `styles.css` file from npm package. Styles inside that file are meant to be global, hence we need to import Airship styles there so that CSS Variables are globally defined.
 
 ```
@@ -12,7 +13,7 @@ To import the styles, we need to include `airship.css` in the file:
 @import '~@carto/airship-style/dist/airship.css';
 ```
 
-## Integrating Web Components
+### Integrating Web Components
 Web Components are natively supported in Angular, so the syntax resembles to the one in native components.
 
 First, we need to import `CUSTOM_ELEMENTS_SCHEMA` in our main application module, or just in the modules that use Web Components if you prefer.
@@ -39,7 +40,7 @@ export class AppModule { }
 
 As you can see, **CUSTOM_ELEMENTS_SCHEMA** property comes from `@angular/core` and is injected into `schemas` property in the module declaration. This schema will allow you to use custom elements in your Angular templates without raising any exceptions.
 
-### Using Web Components in templates
+#### Using Web Components in templates
 To add a Web Component to any Angular template you just need to use the HTML syntax that is provided in the reference.
 
 ```html
@@ -50,7 +51,7 @@ To add a Web Component to any Angular template you just need to use the HTML syn
   (categoriesSelected)="onCategorySelected($event)"></as-category-widget>
 ```
 
-#### Passing properties to component
+##### Passing properties to component
 You can pass all the properties and listen to all the events via HTML.
 
 If the property is a number or a text that will be harcoded in the template, you will pass it as a regular HTML property.
@@ -77,7 +78,7 @@ Event listeners are attached to the component in the same way as you would do wi
 <as-category-widget (categoriesSelected)="onCategorySelected($event)"></as-category-widget>
 ```
 
-### Invoking component methods
+#### Invoking component methods
 Components have some methods to be called from outside the web component. To do that, you need to retrieve the elements' reference with `ViewChild` decorator.
 
 ```ts
