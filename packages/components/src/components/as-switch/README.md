@@ -4,7 +4,7 @@ It is a two state button that can be on or off. This component issues a "changed
 
 ## Examples
 
-### Simple 
+### Simple
 
 ```html
 <as-switch id="switch-0" name="switch" title="switch"></as-switch>
@@ -20,6 +20,11 @@ It is a two state button that can be on or off. This component issues a "changed
 ### Disabled
 ```html
 <as-switch disabled id="switch-2" name="switch-2" title="switch-2"></as-switch>
+```
+
+### With Label
+```html
+<as-switch label="Entire Apartment"></as-switch>
 ```
 
 
@@ -65,6 +70,20 @@ lang: html
 lang: javascript
 ---
 switch.name = 'toggle-layer';
+```
+
+### **label**: string
+Text for label. When this attribute is set a label will appear on the right of the switch with the given value as text.
+
+```code
+lang: html
+---
+<as-switch label="Entire Apartment"></as-switch>
+```
+```code
+lang: javascript
+---
+switch.label = 'Entire Apartment';
 ```
 
 
