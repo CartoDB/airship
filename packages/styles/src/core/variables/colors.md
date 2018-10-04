@@ -7,7 +7,9 @@ Airship brings a series of [utilities and colors](../reference/#/styles/utilitie
 You can use `as-color--*` utility classes to modify text colors.
 
 ```html
-<p class="as-body as-color--primary"></p>
+showSource: true
+---
+<p class="as-body as-color--primary">Primary Color in Text</p>
 ```
 
 ### .as-bg--*
@@ -15,7 +17,9 @@ You can use `as-color--*` utility classes to modify text colors.
 You can use `as-bg--*` utility classes to modify element's background color.
 
 ```html
-<p class="as-body as-bg--primary"></p>
+showSource: true
+---
+<p class="as-body as-bg--primary">Primary Color in Background</p>
 ```
 
 ## Color list
