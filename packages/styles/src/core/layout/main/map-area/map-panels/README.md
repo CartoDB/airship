@@ -34,7 +34,7 @@ showSource: true
   <div class="as-content">
     <main class="as-main as-bg--badge-blue">
       <div class="as-map-area">
-      <div id="map"></div> 
+      <div id="map"></div>
       <div class="as-map-panels">
         <!-- as-panel code starts here -->
         <div class="as-panel as-panel--top as-panel--left">left top panel</div>
@@ -120,7 +120,7 @@ showSource: true
 </div>
 ```
 
-### Full example with tabs
+### Full example with responsive tabs
 
 ```html
 noSource: true

@@ -13,6 +13,8 @@ You can use our icons as a an [icon font](https://www.sitepoint.com/introduction
 All you need to do is to include our `icons.css` file in your html and you are ready to go.
 
 ```html
+showSource: true
+---
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@carto/airship-icons/dist/icons.css">
 <i class="as-icon-twitter"></i>
 ```
@@ -20,9 +22,11 @@ All you need to do is to include our `icons.css` file in your html and you are r
 
 ### Usage as svg
 
-you can use our icons as regular SVG images
+You can use our icons as regular SVG images
 
 ```html
+showSource: true
+---
 <img src="https://cdn.jsdelivr.net/npm/@carto/airship-icons/dist/icons/info.svg" alt="info">
 ```
 
