@@ -101,10 +101,9 @@ Combining this class with the `.tabs` element it is easy to create a responsive 
 Anyway, we recommend the use of the `<as-responsive-content>` to add our standard responsive behaviour out of the box.
 
 
-## Full example with tabs
+## Full example with responsive tabs
 
 Sidebars will be hidden on small devices. Use `tabs` to create a first level navigation.
-
 
 ```html
 noSource: true

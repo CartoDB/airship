@@ -17,7 +17,7 @@ showSource: true
   <div class="as-content">
     <main class="as-main">
       <div class="as-map-area as-bg--badge-blue">
-        <div id="map"></div> 
+        <div id="map"></div>
         <!-- as-map-footer code starts here -->
         <footer class="as-map-footer as-bg--badge-yellow" style="height: 100px;"></footer>
         <!-- as-map-footer code ends here -->
@@ -39,7 +39,7 @@ showSource: true
   <div class="as-content">
     <main class="as-main">
       <div class="as-map-area as-bg--badge-blue">
-        <div id="map"></div> 
+        <div id="map"></div>
         <!-- as-map-footer--visible code starts here -->
         <footer class="as-map-footer as-bg--badge-yellow as-map-footer--visible" style="min-height: 100px;"></footer>
         <!-- as-map-footer--visible code ends here -->
@@ -49,7 +49,7 @@ showSource: true
 </div>
 ```
 
-### Footer Example with tabs
+### Footer Example with responsive tabs
 
 ```html
 noSource: true
@@ -69,7 +69,7 @@ showSource: true
   <div class="as-content">
     <main class="as-main">
       <div class="as-map-area as-bg--badge-blue">
-        <div id="map"></div> 
+        <div id="map"></div>
         <!-- footer with containers code starts here -->
         <footer class="as-map-footer as-bg--badge-yellow">
           <div class="as-container as-container--border">
@@ -129,7 +129,7 @@ showSource: true
   <div class="as-content">
     <main class="as-main">
       <div class="as-map-area as-bg--badge-blue">
-        <div id="map"></div> 
+        <div id="map"></div>
         <footer class="as-map-footer as-bg--badge-yellow">
           <!-- as-container code starts here -->
           <div class="as-container">
@@ -163,7 +163,7 @@ showSource: true
   <div class="as-content">
     <main class="as-main">
       <div class="as-map-area as-bg--badge-blue">
-        <div id="map"></div> 
+        <div id="map"></div>
         <!-- as-container--scrollable code starts here -->
         <footer class="as-map-footer as-bg--badge-yellow">
           <div class="as-container">
@@ -205,7 +205,7 @@ showSource: true
   <div class="as-content">
     <main class="as-main">
       <div class="as-map-area as-bg--badge-blue">
-        <div id="map"></div> 
+        <div id="map"></div>
         <!-- as-container--border code starts here -->
         <footer class="as-map-footer as-bg--badge-yellow">
           <div class="as-container as-container--border">
@@ -260,7 +260,7 @@ showSource: true
   <div class="as-content">
     <main class="as-main">
       <div class="as-map-area as-bg--badge-blue">
-        <div id="map"></div> 
+        <div id="map"></div>
         <footer class="as-map-footer as-bg--badge-yellow">
           <div class="as-container">
             <!-- as-box code starts here -->
