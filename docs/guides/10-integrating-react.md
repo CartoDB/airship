@@ -16,7 +16,7 @@ Load the styles into your code
 @import '@carto/airship-style/dist/airship.css';
 ```
 
-## Web components
+## Web components
 
 A web component is just an HTML tag with some attributes that control its behaviour. Simply include the HTML tag, and edit its properties through attributes or through javascript as you would do with a normal HTML element.
 

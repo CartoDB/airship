@@ -24,26 +24,6 @@ The simplest way to use Airship is to load it from CARTO CDN by including the fo
 <head>
 ```
 
-### Reducing bundle size
-
-To get a better [page speed performance](https://developers.google.com/speed/docs/insights/OptimizeCSSDelivery), we suggest you to only include the styles that are being used in your app.
-
-While Airship will automatically inject necessary components as soon as they are inserted in the DOM, you need to specify which CSS elements you want to load in advance. Here's an example:
-
-```html
-<head>
-  <!-- Always Include core first -->
-  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-style/dist/core/core.css">
-  <!-- Include the elements used by your app -->
-  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-style/dist/button/button.css">
-  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-style/dist/table/table.css">
-  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-style/dist/tabs/tabs.css">
-  <!-- (optional) Include utils at the end -->
-  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-style/dist/utilities/utilities.css">
-<head>
-```
-
-
 ### Usage from NPM
 
 **Styles and fonts**
@@ -206,4 +186,23 @@ For example a range slider
   </script>
 </body>
 </html>
+```
+
+### Reducing bundle size
+
+To get a better [page speed performance](https://developers.google.com/speed/docs/insights/OptimizeCSSDelivery), we suggest you to only include the styles that are being used in your app.
+
+While Airship will automatically inject necessary components as soon as they are inserted in the DOM, you need to specify which CSS elements you want to load in advance. Here's an example:
+
+```html
+<head>
+  <!-- Always Include core first -->
+  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-style/dist/core/core.css">
+  <!-- Include the elements used by your app -->
+  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-style/dist/button/button.css">
+  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-style/dist/table/table.css">
+  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-style/dist/tabs/tabs.css">
+  <!-- (optional) Include utils at the end -->
+  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-style/dist/utilities/utilities.css">
+<head>
 ```
