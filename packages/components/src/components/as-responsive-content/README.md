@@ -66,6 +66,7 @@ responsive: true
 ---
 <iframe src="/examples/components/as-responsive-content/simple.html" style="width: 100%; height: 100%;">
 ```
+[See example](/developers/airship/examples/#example-simple)
 
 ### Changing the tab order
 
@@ -94,6 +95,8 @@ responsive: true
 ---
 <iframe src="/examples/components/as-responsive-content/custom-order.html" style="width: 100%; height: 100%;">
 ```
+
+[See example](/developers/airship/examples/#example-custom-order)
 
 ## Events
 

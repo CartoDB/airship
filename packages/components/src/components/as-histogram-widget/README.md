@@ -7,6 +7,9 @@ noSource: true
 <iframe src="/examples/components/as-histogram-widget/simple.html" style="width: 100%; height: 300px;">
 ```
 
+[See example](/developers/airship/examples/#example-as-histogram-simple)
+
+
 ```code
 lang: html
 showSource: false
@@ -240,6 +243,8 @@ noSource: true
 <iframe src="/examples/components/as-histogram-widget/events.html" style="width: 100%; height: 300px;">
 ```
 
+[See example](/developers/airship/examples/#example-as-histogram-events)
+
 ```code
 lang: html
 showSource: false
@@ -281,6 +286,8 @@ noSource: true
 ---
 <iframe src="/examples/components/as-histogram-widget/interaction-disabled.html" style="width: 100%; height: 300px;">
 ```
+
+[See example](/developers/airship/examples/#example-as-histogram-interaction-disabled)
 
 ```code
 lang: html

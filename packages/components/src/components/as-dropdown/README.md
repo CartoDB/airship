@@ -6,6 +6,8 @@ noSource: true
 ---
 <iframe src="/examples/components/as-dropdown/simple.html" style="width: 100%; height: 215px;">
 ```
+[See example](/developers/airship/examples/#example-as-dropdown)
+
 
 ```code
 lang: html
