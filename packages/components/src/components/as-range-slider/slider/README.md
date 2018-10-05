@@ -11,6 +11,9 @@ noSource: true
 <iframe  frameborder="0" marginwidth="10" src="/examples/components/as-range-slider/simple.html" style="width: 100%; height: 40px;">
 ```
 
+[See example](/developers/airship/examples/#example-range-slider)
+
+
 ```code
 lang: html
 showSource: false
@@ -33,6 +36,8 @@ noSource: true
 ---
 <iframe  frameborder="0" marginwidth="10" src="/examples/components/as-range-slider/multivalue.html" style="width: 100%; height: 40px;">
 ```
+
+[See example](/developers/airship/examples/#example-range-slider-multivalue)
 
 ```code
 lang: html
@@ -59,6 +64,7 @@ noSource: true
 ---
 <iframe  frameborder="0" marginwidth="10" src="/examples/components/as-range-slider/disabled.html" style="width: 100%; height: 80px;">
 ```
+[See example](/developers/airship/examples/#example-range-slider-disabled)
 
 ```code
 lang: html

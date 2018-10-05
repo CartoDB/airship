@@ -6,6 +6,8 @@ noSource: true
 <iframe src="/examples/components/as-category-widget/simple.html" style="width: 100%; height: 354px;">
 ```
 
+[See example code](/developers/airship/examples/#example-category-widget)
+
 ```code
 lang: html
 showSource: false
@@ -266,6 +268,8 @@ noSource: true
 <iframe src="/examples/components/as-category-widget/total-percentage.html" style="width: 100%; height: 230px;">
 ```
 
+[See example](/developers/airship/examples/#example-category-widget-total-percentage)
+
 ```code
 lang: html
 showSource: false
@@ -298,6 +302,8 @@ noSource: true
 ---
 <iframe src="/examples/components/as-category-widget/bar-only.html" style="width: 100%; height: 256px;">
 ```
+
+[See example](/developers/airship/examples/#example-category-widget-bar-only)
 
 ```code
 lang: html
@@ -332,6 +338,7 @@ noSource: true
 ---
 <iframe src="/examples/components/as-category-widget/interaction-disabled.html" style="width: 100%; height: 325px;">
 ```
+[See example](/developers/airship/examples/#example-category-widget-disabled)
 
 ```code
 lang: html
