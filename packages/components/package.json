@@ -1,7 +1,7 @@
 {
   "name": "@carto/airship-components",
   "version": "1.0.0-alpha.46",
-  "description": "CARTO Airship components",
+  "description": "Airship is a set of tools designed to facilitate the development of location intelligence apps by offering layouts, basic patterns, templates, CSS classes, components, widgets and much more.",
   "module": "dist/esm/index.js",
   "main": "dist/index.js",
   "types": "dist/types/components.d.ts",

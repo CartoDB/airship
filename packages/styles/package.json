@@ -1,7 +1,7 @@
 {
   "name": "@carto/airship-style",
   "version": "1.0.0-alpha.46",
-  "description": "CARTO Airship styles",
+  "description": "Airship is a set of tools designed to facilitate the development of location intelligence apps by offering layouts, basic patterns, templates, CSS classes, components, widgets and much more.",
   "main": "src/airship.scss",
   "files": [
     "src",

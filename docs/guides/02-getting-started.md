@@ -1,7 +1,6 @@
-
 ## Installing Airship
 
-You can install airship-style using `npm` or downloading it from a `CDN`. 
+You can install airship-style using `npm` or downloading it from a `CDN`.
 
 Airship is composed of 3 packages that can be used independently:
 
@@ -60,7 +59,7 @@ defineCustomElements(window);
 ```
 
 ## Using Airship
-Using Airship once included in your webpage is very straightforward. 
+Using Airship once included in your webpage is very straightforward.
 
 ### Airship Styles
 
@@ -108,7 +107,7 @@ To display an icon only a class and an `i` tag is required.
 > There is no need to include the `icons.css` file when using the icons this way.
 
 
-Just include the icons from a CDN as regular SVG images. 
+Just include the icons from a CDN as regular SVG images.
 
 ```html
 <img src="https://libs.cartocdn.com/airship-icons/%AS-VERSION%/icons/twitter.svg" alt="Twitter logo">
@@ -116,7 +115,7 @@ Just include the icons from a CDN as regular SVG images.
 
 ### Web components
 
-Web components should be treated as regular HTML Elements. 
+Web components should be treated as regular HTML Elements.
 
 A web component is just an HTML tag with some attributes that control its behaviour. Simply include the HTML tag, and edit its properties through attributes or through javascript.
 
