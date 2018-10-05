@@ -115,7 +115,7 @@ async function uploadAllFiles (dir, version, destination, subfolder='') {
       objectConfig.ContentType = mime.getType(filePath);
 
       try {
-        fileContent = await readFile(filePath);
+        fileContent = await readFile(filePath, { encoding: 'utf8' });
         fileLength = fileContent.length;
 
         if (shouldZip(extension)) {
