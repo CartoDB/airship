@@ -1,10 +1,12 @@
+## Integration guide: Using Airship with React
+
 This guide will lead you through the process of integrating Airship in [React.js](https://reactjs.org/).
 
 >  We are working on React bindings that offer a better developer experience in the future.
 
-## Including Styles
+### Including Styles
 
-Install `airship-style` package and 
+Install `airship-style` package and
 
  ```
 npm i @carto/airship-style
@@ -16,7 +18,7 @@ Load the styles into your code
 @import '@carto/airship-style/dist/airship.css';
 ```
 
-## Web components
+### Web components
 
 A web component is just an HTML tag with some attributes that control its behaviour. Simply include the HTML tag, and edit its properties through attributes or through javascript as you would do with a normal HTML element.
 
@@ -30,9 +32,9 @@ render() {
 ```
 
 
-## Loading web components
+#### Loading web components
 
-Install `airship-components` package 
+Install `airship-components` package
 
 ```
 npm i @carto/airship-components
@@ -47,7 +49,7 @@ defineCustomElements(window);
 
 In order to manage the state, either listening to events or synchronizing the attributes we got two options.
 
-## Option 1: Manage component logic in the parent layer.
+#### Option 1: Manage component logic in the parent layer.
 
 The simplest way to link Airship and React is to manually bind attributes and events. [Content attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes#Content_versus_IDL_attributes) only accept strings as parameters so we need to
 use javascript to add event listeners and pass complex objects as parameter.
@@ -119,7 +121,7 @@ export default class App extends Component {
 ```
 
 
-## Option 2: Wrap the component into a react element
+#### Option 2: Wrap the component into a react element
 
 With this option we are going to create a React component that wraps the original web-component exposing a simple and react-friendly API.
 
@@ -139,7 +141,7 @@ export default class CategoryWidget extends Component {
   }
 
   render() {
-    <as-category-widget 
+    <as-category-widget
       ref={this.ref}
       heading={this.props.heading}
       description={this.props.description}
