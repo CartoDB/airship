@@ -9,6 +9,8 @@ responsive: [desktop]
 <iframe src="/examples/layouts/basic-layout.html" style="width: 100%; height: 100%;">
 ```
 
+[See example](/developers/airship/examples/#example-basic-layout)
+
 An airship app is composed of the following elements:
 
 - **Toolbar**: Where the main navigation and options are located. Only icons, text and the app logo should be placed here.
