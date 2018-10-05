@@ -1,6 +1,6 @@
 ## What is Airship?
 
-Airship is a set of tools designed to facilitate the development of location intelligence apps by offering layouts, basic patterns, templates, CSS classes, components, widgets and much more. Apps created with Airship will have a consistent UI and an propper UX validated and tested by CARTO.
+Airship is a set of tools designed to facilitate the development of location intelligence apps by offering layouts, basic patterns, templates, CSS classes, components, widgets and much more. Apps created with Airship will have a consistent UI and an proper UX validated and tested by CARTO.
 
 Airship is currently composed of three fundamental parts that can be used separately: A CSS framework, a series of web-components and a set of icons.
 
