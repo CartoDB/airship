@@ -1,8 +1,10 @@
+## Advanced guide: Using Airship with CARTO-VL
+
 In this guide, you will learn how to create a map and a Category Widget showing data coming from the map, and reacting to changes in the map, as well as filtering data by using Category Widget.
 
 We'll use [CARTO-VL](https://carto.com/developers/carto-vl/) and Airship to show how they work together properly.
 
-## Airship setup
+### Airship setup
 
 Let's start from scratch creating an empty `index.html` file with this scaffolding for this guide.
 
@@ -18,7 +20,7 @@ Let's start from scratch creating an empty `index.html` file with this scaffoldi
 </html>
 ```
 
-## Including Airship
+### Including Airship
 
 To use Airship styles and components we need to include them in our HTML. Since we just want to create a simple app we are going to include Airship components and styles through a CDN by including the following snippet in the `<head>` of our application:
 
@@ -31,7 +33,7 @@ To use Airship styles and components we need to include them in our HTML. Since 
 <script src="https://libs.cartocdn.com/airship-components/%AS-VERSION%/airship.js"></script>
 ```
 
-## Including CARTO-VL
+### Including CARTO-VL
 
 As pointed in the [CARTO-VL docs](https://carto.com/developers/carto-vl/guides/getting-started/) we can also include CARTO-VL in our app using a CDN
 
@@ -47,7 +49,7 @@ As pointed in the [CARTO-VL docs](https://carto.com/developers/carto-vl/guides/g
 ```
 
 
-## Setting a basic layout
+### Setting a basic layout
 
 A basic layout will just include a container for our map and a sidebar for our future widget.
 
@@ -69,7 +71,7 @@ In this case we add a `as-map-area` where the map will be displayed and a `as-si
 ```
 
 
-## Drawing a map with CARTO-VL
+### Drawing a map with CARTO-VL
 For this guide we are going to use the js code of the [CARTO-VL basic example](https://carto.com/developers/carto-vl/examples/#example-add-carto-dataset-layer) at this point you should see a map with an white space on the right.
 
 ```html
@@ -109,7 +111,7 @@ For this guide we are going to use the js code of the [CARTO-VL basic example](h
 </script>
 ```
 
-## Adding a Category Widget
+### Adding a Category Widget
 
 Adding a Category Widget is as simple as including `<as-category-widget>` tag within our `as-sidebar` element, setting the options you prefer.
 
@@ -123,7 +125,7 @@ Adding a Category Widget is as simple as including `<as-category-widget>` tag wi
 </aside>
 ```
 
-### Binding CARTO-VL data
+#### Binding CARTO-VL data
 
 The category widget will not show any data unless we provide them. For this example, we will simply show the list sorted by the maximum population of cities that can be seen on the map.
 

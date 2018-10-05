@@ -1,5 +1,48 @@
 <a name="0.0.0"></a>
-# [0.0.0](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.43...v0.0.0) (2018-09-24)
+# [0.0.0](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.46...v0.0.0) (2018-10-04)
+
+
+
+<a name="1.0.0-alpha.46"></a>
+# [1.0.0-alpha.46](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.45...v1.0.0-alpha.46) (2018-10-04)
+
+
+### Bug Fixes
+
+* **components:** Adjust SVG inner elements to bounds ([#354](https://github.com/CartoDB/airship/issues/354)) ([ec6c79b](https://github.com/CartoDB/airship/commit/ec6c79b))
+* **components:** Avoid moving all Range Slider thumbs in mobile ([#355](https://github.com/CartoDB/airship/issues/355)) ([b0a2b37](https://github.com/CartoDB/airship/commit/b0a2b37))
+* **components:** Clear selected categories when categories array is changed ([#332](https://github.com/CartoDB/airship/issues/332)) ([6817b00](https://github.com/CartoDB/airship/commit/6817b00))
+* **components:** Use default bar color when airship styles are not included ([#335](https://github.com/CartoDB/airship/issues/335)) ([2d73589](https://github.com/CartoDB/airship/commit/2d73589))
+* **docs:** Add text to color utility classes showcase ([#383](https://github.com/CartoDB/airship/issues/383)) ([c7668c6](https://github.com/CartoDB/airship/commit/c7668c6))
+* **docs:** Fix double dash bug in catalog ([#364](https://github.com/CartoDB/airship/issues/364)) ([3238b16](https://github.com/CartoDB/airship/commit/3238b16))
+* **docs:** Modify layout image path ([#358](https://github.com/CartoDB/airship/issues/358)) ([65fd91b](https://github.com/CartoDB/airship/commit/65fd91b))
+* Replace broken link ([b0140dc](https://github.com/CartoDB/airship/commit/b0140dc))
+* Replace broken link ([942a4fe](https://github.com/CartoDB/airship/commit/942a4fe))
+
+
+### Features
+
+* **components:** Built-in label in Switch component ([#366](https://github.com/CartoDB/airship/issues/366)) ([45df160](https://github.com/CartoDB/airship/commit/45df160))
+
+
+
+<a name="1.0.0-alpha.45"></a>
+# [1.0.0-alpha.45](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.44...v1.0.0-alpha.45) (2018-09-28)
+
+
+### Bug Fixes
+
+* **components:** Fix range-slider on mobile ([#344](https://github.com/CartoDB/airship/issues/344)) ([39e09e4](https://github.com/CartoDB/airship/commit/39e09e4))
+
+
+### Features
+
+* **docs:** Angular integration guide ([#328](https://github.com/CartoDB/airship/issues/328)) ([bb526d6](https://github.com/CartoDB/airship/commit/bb526d6))
+
+
+
+<a name="1.0.0-alpha.44"></a>
+# [1.0.0-alpha.44](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.43...v1.0.0-alpha.44) (2018-09-24)
 
 
 ### Bug Fixes

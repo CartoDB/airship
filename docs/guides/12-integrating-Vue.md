@@ -1,6 +1,7 @@
+## Integration guide: Using Airship with Vue
 This guide will lead you through the process of integrating Airship with [Vue](https://vuejs.org/).
 
-## Including Styles
+### Including Styles
 Airship styles need to be globally included within our Vue application, so that we can use styles everywhere instead of including them inside any component scope. We are going to import them in the application's entry point via npm.
 
 ```
@@ -27,7 +28,7 @@ You will need to tell Webpack to use these loaders by changing the configuration
 }
 ```
 
-## Integrating Web Components
+### Integrating Web Components
 On top of adding Airship styles, we need to load our components into your application. You can do it below our styles import in the main entry point of the application.
 
 First, we need to tell Vue to ignore elements starting with `as-`, which are our Airship components. We don't want Vue to raise an error everytime an Airship component is included in a template.
@@ -45,7 +46,7 @@ import { defineCustomElements } from '@carto/airship-components';
 defineCustomElements(window);
 ```
 
-### Using Web Components in templates
+#### Using Web Components in templates
 To add a Web Component to a Vue template you just need to use the HTML syntax that is provided in the reference.
 
 Although Web Components are supported in Vue, there's one caveat when it comes to injecting data into the component. The only properties that can be passed via attributes are text and number properties, whether via direct text or injecting the property in the template.
@@ -59,7 +60,7 @@ Although Web Components are supported in Vue, there's one caveat when it comes t
 
 To pass complex properties such as Objects and Arrays or listen to component events, you need to do it via Vue element reference or creating a mirror component.
 
-#### Managing component with element reference
+##### Managing component with element reference
 There are some properties that we cannot pass or events that we cannot listen to in the example above, such as category property or categoriesSelected event.
 
 To get the element reference, we need to set `ref` property in the component template node.
@@ -76,7 +77,7 @@ To get the element reference, we need to set `ref` property in the component tem
 
 Element's reference will be in our Vue component's `refs` property, hence we will have full access to our Airship component.
 
-##### Listening to component events
+###### Listening to component events
 The best way to listen to component events is in `mounted` function in your desired component.
 
 ```js
@@ -96,7 +97,7 @@ We create an easy-to-use reference to the widget so that we can reuse it in othe
 
 It will only listen once to component event and it won't create multiple unneeded event listeners by doing it in `mounted` callback.
 
-##### Passing complex properties to component
+###### Passing complex properties to component
 The way to pass complex properties to the component is very similar to listening to events.
 
 To make the component react to property changes we need to create a watch over the property that holds our data. Once `watch` is ready, we need to set the new value of the property to the desired property in the component, like:
@@ -112,7 +113,7 @@ export default {
 }
 ```
 
-##### Invoking component methods
+###### Invoking component methods
 To invoke a component method, we need to create a mirror method in our Vue component that executes the original method.
 
 ```js
@@ -129,7 +130,7 @@ export default {
 }
 ```
 
-### Mirroring Web Components with Vue component
+#### Mirroring Web Components with Vue component
 Mirroring one Airship Component with a Vue component is pretty much like doing the same things as above but encapsulated within a single component.
 
 To mirror the Airship Component, we need to create a new Vue component like this:
