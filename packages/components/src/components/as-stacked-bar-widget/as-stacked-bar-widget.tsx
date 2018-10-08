@@ -1,4 +1,4 @@
-import { Component } from '@stencil/core';
+import { Component, Prop } from '@stencil/core';
 
 
 /**
@@ -13,11 +13,35 @@ import { Component } from '@stencil/core';
   tag: 'as-stacked-bar-widget',
 })
 export class StackedBarWidget {
-  render() {
-    return (
-      <p>
-        IT WORKS
-      </p>
-    );
+
+  /**
+   * Header of the widget to be displayed
+   *
+   * @type {string}
+   * @memberof StackedBarWidget
+   */
+  @Prop() public heading: string;
+
+  /**
+   * Description of the widget to be displayed
+   *
+   * @type {string}
+   * @memberof StackedBarWidget
+   */
+  @Prop() public description: string;
+
+
+  public render() {
+    return [
+      this._renderHeader(),
+      <svg></svg>
+    ];
+  }
+
+  private _renderHeader() {
+    return [
+      <h2 class='as-stacked-bar-widget__header'>{this.heading}</h2>,
+      <p class='as-stacked-bar-widget__description as-body'>{this.description}</p>,
+    ];
   }
 }

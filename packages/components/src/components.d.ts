@@ -621,7 +621,14 @@ declare global {
 
   namespace StencilComponents {
     interface AsStackedBarWidget {
-
+      /**
+       * Description of the widget to be displayed
+       */
+      'description': string;
+      /**
+       * Header of the widget to be displayed
+       */
+      'heading': string;
     }
   }
 
@@ -644,7 +651,14 @@ declare global {
   }
   namespace JSXElements {
     export interface AsStackedBarWidgetAttributes extends HTMLAttributes {
-
+      /**
+       * Description of the widget to be displayed
+       */
+      'description'?: string;
+      /**
+       * Header of the widget to be displayed
+       */
+      'heading'?: string;
     }
   }
 }

@@ -5,9 +5,19 @@ exports[`as-stacked-bar-widget Propery handling should handle data attribute 1`]
   class="hydrated"
 >
   
-  <p>
-    IT WORKS
+  <h2
+    class="as-stacked-bar-widget__header"
+  >
+    
+  </h2>
+  <p
+    class="as-stacked-bar-widget__description as-body"
+  >
+    
   </p>
+  <div>
+    <svg />
+  </div>
 </as-stacked-bar-widget>
 `;
 
@@ -17,9 +27,41 @@ exports[`as-stacked-bar-widget Propery handling should handle description attrib
   description="fake-description-attr"
 >
   
-  <p>
-    IT WORKS
+  <h2
+    class="as-stacked-bar-widget__header"
+  >
+    
+  </h2>
+  <p
+    class="as-stacked-bar-widget__description as-body"
+  >
+    fake-description-attr
   </p>
+  <div>
+    <svg />
+  </div>
+</as-stacked-bar-widget>
+`;
+
+exports[`as-stacked-bar-widget Propery handling should handle heading attribute 1`] = `
+<as-stacked-bar-widget
+  class="hydrated"
+  heading="Population Income"
+>
+  
+  <h2
+    class="as-stacked-bar-widget__header"
+  >
+    Population Income
+  </h2>
+  <p
+    class="as-stacked-bar-widget__description as-body"
+  >
+    
+  </p>
+  <div>
+    <svg />
+  </div>
 </as-stacked-bar-widget>
 `;
 
@@ -29,21 +71,19 @@ exports[`as-stacked-bar-widget Propery handling should handle showLegend attribu
   show-legend="false"
 >
   
-  <p>
-    IT WORKS
+  <h2
+    class="as-stacked-bar-widget__header"
+  >
+    
+  </h2>
+  <p
+    class="as-stacked-bar-widget__description as-body"
+  >
+    
   </p>
-</as-stacked-bar-widget>
-`;
-
-exports[`as-stacked-bar-widget Propery handling should handle title attribute 1`] = `
-<as-stacked-bar-widget
-  class="hydrated"
-  title="Population Income"
->
-  
-  <p>
-    IT WORKS
-  </p>
+  <div>
+    <svg />
+  </div>
 </as-stacked-bar-widget>
 `;
 
@@ -52,8 +92,18 @@ exports[`as-stacked-bar-widget Propery handling should handle valuesInfo attribu
   class="hydrated"
 >
   
-  <p>
-    IT WORKS
+  <h2
+    class="as-stacked-bar-widget__header"
+  >
+    
+  </h2>
+  <p
+    class="as-stacked-bar-widget__description as-body"
+  >
+    
   </p>
+  <div>
+    <svg />
+  </div>
 </as-stacked-bar-widget>
 `;

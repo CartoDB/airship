@@ -15,11 +15,13 @@ describe('as-stacked-bar-widget', () => {
   describe('Propery handling', () => {
     let testWindow;
     beforeEach(() => testWindow = new TestWindow());
-    it('should handle title attribute', async () => {
+    it('should handle heading attribute', async () => {
       const element = await testWindow.load({
         components: [StackedBarWidget],
-        html: `<as-stacked-bar-widget title="Population Income"></as-stacked-bar-widget>`
+        html: `<as-stacked-bar-widget heading="Population Income"></as-stacked-bar-widget>`
       });
+      element.heading = 'Population Income';
+      await testWindow.flush();
       expect(element).toMatchSnapshot();
     });
 
@@ -28,6 +30,7 @@ describe('as-stacked-bar-widget', () => {
         components: [StackedBarWidget],
         html: `<as-stacked-bar-widget description="fake-description-attr"></as-stacked-bar-widget>`
       });
+      await testWindow.flush();
       expect(element).toMatchSnapshot();
     });
 
@@ -36,6 +39,7 @@ describe('as-stacked-bar-widget', () => {
         components: [StackedBarWidget],
         html: `<as-stacked-bar-widget show-legend="false"></as-stacked-bar-widget>`
       });
+      await testWindow.flush();
       expect(element).toMatchSnapshot();
     });
 
