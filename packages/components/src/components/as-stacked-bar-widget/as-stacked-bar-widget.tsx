@@ -4,7 +4,9 @@ import { Axis, axisLeft } from 'd3-axis';
 // import { BrushBehavior, brushX } from 'd3-brush';
 import { scaleLinear, ScaleLinear } from 'd3-scale';
 import { select, Selection } from 'd3-selection';
-import dataprocessor from './data-processor';
+import dataProcessor from './data-processor';
+import readableNumber from '../../utils/readable-number';
+
 
 /**
  * Stacked bar Widget
@@ -60,7 +62,6 @@ export class StackedBarWidget {
   }
 
   public componentDidLoad() {
-    console.log('didload');
     this._renderGraph();
   }
 
@@ -74,10 +75,9 @@ export class StackedBarWidget {
   private _renderGraph() {
 
     if (!this.data.length) {
-      return <p class='as-body'>No data availiable</p>
+      return <p class='as-body'>No data availiable</p>;
     }
 
-    console.log('renderGraph');
     return [
       this.showLegend ? this._renderLegend() : null,
       this._renderAxis(),
@@ -92,25 +92,33 @@ export class StackedBarWidget {
   }
 
   private _renderYAxis() {
+    const HEIGHT = this.container.node().getBoundingClientRect().height * 0.8;
+    const WIDTH = this.container.node().getBoundingClientRect().width;
+
     // const barsWidth = '50px';
     const domain = dataProcessor.getDomain(this.data);
     // -- Y Axis
     this.yScale = scaleLinear()
       .domain(domain)
-      .range([1000, 0])
+      .range([HEIGHT, domain[0]])
       .nice();
 
-    this.yAxis = axisLeft(this.yScale);
+    this.yAxis = axisLeft(this.yScale)
+      .ticks(5)
+      .tickSize(-(WIDTH - 60))
+      .tickFormat((d) => `${readableNumber(d)}`);
+
 
     this.container
       .append('g')
+      .attr('class', 'x-axis')
       .call(this.yAxis);
   }
 
   // private _renderXAxis() {}
 
   private _renderLegend() {
-    return <p>legend</p>
+    return <p>legend</p>;
   }
 }
 

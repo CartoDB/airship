@@ -8,29 +8,26 @@
   <title>Airship</title>
   <link rel="stylesheet" href="/dist/airship.css">
   <script src="/build/airship.js"></script>
+  <style>
+    body {
+      background: #f2f2f2;
+    }
+
+  </style>
 </head>
 
 <body>
-  <div style="width: 250px;">
-    <as-stacked-bar-widget heading="Heading" description="Description"></as-stacked-bar-widget>
-  </div>
+  <as-stacked-bar-widget heading="Heading" description="Description"></as-stacked-bar-widget>
 
   <script>
     const widget = document.querySelector('as-stacked-bar-widget');
     widget.data = [{
         category: 'A New Hope',
         values: {
-          investment: 204338075,
-          revenue: 359029623
+          investment: 10,
+          revenue: 100000000
         }
       },
-      {
-        category: 'The Empire Strikes Back',
-        values: {
-          investment: 359029623,
-          revenue: 236513856
-        }
-      }
     ];
 
     console.log(widget.data);

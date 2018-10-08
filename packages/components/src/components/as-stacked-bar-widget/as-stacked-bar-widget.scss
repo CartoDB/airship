@@ -1,8 +1,46 @@
 @import '../../../../styles/src/core/_dev';
 @import '../../../../styles/src/tooltip/tooltip';
 
-as-histogram-widget {
+as-stacked-bar-widget {
   display: block;
   width: 100%;
   background: var(--histogram-widget--background-color, $color-ui-01);
+
+  .as-stacked-bar-widget__header {
+    margin: 0;
+    font: 16px/24px var(--font-family-base, Roboto, sans-serif);
+  }
+
+  .as-stacked-bar-widget__description {
+    margin-bottom: 16px;
+    color: var(--histogram-widget--description-color, #747474);
+  }
+
+
+
+  svg {
+    width: 100%;
+    padding: 16px;
+    overflow: visible;
+    border: 1px solid red;
+
+    .x-axis {
+      transform: translate(30px, 5px);
+
+      .tick {
+        text {
+          fill: var(--histogram-widget--description-color, #747474);
+        }
+
+        line {
+          stroke: var(--as-color-type-02, #747474);
+          opacity: 0.5;
+        }
+      }
+
+      .domain {
+        display: none;
+      }
+    }
+  }
 }

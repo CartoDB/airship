@@ -4,7 +4,7 @@
  *
  *  Ex: 1200 -> 1.2K
  */
-export default function(number) {
+export default function (number) {
   const roundedNumber = Math.ceil(number * 100) / 100;
 
   if (roundedNumber >= 1000000000) return `${(roundedNumber / 1000000000).toFixed(1)}G`;
