@@ -40,6 +40,14 @@ export class AppModule { }
 
 As you can see, **CUSTOM_ELEMENTS_SCHEMA** property comes from `@angular/core` and is injected into `schemas` property in the module declaration. This schema will allow you to use custom elements in your Angular templates without raising any exceptions.
 
+Second, we need to define Airship components in our Angular application by appending these two lines to `main.ts` file.
+
+```ts
+import { defineCustomElements } from '@carto/airship-components';
+
+defineCustomElements(window);
+```
+
 #### Using Web Components in templates
 To add a Web Component to any Angular template you just need to use the HTML syntax that is provided in the reference.
 
