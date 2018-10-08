@@ -23,8 +23,5 @@ exports.config = {
       ]
     })
   ],
-  preamble: [
-    'Airship Components · CARTO · https://carto.com',
-    `Version ${version}`
-  ].join('\n')
+  preamble: 'Airship Components · CARTO · https://carto.com'
 };

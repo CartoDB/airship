@@ -6,7 +6,6 @@ const fs = require('fs');
 
 const banner = `/*!
 * Airship Styles · CARTO · https://carto.com
-* Version ${version}
 * ${new Date().toISOString()}
 */
 `;
