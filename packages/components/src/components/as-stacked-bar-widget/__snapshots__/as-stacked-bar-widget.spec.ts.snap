@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`as-stacked-bar-widget Propery handling should handle data attribute 1`] = `
+<as-stacked-bar-widget
+  class="hydrated"
+>
+  
+  <p>
+    IT WORKS
+  </p>
+</as-stacked-bar-widget>
+`;
+
+exports[`as-stacked-bar-widget Propery handling should handle description attribute 1`] = `
+<as-stacked-bar-widget
+  class="hydrated"
+  description="fake-description-attr"
+>
+  
+  <p>
+    IT WORKS
+  </p>
+</as-stacked-bar-widget>
+`;
+
+exports[`as-stacked-bar-widget Propery handling should handle showLegend attribute 1`] = `
+<as-stacked-bar-widget
+  class="hydrated"
+  show-legend="false"
+>
+  
+  <p>
+    IT WORKS
+  </p>
+</as-stacked-bar-widget>
+`;
+
+exports[`as-stacked-bar-widget Propery handling should handle title attribute 1`] = `
+<as-stacked-bar-widget
+  class="hydrated"
+  title="Population Income"
+>
+  
+  <p>
+    IT WORKS
+  </p>
+</as-stacked-bar-widget>
+`;
+
+exports[`as-stacked-bar-widget Propery handling should handle valuesInfo attribute 1`] = `
+<as-stacked-bar-widget
+  class="hydrated"
+>
+  
+  <p>
+    IT WORKS
+  </p>
+</as-stacked-bar-widget>
+`;

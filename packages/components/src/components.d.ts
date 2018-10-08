@@ -620,6 +620,39 @@ declare global {
 declare global {
 
   namespace StencilComponents {
+    interface AsStackedBarWidget {
+
+    }
+  }
+
+  interface HTMLAsStackedBarWidgetElement extends StencilComponents.AsStackedBarWidget, HTMLStencilElement {}
+
+  var HTMLAsStackedBarWidgetElement: {
+    prototype: HTMLAsStackedBarWidgetElement;
+    new (): HTMLAsStackedBarWidgetElement;
+  };
+  interface HTMLElementTagNameMap {
+    'as-stacked-bar-widget': HTMLAsStackedBarWidgetElement;
+  }
+  interface ElementTagNameMap {
+    'as-stacked-bar-widget': HTMLAsStackedBarWidgetElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'as-stacked-bar-widget': JSXElements.AsStackedBarWidgetAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface AsStackedBarWidgetAttributes extends HTMLAttributes {
+
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
     interface AsSwitch {
       /**
        * Boolean flag to control if the input is checked or not

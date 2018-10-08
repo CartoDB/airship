@@ -1,0 +1,8 @@
+@import '../../../../styles/src/core/_dev';
+@import '../../../../styles/src/tooltip/tooltip';
+
+as-histogram-widget {
+  display: block;
+  width: 100%;
+  background: var(--histogram-widget--background-color, $color-ui-01);
+}
