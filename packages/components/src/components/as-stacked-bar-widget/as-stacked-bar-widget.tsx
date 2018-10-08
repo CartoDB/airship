@@ -2,10 +2,9 @@ import { Component, Prop } from '@stencil/core';
 // import { max } from 'd3-array';
 import { Axis, axisLeft } from 'd3-axis';
 // import { BrushBehavior, brushX } from 'd3-brush';
-import { format } from 'd3-format';
 import { scaleLinear, ScaleLinear } from 'd3-scale';
 import { select, Selection } from 'd3-selection';
-
+import dataprocessor from './data-processor';
 
 /**
  * Stacked bar Widget
@@ -56,8 +55,13 @@ export class StackedBarWidget {
   public render() {
     return [
       this._renderHeader(),
-      this._renderGraph(),
+      <svg ref={(ref: HTMLElement) => this.container = select(ref)}></svg>,
     ];
+  }
+
+  public componentDidLoad() {
+    console.log('didload');
+    this._renderGraph();
   }
 
   private _renderHeader() {
@@ -68,14 +72,15 @@ export class StackedBarWidget {
   }
 
   private _renderGraph() {
+
     if (!this.data.length) {
       return <p class='as-body'>No data availiable</p>
     }
 
-    this._renderAxis();
+    console.log('renderGraph');
     return [
       this.showLegend ? this._renderLegend() : null,
-      <svg ref={(ref: HTMLElement) => this.container = select(ref)}></svg>,
+      this._renderAxis(),
     ];
   }
 
@@ -87,23 +92,18 @@ export class StackedBarWidget {
   }
 
   private _renderYAxis() {
-    const barsWidth = '50px';
-
+    // const barsWidth = '50px';
+    const domain = dataProcessor.getDomain(this.data);
     // -- Y Axis
     this.yScale = scaleLinear()
+      .domain(domain)
       .range([1000, 0])
-      .domain([0, 1000])
       .nice();
 
-    this.yAxis = axisLeft(this.yScale)
-      .tickSize(-barsWidth)
-      .ticks(5)
-      .tickPadding(10)
-      .tickFormat(format('.2~s'));
+    this.yAxis = axisLeft(this.yScale);
 
     this.container
       .append('g')
-      .attr('class', 'yAxis')
       .call(this.yAxis);
   }
 

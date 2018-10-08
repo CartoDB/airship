@@ -15,6 +15,28 @@
     <as-stacked-bar-widget heading="Heading" description="Description"></as-stacked-bar-widget>
   </div>
 
+  <script>
+    const widget = document.querySelector('as-stacked-bar-widget');
+    widget.data = [{
+        category: 'A New Hope',
+        values: {
+          investment: 204338075,
+          revenue: 359029623
+        }
+      },
+      {
+        category: 'The Empire Strikes Back',
+        values: {
+          investment: 359029623,
+          revenue: 236513856
+        }
+      }
+    ];
+
+    console.log(widget.data);
+
+  </script>
+
 </body>
 
 </html>
