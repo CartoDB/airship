@@ -15,9 +15,7 @@ exports[`as-stacked-bar-widget Propery handling should handle data attribute 1`]
   >
     
   </p>
-  <div>
-    <svg />
-  </div>
+  <svg />
 </as-stacked-bar-widget>
 `;
 
@@ -37,31 +35,27 @@ exports[`as-stacked-bar-widget Propery handling should handle description attrib
   >
     fake-description-attr
   </p>
-  <div>
-    <svg />
-  </div>
+  <svg />
 </as-stacked-bar-widget>
 `;
 
 exports[`as-stacked-bar-widget Propery handling should handle heading attribute 1`] = `
 <as-stacked-bar-widget
   class="hydrated"
-  heading="Population Income"
+  heading="fake-heading-attr"
 >
   
   <h2
     class="as-stacked-bar-widget__header"
   >
-    Population Income
+    fake-heading-attr
   </h2>
   <p
     class="as-stacked-bar-widget__description as-body"
   >
     
   </p>
-  <div>
-    <svg />
-  </div>
+  <svg />
 </as-stacked-bar-widget>
 `;
 
@@ -81,9 +75,7 @@ exports[`as-stacked-bar-widget Propery handling should handle showLegend attribu
   >
     
   </p>
-  <div>
-    <svg />
-  </div>
+  <svg />
 </as-stacked-bar-widget>
 `;
 
@@ -102,8 +94,6 @@ exports[`as-stacked-bar-widget Propery handling should handle valuesInfo attribu
   >
     
   </p>
-  <div>
-    <svg />
-  </div>
+  <svg />
 </as-stacked-bar-widget>
 `;

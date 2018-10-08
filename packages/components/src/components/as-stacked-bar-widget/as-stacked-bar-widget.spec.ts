@@ -18,10 +18,8 @@ describe('as-stacked-bar-widget', () => {
     it('should handle heading attribute', async () => {
       const element = await testWindow.load({
         components: [StackedBarWidget],
-        html: `<as-stacked-bar-widget heading="Population Income"></as-stacked-bar-widget>`
+        html: `<as-stacked-bar-widget heading="fake-heading-attr"></as-stacked-bar-widget>`
       });
-      element.heading = 'Population Income';
-      await testWindow.flush();
       expect(element).toMatchSnapshot();
     });
 
@@ -30,7 +28,6 @@ describe('as-stacked-bar-widget', () => {
         components: [StackedBarWidget],
         html: `<as-stacked-bar-widget description="fake-description-attr"></as-stacked-bar-widget>`
       });
-      await testWindow.flush();
       expect(element).toMatchSnapshot();
     });
 
