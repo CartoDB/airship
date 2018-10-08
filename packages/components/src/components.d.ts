@@ -29,6 +29,9 @@ import {
   HistogramColorRange,
   HistogramData,
 } from './components/as-histogram-widget/as-histogram-widget';
+import {
+  StackedbarData,
+} from './components/as-stacked-bar-widget/as-stacked-bar-widget';
 
 declare global {
 
@@ -621,6 +624,7 @@ declare global {
 
   namespace StencilComponents {
     interface AsStackedBarWidget {
+      'data': StackedbarData[];
       /**
        * Description of the widget to be displayed
        */
@@ -655,6 +659,7 @@ declare global {
   }
   namespace JSXElements {
     export interface AsStackedBarWidgetAttributes extends HTMLAttributes {
+      'data'?: StackedbarData[];
       /**
        * Description of the widget to be displayed
        */

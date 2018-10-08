@@ -45,7 +45,7 @@ describe('as-stacked-bar-widget', () => {
         components: [StackedBarWidget],
         html: `<as-stacked-bar-widget></as-stacked-bar-widget>`
       });
-      element.data = 'fake_data';
+      element.data = FAKE_DATA;
       expect(element).toMatchSnapshot();
     });
 
@@ -59,3 +59,21 @@ describe('as-stacked-bar-widget', () => {
     });
   });
 });
+
+
+const FAKE_DATA = [
+  {
+    category: 'A New Hope',
+    values: {
+      investment: 204338075,
+      revenue: 359029623
+    }
+  },
+  {
+    category: 'The Empire Strikes Back',
+    values: {
+      investment: 359029623,
+      revenue: 236513856
+    }
+  }
+];
