@@ -10,7 +10,7 @@ Airship is responsible for the layout and UI of the application. Once you have t
 
 ### How to use Airship?
 
-> Read our [getting started](getting-started) guide for a detailed explanation
+> Read our [getting started](/developers/airship/guides/getting-started/) guide for a detailed explanation
 
 
 The easiest way to include Airship is through our CDN, adding the tags in the header of the web:
