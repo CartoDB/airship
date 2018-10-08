@@ -30,6 +30,15 @@ export class StackedBarWidget {
    */
   @Prop() public description: string;
 
+  /**
+   * Boolean flag to control legend visibility.
+   * Defaults: true
+   *
+   * @type {boolean}
+   * @memberof StackedBarWidget
+   */
+  @Prop() public showLegend: boolean = true;
+
 
   public render() {
     return [
@@ -42,6 +51,11 @@ export class StackedBarWidget {
     return [
       <h2 class='as-stacked-bar-widget__header'>{this.heading}</h2>,
       <p class='as-stacked-bar-widget__description as-body'>{this.description}</p>,
+      this.showLegend ? this._renderLegend() : '',
     ];
+  }
+
+  private _renderLegend() {
+    return <p>legend</p>
   }
 }

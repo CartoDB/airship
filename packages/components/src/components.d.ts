@@ -629,6 +629,10 @@ declare global {
        * Header of the widget to be displayed
        */
       'heading': string;
+      /**
+       * Boolean flag to control legend visibility. Defaults: true
+       */
+      'showLegend': boolean;
     }
   }
 
@@ -659,6 +663,10 @@ declare global {
        * Header of the widget to be displayed
        */
       'heading'?: string;
+      /**
+       * Boolean flag to control legend visibility. Defaults: true
+       */
+      'showLegend'?: boolean;
     }
   }
 }
