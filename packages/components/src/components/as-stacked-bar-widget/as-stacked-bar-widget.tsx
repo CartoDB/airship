@@ -94,20 +94,19 @@ export class StackedBarWidget {
   private _renderYAxis() {
     const HEIGHT = this.container.node().getBoundingClientRect().height * 0.8;
     const WIDTH = this.container.node().getBoundingClientRect().width;
+    const RANGE = [HEIGHT, 0];
 
-    // const barsWidth = '50px';
     const domain = dataProcessor.getDomain(this.data);
-    // -- Y Axis
+
     this.yScale = scaleLinear()
       .domain(domain)
-      .range([HEIGHT, domain[0]])
+      .range(RANGE)
       .nice();
 
     this.yAxis = axisLeft(this.yScale)
       .ticks(5)
       .tickSize(-(WIDTH - 60))
       .tickFormat((d) => `${readableNumber(d)}`);
-
 
     this.container
       .append('g')
