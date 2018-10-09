@@ -1,4 +1,5 @@
 import { CategoryWidget } from './as-category-widget';
+import { Category } from './interfaces';
 
 describe('as-category-widget', () => {
   let categoryWidget;
