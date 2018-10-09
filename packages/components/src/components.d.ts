@@ -31,7 +31,7 @@ import {
 } from './components/as-histogram-widget/as-histogram-widget';
 import {
   StackedbarData,
-} from './components/as-stacked-bar-widget/as-stacked-bar-widget';
+} from './utils/StackedBarData';
 
 declare global {
 
@@ -739,6 +739,53 @@ declare global {
        * Event triggered by a enabled Switch component when the user clicks on it.
        */
       'onChange'?: (event: CustomEvent) => void;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
+    interface AsWidgetHeader {
+      /**
+       * Header of the widget
+       */
+      'header': string;
+      /**
+       * Subheader of the widget
+       */
+      'subheader': string;
+    }
+  }
+
+  interface HTMLAsWidgetHeaderElement extends StencilComponents.AsWidgetHeader, HTMLStencilElement {}
+
+  var HTMLAsWidgetHeaderElement: {
+    prototype: HTMLAsWidgetHeaderElement;
+    new (): HTMLAsWidgetHeaderElement;
+  };
+  interface HTMLElementTagNameMap {
+    'as-widget-header': HTMLAsWidgetHeaderElement;
+  }
+  interface ElementTagNameMap {
+    'as-widget-header': HTMLAsWidgetHeaderElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'as-widget-header': JSXElements.AsWidgetHeaderAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface AsWidgetHeaderAttributes extends HTMLAttributes {
+      /**
+       * Header of the widget
+       */
+      'header'?: string;
+      /**
+       * Subheader of the widget
+       */
+      'subheader'?: string;
     }
   }
 }

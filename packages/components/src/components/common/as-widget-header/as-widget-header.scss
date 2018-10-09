@@ -1,0 +1,11 @@
+.as-widget-header {
+  &__header {
+    margin: 0;
+    font: 16px/24px var(--font-family-base, Roboto, sans-serif);
+  }
+
+  &__subheader {
+    margin-bottom: 16px;
+    color: var(--histogram-widget--description-color, #747474);
+  }
+}

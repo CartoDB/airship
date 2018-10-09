@@ -1,4 +1,4 @@
-import { StackedbarData } from './as-stacked-bar-widget';
+import { StackedbarData } from './StackedBarData';
 
 export function getDomain(data: StackedbarData[]): number[] {
   return data.reduce((domain: number[], currentValue: StackedbarData) => {
