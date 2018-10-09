@@ -23,7 +23,7 @@ Airship is a set of tools designed to facilitate the development of Location Int
 
 Airship is currently composed of three fundamental parts: A [CSS framework](https://carto.com/developers/airship/guides/styles/), a library of [Web Components](https://carto.com/developers/airship/guides/web-components/) and a set of [icons](https://carto.com/developers/airship/guides/icons/).
 
-In a Location Intelligence application you can distinguish two parts: the map itself and everything else. Airship helps you with `everything else`, being responsible for the layout and UI of the application. To render the map, you can use one of our rendering libraries like CARTO.js or CARTO-VL.
+In a Location Intelligence application you can distinguish two parts: the map itself and everything else. Airship helps you with `everything else`, being responsible for the layout and UI of the application. To render the map, you can use one of our rendering libraries like [CARTO.js](https://github.com/CartoDB/carto.js) or [CARTO-VL](https://github.com/CartoDB/carto-vl).
 
 ## Integration with frameworks
 
