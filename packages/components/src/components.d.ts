@@ -743,6 +743,53 @@ declare global {
   }
 }
 
+
+declare global {
+
+  namespace StencilComponents {
+    interface AsYAxis {
+      /**
+       * Header of the widget to be displayed
+       */
+      'from': number;
+      /**
+       * Header of the widget to be displayed
+       */
+      'to': number;
+    }
+  }
+
+  interface HTMLAsYAxisElement extends StencilComponents.AsYAxis, HTMLStencilElement {}
+
+  var HTMLAsYAxisElement: {
+    prototype: HTMLAsYAxisElement;
+    new (): HTMLAsYAxisElement;
+  };
+  interface HTMLElementTagNameMap {
+    'as-y-axis': HTMLAsYAxisElement;
+  }
+  interface ElementTagNameMap {
+    'as-y-axis': HTMLAsYAxisElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'as-y-axis': JSXElements.AsYAxisAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface AsYAxisAttributes extends HTMLAttributes {
+      /**
+       * Header of the widget to be displayed
+       */
+      'from'?: number;
+      /**
+       * Header of the widget to be displayed
+       */
+      'to'?: number;
+    }
+  }
+}
+
 declare global { namespace JSX { interface StencilJSX {} } }
 
 export declare function defineCustomElements(window: any): void;
