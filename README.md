@@ -1,4 +1,4 @@
-# Airship
+# Airship ![](airship.svg)
 > Airship is a components library built by CARTO
 
 [![CircleCI](https://circleci.com/gh/CartoDB/airship/tree/master.svg?style=svg)](https://circleci.com/gh/CartoDB/airship/tree/master)
@@ -14,7 +14,7 @@ There are three npm packages for easier use:
 
 ## Documentation
 
-Check out our [documentation website](https://carto-airship.netlify.com/#/)
+Check out our [documentation website](https://carto.com/developers/airship/)
 
 ## ⚠️ WARNING ⚠️
 
