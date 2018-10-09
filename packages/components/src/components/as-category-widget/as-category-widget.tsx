@@ -120,7 +120,6 @@ export class CategoryWidget {
    *
    * @memberof CategoryWidget
    */
-  @Method()
   public defaultFormatter(value: number) {
     return `${readableNumber(value)}`;
   }
@@ -132,7 +131,7 @@ export class CategoryWidget {
    * @memberof CategoryWidget
    */
   @Method()
-  public getSelectedCategories() {
+  public async getSelectedCategories() {
     return this.selectedCategories;
   }
 
@@ -154,7 +153,7 @@ export class CategoryWidget {
    * @memberof CategoryWidget
    */
   @Method()
-  public clearSelection() {
+  public async clearSelection() {
     if (!this.selectedCategories.length) {
       return;
     }
@@ -343,14 +342,4 @@ export class CategoryWidget {
 
     return parsedCategories.slice(0, this.visibleCategories);
   }
-}
-
-export interface Category {
-  name: string;
-  value: number;
-  color?: string;
-}
-export interface CategoryOptions {
-  maximumValue: number;
-  isOther?: boolean;
 }

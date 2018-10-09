@@ -13,6 +13,7 @@ import {
 import 'd3-transition';
 import readableNumber from '../../utils/readable-number';
 import { shadeOrBlend } from '../../utils/styles';
+import { HistogramColorRange, HistogramData } from './interfaces';
 
 const CUSTOM_HANDLE_SIZE = 15;
 const DEFAULT_BAR_COLOR = 'var(--as-color-primary, #1785FB)';
@@ -160,7 +161,6 @@ export class HistogramWidget {
    *
    * @memberof HistogramWidget
    */
-  @Method()
   public defaultFormatter(data: HistogramData) {
     return `${readableNumber(data.value)}`;
   }
@@ -172,7 +172,7 @@ export class HistogramWidget {
    * @memberof HistogramWidget
    */
   @Method()
-  public getSelection(): number[] {
+  public async getSelection(): Promise<number[]> {
     return this.selection;
   }
 
@@ -648,16 +648,4 @@ export class HistogramWidget {
     }
     return color;
   }
-}
-
-export interface HistogramData {
-  start: number;
-  end: number;
-  value: number;
-}
-
-export interface HistogramColorRange {
-  min: number;
-  max: number;
-  color: string;
 }

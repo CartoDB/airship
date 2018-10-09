@@ -45,12 +45,12 @@ export class ResponsiveContent {
   }
 
   @Method()
-  public getSections(): object[] {
+  public async getSections(): Promise<object[]> {
     return this.sections;
   }
 
   @Method()
-  public setVisible(sectionName: string) {
+  public async setVisible(sectionName: string) {
     const sectionFound = this.sections.find((section) => section.name === sectionName);
 
     if (sectionFound) {
