@@ -55,7 +55,7 @@ export class YAxis {
 
     const yAxis = axisLeft(yScale)
       .ticks(5)
-      .tickSize(-(WIDTH - OFFSET))
+      .tickSize(-WIDTH + OFFSET)
       .tickFormat((d) => `${readableNumber(d)}`);
 
     ELEMENT

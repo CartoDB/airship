@@ -10,18 +10,61 @@ exports[`as-stacked-bar-widget Propery handling should handle data attribute 1`]
     <g
       class="plot"
     >
-      <rect
-        fill="rgba(200, 20, 20, 0.8)"
-        height="40%"
-        width="30"
-        x="0"
-        y="calc(60% + 1)"
-      />
+      <g
+        class="column"
+      >
+        <rect
+          fill="rgba(200, 20, 20, 0.8)"
+          height="40%"
+          width="30"
+          x="0"
+          y="60%"
+        />
+        <rect
+          fill="rgba(20, 200, 20, 0.8)"
+          height="5%"
+          width="30"
+          x="0"
+          y="55%"
+        />
+        <rect
+          fill="rgba(20, 20, 200, 0.8)"
+          height="20%"
+          width="30"
+          x="0"
+          y="35%"
+        />
+      </g>
+      <g
+        class="column"
+      >
+        <rect
+          fill="rgba(200, 20, 20, 0.8)"
+          height="20%"
+          width="30"
+          x="35"
+          y="80%"
+        />
+        <rect
+          fill="rgba(20, 200, 20, 0.8)"
+          height="50%"
+          width="30"
+          x="35"
+          y="30%"
+        />
+        <rect
+          fill="rgba(20, 20, 200, 0.8)"
+          height="10%"
+          width="30"
+          x="35"
+          y="20%"
+        />
+      </g>
     </g>
   </svg>
   <as-y-axis
     from="0"
-    to="0"
+    to="100"
   />
   <p>
     legend
@@ -42,18 +85,61 @@ exports[`as-stacked-bar-widget Propery handling should handle description attrib
     <g
       class="plot"
     >
-      <rect
-        fill="rgba(200, 20, 20, 0.8)"
-        height="40%"
-        width="30"
-        x="0"
-        y="calc(60% + 1)"
-      />
+      <g
+        class="column"
+      >
+        <rect
+          fill="rgba(200, 20, 20, 0.8)"
+          height="40%"
+          width="30"
+          x="0"
+          y="60%"
+        />
+        <rect
+          fill="rgba(20, 200, 20, 0.8)"
+          height="5%"
+          width="30"
+          x="0"
+          y="55%"
+        />
+        <rect
+          fill="rgba(20, 20, 200, 0.8)"
+          height="20%"
+          width="30"
+          x="0"
+          y="35%"
+        />
+      </g>
+      <g
+        class="column"
+      >
+        <rect
+          fill="rgba(200, 20, 20, 0.8)"
+          height="20%"
+          width="30"
+          x="35"
+          y="80%"
+        />
+        <rect
+          fill="rgba(20, 200, 20, 0.8)"
+          height="50%"
+          width="30"
+          x="35"
+          y="30%"
+        />
+        <rect
+          fill="rgba(20, 20, 200, 0.8)"
+          height="10%"
+          width="30"
+          x="35"
+          y="20%"
+        />
+      </g>
     </g>
   </svg>
   <as-y-axis
     from="0"
-    to="0"
+    to="100"
   />
   <p>
     legend
@@ -74,18 +160,61 @@ exports[`as-stacked-bar-widget Propery handling should handle heading attribute 
     <g
       class="plot"
     >
-      <rect
-        fill="rgba(200, 20, 20, 0.8)"
-        height="40%"
-        width="30"
-        x="0"
-        y="calc(60% + 1)"
-      />
+      <g
+        class="column"
+      >
+        <rect
+          fill="rgba(200, 20, 20, 0.8)"
+          height="40%"
+          width="30"
+          x="0"
+          y="60%"
+        />
+        <rect
+          fill="rgba(20, 200, 20, 0.8)"
+          height="5%"
+          width="30"
+          x="0"
+          y="55%"
+        />
+        <rect
+          fill="rgba(20, 20, 200, 0.8)"
+          height="20%"
+          width="30"
+          x="0"
+          y="35%"
+        />
+      </g>
+      <g
+        class="column"
+      >
+        <rect
+          fill="rgba(200, 20, 20, 0.8)"
+          height="20%"
+          width="30"
+          x="35"
+          y="80%"
+        />
+        <rect
+          fill="rgba(20, 200, 20, 0.8)"
+          height="50%"
+          width="30"
+          x="35"
+          y="30%"
+        />
+        <rect
+          fill="rgba(20, 20, 200, 0.8)"
+          height="10%"
+          width="30"
+          x="35"
+          y="20%"
+        />
+      </g>
     </g>
   </svg>
   <as-y-axis
     from="0"
-    to="0"
+    to="100"
   />
   <p>
     legend
@@ -104,18 +233,61 @@ exports[`as-stacked-bar-widget Propery handling should handle showLegend attribu
     <g
       class="plot"
     >
-      <rect
-        fill="rgba(200, 20, 20, 0.8)"
-        height="40%"
-        width="30"
-        x="0"
-        y="calc(60% + 1)"
-      />
+      <g
+        class="column"
+      >
+        <rect
+          fill="rgba(200, 20, 20, 0.8)"
+          height="40%"
+          width="30"
+          x="0"
+          y="60%"
+        />
+        <rect
+          fill="rgba(20, 200, 20, 0.8)"
+          height="5%"
+          width="30"
+          x="0"
+          y="55%"
+        />
+        <rect
+          fill="rgba(20, 20, 200, 0.8)"
+          height="20%"
+          width="30"
+          x="0"
+          y="35%"
+        />
+      </g>
+      <g
+        class="column"
+      >
+        <rect
+          fill="rgba(200, 20, 20, 0.8)"
+          height="20%"
+          width="30"
+          x="35"
+          y="80%"
+        />
+        <rect
+          fill="rgba(20, 200, 20, 0.8)"
+          height="50%"
+          width="30"
+          x="35"
+          y="30%"
+        />
+        <rect
+          fill="rgba(20, 20, 200, 0.8)"
+          height="10%"
+          width="30"
+          x="35"
+          y="20%"
+        />
+      </g>
     </g>
   </svg>
   <as-y-axis
     from="0"
-    to="0"
+    to="100"
   />
   
 </as-stacked-bar-widget>
@@ -131,18 +303,61 @@ exports[`as-stacked-bar-widget Propery handling should handle valuesInfo attribu
     <g
       class="plot"
     >
-      <rect
-        fill="rgba(200, 20, 20, 0.8)"
-        height="40%"
-        width="30"
-        x="0"
-        y="calc(60% + 1)"
-      />
+      <g
+        class="column"
+      >
+        <rect
+          fill="rgba(200, 20, 20, 0.8)"
+          height="40%"
+          width="30"
+          x="0"
+          y="60%"
+        />
+        <rect
+          fill="rgba(20, 200, 20, 0.8)"
+          height="5%"
+          width="30"
+          x="0"
+          y="55%"
+        />
+        <rect
+          fill="rgba(20, 20, 200, 0.8)"
+          height="20%"
+          width="30"
+          x="0"
+          y="35%"
+        />
+      </g>
+      <g
+        class="column"
+      >
+        <rect
+          fill="rgba(200, 20, 20, 0.8)"
+          height="20%"
+          width="30"
+          x="35"
+          y="80%"
+        />
+        <rect
+          fill="rgba(20, 200, 20, 0.8)"
+          height="50%"
+          width="30"
+          x="35"
+          y="30%"
+        />
+        <rect
+          fill="rgba(20, 20, 200, 0.8)"
+          height="10%"
+          width="30"
+          x="35"
+          y="20%"
+        />
+      </g>
     </g>
   </svg>
   <as-y-axis
     from="0"
-    to="0"
+    to="100"
   />
   <p>
     legend

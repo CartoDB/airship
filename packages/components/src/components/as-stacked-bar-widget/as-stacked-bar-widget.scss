@@ -21,9 +21,10 @@ as-stacked-bar-widget {
     width: 100%;
     padding: 16px;
     overflow: visible;
+    border: 1px solid tomato;
 
     .plot {
-      transform: translate(25px, 1px);
+      transform: translate(30px, -1px);
     }
   }
 }
