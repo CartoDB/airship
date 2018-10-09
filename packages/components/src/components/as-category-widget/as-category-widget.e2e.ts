@@ -60,16 +60,16 @@ describe('as-category-widget', () => {
       expect(screenshotResults).toMatchScreenshot();
     });
 
-    // it('should format display value when formatValue prop is present', async () => {
-    //   const element: E2EElement = await page.find('as-category-widget');
-    //   element.setProperty('categories', exampleCategories);
-    //   // element.setProperty('valueFormatter', (value) => `${value}€`);
+    it('should format display value when formatValue prop is present', async () => {
+      const element: E2EElement = await page.find('as-category-widget');
+      element.setProperty('categories', exampleCategories);
+      element.setProperty('valueFormatter', (value) => `${value}€`);
 
-    //   await page.waitForChanges();
+      await page.waitForChanges();
 
-    //   const screenshotResults = await page.compareScreenshot();
-    //   expect(screenshotResults).toMatchScreenshot();
-    // });
+      const screenshotResults = await page.compareScreenshot();
+      expect(screenshotResults).toMatchScreenshot();
+    });
   });
 
   describe('Behaviour', async () => {

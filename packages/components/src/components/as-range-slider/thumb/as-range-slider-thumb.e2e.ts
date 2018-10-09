@@ -60,21 +60,9 @@ describe('as-range-slider-thumb', async () => {
       const thumbChangeStart = await page.spyOnEvent('thumbChangeStart');
 
       const element = await page.find('.as-range-slider__thumb-handle');
-      await element.tap();
+      await element.click();
 
       expect(thumbChangeStart).toHaveReceivedEvent();
     });
-
-    // it('should emit thumbMove event when using mouse', async () => {
-    //     const onThumbMoveSpy = jest.fn();
-    //     element.addEventListener('thumbMove', onThumbMoveSpy);
-    //     await testWindow.flush();
-
-    //     this.simulateMouseEvent(element, 'mousedown');
-    //     this.simulateMouseEvent(element, 'mousemove');
-    //     this.simulateMouseEvent(element, 'mouseup');
-
-    //     expect(onThumbMoveSpy).toHaveBeenCalled();
-    // });
   });
 });
