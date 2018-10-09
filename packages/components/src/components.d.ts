@@ -266,6 +266,118 @@ export namespace Components {
     'src'?: string;
   }
 
+  interface AsRangeSlider {
+    /**
+    * Disables component if truthy
+    */
+    'disabled': boolean;
+    /**
+    * If this property is set to true, and it has multiple value, you can drag the entire track.
+    */
+    'draggable': boolean;
+    /**
+    * If this property receives a function, it will be used to format the numbers (eg. for adding $ or €).
+    */
+    'formatValue': (value: number) => string|number;
+    /**
+    * Top limit of the range. You cannot drag your slider beyond this value. By default the value is 10.
+    */
+    'maxValue': number;
+    /**
+    * Bottom limit of the range. You cannot drag your slider below this value. By default the value is 0.
+    */
+    'minValue': number;
+    /**
+    * Initial range.
+    */
+    'range': number[];
+    /**
+    * Increment/decrement step of the slider. You can change the step setting a different number to this property. Defaults to 1.
+    */
+    'step': number;
+    /**
+    * Initial value.
+    */
+    'value': number;
+  }
+  interface AsRangeSliderAttributes extends StencilHTMLAttributes {
+    /**
+    * Disables component if truthy
+    */
+    'disabled'?: boolean;
+    /**
+    * If this property is set to true, and it has multiple value, you can drag the entire track.
+    */
+    'draggable'?: boolean;
+    /**
+    * If this property receives a function, it will be used to format the numbers (eg. for adding $ or €).
+    */
+    'formatValue'?: (value: number) => string|number;
+    /**
+    * Top limit of the range. You cannot drag your slider beyond this value. By default the value is 10.
+    */
+    'maxValue'?: number;
+    /**
+    * Bottom limit of the range. You cannot drag your slider below this value. By default the value is 0.
+    */
+    'minValue'?: number;
+    'onChange'?: (event: CustomEvent<number[]>) => void;
+    'onChangeEnd'?: (event: CustomEvent<number[]>) => void;
+    'onChangeStart'?: (event: CustomEvent<number[]>) => void;
+    /**
+    * Initial range.
+    */
+    'range'?: number[];
+    /**
+    * Increment/decrement step of the slider. You can change the step setting a different number to this property. Defaults to 1.
+    */
+    'step'?: number;
+    /**
+    * Initial value.
+    */
+    'value'?: number;
+  }
+
+  interface AsRangeSliderThumb {
+    'disabled': boolean;
+    'formatValue': (value: number) => string|number;
+    'percentage': number;
+    'value': number;
+    'valueMax': number;
+    'valueMin': number;
+  }
+  interface AsRangeSliderThumbAttributes extends StencilHTMLAttributes {
+    'disabled'?: boolean;
+    'formatValue'?: (value: number) => string|number;
+    'onThumbChangeEnd'?: (event: CustomEvent<void>) => void;
+    'onThumbChangeStart'?: (event: CustomEvent<void>) => void;
+    'onThumbDecrease'?: (event: CustomEvent<number>) => void;
+    'onThumbIncrease'?: (event: CustomEvent<number>) => void;
+    'onThumbMove'?: (event: CustomEvent<number>) => void;
+    'percentage'?: number;
+    'value'?: number;
+    'valueMax'?: number;
+    'valueMin'?: number;
+  }
+
+  interface AsRangeSliderBar {
+    'disabled': boolean;
+    'draggable': boolean;
+    'rangeEndPercentage': number;
+    'rangeStartPercentage': number;
+    'stepPercentage': number;
+  }
+  interface AsRangeSliderBarAttributes extends StencilHTMLAttributes {
+    'disabled'?: boolean;
+    'draggable'?: boolean;
+    'onBarChangeEnd'?: (event: CustomEvent<void>) => void;
+    'onBarChangeStart'?: (event: CustomEvent<void>) => void;
+    'onBarMove'?: (event: CustomEvent<number[]>) => void;
+    'rangeEndPercentage'?: number;
+    'rangeStartPercentage'?: number;
+    'stepPercentage'?: number;
+  }
+
   interface AsResponsiveContent {
     'getSections': () => Promise<object[]>;
     'setVisible': (sectionName: string) => Promise<void>;
@@ -323,6 +435,9 @@ declare global {
     'AsDropdown': Components.AsDropdown;
     'AsHistogramWidget': Components.AsHistogramWidget;
     'AsInfowindow': Components.AsInfowindow;
+    'AsRangeSlider': Components.AsRangeSlider;
+    'AsRangeSliderThumb': Components.AsRangeSliderThumb;
+    'AsRangeSliderBar': Components.AsRangeSliderBar;
     'AsResponsiveContent': Components.AsResponsiveContent;
     'AsSwitch': Components.AsSwitch;
   }
@@ -332,6 +447,9 @@ declare global {
     'as-dropdown': Components.AsDropdownAttributes;
     'as-histogram-widget': Components.AsHistogramWidgetAttributes;
     'as-infowindow': Components.AsInfowindowAttributes;
+    'as-range-slider': Components.AsRangeSliderAttributes;
+    'as-range-slider-thumb': Components.AsRangeSliderThumbAttributes;
+    'as-range-slider-bar': Components.AsRangeSliderBarAttributes;
     'as-responsive-content': Components.AsResponsiveContentAttributes;
     'as-switch': Components.AsSwitchAttributes;
   }
@@ -361,6 +479,24 @@ declare global {
     new (): HTMLAsInfowindowElement;
   };
 
+  interface HTMLAsRangeSliderElement extends Components.AsRangeSlider, HTMLStencilElement {}
+  var HTMLAsRangeSliderElement: {
+    prototype: HTMLAsRangeSliderElement;
+    new (): HTMLAsRangeSliderElement;
+  };
+
+  interface HTMLAsRangeSliderThumbElement extends Components.AsRangeSliderThumb, HTMLStencilElement {}
+  var HTMLAsRangeSliderThumbElement: {
+    prototype: HTMLAsRangeSliderThumbElement;
+    new (): HTMLAsRangeSliderThumbElement;
+  };
+
+  interface HTMLAsRangeSliderBarElement extends Components.AsRangeSliderBar, HTMLStencilElement {}
+  var HTMLAsRangeSliderBarElement: {
+    prototype: HTMLAsRangeSliderBarElement;
+    new (): HTMLAsRangeSliderBarElement;
+  };
+
   interface HTMLAsResponsiveContentElement extends Components.AsResponsiveContent, HTMLStencilElement {}
   var HTMLAsResponsiveContentElement: {
     prototype: HTMLAsResponsiveContentElement;
@@ -378,6 +514,9 @@ declare global {
     'as-dropdown': HTMLAsDropdownElement
     'as-histogram-widget': HTMLAsHistogramWidgetElement
     'as-infowindow': HTMLAsInfowindowElement
+    'as-range-slider': HTMLAsRangeSliderElement
+    'as-range-slider-thumb': HTMLAsRangeSliderThumbElement
+    'as-range-slider-bar': HTMLAsRangeSliderBarElement
     'as-responsive-content': HTMLAsResponsiveContentElement
     'as-switch': HTMLAsSwitchElement
   }
@@ -387,6 +526,9 @@ declare global {
     'as-dropdown': HTMLAsDropdownElement;
     'as-histogram-widget': HTMLAsHistogramWidgetElement;
     'as-infowindow': HTMLAsInfowindowElement;
+    'as-range-slider': HTMLAsRangeSliderElement;
+    'as-range-slider-thumb': HTMLAsRangeSliderThumbElement;
+    'as-range-slider-bar': HTMLAsRangeSliderBarElement;
     'as-responsive-content': HTMLAsResponsiveContentElement;
     'as-switch': HTMLAsSwitchElement;
   }
