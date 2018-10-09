@@ -5,28 +5,27 @@ exports[`as-stacked-bar-widget Propery handling should handle data attribute 1`]
   class="hydrated"
 >
   
-  <div
-    class="as-widget"
-  >
-    <h2
-      class="as-stacked-bar-widget__header"
+  <as-widget-header />
+  <svg>
+    <g
+      class="plot"
     >
-      
-    </h2>
-    <p
-      class="as-stacked-bar-widget__description as-body"
-    >
-      
-    </p>
-    <svg />
-    <as-y-axis
-      from="0"
-      to="0"
-    />
-    <p>
-      legend
-    </p>
-  </div>
+      <rect
+        fill="rgba(200, 20, 20, 0.8)"
+        height="40%"
+        width="30"
+        x="0"
+        y="calc(60% + 1)"
+      />
+    </g>
+  </svg>
+  <as-y-axis
+    from="0"
+    to="0"
+  />
+  <p>
+    legend
+  </p>
 </as-stacked-bar-widget>
 `;
 
@@ -36,28 +35,29 @@ exports[`as-stacked-bar-widget Propery handling should handle description attrib
   description="fake-description-attr"
 >
   
-  <div
-    class="as-widget"
-  >
-    <h2
-      class="as-stacked-bar-widget__header"
+  <as-widget-header
+    subheader="fake-description-attr"
+  />
+  <svg>
+    <g
+      class="plot"
     >
-      
-    </h2>
-    <p
-      class="as-stacked-bar-widget__description as-body"
-    >
-      fake-description-attr
-    </p>
-    <svg />
-    <as-y-axis
-      from="0"
-      to="0"
-    />
-    <p>
-      legend
-    </p>
-  </div>
+      <rect
+        fill="rgba(200, 20, 20, 0.8)"
+        height="40%"
+        width="30"
+        x="0"
+        y="calc(60% + 1)"
+      />
+    </g>
+  </svg>
+  <as-y-axis
+    from="0"
+    to="0"
+  />
+  <p>
+    legend
+  </p>
 </as-stacked-bar-widget>
 `;
 
@@ -67,28 +67,29 @@ exports[`as-stacked-bar-widget Propery handling should handle heading attribute 
   heading="fake-heading-attr"
 >
   
-  <div
-    class="as-widget"
-  >
-    <h2
-      class="as-stacked-bar-widget__header"
+  <as-widget-header
+    header="fake-heading-attr"
+  />
+  <svg>
+    <g
+      class="plot"
     >
-      fake-heading-attr
-    </h2>
-    <p
-      class="as-stacked-bar-widget__description as-body"
-    >
-      
-    </p>
-    <svg />
-    <as-y-axis
-      from="0"
-      to="0"
-    />
-    <p>
-      legend
-    </p>
-  </div>
+      <rect
+        fill="rgba(200, 20, 20, 0.8)"
+        height="40%"
+        width="30"
+        x="0"
+        y="calc(60% + 1)"
+      />
+    </g>
+  </svg>
+  <as-y-axis
+    from="0"
+    to="0"
+  />
+  <p>
+    legend
+  </p>
 </as-stacked-bar-widget>
 `;
 
@@ -98,26 +99,25 @@ exports[`as-stacked-bar-widget Propery handling should handle showLegend attribu
   show-legend="false"
 >
   
-  <div
-    class="as-widget"
-  >
-    <h2
-      class="as-stacked-bar-widget__header"
+  <as-widget-header />
+  <svg>
+    <g
+      class="plot"
     >
-      
-    </h2>
-    <p
-      class="as-stacked-bar-widget__description as-body"
-    >
-      
-    </p>
-    <svg />
-    <as-y-axis
-      from="0"
-      to="0"
-    />
-    
-  </div>
+      <rect
+        fill="rgba(200, 20, 20, 0.8)"
+        height="40%"
+        width="30"
+        x="0"
+        y="calc(60% + 1)"
+      />
+    </g>
+  </svg>
+  <as-y-axis
+    from="0"
+    to="0"
+  />
+  
 </as-stacked-bar-widget>
 `;
 
@@ -126,27 +126,26 @@ exports[`as-stacked-bar-widget Propery handling should handle valuesInfo attribu
   class="hydrated"
 >
   
-  <div
-    class="as-widget"
-  >
-    <h2
-      class="as-stacked-bar-widget__header"
+  <as-widget-header />
+  <svg>
+    <g
+      class="plot"
     >
-      
-    </h2>
-    <p
-      class="as-stacked-bar-widget__description as-body"
-    >
-      
-    </p>
-    <svg />
-    <as-y-axis
-      from="0"
-      to="0"
-    />
-    <p>
-      legend
-    </p>
-  </div>
+      <rect
+        fill="rgba(200, 20, 20, 0.8)"
+        height="40%"
+        width="30"
+        x="0"
+        y="calc(60% + 1)"
+      />
+    </g>
+  </svg>
+  <as-y-axis
+    from="0"
+    to="0"
+  />
+  <p>
+    legend
+  </p>
 </as-stacked-bar-widget>
 `;

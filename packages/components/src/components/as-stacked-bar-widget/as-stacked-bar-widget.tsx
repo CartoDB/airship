@@ -56,14 +56,25 @@ export class StackedBarWidget {
   }
 
   public componentDidLoad() {
-    // this._renderGraph();
+    this._renderGraph();
   }
 
-  // private _renderGraph() {}
+  private _renderGraph() {
+    console.warn(this.container);
+    this.container
+      .append('g')
+      .attr('class', 'plot')
+      .append('rect')
+      .attr('x', 0)
+      .attr('y', 'calc(60% + 1)')
+      .attr('width', 30)
+      .attr('height', '40%')
+      .attr('fill', 'rgba(200, 20, 20, 0.8)');
+  }
 
   private _renderLegend() {
     if (this.showLegend) {
-      return <p>legend</p>
+      return <p>legend</p>;
     }
   }
 }
