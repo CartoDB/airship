@@ -4,6 +4,7 @@
 as-stacked-bar-widget {
   display: block;
   width: 100%;
+  padding: 16px;
   background: var(--histogram-widget--background-color, $color-ui-01);
 
   .as-stacked-bar-widget__header {

@@ -47,14 +47,12 @@ export class StackedBarWidget {
 
   public render() {
     const [from, to] = dataProcessor.getDomain(this.data);
-    return (
-      <div class="as-widget">
-        {this._renderHeader()}
-        <svg ref={(ref: HTMLElement) => this.container = select(ref)}></svg>
-        <as-y-axis from={from} to={to}></as-y-axis>
-        {this._renderLegend()}
-      </div>
-    );
+    return [
+      this._renderHeader(),
+      <svg ref={(ref: HTMLElement) => this.container = select(ref)}></svg>,
+      <as-y-axis from={from} to={to}></as-y-axis>,
+      this._renderLegend()
+    ];
   }
 
   public componentDidLoad() {
