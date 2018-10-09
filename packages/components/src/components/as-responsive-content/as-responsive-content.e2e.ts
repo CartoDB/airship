@@ -54,18 +54,20 @@ describe('as-responsive-content', () => {
   });
 
   describe('Events', async () => {
-    // TODO: fix this
+    // TODO: Fix this break tests
     // it('should emit a "sectionChange" event when content changes in mobile view', async () => {
     //   const sectionChangedSpy = await page.spyOnEvent('sectionChange');
+    //   await page.waitForChanges();
 
-    //   const tabs = await page.findAll('.as-tabs__item');
+    //   const tabs: E2EElement[] = await page.findAll('.as-tabs__item');
+    //   tabs.forEach((tab) => console.log(tab.outerHTML));
+
     //   const leftSidebarTab = tabs[1];
-    //   leftSidebarTab.setAttribute('style', 'display: block');
-    //   leftSidebarTab.click();
+    //   await leftSidebarTab.tap();
 
     //   await page.waitForChanges();
 
-    //   expect(sectionChangedSpy).toHaveReceivedEventDetail({});
+    //   // expect(sectionChangedSpy).toHaveReceivedEventDetail({});
     // });
   });
 });

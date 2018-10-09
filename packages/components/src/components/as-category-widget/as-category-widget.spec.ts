@@ -13,11 +13,11 @@ describe('as-category-widget', () => {
   });
 
   describe('.getSelectedCategories', () => {
-    it('should return selectedCategories', () => {
+    it('should return selectedCategories', async () => {
       const selectedCategories = ['Category 1'];
       categoryWidget.selectedCategories = selectedCategories;
 
-      expect(categoryWidget.getSelectedCategories()).toEqual(selectedCategories);
+      expect(await categoryWidget.getSelectedCategories()).toEqual(selectedCategories);
     });
   });
 
@@ -26,13 +26,13 @@ describe('as-category-widget', () => {
       spyOn(categoryWidget, '_onCategoriesChanged');
     });
 
-    it('should clear selected categories', () => {
+    it('should clear selected categories', async () => {
       const selectedCategories = ['Category 1'];
       categoryWidget.selectedCategories = selectedCategories;
 
       categoryWidget.clearSelection();
 
-      expect(categoryWidget.getSelectedCategories()).toEqual([]);
+      expect(await categoryWidget.getSelectedCategories()).toEqual([]);
     });
   });
 
@@ -54,29 +54,29 @@ describe('as-category-widget', () => {
       spyOn(categoryWidget, '_onCategoriesChanged');
     });
 
-    it('should select category if it is not selected', () => {
+    it('should select category if it is not selected', async () => {
       const category = { name: 'Category 1', value: 10, color: '#000' };
       categoryWidget._toggleCategory(category);
 
-      expect(categoryWidget.getSelectedCategories()).toEqual([category.name]);
+      expect(await categoryWidget.getSelectedCategories()).toEqual([category.name]);
     });
 
-    it('should remove category if it was selected', () => {
+    it('should remove category if it was selected', async () => {
       const category = { name: 'Category 1', value: 10, color: '#000' };
       categoryWidget.selectedCategories = [category.name];
 
       categoryWidget._toggleCategory(category);
 
-      expect(categoryWidget.getSelectedCategories()).toEqual([]);
+      expect(await categoryWidget.getSelectedCategories()).toEqual([]);
     });
 
-    it('should not toggle category if interaction is disabled', () => {
+    it('should not toggle category if interaction is disabled', async () => {
       categoryWidget.disableInteractivity = true;
 
       const category = { name: 'Category 1', value: 10, color: '#000' };
       categoryWidget._toggleCategory(category);
 
-      expect(categoryWidget.getSelectedCategories()).toEqual([]);
+      expect(await categoryWidget.getSelectedCategories()).toEqual([]);
     });
   });
 

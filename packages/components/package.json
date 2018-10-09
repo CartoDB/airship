@@ -18,8 +18,9 @@
     "lint:ts": "tslint -c tslint.json src/components/**/*.{ts,tsx}",
     "lint": "npm run lint:ts && npm run lint:css",
     "serve": "serve -p 5001",
-    "test:watch": "jest --watch",
-    "test": "jest"
+    "test": "stencil test --spec --e2e",
+    "test:watch": "stencil test --spec --e2e --watch",
+    "test:e2e": "stencil test --e2e"
   },
   "devDependencies": {
     "@stencil/core": "0.13.2",
@@ -47,19 +48,6 @@
     "url": "https://github.com/CartoDB/airship/issues"
   },
   "homepage": "https://github.com/CartoDB/airship",
-  "jest": {
-    "transform": {
-      "^.+\\.(ts|tsx|js)$": "../../node_modules/@stencil/core/testing/jest.preprocessor.js"
-    },
-    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(tsx?|jsx?)$",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "json",
-      "jsx"
-    ]
-  },
   "publishConfig": {
     "access": "public"
   },
