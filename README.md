@@ -1,4 +1,4 @@
-# <img src="airship.svg" width="32px" height="32px"> Airship 
+# Airship 
 
 > Airship is a components library built by CARTO
 
