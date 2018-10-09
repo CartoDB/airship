@@ -5,17 +5,28 @@ exports[`as-stacked-bar-widget Propery handling should handle data attribute 1`]
   class="hydrated"
 >
   
-  <h2
-    class="as-stacked-bar-widget__header"
+  <div
+    class="as-widget"
   >
-    
-  </h2>
-  <p
-    class="as-stacked-bar-widget__description as-body"
-  >
-    
-  </p>
-  <svg />
+    <h2
+      class="as-stacked-bar-widget__header"
+    >
+      
+    </h2>
+    <p
+      class="as-stacked-bar-widget__description as-body"
+    >
+      
+    </p>
+    <svg />
+    <as-y-axis
+      from="0"
+      to="0"
+    />
+    <p>
+      legend
+    </p>
+  </div>
 </as-stacked-bar-widget>
 `;
 
@@ -25,17 +36,28 @@ exports[`as-stacked-bar-widget Propery handling should handle description attrib
   description="fake-description-attr"
 >
   
-  <h2
-    class="as-stacked-bar-widget__header"
+  <div
+    class="as-widget"
   >
-    
-  </h2>
-  <p
-    class="as-stacked-bar-widget__description as-body"
-  >
-    fake-description-attr
-  </p>
-  <svg />
+    <h2
+      class="as-stacked-bar-widget__header"
+    >
+      
+    </h2>
+    <p
+      class="as-stacked-bar-widget__description as-body"
+    >
+      fake-description-attr
+    </p>
+    <svg />
+    <as-y-axis
+      from="0"
+      to="0"
+    />
+    <p>
+      legend
+    </p>
+  </div>
 </as-stacked-bar-widget>
 `;
 
@@ -45,17 +67,28 @@ exports[`as-stacked-bar-widget Propery handling should handle heading attribute 
   heading="fake-heading-attr"
 >
   
-  <h2
-    class="as-stacked-bar-widget__header"
+  <div
+    class="as-widget"
   >
-    fake-heading-attr
-  </h2>
-  <p
-    class="as-stacked-bar-widget__description as-body"
-  >
-    
-  </p>
-  <svg />
+    <h2
+      class="as-stacked-bar-widget__header"
+    >
+      fake-heading-attr
+    </h2>
+    <p
+      class="as-stacked-bar-widget__description as-body"
+    >
+      
+    </p>
+    <svg />
+    <as-y-axis
+      from="0"
+      to="0"
+    />
+    <p>
+      legend
+    </p>
+  </div>
 </as-stacked-bar-widget>
 `;
 
@@ -65,17 +98,26 @@ exports[`as-stacked-bar-widget Propery handling should handle showLegend attribu
   show-legend="false"
 >
   
-  <h2
-    class="as-stacked-bar-widget__header"
+  <div
+    class="as-widget"
   >
+    <h2
+      class="as-stacked-bar-widget__header"
+    >
+      
+    </h2>
+    <p
+      class="as-stacked-bar-widget__description as-body"
+    >
+      
+    </p>
+    <svg />
+    <as-y-axis
+      from="0"
+      to="0"
+    />
     
-  </h2>
-  <p
-    class="as-stacked-bar-widget__description as-body"
-  >
-    
-  </p>
-  <svg />
+  </div>
 </as-stacked-bar-widget>
 `;
 
@@ -84,16 +126,27 @@ exports[`as-stacked-bar-widget Propery handling should handle valuesInfo attribu
   class="hydrated"
 >
   
-  <h2
-    class="as-stacked-bar-widget__header"
+  <div
+    class="as-widget"
   >
-    
-  </h2>
-  <p
-    class="as-stacked-bar-widget__description as-body"
-  >
-    
-  </p>
-  <svg />
+    <h2
+      class="as-stacked-bar-widget__header"
+    >
+      
+    </h2>
+    <p
+      class="as-stacked-bar-widget__description as-body"
+    >
+      
+    </p>
+    <svg />
+    <as-y-axis
+      from="0"
+      to="0"
+    />
+    <p>
+      legend
+    </p>
+  </div>
 </as-stacked-bar-widget>
 `;

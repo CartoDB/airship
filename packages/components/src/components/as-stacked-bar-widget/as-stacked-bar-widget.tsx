@@ -1,11 +1,6 @@
 import { Component, Prop } from '@stencil/core';
-// import { max } from 'd3-array';
-import { Axis, axisLeft } from 'd3-axis';
-// import { BrushBehavior, brushX } from 'd3-brush';
-import { scaleLinear, ScaleLinear } from 'd3-scale';
 import { select, Selection } from 'd3-selection';
 import dataProcessor from './data-processor';
-import readableNumber from '../../utils/readable-number';
 
 
 /**
@@ -49,20 +44,21 @@ export class StackedBarWidget {
   @Prop() public data: StackedbarData[] = [];
 
   private container: Selection<HTMLElement, {}, null, undefined>;
-  // private xScale: ScaleLinear<number, number>;
-  private yScale: ScaleLinear<number, number>;
-  private yAxis: Axis<{ valueOf(): number }>;
-  // private xAxis: Axis<{ valueOf(): number }>;
 
   public render() {
-    return [
-      this._renderHeader(),
-      <svg ref={(ref: HTMLElement) => this.container = select(ref)}></svg>,
-    ];
+    const [from, to] = dataProcessor.getDomain(this.data);
+    return (
+      <div class="as-widget">
+        {this._renderHeader()}
+        <svg ref={(ref: HTMLElement) => this.container = select(ref)}></svg>
+        <as-y-axis from={from} to={to}></as-y-axis>
+        {this._renderLegend()}
+      </div>
+    );
   }
 
   public componentDidLoad() {
-    this._renderGraph();
+    // this._renderGraph();
   }
 
   private _renderHeader() {
@@ -72,52 +68,12 @@ export class StackedBarWidget {
     ];
   }
 
-  private _renderGraph() {
-
-    if (!this.data.length) {
-      return <p class='as-body'>No data availiable</p>;
-    }
-
-    return [
-      this.showLegend ? this._renderLegend() : null,
-      this._renderAxis(),
-    ];
-  }
-
-  private _renderAxis() {
-    return [
-      this._renderYAxis(),
-      // this.renderYAxis(),
-    ];
-  }
-
-  private _renderYAxis() {
-    const HEIGHT = this.container.node().getBoundingClientRect().height * 0.8;
-    const WIDTH = this.container.node().getBoundingClientRect().width;
-    const RANGE = [HEIGHT, 0];
-
-    const domain = dataProcessor.getDomain(this.data);
-
-    this.yScale = scaleLinear()
-      .domain(domain)
-      .range(RANGE)
-      .nice();
-
-    this.yAxis = axisLeft(this.yScale)
-      .ticks(5)
-      .tickSize(-(WIDTH - 60))
-      .tickFormat((d) => `${readableNumber(d)}`);
-
-    this.container
-      .append('g')
-      .attr('class', 'x-axis')
-      .call(this.yAxis);
-  }
-
-  // private _renderXAxis() {}
+  // private _renderGraph() {}
 
   private _renderLegend() {
-    return <p>legend</p>;
+    if (this.showLegend) {
+      return <p>legend</p>
+    }
   }
 }
 

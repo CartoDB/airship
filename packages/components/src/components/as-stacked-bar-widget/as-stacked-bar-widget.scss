@@ -16,31 +16,9 @@ as-stacked-bar-widget {
     color: var(--histogram-widget--description-color, #747474);
   }
 
-
-
   svg {
     width: 100%;
     padding: 16px;
     overflow: visible;
-    border: 1px solid red;
-
-    .x-axis {
-      transform: translate(30px, 5px);
-
-      .tick {
-        text {
-          fill: var(--histogram-widget--description-color, #747474);
-        }
-
-        line {
-          stroke: var(--as-color-type-02, #747474);
-          opacity: 0.5;
-        }
-      }
-
-      .domain {
-        display: none;
-      }
-    }
   }
 }
