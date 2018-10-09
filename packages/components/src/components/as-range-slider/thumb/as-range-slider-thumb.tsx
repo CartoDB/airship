@@ -117,7 +117,9 @@ export class RangeSliderThumb {
 
   private _onMove(event: MouseEvent | TouchEvent) {
     this.setCursorTo('grabbing');
-    const eventX = event instanceof TouchEvent ? event.changedTouches[0].pageX : event.pageX;
+
+    const changedTouches = (event as TouchEvent).changedTouches;
+    const eventX = changedTouches ? changedTouches[0].pageX : (event as MouseEvent).pageX;
     const barPercentage = (eventX - this.railBoundingClientRect.left) * 100 / this.railElement.offsetWidth;
 
     if (barPercentage < 0 || barPercentage > 100) {
