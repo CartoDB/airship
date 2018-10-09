@@ -73,7 +73,7 @@ export class RangeSlider {
    * @type {function (value: number)}
    * @memberof RangeSlider
    */
-  @Prop() public formatValue: (value: number) => void;
+  @Prop() public formatValue: (value: number) => string|number;
 
 
   @Event() public change: EventEmitter<number[]>;
