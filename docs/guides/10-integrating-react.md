@@ -129,7 +129,7 @@ With this option we are going to create a React component that wraps the origina
 > See the full example [here](https://github.com/CartoDB/airship-demos/tree/master/react/widget)
 
 
-First we create a new [React Component]() to represent our widget, in this case a `category-widget`. In the `render` function we will return
+First we create a new [React Component](https://reactjs.org/docs/react-component.html) to represent our widget, in this case a `category-widget`. In the `render` function we will return
 the Airship category widget referenced using a [ref](https://reactjs.org/docs/refs-and-the-dom.html).
 
 

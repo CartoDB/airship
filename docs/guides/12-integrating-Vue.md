@@ -77,7 +77,7 @@ To get the element reference, we need to set `ref` property in the component tem
 
 Element's reference will be in our Vue component's `refs` property, hence we will have full access to our Airship component.
 
-###### Listening to component events
+##### Listening to component events
 The best way to listen to component events is in `mounted` function in your desired component.
 
 ```js
@@ -97,7 +97,7 @@ We create an easy-to-use reference to the widget so that we can reuse it in othe
 
 It will only listen once to component event and it won't create multiple unneeded event listeners by doing it in `mounted` callback.
 
-###### Passing complex properties to component
+##### Passing complex properties to component
 The way to pass complex properties to the component is very similar to listening to events.
 
 To make the component react to property changes we need to create a watch over the property that holds our data. Once `watch` is ready, we need to set the new value of the property to the desired property in the component, like:

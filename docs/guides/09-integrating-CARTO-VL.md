@@ -71,7 +71,7 @@ In this case we add a `as-map-area` where the map will be displayed and a `as-si
 ```
 
 
-### Drawing a map with CARTO-VL
+### Drawing a map with CARTO-VL
 For this guide we are going to use the js code of the [CARTO-VL basic example](https://carto.com/developers/carto-vl/examples/#example-add-carto-dataset-layer) at this point you should see a map with an white space on the right.
 
 ```html
