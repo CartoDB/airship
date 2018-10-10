@@ -14,6 +14,12 @@
     }
 
     as-stacked-bar-widget {
+      display: inline-block;
+    }
+
+    #widget-0,
+    #widget-1,
+    #widget-2 {
       width: 350px;
     }
 
@@ -21,11 +27,14 @@
 </head>
 
 <body>
-  <as-stacked-bar-widget show-legend="true" heading="Heading" description="Description"></as-stacked-bar-widget>
+  <as-stacked-bar-widget id="widget-0" show-legend="true" heading="Heading" description="Description"></as-stacked-bar-widget>
+  <as-stacked-bar-widget id="widget-1" show-legend="true" heading="Heading" description="Description"></as-stacked-bar-widget>
+  <as-stacked-bar-widget id="widget-2" show-legend="true" heading="Heading" description="Description"></as-stacked-bar-widget>
+
 
   <script>
-    const widget = document.querySelector('as-stacked-bar-widget');
-    widget.data = [{
+    const widget0 = document.querySelector('#widget-0');
+    widget0.data = [{
         category: 'Category A',
         values: {
           v1: 100,
@@ -38,16 +47,73 @@
           v1: 100,
           v2: 200,
           v3: 300,
-        }
+        },
       },
       {
-        category: 'Category C',
+        category: 'Category B',
         values: {
-          v1: -200,
-          v2: -300
+          v1: 100,
+          v2: 200,
+          v3: 300,
+          v3: 400,
+        }
+      }
+    ];
+
+    const widget1 = document.querySelector('#widget-1');
+    widget1.data = [{
+        category: 'Category A',
+        values: {
+          v1: 1000,
+          v2: 1000,
         }
       },
       {
+        category: 'Category B',
+        values: {
+          v1: 1000,
+          v2: 2000,
+          v3: 3000,
+        },
+      },
+      {
+        category: 'Category B',
+        values: {
+          v1: 1000,
+          v2: 2000,
+          v3: 3000,
+          v3: 4000,
+        }
+      },
+      {
+        category: 'Category A',
+        values: {
+          v1: 1000,
+          v2: 1000,
+        }
+      },
+      {
+        category: 'Category B',
+        values: {
+          v1: 1000,
+          v2: 2000,
+          v3: 3000,
+        },
+      },
+      {
+        category: 'Category B',
+        values: {
+          v1: 1000,
+          v2: 2000,
+          v3: 3000,
+          v3: 4000,
+        }
+      }
+    ];
+
+
+    const widget2 = document.querySelector('#widget-2');
+    widget2.data = [{
         category: 'Category A',
         values: {
           v1: 100,
@@ -58,17 +124,17 @@
         category: 'Category B',
         values: {
           v1: 100,
-          v2: 200,
+          v2: -200,
           v3: 300,
-        }
+        },
       },
       {
-        category: 'Category C',
+        category: 'Category B',
         values: {
-          v1: -200,
-          v2: -300
+          v1: -100,
+          v2: -100
         }
-      },
+      }
     ];
 
   </script>
