@@ -747,6 +747,45 @@ declare global {
 declare global {
 
   namespace StencilComponents {
+    interface AsLegend {
+      /**
+       * Header of the widget to be displayed
+       */
+      'data': any;
+    }
+  }
+
+  interface HTMLAsLegendElement extends StencilComponents.AsLegend, HTMLStencilElement {}
+
+  var HTMLAsLegendElement: {
+    prototype: HTMLAsLegendElement;
+    new (): HTMLAsLegendElement;
+  };
+  interface HTMLElementTagNameMap {
+    'as-legend': HTMLAsLegendElement;
+  }
+  interface ElementTagNameMap {
+    'as-legend': HTMLAsLegendElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'as-legend': JSXElements.AsLegendAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface AsLegendAttributes extends HTMLAttributes {
+      /**
+       * Header of the widget to be displayed
+       */
+      'data'?: any;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
     interface AsWidgetHeader {
       /**
        * Header of the widget

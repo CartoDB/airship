@@ -1,0 +1,21 @@
+as-legend {
+  display: flex;
+  flex-wrap: wrap;
+
+  .legend-item {
+    display: flex;
+    align-content: center;
+    align-items: center;
+
+    &__box {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      margin: 4px;
+    }
+
+    &__label {
+      margin: 0;
+    }
+  }
+}
