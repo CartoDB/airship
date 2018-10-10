@@ -44,13 +44,15 @@ export class StackedBarWidget {
   @Prop() public data: StackedbarData[] = [];
 
   private container: Selection<HTMLElement, {}, null, undefined>;
+  private zeroAxis: number = 99;
 
   public render() {
-    // const [from, to] = dataProcessor.getDomain(this.data);
+    const [from, to] = [0, 30];
+    this.zeroAxis = 100; //[100, 83, 66, 50, 33.5, 17, 1][Math.round((100 - from) / 10)];
     return [
       <as-widget-header header={this.heading} subheader={this.description}></as-widget-header>,
       <svg ref={(ref: HTMLElement) => this.container = select(ref)}></svg>,
-      <as-y-axis from={0} to={100}></as-y-axis>,
+      <as-y-axis from={from} to={to}></as-y-axis>,
       this._renderLegend()
     ];
   }
@@ -61,8 +63,8 @@ export class StackedBarWidget {
 
   private _renderGraph() {
     // (Y) where the zero axis is located
-    const ZERO_AXIS = 100;
-    const origin = ZERO_AXIS;
+    // const ZERO_AXIS = 83;
+    const origin = this.zeroAxis;
 
     const column = [{
       color: 'rgba(200, 20, 20, 0.8)',
@@ -79,15 +81,17 @@ export class StackedBarWidget {
 
     const column2 = [{
       color: 'rgba(200, 20, 20, 0.8)',
-      size: 20
+      negative: true,
+      size: 10
     },
     {
       color: 'rgba(20, 200, 20, 0.8)',
-      size: 50
+      negative: true,
+      size: 10
     },
     {
       color: 'rgba(20, 20, 200, 0.8)',
-      size: 10
+      size: 20,
     }];
 
     this._drawColumns([column, column2], origin);
@@ -116,11 +120,17 @@ export class StackedBarWidget {
     xOffset: number,
     colWidth: number) {
 
-    element
+    const initialY = yOffset;
+
+
+    const columnElement = element
       .append('g')
       .attr('class', 'column')
-      .selectAll('rect')
-      .data(column)
+      .selectAll('rect');
+
+    const positives = column.filter((d) => !d.negative);
+    columnElement
+      .data(positives)
       .enter()
       .append('rect')
       .attr('x', xOffset)
@@ -132,12 +142,30 @@ export class StackedBarWidget {
       .attr('width', colWidth)
       .attr('height', (d) => `${d.size}%`)
       .attr('fill', (d) => d.color);
+
+    const negatives = column.filter((d) => d.negative);
+
+    yOffset = initialY;
+
+    columnElement
+      .data(negatives)
+      .enter()
+      .append('rect')
+      .attr('x', xOffset)
+      .attr('y', (d) => {
+        const y = this.computeY(d, yOffset);
+        yOffset += d.size;
+        return y;
+      })
+      .attr('width', colWidth)
+      .attr('height', (d) => `${d.size}%`)
+      .attr('fill', (d) => d.color);
   }
 
   private computeY(data, origin) {
-    // if (data.negative) {
-    //   return `${origin}%`;
-    // }
+    if (data.negative) {
+      return `${origin}%`;
+    }
     return `${(origin - data.size)}%`;
   }
 
@@ -153,4 +181,5 @@ export class StackedBarWidget {
 export interface ColumnData {
   color: string;
   size: number;
+  negative?: boolean;
 }
