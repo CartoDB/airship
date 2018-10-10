@@ -9,8 +9,8 @@ describe('as-infowindow', () => {
         </as-infowindow>
       `});
 
-      const screenshotResults = await page.compareScreenshot();
-      expect(screenshotResults).toMatchScreenshot();
+      const element = await page.find('as-infowindow');
+      expect(element.outerHTML).toMatchSnapshot();
     });
 
     it('should render content and image', async () => {
@@ -20,8 +20,8 @@ describe('as-infowindow', () => {
         </as-infowindow>
       `});
 
-      const screenshotResults = await page.compareScreenshot();
-      expect(screenshotResults).toMatchScreenshot();
+      const element = await page.find('as-infowindow');
+      expect(element.outerHTML).toMatchSnapshot();
     });
 
     it('should render with only an image', async () => {
@@ -29,8 +29,8 @@ describe('as-infowindow', () => {
         <as-infowindow src="general_kenobi.jpg"></as-infowindow>
       `});
 
-      const screenshotResults = await page.compareScreenshot();
-      expect(screenshotResults).toMatchScreenshot();
+      const element = await page.find('as-infowindow');
+      expect(element.outerHTML).toMatchSnapshot();
     });
   });
 });

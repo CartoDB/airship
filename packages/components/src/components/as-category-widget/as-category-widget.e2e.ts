@@ -22,8 +22,7 @@ describe('as-category-widget', () => {
 
       await page.waitForChanges();
 
-      const screenshotResults = await page.compareScreenshot();
-      expect(screenshotResults).toMatchScreenshot();
+      expect(element.outerHTML).toMatchSnapshot();
     });
 
     it('should not render header when showHeader is false', async () => {
@@ -34,8 +33,7 @@ describe('as-category-widget', () => {
 
       await page.waitForChanges();
 
-      const screenshotResults = await page.compareScreenshot();
-      expect(screenshotResults).toMatchScreenshot();
+      expect(element.outerHTML).toMatchSnapshot();
     });
 
     it('should render clear button', async () => {
@@ -45,8 +43,7 @@ describe('as-category-widget', () => {
 
       await page.waitForChanges();
 
-      const screenshotResults = await page.compareScreenshot();
-      expect(screenshotResults).toMatchScreenshot();
+      expect(element.outerHTML).toMatchSnapshot();
     });
 
     it('should render bars according to total value', async () => {
@@ -56,8 +53,7 @@ describe('as-category-widget', () => {
 
       await page.waitForChanges();
 
-      const screenshotResults = await page.compareScreenshot();
-      expect(screenshotResults).toMatchScreenshot();
+      expect(element.outerHTML).toMatchSnapshot();
     });
 
     it('should format display value when formatValue prop is present', async () => {
@@ -67,8 +63,7 @@ describe('as-category-widget', () => {
 
       await page.waitForChanges();
 
-      const screenshotResults = await page.compareScreenshot();
-      expect(screenshotResults).toMatchScreenshot();
+      expect(element.outerHTML).toMatchSnapshot();
     });
   });
 

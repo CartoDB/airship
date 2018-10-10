@@ -19,8 +19,7 @@ describe('as-category-widget', async () => {
 
       await page.waitForChanges();
 
-      const screenshotResults = await page.compareScreenshot();
-      expect(screenshotResults).toMatchScreenshot();
+      expect(element.outerHTML).toMatchSnapshot();
     });
 
     it('should render clear button when showClearButton is true and an option is selected', async () => {
@@ -31,8 +30,7 @@ describe('as-category-widget', async () => {
 
       await page.waitForChanges();
 
-      const screenshotResults = await page.compareScreenshot();
-      expect(screenshotResults).toMatchScreenshot();
+      expect(element.outerHTML).toMatchSnapshot();
     });
 
     it('should show defaultText when there is no selected option', async () => {
@@ -42,8 +40,7 @@ describe('as-category-widget', async () => {
 
       await page.waitForChanges();
 
-      const screenshotResults = await page.compareScreenshot();
-      expect(screenshotResults).toMatchScreenshot();
+      expect(element.outerHTML).toMatchSnapshot();
     });
   });
 

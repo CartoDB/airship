@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`as-range-slider-bar Rendering should render a bar with its values 1`] = `"<as-range-slider-bar class=\\"hydrated\\"><div class=\\"as-range-slider__range-bar\\"></div></as-range-slider-bar>"`;

@@ -24,8 +24,7 @@ describe('as-range-slider-thumb', async () => {
         element.setProperty('formatValue', () => `${element.getProperty('value')}€`);
         await page.waitForChanges();
 
-        const screenshotResult = await page.compareScreenshot();
-        expect(screenshotResult).toMatchScreenshot();
+        expect(element.outerHTML).toMatchSnapshot();
       });
 
       it('should have aria attributes', async () => {
@@ -36,8 +35,7 @@ describe('as-range-slider-thumb', async () => {
         element.setProperty('percentage', 10);
         await page.waitForChanges();
 
-        const screenshotResult = await page.compareScreenshot();
-        expect(screenshotResult).toMatchScreenshot();
+        expect(element.outerHTML).toMatchSnapshot();
       });
   });
 

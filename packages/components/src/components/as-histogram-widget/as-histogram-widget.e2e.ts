@@ -16,8 +16,7 @@ describe('as-histogram-widget', () => {
       element.setProperty('data', histogramData);
       await page.waitForChanges();
 
-      const screenshotResults = await page.compareScreenshot();
-      expect(screenshotResults).toMatchScreenshot();
+      expect(element.outerHTML).toMatchSnapshot();
     });
 
     it('should not render header when showHeader is false', async () => {
@@ -27,8 +26,7 @@ describe('as-histogram-widget', () => {
       element.setProperty('showHeader', false);
       await page.waitForChanges();
 
-      const screenshotResults = await page.compareScreenshot();
-      expect(screenshotResults).toMatchScreenshot();
+      expect(element.outerHTML).toMatchSnapshot();
     });
 
     it('should render clear button', async () => {
@@ -37,8 +35,7 @@ describe('as-histogram-widget', () => {
       element.setProperty('data', histogramData);
       await page.waitForChanges();
 
-      const screenshotResults = await page.compareScreenshot();
-      expect(screenshotResults).toMatchScreenshot();
+      expect(element.outerHTML).toMatchSnapshot();
     });
 
     it('should render selection properly', async () => {
@@ -49,8 +46,7 @@ describe('as-histogram-widget', () => {
       element.callMethod('setSelection', [[0, 20]]);
       await page.waitForChanges();
 
-      const screenshotResults = await page.compareScreenshot();
-      expect(screenshotResults).toMatchScreenshot();
+      expect(element.outerHTML).toMatchSnapshot();
     });
 
     it('should render colors properly', async () => {
@@ -62,8 +58,7 @@ describe('as-histogram-widget', () => {
 
       await element.callMethod('setSelection', [[0, 20]]);
 
-      const screenshotResults = await page.compareScreenshot();
-      expect(screenshotResults).toMatchScreenshot();
+      expect(element.outerHTML).toMatchSnapshot();
     });
   });
 

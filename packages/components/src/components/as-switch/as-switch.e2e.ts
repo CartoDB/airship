@@ -10,8 +10,9 @@ describe('as-switch', async () => {
     });
 
     it('should render label if prop is present', async () => {
-      const screenshotResults = await page.compareScreenshot();
-      expect(screenshotResults).toMatchScreenshot();
+      // TODO: Test
+      const element = await page.find('as-switch');
+      expect(element.outerHTML).toMatchSnapshot();
     });
   });
 

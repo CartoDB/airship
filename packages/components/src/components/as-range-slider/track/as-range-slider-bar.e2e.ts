@@ -19,8 +19,7 @@ describe('as-range-slider-bar', () => {
       element.setProperty('stepPercentage', 10);
       await page.waitForChanges();
 
-      const screenshotResult = await page.compareScreenshot();
-      expect(screenshotResult).toMatchScreenshot();
+      expect(element.outerHTML).toMatchSnapshot();
     });
   });
 });

@@ -15,8 +15,8 @@ describe('as-range-slider', () => {
     it('should render without parameters, using defaults', async () => {
       await page.waitForChanges();
 
-      const screenshotResult = await page.compareScreenshot();
-      expect(screenshotResult).toMatchScreenshot();
+      const element = await page.find('as-range-slider');
+      expect(element.outerHTML).toMatchSnapshot();
     });
 
     it('should render 1 thumb + 1 bar when using a value', async () => {
@@ -27,8 +27,7 @@ describe('as-range-slider', () => {
       element.setProperty('step', 1);
       await page.waitForChanges();
 
-      const screenshotResult = await page.compareScreenshot();
-      expect(screenshotResult).toMatchScreenshot();
+      expect(element.outerHTML).toMatchSnapshot();
     });
 
     it('should render 2 thumbs + 1 bar when using a range', async () => {
@@ -39,8 +38,7 @@ describe('as-range-slider', () => {
       element.setProperty('step', 2);
       await page.waitForChanges();
 
-      const screenshotResult = await page.compareScreenshot();
-      expect(screenshotResult).toMatchScreenshot();
+      expect(element.outerHTML).toMatchSnapshot();
     });
 
     it('can be rendered disabled', async () => {
@@ -48,8 +46,7 @@ describe('as-range-slider', () => {
       element.setProperty('disabled', true);
       await page.waitForChanges();
 
-      const screenshotResult = await page.compareScreenshot();
-      expect(screenshotResult).toMatchScreenshot();
+      expect(element.outerHTML).toMatchSnapshot();
     });
   });
 });
