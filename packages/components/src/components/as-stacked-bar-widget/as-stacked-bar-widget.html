@@ -26,10 +26,25 @@
   <script>
     const widget = document.querySelector('as-stacked-bar-widget');
     widget.data = [{
-        category: 'A New Hope',
+        category: 'Category A',
         values: {
-          investment: 0,
-          revenue: 10000
+          v1: 100,
+          v2: 100,
+        }
+      },
+      {
+        category: 'Category B',
+        values: {
+          v1: 100,
+          v2: 200,
+          v3: 300,
+        }
+      },
+      {
+        category: 'Category C',
+        values: {
+          v1: -200,
+          v2: -300
         }
       },
     ];

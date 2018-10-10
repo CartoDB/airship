@@ -24,7 +24,8 @@ as-stacked-bar-widget {
     border: 1px solid tomato;
 
     .plot {
-      transform: translate(30px, -1px);
+      transform: translate(30px, 0) scaleY(0.985);
+      transform-origin: center;
     }
   }
 }

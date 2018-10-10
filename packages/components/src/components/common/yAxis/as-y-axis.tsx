@@ -50,8 +50,7 @@ export class YAxis {
 
     const yScale = scaleLinear()
       .domain([this.from, this.to])
-      .range(RANGE)
-      .nice();
+      .range(RANGE);
 
     const yAxis = axisLeft(yScale)
       .ticks(5)

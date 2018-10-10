@@ -70,4 +70,12 @@ describe('data-processor', () => {
       expect(actual).toEqual(expected);
     });
   });
+
+  xdescribe('.rawDataToStackBarData', () => {
+    it('should transform the raw data into ColumnData', () => {
+      const actual = dataProcessor.rawDataToStackBarData(FAKE_DATA, dataProcessor.getDomain(FAKE_DATA));
+      const expected = [];
+      expect(actual).toEqual(expected);
+    });
+  });
 });

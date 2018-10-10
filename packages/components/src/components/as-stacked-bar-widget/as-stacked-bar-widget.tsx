@@ -45,12 +45,13 @@ export class StackedBarWidget {
 
   private container: Selection<HTMLElement, {}, null, undefined>;
   private zeroAxis: number = 100;
+  private scale: number[];
 
   public render() {
     const [from, to] = dataProcessor.getDomain(this.data);
-    // (numero entre 0 y 5)  --> donde esta el cero en el rango!
-    const i = 5;
-    this.zeroAxis = [100, 80, 60.5, 41, 21, 1.5][i]; // i * (100 / 6); //
+    this.zeroAxis = dataProcessor.getZeroAxis([from, to]);
+    this.scale = [from, to];
+
     return [
       <as-widget-header header={this.heading} subheader={this.description}></as-widget-header>,
       <svg ref={(ref: HTMLElement) => this.container = select(ref)}></svg>,
@@ -65,42 +66,13 @@ export class StackedBarWidget {
 
   private _renderGraph() {
     const origin = this.zeroAxis;
-
-    const column = [{
-      color: 'rgba(200, 20, 20, 0.8)',
-      size: 40
-    },
-    {
-      color: 'rgba(20, 200, 20, 0.8)',
-      size: 5
-    },
-    {
-      color: 'rgba(20, 20, 200, 0.8)',
-      size: 20
-    }];
-
-    const column2 = [{
-      color: 'rgba(200, 20, 20, 0.8)',
-      negative: true,
-      size: 10
-    },
-    {
-      color: 'rgba(20, 200, 20, 0.8)',
-      negative: true,
-      size: 10
-    },
-    {
-      color: 'rgba(20, 20, 200, 0.8)',
-      size: 20,
-    }];
-
-    this._drawColumns([column, column2], origin);
+    this._drawColumns(dataProcessor.rawDataToStackBarData(this.data, this.scale), origin);
   }
 
   private _drawColumns(data: ColumnData[][], origin: number) {
-    let xOffset = 0;
     const COLUMN_MARGIN = 5;
     const COLUMN_WIDTH = 30;
+    let xOffset = 0;
 
     this.container
       .append('g')
