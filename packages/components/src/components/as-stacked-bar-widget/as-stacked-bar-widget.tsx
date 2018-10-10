@@ -70,9 +70,12 @@ export class StackedBarWidget {
   }
 
   private _drawColumns(data: ColumnData[][], origin: number) {
+    const Y_AXIS_LABEL_WIDTH = 25;
     const COLUMN_MARGIN = 5;
-    const COLUMN_WIDTH = 30;
-    let xOffset = 0;
+    const WIDTH = this.container.node().querySelector('.y-axis').getBoundingClientRect().width - Y_AXIS_LABEL_WIDTH;
+    const COLUMN_WIDTH = (WIDTH / data.length) - COLUMN_MARGIN;
+
+    let xOffset = COLUMN_MARGIN;
 
     this.container
       .append('g')

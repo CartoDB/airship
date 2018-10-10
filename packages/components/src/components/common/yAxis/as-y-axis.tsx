@@ -59,7 +59,7 @@ export class YAxis {
 
     ELEMENT
       .append('g')
-      .attr('class', 'x-axis')
+      .attr('class', 'y-axis')
       .call(yAxis);
   }
 }
