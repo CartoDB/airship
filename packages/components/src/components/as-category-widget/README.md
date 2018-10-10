@@ -240,13 +240,23 @@ categoryWidget.addEventListener('categoriesSelected', event => {
 
 #### **getSelectedCategories**
 Get current selected categories
-`Returns: Category[]`
+`Returns: Promise<Category[]>`
 
 ```code
 lang: javascript
 ---
+// Async/Await approach
+// You need to wrap your code in an async function in top level scripts
+(async function () {
+    const categoryWidget = document.querySelector('as-category-widget');
+    await categoryWidget.getSelectedCategories();
+})();
+
+
+// Promises approach
 const categoryWidget = document.querySelector('as-category-widget');
-categoryWidget.getSelectedCategories();
+categoryWidget.getSelectedCategories()
+              .then(categories => console.log(categories));
 ```
 
 #### **clearSelection**
@@ -255,8 +265,20 @@ Clear current selected categories
 ```code
 lang: javascript
 ---
+// Async/Await approach
+// You need to wrap your code in an async function in top level scripts
+(async function () {
+    const categoryWidget = document.querySelector('as-category-widget');
+    await categoryWidget.clearSelection();
+})();
+
+
+// Promises approach
 const categoryWidget = document.querySelector('as-category-widget');
-categoryWidget.clearSelection();
+categoryWidget.clearSelection()
+              .then(() => {
+                 // Whatever you want to do next
+               });
 ```
 
 ### Examples

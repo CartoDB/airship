@@ -139,11 +139,20 @@ dropdown.addEventListener('optionChanged', function (event) {
 
 #### **getSelectedOption**
 Get current selected option
-`Returns: string`
+`Returns: Promise<string>`
 
 ```code
 lang: javascript
 ---
+// Async/Await approach
+// You need to wrap your code in an async function in top level scripts
+(async function () {
+    const dropdown = document.querySelector('as-dropdown');
+    await dropdown.getSelectedOption();
+})();
+
+// Promises approach
 const dropdown = document.querySelector('as-dropdown');
-dropdown.getSelectedOption();
+dropdown.getSelectedOption()
+        .then(selectedOption => console.log(selectedOption));
 ```

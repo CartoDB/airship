@@ -202,13 +202,22 @@ histogramWidget.addEventListener('selectionChanged', event => {
 
 #### **getSelection**
 Get current selection, or null.
-`Returns: number[] | null`
+`Returns: Promise<number[] | null>`
 
 ```code
 lang: javascript
 ---
+// Async/Await approach
+// You need to wrap your code in an async function in top level scripts
+(async function () {
+    const histogramWidget = document.querySelector('as-histogram-widget');
+    console.log(await histogramWidget.getSelection(), 'is selected');
+})();
+
+// Promises approach
 const histogramWidget = document.querySelector('as-histogram-widget');
-console.log(histogramWidget.getSelection(), 'is selected');
+histogramWidget.getSelection()
+               .then(selectionRange => console.log(selectionRange, 'is selected'));
 ```
 
 #### **setSelection**
@@ -217,8 +226,19 @@ Set a new selection. The component will round the values to the nearest interval
 ```code
 lang: javascript
 ---
+// Async/Await approach
+// You need to wrap your code in an async function in top level scripts
+(async function () {
+    const histogramWidget = document.querySelector('as-histogram-widget');
+    await histogramWidget.setSelection([0, 100]);
+})();
+
+// Promises approach
 const histogramWidget = document.querySelector('as-histogram-widget');
-histogramWidget.setSelection([0, 100]);
+histogramWidget.setSelection([0, 100])
+               .then(() => {
+                 // Whatever you want to do next
+               });
 ```
 
 #### **clearSelection**
@@ -227,8 +247,19 @@ Clear current selection
 ```code
 lang: javascript
 ---
+// Async/Await approach
+// You need to wrap your code in an async function in top level scripts
+(async function () {
+    const histogramWidget = document.querySelector('as-histogram-widget');
+    await histogramWidget.clearSelection();
+})();
+
+// Promises approach
 const histogramWidget = document.querySelector('as-histogram-widget');
-histogramWidget.clearSelection();
+histogramWidget.clearSelection()
+               .then(() => {
+                 // Whatever you want to do next
+               });
 ```
 
 ### Examples

@@ -182,6 +182,22 @@ interface ApplicationSection {
 }
 ```
 
+```code
+lang: javascript
+---
+// Async/Await approach
+// You need to wrap your code in an async function in top level scripts
+(async function () {
+    const responsiveContent = document.querySelector('as-responsive-content');
+    await responsiveContent.getSections();
+})();
+
+// Promises approach
+const responsiveContent = document.querySelector('as-responsive-content');
+responsiveContent.getSections()
+               .then(sections => console.log(sections));
+```
+
 ### **setVisible(sectionName)**
 
 This method changes visible content section by introducing the section name like:
@@ -190,6 +206,17 @@ This method changes visible content section by introducing the section name like
 lang: javascript
 showSource: false
 ---
+// Async/Await approach
+// You need to wrap your code in an async function in top level scripts
+(async function () {
+    const responsiveContent = document.querySelector('as-responsive-content');
+    await responsiveContent.setVisible('sectionName');
+})();
+
+// Promises approach
 const responsiveContent = document.querySelector('as-responsive-content');
-responsiveContent.setVisible('Histogram');
+responsiveContent.setVisible()
+                 .then(() => {
+                   // Whatever you want to do next
+                 });
 ```
