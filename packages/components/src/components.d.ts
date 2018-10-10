@@ -624,6 +624,9 @@ declare global {
 
   namespace StencilComponents {
     interface AsStackedBarWidget {
+      /**
+       * The data that will be drawn.
+       */
       'data': StackedbarData[];
       /**
        * Description of the widget to be displayed
@@ -637,6 +640,10 @@ declare global {
        * Boolean flag to control legend visibility. Defaults: true
        */
       'showLegend': boolean;
+      /**
+       * Legend data
+       */
+      'valuesInfo': any;
     }
   }
 
@@ -659,6 +666,9 @@ declare global {
   }
   namespace JSXElements {
     export interface AsStackedBarWidgetAttributes extends HTMLAttributes {
+      /**
+       * The data that will be drawn.
+       */
       'data'?: StackedbarData[];
       /**
        * Description of the widget to be displayed
@@ -672,6 +682,10 @@ declare global {
        * Boolean flag to control legend visibility. Defaults: true
        */
       'showLegend'?: boolean;
+      /**
+       * Legend data
+       */
+      'valuesInfo'?: any;
     }
   }
 }

@@ -2,6 +2,7 @@ import { Component, Prop } from '@stencil/core';
 import { select, Selection } from 'd3-selection';
 import dataProcessor from '../../utils/data-processor';
 import { StackedbarData } from '../../utils/StackedBarData';
+import d3Helpers from './d3-helpers';
 
 /**
  * Stacked bar Widget
@@ -41,7 +42,18 @@ export class StackedBarWidget {
    */
   @Prop() public showLegend: boolean = true;
 
+  /**
+   * The data that will be drawn.
+   *
+   * @type {StackedbarData}
+   * @memberof StackedBarWidget
+   */
   @Prop() public data: StackedbarData[] = [];
+
+  /**
+   * Legend data
+   */
+  @Prop() public valuesInfo: any;
 
   private container: Selection<HTMLElement, {}, null, undefined>;
   private zeroAxis: number = 100;
@@ -61,12 +73,7 @@ export class StackedBarWidget {
   }
 
   public componentDidLoad() {
-    this._renderGraph();
-  }
-
-  private _renderGraph() {
-    const origin = this.zeroAxis;
-    this._drawColumns(dataProcessor.rawDataToStackBarData(this.data, this.scale), origin);
+    this._drawColumns(dataProcessor.rawDataToStackBarData(this.data, this.scale), this.zeroAxis);
   }
 
   private _drawColumns(data: ColumnData[][], origin: number) {
@@ -77,10 +84,8 @@ export class StackedBarWidget {
 
     let xOffset = COLUMN_MARGIN;
 
-    this.container
-      .append('g')
-      .attr('class', 'plot')
-      .selectAll('rect');
+    // Create a "plot" group in the svg element where the columns will be drawn
+    d3Helpers.createPlot(this.container);
 
     data.forEach((columnData) => {
       this._drawColumn(this.container.select('.plot'), columnData, origin, xOffset, COLUMN_WIDTH);
@@ -95,58 +100,21 @@ export class StackedBarWidget {
     xOffset: number,
     colWidth: number) {
 
-    const initialY = yOffset;
+    // Create the column group in the plot
+    const columnElement = d3Helpers.createColumn(element);
 
-
-    const columnElement = element
-      .append('g')
-      .attr('class', 'column')
-      .selectAll('rect');
-
+    // Draw rectangles above zero axis
     const positives = column.filter((d) => !d.negative);
-    columnElement
-      .data(positives)
-      .enter()
-      .append('rect')
-      .attr('x', xOffset)
-      .attr('y', (d) => {
-        const y = this.computeY(d, yOffset);
-        yOffset -= d.size;
-        return y;
-      })
-      .attr('width', colWidth)
-      .attr('height', (d) => `${d.size}%`)
-      .attr('fill', (d) => d.color);
+    d3Helpers.drawColumn(columnElement, positives, yOffset, xOffset, colWidth);
 
+    // Draw rectangles below zero axis
     const negatives = column.filter((d) => d.negative);
-
-    yOffset = initialY;
-
-    columnElement
-      .data(negatives)
-      .enter()
-      .append('rect')
-      .attr('x', xOffset)
-      .attr('y', (d) => {
-        const y = this.computeY(d, yOffset);
-        yOffset += d.size;
-        return y;
-      })
-      .attr('width', colWidth)
-      .attr('height', (d) => `${d.size}%`)
-      .attr('fill', (d) => d.color);
-  }
-
-  private computeY(data, origin) {
-    if (data.negative) {
-      return `${origin}%`;
-    }
-    return `${(origin - data.size)}%`;
+    d3Helpers.drawColumn(columnElement, negatives, yOffset, xOffset, colWidth);
   }
 
   private _renderLegend() {
-    if (this.showLegend) {
-      return <p>legend</p>;
+    if (this.showLegend && this.valuesInfo) {
+      return <as-legend data={this.valuesInfo}></as-legend>;
     }
   }
 }

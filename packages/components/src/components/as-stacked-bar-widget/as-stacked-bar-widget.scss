@@ -21,11 +21,14 @@ as-stacked-bar-widget {
     width: 100%;
     padding: 16px;
     overflow: visible;
-    border: 1px solid tomato;
 
     .plot {
       transform: translate(25px, 0) scaleY(0.985);
       transform-origin: center;
     }
+  }
+
+  as-legend {
+    margin-left: 16px;
   }
 }
