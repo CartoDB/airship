@@ -1,6 +1,6 @@
 import { Component, Prop } from '@stencil/core';
 import { select, Selection } from 'd3-selection';
-// import dataProcessor from '../../utils/data-processor';
+import dataProcessor from '../../utils/data-processor';
 import { StackedbarData } from '../../utils/StackedBarData';
 
 /**
@@ -44,11 +44,13 @@ export class StackedBarWidget {
   @Prop() public data: StackedbarData[] = [];
 
   private container: Selection<HTMLElement, {}, null, undefined>;
-  private zeroAxis: number = 99;
+  private zeroAxis: number = 100;
 
   public render() {
-    const [from, to] = [0, 30];
-    this.zeroAxis = 100; //[100, 83, 66, 50, 33.5, 17, 1][Math.round((100 - from) / 10)];
+    const [from, to] = dataProcessor.getDomain(this.data);
+    // (numero entre 0 y 5)  --> donde esta el cero en el rango!
+    const i = 5;
+    this.zeroAxis = [100, 80, 60.5, 41, 21, 1.5][i]; // i * (100 / 6); //
     return [
       <as-widget-header header={this.heading} subheader={this.description}></as-widget-header>,
       <svg ref={(ref: HTMLElement) => this.container = select(ref)}></svg>,
@@ -62,8 +64,6 @@ export class StackedBarWidget {
   }
 
   private _renderGraph() {
-    // (Y) where the zero axis is located
-    // const ZERO_AXIS = 83;
     const origin = this.zeroAxis;
 
     const column = [{
