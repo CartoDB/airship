@@ -4,7 +4,7 @@
 // Usage: https://github.com/PimpTrizkit/PJs/wiki/12.-Shade,-Blend-and-Convert-a-Web-Color-(pSBC.js)
 
 /* tslint:disable */
-export function shadeOrBlend(p, from, to) {
+export function shadeOrBlend(p: number, from, to?) {
   if(typeof(p)!="number"||p<-1||p>1||typeof(from)!="string"||(from[0]!='r'&&from[0]!='#')||(to&&typeof(to)!="string"))return null; //ErrorCheck
   const pSBCr=(d)=>{
     let l=d.length,RGB={};
