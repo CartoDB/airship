@@ -246,17 +246,18 @@ Get current selected categories
 lang: javascript
 ---
 // Async/Await approach
-// You need to wrap your code in an async function in top level scripts
-(async function () {
-    const categoryWidget = document.querySelector('as-category-widget');
-    await categoryWidget.getSelectedCategories();
-})();
+  const categoryWidget = document.querySelector('as-category-widget');
+  await categoryWidget.getSelectedCategories();
 
 
 // Promises approach
 const categoryWidget = document.querySelector('as-category-widget');
 categoryWidget.getSelectedCategories()
               .then(categories => console.log(categories));
+```
+
+```hint|directive
+Please note that you always need to wrap your `await` code in an `async` function. If you use it outisde of an async function, it will raise a `SyntaxError`. Learn more about it [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await).
 ```
 
 #### **clearSelection**
@@ -266,11 +267,8 @@ Clear current selected categories
 lang: javascript
 ---
 // Async/Await approach
-// You need to wrap your code in an async function in top level scripts
-(async function () {
-    const categoryWidget = document.querySelector('as-category-widget');
-    await categoryWidget.clearSelection();
-})();
+const categoryWidget = document.querySelector('as-category-widget');
+await categoryWidget.clearSelection();
 
 
 // Promises approach
@@ -279,6 +277,10 @@ categoryWidget.clearSelection()
               .then(() => {
                  // Whatever you want to do next
                });
+```
+
+```hint|directive
+Please note that you always need to wrap your `await` code in an `async` function. If you use it outisde of an async function, it will raise a `SyntaxError`. Learn more about it [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await).
 ```
 
 ### Examples

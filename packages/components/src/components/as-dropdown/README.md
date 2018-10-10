@@ -145,14 +145,14 @@ Get current selected option
 lang: javascript
 ---
 // Async/Await approach
-// You need to wrap your code in an async function in top level scripts
-(async function () {
-    const dropdown = document.querySelector('as-dropdown');
-    await dropdown.getSelectedOption();
-})();
+const dropdown = document.querySelector('as-dropdown');
+await dropdown.getSelectedOption();
 
 // Promises approach
 const dropdown = document.querySelector('as-dropdown');
 dropdown.getSelectedOption()
         .then(selectedOption => console.log(selectedOption));
+```
+```hint|directive
+Please note that you always need to wrap your `await` code in an `async` function. If you use it outisde of an async function, it will raise a `SyntaxError`. Learn more about it [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await).
 ```
