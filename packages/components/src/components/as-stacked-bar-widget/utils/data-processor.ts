@@ -77,6 +77,7 @@ function _generateColumn(data: IRawStackedbarData, scale: [number, number], colo
       color: colorMap[key],
       negative: value < 0,
       size: _getRectSize(value as number, scale),
+      value,
     });
   }
   return column;

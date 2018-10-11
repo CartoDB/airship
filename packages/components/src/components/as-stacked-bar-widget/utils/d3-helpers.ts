@@ -34,8 +34,8 @@ export function createColumn(element: Container): ColumnElement {
  * This function only works when all the rectangles are the same type (positive/negative).
  */
 export function drawColumn(
-  element: ColumnElement, columnData: ColumnData, yOffset: number, xOffset: number, colWidth: number) {
-
+  element: ColumnElement,
+  columnData: ColumnData, yOffset: number, xOffset: number, colWidth: number, onMouseOver, onMouseLeave) {
   element
     .data(columnData)
     .enter()
@@ -49,9 +49,10 @@ export function drawColumn(
     .attr('width', colWidth)
     .attr('height', (d) => `${d.size}%`)
     .attr('fill', (d) => d.color)
-    .attr('fill-opacity', '.8');
+    .attr('fill-opacity', '.8')
+    .on('mousemove', onMouseOver)
+    .on('mouseout', onMouseLeave);
 }
-
 
 function _computeY(data: RectangleData, origin: number): string {
   if (data.negative) {
@@ -59,6 +60,5 @@ function _computeY(data: RectangleData, origin: number): string {
   }
   return `${(origin - data.size)}%`;
 }
-
 
 export default { createPlot, createColumn, drawColumn };

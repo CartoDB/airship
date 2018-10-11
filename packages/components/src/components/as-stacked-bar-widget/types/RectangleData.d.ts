@@ -1,3 +1,5 @@
+import { values } from "d3";
+
 /**
  * Contains the data required to draw every rectangle in the stacked bar widget.
  *  - Color: String with the rectangle color.
@@ -7,5 +9,6 @@
 export interface RectangleData {
   color: string;
   size: number;
-  negative?: boolean;
+  negative?: boolean,
+  value: number,
 }

@@ -25,10 +25,21 @@ as-stacked-bar-widget {
     .plot {
       transform: translate(25px, -1px) scaleY(0.98);
       transform-origin: center;
+
+      rect {
+        cursor: pointer;
+      }
     }
   }
 
   as-legend {
     margin-left: 16px;
+  }
+
+  [role="tooltip"] {
+    display: none;
+    position: fixed;
+    transform: translate(-50%, -120%);
+    pointer-events: none;
   }
 }

@@ -4,6 +4,7 @@ import { ColorMap } from './types/ColorMap';
 import { ColumnData } from './types/ColumnData';
 import { Container } from './types/Container';
 import { IRawStackedbarData } from './types/RawStackedbarData';
+import { RectangleData } from './types/RectangleData';
 import { StackedBarData } from './types/StackedBarData';
 import { createColorMap } from './utils/color-manager';
 import d3Helpers from './utils/d3-helpers';
@@ -60,10 +61,29 @@ export class StackedBarWidget {
    */
   @Prop() public valuesInfo: any;
 
+  private tooltip: HTMLElement;
   private container: Container;
   private zeroAxis: number = 100;
   private scale: [number, number];
   private colorMap: ColorMap;
+
+  /**
+   * Callback executed when the mouse is placed over a rectangle.
+   */
+  @Prop() public onMouseOver = (data: RectangleData) => {
+    const event = window.event as MouseEvent;
+    this.tooltip.style.display = 'inline';
+    this.tooltip.style.left = `${event.clientX}px`;
+    this.tooltip.style.top = `${event.clientY}px`;
+    this.tooltip.innerText = `${data.value}`;
+  }
+
+  /**
+   * Callback executed when the mouse is placed outside a rectangle.
+   */
+  @Prop() public onMouseLeave = () => {
+    this.tooltip.style.display = 'none';
+  }
 
   public render() {
     const [from, to] = dataProcessor.getDomain(this.data);
@@ -75,7 +95,8 @@ export class StackedBarWidget {
       <as-widget-header header={this.heading} subheader={this.description}></as-widget-header>,
       <svg ref={(ref: HTMLElement) => this.container = select(ref)}></svg>,
       <as-y-axis from={from} to={to}></as-y-axis>,
-      this._renderLegend()
+      this._renderLegend(),
+      <span ref={(ref) => this.tooltip = ref} role='tooltip' class='as-tooltip as-tooltip--top' > TOOLTIP</span>
     ];
   }
 
@@ -107,11 +128,11 @@ export class StackedBarWidget {
 
     // Draw rectangles above zero axis
     const positives = column.filter((d) => !d.negative);
-    d3Helpers.drawColumn(columnElement, positives, yOffset, xOffset, colWidth);
+    d3Helpers.drawColumn(columnElement, positives, yOffset, xOffset, colWidth, this.onMouseOver, this.onMouseLeave);
 
     // Draw rectangles below zero axis
     const negatives = column.filter((d) => d.negative);
-    d3Helpers.drawColumn(columnElement, negatives, yOffset, xOffset, colWidth);
+    d3Helpers.drawColumn(columnElement, negatives, yOffset, xOffset, colWidth, this.onMouseOver, this.onMouseLeave);
   }
 
   private _renderLegend() {

@@ -637,6 +637,14 @@ declare global {
        */
       'heading': string;
       /**
+       * Callback executed when the mouse is placed outside a rectangle.
+       */
+      'onMouseLeave': any;
+      /**
+       * Callback executed when the mouse is placed over a rectangle.
+       */
+      'onMouseOver': any;
+      /**
        * Boolean flag to control legend visibility. Defaults: true
        */
       'showLegend': boolean;
@@ -678,6 +686,14 @@ declare global {
        * Header of the widget to be displayed
        */
       'heading'?: string;
+      /**
+       * Callback executed when the mouse is placed outside a rectangle.
+       */
+      'onMouseLeave'?: any;
+      /**
+       * Callback executed when the mouse is placed over a rectangle.
+       */
+      'onMouseOver'?: any;
       /**
        * Boolean flag to control legend visibility. Defaults: true
        */
