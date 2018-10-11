@@ -71,16 +71,4 @@ function _normalize(data: number, scale): number {
   return (100 / ((to - from) / data));
 }
 
-function getKeys(data: any[]): string[] {
-  const keys = new Set();
-  for (const rawColumn of data) {
-    Object.keys(rawColumn.values).forEach((key) => {
-      keys.add(key);
-    });
-  }
-  return Array.from(keys);
-}
-
-
-export default { getDomain, getZeroAxis, rawDataToStackBarData, getKeys };
-
+export default { getDomain, getZeroAxis, rawDataToStackBarData };
