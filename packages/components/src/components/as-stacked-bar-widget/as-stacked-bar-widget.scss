@@ -23,7 +23,7 @@ as-stacked-bar-widget {
     overflow: visible;
 
     .plot {
-      transform: translate(25px, 0) scaleY(0.985);
+      transform: translate(25px, -1px) scaleY(0.98);
       transform-origin: center;
     }
   }
