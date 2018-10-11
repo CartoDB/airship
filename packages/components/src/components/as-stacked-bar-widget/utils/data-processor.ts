@@ -1,7 +1,7 @@
 import { scaleLinear } from 'd3-scale';
 import { ColorMap } from '../types/ColorMap';
 import { ColumnData } from '../types/ColumnData';
-import { IRawStackedbarData } from '../types/RawStackedbarData';
+import { RawStackedbarData } from '../types/RawStackedbarData';
 import { StackedBarData } from '../types/StackedBarData';
 
 /**
@@ -9,9 +9,9 @@ import { StackedBarData } from '../types/StackedBarData';
  * If the lowest value is bigger than zero, zero is returned instead.
  * @param data
  */
-export function getDomain(data: IRawStackedbarData[]): number[] {
+export function getDomain(data: RawStackedbarData[]): number[] {
 
-  return data.reduce((domain: number[], currentValue: IRawStackedbarData) => {
+  return data.reduce((domain: number[], currentValue: RawStackedbarData) => {
     let positiveAcum = 0;
     let negativeAcum = 0;
 
@@ -54,7 +54,7 @@ export function getZeroAxis(scale: [number, number]): number {
  * Transform the data given from the user as widget attr into a internal format.
  */
 export function rawDataToStackBarData(
-  data: IRawStackedbarData[],
+  data: RawStackedbarData[],
   scale: [number, number],
   colorMap: ColorMap): StackedBarData {
 
@@ -68,7 +68,7 @@ export function rawDataToStackBarData(
 /**
  * Creates the data required to draw a column.
  */
-function _generateColumn(data: IRawStackedbarData, scale: [number, number], colorMap: ColorMap): ColumnData {
+function _generateColumn(data: RawStackedbarData, scale: [number, number], colorMap: ColorMap): ColumnData {
   const column = [];
 
   for (const key of Object.keys(data.values)) {

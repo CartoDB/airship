@@ -3,7 +3,7 @@ import { select } from 'd3-selection';
 import { ColorMap } from './types/ColorMap';
 import { ColumnData } from './types/ColumnData';
 import { Container } from './types/Container';
-import { IRawStackedbarData } from './types/RawStackedbarData';
+import { RawStackedbarData } from './types/RawStackedbarData';
 import { RectangleData } from './types/RectangleData';
 import { StackedBarData } from './types/StackedBarData';
 import { createColorMap } from './utils/color-manager';
@@ -54,7 +54,7 @@ export class StackedBarWidget {
    * @type {RawStackedbarData}
    * @memberof StackedBarWidget
    */
-  @Prop() public data: IRawStackedbarData[] = [];
+  @Prop() public data: RawStackedbarData[] = [];
 
   /**
    * Legend data
@@ -161,7 +161,7 @@ export class StackedBarWidget {
     return legendData;
   }
 
-  private _getKeys(data: IRawStackedbarData[]): string[] {
+  private _getKeys(data: RawStackedbarData[]): string[] {
     const keys = new Set();
     for (const rawColumn of data) {
       Object.keys(rawColumn.values).forEach((key) => {

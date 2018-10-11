@@ -9,6 +9,6 @@ import { values } from "d3";
 export interface RectangleData {
   color: string;
   size: number;
-  negative?: boolean,
-  value: number,
+  negative?: boolean;
+  value: number;
 }

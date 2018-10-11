@@ -30,7 +30,7 @@ import {
   HistogramData,
 } from './components/as-histogram-widget/as-histogram-widget';
 import {
-  IRawStackedbarData,
+  RawStackedbarData,
 } from './components/as-stacked-bar-widget/types/RawStackedbarData';
 
 declare global {
@@ -627,7 +627,7 @@ declare global {
       /**
        * The data that will be drawn.
        */
-      'data': IRawStackedbarData[];
+      'data': RawStackedbarData[];
       /**
        * Description of the widget to be displayed
        */
@@ -677,7 +677,7 @@ declare global {
       /**
        * The data that will be drawn.
        */
-      'data'?: IRawStackedbarData[];
+      'data'?: RawStackedbarData[];
       /**
        * Description of the widget to be displayed
        */
