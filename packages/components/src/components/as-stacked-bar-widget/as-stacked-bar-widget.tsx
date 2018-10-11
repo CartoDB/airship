@@ -59,7 +59,7 @@ export class StackedBarWidget {
 
   private container: Selection<HTMLElement, {}, null, undefined>;
   private zeroAxis: number = 100;
-  private scale: number[];
+  private scale: [number, number];
   private colorMap: ColorMap;
 
   public render() {
