@@ -1,5 +1,5 @@
 import { scaleLinear } from 'd3-scale';
-import { ColumnData } from '../components/as-stacked-bar-widget/as-stacked-bar-widget';
+import { StackedBarColumnData } from '../components/as-stacked-bar-widget/types/StackedBarColumnData';
 import { ColorMap } from './ColorMap';
 import { StackedbarData } from './StackedBarData';
 
@@ -41,7 +41,7 @@ export function getZeroAxis(data: number[]): number {
   return (100 - yScale(0));
 }
 
-export function rawDataToStackBarData(data: any[], scale: number[], colorMap: ColorMap): ColumnData[][] {
+export function rawDataToStackBarData(data: any[], scale: number[], colorMap: ColorMap): StackedBarColumnData[][] {
   const result = [];
   for (const rawColumn of data) {
     result.push(_generateColumn(rawColumn, scale, colorMap));

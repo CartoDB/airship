@@ -5,6 +5,7 @@ import { ColorMap } from '../../utils/ColorMap';
 import dataProcessor from '../../utils/data-processor';
 import { StackedbarData } from '../../utils/StackedBarData';
 import d3Helpers from './d3-helpers';
+import { StackedBarColumnData } from './types/StackedBarColumnData';
 
 /**
  * Stacked bar Widget
@@ -81,7 +82,7 @@ export class StackedBarWidget {
     this._drawColumns(data, this.zeroAxis);
   }
 
-  private _drawColumns(data: ColumnData[][], origin: number) {
+  private _drawColumns(data: StackedBarColumnData[][], origin: number) {
     const Y_AXIS_LABEL_WIDTH = 25;
     const COLUMN_MARGIN = 5;
     const WIDTH = this.container.node().querySelector('.y-axis').getBoundingClientRect().width - Y_AXIS_LABEL_WIDTH;
@@ -100,7 +101,7 @@ export class StackedBarWidget {
 
   private _drawColumn(
     element: Selection<HTMLElement, {}, null, undefined>,
-    column: ColumnData[],
+    column: StackedBarColumnData[],
     yOffset: number,
     xOffset: number,
     colWidth: number) {
@@ -144,12 +145,4 @@ export class StackedBarWidget {
     }
     return Array.from(keys);
   }
-}
-
-
-
-export interface ColumnData {
-  color: string;
-  size: number;
-  negative?: boolean;
 }
