@@ -1,5 +1,7 @@
 import { Component, Prop } from '@stencil/core';
 import { select, Selection } from 'd3-selection';
+import { createColorMap } from '../../utils/color-manager';
+import { ColorMap } from '../../utils/ColorMap';
 import dataProcessor from '../../utils/data-processor';
 import { StackedbarData } from '../../utils/StackedBarData';
 import d3Helpers from './d3-helpers';
@@ -58,11 +60,13 @@ export class StackedBarWidget {
   private container: Selection<HTMLElement, {}, null, undefined>;
   private zeroAxis: number = 100;
   private scale: number[];
+  private colorMap: ColorMap;
 
   public render() {
     const [from, to] = dataProcessor.getDomain(this.data);
     this.zeroAxis = dataProcessor.getZeroAxis([from, to]);
     this.scale = [from, to];
+    this.colorMap = this._createColorMap();
 
     return [
       <as-widget-header header={this.heading} subheader={this.description}></as-widget-header>,
@@ -73,7 +77,8 @@ export class StackedBarWidget {
   }
 
   public componentDidLoad() {
-    this._drawColumns(dataProcessor.rawDataToStackBarData(this.data, this.scale, this.valuesInfo), this.zeroAxis);
+    const data = dataProcessor.rawDataToStackBarData(this.data, this.scale, this.colorMap);
+    this._drawColumns(data, this.zeroAxis);
   }
 
   private _drawColumns(data: ColumnData[][], origin: number) {
@@ -113,9 +118,31 @@ export class StackedBarWidget {
   }
 
   private _renderLegend() {
-    if (this.showLegend && this.valuesInfo) {
-      return <as-legend data={this.valuesInfo}></as-legend>;
+    if (this.showLegend && this.colorMap) {
+      const data = {};
+      Object.keys(this.colorMap).forEach((key) => {
+        data[key] = {
+          color: this.colorMap[key],
+          label: key,
+        };
+      });
+      return <as-legend data={data}></as-legend>;
     }
+  }
+
+  private _createColorMap() {
+    const keys = this._getKeys(this.data);
+    return createColorMap(keys, this.valuesInfo);
+  }
+
+  private _getKeys(data: any[]): string[] {
+    const keys = new Set();
+    for (const rawColumn of data) {
+      Object.keys(rawColumn.values).forEach((key) => {
+        keys.add(key);
+      });
+    }
+    return Array.from(keys);
   }
 }
 

@@ -1,6 +1,6 @@
 import { scaleLinear } from 'd3-scale';
-import { interpolateSpectral } from 'd3-scale-chromatic';
 import { ColumnData } from '../components/as-stacked-bar-widget/as-stacked-bar-widget';
+import { ColorMap } from './ColorMap';
 import { StackedbarData } from './StackedBarData';
 
 export function getDomain(data: StackedbarData[]): number[] {
@@ -41,23 +41,22 @@ export function getZeroAxis(data: number[]): number {
   return (100 - yScale(0));
 }
 
-export function rawDataToStackBarData(data: any[], scale: number[], metadata): ColumnData[][] {
-  const keys = _getKeys(data);
+export function rawDataToStackBarData(data: any[], scale: number[], colorMap: ColorMap): ColumnData[][] {
   const result = [];
   for (const rawColumn of data) {
-    result.push(_generateColumn(rawColumn, scale, keys, metadata));
+    result.push(_generateColumn(rawColumn, scale, colorMap));
   }
   return result;
 }
 
 
-function _generateColumn(data, scale: number[], keys: string[], metadata) {
+function _generateColumn(data, scale: number[], colorMap: ColorMap) {
   const column = [];
 
   for (const key of Object.keys(data.values)) {
     const value = data.values[key];
     column.push({
-      color: _getColor(key, keys, metadata),
+      color: colorMap[key],
       negative: value < 0,
       size: _normalize(value as number, scale),
     });
@@ -72,19 +71,7 @@ function _normalize(data: number, scale): number {
   return (100 / ((to - from) / data));
 }
 
-function _getColor(key: string, keys: string[], metadata) {
-  if (metadata && metadata[key] && metadata[key].color) {
-    return metadata[key].color;
-  }
-
-  const scale = scaleLinear()
-    .domain([0, keys.length])
-    .range([0, 1]);
-
-  return interpolateSpectral(scale(keys.indexOf(key)));
-}
-
-function _getKeys(data: any[]): string[] {
+function getKeys(data: any[]): string[] {
   const keys = new Set();
   for (const rawColumn of data) {
     Object.keys(rawColumn.values).forEach((key) => {
@@ -95,5 +82,5 @@ function _getKeys(data: any[]): string[] {
 }
 
 
-export default { getDomain, getZeroAxis, rawDataToStackBarData };
+export default { getDomain, getZeroAxis, rawDataToStackBarData, getKeys };
 
