@@ -93,8 +93,7 @@ export class StackedBarWidget {
     let xOffset = COLUMN_MARGIN;
 
     // Create a "plot" group in the svg element where the columns will be drawn
-    d3Helpers.createPlot(this.container);
-    const plot = this.container.select('.plot') as Container;
+    const plot = d3Helpers.createPlot(this.container);
 
     for (const columnData of data) {
       this._drawColumn(plot, columnData, origin, xOffset, COLUMN_WIDTH);

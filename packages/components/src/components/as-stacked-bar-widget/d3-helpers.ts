@@ -9,11 +9,13 @@ import { RectangleData } from './types/RectangleData';
  *
  * Create a `g` with the plot class where the columns will be drawn.
  */
-export function createPlot(container: Container) {
-  return container
+export function createPlot(container: Container): Container {
+  container
     .append('g')
     .attr('class', 'plot')
     .selectAll('rect');
+
+  return container.select('.plot') as Container;
 }
 
 /**
