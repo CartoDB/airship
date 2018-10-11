@@ -1,5 +1,5 @@
 
-export interface StackedbarData {
+export interface IRawStackedbarData {
   category: string;
   values: {
     [propName: string]: number;

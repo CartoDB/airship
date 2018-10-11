@@ -1,11 +1,11 @@
 import { scaleLinear } from 'd3-scale';
-import { StackedBarColumnData } from '../components/as-stacked-bar-widget/types/StackedBarColumnData';
+import { IRawStackedbarData } from '../components/as-stacked-bar-widget/types/RawStackedbarData';
 import { ColorMap } from './ColorMap';
-import { StackedbarData } from './StackedBarData';
+import { StackedBarData } from '../components/as-stacked-bar-widget/types/StackedBarData';
 
-export function getDomain(data: StackedbarData[]): number[] {
+export function getDomain(data: IRawStackedbarData[]): number[] {
 
-  return data.reduce((domain: number[], currentValue: StackedbarData) => {
+  return data.reduce((domain: number[], currentValue: IRawStackedbarData) => {
     let positiveAcum = 0;
     let negativeAcum = 0;
 
@@ -32,8 +32,8 @@ export function getDomain(data: StackedbarData[]): number[] {
   }, [0, 0]);
 }
 
-export function getZeroAxis(data: number[]): number {
-  const [from, to] = data;
+export function getZeroAxis(scale: [number, number]): number {
+  const [from, to] = scale;
   const yScale = scaleLinear()
     .domain([from, to])
     .range([0, 100]);
@@ -41,7 +41,11 @@ export function getZeroAxis(data: number[]): number {
   return (100 - yScale(0));
 }
 
-export function rawDataToStackBarData(data: any[], scale: number[], colorMap: ColorMap): StackedBarColumnData[][] {
+export function rawDataToStackBarData(
+  data: IRawStackedbarData[],
+  scale: [number, number],
+  colorMap: ColorMap): StackedBarData {
+
   const result = [];
   for (const rawColumn of data) {
     result.push(_generateColumn(rawColumn, scale, colorMap));
@@ -49,8 +53,7 @@ export function rawDataToStackBarData(data: any[], scale: number[], colorMap: Co
   return result;
 }
 
-
-function _generateColumn(data, scale: number[], colorMap: ColorMap) {
+function _generateColumn(data, scale: [number, number], colorMap: ColorMap) {
   const column = [];
 
   for (const key of Object.keys(data.values)) {
@@ -64,7 +67,7 @@ function _generateColumn(data, scale: number[], colorMap: ColorMap) {
   return column;
 }
 
-function _normalize(data: number, scale): number {
+function _normalize(data: number, scale: [number, number]): number {
   const [from, to] = scale;
   data = Math.abs(data);
 

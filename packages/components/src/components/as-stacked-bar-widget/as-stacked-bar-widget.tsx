@@ -1,11 +1,13 @@
 import { Component, Prop } from '@stencil/core';
-import { select, Selection } from 'd3-selection';
+import { select } from 'd3-selection';
 import { createColorMap } from '../../utils/color-manager';
 import { ColorMap } from '../../utils/ColorMap';
 import dataProcessor from '../../utils/data-processor';
-import { StackedbarData } from '../../utils/StackedBarData';
 import d3Helpers from './d3-helpers';
-import { StackedBarColumnData } from './types/StackedBarColumnData';
+import { ColumnData } from './types/ColumnData';
+import { Container } from './types/Container';
+import { IRawStackedbarData } from './types/RawStackedbarData';
+import { StackedBarData } from './types/StackedBarData';
 
 /**
  * Stacked bar Widget
@@ -48,17 +50,17 @@ export class StackedBarWidget {
   /**
    * The data that will be drawn.
    *
-   * @type {StackedbarData}
+   * @type {RawStackedbarData}
    * @memberof StackedBarWidget
    */
-  @Prop() public data: StackedbarData[] = [];
+  @Prop() public data: IRawStackedbarData[] = [];
 
   /**
    * Legend data
    */
   @Prop() public valuesInfo: any;
 
-  private container: Selection<HTMLElement, {}, null, undefined>;
+  private container: Container;
   private zeroAxis: number = 100;
   private scale: [number, number];
   private colorMap: ColorMap;
@@ -82,7 +84,7 @@ export class StackedBarWidget {
     this._drawColumns(data, this.zeroAxis);
   }
 
-  private _drawColumns(data: StackedBarColumnData[][], origin: number) {
+  private _drawColumns(data: StackedBarData, origin: number) {
     const Y_AXIS_LABEL_WIDTH = 25;
     const COLUMN_MARGIN = 5;
     const WIDTH = this.container.node().querySelector('.y-axis').getBoundingClientRect().width - Y_AXIS_LABEL_WIDTH;
@@ -92,20 +94,15 @@ export class StackedBarWidget {
 
     // Create a "plot" group in the svg element where the columns will be drawn
     d3Helpers.createPlot(this.container);
+    const plot = this.container.select('.plot') as Container;
 
-    data.forEach((columnData) => {
-      this._drawColumn(this.container.select('.plot'), columnData, origin, xOffset, COLUMN_WIDTH);
+    for (const columnData of data) {
+      this._drawColumn(plot, columnData, origin, xOffset, COLUMN_WIDTH);
       xOffset += COLUMN_WIDTH + COLUMN_MARGIN;
-    });
+    }
   }
 
-  private _drawColumn(
-    element: Selection<HTMLElement, {}, null, undefined>,
-    column: StackedBarColumnData[],
-    yOffset: number,
-    xOffset: number,
-    colWidth: number) {
-
+  private _drawColumn(element: Container, column: ColumnData, yOffset: number, xOffset: number, colWidth: number) {
     // Create the column group in the plot
     const columnElement = d3Helpers.createColumn(element);
 
@@ -120,13 +117,7 @@ export class StackedBarWidget {
 
   private _renderLegend() {
     if (this.showLegend && this.colorMap) {
-      const data = {};
-      Object.keys(this.colorMap).forEach((key) => {
-        data[key] = {
-          color: this.colorMap[key],
-          label: key,
-        };
-      });
+      const data = this._colorMaptoLegendData(this.colorMap);
       return <as-legend data={data}></as-legend>;
     }
   }
@@ -134,6 +125,17 @@ export class StackedBarWidget {
   private _createColorMap() {
     const keys = this._getKeys(this.data);
     return createColorMap(keys, this.valuesInfo);
+  }
+
+  private _colorMaptoLegendData(colorMap: ColorMap) {
+    const legendData = {};
+    Object.keys(colorMap).forEach((key) => {
+      legendData[key] = {
+        color: colorMap[key],
+        label: key,
+      };
+    });
+    return legendData;
   }
 
   private _getKeys(data: any[]): string[] {

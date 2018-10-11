@@ -1,11 +1,15 @@
+type ColumnElement = Selection<BaseType, {}, BaseType, {}>;
+
 import { BaseType, Selection } from 'd3-selection';
-import { ColumnData } from './as-stacked-bar-widget';
+import { ColumnData } from './types/ColumnData';
+import { Container } from './types/Container';
+import { RectangleData } from './types/RectangleData';
 
 /**
  *
  * Create a `g` with the plot class where the columns will be drawn.
  */
-export function createPlot(container: Selection<HTMLElement, {}, null, undefined>) {
+export function createPlot(container: Container) {
   return container
     .append('g')
     .attr('class', 'plot')
@@ -16,8 +20,7 @@ export function createPlot(container: Selection<HTMLElement, {}, null, undefined
  *
  * Create a `g` with the column class, this column has several rectangles inside.
  */
-export function createColumn(
-  element: Selection<HTMLElement, {}, null, undefined>): Selection<BaseType, {}, BaseType, {}> {
+export function createColumn(element: Container): ColumnElement {
   return element
     .append('g')
     .attr('class', 'column')
@@ -29,11 +32,7 @@ export function createColumn(
  * This function only works when all the rectangles are the same type (positive/negative).
  */
 export function drawColumn(
-  element: Selection<BaseType, {}, BaseType, {}>,
-  columnData: ColumnData[],
-  yOffset: number,
-  xOffset: number,
-  colWidth: number) {
+  element: ColumnElement, columnData: ColumnData, yOffset: number, xOffset: number, colWidth: number) {
 
   element
     .data(columnData)
@@ -52,7 +51,7 @@ export function drawColumn(
 }
 
 
-function _computeY(data: ColumnData, origin: number): string {
+function _computeY(data: RectangleData, origin: number): string {
   if (data.negative) {
     return `${origin}%`;
   }
