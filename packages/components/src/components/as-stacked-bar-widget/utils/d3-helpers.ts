@@ -1,9 +1,9 @@
 type ColumnElement = Selection<BaseType, {}, BaseType, {}>;
 
 import { BaseType, Selection } from 'd3-selection';
-import { ColumnData } from './types/ColumnData';
-import { Container } from './types/Container';
-import { RectangleData } from './types/RectangleData';
+import { ColumnData } from '../types/ColumnData';
+import { Container } from '../types/Container';
+import { RectangleData } from '../types/RectangleData';
 
 /**
  *
