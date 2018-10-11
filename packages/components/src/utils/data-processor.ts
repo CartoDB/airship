@@ -1,4 +1,5 @@
 import { scaleLinear } from 'd3-scale';
+import { interpolateSpectral } from 'd3-scale-chromatic';
 import { ColumnData } from '../components/as-stacked-bar-widget/as-stacked-bar-widget';
 import { StackedbarData } from './StackedBarData';
 
@@ -40,24 +41,23 @@ export function getZeroAxis(data: number[]): number {
   return (100 - yScale(0));
 }
 
-export function rawDataToStackBarData(data: any[], scale: number[]): ColumnData[][] {
+export function rawDataToStackBarData(data: any[], scale: number[], metadata): ColumnData[][] {
+  const keys = _getKeys(data);
   const result = [];
   for (const rawColumn of data) {
-    result.push(_generateColumn(rawColumn, scale));
+    result.push(_generateColumn(rawColumn, scale, keys, metadata));
   }
   return result;
 }
 
 
-function _generateColumn(data, scale: number[]) {
-  // TODO: generate real colors
-  const colors = ['rgba(200, 20, 20, 0.8)', 'rgba(20, 200, 20, 0.8)', 'rgba(20, 20, 200, 0.8)'];
+function _generateColumn(data, scale: number[], keys: string[], metadata) {
   const column = [];
-  let i = 0;
 
-  for (const value of Object.values(data.values)) {
+  for (const key of Object.keys(data.values)) {
+    const value = data.values[key];
     column.push({
-      color: colors[i++ % colors.length],
+      color: _getColor(key, keys, metadata),
       negative: value < 0,
       size: _normalize(value as number, scale),
     });
@@ -70,6 +70,28 @@ function _normalize(data: number, scale): number {
   data = Math.abs(data);
 
   return (100 / ((to - from) / data));
+}
+
+function _getColor(key: string, keys: string[], metadata) {
+  if (metadata && metadata[key] && metadata[key].color) {
+    return metadata[key].color;
+  }
+
+  const scale = scaleLinear()
+    .domain([0, keys.length])
+    .range([0, 1]);
+
+  return interpolateSpectral(scale(keys.indexOf(key)));
+}
+
+function _getKeys(data: any[]): string[] {
+  const keys = new Set();
+  for (const rawColumn of data) {
+    Object.keys(rawColumn.values).forEach((key) => {
+      keys.add(key);
+    });
+  }
+  return Array.from(keys);
 }
 
 

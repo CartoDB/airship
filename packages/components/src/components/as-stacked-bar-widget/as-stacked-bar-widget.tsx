@@ -73,7 +73,7 @@ export class StackedBarWidget {
   }
 
   public componentDidLoad() {
-    this._drawColumns(dataProcessor.rawDataToStackBarData(this.data, this.scale), this.zeroAxis);
+    this._drawColumns(dataProcessor.rawDataToStackBarData(this.data, this.scale, this.valuesInfo), this.zeroAxis);
   }
 
   private _drawColumns(data: ColumnData[][], origin: number) {

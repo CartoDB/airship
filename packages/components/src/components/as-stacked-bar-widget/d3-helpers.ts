@@ -47,7 +47,8 @@ export function drawColumn(
     })
     .attr('width', colWidth)
     .attr('height', (d) => `${d.size}%`)
-    .attr('fill', (d) => d.color);
+    .attr('fill', (d) => d.color)
+    .attr('fill-opacity', '.8');
 }
 
 
