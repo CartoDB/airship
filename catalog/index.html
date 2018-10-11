@@ -41,7 +41,7 @@
     window.onclick = function (event) {
       var target = event && event.target;
       if (target && target.nodeName && target.nodeName.toUpperCase() === "A") {
-        if (target.href.indexOf('#') < 0) {
+        if (target.href && target.href.indexOf('#') < 0) {
           sendMessage(target.href);
         }
       }
