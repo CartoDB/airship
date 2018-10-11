@@ -1,13 +1,13 @@
 import { Component, Prop } from '@stencil/core';
 import { select } from 'd3-selection';
-import { createColorMap } from '../../utils/color-manager';
-import { ColorMap } from '../../utils/ColorMap';
-import dataProcessor from '../../utils/data-processor';
-import d3Helpers from './d3-helpers';
+import { ColorMap } from './types/ColorMap';
 import { ColumnData } from './types/ColumnData';
 import { Container } from './types/Container';
 import { IRawStackedbarData } from './types/RawStackedbarData';
 import { StackedBarData } from './types/StackedBarData';
+import { createColorMap } from './utils/color-manager';
+import d3Helpers from './utils/d3-helpers';
+import dataProcessor from './utils/data-processor';
 
 /**
  * Stacked bar Widget
@@ -126,6 +126,9 @@ export class StackedBarWidget {
     return createColorMap(keys, this.valuesInfo);
   }
 
+  /**
+   * Transform a color map into a object that legends can understand.
+   */
   private _colorMaptoLegendData(colorMap: ColorMap) {
     const legendData = {};
     Object.keys(colorMap).forEach((key) => {
@@ -137,7 +140,7 @@ export class StackedBarWidget {
     return legendData;
   }
 
-  private _getKeys(data: any[]): string[] {
+  private _getKeys(data: IRawStackedbarData[]): string[] {
     const keys = new Set();
     for (const rawColumn of data) {
       Object.keys(rawColumn.values).forEach((key) => {
