@@ -1,4 +1,4 @@
-import { Component, Prop } from '@stencil/core';
+import { Component, Prop, Watch } from '@stencil/core';
 import { select } from 'd3-selection';
 import { ColorMap } from './types/ColorMap';
 import { ColumnData } from './types/ColumnData';
@@ -101,6 +101,11 @@ export class StackedBarWidget {
   }
 
   public componentDidLoad() {
+    this.onDataChanged();
+  }
+
+  @Watch('data')
+  public onDataChanged() {
     const data = dataProcessor.rawDataToStackBarData(this.data, this.scale, this.colorMap);
     this._drawColumns(data, this.zeroAxis);
   }

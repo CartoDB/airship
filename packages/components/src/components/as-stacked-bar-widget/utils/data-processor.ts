@@ -11,7 +11,7 @@ import { StackedBarData } from '../types/StackedBarData';
  */
 export function getDomain(data: RawStackedbarData[]): [number, number] {
 
-  return data.reduce((domain: number[], currentValue: RawStackedbarData) => {
+  return data.reduce((domain: [number, number], currentValue: RawStackedbarData) => {
     let positiveAcum = 0;
     let negativeAcum = 0;
 
@@ -35,7 +35,7 @@ export function getDomain(data: RawStackedbarData[]): [number, number] {
     }
 
     return domain;
-  }, [0, 0]);
+  }, [0, 0]) as [number, number];
 }
 
 /**

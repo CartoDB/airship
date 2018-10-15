@@ -525,27 +525,6 @@ export namespace Components {
     */
     'subheader'?: string;
   }
-
-  interface AsYAxis {
-    /**
-    * Header of the widget to be displayed
-    */
-    'from': number;
-    /**
-    * Header of the widget to be displayed
-    */
-    'to': number;
-  }
-  interface AsYAxisAttributes extends StencilHTMLAttributes {
-    /**
-    * Header of the widget to be displayed
-    */
-    'from'?: number;
-    /**
-    * Header of the widget to be displayed
-    */
-    'to'?: number;
-  }
 }
 
 declare global {
@@ -562,7 +541,6 @@ declare global {
     'AsSwitch': Components.AsSwitch;
     'AsLegend': Components.AsLegend;
     'AsWidgetHeader': Components.AsWidgetHeader;
-    'AsYAxis': Components.AsYAxis;
   }
 
   interface StencilIntrinsicElements {
@@ -578,7 +556,6 @@ declare global {
     'as-switch': Components.AsSwitchAttributes;
     'as-legend': Components.AsLegendAttributes;
     'as-widget-header': Components.AsWidgetHeaderAttributes;
-    'as-y-axis': Components.AsYAxisAttributes;
   }
 
 
@@ -654,12 +631,6 @@ declare global {
     new (): HTMLAsWidgetHeaderElement;
   };
 
-  interface HTMLAsYAxisElement extends Components.AsYAxis, HTMLStencilElement {}
-  var HTMLAsYAxisElement: {
-    prototype: HTMLAsYAxisElement;
-    new (): HTMLAsYAxisElement;
-  };
-
   interface HTMLElementTagNameMap {
     'as-category-widget': HTMLAsCategoryWidgetElement
     'as-dropdown': HTMLAsDropdownElement
@@ -673,7 +644,6 @@ declare global {
     'as-switch': HTMLAsSwitchElement
     'as-legend': HTMLAsLegendElement
     'as-widget-header': HTMLAsWidgetHeaderElement
-    'as-y-axis': HTMLAsYAxisElement
   }
 
   interface ElementTagNameMap {
@@ -689,7 +659,6 @@ declare global {
     'as-switch': HTMLAsSwitchElement;
     'as-legend': HTMLAsLegendElement;
     'as-widget-header': HTMLAsWidgetHeaderElement;
-    'as-y-axis': HTMLAsYAxisElement;
   }
 
 
