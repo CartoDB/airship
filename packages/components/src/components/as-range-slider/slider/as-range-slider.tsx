@@ -1,6 +1,6 @@
 import { Component, Event, EventEmitter, Prop, State, Watch } from '@stencil/core';
 import getDecimalPlaces from '../../../utils/get-decimal-places';
-import { Thumb } from '../thumb/as-range-slider-thumb';
+import { Thumb } from '../thumb/interfaces';
 
 @Component({
   shadow: false,
@@ -73,7 +73,7 @@ export class RangeSlider {
    * @type {function (value: number)}
    * @memberof RangeSlider
    */
-  @Prop() public formatValue: (value: number) => void;
+  @Prop() public formatValue: (value: number) => string|number;
 
 
   @Event() public change: EventEmitter<number[]>;

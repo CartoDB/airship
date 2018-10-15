@@ -1,5 +1,5 @@
 import { Component, Element, Event, EventEmitter, Listen, Prop } from '@stencil/core';
-import { MouseTrack } from '../MouseTrack';
+import { handleMouseDown } from '../MouseTrack';
 
 const MAX_PERCENTAGE = 100;
 const MIN_PERCENTAGE = 0;
@@ -9,7 +9,7 @@ const MIN_PERCENTAGE = 0;
   styleUrl: './as-range-slider-bar.scss',
   tag: 'as-range-slider-bar',
 })
-export class RangeSliderBar extends MouseTrack {
+export class RangeSliderBar {
   @Prop({ mutable: true }) public rangeStartPercentage: number;
   @Prop({ mutable: true }) public rangeEndPercentage: number;
   @Prop() public stepPercentage: number;
@@ -55,7 +55,7 @@ export class RangeSliderBar extends MouseTrack {
 
     this.previousMouseEvent = event;
 
-    super.handleMouseDown({
+    handleMouseDown({
       move: (moveEvent) => this.onMove(moveEvent),
       release: () => this._onRelease()
     });

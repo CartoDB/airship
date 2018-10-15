@@ -1,5 +1,5 @@
-import { TestWindow } from '@stencil/core/dist/testing';
-import { Category, CategoryWidget } from './as-category-widget';
+import { CategoryWidget } from './as-category-widget';
+import { Category } from './interfaces';
 
 describe('as-category-widget', () => {
   let categoryWidget;
@@ -12,129 +12,12 @@ describe('as-category-widget', () => {
     expect(new CategoryWidget()).toBeTruthy();
   });
 
-  describe('Rendering', () => {
-    let element: HTMLAsCategoryWidgetElement;
-    let testWindow: TestWindow;
-
-    beforeEach(async () => {
-      testWindow = new TestWindow();
-      element = await testWindow.load({
-        components: [CategoryWidget],
-        html: '<as-category-widget></as-category-widget>'
-      });
-    });
-
-    it('should render properly', async () => {
-      element.heading = 'Category Widget Example';
-      element.description = 'Description for Category Widget';
-      element.categories = exampleCategories;
-      element.showClearButton = true;
-      await testWindow.flush();
-
-      expect(element).toMatchSnapshot();
-    });
-
-    it('should not render header when showHeader is false', async () => {
-      element.heading = 'Category Widget Example';
-      element.description = 'Description for Category Widget';
-      element.showHeader = false;
-      await testWindow.flush();
-
-      expect(element).toMatchSnapshot();
-    });
-
-    it('should render clear button', async () => {
-      element.showClearButton = true;
-      element.categories = exampleCategories;
-      await testWindow.flush();
-
-      expect(element).toMatchSnapshot();
-    });
-
-    it('should render bars according to total value', async () => {
-      element.categories = exampleCategories;
-      element.useTotalPercentage = true;
-      await testWindow.flush();
-
-      expect(element).toMatchSnapshot();
-    });
-
-    it('should format display value when formatValue prop is present', async () => {
-      element.categories = exampleCategories;
-      element.valueFormatter = (value) => `${value}€`;
-      await testWindow.flush();
-
-      expect(element).toMatchSnapshot();
-    });
-  });
-
-  describe('Behaviour', () => {
-    let element: HTMLAsCategoryWidgetElement;
-    let testWindow: TestWindow;
-
-    beforeEach(async () => {
-      testWindow = new TestWindow();
-      element = await testWindow.load({
-        components: [CategoryWidget],
-        html: '<as-category-widget></as-category-widget>'
-      });
-    });
-
-    it('should emit an event containing selected categories when a new category is selected', async () => {
-      element.categories = exampleCategories;
-
-      const categoriesSelectedSpy = jest.fn();
-      element.addEventListener('categoriesSelected', categoriesSelectedSpy);
-      await testWindow.flush();
-
-      const categoryElement = element.querySelector('.as-category-widget__category') as HTMLDivElement;
-      categoryElement.click();
-
-      expect(categoriesSelectedSpy).toHaveBeenCalled();
-      expect(categoriesSelectedSpy.mock.calls[0][0].detail).toEqual([exampleCategories[0].name]);
-    });
-
-    it('should emit an event containing selected categories when categories are cleared', async () => {
-      element.categories = exampleCategories;
-      element.showClearButton = true;
-      await testWindow.flush();
-
-      const categoryElement = element.querySelector('.as-category-widget__category') as HTMLDivElement;
-      categoryElement.click();
-
-      await testWindow.flush();
-
-      const spy = jest.fn();
-      element.addEventListener('categoriesSelected', spy);
-
-      const clearButton = element.querySelector('.as-category-widget__clear') as HTMLButtonElement;
-      clearButton.click();
-
-      expect(spy).toHaveBeenCalled();
-      expect(spy.mock.calls[0][0].detail).toEqual([]);
-    });
-
-    it('should clear the selectedCategories when the category list is changed', async () => {
-      element.categories = exampleCategories;
-      element.showClearButton = true;
-      await testWindow.flush();
-
-      const categoryElement = element.querySelector('.as-category-widget__category') as HTMLLIElement;
-      categoryElement.click();
-
-      expect(element.getSelectedCategories()).toEqual([exampleCategories[0].name]);
-
-      element.categories = [{ name: 'foo', value: 10 }];
-      expect(element.getSelectedCategories()).toEqual([]);
-    });
-  });
-
   describe('.getSelectedCategories', () => {
-    it('should return selectedCategories', () => {
+    it('should return selectedCategories', async () => {
       const selectedCategories = ['Category 1'];
       categoryWidget.selectedCategories = selectedCategories;
 
-      expect(categoryWidget.getSelectedCategories()).toEqual(selectedCategories);
+      expect(await categoryWidget.getSelectedCategories()).toEqual(selectedCategories);
     });
   });
 
@@ -143,13 +26,13 @@ describe('as-category-widget', () => {
       spyOn(categoryWidget, '_onCategoriesChanged');
     });
 
-    it('should clear selected categories', () => {
+    it('should clear selected categories', async () => {
       const selectedCategories = ['Category 1'];
       categoryWidget.selectedCategories = selectedCategories;
 
       categoryWidget.clearSelection();
 
-      expect(categoryWidget.getSelectedCategories()).toEqual([]);
+      expect(await categoryWidget.getSelectedCategories()).toEqual([]);
     });
   });
 
@@ -171,29 +54,29 @@ describe('as-category-widget', () => {
       spyOn(categoryWidget, '_onCategoriesChanged');
     });
 
-    it('should select category if it is not selected', () => {
+    it('should select category if it is not selected', async () => {
       const category = { name: 'Category 1', value: 10, color: '#000' };
       categoryWidget._toggleCategory(category);
 
-      expect(categoryWidget.getSelectedCategories()).toEqual([category.name]);
+      expect(await categoryWidget.getSelectedCategories()).toEqual([category.name]);
     });
 
-    it('should remove category if it was selected', () => {
+    it('should remove category if it was selected', async () => {
       const category = { name: 'Category 1', value: 10, color: '#000' };
       categoryWidget.selectedCategories = [category.name];
 
       categoryWidget._toggleCategory(category);
 
-      expect(categoryWidget.getSelectedCategories()).toEqual([]);
+      expect(await categoryWidget.getSelectedCategories()).toEqual([]);
     });
 
-    it('should not toggle category if interaction is disabled', () => {
+    it('should not toggle category if interaction is disabled', async () => {
       categoryWidget.disableInteractivity = true;
 
       const category = { name: 'Category 1', value: 10, color: '#000' };
       categoryWidget._toggleCategory(category);
 
-      expect(categoryWidget.getSelectedCategories()).toEqual([]);
+      expect(await categoryWidget.getSelectedCategories()).toEqual([]);
     });
   });
 

@@ -1,4 +1,3 @@
-import { TestWindow } from '@stencil/core/dist/testing';
 import { RangeSlider } from './as-range-slider';
 
 describe('as-range-slider', () => {
@@ -50,52 +49,6 @@ describe('as-range-slider', () => {
 
       rangeSlider._onBarMove({ detail: [40, 50] });
       expect(onChangeSpy).toHaveBeenCalledWith([400, 500]);
-    });
-  });
-
-  describe('Rendering', () => {
-    let element: HTMLAsRangeSliderElement;
-    let testWindow: TestWindow;
-
-    beforeEach(async () => {
-      testWindow = new TestWindow();
-      element = await testWindow.load({
-        components: [RangeSlider],
-        html: '<as-range-slider></as-range-slider>'
-      });
-    });
-
-    it('should render without parameters, using defaults', async () => {
-      await testWindow.flush();
-
-      expect(element).toMatchSnapshot();
-    });
-
-    it('should render 1 thumb + 1 bar when using a value', async () => {
-      element.value = 5;
-      element.minValue = 0;
-      element.maxValue = 10;
-      element.step = 1;
-      await testWindow.flush();
-
-      expect(element).toMatchSnapshot();
-    });
-
-    it('should render 2 thumbs + 1 bar when using a range', async () => {
-      element.range = [2, 4];
-      element.minValue = 2;
-      element.maxValue = 20;
-      element.step = 2;
-      await testWindow.flush();
-
-      expect(element).toMatchSnapshot();
-    });
-
-    it('can be rendered disabled', async () => {
-      element.disabled = true;
-      await testWindow.flush();
-
-      expect(element).toMatchSnapshot();
     });
   });
 
