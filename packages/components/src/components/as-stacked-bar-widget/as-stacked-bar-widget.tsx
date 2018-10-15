@@ -86,8 +86,8 @@ export class StackedBarWidget {
   }
 
   public render() {
+    console.log('render');
     const [from, to] = dataProcessor.getDomain(this.data);
-    this.zeroAxis = dataProcessor.getZeroAxis([from, to]);
     this.scale = [from, to];
     this.colorMap = this._createColorMap();
 
@@ -106,8 +106,11 @@ export class StackedBarWidget {
 
   @Watch('data')
   public onDataChanged() {
+    console.log('dataChanged');
     const data = dataProcessor.rawDataToStackBarData(this.data, this.scale, this.colorMap);
-    this._drawColumns(data, this.zeroAxis);
+    const zeroAxis = dataProcessor.getZeroAxis(this.scale);
+    this._drawColumns(data, zeroAxis);
+    this.render();
   }
 
   private _drawColumns(data: StackedBarData, origin: number) {
