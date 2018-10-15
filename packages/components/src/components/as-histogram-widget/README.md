@@ -202,13 +202,23 @@ histogramWidget.addEventListener('selectionChanged', event => {
 
 #### **getSelection**
 Get current selection, or null.
-`Returns: number[] | null`
+`Returns: Promise<number[] | null>`
 
 ```code
 lang: javascript
 ---
+// Async/Await approach
 const histogramWidget = document.querySelector('as-histogram-widget');
-console.log(histogramWidget.getSelection(), 'is selected');
+console.log(await histogramWidget.getSelection(), 'is selected');
+
+// Promises approach
+const histogramWidget = document.querySelector('as-histogram-widget');
+histogramWidget.getSelection()
+               .then(selectionRange => console.log(selectionRange, 'is selected'));
+```
+
+```hint|directive
+Please note that you always need to wrap your `await` code in an `async` function. If you use it outside of an async function, it will raise a `SyntaxError`. Learn more about it [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await).
 ```
 
 #### **setSelection**
@@ -217,8 +227,20 @@ Set a new selection. The component will round the values to the nearest interval
 ```code
 lang: javascript
 ---
+// Async/Await approach
 const histogramWidget = document.querySelector('as-histogram-widget');
-histogramWidget.setSelection([0, 100]);
+await histogramWidget.setSelection([0, 100]);
+
+// Promises approach
+const histogramWidget = document.querySelector('as-histogram-widget');
+histogramWidget.setSelection([0, 100])
+               .then(() => {
+                 // Whatever you want to do next
+               });
+```
+
+```hint|directive
+Please note that you always need to wrap your `await` code in an `async` function. If you use it outside of an async function, it will raise a `SyntaxError`. Learn more about it [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await).
 ```
 
 #### **clearSelection**
@@ -227,8 +249,20 @@ Clear current selection
 ```code
 lang: javascript
 ---
+// Async/Await approach
 const histogramWidget = document.querySelector('as-histogram-widget');
-histogramWidget.clearSelection();
+await histogramWidget.clearSelection();
+
+// Promises approach
+const histogramWidget = document.querySelector('as-histogram-widget');
+histogramWidget.clearSelection()
+               .then(() => {
+                 // Whatever you want to do next
+               });
+```
+
+```hint|directive
+Please note that you always need to wrap your `await` code in an `async` function. If you use it outside of an async function, it will raise a `SyntaxError`. Learn more about it [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await).
 ```
 
 ### Examples

@@ -1,6 +1,5 @@
 const path = require('path');
 const sass = require('@stencil/sass');
-const version = require('./package.json').version;
 
 exports.config = {
   namespace: 'airship',
@@ -23,5 +22,11 @@ exports.config = {
       ]
     })
   ],
+  testing: {
+    transform: {
+      "^.+\\.(js)$": path.join(__dirname, "../../node_modules/@stencil/core/testing/jest.preprocessor.js")
+    },
+    browserArgs: ['--no-sandbox', '–disable-setuid-sandbox']
+  },
   preamble: 'Airship Components · CARTO · https://carto.com'
 };

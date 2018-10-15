@@ -139,11 +139,20 @@ dropdown.addEventListener('optionChanged', function (event) {
 
 #### **getSelectedOption**
 Get current selected option
-`Returns: string`
+`Returns: Promise<string>`
 
 ```code
 lang: javascript
 ---
+// Async/Await approach
 const dropdown = document.querySelector('as-dropdown');
-dropdown.getSelectedOption();
+await dropdown.getSelectedOption();
+
+// Promises approach
+const dropdown = document.querySelector('as-dropdown');
+dropdown.getSelectedOption()
+        .then(selectedOption => console.log(selectedOption));
+```
+```hint|directive
+Please note that you always need to wrap your `await` code in an `async` function. If you use it outside of an async function, it will raise a `SyntaxError`. Learn more about it [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await).
 ```

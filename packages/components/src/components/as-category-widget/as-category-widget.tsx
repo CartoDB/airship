@@ -1,6 +1,7 @@
 import { Component, Element, Event, EventEmitter, Method, Prop, State, Watch } from '@stencil/core';
 import readableNumber from '../../utils/readable-number';
 import { shadeOrBlend } from '../../utils/styles';
+import { Category, CategoryOptions } from './interfaces';
 
 const OTHER_CATEGORY_COLOR = '#747474';
 const OTHER_CATEGORY_NAME = 'Other';
@@ -120,7 +121,6 @@ export class CategoryWidget {
    *
    * @memberof CategoryWidget
    */
-  @Method()
   public defaultFormatter(value: number) {
     return `${readableNumber(value)}`;
   }
@@ -132,7 +132,7 @@ export class CategoryWidget {
    * @memberof CategoryWidget
    */
   @Method()
-  public getSelectedCategories() {
+  public async getSelectedCategories() {
     return this.selectedCategories;
   }
 
@@ -154,7 +154,7 @@ export class CategoryWidget {
    * @memberof CategoryWidget
    */
   @Method()
-  public clearSelection() {
+  public async clearSelection() {
     if (!this.selectedCategories.length) {
       return;
     }
@@ -343,14 +343,4 @@ export class CategoryWidget {
 
     return parsedCategories.slice(0, this.visibleCategories);
   }
-}
-
-export interface Category {
-  name: string;
-  value: number;
-  color?: string;
-}
-export interface CategoryOptions {
-  maximumValue: number;
-  isOther?: boolean;
 }

@@ -109,7 +109,7 @@ export class Dropdown {
    * @memberof Dropdown
    */
   @Method()
-  public getSelectedOption() {
+  public async getSelectedOption() {
     return this.selectedOption;
   }
 

@@ -1,18 +1,18 @@
 import { Component, Element, Event, EventEmitter, Listen, Prop } from '@stencil/core';
-import { MouseTrack } from '../MouseTrack';
+import { handleMouseDown } from '../MouseTrack';
 
 @Component({
   shadow: false,
   styleUrl: './as-range-slider-thumb.scss',
   tag: 'as-range-slider-thumb',
 })
-export class RangeSliderThumb extends MouseTrack {
+export class RangeSliderThumb {
   @Prop() public percentage: number;
   @Prop() public value: number;
   @Prop() public valueMin: number;
   @Prop() public valueMax: number;
   @Prop() public disabled: boolean;
-  @Prop() public formatValue: (value: number) => void;
+  @Prop() public formatValue: (value: number) => string|number;
 
   @Event() public thumbMove: EventEmitter<number>;
   @Event() public thumbChangeStart: EventEmitter<void>;
@@ -72,7 +72,7 @@ export class RangeSliderThumb extends MouseTrack {
 
     this.railBoundingClientRect = this.railElement.getBoundingClientRect();
 
-    super.handleMouseDown({
+    handleMouseDown({
       move: (moveEvent) => this._onMove(moveEvent),
       release: () => this._onRelease(thumb)
     });
@@ -145,11 +145,4 @@ export class RangeSliderThumb extends MouseTrack {
   private setCursorTo(value) {
     document.body.style.cursor = value;
   }
-}
-
-export interface Thumb {
-  value: number;
-  valueMin: number;
-  valueMax: number;
-  percentage: number;
 }
