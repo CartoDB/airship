@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+  <base href="/">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+  <title>Airship</title>
+  <link rel="stylesheet" href="../../../packages/styles/dist/airship.css">
+  <script src="../../../packages/components/dist/airship.js"></script>
+</head>
+
+<body>
+  <div style="width:300px;">
+    <as-stacked-bar-widget id="widget-0" show-legend="true" heading="Heading" description="Description"></as-stacked-bar-widget>
+  </div>
+
+  <script>
+    const widget0 = document.querySelector('#widget-0');
+
+
+    setInterval(() => {
+      widget0.data = [{
+          category: 'Category A',
+          values: {
+            v1: Math.random() * 400 - 400,
+            v2: Math.random() * 400 - 400,
+          }
+        },
+        {
+          category: 'Category B',
+          values: {
+            v1: Math.random() * 400 - 400,
+            v2: Math.random() * 400 - 400,
+            v3: Math.random() * 400 - 400,
+          },
+        },
+        {
+          category: 'Category B',
+          values: {
+            v1: Math.random() * 400 - 400,
+            v2: Math.random() * 400 - 400,
+            v3: Math.random() * 400 - 400,
+            v3: Math.random() * 400 - 400,
+          }
+        }
+      ];
+    }, 1000)
+
+
+    widget0.valuesInfo = {
+      v1: {
+        label: 'v1-label',
+        color: '#FABADA'
+      },
+      v2: {
+        label: 'v2-label',
+        color: '#C00FEE'
+      },
+      v3: {
+        color: '#ff0088',
+      },
+    }
+
+  </script>
+</body>
+
+</html>
