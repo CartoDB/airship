@@ -22,7 +22,8 @@
     "test:watch": "stencil test --spec --e2e --watch",
     "test:unit": "stencil test --spec",
     "test:unit:watch": "stencil test --spec --watch",
-    "test:e2e": "stencil test --e2e"
+    "test:e2e": "stencil test --e2e",
+    "test:e2e:watch": "stencil test --e2e --watch"
   },
   "devDependencies": {
     "@stencil/core": "0.13.2",
