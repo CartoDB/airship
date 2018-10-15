@@ -1,4 +1,4 @@
-import { ColumnData } from "./ColumnData";
+import { ColumnData } from './ColumnData';
 
 /**
  * Represents the data required to draw the StackedBar widget.

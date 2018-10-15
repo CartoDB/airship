@@ -1,4 +1,4 @@
-import { values } from "d3";
+import { values } from 'd3';
 
 /**
  * Contains the data required to draw every rectangle in the stacked bar widget.

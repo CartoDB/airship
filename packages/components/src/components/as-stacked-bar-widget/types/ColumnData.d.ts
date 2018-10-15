@@ -1,4 +1,4 @@
-import { RectangleData } from "./RectangleData";
+import { RectangleData } from './RectangleData';
 
 /**
  * Contains the data required to draw a column in the StackedBar widget.
