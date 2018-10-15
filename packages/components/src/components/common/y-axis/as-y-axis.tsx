@@ -1,7 +1,7 @@
 import { Component, Element, Prop } from '@stencil/core';
 import { axisLeft } from 'd3-axis';
 import { scaleLinear } from 'd3-scale';
-import { select } from 'd3-selection';
+import { select, Selection } from 'd3-selection';
 import readableNumber from '../../../utils/readable-number';
 
 
@@ -57,9 +57,13 @@ export class YAxis {
       .tickSize(-WIDTH + OFFSET)
       .tickFormat((d) => `${readableNumber(d)}`);
 
-    ELEMENT
-      .append('g')
-      .attr('class', 'y-axis')
-      .call(yAxis);
+    if (ELEMENT.select('.y-axis').empty()) {
+      return this._createYAxisElement(ELEMENT).call(yAxis);
+    }
+    ELEMENT.select('.y-axis').call(yAxis);
+  }
+
+  private _createYAxisElement(element: Selection<Element, {}, null, undefined>) {
+    return element.append('g').attr('class', 'y-axis');
   }
 }
