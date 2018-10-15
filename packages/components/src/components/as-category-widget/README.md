@@ -240,13 +240,24 @@ categoryWidget.addEventListener('categoriesSelected', event => {
 
 #### **getSelectedCategories**
 Get current selected categories
-`Returns: Category[]`
+`Returns: Promise<Category[]>`
 
 ```code
 lang: javascript
 ---
+// Async/Await approach
+  const categoryWidget = document.querySelector('as-category-widget');
+  await categoryWidget.getSelectedCategories();
+
+
+// Promises approach
 const categoryWidget = document.querySelector('as-category-widget');
-categoryWidget.getSelectedCategories();
+categoryWidget.getSelectedCategories()
+              .then(categories => console.log(categories));
+```
+
+```hint|directive
+Please note that you always need to wrap your `await` code in an `async` function. If you use it outside of an async function, it will raise a `SyntaxError`. Learn more about it [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await).
 ```
 
 #### **clearSelection**
@@ -255,8 +266,21 @@ Clear current selected categories
 ```code
 lang: javascript
 ---
+// Async/Await approach
 const categoryWidget = document.querySelector('as-category-widget');
-categoryWidget.clearSelection();
+await categoryWidget.clearSelection();
+
+
+// Promises approach
+const categoryWidget = document.querySelector('as-category-widget');
+categoryWidget.clearSelection()
+              .then(() => {
+                 // Whatever you want to do next
+               });
+```
+
+```hint|directive
+Please note that you always need to wrap your `await` code in an `async` function. If you use it outside of an async function, it will raise a `SyntaxError`. Learn more about it [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await).
 ```
 
 ### Examples

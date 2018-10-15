@@ -114,8 +114,8 @@ export default class App extends Component {
   /**
    * Delegate function calls
    */
-  clearSelection() {
-    this.categoryWidget.current.clearSelection();
+  async clearSelection() {
+    await this.categoryWidget.current.clearSelection();
   }
 }
 ```
@@ -193,8 +193,8 @@ export default class CategoryWidget extends Component {
   /**
    * Delegate function calls
    */
-  clearSelection() {
-    this.ref.current.clearSelection();
+  async clearSelection() {
+    await this.ref.current.clearSelection();
   }
 }
 ```

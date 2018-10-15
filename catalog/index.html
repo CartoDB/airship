@@ -38,6 +38,15 @@
       sendMessage(event.newURL);
     };
 
+    window.onclick = function (event) {
+      var target = event && event.target;
+      if (target && target.nodeName && target.nodeName.toUpperCase() === "A") {
+        if (target.href && target.href.indexOf('#') < 0) {
+          sendMessage(target.href);
+        }
+      }
+    }
+
     Catalog.render({
       title: 'Airship',
       useBrowserHistory: false,

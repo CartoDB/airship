@@ -100,8 +100,8 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 export class AppComponent {
   @ViewChild('categoryWidget') categoryWidget: ElementRef;
 
-  getSelectedCategories() {
-    return this.categoryWidget.nativeElement.getSelectedCategories();
+  async getSelectedCategories() {
+    return await this.categoryWidget.nativeElement.getSelectedCategories();
   }
 
   clearWidgetSelection() {

@@ -120,11 +120,11 @@ To invoke a component method, we need to create a mirror method in our Vue compo
 export default {
   name: 'MyComponent',
   methods: {
-    getSelectedCategories: function () {
-      this.categoryWidget.getSelectedCategories();
+    async getSelectedCategories: function () {
+      return await this.categoryWidget.getSelectedCategories();
     },
-    clearSelection: function () {
-      this.categoryWidget.clearSelection();
+    async clearSelection: function () {
+      return await this.categoryWidget.clearSelection();
     }
   }
 }
@@ -164,11 +164,11 @@ To mirror the Airship Component, we need to create a new Vue component like this
       });
     },
     methods: {
-      getSelectedCategories: function () {
-        this.categoryWidget.getSelectedCategories();
+      async getSelectedCategories: function () {
+        return await this.categoryWidget.getSelectedCategories();
       },
-      clearSelection: function () {
-        this.categoryWidget.clearSelection();
+      async clearSelection: function () {
+        return await this.categoryWidget.clearSelection();
       }
     },
     watch: {
