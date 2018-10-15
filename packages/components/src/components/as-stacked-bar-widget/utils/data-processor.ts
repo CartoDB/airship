@@ -9,7 +9,7 @@ import { StackedBarData } from '../types/StackedBarData';
  * If the lowest value is bigger than zero, zero is returned instead.
  * @param data
  */
-export function getDomain(data: RawStackedbarData[]): number[] {
+export function getDomain(data: RawStackedbarData[]): [number, number] {
 
   return data.reduce((domain: number[], currentValue: RawStackedbarData) => {
     let positiveAcum = 0;

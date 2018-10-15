@@ -70,7 +70,7 @@ export class StackedBarWidget {
   /**
    * Callback executed when the mouse is placed over a rectangle.
    */
-  @Prop() public onMouseOver = (data: RectangleData) => {
+  @Prop() public mouseOver = (data: RectangleData) => {
     const event = window.event as MouseEvent;
     this.tooltip.style.display = 'inline';
     this.tooltip.style.left = `${event.clientX}px`;
@@ -81,7 +81,7 @@ export class StackedBarWidget {
   /**
    * Callback executed when the mouse is placed outside a rectangle.
    */
-  @Prop() public onMouseLeave = () => {
+  @Prop() public mouseLeave = () => {
     this.tooltip.style.display = 'none';
   }
 
@@ -128,11 +128,11 @@ export class StackedBarWidget {
 
     // Draw rectangles above zero axis
     const positives = column.filter((d) => !d.negative);
-    d3Helpers.drawColumn(columnElement, positives, yOffset, xOffset, colWidth, this.onMouseOver, this.onMouseLeave);
+    d3Helpers.drawColumn(columnElement, positives, yOffset, xOffset, colWidth, this.mouseOver, this.mouseLeave);
 
     // Draw rectangles below zero axis
     const negatives = column.filter((d) => d.negative);
-    d3Helpers.drawColumn(columnElement, negatives, yOffset, xOffset, colWidth, this.onMouseOver, this.onMouseLeave);
+    d3Helpers.drawColumn(columnElement, negatives, yOffset, xOffset, colWidth, this.mouseOver, this.mouseLeave);
   }
 
   private _renderLegend() {

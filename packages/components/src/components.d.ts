@@ -406,11 +406,11 @@ export namespace Components {
     /**
     * Callback executed when the mouse is placed outside a rectangle.
     */
-    'onMouseLeave': any;
+    'mouseLeave': any;
     /**
     * Callback executed when the mouse is placed over a rectangle.
     */
-    'onMouseOver': any;
+    'mouseOver': any;
     /**
     * Boolean flag to control legend visibility. Defaults: true
     */
@@ -436,11 +436,11 @@ export namespace Components {
     /**
     * Callback executed when the mouse is placed outside a rectangle.
     */
-    'onMouseLeave'?: any;
+    'mouseLeave'?: any;
     /**
     * Callback executed when the mouse is placed over a rectangle.
     */
-    'onMouseOver'?: any;
+    'mouseOver'?: any;
     /**
     * Boolean flag to control legend visibility. Defaults: true
     */
