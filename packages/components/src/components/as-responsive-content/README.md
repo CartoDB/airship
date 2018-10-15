@@ -182,6 +182,22 @@ interface ApplicationSection {
 }
 ```
 
+```code
+lang: javascript
+---
+// Async/Await approach
+const responsiveContent = document.querySelector('as-responsive-content');
+await responsiveContent.getSections();
+
+// Promises approach
+const responsiveContent = document.querySelector('as-responsive-content');
+responsiveContent.getSections()
+               .then(sections => console.log(sections));
+```
+```hint|directive
+Please note that you always need to wrap your `await` code in an `async` function. If you use it outside of an async function, it will raise a `SyntaxError`. Learn more about it [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await).
+```
+
 ### **setVisible(sectionName)**
 
 This method changes visible content section by introducing the section name like:
@@ -190,6 +206,17 @@ This method changes visible content section by introducing the section name like
 lang: javascript
 showSource: false
 ---
+// Async/Await approach
 const responsiveContent = document.querySelector('as-responsive-content');
-responsiveContent.setVisible('Histogram');
+await responsiveContent.setVisible('sectionName');
+
+// Promises approach
+const responsiveContent = document.querySelector('as-responsive-content');
+responsiveContent.setVisible()
+                 .then(() => {
+                   // Whatever you want to do next
+                 });
+```
+```hint|directive
+Please note that you always need to wrap your `await` code in an `async` function. If you use it outside of an async function, it will raise a `SyntaxError`. Learn more about it [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await).
 ```
