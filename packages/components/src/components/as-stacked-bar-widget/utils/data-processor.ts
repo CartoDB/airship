@@ -41,7 +41,7 @@ export function getDomain(data: RawStackedbarData[]): [number, number] {
 /**
  * Get the vertical position (%) of the zero axis in the svg based on the domain.
  */
-export function getZeroAxis(scale: [number, number]): number {
+function getZeroAxis(scale: [number, number]): number {
   const [from, to] = scale;
   const yScale = scaleLinear()
     .domain([from, to])
@@ -56,11 +56,17 @@ export function getZeroAxis(scale: [number, number]): number {
 export function rawDataToStackBarData(
   data: RawStackedbarData[],
   scale: [number, number],
-  colorMap: ColorMap): StackedBarData {
+  colorMap: ColorMap,
+  width: number,
+  margin: number): StackedBarData {
+
+  const origin = getZeroAxis(scale);
+  let xOffset = margin;
 
   const result = [];
   for (const rawColumn of data) {
-    result.push(_generateColumn(rawColumn, scale, colorMap));
+    result.push(_generateColumn(rawColumn, scale, colorMap, width, origin, xOffset));
+    xOffset += width + margin;
   }
   return result;
 }
@@ -68,17 +74,31 @@ export function rawDataToStackBarData(
 /**
  * Creates the data required to draw a column.
  */
-function _generateColumn(data: RawStackedbarData, scale: [number, number], colorMap: ColorMap): ColumnData {
-  const column = [];
+function _generateColumn(
+  data: RawStackedbarData,
+  scale: [number, number],
+  colorMap: ColorMap,
+  width: number,
+  origin: number,
+  x: number): ColumnData {
+
+  const column: ColumnData = [];
+
+  let yOffset = origin;
 
   for (const key of Object.keys(data.values)) {
     const value = data.values[key];
+    const h = _getRectSize(value as number, scale);
     column.push({
-      color: colorMap[key],
-      negative: value < 0,
-      size: _getRectSize(value as number, scale),
-      value,
+      c: colorMap[key],
+      h,
+      v: value,
+      w: width,
+      x,
+      y: yOffset - h,
     });
+
+    yOffset -= h;
   }
   return column;
 }
@@ -93,4 +113,4 @@ function _getRectSize(data: number, scale: [number, number]): number {
   return (100 / ((to - from) / data));
 }
 
-export default { getDomain, getZeroAxis, rawDataToStackBarData };
+export default { getDomain, rawDataToStackBarData };

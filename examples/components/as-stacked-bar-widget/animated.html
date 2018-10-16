@@ -13,54 +13,107 @@
 <body>
   <div style="width:300px;">
     <as-stacked-bar-widget id="widget-0" show-legend="true" heading="Heading" description="Description"></as-stacked-bar-widget>
+
+
+    <button id="col">Modify columns</button>
+    <button id="data">Modify data</button>
   </div>
 
   <script>
     const widget0 = document.querySelector('#widget-0');
 
-
-    setInterval(() => {
+    document.querySelector('#data').addEventListener('click', () => {
       widget0.data = [{
           category: 'Category A',
           values: {
-            v1: Math.random() * 400 - 400,
-            v2: Math.random() * 400 - 400,
+            v1: Math.random() * 400 - 0,
+            v2: Math.random() * 400 - 0,
           }
         },
         {
           category: 'Category B',
           values: {
-            v1: Math.random() * 400 - 400,
-            v2: Math.random() * 400 - 400,
-            v3: Math.random() * 400 - 400,
+            v1: Math.random() * 400 - 0,
+            v2: Math.random() * 400 - 0,
+            v3: Math.random() * 400 - 0,
           },
         },
         {
           category: 'Category B',
           values: {
-            v1: Math.random() * 400 - 400,
-            v2: Math.random() * 400 - 400,
-            v3: Math.random() * 400 - 400,
-            v3: Math.random() * 400 - 400,
+            v1: Math.random() * 400 - 0,
+            v2: Math.random() * 400 - 0,
+            v3: Math.random() * 400 - 0,
+            v3: Math.random() * 400 - 0,
           }
         }
       ];
-    }, 1000)
 
+      widget0.valuesInfo = {
+        v1: {
+          label: 'v1-label',
+          color: '#FABADA'
+        },
+        v2: {
+          label: 'v2-label',
+          color: '#C00FEE'
+        },
+        v3: {
+          color: '#ff0088',
+        },
+      }
+    });
 
-    widget0.valuesInfo = {
-      v1: {
-        label: 'v1-label',
-        color: '#FABADA'
-      },
-      v2: {
-        label: 'v2-label',
-        color: '#C00FEE'
-      },
-      v3: {
-        color: '#ff0088',
-      },
-    }
+    document.querySelector('#col').addEventListener('click', () => {
+      widget0.data = [{
+          category: 'Category A',
+          values: {
+            v1: Math.random() * 400 - 0,
+            v2: Math.random() * 400 - 0,
+          }
+        },
+        {
+          category: 'Category B',
+          values: {
+            v1: Math.random() * 400 - 0,
+            v2: Math.random() * 400 - 0,
+            v3: Math.random() * 400 - 0,
+          },
+        },
+        {
+          category: 'Category B',
+          values: {
+            v1: Math.random() * 400 - 0,
+            v2: Math.random() * 400 - 0,
+            v3: Math.random() * 400 - 0,
+            v3: Math.random() * 400 - 0,
+          }
+        },
+        {
+          category: 'Category C',
+          values: {
+            v1: Math.random() * 400 - 0,
+            v2: Math.random() * 400 - 0,
+            v3: Math.random() * 400 - 0,
+            v3: Math.random() * 400 - 0,
+          }
+        }
+      ];
+
+      widget0.valuesInfo = {
+        v1: {
+          label: 'v1-label',
+          color: '#FABADA'
+        },
+        v2: {
+          label: 'v2-label',
+          color: '#C00FEE'
+        },
+        v3: {
+          color: '#ff0088',
+        },
+      }
+    })
 
   </script>
 </body>

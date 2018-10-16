@@ -7,8 +7,10 @@ import { values } from 'd3';
  *  - Negative: Boolean flag pointing if the rectangle should be drawn under the zero-axis.
  */
 export interface RectangleData {
-  color: string;
-  size: number;
-  negative?: boolean;
-  value: number;
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+  c: string;
+  v: number;
 }

@@ -1,11 +1,7 @@
 import { Component, Prop, Watch } from '@stencil/core';
-import { select } from 'd3-selection';
 import { ColorMap } from './types/ColorMap';
-import { ColumnData } from './types/ColumnData';
-import { Container } from './types/Container';
 import { RawStackedbarData } from './types/RawStackedbarData';
 import { RectangleData } from './types/RectangleData';
-import { StackedBarData } from './types/StackedBarData';
 import { createColorMap } from './utils/color-manager';
 import d3Helpers from './utils/d3-helpers';
 import dataProcessor from './utils/data-processor';
@@ -62,9 +58,8 @@ export class StackedBarWidget {
   @Prop() public valuesInfo: any;
 
   private tooltip: HTMLElement;
-  private container: Container;
-  private zeroAxis: number = 100;
-  private scale: [number, number];
+  private container: SVGElement;
+  private scale: [number, number] = [0, 0];
   private colorMap: ColorMap;
 
   /**
@@ -75,7 +70,7 @@ export class StackedBarWidget {
     this.tooltip.style.display = 'inline';
     this.tooltip.style.left = `${event.clientX}px`;
     this.tooltip.style.top = `${event.clientY}px`;
-    this.tooltip.innerText = `${data.value}`;
+    this.tooltip.innerText = `${data.v}`;
   }
 
   /**
@@ -86,61 +81,48 @@ export class StackedBarWidget {
   }
 
   public render() {
-    console.log('render');
-    const [from, to] = dataProcessor.getDomain(this.data);
-    this.scale = [from, to];
-    this.colorMap = this._createColorMap();
-
+    // console.log('render');
     return [
       <as-widget-header header={this.heading} subheader={this.description}></as-widget-header>,
-      <svg ref={(ref: HTMLElement) => this.container = select(ref)}></svg>,
-      <as-y-axis from={from} to={to}></as-y-axis>,
+      <svg ref={(ref: SVGElement) => this.container = ref}></svg>,
+      <as-y-axis from={this.scale[0]} to={this.scale[1]}></as-y-axis>,
       this._renderLegend(),
       <span ref={(ref) => this.tooltip = ref} role='tooltip' class='as-tooltip as-tooltip--top' > TOOLTIP</span>
     ];
   }
-
   public componentDidLoad() {
-    this.onDataChanged();
+    this._drawColumns();
+  }
+
+  public componentDidUpdate() {
+    this._drawColumns();
+  }
+
+  public componentWillLoad() {
+    this._setupState();
+  }
+
+  public componentWillUpdate() {
+    this._setupState();
+  }
+
+  private _setupState() {
+    this.scale = dataProcessor.getDomain(this.data);
+    this.colorMap = this._createColorMap();
   }
 
   @Watch('data')
-  public onDataChanged() {
-    console.log('dataChanged');
-    const data = dataProcessor.rawDataToStackBarData(this.data, this.scale, this.colorMap);
-    const zeroAxis = dataProcessor.getZeroAxis(this.scale);
-    this._drawColumns(data, zeroAxis);
-    this.render();
-  }
+  private _drawColumns() {
+    this._setupState();
 
-  private _drawColumns(data: StackedBarData, origin: number) {
     const Y_AXIS_LABEL_WIDTH = 25;
     const COLUMN_MARGIN = 5;
-    const WIDTH = this.container.node().querySelector('.y-axis').getBoundingClientRect().width - Y_AXIS_LABEL_WIDTH;
-    const COLUMN_WIDTH = (WIDTH / data.length) - COLUMN_MARGIN;
+    const WIDTH = this.container.querySelector('.y-axis').getBoundingClientRect().width - Y_AXIS_LABEL_WIDTH;
+    const COLUMN_WIDTH = (WIDTH / this.data.length) - COLUMN_MARGIN;
+    const data = dataProcessor.rawDataToStackBarData(this.data, this.scale, this.colorMap, COLUMN_WIDTH, COLUMN_MARGIN);
 
-    let xOffset = COLUMN_MARGIN;
 
-    // Create a "plot" group in the svg element where the columns will be drawn
-    const plot = d3Helpers.createPlot(this.container);
-
-    for (const columnData of data) {
-      this._drawColumn(plot, columnData, origin, xOffset, COLUMN_WIDTH);
-      xOffset += COLUMN_WIDTH + COLUMN_MARGIN;
-    }
-  }
-
-  private _drawColumn(element: Container, column: ColumnData, yOffset: number, xOffset: number, colWidth: number) {
-    // Create the column group in the plot
-    const columnElement = d3Helpers.createColumn(element);
-
-    // Draw rectangles above zero axis
-    const positives = column.filter((d) => !d.negative);
-    d3Helpers.drawColumn(columnElement, positives, yOffset, xOffset, colWidth, this.mouseOver, this.mouseLeave);
-
-    // Draw rectangles below zero axis
-    const negatives = column.filter((d) => d.negative);
-    d3Helpers.drawColumn(columnElement, negatives, yOffset, xOffset, colWidth, this.mouseOver, this.mouseLeave);
+    d3Helpers.drawColumns(this.container, data);
   }
 
   private _renderLegend() {
