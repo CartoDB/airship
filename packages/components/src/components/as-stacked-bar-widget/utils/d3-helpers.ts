@@ -10,7 +10,6 @@ const DURATION = 500;
  * Draw the stacked bar char in the given svg element.
  */
 export function drawColumns(svgElement: SVGElement, data: StackedBarData) {
-  data.forEach(console.table);
   const plot = createPlot(svgElement);
   const columns = plot.selectAll('.column');
 
