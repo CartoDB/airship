@@ -83,24 +83,49 @@ function _generateColumn(
   x: number): ColumnData {
 
   const column: ColumnData = [];
-
   let yOffset = origin;
+
+  const [positives, negatives] = split(data);
+
+  negatives.forEach((key) => {
+    yOffset += _addRectangleAndGetHeight(column, data, key, scale, colorMap, x, width, yOffset, false);
+  });
+
+  yOffset = origin;
+  positives.forEach((key) => {
+    yOffset -= _addRectangleAndGetHeight(column, data, key, scale, colorMap, x, width, yOffset, true);
+  });
+
+  return column;
+}
+
+function _addRectangleAndGetHeight(column, data, key, scale, colorMap, x, w, yOffset, positive) {
+  const v = data.values[key];
+  const h = _getRectSize(v as number, scale);
+  const y = positive ? yOffset - h : yOffset;
+  const c = colorMap[key];
+  column.push({ c, h, v, w, x, y, });
+  return h;
+}
+
+/**
+ * Clasify the keys in two arrays sorted by key
+ */
+function split(data: RawStackedbarData): [string[], string[]] {
+  const negatives = [];
+  const positives = [];
 
   for (const key of Object.keys(data.values)) {
     const value = data.values[key];
-    const h = _getRectSize(value as number, scale);
-    column.push({
-      c: colorMap[key],
-      h,
-      v: value,
-      w: width,
-      x,
-      y: yOffset - h,
-    });
-
-    yOffset -= h;
+    if (value < 0) {
+      negatives.push(key);
+    }
+    if (value >= 0) {
+      positives.push(key);
+    }
   }
-  return column;
+
+  return [positives.sort(), negatives.sort()];
 }
 
 /**

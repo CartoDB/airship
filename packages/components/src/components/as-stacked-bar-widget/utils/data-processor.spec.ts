@@ -78,51 +78,9 @@ describe('data-processor', () => {
         investment: 'red',
         revenue: 'green',
       };
-      const actual = dataProcessor.rawDataToStackBarData(FAKE_DATA, dataProcessor.getDomain(FAKE_DATA), colorMap);
-      const expected = [
-        [
-          {
-            color: 'red',
-            negative: false,
-            size: 50,
-            value: 10,
-          },
-          {
-            color: 'green',
-            negative: false,
-            size: 50,
-            value: 10,
-          },
-        ],
-        [
-          {
-            color: 'red',
-            negative: false,
-            size: 25,
-            value: 5,
-          },
-          {
-            color: 'green',
-            negative: false,
-            size: 30,
-            value: 6,
-          },
-        ],
-        [
-          {
-            color: 'grey',
-            negative: false,
-            size: 35,
-            value: 7,
-          },
-          {
-            color: 'green',
-            negative: false,
-            size: 30,
-            value: 6,
-          },
-        ]
-      ];
+      const scale = dataProcessor.getDomain(FAKE_DATA);
+      const actual = dataProcessor.rawDataToStackBarData(FAKE_DATA, scale, colorMap, 20, 5);
+      const expected = [];
       expect(actual).toEqual(expected);
     });
   });
