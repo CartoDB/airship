@@ -80,7 +80,63 @@ describe('data-processor', () => {
       };
       const scale = dataProcessor.getDomain(FAKE_DATA);
       const actual = dataProcessor.rawDataToStackBarData(FAKE_DATA, scale, colorMap, 20, 5);
-      const expected = [];
+      const expected =
+        [
+          [
+            {
+              c: 'red',
+              h: 50,
+              v: 10,
+              w: 20,
+              x: 5,
+              y: 50,
+            },
+            {
+              c: 'green',
+              h: 50,
+              v: 10,
+              w: 20,
+              x: 5,
+              y: 0,
+            },
+          ],
+          [
+            {
+              c: 'red',
+              h: 25,
+              v: 5,
+              w: 20,
+              x: 30,
+              y: 75,
+            },
+            {
+              c: 'green',
+              h: 30,
+              v: 6,
+              w: 20,
+              x: 30,
+              y: 45,
+            },
+          ],
+          [
+            {
+              c: 'grey',
+              h: 35,
+              v: 7,
+              w: 20,
+              x: 55,
+              y: 65,
+            },
+            {
+              c: 'green',
+              h: 30,
+              v: 6,
+              w: 20,
+              x: 55,
+              y: 35,
+            },
+          ],
+        ];
       expect(actual).toEqual(expected);
     });
   });
