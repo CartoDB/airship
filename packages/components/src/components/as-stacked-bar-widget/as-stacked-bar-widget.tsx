@@ -135,7 +135,7 @@ export class StackedBarWidget {
   }
 
   private _createColorMap() {
-    const keys = this._getKeys(this.data);
+    const keys = dataProcessor.getKeys(this.data);
     return createColorMap(keys, this.valuesInfo);
   }
 
@@ -151,15 +151,5 @@ export class StackedBarWidget {
       };
     });
     return legendData;
-  }
-
-  private _getKeys(data: RawStackedbarData[]): string[] {
-    const keys = new Set();
-    for (const rawColumn of data) {
-      Object.keys(rawColumn.values).forEach((key) => {
-        keys.add(key);
-      });
-    }
-    return Array.from(keys);
   }
 }

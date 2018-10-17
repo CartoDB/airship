@@ -140,6 +140,15 @@ describe('data-processor', () => {
       expect(actual).toEqual(expected);
     });
   });
+
+  describe('.getKeys', () => {
+    it('should return the list of unique values in a RawStackedBarData array', () => {
+      const actual = dataProcessor.getKeys(FAKE_DATA);
+      const expected = ['investment', 'revenue', 'complements'];
+
+      expect(actual).toEqual(expected);
+    });
+  });
 });
 
 

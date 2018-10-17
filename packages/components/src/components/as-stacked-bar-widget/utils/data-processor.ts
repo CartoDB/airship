@@ -138,4 +138,14 @@ function _getRectSize(data: number, scale: [number, number]): number {
   return (100 / ((to - from) / data));
 }
 
-export default { getDomain, rawDataToStackBarData };
+export function getKeys(data: RawStackedbarData[]): string[] {
+  const keys = new Set();
+  for (const rawColumn of data) {
+    Object.keys(rawColumn.values).forEach((key) => {
+      keys.add(key);
+    });
+  }
+  return Array.from(keys);
+}
+
+export default { getDomain, rawDataToStackBarData, getKeys };
