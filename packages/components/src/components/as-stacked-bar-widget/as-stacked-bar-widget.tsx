@@ -136,7 +136,7 @@ export class StackedBarWidget {
   }
 
   private _drawColumns() {
-    const Y_AXIS_LABEL_WIDTH = 25; // We draw on the right of the yAxis labels
+    const Y_AXIS_LABEL_WIDTH = 32; // We draw on the right of the yAxis labels
     const COLUMN_MARGIN = 4;
     const WIDTH = this.container.querySelector('.y-axis').getBoundingClientRect().width - Y_AXIS_LABEL_WIDTH;
     const COLUMN_WIDTH = (WIDTH / this.data.length) - COLUMN_MARGIN;

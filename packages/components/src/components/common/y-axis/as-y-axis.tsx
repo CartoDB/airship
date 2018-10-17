@@ -43,20 +43,24 @@ export class YAxis {
 
 
   public render() {
+    const VERTICAL_SPACING = 36; // Need 16px top and bottom to view the labels
+    const TICK_RIGHT_MARGIN = 16;
+    const LABEL_WIDTH = 32;
     const ELEMENT = select(this.element.previousElementSibling);
-    const HEIGHT = ELEMENT.node().getBoundingClientRect().height * 0.8;
+    const HEIGHT = ELEMENT.node().getBoundingClientRect().height - VERTICAL_SPACING;
     const WIDTH = ELEMENT.node().getBoundingClientRect().width;
+    const TICK_SIZE = - WIDTH + LABEL_WIDTH;
     const RANGE = [HEIGHT, 0];
-    const OFFSET = 32; // Asume 16px padding
 
     const yScale = scaleLinear()
       .domain([this.from, this.to])
       .range(RANGE);
 
     const yAxis = axisLeft(yScale)
+      .tickSizeInner(TICK_SIZE + TICK_RIGHT_MARGIN)
       .ticks(5)
-      .tickSize(-WIDTH + OFFSET)
       .tickFormat((d) => `${readableNumber(d)}`);
+
 
     if (ELEMENT.select('.y-axis').empty()) {
       this._createYAxisElement(ELEMENT).call(yAxis);
