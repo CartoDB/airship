@@ -130,27 +130,12 @@ export class StackedBarWidget {
 
   private _renderLegend() {
     if (this.showLegend && this.colorMap) {
-      const data = this._colorMaptoLegendData(this.colorMap);
-      return <as-legend data={data}></as-legend>;
+      return <as-legend data={this.colorMap}></as-legend>;
     }
   }
 
   private _createColorMap(data: RawStackedbarData[], metadata: Metadata): ColorMap {
     const keys = dataProcessor.getKeys(data);
     return ColorMapFactory.create(keys, metadata);
-  }
-
-  /**
-   * Transform a color map into a object that legends can understand.
-   */
-  private _colorMaptoLegendData(colorMap: ColorMap) {
-    const legendData = {};
-    Object.keys(colorMap).forEach((key) => {
-      legendData[key] = {
-        color: colorMap[key],
-        label: key,
-      };
-    });
-    return legendData;
   }
 }
