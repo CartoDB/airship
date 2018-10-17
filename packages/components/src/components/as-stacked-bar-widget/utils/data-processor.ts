@@ -39,18 +39,6 @@ export function getDomain(data: RawStackedbarData[]): [number, number] {
 }
 
 /**
- * Get the vertical position (%) of the zero axis in the svg based on the domain.
- */
-function getZeroAxis(scale: [number, number]): number {
-  const [from, to] = scale;
-  const yScale = scaleLinear()
-    .domain([from, to])
-    .range([0, 100]);
-
-  return (100 - yScale(0));
-}
-
-/**
  * Transform the data given from the user as widget attr into a internal format.
  */
 export function rawDataToStackBarData(
@@ -60,7 +48,7 @@ export function rawDataToStackBarData(
   width: number,
   margin: number): StackedBarData {
 
-  const origin = getZeroAxis(scale);
+  const origin = _getZeroAxis(scale);
   let xOffset = margin;
 
   const result = [];
@@ -69,6 +57,16 @@ export function rawDataToStackBarData(
     xOffset += width + margin;
   }
   return result;
+}
+
+export function getKeys(data: RawStackedbarData[]): string[] {
+  const keys = new Set();
+  for (const rawColumn of data) {
+    Object.keys(rawColumn.values).forEach((key) => {
+      keys.add(key);
+    });
+  }
+  return Array.from(keys);
 }
 
 /**
@@ -85,7 +83,7 @@ function _generateColumn(
   const column: ColumnData = [];
   let yOffset = origin;
 
-  const [positives, negatives] = split(data);
+  const [positives, negatives] = _split(data);
 
   negatives.forEach((key) => {
     yOffset += _addRectangleAndGetHeight(column, data, key, scale, colorMap, x, width, yOffset, false);
@@ -97,6 +95,18 @@ function _generateColumn(
   });
 
   return column;
+}
+
+/**
+ * Get the vertical position (%) of the zero axis in the svg based on the domain.
+ */
+function _getZeroAxis(scale: [number, number]): number {
+  const [from, to] = scale;
+  const yScale = scaleLinear()
+    .domain([from, to])
+    .range([0, 100]);
+
+  return (100 - yScale(0));
 }
 
 function _addRectangleAndGetHeight(column, data, key, scale, colorMap, x, w, yOffset, positive) {
@@ -111,7 +121,7 @@ function _addRectangleAndGetHeight(column, data, key, scale, colorMap, x, w, yOf
 /**
  * Clasify the keys in two arrays sorted by key
  */
-function split(data: RawStackedbarData): [string[], string[]] {
+function _split(data: RawStackedbarData): [string[], string[]] {
   const negatives = [];
   const positives = [];
 
@@ -138,14 +148,6 @@ function _getRectSize(data: number, scale: [number, number]): number {
   return (100 / ((to - from) / data));
 }
 
-export function getKeys(data: RawStackedbarData[]): string[] {
-  const keys = new Set();
-  for (const rawColumn of data) {
-    Object.keys(rawColumn.values).forEach((key) => {
-      keys.add(key);
-    });
-  }
-  return Array.from(keys);
-}
+
 
 export default { getDomain, rawDataToStackBarData, getKeys };
