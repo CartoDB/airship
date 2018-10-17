@@ -1,13 +1,14 @@
 import { scaleLinear } from 'd3-scale';
 import { interpolateSpectral } from 'd3-scale-chromatic';
 import { ColorMap } from '../types/ColorMap';
+import { Metadata } from '../types/Metadata';
 
 /**
  * Creates a mapping from a list of keys to a list of colors.
  * @param keys
  * @param metadata
  */
-export function createColorMap(keys: string[], metadata): ColorMap {
+export function create(keys: string[], metadata: Metadata): ColorMap {
   const map: ColorMap = {};
 
   const scale = scaleLinear()
@@ -20,7 +21,7 @@ export function createColorMap(keys: string[], metadata): ColorMap {
 }
 
 
-function _getColor(key: string, keys: string[], metadata, scale) {
+function _getColor(key: string, keys: string[], metadata: Metadata, scale) {
   if (metadata && metadata[key] && metadata[key].color) {
     return metadata[key].color;
   }
@@ -28,4 +29,4 @@ function _getColor(key: string, keys: string[], metadata, scale) {
 }
 
 
-export default { createColorMap };
+export default { create };

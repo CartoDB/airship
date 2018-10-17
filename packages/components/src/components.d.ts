@@ -15,6 +15,9 @@ import {
 import {
   RawStackedbarData,
 } from './components/as-stacked-bar-widget/types/RawStackedbarData';
+import {
+  Metadata,
+} from './components/as-stacked-bar-widget/types/Metadata';
 
 
 export namespace Components {
@@ -404,6 +407,10 @@ export namespace Components {
     */
     'heading': string;
     /**
+    * Legend data
+    */
+    'metadata': Metadata;
+    /**
     * Callback executed when the mouse is placed outside a rectangle.
     */
     'mouseLeave': any;
@@ -415,10 +422,6 @@ export namespace Components {
     * Boolean flag to control legend visibility. Defaults: true
     */
     'showLegend': boolean;
-    /**
-    * Legend data
-    */
-    'valuesInfo': any;
   }
   interface AsStackedBarWidgetAttributes extends StencilHTMLAttributes {
     /**
@@ -434,6 +437,10 @@ export namespace Components {
     */
     'heading'?: string;
     /**
+    * Legend data
+    */
+    'metadata'?: Metadata;
+    /**
     * Callback executed when the mouse is placed outside a rectangle.
     */
     'mouseLeave'?: any;
@@ -445,10 +452,6 @@ export namespace Components {
     * Boolean flag to control legend visibility. Defaults: true
     */
     'showLegend'?: boolean;
-    /**
-    * Legend data
-    */
-    'valuesInfo'?: any;
   }
 
   interface AsSwitch {

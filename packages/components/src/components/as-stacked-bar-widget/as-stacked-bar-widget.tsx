@@ -1,8 +1,9 @@
 import { Component, Prop, Watch } from '@stencil/core';
 import { ColorMap } from './types/ColorMap';
+import { Metadata } from './types/Metadata';
 import { RawStackedbarData } from './types/RawStackedbarData';
 import { RectangleData } from './types/RectangleData';
-import { createColorMap } from './utils/color-manager';
+import ColorMapFactory from './utils/ColorMapFactory';
 import d3Helpers from './utils/d3-helpers';
 import dataProcessor from './utils/data-processor';
 
@@ -55,7 +56,7 @@ export class StackedBarWidget {
   /**
    * Legend data
    */
-  @Prop() public valuesInfo: any;
+  @Prop() public metadata: Metadata;
 
   private tooltip: HTMLElement;
   private container: SVGElement;
@@ -114,7 +115,7 @@ export class StackedBarWidget {
 
   private _setupState() {
     this.scale = dataProcessor.getDomain(this.data);
-    this.colorMap = this._createColorMap();
+    this.colorMap = this._createColorMap(this.data, this.metadata);
   }
 
   private _drawColumns() {
@@ -134,9 +135,9 @@ export class StackedBarWidget {
     }
   }
 
-  private _createColorMap() {
-    const keys = dataProcessor.getKeys(this.data);
-    return createColorMap(keys, this.valuesInfo);
+  private _createColorMap(data: RawStackedbarData[], metadata: Metadata): ColorMap {
+    const keys = dataProcessor.getKeys(data);
+    return ColorMapFactory.create(keys, metadata);
   }
 
   /**
