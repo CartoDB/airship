@@ -66,14 +66,62 @@ showSource: false
 
 ### Props
 
-#### **data**: Array
-Indicates if the legend should be displayed or not. Defaults to true.
+#### **data**: Array<RawStackedBarData>
+The data that will be shown in the stacked bar chart.
+
+```code
+lang: javascript
+---
+stackedBarWidget.data = [{
+    category: 'Category A',
+    values: {
+      v1: 100,
+      v2: 100,
+    }
+  },
+  {
+    category: 'Category B',
+    values: {
+      v1: 100,
+      v2: 200,
+      v3: 300,
+    },
+  },
+  {
+    category: 'Category B',
+    values: {
+      v1: 100,
+      v2: 200,
+      v3: 300,
+      v3: 400,
+    }
+  }
+];
+```
 
 
-#### **meta**: Array
+#### **metadata**: Object
+Use this property to control bar colors and labeling.
 
+```code
+lang: javascript
+---
+stackedBarWidget.metadata = {
+  v1: {
+    label: 'v1-label',
+    color: '#FABADA'
+  },
+  v2: {
+    label: 'v2-label',
+    color: '#C00FEE'
+  },
+  v3: {
+    color: '#ff0088',
+  },
+}
+```
 
-#### **heading**: string=''
+#### **heading**: string
 Heading text of the widget
 
 ```code
@@ -87,7 +135,7 @@ lang: javascript
 stackedBar.heading = 'Heading';
 ```
 
-#### **description**: string=''
+#### **description**: string
 Description text of the widget
 
 ```code

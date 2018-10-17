@@ -137,7 +137,7 @@ export class StackedBarWidget {
 
   private _drawColumns() {
     const Y_AXIS_LABEL_WIDTH = 25; // We draw on the right of the yAxis labels
-    const COLUMN_MARGIN = 5;
+    const COLUMN_MARGIN = 4;
     const WIDTH = this.container.querySelector('.y-axis').getBoundingClientRect().width - Y_AXIS_LABEL_WIDTH;
     const COLUMN_WIDTH = (WIDTH / this.data.length) - COLUMN_MARGIN;
     const data = dataService.rawDataToStackBarData(this.data, this.scale, this.colorMap, COLUMN_WIDTH, COLUMN_MARGIN);
@@ -158,6 +158,9 @@ export class StackedBarWidget {
   }
 
   private _createLegendData(metadata: Metadata, colorMap: ColorMap) {
+    if (!metadata) {
+      return colorMap;
+    }
     const legendData = {};
     for (const key in colorMap) {
       if (metadata[key].label) {

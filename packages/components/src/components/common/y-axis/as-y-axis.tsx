@@ -58,9 +58,10 @@ export class YAxis {
       .tickFormat((d) => `${readableNumber(d)}`);
 
     if (ELEMENT.select('.y-axis').empty()) {
-      return this._createYAxisElement(ELEMENT).call(yAxis);
+      this._createYAxisElement(ELEMENT).call(yAxis);
+    } else {
+      ELEMENT.select('.y-axis').call(yAxis);
     }
-    ELEMENT.select('.y-axis').call(yAxis);
   }
 
   private _createYAxisElement(element: Selection<Element, {}, null, undefined>) {
