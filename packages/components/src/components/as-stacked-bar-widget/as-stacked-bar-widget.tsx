@@ -147,12 +147,25 @@ export class StackedBarWidget {
 
   private _renderLegend() {
     if (this.showLegend && this.colorMap) {
-      return <as-legend data={this.colorMap}></as-legend>;
+      const legendData = this._createLegendData(this.metadata, this.colorMap);
+      return <as-legend data={legendData}></as-legend>;
     }
   }
 
   private _createColorMap(data: RawStackedbarData[], metadata: Metadata): ColorMap {
     const keys = dataService.getKeys(data);
     return colorMapFactory.create(keys, metadata);
+  }
+
+  private _createLegendData(metadata: Metadata, colorMap: ColorMap) {
+    const legendData = {};
+    for (const key in colorMap) {
+      if (metadata[key].label) {
+        legendData[metadata[key].label] = colorMap[key];
+      } else {
+        legendData[key] = colorMap[key];
+      }
+    }
+    return legendData;
   }
 }
