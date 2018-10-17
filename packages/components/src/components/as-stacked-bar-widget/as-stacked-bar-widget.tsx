@@ -81,7 +81,6 @@ export class StackedBarWidget {
   }
 
   public render() {
-    // console.log('render');
     return [
       <as-widget-header header={this.heading} subheader={this.description}></as-widget-header>,
       <svg ref={(ref: SVGElement) => this.container = ref}></svg>,
@@ -90,6 +89,7 @@ export class StackedBarWidget {
       <span ref={(ref) => this.tooltip = ref} role='tooltip' class='as-tooltip as-tooltip--top' > TOOLTIP</span>
     ];
   }
+
   public componentDidLoad() {
     this._drawColumns();
   }
@@ -106,23 +106,25 @@ export class StackedBarWidget {
     this._setupState();
   }
 
+  @Watch('data')
+  public _onDataChanged() {
+    this._setupState();
+    this._drawColumns();
+  }
+
   private _setupState() {
     this.scale = dataProcessor.getDomain(this.data);
     this.colorMap = this._createColorMap();
   }
 
-  @Watch('data')
   private _drawColumns() {
-    this._setupState();
-
     const Y_AXIS_LABEL_WIDTH = 25;
     const COLUMN_MARGIN = 5;
     const WIDTH = this.container.querySelector('.y-axis').getBoundingClientRect().width - Y_AXIS_LABEL_WIDTH;
     const COLUMN_WIDTH = (WIDTH / this.data.length) - COLUMN_MARGIN;
     const data = dataProcessor.rawDataToStackBarData(this.data, this.scale, this.colorMap, COLUMN_WIDTH, COLUMN_MARGIN);
 
-
-    d3Helpers.drawColumns(this.container, data);
+    d3Helpers.drawColumns(this.container, data, this.mouseOver, this.mouseLeave);
   }
 
   private _renderLegend() {

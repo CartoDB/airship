@@ -9,7 +9,7 @@ const DURATION = 500;
 /**
  * Draw the stacked bar char in the given svg element.
  */
-export function drawColumns(svgElement: SVGElement, data: StackedBarData) {
+export function drawColumns(svgElement: SVGElement, data: StackedBarData, mousemove, mouseleave) {
   const plot = createPlot(svgElement);
   const columns = plot.selectAll('.column');
 
@@ -30,13 +30,13 @@ export function drawColumns(svgElement: SVGElement, data: StackedBarData) {
     .selectAll('rect')
     .data((d) => d)
     .enter()
-    .append('rect'));
+    .append('rect'), mousemove, mouseleave);
 
   // Update rectangles
   _drawRectangles(columns
     .data(data)
     .selectAll('rect')
-    .data((d) => d));
+    .data((d) => d), mousemove, mouseleave);
 }
 
 export function createPlot(svgElement: SVGElement): Container {
@@ -49,8 +49,10 @@ export function createPlot(svgElement: SVGElement): Container {
   return container.select('.plot') as Container;
 }
 
-function _drawRectangles(selection) {
+function _drawRectangles(selection, mousemove, mouseleave) {
   selection
+    .on('mousemove', mousemove)
+    .on('mouseleave', mouseleave)
     .transition()
     .duration(DURATION)
     .attr('fill-opacity', '.5')
