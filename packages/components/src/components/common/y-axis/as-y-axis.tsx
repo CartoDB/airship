@@ -7,6 +7,7 @@ import readableNumber from '../../../utils/readable-number';
 
 /**
  * Helper class to draw the vertical axis on some widgets.
+ * WARNING: This component should be placed next to the SVG element.
  *
  * @export
  * @class YAxis
