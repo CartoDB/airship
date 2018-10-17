@@ -18,6 +18,9 @@ import {
 import {
   Metadata,
 } from './components/as-stacked-bar-widget/types/Metadata';
+import {
+  LegendData,
+} from './components/common/as-legend/types/LegendData';
 
 
 export namespace Components {
@@ -497,15 +500,15 @@ export namespace Components {
 
   interface AsLegend {
     /**
-    * Header of the widget to be displayed
+    * Data to be displayed by the legend
     */
-    'data': any;
+    'data': LegendData;
   }
   interface AsLegendAttributes extends StencilHTMLAttributes {
     /**
-    * Header of the widget to be displayed
+    * Data to be displayed by the legend
     */
-    'data'?: any;
+    'data'?: LegendData;
   }
 
   interface AsWidgetHeader {

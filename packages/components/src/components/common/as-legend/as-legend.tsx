@@ -1,4 +1,5 @@
 import { Component, Prop } from '@stencil/core';
+import { LegendData } from './types/LegendData';
 
 
 /**
@@ -15,36 +16,19 @@ import { Component, Prop } from '@stencil/core';
 export class Legend {
 
   /**
-   * Header of the widget to be displayed
+   * Data to be displayed by the legend
    *
-   * @type {number}
-   * @memberof YAxis
+   * @type {LegendData}
+   * @memberof Legend
    */
-  @Prop() public data: any = {};
-
-  /**
-   * Reference to the web component element.
-   */
-  // @Element() private element: HTMLElement;
-
+  @Prop() public data: LegendData;
 
   public render() {
-    const items = [];
-    Object.keys(this.data).forEach((key) => {
-      const element = this.data[key];
-      if (!element.label) {
-        element.label = key;
-      }
-      items.push(element);
+    return Object.keys(this.data).map((key) => {
+      return <div class='legend-item'>
+        <span class='legend-item__box' style={{ background: this.data[key] }}></span>
+        <span class='legend-item__label as-body'>{key}</span>
+      </div>;
     });
-
-    return items.map(this._renderLegendItem);
-  }
-
-  public _renderLegendItem(item) {
-    return <div class='legend-item'>
-      <span class='legend-item__box' style={{ background: item.color }}></span>
-      <span class='legend-item__label as-body'>{item.label}</span>
-    </div>;
   }
 }
