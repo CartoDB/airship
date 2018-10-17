@@ -46,7 +46,7 @@ export class YAxis {
     const HEIGHT = ELEMENT.node().getBoundingClientRect().height * 0.8;
     const WIDTH = ELEMENT.node().getBoundingClientRect().width;
     const RANGE = [HEIGHT, 0];
-    const OFFSET = 60;
+    const OFFSET = 32; // Asume 16px padding
 
     const yScale = scaleLinear()
       .domain([this.from, this.to])

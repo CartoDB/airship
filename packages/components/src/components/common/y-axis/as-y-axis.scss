@@ -1,14 +1,13 @@
 .y-axis {
-  transform: translate(25px, 1.8px);
+  transform: translate(4px, 1.5px);
 
   .tick {
     text {
-      fill: var(--histogram-widget--description-color, #747474);
+      fill: var(--widget-axis-text-color, rgb(44, 44, 44));
     }
 
     line {
-      stroke: var(--as-color-type-02, #747474);
-      opacity: 0.5;
+      stroke: var(--widget-axis-line-color, rgba(46, 60, 67, 0.16));
     }
   }
 

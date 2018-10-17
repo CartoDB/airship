@@ -8,12 +8,23 @@
   <title>Airship</title>
   <link rel="stylesheet" href="../../../packages/styles/dist/airship.css">
   <script src="../../../packages/components/dist/airship.js"></script>
+  <style>
+    body {
+      background: #F2F2F2;
+    }
+
+    section {
+      width: 40%;
+      margin: 30px auto;
+    }
+
+  </style>
 </head>
 
 <body>
-  <div style="width:300px;">
+  <section>
     <as-stacked-bar-widget id="widget-0" show-legend="true" heading="Heading" description="Description"></as-stacked-bar-widget>
-  </div>
+  </section>
 
   <script>
     const widget0 = document.querySelector('#widget-0');

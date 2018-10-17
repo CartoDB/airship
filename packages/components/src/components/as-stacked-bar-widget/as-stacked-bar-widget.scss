@@ -18,22 +18,19 @@ as-stacked-bar-widget {
   }
 
   svg {
+    box-sizing: border-box;
     width: 100%;
     padding: 16px;
     overflow: visible;
 
     .plot {
-      transform: translate(25px, 0) scaleY(0.98);
+      transform: translate(4px, 0) scaleY(0.98);
       transform-origin: center;
 
       rect {
         cursor: pointer;
       }
     }
-  }
-
-  as-legend {
-    margin-left: 16px;
   }
 
   [role="tooltip"] {
