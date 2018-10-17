@@ -44,12 +44,12 @@ export class YAxis {
 
   public render() {
     const VERTICAL_SPACING = 36; // Need 16px top and bottom to view the labels
-    const TICK_RIGHT_MARGIN = 16;
-    const LABEL_WIDTH = 32;
+    const TICK_RIGHT_MARGIN = 18;
+    const LABEL_WIDTH = 36;
     const ELEMENT = select(this.element.previousElementSibling);
     const HEIGHT = ELEMENT.node().getBoundingClientRect().height - VERTICAL_SPACING;
     const WIDTH = ELEMENT.node().getBoundingClientRect().width;
-    const TICK_SIZE = - WIDTH + LABEL_WIDTH;
+    const TICK_SIZE = - WIDTH + LABEL_WIDTH + 2; // We need to correct 2px
     const RANGE = [HEIGHT, 0];
 
     const yScale = scaleLinear()
@@ -58,7 +58,7 @@ export class YAxis {
 
     const yAxis = axisLeft(yScale)
       .tickSizeInner(TICK_SIZE + TICK_RIGHT_MARGIN)
-      .ticks(5)
+      .ticks(6)
       .tickFormat((d) => `${readableNumber(d)}`);
 
 

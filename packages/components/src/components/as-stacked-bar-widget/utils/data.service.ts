@@ -49,7 +49,7 @@ export function rawDataToStackBarData(
   margin: number): StackedBarData {
 
   const origin = _getZeroAxis(scale);
-  let xOffset = margin;
+  let xOffset = margin / 2;
 
   const result = [];
   for (const rawColumn of data) {

@@ -20,14 +20,10 @@ as-stacked-bar-widget {
   svg {
     box-sizing: border-box;
     width: 100%;
-    height: 150px;
+    padding: 18px 18px 17px 36px;
     overflow: visible;
 
     .plot {
-      margin: 18px;
-      transform: translate(36px, 16px);
-      // transform-origin: center;
-
       rect {
         cursor: pointer;
       }
