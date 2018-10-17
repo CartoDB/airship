@@ -48,13 +48,15 @@ export function rawDataToStackBarData(
   width: number,
   margin: number): StackedBarData {
 
+  // We acumulate error that should be corrected
+  const CORRECTION_FACTOR = 0.955;
   const origin = _getZeroAxis(scale);
   let xOffset = margin / 2;
 
   const result = [];
   for (const rawColumn of data) {
     result.push(_generateColumn(rawColumn, scale, colorMap, width, origin, xOffset));
-    xOffset += width + margin;
+    xOffset += width + margin * CORRECTION_FACTOR;
   }
   return result;
 }

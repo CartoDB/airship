@@ -49,7 +49,7 @@ export class YAxis {
     const ELEMENT = select(this.element.previousElementSibling);
     const HEIGHT = ELEMENT.node().getBoundingClientRect().height - VERTICAL_SPACING;
     const WIDTH = ELEMENT.node().getBoundingClientRect().width;
-    const TICK_SIZE = - WIDTH + LABEL_WIDTH + 2; // We need to correct 2px
+    const TICK_SIZE = - WIDTH + LABEL_WIDTH; // We need to correct 2px
     const RANGE = [HEIGHT, 0];
 
     const yScale = scaleLinear()
