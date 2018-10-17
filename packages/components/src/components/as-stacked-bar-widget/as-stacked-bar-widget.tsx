@@ -3,9 +3,9 @@ import { ColorMap } from './types/ColorMap';
 import { Metadata } from './types/Metadata';
 import { RawStackedbarData } from './types/RawStackedbarData';
 import { RectangleData } from './types/RectangleData';
-import ColorMapFactory from './utils/ColorMapFactory';
-import d3Helpers from './utils/d3-helpers';
-import dataProcessor from './utils/data-processor';
+import colorMapFactory from './utils/colorMap.factory';
+import dataService from './utils/data.service';
+import drawService from './utils/draw.service';
 
 /**
  * Stacked bar Widget
@@ -58,15 +58,41 @@ export class StackedBarWidget {
    */
   @Prop() public metadata: Metadata;
 
+  /**
+   * Hold a reference to the tooltip to show on mouseover
+   */
   private tooltip: HTMLElement;
+
+  /**
+   * Reference to the svg element where the plot will be rendered
+   */
   private container: SVGElement;
+
+  /**
+   * Chart scale, will be displayed by the yAxis
+   */
   private scale: [number, number] = [0, 0];
+
+  /**
+   * Mapping between colors and categories
+   */
   private colorMap: ColorMap;
+
+  public render() {
+    return [
+      <as-widget-header header={this.heading} subheader={this.description}></as-widget-header>,
+      <svg ref={(ref: SVGElement) => this.container = ref}></svg>,
+      <as-y-axis from={this.scale[0]} to={this.scale[1]}></as-y-axis>,
+      this._renderLegend(),
+      <span ref={(ref) => this.tooltip = ref} role='tooltip' class='as-tooltip as-tooltip--top' > TOOLTIP</span>
+    ];
+  }
 
   /**
    * Callback executed when the mouse is placed over a rectangle.
    */
-  @Prop() public mouseOver = (data: RectangleData) => {
+  @Prop()
+  public mouseOver = (data: RectangleData) => {
     const event = window.event as MouseEvent;
     this.tooltip.style.display = 'inline';
     this.tooltip.style.left = `${event.clientX}px`;
@@ -77,18 +103,9 @@ export class StackedBarWidget {
   /**
    * Callback executed when the mouse is placed outside a rectangle.
    */
-  @Prop() public mouseLeave = () => {
+  @Prop()
+  public mouseLeave = () => {
     this.tooltip.style.display = 'none';
-  }
-
-  public render() {
-    return [
-      <as-widget-header header={this.heading} subheader={this.description}></as-widget-header>,
-      <svg ref={(ref: SVGElement) => this.container = ref}></svg>,
-      <as-y-axis from={this.scale[0]} to={this.scale[1]}></as-y-axis>,
-      this._renderLegend(),
-      <span ref={(ref) => this.tooltip = ref} role='tooltip' class='as-tooltip as-tooltip--top' > TOOLTIP</span>
-    ];
   }
 
   public componentDidLoad() {
@@ -114,18 +131,18 @@ export class StackedBarWidget {
   }
 
   private _setupState() {
-    this.scale = dataProcessor.getDomain(this.data);
+    this.scale = dataService.getDomain(this.data);
     this.colorMap = this._createColorMap(this.data, this.metadata);
   }
 
   private _drawColumns() {
-    const Y_AXIS_LABEL_WIDTH = 25;
+    const Y_AXIS_LABEL_WIDTH = 25; // We draw on the right of the yAxis labels
     const COLUMN_MARGIN = 5;
     const WIDTH = this.container.querySelector('.y-axis').getBoundingClientRect().width - Y_AXIS_LABEL_WIDTH;
     const COLUMN_WIDTH = (WIDTH / this.data.length) - COLUMN_MARGIN;
-    const data = dataProcessor.rawDataToStackBarData(this.data, this.scale, this.colorMap, COLUMN_WIDTH, COLUMN_MARGIN);
+    const data = dataService.rawDataToStackBarData(this.data, this.scale, this.colorMap, COLUMN_WIDTH, COLUMN_MARGIN);
 
-    d3Helpers.drawColumns(this.container, data, this.mouseOver, this.mouseLeave);
+    drawService.drawColumns(this.container, data, this.mouseOver, this.mouseLeave);
   }
 
   private _renderLegend() {
@@ -135,7 +152,7 @@ export class StackedBarWidget {
   }
 
   private _createColorMap(data: RawStackedbarData[], metadata: Metadata): ColorMap {
-    const keys = dataProcessor.getKeys(data);
-    return ColorMapFactory.create(keys, metadata);
+    const keys = dataService.getKeys(data);
+    return colorMapFactory.create(keys, metadata);
   }
 }

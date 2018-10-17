@@ -10,7 +10,7 @@ const DURATION = 500;
  * Draw the stacked bar char in the given svg element.
  */
 export function drawColumns(svgElement: SVGElement, data: StackedBarData, mousemove, mouseleave) {
-  const plot = createPlot(svgElement);
+  const plot = _createPlot(svgElement);
   const columns = plot.selectAll('.column');
 
   // Remove columns
@@ -39,7 +39,7 @@ export function drawColumns(svgElement: SVGElement, data: StackedBarData, mousem
     .data((d) => d), mousemove, mouseleave);
 }
 
-export function createPlot(svgElement: SVGElement): Container {
+function _createPlot(svgElement: SVGElement): Container {
   const container = select(svgElement);
   if (container.select('.plot').empty()) {
     container
@@ -63,4 +63,4 @@ function _drawRectangles(selection, mousemove, mouseleave) {
     .attr('fill', (d) => d.c);
 }
 
-export default { createPlot, drawColumns };
+export default { drawColumns };

@@ -1,4 +1,4 @@
-import dataProcessor from './data-processor';
+import dataProcessor from './data.service';
 
 describe('data-processor', () => {
   let FAKE_DATA;
