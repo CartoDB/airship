@@ -12,55 +12,45 @@ noSource: true
 lang: html
 showSource: false
 ---
-<as-stacked-bar-widget 
-  show-legend="true"
-  heading="Heading"
-  description="Description">
-</as-stacked-bar-widget>
+<as-stacked-bar-widget id="widget-0" show-legend="true" heading="Star Wars Revenue" description="Description"></as-stacked-bar-widget>
 
 <script>
-    const widget0 = document.querySelector('#widget-0');
-    widget0.data = [{
-        category: 'Category A',
-        values: {
-          v1: 100,
-          v2: 100,
-        }
-      },
-      {
-        category: 'Category B',
-        values: {
-          v1: 100,
-          v2: 200,
-          v3: 300,
-        },
-      },
-      {
-        category: 'Category B',
-        values: {
-          v1: 100,
-          v2: 200,
-          v3: 300,
-          v3: 400,
-        }
+  const widget0 = document.querySelector('as-stacked-bar-widget');
+  widget0.data = [{
+      category: 'Star Wars Ep. IV: A New Hope',
+      values: {
+        dvd: 27229125,
+        blue: 3555058,
       }
-    ];
-
-    widget0.metadata = {
-      v1: {
-        label: 'v1-label',
-        color: '#FABADA'
+    },
+    {
+      category: 'Star Wars Ep. V: The Empire Strikes Back',
+      values: {
+        dvd: 24928640,
+        blue: 2738207,
       },
-      v2: {
-        label: 'v2-label',
-        color: '#C00FEE'
-      },
-      v3: {
-        color: '#ff0088',
-      },
+    },
+    {
+      category: 'Star Wars Ep. VI: Return of the Jedi',
+      values: {
+        dvd: 23786454,
+        blue: 1908593,
+      }
     }
+  ];
 
-  </script>
+  widget0.metadata = {
+    dvd: {
+      label: 'Domestic DVD Sales',
+      color: '#33ACEE'
+    },
+    blue: {
+      label: 'Domestic Blu-ray Sales',
+      color: '#EEC649'
+    }
+  }
+
+</script>
 ```
 
 
@@ -77,27 +67,24 @@ Each key in the `values` object will be displayed using the same column in every
 lang: javascript
 ---
 stackedBarWidget.data = [{
-    category: 'Category A',
+    category: 'Star Wars Ep. IV: A New Hope',
     values: {
-      v1: 100,
-      v2: 100,
+      dvd: 27229125,
+      blue: 3555058,
     }
   },
   {
-    category: 'Category B',
+    category: 'Star Wars Ep. V: The Empire Strikes Back',
     values: {
-      v1: 100,
-      v2: 200,
-      v3: 300,
+      dvd: 24928640,
+      blue: 2738207,
     },
   },
   {
-    category: 'Category B',
+    category: 'Star Wars Ep. VI: Return of the Jedi',
     values: {
-      v1: 100,
-      v2: 200,
-      v3: 300,
-      v3: 400,
+      dvd: 23786454,
+      blue: 1908593,
     }
   }
 ];
@@ -107,21 +94,20 @@ stackedBarWidget.data = [{
 #### **metadata**: Object
 Use this property to control bar colors and labeling.
 
+
+
 ```code
 lang: javascript
 ---
 stackedBarWidget.metadata = {
-  v1: {
-    label: 'v1-label',
-    color: '#FABADA'
+  dvd: {
+    label: 'Domestic DVD Sales',
+    color: '#33ACEE'
   },
-  v2: {
-    label: 'v2-label',
-    color: '#C00FEE'
-  },
-  v3: {
-    color: '#ff0088',
-  },
+  blue: {
+    label: 'Domestic Blu-ray Sales',
+    color: '#EEC649'
+  }
 }
 ```
 
