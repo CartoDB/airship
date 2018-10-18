@@ -6,17 +6,16 @@
  */
 export default function (value): string {
   const roundedNumber = Math.abs(Math.ceil(value * 100) / 100);
-  const prefix = value < 0 ? '-' : '';
 
   if (roundedNumber >= 1000000000) {
-    return `${prefix}${(roundedNumber / 1000000000).toFixed(1)}G`;
+    return `${(roundedNumber / 1000000000).toFixed(1)}G`.padStart(5);
   }
   if (roundedNumber >= 1000000) {
-    return `${prefix}${(roundedNumber / 1000000).toFixed(1)}M`;
+    return `${(roundedNumber / 1000000).toFixed(1)}M`.padStart(5);
   }
   if (roundedNumber >= 1000) {
-    return `${prefix}${(roundedNumber / 1000).toFixed(1)}K`;
+    return `${(roundedNumber / 1000).toFixed(1)}K`.padStart(5);
   }
 
-  return `${roundedNumber}`;
+  return `${roundedNumber}`.padStart(5);
 }

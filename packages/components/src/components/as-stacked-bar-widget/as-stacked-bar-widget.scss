@@ -6,13 +6,17 @@ as-stacked-bar-widget {
 
   display: block;
   width: 100%;
+  max-height: 100%;
   padding: 16px;
+  overflow: auto;
   background: var(--stacked-bar-widget-background-color, #FFF);
 
   svg {
     box-sizing: border-box;
     width: 100%;
-    padding: 18px 18px 17px 36px;
+    min-height: 100px;
+    max-height: 40%;
+    padding: 18px 8px 17px 30px;
     overflow: visible;
 
     .plot {
