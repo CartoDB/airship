@@ -20,7 +20,7 @@ import readableNumber from '../../../utils/readable-number';
 export class YAxis {
 
   /**
-   * Header of the widget to be displayed
+   * Lower limit of the axis
    *
    * @type {number}
    * @memberof YAxis
@@ -28,7 +28,7 @@ export class YAxis {
   @Prop() public from: number = 0;
 
   /**
-   * Header of the widget to be displayed
+   * Upper limit of the axis
    *
    * @type {Number[]}
    * @memberof YAxis

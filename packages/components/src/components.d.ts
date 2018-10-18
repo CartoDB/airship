@@ -542,21 +542,21 @@ export namespace Components {
 
   interface AsYAxis {
     /**
-    * Header of the widget to be displayed
+    * Lower limit of the axis
     */
     'from': number;
     /**
-    * Header of the widget to be displayed
+    * Upper limit of the axis
     */
     'to': number;
   }
   interface AsYAxisAttributes extends StencilHTMLAttributes {
     /**
-    * Header of the widget to be displayed
+    * Lower limit of the axis
     */
     'from'?: number;
     /**
-    * Header of the widget to be displayed
+    * Upper limit of the axis
     */
     'to'?: number;
   }
