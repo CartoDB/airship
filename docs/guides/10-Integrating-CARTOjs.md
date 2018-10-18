@@ -17,7 +17,7 @@ Let's start from scratch creating an empty `index.html` file with this scaffoldi
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
   </head>
 
-  <body class="as-app">
+  <body class="as-app-body">
 
   </body>
 </html>
@@ -44,15 +44,17 @@ The layout will always be wrapped by a block element with `.as-content` class, w
 So, to create our layout we need a right sidebar and a block element wrapped by `.as-map-wrapper` class for our map.
 
 ```html
-<div class="as-content">
-  <main class="as-main">
-    <div class="as-map-area">
-      <div id="map"></div>
-    </div>
-  </main>
+<div class="as-app">
+  <div class="as-content">
+    <main class="as-main">
+      <div class="as-map-area">
+        <div id="map"></div>
+      </div>
+    </main>
 
-  <aside class="as-sidebar as-sidebar--right">
-  </aside>
+    <aside class="as-sidebar as-sidebar--right">
+    </aside>
+  </div>
 </div>
 ```
 
@@ -232,20 +234,22 @@ Using that Bounding Box filter, our widget will be automatically updated wheneve
       </style>
   </head>
 
-  <body class="as-app">
-    <div class="as-content">
-      <main class="as-main">
-        <div class="as-map-area">
-          <div id="map"></div>
-        </div>
-      </main>
+  <body class="as-app-body">
+    <div class="as-app">
+      <div class="as-content">
+        <main class="as-main">
+          <div class="as-map-area">
+            <div id="map"></div>
+          </div>
+        </main>
 
-      <aside class="widgets as-sidebar as-sidebar--right as-sidebar">
-          <as-category-widget
-          heading="Populated places"
-          description="Top populated cities ordered by descending population"
-          default-bar-color="#47DB99"></as-category-widget>
-      </aside>
+        <aside class="widgets as-sidebar as-sidebar--right as-sidebar">
+            <as-category-widget
+            heading="Populated places"
+            description="Top populated cities ordered by descending population"
+            default-bar-color="#47DB99"></as-category-widget>
+        </aside>
+      </div>
     </div>
 
     <script>
