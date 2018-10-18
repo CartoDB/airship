@@ -1,11 +1,17 @@
-.as-widget-header {
-  &__header {
+@import '../../../../../styles/src/core/dev';
+
+as-widget-header {
+  --widget--header-color: #{$color-type-01};
+  --widget--subheader-color: #{$color-type-02};
+
+  .as-widget-header__header {
     margin: 0;
-    font: 16px/24px var(--font-family-base, Roboto, sans-serif);
+    color: var(--widget--header-color, #2C2C2C);
+    font: $font-subheader;
   }
 
-  &__subheader {
+  .as-widget-header__subheader {
     margin-bottom: 16px;
-    color: var(--histogram-widget--description-color, #747474);
+    color: var(--widget--subheader-color, #F4F4F4);
   }
 }

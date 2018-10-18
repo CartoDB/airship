@@ -7,16 +7,6 @@ as-stacked-bar-widget {
   padding: 16px;
   background: var(--histogram-widget--background-color, $color-ui-01);
 
-  .as-stacked-bar-widget__header {
-    margin: 0;
-    font: 16px/24px var(--font-family-base, Roboto, sans-serif);
-  }
-
-  .as-stacked-bar-widget__description {
-    margin-bottom: 16px;
-    color: var(--histogram-widget--description-color, #747474);
-  }
-
   svg {
     box-sizing: border-box;
     width: 100%;
