@@ -406,7 +406,7 @@ export namespace Components {
     */
     'description': string;
     /**
-    * Easy customize widget format
+    * Easy customize tooltip format
     */
     'formatFn': any;
     /**
@@ -440,7 +440,7 @@ export namespace Components {
     */
     'description'?: string;
     /**
-    * Easy customize widget format
+    * Easy customize tooltip format
     */
     'formatFn'?: any;
     /**

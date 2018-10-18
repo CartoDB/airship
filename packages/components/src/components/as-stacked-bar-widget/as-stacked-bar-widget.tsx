@@ -109,7 +109,7 @@ export class StackedBarWidget {
   }
 
   /**
-   * Easy customize widget format
+   * Easy customize tooltip format
    */
   @Prop()
   public formatFn = (value) => {

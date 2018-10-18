@@ -94,6 +94,7 @@ stackedBarWidget.data = [{
 #### **metadata**: Object
 Use this property to control bar colors and labeling.
 
+Each key will correspond to a value in the `data` object and will have two fields. The label is optional and determines the text shown in the legend. Color is required and determines the color of the value in the widget plot. If no label is given the key itself will be used.
 
 
 ```code
