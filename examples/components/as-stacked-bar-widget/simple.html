@@ -23,49 +23,43 @@
 
 <body>
   <section>
-    <as-stacked-bar-widget id="widget-0" show-legend="true" heading="Heading" description="Description"></as-stacked-bar-widget>
+    <as-stacked-bar-widget id="widget-0" show-legend="true" heading="Star Wars Revenue" description="Description"></as-stacked-bar-widget>
   </section>
 
   <script>
     const widget0 = document.querySelector('as-stacked-bar-widget');
     widget0.data = [{
-        category: 'Category A',
+        category: 'Star Wars Ep. IV: A New Hope',
         values: {
-          v1: 100,
-          v2: 100,
+          dvd: 27229125,
+          blue: 3555058,
         }
       },
       {
-        category: 'Category B',
+        category: 'Star Wars Ep. V: The Empire Strikes Back',
         values: {
-          v1: 100,
-          v2: 200,
-          v3: 300,
+          dvd: 24928640,
+          blue: 2738207,
         },
       },
       {
-        category: 'Category B',
+        category: 'Star Wars Ep. VI: Return of the Jedi',
         values: {
-          v1: 100,
-          v2: 200,
-          v3: 300,
-          v3: 400,
+          dvd: 23786454,
+          blue: 1908593,
         }
       }
     ];
 
     widget0.metadata = {
-      v1: {
-        label: 'v1-label',
+      dvd: {
+        label: 'Domestic DVD Sales',
         color: '#33ACEE'
       },
-      v2: {
-        label: 'v2-label',
+      blue: {
+        label: 'Domestic Blu-ray Sales',
         color: '#EEC649'
-      },
-      v3: {
-        color: '#4CBD81',
-      },
+      }
     }
 
   </script>
