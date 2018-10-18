@@ -521,21 +521,21 @@ export namespace Components {
 
   interface AsWidgetHeader {
     /**
-    * Header of the widget
+    * Main title
     */
     'header': string;
     /**
-    * Subheader of the widget
+    * Secondary title
     */
     'subheader': string;
   }
   interface AsWidgetHeaderAttributes extends StencilHTMLAttributes {
     /**
-    * Header of the widget
+    * Main title
     */
     'header'?: string;
     /**
-    * Subheader of the widget
+    * Secondary title
     */
     'subheader'?: string;
   }

@@ -2,7 +2,7 @@ import { Component, Prop } from '@stencil/core';
 
 
 /**
- * Helper class to draw the vertical axis on some widgets.
+ * Helper class to draw widget headers
  *
  * @export
  * @class WidgetHeader
@@ -15,7 +15,7 @@ import { Component, Prop } from '@stencil/core';
 export class WidgetHeader {
 
   /**
-   * Header of the widget
+   * Main title
    *
    * @type {string}
    * @memberof WidgetHeader
@@ -23,7 +23,7 @@ export class WidgetHeader {
   @Prop() public header: string = '';
 
   /**
-   * Subheader of the widget
+   * Secondary title
    *
    * @type {string}
    * @memberof WidgetHeader
