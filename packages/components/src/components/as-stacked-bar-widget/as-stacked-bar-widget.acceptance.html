@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+  <base href="/">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+  <title>Airship</title>
+  <link rel="stylesheet" href="/dist/airship.css">
+  <script src="/build/airship.js"></script>
+  <style>
+    body {
+      background: #CCC;
+    }
+
+    as-stacked-bar-widget {
+      display: inline-block;
+      background: white;
+    }
+
+    #widget-0,
+    #widget-1,
+    #widget-2 {
+      width: 350px;
+    }
+
+    .sidebar-xl {
+      width: 640px;
+    }
+  </style>
+</head>
+
+<body class="as-app">
+
+  <header class="as-toolbar"></header>
+  <as-responsive-content>
+    <aside class="as-sidebar as-sidebar--right sidebar-xl">
+      <as-stacked-bar-widget id="widget-0" show-legend="true" heading="Heading" description="Description"></as-stacked-bar-widget>
+      <as-histogram-widget
+        heading="Title"
+        description="Description"
+        show-header
+        show-clear>
+      </as-histogram-widget>
+    </aside>
+
+    <main class="as-main">
+      <div class="as-map-area">
+        <div id="map"></div>
+        <div class="as-map-panels">
+          <div class="as-panel as-panel--top as-panel--right">
+            <div class="as-panel__element"></div>
+          </div>
+        </div>
+      </div>
+      <footer class="as-map-footer as-bg--complementary">
+        <as-stacked-bar-widget id="widget-1" show-legend="true" heading="Heading" description="Description"></as-stacked-bar-widget>
+        <as-histogram-widget
+          id="histo2"
+          heading="Title"
+          description="Description"
+          show-header
+          show-clear>
+        </as-histogram-widget>
+
+      </footer>
+    </main>
+  </as-responsive-content>
+
+  <script>
+    const widget0 = document.querySelector('#widget-0');
+    var data = [{
+        category: 'Category A',
+        values: {
+          v1: 100,
+          v2: 100,
+        }
+      },
+      {
+        category: 'Category B',
+        values: {
+          v1: 100,
+          v2: 200,
+          v3: 300,
+        },
+      },
+      {
+        category: 'Category B',
+        values: {
+          v1: 100,
+          v2: 200,
+          v3: 300,
+          v3: 400,
+        }
+      }
+    ];
+    widget0.data = data;
+
+    var metadata = {
+      v1: {
+        label: 'v1-label',
+        color: '#FABADA'
+      },
+      v2: {
+        label: 'v2-label',
+        color: '#C00FEE'
+      },
+      v3: {
+        color: '#ff0088',
+      },
+    };
+    widget0.metadata = metadata;
+
+    const widget1 = document.querySelector('#widget-1');
+    widget1.data = [{
+        category: 'Category A',
+        values: {
+          v1: 1000,
+          v2: 1000,
+        }
+      },
+      {
+        category: 'Category B',
+        values: {
+          v1: 1000,
+          v2: 2000,
+          v3: 3000,
+        },
+      },
+      {
+        category: 'Category B',
+        values: {
+          v1: 1000,
+          v2: 2000,
+          v3: 3000,
+          v3: 4000,
+        }
+      },
+      {
+        category: 'Category A',
+        values: {
+          v1: 1000,
+          v2: 1000,
+        }
+      },
+      {
+        category: 'Category B',
+        values: {
+          v1: 1000,
+          v2: 2000,
+          v3: 3000,
+        },
+      },
+      {
+        category: 'Category B',
+        values: {
+          v1: 1000,
+          v2: 2000,
+          v3: 3000,
+          v3: 4000,
+        },
+      }, {
+        category: 'Category B',
+        values: {
+          v1: 1000,
+          v2: 2000,
+          v3: 3000,
+          v3: 4000,
+        },
+      }, {
+        category: 'Category B',
+        values: {
+          v1: 1000,
+          v2: 2000,
+          v3: 3000,
+          v3: 4000,
+        },
+      }, {
+        category: 'Category B',
+        values: {
+          v1: 1000,
+          v2: 2000,
+          v3: 3000,
+          v3: 4000,
+        },
+      }, {
+        category: 'Category B',
+        values: {
+          v1: 1000,
+          v2: 2000,
+          v3: 3000,
+          v3: 4000,
+        },
+      }, {
+        category: 'Category B',
+        values: {
+          v1: 1000,
+          v2: 2000,
+          v3: 3000,
+          v3: 4000,
+        },
+      }, {
+        category: 'Category B',
+        values: {
+          v1: 1000,
+          v2: 2000,
+          v3: 3000,
+          v3: 4000,
+        },
+      }, {
+        category: 'Category B',
+        values: {
+          v1: 1000,
+          v2: 2000,
+          v3: 3000,
+          v3: 4000,
+        },
+      }, {
+        category: 'Category B',
+        values: {
+          v1: 1000,
+          v2: 2000,
+          v3: 3000,
+          v3: 4000,
+        },
+      }, {
+        category: 'Category B',
+        values: {
+          v1: 1000,
+          v2: 2000,
+          v3: 3000,
+          v3: 4000,
+        },
+      }, {
+        category: 'Category B',
+        values: {
+          v1: 1000,
+          v2: 2000,
+          v3: 3000,
+          v3: 4000,
+        },
+      },
+    ];
+
+  var histogramWidget = document.querySelector('as-histogram-widget');
+  var histogramWidget2 = document.getElementById('histo2');
+  var histoData = [
+    { start: 0, end: 10, value: 5 },
+    { start: 10, end: 20, value: 10 },
+    { start: 20, end: 30, value: 15 },
+    { start: 30, end: 40, value: 20 },
+    { start: 40, end: 50, value: 30 },
+  ];
+  histogramWidget.data = histoData;
+  histogramWidget2.data = histoData;
+
+  var data1 = [
+    {
+      category: 'Category A',
+      values: {
+        v1: 100,
+        v2: 100,
+      }
+    },
+    {
+      category: 'Category B',
+      values: {
+        v1: 100,
+        v2: 200,
+        v3: 300,
+        v3: 400,
+      }
+    }
+  ];
+
+  var data2 = [
+    {
+      category: 'Category A',
+      values: {
+        v1: -30,
+        v2: 40,
+      }
+    },
+    {
+      category: 'Category B',
+      values: {
+        v1: 10,
+        v2: 20,
+        v3: 30,
+      },
+    },
+    {
+      category: 'Category B',
+      values: {
+        v1: 50,
+        v2: 200,
+        v3: 300,
+        v3: 40,
+      }
+    }
+  ];
+
+    var metadata1 = {
+      v1: {
+        label: 'tucutu',
+        color: '#FF0000'
+      },
+      v2: {
+        label: 'tacata',
+        color: '#00FF00'
+      },
+      v3: {
+        color: '#0000FF',
+      },
+    };
+
+  </script>
+</body>
+
+</html>
