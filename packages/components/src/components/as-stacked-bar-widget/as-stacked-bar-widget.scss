@@ -2,10 +2,12 @@
 @import '../../../../styles/src/tooltip/tooltip';
 
 as-stacked-bar-widget {
+  --stacked-bar-widget-background-color: var(--widget-background-color, #{$color-ui-01});
+
   display: block;
   width: 100%;
   padding: 16px;
-  background: var(--histogram-widget--background-color, $color-ui-01);
+  background: var(--stacked-bar-widget-background-color, #FFF);
 
   svg {
     box-sizing: border-box;
