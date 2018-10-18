@@ -28,6 +28,10 @@
 
   <script>
     const widget0 = document.querySelector('as-stacked-bar-widget');
+    widget0.formatFn = function (value) {
+      return `${value.toLocaleString()}€`;
+    }
+
     widget0.data = [{
         category: 'Star Wars Ep. IV: A New Hope',
         values: {

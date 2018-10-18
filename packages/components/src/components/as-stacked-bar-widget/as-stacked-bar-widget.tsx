@@ -97,7 +97,7 @@ export class StackedBarWidget {
     this.tooltip.style.display = 'inline';
     this.tooltip.style.left = `${event.clientX}px`;
     this.tooltip.style.top = `${event.clientY}px`;
-    this.tooltip.innerText = `${data.v}`;
+    this.tooltip.innerText = `${this.formatFn(data.v)}`;
   }
 
   /**
@@ -106,6 +106,14 @@ export class StackedBarWidget {
   @Prop()
   public mouseLeave = () => {
     this.tooltip.style.display = 'none';
+  }
+
+  /**
+   * Easy customize widget format
+   */
+  @Prop()
+  public formatFn = (value) => {
+    return value;
   }
 
   public componentDidLoad() {

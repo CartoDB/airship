@@ -406,6 +406,10 @@ export namespace Components {
     */
     'description': string;
     /**
+    * Easy customize widget format
+    */
+    'formatFn': any;
+    /**
     * Header of the widget to be displayed
     */
     'heading': string;
@@ -435,6 +439,10 @@ export namespace Components {
     * Description of the widget to be displayed
     */
     'description'?: string;
+    /**
+    * Easy customize widget format
+    */
+    'formatFn'?: any;
     /**
     * Header of the widget to be displayed
     */
