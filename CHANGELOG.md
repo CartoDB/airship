@@ -1,10 +1,16 @@
 <a name="0.0.0"></a>
-# [0.0.0](https://github.com/CartoDB/airship/compare/v1.0.0-beta.0...v0.0.0) (2018-10-18)
+# [0.0.0](https://github.com/CartoDB/airship/compare/v1.0.0-beta.1...v0.0.0) (2018-10-19)
+
+
+
+<a name="1.0.0-beta.1"></a>
+# [1.0.0-beta.1](https://github.com/CartoDB/airship/compare/v1.0.0-beta.0...v1.0.0-beta.1) (2018-10-19)
 
 
 ### Bug Fixes
 
 * **components:** Avoid checking TouchEvent to fix Range Slider in Safari ([#404](https://github.com/CartoDB/airship/issues/404)) ([bc8c097](https://github.com/CartoDB/airship/commit/bc8c097))
+* **styles:** Separate body and app classes to prevent breaking the `flex` chain. [#409](https://github.com/CartoDB/airship/issues/409) ([fb84bff](https://github.com/CartoDB/airship/commit/fb84bff))
 * **styles:** separate css variables for active / hover button state ([5a0356c](https://github.com/CartoDB/airship/commit/5a0356c))
 
 
@@ -15,6 +21,11 @@
 
 ### BREAKING CHANGES
 
+* **styles:** This PR splits the `as-app` class into `as-app-body` and `as-app`classes.
+`as-app-body` is meant to be applied to the `body` document tag.
+`as-app` is meant to be applied to the node that contains the whole application made with Airship.
+
+Previous to this, since the app needs typically more than one node (one for the toolbar, one for the content), when used in a framework like Vue those two nodes needed to be wrapped in one div. Since components don't create the body tag, it caused an extra `div` that broke the display setting for the app and the layout broke.
 * **styles:** buttons / `<a>` buttons state now use different variables for active and hover state (`--as-button-primary-color-active`, `--as-button-secondary-color-active`. `--as-button-secondary-color-focus`)
 * **components:** Component methods should be invoked asynchronously with async/await or promises from now on. Please check documentation.
 
@@ -243,7 +254,54 @@ This reverts commit acb63b2610d2d53c6af4c4e1dea631b125e99745.
 
 
 <a name="1.0.0-alpha.35"></a>
-# [1.0.0-alpha.35](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.26...v1.0.0-alpha.35) (2018-08-23)
+# [1.0.0-alpha.35](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.34...v1.0.0-alpha.35) (2018-08-23)
+
+
+### Bug Fixes
+
+* **styles:** Buttons sizing ([#199](https://github.com/CartoDB/airship/issues/199)) ([5c9e156](https://github.com/CartoDB/airship/commit/5c9e156))
+* **styles:** Remove margin in badges ([#169](https://github.com/CartoDB/airship/issues/169)) ([ca271f2](https://github.com/CartoDB/airship/commit/ca271f2))
+
+
+### Features
+
+* **styles:** Implement utility classes ([#193](https://github.com/CartoDB/airship/issues/193)) ([9b41d9c](https://github.com/CartoDB/airship/commit/9b41d9c))
+* **styles:** Include typography through CSS ([#196](https://github.com/CartoDB/airship/issues/196)) ([5d13dad](https://github.com/CartoDB/airship/commit/5d13dad))
+
+
+
+<a name="1.0.0-alpha.34"></a>
+# [1.0.0-alpha.34](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.33...v1.0.0-alpha.34) (2018-08-21)
+
+
+
+<a name="1.0.0-alpha.33"></a>
+# [1.0.0-alpha.33](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.32...v1.0.0-alpha.33) (2018-08-21)
+
+
+
+<a name="1.0.0-alpha.32"></a>
+# [1.0.0-alpha.32](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.31...v1.0.0-alpha.32) (2018-08-21)
+
+
+
+<a name="1.0.0-alpha.31"></a>
+# [1.0.0-alpha.31](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.30...v1.0.0-alpha.31) (2018-08-21)
+
+
+
+<a name="1.0.0-alpha.30"></a>
+# [1.0.0-alpha.30](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.29...v1.0.0-alpha.30) (2018-08-21)
+
+
+
+<a name="1.0.0-alpha.29"></a>
+# [1.0.0-alpha.29](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.28...v1.0.0-alpha.29) (2018-08-21)
+
+
+
+<a name="1.0.0-alpha.28"></a>
+# [1.0.0-alpha.28](https://github.com/CartoDB/airship/compare/v1.0.0...v1.0.0-alpha.28) (2018-08-21)
 
 
 ### Bug Fixes
@@ -256,8 +314,6 @@ This reverts commit acb63b2610d2d53c6af4c4e1dea631b125e99745.
 * **docs:** remove comma ([10d3302](https://github.com/CartoDB/airship/commit/10d3302))
 * **examples:** use showBottom instead of showBottomPanel ([#126](https://github.com/CartoDB/airship/issues/126)) ([99261f7](https://github.com/CartoDB/airship/commit/99261f7))
 * **icons:** Add as-icon prefix ([#135](https://github.com/CartoDB/airship/issues/135)) ([b6a2556](https://github.com/CartoDB/airship/commit/b6a2556))
-* **styles:** Buttons sizing ([#199](https://github.com/CartoDB/airship/issues/199)) ([5c9e156](https://github.com/CartoDB/airship/commit/5c9e156))
-* **styles:** Remove margin in badges ([#169](https://github.com/CartoDB/airship/issues/169)) ([ca271f2](https://github.com/CartoDB/airship/commit/ca271f2))
 * **styles:** reset margin in .as-tabs__item ([#114](https://github.com/CartoDB/airship/issues/114)) ([458d315](https://github.com/CartoDB/airship/commit/458d315))
 * **tests:** Update test suite ([#139](https://github.com/CartoDB/airship/issues/139)) ([7c7f6bf](https://github.com/CartoDB/airship/commit/7c7f6bf))
 
@@ -288,10 +344,17 @@ This reverts commit acb63b2610d2d53c6af4c4e1dea631b125e99745.
 * **styles:** Banner ([#121](https://github.com/CartoDB/airship/issues/121)) ([e3b37ed](https://github.com/CartoDB/airship/commit/e3b37ed)), closes [#136](https://github.com/CartoDB/airship/issues/136)
 * **styles:** breadcrumbs ([#123](https://github.com/CartoDB/airship/issues/123)) ([97f1fb6](https://github.com/CartoDB/airship/commit/97f1fb6)), closes [#130](https://github.com/CartoDB/airship/issues/130)
 * **styles:** flags ([#122](https://github.com/CartoDB/airship/issues/122)) ([7dcbc90](https://github.com/CartoDB/airship/commit/7dcbc90)), closes [#131](https://github.com/CartoDB/airship/issues/131)
-* **styles:** Implement utility classes ([#193](https://github.com/CartoDB/airship/issues/193)) ([9b41d9c](https://github.com/CartoDB/airship/commit/9b41d9c))
-* **styles:** Include typography through CSS ([#196](https://github.com/CartoDB/airship/issues/196)) ([5d13dad](https://github.com/CartoDB/airship/commit/5d13dad))
 * **styles:** radio buttons ([#117](https://github.com/CartoDB/airship/issues/117)) ([e8c2cc4](https://github.com/CartoDB/airship/commit/e8c2cc4))
 * **styles:** remove reset.css ([#112](https://github.com/CartoDB/airship/issues/112)) ([3b14925](https://github.com/CartoDB/airship/commit/3b14925)), closes [#113](https://github.com/CartoDB/airship/issues/113)
+
+
+
+<a name="1.0.0"></a>
+# [1.0.0](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.26...v1.0.0) (2018-07-23)
+
+
+### Features
+
 * **test:** Generate image references from CI ([#63](https://github.com/CartoDB/airship/issues/63)) ([3c4e6ad](https://github.com/CartoDB/airship/commit/3c4e6ad))
 
 
@@ -302,12 +365,7 @@ This reverts commit acb63b2610d2d53c6af4c4e1dea631b125e99745.
 
 
 <a name="1.0.0-alpha.25"></a>
-# [1.0.0-alpha.25](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.24...v1.0.0-alpha.25) (2018-05-18)
-
-
-
-<a name="1.0.0-alpha.24"></a>
-# [1.0.0-alpha.24](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.23...v1.0.0-alpha.24) (2018-05-10)
+# [1.0.0-alpha.25](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.23...v1.0.0-alpha.25) (2018-05-18)
 
 
 
