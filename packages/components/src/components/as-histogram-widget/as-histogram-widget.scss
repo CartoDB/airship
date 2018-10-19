@@ -79,7 +79,8 @@ as-histogram-widget {
 
   .x-label,
   .y-label {
-    font: $font-body;
+    color: $color-type-01;
+    font: $font-caption;
     text-align: center;
   }
 
@@ -91,10 +92,14 @@ as-histogram-widget {
     left: 0;
   }
 
+  .x-label {
+    position: relative;
+  }
+
   .y-label {
     position: absolute;
     top: calc(50% - #{$label-height});
-    left: -15px;
+    left: -12px;
     transform: rotate(-90deg);
     transform-origin: center;
   }
