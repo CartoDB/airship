@@ -1,5 +1,22 @@
 <a name="0.0.0"></a>
-# [0.0.0](https://github.com/CartoDB/airship/compare/v1.0.0-beta.0...v0.0.0) (2018-10-08)
+# [0.0.0](https://github.com/CartoDB/airship/compare/v1.0.0-beta.0...v0.0.0) (2018-10-18)
+
+
+### Bug Fixes
+
+* **components:** Avoid checking TouchEvent to fix Range Slider in Safari ([#404](https://github.com/CartoDB/airship/issues/404)) ([bc8c097](https://github.com/CartoDB/airship/commit/bc8c097))
+* **styles:** separate css variables for active / hover button state ([5a0356c](https://github.com/CartoDB/airship/commit/5a0356c))
+
+
+### Features
+
+* **components:** Update Stencil to v0.13 ([#406](https://github.com/CartoDB/airship/issues/406)) ([f39d01d](https://github.com/CartoDB/airship/commit/f39d01d))
+
+
+### BREAKING CHANGES
+
+* **styles:** buttons / `<a>` buttons state now use different variables for active and hover state (`--as-button-primary-color-active`, `--as-button-secondary-color-active`. `--as-button-secondary-color-focus`)
+* **components:** Component methods should be invoked asynchronously with async/await or promises from now on. Please check documentation.
 
 
 
