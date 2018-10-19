@@ -23,47 +23,49 @@
 
 </head>
 
-<body class="as-app as-app--nav-top">
-  <header class="as-toolbar">
-    <button onclick="_toggleDrawer()" class="as-toolbar__item as-toolbar__toggle">
-      <i class="as-icon-hamburguer as-title as-m--0"></i>
-    </button>
+<body class="as-app-body">
+  <div class="as-app as-app--nav-top">
+    <header class="as-toolbar">
+      <button onclick="_toggleDrawer()" class="as-toolbar__item as-toolbar__toggle">
+        <i class="as-icon-hamburguer as-title as-m--0"></i>
+      </button>
 
-    <div class="as-toolbar__group">
-      <div class="as-toolbar__item">
-        <img src="../common/logo.svg" alt="CARTO LOGO">
+      <div class="as-toolbar__group">
+        <div class="as-toolbar__item">
+          <img src="../common/logo.svg" alt="CARTO LOGO">
+        </div>
+
+        <nav class="as-toolbar__actions">
+          <ul>
+            <li class="as-toolbar__item">
+              <a href="http://www.carto.com">Home</a>
+            </li>
+            <li class="as-toolbar__item">
+              <a href="http://www.carto.com">About</a>
+            </li>
+            <li class="as-toolbar__item">
+              <i class="as-icon-magnify as-subheader as-m--0"></i>
+              <p class="as-toolbar__icon-text">Search</p>
+            </li>
+            <li class="as-toolbar__item">
+              <i class="as-icon-info as-subheader as-m--0"></i>
+              <p class="as-toolbar__icon-text">Help</p>
+            </li>
+            <li class="as-toolbar__item">
+              <i class="as-icon-twitter as-subheader as-m--0"></i>
+              <p class="as-toolbar__icon-text">Twitter</p>
+            </li>
+          </ul>
+        </nav>
       </div>
+    </header>
 
-      <nav class="as-toolbar__actions">
-        <ul>
-          <li class="as-toolbar__item">
-            <a href="http://www.carto.com">Home</a>
-          </li>
-          <li class="as-toolbar__item">
-            <a href="http://www.carto.com">About</a>
-          </li>
-          <li class="as-toolbar__item">
-            <i class="as-icon-magnify as-subheader as-m--0"></i>
-            <p class="as-toolbar__icon-text">Search</p>
-          </li>
-          <li class="as-toolbar__item">
-            <i class="as-icon-info as-subheader as-m--0"></i>
-            <p class="as-toolbar__icon-text">Help</p>
-          </li>
-          <li class="as-toolbar__item">
-            <i class="as-icon-twitter as-subheader as-m--0"></i>
-            <p class="as-toolbar__icon-text">Twitter</p>
-          </li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <main class="as-app-content">
-    <div class="as-map-wrapper">
-      <div id="map"></div>
-    </div>
-  </main>
+    <main class="as-app-content">
+      <div class="as-map-wrapper">
+        <div id="map"></div>
+      </div>
+    </main>
+  </div>
 
   <script defer src="../common/map.js"></script>
   <script defer src="../common/tabs.js"></script>
