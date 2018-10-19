@@ -654,7 +654,7 @@ export class HistogramWidget {
   }
 
   private _renderLabels() {
-    
+
     return [
       this.yLabel ? <div class='y-label-wrapper'><div class='y-label'>{this.yLabel}</div> </div> : '',
       this.xLabel ? <div class='x-label'>{this.xLabel}</div> : '',
