@@ -9,7 +9,7 @@ import {
   event as d3event,
   select,
   Selection
-  } from 'd3-selection';
+} from 'd3-selection';
 import 'd3-transition';
 import readableNumber from '../../utils/readable-number';
 import { shadeOrBlend } from '../../utils/styles';
@@ -121,6 +121,16 @@ export class HistogramWidget {
    */
   @Prop() public tooltipFormatter: (value: HistogramData) => string = this.defaultFormatter;
 
+  /**
+   * Label the x axis of the histogram with the given string.
+   */
+  @Prop() public xLabel: string;
+
+  /**
+   * Label the y axis of the histogram with the given string.
+   */
+  @Prop() public yLabel: string;
+
   @Element() private el: HTMLElement;
 
   /**
@@ -229,7 +239,9 @@ export class HistogramWidget {
   }
 
   public render() {
-    this.chartWidth = this.el.offsetWidth - MARGIN.YAxis;
+    const spaceForYLabel = this.yLabel ? 25 : 0;
+    MARGIN.LEFT = spaceForYLabel ? MARGIN.LEFT + 25 : MARGIN.LEFT;
+    this.chartWidth = (this.el.offsetWidth - MARGIN.YAxis) - spaceForYLabel;
 
     const histogramClasses = {
       'as-histogram-widget__wrapper': true,
@@ -241,6 +253,7 @@ export class HistogramWidget {
       <div class={histogramClasses}>
         {this._renderTooltip()}
         <svg ref={(ref: HTMLElement) => this.container = select(ref)}></svg>
+        {this._renderLabels()}
       </div>,
       this.showClear && !this.disableInteractivity ? this._renderClearBtn() : '',
     ];
@@ -267,16 +280,16 @@ export class HistogramWidget {
         .call(this.brush);
 
       this.customHandlers = this.brushArea.selectAll('.handle--custom')
-        .data([{type: 'w'}, {type: 'e'}])
+        .data([{ type: 'w' }, { type: 'e' }])
         .enter().append('rect')
-          .style('opacity', 0)
-          .attr('class', 'handle--custom')
-          .attr('fill', this.selectedColor)
-          .attr('cursor', 'ew-resize')
-          .attr('width', CUSTOM_HANDLE_SIZE)
-          .attr('height', CUSTOM_HANDLE_SIZE)
-          .attr('rx', '100')
-          .attr('ry', '100');
+        .style('opacity', 0)
+        .attr('class', 'handle--custom')
+        .attr('fill', this.selectedColor)
+        .attr('cursor', 'ew-resize')
+        .attr('width', CUSTOM_HANDLE_SIZE)
+        .attr('height', CUSTOM_HANDLE_SIZE)
+        .attr('rx', '100')
+        .attr('ry', '100');
 
       this.bottomLine = this.brushArea.append('line')
         .attr('class', 'bottomline')
@@ -320,11 +333,11 @@ export class HistogramWidget {
         this.tooltip = null;
       }
     })
-    .on('mouseout', () => {
-      this.tooltip = null;
-      this.barsContainer.selectAll('rect')
-        .style('fill', (data: HistogramData) => this._isSelected(data) ? this.selectedColor : this.color);
-    });
+      .on('mouseout', () => {
+        this.tooltip = null;
+        this.barsContainer.selectAll('rect')
+          .style('fill', (data: HistogramData) => this._isSelected(data) ? this.selectedColor : this.color);
+      });
 
     this._renderBars();
     this._cleanAxes();
@@ -336,7 +349,7 @@ export class HistogramWidget {
     }
 
     return [this._adjustSelectionFor(values[0], 'start'),
-      this._adjustSelectionFor(values[1], 'end')];
+    this._adjustSelectionFor(values[1], 'end')];
   }
 
   private _adjustSelectionFor(value: number, fieldName: 'start' | 'end') {
@@ -627,17 +640,25 @@ export class HistogramWidget {
       ref={(ref: HTMLElement) => this.tooltipElement = ref}
       role='tooltip'
       class='as-histogram-widget__tooltip'>
-        {this.tooltip}
-      </span>);
+      {this.tooltip}
+    </span>);
   }
 
   private _renderClearBtn() {
     return (
       <button
         class='as-btn as-btn--primary as-btn--s as-histogram-widget__clear'
-        onClick={() => this._setSelection(null) }>Clear selection
+        onClick={() => this._setSelection(null)}>Clear selection
       </button>
     );
+  }
+
+  private _renderLabels() {
+    
+    return [
+      this.yLabel ? <div class='y-label-wrapper'><div class='y-label'>{this.yLabel}</div> </div> : '',
+      this.xLabel ? <div class='x-label'>{this.xLabel}</div> : '',
+    ];
   }
 
   // If the parameter is a css variable will be evaluated to a color
