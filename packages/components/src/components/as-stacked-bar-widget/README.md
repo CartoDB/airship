@@ -61,7 +61,7 @@ Array of elements containing the data that will be shown in the stacked bar char
 
 Each element corresponds to a column and consists of a `category` string that labels the column and an object containing the values of each rectangle in the column.
 
-Each key in the `values` object will be displayed using the same column in every column. Positive values will be stacked in alphabetical order on the top of the zero-axis while negative values will be stacked below the zero axis in reverse alphabetical order.
+Each key in the `values` object will be displayed using the same color in every column. Positive values will be stacked in alphabetical order on the top of the zero-axis while negative values will be stacked below the zero axis in reverse alphabetical order.
 
 ```code
 lang: javascript
