@@ -1,4 +1,4 @@
-import { Component, Element, Event, EventEmitter, Method, Prop, State, Watch } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, Method, Prop, State } from '@stencil/core';
 import readableNumber from '../../utils/readable-number';
 import { shadeOrBlend } from '../../utils/styles';
 import { Category, CategoryOptions } from './interfaces';
@@ -134,11 +134,6 @@ export class CategoryWidget {
   @Method()
   public async getSelectedCategories() {
     return this.selectedCategories;
-  }
-
-  @Watch('categories')
-  public _watchCategories() {
-    this.clearSelection();
   }
 
   public componentWillLoad() {
