@@ -112,7 +112,7 @@ async function uploadAllFiles (dir, version, destination, subfolder='') {
       let fileContent;
       let ratio = 0;
 
-      objectConfig.ContentType = mime.getType(filePath);
+      objectConfig.ContentType = `${mime.getType(filePath)}; charset=utf-8`;
 
       try {
         fileContent = await readFile(filePath, { encoding: 'utf8' });
