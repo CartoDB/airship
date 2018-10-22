@@ -37,7 +37,9 @@ showSource: false
 
 #### **data**: HistogramData[] = []
 Array of histogram data, each one of which should include a `value`, `start` and `end` and an optional `color`.
-When color is given will have priority.
+ 
+> Color can´t be a named color, use `hex` or `rgb` form instead!
+
 
 ```code
 lang: javascript

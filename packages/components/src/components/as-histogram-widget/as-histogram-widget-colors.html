@@ -13,7 +13,6 @@
     <div style="width: 250px;">
       <as-histogram-widget
         show-clear
-        disable-interactivity
         heading="Business Volume"
         description="Description">
       </as-histogram-widget>
@@ -22,10 +21,11 @@
     <script>
       var histogramWidget = document.querySelector('as-histogram-widget');
       histogramWidget.data = [
-        { start: 0, end: 10, value: 1050, color: 'red' },
+        { start: 0, end: 10, value: 1050, color: '#FF0000' },
         { start: 10, end: 20, value: 1150, color: '#00FF00' },
         { start: 20, end: 30, value: 1250, color: 'rgb(0, 0, 255)' },
-        { start: 30, end: 40, value: 1350, color: 'rgba(0, 0, 0, 0.5)'}
+        { start: 30, end: 40, value: 1350, color: 'rgba(0, 0, 0, 0.5)'},
+        { start: 40, end: 50, value: 2000 },
       ];
     </script>
   </body>
