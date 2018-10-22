@@ -90,6 +90,7 @@ as-histogram-widget {
     right: 0;
     bottom: $label-height;
     left: 0;
+    touch-action: none;
   }
 
   .x-label {
