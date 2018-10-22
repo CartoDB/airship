@@ -1,5 +1,15 @@
 <a name="0.0.0"></a>
-# [0.0.0](https://github.com/CartoDB/airship/compare/v1.0.0-beta.1...v0.0.0) (2018-10-19)
+# [0.0.0](https://github.com/CartoDB/airship/compare/v1.0.0-beta.2...v0.0.0) (2018-10-22)
+
+
+
+<a name="1.0.0-beta.2"></a>
+# [1.0.0-beta.2](https://github.com/CartoDB/airship/compare/v1.0.0-beta.1...v1.0.0-beta.2) (2018-10-22)
+
+
+### Bug Fixes
+
+* **components:** Revert clear category selection [#332](https://github.com/CartoDB/airship/issues/332) ([8a18f4b](https://github.com/CartoDB/airship/commit/8a18f4b))
 
 
 
