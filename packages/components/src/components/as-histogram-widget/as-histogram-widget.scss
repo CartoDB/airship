@@ -2,6 +2,7 @@
 @import '../../../../styles/src/tooltip/tooltip';
 
 as-histogram-widget {
+  $label-height: 20px;
   display: block;
   width: 100%;
   background: var(--histogram-widget--background-color, $color-ui-01);
@@ -74,5 +75,33 @@ as-histogram-widget {
     svg .bar {
       cursor: inherit;
     }
+  }
+
+  .x-label,
+  .y-label {
+    color: $color-type-01;
+    font: $font-caption;
+    text-align: center;
+  }
+
+  .y-label-wrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: $label-height;
+    left: 0;
+    touch-action: none;
+  }
+
+  .x-label {
+    position: relative;
+  }
+
+  .y-label {
+    position: absolute;
+    top: calc(50% - #{$label-height});
+    left: -12px;
+    transform: rotate(-90deg);
+    transform-origin: center;
   }
 }

@@ -7,24 +7,32 @@
     <title>Airship</title>
     <link rel="stylesheet" href="/dist/airship.css">
     <script src="/build/airship.js"></script>
+    <style>
+      body {
+        background: #F2F2F2;
+      }
+
+    </style>
   </head>
 
   <body>
-    <div style="width: 250px;">
+    <div style="width: 300px;">
       <as-histogram-widget
         show-clear
         disable-interactivity
         heading="Business Volume"
-        description="Description">
+        description="Description"
+        x-label="X Axis label"
+        y-label="Y Axis label">
       </as-histogram-widget>
     </div>
 
     <script>
       var histogramWidget = document.querySelector('as-histogram-widget');
       histogramWidget.data = [
-        { start: 0, end: 10, value: 1050, color: 'url("gradient");'},
-        { start: 10, end: 20, value: 1150, color: '#ff0000' },
-        { start: 20, end: 30, value: 1250, color: '#ff0000' },
+        { start: 0, end: 10, value: 1050 },
+        { start: 10, end: 20, value: 1150 },
+        { start: 20, end: 30, value: 1250 },
         { start: 30, end: 40, value: 1350 },
         { start: 40, end: 50, value: 2000 },
       ];

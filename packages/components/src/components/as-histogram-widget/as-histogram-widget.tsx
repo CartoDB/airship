@@ -121,6 +121,16 @@ export class HistogramWidget {
    */
   @Prop() public tooltipFormatter: (value: HistogramData) => string = this.defaultFormatter;
 
+  /**
+   * Label the x axis of the histogram with the given string.
+   */
+  @Prop() public xLabel: string;
+
+  /**
+   * Label the y axis of the histogram with the given string.
+   */
+  @Prop() public yLabel: string;
+
   @Element() private el: HTMLElement;
 
   /**
@@ -229,7 +239,9 @@ export class HistogramWidget {
   }
 
   public render() {
-    this.chartWidth = this.el.offsetWidth - MARGIN.YAxis;
+    const spaceForYLabel = this.yLabel ? 25 : 0;
+    MARGIN.LEFT = spaceForYLabel ? MARGIN.LEFT + 25 : MARGIN.LEFT;
+    this.chartWidth = (this.el.offsetWidth - MARGIN.YAxis) - spaceForYLabel;
 
     const histogramClasses = {
       'as-histogram-widget__wrapper': true,
@@ -241,6 +253,7 @@ export class HistogramWidget {
       <div class={histogramClasses}>
         {this._renderTooltip()}
         <svg ref={(ref: HTMLElement) => this.container = select(ref)}></svg>
+        {this._renderLabels()}
       </div>,
       this.showClear && !this.disableInteractivity ? this._renderClearBtn() : '',
     ];
@@ -650,6 +663,14 @@ export class HistogramWidget {
         onClick={() => this._setSelection(null)}>Clear selection
       </button>
     );
+  }
+
+  private _renderLabels() {
+
+    return [
+      this.yLabel ? <div class='y-label-wrapper'><div class='y-label'>{this.yLabel}</div> </div> : '',
+      this.xLabel ? <div class='x-label'>{this.xLabel}</div> : '',
+    ];
   }
 
   // If the parameter is a css variable will be evaluated to a color

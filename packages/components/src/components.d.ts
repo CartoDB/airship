@@ -220,6 +220,14 @@ export namespace Components {
     * Function that formats the tooltip. Receives HistogramData and outputs a string
     */
     'tooltipFormatter': (value: HistogramData) => string;
+    /**
+    * Label the x axis of the histogram with the given string.
+    */
+    'xLabel': string;
+    /**
+    * Label the y axis of the histogram with the given string.
+    */
+    'yLabel': string;
   }
   interface AsHistogramWidgetAttributes extends StencilHTMLAttributes {
     /**
@@ -266,6 +274,14 @@ export namespace Components {
     * Function that formats the tooltip. Receives HistogramData and outputs a string
     */
     'tooltipFormatter'?: (value: HistogramData) => string;
+    /**
+    * Label the x axis of the histogram with the given string.
+    */
+    'xLabel'?: string;
+    /**
+    * Label the y axis of the histogram with the given string.
+    */
+    'yLabel'?: string;
   }
 
   interface AsInfowindow {
