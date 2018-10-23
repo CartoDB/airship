@@ -1,6 +1,6 @@
 import { E2EElement, E2EPage, newE2EPage } from '@stencil/core/testing';
 
-xdescribe('as-histogram-widget', () => {
+describe('as-histogram-widget', () => {
   let page: E2EPage;
 
   beforeEach(async () => {
