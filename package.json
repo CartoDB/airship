@@ -27,7 +27,7 @@
     "lint:fix": "lerna run lint:fix",
     "lint": "lerna run lint",
     "postinstall": "lerna bootstrap --hoist",
-    "publish": "npm install && npm run build && npm run test && lerna publish && ./release.sh",
+    "publish": "npm install && npm run test && npm run build && lerna publish && ./release.sh",
     "serve": "lerna run --parallel serve",
     "showcase": "npm run build && concurrently 'serve' 'open http://localhost:5000/catalog'",
     "test:components:watch": "lerna exec --scope @carto/airship-components -- npm run test:watch",
