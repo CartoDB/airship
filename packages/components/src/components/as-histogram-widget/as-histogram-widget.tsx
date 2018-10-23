@@ -489,10 +489,6 @@ export class HistogramWidget {
       .attr('class', 'yAxis')
       .attr('transform', `translate(${MARGIN.LEFT}, ${MARGIN.TOP})`)
       .call(this.yAxis);
-
-    this.yAxisSelection
-      .selectAll('text')
-      .attr('fill', '#000');
   }
 
   private _renderXAxis() {
