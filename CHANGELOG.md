@@ -1,5 +1,32 @@
 <a name="0.0.0"></a>
-# [0.0.0](https://github.com/CartoDB/airship/compare/v1.0.0-beta.2...v0.0.0) (2018-10-22)
+# [0.0.0](https://github.com/CartoDB/airship/compare/v1.0.0-beta.4...v0.0.0) (2018-10-23)
+
+
+
+<a name="1.0.0-beta.4"></a>
+# [1.0.0-beta.4](https://github.com/CartoDB/airship/compare/v1.0.0-beta.3...v1.0.0-beta.4) (2018-10-23)
+
+
+### Bug Fixes
+
+* **build:** fixed publishing development assets [#431](https://github.com/CartoDB/airship/issues/431) ([c6d7e8d](https://github.com/CartoDB/airship/commit/c6d7e8d))
+
+
+
+<a name="1.0.0-beta.3"></a>
+# [1.0.0-beta.3](https://github.com/CartoDB/airship/compare/v1.0.0-beta.2...v1.0.0-beta.3) (2018-10-23)
+
+
+### Bug Fixes
+
+* **components:** change docs to reflect the change of defineCustomElements [#428](https://github.com/CartoDB/airship/issues/428) ([5f9a96f](https://github.com/CartoDB/airship/commit/5f9a96f))
+* **icons:** fix decode failure of icons library [#418](https://github.com/CartoDB/airship/issues/418) ([e1dfd9e](https://github.com/CartoDB/airship/commit/e1dfd9e))
+
+
+### BREAKING CHANGES
+
+* **components:** after updating to Stencil 0.13 the location of the components loader has changed.
+Instead of `import { defineCustomElements } from '@carto/airship-components';` you have to use `import { defineCustomElements } from '@carto/airship-components/dist/loader';`
 
 
 

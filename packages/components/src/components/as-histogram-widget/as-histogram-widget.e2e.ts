@@ -8,57 +8,37 @@ xdescribe('as-histogram-widget', () => {
   });
 
   describe('Rendering', () => {
-    it('should render properly', async () => {
-      const element: E2EElement = await page.find('as-histogram-widget');
-      element.setProperty('heading', 'Histogram Widget Example');
-      element.setProperty('description', 'Description for Histogram Widget');
-      element.setProperty('showClear', true);
-      element.setProperty('data', histogramData);
-      await page.waitForChanges();
-
-      expect(element.outerHTML).toMatchSnapshot();
-    });
-
     it('should not render header when showHeader is false', async () => {
       const element: E2EElement = await page.find('as-histogram-widget');
       element.setProperty('heading', 'Histogram Widget Example');
-      element.setProperty('description', 'Description for Histogram Widget');
       element.setProperty('showHeader', false);
       await page.waitForChanges();
 
-      expect(element.outerHTML).toMatchSnapshot();
+      const actual = await page.find('.as-histogram-widget__header');
+
+      expect(actual).toBeFalsy();
     });
 
-    it('should render clear button', async () => {
+    it('should not render clear button when the showCelar attribute is false', async () => {
+      const element: E2EElement = await page.find('as-histogram-widget');
+      element.setProperty('showClear', false);
+      element.setProperty('data', histogramData);
+      await page.waitForChanges();
+
+      const actual = await page.find('.as-histogram-widget__clear');
+
+      expect(actual).toBeFalsy();
+    });
+
+    it('should render clear button when the showCelar attribute is true', async () => {
       const element: E2EElement = await page.find('as-histogram-widget');
       element.setProperty('showClear', true);
       element.setProperty('data', histogramData);
       await page.waitForChanges();
 
-      expect(element.outerHTML).toMatchSnapshot();
-    });
+      const actual = await page.find('.as-histogram-widget__clear');
 
-    it('should render selection properly', async () => {
-      const element: E2EElement = await page.find('as-histogram-widget');
-      element.setProperty('data', histogramData);
-      await page.waitForChanges();
-
-      element.callMethod('setSelection', [[0, 20]]);
-      await page.waitForChanges();
-
-      expect(element.outerHTML).toMatchSnapshot();
-    });
-
-    it('should render colors properly', async () => {
-      const element: E2EElement = await page.find('as-histogram-widget');
-      element.setProperty('color', '#FFAAAA');
-      element.setProperty('selectedColor', '#EEFFFF');
-      element.setProperty('data', histogramData);
-      await page.waitForChanges();
-
-      await element.callMethod('setSelection', [[0, 20]]);
-
-      expect(element.outerHTML).toMatchSnapshot();
+      expect(actual).not.toBeFalsy();
     });
   });
 

@@ -43,7 +43,8 @@ As you can see, **CUSTOM_ELEMENTS_SCHEMA** property comes from `@angular/core` a
 Second, we need to define Airship components in our Angular application by appending these two lines to `main.ts` file.
 
 ```ts
-import { defineCustomElements } from '@carto/airship-components';
+import { defineCustomElements } from '@carto/airship-components/dist/loader';
+
 
 defineCustomElements(window);
 ```

@@ -36,13 +36,16 @@ showSource: false
 ### Props
 
 #### **data**: HistogramData[] = []
-Array of histogram data, each one of which should include a `value`, `start` and `end`.
+Array of histogram data, each one of which should include a `value`, `start` and `end` and an optional `color`.
+ 
+> Color can´t be a named color, use `hex` or `rgb` form instead!
+
 
 ```code
 lang: javascript
 ---
 histogramWidget.data = [
-  { start: 50, end: 60, value: 5 },
+  { start: 50, end: 60, value: 5, color: '#FF0000' },
   { start: 60, end: 70, value: 30 },
   { start: 70, end: 80, value: 45 },
   { start: 80, end: 90, value: 60 },

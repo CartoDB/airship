@@ -53,7 +53,7 @@ You need to call the `defineCustomElements` function (better in the app entry po
 
 
 ```js
-import { defineCustomElements } from '@carto/airship-components';
+import { defineCustomElements } from '@carto/airship-components/dist/loader';
 
 defineCustomElements(window);
 ```
