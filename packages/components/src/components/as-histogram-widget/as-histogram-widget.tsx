@@ -492,7 +492,7 @@ export class HistogramWidget {
 
     this.yAxisSelection
       .selectAll('text')
-      .attr('fill', 'currentColor');
+      .attr('fill', '#000');
   }
 
   private _renderXAxis() {
