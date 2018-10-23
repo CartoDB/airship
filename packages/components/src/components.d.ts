@@ -12,6 +12,15 @@ import {
   HistogramColorRange,
   HistogramData,
 } from './components/as-histogram-widget/interfaces';
+import {
+  RawStackedbarData,
+} from './components/as-stacked-bar-widget/types/RawStackedbarData';
+import {
+  Metadata,
+} from './components/as-stacked-bar-widget/types/Metadata';
+import {
+  LegendData,
+} from './components/common/as-legend/types/LegendData';
 
 
 export namespace Components {
@@ -387,6 +396,75 @@ export namespace Components {
     'onSectionChange'?: (event: CustomEvent<object>) => void;
   }
 
+  interface AsStackedBarWidget {
+    /**
+    * The data that will be drawn.
+    */
+    'data': RawStackedbarData[];
+    /**
+    * Description of the widget to be displayed
+    */
+    'description': string;
+    /**
+    * Easy customize tooltip format
+    */
+    'formatFn': any;
+    /**
+    * Header of the widget to be displayed
+    */
+    'heading': string;
+    /**
+    * Legend data
+    */
+    'metadata': Metadata;
+    /**
+    * Callback executed when the mouse is placed outside a rectangle.
+    */
+    'mouseLeave': any;
+    /**
+    * Callback executed when the mouse is placed over a rectangle.
+    */
+    'mouseOver': any;
+    /**
+    * Boolean flag to control legend visibility. Defaults: true
+    */
+    'showLegend': boolean;
+  }
+  interface AsStackedBarWidgetAttributes extends StencilHTMLAttributes {
+    /**
+    * The data that will be drawn.
+    */
+    'data'?: RawStackedbarData[];
+    /**
+    * Description of the widget to be displayed
+    */
+    'description'?: string;
+    /**
+    * Easy customize tooltip format
+    */
+    'formatFn'?: any;
+    /**
+    * Header of the widget to be displayed
+    */
+    'heading'?: string;
+    /**
+    * Legend data
+    */
+    'metadata'?: Metadata;
+    /**
+    * Callback executed when the mouse is placed outside a rectangle.
+    */
+    'mouseLeave'?: any;
+    /**
+    * Callback executed when the mouse is placed over a rectangle.
+    */
+    'mouseOver'?: any;
+    /**
+    * Boolean flag to control legend visibility. Defaults: true
+    */
+    'showLegend'?: boolean;
+  }
+
   interface AsSwitch {
     /**
     * Boolean flag to control if the input is checked or not
@@ -427,6 +505,61 @@ export namespace Components {
     */
     'onChange'?: (event: CustomEvent) => void;
   }
+
+  interface AsLegend {
+    /**
+    * Data to be displayed by the legend
+    */
+    'data': LegendData;
+  }
+  interface AsLegendAttributes extends StencilHTMLAttributes {
+    /**
+    * Data to be displayed by the legend
+    */
+    'data'?: LegendData;
+  }
+
+  interface AsWidgetHeader {
+    /**
+    * Main title
+    */
+    'header': string;
+    /**
+    * Secondary title
+    */
+    'subheader': string;
+  }
+  interface AsWidgetHeaderAttributes extends StencilHTMLAttributes {
+    /**
+    * Main title
+    */
+    'header'?: string;
+    /**
+    * Secondary title
+    */
+    'subheader'?: string;
+  }
+
+  interface AsYAxis {
+    /**
+    * Lower limit of the axis
+    */
+    'from': number;
+    /**
+    * Upper limit of the axis
+    */
+    'to': number;
+  }
+  interface AsYAxisAttributes extends StencilHTMLAttributes {
+    /**
+    * Lower limit of the axis
+    */
+    'from'?: number;
+    /**
+    * Upper limit of the axis
+    */
+    'to'?: number;
+  }
 }
 
 declare global {
@@ -439,7 +572,11 @@ declare global {
     'AsRangeSliderThumb': Components.AsRangeSliderThumb;
     'AsRangeSliderBar': Components.AsRangeSliderBar;
     'AsResponsiveContent': Components.AsResponsiveContent;
+    'AsStackedBarWidget': Components.AsStackedBarWidget;
     'AsSwitch': Components.AsSwitch;
+    'AsLegend': Components.AsLegend;
+    'AsWidgetHeader': Components.AsWidgetHeader;
+    'AsYAxis': Components.AsYAxis;
   }
 
   interface StencilIntrinsicElements {
@@ -451,7 +588,11 @@ declare global {
     'as-range-slider-thumb': Components.AsRangeSliderThumbAttributes;
     'as-range-slider-bar': Components.AsRangeSliderBarAttributes;
     'as-responsive-content': Components.AsResponsiveContentAttributes;
+    'as-stacked-bar-widget': Components.AsStackedBarWidgetAttributes;
     'as-switch': Components.AsSwitchAttributes;
+    'as-legend': Components.AsLegendAttributes;
+    'as-widget-header': Components.AsWidgetHeaderAttributes;
+    'as-y-axis': Components.AsYAxisAttributes;
   }
 
 
@@ -503,10 +644,34 @@ declare global {
     new (): HTMLAsResponsiveContentElement;
   };
 
+  interface HTMLAsStackedBarWidgetElement extends Components.AsStackedBarWidget, HTMLStencilElement {}
+  var HTMLAsStackedBarWidgetElement: {
+    prototype: HTMLAsStackedBarWidgetElement;
+    new (): HTMLAsStackedBarWidgetElement;
+  };
+
   interface HTMLAsSwitchElement extends Components.AsSwitch, HTMLStencilElement {}
   var HTMLAsSwitchElement: {
     prototype: HTMLAsSwitchElement;
     new (): HTMLAsSwitchElement;
+  };
+
+  interface HTMLAsLegendElement extends Components.AsLegend, HTMLStencilElement {}
+  var HTMLAsLegendElement: {
+    prototype: HTMLAsLegendElement;
+    new (): HTMLAsLegendElement;
+  };
+
+  interface HTMLAsWidgetHeaderElement extends Components.AsWidgetHeader, HTMLStencilElement {}
+  var HTMLAsWidgetHeaderElement: {
+    prototype: HTMLAsWidgetHeaderElement;
+    new (): HTMLAsWidgetHeaderElement;
+  };
+
+  interface HTMLAsYAxisElement extends Components.AsYAxis, HTMLStencilElement {}
+  var HTMLAsYAxisElement: {
+    prototype: HTMLAsYAxisElement;
+    new (): HTMLAsYAxisElement;
   };
 
   interface HTMLElementTagNameMap {
@@ -518,7 +683,11 @@ declare global {
     'as-range-slider-thumb': HTMLAsRangeSliderThumbElement
     'as-range-slider-bar': HTMLAsRangeSliderBarElement
     'as-responsive-content': HTMLAsResponsiveContentElement
+    'as-stacked-bar-widget': HTMLAsStackedBarWidgetElement
     'as-switch': HTMLAsSwitchElement
+    'as-legend': HTMLAsLegendElement
+    'as-widget-header': HTMLAsWidgetHeaderElement
+    'as-y-axis': HTMLAsYAxisElement
   }
 
   interface ElementTagNameMap {
@@ -530,7 +699,11 @@ declare global {
     'as-range-slider-thumb': HTMLAsRangeSliderThumbElement;
     'as-range-slider-bar': HTMLAsRangeSliderBarElement;
     'as-responsive-content': HTMLAsResponsiveContentElement;
+    'as-stacked-bar-widget': HTMLAsStackedBarWidgetElement;
     'as-switch': HTMLAsSwitchElement;
+    'as-legend': HTMLAsLegendElement;
+    'as-widget-header': HTMLAsWidgetHeaderElement;
+    'as-y-axis': HTMLAsYAxisElement;
   }
 
 

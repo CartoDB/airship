@@ -1,0 +1,17 @@
+@import '../../../../../styles/src/core/dev';
+
+as-widget-header {
+  --widget--header-color: #{$color-type-01};
+  --widget--subheader-color: #{$color-type-02};
+
+  .as-widget-header__header {
+    margin: 0;
+    color: var(--widget--header-color, #2C2C2C);
+    font: $font-subheader;
+  }
+
+  .as-widget-header__subheader {
+    margin-bottom: 16px;
+    color: var(--widget--subheader-color, #F4F4F4);
+  }
+}
