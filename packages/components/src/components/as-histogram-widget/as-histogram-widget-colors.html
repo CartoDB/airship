@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+    <base href="/">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+    <title>Airship</title>
+    <link rel="stylesheet" href="/dist/airship.css">
+    <script src="/build/airship.js"></script>
+  </head>
+
+  <body>
+    <div style="width: 250px;">
+      <as-histogram-widget
+        show-clear
+        heading="Business Volume"
+        description="Description">
+      </as-histogram-widget>
+    </div>
+
+    <script>
+      var histogramWidget = document.querySelector('as-histogram-widget');
+      histogramWidget.data = [
+        { start: 0, end: 10, value: 1050, color: '#FF0000' },
+        { start: 10, end: 20, value: 1150, color: '#00FF00' },
+        { start: 20, end: 30, value: 1250, color: 'rgb(0, 0, 255)' },
+        { start: 30, end: 40, value: 1350, color: 'rgba(0, 0, 0, 0.5)'},
+        { start: 40, end: 50, value: 2000 },
+      ];
+    </script>
+  </body>
+</html>
