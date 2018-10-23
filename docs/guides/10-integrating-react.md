@@ -43,7 +43,8 @@ npm i @carto/airship-components
 In the entry point of your application call `defineCustomElements` passing `window` as a parameter. Once you do this, all Airship components will be available.
 
 ```js
-import { defineCustomElements } from '@carto/airship-components';
+import { defineCustomElements } from '@carto/airship-components/dist/loader';
+
 defineCustomElements(window);
 ```
 

@@ -42,7 +42,8 @@ Vue.config.ignoredElements = [/as-\w+/];
 Second, we need to import and define our Airship components. As we did before with Airship styles, we import them from npm, and then we need to execute `defineCustomElements` function.
 
 ```js
-import { defineCustomElements } from '@carto/airship-components';
+import { defineCustomElements } from '@carto/airship-components/dist/loader';
+
 defineCustomElements(window);
 ```
 
