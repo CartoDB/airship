@@ -16,7 +16,7 @@ Let's start from scratch creating an empty `index.html` file with this scaffoldi
       <meta name="viewport" content="width=device-width,initial-scale=1.0">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
   </head>
-   <body class="as-app"></body>
+   <body class="as-app-body"></body>
 </html>
 ```
 
@@ -58,16 +58,18 @@ An airship app always has a container for our main content with `.as-content` cl
 In this case we add a `as-map-area` where the map will be displayed and a `as-sidebar` to contain our widgets.
 
  ```html
-<div class="as-content">
-  <main class="as-main">
-    <div class="as-map-area">
-      <div id="map"></div>
-    </div>
-  </main>
-  <aside class="as-sidebar as-sidebar--right">
+<div class="as-app">
+  <div class="as-content">
+    <main class="as-main">
+      <div class="as-map-area">
+        <div id="map"></div>
+      </div>
+    </main>
+    <aside class="as-sidebar as-sidebar--right">
 
-  </aside>
+    </aside>
   </div>
+</div>
 ```
 
 

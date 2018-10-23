@@ -31,29 +31,31 @@ The easiest way to include Airship is through our CDN, adding the tags in the he
   <!-- Include Mapbox GL CSS -->
   <link href="https://libs.cartocdn.com/mapbox-gl/v0.48.0-carto1/mapbox-gl.css" rel="stylesheet" />
 </head>
-<body class="as-app">
+<body class="as-app-body">
 
-  <header class="as-toolbar"></header>
-  <nav class="as-tabs"></nav>
+  <div class="as-app">
+    <header class="as-toolbar"></header>
+    <nav class="as-tabs"></nav>
 
-  <div class="as-content">
-    <aside class="as-sidebar as-sidebar--left"></aside>
+    <div class="as-content">
+      <aside class="as-sidebar as-sidebar--left"></aside>
 
-    <main class="as-main">
-      <div class="as-map-area">
-        <div id="map"></div>
+      <main class="as-main">
+        <div class="as-map-area">
+          <div id="map"></div>
 
-        <div class="as-map-panels">
-          <div class="as-panel as-panel--top as-panel--right">
-            <div class="as-panel__element as-p--32 as-bg--support-02"></div>
+          <div class="as-map-panels">
+            <div class="as-panel as-panel--top as-panel--right">
+              <div class="as-panel__element as-p--32 as-bg--support-02"></div>
+            </div>
           </div>
+
         </div>
+        <footer class="as-map-footer as-bg--complementary" style="height: 100px;"></footer>
+      </main>
 
-      </div>
-      <footer class="as-map-footer as-bg--complementary" style="height: 100px;"></footer>
-    </main>
-
-    <aside class="as-sidebar as-sidebar--right"></aside>
+      <aside class="as-sidebar as-sidebar--right"></aside>
+    </div>
   </div>
 
   <!-- CARTO basemap -->

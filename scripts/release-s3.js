@@ -31,6 +31,10 @@ function shouldZip (ext) {
   return true;
 }
 
+function needsUTF8 (ext) {
+  return (ext !== '.ttf' && ext !== '.woff');
+}
+
 function log (what) {
   if (!VERBOSE) {
     return;
@@ -112,10 +116,10 @@ async function uploadAllFiles (dir, version, destination, subfolder='') {
       let fileContent;
       let ratio = 0;
 
-      objectConfig.ContentType = mime.getType(filePath);
+      objectConfig.ContentType = `${mime.getType(filePath)}${needsUTF8(extension) ? '; charset=utf-8' : ''}`;
 
       try {
-        fileContent = await readFile(filePath, { encoding: 'utf8' });
+        fileContent = await readFile(filePath, needsUTF8(extension) ? { encoding: 'utf8' } : {});
         fileLength = fileContent.length;
 
         if (shouldZip(extension)) {

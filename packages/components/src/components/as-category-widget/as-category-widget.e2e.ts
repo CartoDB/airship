@@ -105,27 +105,6 @@ describe('as-category-widget', () => {
 
       expect(categoriesSelectedSpy).toHaveReceivedEventDetail([]);
     });
-
-    it('should clear the selectedCategories when the category list is changed', async () => {
-      const element: E2EElement = await page.find('as-category-widget');
-      element.setProperty('categories', exampleCategories);
-      element.setProperty('showClearButton', true);
-
-      await page.waitForChanges();
-
-      const categoryElement = await page.find('.as-category-widget__category');
-      categoryElement.click();
-      await page.waitForChanges();
-
-      const firstResult = await element.callMethod('getSelectedCategories');
-      expect(firstResult).toEqual([exampleCategories[0].name]);
-
-      element.setProperty('categories', [{ name: 'foo', value: 10 }]);
-      await page.waitForChanges();
-
-      const secondResult = await element.callMethod('getSelectedCategories');
-      expect(secondResult).toEqual([]);
-    });
   });
 });
 

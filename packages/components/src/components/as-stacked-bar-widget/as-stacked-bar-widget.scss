@@ -1,0 +1,34 @@
+@import '../../../../styles/src/core/_dev';
+@import '../../../../styles/src/tooltip/tooltip';
+
+as-stacked-bar-widget {
+  --stacked-bar-widget-background-color: var(--widget-background-color, #{$color-ui-01});
+
+  display: block;
+  width: 100%;
+  max-height: 100%;
+  overflow: auto;
+  background: var(--stacked-bar-widget-background-color, #FFF);
+
+  svg {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 100px;
+    max-height: 40%;
+    padding: 18px 8px 17px 30px;
+    overflow: visible;
+
+    .plot {
+      rect {
+        cursor: pointer;
+      }
+    }
+  }
+
+  [role="tooltip"] {
+    display: none;
+    position: fixed;
+    transform: translate(-50%, -120%);
+    pointer-events: none;
+  }
+}

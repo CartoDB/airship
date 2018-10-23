@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+  <base href="/">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+  <title>Airship</title>
+  <link rel="stylesheet" href="../../../packages/styles/dist/airship.css">
+  <script src="../../../packages/components/dist/airship.js"></script>
+  <style>
+    body {
+      background: #F2F2F2;
+    }
+
+    section {
+      width: 40%;
+      margin: 30px auto;
+    }
+
+  </style>
+</head>
+
+<body>
+  <section>
+    <as-stacked-bar-widget id="widget-0" show-legend="true" heading="Star Wars Revenue" description="Description"></as-stacked-bar-widget>
+  </section>
+
+  <script>
+    const widget0 = document.querySelector('as-stacked-bar-widget');
+    widget0.formatFn = function (value) {
+      return `${value.toLocaleString()}€`;
+    }
+
+    widget0.data = [{
+        category: 'Star Wars Ep. IV: A New Hope',
+        values: {
+          dvd: 27229125,
+          blue: 3555058,
+        }
+      },
+      {
+        category: 'Star Wars Ep. V: The Empire Strikes Back',
+        values: {
+          dvd: 24928640,
+          blue: 2738207,
+        },
+      },
+      {
+        category: 'Star Wars Ep. VI: Return of the Jedi',
+        values: {
+          dvd: 23786454,
+          blue: 1908593,
+        }
+      }
+    ];
+
+    widget0.metadata = {
+      dvd: {
+        label: 'Domestic DVD Sales',
+        color: '#33ACEE'
+      },
+      blue: {
+        label: 'Domestic Blu-ray Sales',
+        color: '#EEC649'
+      }
+    }
+
+  </script>
+</body>
+
+</html>

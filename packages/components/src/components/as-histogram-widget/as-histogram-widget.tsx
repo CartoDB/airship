@@ -318,14 +318,14 @@ export class HistogramWidget {
             clientY <= bb.bottom;
 
           if (isInsideBB) {
-            let color = selected ? this._toColor(this.selectedColor) : this._toColor(this.color);
+            let color = selected ? this._toColor(this.selectedColor) : data.color || this._toColor(this.color);
             color = shadeOrBlend(-0.16, color);
             nodeSelection.style('fill', color);
             this.tooltip = this.tooltipFormatter(data);
             this._showTooltip(evt);
             anyHovered = true;
           } else {
-            nodeSelection.style('fill', selected ? this.selectedColor : this.color);
+            nodeSelection.style('fill', selected ? this.selectedColor : data.color || this.color);
           }
         });
 
@@ -336,7 +336,12 @@ export class HistogramWidget {
       .on('mouseout', () => {
         this.tooltip = null;
         this.barsContainer.selectAll('rect')
-          .style('fill', (data: HistogramData) => this._isSelected(data) ? this.selectedColor : this.color);
+          .style('fill', (data: HistogramData) => {
+            if (this._isSelected(data)) {
+              return this.selectedColor;
+            }
+            return data.color || this.color;
+          });
       });
 
     this._renderBars();
@@ -443,7 +448,11 @@ export class HistogramWidget {
 
   private _updateHandles(values: number[] | null) {
     if (values === null) {
-      this.barsContainer.selectAll('rect').style('fill', this.color);
+      this.barsContainer.selectAll('rect')
+        .style('fill', (_d, i) => {
+          const d = this.data[i];
+          return d.color || this.color;
+        });
       this.brushArea.call(this.brush.move, null);
 
       return;
@@ -465,7 +474,10 @@ export class HistogramWidget {
     this.barsContainer.selectAll('.bar')
       .style('fill', (_d, i) => {
         const d = this.data[i];
-        return (values[0] <= d.start && d.end <= values[1]) ? this.selectedColor : this.color;
+        if ((values[0] <= d.start && d.end <= values[1])) {
+          return this.selectedColor;
+        }
+        return d.color || this.color;
       });
   }
 
@@ -537,7 +549,7 @@ export class HistogramWidget {
       .attr('x', (_d: HistogramData, index: number) => index * barWidth)
       .attr('width', () => Math.max(0, barWidth - BARS_SEPARATION))
       .attr('height', 0)
-      .style('fill', this.color)
+      .style('fill', (d: HistogramData) => d.color || this.color)
       .transition()
       .delay(200)
       .attr('y', (d: HistogramData) => this.yScale(d.value))
