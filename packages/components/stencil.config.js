@@ -10,7 +10,6 @@ exports.config = {
     {
       type: 'www',
       serviceWorker: false,
-      empty: true,
       dir: path.join(__dirname, '../../www')
     }
   ],
