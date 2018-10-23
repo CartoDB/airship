@@ -53,7 +53,7 @@
     }
 
     &:enabled:active {
-      background-color: var(--as-button-primary-color-focus, darken($color-primary, 40%));
+      background-color: var(--as-button-primary-color-active, darken($color-primary, 40%));
     }
   }
 
@@ -67,7 +67,7 @@
     }
 
     &:enabled:active {
-      background-color: var(--as-button-secondary-color-active, darken($color-ui-01, 10%));
+      background-color: var(--as-button-secondary-color-active, darken($color-ui-01, 12%));
     }
   }
 
@@ -105,13 +105,13 @@ a.as-btn.as-btn--primary {
   }
 
   &:active {
-    background-color: var(--as-button-primary-color-focus, darken($color-primary, 40%));
+    background-color: var(--as-button-primary-color-active, darken($color-primary, 40%));
   }
 }
 
 a.as-btn.as-btn--secondary {
   &:hover {
-    background-color: var(--as-button-secondary-color-active, darken($color-ui-01, 10%));
+    background-color: var(--as-button-secondary-color-focus, darken($color-ui-01, 10%));
   }
 
   &:active {

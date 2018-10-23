@@ -45,29 +45,30 @@ We provide some responsive utilities by default, for example `sidebars` are hidd
   <!-- Include airship components -->
   <script src="https://libs.cartocdn.com/airship-components/%AS-VERSION%/airship.js"></script>
 </head>
-<body class="as-app">
+<body class="as-app-body">
+  <div class="as-app">
+    <header class="as-toolbar"></header>
+    <nav class="as-tabs"></nav>
 
-  <header class="as-toolbar"></header>
-  <nav class="as-tabs"></nav>
+    <div class="as-content">
+      <aside class="as-sidebar as-sidebar--left"></aside>
 
-  <div class="as-content">
-    <aside class="as-sidebar as-sidebar--left"></aside>
+      <main class="as-main">
+        <div class="as-map-area">
+          <div id="map"></div>
 
-    <main class="as-main">
-      <div class="as-map-area">
-        <div id="map"></div>
-
-        <div class="as-map-panels">
-          <div class="as-panel as-panel--top as-panel--right">
-            <div class="as-panel__element as-p--32 as-bg--support-02"></div>
+          <div class="as-map-panels">
+            <div class="as-panel as-panel--top as-panel--right">
+              <div class="as-panel__element as-p--32 as-bg--support-02"></div>
+            </div>
           </div>
+
         </div>
+        <footer class="as-map-footer as-bg--complementary" style="height: 100px;"></footer>
+      </main>
 
-      </div>
-      <footer class="as-map-footer as-bg--complementary" style="height: 100px;"></footer>
-    </main>
-
-    <aside class="as-sidebar as-sidebar--right"></aside>
+      <aside class="as-sidebar as-sidebar--right"></aside>
+    </div>
   </div>
 
   <!-- Basic CARTO-VL MAP -->

@@ -9,17 +9,17 @@ Check out [our guides](/developers/airship/guides/introduction) if you want to k
 
 Reference is divided into four main sections: Layout, Components, Styles, and Icons.
 
-- [Layout](/developers/airship/reference/#/layout)
+- [Layout](/layout)
   Reference of all layout elements that will help you to create LI apps.
 
 
-- [Components](/developers/airship/reference/#/components/category-widget)
+- [Components](/components/category-widget)
   Reference of all Airship components to use within your application layout.
 
 
-- [Styles](/developers/airship/reference/#/styles/avatar)
+- [Styles](/styles/avatar)
   Reference of CSS classes that you can use to craft UI elements within your application.
 
 
-- [Icons](/developers/airship/reference/#/icons/icons)
+- [Icons](/icons/icons)
   Reference of the Airship icon set.

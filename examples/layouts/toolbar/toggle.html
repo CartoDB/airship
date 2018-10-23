@@ -29,29 +29,31 @@
 
 </script>
 
-<body class="as-app as-app--nav-top">
-  <header class="as-toolbar">
-    <button onclick="toggleDrawer()" class="as-toolbar__item as-toolbar__toggle">
-      <i class="as-icon-hamburguer as-title as-m--0"></i>
-    </button>
-    <div href="#" class="as-toolbar__item">LOGO</div>
-    <nav class="as-toolbar__actions">
-      <ul>
-        <li>
-          <a href="#" class="as-toolbar__item">Link 1</a>
-        </li>
-        <li>
-          <a href="#" class="as-toolbar__item">Link 2</a>
-        </li>
-      </ul>
-    </nav>
-  </header>
+<body class="as-app-body">
+  <div class="as-app as-app--nav-top">
+    <header class="as-toolbar">
+      <button onclick="toggleDrawer()" class="as-toolbar__item as-toolbar__toggle">
+        <i class="as-icon-hamburguer as-title as-m--0"></i>
+      </button>
+      <div href="#" class="as-toolbar__item">LOGO</div>
+      <nav class="as-toolbar__actions">
+        <ul>
+          <li>
+            <a href="#" class="as-toolbar__item">Link 1</a>
+          </li>
+          <li>
+            <a href="#" class="as-toolbar__item">Link 2</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
 
-  <main class="as-app-content">
-    <div class="as-map-wrapper">
-      <div id="map"></div>
-    </div>
-  </main>
+    <main class="as-app-content">
+      <div class="as-map-wrapper">
+        <div id="map"></div>
+      </div>
+    </main>
+  </div>
 
   <script defer src="../common/map.js"></script>
   <script defer src="../common/tabs.js"></script>

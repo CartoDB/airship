@@ -141,9 +141,9 @@ The `as-btn` class can be used on the following Html Elements:
 showSource: true
 ---
 <h1 class="as-title">Link</h1>
-<a href="˝#" class="as-btn"> Link button </a>
-<a href="˝#" class="as-btn as-btn--primary "> Link button primary </a>
-<a href="˝#" class="as-btn as-btn--secondary "> Link button secondary </a>
+<a href="#" class="as-btn"> Link button </a>
+<a href="#" class="as-btn as-btn--primary "> Link button primary </a>
+<a href="#" class="as-btn as-btn--secondary "> Link button secondary </a>
 <h1 class="as-title">Input</h1>
 <input type="button" value="Input button" class="as-btn"/>
 <input type="button" value="Input button primary" class="as-btn as-btn--primary"/>

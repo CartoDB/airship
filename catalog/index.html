@@ -28,10 +28,9 @@
   <script src="../packages/components/dist/airship.js"></script>
   <script src="../packages/styles/dist/airship.css"></script>
 
-
   <script>
-    function sendMessage (message) {
-      window.parent.postMessage(message, '*');
+    function sendMessage (url) {
+      window.parent.postMessage({ key: 'airship-docs', url: url }, '*');
     }
 
     window.onhashchange = function (event) {
@@ -40,7 +39,7 @@
 
     window.onclick = function (event) {
       var target = event && event.target;
-      if (target && target.nodeName && target.nodeName.toUpperCase() === "A") {
+      if (target && target.nodeName && target.nodeName.toUpperCase() === 'A') {
         if (target.href && target.href.indexOf('#') < 0) {
           sendMessage(target.href);
         }
