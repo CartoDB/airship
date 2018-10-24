@@ -3,16 +3,13 @@ const sass = require('@stencil/sass');
 
 exports.config = {
   namespace: 'airship',
-  copy: [{ src: 'components/**/*.html' }],
+  copy: [{
+    src: 'components/**/*.html'
+  }],
   globalStyle: path.join(__dirname, '../styles/src/core/_dev.scss'),
-  outputTargets:[
-    { type: 'dist' },
-    {
-      type: 'www',
-      serviceWorker: false,
-      dir: path.join(__dirname, '../../www')
-    }
-  ],
+  outputTargets: [{
+    type: 'dist'
+  }],
   plugins: [
     sass({
       outFile: path.join(__dirname, '.generated-styles'),

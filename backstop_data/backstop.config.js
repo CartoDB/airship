@@ -45,7 +45,7 @@ const report = {
   report: process.env.CI ? ['ci'] : ['browser']
 };
 
-const specs = glob.sync(path.resolve(__dirname, 'packages/styles/src', '**/*.spec.js'));
+const specs = glob.sync(path.resolve(__dirname, '../packages/styles/src', '**/*.spec.js'));
 
 const specDefinitions = specs.reduce((accum, spec) => {
   const files = require(spec);
