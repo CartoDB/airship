@@ -54,7 +54,6 @@
     "access": "public"
   },
   "dependencies": {
-    "conventional-changelog-cli": "^2.0.1",
     "d3-array": "^1.2.1",
     "d3-axis": "^1.0.8",
     "d3-brush": "^1.0.4",
