@@ -20,7 +20,7 @@
     "zlib": "^1.0.5"
   },
   "scripts": {
-    "build:styles": "lerna exec --scope @carto/airship-style -- npm run build",
+    "build:styles": "lerna exec --scope @carto/airship-style npm run build",
     "build": "lerna run --parallel build",
     "changelog": "git fetch && conventional-changelog -p angular -o CHANGELOG.md -r 0 && git add CHANGELOG.md && git commit -m \"Update CHANGELOG.md\"",
     "dev": "rimraf www && concurrently 'lerna run --parallel dev' 'node ./scripts/copy-styles-html-to-www.js' --kill-others",
@@ -30,12 +30,12 @@
     "publish": "npm install && npm run test && npm run build && lerna publish && ./release.sh",
     "serve": "lerna run --parallel serve",
     "showcase": "npm run build && concurrently 'serve' 'open http://localhost:5000/catalog'",
+    "test:build:references": "npm run build:styles && docker run --rm -v $(pwd):/src backstopjs/backstopjs reference --i --configPath=backstop.config.js",
     "test:components:watch": "lerna exec --scope @carto/airship-components -- npm run test:watch",
     "test:components": "lerna exec --scope @carto/airship-components -- npm run test",
-    "test:styles": "npm run build:styles && docker run --rm -v $(pwd):/src backstopjs/backstopjs test --configPath=backstop.config.js; open ./backstop_data/html_report/index.html",
-    "test:styles:ci": "backstop test --configPath=backstop.config.js",
-    "test:build:references": "npm run build:styles && docker run --rm -v $(pwd):/src backstopjs/backstopjs reference --i --configPath=backstop.config.js",
     "test:reset:references": "docker run --rm -v $(pwd):/src backstopjs/backstopjs reference --configPath=backstop.config.js",
+    "test:styles:ci": "backstop test --configPath=backstop.config.js",
+    "test:styles": "npm run build:styles && docker run --rm -v $(pwd):/src backstopjs/backstopjs test --configPath=backstop.config.js; open ./backstop_data/html_report/index.html",
     "test:watch": "lerna run --parallel test:watch",
     "test": "npm run lint && npm run test:components && npm run test:styles"
   }
