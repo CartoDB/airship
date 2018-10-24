@@ -1,2 +1,2 @@
-<issue-code>
+Fix #<issue-code>
 ---
