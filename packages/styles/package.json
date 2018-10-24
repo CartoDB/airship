@@ -18,7 +18,7 @@
     "build": "npm run build:min && npm run build:css && node scripts/add-banner.js",
     "build:css": "node-sass src -o dist",
     "build:min": "node-sass src -o dist --output-style compressed && sh scripts/rename-css-files.sh",
-    "dev": "sass --watch src:../../www/dist src:dist",
+    "dev": "sass --watch src:dist",
     "lint:fix": "stylelint 'src/**/*.scss' --fix",
     "lint": "stylelint 'src/**/*.scss'"
   },
