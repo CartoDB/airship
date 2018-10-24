@@ -25,7 +25,7 @@
     "lint": "lerna run lint",
     "postinstall": "lerna bootstrap --hoist",
     "publish": "npm install && npm run test && npm run build && lerna publish && ./release.sh",
-    "serve": "serve",
+    "serve": "serve && open http://localhost:5000",
     "test:components:watch": "lerna exec --scope @carto/airship-components -- npm run test:watch",
     "test:components": "lerna exec --scope @carto/airship-components npm run test",
     "test:styles:build-references": "npm run build:styles && docker run --rm -v $(pwd):/src backstopjs/backstopjs reference --i --configPath=backstop.config.js",
