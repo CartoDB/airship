@@ -17,13 +17,12 @@
     "lint:fix": "npm run lint:css:fix",
     "lint:ts": "tslint -c tslint.json src/components/**/*.{ts,tsx}",
     "lint": "npm run lint:ts && npm run lint:css",
-    "serve": "serve -p 5001",
-    "test": "stencil test --spec --e2e",
-    "test:watch": "stencil test --spec --e2e --watch",
-    "test:unit": "stencil test --spec",
-    "test:unit:watch": "stencil test --spec --watch",
-    "test:e2e": "stencil test --e2e",
-    "test:e2e:watch": "stencil test --e2e --watch"
+    "test": "npm run build && stencil test --spec --e2e",
+    "test:watch": "npm run build &&  stencil test --spec --e2e --watch",
+    "test:unit": "npm run build &&  stencil test --spec",
+    "test:unit:watch": "npm run build &&  stencil test --spec --watch",
+    "test:e2e": "npm run build &&  stencil test --e2e",
+    "test:e2e:watch": "npm run build &&  stencil test --e2e --watch"
   },
   "devDependencies": {
     "@stencil/core": "0.13.2",

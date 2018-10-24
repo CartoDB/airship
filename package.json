@@ -17,6 +17,7 @@
     "zlib": "^1.0.5"
   },
   "scripts": {
+    "build:components": "lerna exec --scope @carto/airship-components npm run build",
     "build:styles": "lerna exec --scope @carto/airship-style npm run build",
     "build": "lerna run --parallel build",
     "changelog": "git fetch && conventional-changelog -p angular -o CHANGELOG.md -r 0 && git add CHANGELOG.md && git commit -m \"Update CHANGELOG.md\"",
