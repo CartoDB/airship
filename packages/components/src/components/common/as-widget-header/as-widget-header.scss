@@ -3,6 +3,11 @@
 as-widget-header {
   --widget--header-color: #{$color-type-01};
   --widget--subheader-color: #{$color-type-02};
+  --widget--subheader-color-loadig: var(--as-color-primary, #{$color-primary});
+  --widget--subheader-color-error: var(--as-color-support-01, #{$color-support-01});
+  --widget--subheader-color-empty: var(--as-color-support-02, #{$color-support-02});
+
+  display: block;
 
   .as-widget-header__header {
     margin: 0;
@@ -13,5 +18,17 @@ as-widget-header {
   .as-widget-header__subheader {
     margin-bottom: 16px;
     color: var(--widget--subheader-color, #F4F4F4);
+
+    &--error {
+      color: var(--widget--subheader-color-error, #F3522B);
+    }
+
+    &--empty {
+      color: var(--widget--subheader-color-empty, #FDB32B);
+    }
+
+    &--loading {
+      color: var(--widget--subheader-color-loading, #1785FB);
+    }
   }
 }

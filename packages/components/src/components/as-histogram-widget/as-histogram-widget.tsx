@@ -637,10 +637,8 @@ export class HistogramWidget {
       return;
     }
 
-    return [
-      <h2 class='as-histogram-widget__header'>{this.heading}</h2>,
-      <p class='as-histogram-widget__description as-body'>{this.description}</p>,
-    ];
+    return <as-widget-header header={this.heading} subheader={this.description}></as-widget-header>;
+
   }
 
   private _renderTooltip() {

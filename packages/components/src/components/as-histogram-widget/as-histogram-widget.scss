@@ -7,16 +7,6 @@ as-histogram-widget {
   width: 100%;
   background: var(--histogram-widget--background-color, $color-ui-01);
 
-  .as-histogram-widget__header {
-    margin: 0;
-    font: $font-subheader;
-  }
-
-  .as-histogram-widget__description {
-    margin-bottom: get-spacing(4);
-    color: var(--histogram-widget--description-color, $color-type-02);
-  }
-
   .as-histogram-widget__wrapper {
     position: relative;
   }

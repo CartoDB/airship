@@ -537,9 +537,21 @@ export namespace Components {
 
   interface AsWidgetHeader {
     /**
+    * Indicates if the widget has some errors and display the text in the subheader
+    */
+    'error': string;
+    /**
     * Main title
     */
     'header': string;
+    /**
+    * Indicates if the widget has no data
+    */
+    'isEmpty': boolean;
+    /**
+    * Indicates if the widget isLoading
+    */
+    'isLoading': boolean;
     /**
     * Secondary title
     */
@@ -547,9 +559,21 @@ export namespace Components {
   }
   interface AsWidgetHeaderAttributes extends StencilHTMLAttributes {
     /**
+    * Indicates if the widget has some errors and display the text in the subheader
+    */
+    'error'?: string;
+    /**
     * Main title
     */
     'header'?: string;
+    /**
+    * Indicates if the widget has no data
+    */
+    'isEmpty'?: boolean;
+    /**
+    * Indicates if the widget isLoading
+    */
+    'isLoading'?: boolean;
     /**
     * Secondary title
     */
