@@ -1,5 +1,10 @@
 <a name="0.0.0"></a>
-# [0.0.0](https://github.com/CartoDB/airship/compare/v1.0.0-beta.4...v0.0.0) (2018-10-23)
+# [0.0.0](https://github.com/CartoDB/airship/compare/v1.0.0-beta.5...v0.0.0) (2018-10-24)
+
+
+
+<a name="1.0.0-beta.5"></a>
+# [1.0.0-beta.5](https://github.com/CartoDB/airship/compare/v1.0.0-beta.4...v1.0.0-beta.5) (2018-10-24)
 
 
 
