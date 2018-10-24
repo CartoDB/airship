@@ -28,10 +28,10 @@
     "serve": "serve && open http://localhost:5000",
     "test:components:watch": "lerna exec --scope @carto/airship-components -- npm run test:watch",
     "test:components": "lerna exec --scope @carto/airship-components npm run test",
-    "test:styles:build-references": "npm run build:styles && docker run --rm -v $(pwd):/src backstopjs/backstopjs reference --i --configPath=backstop.config.js",
-    "test:styles:ci": "backstop test --configPath=backstop.config.js",
-    "test:styles:reset-references": "docker run --rm -v $(pwd):/src backstopjs/backstopjs reference --configPath=backstop.config.js",
-    "test:styles": "npm run build:styles && docker run --rm -v $(pwd):/src backstopjs/backstopjs test --configPath=backstop.config.js; open ./backstop_data/html_report/index.html",
+    "test:styles:build-references": "npm run build:styles && docker run --rm -v $(pwd):/src backstopjs/backstopjs reference --i --configPath=backstop_data/backstop.config.js",
+    "test:styles:ci": "backstop test --configPath=backstop_data/backstop.config.js",
+    "test:styles:reset-references": "docker run --rm -v $(pwd):/src backstopjs/backstopjs reference --configPath=backstop_data/backstop.config.js",
+    "test:styles": "npm run build:styles && docker run --rm -v $(pwd):/src backstopjs/backstopjs test --configPath=backstop_data/backstop.config.js; open ./backstop_data/html_report/index.html",
     "test:watch": "lerna run --parallel test:watch",
     "test": "npm run lint && npm run test:components && npm run test:styles"
   }
