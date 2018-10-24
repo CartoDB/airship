@@ -1,6 +1,22 @@
 # Developer Notes
 
-## Continuous Integration
+- [Project structure](#project-structure)
+- [Testing](#testing)
+- [Commit style](#commit-style)
+- [Releasing a new version](#releasing-a-new-version)
+- [Changelog](#changelog)
+
+
+## Project structure
+
+This is a [Lerna](https://lernajs.io/) [monorepo](https://en.wikipedia.org/wiki/Monorepo) composed of 3 node packages in the `packages`.
+
+## Testing
+
+- `airship-styles` are tested using [BackstopJS](https://github.com/garris/BackstopJS) using Docker both in CI and locally to have consistent results.
+- `airship-components` are build using [stenciljs](http://stenciljs.com) and have 2 types of tests: `unit` and `e2e`.
+
+### Continuous Integration
 We're using CircleCI as our Continuous Integration server. It currently runs several jobs after each commit at github, to run lint and unit tests for 'components' and 'styles' (see `.circleci/config.yml` for more details).
 
 
@@ -49,14 +65,30 @@ To run locally the visual regression test, type `npm run test:styles`. When fini
 `circleci build --job test-unit:components` or `circleci build --job test-unit:styles`
 - It seems it is not possible (yet) to run locally the whole workflow
 
-### Releasing a new version
+
+## Commit style
+
+We use [conventional commits](https://www.conventionalcommits.org/) to have more consistent commits and autogenerate a changelog.
+
+Feel free to write your regular commtis as you want, but **the merge commit has to follow CC format:**.
+
+We usually use one of the following:
+
+```
+chore|fix|feat(styles|components|icons|chore|docs): message (#PR)
+
+[optional description]
+
+Fix #issue
+```
+
+## Releasing a new version
 
 We use [lerna](https://lernajs.io/) to keep two internal packages in sync.
 
 Once you have your changes merged to master branch run `npm run release` and follow the given instructions.
 
-### Airship Showcase
-We use Catalog to showcase our components and styles, as well as having some documentation to know how to use them.
-If you want to launch it, execute `npm run showcase`. It doesn't livereload or shows changes in source code when refreshing the page. To see those changes you need to `CTRL + C`, and execute the command again.
 
-There might be some times that the browser says the page is not available, it is due to `serve` script. You don't need to worry about that, press `F5` or `CMD + R` and Catalog will be there.
+## Changelog
+
+Once a new version is released just run `npm run changelog` and push your changes.
