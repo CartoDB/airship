@@ -59,6 +59,21 @@ export class StackedBarWidget {
   @Prop() public metadata: Metadata;
 
   /**
+   * Boolean property to control if the widget is loading
+   */
+  @Prop() public isLoading: boolean = false;
+
+  /**
+   * Control the text shown in header subtitle
+   */
+  @Prop() public error: string = '';
+
+  /**
+   * Extended error description, only shown when error is present
+   */
+  @Prop() public errorDescription: string = '';
+
+  /**
    * Hold a reference to the tooltip to show on mouseover
    */
   private tooltip: HTMLElement;
@@ -80,11 +95,14 @@ export class StackedBarWidget {
 
   public render() {
     return [
-      <as-widget-header header={this.heading} subheader={this.description}></as-widget-header>,
-      <svg ref={(ref: SVGElement) => this.container = ref}></svg>,
-      <as-y-axis from={this.scale[0]} to={this.scale[1]}></as-y-axis>,
-      this._renderLegend(),
-      <span ref={(ref) => this.tooltip = ref} role='tooltip' class='as-tooltip as-tooltip--top' > TOOLTIP</span>
+      <as-widget-header
+        header={this.heading}
+        subheader={this.description}
+        is-loading={this.isLoading}
+        is-empty={this._isEmpty()}
+        error={this.error}>
+      </as-widget-header>,
+      this._renderContent()
     ];
   }
 
@@ -143,7 +161,28 @@ export class StackedBarWidget {
     this.colorMap = this._createColorMap(this.data, this.metadata);
   }
 
+  private _renderContent() {
+    if (this.isLoading) {
+      return <as-loader class={this.heading ? 'content as-pb--36' : 'content as-pb--20'}></as-loader>;
+    }
+    if (this.error) {
+      return <p class='content as-body'>{this.errorDescription || 'Unexpected error'}</p>;
+    }
+    if (this._isEmpty()) {
+      return <p class='content as-body'>There is no data to display.</p>;
+    }
+    return [
+      <svg class='figure' ref={(ref: SVGElement) => this.container = ref}></svg>,
+      <as-y-axis from={this.scale[0]} to={this.scale[1]}></as-y-axis>,
+      this._renderLegend(),
+      <span ref={(ref) => this.tooltip = ref} role='tooltip' class='as-tooltip as-tooltip--top' > TOOLTIP</span>
+    ];
+  }
+
   private _drawColumns() {
+    if (this.isLoading || this.error || this._isEmpty()) {
+      return;
+    }
     const Y_AXIS_LABEL_WIDTH = 25; // We draw on the right of the yAxis labels
     const COLUMN_MARGIN = 4;
     const WIDTH = this.container.querySelector('.y-axis').getBoundingClientRect().width - Y_AXIS_LABEL_WIDTH - 3;
@@ -178,5 +217,9 @@ export class StackedBarWidget {
       }
     }
     return legendData;
+  }
+
+  private _isEmpty(): boolean {
+    return !this.data || !this.data.length;
   }
 }
