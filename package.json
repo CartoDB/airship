@@ -21,7 +21,7 @@
     "build:styles": "lerna exec --scope @carto/airship-style npm run build",
     "build": "lerna run --parallel build",
     "changelog": "git fetch && conventional-changelog -p angular -o CHANGELOG.md -r 0 && git add CHANGELOG.md && git commit -m \"Update CHANGELOG.md\"",
-    "dev": "lerna run --parallel dev",
+    "dev": "lerna run --parallel dev & npm run serve",
     "lint:fix": "lerna run lint:fix",
     "lint": "lerna run lint",
     "postinstall": "lerna bootstrap --hoist",
