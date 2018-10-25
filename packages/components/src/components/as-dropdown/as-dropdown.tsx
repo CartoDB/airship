@@ -1,4 +1,4 @@
-import { Component, Event, EventEmitter, Method, Prop, State, Watch } from '@stencil/core';
+import { Component, Event, EventEmitter, Prop, State, Watch } from '@stencil/core';
 
 /**
  * Dropdown Widget
@@ -26,7 +26,7 @@ export class Dropdown {
    * @type {string}
    * @memberof Dropdown
    */
-  @Prop({ mutable: true }) public selectedOption: string;
+  @Prop({ mutable: true }) public selectedOption: string = null;
 
   /**
    * Default text to show when no option is selected
@@ -56,13 +56,20 @@ export class Dropdown {
   @State() private selectedOptionObject: DropdownOption = {};
 
   @Watch('selectedOption')
-  public onSelectionChanged() {
-    const selectedOption = this.options.find(
-      (option: DropdownOption) => option.value === this.selectedOption
-    ) as DropdownOption;
+  public onSelectionChanged(newValue: string) {
+    this.selectFromValue(newValue);
+  }
 
-    if (selectedOption) {
-      this.selectedOptionObject = selectedOption;
+  @Watch('options')
+  public onOptionsChanged() {
+    if (this.selectedOption) {
+      this.selectFromValue(this.selectedOption);
+    }
+  }
+
+  public componentWillLoad() {
+    if (this.selectedOption) {
+      this.selectFromValue(this.selectedOption);
     }
   }
 
@@ -81,7 +88,7 @@ export class Dropdown {
              aria-haspopup='true'
              aria-expanded={this.isOpen}
              onClick={() => this.toggleList()}>
-          {  this.selectedOptionObject.text || this.selectedOptionObject.value || this.defaultText }
+          {  this.selectedOptionObject && this.selectedOptionObject.text || this.selectedOptionObject && this.selectedOptionObject.value || this.defaultText }
 
           <div class='as-dropdown__arrow'>
             {/* tslint:disable-next-line */}
@@ -100,17 +107,6 @@ export class Dropdown {
           </button> : '' }
       </div>
     );
-  }
-
-  /**
-   * Get current selected option
-   *
-   * @returns {string}
-   * @memberof Dropdown
-   */
-  @Method()
-  public async getSelectedOption() {
-    return this.selectedOption;
   }
 
   private renderOptions(options: DropdownOption[]) {
@@ -134,16 +130,30 @@ export class Dropdown {
     return option === this.selectedOptionObject;
   }
 
-  private select(option) {
-    if (this.selectedOption === option) {
+  private select(optionObject) {
+    if (this.selectedOption === optionObject.value) {
       return;
     }
 
-    this.selectedOption = option.value;
-    this.selectedOptionObject = option;
+    this.selectedOption = optionObject.value;
+    this.selectedOptionObject = optionObject;
 
     this.closeList();
     this.emitOption();
+  }
+
+  private selectFromValue(value) {
+    if (value === null || value === undefined) {
+      this.selectedOptionObject = null;
+    } else {
+      const selectedOptionObject = this.options.find(
+        (option: DropdownOption) => option.value === value
+      ) as DropdownOption;
+
+      if (selectedOptionObject) {
+        this.selectedOptionObject = selectedOptionObject;
+      }
+    }
   }
 
   private toggleList() {
@@ -155,13 +165,14 @@ export class Dropdown {
   }
 
   private clearOption() {
-    this.selectedOption = undefined;
+    this.closeList();
+    this.selectedOption = null;
 
     this.emitOption();
   }
 
   private emitOption() {
-    this.optionChanged.emit(this.selectedOption);
+    this.optionChanged && this.optionChanged.emit(this.selectedOption);
   }
 }
 
