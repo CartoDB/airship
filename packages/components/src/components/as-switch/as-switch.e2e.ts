@@ -26,9 +26,7 @@ describe('as-switch', async () => {
     it('should emit an event with current status when component toggles false->true', async () => {
       const changeSpy = await page.spyOnEvent('change');
 
-      const element = await page.find('as-switch');
-      element.click();
-
+      await page.click('as-switch');
       await page.waitForChanges();
 
       expect(changeSpy).toHaveReceivedEventDetail(true);
@@ -60,8 +58,7 @@ describe('as-switch', async () => {
     it('should NOT emit an event with current status when component toggles', async () => {
       const changeSpy: EventSpy = await page.spyOnEvent('change');
 
-      const element = await page.find('as-switch');
-      element.click();
+      await page.click('as-switch');
       await page.waitForChanges();
 
       expect(changeSpy).not.toHaveReceivedEvent();
@@ -78,8 +75,7 @@ describe('as-switch', async () => {
     it('should return event (FALSE) when the element is clicked for the first time', async () => {
       const changeSpy: EventSpy = await page.spyOnEvent('change');
 
-      const element = await page.find('as-switch');
-      element.click();
+      await page.click('as-switch');
       await page.waitForChanges();
 
       expect(changeSpy).toHaveReceivedEventDetail(false);
