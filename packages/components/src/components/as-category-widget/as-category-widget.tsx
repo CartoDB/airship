@@ -102,6 +102,21 @@ export class CategoryWidget {
   @Prop() public visibleCategories: number = Infinity;
 
   /**
+   * Boolean property to control if the widget is loading
+   */
+  @Prop() public isLoading: boolean = false;
+
+  /**
+   * Control the text shown in header subtitle
+   */
+  @Prop() public error: string = '';
+
+  /**
+   * Extended error description, only shown when error is present
+   */
+  @Prop() public errorDescription: string = '';
+
+  /**
    * Fired when selected categories changed or selected categories are cleared.
    *
    * @event categoriesSelected
@@ -161,8 +176,7 @@ export class CategoryWidget {
   public render() {
     return [
       this._renderHeader(),
-      this._renderCategoryList(),
-      !this.disableInteractivity ? this._renderFooter() : ''
+      this._renderContent(),
     ];
   }
 
@@ -171,9 +185,28 @@ export class CategoryWidget {
       return;
     }
 
+    return <as-widget-header
+      header={this.heading}
+      subheader={this.description}
+      is-loading={this.isLoading}
+      is-empty={this._isEmpty()}
+      error={this.error}>
+    </as-widget-header>;
+  }
+
+  private _renderContent() {
+    if (this.isLoading) {
+      return <as-loader class={this.heading ? 'content as-pb--36' : 'content as-pb--20'}></as-loader>;
+    }
+    if (this.error) {
+      return <p class='content as-body'>{this.errorDescription || 'Unexpected error'}</p>;
+    }
+    if (this._isEmpty()) {
+      return <p class='content as-body'>There is no data to display.</p>;
+    }
     return [
-      <h2 class='as-category-widget__heading'>{this.heading}</h2>,
-      <p class='as-category-widget__description as-body'>{this.description}</p>,
+      this._renderCategoryList(),
+      !this.disableInteractivity ? this._renderFooter() : '',
     ];
   }
 
@@ -337,5 +370,9 @@ export class CategoryWidget {
     }
 
     return parsedCategories.slice(0, this.visibleCategories);
+  }
+
+  private _isEmpty(): boolean {
+    return !this.categories || !this.categories.length;
   }
 }

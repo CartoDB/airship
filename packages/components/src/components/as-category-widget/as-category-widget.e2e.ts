@@ -33,7 +33,9 @@ describe('as-category-widget', () => {
 
       await page.waitForChanges();
 
-      expect(element.outerHTML).toMatchSnapshot();
+      const actual = await page.find('.as-histogram-widget__header');
+
+      expect(actual).toBeFalsy();
     });
 
     it('should render clear button', async () => {

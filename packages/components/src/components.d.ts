@@ -47,6 +47,14 @@ export namespace Components {
     */
     'disableInteractivity': boolean;
     /**
+    * Control the text shown in header subtitle
+    */
+    'error': string;
+    /**
+    * Extended error description, only shown when error is present
+    */
+    'errorDescription': string;
+    /**
     * Get current selected categories
     */
     'getSelectedCategories': () => Promise<string[]>;
@@ -54,6 +62,10 @@ export namespace Components {
     * Heading text of the widget
     */
     'heading': string;
+    /**
+    * Boolean property to control if the widget is loading
+    */
+    'isLoading': boolean;
     /**
     * If truthy, it'll show a button to clear selected categories when there are any. Default value is `false`.
     */
@@ -93,9 +105,21 @@ export namespace Components {
     */
     'disableInteractivity'?: boolean;
     /**
+    * Control the text shown in header subtitle
+    */
+    'error'?: string;
+    /**
+    * Extended error description, only shown when error is present
+    */
+    'errorDescription'?: string;
+    /**
     * Heading text of the widget
     */
     'heading'?: string;
+    /**
+    * Boolean property to control if the widget is loading
+    */
+    'isLoading'?: boolean;
     /**
     * Fired when selected categories changed or selected categories are cleared.
     */
