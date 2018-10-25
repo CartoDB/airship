@@ -131,6 +131,21 @@ export class HistogramWidget {
    */
   @Prop() public yLabel: string;
 
+  /**
+   * Boolean property to control if the widget is loading
+   */
+  @Prop() public isLoading: boolean = false;
+
+  /**
+   * Control the text shown in header subtitle
+   */
+  @Prop() public error: string = '';
+
+  /**
+   * Extended error description, only shown when error is present
+   */
+  @Prop() public errorDescription: string = '';
+
   @Element() private el: HTMLElement;
 
   /**
@@ -211,6 +226,9 @@ export class HistogramWidget {
 
   @Watch('data')
   public onDataChanged() {
+    if (this.isLoading || this._isEmpty() || this.error) {
+      return;
+    }
     this._updateAxes();
     this._renderBars();
 
@@ -231,6 +249,9 @@ export class HistogramWidget {
   }
 
   public componentDidLoad() {
+    if (this.isLoading || this._isEmpty() || this.error) {
+      return;
+    }
     // This is probably not necessary for production, but HMR causes this method
     // to be called on each file change
     this.container.selectAll('*').remove();
@@ -243,20 +264,35 @@ export class HistogramWidget {
     MARGIN.LEFT = spaceForYLabel ? MARGIN.LEFT + 25 : MARGIN.LEFT;
     this.chartWidth = (this.el.offsetWidth - MARGIN.YAxis) - spaceForYLabel;
 
+    return [
+      this._renderHeader(),
+      this._renderContent(),
+    ];
+  }
+
+  private _renderContent() {
+    if (this.isLoading) {
+      return <as-loader class={this.heading ? 'content as-pb--36' : 'content as-pb--20'}></as-loader>;
+    }
+    if (this.error) {
+      return <p class='content as-body'>{this.errorDescription || 'Unexpected error'}</p>;
+    }
+    if (this._isEmpty()) {
+      return <p class='content as-body'>There is no data to display.</p>;
+    }
+
     const histogramClasses = {
       'as-histogram-widget__wrapper': true,
       'as-histogram-widget__wrapper--disabled': this.disableInteractivity
     };
 
     return [
-      this._renderHeader(),
       <div class={histogramClasses}>
         {this._renderTooltip()}
         <svg ref={(ref: HTMLElement) => this.container = select(ref)}></svg>
         {this._renderLabels()}
       </div>,
-      this.showClear && !this.disableInteractivity ? this._renderClearBtn() : '',
-    ];
+      this.showClear && !this.disableInteractivity ? this._renderClearBtn() : ''];
   }
 
   private _renderGraph() {
@@ -459,7 +495,9 @@ export class HistogramWidget {
     }
 
     // Convert back to space coordinates
-    const valuesSpace = values.map(this.xScale).map((e) => e + MARGIN.LEFT);
+    const valuesSpace = values
+      .map(this.xScale)
+      .map((e) => e + MARGIN.LEFT);
 
     this.brushArea.call(this.brush.move, valuesSpace);
 
@@ -637,8 +675,13 @@ export class HistogramWidget {
       return;
     }
 
-    return <as-widget-header header={this.heading} subheader={this.description}></as-widget-header>;
-
+    return <as-widget-header
+      header={this.heading}
+      subheader={this.description}
+      is-loading={this.isLoading}
+      is-empty={this._isEmpty()}
+      error={this.error}>
+    </as-widget-header>;
   }
 
   private _renderTooltip() {
@@ -678,5 +721,9 @@ export class HistogramWidget {
       return getComputedStyle(this.el).getPropertyValue(color).toLowerCase().trim();
     }
     return color;
+  }
+
+  private _isEmpty(): boolean {
+    return !this.data || !this.data.length;
   }
 }

@@ -188,8 +188,8 @@ export class CategoryWidget {
     return <as-widget-header
       header={this.heading}
       subheader={this.description}
-      is-loading={this.isLoading}
       is-empty={this._isEmpty()}
+      is-loading={this.isLoading}
       error={this.error}>
     </as-widget-header>;
   }

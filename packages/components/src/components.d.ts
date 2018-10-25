@@ -217,6 +217,14 @@ export namespace Components {
     */
     'disableInteractivity': boolean;
     /**
+    * Control the text shown in header subtitle
+    */
+    'error': string;
+    /**
+    * Extended error description, only shown when error is present
+    */
+    'errorDescription': string;
+    /**
     * Returns the current selection
     */
     'getSelection': () => Promise<number[]>;
@@ -224,6 +232,10 @@ export namespace Components {
     * Title of the widget to be displayed
     */
     'heading': string;
+    /**
+    * Boolean property to control if the widget is loading
+    */
+    'isLoading': boolean;
     /**
     * Override color for the selected histogram bars
     */
@@ -275,9 +287,21 @@ export namespace Components {
     */
     'disableInteractivity'?: boolean;
     /**
+    * Control the text shown in header subtitle
+    */
+    'error'?: string;
+    /**
+    * Extended error description, only shown when error is present
+    */
+    'errorDescription'?: string;
+    /**
     * Title of the widget to be displayed
     */
     'heading'?: string;
+    /**
+    * Boolean property to control if the widget is loading
+    */
+    'isLoading'?: boolean;
     /**
     * Fired when user update or clear the widget selection.
     */
@@ -600,7 +624,7 @@ export namespace Components {
     */
     'isEmpty': boolean;
     /**
-    * Indicates if the widget isLoading
+    * Indicates if the widget is loading
     */
     'isLoading': boolean;
     /**
@@ -622,7 +646,7 @@ export namespace Components {
     */
     'isEmpty'?: boolean;
     /**
-    * Indicates if the widget isLoading
+    * Indicates if the widget is loading
     */
     'isLoading'?: boolean;
     /**

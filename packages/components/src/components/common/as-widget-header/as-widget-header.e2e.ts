@@ -29,7 +29,7 @@ describe('as-widget-header', () => {
     expect(actual.innerText).toEqual('fake-error');
   });
 
-  it('should display "LOADING" in subheader when header is loading flag', async () => {
+  it('should display the subheader text in subheader area when has loading flag', async () => {
     element.setProperty('header', 'fake-header');
     element.setProperty('subheader', 'fake-subheader');
     element.setProperty('isLoading', true);
@@ -37,7 +37,7 @@ describe('as-widget-header', () => {
 
     const actual = await page.find('.as-widget-header__subheader');
 
-    expect(actual.innerText).toEqual('LOADING');
+    expect(actual.innerText).toEqual('fake-subheader');
   });
 
   it('should display "NO DATA AVAILABLE" in subheader when header has no data flag', async () => {

@@ -3,7 +3,6 @@
 as-widget-header {
   --widget--header-color: #{$color-type-01};
   --widget--subheader-color: #{$color-type-02};
-  --widget--subheader-color-loadig: var(--as-color-primary, #{$color-primary});
   --widget--subheader-color-error: var(--as-color-support-01, #{$color-support-01});
   --widget--subheader-color-empty: var(--as-color-support-02, #{$color-support-02});
 
@@ -21,14 +20,12 @@ as-widget-header {
 
     &--error {
       color: var(--widget--subheader-color-error, #F3522B);
+      text-transform: uppercase;
     }
 
     &--empty {
       color: var(--widget--subheader-color-empty, #FDB32B);
-    }
-
-    &--loading {
-      color: var(--widget--subheader-color-loading, #1785FB);
+      text-transform: uppercase;
     }
   }
 }

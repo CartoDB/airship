@@ -36,14 +36,14 @@ export class WidgetHeader {
   @Prop() public error: string = '';
 
   /**
-   * Indicates if the widget isLoading
-   */
-  @Prop() public isLoading: boolean = false;
-
-  /**
    * Indicates if the widget has no data
    */
   @Prop() public isEmpty: boolean = false;
+
+  /**
+   * Indicates if the widget is loading
+   */
+  @Prop() public isLoading: boolean = false;
 
   public render() {
     return [
@@ -53,11 +53,11 @@ export class WidgetHeader {
   }
 
   private _getSubHeader() {
+    if (this.isLoading) {
+      return <p class='as-widget-header__subheader as-body '>{this.subheader}</p>;
+    }
     if (this.error) {
       return <p class='as-widget-header__subheader as-widget-header__subheader--error as-body '>{this.error}</p>;
-    }
-    if (this.isLoading) {
-      return <p class='as-widget-header__subheader as-widget-header__subheader--loading as-body '>LOADING</p>;
     }
     if (this.isEmpty) {
       return <p class='as-widget-header__subheader as-widget-header__subheader--empty as-body '>NO DATA AVAILABLE</p>;
