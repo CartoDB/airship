@@ -142,7 +142,7 @@ export class Dropdown {
   }
 
   private _selectFromValue(value) {
-    if (!value) {
+    if (value === undefined || value === null) {
       this.selectedOptionObject = null;
       return;
     }
