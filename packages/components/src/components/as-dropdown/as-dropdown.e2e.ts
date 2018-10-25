@@ -85,7 +85,7 @@ describe('as-category-widget', async () => {
       expect(menuDropdown).toHaveClass('as-dropdown--open');
     });
 
-    it.only('should clear option when clear button is pressed', async () => {
+    it('should clear option when clear button is pressed', async () => {
       const element = await page.find('as-dropdown');
       element.setProperty('options', exampleOptions);
       element.setProperty('selectedOption', 'option2');
