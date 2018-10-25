@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "build": "stencil build",
-    "dev": "stencil build --dev --watch --serve",
+    "dev": "stencil build --dev --watch",
     "lint:css:fix": "stylelint 'src/components/**/*.scss' --fix",
     "lint:css": "stylelint 'src/components/**/*.scss'",
     "lint:fix": "npm run lint:css:fix",
