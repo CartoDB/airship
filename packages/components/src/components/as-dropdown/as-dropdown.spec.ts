@@ -27,7 +27,7 @@ describe('as-dropdown', () => {
   });
 
   describe('_selectFromValue', () => {
-    it('should reset internal `selectedOptionObject`object when called with no value', () => {
+    it('should reset internal `selectedOptionObject`object when called with null value', () => {
       dropdown.selectedOptionObject = {
         text: 'Looptroop',
         value: 'looptroop'
@@ -36,6 +36,17 @@ describe('as-dropdown', () => {
       dropdown._selectFromValue(null);
 
       expect(dropdown.selectedOptionObject).toBe(null);
+    });
+
+    it('should reset internal `selectedOptionObject`object when called with undefined value', () => {
+      dropdown.selectedOptionObject = {
+        text: 'Looptroop',
+        value: 'looptroop'
+      };
+
+      dropdown._selectFromValue(undefined);
+
+      expect(dropdown.selectedOptionObject).toBe(undefined);
     });
 
     it('should set internal `selectedOptionObject`object with the proper object', () => {
