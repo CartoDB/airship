@@ -88,7 +88,9 @@ export class Dropdown {
              aria-haspopup='true'
              aria-expanded={this.isOpen}
              onClick={() => this.toggleList()}>
-          {  this.selectedOptionObject && this.selectedOptionObject.text || this.selectedOptionObject && this.selectedOptionObject.value || this.defaultText }
+          {  this.selectedOptionObject && this.selectedOptionObject.text
+            || this.selectedOptionObject && this.selectedOptionObject.value
+            || this.defaultText }
 
           <div class='as-dropdown__arrow'>
             {/* tslint:disable-next-line */}
@@ -172,7 +174,9 @@ export class Dropdown {
   }
 
   private emitOption() {
-    this.optionChanged && this.optionChanged.emit(this.selectedOption);
+    if (this.optionChanged) {
+      this.optionChanged.emit(this.selectedOption);
+    }
   }
 }
 
