@@ -1,4 +1,5 @@
 import { Component, Prop, Watch } from '@stencil/core';
+import contentFragment from '../common/content.fragment';
 import { ColorMap } from './types/ColorMap';
 import { Metadata } from './types/Metadata';
 import { RawStackedbarData } from './types/RawStackedbarData';
@@ -162,21 +163,13 @@ export class StackedBarWidget {
   }
 
   private _renderContent() {
-    if (this.isLoading) {
-      return <as-loader class={this.heading ? 'content as-pb--36' : 'content as-pb--20'}></as-loader>;
-    }
-    if (this.error) {
-      return <p class='content as-body'>{this.errorDescription || 'Unexpected error'}</p>;
-    }
-    if (this._isEmpty()) {
-      return <p class='content as-body'>There is no data to display.</p>;
-    }
-    return [
-      <svg class='figure' ref={(ref: SVGElement) => this.container = ref}></svg>,
-      <as-y-axis from={this.scale[0]} to={this.scale[1]}></as-y-axis>,
-      this._renderLegend(),
-      <span ref={(ref) => this.tooltip = ref} role='tooltip' class='as-tooltip as-tooltip--top' > TOOLTIP</span>
-    ];
+    return contentFragment(this.isLoading, this.error, this._isEmpty(), this.heading, this.errorDescription,
+      [
+        <svg class='figure' ref={(ref: SVGElement) => this.container = ref}></svg>,
+        <as-y-axis from={this.scale[0]} to={this.scale[1]}></as-y-axis>,
+        this._renderLegend(),
+        <span ref={(ref) => this.tooltip = ref} role='tooltip' class='as-tooltip as-tooltip--top' > TOOLTIP</span>
+      ]);
   }
 
   private _drawColumns() {

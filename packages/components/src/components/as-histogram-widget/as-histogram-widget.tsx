@@ -13,6 +13,7 @@ import {
 import 'd3-transition';
 import readableNumber from '../../utils/readable-number';
 import { shadeOrBlend } from '../../utils/styles';
+import contentFragment from '../common/content.fragment';
 import { HistogramColorRange, HistogramData } from './interfaces';
 
 const CUSTOM_HANDLE_SIZE = 15;
@@ -271,28 +272,19 @@ export class HistogramWidget {
   }
 
   private _renderContent() {
-    if (this.isLoading) {
-      return <as-loader class={this.heading ? 'content as-pb--36' : 'content as-pb--20'}></as-loader>;
-    }
-    if (this.error) {
-      return <p class='content as-body'>{this.errorDescription || 'Unexpected error'}</p>;
-    }
-    if (this._isEmpty()) {
-      return <p class='content as-body'>There is no data to display.</p>;
-    }
-
     const histogramClasses = {
       'as-histogram-widget__wrapper': true,
       'as-histogram-widget__wrapper--disabled': this.disableInteractivity
     };
-
-    return [
-      <div class={histogramClasses}>
-        {this._renderTooltip()}
-        <svg ref={(ref: HTMLElement) => this.container = select(ref)}></svg>
-        {this._renderLabels()}
-      </div>,
-      this.showClear && !this.disableInteractivity ? this._renderClearBtn() : ''];
+    return contentFragment(this.isLoading, this.error, this._isEmpty(), this.heading, this.errorDescription,
+      [
+        <div class={histogramClasses}>
+          {this._renderTooltip()}
+          <svg ref={(ref: HTMLElement) => this.container = select(ref)}></svg>
+          {this._renderLabels()}
+        </div>,
+        this.showClear && !this.disableInteractivity ? this._renderClearBtn() : ''
+      ]);
   }
 
   private _renderGraph() {

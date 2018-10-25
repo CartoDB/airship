@@ -1,6 +1,7 @@
 import { Component, Element, Event, EventEmitter, Method, Prop, State } from '@stencil/core';
 import readableNumber from '../../utils/readable-number';
 import { shadeOrBlend } from '../../utils/styles';
+import contentFragment from '../common/content.fragment';
 import { Category, CategoryOptions } from './interfaces';
 
 const OTHER_CATEGORY_COLOR = '#747474';
@@ -195,19 +196,11 @@ export class CategoryWidget {
   }
 
   private _renderContent() {
-    if (this.isLoading) {
-      return <as-loader class={this.heading ? 'content as-pb--36' : 'content as-pb--20'}></as-loader>;
-    }
-    if (this.error) {
-      return <p class='content as-body'>{this.errorDescription || 'Unexpected error'}</p>;
-    }
-    if (this._isEmpty()) {
-      return <p class='content as-body'>There is no data to display.</p>;
-    }
-    return [
+    return contentFragment(this.isLoading, this.error, this._isEmpty(), this.heading, this.errorDescription,
+    [
       this._renderCategoryList(),
       !this.disableInteractivity ? this._renderFooter() : '',
-    ];
+    ]);
   }
 
   private _renderCategoryList() {
