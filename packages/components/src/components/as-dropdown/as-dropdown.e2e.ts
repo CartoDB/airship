@@ -61,15 +61,12 @@ describe('as-category-widget', async () => {
       await page.waitForChanges();
 
       // Open Dropdown
-      const controlElement = await page.find('.as-dropdown__control');
-      controlElement.click();
+      await page.click('.as-dropdown__control');
       await page.waitForChanges();
 
       const categoriesSelectedSpy = await page.spyOnEvent('optionChanged');
 
-      const optionElement = await page.find('.as-dropdown__list-item button');
-      optionElement.click();
-
+      await page.click('.as-dropdown__list-item button');
       await page.waitForChanges();
 
       expect(categoriesSelectedSpy).toHaveReceivedEventDetail(exampleOptions[0].value);
@@ -81,30 +78,24 @@ describe('as-category-widget', async () => {
 
       await page.waitForChanges();
 
-      const controlElement = await page.find('.as-dropdown__control');
-      await controlElement.click();
-
+      await page.click('.as-dropdown__control');
       await page.waitForChanges();
 
       const menuDropdown = await page.find('.as-dropdown');
       expect(menuDropdown).toHaveClass('as-dropdown--open');
     });
 
-    it('should clear option when clear button is pressed', async () => {
+    it.only('should clear option when clear button is pressed', async () => {
       const element = await page.find('as-dropdown');
       element.setProperty('options', exampleOptions);
       element.setProperty('selectedOption', 'option2');
       element.setProperty('showClearButton', true);
 
       await page.waitForChanges();
-
-      const clearButtonElement = await page.find('.as-dropdown__clear');
-      clearButtonElement.click();
-
+      await page.click('.as-dropdown__clear');
       await page.waitForChanges();
 
       const selectedOption = await element.getProperty('selectedOption');
-
       expect(selectedOption).toBeNull();
     });
   });
