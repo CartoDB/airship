@@ -7,6 +7,25 @@ describe('as-dropdown', () => {
     dropdown = new Dropdown();
   });
 
+  describe('onSelectionChanged', () => {
+    describe('_selectFromValue', () => {
+      it('should call `_selectFromValue`', () => {
+        spyOn(dropdown, '_selectFromValue');
+        dropdown.onSelectionChanged('a_value');
+        expect(dropdown._selectFromValue).toHaveBeenCalled();
+      });
+    });
+
+    describe('componentWillLoad', () => {
+      it('should call `_selectFromValue`', () => {
+        spyOn(dropdown, '_selectFromValue');
+        dropdown.selectedOption = 'a_value';
+        dropdown.componentWillLoad();
+        expect(dropdown._selectFromValue).toHaveBeenCalled();
+      });
+    });
+  });
+
   describe('_selectFromValue', () => {
     it('should reset internal `selectedOptionObject`object when called with no value', () => {
       dropdown.selectedOptionObject = {
