@@ -56,10 +56,9 @@ dropdown.options = [
 ```
 
 #### **selectedOption**: string
-Selected option to show in the dropdown by default
+Use it for setting the selected option or to retrieve its current value.
 
 For example:
-
 
 ```code
 lang: html
@@ -71,6 +70,8 @@ lang: html
 lang: javascript
 ---
 dropdown.selectedOption = 'All';
+var option = dropdown.selectedOption;
+// option: 'All'
 ```
 
 #### **defaultText**: string
@@ -90,7 +91,7 @@ lang: javascript
 dropdown.defaultText = 'Dropdown';
 ```
 
-#### **canClear**: boolean = false
+#### **showClearButton**: boolean = false
 Allow the user to clear selected option
 
 For example:
@@ -98,13 +99,13 @@ For example:
 ```code
 lang: html
 ---
-<as-dropdown can-clear="true"></as-dropdown>
+<as-dropdown show-clear-button="true"></as-dropdown>
 ```
 
 ```code
 lang: javascript
 ---
-dropdown.canClear = true;
+dropdown.showClearButton = true;
 ```
 
 ### Styles
@@ -133,26 +134,4 @@ const dropdown = document.querySelector('as-dropdown');
 dropdown.addEventListener('optionChanged', function (event) {
   console.log('Selected Option:', event.detail);
 });
-```
-
-### Methods
-
-#### **getSelectedOption**
-Get current selected option
-`Returns: Promise<string>`
-
-```code
-lang: javascript
----
-// Async/Await approach
-const dropdown = document.querySelector('as-dropdown');
-await dropdown.getSelectedOption();
-
-// Promises approach
-const dropdown = document.querySelector('as-dropdown');
-dropdown.getSelectedOption()
-        .then(selectedOption => console.log(selectedOption));
-```
-```hint|directive
-Please note that you always need to wrap your `await` code in an `async` function. If you use it outside of an async function, it will raise a `SyntaxError`. Learn more about it [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await).
 ```
