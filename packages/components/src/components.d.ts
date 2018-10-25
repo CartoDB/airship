@@ -152,10 +152,6 @@ export namespace Components {
     */
     'defaultText': string;
     /**
-    * Get current selected option
-    */
-    'getSelectedOption': () => Promise<string>;
-    /**
     * Array of options to display in the dropdown
     */
     'options': object[];

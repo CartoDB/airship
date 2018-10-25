@@ -103,9 +103,9 @@ describe('as-category-widget', async () => {
 
       await page.waitForChanges();
 
-      const selectedOptions = await element.callMethod('getSelectedOption');
+      const selectedOption = await element.getProperty('selectedOption');
 
-      expect(selectedOptions).toBeUndefined();
+      expect(selectedOption).toBeNull();
     });
   });
 });
