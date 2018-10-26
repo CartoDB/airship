@@ -1,6 +1,7 @@
 # Developer Notes
 
 - [Project structure](#project-structure)
+- [Developing](#developing)
 - [Testing](#testing)
 - [Commit style](#commit-style)
 - [Releasing a new version](#releasing-a-new-version)
