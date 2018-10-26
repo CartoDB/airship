@@ -77,6 +77,21 @@ as-histogram-widget {
     text {
       fill: $color-type-01;
     }
+
+    .handle--custom {
+      width: 6px;
+      height: 28px;
+      stroke-linecap: round;
+      stroke: #1785FB;
+      opacity: 0;
+      fill: white;
+      cursor: ew-resize;
+      pointer-events: none;
+    }
+
+    .bottomline {
+      stroke: var(--as-color-primary, #{$color-primary});
+    }
   }
 
   .as-histogram-widget__wrapper--disabled {

@@ -1,5 +1,5 @@
 import { Component, Element, Event, EventEmitter, Method, Prop, State, Watch } from '@stencil/core';
-import { Axis} from 'd3-axis';
+import { Axis } from 'd3-axis';
 import { BrushBehavior, brushX } from 'd3-brush';
 import { ScaleLinear } from 'd3-scale';
 import {
@@ -16,7 +16,7 @@ import { HistogramColorRange, HistogramData } from './interfaces';
 import dataService from './utils/data.service';
 import drawService from './utils/draw.service';
 
-const CUSTOM_HANDLE_SIZE = 15;
+const CUSTOM_HANDLE_SIZE = 5; // TODO: width or height?
 const DEFAULT_BAR_COLOR = 'var(--as-color-primary, #1785FB)';
 const DEFAULT_SELECTED_BAR_COLOR = 'var(--as-color-complementary, #47DB99)';
 const HEIGHT = 125;
@@ -28,7 +28,7 @@ const MARGIN = {
   TOP: 5,
   YAxis: 20
 };
-const CUSTOM_HANDLE_Y_COORD = HEIGHT + MARGIN.TOP - (CUSTOM_HANDLE_SIZE / 2);
+const CUSTOM_HANDLE_Y_COORD = HEIGHT + MARGIN.TOP - (28 / 2);
 
 /**
  * Histogram Widget
@@ -311,26 +311,21 @@ export class HistogramWidget {
         .attr('class', 'brush')
         .call(this.brush);
 
-      this.customHandlers = this.brushArea.selectAll('.handle--custom')
-        .data([{ type: 'w' }, { type: 'e' }])
-        .enter().append('rect')
-        .style('opacity', 0)
-        .attr('class', 'handle--custom')
-        .attr('fill', this.selectedColor)
-        .attr('cursor', 'ew-resize')
-        .attr('width', CUSTOM_HANDLE_SIZE)
-        .attr('height', CUSTOM_HANDLE_SIZE)
-        .attr('rx', '100')
-        .attr('ry', '100');
-
       this.bottomLine = this.brushArea.append('line')
         .attr('class', 'bottomline')
-        .attr('stroke', this.selectedColor)
         .attr('stroke-width', 4)
         .attr('y1', HEIGHT + MARGIN.TOP)
         .attr('y2', HEIGHT + MARGIN.TOP)
         .style('opacity', 0)
         .attr('pointer-events', 'none');
+
+      this.customHandlers = this.brushArea.selectAll('.handle--custom')
+        .data([{ type: 'w' }, { type: 'e' }])
+        .enter()
+        .append('rect')
+        .attr('class', 'handle--custom')
+        .attr('rx', 2)
+        .attr('ry', 2);
     }
 
     this.container.on('mousemove', () => {
