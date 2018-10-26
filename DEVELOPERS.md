@@ -1,6 +1,7 @@
 # Developer Notes
 
 - [Project structure](#project-structure)
+- [Developing](#developing)
 - [Testing](#testing)
 - [Commit style](#commit-style)
 - [Releasing a new version](#releasing-a-new-version)
@@ -10,6 +11,12 @@
 ## Project structure
 
 This is a [Lerna](https://lernajs.io/) [monorepo](https://en.wikipedia.org/wiki/Monorepo) composed of 3 node packages in the `packages`.
+
+## Developing
+
+Run `npm run dev` to start developing. This commands starts the Stencil compiler for the components and the Sass compiler for the styles. Both in watch mode.
+
+If you need to use a browser to test your development, please open a new shell prompt and run `npm run serve` to start a dev server.
 
 ## Testing
 
