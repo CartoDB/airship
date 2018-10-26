@@ -231,7 +231,9 @@ export class HistogramWidget {
     if (this.isLoading || this._isEmpty() || this.error) {
       return;
     }
-    this._updateAxes();
+    drawService.updateAxes(
+      this.data, this.yScale, this.xScale, this.xAxis, this.yAxis, this.yAxisSelection, this.xAxisSelection);
+
     this._renderBars();
 
     if (this.selection === null) {
@@ -632,29 +634,6 @@ export class HistogramWidget {
       .style('opacity', '1')
       .style('left', `${x + 10}px`)
       .style('top', `${y + 20}px`);
-  }
-
-  private _updateAxes() {
-    const data = this.data;
-    const { start } = data[0];
-    const { end } = data[data.length - 1];
-
-    // -- Update scales
-    this.yScale
-      .domain([0, max(data, (d) => d.value)])
-      .nice();
-
-    this.xScale
-      .domain([start, end]);
-
-    // -- Update axes
-    this.xAxisSelection
-      .call(this.xAxis);
-
-    this.yAxisSelection
-      .call(this.yAxis);
-
-    drawService.cleanAxes(this.yAxisSelection, this.xAxisSelection);
   }
 
   private _renderHeader() {
