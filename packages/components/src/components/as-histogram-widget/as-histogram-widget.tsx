@@ -1,9 +1,7 @@
 import { Component, Element, Event, EventEmitter, Method, Prop, State, Watch } from '@stencil/core';
-import { max } from 'd3-array';
-import { Axis, axisBottom, axisLeft } from 'd3-axis';
+import { Axis} from 'd3-axis';
 import { BrushBehavior, brushX } from 'd3-brush';
-import { format } from 'd3-format';
-import { scaleLinear, ScaleLinear } from 'd3-scale';
+import { ScaleLinear } from 'd3-scale';
 import {
   BaseType,
   event as d3event,
