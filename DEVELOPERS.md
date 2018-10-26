@@ -77,7 +77,10 @@ To run locally the visual regression test, type `npm run test:styles`. When fini
 
 We use [conventional commits](https://www.conventionalcommits.org/) to have more consistent commits and autogenerate a changelog.
 
-Feel free to write your regular commtis as you want, but **the merge commit has to follow CC format:**.
+Feel free to write your regular commtis as you want but ensure your PR has an associated conventional commit:
+
+- Before the merge commit.
+- Use squash and merge/rebase and merge button in github and use a conventionalcommit 
 
 We usually use one of the following:
 
