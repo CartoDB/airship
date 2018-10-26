@@ -15,6 +15,7 @@ import readableNumber from '../../utils/readable-number';
 import { shadeOrBlend } from '../../utils/styles';
 import contentFragment from '../common/content.fragment';
 import { HistogramColorRange, HistogramData } from './interfaces';
+import dataService from './utils/data.service';
 import drawService from './utils/draw.service';
 
 const CUSTOM_HANDLE_SIZE = 15;
@@ -169,8 +170,6 @@ export class HistogramWidget {
   private yScale: ScaleLinear<number, number>;
   private yAxis: Axis<{ valueOf(): number }>;
   private xAxis: Axis<{ valueOf(): number }>;
-  private yAxisSelection: Selection<BaseType, {}, null, undefined>;
-  private xAxisSelection: Selection<BaseType, {}, null, undefined>;
   private barsContainer: Selection<BaseType, {}, null, undefined>;
   private brush: BrushBehavior<{}>;
   private brushArea: Selection<BaseType, {}, null, undefined>;
@@ -230,8 +229,9 @@ export class HistogramWidget {
     if (this.isLoading || this._isEmpty() || this.error) {
       return;
     }
+    const xDomain = dataService.getHorizontalDomain(this.data);
     drawService.updateAxes(
-      this.data, this.yScale, this.xScale, this.xAxis, this.yAxis, this.yAxisSelection, this.xAxisSelection);
+      this.data, this.container, this.yScale, this.xScale, this.xAxis, this.yAxis, xDomain);
 
     drawService.renderBars(
       this.data, this.yScale, this.chartWidth, MARGIN, this.barsContainer, HEIGHT, BARS_SEPARATION, this.color);
@@ -378,7 +378,6 @@ export class HistogramWidget {
 
     drawService.renderBars(
       this.data, this.yScale, this.chartWidth, MARGIN, this.barsContainer, HEIGHT, BARS_SEPARATION, this.color);
-    drawService.cleanAxes(this.yAxisSelection, this.xAxisSelection);
   }
 
   private _adjustSelection(values: number[] | null): number[] | null {
@@ -532,7 +531,7 @@ export class HistogramWidget {
       .tickPadding(10)
       .tickFormat(format('.2~s'));
 
-    this.yAxisSelection = this.container
+    this.container
       .append('g')
       .attr('class', 'yAxis')
       .attr('transform', `translate(${MARGIN.LEFT}, ${MARGIN.TOP})`)
@@ -540,26 +539,12 @@ export class HistogramWidget {
   }
 
   private _renderXAxis() {
-    const data = this.data;
+    const domain = dataService.getHorizontalDomain(this.data);
     const barsWidth = this.chartWidth - MARGIN.YAxis;
+    const [xScale, xAxis] = drawService.renderXAxis(this.container, domain, barsWidth, MARGIN, HEIGHT);
 
-    const { start } = data.length > 0 ? data[0] : { start: 0 };
-    const { end } = data.length > 0 ? data[data.length - 1] : { end: 0 };
-
-    this.xScale = scaleLinear()
-      .domain([start, end])
-      .range([0, barsWidth]);
-
-    this.xAxis = axisBottom(this.xScale)
-      .tickSize(-barsWidth)
-      .ticks(3)
-      .tickPadding(10);
-
-    this.xAxisSelection = this.container
-      .append('g')
-      .attr('class', 'xAxis')
-      .attr('transform', `translate(${MARGIN.LEFT}, ${HEIGHT + MARGIN.TOP})`)
-      .call(this.xAxis);
+    this.xScale = xScale;
+    this.xAxis = xAxis;
   }
 
   private _getTooltipPosition(mouseX: number, mouseY: number) {

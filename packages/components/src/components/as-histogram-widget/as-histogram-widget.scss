@@ -43,6 +43,24 @@ as-histogram-widget {
       cursor: pointer;
     }
 
+    .xAxis {
+      .domain {
+        display: none;
+      }
+
+      .tick {
+        line {
+          display: none;
+        }
+      }
+    }
+
+    .yAxis {
+      .domain {
+        display: none;
+      }
+    }
+
     .yAxis .tick {
       line {
         stroke: var(--as-color-type-02, #{$color-type-02});

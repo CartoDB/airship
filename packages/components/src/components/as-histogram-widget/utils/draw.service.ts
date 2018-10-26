@@ -1,26 +1,25 @@
 import { max } from 'd3-array';
-import { Axis } from 'd3-axis';
-import { ScaleLinear } from 'd3-scale';
+import { Axis, axisBottom } from 'd3-axis';
+import { ScaleLinear, scaleLinear } from 'd3-scale';
 import { HistogramData } from '../interfaces';
 import { Container } from '../types/Container';
+import { Domain } from '../types/Domain';
 
-export function cleanAxes(yAxisSelection: Container, xAxisSelection: Container) {
+export function cleanAxes(yAxisSelection: Container) {
   yAxisSelection.select('.domain').remove();
-  xAxisSelection.select('.domain').remove();
-  xAxisSelection.selectAll('line').remove();
 }
 
 export function updateAxes(
   data: HistogramData[],
+  container: Container,
   yScale: ScaleLinear<number, number>,
   xScale: ScaleLinear<number, number>,
   xAxis: Axis<{ valueOf(): number }>,
   yAxis: Axis<{ valueOf(): number }>,
-  yAxisSelection: Container,
-  xAxisSelection: Container) {
+  xDomain: Domain) {
 
-  const { start } = data[0];
-  const { end } = data[data.length - 1];
+  const xAxisSelection: Container = container.select('.xAxis');
+  const yAxisSelection: Container = container.select('.yAxis');
 
   // -- Update scales
   yScale
@@ -28,7 +27,7 @@ export function updateAxes(
     .nice();
 
   xScale
-    .domain([start, end]);
+    .domain(xDomain);
 
   // -- Update axes
   xAxisSelection
@@ -36,11 +35,9 @@ export function updateAxes(
 
   yAxisSelection
     .call(yAxis);
-
-  cleanAxes(yAxisSelection, xAxisSelection);
 }
 
-function renderBars(
+export function renderBars(
   data: HistogramData[],
   yScale: ScaleLinear<number, number>,
   chartWidth: number,
@@ -83,5 +80,33 @@ function renderBars(
 
 }
 
+export function renderXAxis(
+  container: Container,
+  domain: Domain,
+  barsWidth: number,
+  MARGIN,
+  HEIGHT: number): [ScaleLinear<number, number>, Axis<{ valueOf(): number }>] {
 
-export default { cleanAxes, updateAxes, renderBars };
+
+
+  const xScale = scaleLinear()
+    .domain(domain)
+    .range([0, barsWidth]);
+
+  const xAxis = axisBottom(xScale)
+    .tickSize(-barsWidth)
+    .ticks(3)
+    .tickPadding(10);
+
+  container
+    .append('g')
+    .attr('class', 'xAxis')
+    .attr('transform', `translate(${MARGIN.LEFT}, ${HEIGHT + MARGIN.TOP})`)
+    .call(xAxis);
+
+  return [xScale, xAxis];
+}
+
+
+
+export default { cleanAxes, updateAxes, renderBars, renderXAxis };
