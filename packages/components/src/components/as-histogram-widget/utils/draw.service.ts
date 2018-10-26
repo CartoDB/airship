@@ -1,4 +1,3 @@
-import { max } from 'd3-array';
 import { Axis, axisBottom } from 'd3-axis';
 import { axisLeft } from 'd3-axis';
 import { format } from 'd3-format';
