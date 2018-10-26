@@ -172,7 +172,6 @@ export class HistogramWidget {
   private yAxisSelection: Selection<BaseType, {}, null, undefined>;
   private xAxisSelection: Selection<BaseType, {}, null, undefined>;
   private barsContainer: Selection<BaseType, {}, null, undefined>;
-  private bars: Selection<BaseType, HistogramData, BaseType, {}>;
   private brush: BrushBehavior<{}>;
   private brushArea: Selection<BaseType, {}, null, undefined>;
   private customHandlers: Selection<BaseType, { type: string }, BaseType, {}>;
@@ -234,7 +233,8 @@ export class HistogramWidget {
     drawService.updateAxes(
       this.data, this.yScale, this.xScale, this.xAxis, this.yAxis, this.yAxisSelection, this.xAxisSelection);
 
-    this._renderBars();
+    drawService.renderBars(
+      this.data, this.yScale, this.chartWidth, MARGIN, this.barsContainer, HEIGHT, BARS_SEPARATION, this.color);
 
     if (this.selection === null) {
       return;
@@ -249,7 +249,8 @@ export class HistogramWidget {
 
   @Watch('color')
   public onColorChanged() {
-    this._renderBars();
+    drawService.renderBars(
+      this.data, this.yScale, this.chartWidth, MARGIN, this.barsContainer, HEIGHT, BARS_SEPARATION, this.color);
   }
 
   public componentDidLoad() {
@@ -375,7 +376,8 @@ export class HistogramWidget {
           });
       });
 
-    this._renderBars();
+    drawService.renderBars(
+      this.data, this.yScale, this.chartWidth, MARGIN, this.barsContainer, HEIGHT, BARS_SEPARATION, this.color);
     drawService.cleanAxes(this.yAxisSelection, this.xAxisSelection);
   }
 
@@ -558,41 +560,6 @@ export class HistogramWidget {
       .attr('class', 'xAxis')
       .attr('transform', `translate(${MARGIN.LEFT}, ${HEIGHT + MARGIN.TOP})`)
       .call(this.xAxis);
-  }
-
-  private _renderBars() {
-    const data = this.data;
-    const barsWidth = this.chartWidth - MARGIN.YAxis;
-    const barWidth = data.length === 0 ? barsWidth : barsWidth / data.length;
-    // -- Draw bars
-    this.bars = this.barsContainer
-      .selectAll('rect')
-      .data(data);
-
-    // -- Exit
-    this.bars.exit().remove();
-
-    // -- Enter
-    this.bars
-      .enter()
-      .append('rect')
-      .merge(this.bars)
-      .attr('class', 'bar')
-      .attr('y', HEIGHT)
-      .attr('x', (_d: HistogramData, index: number) => index * barWidth)
-      .attr('width', () => Math.max(0, barWidth - BARS_SEPARATION))
-      .attr('height', 0)
-      .style('fill', (d: HistogramData) => d.color || this.color)
-      .transition()
-      .delay(200)
-      .attr('y', (d: HistogramData) => this.yScale(d.value))
-      .attr('height', (d: HistogramData) => HEIGHT - this.yScale(d.value));
-
-    // -- Update
-    this.bars
-      .attr('y', (d) => this.yScale(d.value))
-      .attr('height', (d) => HEIGHT - this.yScale(d.value));
-
   }
 
   private _getTooltipPosition(mouseX: number, mouseY: number) {
