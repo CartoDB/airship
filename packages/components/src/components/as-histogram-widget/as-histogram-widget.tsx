@@ -229,9 +229,11 @@ export class HistogramWidget {
     if (this.isLoading || this._isEmpty() || this.error) {
       return;
     }
-    const xDomain = dataService.getHorizontalDomain(this.data);
+    const xDomain = dataService.getXDomain(this.data);
+    const yDomain = dataService.getYDomain(this.data);
+
     drawService.updateAxes(
-      this.data, this.container, this.yScale, this.xScale, this.xAxis, this.yAxis, xDomain);
+      this.container, this.xScale, this.yScale, this.xAxis, this.yAxis, xDomain, yDomain);
 
     drawService.renderBars(
       this.data, this.yScale, this.chartWidth, MARGIN, this.barsContainer, HEIGHT, BARS_SEPARATION, this.color);
@@ -516,32 +518,18 @@ export class HistogramWidget {
   }
 
   private _renderYAxis() {
-    const data = this.data;
     const barsWidth = this.chartWidth - MARGIN.YAxis;
+    const yDomain = dataService.getYDomain(this.data);
+    const [yScale, yAxis] = drawService.renderYAxis(this.container, yDomain, barsWidth, MARGIN, HEIGHT);
 
-    // -- Y Axis
-    this.yScale = scaleLinear()
-      .range([HEIGHT, 0])
-      .domain([0, max(data, (d) => d.value)])
-      .nice();
-
-    this.yAxis = axisLeft(this.yScale)
-      .tickSize(-barsWidth)
-      .ticks(5)
-      .tickPadding(10)
-      .tickFormat(format('.2~s'));
-
-    this.container
-      .append('g')
-      .attr('class', 'yAxis')
-      .attr('transform', `translate(${MARGIN.LEFT}, ${MARGIN.TOP})`)
-      .call(this.yAxis);
+    this.yScale = yScale;
+    this.yAxis = yAxis;
   }
 
   private _renderXAxis() {
-    const domain = dataService.getHorizontalDomain(this.data);
     const barsWidth = this.chartWidth - MARGIN.YAxis;
-    const [xScale, xAxis] = drawService.renderXAxis(this.container, domain, barsWidth, MARGIN, HEIGHT);
+    const xDomain = dataService.getXDomain(this.data);
+    const [xScale, xAxis] = drawService.renderXAxis(this.container, xDomain, barsWidth, MARGIN, HEIGHT);
 
     this.xScale = xScale;
     this.xAxis = xAxis;

@@ -1,5 +1,7 @@
 import { max } from 'd3-array';
 import { Axis, axisBottom } from 'd3-axis';
+import { axisLeft } from 'd3-axis';
+import { format } from 'd3-format';
 import { ScaleLinear, scaleLinear } from 'd3-scale';
 import { HistogramData } from '../interfaces';
 import { Container } from '../types/Container';
@@ -10,20 +12,20 @@ export function cleanAxes(yAxisSelection: Container) {
 }
 
 export function updateAxes(
-  data: HistogramData[],
   container: Container,
-  yScale: ScaleLinear<number, number>,
   xScale: ScaleLinear<number, number>,
+  yScale: ScaleLinear<number, number>,
   xAxis: Axis<{ valueOf(): number }>,
   yAxis: Axis<{ valueOf(): number }>,
-  xDomain: Domain) {
+  xDomain: Domain,
+  yDomain: Domain) {
 
   const xAxisSelection: Container = container.select('.xAxis');
   const yAxisSelection: Container = container.select('.yAxis');
 
   // -- Update scales
   yScale
-    .domain([0, max(data, (d) => d.value)])
+    .domain(yDomain)
     .nice();
 
   xScale
@@ -87,8 +89,6 @@ export function renderXAxis(
   MARGIN,
   HEIGHT: number): [ScaleLinear<number, number>, Axis<{ valueOf(): number }>] {
 
-
-
   const xScale = scaleLinear()
     .domain(domain)
     .range([0, barsWidth]);
@@ -107,6 +107,33 @@ export function renderXAxis(
   return [xScale, xAxis];
 }
 
+export function renderYAxis(
+  container: Container,
+  domain: Domain,
+  barsWidth: number,
+  MARGIN, HEIGHT: number): [ScaleLinear<number, number>, Axis<{ valueOf(): number }>] {
+
+  // -- Y Axis
+  const yScale = scaleLinear()
+    .domain(domain)
+    .range([HEIGHT, 0])
+    .nice();
+
+  const yAxis = axisLeft(yScale)
+    .tickSize(-barsWidth)
+    .ticks(5)
+    .tickPadding(10)
+    .tickFormat(format('.2~s'));
+
+  container
+    .append('g')
+    .attr('class', 'yAxis')
+    .attr('transform', `translate(${MARGIN.LEFT}, ${MARGIN.TOP})`)
+    .call(yAxis);
+
+  return [yScale, yAxis];
+}
 
 
-export default { cleanAxes, updateAxes, renderBars, renderXAxis };
+
+export default { cleanAxes, updateAxes, renderBars, renderXAxis, renderYAxis };
