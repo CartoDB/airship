@@ -15,6 +15,7 @@ import readableNumber from '../../utils/readable-number';
 import { shadeOrBlend } from '../../utils/styles';
 import contentFragment from '../common/content.fragment';
 import { HistogramColorRange, HistogramData } from './interfaces';
+import drawService from './utils/draw.service';
 
 const CUSTOM_HANDLE_SIZE = 15;
 const DEFAULT_BAR_COLOR = 'var(--as-color-primary, #1785FB)';
@@ -373,7 +374,7 @@ export class HistogramWidget {
       });
 
     this._renderBars();
-    this._cleanAxes();
+    drawService.cleanAxes(this.yAxisSelection, this.xAxisSelection);
   }
 
   private _adjustSelection(values: number[] | null): number[] | null {
@@ -633,12 +634,6 @@ export class HistogramWidget {
       .style('top', `${y + 20}px`);
   }
 
-  private _cleanAxes() {
-    this.yAxisSelection.select('.domain').remove();
-    this.xAxisSelection.select('.domain').remove();
-    this.xAxisSelection.selectAll('line').remove();
-  }
-
   private _updateAxes() {
     const data = this.data;
     const { start } = data[0];
@@ -659,7 +654,7 @@ export class HistogramWidget {
     this.yAxisSelection
       .call(this.yAxis);
 
-    this._cleanAxes();
+    drawService.cleanAxes(this.yAxisSelection, this.xAxisSelection);
   }
 
   private _renderHeader() {
