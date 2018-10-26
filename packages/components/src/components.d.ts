@@ -9,6 +9,9 @@ import '@stencil/core';
 
 
 import {
+  DropdownOption,
+} from './components/as-dropdown/types/DropdownOption';
+import {
   HistogramColorRange,
   HistogramData,
 } from './components/as-histogram-widget/interfaces';
@@ -152,13 +155,9 @@ export namespace Components {
     */
     'defaultText': string;
     /**
-    * Get current selected option
-    */
-    'getSelectedOption': () => Promise<string>;
-    /**
     * Array of options to display in the dropdown
     */
-    'options': object[];
+    'options': DropdownOption[];
     /**
     * Selected option to show in the dropdown
     */
@@ -180,7 +179,7 @@ export namespace Components {
     /**
     * Array of options to display in the dropdown
     */
-    'options'?: object[];
+    'options'?: DropdownOption[];
     /**
     * Selected option to show in the dropdown
     */

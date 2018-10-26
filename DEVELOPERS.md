@@ -1,6 +1,7 @@
 # Developer Notes
 
 - [Project structure](#project-structure)
+- [Developing](#developing)
 - [Testing](#testing)
 - [Commit style](#commit-style)
 - [Releasing a new version](#releasing-a-new-version)
@@ -10,6 +11,12 @@
 ## Project structure
 
 This is a [Lerna](https://lernajs.io/) [monorepo](https://en.wikipedia.org/wiki/Monorepo) composed of 3 node packages in the `packages`.
+
+## Developing
+
+Run `npm run dev` to start developing. This commands starts the Stencil compiler for the components and the Sass compiler for the styles. Both in watch mode.
+
+If you need to use a browser to test your development, please open a new shell prompt and run `npm run serve` to start a dev server.
 
 ## Testing
 
@@ -70,7 +77,10 @@ To run locally the visual regression test, type `npm run test:styles`. When fini
 
 We use [conventional commits](https://www.conventionalcommits.org/) to have more consistent commits and autogenerate a changelog.
 
-Feel free to write your regular commtis as you want, but **the merge commit has to follow CC format:**.
+Feel free to write your regular commtis as you want but ensure your PR has an associated conventional commit:
+
+- Before the merge commit.
+- Use squash and merge/rebase and merge button in github and use a conventionalcommit 
 
 We usually use one of the following:
 
