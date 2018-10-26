@@ -76,9 +76,7 @@ describe('as-category-widget', () => {
 
       const categoriesSelectedSpy = await page.spyOnEvent('categoriesSelected');
 
-      const categoryElement = await page.find('.as-category-widget__category');
-      categoryElement.click();
-
+      await page.click('.as-category-widget__category');
       await page.waitForChanges();
 
       expect(categoriesSelectedSpy).toHaveReceivedEventDetail([exampleCategories[0].name]);
@@ -91,16 +89,12 @@ describe('as-category-widget', () => {
 
       await page.waitForChanges();
 
-      const categoryElement = await page.find('.as-category-widget__category');
-      categoryElement.click();
-
+      await page.click('.as-category-widget__category');
       await page.waitForChanges();
 
       const categoriesSelectedSpy = await page.spyOnEvent('categoriesSelected');
 
-      const clearButton = await page.find('.as-category-widget__clear');
-      clearButton.click();
-
+      await page.click('.as-category-widget__clear');
       await page.waitForChanges();
 
       expect(categoriesSelectedSpy).toHaveReceivedEventDetail([]);
