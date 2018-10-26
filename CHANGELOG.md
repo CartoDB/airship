@@ -1,5 +1,5 @@
 <a name="0.0.0"></a>
-# [0.0.0](https://github.com/CartoDB/airship/compare/v1.0.0-beta.5...v0.0.0) (2018-10-24)
+# [0.0.0](https://github.com/CartoDB/airship/compare/v1.0.0-beta.5...v0.0.0) (2018-10-26)
 
 
 
