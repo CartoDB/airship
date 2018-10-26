@@ -46,7 +46,7 @@ describe('as-dropdown', () => {
 
       dropdown._selectFromValue(undefined);
 
-      expect(dropdown.selectedOptionObject).toBe(undefined);
+      expect(dropdown.selectedOptionObject).toBe(null);
     });
 
     it('should set internal `selectedOptionObject`object with the proper object', () => {
