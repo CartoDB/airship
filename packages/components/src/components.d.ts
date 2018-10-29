@@ -608,7 +608,7 @@ export namespace Components {
 
   interface AsWidgetHeader {
     /**
-    * Indicates if the widget has some errors and display the text in the subheader
+    * Use this attribute to put the widget-header in "error mode". When this attribute is not empty the subheader will display the given value.
     */
     'error': string;
     /**
@@ -616,11 +616,11 @@ export namespace Components {
     */
     'header': string;
     /**
-    * Indicates if the widget has no data
+    * Use this attribute to put the widget-header in "empty mode". When this attribute is true the subheader will show the "NO DATA AVAILABLE" text.
     */
     'isEmpty': boolean;
     /**
-    * Indicates if the widget is loading
+    * Use this attribute to put the widget-header in "loading mode". When this attribute is true the subheader text will be displayed as usual.
     */
     'isLoading': boolean;
     /**
@@ -630,7 +630,7 @@ export namespace Components {
   }
   interface AsWidgetHeaderAttributes extends StencilHTMLAttributes {
     /**
-    * Indicates if the widget has some errors and display the text in the subheader
+    * Use this attribute to put the widget-header in "error mode". When this attribute is not empty the subheader will display the given value.
     */
     'error'?: string;
     /**
@@ -638,11 +638,11 @@ export namespace Components {
     */
     'header'?: string;
     /**
-    * Indicates if the widget has no data
+    * Use this attribute to put the widget-header in "empty mode". When this attribute is true the subheader will show the "NO DATA AVAILABLE" text.
     */
     'isEmpty'?: boolean;
     /**
-    * Indicates if the widget is loading
+    * Use this attribute to put the widget-header in "loading mode". When this attribute is true the subheader text will be displayed as usual.
     */
     'isLoading'?: boolean;
     /**
