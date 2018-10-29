@@ -108,7 +108,7 @@ export class CategoryWidget {
   @Prop() public isLoading: boolean = false;
 
   /**
-   * Control the text shown in header subtitle
+   * Text shown in the header subtitle when there's an error
    */
   @Prop() public error: string = '';
 
