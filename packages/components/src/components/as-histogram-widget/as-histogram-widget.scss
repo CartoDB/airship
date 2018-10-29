@@ -78,15 +78,26 @@ as-histogram-widget {
       fill: $color-type-01;
     }
 
+    .handle--wrapper {
+      opacity: 0;
+    }
+
     .handle--custom {
       width: 6px;
       height: 28px;
       stroke-linecap: round;
       stroke: #1785FB;
-      opacity: 0;
       fill: white;
       cursor: ew-resize;
       pointer-events: none;
+    }
+
+    .handle--grab {
+      transform: translateY(12px);
+    }
+
+    .grab-line {
+      stroke: #CCC;
     }
 
     .bottomline {

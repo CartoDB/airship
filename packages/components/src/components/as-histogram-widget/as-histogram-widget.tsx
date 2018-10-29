@@ -322,10 +322,29 @@ export class HistogramWidget {
       this.customHandlers = this.brushArea.selectAll('.handle--custom')
         .data([{ type: 'w' }, { type: 'e' }])
         .enter()
+        .append('g')
+        .attr('class', 'handle--wrapper');
+
+      this.customHandlers
         .append('rect')
         .attr('class', 'handle--custom')
         .attr('rx', 2)
         .attr('ry', 2);
+
+      const handleGrab = this.customHandlers
+        .append('g')
+        .attr('class', 'handle--grab');
+
+
+      for (let i = 0; i < 3; i++) {
+        handleGrab
+          .append('line')
+          .attr('x1', 2)
+          .attr('y1', i * 2)
+          .attr('x2', 4)
+          .attr('y2', i * 2)
+          .attr('class', 'grab-line');
+      }
     }
 
     this.container.on('mousemove', () => {
