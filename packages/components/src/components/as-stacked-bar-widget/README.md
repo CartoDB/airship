@@ -156,7 +156,8 @@ stackedBar.showLegend = 'false';
 ```
 
 #### **isLoading**: boolean=false
-Indicates if the widget is loading or not. Defaults to false.
+Use this attribute to put the widget in "loading mode".
+When this attribute is true, the widget won't show any data, a spinner will be placed instead.
 
 ```code
 lang: html
@@ -170,7 +171,7 @@ stackedBar.isLoading = 'true';
 ```
 
 #### **error**: string=''
-Sets the widget as "errored". 
+Use this attribute to put the widget in "error mode".
 When this attribute is given it's text will be shown in the subheader and the widget content wont be displayed.
 
 ```code

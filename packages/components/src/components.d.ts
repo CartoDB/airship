@@ -469,7 +469,7 @@ export namespace Components {
     */
     'description': string;
     /**
-    * Control the text shown in header subtitle
+    * Use this attribute to put the widget in "error mode". When this attribute is given it's text will be shown in the subheader and the widget content wont be displayed.
     */
     'error': string;
     /**
@@ -485,7 +485,7 @@ export namespace Components {
     */
     'heading': string;
     /**
-    * Boolean property to control if the widget is loading
+    * Use this attribute to put the widget in "loading mode". When this attribute is true, the widget won't show any data, a spinner will be placed instead.
     */
     'isLoading': boolean;
     /**
@@ -515,7 +515,7 @@ export namespace Components {
     */
     'description'?: string;
     /**
-    * Control the text shown in header subtitle
+    * Use this attribute to put the widget in "error mode". When this attribute is given it's text will be shown in the subheader and the widget content wont be displayed.
     */
     'error'?: string;
     /**
@@ -531,7 +531,7 @@ export namespace Components {
     */
     'heading'?: string;
     /**
-    * Boolean property to control if the widget is loading
+    * Use this attribute to put the widget in "loading mode". When this attribute is true, the widget won't show any data, a spinner will be placed instead.
     */
     'isLoading'?: boolean;
     /**
@@ -605,9 +605,6 @@ export namespace Components {
     */
     'data'?: LegendData;
   }
-
-  interface AsLoader {}
-  interface AsLoaderAttributes extends StencilHTMLAttributes {}
 
   interface AsWidgetHeader {
     /**
@@ -689,7 +686,6 @@ declare global {
     'AsStackedBarWidget': Components.AsStackedBarWidget;
     'AsSwitch': Components.AsSwitch;
     'AsLegend': Components.AsLegend;
-    'AsLoader': Components.AsLoader;
     'AsWidgetHeader': Components.AsWidgetHeader;
     'AsYAxis': Components.AsYAxis;
   }
@@ -706,7 +702,6 @@ declare global {
     'as-stacked-bar-widget': Components.AsStackedBarWidgetAttributes;
     'as-switch': Components.AsSwitchAttributes;
     'as-legend': Components.AsLegendAttributes;
-    'as-loader': Components.AsLoaderAttributes;
     'as-widget-header': Components.AsWidgetHeaderAttributes;
     'as-y-axis': Components.AsYAxisAttributes;
   }
@@ -778,12 +773,6 @@ declare global {
     new (): HTMLAsLegendElement;
   };
 
-  interface HTMLAsLoaderElement extends Components.AsLoader, HTMLStencilElement {}
-  var HTMLAsLoaderElement: {
-    prototype: HTMLAsLoaderElement;
-    new (): HTMLAsLoaderElement;
-  };
-
   interface HTMLAsWidgetHeaderElement extends Components.AsWidgetHeader, HTMLStencilElement {}
   var HTMLAsWidgetHeaderElement: {
     prototype: HTMLAsWidgetHeaderElement;
@@ -808,7 +797,6 @@ declare global {
     'as-stacked-bar-widget': HTMLAsStackedBarWidgetElement
     'as-switch': HTMLAsSwitchElement
     'as-legend': HTMLAsLegendElement
-    'as-loader': HTMLAsLoaderElement
     'as-widget-header': HTMLAsWidgetHeaderElement
     'as-y-axis': HTMLAsYAxisElement
   }
@@ -825,7 +813,6 @@ declare global {
     'as-stacked-bar-widget': HTMLAsStackedBarWidgetElement;
     'as-switch': HTMLAsSwitchElement;
     'as-legend': HTMLAsLegendElement;
-    'as-loader': HTMLAsLoaderElement;
     'as-widget-header': HTMLAsWidgetHeaderElement;
     'as-y-axis': HTMLAsYAxisElement;
   }
