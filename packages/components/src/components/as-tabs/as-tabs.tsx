@@ -1,7 +1,5 @@
 import { Component, Element, Prop } from '@stencil/core';
 
-const ACTIVE_CLASS = 'active';
-
 /**
  * As Tabs
  *
