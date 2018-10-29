@@ -50,7 +50,7 @@ export namespace Components {
     */
     'disableInteractivity': boolean;
     /**
-    * Control the text shown in header subtitle
+    * Text shown in the header subtitle when there's an error
     */
     'error': string;
     /**
@@ -66,7 +66,7 @@ export namespace Components {
     */
     'heading': string;
     /**
-    * Boolean property to control if the widget is loading
+    * Boolean property to control the widget loading state. If true, a spinner is shown.
     */
     'isLoading': boolean;
     /**
@@ -108,7 +108,7 @@ export namespace Components {
     */
     'disableInteractivity'?: boolean;
     /**
-    * Control the text shown in header subtitle
+    * Text shown in the header subtitle when there's an error
     */
     'error'?: string;
     /**
@@ -120,7 +120,7 @@ export namespace Components {
     */
     'heading'?: string;
     /**
-    * Boolean property to control if the widget is loading
+    * Boolean property to control the widget loading state. If true, a spinner is shown.
     */
     'isLoading'?: boolean;
     /**
