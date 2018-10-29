@@ -227,7 +227,7 @@ export class HistogramWidget {
 
   @Watch('data')
   public onDataChanged() {
-    if (this.isLoading || this._isEmpty() || this.error) {
+    if (!this._hasDataToDisplay()) {
       return;
     }
     this._updateAxes();
@@ -250,7 +250,7 @@ export class HistogramWidget {
   }
 
   public componentDidLoad() {
-    if (this.isLoading || this._isEmpty() || this.error) {
+    if (!this._hasDataToDisplay()) {
       return;
     }
     // This is probably not necessary for production, but HMR causes this method
@@ -717,5 +717,9 @@ export class HistogramWidget {
 
   private _isEmpty(): boolean {
     return !this.data || !this.data.length;
+  }
+
+  private _hasDataToDisplay() {
+    return !(this.isLoading || this._isEmpty() || this.error);
   }
 }
