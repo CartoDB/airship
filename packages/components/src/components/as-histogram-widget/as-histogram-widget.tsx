@@ -494,7 +494,9 @@ export class HistogramWidget {
 
     this.customHandlers
       .style('opacity', 1)
-      .attr('transform', (_d, i) => `translate(${valuesSpace[i] - (CUSTOM_HANDLE_SIZE / 2)},${CUSTOM_HANDLE_Y_COORD})`);
+      .attr('transform', (_d, i) => {
+        return `translate(${(valuesSpace[i] - (CUSTOM_HANDLE_SIZE / 2) - 1)},${CUSTOM_HANDLE_Y_COORD})`;
+      });
     this.bottomLine
       .style('opacity', 1)
       .attr('x1', valuesSpace[0])
