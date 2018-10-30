@@ -14,6 +14,7 @@ as-dropdown {
   .as-dropdown__control {
     position: relative;
     width: 100%;
+    min-height: 36px;
     margin: 0;
     padding: get-spacing(2) get-spacing(8) get-spacing(2) get-spacing(2);
     overflow: hidden;
