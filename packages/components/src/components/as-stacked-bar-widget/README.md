@@ -154,3 +154,46 @@ lang: javascript
 ---
 stackedBar.showLegend = 'false';
 ```
+
+#### **isLoading**: boolean=false
+Indicates if the widget is loading or not. Defaults to false.
+
+```code
+lang: html
+---
+<as-stacked-bar-widget is-loading="true"></as-stacked-bar-widget>
+```
+```code
+lang: javascript
+---
+stackedBar.isLoading = 'true';
+```
+
+#### **error**: string=''
+Sets the widget as "errored". 
+When this attribute is given it's text will be shown in the subheader and the widget content wont be displayed.
+
+```code
+lang: html
+---
+<as-stacked-bar-widget error="Error!"></as-stacked-bar-widget>
+```
+```code
+lang: javascript
+---
+stackedBar.error = 'Some error happened, try again!';
+```
+
+#### **errorDescription**: string=''
+Extended error description shown in the widget content area. Only shown when error attribute is present.
+
+```code
+lang: html
+---
+<as-stacked-bar-widget error-description="There is no internet connection"></as-stacked-bar-widget>
+```
+```code
+lang: javascript
+---
+stackedBar.errorDescription = 'There is no internet connection.';
+```

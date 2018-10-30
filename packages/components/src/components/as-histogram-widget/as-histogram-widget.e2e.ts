@@ -41,48 +41,6 @@ describe('as-histogram-widget', () => {
       expect(actual).not.toBeFalsy();
     });
   });
-
-  describe('Behaviour', () => {
-    it('should emit an event with the selected range', async () => {
-      const selectionChangedSpy = await page.spyOnEvent('selectionChanged');
-
-      const element: E2EElement = await page.find('as-histogram-widget');
-      element.setProperty('data', histogramData);
-      await page.waitForChanges();
-
-      await element.callMethod('setSelection', [0, 20]);
-      await page.waitForChanges();
-
-      expect(selectionChangedSpy).toHaveReceivedEventDetail([0, 20]);
-    });
-
-    it('should clear the selection', async () => {
-      const element: E2EElement = await page.find('as-histogram-widget');
-      element.setProperty('data', histogramData);
-      await page.waitForChanges();
-
-      element.callMethod('setSelection', [0, 20]);
-
-      const currentSelection = await element.callMethod('getSelection');
-      expect(currentSelection).toEqual([0, 20]);
-
-      element.callMethod('clearSelection');
-
-      const newSelection = await element.callMethod('getSelection');
-      expect(newSelection).toEqual(null);
-    });
-
-    it('should adjust the selection to the closest buckets', async () => {
-      const element: E2EElement = await page.find('as-histogram-widget');
-      element.setProperty('data', histogramData);
-      await page.waitForChanges();
-
-      element.callMethod('setSelection', [4, 22]);
-
-      const currentSelection = await element.callMethod('getSelection');
-      expect(currentSelection).toEqual([0, 20]);
-    });
-  });
 });
 
 const histogramData = [

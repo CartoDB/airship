@@ -1,6 +1,7 @@
 import { Component, Element, Event, EventEmitter, Method, Prop, State } from '@stencil/core';
 import readableNumber from '../../utils/readable-number';
 import { shadeOrBlend } from '../../utils/styles';
+import contentFragment from '../common/content.fragment';
 import { Category, CategoryOptions } from './interfaces';
 
 const OTHER_CATEGORY_COLOR = '#747474';
@@ -102,6 +103,31 @@ export class CategoryWidget {
   @Prop() public visibleCategories: number = Infinity;
 
   /**
+   * Boolean property to control if the widget is loading
+   */
+  @Prop() public isLoading: boolean = false;
+
+  /**
+   * Control the text shown in header subtitle
+   */
+  @Prop() public error: string = '';
+
+  /**
+   * Extended error description, only shown when error is present
+   */
+  @Prop() public errorDescription: string = '';
+
+  /**
+   * Message shown in header when no data is available
+   */
+  @Prop() public noDataHeaderMessage: string = 'NO DATA AVAILABLE';
+
+  /**
+   * Message shown in body when no data is available
+   */
+  @Prop() public noDataBodyMessage: string = 'There is no data to display.';
+
+  /**
    * Fired when selected categories changed or selected categories are cleared.
    *
    * @event categoriesSelected
@@ -161,8 +187,7 @@ export class CategoryWidget {
   public render() {
     return [
       this._renderHeader(),
-      this._renderCategoryList(),
-      !this.disableInteractivity ? this._renderFooter() : ''
+      this._renderContent(),
     ];
   }
 
@@ -171,10 +196,28 @@ export class CategoryWidget {
       return;
     }
 
-    return [
-      <h2 class='as-category-widget__heading'>{this.heading}</h2>,
-      <p class='as-category-widget__description as-body'>{this.description}</p>,
-    ];
+    return <as-widget-header
+      header={this.heading}
+      subheader={this.description}
+      is-empty={this._isEmpty()}
+      is-loading={this.isLoading}
+      error={this.error}
+      no-data-message={this.noDataHeaderMessage}>
+    </as-widget-header>;
+  }
+
+  private _renderContent() {
+    return contentFragment(
+      this.isLoading,
+      this.error,
+      this._isEmpty(),
+      this.heading,
+      this.errorDescription,
+      this.noDataBodyMessage,
+      [
+        this._renderCategoryList(),
+        !this.disableInteractivity ? this._renderFooter() : '',
+      ]);
   }
 
   private _renderCategoryList() {
@@ -337,5 +380,9 @@ export class CategoryWidget {
     }
 
     return parsedCategories.slice(0, this.visibleCategories);
+  }
+
+  private _isEmpty(): boolean {
+    return !this.categories || !this.categories.length;
   }
 }

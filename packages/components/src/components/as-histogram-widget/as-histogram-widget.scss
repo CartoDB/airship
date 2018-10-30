@@ -7,16 +7,6 @@ as-histogram-widget {
   width: 100%;
   background: var(--histogram-widget--background-color, $color-ui-01);
 
-  .as-histogram-widget__header {
-    margin: 0;
-    font: $font-subheader;
-  }
-
-  .as-histogram-widget__description {
-    margin-bottom: get-spacing(4);
-    color: var(--histogram-widget--description-color, $color-type-02);
-  }
-
   .as-histogram-widget__wrapper {
     position: relative;
   }
@@ -53,6 +43,24 @@ as-histogram-widget {
       cursor: pointer;
     }
 
+    .xAxis {
+      .domain {
+        display: none;
+      }
+
+      .tick {
+        line {
+          display: none;
+        }
+      }
+    }
+
+    .yAxis {
+      .domain {
+        display: none;
+      }
+    }
+
     .yAxis .tick {
       line {
         stroke: var(--as-color-type-02, #{$color-type-02});
@@ -68,6 +76,32 @@ as-histogram-widget {
 
     text {
       fill: $color-type-01;
+    }
+
+    .handle--wrapper {
+      opacity: 0;
+    }
+
+    .handle--custom {
+      width: 6px;
+      height: 28px;
+      stroke-linecap: round;
+      stroke: #1785FB;
+      fill: white;
+      cursor: ew-resize;
+      pointer-events: none;
+    }
+
+    .handle--grab {
+      transform: translateY(12px);
+    }
+
+    .grab-line {
+      stroke: #CCC;
+    }
+
+    .bottomline {
+      stroke: var(--as-color-primary, #{$color-primary});
     }
   }
 

@@ -50,6 +50,14 @@ export namespace Components {
     */
     'disableInteractivity': boolean;
     /**
+    * Control the text shown in header subtitle
+    */
+    'error': string;
+    /**
+    * Extended error description, only shown when error is present
+    */
+    'errorDescription': string;
+    /**
     * Get current selected categories
     */
     'getSelectedCategories': () => Promise<string[]>;
@@ -57,6 +65,18 @@ export namespace Components {
     * Heading text of the widget
     */
     'heading': string;
+    /**
+    * Boolean property to control if the widget is loading
+    */
+    'isLoading': boolean;
+    /**
+    * Message shown in body when no data is available
+    */
+    'noDataBodyMessage': string;
+    /**
+    * Message shown in header when no data is available
+    */
+    'noDataHeaderMessage': string;
     /**
     * If truthy, it'll show a button to clear selected categories when there are any. Default value is `false`.
     */
@@ -96,9 +116,29 @@ export namespace Components {
     */
     'disableInteractivity'?: boolean;
     /**
+    * Control the text shown in header subtitle
+    */
+    'error'?: string;
+    /**
+    * Extended error description, only shown when error is present
+    */
+    'errorDescription'?: string;
+    /**
     * Heading text of the widget
     */
     'heading'?: string;
+    /**
+    * Boolean property to control if the widget is loading
+    */
+    'isLoading'?: boolean;
+    /**
+    * Message shown in body when no data is available
+    */
+    'noDataBodyMessage'?: string;
+    /**
+    * Message shown in header when no data is available
+    */
+    'noDataHeaderMessage'?: string;
     /**
     * Fired when selected categories changed or selected categories are cleared.
     */
@@ -192,6 +232,14 @@ export namespace Components {
     */
     'disableInteractivity': boolean;
     /**
+    * Control the text shown in header subtitle
+    */
+    'error': string;
+    /**
+    * Extended error description, only shown when error is present
+    */
+    'errorDescription': string;
+    /**
     * Returns the current selection
     */
     'getSelection': () => Promise<number[]>;
@@ -199,6 +247,18 @@ export namespace Components {
     * Title of the widget to be displayed
     */
     'heading': string;
+    /**
+    * Boolean property to control if the widget is loading
+    */
+    'isLoading': boolean;
+    /**
+    * Message shown in body when no data is available
+    */
+    'noDataBodyMessage': string;
+    /**
+    * Message shown in header when no data is available
+    */
+    'noDataHeaderMessage': string;
     /**
     * Override color for the selected histogram bars
     */
@@ -250,9 +310,29 @@ export namespace Components {
     */
     'disableInteractivity'?: boolean;
     /**
+    * Control the text shown in header subtitle
+    */
+    'error'?: string;
+    /**
+    * Extended error description, only shown when error is present
+    */
+    'errorDescription'?: string;
+    /**
     * Title of the widget to be displayed
     */
     'heading'?: string;
+    /**
+    * Boolean property to control if the widget is loading
+    */
+    'isLoading'?: boolean;
+    /**
+    * Message shown in body when no data is available
+    */
+    'noDataBodyMessage'?: string;
+    /**
+    * Message shown in header when no data is available
+    */
+    'noDataHeaderMessage'?: string;
     /**
     * Fired when user update or clear the widget selection.
     */
@@ -421,6 +501,14 @@ export namespace Components {
     */
     'description': string;
     /**
+    * Control the text shown in header subtitle
+    */
+    'error': string;
+    /**
+    * Extended error description, only shown when error is present
+    */
+    'errorDescription': string;
+    /**
     * Easy customize tooltip format
     */
     'formatFn': any;
@@ -428,6 +516,10 @@ export namespace Components {
     * Header of the widget to be displayed
     */
     'heading': string;
+    /**
+    * Boolean property to control if the widget is loading
+    */
+    'isLoading': boolean;
     /**
     * Legend data
     */
@@ -440,6 +532,14 @@ export namespace Components {
     * Callback executed when the mouse is placed over a rectangle.
     */
     'mouseOver': any;
+    /**
+    * Message shown in body when no data is available
+    */
+    'noDataBodyMessage': string;
+    /**
+    * Message shown in header when no data is available
+    */
+    'noDataHeaderMessage': string;
     /**
     * Boolean flag to control legend visibility. Defaults: true
     */
@@ -455,6 +555,14 @@ export namespace Components {
     */
     'description'?: string;
     /**
+    * Control the text shown in header subtitle
+    */
+    'error'?: string;
+    /**
+    * Extended error description, only shown when error is present
+    */
+    'errorDescription'?: string;
+    /**
     * Easy customize tooltip format
     */
     'formatFn'?: any;
@@ -462,6 +570,10 @@ export namespace Components {
     * Header of the widget to be displayed
     */
     'heading'?: string;
+    /**
+    * Boolean property to control if the widget is loading
+    */
+    'isLoading'?: boolean;
     /**
     * Legend data
     */
@@ -474,6 +586,14 @@ export namespace Components {
     * Callback executed when the mouse is placed over a rectangle.
     */
     'mouseOver'?: any;
+    /**
+    * Message shown in body when no data is available
+    */
+    'noDataBodyMessage'?: string;
+    /**
+    * Message shown in header when no data is available
+    */
+    'noDataHeaderMessage'?: string;
     /**
     * Boolean flag to control legend visibility. Defaults: true
     */
@@ -534,11 +654,30 @@ export namespace Components {
     'data'?: LegendData;
   }
 
+  interface AsLoader {}
+  interface AsLoaderAttributes extends StencilHTMLAttributes {}
+
   interface AsWidgetHeader {
+    /**
+    * Indicates if the widget has some errors and display the text in the subheader
+    */
+    'error': string;
     /**
     * Main title
     */
     'header': string;
+    /**
+    * Indicates if the widget has no data
+    */
+    'isEmpty': boolean;
+    /**
+    * Indicates if the widget is loading
+    */
+    'isLoading': boolean;
+    /**
+    * Message shown when no data is available
+    */
+    'noDataMessage': string;
     /**
     * Secondary title
     */
@@ -546,9 +685,25 @@ export namespace Components {
   }
   interface AsWidgetHeaderAttributes extends StencilHTMLAttributes {
     /**
+    * Indicates if the widget has some errors and display the text in the subheader
+    */
+    'error'?: string;
+    /**
     * Main title
     */
     'header'?: string;
+    /**
+    * Indicates if the widget has no data
+    */
+    'isEmpty'?: boolean;
+    /**
+    * Indicates if the widget is loading
+    */
+    'isLoading'?: boolean;
+    /**
+    * Message shown when no data is available
+    */
+    'noDataMessage'?: string;
     /**
     * Secondary title
     */
@@ -590,6 +745,7 @@ declare global {
     'AsStackedBarWidget': Components.AsStackedBarWidget;
     'AsSwitch': Components.AsSwitch;
     'AsLegend': Components.AsLegend;
+    'AsLoader': Components.AsLoader;
     'AsWidgetHeader': Components.AsWidgetHeader;
     'AsYAxis': Components.AsYAxis;
   }
@@ -606,6 +762,7 @@ declare global {
     'as-stacked-bar-widget': Components.AsStackedBarWidgetAttributes;
     'as-switch': Components.AsSwitchAttributes;
     'as-legend': Components.AsLegendAttributes;
+    'as-loader': Components.AsLoaderAttributes;
     'as-widget-header': Components.AsWidgetHeaderAttributes;
     'as-y-axis': Components.AsYAxisAttributes;
   }
@@ -677,6 +834,12 @@ declare global {
     new (): HTMLAsLegendElement;
   };
 
+  interface HTMLAsLoaderElement extends Components.AsLoader, HTMLStencilElement {}
+  var HTMLAsLoaderElement: {
+    prototype: HTMLAsLoaderElement;
+    new (): HTMLAsLoaderElement;
+  };
+
   interface HTMLAsWidgetHeaderElement extends Components.AsWidgetHeader, HTMLStencilElement {}
   var HTMLAsWidgetHeaderElement: {
     prototype: HTMLAsWidgetHeaderElement;
@@ -701,6 +864,7 @@ declare global {
     'as-stacked-bar-widget': HTMLAsStackedBarWidgetElement
     'as-switch': HTMLAsSwitchElement
     'as-legend': HTMLAsLegendElement
+    'as-loader': HTMLAsLoaderElement
     'as-widget-header': HTMLAsWidgetHeaderElement
     'as-y-axis': HTMLAsYAxisElement
   }
@@ -717,6 +881,7 @@ declare global {
     'as-stacked-bar-widget': HTMLAsStackedBarWidgetElement;
     'as-switch': HTMLAsSwitchElement;
     'as-legend': HTMLAsLegendElement;
+    'as-loader': HTMLAsLoaderElement;
     'as-widget-header': HTMLAsWidgetHeaderElement;
     'as-y-axis': HTMLAsYAxisElement;
   }

@@ -1,9 +1,7 @@
 import { Component, Element, Event, EventEmitter, Method, Prop, State, Watch } from '@stencil/core';
-import { max } from 'd3-array';
-import { Axis, axisBottom, axisLeft } from 'd3-axis';
+import { Axis } from 'd3-axis';
 import { BrushBehavior, brushX } from 'd3-brush';
-import { format } from 'd3-format';
-import { scaleLinear, ScaleLinear } from 'd3-scale';
+import { ScaleLinear } from 'd3-scale';
 import {
   BaseType,
   event as d3event,
@@ -13,9 +11,12 @@ import {
 import 'd3-transition';
 import readableNumber from '../../utils/readable-number';
 import { shadeOrBlend } from '../../utils/styles';
+import contentFragment from '../common/content.fragment';
 import { HistogramColorRange, HistogramData } from './interfaces';
+import dataService from './utils/data.service';
+import drawService from './utils/draw.service';
 
-const CUSTOM_HANDLE_SIZE = 15;
+const CUSTOM_HANDLE_SIZE = 5; // TODO: width or height?
 const DEFAULT_BAR_COLOR = 'var(--as-color-primary, #1785FB)';
 const DEFAULT_SELECTED_BAR_COLOR = 'var(--as-color-complementary, #47DB99)';
 const HEIGHT = 125;
@@ -27,7 +28,8 @@ const MARGIN = {
   TOP: 5,
   YAxis: 20
 };
-const CUSTOM_HANDLE_Y_COORD = HEIGHT + MARGIN.TOP - (CUSTOM_HANDLE_SIZE / 2);
+const CUSTOM_HANDLE_HEIGHT = 28;
+const CUSTOM_HANDLE_Y_COORD = HEIGHT + MARGIN.TOP - (CUSTOM_HANDLE_HEIGHT / 2);
 
 /**
  * Histogram Widget
@@ -131,6 +133,31 @@ export class HistogramWidget {
    */
   @Prop() public yLabel: string;
 
+  /**
+   * Boolean property to control if the widget is loading
+   */
+  @Prop() public isLoading: boolean = false;
+
+  /**
+   * Control the text shown in header subtitle
+   */
+  @Prop() public error: string = '';
+
+  /**
+   * Extended error description, only shown when error is present
+   */
+  @Prop() public errorDescription: string = '';
+
+  /**
+   * Message shown in header when no data is available
+   */
+  @Prop() public noDataHeaderMessage: string = 'NO DATA AVAILABLE';
+
+  /**
+   * Message shown in body when no data is available
+   */
+  @Prop() public noDataBodyMessage: string = 'There is no data to display.';
+
   @Element() private el: HTMLElement;
 
   /**
@@ -152,10 +179,7 @@ export class HistogramWidget {
   private yScale: ScaleLinear<number, number>;
   private yAxis: Axis<{ valueOf(): number }>;
   private xAxis: Axis<{ valueOf(): number }>;
-  private yAxisSelection: Selection<BaseType, {}, null, undefined>;
-  private xAxisSelection: Selection<BaseType, {}, null, undefined>;
   private barsContainer: Selection<BaseType, {}, null, undefined>;
-  private bars: Selection<BaseType, HistogramData, BaseType, {}>;
   private brush: BrushBehavior<{}>;
   private brushArea: Selection<BaseType, {}, null, undefined>;
   private customHandlers: Selection<BaseType, { type: string }, BaseType, {}>;
@@ -211,8 +235,17 @@ export class HistogramWidget {
 
   @Watch('data')
   public onDataChanged() {
-    this._updateAxes();
-    this._renderBars();
+    if (this.isLoading || this._isEmpty() || this.error) {
+      return;
+    }
+    const xDomain = dataService.getXDomain(this.data);
+    const yDomain = dataService.getYDomain(this.data);
+
+    drawService.updateAxes(
+      this.container, this.xScale, this.yScale, this.xAxis, this.yAxis, xDomain, yDomain);
+
+    drawService.renderBars(
+      this.data, this.yScale, this.chartWidth, MARGIN, this.barsContainer, HEIGHT, BARS_SEPARATION, this.color);
 
     if (this.selection === null) {
       return;
@@ -227,10 +260,14 @@ export class HistogramWidget {
 
   @Watch('color')
   public onColorChanged() {
-    this._renderBars();
+    drawService.renderBars(
+      this.data, this.yScale, this.chartWidth, MARGIN, this.barsContainer, HEIGHT, BARS_SEPARATION, this.color);
   }
 
   public componentDidLoad() {
+    if (this.isLoading || this._isEmpty() || this.error) {
+      return;
+    }
     // This is probably not necessary for production, but HMR causes this method
     // to be called on each file change
     this.container.selectAll('*').remove();
@@ -243,20 +280,32 @@ export class HistogramWidget {
     MARGIN.LEFT = spaceForYLabel ? MARGIN.LEFT + 25 : MARGIN.LEFT;
     this.chartWidth = (this.el.offsetWidth - MARGIN.YAxis) - spaceForYLabel;
 
+    return [
+      this._renderHeader(),
+      this._renderContent(),
+    ];
+  }
+
+  private _renderContent() {
     const histogramClasses = {
       'as-histogram-widget__wrapper': true,
       'as-histogram-widget__wrapper--disabled': this.disableInteractivity
     };
-
-    return [
-      this._renderHeader(),
+    return contentFragment(
+      this.isLoading,
+      this.error,
+      this._isEmpty(),
+      this.heading,
+      this.errorDescription,
+      this.noDataBodyMessage,
+      [
       <div class={histogramClasses}>
         {this._renderTooltip()}
         <svg ref={(ref: HTMLElement) => this.container = select(ref)}></svg>
         {this._renderLabels()}
       </div>,
-      this.showClear && !this.disableInteractivity ? this._renderClearBtn() : '',
-    ];
+      this.showClear && !this.disableInteractivity ? this._renderClearBtn() : ''
+      ]);
   }
 
   private _renderGraph() {
@@ -279,26 +328,40 @@ export class HistogramWidget {
         .attr('class', 'brush')
         .call(this.brush);
 
-      this.customHandlers = this.brushArea.selectAll('.handle--custom')
-        .data([{ type: 'w' }, { type: 'e' }])
-        .enter().append('rect')
-        .style('opacity', 0)
-        .attr('class', 'handle--custom')
-        .attr('fill', this.selectedColor)
-        .attr('cursor', 'ew-resize')
-        .attr('width', CUSTOM_HANDLE_SIZE)
-        .attr('height', CUSTOM_HANDLE_SIZE)
-        .attr('rx', '100')
-        .attr('ry', '100');
-
       this.bottomLine = this.brushArea.append('line')
         .attr('class', 'bottomline')
-        .attr('stroke', this.selectedColor)
         .attr('stroke-width', 4)
         .attr('y1', HEIGHT + MARGIN.TOP)
         .attr('y2', HEIGHT + MARGIN.TOP)
         .style('opacity', 0)
         .attr('pointer-events', 'none');
+
+      this.customHandlers = this.brushArea.selectAll('.handle--custom')
+        .data([{ type: 'w' }, { type: 'e' }])
+        .enter()
+        .append('g')
+        .attr('class', 'handle--wrapper');
+
+      this.customHandlers
+        .append('rect')
+        .attr('class', 'handle--custom')
+        .attr('rx', 2)
+        .attr('ry', 2);
+
+      const handleGrab = this.customHandlers
+        .append('g')
+        .attr('class', 'handle--grab');
+
+
+      for (let i = 0; i < 3; i++) {
+        handleGrab
+          .append('line')
+          .attr('x1', 2)
+          .attr('y1', i * 2)
+          .attr('x2', 4)
+          .attr('y2', i * 2)
+          .attr('class', 'grab-line');
+      }
     }
 
     this.container.on('mousemove', () => {
@@ -344,8 +407,8 @@ export class HistogramWidget {
           });
       });
 
-    this._renderBars();
-    this._cleanAxes();
+    drawService.renderBars(
+      this.data, this.yScale, this.chartWidth, MARGIN, this.barsContainer, HEIGHT, BARS_SEPARATION, this.color);
   }
 
   private _adjustSelection(values: number[] | null): number[] | null {
@@ -459,13 +522,17 @@ export class HistogramWidget {
     }
 
     // Convert back to space coordinates
-    const valuesSpace = values.map(this.xScale).map((e) => e + MARGIN.LEFT);
+    const valuesSpace = values
+      .map(this.xScale)
+      .map((e) => e + MARGIN.LEFT);
 
     this.brushArea.call(this.brush.move, valuesSpace);
 
     this.customHandlers
       .style('opacity', 1)
-      .attr('transform', (_d, i) => `translate(${valuesSpace[i] - (CUSTOM_HANDLE_SIZE / 2)},${CUSTOM_HANDLE_Y_COORD})`);
+      .attr('transform', (_d, i) => {
+        return `translate(${(valuesSpace[i] - (CUSTOM_HANDLE_SIZE / 2) - 1)},${CUSTOM_HANDLE_Y_COORD})`;
+      });
     this.bottomLine
       .style('opacity', 1)
       .attr('x1', valuesSpace[0])
@@ -482,84 +549,21 @@ export class HistogramWidget {
   }
 
   private _renderYAxis() {
-    const data = this.data;
     const barsWidth = this.chartWidth - MARGIN.YAxis;
+    const yDomain = dataService.getYDomain(this.data);
+    const [yScale, yAxis] = drawService.renderYAxis(this.container, yDomain, barsWidth, MARGIN, HEIGHT);
 
-    // -- Y Axis
-    this.yScale = scaleLinear()
-      .range([HEIGHT, 0])
-      .domain([0, max(data, (d) => d.value)])
-      .nice();
-
-    this.yAxis = axisLeft(this.yScale)
-      .tickSize(-barsWidth)
-      .ticks(5)
-      .tickPadding(10)
-      .tickFormat(format('.2~s'));
-
-    this.yAxisSelection = this.container
-      .append('g')
-      .attr('class', 'yAxis')
-      .attr('transform', `translate(${MARGIN.LEFT}, ${MARGIN.TOP})`)
-      .call(this.yAxis);
+    this.yScale = yScale;
+    this.yAxis = yAxis;
   }
 
   private _renderXAxis() {
-    const data = this.data;
     const barsWidth = this.chartWidth - MARGIN.YAxis;
+    const xDomain = dataService.getXDomain(this.data);
+    const [xScale, xAxis] = drawService.renderXAxis(this.container, xDomain, barsWidth, MARGIN, HEIGHT);
 
-    const { start } = data.length > 0 ? data[0] : { start: 0 };
-    const { end } = data.length > 0 ? data[data.length - 1] : { end: 0 };
-
-    this.xScale = scaleLinear()
-      .domain([start, end])
-      .range([0, barsWidth]);
-
-    this.xAxis = axisBottom(this.xScale)
-      .tickSize(-barsWidth)
-      .ticks(3)
-      .tickPadding(10);
-
-    this.xAxisSelection = this.container
-      .append('g')
-      .attr('class', 'xAxis')
-      .attr('transform', `translate(${MARGIN.LEFT}, ${HEIGHT + MARGIN.TOP})`)
-      .call(this.xAxis);
-  }
-
-  private _renderBars() {
-    const data = this.data;
-    const barsWidth = this.chartWidth - MARGIN.YAxis;
-    const barWidth = data.length === 0 ? barsWidth : barsWidth / data.length;
-    // -- Draw bars
-    this.bars = this.barsContainer
-      .selectAll('rect')
-      .data(data);
-
-    // -- Exit
-    this.bars.exit().remove();
-
-    // -- Enter
-    this.bars
-      .enter()
-      .append('rect')
-      .merge(this.bars)
-      .attr('class', 'bar')
-      .attr('y', HEIGHT)
-      .attr('x', (_d: HistogramData, index: number) => index * barWidth)
-      .attr('width', () => Math.max(0, barWidth - BARS_SEPARATION))
-      .attr('height', 0)
-      .style('fill', (d: HistogramData) => d.color || this.color)
-      .transition()
-      .delay(200)
-      .attr('y', (d: HistogramData) => this.yScale(d.value))
-      .attr('height', (d: HistogramData) => HEIGHT - this.yScale(d.value));
-
-    // -- Update
-    this.bars
-      .attr('y', (d) => this.yScale(d.value))
-      .attr('height', (d) => HEIGHT - this.yScale(d.value));
-
+    this.xScale = xScale;
+    this.xAxis = xAxis;
   }
 
   private _getTooltipPosition(mouseX: number, mouseY: number) {
@@ -603,44 +607,19 @@ export class HistogramWidget {
       .style('top', `${y + 20}px`);
   }
 
-  private _cleanAxes() {
-    this.yAxisSelection.select('.domain').remove();
-    this.xAxisSelection.select('.domain').remove();
-    this.xAxisSelection.selectAll('line').remove();
-  }
-
-  private _updateAxes() {
-    const data = this.data;
-    const { start } = data[0];
-    const { end } = data[data.length - 1];
-
-    // -- Update scales
-    this.yScale
-      .domain([0, max(data, (d) => d.value)])
-      .nice();
-
-    this.xScale
-      .domain([start, end]);
-
-    // -- Update axes
-    this.xAxisSelection
-      .call(this.xAxis);
-
-    this.yAxisSelection
-      .call(this.yAxis);
-
-    this._cleanAxes();
-  }
-
   private _renderHeader() {
     if (!this.showHeader) {
       return;
     }
 
-    return [
-      <h2 class='as-histogram-widget__header'>{this.heading}</h2>,
-      <p class='as-histogram-widget__description as-body'>{this.description}</p>,
-    ];
+    return <as-widget-header
+      header={this.heading}
+      subheader={this.description}
+      is-loading={this.isLoading}
+      is-empty={this._isEmpty()}
+      error={this.error}
+      no-data-message={this.noDataHeaderMessage}>
+    </as-widget-header>;
   }
 
   private _renderTooltip() {
@@ -680,5 +659,9 @@ export class HistogramWidget {
       return getComputedStyle(this.el).getPropertyValue(color).toLowerCase().trim();
     }
     return color;
+  }
+
+  private _isEmpty(): boolean {
+    return !this.data || !this.data.length;
   }
 }

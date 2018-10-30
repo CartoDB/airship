@@ -30,10 +30,45 @@ export class WidgetHeader {
    */
   @Prop() public subheader: string = '';
 
+  /**
+   * Indicates if the widget has some errors and display the text in the subheader
+   */
+  @Prop() public error: string = '';
+
+  /**
+   * Indicates if the widget has no data
+   */
+  @Prop() public isEmpty: boolean = false;
+
+  /**
+   * Indicates if the widget is loading
+   */
+  @Prop() public isLoading: boolean = false;
+
+  /**
+   * Message shown when no data is available
+   */
+  @Prop() public noDataMessage: string = 'NO DATA AVAILABLE';
+
   public render() {
     return [
       <h2 class='as-widget-header__header'>{this.header}</h2>,
-      <p class='as-widget-header__subheader as-body'>{this.subheader}</p>,
+      this._getSubHeader(),
     ];
+  }
+
+  private _getSubHeader() {
+    if (this.isLoading) {
+      return <p class='as-widget-header__subheader as-body '>{this.subheader}</p>;
+    }
+    if (this.error) {
+      return <p class='as-widget-header__subheader as-widget-header__subheader--error as-body '>{this.error}</p>;
+    }
+    if (this.isEmpty) {
+      return <p class='as-widget-header__subheader as-widget-header__subheader--empty as-body '>
+        {this.noDataMessage}
+      </p>;
+    }
+    return <p class='as-widget-header__subheader as-body'>{this.subheader}</p>;
   }
 }
