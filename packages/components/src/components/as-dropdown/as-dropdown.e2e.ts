@@ -98,6 +98,24 @@ describe('as-category-widget', async () => {
       const selectedOption = await element.getProperty('selectedOption');
       expect(selectedOption).toBeNull();
     });
+
+    it('should close itself when clicking outside', async () => {
+      const element = await page.find('as-dropdown');
+      element.setProperty('options', exampleOptions);
+
+      await page.waitForChanges();
+
+      await page.click('.as-dropdown__control');
+      await page.waitForChanges();
+
+      const menuDropdown = await page.find('.as-dropdown');
+      expect(menuDropdown).toHaveClass('as-dropdown--open');
+
+      await page.click('body');
+      await page.waitForChanges();
+
+      expect(menuDropdown).not.toHaveClass('as-dropdown--open');
+    });
   });
 });
 
