@@ -77,6 +77,16 @@ export class StackedBarWidget {
   @Prop() public errorDescription: string = '';
 
   /**
+   * Message shown in header when no data is available
+   */
+  @Prop() public noDataHeaderMessage: string = 'NO DATA AVAILABLE';
+
+  /**
+   * Message shown in body when no data is available
+   */
+  @Prop() public noDataBodyMessage: string = 'There is no data to display.';
+
+  /**
    * Hold a reference to the tooltip to show on mouseover
    */
   private tooltip: HTMLElement;
@@ -103,7 +113,8 @@ export class StackedBarWidget {
         subheader={this.description}
         is-loading={this.isLoading}
         is-empty={this._isEmpty()}
-        error={this.error}>
+        error={this.error}
+        no-data-message={this.noDataHeaderMessage}>
       </as-widget-header>,
       this._renderContent()
     ];
@@ -165,12 +176,18 @@ export class StackedBarWidget {
   }
 
   private _renderContent() {
-    return contentFragment(this.isLoading, this.error, this._isEmpty(), this.heading, this.errorDescription,
+    return contentFragment(
+      this.isLoading,
+      this.error,
+      this._isEmpty(),
+      this.heading,
+      this.errorDescription,
+      this.noDataBodyMessage,
       [
-        <svg class='figure' ref={(ref: SVGElement) => this.container = ref}></svg>,
-        <as-y-axis from={this.scale[0]} to={this.scale[1]}></as-y-axis>,
-        this._renderLegend(),
-        <span ref={(ref) => this.tooltip = ref} role='tooltip' class='as-tooltip as-tooltip--top' > TOOLTIP</span>
+      <svg class='figure' ref={(ref: SVGElement) => this.container = ref}></svg> ,
+      <as-y-axis from={this.scale[0]} to={this.scale[1]}></as-y-axis> ,
+      this._renderLegend(),
+      <span ref={(ref) => this.tooltip = ref} role='tooltip' class='as-tooltip as-tooltip--top' > TOOLTIP</span>
       ]);
   }
 

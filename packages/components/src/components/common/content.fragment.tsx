@@ -6,9 +6,10 @@
  * @param isEmpty
  * @param heading
  * @param errorDescription
+ * @param noDataMessage
  * @param fragment
  */
-export default function(isLoading, error, isEmpty, heading, errorDescription, fragment) {
+export default function(isLoading, error, isEmpty, heading, errorDescription, noDataMessage, fragment) {
   if (isLoading) {
     return <as-loader class={heading ? 'content as-pb--36' : 'content as-pb--20'}></as-loader>;
   }
@@ -16,7 +17,7 @@ export default function(isLoading, error, isEmpty, heading, errorDescription, fr
     return <p class='content as-body'>{errorDescription || 'Unexpected error'}</p>;
   }
   if (isEmpty) {
-    return <p class='content as-body'>There is no data to display.</p>;
+    return <p class='content as-body'>{noDataMessage}</p>;
   }
   return fragment;
 }

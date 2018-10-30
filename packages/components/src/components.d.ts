@@ -70,6 +70,14 @@ export namespace Components {
     */
     'isLoading': boolean;
     /**
+    * Message shown in body when no data is available
+    */
+    'noDataBodyMessage': string;
+    /**
+    * Message shown in header when no data is available
+    */
+    'noDataHeaderMessage': string;
+    /**
     * If truthy, it'll show a button to clear selected categories when there are any. Default value is `false`.
     */
     'showClearButton': boolean;
@@ -123,6 +131,14 @@ export namespace Components {
     * Boolean property to control the widget loading state. If true, a spinner is shown.
     */
     'isLoading'?: boolean;
+    /**
+    * Message shown in body when no data is available
+    */
+    'noDataBodyMessage'?: string;
+    /**
+    * Message shown in header when no data is available
+    */
+    'noDataHeaderMessage'?: string;
     /**
     * Fired when selected categories changed or selected categories are cleared.
     */
@@ -236,6 +252,14 @@ export namespace Components {
     */
     'isLoading': boolean;
     /**
+    * Message shown in body when no data is available
+    */
+    'noDataBodyMessage': string;
+    /**
+    * Message shown in header when no data is available
+    */
+    'noDataHeaderMessage': string;
+    /**
     * Override color for the selected histogram bars
     */
     'selectedColor': string;
@@ -301,6 +325,14 @@ export namespace Components {
     * Use this attribute to put the widget in "loading mode". When loading mode is active, a spinner will be shown and the data will be hidden.
     */
     'isLoading'?: boolean;
+    /**
+    * Message shown in body when no data is available
+    */
+    'noDataBodyMessage'?: string;
+    /**
+    * Message shown in header when no data is available
+    */
+    'noDataHeaderMessage'?: string;
     /**
     * Fired when user update or clear the widget selection.
     */
@@ -501,6 +533,14 @@ export namespace Components {
     */
     'mouseOver': any;
     /**
+    * Message shown in body when no data is available
+    */
+    'noDataBodyMessage': string;
+    /**
+    * Message shown in header when no data is available
+    */
+    'noDataHeaderMessage': string;
+    /**
     * Boolean flag to control legend visibility. Defaults: true
     */
     'showLegend': boolean;
@@ -546,6 +586,14 @@ export namespace Components {
     * Callback executed when the mouse is placed over a rectangle.
     */
     'mouseOver'?: any;
+    /**
+    * Message shown in body when no data is available
+    */
+    'noDataBodyMessage'?: string;
+    /**
+    * Message shown in header when no data is available
+    */
+    'noDataHeaderMessage'?: string;
     /**
     * Boolean flag to control legend visibility. Defaults: true
     */
