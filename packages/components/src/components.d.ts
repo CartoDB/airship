@@ -667,13 +667,17 @@ export namespace Components {
     */
     'header': string;
     /**
-    * Use this attribute to put the widget-header in "empty mode". When this attribute is true the subheader will show the "NO DATA AVAILABLE" text.
+    * Use this attribute to put the widget-header in "empty mode". When this attribute is true the subheader will show the text defined by noDataMessage.
     */
     'isEmpty': boolean;
     /**
     * Use this attribute to put the widget-header in "loading mode". When this attribute is true the subheader text will be displayed as usual.
     */
     'isLoading': boolean;
+    /**
+    * Use this attribute to select the text displayed in the subheader when the header is in "empty mode". Defaults to "NO DATA AVAILABLE"
+    */
+    'noDataMessage': string;
     /**
     * Secondary title
     */
@@ -689,13 +693,17 @@ export namespace Components {
     */
     'header'?: string;
     /**
-    * Use this attribute to put the widget-header in "empty mode". When this attribute is true the subheader will show the "NO DATA AVAILABLE" text.
+    * Use this attribute to put the widget-header in "empty mode". When this attribute is true the subheader will show the text defined by noDataMessage.
     */
     'isEmpty'?: boolean;
     /**
     * Use this attribute to put the widget-header in "loading mode". When this attribute is true the subheader text will be displayed as usual.
     */
     'isLoading'?: boolean;
+    /**
+    * Use this attribute to select the text displayed in the subheader when the header is in "empty mode". Defaults to "NO DATA AVAILABLE"
+    */
+    'noDataMessage'?: string;
     /**
     * Secondary title
     */
