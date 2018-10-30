@@ -1,4 +1,4 @@
-import { Component, Event, EventEmitter, Prop, State, Watch } from '@stencil/core';
+import { Component, Event, EventEmitter, Method, Prop, State, Watch } from '@stencil/core';
 import { DropdownOption } from './types/DropdownOption';
 
 /**
@@ -46,6 +46,15 @@ export class Dropdown {
   @Prop() public showClearButton: boolean = false;
 
   /**
+   * Function called when clicking outside of the dropdown.
+   * By default it closes the list.
+   *
+   * @type {function}
+   * @memberof Dropdown
+   */
+  @Prop() public onClickOutside: () => void = this.closeList.bind(this);
+
+  /**
    * Fired when selected option changes or option is cleared
    *
    * @type {string}
@@ -55,7 +64,16 @@ export class Dropdown {
 
   @State() private isOpen: boolean = false;
   @State() private selectedOptionObject: DropdownOption = {};
-  private _docListener: () => void;
+
+  /**
+   * Closes the list, useful in case you need to customize {onClickOutside}
+   *
+   * @memberof Dropdown
+   */
+  @Method()
+  public async closeList() {
+    this._closeList();
+  }
 
   @Watch('selectedOption')
   public onSelectionChanged(newValue: string) {
@@ -67,17 +85,22 @@ export class Dropdown {
     this._selectFromValue(this.selectedOption);
   }
 
+  @Watch('onClickOutside')
+  public onClickOutsideChanged(newValue, oldValue) {
+    document.removeEventListener('click', oldValue);
+    document.addEventListener('click', newValue);
+  }
+
   public componentWillLoad() {
     this._selectFromValue(this.selectedOption);
   }
 
   public componentDidLoad() {
-    this._docListener = this._closeList.bind(this);
-    document.addEventListener('click', this._docListener);
+    document.addEventListener('click', this.onClickOutside);
   }
 
   public componentDidUnload() {
-    document.removeEventListener('click', this._docListener);
+    document.removeEventListener('click', this.onClickOutside);
   }
 
   public render() {
