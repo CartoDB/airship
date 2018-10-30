@@ -28,7 +28,8 @@ const MARGIN = {
   TOP: 5,
   YAxis: 20
 };
-const CUSTOM_HANDLE_Y_COORD = HEIGHT + MARGIN.TOP - (28 / 2);
+const CUSTOM_HANDLE_HEIGHT = 28;
+const CUSTOM_HANDLE_Y_COORD = HEIGHT + MARGIN.TOP - (CUSTOM_HANDLE_HEIGHT / 2);
 
 /**
  * Histogram Widget
