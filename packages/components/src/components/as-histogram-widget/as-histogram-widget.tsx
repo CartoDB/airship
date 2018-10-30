@@ -133,12 +133,15 @@ export class HistogramWidget {
   @Prop() public yLabel: string;
 
   /**
-   * Boolean property to control if the widget is loading
+   * Use this attribute to put the widget in "loading mode".
+   * When loading mode is active, a spinner will be shown and the data will be hidden.
    */
   @Prop() public isLoading: boolean = false;
 
   /**
-   * Control the text shown in header subtitle
+   * Use this widget to put the widget in "error mode".
+   * When error mode is active. The header will display the given text.
+   * And the body will be display the errorDescription instead any data.
    */
   @Prop() public error: string = '';
 

@@ -151,6 +151,53 @@ lang: javascript
 histogramWidget.showHeader = false;
 ```
 
+#### **error**: string = ""
+Use this widget to put the widget in "error mode".
+When error mode is active. The header will display the given text, and the body will be display the errorDescription instead any data.
+
+```code
+lang: html
+---
+<as-histogram-widget error="Can't load any data"></as-histogram-widget>
+```
+
+```code
+lang: javascript
+---
+histogramWidget.error = 'Can\'t load any data'
+```
+
+#### **errorDescription**: string = ""
+String shown in the body of the widget when error mode is on.
+
+```code
+lang: html
+---
+<as-histogram-widget error="Can't load any data" error-description="There is no internet connection."></as-histogram-widget>
+```
+
+```code
+lang: javascript
+---
+histogramWidget.errorDescription = 'There is no internet connection.'
+```
+
+#### **isLoading**: boolean = true
+Use this attribute to put the widget in "loading mode". When loading mode is active, a spinner will be shown and the data will be hidden.
+
+```code
+lang: html
+---
+<as-histogram-widget is-loading="true"></as-histogram-widget>
+```
+
+```code
+lang: javascript
+---
+histogramWidget.isLoading = true;
+```
+
+
 #### **tooltipFormatter**: function
 Function that receives one value of the **data** property and returns a string. The value is the one for the bar the user is hovering.
 
