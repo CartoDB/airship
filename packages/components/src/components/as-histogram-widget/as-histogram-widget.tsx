@@ -148,6 +148,16 @@ export class HistogramWidget {
    */
   @Prop() public errorDescription: string = '';
 
+  /**
+   * Message shown in header when no data is available
+   */
+  @Prop() public noDataHeaderMessage: string = 'NO DATA AVAILABLE';
+
+  /**
+   * Message shown in body when no data is available
+   */
+  @Prop() public noDataBodyMessage: string = 'There is no data to display.';
+
   @Element() private el: HTMLElement;
 
   /**
@@ -281,14 +291,20 @@ export class HistogramWidget {
       'as-histogram-widget__wrapper': true,
       'as-histogram-widget__wrapper--disabled': this.disableInteractivity
     };
-    return contentFragment(this.isLoading, this.error, this._isEmpty(), this.heading, this.errorDescription,
+    return contentFragment(
+      this.isLoading,
+      this.error,
+      this._isEmpty(),
+      this.heading,
+      this.errorDescription,
+      this.noDataBodyMessage,
       [
-        <div class={histogramClasses}>
-          {this._renderTooltip()}
-          <svg ref={(ref: HTMLElement) => this.container = select(ref)}></svg>
-          {this._renderLabels()}
-        </div>,
-        this.showClear && !this.disableInteractivity ? this._renderClearBtn() : ''
+      <div class={histogramClasses}>
+        {this._renderTooltip()}
+        <svg ref={(ref: HTMLElement) => this.container = select(ref)}></svg>
+        {this._renderLabels()}
+      </div>,
+      this.showClear && !this.disableInteractivity ? this._renderClearBtn() : ''
       ]);
   }
 
@@ -601,7 +617,8 @@ export class HistogramWidget {
       subheader={this.description}
       is-loading={this.isLoading}
       is-empty={this._isEmpty()}
-      error={this.error}>
+      error={this.error}
+      no-data-message={this.noDataHeaderMessage}>
     </as-widget-header>;
   }
 

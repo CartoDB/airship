@@ -118,6 +118,16 @@ export class CategoryWidget {
   @Prop() public errorDescription: string = '';
 
   /**
+   * Message shown in header when no data is available
+   */
+  @Prop() public noDataHeaderMessage: string = 'NO DATA AVAILABLE';
+
+  /**
+   * Message shown in body when no data is available
+   */
+  @Prop() public noDataBodyMessage: string = 'There is no data to display.';
+
+  /**
    * Fired when selected categories changed or selected categories are cleared.
    *
    * @event categoriesSelected
@@ -191,16 +201,23 @@ export class CategoryWidget {
       subheader={this.description}
       is-empty={this._isEmpty()}
       is-loading={this.isLoading}
-      error={this.error}>
+      error={this.error}
+      no-data-message={this.noDataHeaderMessage}>
     </as-widget-header>;
   }
 
   private _renderContent() {
-    return contentFragment(this.isLoading, this.error, this._isEmpty(), this.heading, this.errorDescription,
-    [
-      this._renderCategoryList(),
-      !this.disableInteractivity ? this._renderFooter() : '',
-    ]);
+    return contentFragment(
+      this.isLoading,
+      this.error,
+      this._isEmpty(),
+      this.heading,
+      this.errorDescription,
+      this.noDataBodyMessage,
+      [
+        this._renderCategoryList(),
+        !this.disableInteractivity ? this._renderFooter() : '',
+      ]);
   }
 
   private _renderCategoryList() {

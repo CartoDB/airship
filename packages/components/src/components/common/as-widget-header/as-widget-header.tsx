@@ -45,6 +45,11 @@ export class WidgetHeader {
    */
   @Prop() public isLoading: boolean = false;
 
+  /**
+   * Message shown when no data is available
+   */
+  @Prop() public noDataMessage: string = 'NO DATA AVAILABLE';
+
   public render() {
     return [
       <h2 class='as-widget-header__header'>{this.header}</h2>,
@@ -60,7 +65,9 @@ export class WidgetHeader {
       return <p class='as-widget-header__subheader as-widget-header__subheader--error as-body '>{this.error}</p>;
     }
     if (this.isEmpty) {
-      return <p class='as-widget-header__subheader as-widget-header__subheader--empty as-body '>NO DATA AVAILABLE</p>;
+      return <p class='as-widget-header__subheader as-widget-header__subheader--empty as-body '>
+        {this.noDataMessage}
+      </p>;
     }
     return <p class='as-widget-header__subheader as-body'>{this.subheader}</p>;
   }
