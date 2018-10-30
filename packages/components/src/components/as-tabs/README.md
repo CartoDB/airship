@@ -3,7 +3,8 @@
 Tabs organize content into separate views where only one view can be visible at a time. Each tab's label is shown in the tab header and the active tab's will be highlighted. 
 
 
-> Tab items **must** have the `[role="tabpanel"]` attribute.
+- Tab items **must** have the `[role="tabpanel"]` attribute.
+- A custom title can be specified using the `data-title` attribute.
 
 
 ```html
@@ -25,7 +26,7 @@ showSource: false
       blanditiis eligendi.
     </p>
   </div>
-  <div role="tabpanel">
+  <div role="tabpanel" data-title="Custom title">
     <h1>TAB 1</h1>
     <p>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum explicabo omnis sed, perferendis maiores
