@@ -228,7 +228,7 @@ export class RangeSlider {
     const isRightThumb = rightThumb === thumb;
 
     const value = this._getValueFromPercentage(percentage);
-    const stepValue = this._getStepValue(value);
+    const stepValue = this._getStepValueWithThreshold(value, thumb.value);
     const stepPercentage = this._getPercentage(stepValue);
 
     let valueMin = this.minValue;
@@ -306,6 +306,19 @@ export class RangeSlider {
   private _getStepValue(value) {
     const stepValue = (value / this.step) * this.step;
     return this.roundToStep(stepValue, this.step);
+  }
+
+  private _getStepValueWithThreshold(value, currentValue) {
+    const delta = value - currentValue;
+    const threshold = (this.step / 2);
+
+    if (Math.abs(delta) < threshold) {
+      return currentValue;
+    }
+
+    const sign = delta > 0 ? 1 : -1;
+
+    return this._getStepValue(currentValue + (sign * this.step));
   }
 
   private roundToStep(numberToRound: number, step: number) {
