@@ -55,6 +55,7 @@ export class Dropdown {
 
   @State() private isOpen: boolean = false;
   @State() private selectedOptionObject: DropdownOption = {};
+  private _docListener: () => void;
 
   @Watch('selectedOption')
   public onSelectionChanged(newValue: string) {
@@ -68,6 +69,15 @@ export class Dropdown {
 
   public componentWillLoad() {
     this._selectFromValue(this.selectedOption);
+  }
+
+  public componentDidLoad() {
+    this._docListener = this._closeList.bind(this);
+    document.addEventListener('click', this._docListener);
+  }
+
+  public componentDidUnload() {
+    document.removeEventListener('click', this._docListener);
   }
 
   public render() {
@@ -84,7 +94,7 @@ export class Dropdown {
         <button class='as-dropdown__control as-body'
           aria-haspopup='true'
           aria-expanded={this.isOpen}
-          onClick={() => this._toggleList()}>
+          onClick={(e) => { e.stopPropagation(); this._toggleList(); }}>
           {this.selectedOptionObject && this.selectedOptionObject.text
             || this.selectedOptionObject && this.selectedOptionObject.value
             || this.defaultText}
@@ -117,7 +127,7 @@ export class Dropdown {
 
       return (
         <li class='as-dropdown__list-item' data-value={option.value}>
-          <button class={buttonClasses} onClick={() => this._select(option)}>
+          <button class={buttonClasses} onClick={(e) => { e.stopPropagation(); this._select(option); }}>
             {option.text || option.value}
           </button>
         </li>
