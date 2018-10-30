@@ -37,6 +37,28 @@ describe('as-range-slider', () => {
       expect(onChangeSpy).toHaveBeenCalledWith([0, 1000]);
     });
 
+    it('should take steps into account', async () => {
+      rangeSlider.minValue = 0;
+      rangeSlider.maxValue = 100;
+      rangeSlider.step = 10;
+      rangeSlider.value = 20;
+
+      const onChangeSpy = jest.fn();
+      rangeSlider.change = { emit: onChangeSpy };
+
+      rangeSlider._updateThumbs(); // >> ctor ?
+      const [thumb] = rangeSlider.thumbs;
+
+      rangeSlider._onThumbMove(thumb, 27);
+      expect(onChangeSpy).lastCalledWith([30]);
+
+      rangeSlider._onThumbMove(thumb, 24);
+      expect(onChangeSpy).lastCalledWith([20]);
+
+      rangeSlider._onThumbMove(thumb, 100);
+      expect(onChangeSpy).lastCalledWith([100]);
+    });
+
     it('should emit a change event on bar move', async () => {
       rangeSlider.minValue = 0;
       rangeSlider.maxValue = 1000;
