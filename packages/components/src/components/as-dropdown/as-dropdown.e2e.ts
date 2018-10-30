@@ -1,6 +1,6 @@
 import { E2EPage, newE2EPage } from '@stencil/core/testing';
 
-describe('as-category-widget', async () => {
+describe('as-dropdown-widget', async () => {
   describe('Rendering', async () => {
     let page: E2EPage;
 
@@ -115,6 +115,29 @@ describe('as-category-widget', async () => {
       await page.waitForChanges();
 
       expect(menuDropdown).not.toHaveClass('as-dropdown--open');
+    });
+
+    it('should call the provided function when clicking outside', async () => {
+      const element = await page.find('as-dropdown');
+      element.setProperty('options', exampleOptions);
+
+      // For some reason I cannot pass the callback with setProperty
+      await page.$eval('as-dropdown', (e: HTMLAsDropdownElement) => {
+        e.onClickOutside = () => {
+          e.id = `kenobi`;
+        };
+      });
+
+      await page.waitForChanges();
+
+      await page.click('.as-dropdown__control');
+      await page.waitForChanges();
+
+      await page.click('body');
+      await page.waitForChanges();
+
+      // Callback is called
+      expect(element.id).toBe('kenobi');
     });
   });
 });
