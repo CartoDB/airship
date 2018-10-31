@@ -67,7 +67,7 @@ export class StackedBarWidget {
 
   /**
    * Use this attribute to put the widget in "error mode".
-   * When this attribute is given it's text will be shown in the subheader and the widget content wont be displayed.
+   * When this attribute is given, its text will be shown in the subheader and the widget content won't be displayed.
    */
   @Prop() public error: string = '';
 
