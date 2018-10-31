@@ -10,7 +10,7 @@ as-stacked-bar-widget {
   overflow: auto;
   background: var(--stacked-bar-widget-background-color, #FFF);
 
-  svg {
+  .figure {
     box-sizing: border-box;
     width: 100%;
     min-height: 100px;
@@ -23,6 +23,10 @@ as-stacked-bar-widget {
         cursor: pointer;
       }
     }
+  }
+
+  .content {
+    min-height: 100px;
   }
 
   [role="tooltip"] {

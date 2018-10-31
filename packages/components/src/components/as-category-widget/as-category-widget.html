@@ -7,16 +7,45 @@
     <title>Airship</title>
     <link rel="stylesheet" href="packages/styles/dist/airship.css">
     <script src="packages/components/dist/airship.js"></script>
+    <style>
+      body {
+        background: #F2F2F2;
+      }
+
+      as-category-widget {
+        width: 350px;
+        margin: 16px auto;
+        background: white;
+      }
+    </style>
   </head>
 
   <body>
     <as-category-widget
-      class="as-p--16"
+      id="widget-0"
+      heading="Business Volume"
+      description="Description"></as-category-widget>
+
+    <as-category-widget
+      id="widget-1"
+      heading="Business Volume"
+      description="Description"
+      error="Unexpected error"
+      error-description="There is no internet connection"></as-category-widget>
+
+    <as-category-widget
+      id="widget-2"
+      heading="Business Volume"
+      description="Description"
+      is-loading="true"></as-category-widget>
+
+    <as-category-widget
+      id="widget-3"
       heading="Business Volume"
       description="Description"></as-category-widget>
 
     <script>
-      var categoryWidget = document.querySelector('as-category-widget');
+      var categoryWidget = document.querySelector('#widget-0');
       categoryWidget.showClearButton = true;
       categoryWidget.categories = [
         { name: 'Bars & Restaurants', value: 1000, color: '#FABADA' },
@@ -26,10 +55,6 @@
         { name: 'Shopping mall', value: 250 },
         { name: 'Transportation', value: 650 }
       ];
-      categoryWidget.formatValue = (value) => `${value}€`;
-      categoryWidget.addEventListener('categoriesSelected', function(event) {
-        console.log('Categories Selected', event.detail)
-      });
     </script>
   </body>
 </html>

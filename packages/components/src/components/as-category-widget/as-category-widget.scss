@@ -12,12 +12,10 @@ as-category-widget {
   display: block;
   background: var(--category-widget--background-color, $color-ui-01);
 
-  .as-category-widget__heading {
-    margin: 0;
-    font: $font-subheader;
+  .content {
+    min-height: 100px;
   }
 
-  .as-category-widget__description,
   .as-category-widget__count {
     color: var(--category-widget--description--color, $color-type-02);
     color: $color-type-02;
@@ -36,10 +34,6 @@ as-category-widget {
   .as-category-widget__footer {
     display: flex;
     justify-content: space-between;
-  }
-
-  .as-category-widget__description + .as-category-widget__list {
-    margin-top: get-spacing(4);
   }
 
   .as-category-widget__list + .as-category-widget__footer {

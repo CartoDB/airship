@@ -50,6 +50,14 @@ export namespace Components {
     */
     'disableInteractivity': boolean;
     /**
+    * Text shown in the header subtitle when there's an error
+    */
+    'error': string;
+    /**
+    * Extended error description, only shown when error is present
+    */
+    'errorDescription': string;
+    /**
     * Get current selected categories
     */
     'getSelectedCategories': () => Promise<string[]>;
@@ -57,6 +65,18 @@ export namespace Components {
     * Heading text of the widget
     */
     'heading': string;
+    /**
+    * Boolean property to control the widget loading state. If true, a spinner is shown.
+    */
+    'isLoading': boolean;
+    /**
+    * Message shown in body when no data is available
+    */
+    'noDataBodyMessage': string;
+    /**
+    * Message shown in header when no data is available
+    */
+    'noDataHeaderMessage': string;
     /**
     * If truthy, it'll show a button to clear selected categories when there are any. Default value is `false`.
     */
@@ -96,9 +116,29 @@ export namespace Components {
     */
     'disableInteractivity'?: boolean;
     /**
+    * Text shown in the header subtitle when there's an error
+    */
+    'error'?: string;
+    /**
+    * Extended error description, only shown when error is present
+    */
+    'errorDescription'?: string;
+    /**
     * Heading text of the widget
     */
     'heading'?: string;
+    /**
+    * Boolean property to control the widget loading state. If true, a spinner is shown.
+    */
+    'isLoading'?: boolean;
+    /**
+    * Message shown in body when no data is available
+    */
+    'noDataBodyMessage'?: string;
+    /**
+    * Message shown in header when no data is available
+    */
+    'noDataHeaderMessage'?: string;
     /**
     * Fired when selected categories changed or selected categories are cleared.
     */
@@ -127,9 +167,17 @@ export namespace Components {
 
   interface AsDropdown {
     /**
+    * Closes the list, useful in case you need to customize {onClickOutside}
+    */
+    'closeList': () => Promise<void>;
+    /**
     * Default text to show when no option is selected
     */
     'defaultText': string;
+    /**
+    * Function called when clicking outside of the dropdown. By default it closes the list.
+    */
+    'onClickOutside': () => void;
     /**
     * Array of options to display in the dropdown
     */
@@ -148,6 +196,10 @@ export namespace Components {
     * Default text to show when no option is selected
     */
     'defaultText'?: string;
+    /**
+    * Function called when clicking outside of the dropdown. By default it closes the list.
+    */
+    'onClickOutside'?: () => void;
     /**
     * Fired when selected option changes or option is cleared
     */
@@ -192,6 +244,14 @@ export namespace Components {
     */
     'disableInteractivity': boolean;
     /**
+    * Use this widget to put the widget in "error mode". When error mode is active. The header will display the given text. And the body will be display the errorDescription instead any data.
+    */
+    'error': string;
+    /**
+    * Extended error description, only shown when error is present
+    */
+    'errorDescription': string;
+    /**
     * Returns the current selection
     */
     'getSelection': () => Promise<number[]>;
@@ -199,6 +259,18 @@ export namespace Components {
     * Title of the widget to be displayed
     */
     'heading': string;
+    /**
+    * Use this attribute to put the widget in "loading mode". When loading mode is active, a spinner will be shown and the data will be hidden.
+    */
+    'isLoading': boolean;
+    /**
+    * Message shown in body when no data is available
+    */
+    'noDataBodyMessage': string;
+    /**
+    * Message shown in header when no data is available
+    */
+    'noDataHeaderMessage': string;
     /**
     * Override color for the selected histogram bars
     */
@@ -250,9 +322,29 @@ export namespace Components {
     */
     'disableInteractivity'?: boolean;
     /**
+    * Use this widget to put the widget in "error mode". When error mode is active. The header will display the given text. And the body will be display the errorDescription instead any data.
+    */
+    'error'?: string;
+    /**
+    * Extended error description, only shown when error is present
+    */
+    'errorDescription'?: string;
+    /**
     * Title of the widget to be displayed
     */
     'heading'?: string;
+    /**
+    * Use this attribute to put the widget in "loading mode". When loading mode is active, a spinner will be shown and the data will be hidden.
+    */
+    'isLoading'?: boolean;
+    /**
+    * Message shown in body when no data is available
+    */
+    'noDataBodyMessage'?: string;
+    /**
+    * Message shown in header when no data is available
+    */
+    'noDataHeaderMessage'?: string;
     /**
     * Fired when user update or clear the widget selection.
     */
@@ -421,6 +513,14 @@ export namespace Components {
     */
     'description': string;
     /**
+    * Use this attribute to put the widget in "error mode". When this attribute is given, its text will be shown in the subheader and the widget content won't be displayed.
+    */
+    'error': string;
+    /**
+    * Extended error description, only shown when error is present
+    */
+    'errorDescription': string;
+    /**
     * Easy customize tooltip format
     */
     'formatFn': any;
@@ -428,6 +528,10 @@ export namespace Components {
     * Header of the widget to be displayed
     */
     'heading': string;
+    /**
+    * Use this attribute to put the widget in "loading mode". When this attribute is true, the widget won't show any data, a spinner will be placed instead.
+    */
+    'isLoading': boolean;
     /**
     * Legend data
     */
@@ -440,6 +544,14 @@ export namespace Components {
     * Callback executed when the mouse is placed over a rectangle.
     */
     'mouseOver': any;
+    /**
+    * Message shown in body when no data is available
+    */
+    'noDataBodyMessage': string;
+    /**
+    * Message shown in header when no data is available
+    */
+    'noDataHeaderMessage': string;
     /**
     * Boolean flag to control legend visibility. Defaults: true
     */
@@ -455,6 +567,14 @@ export namespace Components {
     */
     'description'?: string;
     /**
+    * Use this attribute to put the widget in "error mode". When this attribute is given, its text will be shown in the subheader and the widget content won't be displayed.
+    */
+    'error'?: string;
+    /**
+    * Extended error description, only shown when error is present
+    */
+    'errorDescription'?: string;
+    /**
     * Easy customize tooltip format
     */
     'formatFn'?: any;
@@ -462,6 +582,10 @@ export namespace Components {
     * Header of the widget to be displayed
     */
     'heading'?: string;
+    /**
+    * Use this attribute to put the widget in "loading mode". When this attribute is true, the widget won't show any data, a spinner will be placed instead.
+    */
+    'isLoading'?: boolean;
     /**
     * Legend data
     */
@@ -474,6 +598,14 @@ export namespace Components {
     * Callback executed when the mouse is placed over a rectangle.
     */
     'mouseOver'?: any;
+    /**
+    * Message shown in body when no data is available
+    */
+    'noDataBodyMessage'?: string;
+    /**
+    * Message shown in header when no data is available
+    */
+    'noDataHeaderMessage'?: string;
     /**
     * Boolean flag to control legend visibility. Defaults: true
     */
@@ -539,9 +671,25 @@ export namespace Components {
 
   interface AsWidgetHeader {
     /**
+    * Use this attribute to put the widget-header in "error mode". When this attribute is not empty the subheader will display the given value.
+    */
+    'error': string;
+    /**
     * Main title
     */
     'header': string;
+    /**
+    * Use this attribute to put the widget-header in "empty mode". When this attribute is true the subheader will show the text defined by noDataMessage.
+    */
+    'isEmpty': boolean;
+    /**
+    * Use this attribute to put the widget-header in "loading mode". When this attribute is true the subheader text will be displayed as usual.
+    */
+    'isLoading': boolean;
+    /**
+    * Use this attribute to select the text displayed in the subheader when the header is in "empty mode". Defaults to "NO DATA AVAILABLE"
+    */
+    'noDataMessage': string;
     /**
     * Secondary title
     */
@@ -549,9 +697,25 @@ export namespace Components {
   }
   interface AsWidgetHeaderAttributes extends StencilHTMLAttributes {
     /**
+    * Use this attribute to put the widget-header in "error mode". When this attribute is not empty the subheader will display the given value.
+    */
+    'error'?: string;
+    /**
     * Main title
     */
     'header'?: string;
+    /**
+    * Use this attribute to put the widget-header in "empty mode". When this attribute is true the subheader will show the text defined by noDataMessage.
+    */
+    'isEmpty'?: boolean;
+    /**
+    * Use this attribute to put the widget-header in "loading mode". When this attribute is true the subheader text will be displayed as usual.
+    */
+    'isLoading'?: boolean;
+    /**
+    * Use this attribute to select the text displayed in the subheader when the header is in "empty mode". Defaults to "NO DATA AVAILABLE"
+    */
+    'noDataMessage'?: string;
     /**
     * Secondary title
     */

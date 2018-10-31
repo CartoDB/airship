@@ -1,4 +1,4 @@
-import { Component, Event, EventEmitter, Prop, State, Watch } from '@stencil/core';
+import { Component, Event, EventEmitter, Method, Prop, State, Watch } from '@stencil/core';
 import { DropdownOption } from './types/DropdownOption';
 
 /**
@@ -56,6 +56,25 @@ export class Dropdown {
   @State() private isOpen: boolean = false;
   @State() private selectedOptionObject: DropdownOption = {};
 
+  /**
+   * Function called when clicking outside of the dropdown.
+   * By default it closes the list.
+   *
+   * @type {function}
+   * @memberof Dropdown
+   */
+  @Prop() public onClickOutside: () => void = () => { this._closeList(); };
+
+  /**
+   * Closes the list, useful in case you need to customize {onClickOutside}
+   *
+   * @memberof Dropdown
+   */
+  @Method()
+  public async closeList() {
+    this._closeList();
+  }
+
   @Watch('selectedOption')
   public onSelectionChanged(newValue: string) {
     this._selectFromValue(newValue);
@@ -66,8 +85,22 @@ export class Dropdown {
     this._selectFromValue(this.selectedOption);
   }
 
+  @Watch('onClickOutside')
+  public onClickOutsideChanged(newValue, oldValue) {
+    document.removeEventListener('click', oldValue);
+    document.addEventListener('click', newValue);
+  }
+
   public componentWillLoad() {
     this._selectFromValue(this.selectedOption);
+  }
+
+  public componentDidLoad() {
+    document.addEventListener('click', this.onClickOutside);
+  }
+
+  public componentDidUnload() {
+    document.removeEventListener('click', this.onClickOutside);
   }
 
   public render() {
@@ -84,7 +117,7 @@ export class Dropdown {
         <button class='as-dropdown__control as-body'
           aria-haspopup='true'
           aria-expanded={this.isOpen}
-          onClick={() => this._toggleList()}>
+          onClick={(e) => { e.stopPropagation(); this._toggleList(); }}>
           {this.selectedOptionObject && this.selectedOptionObject.text
             || this.selectedOptionObject && this.selectedOptionObject.value
             || this.defaultText}
@@ -117,7 +150,7 @@ export class Dropdown {
 
       return (
         <li class='as-dropdown__list-item' data-value={option.value}>
-          <button class={buttonClasses} onClick={() => this._select(option)}>
+          <button class={buttonClasses} onClick={(e) => { e.stopPropagation(); this._select(option); }}>
             {option.text || option.value}
           </button>
         </li>

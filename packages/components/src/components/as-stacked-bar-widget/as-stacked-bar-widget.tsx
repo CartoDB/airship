@@ -1,4 +1,5 @@
 import { Component, Prop, Watch } from '@stencil/core';
+import contentFragment from '../common/content.fragment';
 import { ColorMap } from './types/ColorMap';
 import { Metadata } from './types/Metadata';
 import { RawStackedbarData } from './types/RawStackedbarData';
@@ -59,6 +60,33 @@ export class StackedBarWidget {
   @Prop() public metadata: Metadata;
 
   /**
+   * Use this attribute to put the widget in "loading mode".
+   * When this attribute is true, the widget won't show any data, a spinner will be placed instead.
+   */
+  @Prop() public isLoading: boolean = false;
+
+  /**
+   * Use this attribute to put the widget in "error mode".
+   * When this attribute is given, its text will be shown in the subheader and the widget content won't be displayed.
+   */
+  @Prop() public error: string = '';
+
+  /**
+   * Extended error description, only shown when error is present
+   */
+  @Prop() public errorDescription: string = '';
+
+  /**
+   * Message shown in header when no data is available
+   */
+  @Prop() public noDataHeaderMessage: string = 'NO DATA AVAILABLE';
+
+  /**
+   * Message shown in body when no data is available
+   */
+  @Prop() public noDataBodyMessage: string = 'There is no data to display.';
+
+  /**
    * Hold a reference to the tooltip to show on mouseover
    */
   private tooltip: HTMLElement;
@@ -80,11 +108,15 @@ export class StackedBarWidget {
 
   public render() {
     return [
-      <as-widget-header header={this.heading} subheader={this.description}></as-widget-header>,
-      <svg ref={(ref: SVGElement) => this.container = ref}></svg>,
-      <as-y-axis from={this.scale[0]} to={this.scale[1]}></as-y-axis>,
-      this._renderLegend(),
-      <span ref={(ref) => this.tooltip = ref} role='tooltip' class='as-tooltip as-tooltip--top' > TOOLTIP</span>
+      <as-widget-header
+        header={this.heading}
+        subheader={this.description}
+        is-loading={this.isLoading}
+        is-empty={this._isEmpty()}
+        error={this.error}
+        no-data-message={this.noDataHeaderMessage}>
+      </as-widget-header>,
+      this._renderContent()
     ];
   }
 
@@ -143,7 +175,26 @@ export class StackedBarWidget {
     this.colorMap = this._createColorMap(this.data, this.metadata);
   }
 
+  private _renderContent() {
+    return contentFragment(
+      this.isLoading,
+      this.error,
+      this._isEmpty(),
+      this.heading,
+      this.errorDescription,
+      this.noDataBodyMessage,
+      [
+      <svg class='figure' ref={(ref: SVGElement) => this.container = ref}></svg> ,
+      <as-y-axis from={this.scale[0]} to={this.scale[1]}></as-y-axis> ,
+      this._renderLegend(),
+      <span ref={(ref) => this.tooltip = ref} role='tooltip' class='as-tooltip as-tooltip--top' > TOOLTIP</span>
+      ]);
+  }
+
   private _drawColumns() {
+    if (this.isLoading || this.error || this._isEmpty()) {
+      return;
+    }
     const Y_AXIS_LABEL_WIDTH = 25; // We draw on the right of the yAxis labels
     const COLUMN_MARGIN = 4;
     const WIDTH = this.container.querySelector('.y-axis').getBoundingClientRect().width - Y_AXIS_LABEL_WIDTH - 3;
@@ -178,5 +229,9 @@ export class StackedBarWidget {
       }
     }
     return legendData;
+  }
+
+  private _isEmpty(): boolean {
+    return !this.data || !this.data.length;
   }
 }
