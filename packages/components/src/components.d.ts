@@ -653,6 +653,27 @@ export namespace Components {
     'onChange'?: (event: CustomEvent) => void;
   }
 
+  interface AsTabs {
+    /**
+    * Index of the active tab. Defaults to 0
+    */
+    'activeTab': number;
+    /**
+    * Make the tabs XL
+    */
+    'xl': boolean;
+  }
+  interface AsTabsAttributes extends StencilHTMLAttributes {
+    /**
+    * Index of the active tab. Defaults to 0
+    */
+    'activeTab'?: number;
+    /**
+    * Make the tabs XL
+    */
+    'xl'?: boolean;
+  }
+
   interface AsToolbar {}
   interface AsToolbarAttributes extends StencilHTMLAttributes {}
 
@@ -668,6 +689,9 @@ export namespace Components {
     */
     'data'?: LegendData;
   }
+
+  interface AsLoader {}
+  interface AsLoaderAttributes extends StencilHTMLAttributes {}
 
   interface AsWidgetHeader {
     /**
@@ -756,8 +780,10 @@ declare global {
     'AsResponsiveContent': Components.AsResponsiveContent;
     'AsStackedBarWidget': Components.AsStackedBarWidget;
     'AsSwitch': Components.AsSwitch;
+    'AsTabs': Components.AsTabs;
     'AsToolbar': Components.AsToolbar;
     'AsLegend': Components.AsLegend;
+    'AsLoader': Components.AsLoader;
     'AsWidgetHeader': Components.AsWidgetHeader;
     'AsYAxis': Components.AsYAxis;
   }
@@ -773,8 +799,10 @@ declare global {
     'as-responsive-content': Components.AsResponsiveContentAttributes;
     'as-stacked-bar-widget': Components.AsStackedBarWidgetAttributes;
     'as-switch': Components.AsSwitchAttributes;
+    'as-tabs': Components.AsTabsAttributes;
     'as-toolbar': Components.AsToolbarAttributes;
     'as-legend': Components.AsLegendAttributes;
+    'as-loader': Components.AsLoaderAttributes;
     'as-widget-header': Components.AsWidgetHeaderAttributes;
     'as-y-axis': Components.AsYAxisAttributes;
   }
@@ -840,6 +868,12 @@ declare global {
     new (): HTMLAsSwitchElement;
   };
 
+  interface HTMLAsTabsElement extends Components.AsTabs, HTMLStencilElement {}
+  var HTMLAsTabsElement: {
+    prototype: HTMLAsTabsElement;
+    new (): HTMLAsTabsElement;
+  };
+
   interface HTMLAsToolbarElement extends Components.AsToolbar, HTMLStencilElement {}
   var HTMLAsToolbarElement: {
     prototype: HTMLAsToolbarElement;
@@ -850,6 +884,12 @@ declare global {
   var HTMLAsLegendElement: {
     prototype: HTMLAsLegendElement;
     new (): HTMLAsLegendElement;
+  };
+
+  interface HTMLAsLoaderElement extends Components.AsLoader, HTMLStencilElement {}
+  var HTMLAsLoaderElement: {
+    prototype: HTMLAsLoaderElement;
+    new (): HTMLAsLoaderElement;
   };
 
   interface HTMLAsWidgetHeaderElement extends Components.AsWidgetHeader, HTMLStencilElement {}
@@ -875,8 +915,10 @@ declare global {
     'as-responsive-content': HTMLAsResponsiveContentElement
     'as-stacked-bar-widget': HTMLAsStackedBarWidgetElement
     'as-switch': HTMLAsSwitchElement
+    'as-tabs': HTMLAsTabsElement
     'as-toolbar': HTMLAsToolbarElement
     'as-legend': HTMLAsLegendElement
+    'as-loader': HTMLAsLoaderElement
     'as-widget-header': HTMLAsWidgetHeaderElement
     'as-y-axis': HTMLAsYAxisElement
   }
@@ -892,8 +934,10 @@ declare global {
     'as-responsive-content': HTMLAsResponsiveContentElement;
     'as-stacked-bar-widget': HTMLAsStackedBarWidgetElement;
     'as-switch': HTMLAsSwitchElement;
+    'as-tabs': HTMLAsTabsElement;
     'as-toolbar': HTMLAsToolbarElement;
     'as-legend': HTMLAsLegendElement;
+    'as-loader': HTMLAsLoaderElement;
     'as-widget-header': HTMLAsWidgetHeaderElement;
     'as-y-axis': HTMLAsYAxisElement;
   }
