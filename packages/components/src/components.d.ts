@@ -674,6 +674,9 @@ export namespace Components {
     'xl'?: boolean;
   }
 
+  interface AsToolbar {}
+  interface AsToolbarAttributes extends StencilHTMLAttributes {}
+
   interface AsLegend {
     /**
     * Data to be displayed by the legend
@@ -778,6 +781,7 @@ declare global {
     'AsStackedBarWidget': Components.AsStackedBarWidget;
     'AsSwitch': Components.AsSwitch;
     'AsTabs': Components.AsTabs;
+    'AsToolbar': Components.AsToolbar;
     'AsLegend': Components.AsLegend;
     'AsLoader': Components.AsLoader;
     'AsWidgetHeader': Components.AsWidgetHeader;
@@ -796,6 +800,7 @@ declare global {
     'as-stacked-bar-widget': Components.AsStackedBarWidgetAttributes;
     'as-switch': Components.AsSwitchAttributes;
     'as-tabs': Components.AsTabsAttributes;
+    'as-toolbar': Components.AsToolbarAttributes;
     'as-legend': Components.AsLegendAttributes;
     'as-loader': Components.AsLoaderAttributes;
     'as-widget-header': Components.AsWidgetHeaderAttributes;
@@ -869,6 +874,12 @@ declare global {
     new (): HTMLAsTabsElement;
   };
 
+  interface HTMLAsToolbarElement extends Components.AsToolbar, HTMLStencilElement {}
+  var HTMLAsToolbarElement: {
+    prototype: HTMLAsToolbarElement;
+    new (): HTMLAsToolbarElement;
+  };
+
   interface HTMLAsLegendElement extends Components.AsLegend, HTMLStencilElement {}
   var HTMLAsLegendElement: {
     prototype: HTMLAsLegendElement;
@@ -905,6 +916,7 @@ declare global {
     'as-stacked-bar-widget': HTMLAsStackedBarWidgetElement
     'as-switch': HTMLAsSwitchElement
     'as-tabs': HTMLAsTabsElement
+    'as-toolbar': HTMLAsToolbarElement
     'as-legend': HTMLAsLegendElement
     'as-loader': HTMLAsLoaderElement
     'as-widget-header': HTMLAsWidgetHeaderElement
@@ -923,6 +935,7 @@ declare global {
     'as-stacked-bar-widget': HTMLAsStackedBarWidgetElement;
     'as-switch': HTMLAsSwitchElement;
     'as-tabs': HTMLAsTabsElement;
+    'as-toolbar': HTMLAsToolbarElement;
     'as-legend': HTMLAsLegendElement;
     'as-loader': HTMLAsLoaderElement;
     'as-widget-header': HTMLAsWidgetHeaderElement;
