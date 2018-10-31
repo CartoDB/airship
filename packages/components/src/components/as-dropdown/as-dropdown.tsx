@@ -52,7 +52,10 @@ export class Dropdown {
    * @type {function}
    * @memberof Dropdown
    */
-  @Prop() public onClickOutside: () => void = this.closeList.bind(this);
+  @Prop() 
+  public onClickOutside: () => { 
+      this._closeList();
+  }
 
   /**
    * Fired when selected option changes or option is cleared
