@@ -653,6 +653,27 @@ export namespace Components {
     'onChange'?: (event: CustomEvent) => void;
   }
 
+  interface AsTabs {
+    /**
+    * Index of the active tab. Defaults to 0
+    */
+    'activeTab': number;
+    /**
+    * Make the tabs XL
+    */
+    'xl': boolean;
+  }
+  interface AsTabsAttributes extends StencilHTMLAttributes {
+    /**
+    * Index of the active tab. Defaults to 0
+    */
+    'activeTab'?: number;
+    /**
+    * Make the tabs XL
+    */
+    'xl'?: boolean;
+  }
+
   interface AsLegend {
     /**
     * Data to be displayed by the legend
@@ -756,6 +777,7 @@ declare global {
     'AsResponsiveContent': Components.AsResponsiveContent;
     'AsStackedBarWidget': Components.AsStackedBarWidget;
     'AsSwitch': Components.AsSwitch;
+    'AsTabs': Components.AsTabs;
     'AsLegend': Components.AsLegend;
     'AsLoader': Components.AsLoader;
     'AsWidgetHeader': Components.AsWidgetHeader;
@@ -773,6 +795,7 @@ declare global {
     'as-responsive-content': Components.AsResponsiveContentAttributes;
     'as-stacked-bar-widget': Components.AsStackedBarWidgetAttributes;
     'as-switch': Components.AsSwitchAttributes;
+    'as-tabs': Components.AsTabsAttributes;
     'as-legend': Components.AsLegendAttributes;
     'as-loader': Components.AsLoaderAttributes;
     'as-widget-header': Components.AsWidgetHeaderAttributes;
@@ -840,6 +863,12 @@ declare global {
     new (): HTMLAsSwitchElement;
   };
 
+  interface HTMLAsTabsElement extends Components.AsTabs, HTMLStencilElement {}
+  var HTMLAsTabsElement: {
+    prototype: HTMLAsTabsElement;
+    new (): HTMLAsTabsElement;
+  };
+
   interface HTMLAsLegendElement extends Components.AsLegend, HTMLStencilElement {}
   var HTMLAsLegendElement: {
     prototype: HTMLAsLegendElement;
@@ -875,6 +904,7 @@ declare global {
     'as-responsive-content': HTMLAsResponsiveContentElement
     'as-stacked-bar-widget': HTMLAsStackedBarWidgetElement
     'as-switch': HTMLAsSwitchElement
+    'as-tabs': HTMLAsTabsElement
     'as-legend': HTMLAsLegendElement
     'as-loader': HTMLAsLoaderElement
     'as-widget-header': HTMLAsWidgetHeaderElement
@@ -892,6 +922,7 @@ declare global {
     'as-responsive-content': HTMLAsResponsiveContentElement;
     'as-stacked-bar-widget': HTMLAsStackedBarWidgetElement;
     'as-switch': HTMLAsSwitchElement;
+    'as-tabs': HTMLAsTabsElement;
     'as-legend': HTMLAsLegendElement;
     'as-loader': HTMLAsLoaderElement;
     'as-widget-header': HTMLAsWidgetHeaderElement;
