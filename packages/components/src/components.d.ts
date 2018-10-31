@@ -167,9 +167,17 @@ export namespace Components {
 
   interface AsDropdown {
     /**
+    * Closes the list, useful in case you need to customize {onClickOutside}
+    */
+    'closeList': () => Promise<void>;
+    /**
     * Default text to show when no option is selected
     */
     'defaultText': string;
+    /**
+    * Function called when clicking outside of the dropdown. By default it closes the list.
+    */
+    'onClickOutside': () => void;
     /**
     * Array of options to display in the dropdown
     */
@@ -188,6 +196,10 @@ export namespace Components {
     * Default text to show when no option is selected
     */
     'defaultText'?: string;
+    /**
+    * Function called when clicking outside of the dropdown. By default it closes the list.
+    */
+    'onClickOutside'?: () => void;
     /**
     * Fired when selected option changes or option is cleared
     */
