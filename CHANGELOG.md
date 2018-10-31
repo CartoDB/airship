@@ -1,5 +1,29 @@
 <a name="0.0.0"></a>
-# [0.0.0](https://github.com/CartoDB/airship/compare/v1.0.0-beta.6...v0.0.0) (2018-10-26)
+# [0.0.0](https://github.com/CartoDB/airship/compare/v1.0.0-beta.8...v0.0.0) (2018-10-31)
+
+
+
+<a name="1.0.0-beta.8"></a>
+# [1.0.0-beta.8](https://github.com/CartoDB/airship/compare/v1.0.0-beta.7...v1.0.0-beta.8) (2018-10-31)
+
+
+
+<a name="1.0.0-beta.7"></a>
+# [1.0.0-beta.7](https://github.com/CartoDB/airship/compare/v1.0.0-beta.6...v1.0.0-beta.7) (2018-10-31)
+
+
+### Bug Fixes
+
+* **components:** dropdown height / autoclose ([#448](https://github.com/CartoDB/airship/issues/448)) ([eb5813a](https://github.com/CartoDB/airship/commit/eb5813a)), closes [#433](https://github.com/CartoDB/airship/issues/433) [#447](https://github.com/CartoDB/airship/issues/447)
+* **components:** Fix range slider step issues ([#429](https://github.com/CartoDB/airship/issues/429)) ([445644f](https://github.com/CartoDB/airship/commit/445644f))
+
+
+### Features
+
+* **components:** 216 widget improvements ([#438](https://github.com/CartoDB/airship/issues/438)) ([3722c27](https://github.com/CartoDB/airship/commit/3722c27))
+* **components:** 217 histogram redesign ([#442](https://github.com/CartoDB/airship/issues/442)) ([5033fb2](https://github.com/CartoDB/airship/commit/5033fb2))
+* **components:** Add airship tabs ([#445](https://github.com/CartoDB/airship/issues/445)) ([f90a2a4](https://github.com/CartoDB/airship/commit/f90a2a4)), closes [#452](https://github.com/CartoDB/airship/issues/452)
+* **components:** Add toolbar component ([#449](https://github.com/CartoDB/airship/issues/449)) ([0768f7a](https://github.com/CartoDB/airship/commit/0768f7a))
 
 
 
