@@ -72,7 +72,7 @@ async function listObjects (args) {
 const UPLOAD = [
   {
     name: 'Airship Components',
-    src: path.join(__dirname, '../www/build'),
+    src: path.join(__dirname, '../packages/components/dist'),
     dst: 'airship-components',
     version: require('../packages/components/package.json').version
   },
