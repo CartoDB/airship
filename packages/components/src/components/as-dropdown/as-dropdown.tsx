@@ -46,18 +46,6 @@ export class Dropdown {
   @Prop() public showClearButton: boolean = false;
 
   /**
-   * Function called when clicking outside of the dropdown.
-   * By default it closes the list.
-   *
-   * @type {function}
-   * @memberof Dropdown
-   */
-  @Prop() 
-  public onClickOutside: () => { 
-      this._closeList();
-  }
-
-  /**
    * Fired when selected option changes or option is cleared
    *
    * @type {string}
@@ -67,6 +55,15 @@ export class Dropdown {
 
   @State() private isOpen: boolean = false;
   @State() private selectedOptionObject: DropdownOption = {};
+
+  /**
+   * Function called when clicking outside of the dropdown.
+   * By default it closes the list.
+   *
+   * @type {function}
+   * @memberof Dropdown
+   */
+  @Prop() public onClickOutside: () => void = () => { this._closeList(); };
 
   /**
    * Closes the list, useful in case you need to customize {onClickOutside}
