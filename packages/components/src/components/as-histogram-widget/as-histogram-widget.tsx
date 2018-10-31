@@ -134,12 +134,15 @@ export class HistogramWidget {
   @Prop() public yLabel: string;
 
   /**
-   * Boolean property to control if the widget is loading
+   * Use this attribute to put the widget in "loading mode".
+   * When loading mode is active, a spinner will be shown and the data will be hidden.
    */
   @Prop() public isLoading: boolean = false;
 
   /**
-   * Control the text shown in header subtitle
+   * Use this widget to put the widget in "error mode".
+   * When error mode is active. The header will display the given text.
+   * And the body will be display the errorDescription instead any data.
    */
   @Prop() public error: string = '';
 
@@ -235,7 +238,7 @@ export class HistogramWidget {
 
   @Watch('data')
   public onDataChanged() {
-    if (this.isLoading || this._isEmpty() || this.error) {
+    if (!this._hasDataToDisplay()) {
       return;
     }
     const xDomain = dataService.getXDomain(this.data);
@@ -265,7 +268,7 @@ export class HistogramWidget {
   }
 
   public componentDidLoad() {
-    if (this.isLoading || this._isEmpty() || this.error) {
+    if (!this._hasDataToDisplay()) {
       return;
     }
     // This is probably not necessary for production, but HMR causes this method
@@ -663,5 +666,9 @@ export class HistogramWidget {
 
   private _isEmpty(): boolean {
     return !this.data || !this.data.length;
+  }
+
+  private _hasDataToDisplay() {
+    return !(this.isLoading || this._isEmpty() || this.error);
   }
 }

@@ -60,12 +60,14 @@ export class StackedBarWidget {
   @Prop() public metadata: Metadata;
 
   /**
-   * Boolean property to control if the widget is loading
+   * Use this attribute to put the widget in "loading mode".
+   * When this attribute is true, the widget won't show any data, a spinner will be placed instead.
    */
   @Prop() public isLoading: boolean = false;
 
   /**
-   * Control the text shown in header subtitle
+   * Use this attribute to put the widget in "error mode".
+   * When this attribute is given, its text will be shown in the subheader and the widget content won't be displayed.
    */
   @Prop() public error: string = '';
 

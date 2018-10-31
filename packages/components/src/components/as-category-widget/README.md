@@ -183,6 +183,50 @@ lang: javascript
 categoryWidget.visibleCategories = 5;
 ```
 
+#### **isLoading**: boolean=false
+Use this attribute to put the widget in "loading mode".
+When this attribute is true, the widget won't show any data, a spinner will be placed instead.
+
+```code
+lang: html
+---
+<as-stacked-bar-widget is-loading="true"></as-stacked-bar-widget>
+```
+```code
+lang: javascript
+---
+stackedBar.isLoading = 'true';
+```
+
+#### **error**: string=''
+Use this attribute to put the widget in "error mode".
+When this attribute is given, its text will be shown in the subheader and the widget content won't be displayed.
+
+```code
+lang: html
+---
+<as-stacked-bar-widget error="Error!"></as-stacked-bar-widget>
+```
+```code
+lang: javascript
+---
+stackedBar.error = 'Some error happened, try again!';
+```
+
+#### **errorDescription**: string=''
+Extended error description shown in the widget content area. Only shown when error attribute is present.
+
+```code
+lang: html
+---
+<as-stacked-bar-widget error-description="There is no internet connection"></as-stacked-bar-widget>
+```
+```code
+lang: javascript
+---
+stackedBar.errorDescription = 'There is no internet connection.';
+```
+
 ### Styles
 There are some CSS Variables that you can override to change visual styles.
 

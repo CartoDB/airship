@@ -50,7 +50,7 @@ export namespace Components {
     */
     'disableInteractivity': boolean;
     /**
-    * Control the text shown in header subtitle
+    * Text shown in the header subtitle when there's an error
     */
     'error': string;
     /**
@@ -66,7 +66,7 @@ export namespace Components {
     */
     'heading': string;
     /**
-    * Boolean property to control if the widget is loading
+    * Boolean property to control the widget loading state. If true, a spinner is shown.
     */
     'isLoading': boolean;
     /**
@@ -116,7 +116,7 @@ export namespace Components {
     */
     'disableInteractivity'?: boolean;
     /**
-    * Control the text shown in header subtitle
+    * Text shown in the header subtitle when there's an error
     */
     'error'?: string;
     /**
@@ -128,7 +128,7 @@ export namespace Components {
     */
     'heading'?: string;
     /**
-    * Boolean property to control if the widget is loading
+    * Boolean property to control the widget loading state. If true, a spinner is shown.
     */
     'isLoading'?: boolean;
     /**
@@ -232,7 +232,7 @@ export namespace Components {
     */
     'disableInteractivity': boolean;
     /**
-    * Control the text shown in header subtitle
+    * Use this widget to put the widget in "error mode". When error mode is active. The header will display the given text. And the body will be display the errorDescription instead any data.
     */
     'error': string;
     /**
@@ -248,7 +248,7 @@ export namespace Components {
     */
     'heading': string;
     /**
-    * Boolean property to control if the widget is loading
+    * Use this attribute to put the widget in "loading mode". When loading mode is active, a spinner will be shown and the data will be hidden.
     */
     'isLoading': boolean;
     /**
@@ -310,7 +310,7 @@ export namespace Components {
     */
     'disableInteractivity'?: boolean;
     /**
-    * Control the text shown in header subtitle
+    * Use this widget to put the widget in "error mode". When error mode is active. The header will display the given text. And the body will be display the errorDescription instead any data.
     */
     'error'?: string;
     /**
@@ -322,7 +322,7 @@ export namespace Components {
     */
     'heading'?: string;
     /**
-    * Boolean property to control if the widget is loading
+    * Use this attribute to put the widget in "loading mode". When loading mode is active, a spinner will be shown and the data will be hidden.
     */
     'isLoading'?: boolean;
     /**
@@ -501,7 +501,7 @@ export namespace Components {
     */
     'description': string;
     /**
-    * Control the text shown in header subtitle
+    * Use this attribute to put the widget in "error mode". When this attribute is given, its text will be shown in the subheader and the widget content won't be displayed.
     */
     'error': string;
     /**
@@ -517,7 +517,7 @@ export namespace Components {
     */
     'heading': string;
     /**
-    * Boolean property to control if the widget is loading
+    * Use this attribute to put the widget in "loading mode". When this attribute is true, the widget won't show any data, a spinner will be placed instead.
     */
     'isLoading': boolean;
     /**
@@ -555,7 +555,7 @@ export namespace Components {
     */
     'description'?: string;
     /**
-    * Control the text shown in header subtitle
+    * Use this attribute to put the widget in "error mode". When this attribute is given, its text will be shown in the subheader and the widget content won't be displayed.
     */
     'error'?: string;
     /**
@@ -571,7 +571,7 @@ export namespace Components {
     */
     'heading'?: string;
     /**
-    * Boolean property to control if the widget is loading
+    * Use this attribute to put the widget in "loading mode". When this attribute is true, the widget won't show any data, a spinner will be placed instead.
     */
     'isLoading'?: boolean;
     /**
@@ -659,7 +659,7 @@ export namespace Components {
 
   interface AsWidgetHeader {
     /**
-    * Indicates if the widget has some errors and display the text in the subheader
+    * Use this attribute to put the widget-header in "error mode". When this attribute is not empty the subheader will display the given value.
     */
     'error': string;
     /**
@@ -667,15 +667,15 @@ export namespace Components {
     */
     'header': string;
     /**
-    * Indicates if the widget has no data
+    * Use this attribute to put the widget-header in "empty mode". When this attribute is true the subheader will show the text defined by noDataMessage.
     */
     'isEmpty': boolean;
     /**
-    * Indicates if the widget is loading
+    * Use this attribute to put the widget-header in "loading mode". When this attribute is true the subheader text will be displayed as usual.
     */
     'isLoading': boolean;
     /**
-    * Message shown when no data is available
+    * Use this attribute to select the text displayed in the subheader when the header is in "empty mode". Defaults to "NO DATA AVAILABLE"
     */
     'noDataMessage': string;
     /**
@@ -685,7 +685,7 @@ export namespace Components {
   }
   interface AsWidgetHeaderAttributes extends StencilHTMLAttributes {
     /**
-    * Indicates if the widget has some errors and display the text in the subheader
+    * Use this attribute to put the widget-header in "error mode". When this attribute is not empty the subheader will display the given value.
     */
     'error'?: string;
     /**
@@ -693,15 +693,15 @@ export namespace Components {
     */
     'header'?: string;
     /**
-    * Indicates if the widget has no data
+    * Use this attribute to put the widget-header in "empty mode". When this attribute is true the subheader will show the text defined by noDataMessage.
     */
     'isEmpty'?: boolean;
     /**
-    * Indicates if the widget is loading
+    * Use this attribute to put the widget-header in "loading mode". When this attribute is true the subheader text will be displayed as usual.
     */
     'isLoading'?: boolean;
     /**
-    * Message shown when no data is available
+    * Use this attribute to select the text displayed in the subheader when the header is in "empty mode". Defaults to "NO DATA AVAILABLE"
     */
     'noDataMessage'?: string;
     /**

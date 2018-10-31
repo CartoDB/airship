@@ -103,12 +103,12 @@ export class CategoryWidget {
   @Prop() public visibleCategories: number = Infinity;
 
   /**
-   * Boolean property to control if the widget is loading
+   * Boolean property to control the widget loading state. If true, a spinner is shown.
    */
   @Prop() public isLoading: boolean = false;
 
   /**
-   * Control the text shown in header subtitle
+   * Text shown in the header subtitle when there's an error
    */
   @Prop() public error: string = '';
 

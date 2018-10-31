@@ -31,22 +31,26 @@ export class WidgetHeader {
   @Prop() public subheader: string = '';
 
   /**
-   * Indicates if the widget has some errors and display the text in the subheader
+   * Use this attribute to put the widget-header in "error mode".
+   * When this attribute is not empty the subheader will display the given value.
    */
   @Prop() public error: string = '';
 
   /**
-   * Indicates if the widget has no data
+   * Use this attribute to put the widget-header in "empty mode".
+   * When this attribute is true the subheader will show the text defined by noDataMessage.
    */
   @Prop() public isEmpty: boolean = false;
 
   /**
-   * Indicates if the widget is loading
+   * Use this attribute to put the widget-header in "loading mode".
+   * When this attribute is true the subheader text will be displayed as usual.
    */
   @Prop() public isLoading: boolean = false;
 
   /**
-   * Message shown when no data is available
+   * Use this attribute to select the text displayed in the subheader when the header is in "empty mode".
+   * Defaults to "NO DATA AVAILABLE"
    */
   @Prop() public noDataMessage: string = 'NO DATA AVAILABLE';
 
