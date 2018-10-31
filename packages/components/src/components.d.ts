@@ -501,7 +501,7 @@ export namespace Components {
     */
     'description': string;
     /**
-    * Use this attribute to put the widget in "error mode". When this attribute is given it's text will be shown in the subheader and the widget content wont be displayed.
+    * Use this attribute to put the widget in "error mode". When this attribute is given, its text will be shown in the subheader and the widget content won't be displayed.
     */
     'error': string;
     /**
@@ -555,7 +555,7 @@ export namespace Components {
     */
     'description'?: string;
     /**
-    * Use this attribute to put the widget in "error mode". When this attribute is given it's text will be shown in the subheader and the widget content wont be displayed.
+    * Use this attribute to put the widget in "error mode". When this attribute is given, its text will be shown in the subheader and the widget content won't be displayed.
     */
     'error'?: string;
     /**
