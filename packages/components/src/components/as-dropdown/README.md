@@ -108,6 +108,19 @@ lang: javascript
 dropdown.showClearButton = true;
 ```
 
+#### **onClickOutside**: function
+This function will be called when the user clicks outside of the dropdown. By default, it closes the list.
+
+```code
+lang: javascript
+---
+const dropdown = document.querySelector('as-dropdown');
+dropdown.onClickOutside = () => {
+  console.log('User has clicked outside of the dropdown');
+  dropdown.closeList();
+};
+```
+
 ### Styles
 There are some CSS Variables that you can override to change visual styles.
 
@@ -134,4 +147,16 @@ const dropdown = document.querySelector('as-dropdown');
 dropdown.addEventListener('optionChanged', function (event) {
   console.log('Selected Option:', event.detail);
 });
+```
+
+### Methods
+
+#### **closeList**
+Closes the dropdown list. Useful when overriding the default `onClickOutside`
+
+```code
+lang: javascript
+---
+const dropdown = document.querySelector('as-dropdown');
+dropdown.closeList();
 ```
