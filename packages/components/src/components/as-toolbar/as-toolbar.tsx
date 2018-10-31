@@ -1,5 +1,4 @@
 import { Component, Element } from '@stencil/core';
-import menu from './img/menu.svg';
 
 /**
  * Toolbar
