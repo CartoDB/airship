@@ -44,7 +44,7 @@ describe('as-toolbar', () => {
         visible: true
       });
 
-      expect(actual).toBeDefined();
+      expect(actual).not.toBeNull();
     });
   });
 });
