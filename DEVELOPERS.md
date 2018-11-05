@@ -125,3 +125,5 @@ We keep an automated changelog tracking every change affecting public versions.
 Once a new version is released just run `npm run changelog` and push your changes.
 
     npm run changelog
+
+We dont want prereleases to be shown in the changelog so git tags corresponding to a prerelase should be removed.
