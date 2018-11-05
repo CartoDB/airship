@@ -142,12 +142,14 @@ async function uploadAllFiles (dir, version, destination, subfolder='') {
 
       let versions = [`v${version}`];
 
-      if (PRERELEASE) {
-        versions = [PRERELEASE_VERSION];
-      } else if (parsedVersion.prerelease.length === 0) {
+      if (parsedVersion.prerelease.length === 0) {
         versions = [`v${parsedVersion.major}`,
             `v${parsedVersion.major}.${parsedVersion.minor}`,
             `v${parsedVersion.major}.${parsedVersion.minor}.${parsedVersion.patch}`];
+      }
+
+      if (PRERELEASE) {
+        versions.push(PRERELEASE_VERSION);
       }
 
       for (vers of versions) {
