@@ -1,4 +1,8 @@
-# [0.0.0](https://github.com/CartoDB/airship/compare/v1.0.0-beta.8...v0.0.0) (2018-11-05)
+# [0.0.0](https://github.com/CartoDB/airship/compare/v1.0.0-beta.9...v0.0.0) (2018-11-05)
+
+
+
+# [1.0.0-beta.9](https://github.com/CartoDB/airship/compare/v1.0.0-beta.8...v1.0.0-beta.9) (2018-11-05)
 
 
 ### Bug Fixes
