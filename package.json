@@ -26,6 +26,7 @@
     "lint": "lerna run lint",
     "postinstall": "lerna bootstrap --hoist",
     "publish": "npm install && npm run test && npm run build && lerna publish && ./release.sh",
+    "publish:prerelease": "npm install && npm run test && npm run build && lerna publish --npm-tag prerelease && ./release.sh",
     "serve": "serve && open http://localhost:5000",
     "test:components:watch": "lerna exec --scope @carto/airship-components -- npm run test:watch",
     "test:components": "lerna exec --scope @carto/airship-components npm run test",
