@@ -1,24 +1,30 @@
 # Developer Notes
 
-- [Project structure](#project-structure)
-- [Developing](#developing)
-- [Testing](#testing)
-- [Commit style](#commit-style)
-- [Releasing a new version](#releasing-a-new-version)
-- [Changelog](#changelog)
+- [Developer Notes](#developer-notes)
+  - [Project structure](#project-structure)
+  - [Developing](#developing)
+  - [Testing](#testing)
+    - [Continuous Integration](#continuous-integration)
+    - [Visual regression testing](#visual-regression-testing)
+    - [CircleCI Tools for developers](#circleci-tools-for-developers)
+  - [Commit style](#commit-style)
+  - [Releasing a new version](#releasing-a-new-version)
+    - [Prerelase](#prerelase)
+    - [Release](#release)
+  - [Changelog](#changelog)
 
 
 ## Project structure
 
 This is a [Lerna](https://lernajs.io/) [monorepo](https://en.wikipedia.org/wiki/Monorepo) composed of 3 node packages in the `packages`.
 
-## Developing
+## Developing
 
 Run `npm run dev` to start developing. This commands starts the Stencil compiler for the components and the Sass compiler for the styles. Both in watch mode.
 
 If you need to use a browser to test your development, please open a new shell prompt and run `npm run serve` to start a dev server.
 
-## Testing
+## Testing
 
 - `airship-styles` are tested using [BackstopJS](https://github.com/garris/BackstopJS) using Docker both in CI and locally to have consistent results.
 - `airship-components` are build using [stenciljs](http://stenciljs.com) and have 2 types of tests: `unit` and `e2e`.
@@ -77,7 +83,7 @@ To run locally the visual regression test, type `npm run test:styles`. When fini
 
 We use [conventional commits](https://www.conventionalcommits.org/) to have more consistent commits and autogenerate a changelog.
 
-Feel free to write your regular commtis as you want but ensure your PR has an associated conventional commit:
+Feel free to write your regular commits as you want but ensure your PR has an associated conventional commit:
 
 - Before the merge commit.
 - Use squash and merge/rebase and merge button in github and use a conventionalcommit 
@@ -94,11 +100,28 @@ Fix #issue
 
 ## Releasing a new version
 
-We use [lerna](https://lernajs.io/) to keep two internal packages in sync.
+We use [lerna](https://lernajs.io/) to keep two internal packages in sync. This command is wrapped with a npm script. 
 
-Once you have your changes merged to master branch run `npm run release` and follow the given instructions.
+### Prerelase
+
+Once you merge a new branch into the master branch a `prerelease` tag can be published to do some acceptance testing.
+
+    npm run publish:prerelease
+
+### Release
+
+If required and only when the prerelase passes the acceptance phase a new public release can be published.
+
+Run the following command and follow the given instructions.
+
+    npm run publish
+
 
 
 ## Changelog
 
+We keep an automated changelog tracking every change affecting public versions. 
+
 Once a new version is released just run `npm run changelog` and push your changes.
+
+    npm run changelog

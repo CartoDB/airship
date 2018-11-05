@@ -1,14 +1,20 @@
-<a name="0.0.0"></a>
-# [0.0.0](https://github.com/CartoDB/airship/compare/v1.0.0-beta.8...v0.0.0) (2018-10-31)
+# [0.0.0](https://github.com/CartoDB/airship/compare/v1.0.0-beta.9...v0.0.0) (2018-11-05)
 
 
 
-<a name="1.0.0-beta.8"></a>
+# [1.0.0-beta.9](https://github.com/CartoDB/airship/compare/v1.0.0-beta.8...v1.0.0-beta.9) (2018-11-05)
+
+
+### Bug Fixes
+
+* **chore:** Fix webpack example and upgrade release process ([a7a3565](https://github.com/CartoDB/airship/commit/a7a3565)), closes [#453](https://github.com/CartoDB/airship/issues/453)
+
+
+
 # [1.0.0-beta.8](https://github.com/CartoDB/airship/compare/v1.0.0-beta.7...v1.0.0-beta.8) (2018-10-31)
 
 
 
-<a name="1.0.0-beta.7"></a>
 # [1.0.0-beta.7](https://github.com/CartoDB/airship/compare/v1.0.0-beta.6...v1.0.0-beta.7) (2018-10-31)
 
 
@@ -27,17 +33,14 @@
 
 
 
-<a name="1.0.0-beta.6"></a>
 # [1.0.0-beta.6](https://github.com/CartoDB/airship/compare/v1.0.0-beta.5...v1.0.0-beta.6) (2018-10-26)
 
 
 
-<a name="1.0.0-beta.5"></a>
 # [1.0.0-beta.5](https://github.com/CartoDB/airship/compare/v1.0.0-beta.4...v1.0.0-beta.5) (2018-10-24)
 
 
 
-<a name="1.0.0-beta.4"></a>
 # [1.0.0-beta.4](https://github.com/CartoDB/airship/compare/v1.0.0-beta.3...v1.0.0-beta.4) (2018-10-23)
 
 
@@ -47,7 +50,6 @@
 
 
 
-<a name="1.0.0-beta.3"></a>
 # [1.0.0-beta.3](https://github.com/CartoDB/airship/compare/v1.0.0-beta.2...v1.0.0-beta.3) (2018-10-23)
 
 
@@ -64,7 +66,6 @@ Instead of `import { defineCustomElements } from '@carto/airship-components';` y
 
 
 
-<a name="1.0.0-beta.2"></a>
 # [1.0.0-beta.2](https://github.com/CartoDB/airship/compare/v1.0.0-beta.1...v1.0.0-beta.2) (2018-10-22)
 
 
@@ -74,7 +75,6 @@ Instead of `import { defineCustomElements } from '@carto/airship-components';` y
 
 
 
-<a name="1.0.0-beta.1"></a>
 # [1.0.0-beta.1](https://github.com/CartoDB/airship/compare/v1.0.0-beta.0...v1.0.0-beta.1) (2018-10-19)
 
 
@@ -102,7 +102,6 @@ Previous to this, since the app needs typically more than one node (one for the 
 
 
 
-<a name="1.0.0-beta.0"></a>
 # [1.0.0-beta.0](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.46...v1.0.0-beta.0) (2018-10-08)
 
 
@@ -112,7 +111,6 @@ Previous to this, since the app needs typically more than one node (one for the 
 
 
 
-<a name="1.0.0-alpha.46"></a>
 # [1.0.0-alpha.46](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.45...v1.0.0-alpha.46) (2018-10-04)
 
 
@@ -135,7 +133,6 @@ Previous to this, since the app needs typically more than one node (one for the 
 
 
 
-<a name="1.0.0-alpha.45"></a>
 # [1.0.0-alpha.45](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.44...v1.0.0-alpha.45) (2018-09-28)
 
 
@@ -150,7 +147,6 @@ Previous to this, since the app needs typically more than one node (one for the 
 
 
 
-<a name="1.0.0-alpha.44"></a>
 # [1.0.0-alpha.44](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.43...v1.0.0-alpha.44) (2018-09-24)
 
 
@@ -176,7 +172,6 @@ Previous to this, since the app needs typically more than one node (one for the 
 
 
 
-<a name="1.0.0-alpha.43"></a>
 # [1.0.0-alpha.43](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.42...v1.0.0-alpha.43) (2018-09-19)
 
 
@@ -222,7 +217,6 @@ This reverts commit acb63b2610d2d53c6af4c4e1dea631b125e99745.
 
 
 
-<a name="1.0.0-alpha.42"></a>
 # [1.0.0-alpha.42](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.41...v1.0.0-alpha.42) (2018-09-14)
 
 
@@ -243,7 +237,6 @@ This reverts commit acb63b2610d2d53c6af4c4e1dea631b125e99745.
 
 
 
-<a name="1.0.0-alpha.41"></a>
 # [1.0.0-alpha.41](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.38...v1.0.0-alpha.41) (2018-09-13)
 
 
@@ -268,7 +261,6 @@ This reverts commit acb63b2610d2d53c6af4c4e1dea631b125e99745.
 
 
 
-<a name="1.0.0-alpha.38"></a>
 # [1.0.0-alpha.38](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.37...v1.0.0-alpha.38) (2018-09-05)
 
 
@@ -299,7 +291,6 @@ This reverts commit acb63b2610d2d53c6af4c4e1dea631b125e99745.
 
 
 
-<a name="1.0.0-alpha.37"></a>
 # [1.0.0-alpha.37](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.36...v1.0.0-alpha.37) (2018-08-24)
 
 
@@ -309,7 +300,6 @@ This reverts commit acb63b2610d2d53c6af4c4e1dea631b125e99745.
 
 
 
-<a name="1.0.0-alpha.36"></a>
 # [1.0.0-alpha.36](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.35...v1.0.0-alpha.36) (2018-08-24)
 
 
@@ -324,7 +314,6 @@ This reverts commit acb63b2610d2d53c6af4c4e1dea631b125e99745.
 
 
 
-<a name="1.0.0-alpha.35"></a>
 # [1.0.0-alpha.35](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.26...v1.0.0-alpha.35) (2018-08-23)
 
 
@@ -378,132 +367,106 @@ This reverts commit acb63b2610d2d53c6af4c4e1dea631b125e99745.
 
 
 
-<a name="1.0.0-alpha.26"></a>
 # [1.0.0-alpha.26](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.25...v1.0.0-alpha.26) (2018-07-19)
 
 
 
-<a name="1.0.0-alpha.25"></a>
 # [1.0.0-alpha.25](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.24...v1.0.0-alpha.25) (2018-05-18)
 
 
 
-<a name="1.0.0-alpha.24"></a>
 # [1.0.0-alpha.24](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.23...v1.0.0-alpha.24) (2018-05-10)
 
 
 
-<a name="1.0.0-alpha.23"></a>
 # [1.0.0-alpha.23](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.22...v1.0.0-alpha.23) (2018-04-26)
 
 
 
-<a name="1.0.0-alpha.22"></a>
 # [1.0.0-alpha.22](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.21...v1.0.0-alpha.22) (2018-04-25)
 
 
 
-<a name="1.0.0-alpha.21"></a>
 # [1.0.0-alpha.21](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.20...v1.0.0-alpha.21) (2018-04-25)
 
 
 
-<a name="1.0.0-alpha.20"></a>
 # [1.0.0-alpha.20](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.19...v1.0.0-alpha.20) (2018-04-25)
 
 
 
-<a name="1.0.0-alpha.19"></a>
 # [1.0.0-alpha.19](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.18...v1.0.0-alpha.19) (2018-04-23)
 
 
 
-<a name="1.0.0-alpha.18"></a>
 # [1.0.0-alpha.18](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.17...v1.0.0-alpha.18) (2018-04-20)
 
 
 
-<a name="1.0.0-alpha.17"></a>
 # [1.0.0-alpha.17](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.16...v1.0.0-alpha.17) (2018-04-18)
 
 
 
-<a name="1.0.0-alpha.16"></a>
 # [1.0.0-alpha.16](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.15...v1.0.0-alpha.16) (2018-04-18)
 
 
 
-<a name="1.0.0-alpha.15"></a>
 # [1.0.0-alpha.15](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.14...v1.0.0-alpha.15) (2018-04-18)
 
 
 
-<a name="1.0.0-alpha.14"></a>
 # [1.0.0-alpha.14](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.13...v1.0.0-alpha.14) (2018-04-17)
 
 
 
-<a name="1.0.0-alpha.13"></a>
 # [1.0.0-alpha.13](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.12...v1.0.0-alpha.13) (2018-04-16)
 
 
 
-<a name="1.0.0-alpha.12"></a>
 # [1.0.0-alpha.12](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.11...v1.0.0-alpha.12) (2018-04-16)
 
 
 
-<a name="1.0.0-alpha.11"></a>
 # [1.0.0-alpha.11](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.10...v1.0.0-alpha.11) (2018-04-11)
 
 
 
-<a name="1.0.0-alpha.10"></a>
 # [1.0.0-alpha.10](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.9...v1.0.0-alpha.10) (2018-04-11)
 
 
 
-<a name="1.0.0-alpha.9"></a>
 # [1.0.0-alpha.9](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.8...v1.0.0-alpha.9) (2018-04-10)
 
 
 
-<a name="1.0.0-alpha.8"></a>
 # [1.0.0-alpha.8](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.7...v1.0.0-alpha.8) (2018-04-10)
 
 
 
-<a name="1.0.0-alpha.7"></a>
 # [1.0.0-alpha.7](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.6...v1.0.0-alpha.7) (2018-04-10)
 
 
 
-<a name="1.0.0-alpha.6"></a>
 # [1.0.0-alpha.6](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.5...v1.0.0-alpha.6) (2018-04-09)
 
 
 
-<a name="1.0.0-alpha.5"></a>
 # [1.0.0-alpha.5](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.4...v1.0.0-alpha.5) (2018-04-09)
 
 
 
-<a name="1.0.0-alpha.4"></a>
 # [1.0.0-alpha.4](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.3...v1.0.0-alpha.4) (2018-04-09)
 
 
 
-<a name="1.0.0-alpha.3"></a>
 # [1.0.0-alpha.3](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.2...v1.0.0-alpha.3) (2018-04-09)
 
 
 
-<a name="1.0.0-alpha.2"></a>
 # [1.0.0-alpha.2](https://github.com/CartoDB/airship/compare/v1.0.0-alpha.1...v1.0.0-alpha.2) (2018-04-09)
 
 
 
-<a name="1.0.0-alpha.1"></a>
 # 1.0.0-alpha.1 (2018-04-05)
 
 

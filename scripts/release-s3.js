@@ -20,6 +20,11 @@ AWS.config.update({
 const S3 = new AWS.S3();
 const DRY_RUN = process.argv.some(arg => arg === '--dry');
 const VERBOSE = process.argv.some(arg => arg === '--verbose');
+const PRERELEASE = process.argv.some(arg => arg === '--prerelease');
+
+// this is the s3 folder where the prereleased version will end up
+// https://libs.cartocdn.com/${PACKAGE_NAME}/${PRERELEASE_VERSION}/<files>
+const PRERELEASE_VERSION = 'prerelease';
 
 // Woff is a zipped format.
 // If we ever have raster images we should probably put them here as well
@@ -135,15 +140,20 @@ async function uploadAllFiles (dir, version, destination, subfolder='') {
         continue;
       }
 
-      let versions = [version];
+      let versions = [`v${version}`];
+
       if (parsedVersion.prerelease.length === 0) {
-        versions = [`${parsedVersion.major}`,
-          `${parsedVersion.major}.${parsedVersion.minor}`,
-          `${parsedVersion.major}.${parsedVersion.minor}.${parsedVersion.patch}`]
+        versions = [`v${parsedVersion.major}`,
+            `v${parsedVersion.major}.${parsedVersion.minor}`,
+            `v${parsedVersion.major}.${parsedVersion.minor}.${parsedVersion.patch}`];
+      }
+
+      if (PRERELEASE) {
+        versions.push(PRERELEASE_VERSION);
       }
 
       for (vers of versions) {
-        objectConfig.Key = `${destination}/v${vers}/${dst}`;
+        objectConfig.Key = `${destination}/${vers}/${dst}`;
         try {
           if (!DRY_RUN) {
             await putObject(objectConfig);
@@ -165,7 +175,8 @@ async function upload () {
     log(`🌵 🌵 🌵 🌵 🌵 🌵 🌵 🌵 🌵 🌵 🌵`)
   }
   for ({ version, src, name, dst } of UPLOAD) {
-    log(`Uploading files for ${name}(v${version})`);
+    const parsedVersion = PRERELEASE ? PRERELEASE_VERSION : `v${version}`;
+    log(`Uploading files for ${name}(${parsedVersion})`);
     await uploadAllFiles(src, version, dst);
   }
 
