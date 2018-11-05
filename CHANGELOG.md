@@ -2,16 +2,12 @@
 
 
 
-# [1.0.0-beta.9](https://github.com/CartoDB/airship/compare/v1.0.0-beta.8...v1.0.0-beta.9) (2018-11-05)
+# [1.0.0-beta.9](https://github.com/CartoDB/airship/compare/v1.0.0-beta.7...v1.0.0-beta.9) (2018-11-05)
 
 
 ### Bug Fixes
 
 * **chore:** Fix webpack example and upgrade release process ([a7a3565](https://github.com/CartoDB/airship/commit/a7a3565)), closes [#453](https://github.com/CartoDB/airship/issues/453)
-
-
-
-# [1.0.0-beta.8](https://github.com/CartoDB/airship/compare/v1.0.0-beta.7...v1.0.0-beta.8) (2018-10-31)
 
 
 
