@@ -11,7 +11,7 @@
 
 
 
-# [1.0.0-beta.7](https://github.com/CartoDB/airship/compare/v1.0.0-beta.6...v1.0.0-beta.7) (2018-10-31)
+# [1.0.0-beta.7](https://github.com/CartoDB/airship/compare/v1.0.0-beta.5...v1.0.0-beta.7) (2018-10-31)
 
 
 ### Bug Fixes
@@ -26,10 +26,6 @@
 * **components:** 217 histogram redesign ([#442](https://github.com/CartoDB/airship/issues/442)) ([5033fb2](https://github.com/CartoDB/airship/commit/5033fb2))
 * **components:** Add airship tabs ([#445](https://github.com/CartoDB/airship/issues/445)) ([f90a2a4](https://github.com/CartoDB/airship/commit/f90a2a4)), closes [#452](https://github.com/CartoDB/airship/issues/452)
 * **components:** Add toolbar component ([#449](https://github.com/CartoDB/airship/issues/449)) ([0768f7a](https://github.com/CartoDB/airship/commit/0768f7a))
-
-
-
-# [1.0.0-beta.6](https://github.com/CartoDB/airship/compare/v1.0.0-beta.5...v1.0.0-beta.6) (2018-10-26)
 
 
 
