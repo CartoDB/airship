@@ -1,0 +1,27 @@
+{
+  "name": "@carto/airship-smoke-usage-from-webpack",
+  "version": "0.0.0",
+  "description": "Smoke test airship",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --config webpack.config.js",
+    "start": "npm run test",
+    "test": "npm install && npm run build && open smoke_0.html"
+  },
+  "author": "CARTO dev team",
+  "license": "ISC",
+  "devDependencies": {
+    "css-loader": "^1.0.1",
+    "node-sass": "^4.9.2",
+    "sass-loader": "^7.0.3",
+    "style-loader": "^0.21.0",
+    "url-loader": "^1.1.2",
+    "webpack": "^4.16.1",
+    "webpack-cli": "^3.0.8"
+  },
+  "dependencies": {
+    "@carto/airship-components": "^1.0.0-beta.8",
+    "@carto/airship-icons": "^1.0.0-beta.8",
+    "@carto/airship-style": "^1.0.0-beta.8"
+  }
+}
