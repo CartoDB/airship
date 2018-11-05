@@ -173,7 +173,8 @@ async function upload () {
     log(`🌵 🌵 🌵 🌵 🌵 🌵 🌵 🌵 🌵 🌵 🌵`)
   }
   for ({ version, src, name, dst } of UPLOAD) {
-    log(`Uploading files for ${name}(v${version})`);
+    const parsedVersion = PRERELEASE ? PRERELEASE_VERSION : `v${version}`;
+    log(`Uploading files for ${name}(${parsedVersion})`);
     await uploadAllFiles(src, version, dst);
   }
 
