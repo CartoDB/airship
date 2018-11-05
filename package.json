@@ -20,7 +20,7 @@
     "build:components": "lerna exec --scope @carto/airship-components npm run build",
     "build:styles": "lerna exec --scope @carto/airship-style npm run build",
     "build": "lerna run --parallel build",
-    "changelog": "git fetch && conventional-changelog -p angular -o CHANGELOG.md -r 0 && git add CHANGELOG.md && git commit -m \"chore: Update CHANGELOG.md\"",
+    "changelog": "git fetch -p -P && conventional-changelog -p angular -o CHANGELOG.md -r 0 && git add CHANGELOG.md && git commit -m \"chore: Update CHANGELOG.md\"",
     "dev": "lerna run --parallel dev",
     "lint:fix": "lerna run lint:fix",
     "lint": "lerna run lint",
