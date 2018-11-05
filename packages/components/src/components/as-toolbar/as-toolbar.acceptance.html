@@ -10,6 +10,11 @@
   <link rel="stylesheet" href="packages/icons/dist/icons.css">
 
   <script src="packages/components/dist/airship.js"></script>
+  <style>
+    hr {
+      margin-bottom: 128px;
+    }
+  </style>
 </head>
 
 <body class="as-app as-app-body">
@@ -25,11 +30,12 @@
         </li>
       </ul>
     </nav>
+    <div class="as-toolbar__item">Account</div>
   </as-toolbar>
 
-  <hr>
+  <hr> 
 
-  <p class="as-body">No icon when no toolbar actions</p>
+  <h2 class="as-title">No icon when no toolbar actions</h2>
   <as-toolbar>
     <div class="as-toolbar__item">
       <img src="/examples/layouts/common/logo-circle.svg" alt="Logo" />

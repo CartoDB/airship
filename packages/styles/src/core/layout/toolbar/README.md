@@ -15,7 +15,7 @@ Toolbar is positioned to the top of the page by default. You can specify a diffe
 
 > This modifiers wont affect mobile screens where the toolbar is always displayed on top.
 
-### .as-app-nav\--left
+### .as-app\--nav-left
 
 
 
@@ -28,7 +28,7 @@ showSource: true
 </div>
 ```
 
-### .as-app-nav\--right
+### .as-app\--nav-right
 
 
 
