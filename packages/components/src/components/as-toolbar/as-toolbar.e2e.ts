@@ -39,9 +39,12 @@ describe('as-toolbar', () => {
       page.click('.as-toolbar__toggle');
       await page.waitForChanges();
 
-      const actual = await page.find('.as-toolbar__actions');
+      const actual = await page.waitForSelector('.as-toolbar__actions--visible', {
+        timeout: 500,
+        visible: true
+      });
 
-      expect(actual).toHaveClass('as-toolbar__actions--visible');
+      expect(actual).toBeDefined();
     });
   });
 });
