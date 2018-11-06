@@ -12,13 +12,9 @@ as-stacked-bar-widget {
   overflow: auto;
   background: var(--stacked-bar-widget-background-color, #FFF);
 
-  as-widget-header {
-    flex: 0 1 auto;
-  }
-
   .figure {
     box-sizing: border-box;
-    flex: 3 1 auto;
+    flex: 1 0 auto;
     width: 100%;
     max-height: 65%;
     margin: auto;
@@ -30,10 +26,6 @@ as-stacked-bar-widget {
         cursor: pointer;
       }
     }
-  }
-
-  as-legend {
-    flex: 0 0 auto;
   }
 
   [role="tooltip"] {
