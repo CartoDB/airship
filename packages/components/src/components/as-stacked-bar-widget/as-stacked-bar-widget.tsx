@@ -117,6 +117,11 @@ export class StackedBarWidget {
    */
   private colorMap: ColorMap;
 
+  public constructor() {
+    // Bind here so we can remove the event listener properly
+    this._resizeListener = this._resizeListener.bind(this);
+  }
+
   public render() {
     return [
       <as-widget-header
@@ -169,8 +174,7 @@ export class StackedBarWidget {
 
   public componentWillLoad() {
     this._setupState();
-    // TODO: Not sure if we are unbinding this well since bind creates a new fn.
-    addEventListener('resize', this._resizeListener.bind(this));
+    addEventListener('resize', this._resizeListener);
   }
 
   public componentWillUpdate() {
