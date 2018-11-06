@@ -395,3 +395,19 @@ showSource: false
   ];
 </script>
 ```
+
+
+#### **responsive**: boolean=true
+ Use this attribute to decide if the widget should be rerendered on window resize. 
+ Defaults to `true`.
+
+```code
+lang: html
+---
+<as-histogram-widget responsive="false"></as-histogram-widget>
+```
+```code
+lang: javascript
+---
+histogram.responsive = false;
+```

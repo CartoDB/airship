@@ -272,6 +272,10 @@ export namespace Components {
     */
     'noDataHeaderMessage': string;
     /**
+    * Use this attribute to decide if the widget should be rerendered on window resize. Defaults to true.
+    */
+    'responsive': boolean;
+    /**
     * Override color for the selected histogram bars
     */
     'selectedColor': string;
@@ -349,6 +353,10 @@ export namespace Components {
     * Fired when user update or clear the widget selection.
     */
     'onSelectionChanged'?: (event: CustomEvent<number[]>) => void;
+    /**
+    * Use this attribute to decide if the widget should be rerendered on window resize. Defaults to true.
+    */
+    'responsive'?: boolean;
     /**
     * Override color for the selected histogram bars
     */
