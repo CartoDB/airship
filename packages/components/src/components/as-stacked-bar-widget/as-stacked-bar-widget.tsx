@@ -1,4 +1,4 @@
-import { Component, Prop, Watch } from '@stencil/core';
+import { Component, Element, Prop, Watch } from '@stencil/core';
 import contentFragment from '../common/content.fragment';
 import { ColorMap } from './types/ColorMap';
 import { Metadata } from './types/Metadata';
@@ -93,6 +93,11 @@ export class StackedBarWidget {
   @Prop() public responsive: boolean = true;
 
   /**
+   * Store a reference to the element to force repaint on window resize.
+   */
+  @Element() public el: HTMLStencilElement;
+
+  /**
    * Hold a reference to the tooltip to show on mouseover
    */
   private tooltip: HTMLElement;
@@ -111,8 +116,6 @@ export class StackedBarWidget {
    * Mapping between colors and categories
    */
   private colorMap: ColorMap;
-
-  private _resizeListener: any;
 
   public render() {
     return [
@@ -166,9 +169,8 @@ export class StackedBarWidget {
 
   public componentWillLoad() {
     this._setupState();
-    if (this.responsive) {
-      this._resizeListener = addEventListener('resize', this._onDataChanged.bind(this));
-    }
+    // TODO: Not sure if we are unbinding this well since bind creates a new fn.
+    addEventListener('resize', this._resizeListener.bind(this));
   }
 
   public componentWillUpdate() {
@@ -176,9 +178,7 @@ export class StackedBarWidget {
   }
 
   public componentDidUnload() {
-    if (this._resizeListener) {
-      removeEventListener('resize', this._resizeListener);
-    }
+    removeEventListener('resize', this._resizeListener);
   }
 
   @Watch('data')
@@ -202,7 +202,7 @@ export class StackedBarWidget {
       this.noDataBodyMessage,
       [
         <svg class='figure' ref={(ref: SVGElement) => this.container = ref}></svg>,
-        <as-y-axis from={this.scale[0]} to={this.scale[1]}></as-y-axis>,
+        <as-y-axis responsive={this.responsive} from={this.scale[0]} to={this.scale[1]}></as-y-axis>,
         this._renderLegend(),
         <span ref={(ref) => this.tooltip = ref} role='tooltip' class='as-tooltip as-tooltip--top' > TOOLTIP</span>
       ]);
@@ -250,5 +250,11 @@ export class StackedBarWidget {
 
   private _isEmpty(): boolean {
     return !this.data || !this.data.length;
+  }
+
+  private _resizeListener() {
+    if (this.responsive) {
+      this.el.forceUpdate();
+    }
   }
 }

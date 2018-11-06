@@ -35,12 +35,25 @@ export class YAxis {
    */
   @Prop() public to: number = 0;
 
+  /**
+   * Use this attribute to decide if the widget should be rerendered on window resize
+   * Defaults to true
+   */
+  @Prop() public responsive: boolean = true;
 
   /**
-   * Reference to the web component element.
+   * Reference to the HTMLStencilElement
    */
-  @Element() private element: HTMLElement;
+  @Element() private element: HTMLStencilElement;
 
+
+  public componentWillLoad() {
+    addEventListener('resize', this._resizeListener.bind(this));
+  }
+
+  public componentDidUnload() {
+    removeEventListener('resize', this._resizeListener.bind(this));
+  }
 
   public render() {
     const VERTICAL_SPACING = 36; // Need 16px top and bottom to view the labels
@@ -76,5 +89,11 @@ export class YAxis {
 
   private _createYAxisElement(element: Selection<Element, {}, null, undefined>) {
     return element.append('g').attr('class', 'y-axis');
+  }
+
+  private _resizeListener() {
+    if (this.responsive) {
+      this.element.forceUpdate();
+    }
   }
 }

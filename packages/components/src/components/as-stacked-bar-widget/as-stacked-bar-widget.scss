@@ -4,17 +4,21 @@
 as-stacked-bar-widget {
   --stacked-bar-widget-background-color: var(--widget-background-color, #{$color-ui-01});
 
-  display: block;
+  display: flex;
+  flex-direction: column;
   width: 100%;
   max-height: 100%;
   overflow: auto;
   background: var(--stacked-bar-widget-background-color, #FFF);
 
+  as-widget-header {
+    flex: 1;
+  }
+
   .figure {
     box-sizing: border-box;
+    flex: 5;
     width: 100%;
-    min-height: 100px;
-    max-height: 40%;
     padding: 18px 8px 17px 30px;
     overflow: visible;
 
@@ -25,8 +29,8 @@ as-stacked-bar-widget {
     }
   }
 
-  .content {
-    min-height: 100px;
+  as-legend {
+    flex: 1;
   }
 
   [role="tooltip"] {

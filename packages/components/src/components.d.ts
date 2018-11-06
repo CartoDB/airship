@@ -768,6 +768,10 @@ export namespace Components {
     */
     'from': number;
     /**
+    * Use this attribute to decide if the widget should be rerendered on window resize Defaults to true
+    */
+    'responsive': boolean;
+    /**
     * Upper limit of the axis
     */
     'to': number;
@@ -777,6 +781,10 @@ export namespace Components {
     * Lower limit of the axis
     */
     'from'?: number;
+    /**
+    * Use this attribute to decide if the widget should be rerendered on window resize Defaults to true
+    */
+    'responsive'?: boolean;
     /**
     * Upper limit of the axis
     */
