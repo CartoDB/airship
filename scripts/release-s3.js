@@ -5,6 +5,7 @@ const zlib = require('zlib');
 const semver = require('semver');
 const mime = require('mime');
 const secrets = require('../secrets.json');
+const Spinner = require('./spinner.js');
 
 const { promisify } = require('util');
 
@@ -21,6 +22,7 @@ const S3 = new AWS.S3();
 const DRY_RUN = process.argv.some(arg => arg === '--dry');
 const VERBOSE = process.argv.some(arg => arg === '--verbose');
 const PRERELEASE = process.argv.some(arg => arg === '--prerelease');
+const spinner = new Spinner();
 
 // this is the s3 folder where the prereleased version will end up
 // https://libs.cartocdn.com/${PACKAGE_NAME}/${PRERELEASE_VERSION}/<files>
@@ -173,6 +175,7 @@ async function uploadAllFiles (dir, version, destination, subfolder='') {
       objectConfig.Key = `${destination}/v${version}/${dst}`;
 
       try {
+        spinner.setMessage(`Uploading ${objectConfig.Key}`);
         if (!DRY_RUN) {
           await putObject(objectConfig);
         }
@@ -185,6 +188,7 @@ async function uploadAllFiles (dir, version, destination, subfolder='') {
 
       for (copyVersion of copyVersions) {
         const dest = `${destination}/${copyVersion}/${dst}`;
+        spinner.setMessage(`Copying ${dest}`);
         try {
           if (!DRY_RUN) {
             await copyObject(objectConfig.Key, dest);
@@ -208,7 +212,16 @@ async function upload () {
   for ({ version, src, name, dst } of UPLOAD) {
     const parsedVersion = PRERELEASE ? PRERELEASE_VERSION : `v${version}`;
     log(`Uploading files for ${name}(${parsedVersion})`);
+
+    if (VERBOSE) {
+      spinner.start();
+    }
+
     await uploadAllFiles(src, version, dst);
+
+    if (VERBOSE) {
+      spinner.stop();
+    }
   }
 
   log(`Done`);
