@@ -61,6 +61,24 @@ async function putObject (args) {
   });
 }
 
+async function copyObject (source, destination) {
+  return new Promise((resolve, reject) => {
+    S3.copyObject({
+      Bucket: secrets.AWS_S3_BUCKET,
+      ACL: 'public-read',
+      CopySource: `${secrets.AWS_S3_BUCKET}/${source}`,
+      Key: destination
+    }, (err, data) => {
+      if (err) {
+        reject(err);
+        return;
+      }
+
+      resolve(data);
+    });
+  });
+}
+
 async function listObjects (args) {
   return new Promise((resolve, reject) => {
     S3.listObjects(args, function (err, data) {
@@ -105,6 +123,18 @@ async function uploadAllFiles (dir, version, destination, subfolder='') {
     return;
   }
 
+  // All files will be uploaded to /version/, and copied to each of the versions here
+  let copyVersions = [];
+
+  if (parsedVersion.prerelease.length === 0) {
+    copyVersions.push(`v${parsedVersion.major}`,
+        `v${parsedVersion.major}.${parsedVersion.minor}`);
+  }
+
+  if (PRERELEASE) {
+    copyVersions.push(PRERELEASE_VERSION);
+  }
+
   for (const fileName of files) {
     const filePath = path.join(dir, fileName);
 
@@ -140,28 +170,29 @@ async function uploadAllFiles (dir, version, destination, subfolder='') {
         continue;
       }
 
-      let versions = [`v${version}`];
+      objectConfig.Key = `${destination}/v${version}/${dst}`;
 
-      if (parsedVersion.prerelease.length === 0) {
-        versions = [`v${parsedVersion.major}`,
-            `v${parsedVersion.major}.${parsedVersion.minor}`,
-            `v${parsedVersion.major}.${parsedVersion.minor}.${parsedVersion.patch}`];
+      try {
+        if (!DRY_RUN) {
+          await putObject(objectConfig);
+        }
+
+        log(`✅  ${objectConfig.Key} ${fileContent.length} bytes. Compressed ${ratio > 100 ? `⚠️  \x1b[33m${ratio}` : ratio}%\x1b[0m`);
+      } catch (e) {
+        console.error(`❌  ${dst}`, e);
+        continue;
       }
 
-      if (PRERELEASE) {
-        versions.push(PRERELEASE_VERSION);
-      }
-
-      for (vers of versions) {
-        objectConfig.Key = `${destination}/${vers}/${dst}`;
+      for (copyVersion of copyVersions) {
+        const dest = `${destination}/${copyVersion}/${dst}`;
         try {
           if (!DRY_RUN) {
-            await putObject(objectConfig);
+            await copyObject(objectConfig.Key, dest);
           }
-
-          log(`✅  ${objectConfig.Key} ${fileContent.length} bytes. Compressed ${ratio > 100 ? `⚠️  \x1b[33m${ratio}` : ratio}%\x1b[0m`);
+          log(`  ✅  Copied to ${dest}`);
         } catch (e) {
-          console.error(`❌  ${dst}`, e);
+          console.error(`  ❌  Failed to copy to ${dest}`);
+          console.error(e);
         }
       }
     }
