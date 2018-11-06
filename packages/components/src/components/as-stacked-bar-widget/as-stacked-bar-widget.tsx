@@ -87,6 +87,12 @@ export class StackedBarWidget {
   @Prop() public noDataBodyMessage: string = 'There is no data to display.';
 
   /**
+   * Use this attribute to decide if the widget should be rerendered on window resize.
+   * Defaults to true.
+   */
+  @Prop() public responsive: boolean = true;
+
+  /**
    * Hold a reference to the tooltip to show on mouseover
    */
   private tooltip: HTMLElement;
@@ -105,6 +111,8 @@ export class StackedBarWidget {
    * Mapping between colors and categories
    */
   private colorMap: ColorMap;
+
+  private _resizeListener: any;
 
   public render() {
     return [
@@ -158,10 +166,19 @@ export class StackedBarWidget {
 
   public componentWillLoad() {
     this._setupState();
+    if (this.responsive) {
+      this._resizeListener = addEventListener('resize', this._onDataChanged.bind(this));
+    }
   }
 
   public componentWillUpdate() {
     this._setupState();
+  }
+
+  public componentDidUnload() {
+    if (this._resizeListener) {
+      removeEventListener('resize', this._resizeListener);
+    }
   }
 
   @Watch('data')
@@ -184,10 +201,10 @@ export class StackedBarWidget {
       this.errorDescription,
       this.noDataBodyMessage,
       [
-      <svg class='figure' ref={(ref: SVGElement) => this.container = ref}></svg> ,
-      <as-y-axis from={this.scale[0]} to={this.scale[1]}></as-y-axis> ,
-      this._renderLegend(),
-      <span ref={(ref) => this.tooltip = ref} role='tooltip' class='as-tooltip as-tooltip--top' > TOOLTIP</span>
+        <svg class='figure' ref={(ref: SVGElement) => this.container = ref}></svg>,
+        <as-y-axis from={this.scale[0]} to={this.scale[1]}></as-y-axis>,
+        this._renderLegend(),
+        <span ref={(ref) => this.tooltip = ref} role='tooltip' class='as-tooltip as-tooltip--top' > TOOLTIP</span>
       ]);
   }
 

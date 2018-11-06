@@ -553,6 +553,10 @@ export namespace Components {
     */
     'noDataHeaderMessage': string;
     /**
+    * Use this attribute to decide if the widget should be rerendered on window resize. Defaults to true.
+    */
+    'responsive': boolean;
+    /**
     * Boolean flag to control legend visibility. Defaults: true
     */
     'showLegend': boolean;
@@ -606,6 +610,10 @@ export namespace Components {
     * Message shown in header when no data is available
     */
     'noDataHeaderMessage'?: string;
+    /**
+    * Use this attribute to decide if the widget should be rerendered on window resize. Defaults to true.
+    */
+    'responsive'?: boolean;
     /**
     * Boolean flag to control legend visibility. Defaults: true
     */
