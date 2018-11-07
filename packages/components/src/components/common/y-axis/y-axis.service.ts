@@ -4,11 +4,11 @@ import { select, Selection } from 'd3-selection';
 import readableNumber from '../../../utils/readable-number';
 
 
-export function renderYAxis(container: SVGElement, scale: [number, number]) {
+export function renderYAxis(svgElement: SVGElement, scale: [number, number]): SVGGElement {
   const VERTICAL_SPACING = 36; // Need 16px top and bottom to view the labels
   const TICK_RIGHT_MARGIN = 18;
   const LABEL_WIDTH = 25;
-  const ELEMENT = select(container);
+  const ELEMENT = select(svgElement);
   const HEIGHT = ELEMENT.node().getBoundingClientRect().height - VERTICAL_SPACING;
   const WIDTH = ELEMENT.node().getBoundingClientRect().width;
   const TICK_SIZE = - WIDTH + LABEL_WIDTH;
@@ -33,6 +33,8 @@ export function renderYAxis(container: SVGElement, scale: [number, number]) {
   ELEMENT.selectAll('.tick text')
     .attr('textLength', LABEL_WIDTH)
     .attr('lengthAdjust', 'spacing');
+
+  return svgElement.querySelector('g.y-axis');
 }
 
 function _createYAxisElement(element: Selection<Element, {}, null, undefined>) {

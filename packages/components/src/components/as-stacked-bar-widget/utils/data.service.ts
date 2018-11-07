@@ -3,6 +3,7 @@ import { ColorMap } from '../types/ColorMap';
 import { ColumnData } from '../types/ColumnData';
 import { RawStackedbarData } from '../types/RawStackedbarData';
 import { StackedBarData } from '../types/StackedBarData';
+import { Metadata } from '../types/Metadata';
 
 /**
  * Compute the lowest and highest values in the RawStackedBarData array.
@@ -67,6 +68,21 @@ export function getKeys(data: RawStackedbarData[]): string[] {
     });
   }
   return Array.from(keys);
+}
+
+export function createLegendData(metadata: Metadata, colorMap: ColorMap) {
+  if (!metadata) {
+    return colorMap;
+  }
+  const legendData = {};
+  for (const key in colorMap) {
+    if (metadata[key].label) {
+      legendData[metadata[key].label] = colorMap[key];
+    } else {
+      legendData[key] = colorMap[key];
+    }
+  }
+  return legendData;
 }
 
 /**
@@ -150,4 +166,4 @@ function _getRectSize(data: number, scale: [number, number]): number {
 
 
 
-export default { getDomain, rawDataToStackBarData, getKeys };
+export default { getDomain, rawDataToStackBarData, getKeys, createLegendData };

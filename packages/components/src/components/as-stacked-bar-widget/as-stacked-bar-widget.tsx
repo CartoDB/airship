@@ -122,20 +122,6 @@ export class StackedBarWidget {
     this._resizeListener = this._resizeListener.bind(this);
   }
 
-  public render() {
-    return [
-      <as-widget-header
-        header={this.heading}
-        subheader={this.description}
-        is-loading={this.isLoading}
-        is-empty={this._isEmpty()}
-        error={this.error}
-        no-data-message={this.noDataHeaderMessage}>
-      </as-widget-header>,
-      this._renderContent()
-    ];
-  }
-
   /**
    * Callback executed when the mouse is placed over a rectangle.
    */
@@ -162,6 +148,20 @@ export class StackedBarWidget {
   @Prop()
   public formatFn = (value) => {
     return value;
+  }
+
+  public render() {
+    return [
+      <as-widget-header
+        header={this.heading}
+        subheader={this.description}
+        is-loading={this.isLoading}
+        is-empty={this._isEmpty()}
+        error={this.error}
+        no-data-message={this.noDataHeaderMessage}>
+      </as-widget-header>,
+      this._renderContent()
+    ];
   }
 
   public componentDidLoad() {
@@ -212,30 +212,30 @@ export class StackedBarWidget {
   }
 
   private _drawFigure() {
-    this._drawYAxis();
-    this._drawColumns();
+    const yAxis = this._drawYAxis();
+    this._drawColumns(yAxis);
   }
 
-  private _drawColumns() {
+  private _drawColumns(yAxisElement: SVGGElement) {
     if (this.isLoading || this.error || this._isEmpty()) {
       return;
     }
     const Y_AXIS_LABEL_WIDTH = 25; // We draw on the right of the yAxis labels
     const COLUMN_MARGIN = 4;
-    const WIDTH = this.container.querySelector('.y-axis').getBoundingClientRect().width - Y_AXIS_LABEL_WIDTH - 3;
+    const WIDTH = yAxisElement.getBoundingClientRect().width - Y_AXIS_LABEL_WIDTH - COLUMN_MARGIN;
     const COLUMN_WIDTH = (WIDTH / this.data.length) - COLUMN_MARGIN;
     const data = dataService.rawDataToStackBarData(this.data, this.scale, this.colorMap, COLUMN_WIDTH, COLUMN_MARGIN);
 
     drawService.drawColumns(this.container, data, this.mouseOver, this.mouseLeave);
   }
 
-  private _drawYAxis() {
-    drawService.drawYAxis(this.container, this.scale);
+  private _drawYAxis(): SVGGElement {
+    return drawService.drawYAxis(this.container, this.scale);
   }
 
   private _renderLegend() {
     if (this.showLegend && this.colorMap) {
-      const legendData = this._createLegendData(this.metadata, this.colorMap);
+      const legendData = dataService.createLegendData(this.metadata, this.colorMap);
       return <as-legend data={legendData}></as-legend>;
     }
   }
@@ -243,21 +243,6 @@ export class StackedBarWidget {
   private _createColorMap(data: RawStackedbarData[], metadata: Metadata): ColorMap {
     const keys = dataService.getKeys(data);
     return colorMapFactory.create(keys, metadata);
-  }
-
-  private _createLegendData(metadata: Metadata, colorMap: ColorMap) {
-    if (!metadata) {
-      return colorMap;
-    }
-    const legendData = {};
-    for (const key in colorMap) {
-      if (metadata[key].label) {
-        legendData[metadata[key].label] = colorMap[key];
-      } else {
-        legendData[key] = colorMap[key];
-      }
-    }
-    return legendData;
   }
 
   private _isEmpty(): boolean {
