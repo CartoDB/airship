@@ -130,23 +130,23 @@ master ---   A      ---------------------   B  --->
                 --- new_feature_branch ---- 
 ```
 
-The new version should be `v2.4.0` but before making it public we want to do a little QA generating a `prerelease` pointing to **B**.
+The new version should be `v2.4.0` but before making it public we want to do a little QA generating a release candidate or prerelease pointing to **B**.
 
 ```
-tags   --- v2.3.12  --------------------- v2.4.0-alpha ---->
+tags   --- v2.3.12  --------------------- v2.4.0-rc ---->
 master ---   A      ---------------------   B  ------------>
               \                            /
                 --- new_feature_branch ---- 
 ```
 
-Once our `prerelease` version is published the [prerelease version in the CDN](https://libs.cartocdn.com/airship-components/prerelease/airship.js) will point to `v2.4.0-alpha` and the [prerelease dist-tag in NPM](https://www.npmjs.com/package/@carto/airship-components) will point to `v2.4.0-alpha`. The examples in the `smoke` folder relies on this prerelease version and they are as close as possible to a production environment so a QA can be done.
+Once our `prerelease` version is published the [prerelease version in the CDN](https://libs.cartocdn.com/airship-components/prerelease/airship.js) will point to `v2.4.0-rc` and the [prerelease dist-tag in NPM](https://www.npmjs.com/package/@carto/airship-components) will point to `v2.4.0-rc`. The examples in the `smoke` folder relies on this prerelease version and they are as close as possible to a production environment so a QA can be done.
 
 #### Fixing bugs on a prerelease
 
-If you find a bug and merge a fix branch into master the new version should be `v2.4.1-alpha` instead `v2.4.0-alpha.1` to preserve the semantics in the public version.
+If you find a bug and merge a fix branch into master the new version should be `v2.4.0-rc.1`.
 
 ```
-tags   --- v2.3.12  --------------------- v2.4.0-alpha ----- v2.4.1-alpha
+tags   --- v2.3.12  --------------------- v2.4.0-rc ----- v2.4.0-rc.1
 master ---   A      ---------------------   B  ---------------> C
               \                            / \                 /
                 --- new_feature_branch ----    --- bug_fix ---
