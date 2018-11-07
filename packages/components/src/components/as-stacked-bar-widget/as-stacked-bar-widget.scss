@@ -26,26 +26,7 @@ as-stacked-bar-widget {
       }
     }
 
-    .y-axis {
-      --widget-axis-line-color: var(--as-color-type-02, #747474);
-
-      .tick {
-        text {
-          width: 30px;
-          fill: var(--widget-axis-text-color, rgb(44, 44, 44));
-          white-space: pre;
-        }
-
-        line {
-          stroke: var(--widget-axis-line-color, rgba(46, 60, 67, 0.16));
-          opacity: 0.1;
-        }
-      }
-
-      .domain {
-        display: none;
-      }
-    }
+    @import '../common/y-axis/as-y-axis.scss';
   }
 
   [role="tooltip"] {

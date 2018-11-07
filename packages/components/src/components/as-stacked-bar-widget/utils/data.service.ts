@@ -1,9 +1,9 @@
 import { scaleLinear } from 'd3-scale';
 import { ColorMap } from '../types/ColorMap';
 import { ColumnData } from '../types/ColumnData';
+import { Metadata } from '../types/Metadata';
 import { RawStackedbarData } from '../types/RawStackedbarData';
 import { StackedBarData } from '../types/StackedBarData';
-import { Metadata } from '../types/Metadata';
 
 /**
  * Compute the lowest and highest values in the RawStackedBarData array.
