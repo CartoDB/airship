@@ -196,7 +196,6 @@ export class HistogramWidget {
   private selection: number[] = null;
 
   private chartWidth: number;
-  private _resizeListener: any;
 
   /**
    * Default formatting function. Makes the value a readable number and
@@ -245,8 +244,6 @@ export class HistogramWidget {
 
   @Watch('data')
   public onDataChanged() {
-    const spaceForYLabel = this.yLabel ? 25 : 0;
-    this.chartWidth = (this.el.offsetWidth - MARGIN.YAxis) - spaceForYLabel;
     if (!this._hasDataToDisplay()) {
       return;
     }
@@ -285,18 +282,6 @@ export class HistogramWidget {
     this.container.selectAll('*').remove();
 
     this._renderGraph();
-  }
-
-  public componentWillLoad() {
-    if (this.responsive) {
-      this._resizeListener = addEventListener('resize', this.onDataChanged.bind(this));
-    }
-  }
-
-  public componentDidUnload() {
-    if (this._resizeListener) {
-      removeEventListener('resize', this._resizeListener);
-    }
   }
 
   public render() {
