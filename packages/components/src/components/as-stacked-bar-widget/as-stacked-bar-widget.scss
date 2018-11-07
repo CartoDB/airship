@@ -14,12 +14,8 @@ as-stacked-bar-widget {
 
   .figure {
     box-sizing: border-box;
-    flex: 1 0 auto;
-    width: 100%;
-    max-height: 65%;
-    margin: auto;
+    flex: 1;
     padding: 18px 8px 17px 30px;
-    overflow: visible;
 
     .plot {
       rect {
