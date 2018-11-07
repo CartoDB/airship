@@ -160,4 +160,6 @@ Once a new version is released just run `npm run changelog` and push your change
 
     npm run changelog
 
-We dont want prereleases to be shown in the changelog so git tags corresponding to a prerelase should be removed.
+We dont want prereleases to be shown in the changelog so **git tags corresponding to a prerelase should be removed once the QA is done**.
+
+> NOTE: You only need to remove it from github and the `changelog` script will prune all removed tags.
