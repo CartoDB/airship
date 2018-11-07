@@ -165,11 +165,11 @@ export class StackedBarWidget {
   }
 
   public componentDidLoad() {
-    this._drawColumns();
+    this._drawFigure();
   }
 
   public componentDidUpdate() {
-    this._drawColumns();
+    this._drawFigure();
   }
 
   public componentWillLoad() {
@@ -188,7 +188,7 @@ export class StackedBarWidget {
   @Watch('data')
   public _onDataChanged() {
     this._setupState();
-    this._drawColumns();
+    this._drawFigure();
   }
 
   private _setupState() {
@@ -206,10 +206,14 @@ export class StackedBarWidget {
       this.noDataBodyMessage,
       [
         <svg class='figure' ref={(ref: SVGElement) => this.container = ref}></svg>,
-        <as-y-axis responsive={this.responsive} from={this.scale[0]} to={this.scale[1]}></as-y-axis>,
         this._renderLegend(),
         <span ref={(ref) => this.tooltip = ref} role='tooltip' class='as-tooltip as-tooltip--top' > TOOLTIP</span>
       ]);
+  }
+
+  private _drawFigure() {
+    this._drawYAxis();
+    this._drawColumns();
   }
 
   private _drawColumns() {
@@ -223,6 +227,10 @@ export class StackedBarWidget {
     const data = dataService.rawDataToStackBarData(this.data, this.scale, this.colorMap, COLUMN_WIDTH, COLUMN_MARGIN);
 
     drawService.drawColumns(this.container, data, this.mouseOver, this.mouseLeave);
+  }
+
+  private _drawYAxis() {
+    drawService.drawYAxis(this.container, this.scale);
   }
 
   private _renderLegend() {

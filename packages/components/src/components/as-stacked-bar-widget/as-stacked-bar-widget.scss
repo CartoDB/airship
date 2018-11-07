@@ -16,11 +16,34 @@ as-stacked-bar-widget {
     box-sizing: border-box;
     flex: 1;
     width: 100%;
+    min-height: 0;
     padding: 18px 8px 17px 30px;
+    overflow: visible;
 
     .plot {
       rect {
         cursor: pointer;
+      }
+    }
+
+    .y-axis {
+      --widget-axis-line-color: var(--as-color-type-02, #747474);
+
+      .tick {
+        text {
+          width: 30px;
+          fill: var(--widget-axis-text-color, rgb(44, 44, 44));
+          white-space: pre;
+        }
+
+        line {
+          stroke: var(--widget-axis-line-color, rgba(46, 60, 67, 0.16));
+          opacity: 0.1;
+        }
+      }
+
+      .domain {
+        display: none;
       }
     }
   }
