@@ -11,13 +11,14 @@
   <style>
     body {
       height: 100vh;
+      margin: 0;
+      padding: 0;
       background: #F2F2F2;
     }
 
     as-histogram-widget {
       width: 100%;
       height: 100%;
-      margin: 16px auto;
       background: white;
     }
 
@@ -25,7 +26,7 @@
 </head>
 
 <body>
-  <as-histogram-widget show-clear heading="Business Volume" description="Description">
+  <as-histogram-widget x-label="x-axis" y-label="y-axis" responsive show-clear heading="Business Volume" description="Description" disable-interactivity>
   </as-histogram-widget>
 
   <script>

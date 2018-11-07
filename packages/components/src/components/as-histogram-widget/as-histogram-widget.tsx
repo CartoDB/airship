@@ -1,5 +1,4 @@
-import { Component, Element, Event, EventEmitter, Method, Prop, State, Watch } from '@stencil/core';
-import { Axis } from 'd3-axis';
+import { Component, Element, Event, EventEmitter, Method, Prop, Watch } from '@stencil/core';
 import { BrushBehavior, brushX } from 'd3-brush';
 import { ScaleLinear } from 'd3-scale';
 import {
@@ -13,23 +12,19 @@ import readableNumber from '../../utils/readable-number';
 import { shadeOrBlend } from '../../utils/styles';
 import contentFragment from '../common/content.fragment';
 import { HistogramColorRange, HistogramData } from './interfaces';
+import { Container } from './types/Container';
 import dataService from './utils/data.service';
 import drawService from './utils/draw.service';
 
-const CUSTOM_HANDLE_SIZE = 5; // TODO: width or height?
 const DEFAULT_BAR_COLOR = 'var(--as-color-primary, #1785FB)';
 const DEFAULT_SELECTED_BAR_COLOR = 'var(--as-color-complementary, #47DB99)';
-const HEIGHT = 125;
 const BARS_SEPARATION = 1;
-const MARGIN = {
-  BOTTOM: 15,
-  LEFT: 30,
-  RIGHT: 3,
-  TOP: 5,
-  YAxis: 20
-};
+const CUSTOM_HANDLE_WIDTH = BARS_SEPARATION + 4;
 const CUSTOM_HANDLE_HEIGHT = 28;
-const CUSTOM_HANDLE_Y_COORD = HEIGHT + MARGIN.TOP - (CUSTOM_HANDLE_HEIGHT / 2);
+
+// we could use getComputedStyle instead of this
+const X_PADDING = 38;
+const Y_PADDING = 36;
 
 /**
  * Histogram Widget
@@ -178,25 +173,26 @@ export class HistogramWidget {
   @Event()
   private selectionChanged: EventEmitter<number[]>;
 
-  @State()
   private tooltip: string;
 
-  private container: Selection<HTMLElement, {}, null, undefined>;
+  private container: Container;
   private tooltipElement: HTMLElement;
 
   private xScale: ScaleLinear<number, number>;
   private yScale: ScaleLinear<number, number>;
-  private yAxis: Axis<{ valueOf(): number }>;
-  private xAxis: Axis<{ valueOf(): number }>;
-  private barsContainer: Selection<BaseType, {}, null, undefined>;
+  private barsContainer: Container;
   private brush: BrushBehavior<{}>;
-  private brushArea: Selection<BaseType, {}, null, undefined>;
+  private brushArea: Container;
   private customHandlers: Selection<BaseType, { type: string }, BaseType, {}>;
   private bottomLine: Selection<BaseType, {}, BaseType, {}>;
   private selection: number[] = null;
 
-  private chartWidth: number;
-  private _resizeListener: any;
+  private width: number;
+  private height: number;
+
+  constructor() {
+    this._renderGraph = this._renderGraph.bind(this);
+  }
 
   /**
    * Default formatting function. Makes the value a readable number and
@@ -245,19 +241,9 @@ export class HistogramWidget {
 
   @Watch('data')
   public onDataChanged() {
-    const spaceForYLabel = this.yLabel ? 25 : 0;
-    this.chartWidth = (this.el.offsetWidth - MARGIN.YAxis) - spaceForYLabel;
     if (!this._hasDataToDisplay()) {
       return;
     }
-    const xDomain = dataService.getXDomain(this.data);
-    const yDomain = dataService.getYDomain(this.data);
-
-    drawService.updateAxes(
-      this.container, this.xScale, this.yScale, this.xAxis, this.yAxis, xDomain, yDomain);
-
-    drawService.renderBars(
-      this.data, this.yScale, this.chartWidth, MARGIN, this.barsContainer, HEIGHT, BARS_SEPARATION, this.color);
 
     if (this.selection === null) {
       return;
@@ -273,36 +259,30 @@ export class HistogramWidget {
   @Watch('color')
   public onColorChanged() {
     drawService.renderBars(
-      this.data, this.yScale, this.chartWidth, MARGIN, this.barsContainer, HEIGHT, BARS_SEPARATION, this.color);
+      this.data, this.yScale, this.container, this.barsContainer, CUSTOM_HANDLE_WIDTH, this.color);
   }
 
   public componentDidLoad() {
     if (!this._hasDataToDisplay()) {
       return;
     }
-    // This is probably not necessary for production, but HMR causes this method
-    // to be called on each file change
-    this.container.selectAll('*').remove();
 
     this._renderGraph();
   }
 
+  public componentDidUpdate() {
+    this._renderGraph();
+  }
+
   public componentWillLoad() {
-    if (this.responsive) {
-      this._resizeListener = addEventListener('resize', this.onDataChanged.bind(this));
-    }
+    addEventListener('resize', this._renderGraph);
   }
 
   public componentDidUnload() {
-    if (this._resizeListener) {
-      removeEventListener('resize', this._resizeListener);
-    }
+    removeEventListener('resize', this._renderGraph);
   }
 
   public render() {
-    const spaceForYLabel = this.yLabel ? 25 : 0;
-    MARGIN.LEFT = spaceForYLabel ? MARGIN.LEFT + 25 : MARGIN.LEFT;
-    this.chartWidth = (this.el.offsetWidth - MARGIN.YAxis) - spaceForYLabel;
 
     return [
       this._renderHeader(),
@@ -315,6 +295,11 @@ export class HistogramWidget {
       'as-histogram-widget__wrapper': true,
       'as-histogram-widget__wrapper--disabled': this.disableInteractivity
     };
+    const svgClasses = {
+      'figure': true,
+      'figure--has-x-label': this.xLabel,
+      'figure--has-y-label': this.yLabel
+    };
     return contentFragment(
       this.isLoading,
       this.error,
@@ -323,40 +308,52 @@ export class HistogramWidget {
       this.errorDescription,
       this.noDataBodyMessage,
       [
-      <div class={histogramClasses}>
-        {this._renderTooltip()}
-        <svg ref={(ref: HTMLElement) => this.container = select(ref)}></svg>
+      <div style={{ flex: '1', display: 'flex' }} class={histogramClasses}>
+        <svg class={svgClasses} ref={(ref: SVGElement) => this.container = select(ref)}></svg>
         {this._renderLabels()}
+        {this._renderTooltip()}
       </div>,
       this.showClear && !this.disableInteractivity ? this._renderClearBtn() : ''
       ]);
   }
 
   private _renderGraph() {
+    const bbox = this.container.node().getBoundingClientRect();
+    this.width = bbox.width;
+    this.height = bbox.height;
+
     this._renderYAxis();
     this._renderXAxis();
 
-    this.barsContainer = this.container
-      .append('g')
-      .attr('transform', `translate(${MARGIN.LEFT}, ${MARGIN.TOP})`);
+    if (this.container.select('.plot').empty()) {
+      this.barsContainer = this.container
+        .append('g');
+      this.barsContainer
+        .attr('class', 'plot');
+    }
 
     this.brush = brushX()
-      .handleSize(BARS_SEPARATION + 4)
-      .extent([[MARGIN.LEFT, MARGIN.TOP], [this.chartWidth + MARGIN.LEFT, HEIGHT + MARGIN.TOP]])
+      .handleSize(CUSTOM_HANDLE_WIDTH)
+      .extent([[0, 0], [this.width - X_PADDING, this.height - Y_PADDING]])
       .on('brush', this._onBrush.bind(this))
       .on('end', this._onBrushEnd.bind(this));
 
     if (!this.disableInteractivity) {
-      this.brushArea = this.container
-        .append('g')
-        .attr('class', 'brush')
-        .call(this.brush);
+
+      if (this.container.select('.brush').empty()) {
+        this.brushArea = this.container
+          .append('g');
+        this.brushArea
+          .attr('class', 'brush');
+      }
+
+      this.brushArea.call(this.brush);
 
       this.bottomLine = this.brushArea.append('line')
         .attr('class', 'bottomline')
         .attr('stroke-width', 4)
-        .attr('y1', HEIGHT + MARGIN.TOP)
-        .attr('y2', HEIGHT + MARGIN.TOP)
+        .attr('y1', this.height - Y_PADDING)
+        .attr('y2', this.height - Y_PADDING)
         .style('opacity', 0)
         .attr('pointer-events', 'none');
 
@@ -418,6 +415,7 @@ export class HistogramWidget {
 
       if (!anyHovered) {
         this.tooltip = null;
+        this._hideTooltip();
       }
     })
       .on('mouseout', () => {
@@ -432,7 +430,7 @@ export class HistogramWidget {
       });
 
     drawService.renderBars(
-      this.data, this.yScale, this.chartWidth, MARGIN, this.barsContainer, HEIGHT, BARS_SEPARATION, this.color);
+      this.data, this.yScale, this.container, this.barsContainer, BARS_SEPARATION, this.color);
   }
 
   private _adjustSelection(values: number[] | null): number[] | null {
@@ -487,7 +485,7 @@ export class HistogramWidget {
 
     // Convert to our data's domain
     const d0 = evt.selection
-      .map((e) => Math.round(this.xScale.invert(e - MARGIN.LEFT)));
+      .map((e) => Math.round(this.xScale.invert(e)));
 
     this._setSelection(d0);
   }
@@ -545,17 +543,18 @@ export class HistogramWidget {
       return;
     }
 
+    const yCoord = this.height - Y_PADDING;
+
     // Convert back to space coordinates
     const valuesSpace = values
-      .map(this.xScale)
-      .map((e) => e + MARGIN.LEFT);
+      .map(this.xScale);
 
     this.brushArea.call(this.brush.move, valuesSpace);
 
     this.customHandlers
       .style('opacity', 1)
       .attr('transform', (_d, i) => {
-        return `translate(${(valuesSpace[i] - (CUSTOM_HANDLE_SIZE / 2) - 1)},${CUSTOM_HANDLE_Y_COORD})`;
+        return `translate(${(valuesSpace[i] - (CUSTOM_HANDLE_WIDTH / 2) - 1)},${yCoord - CUSTOM_HANDLE_HEIGHT / 2})`;
       });
     this.bottomLine
       .style('opacity', 1)
@@ -573,21 +572,17 @@ export class HistogramWidget {
   }
 
   private _renderYAxis() {
-    const barsWidth = this.chartWidth - MARGIN.YAxis;
     const yDomain = dataService.getYDomain(this.data);
-    const [yScale, yAxis] = drawService.renderYAxis(this.container, yDomain, barsWidth, MARGIN, HEIGHT);
+    const yAxis = drawService.renderYAxis(this.container, yDomain);
 
-    this.yScale = yScale;
-    this.yAxis = yAxis;
+    this.yScale = yAxis.scale();
   }
 
   private _renderXAxis() {
-    const barsWidth = this.chartWidth - MARGIN.YAxis;
     const xDomain = dataService.getXDomain(this.data);
-    const [xScale, xAxis] = drawService.renderXAxis(this.container, xDomain, barsWidth, MARGIN, HEIGHT);
+    const xAxis = drawService.renderXAxis(this.container, xDomain);
 
-    this.xScale = xScale;
-    this.xAxis = xAxis;
+    this.xScale = xAxis.scale();
   }
 
   private _getTooltipPosition(mouseX: number, mouseY: number) {
@@ -628,7 +623,13 @@ export class HistogramWidget {
     select(this.tooltipElement)
       .style('opacity', '1')
       .style('left', `${x + 10}px`)
-      .style('top', `${y + 20}px`);
+      .style('top', `${y + 20}px`)
+      .text(this.tooltip);
+  }
+
+  private _hideTooltip() {
+    select(this.tooltipElement)
+      .style('opacity', '0');
   }
 
   private _renderHeader() {
@@ -655,7 +656,6 @@ export class HistogramWidget {
       ref={(ref: HTMLElement) => this.tooltipElement = ref}
       role='tooltip'
       class='as-histogram-widget__tooltip'>
-      {this.tooltip}
     </span>);
   }
 
@@ -671,7 +671,7 @@ export class HistogramWidget {
   private _renderLabels() {
 
     return [
-      this.yLabel ? <div class='y-label-wrapper'><div class='y-label'>{this.yLabel}</div> </div> : '',
+      this.yLabel ? <div class='y-label'>{this.yLabel}</div> : '',
       this.xLabel ? <div class='x-label'>{this.xLabel}</div> : '',
     ];
   }
