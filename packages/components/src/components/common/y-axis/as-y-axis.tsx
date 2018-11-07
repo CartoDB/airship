@@ -46,13 +46,16 @@ export class YAxis {
    */
   @Element() private element: HTMLStencilElement;
 
+  constructor() {
+    this._resizeListener = this._resizeListener.bind(this);
+  }
 
   public componentWillLoad() {
-    addEventListener('resize', this._resizeListener.bind(this));
+    addEventListener('resize', this._resizeListener);
   }
 
   public componentDidUnload() {
-    removeEventListener('resize', this._resizeListener.bind(this));
+    removeEventListener('resize', this._resizeListener);
   }
 
   public render() {

@@ -6,8 +6,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
   <title>Airship</title>
-  <link rel="stylesheet" href="/dist/airship.css">
-  <script src="/build/airship.js"></script>
+  <link rel="stylesheet" href="/packages/styles/dist/airship.css">
+  <script src="/packages/components/dist/airship.js"></script>
   <style>
     body {
       background: #f2f2f2;
@@ -26,6 +26,11 @@
 </head>
 
 <body>
+  <section class="as-widget">
+    <svg width="400" height="100"></svg>
+    <as-y-axis from="0" to="100000"></as-y-axis>
+  </section>
+
   <section class="as-widget">
     <svg width="400" height="200"></svg>
     <as-y-axis from="0" to="100000"></as-y-axis>
