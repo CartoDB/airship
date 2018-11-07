@@ -21,6 +21,7 @@
       top: 30px;
       right: 30px;
     }
+
   </style>
 </head>
 
@@ -83,6 +84,49 @@
     <main class="as-main">
       <div class="as-map-area">
         <div id="map"></div>
+        <div class="as-map-panels">
+          <div class="as-panel as-panel--top as-panel--right">
+            <as-stacked-bar-widget id="widget-3" show-legend="true" heading="Star Wars Revenue" description="Description"></as-stacked-bar-widget>
+            <script>
+              const widget3 = document.querySelector('#widget-3');
+
+              widget3.data = [{
+                  category: 'Star Wars Ep. IV: A New Hope',
+                  values: {
+                    dvd: 27229125,
+                    blue: 3555058,
+                  }
+                },
+                {
+                  category: 'Star Wars Ep. V: The Empire Strikes Back',
+                  values: {
+                    dvd: 24928640,
+                    blue: 2738207,
+                  },
+                },
+                {
+                  category: 'Star Wars Ep. VI: Return of the Jedi',
+                  values: {
+                    dvd: 23786454,
+                    blue: 1908593,
+                  }
+                }
+              ];
+
+              widget3.metadata = {
+                dvd: {
+                  label: 'Domestic DVD Sales',
+                  color: '#33ACEE'
+                },
+                blue: {
+                  label: 'Domestic Blu-ray Sales',
+                  color: '#EEC649'
+                }
+              };
+
+            </script>
+          </div>
+        </div>
       </div>
       <footer class="as-map-footer as-bg--complementary">
         <div class="as-container">
