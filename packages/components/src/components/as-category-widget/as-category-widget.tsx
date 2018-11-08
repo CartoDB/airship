@@ -165,7 +165,7 @@ export class CategoryWidget {
   public componentWillLoad() {
     this.el.style.setProperty(
       '--category-bar-color',
-      this.defaultBarColor || `var(--as-color-complementary, #47db99)`);
+      this.defaultBarColor || `var(--as--color--complementary, #47db99)`);
   }
 
   /**

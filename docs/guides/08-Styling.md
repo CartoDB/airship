@@ -27,7 +27,7 @@ element.style.setProperty('--element-background-color', '#E1E2E3');
 
 We defined many CSS variables all over our styles to be customizable. Please go to component's documentation to find which variables you can override in your application.
 
-Let's say that we want to override our application primary's color, which is set in `--as-color-primary`.
+Let's say that we want to override our application primary's color, which is set in `--as--color--primary`.
 
 As all CSS variables we want to override, we would need to override it after requiring Airship styles or each component style, depending on the case, in our HTML, JavaScript, or SASS, due to CSS cascade.
 
@@ -35,16 +35,16 @@ As all CSS variables we want to override, we would need to override it after req
 
 Customizing a CSS variable is simple. You just have to write the selector and put the variable to override inside that selector rules.
 
-To override a global variable like `--as-color-primary`, which doesn't specifically belong to any of the components, you need to put it into a `:root` selector.
+To override a global variable like `--as--color--primary`, which doesn't specifically belong to any of the components, you need to put it into a `:root` selector.
 
 ```html
 <!-- Include CSS -->
 <link rel="stylesheet" href="https://libs.cartocdn.com/airship-style/%AS-VERSION%/airship.css">
 
-<!-- Override --as-color-primary -->
+<!-- Override --as--color--primary -->
 <style>
   :root {
-    --as-color-primary: #E1E2E3;
+    --as--color--primary: #E1E2E3;
   }
 </style>
 ```
@@ -77,7 +77,7 @@ After importing Airship Style bundle, or each of the styles separately, in our S
 @import '~@carto/airship-styles';
 
 :root {
-  --as-color-primary: #E1E2E3;
+  --as--color--primary: #E1E2E3;
 }
 ```
 

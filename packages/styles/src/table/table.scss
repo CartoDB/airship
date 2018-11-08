@@ -5,8 +5,8 @@
   --as-color-table-cell-hover: #C8F3DF;
 
   border-collapse: collapse;
-  border: 1px solid var(--as-color-ui-04, #{$color-ui-04});
-  background: var(--as-color-ui-01, #{$color-ui-01});
+  border: 1px solid var(--as--color--ui-04, #{$color-ui-04});
+  background: var(--as--color--ui-01, #{$color-ui-01});
   font: $font-body;
   text-align: left;
 
@@ -21,13 +21,13 @@
   }
 
   thead {
-    border: 1px solid var(--as-color-ui-04, #{$color-ui-04});
+    border: 1px solid var(--as--color--ui-04, #{$color-ui-04});
   }
 
   &--stripped {
     th,
     td {
-      border: 1px solid var(--as-color-ui-04, #{$color-ui-04});
+      border: 1px solid var(--as--color--ui-04, #{$color-ui-04});
     }
   }
 

@@ -10,8 +10,8 @@
     margin: 0;
     padding: 0 get-spacing(3);
     border: 0;
-    background: var(--as-color-ui-01, #{$color-ui-01});
-    color: var(--as-color-primary, #{$color-primary});
+    background: var(--as--color--ui-01, #{$color-ui-01});
+    color: var(--as--color--primary, #{$color-primary});
     font: $font-body;
     text-align: left;
     cursor: pointer;
@@ -41,10 +41,10 @@
       padding: 0 get-spacing(3);
       transition: background-color 0.3s;
       border: 0;
-      border-bottom: 1px solid var(--as-color-ui-04, #{$color-ui-04});
+      border-bottom: 1px solid var(--as--color--ui-04, #{$color-ui-04});
       outline: none;
-      background: var(--as-color-ui-01, #{$color-ui-01});
-      color: var(--as-color-type-01, #{$color-type-01});
+      background: var(--as--color--ui-01, #{$color-ui-01});
+      color: var(--as--color--type-01, #{$color-type-01});
       font: $font-body;
       list-style: none;
       cursor: pointer;

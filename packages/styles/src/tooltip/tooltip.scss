@@ -5,8 +5,8 @@
   position: relative;
   padding: get-spacing(1) get-spacing(2);
   border-radius: get-spacing(1);
-  background: var(--as-color-type-01, #{$color-type-01});
-  color: var(--as-color-type-04, #{$color-type-04});
+  background: var(--as--color--type-01, #{$color-type-01});
+  color: var(--as--color--type-04, #{$color-type-04});
   font: $font-body;
 
   &::after {
@@ -15,7 +15,7 @@
     border-width: 5px;
     border-style: solid;
     border-radius: 2px;
-    border-color: var(--as-color-type-01, #{$color-type-01});
+    border-color: var(--as--color--type-01, #{$color-type-01});
   }
 
   &--top::after {

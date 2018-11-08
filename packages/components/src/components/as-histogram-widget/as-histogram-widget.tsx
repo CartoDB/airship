@@ -17,8 +17,8 @@ import dataService from './utils/data.service';
 import drawService from './utils/draw.service';
 
 const CUSTOM_HANDLE_SIZE = 5; // TODO: width or height?
-const DEFAULT_BAR_COLOR = 'var(--as-color-primary, #1785FB)';
-const DEFAULT_SELECTED_BAR_COLOR = 'var(--as-color-complementary, #47DB99)';
+const DEFAULT_BAR_COLOR = 'var(--as--color--primary, #1785FB)';
+const DEFAULT_SELECTED_BAR_COLOR = 'var(--as--color--complementary, #47DB99)';
 const HEIGHT = 125;
 const BARS_SEPARATION = 1;
 const MARGIN = {

@@ -2,68 +2,68 @@
 .as-bg {
   // Brand
   &--primary {
-    background-color: var(--as-color-primary, #{$color-primary});
+    background-color: var(--as--color--primary, #{$color-primary});
   }
 
   &--secondary {
-    background-color: var(--as-color-secondary, #{$color-secondary});
+    background-color: var(--as--color--secondary, #{$color-secondary});
   }
 
   &--complementary {
-    background-color: var(--as-color-complementary, #{$color-complementary});
+    background-color: var(--as--color--complementary, #{$color-complementary});
   }
 
   // UI
   &--ui-01 {
-    background-color: var(--as-color-ui-01, #{$color-ui-01});
+    background-color: var(--as--color--ui-01, #{$color-ui-01});
   }
 
   &--ui-02 {
-    background-color: var(--as-color-ui-02, #{$color-ui-02});
+    background-color: var(--as--color--ui-02, #{$color-ui-02});
   }
 
   &--ui-03 {
-    background-color: var(--as-color-ui-03, #{$color-ui-03});
+    background-color: var(--as--color--ui-03, #{$color-ui-03});
   }
 
   &--ui-04 {
-    background-color: var(--as-color-ui-04, #{$color-ui-04});
+    background-color: var(--as--color--ui-04, #{$color-ui-04});
   }
 
   // Support
   &--success,
   &--support-03 {
-    background-color: var(--as-color-support-03, #{$color-support-03});
+    background-color: var(--as--color---support-03, #{$color-support-03});
   }
 
   &--warning,
   &--support-02 {
-    background-color: var(--as-color-support-02, #{$color-support-02});
+    background-color: var(--as--color---support-02, #{$color-support-02});
   }
 
   &--error,
   &--support-01 {
-    background-color: var(--as-color-support-01, #{$color-support-01});
+    background-color: var(--as--color---support-01, #{$color-support-01});
   }
 
   // Badges
   &--badge-gray {
-    background-color: var(--as-color-badge-gray, #{$color-badge-gray});
+    background-color: var(--as--color--badge-gray, #{$color-badge-gray});
   }
 
   &--badge-green {
-    background-color: var(--as-color-badge-green, #{$color-badge-green});
+    background-color: var(--as--color--badge-green, #{$color-badge-green});
   }
 
   &--badge-blue {
-    background-color: var(--as-color-badge-blue, #{$color-badge-blue});
+    background-color: var(--as--color--badge-blue, #{$color-badge-blue});
   }
 
   &--badge-pink {
-    background-color: var(--as-color-badge-pink, #{$color-badge-pink});
+    background-color: var(--as--color--badge-pink, #{$color-badge-pink});
   }
 
   &--badge-yellow {
-    background-color: var(--as-color-badge-yellow, #{$color-badge-yellow});
+    background-color: var(--as--color--badge-yellow, #{$color-badge-yellow});
   }
 }
