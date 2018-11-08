@@ -316,54 +316,56 @@ export class HistogramWidget {
     }
 
     if (!this.disableInteractivity) {
-      if (this.container.select('.brush').empty()) {
-        this.brush = brushX()
-          .handleSize(CUSTOM_HANDLE_WIDTH)
-          .extent([[0, 0], [this.width - X_PADDING, this.height - Y_PADDING]])
-          .on('brush', this._onBrush.bind(this))
-          .on('end', this._onBrushEnd.bind(this));
+      if (!this.container.select('.brush').empty()) {
+        this.container.select('.brush').remove();
+      }
 
-        this.brushArea = this.container
-          .append('g');
-        this.brushArea
-          .attr('class', 'brush');
+      this.brush = brushX()
+        .handleSize(CUSTOM_HANDLE_WIDTH)
+        .extent([[0, 0], [this.width - X_PADDING, this.height - Y_PADDING]])
+        .on('brush', this._onBrush.bind(this))
+        .on('end', this._onBrushEnd.bind(this));
 
-        this.brushArea.call(this.brush);
+      this.brushArea = this.container
+        .append('g');
+      this.brushArea
+        .attr('class', 'brush');
 
-        this.bottomLine = this.brushArea.append('line')
-          .attr('class', 'bottomline')
-          .attr('stroke-width', 4)
-          .attr('y1', this.height - Y_PADDING)
-          .attr('y2', this.height - Y_PADDING)
-          .style('opacity', 0)
-          .attr('pointer-events', 'none');
+      this.brushArea.call(this.brush);
 
-        this.customHandlers = this.brushArea.selectAll('.handle--custom')
-          .data([{ type: 'w' }, { type: 'e' }])
-          .enter()
-          .append('g')
-          .attr('class', 'handle--wrapper');
+      this.bottomLine = this.brushArea.append('line')
+        .attr('class', 'bottomline')
+        .attr('stroke-width', 4)
+        .attr('y1', this.height - Y_PADDING)
+        .attr('y2', this.height - Y_PADDING)
+        .style('opacity', 0)
+        .attr('pointer-events', 'none');
 
-        this.customHandlers
-          .append('rect')
-          .attr('class', 'handle--custom')
-          .attr('rx', 2)
-          .attr('ry', 2);
+      this.customHandlers = this.brushArea.selectAll('.handle--custom')
+        .data([{ type: 'w' }, { type: 'e' }])
+        .enter()
+        .append('g')
+        .attr('class', 'handle--wrapper');
 
-        const handleGrab = this.customHandlers
-          .append('g')
-          .attr('class', 'handle--grab');
+      this.customHandlers
+        .append('rect')
+        .attr('class', 'handle--custom')
+        .attr('rx', 2)
+        .attr('ry', 2);
+
+      const handleGrab = this.customHandlers
+        .append('g')
+        .attr('class', 'handle--grab');
 
 
-        for (let i = 0; i < 3; i++) {
-          handleGrab
-            .append('line')
-            .attr('x1', 2)
-            .attr('y1', i * 2)
-            .attr('x2', 4)
-            .attr('y2', i * 2)
-            .attr('class', 'grab-line');
-        }
+      for (let i = 0; i < 3; i++) {
+        handleGrab
+          .append('line')
+          .attr('x1', 2)
+          .attr('y1', i * 2)
+          .attr('x2', 4)
+          .attr('y2', i * 2)
+          .attr('class', 'grab-line');
       }
     }
 
