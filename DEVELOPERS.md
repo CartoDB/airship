@@ -18,6 +18,7 @@
     - [Naming](#naming)
       - [Global css-values](#global-css-values)
       - [Global css-variables](#global-css-variables)
+      - [Specific css-values](#specific-css-values)
       - [Specific css-variables](#specific-css-variables)
 
 
@@ -177,6 +178,7 @@ We define two kinds of variables, global and specific:
 
 - **Global Values:** This variables are declared in `styles/core.scss` under the `:host` selector and define specific values that are availiable on every css scope.
 - **Global Variables:** This variables are declared in `styles/core.scss` under the `:host` selector and are availiable on every css scope.
+- **Specific Values:** This variables are declared in the element/component styles and define a value that can be used in different places, usually specific variables. (Same value could be used in the table border and paragraph color)
 - **Specific Variables:** This variables are defined in the stylss of element/component and they only are availiable under the element/component scope.
 
 The variables should have a less specific one as fallback, so for example when developing the `histogram` widget:
@@ -187,7 +189,7 @@ The variables should have a less specific one as fallback, so for example when d
   --as--color--primary: white;
 
   /** <stacked-bar-widget.scss> The values used with chained fallbacks, last fallback is a css-value **/
-  --stacked-bar-widget--background-color: var(--as--widget__header--background-color, --as--color--primary);
+  --as-stacked-bar-widget--background-color: var(--as--widget__header--background-color, --as--color--primary);
 ```
 
 Doing this users can controll specific widgets `--stacked-bar-widget--background-color` share a style for all widgets `--as--widget__header--background-color` or just redefine the default value `--as--color--primary`.
@@ -207,12 +209,20 @@ To keep things consistent we use a standard css naming:
 
 #### Global css-variables
 
-    --as--<element>--<property>--<modifier>
+    --<element>--<property>--<modifier>
 
-- Use the `as` namespace to prevent naming collisions
 - `<element>`refers to element/component the variable affects: `as-map-footer`, `as-histogram-widget__header`.
 - `<property>`is the css property affected: `background-color`, `margin`, `height`, `padding-left`.
 - `<modifier>`use this when the variable refers to a altered status: `hover`, `focus`.
+
+
+#### Specific css-values
+
+    --<element>--<type>--<name>
+
+- `<element>`refers to element/component the variable affects: `as-map-footer`, `as-histogram-widget__header`.
+- `<type>`refers to the content of the variable: `color`, `size`, `font`.
+- `<name>`is the identifier of the variable: `primary`, `dark`, `big`.
 
 
 #### Specific css-variables
