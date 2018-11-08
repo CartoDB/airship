@@ -189,9 +189,10 @@ export class HistogramWidget {
 
   private width: number;
   private height: number;
+  private resizing: boolean;
 
   constructor() {
-    this._renderGraph = this._renderGraph.bind(this);
+    this._resizeRender = this._resizeRender.bind(this);
   }
 
   /**
@@ -258,11 +259,11 @@ export class HistogramWidget {
   }
 
   public componentWillLoad() {
-    addEventListener('resize', this._renderGraph);
+    addEventListener('resize', this._resizeRender);
   }
 
   public componentDidUnload() {
-    removeEventListener('resize', this._renderGraph);
+    removeEventListener('resize', this._resizeRender);
   }
 
   public render() {
@@ -271,6 +272,12 @@ export class HistogramWidget {
       this._renderHeader(),
       this._renderContent(),
     ];
+  }
+
+  private _resizeRender() {
+    this.resizing = true;
+    this._renderGraph();
+    this.resizing = false;
   }
 
   private _renderContent() {
@@ -414,7 +421,7 @@ export class HistogramWidget {
       });
 
     drawService.renderBars(
-      this.data, this.yScale, this.container, this.barsContainer, BARS_SEPARATION, this.color);
+      this.data, this.yScale, this.container, this.barsContainer, BARS_SEPARATION, this.color, this.resizing);
 
     this._updateSelection();
   }

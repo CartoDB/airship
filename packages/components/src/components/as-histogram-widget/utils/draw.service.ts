@@ -48,7 +48,8 @@ export function renderBars(
   container: Container,
   barsContainer: Container,
   BARS_SEPARATION: number,
-  color: string) {
+  color: string,
+  disableAnimation: boolean = false) {
 
   const HEIGHT = container.node().getBoundingClientRect().height - Y_PADDING;
   const WIDTH = container.node().getBoundingClientRect().width - X_PADDING;
@@ -66,25 +67,23 @@ export function renderBars(
   .duration(200);
 
   // -- Enter
-  this.bars
-    .enter()
-    .append('rect')
-    .attr('y', HEIGHT)
-    .attr('height', 0)
-    .merge(this.bars)
-    .attr('class', 'bar')
-    .attr('x', (_d: HistogramData, index: number) => index * barWidth)
-    .attr('width', () => Math.max(0, barWidth - BARS_SEPARATION))
-    .style('fill', (d: HistogramData) => d.color || color)
-    .transition()
-    .delay((_d, i) => i * 50)
+  const mergeSelection = this.bars
+      .enter()
+      .append('rect')
+      .attr('y', HEIGHT)
+      .attr('height', 0)
+      .merge(this.bars)
+      .attr('class', 'bar')
+      .attr('x', (_d: HistogramData, index: number) => index * barWidth)
+      .attr('width', () => Math.max(0, barWidth - BARS_SEPARATION))
+      .style('fill', (d: HistogramData) => d.color || color);
+
+  (disableAnimation ? mergeSelection : mergeSelection.transition().delay(_delayFn))
     .attr('height', (d: HistogramData) => HEIGHT - yScale(d.value))
     .attr('y', (d: HistogramData) => yScale(d.value));
 
   // -- Update
-  this.bars
-    .transition()
-    .delay((_d, i) => i * 50)
+  (disableAnimation ? this.bars : this.bars.transition().delay(_delayFn))
     .attr('height', (d) => HEIGHT - yScale(d.value))
     .attr('y', (d) => yScale(d.value));
 }
@@ -153,6 +152,8 @@ export function renderYAxis(
   return yAxis;
 }
 
-
+function _delayFn(_d, i) {
+  return i * 50;
+}
 
 export default { cleanAxes, updateAxes, renderBars, renderXAxis, renderYAxis };
