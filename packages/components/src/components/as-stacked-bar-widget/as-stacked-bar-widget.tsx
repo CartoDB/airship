@@ -212,8 +212,10 @@ export class StackedBarWidget {
   }
 
   private _drawFigure() {
-    const yAxis = this._drawYAxis();
-    this._drawColumns(yAxis);
+    requestAnimationFrame(() => {
+      const yAxis = this._drawYAxis();
+      this._drawColumns(yAxis);
+    });
   }
 
   private _drawColumns(yAxisElement: SVGGElement) {
