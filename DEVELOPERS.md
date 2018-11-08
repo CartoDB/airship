@@ -199,7 +199,7 @@ To keep things consistent we use a standard css naming:
 
 #### Global css-values
 
-    --as--<type>-<name>
+    --as--<type>--<name>
 
 - Use the `as` namespace to prevent naming collisions
 - `<type>`refers to the content of the variable: `color`, `size`, `font`.
@@ -207,18 +207,18 @@ To keep things consistent we use a standard css naming:
 
 #### Global css-variables
 
-    --as--<name>-<property>--<modifier>
+    --as--<element>--<property>--<modifier>
 
 - Use the `as` namespace to prevent naming collisions
-- `<name>`refers to element/component the variable affects: `as-map-footer`, `as-histogram-widget__header`.
+- `<element>`refers to element/component the variable affects: `as-map-footer`, `as-histogram-widget__header`.
 - `<property>`is the css property affected: `background-color`, `margin`, `height`, `padding-left`.
 - `<modifier>`use this when the variable refers to a altered status: `hover`, `focus`.
 
 
 #### Specific css-variables
 
-    --<name>-<property>--<modifier>
+    --<element>--<property>--<modifier>
 
-- `<name>`refers to element/component the variable affects: `as-map-footer`, `as-histogram-widget__header`.
+- `<element>`refers to element/component the variable affects: `as-map-footer`, `as-histogram-widget__header`.
 - `<property>`is the css property affected: `background-color`, `margin`, `height`, `padding-left`.
 - `<modifier>`use this when the variable refers to a altered status: `hover`, `focus`.
