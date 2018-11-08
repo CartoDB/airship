@@ -33,11 +33,12 @@ as-histogram-widget {
   }
 
   .figure {
+    $basePaddingLeft: 30;
     box-sizing: border-box;
     flex: 1;
     width: 100%;
     min-height: 0;
-    padding: 18px 8px 17px 30px;
+    padding: 18px 8px 17px #{$basePaddingLeft}px;
     overflow: visible;
 
     &--has-x-label {
@@ -45,7 +46,7 @@ as-histogram-widget {
     }
 
     &--has-y-label {
-      margin-left: 25px;
+      padding-left: #{$basePaddingLeft + 25}px;
     }
 
     text {

@@ -6,10 +6,6 @@ import { HistogramData } from '../interfaces';
 import { Container } from '../types/Container';
 import { Domain } from '../types/Domain';
 
-// Duplicated in histogram-widget
-const X_PADDING = 38;
-const Y_PADDING = 36;
-
 export function cleanAxes(yAxisSelection: Container) {
   yAxisSelection.select('.domain').remove();
 }
@@ -49,6 +45,8 @@ export function renderBars(
   barsContainer: Container,
   BARS_SEPARATION: number,
   color: string,
+  X_PADDING: number,
+  Y_PADDING: number,
   disableAnimation: boolean = false) {
 
   const HEIGHT = container.node().getBoundingClientRect().height - Y_PADDING;
@@ -90,7 +88,9 @@ export function renderBars(
 
 export function renderXAxis(
   container: Container,
-  domain: Domain): Axis<{ valueOf(): number }> {
+  domain: Domain,
+  X_PADDING: number,
+  Y_PADDING: number): Axis<{ valueOf(): number }> {
 
   const HEIGHT = container.node().getBoundingClientRect().height - Y_PADDING;
   const WIDTH = container.node().getBoundingClientRect().width - X_PADDING;
@@ -122,7 +122,9 @@ export function renderXAxis(
 
 export function renderYAxis(
   container: Container,
-  domain: Domain): Axis<{ valueOf(): number }> {
+  domain: Domain,
+  X_PADDING: number,
+  Y_PADDING: number): Axis<{ valueOf(): number }> {
 
   const HEIGHT = container.node().getBoundingClientRect().height - Y_PADDING;
   const WIDTH = container.node().getBoundingClientRect().width - X_PADDING;

@@ -22,9 +22,10 @@ const BARS_SEPARATION = 1;
 const CUSTOM_HANDLE_WIDTH = BARS_SEPARATION + 4;
 const CUSTOM_HANDLE_HEIGHT = 28;
 
-// we could use getComputedStyle instead of this
+// we could use getComputedStyle instead of these
 const X_PADDING = 38;
 const Y_PADDING = 36;
+const LABEL_PADDING = 25;
 
 /**
  * Histogram Widget
@@ -240,12 +241,6 @@ export class HistogramWidget {
     this.setSelection(null);
   }
 
-  @Watch('color')
-  public onColorChanged() {
-    drawService.renderBars(
-      this.data, this.yScale, this.container, this.barsContainer, CUSTOM_HANDLE_WIDTH, this.color);
-  }
-
   public componentDidLoad() {
     if (!this._hasDataToDisplay()) {
       return;
@@ -421,7 +416,15 @@ export class HistogramWidget {
       });
 
     drawService.renderBars(
-      this.data, this.yScale, this.container, this.barsContainer, BARS_SEPARATION, this.color, this.resizing);
+        this.data,
+        this.yScale,
+        this.container,
+        this.barsContainer,
+        BARS_SEPARATION,
+        this.color,
+        X_PADDING + (this.yLabel ? LABEL_PADDING : 0),
+        Y_PADDING,
+        this.resizing);
 
     this._updateSelection();
   }
@@ -579,14 +582,22 @@ export class HistogramWidget {
 
   private _renderYAxis() {
     const yDomain = dataService.getYDomain(this.data);
-    const yAxis = drawService.renderYAxis(this.container, yDomain);
+    const yAxis = drawService.renderYAxis(
+      this.container,
+      yDomain,
+      X_PADDING + (this.yLabel ? LABEL_PADDING : 0),
+      Y_PADDING);
 
     this.yScale = yAxis.scale();
   }
 
   private _renderXAxis() {
     const xDomain = dataService.getXDomain(this.data);
-    const xAxis = drawService.renderXAxis(this.container, xDomain);
+    const xAxis = drawService.renderXAxis(
+      this.container,
+      xDomain,
+      X_PADDING + (this.yLabel ? LABEL_PADDING : 0),
+      Y_PADDING);
 
     this.xScale = xAxis.scale();
   }
