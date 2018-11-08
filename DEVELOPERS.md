@@ -207,16 +207,18 @@ To keep things consistent we use a standard css naming:
 
 #### Global css-variables
 
-    --as--<name>-<property>
+    --as--<name>-<property>--<modifier>
 
 - Use the `as` namespace to prevent naming collisions
 - `<name>`refers to element/component the variable affects: `as-map-footer`, `as-histogram-widget__header`.
 - `<property>`is the css property affected: `background-color`, `margin`, `height`, `padding-left`.
+- `<modifier>`use this when the variable refers to a altered status: `hover`, `focus`.
 
 
 #### Specific css-variables
 
-    --<name>-<property>
+    --<name>-<property>--<modifier>
 
 - `<name>`refers to element/component the variable affects: `as-map-footer`, `as-histogram-widget__header`.
 - `<property>`is the css property affected: `background-color`, `margin`, `height`, `padding-left`.
+- `<modifier>`use this when the variable refers to a altered status: `hover`, `focus`.
