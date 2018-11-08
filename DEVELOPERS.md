@@ -172,7 +172,7 @@ We dont want prereleases to be shown in the changelog so **git tags correspondin
 
 ## CSS Variables
 
-To achieve a better customization we use [css variables](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_variables). Follow this rules in order to write them in a consistent way.
+To achieve a better customization we use [css variables](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_variables). Follow these rules in order to write them in a consistent way.
 
 We define two kinds of variables, global and specific:
 
