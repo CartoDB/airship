@@ -239,23 +239,6 @@ export class HistogramWidget {
     this.setSelection(null);
   }
 
-  @Watch('data')
-  public onDataChanged() {
-    if (!this._hasDataToDisplay()) {
-      return;
-    }
-
-    if (this.selection === null) {
-      return;
-    }
-
-    if (this._selectionInData(this.selection)) {
-      this._setSelection(this.selection);
-    } else {
-      this.clearSelection();
-    }
-  }
-
   @Watch('color')
   public onColorChanged() {
     drawService.renderBars(
@@ -332,56 +315,55 @@ export class HistogramWidget {
         .attr('class', 'plot');
     }
 
-    this.brush = brushX()
-      .handleSize(CUSTOM_HANDLE_WIDTH)
-      .extent([[0, 0], [this.width - X_PADDING, this.height - Y_PADDING]])
-      .on('brush', this._onBrush.bind(this))
-      .on('end', this._onBrushEnd.bind(this));
-
     if (!this.disableInteractivity) {
-
       if (this.container.select('.brush').empty()) {
+        this.brush = brushX()
+          .handleSize(CUSTOM_HANDLE_WIDTH)
+          .extent([[0, 0], [this.width - X_PADDING, this.height - Y_PADDING]])
+          .on('brush', this._onBrush.bind(this))
+          .on('end', this._onBrushEnd.bind(this));
+
         this.brushArea = this.container
           .append('g');
         this.brushArea
           .attr('class', 'brush');
-      }
 
-      this.brushArea.call(this.brush);
+        this.brushArea.call(this.brush);
 
-      this.bottomLine = this.brushArea.append('line')
-        .attr('class', 'bottomline')
-        .attr('stroke-width', 4)
-        .attr('y1', this.height - Y_PADDING)
-        .attr('y2', this.height - Y_PADDING)
-        .style('opacity', 0)
-        .attr('pointer-events', 'none');
+        this.bottomLine = this.brushArea.append('line')
+          .attr('class', 'bottomline')
+          .attr('stroke-width', 4)
+          .attr('y1', this.height - Y_PADDING)
+          .attr('y2', this.height - Y_PADDING)
+          .style('opacity', 0)
+          .attr('pointer-events', 'none');
 
-      this.customHandlers = this.brushArea.selectAll('.handle--custom')
-        .data([{ type: 'w' }, { type: 'e' }])
-        .enter()
-        .append('g')
-        .attr('class', 'handle--wrapper');
+        this.customHandlers = this.brushArea.selectAll('.handle--custom')
+          .data([{ type: 'w' }, { type: 'e' }])
+          .enter()
+          .append('g')
+          .attr('class', 'handle--wrapper');
 
-      this.customHandlers
-        .append('rect')
-        .attr('class', 'handle--custom')
-        .attr('rx', 2)
-        .attr('ry', 2);
+        this.customHandlers
+          .append('rect')
+          .attr('class', 'handle--custom')
+          .attr('rx', 2)
+          .attr('ry', 2);
 
-      const handleGrab = this.customHandlers
-        .append('g')
-        .attr('class', 'handle--grab');
+        const handleGrab = this.customHandlers
+          .append('g')
+          .attr('class', 'handle--grab');
 
 
-      for (let i = 0; i < 3; i++) {
-        handleGrab
-          .append('line')
-          .attr('x1', 2)
-          .attr('y1', i * 2)
-          .attr('x2', 4)
-          .attr('y2', i * 2)
-          .attr('class', 'grab-line');
+        for (let i = 0; i < 3; i++) {
+          handleGrab
+            .append('line')
+            .attr('x1', 2)
+            .attr('y1', i * 2)
+            .attr('x2', 4)
+            .attr('y2', i * 2)
+            .attr('class', 'grab-line');
+        }
       }
     }
 
@@ -431,6 +413,20 @@ export class HistogramWidget {
 
     drawService.renderBars(
       this.data, this.yScale, this.container, this.barsContainer, BARS_SEPARATION, this.color);
+
+    this._updateSelection();
+  }
+
+  private _updateSelection() {
+    if (this.selection === null || this.disableInteractivity) {
+      return;
+    }
+
+    if (this._selectionInData(this.selection)) {
+      this._setSelection(this.selection);
+    } else {
+      this.clearSelection();
+    }
   }
 
   private _adjustSelection(values: number[] | null): number[] | null {
