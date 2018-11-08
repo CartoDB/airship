@@ -3,34 +3,34 @@
 // -- Font types
 .as-jumbo {
   margin: get-margin(0 0 5);
-  font: $font-jumbo;
+  font: var(--as--font--jumbo);
   font-weight: 300;
 }
 
 .as-display {
   margin: get-margin(0 0 4);
-  font: $font-display;
+  font: var(--as--font--display);
   font-weight: 300;
 }
 
 .as-title {
   margin: get-margin(0 0 3);
-  font: $font-title;
+  font: var(--as--font--title);
 }
 
 .as-subheader {
   margin: get-margin(0 0 2);
-  font: $font-subheader;
+  font: var(--as--font--subheader);
 }
 
 .as-body {
   margin: get-margin(0 0 1);
-  font: $font-body;
+  font: var(--as--font--body);
 }
 
 .as-caption {
   margin: 0;
-  font: $font-caption;
+  font: var(--as--font--caption);
 }
 
 // -- Modifiers
@@ -57,54 +57,54 @@
   }
 
   &--mono {
-    font-family: var(--as--font-family--mono, #{$font-family-mono});
+    font-family: var(--as--font-family--mono);
   }
 }
 
 .as-color {
   // Brand
   &--primary {
-    color: var(--as--color--primary, #{$color-primary});
+    color: var(--as--color--primary);
   }
 
   &--secondary {
-    color: var(--as--color--secondary, #{$color-secondary});
+    color: var(--as--color--secondary);
   }
 
   &--complementary {
-    color: var(--as--color--complementary, #{$color-complementary});
+    color: var(--as--color--complementary);
   }
 
   // Type
   &--type-01 {
-    color: var(--as--color--type-01, #{$color-type-01});
+    color: var(--as--color--type-01);
   }
 
   &--type-02 {
-    color: var(--as--color--type-02, #{$color-type-02});
+    color: var(--as--color--type-02);
   }
 
   &--type-03 {
-    color: var(--as--color--type-03, #{$color-type-03});
+    color: var(--as--color--type-03);
   }
 
   &--type-04 {
-    color: var(--as--color--type-04, #{$color-type-04});
+    color: var(--as--color--type-04);
   }
 
   // Support
   &--success,
   &--support-03 {
-    color: var(--as--color---support-03, #{$color-support-03});
+    color: var(--as--color---support-03);
   }
 
   &--warning,
   &--support-02 {
-    color: var(--as--color---support-02, #{$color-support-02});
+    color: var(--as--color---support-02);
   }
 
   &--error,
   &--support-01 {
-    color: var(--as--color---support-01, #{$color-support-01});
+    color: var(--as--color---support-01);
   }
 }
