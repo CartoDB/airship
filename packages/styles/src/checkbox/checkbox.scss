@@ -54,16 +54,16 @@
     }
 
     &:focus:not(:hover) {
-      border: 2px solid var(--as--color--primary, #{$color-primary});
+      border: 2px solid var(--as--color--primary);
     }
 
     &:focus.as-checkbox-input--error {
-      border: 2px solid var(--as--color---support-01, #{$color-support-01});
+      border: 2px solid var(--as--color---support-01);
     }
 
     &--error + .as-checkbox-decoration {
-      border-color: var(--as--color---support-01, #{$color-support-01});
-      stroke: var(--as--color---support-01, #{$color-support-01});
+      border-color: var(--as--color---support-01);
+      stroke: var(--as--color---support-01);
       background: rgba($color-support-01, 0.16);
     }
 
@@ -89,12 +89,12 @@
     }
 
     &:checked:not(.as-checkbox-input--error) + .as-checkbox-decoration {
-      border: 1px solid var(--as--color--primary, #{$color-primary});
-      stroke: var(--as--color--primary, #{$color-primary});
+      border: 1px solid var(--as--color--primary);
+      stroke: var(--as--color--primary);
     }
 
     &:disabled:checked + {
-      background: var(--as--color--ui-02, #{$color-ui-02});
+      background: var(--as--color--ui-02);
       cursor: not-allowed;
     }
 
@@ -104,7 +104,7 @@
     }
 
     &:enabled:not(:checked):not(.as-checkbox-input--error):hover + .as-checkbox-decoration {
-      border: 1px solid var(--as--color--complementary, #{$color-complementary});
+      border: 1px solid var(--as--color--complementary);
     }
   }
 
