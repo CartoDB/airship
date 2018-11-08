@@ -13,7 +13,9 @@ as-histogram-widget {
   background: var(--stacked-bar-widget-background-color, #FFF);
 
   .as-histogram-widget__wrapper {
+    display: flex;
     position: relative;
+    flex: 1;
   }
 
   .as-histogram-widget__clear {

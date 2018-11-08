@@ -291,7 +291,7 @@ export class HistogramWidget {
       this.errorDescription,
       this.noDataBodyMessage,
       [
-      <div style={{ flex: '1', display: 'flex' }} class={histogramClasses}>
+      <div class={histogramClasses}>
         <svg class={svgClasses} ref={(ref: SVGElement) => this.container = select(ref)}></svg>
         {this._renderLabels()}
         {this._renderTooltip()}
@@ -658,10 +658,12 @@ export class HistogramWidget {
 
   private _renderClearBtn() {
     return (
-      <button
-        class='as-btn as-btn--primary as-btn--s as-histogram-widget__clear'
-        onClick={() => this._setSelection(null)}>Clear selection
-      </button>
+      <div>
+        <button
+          class='as-btn as-btn--primary as-btn--s as-histogram-widget__clear'
+          onClick={() => this._setSelection(null)}>Clear selection
+        </button>
+      </div>
     );
   }
 
