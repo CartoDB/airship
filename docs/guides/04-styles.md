@@ -105,14 +105,13 @@ $color-primary: #FABADA;
 ```
 
 ```css
-// Your own variables
+/** Your own variables **/
 @import 'my-variables';
 
-// Airship
-// Whole Bundle
+/** Whole bundle **/
 @import '~@carto/airship-style';
 
-// Custom importing of styles
+/** Custom importing of styles **/
 @import '~@carto/airship-style/src/core/variables/variables';
 @import '~@carto/airship-style/src/tabs/tabs';
 ```
