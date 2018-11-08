@@ -2,13 +2,13 @@
 @import '../../../../styles/src/tooltip/tooltip';
 
 as-stacked-bar-widget {
-  --stacked-bar-widget-background-color: var(--widget-background-color, #{$color-ui-01});
+  --stacked-bar-widget--background-color: var(--as--color--ui-01, #{$color-ui-01});
 
   display: block;
   width: 100%;
   max-height: 100%;
   overflow: auto;
-  background: var(--stacked-bar-widget-background-color, #FFF);
+  background: var(--stacked-bar-widget--background-color, #FFF);
 
   .figure {
     box-sizing: border-box;
