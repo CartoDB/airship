@@ -5,7 +5,7 @@
   align-items: center;
   padding: 0 get-spacing(2);
   border-radius: get-spacing(5);
-  background-color: var(--as--color--badge-blue, #{$color-badge-blue});
+  background-color: var(--as--color--badge-blue);
   font: $font-body;
 
   p {
