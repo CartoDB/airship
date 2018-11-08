@@ -179,7 +179,7 @@ We define two kinds of variables, global and specific:
 - **Global Values:** This variables are declared in `styles/core.scss` under the `:root` selector and define specific values that are available on every css scope.
 - **Global Variables:** This variables are declared in `styles/core.scss` under the `:root` selector and are available on every css scope.
 - **Specific Values:** This variables are declared in the element/component styles and define a value that can be used in different places, usually specific variables. (Same value could be used in the table border and paragraph color)
-- **Specific Variables:** This variables are defined in the stylss of element/component and they only are availiable under the element/component scope.
+- **Specific Variables:** This variables are defined in the styles of element/component and they're only  available under the element/component scope.
 
 The variables should have a less specific one as fallback, so for example when developing the `histogram` widget:
 
