@@ -192,7 +192,7 @@ The variables should have a less specific one as fallback, so for example when d
   --as-stacked-bar-widget--background-color: var(--as--widget__header--background-color, --as--color--primary);
 ```
 
-Doing this users can controll specific widgets `--stacked-bar-widget--background-color` share a style for all widgets `--as--widget__header--background-color` or just redefine the default value `--as--color--primary`.
+With `--stacked-bar-widget--background-color` users can control specific widgets, with the shared variable `--as--widget__header--background-color` they can control all widgets, or they can just redefine the default value `--as--color--primary`.
 
 
 ### Naming
