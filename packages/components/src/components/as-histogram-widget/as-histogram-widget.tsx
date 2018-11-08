@@ -511,6 +511,7 @@ export class HistogramWidget {
 
     this.selection = adjustedSelection;
     this._updateHandles(adjustedSelection);
+    this._hideTooltip();
   }
 
   private _selectionInData(selection: number[]) {
