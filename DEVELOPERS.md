@@ -181,7 +181,7 @@ We define two kinds of variables, global and specific:
 - **Specific Values:** This variables are declared in the element/component styles and define a value that can be used in different places, usually specific variables. (Same value could be used in the table border and paragraph color)
 - **Specific Variables:** This variables are defined in the styles of element/component and they're only  available under the element/component scope.
 
-The variables should have a less specific one as fallback, so for example when developing the `histogram` widget:
+The variables should have a less specific one as fallback, so for example when developing the `stacked-bar` widget:
 
 ```css
 
