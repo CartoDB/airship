@@ -1,7 +1,8 @@
 @import "../core/_dev";
 
 .as-menu-dropdown {
-  --as-menu-dropdown-hover-color: #{rgba($color-complementary, 0.16)};
+  --as-menu-dropdown--color--hover: #{rgba($color-complementary, 0.16)};
+
   position: relative;
 
   &--input {
@@ -10,15 +11,15 @@
     margin: 0;
     padding: 0 get-spacing(3);
     border: 0;
-    background: var(--as--color--ui-01, #{$color-ui-01});
-    color: var(--as--color--primary, #{$color-primary});
-    font: $font-body;
+    background: var(--as--color--ui-01);
+    color: var(--as--color--primary);
+    font: var(--as--font--body);
     text-align: left;
     cursor: pointer;
 
     &:hover,
     &:focus {
-      background: var(--as-menu-dropdown-hover-color, #{rgba($color-complementary, 0.16)});
+      background: var(--as-menu-dropdown--color--hover);
     }
   }
 
@@ -41,11 +42,11 @@
       padding: 0 get-spacing(3);
       transition: background-color 0.3s;
       border: 0;
-      border-bottom: 1px solid var(--as--color--ui-04, #{$color-ui-04});
+      border-bottom: 1px solid var(--as--color--ui-04);
       outline: none;
-      background: var(--as--color--ui-01, #{$color-ui-01});
-      color: var(--as--color--type-01, #{$color-type-01});
-      font: $font-body;
+      background: var(--as--color--ui-01);
+      color: var(--as--color--type-01);
+      font: var(--as--font--body);
       list-style: none;
       cursor: pointer;
 
@@ -60,7 +61,7 @@
 
       &:hover,
       &:focus-within {
-        background: var(--as-menu-dropdown-hover-color, #{rgba($color-complementary, 0.16)});
+        background: var(--as-menu-dropdown--color-hover);
       }
 
       button {

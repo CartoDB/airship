@@ -8,8 +8,8 @@
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   -ms-overflow-style: -ms-autohiding-scrollbar;
-  background: var(--as--color--ui-01, #{$color-ui-01});
-  box-shadow: inset 0 -1px 0 0 var(--as--color--ui-03, #{$color-ui-03});
+  background: var(--as--color--ui-01);
+  box-shadow: inset 0 -1px 0 0 var(--as--color--ui-03);
   list-style: none;
 
   &::-webkit-scrollbar {
@@ -30,21 +30,21 @@
     border-bottom: 2px solid transparent;
     outline: none;
     background: none;
-    color: var(--as--color--primary, #{$color-primary});
-    font: $font-body;
+    color: var(--as--color--primary);
+    font: var(--as--font--body);
     text-decoration: none;
     cursor: pointer;
 
     &:hover {
-      border-bottom: 2px solid var(--as--color--complementary, #{$color-complementary});
+      border-bottom: 2px solid var(--as--color--complementary);
     }
 
     &--active {
-      border-bottom: 2px solid var(--as--color--secondary, #{$color-secondary});
-      color: var(--as--color--type-01, #{$color-type-01});
+      border-bottom: 2px solid var(--as--color--secondary);
+      color: var(--as--color--type-01);
 
       &:hover {
-        border-bottom: 2px solid var(--as--color--secondary, #{$color-secondary});
+        border-bottom: 2px solid var(--as--color--secondary);
       }
     }
 
@@ -58,17 +58,17 @@
     /* stylelint-disable-next-line */
     .as-tabs__item {
       border-bottom: 4px solid transparent;
-      font: $font-subheader;
+      font: var(--as--font--subheader);
 
       &:focus,
       &:hover {
-        border-bottom: 4px solid var(--as--color--complementary, #{$color-complementary});
+        border-bottom: 4px solid var(--as--color--complementary);
       }
 
       &--active,
       &:active {
-        border-bottom: 4px solid var(--as--color--secondary, #{$color-secondary});
-        color: var(--as--color--type-01, #{$color-type-01});
+        border-bottom: 4px solid var(--as--color--secondary);
+        color: var(--as--color--type-01);
       }
     }
   }

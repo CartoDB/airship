@@ -3,7 +3,7 @@
 $modal-background: rgba($color-type-01, 0.8);
 
 .as-modal {
-  --as-modal-background: #{$modal-background};
+  --as-modal--color--background: #{$modal-background};
 
   display: flex;
   position: absolute;
@@ -14,14 +14,14 @@ $modal-background: rgba($color-type-01, 0.8);
   left: 0;
   align-items: center;
   justify-content: center;
-  background: var(--as-modal-background, #{$modal-background});
+  background: var(--as-modal--color--background);
 
   &__content {
     max-width: 450px;
     max-height: 80vh;
     padding: get-spacing(10);
     border-radius: get-spacing(1);
-    background: var(--as--color--ui-01, #{$color-ui-01});
+    background: var(--as--color--ui-01);
     box-shadow: $shadow-8;
   }
 }
