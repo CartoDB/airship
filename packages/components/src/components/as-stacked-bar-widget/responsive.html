@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+  <base href="/">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+  <title>Airship</title>
+  <link rel="stylesheet" href="packages/styles/dist/airship.css">
+  <script src="packages/components/dist/airship.js"></script>
+  <style>
+    body {
+      height: 100vh;
+      margin: 0;
+      background: #CCC;
+    }
+
+    as-stacked-bar-widget {
+      background: white;
+    }
+
+  </style>
+</head>
+
+<body>
+  <as-stacked-bar-widget responsive="true" id="widget-0" show-legend="true" heading="Heading" description="Description"></as-stacked-bar-widget>
+
+  <script>
+    const widget0 = document.querySelector('#widget-0');
+    widget0.data = [{
+        category: 'Category A',
+        values: {
+          v1: 100,
+          v2: 100,
+        }
+      },
+      {
+        category: 'Category B',
+        values: {
+          v1: 100,
+          v2: 200,
+          v3: 300,
+        },
+      },
+      {
+        category: 'Category B',
+        values: {
+          v1: 100,
+          v2: 200,
+          v3: 300,
+          v3: 400,
+        }
+      }
+    ];
+
+    widget0.metadata = {
+      v1: {
+        label: 'v1-label',
+        color: '#FABADA'
+      },
+      v2: {
+        label: 'v2-label',
+        color: '#C00FEE'
+      },
+      v3: {
+        color: '#ff0088',
+      },
+    }
+
+  </script>
+
+</body>
+
+</html>

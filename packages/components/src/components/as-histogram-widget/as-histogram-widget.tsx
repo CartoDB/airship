@@ -161,6 +161,12 @@ export class HistogramWidget {
    */
   @Prop() public noDataBodyMessage: string = 'There is no data to display.';
 
+  /**
+   * Use this attribute to decide if the widget should be rerendered on window resize.
+   * Defaults to true.
+   */
+  @Prop() public responsive: boolean = true;
+
   @Element() private el: HTMLElement;
 
   /**
