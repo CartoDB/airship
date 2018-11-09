@@ -4,7 +4,7 @@
  *
  *  Ex: 1200 -> 1.2K
  */
-export default function (value): string {
+export default function(value): string {
   const roundedNumber = Math.abs(Math.ceil(value * 100) / 100);
 
   if (roundedNumber >= 1000000000) {
