@@ -11,6 +11,8 @@
   - [Releasing a new version](#releasing-a-new-version)
     - [Prerelase](#prerelase)
     - [Release](#release)
+    - [Workflow](#workflow)
+      - [Fixing bugs on a prerelease](#fixing-bugs-on-a-prerelease)
   - [Changelog](#changelog)
 
 
@@ -100,23 +102,55 @@ Fix #issue
 
 ## Releasing a new version
 
-We use [lerna](https://lernajs.io/) to keep two internal packages in sync. This command is wrapped with a npm script. 
+We use [lerna](https://lernajs.io/) wrapped with a npm script to keep all internal packages in sync.
 
 ### Prerelase
 
-Once you merge a new branch into the master branch a `prerelease` tag can be published to do some acceptance testing.
+Once you merge a new branch into the master branch an optional `prerelease` tag can be published to do some acceptance testing.
 
     npm run publish:prerelease
 
 ### Release
 
-If required and only when the prerelase passes the acceptance phase a new public release can be published.
-
-Run the following command and follow the given instructions.
+Use the following script to release a public version.
 
     npm run publish
 
 
+### Workflow
+
+Everytime a branch is merged to master, an beta version can be released using the `npm run publish:prerelease` command. This command should increment the [semver](https://semver.org/) according to the [commit code](https://www.conventionalcommits.org/en/) and append a `prerelease` code.
+
+So for example we are in the version `2.3.12` and we merge branch with a brand new feature.
+
+```
+tags   --- v2.3.12  ------------------------------>
+master ---   A      ---------------------   B  --->
+              \                            /
+                --- new_feature_branch ---- 
+```
+
+The new version should be `v2.4.0` but before making it public we want to do a little QA generating a release candidate or prerelease pointing to **B**.
+
+```
+tags   --- v2.3.12  --------------------- v2.4.0-rc ---->
+master ---   A      ---------------------   B  ------------>
+              \                            /
+                --- new_feature_branch ---- 
+```
+
+Once our `prerelease` version is published the [prerelease version in the CDN](https://libs.cartocdn.com/airship-components/prerelease/airship.js) will point to `v2.4.0-rc` and the [prerelease dist-tag in NPM](https://www.npmjs.com/package/@carto/airship-components) will point to `v2.4.0-rc`. The examples in the `smoke` folder relies on this prerelease version and they are as close as possible to a production environment so a QA can be done.
+
+#### Fixing bugs on a prerelease
+
+If you find a bug and merge a fix branch into master the new version should be `v2.4.0-rc.1`.
+
+```
+tags   --- v2.3.12  --------------------- v2.4.0-rc ----- v2.4.0-rc.1
+master ---   A      ---------------------   B  ---------------> C
+              \                            / \                 /
+                --- new_feature_branch ----    --- bug_fix ---
+```
 
 ## Changelog
 
@@ -126,4 +160,6 @@ Once a new version is released just run `npm run changelog` and push your change
 
     npm run changelog
 
-We dont want prereleases to be shown in the changelog so git tags corresponding to a prerelase should be removed.
+We dont want prereleases to be shown in the changelog so **git tags corresponding to a prerelase should be removed once the QA is done**.
+
+> NOTE: You only need to remove it from github and the `changelog` script will prune all removed tags.

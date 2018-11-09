@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --config webpack.config.js",
-    "start": "npm run test",
-    "test": "npm install --no-package-lock && npm run build && opener smoke_0.html"
+    "start": "rm -rf dist node_modules && npm install --no-package-lock && npm run build && opener smoke_0.html"
   },
   "author": "CARTO dev team",
   "license": "ISC",
