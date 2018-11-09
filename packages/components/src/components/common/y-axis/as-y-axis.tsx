@@ -1,8 +1,5 @@
 import { Component, Element, Prop } from '@stencil/core';
-import { axisLeft } from 'd3-axis';
-import { scaleLinear } from 'd3-scale';
-import { select, Selection } from 'd3-selection';
-import readableNumber from '../../../utils/readable-number';
+import yAxisService from './y-axis.service';
 
 
 /**
@@ -35,46 +32,39 @@ export class YAxis {
    */
   @Prop() public to: number = 0;
 
+  /**
+   * Use this attribute to decide if the widget should be rerendered on window resize
+   * Defaults to true
+   */
+  @Prop() public responsive: boolean = true;
 
   /**
-   * Reference to the web component element.
+   * Reference to the HTMLStencilElement
    */
-  @Element() private element: HTMLElement;
+  @Element() private element: HTMLStencilElement;
 
-
-  public render() {
-    const VERTICAL_SPACING = 36; // Need 16px top and bottom to view the labels
-    const TICK_RIGHT_MARGIN = 18;
-    const LABEL_WIDTH = 25;
-    const ELEMENT = select(this.element.previousElementSibling);
-    const HEIGHT = ELEMENT.node().getBoundingClientRect().height - VERTICAL_SPACING;
-    const WIDTH = ELEMENT.node().getBoundingClientRect().width;
-    const TICK_SIZE = - WIDTH + LABEL_WIDTH;
-    const RANGE = [HEIGHT, 0];
-
-    const yScale = scaleLinear()
-      .domain([this.from, this.to])
-      .range(RANGE);
-
-    const yAxis = axisLeft(yScale)
-      .tickSizeInner(TICK_SIZE + TICK_RIGHT_MARGIN)
-      .ticks(6)
-      .tickFormat((d) => `${readableNumber(d)}`);
-
-
-    if (ELEMENT.select('.y-axis').empty()) {
-      this._createYAxisElement(ELEMENT).call(yAxis);
-    } else {
-      ELEMENT.select('.y-axis').call(yAxis);
-    }
-
-    ELEMENT.selectAll('.tick text')
-      .attr('textLength', LABEL_WIDTH)
-      .attr('lengthAdjust', 'spacing');
-
+  constructor() {
+    this._resizeListener = this._resizeListener.bind(this);
   }
 
-  private _createYAxisElement(element: Selection<Element, {}, null, undefined>) {
-    return element.append('g').attr('class', 'y-axis');
+  public componentWillLoad() {
+    addEventListener('resize', this._resizeListener);
+  }
+
+  public componentDidUnload() {
+    removeEventListener('resize', this._resizeListener);
+  }
+
+  public render() {
+    const element = this.element.previousElementSibling as SVGElement;
+    const scale = [this.from, this.to] as [number, number];
+
+    yAxisService.renderYAxis(element, scale);
+  }
+
+  private _resizeListener() {
+    if (this.responsive) {
+      this.element.forceUpdate();
+    }
   }
 }

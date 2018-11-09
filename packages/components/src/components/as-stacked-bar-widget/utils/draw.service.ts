@@ -1,5 +1,6 @@
 import { select } from 'd3-selection';
 import 'd3-transition';
+import yAxisService from '../../common/y-axis/y-axis.service';
 import { Container } from '../types/Container';
 import { StackedBarData } from '../types/StackedBarData';
 
@@ -39,6 +40,10 @@ export function drawColumns(svgElement: SVGElement, data: StackedBarData, mousem
     .data((d) => d), mousemove, mouseleave);
 }
 
+export function drawYAxis(container: SVGElement, scale: [number, number]) {
+  return yAxisService.renderYAxis(container, scale);
+}
+
 function _createPlot(svgElement: SVGElement): Container {
   const container = select(svgElement);
   if (container.select('.plot').empty()) {
@@ -63,4 +68,4 @@ function _drawRectangles(selection, mousemove, mouseleave) {
     .attr('fill', (d) => d.c);
 }
 
-export default { drawColumns };
+export default { drawColumns, drawYAxis };
