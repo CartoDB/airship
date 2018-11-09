@@ -292,12 +292,12 @@ export class HistogramWidget {
       this.errorDescription,
       this.noDataBodyMessage,
       [
-      <div class={histogramClasses}>
-        <svg class={svgClasses} ref={(ref: SVGElement) => this.container = select(ref)}></svg>
-        {this._renderLabels()}
-        {this._renderTooltip()}
-      </div>,
-      this.showClear && !this.disableInteractivity ? this._renderClearBtn() : ''
+        <div class={histogramClasses}>
+          <svg class={svgClasses} ref={(ref: SVGElement) => this.container = select(ref)}></svg>
+          {this._renderLabels()}
+          {this._renderTooltip()}
+        </div>,
+        this.showClear && !this.disableInteractivity ? this._renderClearBtn() : ''
       ]);
   }
 
