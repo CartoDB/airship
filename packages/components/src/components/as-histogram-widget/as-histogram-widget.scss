@@ -2,6 +2,7 @@
 @import '../../../../styles/src/tooltip/tooltip';
 
 as-histogram-widget {
+  --as-histogram-widget--background-color: var(--as--color--ui-01);
   $label-height: 20px;
 
   display: flex;
@@ -10,7 +11,7 @@ as-histogram-widget {
   height: 100%;
   max-height: 100%;
   overflow: auto;
-  background: var(--stacked-bar-widget-background-color, #FFF);
+  background: var(--as-histogram-widget--background-color, #FFF);
 
   .as-histogram-widget__wrapper {
     display: flex;
@@ -20,11 +21,6 @@ as-histogram-widget {
 
   .as-histogram-widget__clear {
     margin-top: get-spacing(2);
-  }
-
-  .as-histogram-widget__tooltip {
-    position: fixed;
-    opacity: 0;
   }
 
   .figure {
@@ -45,7 +41,7 @@ as-histogram-widget {
     }
 
     text {
-      fill: $color-type-01;
+      fill: var(--as--color--type-01);
     }
 
     .brush {
@@ -110,8 +106,8 @@ as-histogram-widget {
 
   .x-label,
   .y-label {
-    color: $color-type-01;
-    font: $font-caption;
+    color: var(--as--color--type-01);
+    font: var(--as--font--caption);
     text-align: center;
   }
 
