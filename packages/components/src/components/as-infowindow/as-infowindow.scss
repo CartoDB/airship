@@ -9,6 +9,7 @@ as-infowindow {
   .as-infowindow {
     display: inline-block;
     position: relative;
+    z-index: 3;
     width: 260px;
     border-radius: 4px;
     background: var(--as-infowindow--color--background);

@@ -162,12 +162,6 @@ export class CategoryWidget {
     return this.selectedCategories;
   }
 
-  public componentWillLoad() {
-    this.el.style.setProperty(
-      '--category-bar-color',
-      this.defaultBarColor || `var(--as--color--complementary, #47db99)`);
-  }
-
   /**
    * Clear current selected categories
    *
@@ -258,7 +252,7 @@ export class CategoryWidget {
     const barColor = this._getBarColor(category.color, { isSelected, isOther });
 
     const progressStyles = {
-      backgroundColor: barColor ? barColor : `var(--category-bar-color)`,
+      backgroundColor: barColor ? barColor : `var(--category-bar--color)`,
       width: `${(category.value / maximumValue) * 100}%`
     };
 
