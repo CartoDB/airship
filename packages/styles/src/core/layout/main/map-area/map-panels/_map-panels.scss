@@ -1,5 +1,5 @@
 .as-map-panels {
-  --panels-bg-color: var(--as-color-ui-01, #{$color-ui-01});
+  --as-map-panels-background-color: var(--as--color--ui-01);
 
   display: none;
   position: absolute;
@@ -7,7 +7,7 @@
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: var(--panels-bg-color);
+  background-color: var(--as-map-panels-background-color);
 
   &--visible {
     display: flex;
@@ -88,7 +88,7 @@
     }
 
     &__element {
-      --panels-element-bg-color: var(--as-color-ui-01, #{$color-ui-01});
+      --panels-element-bg-color: var(--as--color--ui-01);
 
       max-width: 200px;
       border-radius: 4px;

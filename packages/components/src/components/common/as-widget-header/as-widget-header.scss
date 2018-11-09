@@ -1,22 +1,22 @@
 @import '../../../../../styles/src/core/dev';
 
 as-widget-header {
-  --widget--header-color: #{$color-type-01};
-  --widget--subheader-color: #{$color-type-02};
-  --widget--subheader-color-error: var(--as-color-support-01, #{$color-support-01});
-  --widget--subheader-color-empty: var(--as-color-support-02, #{$color-support-02});
+  --as-widget-header__header--color: var(--as--color--type-01);
+  --as-widget-subheader--color: var(--as--color--type-02);
+  --as-widget-header__subheader--color-error: var(--as--color--support-01);
+  --as-widget-header__subheader--color-empty: var(--as--color---support-02);
 
   display: block;
 
   .as-widget-header__header {
     margin: 0;
-    color: var(--widget--header-color, #2C2C2C);
-    font: $font-subheader;
+    color: var(--as-widget-header__header--color);
+    font: var(--as--font--subheader);
   }
 
   .as-widget-header__subheader {
     margin-bottom: 16px;
-    color: var(--widget--subheader-color, #F4F4F4);
+    color: var(--as-widget-subheader--color, #F4F4F4);
 
     &--error {
       color: var(--widget--subheader-color-error, #F3522B);

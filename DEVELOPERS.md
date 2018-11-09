@@ -14,6 +14,12 @@
     - [Workflow](#workflow)
       - [Fixing bugs on a prerelease](#fixing-bugs-on-a-prerelease)
   - [Changelog](#changelog)
+  - [CSS Variables](#css-variables)
+    - [Naming](#naming)
+      - [Global css-values](#global-css-values)
+      - [Global css-variables](#global-css-variables)
+      - [Specific css-values](#specific-css-values)
+      - [Specific css-variables](#specific-css-variables)
 
 
 ## Project structure
@@ -163,3 +169,66 @@ Once a new version is released just run `npm run changelog` and push your change
 We dont want prereleases to be shown in the changelog so **git tags corresponding to a prerelase should be removed once the QA is done**.
 
 > NOTE: You only need to remove it from github and the `changelog` script will prune all removed tags.
+
+## CSS Variables
+
+To achieve a better customization we use [css variables](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_variables). Follow these rules in order to write them in a consistent way.
+
+We define two kinds of variables, global and specific:
+
+- **Global Values:** This variables are declared in `styles/core.scss` under the `:root` selector and define specific values that are available on every css scope.
+- **Global Variables:** This variables are declared in `styles/core.scss` under the `:root` selector and are available on every css scope.
+- **Specific Values:** This variables are declared in the element/component styles and define a value that can be used in different places, usually specific variables. (Same value could be used in the table border and paragraph color)
+- **Specific Variables:** This variables are defined in the styles of element/component and they're only  available under the element/component scope.
+
+The variables should have a less specific one as fallback, so for example when developing the `stacked-bar` widget:
+
+```css
+
+  /** <style/core/core.scss> The values are initialized **/
+  --as--color--primary: white;
+
+  /** <stacked-bar-widget.scss> The values used with chained fallbacks, last fallback is a css-value **/
+  --as-stacked-bar-widget--background-color: var(--as--widget__header--background-color, --as--color--primary);
+```
+
+With `--stacked-bar-widget--background-color` users can control specific widgets, with the shared variable `--as--widget__header--background-color` they can control all widgets, or they can just redefine the default value `--as--color--primary`.
+
+
+### Naming
+
+To keep things consistent we use a standard css naming:
+
+#### Global css-values
+
+    --as--<type>--<name>
+
+- Use the `as` namespace to prevent naming collisions
+- `<type>`refers to the content of the variable: `color`, `size`, `font`.
+- `<name>`is the identifier of the variable: `primary`, `dark`, `big`.
+
+#### Global css-variables
+
+    --<element>--<property>--<modifier>
+
+- `<element>`refers to element/component the variable affects: `as-map-footer`, `as-histogram-widget__header`.
+- `<property>`is the css property affected: `background-color`, `margin`, `height`, `padding-left`.
+- `<modifier>`use this when the variable refers to a altered status: `hover`, `focus`.
+
+
+#### Specific css-values
+
+    --<element>--<type>--<name>
+
+- `<element>`refers to element/component the variable affects: `as-map-footer`, `as-histogram-widget__header`.
+- `<type>`refers to the content of the variable: `color`, `size`, `font`.
+- `<name>`is the identifier of the variable: `primary`, `dark`, `big`.
+
+
+#### Specific css-variables
+
+    --<element>--<property>--<modifier>
+
+- `<element>`refers to element/component the variable affects: `as-map-footer`, `as-histogram-widget__header`.
+- `<property>`is the css property affected: `background-color`, `margin`, `height`, `padding-left`.
+- `<modifier>`use this when the variable refers to a altered status: `hover`, `focus`.

@@ -77,6 +77,13 @@ as-histogram-widget {
       .domain {
         display: none;
       }
+    }
+
+    .yAxis .tick {
+      line {
+        stroke: var(--as--color--type-02, #{$color-type-02});
+        opacity: 0.1;
+      }
 
       .tick {
         line {
@@ -108,7 +115,7 @@ as-histogram-widget {
     }
 
     .bottomline {
-      stroke: var(--as-color-primary, #{$color-primary});
+      stroke: var(--as--color--primary, #{$color-primary});
     }
   }
 
