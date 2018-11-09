@@ -3,39 +3,39 @@
 // -- Font types
 .as-jumbo {
   margin: get-margin(0 0 5);
-  color: var(--as--color--type-01);
+  color: var(--as--color--font-01);
   font: var(--as--font--jumbo);
   font-weight: 300;
 }
 
 .as-display {
   margin: get-margin(0 0 4);
-  color: var(--as--color--type-01);
+  color: var(--as--color--font-01);
   font: var(--as--font--display);
   font-weight: 300;
 }
 
 .as-title {
   margin: get-margin(0 0 3);
-  color: var(--as--color--type-01);
+  color: var(--as--color--font-01);
   font: var(--as--font--title);
 }
 
 .as-subheader {
   margin: get-margin(0 0 2);
-  color: var(--as--color--type-01);
+  color: var(--as--color--font-01);
   font: var(--as--font--subheader);
 }
 
 .as-body {
   margin: get-margin(0 0 1);
-  color: var(--as--color--type-01);
+  color: var(--as--color--font-01);
   font: var(--as--font--body);
 }
 
 .as-caption {
   margin: 0;
-  color: var(--as--color--type-01);
+  color: var(--as--color--font-01);
   font: var(--as--font--caption);
 }
 
@@ -83,7 +83,7 @@
 
   // Type
   &--type-01 {
-    color: var(--as--color--type-01);
+    color: var(--as--color--font-01);
   }
 
   &--type-02 {
