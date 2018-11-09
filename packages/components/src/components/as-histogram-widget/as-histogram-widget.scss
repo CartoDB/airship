@@ -23,13 +23,8 @@ as-histogram-widget {
   }
 
   .as-histogram-widget__tooltip {
-    @extend .as-tooltip;
     position: fixed;
     opacity: 0;
-
-    &::after {
-      opacity: 0;
-    }
   }
 
   .figure {
@@ -74,21 +69,9 @@ as-histogram-widget {
     }
 
     .x-axis {
-      .domain {
-        display: none;
-      }
-    }
-
-    .yAxis .tick {
-      line {
-        stroke: var(--as--color--type-02, #{$color-type-02});
-        opacity: 0.1;
-      }
-
+      .domain,
       .tick {
-        line {
-          display: none;
-        }
+        display: none;
       }
     }
 
@@ -145,5 +128,12 @@ as-histogram-widget {
     left: 0;
     transform: rotate(-90deg);
     transform-origin: center;
+  }
+
+  [role="tooltip"] {
+    display: none;
+    position: fixed;
+    transform: translate(-50%, -120%);
+    pointer-events: none;
   }
 }

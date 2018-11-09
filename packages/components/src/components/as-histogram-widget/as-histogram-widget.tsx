@@ -16,8 +16,8 @@ import { Container } from './types/Container';
 import dataService from './utils/data.service';
 import drawService from './utils/draw.service';
 
-const DEFAULT_BAR_COLOR = 'var(--as-color-primary, #1785FB)';
-const DEFAULT_SELECTED_BAR_COLOR = 'var(--as-color-complementary, #47DB99)';
+const DEFAULT_BAR_COLOR = 'var(--as--color--primary, #1785FB)';
+const DEFAULT_SELECTED_BAR_COLOR = 'var(--as--color--complementary, #47DB99)';
 const BARS_SEPARATION = 1;
 const CUSTOM_HANDLE_WIDTH = BARS_SEPARATION + 4;
 const CUSTOM_HANDLE_HEIGHT = 28;
@@ -640,18 +640,18 @@ export class HistogramWidget {
       return;
     }
 
-    const [x, y] = this._getTooltipPosition(event.layerX, event.layerY);
+    const [x, y] = this._getTooltipPosition(event.clientX, event.clientY);
 
     select(this.tooltipElement)
-      .style('opacity', '1')
-      .style('left', `${x + 10}px`)
-      .style('top', `${y + 20}px`)
+      .style('display', 'inline')
+      .style('left', `${x}px`)
+      .style('top', `${y}px`)
       .text(this.tooltip);
   }
 
   private _hideTooltip() {
     select(this.tooltipElement)
-      .style('opacity', '0');
+      .style('display', 'none');
   }
 
   private _renderHeader() {
@@ -673,11 +673,10 @@ export class HistogramWidget {
     if (this.tooltip === null) {
       return;
     }
-
     return (<span
       ref={(ref: HTMLElement) => this.tooltipElement = ref}
       role='tooltip'
-      class='as-histogram-widget__tooltip'>
+      class='as-tooltip as-tooltip--top'>
     </span>);
   }
 
