@@ -2,33 +2,47 @@
 @import '../../../../styles/src/tooltip/tooltip';
 
 as-histogram-widget {
+  --as-histogram-widget--background-color: var(--as--color--ui-01);
   $label-height: 20px;
-  display: block;
+
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  background: var(--histogram-widget--background-color, $color-ui-01);
+  height: 100%;
+  max-height: 100%;
+  overflow: auto;
+  background: var(--as-histogram-widget--background-color, #FFF);
 
   .as-histogram-widget__wrapper {
+    display: flex;
     position: relative;
+    flex: 1;
   }
 
   .as-histogram-widget__clear {
     margin-top: get-spacing(2);
   }
 
-  .as-histogram-widget__tooltip {
-    @extend .as-tooltip;
-    position: absolute;
-    opacity: 0;
-
-    &::after {
-      opacity: 0;
-    }
-  }
-
-  svg {
-    display: block;
+  .figure {
+    $basePaddingLeft: 30;
+    box-sizing: border-box;
+    flex: 1;
     width: 100%;
+    min-height: 0;
+    padding: 18px 8px 17px #{$basePaddingLeft}px;
     overflow: visible;
+
+    &--has-x-label {
+      margin-bottom: 25px;
+    }
+
+    &--has-y-label {
+      padding-left: #{$basePaddingLeft + 25}px;
+    }
+
+    text {
+      fill: var(--as--color--type-01);
+    }
 
     .brush {
       .selection {
@@ -38,44 +52,23 @@ as-histogram-widget {
     }
 
     .bar {
-      transition: all 0.3s linear;
       opacity: 0.7;
       cursor: pointer;
     }
 
-    .xAxis {
-      .domain {
-        display: none;
-      }
+    @import '../common/y-axis/as-y-axis.scss';
 
+    .plot {
+      rect {
+        cursor: pointer;
+      }
+    }
+
+    .x-axis {
+      .domain,
       .tick {
-        line {
-          display: none;
-        }
-      }
-    }
-
-    .yAxis {
-      .domain {
         display: none;
       }
-    }
-
-    .yAxis .tick {
-      line {
-        stroke: var(--as-color-type-02, #{$color-type-02});
-        opacity: 0.1;
-      }
-
-      &:first-of-type {
-        line {
-          opacity: 0.5;
-        }
-      }
-    }
-
-    text {
-      fill: $color-type-01;
     }
 
     .handle--wrapper {
@@ -101,7 +94,7 @@ as-histogram-widget {
     }
 
     .bottomline {
-      stroke: var(--as-color-primary, #{$color-primary});
+      stroke: var(--as--color--primary, #{$color-primary});
     }
   }
 
@@ -113,29 +106,30 @@ as-histogram-widget {
 
   .x-label,
   .y-label {
-    color: $color-type-01;
-    font: $font-caption;
+    color: var(--as--color--type-01);
+    font: var(--as--font--caption);
     text-align: center;
   }
 
-  .y-label-wrapper {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: $label-height;
-    left: 0;
-    touch-action: none;
-  }
-
   .x-label {
-    position: relative;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .y-label {
     position: absolute;
     top: calc(50% - #{$label-height});
-    left: -12px;
+    left: 0;
     transform: rotate(-90deg);
     transform-origin: center;
+  }
+
+  [role="tooltip"] {
+    display: none;
+    position: fixed;
+    transform: translate(-50%, -120%);
+    pointer-events: none;
   }
 }

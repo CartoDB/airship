@@ -1,5 +1,6 @@
 .as-sidebar {
-  --sidebar-bg-color: var(--as-color-ui-01, #{$color-ui-01});
+  --as-sidebar--background-color: var(--as--color--ui-01);
+
   display: flex;
   position: absolute;
   z-index: 2;
@@ -11,7 +12,7 @@
   overflow-y: auto;
   transition: opacity 0.3s;
   opacity: 0;
-  background-color: var(--sidebar-bg-color);
+  background-color: var(--as-sidebar--background-color);
 
   &--left {
     left: -100%;

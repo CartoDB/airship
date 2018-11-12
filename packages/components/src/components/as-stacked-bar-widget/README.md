@@ -198,3 +198,18 @@ lang: javascript
 ---
 stackedBar.errorDescription = 'There is no internet connection.';
 ```
+
+#### **responsive**: boolean=true
+ Use this attribute to decide if the widget should be rerendered on window resize. 
+ Defaults to `true`.
+
+```code
+lang: html
+---
+<as-stacked-bar-widget responsive="false"></as-stacked-bar-widget>
+```
+```code
+lang: javascript
+---
+stackedBar.responsive = false;
+```

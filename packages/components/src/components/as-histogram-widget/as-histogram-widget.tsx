@@ -1,5 +1,4 @@
-import { Component, Element, Event, EventEmitter, Method, Prop, State, Watch } from '@stencil/core';
-import { Axis } from 'd3-axis';
+import { Component, Element, Event, EventEmitter, Method, Prop } from '@stencil/core';
 import { BrushBehavior, brushX } from 'd3-brush';
 import { ScaleLinear } from 'd3-scale';
 import {
@@ -13,23 +12,20 @@ import readableNumber from '../../utils/readable-number';
 import { shadeOrBlend } from '../../utils/styles';
 import contentFragment from '../common/content.fragment';
 import { HistogramColorRange, HistogramData } from './interfaces';
+import { Container } from './types/Container';
 import dataService from './utils/data.service';
 import drawService from './utils/draw.service';
 
-const CUSTOM_HANDLE_SIZE = 5; // TODO: width or height?
-const DEFAULT_BAR_COLOR = 'var(--as-color-primary, #1785FB)';
-const DEFAULT_SELECTED_BAR_COLOR = 'var(--as-color-complementary, #47DB99)';
-const HEIGHT = 125;
+const DEFAULT_BAR_COLOR = 'var(--as--color--primary, #1785FB)';
+const DEFAULT_SELECTED_BAR_COLOR = 'var(--as--color--complementary, #47DB99)';
 const BARS_SEPARATION = 1;
-const MARGIN = {
-  BOTTOM: 15,
-  LEFT: 30,
-  RIGHT: 3,
-  TOP: 5,
-  YAxis: 20
-};
+const CUSTOM_HANDLE_WIDTH = BARS_SEPARATION + 4;
 const CUSTOM_HANDLE_HEIGHT = 28;
-const CUSTOM_HANDLE_Y_COORD = HEIGHT + MARGIN.TOP - (CUSTOM_HANDLE_HEIGHT / 2);
+
+// we could use getComputedStyle instead of these
+const X_PADDING = 38;
+const Y_PADDING = 36;
+const LABEL_PADDING = 25;
 
 /**
  * Histogram Widget
@@ -161,6 +157,12 @@ export class HistogramWidget {
    */
   @Prop() public noDataBodyMessage: string = 'There is no data to display.';
 
+  /**
+   * Use this attribute to decide if the widget should be rerendered on window resize.
+   * Defaults to true.
+   */
+  @Prop() public responsive: boolean = true;
+
   @Element() private el: HTMLElement;
 
   /**
@@ -172,24 +174,28 @@ export class HistogramWidget {
   @Event()
   private selectionChanged: EventEmitter<number[]>;
 
-  @State()
   private tooltip: string;
 
-  private container: Selection<HTMLElement, {}, null, undefined>;
+  private container: Container;
   private tooltipElement: HTMLElement;
 
   private xScale: ScaleLinear<number, number>;
   private yScale: ScaleLinear<number, number>;
-  private yAxis: Axis<{ valueOf(): number }>;
-  private xAxis: Axis<{ valueOf(): number }>;
-  private barsContainer: Selection<BaseType, {}, null, undefined>;
+  private barsContainer: Container;
   private brush: BrushBehavior<{}>;
-  private brushArea: Selection<BaseType, {}, null, undefined>;
+  private brushArea: Container;
   private customHandlers: Selection<BaseType, { type: string }, BaseType, {}>;
   private bottomLine: Selection<BaseType, {}, BaseType, {}>;
   private selection: number[] = null;
 
-  private chartWidth: number;
+  private width: number;
+  private height: number;
+  private prevWidth: number;
+  private prevHeight: number;
+
+  constructor() {
+    this._resizeRender = this._resizeRender.bind(this);
+  }
 
   /**
    * Default formatting function. Makes the value a readable number and
@@ -236,52 +242,27 @@ export class HistogramWidget {
     this.setSelection(null);
   }
 
-  @Watch('data')
-  public onDataChanged() {
-    if (!this._hasDataToDisplay()) {
-      return;
-    }
-    const xDomain = dataService.getXDomain(this.data);
-    const yDomain = dataService.getYDomain(this.data);
-
-    drawService.updateAxes(
-      this.container, this.xScale, this.yScale, this.xAxis, this.yAxis, xDomain, yDomain);
-
-    drawService.renderBars(
-      this.data, this.yScale, this.chartWidth, MARGIN, this.barsContainer, HEIGHT, BARS_SEPARATION, this.color);
-
-    if (this.selection === null) {
-      return;
-    }
-
-    if (this._selectionInData(this.selection)) {
-      this._setSelection(this.selection);
-    } else {
-      this.clearSelection();
-    }
-  }
-
-  @Watch('color')
-  public onColorChanged() {
-    drawService.renderBars(
-      this.data, this.yScale, this.chartWidth, MARGIN, this.barsContainer, HEIGHT, BARS_SEPARATION, this.color);
-  }
-
   public componentDidLoad() {
     if (!this._hasDataToDisplay()) {
       return;
     }
-    // This is probably not necessary for production, but HMR causes this method
-    // to be called on each file change
-    this.container.selectAll('*').remove();
 
     this._renderGraph();
   }
 
+  public componentDidUpdate() {
+    this._renderGraph();
+  }
+
+  public componentWillLoad() {
+    addEventListener('resize', this._resizeRender);
+  }
+
+  public componentDidUnload() {
+    removeEventListener('resize', this._resizeRender);
+  }
+
   public render() {
-    const spaceForYLabel = this.yLabel ? 25 : 0;
-    MARGIN.LEFT = spaceForYLabel ? MARGIN.LEFT + 25 : MARGIN.LEFT;
-    this.chartWidth = (this.el.offsetWidth - MARGIN.YAxis) - spaceForYLabel;
 
     return [
       this._renderHeader(),
@@ -289,10 +270,19 @@ export class HistogramWidget {
     ];
   }
 
+  private _resizeRender() {
+    this._renderGraph();
+  }
+
   private _renderContent() {
     const histogramClasses = {
       'as-histogram-widget__wrapper': true,
       'as-histogram-widget__wrapper--disabled': this.disableInteractivity
+    };
+    const svgClasses = {
+      'figure': true,
+      'figure--has-x-label': this.xLabel,
+      'figure--has-y-label': this.yLabel
     };
     return contentFragment(
       this.isLoading,
@@ -302,116 +292,158 @@ export class HistogramWidget {
       this.errorDescription,
       this.noDataBodyMessage,
       [
-      <div class={histogramClasses}>
-        {this._renderTooltip()}
-        <svg ref={(ref: HTMLElement) => this.container = select(ref)}></svg>
-        {this._renderLabels()}
-      </div>,
-      this.showClear && !this.disableInteractivity ? this._renderClearBtn() : ''
+        <div class={histogramClasses}>
+          <svg class={svgClasses} ref={(ref: SVGElement) => this.container = select(ref)}></svg>
+          {this._renderLabels()}
+          {this._renderTooltip()}
+        </div>,
+        this.showClear && !this.disableInteractivity ? this._renderClearBtn() : ''
       ]);
   }
 
   private _renderGraph() {
-    this._renderYAxis();
-    this._renderXAxis();
+    requestAnimationFrame(() => {
+      const bbox = this.container.node().getBoundingClientRect();
+      const firstRender = this.prevWidth === undefined || this.prevHeight === undefined;
+      this.prevWidth = this.width;
+      this.prevHeight = this.height;
+      this.width = bbox.width;
+      this.height = bbox.height;
+      const resizing = !firstRender && (this.prevWidth !== this.width || this.height !== this.prevHeight);
 
-    this.barsContainer = this.container
-      .append('g')
-      .attr('transform', `translate(${MARGIN.LEFT}, ${MARGIN.TOP})`);
+      this._renderYAxis();
+      this._renderXAxis();
 
-    this.brush = brushX()
-      .handleSize(BARS_SEPARATION + 4)
-      .extent([[MARGIN.LEFT, MARGIN.TOP], [this.chartWidth + MARGIN.LEFT, HEIGHT + MARGIN.TOP]])
-      .on('brush', this._onBrush.bind(this))
-      .on('end', this._onBrushEnd.bind(this));
-
-    if (!this.disableInteractivity) {
-      this.brushArea = this.container
-        .append('g')
-        .attr('class', 'brush')
-        .call(this.brush);
-
-      this.bottomLine = this.brushArea.append('line')
-        .attr('class', 'bottomline')
-        .attr('stroke-width', 4)
-        .attr('y1', HEIGHT + MARGIN.TOP)
-        .attr('y2', HEIGHT + MARGIN.TOP)
-        .style('opacity', 0)
-        .attr('pointer-events', 'none');
-
-      this.customHandlers = this.brushArea.selectAll('.handle--custom')
-        .data([{ type: 'w' }, { type: 'e' }])
-        .enter()
-        .append('g')
-        .attr('class', 'handle--wrapper');
-
-      this.customHandlers
-        .append('rect')
-        .attr('class', 'handle--custom')
-        .attr('rx', 2)
-        .attr('ry', 2);
-
-      const handleGrab = this.customHandlers
-        .append('g')
-        .attr('class', 'handle--grab');
-
-
-      for (let i = 0; i < 3; i++) {
-        handleGrab
-          .append('line')
-          .attr('x1', 2)
-          .attr('y1', i * 2)
-          .attr('x2', 4)
-          .attr('y2', i * 2)
-          .attr('class', 'grab-line');
+      if (this.container.select('.plot').empty()) {
+        this.barsContainer = this.container
+          .append('g');
+        this.barsContainer
+          .attr('class', 'plot');
       }
-    }
 
-    this.container.on('mousemove', () => {
-      const evt = d3event as MouseEvent;
-      const { clientX, clientY } = evt;
-      let anyHovered = false;
+      if (!this.disableInteractivity) {
+        if (!this.container.select('.brush').empty()) {
+          this.container.select('.brush').remove();
+        }
 
-      this.barsContainer.selectAll('rect')
-        .each((data: HistogramData, i, nodes) => {
-          const selected = this._isSelected(data);
-          const nodeSelection = select(nodes[i]);
-          const node = nodes[i] as Element;
-          const bb = node.getBoundingClientRect();
-          const isInsideBB = bb.left <= clientX &&
-            clientX <= bb.right &&
-            bb.top <= clientY &&
-            clientY <= bb.bottom;
+        this.brush = brushX()
+          .handleSize(CUSTOM_HANDLE_WIDTH)
+          .extent([[0, 0], [this.width - X_PADDING, this.height - Y_PADDING]])
+          .on('brush', this._onBrush.bind(this))
+          .on('end', this._onBrushEnd.bind(this));
 
-          if (isInsideBB) {
-            let color = selected ? this._toColor(this.selectedColor) : data.color || this._toColor(this.color);
-            color = shadeOrBlend(-0.16, color);
-            nodeSelection.style('fill', color);
-            this.tooltip = this.tooltipFormatter(data);
-            this._showTooltip(evt);
-            anyHovered = true;
-          } else {
-            nodeSelection.style('fill', selected ? this.selectedColor : data.color || this.color);
-          }
+        this.brushArea = this.container
+          .append('g');
+        this.brushArea
+          .attr('class', 'brush');
+
+        this.brushArea.call(this.brush);
+
+        this.bottomLine = this.brushArea.append('line')
+          .attr('class', 'bottomline')
+          .attr('stroke-width', 4)
+          .attr('y1', this.height - Y_PADDING)
+          .attr('y2', this.height - Y_PADDING)
+          .style('opacity', 0)
+          .attr('pointer-events', 'none');
+
+        this.customHandlers = this.brushArea.selectAll('.handle--custom')
+          .data([{ type: 'w' }, { type: 'e' }])
+          .enter()
+          .append('g')
+          .attr('class', 'handle--wrapper');
+
+        this.customHandlers
+          .append('rect')
+          .attr('class', 'handle--custom')
+          .attr('rx', 2)
+          .attr('ry', 2);
+
+        const handleGrab = this.customHandlers
+          .append('g')
+          .attr('class', 'handle--grab');
+
+
+        for (let i = 0; i < 3; i++) {
+          handleGrab
+            .append('line')
+            .attr('x1', 2)
+            .attr('y1', i * 2)
+            .attr('x2', 4)
+            .attr('y2', i * 2)
+            .attr('class', 'grab-line');
+        }
+      }
+
+      this.container.on('mousemove', () => {
+        const evt = d3event as MouseEvent;
+        const { clientX, clientY } = evt;
+        let anyHovered = false;
+
+        this.barsContainer.selectAll('rect')
+          .each((data: HistogramData, i, nodes) => {
+            const selected = this._isSelected(data);
+            const nodeSelection = select(nodes[i]);
+            const node = nodes[i] as Element;
+            const bb = node.getBoundingClientRect();
+            const isInsideBB = bb.left <= clientX &&
+              clientX <= bb.right &&
+              bb.top <= clientY &&
+              clientY <= bb.bottom;
+
+            if (isInsideBB) {
+              let color = selected ? this._toColor(this.selectedColor) : data.color || this._toColor(this.color);
+              color = shadeOrBlend(-0.16, color);
+              nodeSelection.style('fill', color);
+              this.tooltip = this.tooltipFormatter(data);
+              this._showTooltip(evt);
+              anyHovered = true;
+            } else {
+              nodeSelection.style('fill', selected ? this.selectedColor : data.color || this.color);
+            }
+          });
+
+        if (!anyHovered) {
+          this.tooltip = null;
+          this._hideTooltip();
+        }
+      })
+        .on('mouseout', () => {
+          this.tooltip = null;
+          this.barsContainer.selectAll('rect')
+            .style('fill', (data: HistogramData) => {
+              if (this._isSelected(data)) {
+                return this.selectedColor;
+              }
+              return data.color || this.color;
+            });
         });
 
-      if (!anyHovered) {
-        this.tooltip = null;
-      }
-    })
-      .on('mouseout', () => {
-        this.tooltip = null;
-        this.barsContainer.selectAll('rect')
-          .style('fill', (data: HistogramData) => {
-            if (this._isSelected(data)) {
-              return this.selectedColor;
-            }
-            return data.color || this.color;
-          });
-      });
+      drawService.renderBars(
+        this.data,
+        this.yScale,
+        this.container,
+        this.barsContainer,
+        BARS_SEPARATION,
+        this.color,
+        X_PADDING + (this.yLabel ? LABEL_PADDING : 0),
+        Y_PADDING,
+        resizing);
 
-    drawService.renderBars(
-      this.data, this.yScale, this.chartWidth, MARGIN, this.barsContainer, HEIGHT, BARS_SEPARATION, this.color);
+      this._updateSelection();
+    });
+  }
+
+  private _updateSelection() {
+    if (this.selection === null || this.disableInteractivity) {
+      return;
+    }
+
+    if (this._selectionInData(this.selection)) {
+      this._setSelection(this.selection);
+    } else {
+      this.clearSelection();
+    }
   }
 
   private _adjustSelection(values: number[] | null): number[] | null {
@@ -466,7 +498,7 @@ export class HistogramWidget {
 
     // Convert to our data's domain
     const d0 = evt.selection
-      .map((e) => Math.round(this.xScale.invert(e - MARGIN.LEFT)));
+      .map((e) => Math.round(this.xScale.invert(e)));
 
     this._setSelection(d0);
   }
@@ -492,6 +524,7 @@ export class HistogramWidget {
 
     this.selection = adjustedSelection;
     this._updateHandles(adjustedSelection);
+    this._hideTooltip();
   }
 
   private _selectionInData(selection: number[]) {
@@ -524,17 +557,18 @@ export class HistogramWidget {
       return;
     }
 
+    const yCoord = this.height - Y_PADDING;
+
     // Convert back to space coordinates
     const valuesSpace = values
-      .map(this.xScale)
-      .map((e) => e + MARGIN.LEFT);
+      .map(this.xScale);
 
     this.brushArea.call(this.brush.move, valuesSpace);
 
     this.customHandlers
       .style('opacity', 1)
       .attr('transform', (_d, i) => {
-        return `translate(${(valuesSpace[i] - (CUSTOM_HANDLE_SIZE / 2) - 1)},${CUSTOM_HANDLE_Y_COORD})`;
+        return `translate(${(valuesSpace[i] - (CUSTOM_HANDLE_WIDTH / 2) - 1)},${yCoord - CUSTOM_HANDLE_HEIGHT / 2})`;
       });
     this.bottomLine
       .style('opacity', 1)
@@ -552,21 +586,25 @@ export class HistogramWidget {
   }
 
   private _renderYAxis() {
-    const barsWidth = this.chartWidth - MARGIN.YAxis;
     const yDomain = dataService.getYDomain(this.data);
-    const [yScale, yAxis] = drawService.renderYAxis(this.container, yDomain, barsWidth, MARGIN, HEIGHT);
+    const yAxis = drawService.renderYAxis(
+      this.container,
+      yDomain,
+      X_PADDING + (this.yLabel ? LABEL_PADDING : 0),
+      Y_PADDING);
 
-    this.yScale = yScale;
-    this.yAxis = yAxis;
+    this.yScale = yAxis.scale();
   }
 
   private _renderXAxis() {
-    const barsWidth = this.chartWidth - MARGIN.YAxis;
     const xDomain = dataService.getXDomain(this.data);
-    const [xScale, xAxis] = drawService.renderXAxis(this.container, xDomain, barsWidth, MARGIN, HEIGHT);
+    const xAxis = drawService.renderXAxis(
+      this.container,
+      xDomain,
+      X_PADDING + (this.yLabel ? LABEL_PADDING : 0),
+      Y_PADDING);
 
-    this.xScale = xScale;
-    this.xAxis = xAxis;
+    this.xScale = xAxis.scale();
   }
 
   private _getTooltipPosition(mouseX: number, mouseY: number) {
@@ -602,12 +640,18 @@ export class HistogramWidget {
       return;
     }
 
-    const [x, y] = this._getTooltipPosition(event.layerX, event.layerY);
+    const [x, y] = this._getTooltipPosition(event.clientX, event.clientY);
 
     select(this.tooltipElement)
-      .style('opacity', '1')
-      .style('left', `${x + 10}px`)
-      .style('top', `${y + 20}px`);
+      .style('display', 'inline')
+      .style('left', `${x}px`)
+      .style('top', `${y}px`)
+      .text(this.tooltip);
+  }
+
+  private _hideTooltip() {
+    select(this.tooltipElement)
+      .style('display', 'none');
   }
 
   private _renderHeader() {
@@ -629,28 +673,28 @@ export class HistogramWidget {
     if (this.tooltip === null) {
       return;
     }
-
     return (<span
       ref={(ref: HTMLElement) => this.tooltipElement = ref}
       role='tooltip'
-      class='as-histogram-widget__tooltip'>
-      {this.tooltip}
+      class='as-tooltip as-tooltip--top'>
     </span>);
   }
 
   private _renderClearBtn() {
     return (
-      <button
-        class='as-btn as-btn--primary as-btn--s as-histogram-widget__clear'
-        onClick={() => this._setSelection(null)}>Clear selection
-      </button>
+      <div>
+        <button
+          class='as-btn as-btn--primary as-btn--s as-histogram-widget__clear'
+          onClick={() => this._setSelection(null)}>Clear selection
+        </button>
+      </div>
     );
   }
 
   private _renderLabels() {
 
     return [
-      this.yLabel ? <div class='y-label-wrapper'><div class='y-label'>{this.yLabel}</div> </div> : '',
+      this.yLabel ? <div class='y-label'>{this.yLabel}</div> : '',
       this.xLabel ? <div class='x-label'>{this.xLabel}</div> : '',
     ];
   }

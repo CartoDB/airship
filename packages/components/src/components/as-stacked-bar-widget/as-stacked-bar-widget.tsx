@@ -1,4 +1,4 @@
-import { Component, Prop, Watch } from '@stencil/core';
+import { Component, Element, Prop, Watch } from '@stencil/core';
 import contentFragment from '../common/content.fragment';
 import { ColorMap } from './types/ColorMap';
 import { Metadata } from './types/Metadata';
@@ -87,6 +87,17 @@ export class StackedBarWidget {
   @Prop() public noDataBodyMessage: string = 'There is no data to display.';
 
   /**
+   * Use this attribute to decide if the widget should be rerendered on window resize.
+   * Defaults to true.
+   */
+  @Prop() public responsive: boolean = true;
+
+  /**
+   * Store a reference to the element to force repaint on window resize.
+   */
+  @Element() public el: HTMLStencilElement;
+
+  /**
    * Hold a reference to the tooltip to show on mouseover
    */
   private tooltip: HTMLElement;
@@ -106,18 +117,9 @@ export class StackedBarWidget {
    */
   private colorMap: ColorMap;
 
-  public render() {
-    return [
-      <as-widget-header
-        header={this.heading}
-        subheader={this.description}
-        is-loading={this.isLoading}
-        is-empty={this._isEmpty()}
-        error={this.error}
-        no-data-message={this.noDataHeaderMessage}>
-      </as-widget-header>,
-      this._renderContent()
-    ];
+  public constructor() {
+    // Bind here so we can remove the event listener properly
+    this._resizeListener = this._resizeListener.bind(this);
   }
 
   /**
@@ -148,26 +150,45 @@ export class StackedBarWidget {
     return value;
   }
 
+  public render() {
+    return [
+      <as-widget-header
+        header={this.heading}
+        subheader={this.description}
+        is-loading={this.isLoading}
+        is-empty={this._isEmpty()}
+        error={this.error}
+        no-data-message={this.noDataHeaderMessage}>
+      </as-widget-header>,
+      this._renderContent()
+    ];
+  }
+
   public componentDidLoad() {
-    this._drawColumns();
+    this._drawFigure();
   }
 
   public componentDidUpdate() {
-    this._drawColumns();
+    this._drawFigure();
   }
 
   public componentWillLoad() {
     this._setupState();
+    addEventListener('resize', this._resizeListener);
   }
 
   public componentWillUpdate() {
     this._setupState();
   }
 
+  public componentDidUnload() {
+    removeEventListener('resize', this._resizeListener);
+  }
+
   @Watch('data')
   public _onDataChanged() {
     this._setupState();
-    this._drawColumns();
+    this._drawFigure();
   }
 
   private _setupState() {
@@ -184,29 +205,39 @@ export class StackedBarWidget {
       this.errorDescription,
       this.noDataBodyMessage,
       [
-      <svg class='figure' ref={(ref: SVGElement) => this.container = ref}></svg> ,
-      <as-y-axis from={this.scale[0]} to={this.scale[1]}></as-y-axis> ,
-      this._renderLegend(),
-      <span ref={(ref) => this.tooltip = ref} role='tooltip' class='as-tooltip as-tooltip--top' > TOOLTIP</span>
+        <svg class='figure' ref={(ref: SVGElement) => this.container = ref}></svg>,
+        this._renderLegend(),
+        <span ref={(ref) => this.tooltip = ref} role='tooltip' class='as-tooltip as-tooltip--top' > TOOLTIP</span>
       ]);
   }
 
-  private _drawColumns() {
+  private _drawFigure() {
+    requestAnimationFrame(() => {
+      const yAxis = this._drawYAxis();
+      this._drawColumns(yAxis);
+    });
+  }
+
+  private _drawColumns(yAxisElement: SVGGElement) {
     if (this.isLoading || this.error || this._isEmpty()) {
       return;
     }
     const Y_AXIS_LABEL_WIDTH = 25; // We draw on the right of the yAxis labels
     const COLUMN_MARGIN = 4;
-    const WIDTH = this.container.querySelector('.y-axis').getBoundingClientRect().width - Y_AXIS_LABEL_WIDTH - 3;
+    const WIDTH = yAxisElement.getBoundingClientRect().width - Y_AXIS_LABEL_WIDTH - COLUMN_MARGIN;
     const COLUMN_WIDTH = (WIDTH / this.data.length) - COLUMN_MARGIN;
     const data = dataService.rawDataToStackBarData(this.data, this.scale, this.colorMap, COLUMN_WIDTH, COLUMN_MARGIN);
 
     drawService.drawColumns(this.container, data, this.mouseOver, this.mouseLeave);
   }
 
+  private _drawYAxis(): SVGGElement {
+    return drawService.drawYAxis(this.container, this.scale);
+  }
+
   private _renderLegend() {
     if (this.showLegend && this.colorMap) {
-      const legendData = this._createLegendData(this.metadata, this.colorMap);
+      const legendData = dataService.createLegendData(this.metadata, this.colorMap);
       return <as-legend data={legendData}></as-legend>;
     }
   }
@@ -216,22 +247,13 @@ export class StackedBarWidget {
     return colorMapFactory.create(keys, metadata);
   }
 
-  private _createLegendData(metadata: Metadata, colorMap: ColorMap) {
-    if (!metadata) {
-      return colorMap;
-    }
-    const legendData = {};
-    for (const key in colorMap) {
-      if (metadata[key].label) {
-        legendData[metadata[key].label] = colorMap[key];
-      } else {
-        legendData[key] = colorMap[key];
-      }
-    }
-    return legendData;
-  }
-
   private _isEmpty(): boolean {
     return !this.data || !this.data.length;
+  }
+
+  private _resizeListener() {
+    if (this.responsive) {
+      this.el.forceUpdate();
+    }
   }
 }

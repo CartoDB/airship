@@ -1,3 +1,3 @@
 import { BaseType, Selection } from 'd3-selection';
 
-export type Container = Selection<BaseType, {}, null, undefined>;
+export type Container = Selection<SVGElement, {}, null, undefined>;

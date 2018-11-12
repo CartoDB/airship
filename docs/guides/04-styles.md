@@ -78,16 +78,16 @@ CSS Variables can be accessed and overriden in runtime using JavaScript using th
 
 ```js
 // Get variable from inline styles
-element.style.getPropertyValue('--as-color-primary');
+element.style.getPropertyValue('--as--color--primary');
 
 // Set variable on inline styles
-element.style.setProperty('--as-color-primary', javaScriptVariable);
+element.style.setProperty('--as--color--primary', javaScriptVariable);
 ```
 
 We recommend you to set CSS Variables in `document.body` to be available throughout the application.
 ```js
 // Set variable on document.body
-document.body.style.setProperty('--as-color-primary', javaScriptVariable);
+document.body.style.setProperty('--as--color--primary', javaScriptVariable);
 ```
 
 There are many properties that can be customizable to create your own look and feel for your application, please dive into each element and component documentation to know all the properties that you can override
@@ -105,14 +105,13 @@ $color-primary: #FABADA;
 ```
 
 ```css
-// Your own variables
+/** Your own variables **/
 @import 'my-variables';
 
-// Airship
-// Whole Bundle
+/** Whole bundle **/
 @import '~@carto/airship-style';
 
-// Custom importing of styles
+/** Custom importing of styles **/
 @import '~@carto/airship-style/src/core/variables/variables';
 @import '~@carto/airship-style/src/tabs/tabs';
 ```

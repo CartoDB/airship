@@ -6,7 +6,7 @@
   align-items: flex-start;
   padding: get-spacing(3);
   border-radius: 0;
-  background-color: var(--as-color-ui-04, #{$color-ui-04});
+  background-color: var(--as--color--ui-04);
   font: $font-body;
 
   &__content {

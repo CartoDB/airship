@@ -83,14 +83,14 @@ showSource: true
 
 Badge colors can be modified via CSS variables. There are five specific background color for badges.
 
-- `--as-color-badge-gray`
-- `--as-color-badge-green`
-- `--as-color-badge-blue`
-- `--as-color-badge-pink`
-- `--as-color-badge-yellow`
+- `--as--color--badge-gray`
+- `--as--color--badge-green`
+- `--as--color--badge-blue`
+- `--as--color--badge-pink`
+- `--as--color--badge-yellow`
 
 They can be modified globally:
 
 ```
-document.documentElement.style.setProperty('--as-color-badge-green', '#C3DA8C')
+document.documentElement.style.setProperty('--as--color--badge-green', '#C3DA8C')
 ```

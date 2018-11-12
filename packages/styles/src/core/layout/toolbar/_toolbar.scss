@@ -1,12 +1,12 @@
 @import '_actions';
 
 .as-toolbar {
-  --toolbar-bg-color: var(--as-color-secondary, #{$color-secondary});
+  --as-toolbar--background-color: var(--as--color--secondary);
 
   display: flex;
   justify-content: space-between;
   height: $toolbar-size;
-  background-color: var(--toolbar-bg-color);
+  background-color: var(--as-toolbar--background-color);
 
   &__toggle {
     border: none;
@@ -20,13 +20,13 @@
     min-height: $toolbar-size;
     margin: 0;
     padding: 0 get-spacing(3);
-    color: var(--as-color-type-04, #{$color-type-04});
+    color: var(--as--color--type-04);
     font: $font-body;
     cursor: pointer;
   }
 
   a {
-    color: var(--as-color-ui-01, #{$color-ui-01});
+    color: var(--as--color--ui-01);
     text-decoration: none;
   }
 

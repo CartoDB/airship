@@ -1,4 +1,4 @@
-import { Component, Element, Event, EventEmitter, Method, Prop, State } from '@stencil/core';
+import { Component, Event, EventEmitter, Method, Prop, State } from '@stencil/core';
 import readableNumber from '../../utils/readable-number';
 import { shadeOrBlend } from '../../utils/styles';
 import contentFragment from '../common/content.fragment';
@@ -138,8 +138,6 @@ export class CategoryWidget {
 
   @State() private selectedCategories: string[] = [];
 
-  @Element() private el: HTMLElement;
-
   /**
    * Default formatting function. Makes the value a readable number and
    * converts it into a string. Useful to compose with your own formatting
@@ -160,12 +158,6 @@ export class CategoryWidget {
   @Method()
   public async getSelectedCategories() {
     return this.selectedCategories;
-  }
-
-  public componentWillLoad() {
-    this.el.style.setProperty(
-      '--category-bar-color',
-      this.defaultBarColor || `var(--as-color-complementary, #47db99)`);
   }
 
   /**
@@ -258,7 +250,7 @@ export class CategoryWidget {
     const barColor = this._getBarColor(category.color, { isSelected, isOther });
 
     const progressStyles = {
-      backgroundColor: barColor ? barColor : `var(--category-bar-color)`,
+      backgroundColor: barColor ? barColor : `var(--category-bar--color)`,
       width: `${(category.value / maximumValue) * 100}%`
     };
 

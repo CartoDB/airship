@@ -272,6 +272,10 @@ export namespace Components {
     */
     'noDataHeaderMessage': string;
     /**
+    * Use this attribute to decide if the widget should be rerendered on window resize. Defaults to true.
+    */
+    'responsive': boolean;
+    /**
     * Override color for the selected histogram bars
     */
     'selectedColor': string;
@@ -349,6 +353,10 @@ export namespace Components {
     * Fired when user update or clear the widget selection.
     */
     'onSelectionChanged'?: (event: CustomEvent<number[]>) => void;
+    /**
+    * Use this attribute to decide if the widget should be rerendered on window resize. Defaults to true.
+    */
+    'responsive'?: boolean;
     /**
     * Override color for the selected histogram bars
     */
@@ -553,6 +561,10 @@ export namespace Components {
     */
     'noDataHeaderMessage': string;
     /**
+    * Use this attribute to decide if the widget should be rerendered on window resize. Defaults to true.
+    */
+    'responsive': boolean;
+    /**
     * Boolean flag to control legend visibility. Defaults: true
     */
     'showLegend': boolean;
@@ -606,6 +618,10 @@ export namespace Components {
     * Message shown in header when no data is available
     */
     'noDataHeaderMessage'?: string;
+    /**
+    * Use this attribute to decide if the widget should be rerendered on window resize. Defaults to true.
+    */
+    'responsive'?: boolean;
     /**
     * Boolean flag to control legend visibility. Defaults: true
     */
@@ -752,6 +768,10 @@ export namespace Components {
     */
     'from': number;
     /**
+    * Use this attribute to decide if the widget should be rerendered on window resize Defaults to true
+    */
+    'responsive': boolean;
+    /**
     * Upper limit of the axis
     */
     'to': number;
@@ -761,6 +781,10 @@ export namespace Components {
     * Lower limit of the axis
     */
     'from'?: number;
+    /**
+    * Use this attribute to decide if the widget should be rerendered on window resize Defaults to true
+    */
+    'responsive'?: boolean;
     /**
     * Upper limit of the axis
     */

@@ -1,11 +1,58 @@
-// -- Font families
+// fonts
+$font-jumbo: 72px/80px var(--as--font-family--base);
+$font-display: 40px/56px var(--as--font-family--base);
+$font-title: 24px/32px var(--as--font-family--base);
+$font-subheader: 16px/24px var(--as--font-family--base);
+$font-body: 12px/20px var(--as--font-family--base);
+$font-caption: 10px/12px var(--as--font-family--base);
+
+// font-family
 $font-family-base: "Roboto", sans-serif;
 $font-family-mono: "Overpass Mono", sans-serif;
 
-// -- Fonts
-$font-jumbo: 72px/80px var(--font-family-base, #{$font-family-base});
-$font-display: 40px/56px var(--font-family-base, #{$font-family-base});
-$font-title: 24px/32px var(--font-family-base, #{$font-family-base});
-$font-subheader: 16px/24px var(--font-family-base, #{$font-family-base});
-$font-body: 12px/20px var(--font-family-base, #{$font-family-base});
-$font-caption: 10px/12px var(--font-family-base, #{$font-family-base});
+// font-size
+$font-size-01: 10px;
+$font-size-02: 12px;
+$font-size-03: 16px;
+$font-size-04: 24px;
+$font-size-05: 40px;
+$font-size-06: 72px;
+
+// line-height
+$line-height-01: 12px;
+$line-height-02: 20px;
+$line-height-03: 24px;
+$line-height-04: 32px;
+$line-height-05: 56px;
+$line-height-06: 80px;
+
+// Export as a mixing to include under the :root selector in the core.scss file
+@mixin typography-vars {
+  // font
+  --as--font--caption: var(--as--size--font-01)/var(--as--size--line-height-01) var(--as--font-family--base);
+  --as--font--body: var(--as--size--font-02)/var(--as--size--line-height-02) var(--as--font-family--base);
+  --as--font--subheader: var(--as--size--font-03)/var(--as--size--line-height-03) var(--as--font-family--base);
+  --as--font--title: var(--as--size--font-04)/var(--as--size--line-height-04) var(--as--font-family--base);
+  --as--font--display: var(--as--size--font-05)/var(--as--size--line-height-05) var(--as--font-family--base);
+  --as--font--jumbo: var(--as--size--font-06)/var(--as--size--line-height-06) var(--as--font-family--base);
+
+  // font-family
+  --as--font-family--base: #{$font-family-base};
+  --as--font-family--mono: #{$font-family-mono};
+
+  // font-size
+  --as--size--font-01: #{$font-size-01};
+  --as--size--font-02: #{$font-size-02};
+  --as--size--font-03: #{$font-size-03};
+  --as--size--font-04: #{$font-size-04};
+  --as--size--font-05: #{$font-size-05};
+  --as--size--font-06: #{$font-size-06};
+
+  // line-height
+  --as--size--line-height-01: #{$line-height-01};
+  --as--size--line-height-02: #{$line-height-02};
+  --as--size--line-height-03: #{$line-height-03};
+  --as--size--line-height-04: #{$line-height-04};
+  --as--size--line-height-05: #{$line-height-05};
+  --as--size--line-height-06: #{$line-height-06};
+}

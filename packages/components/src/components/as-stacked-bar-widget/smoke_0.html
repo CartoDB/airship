@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Smoke 0</title>
+  <link rel="stylesheet" href="/packages/styles/dist/airship.css">
+  <link rel="stylesheet" href="/packages/icons/dist/icons.css">
+  <script src="/packages/components/dist/airship.js"></script>
+
+  <style>
+    body {
+      /* TODO: this should be the default color */
+      --widget-background-color: transparent;
+    }
+
+    as-infowindow {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+    }
+
+  </style>
+</head>
+
+<body class="as-app-body as-app">
+
+  <as-toolbar>
+    <div class="as-toolbar__item">
+      <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzJweCIgaGVpZ2h0PSIzMnB4IiB2aWV3Qm94PSI3NjIgLTU4IDMyIDMyIiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPgogIDxnIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDc2Mi4wMDAwMDAsIC01OC4wMDAwMDApIj4KICAgIDxjaXJjbGUgY2xhc3M9IkhhbG8iIGZpbGw9IiNGRkZGRkYiIG9wYWNpdHk9IjAuMiIgY3g9IjE2IiBjeT0iMTYiIHI9IjE2Ij48L2NpcmNsZT4KICAgIDxjaXJjbGUgY2xhc3M9InBvaW50IiBmaWxsPSIjRkZGRkZGIiBjeD0iMTYiIGN5PSIxNiIgcj0iNS41Ij48L2NpcmNsZT4KICA8L2c+Cjwvc3ZnPgo="
+        alt="Logo" />
+    </div>
+    <a href="#" class="as-toolbar__item">Link</a>
+    <p class="as-toolbar__item">Paragraph</p>
+    <i class="as-toolbar__item as-icon-points"></i>
+  </as-toolbar>
+
+  <div class="as-content">
+    <aside class="as-sidebar as-sidebar--left">
+      <div class="as-container">
+        <as-stacked-bar-widget id="widget-1" show-legend="true" heading="Star Wars Revenue" description="Description"></as-stacked-bar-widget>
+        <script>
+          const widget1 = document.querySelector('#widget-1');
+          widget1.data = [{
+              category: 'Star Wars Ep. IV: A New Hope',
+              values: {
+                dvd: 27229125,
+                blue: 3555058,
+              }
+            },
+            {
+              category: 'Star Wars Ep. V: The Empire Strikes Back',
+              values: {
+                dvd: 24928640,
+                blue: 2738207,
+              },
+            },
+            {
+              category: 'Star Wars Ep. VI: Return of the Jedi',
+              values: {
+                dvd: 23786454,
+                blue: 1908593,
+              }
+            }
+          ];
+
+          widget1.metadata = {
+            dvd: {
+              label: 'Domestic DVD Sales',
+              color: '#33ACEE'
+            },
+            blue: {
+              label: 'Domestic Blu-ray Sales',
+              color: '#EEC649'
+            }
+          }
+
+        </script>
+      </div>
+    </aside>
+
+    <main class="as-main">
+      <div class="as-map-area">
+        <div id="map"></div>
+        <div class="as-map-panels">
+          <div class="as-panel as-panel--top as-panel--right">
+            <as-stacked-bar-widget id="widget-3" show-legend="true" heading="Star Wars Revenue" description="Description"></as-stacked-bar-widget>
+            <script>
+              const widget3 = document.querySelector('#widget-3');
+
+              widget3.data = [{
+                  category: 'Star Wars Ep. IV: A New Hope',
+                  values: {
+                    dvd: 27229125,
+                    blue: 3555058,
+                  }
+                },
+                {
+                  category: 'Star Wars Ep. V: The Empire Strikes Back',
+                  values: {
+                    dvd: 24928640,
+                    blue: 2738207,
+                  },
+                },
+                {
+                  category: 'Star Wars Ep. VI: Return of the Jedi',
+                  values: {
+                    dvd: 23786454,
+                    blue: 1908593,
+                  }
+                }
+              ];
+
+              widget3.metadata = {
+                dvd: {
+                  label: 'Domestic DVD Sales',
+                  color: '#33ACEE'
+                },
+                blue: {
+                  label: 'Domestic Blu-ray Sales',
+                  color: '#EEC649'
+                }
+              };
+
+            </script>
+          </div>
+        </div>
+      </div>
+      <footer class="as-map-footer as-bg--complementary">
+        <div class="as-container">
+          <as-stacked-bar-widget id="widget-0" show-legend="true" heading="Star Wars Revenue" description="Description"></as-stacked-bar-widget>
+        </div>
+        <script>
+          const widget0 = document.querySelector('#widget-0');
+          widget0.data = [{
+              category: 'Star Wars Ep. IV: A New Hope',
+              values: {
+                dvd: 27229125,
+                blue: 3555058,
+              }
+            },
+            {
+              category: 'Star Wars Ep. V: The Empire Strikes Back',
+              values: {
+                dvd: 24928640,
+                blue: 2738207,
+              },
+            },
+            {
+              category: 'Star Wars Ep. VI: Return of the Jedi',
+              values: {
+                dvd: 23786454,
+                blue: 1908593,
+              }
+            }
+          ];
+
+          widget0.metadata = {
+            dvd: {
+              label: 'Domestic DVD Sales',
+              color: '#33ACEE'
+            },
+            blue: {
+              label: 'Domestic Blu-ray Sales',
+              color: '#EEC649'
+            }
+          }
+
+        </script>
+      </footer>
+    </main>
+  </div>
+</body>
+
+</html>
