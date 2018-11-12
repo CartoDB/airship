@@ -47,7 +47,7 @@ export class Tabs {
   }
 
   private _parseChildren(): HTMLDivElement[] {
-    return Array.from(this.element.querySelectorAll('[role="tabpanel"'));
+    return Array.from(this.element.querySelectorAll('[role="tabpanel"]'));
   }
 
   private _updateActiveTab(children: HTMLDivElement[]) {
