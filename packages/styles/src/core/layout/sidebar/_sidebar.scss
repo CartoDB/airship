@@ -13,12 +13,14 @@
   transition: opacity 0.3s;
   opacity: 0;
   background-color: var(--as-sidebar--background-color);
+  touch-action: none;
 
   &--left {
     order: -1;
     box-shadow: rgba($color-type-01, 0.16) 1px 0 4px 0;
 
     &.as-sidebar--visible {
+      touch-action: auto;
       opacity: 1;
     }
   }
@@ -28,6 +30,7 @@
     box-shadow: rgba($color-type-01, 0.16) 0 1px 4px 0;
 
     &.as-sidebar--visible {
+      touch-action: auto;
       opacity: 1;
     }
   }
@@ -48,6 +51,7 @@
     width: 260px;
     height: 100%;
     opacity: 1;
+    touch-action: auto;
 
     &--l {
       width: 360px;
