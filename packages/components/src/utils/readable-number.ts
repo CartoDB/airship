@@ -1,3 +1,60 @@
+if (!String.prototype.repeat) {
+  String.prototype.repeat = function(count) {
+    'use strict';
+    if (this == null) {
+      throw new TypeError('can\'t convert ' + this + ' to object');
+    }
+    let str = '' + this;
+    count = +count;
+    if (count !== count) {
+      count = 0;
+    }
+    if (count < 0) {
+      throw new RangeError('repeat count must be non-negative');
+    }
+    if (count === Infinity) {
+      throw new RangeError('repeat count must be less than infinity');
+    }
+    count = Math.floor(count);
+    if (str.length === 0 || count === 0) {
+      return '';
+    }
+    // Ensuring count is a 31-bit integer allows us to heavily optimize the
+    // main part. But anyway, most current (August 2014) browsers can't handle
+    // strings 1 << 28 chars or longer, so:
+    // tslint:disable-next-line:no-bitwise
+    if (str.length * count >= 1 << 28) {
+      throw new RangeError('repeat count must not overflow maximum string size');
+    }
+    const maxCount = str.length * count;
+    count = Math.floor(Math.log(count) / Math.log(2));
+    while (count) {
+       str += str;
+       count--;
+    }
+    str += str.substring(0, maxCount - str.length);
+    return str;
+  };
+}
+
+if (!String.prototype.padStart) {
+  String.prototype.padStart = function padStart(targetLength, padString) {
+      // tslint:disable-next-line:no-bitwise
+      targetLength = targetLength >> 0; // truncate if number, or convert non-number to 0;
+      padString = String(typeof padString !== 'undefined' ? padString : ' ');
+      if (this.length >= targetLength) {
+          return String(this);
+      } else {
+          targetLength = targetLength - this.length;
+          if (targetLength > padString.length) {
+              // append to original to ensure we are longer than needed
+              padString += padString.repeat(targetLength / padString.length);
+          }
+          return padString.slice(0, targetLength) + String(this);
+      }
+  };
+}
+
 /**
  *  Convert long numbers to
  *  readizable numbers.
