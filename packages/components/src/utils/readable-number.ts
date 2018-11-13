@@ -74,5 +74,10 @@ export default function(value): string {
     return `${(roundedNumber / 1000).toFixed(1)}K`.padStart(5);
   }
 
-  return `${roundedNumber}`.padStart(5);
+  const roundedStr = `${roundedNumber}`;
+
+  // This seems backwards but it's an IE11 issue.
+  // padStart(5) looks weird for 0 - 9, looks better with padStart(7)
+  // 10 - 99 looks better with padStart(6)
+  return roundedStr.padStart(5 + Math.abs(roundedStr.length - 3));
 }
