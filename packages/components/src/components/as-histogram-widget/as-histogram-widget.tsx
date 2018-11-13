@@ -353,6 +353,7 @@ export class HistogramWidget {
           .append('g')
           .attr('class', 'handle--wrapper');
 
+        // We're setting width, height and transform here instead of CSS because of IE11
         this.customHandlers
           .append('rect')
           .attr('class', 'handle--custom')
@@ -363,7 +364,6 @@ export class HistogramWidget {
 
         const handleGrab = this.customHandlers
           .append('g')
-          .attr('class', 'handle--grab')
           .attr('transform', 'translate(0, 12)');
 
 
