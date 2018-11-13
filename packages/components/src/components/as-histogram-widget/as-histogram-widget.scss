@@ -76,17 +76,11 @@ as-histogram-widget {
     }
 
     .handle--custom {
-      width: 6px;
-      height: 28px;
       stroke-linecap: round;
       stroke: #1785FB;
       fill: white;
       cursor: ew-resize;
       pointer-events: none;
-    }
-
-    .handle--grab {
-      transform: translateY(12px);
     }
 
     .grab-line {

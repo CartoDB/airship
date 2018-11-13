@@ -19,7 +19,7 @@ import drawService from './utils/draw.service';
 const DEFAULT_BAR_COLOR = 'var(--as--color--primary, #1785FB)';
 const DEFAULT_SELECTED_BAR_COLOR = 'var(--as--color--complementary, #47DB99)';
 const BARS_SEPARATION = 1;
-const CUSTOM_HANDLE_WIDTH = BARS_SEPARATION + 4;
+const CUSTOM_HANDLE_WIDTH = BARS_SEPARATION + 5;
 const CUSTOM_HANDLE_HEIGHT = 28;
 
 // we could use getComputedStyle instead of these
@@ -328,7 +328,7 @@ export class HistogramWidget {
 
         this.brush = brushX()
           .handleSize(CUSTOM_HANDLE_WIDTH)
-          .extent([[0, 0], [this.width - X_PADDING, this.height - Y_PADDING]])
+          .extent([[0, 0], [this.width - X_PADDING, this.height - Y_PADDING + (CUSTOM_HANDLE_HEIGHT / 2)]])
           .on('brush', this._onBrush.bind(this))
           .on('end', this._onBrushEnd.bind(this));
 
@@ -356,12 +356,15 @@ export class HistogramWidget {
         this.customHandlers
           .append('rect')
           .attr('class', 'handle--custom')
+          .attr('width', CUSTOM_HANDLE_WIDTH)
+          .attr('height', CUSTOM_HANDLE_HEIGHT)
           .attr('rx', 2)
           .attr('ry', 2);
 
         const handleGrab = this.customHandlers
           .append('g')
-          .attr('class', 'handle--grab');
+          .attr('class', 'handle--grab')
+          .attr('transform', 'translate(0, 12)');
 
 
         for (let i = 0; i < 3; i++) {
