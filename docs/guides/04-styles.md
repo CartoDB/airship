@@ -133,6 +133,8 @@ To override a CSS class, create a selector matching the element you want to modi
 ```
 
 ### Browser Compatibility
-Airship styles are known to work in latest stable version of all major browsers, and Internet Explorer 11 on Windows.
+Airship styles are known to work in latest stable version of all major modern browsers. Internet Explorer is not supported.
 
 However, we use CSS Variables to provide customization, and they might not be available in all browsers. We provide a fallback for those browsers in order to give the same experience to users, but take it into account when customizing Airship.
+
+

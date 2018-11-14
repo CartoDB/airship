@@ -118,7 +118,7 @@ componentElement.forEach(element => element.style.setProperty('--panels-bg-color
 ```
 
 ### Customizing Airship with SASS variables
-Even though you have customization through CSS Variables, they might not be suitable for all cases. When supporting IE11, you cannot use CSS variables, and hence you might need to customize styles in build time.
+Even though you have customization through CSS Variables, they might not be suitable for all cases. If you cannot use CSS variables, and hence you might need to customize styles in build time.
 
 Our SASS variables are defined like this:
 ```css
