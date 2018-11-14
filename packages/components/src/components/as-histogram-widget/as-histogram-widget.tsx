@@ -724,13 +724,13 @@ export class HistogramWidget {
       const match = color.match(/var\((.+),(.+)\)/);
       const variable = match[1];
       const fallback = match[2] || '';
-      const a = getComputedStyle(this.el).getPropertyValue(variable).toLowerCase().trim();
+      const computed = getComputedStyle(this.el).getPropertyValue(variable).toLowerCase().trim();
 
-      if (a.length === 0) {
+      if (computed.length === 0) {
         return fallback.trim();
       }
 
-      return a;
+      return computed;
     }
     return color;
   }
