@@ -44,7 +44,7 @@
   // Media
   @media all and (min-width: $tablet-breakpoint) {
     display: flex;
-    position: initial;
+    position: static;
     top: 0;
     flex: 0 0 auto;
     width: 260px;
