@@ -67,7 +67,9 @@ export function getKeys(data: RawStackedbarData[]): string[] {
       keys.add(key);
     });
   }
-  return Array.from(keys);
+  const result = [];
+  keys.forEach((key) => result.push(key));
+  return result;
 }
 
 export function createLegendData(metadata: Metadata, colorMap: ColorMap) {
