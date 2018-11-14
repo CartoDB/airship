@@ -21,6 +21,10 @@
       right: 30px;
     }
 
+    .as-map-area {
+      background-color: #DEBFCD;
+    }
+
   </style>
 </head>
 
@@ -30,8 +34,16 @@
     <div class="as-toolbar__item">
       <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzJweCIgaGVpZ2h0PSIzMnB4IiB2aWV3Qm94PSI3NjIgLTU4IDMyIDMyIiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPgogIDxnIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDc2Mi4wMDAwMDAsIC01OC4wMDAwMDApIj4KICAgIDxjaXJjbGUgY2xhc3M9IkhhbG8iIGZpbGw9IiNGRkZGRkYiIG9wYWNpdHk9IjAuMiIgY3g9IjE2IiBjeT0iMTYiIHI9IjE2Ij48L2NpcmNsZT4KICAgIDxjaXJjbGUgY2xhc3M9InBvaW50IiBmaWxsPSIjRkZGRkZGIiBjeD0iMTYiIGN5PSIxNiIgcj0iNS41Ij48L2NpcmNsZT4KICA8L2c+Cjwvc3ZnPgo=" alt="Logo" />
     </div>
-    <a href="#" class="as-toolbar__item">Link</a>
-    <p class="as-toolbar__item">Paragraph</p>
+    <nav class="as-toolbar__actions">
+      <ul>
+        <li>
+          <a href="#" class="as-toolbar__item">Link</a>
+        </li>
+        <li>
+          <a href="#" class="as-toolbar__item">Paragraph</a>
+        </li>
+      </ul>
+    </nav>
     <i class="as-toolbar__item as-icon-points"></i>
   </as-toolbar>
 
@@ -58,28 +70,6 @@
           <div class="as-p--12" role="tabpanel" data-title="Dropdown">
             <h1 class="as-title">Dropdown</h1>
             <as-dropdown default-text="Dropdown" can-clear="true"></as-dropdown>
-
-            <script>
-              const dropdown = document.querySelector('as-dropdown');
-              dropdown.options = [{
-                  text: 'All',
-                  value: 'all'
-                },
-                {
-                  text: 'Open',
-                  value: 'open'
-                },
-                {
-                  text: 'Unfulfilled',
-                  value: 'unfulfilled'
-                },
-                {
-                  text: 'Unpaid',
-                  value: 'unpaid'
-                }
-              ];
-
-            </script>
           </div>
         </as-tabs>
       </div>
@@ -180,47 +170,71 @@
     <aside class="as-sidebar as-sidebar--right">
       <div class="as-container">
         <as-category-widget class="as-p--16" heading="Business Volume" description="Description" default-bar-color="#47DB99"></as-category-widget>
-        <script>
-          const categoryWidget = document.querySelector('as-category-widget');
-          categoryWidget.showHeader = true;
-          categoryWidget.showClearButton = true;
-          categoryWidget.useTotalPercentage = false;
-          categoryWidget.visibleCategories = Infinity;
-          categoryWidget.categories = [{
-              name: 'Bars & Restaurants',
-              value: 1000,
-              color: '#FABADA'
-            },
-            {
-              name: 'Fashion',
-              value: 900
-            },
-            {
-              name: 'Grocery',
-              value: 800
-            },
-            {
-              name: 'Health',
-              value: 400
-            },
-            {
-              name: 'Shopping mall',
-              value: 250
-            },
-            {
-              name: 'Transportation',
-              value: 1000
-            },
-            {
-              name: 'Leisure',
-              value: 760
-            }
-          ];
-
-        </script>
       </div>
     </aside>
   </as-responsive-content>
+
+  <script>
+    function onReady () {
+      const dropdown = document.querySelector('as-dropdown');
+      dropdown.options = [{
+          text: 'All',
+          value: 'all'
+        },
+        {
+          text: 'Open',
+          value: 'open'
+        },
+        {
+          text: 'Unfulfilled',
+          value: 'unfulfilled'
+        },
+        {
+          text: 'Unpaid',
+          value: 'unpaid'
+        }
+      ];
+
+      const categoryWidget = document.querySelector('as-category-widget');
+      categoryWidget.showHeader = true;
+      categoryWidget.showClearButton = true;
+      categoryWidget.useTotalPercentage = false;
+      categoryWidget.visibleCategories = Infinity;
+      categoryWidget.categories = [{
+          name: 'Bars & Restaurants',
+          value: 1000,
+          color: '#FABADA'
+        },
+        {
+          name: 'Fashion',
+          value: 900
+        },
+        {
+          name: 'Grocery',
+          value: 800
+        },
+        {
+          name: 'Health',
+          value: 400
+        },
+        {
+          name: 'Shopping mall',
+          value: 250
+        },
+        {
+          name: 'Transportation',
+          value: 1000
+        },
+        {
+          name: 'Leisure',
+          value: 760
+        }
+      ];
+    }
+
+    var responsiveContent = document.querySelector('as-responsive-content');
+    responsiveContent.addEventListener('ready', onReady);
+  </script>
 </body>
 
 </html>
