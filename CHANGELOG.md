@@ -1,4 +1,23 @@
-# [0.0.0](https://github.com/CartoDB/airship/compare/v1.0.0-beta.9...v0.0.0) (2018-11-05)
+# [0.0.0](https://github.com/CartoDB/airship/compare/v1.0.0-beta.10...v0.0.0) (2018-11-14)
+
+
+
+# [1.0.0-beta.10](https://github.com/CartoDB/airship/compare/v1.0.0-beta.9...v1.0.0-beta.10) (2018-11-14)
+
+
+### Bug Fixes
+
+* **components:** Histogram colors not working on IE11 ([d2ea40d](https://github.com/CartoDB/airship/commit/d2ea40d)), closes [#480](https://github.com/CartoDB/airship/issues/480)
+* **components:** Histogram handles not visible on IE11 ([05b29ad](https://github.com/CartoDB/airship/commit/05b29ad)), closes [#479](https://github.com/CartoDB/airship/issues/479)
+* **components:** Stacked bar widget not visible on IE11 ([71db413](https://github.com/CartoDB/airship/commit/71db413)), closes [#478](https://github.com/CartoDB/airship/issues/478)
+* **components:** Tabs now works on safari ([#482](https://github.com/CartoDB/airship/issues/482)) ([094f4f8](https://github.com/CartoDB/airship/commit/094f4f8))
+* **styles:** fix toolbar actions taking too much space ([#413](https://github.com/CartoDB/airship/issues/413)) ([2d7d236](https://github.com/CartoDB/airship/commit/2d7d236))
+* **styles:** Sidebars not visible on IE11  ([d600c97](https://github.com/CartoDB/airship/commit/d600c97)), closes [#481](https://github.com/CartoDB/airship/issues/481)
+
+
+### Features
+
+* Responsive widgets and improved CSS variables ([6d26330](https://github.com/CartoDB/airship/commit/6d26330))
 
 
 
