@@ -1,7 +1,7 @@
 .as-sidebar {
   --as-sidebar--background-color: var(--as--color--ui-01);
 
-  display: flex;
+  display: none;
   position: absolute;
   z-index: 2;
   top: 0;
@@ -11,17 +11,16 @@
   height: 100%;
   overflow-y: auto;
   transition: opacity 0.3s;
-  opacity: 0;
   background-color: var(--as-sidebar--background-color);
-  touch-action: none;
+
 
   &--left {
     order: -1;
     box-shadow: rgba($color-type-01, 0.16) 1px 0 4px 0;
 
     &.as-sidebar--visible {
-      touch-action: auto;
-      opacity: 1;
+      display: flex;
+      z-index: 4;
     }
   }
 
@@ -30,8 +29,8 @@
     box-shadow: rgba($color-type-01, 0.16) 0 1px 4px 0;
 
     &.as-sidebar--visible {
-      touch-action: auto;
-      opacity: 1;
+      display: flex;
+      z-index: 4;
     }
   }
 
@@ -45,13 +44,12 @@
 
   // Media
   @media all and (min-width: $tablet-breakpoint) {
+    display: flex;
     position: initial;
     top: 0;
     flex: 0 0 auto;
     width: 260px;
     height: 100%;
-    opacity: 1;
-    touch-action: auto;
 
     &--l {
       width: 360px;

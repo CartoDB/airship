@@ -10,6 +10,7 @@
 
   &--visible {
     display: initial;
+    z-index: 4;
     overflow-x: auto;
   }
 
