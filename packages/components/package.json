@@ -1,6 +1,6 @@
 {
   "name": "@carto/airship-components",
-  "version": "1.0.0-beta.9",
+  "version": "1.0.0-beta.10",
   "description": "Airship is a set of tools designed to facilitate the development of location intelligence apps by offering layouts, basic patterns, templates, CSS classes, components, widgets and much more.",
   "module": "dist/esm/index.js",
   "main": "dist/index.js",
@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "build": "stencil build",
-    "dev": "stencil build --dev --watch",
+    "dev": "stencil build --dev --watch --es5",
     "lint:css:fix": "stylelint 'src/components/**/*.scss' --fix",
     "lint:css": "stylelint 'src/components/**/*.scss'",
     "lint:fix": "npm run lint:css:fix",
