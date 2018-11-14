@@ -15,6 +15,7 @@ import { HistogramColorRange, HistogramData } from './interfaces';
 import { Container } from './types/Container';
 import dataService from './utils/data.service';
 import drawService from './utils/draw.service';
+import { Redrawable } from '../../interfaces/Redrawable';
 
 const DEFAULT_BAR_COLOR = 'var(--as--color--primary, #1785FB)';
 const DEFAULT_SELECTED_BAR_COLOR = 'var(--as--color--complementary, #47DB99)';
@@ -38,7 +39,7 @@ const LABEL_PADDING = 25;
   styleUrl: './as-histogram-widget.scss',
   tag: 'as-histogram-widget',
 })
-export class HistogramWidget {
+export class HistogramWidget implements Redrawable {
   /**
    * Title of the widget to be displayed
    *
@@ -255,6 +256,11 @@ export class HistogramWidget {
     this.setSelection(null);
   }
 
+  @Method()
+  public redraw() {
+    this._renderGraph();
+  }
+
   public componentDidLoad() {
     this._color = this._toColor(this.color);
     this._selectedColor = this._toColor(this.selectedColor);
@@ -326,6 +332,8 @@ export class HistogramWidget {
       this.width = bbox.width;
       this.height = bbox.height;
       const resizing = !firstRender && (this.prevWidth !== this.width || this.height !== this.prevHeight);
+
+      if (this.height === 0 || this.width === 0) return;
 
       this._renderYAxis();
       this._renderXAxis();

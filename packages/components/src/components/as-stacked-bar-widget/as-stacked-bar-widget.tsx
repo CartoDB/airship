@@ -1,4 +1,5 @@
-import { Component, Element, Prop, Watch } from '@stencil/core';
+import { Component, Element, Method, Prop, Watch } from '@stencil/core';
+import { Redrawable } from '../../interfaces/Redrawable';
 import contentFragment from '../common/content.fragment';
 import { ColorMap } from './types/ColorMap';
 import { Metadata } from './types/Metadata';
@@ -19,8 +20,7 @@ import drawService from './utils/draw.service';
   styleUrl: './as-stacked-bar-widget.scss',
   tag: 'as-stacked-bar-widget',
 })
-export class StackedBarWidget {
-
+export class StackedBarWidget implements Redrawable {
   /**
    * Header of the widget to be displayed
    *
@@ -148,6 +148,11 @@ export class StackedBarWidget {
   @Prop()
   public formatFn = (value) => {
     return value;
+  }
+
+  @Method()
+  public redraw() {
+    this._drawFigure();
   }
 
   public render() {

@@ -271,6 +271,7 @@ export namespace Components {
     * Message shown in header when no data is available
     */
     'noDataHeaderMessage': string;
+    'redraw': () => void;
     /**
     * Use this attribute to decide if the widget should be rerendered on window resize. Defaults to true.
     */
@@ -560,6 +561,7 @@ export namespace Components {
     * Message shown in header when no data is available
     */
     'noDataHeaderMessage': string;
+    'redraw': () => void;
     /**
     * Use this attribute to decide if the widget should be rerendered on window resize. Defaults to true.
     */

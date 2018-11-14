@@ -1,4 +1,5 @@
 import { Component, Element, Event, EventEmitter, Method, State } from '@stencil/core';
+import { redrawChildren } from '../../utils/redraw-children';
 
 /**
  * Category Widget
@@ -92,6 +93,7 @@ export class ResponsiveContent {
       section.activeAction(section);
     } else {
       section.element.classList.add(section.activeClass || ACTIVE_CLASSES[section.type]);
+      redrawChildren(section.element);
       section.active = true;
     }
 
