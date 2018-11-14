@@ -113,14 +113,13 @@
           </p>
         </as-infowindow>
 
-
       </div>
       <footer class="as-map-footer as-bg--complementary">
         <div class="as-container">
-          <as-stacked-bar-widget id="widget-0" show-legend="true" heading="Star Wars Revenue" description="Description"></as-stacked-bar-widget>
+          <as-stacked-bar-widget id="stackedFooter" show-legend="true" heading="Star Wars Revenue" description="Description"></as-stacked-bar-widget>
         </div>
         <div class="as-container">
-          <as-histogram-widget heading="Title" description="Description" show-header show-clear></as-histogram-widget>
+          <as-histogram-widget id="histogramFooter" heading="Title" description="Description" show-header show-clear></as-histogram-widget>
         </div>
       </footer>
     </main>
@@ -128,17 +127,14 @@
     <aside class="as-sidebar as-sidebar--right">
       <div class="as-container">
         <as-category-widget class="as-p--16" heading="Business Volume" description="Description" default-bar-color="#47DB99"></as-category-widget>
-        <script>
-
-
-        </script>
+        <as-stacked-bar-widget id="stackedSidebar" show-legend="true" heading="Star Wars Revenue" description="Description"></as-stacked-bar-widget>
+        <as-histogram-widget id="histogramSidebar" class="as-p--16" heading="Title" description="Description" show-header show-clear></as-histogram-widget>
       </div>
     </aside>
   </as-responsive-content>
   <script>
     function onReady () {
-      const widget0 = document.querySelector('as-stacked-bar-widget');
-      widget0.data = [{
+      var stackedData = [{
           category: 'Star Wars Ep. IV: A New Hope',
           values: {
             dvd: 27229125,
@@ -161,7 +157,7 @@
         }
       ];
 
-      widget0.metadata = {
+      var stackedMetadata = {
         dvd: {
           label: 'Domestic DVD Sales',
           color: '#33ACEE'
@@ -172,8 +168,14 @@
         }
       }
 
-      var histogramWidget = document.querySelector('as-histogram-widget');
-      histogramWidget.data = [{
+      const stackedFooter = document.getElementById('stackedFooter');
+      const stackedSidebar = document.getElementById('stackedSidebar');
+      stackedFooter.data = stackedData;
+      stackedFooter.metadata = stackedMetadata;
+      stackedSidebar.data = stackedData;
+      stackedSidebar.metadata = stackedMetadata;
+
+      var histogramData =  [{
           start: 0,
           end: 10,
           value: 5
@@ -199,6 +201,11 @@
           value: 30
         },
       ];
+
+      var histogramFooter = document.getElementById('histogramFooter');
+      var histogramSidebar = document.getElementById('histogramSidebar');
+      histogramFooter.data = histogramData;
+      histogramSidebar.data = histogramData;
 
       const categoryWidget = document.querySelector('as-category-widget');
       categoryWidget.showHeader = true;
