@@ -60,7 +60,7 @@ export class Tabs {
     children.forEach((element, i) => {
       const visible = this.activeTab === i;
 
-      visible ? element.removeAttribute('hidden') : element.setAttribute('hidden', 'true');
+      visible ? element.removeAttribute('hidden') : element.setAttribute('hidden', 'hidden');
 
       if (visible) {
         redrawChildren(element);

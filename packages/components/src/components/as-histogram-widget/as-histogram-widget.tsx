@@ -8,6 +8,7 @@ import {
   Selection
 } from 'd3-selection';
 import 'd3-transition';
+import { Redrawable } from '../../interfaces/Redrawable';
 import readableNumber from '../../utils/readable-number';
 import { shadeOrBlend } from '../../utils/styles';
 import contentFragment from '../common/content.fragment';
@@ -15,7 +16,6 @@ import { HistogramColorRange, HistogramData } from './interfaces';
 import { Container } from './types/Container';
 import dataService from './utils/data.service';
 import drawService from './utils/draw.service';
-import { Redrawable } from '../../interfaces/Redrawable';
 
 const DEFAULT_BAR_COLOR = 'var(--as--color--primary, #1785FB)';
 const DEFAULT_SELECTED_BAR_COLOR = 'var(--as--color--complementary, #47DB99)';
@@ -333,7 +333,7 @@ export class HistogramWidget implements Redrawable {
       this.height = bbox.height;
       const resizing = !firstRender && (this.prevWidth !== this.width || this.height !== this.prevHeight);
 
-      if (this.height === 0 || this.width === 0) return;
+      if (this.height === 0 || this.width === 0) { return; }
 
       this._renderYAxis();
       this._renderXAxis();
