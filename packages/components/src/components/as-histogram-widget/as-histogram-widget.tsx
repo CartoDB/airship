@@ -1,4 +1,4 @@
-import { Component, Element, Event, EventEmitter, Method, Prop } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, Method, Prop, Watch } from '@stencil/core';
 import { BrushBehavior, brushX } from 'd3-brush';
 import { ScaleLinear } from 'd3-scale';
 import {
@@ -193,8 +193,21 @@ export class HistogramWidget {
   private prevWidth: number;
   private prevHeight: number;
 
+  private _color: string;
+  private _selectedColor: string;
+
   constructor() {
     this._resizeRender = this._resizeRender.bind(this);
+  }
+
+  @Watch('color')
+  public _onColorChanged(newColor) {
+    this._color = this._toColor(newColor);
+  }
+
+  @Watch('selectedColor')
+  public _onSelectedColorChanged(newColor) {
+    this._selectedColor = this._toColor(newColor);
   }
 
   /**
@@ -243,6 +256,9 @@ export class HistogramWidget {
   }
 
   public componentDidLoad() {
+    this._color = this._toColor(this.color);
+    this._selectedColor = this._toColor(this.selectedColor);
+
     if (!this._hasDataToDisplay()) {
       return;
     }
@@ -395,14 +411,14 @@ export class HistogramWidget {
               clientY <= bb.bottom;
 
             if (isInsideBB) {
-              let color = selected ? this._toColor(this.selectedColor) : data.color || this._toColor(this.color);
+              let color = selected ? this._selectedColor : data.color || this._color;
               color = shadeOrBlend(-0.16, color);
               nodeSelection.style('fill', color);
               this.tooltip = this.tooltipFormatter(data);
               this._showTooltip(evt);
               anyHovered = true;
             } else {
-              nodeSelection.style('fill', selected ? this.selectedColor : data.color || this.color);
+              nodeSelection.style('fill', selected ? this._selectedColor : data.color || this._color);
             }
           });
 
@@ -416,9 +432,9 @@ export class HistogramWidget {
           this.barsContainer.selectAll('rect')
             .style('fill', (data: HistogramData) => {
               if (this._isSelected(data)) {
-                return this.selectedColor;
+                return this._selectedColor;
               }
-              return data.color || this.color;
+              return data.color || this._color;
             });
         });
 
@@ -428,7 +444,7 @@ export class HistogramWidget {
         this.container,
         this.barsContainer,
         BARS_SEPARATION,
-        this.color,
+        this._toColor(this._color),
         X_PADDING + (this.yLabel ? LABEL_PADDING : 0),
         Y_PADDING,
         resizing);
@@ -553,7 +569,7 @@ export class HistogramWidget {
       this.barsContainer.selectAll('rect')
         .style('fill', (_d, i) => {
           const d = this.data[i];
-          return d.color || this.color;
+          return d.color || this._toColor(this._color);
         });
       this.brushArea.call(this.brush.move, null);
 
@@ -582,9 +598,9 @@ export class HistogramWidget {
       .style('fill', (_d, i) => {
         const d = this.data[i];
         if ((values[0] <= d.start && d.end <= values[1])) {
-          return this.selectedColor;
+          return this._selectedColor;
         }
-        return d.color || this.color;
+        return d.color || this._color;
       });
   }
 
@@ -705,8 +721,16 @@ export class HistogramWidget {
   // If the parameter is a css variable will be evaluated to a color
   private _toColor(color) {
     if (color.startsWith('var(')) {
-      color = color.match(/--\S[^\|,)]*/)[0];
-      return getComputedStyle(this.el).getPropertyValue(color).toLowerCase().trim();
+      const match = color.match(/var\((.+),(.+)\)/);
+      const variable = match[1];
+      const fallback = match[2] || '';
+      const computed = getComputedStyle(this.el).getPropertyValue(variable).toLowerCase().trim();
+
+      if (computed.length === 0) {
+        return fallback.trim();
+      }
+
+      return computed;
     }
     return color;
   }
