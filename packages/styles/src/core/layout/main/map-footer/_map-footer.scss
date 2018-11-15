@@ -20,30 +20,13 @@
     position: static;
     max-height: $bottom-bar-max-height;
     overflow-x: auto;
-
-    .as-container {
-      flex: 1 0 auto;
-      overflow: auto;
-
-      &--scrollable {
-        display: flex;
-        flex-basis: auto;
-        flex-direction: row;
-        flex-grow: 1;
-        flex-shrink: 1;
-        overflow-x: auto;
-      }
-
-      &--border {
-        border-right: 1px solid $color-ui-04;
-      }
-    }
+    overflow-y: hidden;
 
     .as-box {
       flex-basis: auto;
       flex-grow: 1;
       flex-shrink: 0;
-      overflow: auto;
+      overflow-y: auto;
 
       &--small,
       &--s {
@@ -63,6 +46,10 @@
       &--xlarge,
       &--xl {
         max-width: 400px;
+      }
+
+      &--border {
+        border-right: 1px solid $color-ui-04;
       }
     }
   }

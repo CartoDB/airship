@@ -48,8 +48,7 @@
     <i class="as-toolbar__item as-icon-points"></i>
   </as-toolbar>
 
-  <!-- <as-responsive-content> -->
-  <section class="as-content">
+  <as-responsive-content>
     <aside class="as-sidebar as-sidebar--left">
       <div class="as-container">
         <as-tabs>
@@ -115,38 +114,45 @@
         </as-infowindow>
 
       </div>
-      <footer class="as-map-footer as-bg--complementary">
-        <div class="as-container as-container--horizontal">
+      <footer class="as-map-footer">
+        <div class="as-box as-box--border">
           <as-histogram-widget id="histogramFooter" heading="Title" description="Description" show-header show-clear></as-histogram-widget>
         </div>
-        <div class="as-container as-container--scrollable">
-          <div style="display:flex;">
-            <as-stacked-bar-widget id="stackedFooter" show-legend="true" heading="Star Wars Revenue" description="Description"></as-stacked-bar-widget>
-            <as-histogram-widget id="histogramSidebar" heading="Title" description="Description" show-header show-clear hidden></as-histogram-widget>
-            <as-category-widget heading="Business Volume" description="Description" default-bar-color="#47DB99"></as-category-widget>
-          </div>
-          <div class="as-box">
-            <h1 class="as-title">A box</h1>
-            <p class="as-body">
-              This content is here to fill up more space.
-            </p>
-          </div>
+        <div class="as-box">
+          <as-stacked-bar-widget id="stackedFooter" show-legend="true" heading="Star Wars Revenue" description="Description"></as-stacked-bar-widget>
+        </div>
+        <div class="as-box">
+          <as-category-widget heading="Business Volume" description="Description" default-bar-color="#47DB99"></as-category-widget>
+        </div>
+        <div class="as-box as-box--s">
+          <h1 class="as-title">A box</h1>
+          <p class="as-body">
+            This content is here to fill up more space.
+          </p>
         </div>
       </footer>
     </main>
 
     <aside class="as-sidebar as-sidebar--right">
       <div class="as-container">
-        <div>
+        <div class="as-box">
           <as-stacked-bar-widget id="stackedSidebar" show-legend="true" heading="Star Wars Revenue" description="Description"></as-stacked-bar-widget>
         </div>
-        <div>
-          
+      </div>
+      <div class="as-container as-container--scrollable">
+        <div class="as-box as-box--border">
+          <as-histogram-widget id="histogramSidebar" heading="Title" description="Description" show-header show-clear hidden></as-histogram-widget>
+        </div>
+        <div class="as-box">
+          <h1 class="as-title">Some content</h1>
+          <p class="as-body">
+            Gastropub thundercats DIY roof party crucifix, XOXO umami. Meditation portland pug prism yr schlitz mustache next level tumeric retro tousled jianbing blue bottle pop-up +1. Seitan roof party bushwick messenger bag intelligentsia, coloring book cred dreamcatcher hell of banjo affogato beard humblebrag. 
+          </p>
         </div>
       </div>
     </aside>
-  <!-- </as-responsive-content> -->
-  </section>
+  </as-responsive-content>
+
   <script>
     function onReady () {
       var stackedData = [{

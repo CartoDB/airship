@@ -1,5 +1,5 @@
 @import "../_dev";
 
 .as-box {
-  margin: get-margin(8);
+  @include padding(4);
 }
