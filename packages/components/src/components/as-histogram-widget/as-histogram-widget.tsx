@@ -8,7 +8,6 @@ import {
   Selection
 } from 'd3-selection';
 import 'd3-transition';
-import { Redrawable } from '../../interfaces/Redrawable';
 import readableNumber from '../../utils/readable-number';
 import { shadeOrBlend } from '../../utils/styles';
 import contentFragment from '../common/content.fragment';
@@ -39,7 +38,7 @@ const LABEL_PADDING = 25;
   styleUrl: './as-histogram-widget.scss',
   tag: 'as-histogram-widget',
 })
-export class HistogramWidget implements Redrawable {
+export class HistogramWidget {
   /**
    * Title of the widget to be displayed
    *
@@ -254,11 +253,6 @@ export class HistogramWidget implements Redrawable {
   @Method()
   public clearSelection() {
     this.setSelection(null);
-  }
-
-  @Method()
-  public redraw() {
-    this._renderGraph();
   }
 
   public componentDidLoad() {
