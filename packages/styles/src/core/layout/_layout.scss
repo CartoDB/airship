@@ -23,7 +23,9 @@ body.as-app-body {
     display: flex;
     position: relative;
     flex: 1;
-    height: 100%;
+
+    /* https://stackoverflow.com/questions/28636832/firefox-overflow-y-not-working-with-nested-flexbox */
+    min-height: 0;
   }
 
   .as-toolbar {

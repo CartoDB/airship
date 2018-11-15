@@ -4,4 +4,7 @@ as-responsive-content {
   display: flex;
   flex: 1;
   flex-direction: column;
+
+  /* https://stackoverflow.com/questions/28636832/firefox-overflow-y-not-working-with-nested-flexbox */
+  min-height: 0;
 }
