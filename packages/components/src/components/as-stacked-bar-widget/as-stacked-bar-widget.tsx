@@ -1,4 +1,5 @@
 import { Component, Element, Prop, Watch } from '@stencil/core';
+import { event as d3event } from 'd3-selection';
 import contentFragment from '../common/content.fragment';
 import { ColorMap } from './types/ColorMap';
 import { Metadata } from './types/Metadata';
@@ -127,7 +128,7 @@ export class StackedBarWidget {
    */
   @Prop()
   public mouseOver = (data: RectangleData) => {
-    const event = window.event as MouseEvent;
+    const event = d3event as MouseEvent;
     this.tooltip.style.display = 'inline';
     this.tooltip.style.left = `${event.clientX}px`;
     this.tooltip.style.top = `${event.clientY}px`;
