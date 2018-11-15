@@ -8,6 +8,7 @@ as-histogram-widget {
   display: flex;
   flex-direction: column;
   width: 100%;
+  min-width: 260px;
   height: 100%;
   max-height: 100%;
   overflow: auto;

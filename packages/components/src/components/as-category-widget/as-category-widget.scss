@@ -10,6 +10,8 @@ as-category-widget {
   --category-bar--color: var(--as--color--complementary);
 
   display: block;
+  min-width: 260px;
+  overflow-y: auto;
   background: var(--category-widget--background-color, $color-ui-01);
 
   .content {
