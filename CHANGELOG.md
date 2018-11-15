@@ -1,4 +1,16 @@
-# [0.0.0](https://github.com/CartoDB/airship/compare/v1.0.0-beta.10...v0.0.0) (2018-11-14)
+# [0.0.0](https://github.com/CartoDB/airship/compare/v1.0.0-beta.10...v0.0.0) (2018-11-15)
+
+
+### chore
+
+* Update versions in README ([7d9262e](https://github.com/CartoDB/airship/commit/7d9262e))
+
+
+### BREAKING CHANGES
+
+* Internet Explorer won't be supported.
+
+More info can be found https://github.com/CartoDB/airship/pull/493
 
 
 
