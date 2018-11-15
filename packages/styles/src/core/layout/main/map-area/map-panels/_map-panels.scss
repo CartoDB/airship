@@ -28,10 +28,6 @@
 .as-panel {
   $panel-selector: &;
 
-  &__element {
-    padding: get-spacing(4);
-  }
-
   @media all and (min-width: $tablet-breakpoint) {
     display: flex;
     position: absolute;
@@ -100,7 +96,7 @@
       }
 
       .as-box {
-        margin: get-margin(5);
+        @include padding(4);
       }
     }
   }
