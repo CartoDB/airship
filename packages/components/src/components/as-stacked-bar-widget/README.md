@@ -213,3 +213,8 @@ lang: javascript
 ---
 stackedBar.responsive = false;
 ```
+
+### Methods
+
+#### **redraw**
+Forces a re-render of the widget. This method is useful in case you need to explicitely redraw the widget, for instance, after a visibility change.
