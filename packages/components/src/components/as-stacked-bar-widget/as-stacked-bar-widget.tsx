@@ -20,7 +20,6 @@ import drawService from './utils/draw.service';
   tag: 'as-stacked-bar-widget',
 })
 export class StackedBarWidget {
-
   /**
    * Header of the widget to be displayed
    *

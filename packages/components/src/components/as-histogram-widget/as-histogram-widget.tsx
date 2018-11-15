@@ -327,6 +327,8 @@ export class HistogramWidget {
       this.height = bbox.height;
       const resizing = !firstRender && (this.prevWidth !== this.width || this.height !== this.prevHeight);
 
+      if (this.height === 0 || this.width === 0) { return; }
+
       this._renderYAxis();
       this._renderXAxis();
 

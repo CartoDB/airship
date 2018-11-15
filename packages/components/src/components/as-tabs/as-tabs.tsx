@@ -1,4 +1,5 @@
 import { Component, Element, Prop } from '@stencil/core';
+import { redrawChildren } from '../../utils/redraw-children';
 
 /**
  * As Tabs
@@ -57,7 +58,13 @@ export class Tabs {
       return;
     }
     children.forEach((element, i) => {
-      this.activeTab === i ? element.removeAttribute('hidden') : element.setAttribute('hidden', 'hidden');
+      const visible = this.activeTab === i;
+
+      visible ? element.removeAttribute('hidden') : element.setAttribute('hidden', 'hidden');
+
+      if (visible) {
+        redrawChildren(element);
+      }
     });
   }
 
