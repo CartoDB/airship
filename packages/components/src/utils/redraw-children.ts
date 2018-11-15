@@ -8,7 +8,8 @@ export function redrawChildren(element) {
   const allChildren = element.querySelectorAll('*');
 
   for (const child of allChildren) {
-    if (child.tagName.toLowerCase().indexOf('as-') === 0 && child.forceUpdate) {
+    const isAirshipElement = child.tagName.toLowerCase().indexOf('as-') === 0 && child.forceUpdate;
+    if (isAirshipElement) {
       child.forceUpdate();
     }
   }
