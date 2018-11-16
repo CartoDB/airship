@@ -1,3 +1,4 @@
 $toolbar-size: get-spacing(15);
-$bottom-bar-max-height: get-spacing(50);
+$bottom-bar-max-height: get-spacing(70);
 $panel-element-width: 200px;
+$widget-min-width: 228px; // sidebar 260px - 32px (2 * 16px of padding)

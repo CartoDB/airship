@@ -9,60 +9,48 @@
   pointer-events: auto;
 
   &--visible {
-    display: initial;
+    display: inline;
+    z-index: 4;
     overflow-x: auto;
   }
 
   // Media
   @media all and (min-width: $tablet-breakpoint) {
     display: flex;
-    position: initial;
-    height: initial;
+    position: static;
     max-height: $bottom-bar-max-height;
     overflow-x: auto;
+    overflow-y: hidden;
 
-    .as-container {
-      flex: 1 0 auto;
-      overflow: auto;
+    .as-box {
+      flex: 2 0;
 
-      &--scrollable {
-        display: flex;
-        flex-basis: auto;
-        flex-direction: row;
-        flex-grow: 1;
-        flex-shrink: 1;
-        overflow-x: auto;
+      &--small,
+      &--s {
+        flex: 1 0;
+      }
+
+      &--medium,
+      &--m {
+        flex: 3 0;
+      }
+
+      &--large,
+      &--l {
+        flex: 4 0;
+      }
+
+      &--xlarge,
+      &--xl {
+        flex: 5 0;
       }
 
       &--border {
         border-right: 1px solid $color-ui-04;
       }
-    }
 
-    .as-box {
-      flex-basis: auto;
-      flex-grow: 1;
-      flex-shrink: 0;
-      overflow: auto;
-
-      &--small,
-      &--s {
-        max-width: 128px;
-      }
-
-      &--medium,
-      &--m {
-        max-width: 256px;
-      }
-
-      &--large,
-      &--l {
-        max-width: 320px;
-      }
-
-      &--xlarge,
-      &--xl {
-        max-width: 400px;
+      &--scroll {
+        overflow-y: auto;
       }
     }
   }

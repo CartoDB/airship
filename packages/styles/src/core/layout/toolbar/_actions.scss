@@ -3,7 +3,7 @@
 
   display: flex;
   position: absolute;
-  z-index: 3;
+  z-index: 5;
   top: $toolbar-size;
   right: 0;
   bottom: 0;
@@ -33,7 +33,7 @@
 
   // Media queries
   @media all and (min-width: $tablet-breakpoint) {
-    position: initial;
+    position: static;
     top: 0;
     left: 0;
     flex-direction: row;

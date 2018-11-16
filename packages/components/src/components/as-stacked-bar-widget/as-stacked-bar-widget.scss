@@ -7,6 +7,7 @@ as-stacked-bar-widget {
   display: flex;
   flex-direction: column;
   width: 100%;
+  min-width: $widget-min-width;
   height: 100%;
   max-height: 100%;
   overflow: auto;

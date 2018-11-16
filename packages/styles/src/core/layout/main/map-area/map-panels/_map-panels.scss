@@ -19,7 +19,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    overflow-y: initial;
+    overflow-y: visible;
     background-color: initial;
     pointer-events: none;
   }
@@ -27,10 +27,6 @@
 
 .as-panel {
   $panel-selector: &;
-
-  &__element {
-    padding: get-spacing(4);
-  }
 
   @media all and (min-width: $tablet-breakpoint) {
     display: flex;
@@ -100,7 +96,7 @@
       }
 
       .as-box {
-        margin: get-margin(5);
+        @include padding(4);
       }
     }
   }
