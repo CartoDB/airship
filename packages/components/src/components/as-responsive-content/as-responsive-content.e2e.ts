@@ -17,16 +17,6 @@ describe('as-responsive-content', () => {
       expect(tabsHTML).toContain('Panel 0');
       expect(tabsHTML).toContain('Bottom Bar');
     });
-
-    it('should render child content inside .as-content', async () => {
-      /* tslint:disable */
-      // DOM Example with spaces and line breaks removed
-      const innerContent = '<aside class=\"as-sidebar as-sidebar--left\">Left Sidebar</aside><main class=\"as-main\"><div class=\"as-map-area\"><div id=\"map\"></div><div class=\"as-map-panels\"><div class=\"as-panel as-panel--top as-panel--right\"><div class=\"as-panel__element\">Floating Panel</div></div></div></div><div class=\"as-map-footer\">Bottom Bar</div></main><aside class=\"as-sidebar as-sidebar--right\">Right Sidebar</aside>';
-      /* tslint:enable */
-
-      const asAppContentNode = await page.find('.as-content');
-      expect(asAppContentNode.innerHTML).toContain(innerContent);
-    });
   });
 
   describe('Behaviour', async () => {
