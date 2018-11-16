@@ -9,7 +9,7 @@
   pointer-events: auto;
 
   &--visible {
-    display: inline;
+    display: initial;
     z-index: 4;
     overflow-x: auto;
   }
@@ -17,7 +17,7 @@
   // Media
   @media all and (min-width: $tablet-breakpoint) {
     display: flex;
-    position: static;
+    position: initial;
     max-height: $bottom-bar-max-height;
     overflow-x: auto;
     overflow-y: hidden;
