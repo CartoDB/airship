@@ -503,7 +503,7 @@ export namespace Components {
   }
 
   interface AsResponsiveContent {
-    'getSections': () => Promise<object[]>;
+    'getSections': () => Promise<ApplicationSection[]>;
     'setVisible': (sectionName: string) => Promise<void>;
   }
   interface AsResponsiveContentAttributes extends StencilHTMLAttributes {
