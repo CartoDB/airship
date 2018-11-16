@@ -1,4 +1,9 @@
-# [0.0.0](https://github.com/CartoDB/airship/compare/v1.0.0-beta.10...v0.0.0) (2018-11-15)
+# [0.0.0](https://github.com/CartoDB/airship/compare/v1.0.0-beta.10...v0.0.0) (2018-11-16)
+
+
+### Bug Fixes
+
+* smoke-fixes ([740c158](https://github.com/CartoDB/airship/commit/740c158)), closes [#490](https://github.com/CartoDB/airship/issues/490) [#491](https://github.com/CartoDB/airship/issues/491) [#491](https://github.com/CartoDB/airship/issues/491) [#495](https://github.com/CartoDB/airship/issues/495) [#499](https://github.com/CartoDB/airship/issues/499) [#502](https://github.com/CartoDB/airship/issues/502) [#501](https://github.com/CartoDB/airship/issues/501)
 
 
 ### chore
@@ -8,6 +13,7 @@
 
 ### BREAKING CHANGES
 
+* `.as-box` in the footer has now a reduced number of use cases.
 * Internet Explorer won't be supported.
 
 More info can be found https://github.com/CartoDB/airship/pull/493
