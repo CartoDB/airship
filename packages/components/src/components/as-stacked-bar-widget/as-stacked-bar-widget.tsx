@@ -212,7 +212,7 @@ export class StackedBarWidget {
   }
 
   private _drawFigure() {
-    if (this._containerIsNotDrawable) {
+    if (this._containerIsNotDrawable()) {
       return;
     }
     requestAnimationFrame(() => {
