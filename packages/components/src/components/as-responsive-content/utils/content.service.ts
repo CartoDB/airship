@@ -4,7 +4,7 @@ export function getMap(element: HTMLElement): ApplicationSection {
   const mapElement = element.querySelector('.as-map-area');
 
   return new ApplicationSection({
-    activeClass: 'unused-class',
+    activeClass: 'as-map-area--visible',
     element: mapElement,
     name: mapElement.getAttribute('data-name') || 'Map',
     order: mapElement.getAttribute('data-tab-order') || 0,

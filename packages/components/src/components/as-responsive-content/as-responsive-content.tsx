@@ -31,7 +31,7 @@ export class ResponsiveContent {
   }
 
   @Method()
-  public async getSections(): Promise<ApplicationSection[]> {
+  public async getSections(): Promise<object[]> {
     return this.sections;
   }
 
@@ -83,7 +83,7 @@ export class ResponsiveContent {
   }
 
   private setActive(section: ApplicationSection) {
-    if (!section || section.active) {
+    if (section.active) {
       return;
     }
 
@@ -115,7 +115,7 @@ export class ResponsiveContent {
 
     if (sections.length) {
       sections.sort((a, b) => a.order - b.order);
-      this.setActive(this.sections[0]);
+      this.setActive(sections[0]);
     }
 
     return sections;
