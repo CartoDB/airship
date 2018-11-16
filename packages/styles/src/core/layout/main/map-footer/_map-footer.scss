@@ -23,33 +23,34 @@
     overflow-y: hidden;
 
     .as-box {
-      flex-basis: auto;
-      flex-grow: 1;
-      flex-shrink: 0;
-      overflow-y: auto;
+      flex: 2 0;
 
       &--small,
       &--s {
-        max-width: 128px;
+        flex: 1 0;
       }
 
       &--medium,
       &--m {
-        max-width: 256px;
+        flex: 3 0;
       }
 
       &--large,
       &--l {
-        max-width: 320px;
+        flex: 4 0;
       }
 
       &--xlarge,
       &--xl {
-        max-width: 400px;
+        flex: 5 0;
       }
 
       &--border {
         border-right: 1px solid $color-ui-04;
+      }
+
+      &--scroll {
+        overflow-y: auto;
       }
     }
   }
