@@ -9,7 +9,11 @@ as-category-widget {
   --category-bar--background-color: var(--as--color--ui-02);
   --category-bar--color: var(--as--color--complementary);
 
-  display: block;
+  display: flex;
+  flex-direction: column;
+  min-width: 260px;
+  height: 100%;
+  overflow-y: auto;
   background: var(--category-widget--background-color, $color-ui-01);
 
   .content {
@@ -22,11 +26,13 @@ as-category-widget {
   }
 
   .as-category-widget__list {
+    flex: 1;
     margin: 0;
     padding: 0;
+    overflow-y: auto;
     list-style: none;
 
-    &.as-category-widget__list--disabled {
+    &.as-category-widget__list--disabled li {
       pointer-events: none;
     }
   }

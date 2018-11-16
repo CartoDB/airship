@@ -7,7 +7,7 @@ The map footer bar is hidden in mobile and visible in desktop size. The reason i
 You can toggle the `as-map-footer--visible` class the way you prefer but we recommend using `as-toolbar-tabs`.
 
 
-> The map-area must be a direct child of the `as-content` element at the same leve of `as-map-area`.
+> The map-area must be a direct child of the `as-content` element at the same level of `as-map-area`.
 
 
 ```html
@@ -58,244 +58,96 @@ responsive: true
 <iframe src="/examples/layouts/footer/footer" style="width: 100%; height: 100%;">
 ```
 
+## Footer content
 
+You can put whatever you want as a footer child, but we recommend using `as-box` as a wrapper for your elements.
 
-## Footer Containers
+### .as-box
 
-```html
-showSource: true
----
-<div class="as-app" style="width:100%; height:300px;">
-  <div class="as-content">
-    <main class="as-main">
-      <div class="as-map-area as-bg--badge-blue">
-        <div id="map"></div>
-        <!-- footer with containers code starts here -->
-        <footer class="as-map-footer as-bg--badge-yellow">
-          <div class="as-container as-container--border">
-            <section class="as-box as-box--medium">
-              <h1 class="as-title">Fixed container</h1>
-              <p class="as-body">Use this container when you need to present fixed content.</p>
-            </section>
-          </div>
-          <div class="as-container as-container--scrollable">
-            <section class="as-box as-box--large">
-              <h1 class="as-title">Scrollable container</h1>
-              <p class="as-body">When you need to present lots of content that don't fit
-                in the available space, use a scrollable container.
-                It'll take the space left by the fixed containers.</p>
-            </section>
-            <section class="as-box">
-              <h1 class="as-title">A box</h1>
-              <p class="as-body">
-                This content is here to fill up more space.
-              </p>
-            </section>
-            <section class="as-box">
-              <h1 class="as-title">A box</h1>
-              <p class="as-body">
-                This content is here to fill up more space.
-              </p>
-            </section>
-            <section class="as-box">
-              <h1 class="as-title">A box</h1>
-              <p class="as-body">
-                This content is here to fill up more space.
-              </p>
-            </section>
-            <section class="as-box as-box--xlarge">
-              <h1 class="as-title">A box</h1>
-              <p class="as-body">
-                This content is here to fill up more space.
-              </p>
-            </section>
-          </div>
-        </footer>
-        <!-- footer with containers code ends here -->
-      </div>
-    </div>
-  </main>
-</div>
-```
+`.as-box` is an utility class that wraps your element distributing the content nicely in the footer.
 
-### .as-container
-
-Use this class to create sections inside the footer. By default a container will occupy as much vertical space as needed.
+> Remember to set a min-width to your elements to ensure a proper experience across all screen sizes.
 
 ```html
 showSource: true
 ---
-<div class="as-app" style="width:100%; height:300px;">
-  <div class="as-content">
-    <main class="as-main">
-      <div class="as-map-area as-bg--badge-blue">
-        <div id="map"></div>
-        <footer class="as-map-footer as-bg--badge-yellow">
-          <!-- as-container code starts here -->
-          <div class="as-container">
-            <section class="as-box as-box--medium">
-              <h1 class="as-title">Container 0 </h1>
-              <p class="as-body">Use this container when you need to present fixed content.</p>
-            </section>
-          </div>
-          <div class="as-container">
-            <section class="as-box as-box--medium">
-              <h1 class="as-title">Container 1 </h1>
-              <p class="as-body">Use this container when you need to present fixed content.</p>
-            </section>
-          </div>
-          <!-- as-container code ends here -->
-        </footer>
-      </div>
-    </div>
-  </main>
-</div>
+<!-- as-box code starts here -->
+<footer class="as-map-footer as-bg--badge-yellow">
+  <div class="as-box">
+    <p class="as-title">BOX 1</p>
+    <p class="as-body">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+    </p>
+    <p class="as-body">
+      Inventore possimus nam quam necessitatibus omnis, est sequi rem quibusdam molestiae.
+    </p>
+  </div>
+  <div class="as-box">
+    <p class="as-title">BOX 2</p>
+    <p class="as-body">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+    </p>
+  </div>
+</footer>
+<!-- as-box code ends here -->
 ```
 
-### .as-container--scrollable
+#### .as-box--scroll
 
-The `scrollable container` will take the space left by the fixed containers. Use this modifier to when you need to present lots of content that don't fit in the available space.
+Use the `.as-box--scroll` modifier to add a vertical scroll for your `.as-box` elements.
 
 ```html
 showSource: true
 ---
-<div class="as-app" style="width:100%; height:300px;">
-  <div class="as-content">
-    <main class="as-main">
-      <div class="as-map-area as-bg--badge-blue">
-        <div id="map"></div>
-        <!-- as-container--scrollable code starts here -->
-        <footer class="as-map-footer as-bg--badge-yellow">
-          <div class="as-container">
-            <section class="as-box as-box--medium">
-              <h1 class="as-title">Container 0 </h1>
-              <p class="as-body">Use this container when you need to present fixed content.</p>
-            </section>
-          </div>
-          <div class="as-container as-container--scrollable">
-            <section class="as-box as-box--medium">
-              <h1 class="as-title">Scrollable 1 </h1>
-              <p class="as-body">This box is inside a scrollable container.</p>
-            </section>
-
-             <section class="as-box as-box--medium">
-              <h1 class="as-title">Scrollable 2 </h1>
-              <p class="as-body">This box is inside a scrollable container.</p>
-            </section>
-
-             <section class="as-box as-box--medium">
-              <h1 class="as-title">Scrollable 3 </h1>
-              <p class="as-body">This box is inside a scrollable container.</p>
-            </section>
-          </div>
-        </footer>
-        <!-- as-container--scrollable code ends here -->
-      </div>
-    </div>
-  </main>
-</div>
+<!-- as-box code starts here -->
+<footer class="as-map-footer as-bg--badge-yellow">
+  <div class="as-box">
+    <p class="as-title">BOX 1</p>
+    <p class="as-body">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+    </p>
+    <p class="as-body">
+      Inventore possimus nam quam necessitatibus omnis, est sequi rem quibusdam molestiae.
+    </p>
+  </div>
+  <div class="as-box--scroll">
+    <p class="as-title">BOX WITH SCROLL</p>
+    <p class="as-body">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eu consequat quam.
+    <p class="as-body">
+      Nulla varius, justo ut ultricies iaculis, nunc nibh cursus massa, eu luctus mi massa a felis.
+    </p>
+    <p class="as-body">
+      Vivamus in nisi ut tellus accumsan vestibulum ut et quam.
+    </p>
+    <p class="as-body">
+      Nunc ligula lacus, pellentesque quis sollicitudin ut, eleifend a sapien.
+    </p>
+    <p class="as-body">
+      Suspendisse erat lorem, vestibulum vestibulum blandit ac, condimentum eget lorem.
+    </p>
+    <p class="as-body">
+      Maecenas nulla lectus, ornare vitae cursus id, aliquet interdum enim.
+    </p>
+    <p class="as-body">
+      Nulla condimentum, massa at viverra lobortis, metus metus commodo metus, eget ultrices augue ex id sem.
+    </p>
+    <p class="as-body">
+      Ut dictum diam ut nunc ornare, quis lacinia arcu volutpat.
+    </p>
+    <p class="as-body">
+      Praesent sem velit, ultrices eget velit sit amet, sodales venenatis urna.
+    </p>
+    <p class="as-body">
+      Donec quis faucibus libero, eget volutpat nisl. 
+    </p>
+    <p class="as-body">
+      Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+    </p>
+    <p class="as-body">
+      Maecenas mattis tempus hendrerit.
+    </p>
+  </div>
+</footer>
+<!-- as-box code ends here -->
 ```
-
-### .as-container\--border
-
-```html
-showSource: true
----
-<div class="as-app" style="width:100%; height:300px;">
-  <div class="as-content">
-    <main class="as-main">
-      <div class="as-map-area as-bg--badge-blue">
-        <div id="map"></div>
-        <!-- as-container--border code starts here -->
-        <footer class="as-map-footer as-bg--badge-yellow">
-          <div class="as-container as-container--border">
-            <section class="as-box as-box--medium">
-              <h1 class="as-title">Container 0 </h1>
-              <p class="as-body">This box is inside a border container</p>
-            </section>
-          </div>
-          <div class="as-container as-container--border">
-            <section class="as-box as-box--medium">
-              <h1 class="as-title">Box 1 </h1>
-              <p class="as-body">This box is inside a border container</p>
-            </section>
-            <section class="as-box as-box--medium">
-              <h1 class="as-title">Box 2 </h1>
-              <p class="as-body">This box is inside a border container</p>
-            </section>
-          </div>
-          <div class="as-container as-container--border">
-            <section class="as-box as-box--medium">
-              <h1 class="as-title">Box 3 </h1>
-              <p class="as-body">This box is inside a border container</p>
-            </section>
-          </div>
-        </footer>
-        <!-- as-container--border code ends here -->
-      </div>
-    </div>
-  </main>
-</div>
-```
-
-
-## .as-box
-
-Use the `as-box` class to create groups inside a container.
-
-### .as-box--<size>
-
-Only on the `map-footer` you can specify the box-witdh with one of the following modifiers:
-
-- .as-box--s
-- .as-box--m
-- .as-box--l
-- .as-box--xl
-
-
-```html
-showSource: true
----
-<div class="as-app" style="width:100%; height:300px;">
-  <div class="as-content">
-    <main class="as-main">
-      <div class="as-map-area as-bg--badge-blue">
-        <div id="map"></div>
-        <footer class="as-map-footer as-bg--badge-yellow">
-          <div class="as-container">
-            <!-- as-box code starts here -->
-            <section class="as-box as-box--xl">
-              <h1 class="as-title">Container 0 </h1>
-              <p class="as-body">
-                This box is has the --xl class modifier so will take more space than other boxes.
-              </p>
-            </section>
-            <!-- as-box code ends here -->
-          </div>
-          <div class="as-container">
-           <!-- as-box code starts here -->
-           <section class="as-box as-box--s">
-              <h1 class="as-title">Container 0 </h1>
-              <p class="as-body">
-                This box is has the --s class modifier so will be smaller than other boxes.
-              </p>
-            </section>
-            <!-- as-box code ends here -->
-          </div>
-          <div class="as-container">
-           <!-- as-box code starts here -->
-           <section class="as-box as-box--xl">
-              <h1 class="as-title">Container 0 </h1>
-              <p class="as-body">
-                This box is has the --xl class modifier so will take more space than other boxes.
-              </p>
-            </section>
-            <!-- as-box code ends here -->
-          </div>
-        </footer>
-      </div>
-    </div>
-  </main>
-</div>
-```
-

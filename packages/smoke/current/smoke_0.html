@@ -101,6 +101,26 @@
     <main class="as-main">
       <div class="as-map-area">
         <div id="map"></div>
+        <div class="as-map-panels as-map-panels--visible">
+          <div class="as-panel as-panel--top as-panel--left as-panel--vertical">
+            <div class="as-panel__element">
+              <section class="as-box">
+                <p class="as-title">LEGEND 3a</p>
+                <p class="as-body">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore possimus nam quam necessitatibus omnis, est sequi rem quibusdam molestiae, at saepe odit voluptatem quae debitis consequatur iste ducimus quaerat dolorum.
+                </p>
+              </section>
+            </div>
+            <div class="as-panel__element">
+              <section class="as-box">
+                <p class="as-title">LEGEND 3b</p>
+                <p class="as-body">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore possimus nam quam necessitatibus omnis, est sequi rem quibusdam molestiae.
+                </p>
+              </section>
+            </div>
+          </div>
+        </div>
         <as-infowindow src="http://on-desktop.com/wps/Animals___Cats_Black_Cat_Panther_043844_.jpg">
           <h1 class="as-title">Cat</h1>
           <p>
@@ -114,24 +134,76 @@
         </as-infowindow>
 
       </div>
-      <footer class="as-map-footer as-bg--complementary">
-        <div class="as-container">
+      <footer class="as-map-footer">
+        <div class="as-box">
+          <as-histogram-widget id="histogramFooter" heading="Title" description="Description" show-header show-clear></as-histogram-widget>
+        </div>
+        <div class="as-box">
           <as-stacked-bar-widget id="stackedFooter" show-legend="true" heading="Star Wars Revenue" description="Description"></as-stacked-bar-widget>
         </div>
-        <div class="as-container">
-          <as-histogram-widget id="histogramFooter" heading="Title" description="Description" show-header show-clear></as-histogram-widget>
+        <div class="as-box">
+          <as-category-widget heading="Business Volume" description="Description" default-bar-color="#47DB99"></as-category-widget>
+        </div>
+        <div style="min-width: 192px;" class="as-box as-box--scroll">
+          <p class="as-title">LEGEND 3b</p>
+          <p class="as-body">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore possimus nam quam necessitatibus omnis, est sequi rem quibusdam molestiae.
+          </p>
+          <p class="as-body">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore possimus nam quam necessitatibus omnis, est sequi rem quibusdam molestiae.
+          </p>
+          <p class="as-body">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore possimus nam quam necessitatibus omnis, est sequi
+            rem quibusdam molestiae.
+          </p>
+          <p class="as-body">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore possimus nam quam necessitatibus omnis, est sequi
+            rem quibusdam molestiae.
+          </p>
+          <p class="as-body">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore possimus nam quam necessitatibus omnis, est sequi
+            rem quibusdam molestiae.
+          </p>
+          <p class="as-body">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore possimus nam quam necessitatibus omnis, est sequi
+            rem quibusdam molestiae.
+          </p>
+          <p class="as-body">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore possimus nam quam necessitatibus omnis, est sequi
+            rem quibusdam molestiae.
+          </p>
+          <p class="as-body">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore possimus nam quam necessitatibus omnis, est sequi
+            rem quibusdam molestiae.
+          </p>
+          <p class="as-body">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore possimus nam quam necessitatibus omnis, est sequi
+            rem quibusdam molestiae.
+          </p>
         </div>
       </footer>
     </main>
 
     <aside class="as-sidebar as-sidebar--right">
       <div class="as-container">
-        <as-category-widget class="as-p--16" heading="Business Volume" description="Description" default-bar-color="#47DB99"></as-category-widget>
-        <as-stacked-bar-widget id="stackedSidebar" show-legend="true" heading="Star Wars Revenue" description="Description"></as-stacked-bar-widget>
-        <as-histogram-widget id="histogramSidebar" class="as-p--16" heading="Title" description="Description" show-header show-clear></as-histogram-widget>
+        <div class="as-box">
+          <as-stacked-bar-widget id="stackedSidebar" show-legend="true" heading="Star Wars Revenue" description="Description"></as-stacked-bar-widget>
+        </div>
+      </div>
+      <div class="as-container as-container--scrollable">
+        <div class="as-box as-box--border">
+          <as-histogram-widget id="histogramSidebar" heading="Title" description="Description" show-header show-clear hidden></as-histogram-widget>
+        </div>
+        <div class="as-box">
+          <h1 class="as-title">Some content</h1>
+          <p class="as-body">
+            Gastropub thundercats DIY roof party crucifix, XOXO umami. Meditation portland pug prism yr schlitz mustache next level tumeric retro tousled jianbing blue bottle pop-up +1. Seitan roof party bushwick messenger bag intelligentsia, coloring book cred dreamcatcher hell of banjo affogato beard humblebrag. 
+          </p>
+        </div>
       </div>
     </aside>
   </as-responsive-content>
+
   <script>
     function onReady () {
       var stackedData = [{
@@ -245,7 +317,11 @@
     }
 
     var responsiveContent = document.querySelector('as-responsive-content');
-    responsiveContent.addEventListener('ready', onReady);
+    if (!responsiveContent) {
+      onReady();
+    } else {
+      responsiveContent.addEventListener('ready', onReady);
+    }
   </script>
 </body>
 
