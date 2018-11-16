@@ -212,6 +212,9 @@ export class StackedBarWidget {
   }
 
   private _drawFigure() {
+    if (this._containerIsNotDrawable) {
+      return;
+    }
     requestAnimationFrame(() => {
       const yAxis = this._drawYAxis();
       this._drawColumns(yAxis);
@@ -255,5 +258,13 @@ export class StackedBarWidget {
     if (this.responsive) {
       this.el.forceUpdate();
     }
+  }
+
+  // If container is not ready or the widget is invisible block drawing phase
+  private _containerIsNotDrawable() {
+    if (!this.container || this.el.clientWidth === 0 || this.el.clientHeight === 0) {
+      return false;
+    }
+    return true;
   }
 }
