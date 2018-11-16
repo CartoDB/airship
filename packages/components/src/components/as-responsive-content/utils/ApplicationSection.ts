@@ -2,9 +2,9 @@ export default class ApplicationSection {
   private _active: boolean;
   private _activeClass: string;
   private _element: HTMLElement;
-  private _name;
-  private _order;
-  private _type;
+  private _name: string;
+  private _order: number;
+  private _type: 'map' | 'sidebar' | 'mapFooter' | 'panels';
 
   constructor({ activeClass, element, name, order, type }) {
     this._active = false;
