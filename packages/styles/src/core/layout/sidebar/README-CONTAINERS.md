@@ -51,7 +51,7 @@ showSource: true
 
 ### .as-container
 
-Use this class to create sections inside the sidebar. By default a container will occupy as much vertical space as needed.
+Use this class to create sections inside the sidebar. By default a container will occupy as much vertical space as needed and will remain fixed. 
 
 To create a container:
 - Create a `div` that is a direct child of a `as-sidebar` element.
@@ -149,12 +149,13 @@ showSource: true
 </div>
 ```
 
-#### .as-container-\-border
+## Container content
 
+You can put whatever you want as a container child, but we recommend using `as-box` as a wrapper for your elements.
 
-Add the `.as-container–-border` modifier to add a separator on the bottom.
+### .as-box
 
-`div class="as-container as-container--border">`
+`.as-box` is an utility class that wraps your element setting the content nicely in the sidebar. It provices a default nice padding.
 
 ```html
 showSource: true
@@ -164,59 +165,42 @@ showSource: true
     <main class="as-main as-bg--badge-blue">
       <!-- Put your map here -->
     </main>
-    <aside class="as-sidebar as-sidebar--right as-bg--support-02">
-      <!-- as-container--border code starts here -->
-      <div class="as-container as-container--border">
-        <section class="as-box">
-          <h1 class="as-title">Border container 0</h1>
+    <aside class="as-sidebar as-sidebar--right as-bg--badge-yellow">
+      <div class="as-container">
+        <section class="as-box"> <!-- as-box is a child of a as-container -->
           <p class="as-body">
-            Use this container when you need to present fixed content. This content will occupy as
-            much vertical space as needed.
+            Use as-box to get a correct spacing of containers content.
           </p>
         </section>
       </div>
-      <!-- as-container--border code ends here -->
-      <!-- as-container--border code starts here -->
-      <div class="as-container as-container--border">
-        <section class="as-box">
-          <h1 class="as-title">Border container 1</h1>
-          <p class="as-body">
-            Use this container when you need to present fixed content. This content will occupy as
-            much vertical space as needed.
-          </p>
-        </section>
-      </div>
-      <!-- as-container--border code ends here -->
-      <!-- as-container--border code starts here -->
-      <div class="as-container as-container--border">
-        <section class="as-box">
-          <h1 class="as-title">Border container 2</h1>
-          <p class="as-body">
-            Use this container when you need to present fixed content. This content will occupy as
-            much vertical space as needed.
-          </p>
-        </section>
-      </div>
-      <!-- as-container--border code ends here -->
     </aside>
   </div>
 </div>
 ```
 
-### .as-box
+In case our default spacing doesn't suit your needs, you can use our [spacing utilities](/styles/utilities).
 
-If you want to add content to the containers with a default margin, use the `as-box` class. The content will have our default margin to give a sense of space and cleanliness.
+#### .as-box--border
 
-```code
-lang:html
+If you need to separate sections of content, you can add the modifier `as-box--border` to draw a border line under the box.
+
+```html
+showSource: true
 ---
-<div class="as-container">
-  <section class="as-box"> <!-- as-box is a child of a as-container -->
-    <p class="as-body">
-      Use as-box to get a correct spacing of containers content.
-    </p>
-  </section>
+<div class="as-app"  style="height: 400px; width:100%;">
+  <div class="as-content">
+    <main class="as-main as-bg--badge-blue">
+      <!-- Put your map here -->
+    </main>
+    <aside class="as-sidebar as-sidebar--right">
+      <div class="as-container">
+        <section class="as-box as-box--border"> <!-- as-box is a child of a as-container -->
+          <p class="as-body">
+            Use `as-box as-box--border` to get a border line under the box.
+          </p>
+        </section>
+      </div>
+    </aside>
+  </div>
 </div>
 ```
-
-In case our default spacing doesn't suit your needs, you can use our [spacing utilities](/styles/utilities).
