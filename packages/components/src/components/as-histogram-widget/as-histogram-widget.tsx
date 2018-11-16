@@ -386,7 +386,7 @@ export class HistogramWidget {
 
         const handleGrab = this.customHandlers
           .append('g')
-          .attr('transform', 'translate(0, 12)');
+          .attr('class', 'handle--grab');
 
 
         for (let i = 0; i < 3; i++) {

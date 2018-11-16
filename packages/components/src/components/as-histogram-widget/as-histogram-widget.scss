@@ -87,6 +87,10 @@ as-histogram-widget {
       pointer-events: none;
     }
 
+    .handle--grab {
+      transform: translateY(12px);
+    }
+
     .grab-line {
       stroke: #CCC;
     }
