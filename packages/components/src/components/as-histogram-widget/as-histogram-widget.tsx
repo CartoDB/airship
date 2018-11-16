@@ -429,8 +429,9 @@ export class HistogramWidget {
           this._hideTooltip();
         }
       })
-        .on('mouseout', () => {
+        .on('mouseleave', () => {
           this.tooltip = null;
+          this._hideTooltip();
           this.barsContainer.selectAll('rect')
             .style('fill', (data: HistogramData) => {
               if (this._isSelected(data)) {
