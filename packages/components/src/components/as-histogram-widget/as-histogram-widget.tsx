@@ -16,7 +16,9 @@ import { Container } from './types/Container';
 import dataService from './utils/data.service';
 import drawService from './utils/draw.service';
 
+// This is the default value of --as--color--primary
 const DEFAULT_BAR_COLOR_HEX = '#1785FB';
+// This is the default value of --as--color--complementary
 const DEFAULT_SELECTED_BAR_COLOR_HEX = '#1785FB';
 const DEFAULT_BAR_COLOR = `var(--as--color--primary, ${DEFAULT_BAR_COLOR_HEX})`;
 const DEFAULT_SELECTED_BAR_COLOR = `var(--as--color--complementary, ${DEFAULT_SELECTED_BAR_COLOR_HEX})`;
