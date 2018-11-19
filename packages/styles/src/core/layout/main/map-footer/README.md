@@ -66,7 +66,10 @@ You can put whatever you want as a footer child, but we recommend using `as-box`
 
 `.as-box` is an utility class that wraps your element distributing the content nicely in the footer.
 
-> Remember to set a min-width to your elements to ensure a proper experience across all screen sizes.
+
+```hint|directive
+Remember to set a min-width to your elements to ensure a proper experience across all screen sizes.
+```
 
 ```html
 showSource: true
