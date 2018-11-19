@@ -212,7 +212,7 @@ export class StackedBarWidget {
   }
 
   private _drawFigure() {
-    if (this._containerIsNotDrawable()) {
+    if (!this._isContainerReady()) {
       return;
     }
     requestAnimationFrame(() => {
@@ -261,7 +261,7 @@ export class StackedBarWidget {
   }
 
   // If container is not ready or the widget is invisible block drawing phase
-  private _containerIsNotDrawable() {
+  private _isContainerReady() {
     if (!this.container || this.el.clientWidth === 0 || this.el.clientHeight === 0) {
       return false;
     }
