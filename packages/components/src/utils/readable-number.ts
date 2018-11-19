@@ -19,5 +19,8 @@ export default function(value): string {
 
   const roundedStr = `${roundedNumber}`;
 
-  return roundedStr.padStart(5);
+  // This seems backwards but it's an Edge issue.
+  // padStart(5) looks weird for 0 - 9, looks better with padStart(8)
+  // 10 - 99 looks better with padStart(7)
+  return roundedStr.padStart(6 + Math.abs(roundedStr.length - 3));
 }
