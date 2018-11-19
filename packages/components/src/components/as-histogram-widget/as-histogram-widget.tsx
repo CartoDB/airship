@@ -16,8 +16,12 @@ import { Container } from './types/Container';
 import dataService from './utils/data.service';
 import drawService from './utils/draw.service';
 
-const DEFAULT_BAR_COLOR = 'var(--as--color--primary, #1785FB)';
-const DEFAULT_SELECTED_BAR_COLOR = 'var(--as--color--complementary, #47DB99)';
+// This is the default value of --as--color--primary
+const DEFAULT_BAR_COLOR_HEX = '#1785FB';
+// This is the default value of --as--color--complementary
+const DEFAULT_SELECTED_BAR_COLOR_HEX = '#1785FB';
+const DEFAULT_BAR_COLOR = `var(--as--color--primary, ${DEFAULT_BAR_COLOR_HEX})`;
+const DEFAULT_SELECTED_BAR_COLOR = `var(--as--color--complementary, ${DEFAULT_SELECTED_BAR_COLOR_HEX})`;
 const BARS_SEPARATION = 1;
 const CUSTOM_HANDLE_WIDTH = BARS_SEPARATION + 5;
 const CUSTOM_HANDLE_HEIGHT = 28;
@@ -202,12 +206,14 @@ export class HistogramWidget {
 
   @Watch('color')
   public _onColorChanged(newColor) {
-    this._color = this._toColor(newColor);
+    const incomingColor = newColor || DEFAULT_BAR_COLOR;
+    this._color = this._toColor(incomingColor, DEFAULT_BAR_COLOR_HEX);
   }
 
   @Watch('selectedColor')
   public _onSelectedColorChanged(newColor) {
-    this._selectedColor = this._toColor(newColor);
+    const incomingColor = newColor || DEFAULT_SELECTED_BAR_COLOR;
+    this._selectedColor = this._toColor(incomingColor, DEFAULT_SELECTED_BAR_COLOR_HEX);
   }
 
   /**
@@ -256,8 +262,8 @@ export class HistogramWidget {
   }
 
   public componentDidLoad() {
-    this._color = this._toColor(this.color);
-    this._selectedColor = this._toColor(this.selectedColor);
+    this._color = this._toColor(this.color, DEFAULT_BAR_COLOR_HEX);
+    this._selectedColor = this._toColor(this.selectedColor, DEFAULT_SELECTED_BAR_COLOR_HEX);
 
     if (!this._hasDataToDisplay()) {
       return;
@@ -382,7 +388,7 @@ export class HistogramWidget {
 
         const handleGrab = this.customHandlers
           .append('g')
-          .attr('transform', 'translate(0, 12)');
+          .attr('class', 'handle--grab');
 
 
         for (let i = 0; i < 3; i++) {
@@ -447,7 +453,7 @@ export class HistogramWidget {
         this.container,
         this.barsContainer,
         BARS_SEPARATION,
-        this._toColor(this._color),
+        this._color,
         X_PADDING + (this.yLabel ? LABEL_PADDING : 0),
         Y_PADDING,
         resizing);
@@ -572,7 +578,7 @@ export class HistogramWidget {
       this.barsContainer.selectAll('rect')
         .style('fill', (_d, i) => {
           const d = this.data[i];
-          return d.color || this._toColor(this._color);
+          return d.color || this._color;
         });
       this.brushArea.call(this.brush.move, null);
 
@@ -721,16 +727,26 @@ export class HistogramWidget {
     ];
   }
 
-  // If the parameter is a css variable will be evaluated to a color
-  private _toColor(color) {
+  /**
+   * Converts to a hex color string, allowing CSS variables to be passed.
+   *
+   * @param color color string, can be a CSS variable declaration: var(varname[, fallback])
+   * @param fallbackColor if the variable is malformed, or if the CSS variable is not defined, this will be returned
+   */
+  private _toColor(color: string, fallbackColor: string) {
     if (color.startsWith('var(')) {
-      const match = color.match(/var\((.+),(.+)\)/);
+      const match = color.match(/var\(([^,\)]+)(,.+)?\)/);
+
+      if (match === null) {
+        return fallbackColor;
+      }
+
       const variable = match[1];
-      const fallback = match[2] || '';
+      const fallback = (match[2] || '').replace(',', '').trim();
       const computed = getComputedStyle(this.el).getPropertyValue(variable).toLowerCase().trim();
 
       if (computed.length === 0) {
-        return fallback.trim();
+        return fallback.length === 0 ? fallbackColor : fallback;
       }
 
       return computed;

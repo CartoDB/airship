@@ -33,7 +33,7 @@
 
   // Media queries
   @media all and (min-width: $tablet-breakpoint) {
-    position: static;
+    position: initial;
     top: 0;
     left: 0;
     flex-direction: row;
