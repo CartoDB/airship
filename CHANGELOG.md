@@ -1,9 +1,19 @@
-# [0.0.0](https://github.com/CartoDB/airship/compare/v1.0.0-beta.10...v0.0.0) (2018-11-16)
+# [1.0.1](https://github.com/CartoDB/airship/compare/v1.0.0-beta.11...v1.0.1) (2018-11-20)
+
+### First public version of Airship 🎉
+
+
+# [1.0.0-beta.11](https://github.com/CartoDB/airship/compare/v1.0.0-beta.10...v1.0.0-beta.11) (2018-11-19)
 
 
 ### Bug Fixes
 
 * smoke-fixes ([740c158](https://github.com/CartoDB/airship/commit/740c158)), closes [#490](https://github.com/CartoDB/airship/issues/490) [#491](https://github.com/CartoDB/airship/issues/491) [#491](https://github.com/CartoDB/airship/issues/491) [#495](https://github.com/CartoDB/airship/issues/495) [#499](https://github.com/CartoDB/airship/issues/499) [#502](https://github.com/CartoDB/airship/issues/502) [#501](https://github.com/CartoDB/airship/issues/501)
+* **components:** fix invisible stacked bars ([e494944](https://github.com/CartoDB/airship/commit/e494944))
+* **components:** Histogram X axis and non-disappearing tooltip ([8208228](https://github.com/CartoDB/airship/commit/8208228)), closes [#504](https://github.com/CartoDB/airship/issues/504) [#500](https://github.com/CartoDB/airship/issues/500)
+* **components:** Prevent stacked-bar errors when widget is not visible ([#509](https://github.com/CartoDB/airship/issues/509)) ([7078300](https://github.com/CartoDB/airship/commit/7078300))
+* **components:** Refactor as-responsive-content ([#507](https://github.com/CartoDB/airship/issues/507)) ([1aa2ecf](https://github.com/CartoDB/airship/commit/1aa2ecf)), closes [#503](https://github.com/CartoDB/airship/issues/503)
+* **styles:** refactor footer containers [#502](https://github.com/CartoDB/airship/issues/502) ([b9d0251](https://github.com/CartoDB/airship/commit/b9d0251))
 
 
 ### chore
@@ -13,6 +23,10 @@
 
 ### BREAKING CHANGES
 
+* **styles:** footer containers were introducing a lot of problems when mixing fixed and scrollable containers.
+We've dropped `as-container` from the footer styles. Now, every content added to a `as-footer` is recommended to be wrapped by an element with class `as-box`.
+
+Please refer to the layout documentation to know more about how to add content to both sidebars and footer.
 * `.as-box` in the footer has now a reduced number of use cases.
 * Internet Explorer won't be supported.
 

@@ -4,11 +4,11 @@
 
 [![CircleCI](https://circleci.com/gh/CartoDB/airship/tree/master.svg?style=svg)](https://circleci.com/gh/CartoDB/airship/tree/master)
 
-| module | stable | prerelease | description |
-|---|---|---|---|
-|  [airship-style](https://www.npmjs.com/package/@carto/airship-style) | ![status](https://img.shields.io/badge/status-in%20progress-orange.svg) | ![npm version](https://badgen.net/npm/v/@carto/airship-style/prerelease)| A complete CSS framework to build location intelligence apps. |
-|  [airship-components](https://www.npmjs.com/package/@carto/airship-components) | ![status](https://img.shields.io/badge/status-in%20progress-orange.svg) | ![npm version](https://badgen.net/npm/v/@carto/airship-components/prerelease) | Web components for Location Intelligence apps. |
-|  [airship-icons](https://www.npmjs.com/package/@carto/airship-icons) | ![status](https://img.shields.io/badge/status-in%20progress-orange.svg) | ![npm version](https://badgen.net/npm/v/@carto/airship-icons/prerelease) | High quality icons set |
+| module | stable | description |
+|---|---|---|
+|  [airship-style](https://www.npmjs.com/package/@carto/airship-style) | ![npm version](https://badgen.net/npm/v/@carto/airship-style) | A complete CSS framework to build location intelligence apps. |
+|  [airship-components](https://www.npmjs.com/package/@carto/airship-components) | ![npm version](https://badgen.net/npm/v/@carto/airship-components) | Web components for Location Intelligence apps. |
+|  [airship-icons](https://www.npmjs.com/package/@carto/airship-icons) | ![npm version](https://badgen.net/npm/v/@carto/airship-icons) | High quality icons set |
 
 ## What is Airship?
 
