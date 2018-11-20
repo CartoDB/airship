@@ -111,7 +111,9 @@ export class ResponsiveContent {
       ...contentService.getSidebars(this.element),
       ...contentService.getPanels(this.element),
       contentService.getFooter(this.element)
-    ];
+    ].filter(section => {
+      return section !== null;
+    });
 
     if (sections.length) {
       sections.sort((a, b) => a.order - b.order);
