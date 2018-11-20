@@ -17,6 +17,27 @@ describe('as-responsive-content', () => {
       expect(tabsHTML).toContain('Panel 0');
       expect(tabsHTML).toContain('Bottom Bar');
     });
+
+    it('should render tabs even if footer is not available', async () => {
+      page = await newE2EPage({ html: `<as-responsive-content>${noFooterExample}</as-responsive-content>` });
+
+      const tabs: E2EElement = await page.find('.as-toolbar-tabs');
+      const tabsHTML = tabs.innerHTML;
+
+      expect(tabsHTML).toContain('Sidebar 0');
+      expect(tabsHTML).toContain('Sidebar 1');
+      expect(tabsHTML).toContain('Panel 0');
+      expect(tabsHTML).not.toContain('Bottom Bar');
+    });
+
+    it('should not render tabs content is no content is available', async () => {
+      page = await newE2EPage({ html: `<as-responsive-content></as-responsive-content>` });
+
+      const tabs: E2EElement = await page.find('.as-toolbar-tabs');
+      const tabsHTML = tabs.innerHTML;
+
+      expect(tabsHTML).toEqual('');
+    });
   });
 
   describe('Behaviour', async () => {
@@ -69,6 +90,23 @@ const domExample = `
     </div>
 
     <div class="as-map-footer">Bottom Bar</div>
+  </main>
+
+  <aside class="as-sidebar as-sidebar--right">Right Sidebar</aside>
+`;
+
+const noFooterExample = `
+  <aside class="as-sidebar as-sidebar--left">Left Sidebar</aside>
+
+  <main class="as-main">
+    <div class="as-map-area">
+      <div id="map"></div>
+      <div class="as-map-panels">
+        <div class="as-panel as-panel--top as-panel--right">
+          <div class="as-panel__element">Floating Panel</div>
+        </div>
+      </div>
+    </div>
   </main>
 
   <aside class="as-sidebar as-sidebar--right">Right Sidebar</aside>

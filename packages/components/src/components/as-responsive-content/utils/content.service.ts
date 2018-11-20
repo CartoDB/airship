@@ -3,13 +3,15 @@ import ApplicationSection from './ApplicationSection';
 export function getMap(element: HTMLElement): ApplicationSection {
   const mapElement = element.querySelector('.as-map-area');
 
-  return new ApplicationSection({
-    activeClass: 'as-map-area--visible',
-    element: mapElement,
-    name: mapElement.getAttribute('data-name') || 'Map',
-    order: mapElement.getAttribute('data-tab-order') || 0,
-    type: 'map'
-  });
+  return mapElement
+    ? new ApplicationSection({
+      activeClass: 'as-map-area--visible',
+      element: mapElement,
+      name: mapElement.getAttribute('data-name') || 'Map',
+      order: mapElement.getAttribute('data-tab-order') || 0,
+      type: 'map'
+    })
+    : null;
 }
 
 export function getSidebars(element: HTMLElement): ApplicationSection[] {
@@ -43,13 +45,15 @@ function _getPanel(panelElement: HTMLElement, index: number): ApplicationSection
 export function getFooter(element: HTMLElement): ApplicationSection {
   const footerElement = element.querySelector('.as-map-footer');
 
-  return new ApplicationSection({
-    activeClass: 'as-map-footer--visible',
-    element: footerElement,
-    name: footerElement.getAttribute('data-name') || `Bottom Bar`,
-    order: footerElement.getAttribute('data-tab-order') || 0,
-    type: 'mapFooter'
-  });
+  return footerElement
+    ? new ApplicationSection({
+      activeClass: 'as-map-footer--visible',
+      element: footerElement,
+      name: footerElement.getAttribute('data-name') || `Bottom Bar`,
+      order: footerElement.getAttribute('data-tab-order') || 0,
+      type: 'mapFooter'
+    })
+    : null;
 }
 
 export default {
