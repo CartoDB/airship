@@ -111,7 +111,7 @@ export class ResponsiveContent {
       ...contentService.getSidebars(this.element),
       ...contentService.getPanels(this.element),
       contentService.getFooter(this.element)
-    ].filter(section => {
+    ].filter((section) => {
       return section !== null;
     });
 
