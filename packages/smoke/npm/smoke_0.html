@@ -6,8 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Smoke 0</title>
-  <script src="./dist/bundle.js"></script>
-  <style>
+<style>
     body {
       /* TODO: this should be the default color */
       --widget-background-color: transparent;
@@ -63,19 +62,62 @@
               rangeSliderWidget.maxValue = 20;
               rangeSliderWidget.value = 12;
               rangeSliderWidget.step = 2;
+
             </script>
           </div>
           <div class="as-p--12" role="tabpanel" data-title="Dropdown">
             <h1 class="as-title">Dropdown</h1>
             <as-dropdown default-text="Dropdown" can-clear="true"></as-dropdown>
+
+            <script>
+              const dropdown = document.querySelector('as-dropdown');
+              dropdown.options = [{
+                  text: 'All',
+                  value: 'all'
+                },
+                {
+                  text: 'Open',
+                  value: 'open'
+                },
+                {
+                  text: 'Unfulfilled',
+                  value: 'unfulfilled'
+                },
+                {
+                  text: 'Unpaid',
+                  value: 'unpaid'
+                }
+              ];
+
+            </script>
           </div>
         </as-tabs>
       </div>
     </aside>
 
     <main class="as-main">
-      <div class="as-map-area">
+      <div  class="as-map-area">
         <div id="map"></div>
+        <div data-name="MAP PANELS" class="as-map-panels">
+          <div class="as-panel as-panel--top as-panel--left as-panel--vertical">
+            <div class="as-panel__element">
+              <section class="as-box">
+                <p class="as-title">LEGEND 3a</p>
+                <p class="as-body">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore possimus nam quam necessitatibus omnis, est sequi rem quibusdam molestiae, at saepe odit voluptatem quae debitis consequatur iste ducimus quaerat dolorum.
+                </p>
+              </section>
+            </div>
+            <div class="as-panel__element">
+              <section class="as-box">
+                <p class="as-title">LEGEND 3b</p>
+                <p class="as-body">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore possimus nam quam necessitatibus omnis, est sequi rem quibusdam molestiae.
+                </p>
+              </section>
+            </div>
+          </div>
+        </div>
         <as-infowindow src="http://on-desktop.com/wps/Animals___Cats_Black_Cat_Panther_043844_.jpg">
           <h1 class="as-title">Cat</h1>
           <p>
@@ -88,47 +130,80 @@
           </p>
         </as-infowindow>
 
-
       </div>
-      <footer class="as-map-footer as-bg--complementary">
+      <footer class="as-map-footer">
         <div class="as-box">
-          <as-stacked-bar-widget id="widget-0" show-legend="true" heading="Star Wars Revenue" description="Description"></as-stacked-bar-widget>
+          <as-histogram-widget id="histogramFooter" heading="Title" description="Description" show-header show-clear></as-histogram-widget>
         </div>
         <div class="as-box">
-          <as-histogram-widget heading="Title" description="Description" show-header show-clear></as-histogram-widget>
+          <as-stacked-bar-widget id="stackedFooter" show-legend="true" heading="Star Wars Revenue" description="Description"></as-stacked-bar-widget>
+        </div>
+        <div class="as-box">
+          <as-category-widget heading="Business Volume" description="Description" default-bar-color="#47DB99"></as-category-widget>
+        </div>
+        <div style="min-width: 192px;" class="as-box as-box--scroll">
+          <p class="as-title">LEGEND 3b</p>
+          <p class="as-body">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore possimus nam quam necessitatibus omnis, est sequi rem quibusdam molestiae.
+          </p>
+          <p class="as-body">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore possimus nam quam necessitatibus omnis, est sequi rem quibusdam molestiae.
+          </p>
+          <p class="as-body">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore possimus nam quam necessitatibus omnis, est sequi
+            rem quibusdam molestiae.
+          </p>
+          <p class="as-body">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore possimus nam quam necessitatibus omnis, est sequi
+            rem quibusdam molestiae.
+          </p>
+          <p class="as-body">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore possimus nam quam necessitatibus omnis, est sequi
+            rem quibusdam molestiae.
+          </p>
+          <p class="as-body">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore possimus nam quam necessitatibus omnis, est sequi
+            rem quibusdam molestiae.
+          </p>
+          <p class="as-body">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore possimus nam quam necessitatibus omnis, est sequi
+            rem quibusdam molestiae.
+          </p>
+          <p class="as-body">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore possimus nam quam necessitatibus omnis, est sequi
+            rem quibusdam molestiae.
+          </p>
+          <p class="as-body">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore possimus nam quam necessitatibus omnis, est sequi
+            rem quibusdam molestiae.
+          </p>
         </div>
       </footer>
     </main>
 
     <aside class="as-sidebar as-sidebar--right">
       <div class="as-container">
-        <as-category-widget class="as-p--16" heading="Business Volume" description="Description" default-bar-color="#47DB99"></as-category-widget>
+        <div class="as-box">
+          <as-stacked-bar-widget id="stackedSidebar" show-legend="true" heading="Star Wars Revenue" description="Description"></as-stacked-bar-widget>
+        </div>
+      </div>
+      <div class="as-container as-container--scrollable">
+        <div class="as-box as-box--border">
+          <as-histogram-widget id="histogramSidebar" heading="Title" description="Description" show-header show-clear hidden></as-histogram-widget>
+        </div>
+        <div class="as-box">
+          <h1 class="as-title">Some content</h1>
+          <p class="as-body">
+            Gastropub thundercats DIY roof party crucifix, XOXO umami. Meditation portland pug prism yr schlitz mustache next level tumeric retro tousled jianbing blue bottle pop-up +1. Seitan roof party bushwick messenger bag intelligentsia, coloring book cred dreamcatcher hell of banjo affogato beard humblebrag.
+          </p>
+        </div>
       </div>
     </aside>
   </as-responsive-content>
+
   <script>
     function onReady () {
-      const dropdown = document.querySelector('as-dropdown');
-      dropdown.options = [{
-          text: 'All',
-          value: 'all'
-        },
-        {
-          text: 'Open',
-          value: 'open'
-        },
-        {
-          text: 'Unfulfilled',
-          value: 'unfulfilled'
-        },
-        {
-          text: 'Unpaid',
-          value: 'unpaid'
-        }
-      ];
-
-      const widget0 = document.querySelector('as-stacked-bar-widget');
-      widget0.data = [{
+      var stackedData = [{
           category: 'Star Wars Ep. IV: A New Hope',
           values: {
             dvd: 27229125,
@@ -151,7 +226,7 @@
         }
       ];
 
-      widget0.metadata = {
+      var stackedMetadata = {
         dvd: {
           label: 'Domestic DVD Sales',
           color: '#33ACEE'
@@ -162,8 +237,14 @@
         }
       }
 
-      var histogramWidget = document.querySelector('as-histogram-widget');
-      histogramWidget.data = [{
+      const stackedFooter = document.getElementById('stackedFooter');
+      const stackedSidebar = document.getElementById('stackedSidebar');
+      stackedFooter.data = stackedData;
+      stackedFooter.metadata = stackedMetadata;
+      stackedSidebar.data = stackedData;
+      stackedSidebar.metadata = stackedMetadata;
+
+      var histogramData =  [{
           start: 0,
           end: 10,
           value: 5
@@ -189,6 +270,11 @@
           value: 30
         },
       ];
+
+      var histogramFooter = document.getElementById('histogramFooter');
+      var histogramSidebar = document.getElementById('histogramSidebar');
+      histogramFooter.data = histogramData;
+      histogramSidebar.data = histogramData;
 
       const categoryWidget = document.querySelector('as-category-widget');
       categoryWidget.showHeader = true;
@@ -228,8 +314,18 @@
     }
 
     var responsiveContent = document.querySelector('as-responsive-content');
-    responsiveContent.addEventListener('ready', onReady);
+    if (!responsiveContent) {
+      console.log('tucutu');
+      onReady();
+    } else {
+      console.log('tacata');
+      responsiveContent.addEventListener('ready', onReady);
+    }
   </script>
+  <script src="./dist/bundle.js"></script>
 </body>
 
 </html>
+
+
+ 
