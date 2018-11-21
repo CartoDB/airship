@@ -38,6 +38,8 @@ export function updateAxes(
     .call(yAxis);
 }
 
+const formatter = format('.2~s');
+
 export function renderBars(
   data: HistogramData[],
   yScale: ScaleLinear<number, number>,
@@ -89,6 +91,7 @@ export function renderBars(
 export function renderXAxis(
   container: Container,
   domain: Domain,
+  bins: number,
   X_PADDING: number,
   Y_PADDING: number): Axis<{ valueOf(): number }> {
 
@@ -96,13 +99,18 @@ export function renderXAxis(
   const WIDTH = container.node().getBoundingClientRect().width - X_PADDING;
 
   const xScale = scaleLinear()
-    .domain(domain)
+    .domain([0, bins])
     .range([0, WIDTH]);
+
+  const realScale = scaleLinear()
+    .domain(domain)
+    .range([0, bins]);
 
   const xAxis = axisBottom(xScale)
     .tickSize(-WIDTH)
     .ticks(3)
-    .tickPadding(10);
+    .tickPadding(10)
+    .tickFormat((value) => formatter(realScale.invert(value)));
 
   if (container.select('.x-axis').empty()) {
     container
@@ -139,7 +147,7 @@ export function renderYAxis(
     .tickSize(-WIDTH)
     .ticks(5)
     .tickPadding(10)
-    .tickFormat(format('.2~s'));
+    .tickFormat(formatter);
 
   if (container.select('.y-axis').empty()) {
     container
