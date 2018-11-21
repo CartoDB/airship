@@ -55,7 +55,7 @@ showSource: true
 noSource: true
 responsive: true
 ---
-<iframe src="/examples/layouts/footer/footer" style="width: 100%; height: 100%;">
+<iframe src="/examples/layouts/footer/footer.html" style="width: 100%; height: 100%;">
 ```
 
 ## Footer content
