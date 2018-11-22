@@ -22,8 +22,7 @@ const DEFAULT_BAR_COLOR_HEX = '#1785FB';
 const DEFAULT_SELECTED_BAR_COLOR_HEX = '#1785FB';
 const DEFAULT_BAR_COLOR = `var(--as--color--primary, ${DEFAULT_BAR_COLOR_HEX})`;
 const DEFAULT_SELECTED_BAR_COLOR = `var(--as--color--complementary, ${DEFAULT_SELECTED_BAR_COLOR_HEX})`;
-const BARS_SEPARATION = 1;
-const CUSTOM_HANDLE_WIDTH = BARS_SEPARATION + 5;
+const CUSTOM_HANDLE_WIDTH = 6;
 const CUSTOM_HANDLE_HEIGHT = 28;
 
 // we could use getComputedStyle instead of these
@@ -452,7 +451,6 @@ export class HistogramWidget {
         this.yScale,
         this.container,
         this.barsContainer,
-        BARS_SEPARATION,
         this._color,
         X_PADDING + (this.yLabel ? LABEL_PADDING : 0),
         Y_PADDING,
