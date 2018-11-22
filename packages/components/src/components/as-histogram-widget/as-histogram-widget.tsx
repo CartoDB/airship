@@ -534,7 +534,7 @@ export class HistogramWidget {
 
     // Convert to our data's domain
     const d0 = evt.selection
-      .map((selection) => Math.round(this.xScale.invert(selection)))
+      .map((selection) => this.xScale.invert(selection))
       .map((bucket) => this.binsScale.invert(bucket));
 
     this._setSelection(d0);
