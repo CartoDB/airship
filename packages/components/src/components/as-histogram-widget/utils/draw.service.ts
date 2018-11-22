@@ -99,6 +99,9 @@ export function renderXAxis(
   const HEIGHT = container.node().getBoundingClientRect().height - Y_PADDING;
   const WIDTH = container.node().getBoundingClientRect().width - X_PADDING;
 
+  // Display first, last and middle point bins
+  const ticks = [0, bins / 2, bins];
+
   const xScale = scaleLinear()
     .domain([0, bins])
     .range([0, WIDTH]);
@@ -109,7 +112,7 @@ export function renderXAxis(
 
   const xAxis = axisBottom(xScale)
     .tickSize(-WIDTH)
-    .ticks(3)
+    .tickValues(ticks)
     .tickPadding(10)
     .tickFormat((value) => {
       const realValue = realScale.invert(value);
