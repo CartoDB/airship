@@ -24,7 +24,7 @@ const DEFAULT_BAR_COLOR = `var(--as--color--primary, ${DEFAULT_BAR_COLOR_HEX})`;
 const DEFAULT_SELECTED_BAR_COLOR = `var(--as--color--complementary, ${DEFAULT_SELECTED_BAR_COLOR_HEX})`;
 const BARS_SEPARATION = 1;
 const CUSTOM_HANDLE_WIDTH = BARS_SEPARATION + 5;
-const CUSTOM_HANDLE_HEIGHT = 28;
+const CUSTOM_HANDLE_HEIGHT = 14;
 
 // we could use getComputedStyle instead of these
 const X_PADDING = 38;
