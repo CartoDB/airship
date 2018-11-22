@@ -163,7 +163,7 @@ export function renderYAxis(
 }
 
 function _delayFn(_d, i) {
-  return i * 50;
+  return i;
 }
 
 export default { cleanAxes, updateAxes, renderBars, renderXAxis, renderYAxis };
