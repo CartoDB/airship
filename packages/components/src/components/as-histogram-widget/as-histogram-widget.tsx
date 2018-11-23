@@ -1,20 +1,19 @@
 import { Component, Element, Event, EventEmitter, Method, Prop, Watch } from '@stencil/core';
-import { BrushBehavior, brushX } from 'd3-brush';
+import { BrushBehavior } from 'd3-brush';
 import { ScaleLinear } from 'd3-scale';
 import {
-  BaseType,
   event as d3event,
-  select,
-  Selection
+  select
 } from 'd3-selection';
 import 'd3-transition';
 import readableNumber from '../../utils/readable-number';
-import { shadeOrBlend } from '../../utils/styles';
 import contentFragment from '../common/content.fragment';
 import { HistogramColorRange, HistogramData } from './interfaces';
-import { Container } from './types/Container';
+import { SVGContainer, SVGGContainer } from './types/Container';
+import brushService from './utils/brush.service';
 import dataService from './utils/data.service';
 import drawService from './utils/draw.service';
+import interactionService from './utils/interaction.service';
 
 // This is the default value of --as--color--primary
 const DEFAULT_BAR_COLOR_HEX = '#1785FB';
@@ -167,6 +166,8 @@ export class HistogramWidget {
    */
   @Prop() public responsive: boolean = true;
 
+  public selection: number[] = null;
+
   @Element() private el: HTMLElement;
 
   /**
@@ -180,17 +181,15 @@ export class HistogramWidget {
 
   private tooltip: string;
 
-  private container: Container;
+  private container: SVGContainer;
   private tooltipElement: HTMLElement;
 
   private xScale: ScaleLinear<number, number>;
   private yScale: ScaleLinear<number, number>;
-  private barsContainer: Container;
+  private barsContainer: SVGGContainer;
   private brush: BrushBehavior<{}>;
-  private brushArea: Container;
-  private customHandlers: Selection<BaseType, { type: string }, BaseType, {}>;
-  private bottomLine: Selection<BaseType, {}, BaseType, {}>;
-  private selection: number[] = null;
+  private brushArea: SVGGContainer;
+  private customHandles: SVGGContainer<{ type: string }, SVGGElement, {}>;
 
   private width: number;
   private height: number;
@@ -338,114 +337,43 @@ export class HistogramWidget {
       this._renderYAxis();
       this._renderXAxis();
 
-      if (this.container.select('.plot').empty()) {
-        this.barsContainer = this.container
-          .append('g');
-        this.barsContainer
-          .attr('class', 'plot');
-      }
+      this.barsContainer = drawService.renderPlot(this.container);
 
       if (!this.disableInteractivity) {
-        if (!this.container.select('.brush').empty()) {
-          this.container.select('.brush').remove();
-        }
+        this.brush = brushService.addBrush(
+          this.width,
+          this.height,
+          this._onBrush.bind(this),
+          this._onBrushEnd.bind(this),
+          CUSTOM_HANDLE_WIDTH,
+          CUSTOM_HANDLE_HEIGHT,
+          X_PADDING,
+          Y_PADDING
+        );
 
-        this.brush = brushX()
-          .handleSize(CUSTOM_HANDLE_WIDTH)
-          .extent([[0, 0], [this.width - X_PADDING, this.height - Y_PADDING + (CUSTOM_HANDLE_HEIGHT / 2)]])
-          .on('brush', this._onBrush.bind(this))
-          .on('end', this._onBrushEnd.bind(this));
+        this.brushArea = brushService.addBrushArea(
+          this.brush,
+          this.container,
+        );
 
-        this.brushArea = this.container
-          .append('g');
-        this.brushArea
-          .attr('class', 'brush');
-
-        this.brushArea.call(this.brush);
-
-        this.bottomLine = this.brushArea.append('line')
-          .attr('class', 'bottomline')
-          .attr('stroke-width', 4)
-          .attr('y1', this.height - Y_PADDING)
-          .attr('y2', this.height - Y_PADDING)
-          .style('opacity', 0)
-          .attr('pointer-events', 'none');
-
-        this.customHandlers = this.brushArea.selectAll('.handle--custom')
-          .data([{ type: 'w' }, { type: 'e' }])
-          .enter()
-          .append('g')
-          .attr('class', 'handle--wrapper');
-
-        // We're setting width, height and transform here instead of CSS because of IE11
-        this.customHandlers
-          .append('rect')
-          .attr('class', 'handle--custom')
-          .attr('width', CUSTOM_HANDLE_WIDTH)
-          .attr('height', CUSTOM_HANDLE_HEIGHT)
-          .attr('rx', 2)
-          .attr('ry', 2);
-
-        const handleGrab = this.customHandlers
-          .append('g')
-          .attr('class', 'handle--grab');
-
-
-        for (let i = 0; i < 3; i++) {
-          handleGrab
-            .append('line')
-            .attr('x1', 2)
-            .attr('y1', i * 2)
-            .attr('x2', 4)
-            .attr('y2', i * 2)
-            .attr('class', 'grab-line');
-        }
+        this.customHandles = brushService.addCustomHandles(
+          this.brushArea,
+          this.height,
+          CUSTOM_HANDLE_WIDTH,
+          CUSTOM_HANDLE_HEIGHT,
+          Y_PADDING
+        );
       }
 
-      this.container.on('mousemove', () => {
-        const evt = d3event as MouseEvent;
-        const { clientX, clientY } = evt;
-        let anyHovered = false;
-
-        this.barsContainer.selectAll('rect')
-          .each((data: HistogramData, i, nodes) => {
-            const selected = this._isSelected(data);
-            const nodeSelection = select(nodes[i]);
-            const node = nodes[i] as Element;
-            const bb = node.getBoundingClientRect();
-            const isInsideBB = bb.left <= clientX &&
-              clientX <= bb.right &&
-              bb.top <= clientY &&
-              clientY <= bb.bottom;
-
-            if (isInsideBB) {
-              let color = selected ? this._selectedColor : data.color || this._color;
-              color = shadeOrBlend(-0.16, color);
-              nodeSelection.style('fill', color);
-              this.tooltip = this.tooltipFormatter(data);
-              this._showTooltip(evt);
-              anyHovered = true;
-            } else {
-              nodeSelection.style('fill', selected ? this._selectedColor : data.color || this._color);
-            }
-          });
-
-        if (!anyHovered) {
-          this.tooltip = null;
-          this._hideTooltip();
-        }
-      })
-        .on('mouseleave', () => {
-          this.tooltip = null;
-          this._hideTooltip();
-          this.barsContainer.selectAll('rect')
-            .style('fill', (data: HistogramData) => {
-              if (this._isSelected(data)) {
-                return this._selectedColor;
-              }
-              return data.color || this._color;
-            });
-        });
+      interactionService.addTooltip(
+        this.container,
+        this.barsContainer,
+        this,
+        this._color,
+        this._selectedColor,
+        this.tooltipFormatter,
+        this._setTooltip.bind(this)
+      );
 
       drawService.renderBars(
         this.data,
@@ -460,6 +388,17 @@ export class HistogramWidget {
 
       this._updateSelection();
     });
+  }
+
+  private _setTooltip(value: string | null, evt?: MouseEvent) {
+    this.tooltip = value;
+
+    if (value === null) {
+      this._hideTooltip();
+      return;
+    }
+
+    this._showTooltip(evt);
   }
 
   private _updateSelection() {
@@ -503,8 +442,8 @@ export class HistogramWidget {
   }
 
   private _hideCustomHandlers() {
-    this.customHandlers.style('opacity', 0);
-    this.bottomLine.style('opacity', 0);
+    this.customHandles.style('opacity', 0);
+    this.brushArea.selectAll('.bottomline').style('opacity', 0);
   }
 
   private _onBrush() {
@@ -565,14 +504,6 @@ export class HistogramWidget {
     return inData.some((e) => e);
   }
 
-  private _isSelected(data: HistogramData) {
-    if (this.selection === null) {
-      return false;
-    }
-
-    return data.start >= this.selection[0] && data.end <= this.selection[1];
-  }
-
   private _updateHandles(values: number[] | null) {
     if (values === null) {
       this.barsContainer.selectAll('rect')
@@ -593,12 +524,13 @@ export class HistogramWidget {
 
     this.brushArea.call(this.brush.move, valuesSpace);
 
-    this.customHandlers
+    this.customHandles
       .style('opacity', 1)
       .attr('transform', (_d, i) => {
         return `translate(${(valuesSpace[i] - (CUSTOM_HANDLE_WIDTH / 2) - 1)},${yCoord - CUSTOM_HANDLE_HEIGHT / 2})`;
       });
-    this.bottomLine
+
+    this.brushArea.selectAll('.bottomline')
       .style('opacity', 1)
       .attr('x1', valuesSpace[0])
       .attr('x2', valuesSpace[1]);

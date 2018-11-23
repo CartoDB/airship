@@ -1,3 +1,6 @@
 import { BaseType, Selection } from 'd3-selection';
 
-export type Container = Selection<SVGElement, {}, null, undefined>;
+type Container<T extends BaseType, E, V extends BaseType = null, W = undefined> = Selection<T, E, V, W>;
+
+export type SVGContainer<E = {}, V extends BaseType = null, W = undefined> = Container<SVGElement, E, V, W>;
+export type SVGGContainer<E = {}, V extends BaseType = null, W = undefined> = Container<SVGGElement, E, V, W>;

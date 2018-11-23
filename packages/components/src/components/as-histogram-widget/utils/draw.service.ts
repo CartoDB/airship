@@ -3,15 +3,15 @@ import { axisLeft } from 'd3-axis';
 import { format } from 'd3-format';
 import { ScaleLinear, scaleLinear } from 'd3-scale';
 import { HistogramData } from '../interfaces';
-import { Container } from '../types/Container';
+import { SVGContainer, SVGGContainer } from '../types/Container';
 import { Domain } from '../types/Domain';
 
-export function cleanAxes(yAxisSelection: Container) {
+export function cleanAxes(yAxisSelection: SVGContainer) {
   yAxisSelection.select('.domain').remove();
 }
 
 export function updateAxes(
-  container: Container,
+  container: SVGContainer,
   xScale: ScaleLinear<number, number>,
   yScale: ScaleLinear<number, number>,
   xAxis: Axis<{ valueOf(): number }>,
@@ -19,8 +19,8 @@ export function updateAxes(
   xDomain: Domain,
   yDomain: Domain) {
 
-  const xAxisSelection: Container = container.select('.xAxis');
-  const yAxisSelection: Container = container.select('.yAxis');
+  const xAxisSelection: SVGContainer = container.select('.xAxis');
+  const yAxisSelection: SVGContainer = container.select('.yAxis');
 
   // -- Update scales
   yScale
@@ -38,11 +38,24 @@ export function updateAxes(
     .call(yAxis);
 }
 
+export function renderPlot(container: SVGContainer): SVGGContainer {
+  if (container.select('.plot').empty()) {
+    const barsContainer = container
+      .append('g');
+    barsContainer
+      .attr('class', 'plot');
+
+    return barsContainer;
+  }
+
+  return container.select('.plot');
+}
+
 export function renderBars(
   data: HistogramData[],
   yScale: ScaleLinear<number, number>,
-  container: Container,
-  barsContainer: Container,
+  container: SVGContainer,
+  barsContainer: SVGGContainer,
   BARS_SEPARATION: number,
   color: string,
   X_PADDING: number,
@@ -87,7 +100,7 @@ export function renderBars(
 }
 
 export function renderXAxis(
-  container: Container,
+  container: SVGContainer,
   domain: Domain,
   X_PADDING: number,
   Y_PADDING: number): Axis<{ valueOf(): number }> {
@@ -121,7 +134,7 @@ export function renderXAxis(
 }
 
 export function renderYAxis(
-  container: Container,
+  container: SVGContainer,
   domain: Domain,
   X_PADDING: number,
   Y_PADDING: number): Axis<{ valueOf(): number }> {
@@ -158,4 +171,4 @@ function _delayFn(_d, i) {
   return i * 50;
 }
 
-export default { cleanAxes, updateAxes, renderBars, renderXAxis, renderYAxis };
+export default { cleanAxes, updateAxes, renderBars, renderXAxis, renderYAxis, renderPlot };
