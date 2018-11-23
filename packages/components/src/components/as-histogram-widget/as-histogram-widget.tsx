@@ -7,20 +7,21 @@ import {
 } from 'd3-selection';
 import 'd3-transition';
 import readableNumber from '../../utils/readable-number';
+import {
+  DEFAULT_BAR_COLOR,
+  DEFAULT_BAR_COLOR_HEX,
+  DEFAULT_SELECTED_BAR_COLOR,
+  DEFAULT_SELECTED_BAR_COLOR_HEX
+} from '../common/constants';
 import contentFragment from '../common/content.fragment';
 import { HistogramColorRange, HistogramData } from './interfaces';
 import { SVGContainer, SVGGContainer } from './types/Container';
+import { DrawOptions } from './types/DrawOptions';
 import brushService from './utils/brush.service';
 import dataService from './utils/data.service';
 import drawService from './utils/draw.service';
 import interactionService from './utils/interaction.service';
 
-// This is the default value of --as--color--primary
-const DEFAULT_BAR_COLOR_HEX = '#1785FB';
-// This is the default value of --as--color--complementary
-const DEFAULT_SELECTED_BAR_COLOR_HEX = '#1785FB';
-const DEFAULT_BAR_COLOR = `var(--as--color--primary, ${DEFAULT_BAR_COLOR_HEX})`;
-const DEFAULT_SELECTED_BAR_COLOR = `var(--as--color--complementary, ${DEFAULT_SELECTED_BAR_COLOR_HEX})`;
 const BARS_SEPARATION = 1;
 const CUSTOM_HANDLE_WIDTH = BARS_SEPARATION + 5;
 const CUSTOM_HANDLE_HEIGHT = 28;
@@ -166,6 +167,8 @@ export class HistogramWidget {
    */
   @Prop() public responsive: boolean = true;
 
+  @Prop() public draw: (props: DrawOptions) => void = null;
+
   public selection: number[] = null;
 
   @Element() private el: HTMLElement;
@@ -284,7 +287,6 @@ export class HistogramWidget {
   }
 
   public render() {
-
     return [
       this._renderHeader(),
       this._renderContent(),
@@ -387,6 +389,15 @@ export class HistogramWidget {
         resizing);
 
       this._updateSelection();
+
+      if (this.draw) {
+        this.draw({
+          container: this.container,
+          height: this.height,
+          padding: [X_PADDING, Y_PADDING],
+          width: this.width
+        });
+      }
     });
   }
 

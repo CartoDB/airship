@@ -1,0 +1,14 @@
+@import '../../../../styles/src/core/_dev';
+
+as-time-series-widget {
+  display: flex;
+  align-items: center;
+
+  .play-button {
+    width: 32px;
+    min-width: 32px;
+    height: 32px;
+
+    margin-right: get-spacing(4);
+  }
+}
