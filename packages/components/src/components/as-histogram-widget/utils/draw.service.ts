@@ -50,14 +50,14 @@ export function renderBars(
   Y_PADDING: number,
   disableAnimation: boolean = false) {
 
-  let BARS_SEPARATION = 1;
+  let barsSeparation = 1;
   const HEIGHT = container.node().getBoundingClientRect().height - Y_PADDING;
   const WIDTH = container.node().getBoundingClientRect().width - X_PADDING;
 
   const barWidth = data.length === 0 ? WIDTH : WIDTH / data.length;
 
-  if (barWidth - BARS_SEPARATION < BAR_WIDTH_THRESHOLD) {
-    BARS_SEPARATION = 0;
+  if (barWidth - barsSeparation < BAR_WIDTH_THRESHOLD) {
+    barsSeparation = 0;
   }
 
   // -- Draw bars
@@ -79,7 +79,7 @@ export function renderBars(
       .merge(this.bars)
       .attr('class', 'bar')
       .attr('x', (_d: HistogramData, index: number) => index * barWidth)
-      .attr('width', () => Math.max(0, barWidth - BARS_SEPARATION))
+      .attr('width', () => Math.max(0, barWidth - barsSeparation))
       .style('fill', (d: HistogramData) => d.color || color);
 
   (disableAnimation ? mergeSelection : mergeSelection.transition().delay(_delayFn))
