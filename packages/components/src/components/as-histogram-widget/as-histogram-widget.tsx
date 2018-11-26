@@ -18,12 +18,11 @@ import { HistogramColorRange, HistogramData } from './interfaces';
 import { SVGContainer, SVGGContainer } from './types/Container';
 import { DrawOptions } from './types/DrawOptions';
 import brushService from './utils/brush.service';
-import dataService from './utils/data.service';
+import dataService, { binsScale } from './utils/data.service';
 import drawService from './utils/draw.service';
 import interactionService from './utils/interaction.service';
 
-const BARS_SEPARATION = 1;
-const CUSTOM_HANDLE_WIDTH = BARS_SEPARATION + 5;
+const CUSTOM_HANDLE_WIDTH = 6;
 const CUSTOM_HANDLE_HEIGHT = 28;
 
 // we could use getComputedStyle instead of these
@@ -188,6 +187,7 @@ export class HistogramWidget {
   private tooltipElement: HTMLElement;
 
   private xScale: ScaleLinear<number, number>;
+  private binsScale: ScaleLinear<number, number>;
   private yScale: ScaleLinear<number, number>;
   private barsContainer: SVGGContainer;
   private brush: BrushBehavior<{}>;
@@ -204,6 +204,11 @@ export class HistogramWidget {
 
   constructor() {
     this._resizeRender = this._resizeRender.bind(this);
+  }
+
+  @Watch('data')
+  public _onDataChanged(newData) {
+    this.binsScale = binsScale(newData);
   }
 
   @Watch('color')
@@ -270,6 +275,8 @@ export class HistogramWidget {
     if (!this._hasDataToDisplay()) {
       return;
     }
+
+    this.binsScale = binsScale(this.data);
 
     this._renderGraph();
   }
@@ -382,7 +389,6 @@ export class HistogramWidget {
         this.yScale,
         this.container,
         this.barsContainer,
-        BARS_SEPARATION,
         this._color,
         X_PADDING + (this.yLabel ? LABEL_PADDING : 0),
         Y_PADDING,
@@ -476,7 +482,8 @@ export class HistogramWidget {
 
     // Convert to our data's domain
     const d0 = evt.selection
-      .map((e) => Math.round(this.xScale.invert(e)));
+      .map((selection) => this.xScale.invert(selection))
+      .map((bucket) => this.binsScale.invert(bucket));
 
     this._setSelection(d0);
   }
@@ -531,6 +538,7 @@ export class HistogramWidget {
 
     // Convert back to space coordinates
     const valuesSpace = values
+      .map(this.binsScale)
       .map(this.xScale);
 
     this.brushArea.call(this.brush.move, valuesSpace);
@@ -572,6 +580,7 @@ export class HistogramWidget {
     const xAxis = drawService.renderXAxis(
       this.container,
       xDomain,
+      this.data.length,
       X_PADDING + (this.yLabel ? LABEL_PADDING : 0),
       Y_PADDING);
 

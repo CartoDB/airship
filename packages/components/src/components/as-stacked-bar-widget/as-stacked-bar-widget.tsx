@@ -9,6 +9,8 @@ import colorMapFactory from './utils/colorMap.factory';
 import dataService from './utils/data.service';
 import drawService from './utils/draw.service';
 
+const BAR_WIDTH_THRESHOLD = 3;
+
 /**
  * Stacked bar Widget
  *
@@ -226,10 +228,17 @@ export class StackedBarWidget {
       return;
     }
     const Y_AXIS_LABEL_WIDTH = 25; // We draw on the right of the yAxis labels
-    const COLUMN_MARGIN = 4;
-    const WIDTH = yAxisElement.getBoundingClientRect().width - Y_AXIS_LABEL_WIDTH - COLUMN_MARGIN;
-    const COLUMN_WIDTH = (WIDTH / this.data.length) - COLUMN_MARGIN;
-    const data = dataService.rawDataToStackBarData(this.data, this.scale, this.colorMap, COLUMN_WIDTH, COLUMN_MARGIN);
+    let columnMargin = 4;
+    let WIDTH = yAxisElement.getBoundingClientRect().width - Y_AXIS_LABEL_WIDTH - columnMargin;
+    let COLUMN_WIDTH = (WIDTH / this.data.length) - columnMargin;
+
+    if (COLUMN_WIDTH < BAR_WIDTH_THRESHOLD) {
+      WIDTH += columnMargin;
+      COLUMN_WIDTH += columnMargin;
+      columnMargin = 0;
+    }
+
+    const data = dataService.rawDataToStackBarData(this.data, this.scale, this.colorMap, COLUMN_WIDTH, columnMargin);
 
     drawService.drawColumns(this.container, data, this.mouseOver, this.mouseLeave);
   }
