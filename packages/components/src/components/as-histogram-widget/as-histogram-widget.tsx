@@ -13,7 +13,7 @@ import { shadeOrBlend } from '../../utils/styles';
 import contentFragment from '../common/content.fragment';
 import { HistogramColorRange, HistogramData } from './interfaces';
 import { Container } from './types/Container';
-import dataService from './utils/data.service';
+import dataService, { binsScale } from './utils/data.service';
 import drawService from './utils/draw.service';
 
 // This is the default value of --as--color--primary
@@ -183,6 +183,7 @@ export class HistogramWidget {
   private tooltipElement: HTMLElement;
 
   private xScale: ScaleLinear<number, number>;
+  private binsScale: ScaleLinear<number, number>;
   private yScale: ScaleLinear<number, number>;
   private barsContainer: Container;
   private brush: BrushBehavior<{}>;
@@ -201,6 +202,11 @@ export class HistogramWidget {
 
   constructor() {
     this._resizeRender = this._resizeRender.bind(this);
+  }
+
+  @Watch('data')
+  public _onDataChanged(newData) {
+    this.binsScale = binsScale(newData);
   }
 
   @Watch('color')
@@ -267,6 +273,8 @@ export class HistogramWidget {
     if (!this._hasDataToDisplay()) {
       return;
     }
+
+    this.binsScale = binsScale(this.data);
 
     this._renderGraph();
   }
@@ -524,7 +532,8 @@ export class HistogramWidget {
 
     // Convert to our data's domain
     const d0 = evt.selection
-      .map((e) => Math.round(this.xScale.invert(e)));
+      .map((selection) => this.xScale.invert(selection))
+      .map((bucket) => this.binsScale.invert(bucket));
 
     this._setSelection(d0);
   }
@@ -587,6 +596,7 @@ export class HistogramWidget {
 
     // Convert back to space coordinates
     const valuesSpace = values
+      .map(this.binsScale)
       .map(this.xScale);
 
     this.brushArea.call(this.brush.move, valuesSpace);
@@ -627,6 +637,7 @@ export class HistogramWidget {
     const xAxis = drawService.renderXAxis(
       this.container,
       xDomain,
+      this.data.length,
       X_PADDING + (this.yLabel ? LABEL_PADDING : 0),
       Y_PADDING);
 

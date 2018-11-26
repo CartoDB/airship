@@ -40,6 +40,9 @@ export function updateAxes(
     .call(yAxis);
 }
 
+const formatter = format('.2~s');
+const decimalFormatter = format('.2');
+
 export function renderBars(
   data: HistogramData[],
   yScale: ScaleLinear<number, number>,
@@ -95,20 +98,33 @@ export function renderBars(
 export function renderXAxis(
   container: Container,
   domain: Domain,
+  bins: number,
   X_PADDING: number,
   Y_PADDING: number): Axis<{ valueOf(): number }> {
 
   const HEIGHT = container.node().getBoundingClientRect().height - Y_PADDING;
   const WIDTH = container.node().getBoundingClientRect().width - X_PADDING;
 
+  // Display first, last and middle point bins
+  const ticks = [0, bins / 2, bins];
+
   const xScale = scaleLinear()
-    .domain(domain)
+    .domain([0, bins])
     .range([0, WIDTH]);
+
+  const realScale = scaleLinear()
+    .domain(domain)
+    .range([0, bins]);
 
   const xAxis = axisBottom(xScale)
     .tickSize(-WIDTH)
-    .ticks(3)
-    .tickPadding(10);
+    .tickValues(ticks)
+    .tickPadding(10)
+    .tickFormat((value) => {
+      const realValue = realScale.invert(value);
+
+      return _conditionalFormatter(realValue);
+    });
 
   if (container.select('.x-axis').empty()) {
     container
@@ -145,7 +161,7 @@ export function renderYAxis(
     .tickSize(-WIDTH)
     .ticks(5)
     .tickPadding(10)
-    .tickFormat(format('.2~s'));
+    .tickFormat(_conditionalFormatter);
 
   if (container.select('.y-axis').empty()) {
     container
@@ -161,7 +177,15 @@ export function renderYAxis(
 }
 
 function _delayFn(_d, i) {
-  return i * 50;
+  return i;
+}
+
+function _conditionalFormatter(value) {
+  if (value > 0 && value < 1) {
+    return decimalFormatter(value);
+  }
+
+  return formatter(value);
 }
 
 export default { cleanAxes, updateAxes, renderBars, renderXAxis, renderYAxis };
