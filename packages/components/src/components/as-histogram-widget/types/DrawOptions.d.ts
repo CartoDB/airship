@@ -1,4 +1,4 @@
-import { SVGContainer } from "./Container";
+import { SVGContainer } from './Container';
 
 interface DrawOptions {
   container: SVGContainer;
