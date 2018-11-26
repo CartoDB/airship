@@ -6,6 +6,8 @@ import { HistogramData } from '../interfaces';
 import { Container } from '../types/Container';
 import { Domain } from '../types/Domain';
 
+const BAR_WIDTH_THRESHOLD = 3;
+
 export function cleanAxes(yAxisSelection: Container) {
   yAxisSelection.select('.domain').remove();
 }
@@ -46,16 +48,20 @@ export function renderBars(
   yScale: ScaleLinear<number, number>,
   container: Container,
   barsContainer: Container,
-  BARS_SEPARATION: number,
   color: string,
   X_PADDING: number,
   Y_PADDING: number,
   disableAnimation: boolean = false) {
 
+  let barsSeparation = 1;
   const HEIGHT = container.node().getBoundingClientRect().height - Y_PADDING;
   const WIDTH = container.node().getBoundingClientRect().width - X_PADDING;
 
   const barWidth = data.length === 0 ? WIDTH : WIDTH / data.length;
+
+  if (barWidth - barsSeparation < BAR_WIDTH_THRESHOLD) {
+    barsSeparation = 0;
+  }
 
   // -- Draw bars
   this.bars = barsContainer
@@ -76,7 +82,7 @@ export function renderBars(
       .merge(this.bars)
       .attr('class', 'bar')
       .attr('x', (_d: HistogramData, index: number) => index * barWidth)
-      .attr('width', () => Math.max(0, barWidth - BARS_SEPARATION))
+      .attr('width', () => Math.max(0, barWidth - barsSeparation))
       .style('fill', (d: HistogramData) => d.color || color);
 
   (disableAnimation ? mergeSelection : mergeSelection.transition().delay(_delayFn))
