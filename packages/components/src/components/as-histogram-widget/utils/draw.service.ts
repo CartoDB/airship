@@ -117,11 +117,7 @@ export function renderXAxis(
     .tickFormat((value) => {
       const realValue = realScale.invert(value);
 
-      if (realValue > 0 && realValue < 1) {
-        return decimalFormatter(realValue);
-      }
-
-      return formatter(realValue);
+      return _conditionalFormatter(realValue);
     });
 
   if (container.select('.x-axis').empty()) {
@@ -159,13 +155,7 @@ export function renderYAxis(
     .tickSize(-WIDTH)
     .ticks(5)
     .tickPadding(10)
-    .tickFormat((value) => {
-      if (value > 0 && value < 1) {
-        return decimalFormatter(value);
-      }
-
-      return formatter(value);
-    });
+    .tickFormat(_conditionalFormatter);
 
   if (container.select('.y-axis').empty()) {
     container
@@ -182,6 +172,14 @@ export function renderYAxis(
 
 function _delayFn(_d, i) {
   return i;
+}
+
+function _conditionalFormatter(value) {
+  if (value > 0 && value < 1) {
+    return decimalFormatter(value);
+  }
+
+  return formatter(value);
 }
 
 export default { cleanAxes, updateAxes, renderBars, renderXAxis, renderYAxis };
