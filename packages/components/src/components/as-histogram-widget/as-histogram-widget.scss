@@ -73,10 +73,6 @@ as-histogram-widget {
       .tick line {
         display: none;
       }
-
-      .tick:last-of-type text {
-        transform: translateX(-10px);
-      }
     }
 
     .handle--wrapper {

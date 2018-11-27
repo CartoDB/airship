@@ -168,6 +168,8 @@ export class HistogramWidget {
 
   @Prop() public draw: (props: DrawOptions) => void = null;
 
+  @Prop() public axisFormatter: (value: number | Date) => string;
+
   public selection: number[] = null;
 
   @Element() private el: HTMLElement;
@@ -582,7 +584,8 @@ export class HistogramWidget {
       xDomain,
       this.data.length,
       X_PADDING + (this.yLabel ? LABEL_PADDING : 0),
-      Y_PADDING);
+      Y_PADDING,
+      this.axisFormatter);
 
     this.xScale = xAxis.scale();
   }

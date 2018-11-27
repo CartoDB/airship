@@ -5,6 +5,7 @@ import {
   DEFAULT_BAR_COLOR,
   DEFAULT_SELECTED_BAR_COLOR,
 } from '../common/constants';
+import { TimeSeriesData } from './interfaces';
 
 /**
  * Time series
@@ -64,7 +65,7 @@ export class TimeSeriesWidget {
    * @type {HistogramData[]}
    * @memberof HistogramWidget
    */
-  @Prop() public data: HistogramData[] = [];
+  @Prop() public data: TimeSeriesData[] = [];
 
   /**
    * Override color for the histogram bars
@@ -91,12 +92,12 @@ export class TimeSeriesWidget {
   @Prop() public colorRange: HistogramColorRange[];
 
   /**
-   * Function that formats the tooltip. Receives HistogramData and outputs a string
+   * Function that formats the tooltip. Receives TimeSeriesData and outputs a string
    *
-   * @type {(HistogramData) => string}
+   * @type {(TimeSeriesData) => string}
    * @memberof HistogramWidget
    */
-  @Prop() public tooltipFormatter: (value: HistogramData) => string = this.defaultFormatter;
+  @Prop() public tooltipFormatter: (value: TimeSeriesData) => string;
 
   /**
    * Label the x axis of the histogram with the given string.
@@ -158,13 +159,8 @@ export class TimeSeriesWidget {
     this.histogram.forceUpdate();
   }
 
-  /**
-   * Default formatting function. Turns value into a simple Date
-   *
-   * @memberof HistogramWidget
-   */
-  public defaultFormatter(data: HistogramData) {
-    return `${data.value}`;
+  public axisFormatter(value: number): string {
+    return `${new Date(value).toLocaleDateString()}`;
   }
 
   public render() {
@@ -177,10 +173,11 @@ export class TimeSeriesWidget {
           showHeader={this.showHeader}
           showClear={this.showClear}
           disableInteractivity={this.disableInteractivity}
-          data={this.data}
+          data={this._prepareData(this.data)}
           color={this.color}
           selectedColor={this.selectedColor}
           colorRange={this.colorRange}
+          axisFormatter={this.axisFormatter}
           tooltipFormatter={this.tooltipFormatter}
           xLabel={this.xLabel}
           yLabel={this.yLabel}
@@ -193,6 +190,30 @@ export class TimeSeriesWidget {
           draw={this._draw.bind(this)}
         >
       </as-histogram-widget>];
+  }
+
+  private _isDate(obj: any) {
+    return Object.prototype.toString.call(obj) === '[object Date]';
+  }
+
+  private _prepareData(data: TimeSeriesData[]): HistogramData[] {
+    const isDate = data.every((d) => this._isDate(d.start) && this._isDate(d.end));
+
+    if (isDate) {
+      return data.map((d) => ({
+        color: d.color,
+        end: (d.end as Date).getTime(),
+        start: (d.start as Date).getTime(),
+        value: d.value
+      }));
+    }
+
+    return data.map((d) => ({
+      color: d.color,
+      end: (d.end as number),
+      start: (d.start as number),
+      value: d.value
+    }));
   }
 
   private _renderButton() {

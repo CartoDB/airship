@@ -25,6 +25,9 @@ import {
   Metadata,
 } from './components/as-stacked-bar-widget/types/Metadata';
 import {
+  TimeSeriesData,
+} from './components/as-time-series-widget/interfaces';
+import {
   LegendData,
 } from './components/common/as-legend/types/LegendData';
 
@@ -222,6 +225,7 @@ export namespace Components {
   }
 
   interface AsHistogramWidget {
+    'axisFormatter': (value: number | Date) => string;
     /**
     * Clears the Histogram selection
     */
@@ -309,6 +313,7 @@ export namespace Components {
     'yLabel': string;
   }
   interface AsHistogramWidgetAttributes extends StencilHTMLAttributes {
+    'axisFormatter'?: (value: number | Date) => string;
     /**
     * Override color for the histogram bars
     */
@@ -707,7 +712,7 @@ export namespace Components {
     /**
     * Histogram data to be displayed
     */
-    'data': HistogramData[];
+    'data': TimeSeriesData[];
     /**
     * Description of the widget to be displayed
     */
@@ -759,9 +764,9 @@ export namespace Components {
     */
     'showHeader': boolean;
     /**
-    * Function that formats the tooltip. Receives HistogramData and outputs a string
+    * Function that formats the tooltip. Receives TimeSeriesData and outputs a string
     */
-    'tooltipFormatter': (value: HistogramData) => string;
+    'tooltipFormatter': (value: TimeSeriesData) => string;
     /**
     * Label the x axis of the histogram with the given string.
     */
@@ -783,7 +788,7 @@ export namespace Components {
     /**
     * Histogram data to be displayed
     */
-    'data'?: HistogramData[];
+    'data'?: TimeSeriesData[];
     /**
     * Description of the widget to be displayed
     */
@@ -837,9 +842,9 @@ export namespace Components {
     */
     'showHeader'?: boolean;
     /**
-    * Function that formats the tooltip. Receives HistogramData and outputs a string
+    * Function that formats the tooltip. Receives TimeSeriesData and outputs a string
     */
-    'tooltipFormatter'?: (value: HistogramData) => string;
+    'tooltipFormatter'?: (value: TimeSeriesData) => string;
     /**
     * Label the x axis of the histogram with the given string.
     */

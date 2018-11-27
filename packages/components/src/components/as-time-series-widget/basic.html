@@ -32,9 +32,9 @@
   <script>
     var histogramWidget = document.querySelector('as-time-series-widget');
     histogramWidget.data = [...Array(100)].map((_, i) => ({
-      start: i,
-      end: i + 1,
-      value: Math.random()
+      start: new Date(i * 1000 * 60 * 60),
+      end: new Date((i + 1) * 1000 * 60 * 60),
+      value: Math.random() * 1e5
     }));
 
   </script>

@@ -10,7 +10,6 @@ const BAR_WIDTH_THRESHOLD = 3;
 const formatter = format('.2~s');
 const decimalFormatter = format('.2');
 
-
 export function cleanAxes(yAxisSelection: SVGGContainer) {
   yAxisSelection.select('.domain').remove();
 }
@@ -113,7 +112,8 @@ export function renderXAxis(
   domain: Domain,
   bins: number,
   X_PADDING: number,
-  Y_PADDING: number): Axis<{ valueOf(): number }> {
+  Y_PADDING: number,
+  customFormatter: (value: Date | number) => string = _conditionalFormatter): Axis<{ valueOf(): number }> {
 
   const HEIGHT = container.node().getBoundingClientRect().height - Y_PADDING;
   const WIDTH = container.node().getBoundingClientRect().width - X_PADDING;
@@ -130,13 +130,13 @@ export function renderXAxis(
     .range([0, bins]);
 
   const xAxis = axisBottom(xScale)
-    .tickSize(-WIDTH)
+    .tickSize(-HEIGHT)
     .tickValues(ticks)
     .tickPadding(10)
     .tickFormat((value) => {
       const realValue = realScale.invert(value);
 
-      return _conditionalFormatter(realValue);
+      return customFormatter(realValue);
     });
 
   if (container.select('.x-axis').empty()) {
@@ -151,6 +151,42 @@ export function renderXAxis(
       .attr('transform', `translate(0, ${HEIGHT})`)
       .call(xAxis);
   }
+
+  container.selectAll('.x-axis text')
+    .attr('transform', (_d, i, collection) => {
+      const node = collection[i];
+      const { width } = (node as SVGTextElement).getBoundingClientRect();
+      let xOffset = 0;
+
+      if (i === 0) {
+        xOffset = width / 2;
+      } else if (i === collection.length - 1) {
+        xOffset = -width / 2;
+      }
+
+      return `translate(${xOffset})`;
+    })
+    .attr('opacity', (_d, i, collection) => {
+      // We never hide the first or the last text node
+      if (i === 0 || i === collection.length - 1) {
+        return 1;
+      }
+
+      let textWidth = 0;
+      const textElements = (collection as SVGTextElement[]);
+
+
+      for (const textEl of textElements) {
+        textWidth += textEl.getBoundingClientRect().width;
+      }
+
+      // Hide all other text nodes when there's not enough space
+      if (WIDTH - textWidth < 0) {
+        return 0;
+      }
+
+      return 1;
+    });
 
   return xAxis;
 }
