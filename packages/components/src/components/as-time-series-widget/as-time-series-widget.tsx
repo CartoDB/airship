@@ -301,16 +301,13 @@ export class TimeSeriesWidget {
       timeSeries.append('line')
         .attr('class', 'as-time-series--line')
         .attr('stroke-width', 4)
-        .attr('stroke', '#fabada')
-        .attr('y1', height - Y_PADDING)
-        .attr('y2', height - Y_PADDING);
+        .attr('stroke', '#fabada');
 
       timeSeries.append('rect')
         .attr('class', 'as-time-series--scrubber')
         .attr('fill', '#fabada')
         .attr('width', 16)
         .attr('height', 16)
-        .attr('y', height - Y_PADDING - 8)
         .attr('rx', 16)
         .attr('ry', 16);
     }
@@ -319,9 +316,12 @@ export class TimeSeriesWidget {
 
     timeSeries.select('.as-time-series--line')
       .attr('x1', 0)
-      .attr('x2', xPos);
+      .attr('x2', xPos)
+      .attr('y1', height - Y_PADDING)
+      .attr('y2', height - Y_PADDING);
 
     timeSeries.select('.as-time-series--scrubber')
-      .attr('x', xPos);
+      .attr('x', xPos)
+      .attr('y', height - Y_PADDING - 8);
   }
 }
