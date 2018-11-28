@@ -7,6 +7,8 @@ import {
 } from '../common/constants';
 import { TimeSeriesData } from './interfaces';
 
+const SCRUBBER_SIZE = 8;
+
 /**
  * Time series
  *
@@ -290,7 +292,7 @@ export class TimeSeriesWidget {
 
   private _draw(renderOptions: DrawOptions) {
     const { container, height, width, padding } = renderOptions;
-    const [ X_PADDING, Y_PADDING ] = padding;
+    const Y_PADDING = padding[1];
     let timeSeries = container.select('.as-time-series--g');
 
     if (timeSeries.empty()) {
@@ -306,13 +308,13 @@ export class TimeSeriesWidget {
       timeSeries.append('rect')
         .attr('class', 'as-time-series--scrubber')
         .attr('fill', '#fabada')
-        .attr('width', 16)
-        .attr('height', 16)
-        .attr('rx', 16)
-        .attr('ry', 16);
+        .attr('width', SCRUBBER_SIZE)
+        .attr('height', SCRUBBER_SIZE)
+        .attr('rx', SCRUBBER_SIZE)
+        .attr('ry', SCRUBBER_SIZE);
     }
 
-    const xPos = ((this.progress / 100) * width) - X_PADDING;
+    const xPos = ((this.progress / 100) * width) - (SCRUBBER_SIZE / 2);
 
     timeSeries.select('.as-time-series--line')
       .attr('x1', 0)
@@ -322,6 +324,6 @@ export class TimeSeriesWidget {
 
     timeSeries.select('.as-time-series--scrubber')
       .attr('x', xPos)
-      .attr('y', height - Y_PADDING - 8);
+      .attr('y', height - Y_PADDING - (SCRUBBER_SIZE / 2));
   }
 }
