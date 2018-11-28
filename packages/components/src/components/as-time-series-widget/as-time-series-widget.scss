@@ -11,4 +11,10 @@ as-time-series-widget {
 
     margin-right: get-spacing(4);
   }
+
+  .as-time-series--scrubber,
+  .as-time-series--line {
+    stroke: var(--as--color--primary, #{$color-primary});
+    fill: var(--as--color--primary, #{$color-primary});
+  }
 }

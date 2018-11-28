@@ -1,4 +1,5 @@
 import { Component, Event, EventEmitter, Prop, Watch } from '@stencil/core';
+import { scaleLinear } from 'd3-scale';
 import { HistogramColorRange, HistogramData } from '../as-histogram-widget/interfaces';
 import { DrawOptions } from '../as-histogram-widget/types/DrawOptions';
 import {
@@ -149,16 +150,32 @@ export class TimeSeriesWidget {
 
   @Prop() public playing: boolean = false;
 
+  @Prop() public animated: boolean = false;
+
   @Event()
   private play: EventEmitter;
 
   @Event()
   private pause: EventEmitter;
+
   private histogram: HTMLAsHistogramWidgetElement;
+
+  private _selection: number[];
 
   @Watch('progress')
   public onProgressChanged() {
     this.histogram.forceUpdate();
+  }
+
+  public async componentDidLoad() {
+    this._draw = this._draw.bind(this);
+
+    this.histogram.addEventListener('selectionInput', (e: CustomEvent) => {
+      this._selection = e.detail;
+      this.histogram.forceUpdate();
+    });
+
+    this._selection = await this.histogram.getSelection();
   }
 
   public axisFormatter(value: number): string {
@@ -189,7 +206,7 @@ export class TimeSeriesWidget {
           noDataHeaderMessage={this.noDataHeaderMessage}
           noDataBodyMessage={this.noDataBodyMessage}
           responsive={this.responsive}
-          draw={this._draw.bind(this)}
+          draw={this._draw}
         >
       </as-histogram-widget>];
   }
@@ -291,9 +308,24 @@ export class TimeSeriesWidget {
   }
 
   private _draw(renderOptions: DrawOptions) {
-    const { container, height, width, padding } = renderOptions;
+    if (!this.animated) {
+      return;
+    }
+
+    const { container, height, width, padding, xScale, binsScale } = renderOptions;
     const Y_PADDING = padding[1];
     let timeSeries = container.select('.as-time-series--g');
+    const progressScale = scaleLinear().domain([0, 100]);
+
+    if (this._selection) {
+      const selection = this._selection.map(
+        (e) => xScale(binsScale(e))
+      );
+
+      progressScale.range(selection);
+    } else {
+      progressScale.range([0, width]);
+    }
 
     if (timeSeries.empty()) {
       timeSeries = container
@@ -302,28 +334,28 @@ export class TimeSeriesWidget {
 
       timeSeries.append('line')
         .attr('class', 'as-time-series--line')
-        .attr('stroke-width', 4)
-        .attr('stroke', '#fabada');
+        .attr('stroke-width', 4);
 
       timeSeries.append('rect')
         .attr('class', 'as-time-series--scrubber')
-        .attr('fill', '#fabada')
         .attr('width', SCRUBBER_SIZE)
         .attr('height', SCRUBBER_SIZE)
         .attr('rx', SCRUBBER_SIZE)
-        .attr('ry', SCRUBBER_SIZE);
+        .attr('ry', SCRUBBER_SIZE)
+        .attr('stroke-width', 0);
     }
 
-    const xPos = ((this.progress / 100) * width) - (SCRUBBER_SIZE / 2);
+    const xPos = progressScale(this.progress);
 
     timeSeries.select('.as-time-series--line')
-      .attr('x1', 0)
+      .attr('x1', progressScale(0))
       .attr('x2', xPos)
       .attr('y1', height - Y_PADDING)
-      .attr('y2', height - Y_PADDING);
+      .attr('y2', height - Y_PADDING)
+      .attr('opacity', this._selection === null ? 1 : 0);
 
     timeSeries.select('.as-time-series--scrubber')
-      .attr('x', xPos)
+      .attr('x', xPos - (SCRUBBER_SIZE / 2))
       .attr('y', height - Y_PADDING - (SCRUBBER_SIZE / 2));
   }
 }

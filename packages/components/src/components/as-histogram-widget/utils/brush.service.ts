@@ -23,14 +23,12 @@ export function addBrushArea(
   container: SVGContainer,
 ): SVGGContainer {
 
-  if (!container.select('.brush').empty()) {
-    container.select('.brush').remove();
-  }
+  let brushArea = container.select<SVGGElement>('g.brush');
 
-  const brushArea = container
-    .append('g');
-  brushArea
-    .attr('class', 'brush');
+  if (brushArea.empty()) {
+    brushArea = container.append('g');
+    brushArea.attr('class', 'brush');
+  }
 
   brushArea.call(brush);
 
@@ -44,41 +42,51 @@ export function addCustomHandles(
   CUSTOM_HANDLE_HEIGHT: number,
   Y_PADDING: number
 ): SVGGContainer<{ type: string }, SVGGElement, {}> {
-  brushArea.append('line')
-    .attr('class', 'bottomline')
-    .attr('stroke-width', 4)
+
+  let bottomLine = brushArea.select('line.bottomline');
+
+  if (bottomLine.empty()) {
+    bottomLine = brushArea.append('line')
+      .attr('class', 'bottomline')
+      .attr('stroke-width', 4)
+      .style('opacity', 0)
+      .attr('pointer-events', 'none');
+  }
+
+  bottomLine
     .attr('y1', height - Y_PADDING)
-    .attr('y2', height - Y_PADDING)
-    .style('opacity', 0)
-    .attr('pointer-events', 'none');
+    .attr('y2', height - Y_PADDING);
 
-  const customHandlers = brushArea.selectAll('.handle--custom')
-    .data([{ type: 'w' }, { type: 'e' }])
-    .enter()
-    .append('g')
-    .attr('class', 'handle--wrapper');
+  let customHandlers = brushArea.selectAll<SVGGElement, { type: string }>('.handle--wrapper');
 
-  // We're setting width, height and transform here instead of CSS because of IE11
-  customHandlers
-    .append('rect')
-    .attr('class', 'handle--custom')
-    .attr('width', CUSTOM_HANDLE_WIDTH)
-    .attr('height', CUSTOM_HANDLE_HEIGHT)
-    .attr('rx', 2)
-    .attr('ry', 2);
+  if (customHandlers.empty()) {
+    customHandlers = customHandlers
+      .data([{ type: 'w' }, { type: 'e' }])
+      .enter()
+      .append('g')
+      .attr('class', 'handle--wrapper');
 
-  const handleGrab = customHandlers
-    .append('g')
-    .attr('class', 'handle--grab');
+    customHandlers
+      .append('rect')
+      .attr('class', 'handle--custom')
+      .attr('width', CUSTOM_HANDLE_WIDTH)
+      .attr('height', CUSTOM_HANDLE_HEIGHT)
+      .attr('rx', 2)
+      .attr('ry', 2);
 
-  for (let i = 0; i < 3; i++) {
-    handleGrab
-      .append('line')
-      .attr('x1', 2)
-      .attr('y1', i * 2)
-      .attr('x2', 4)
-      .attr('y2', i * 2)
-      .attr('class', 'grab-line');
+    const handleGrab = customHandlers
+      .append('g')
+      .attr('class', 'handle--grab');
+
+    for (let i = 0; i < 3; i++) {
+      handleGrab
+        .append('line')
+        .attr('x1', 2)
+        .attr('y1', i * 2)
+        .attr('x2', 4)
+        .attr('y2', i * 2)
+        .attr('class', 'grab-line');
+    }
   }
 
   return customHandlers;

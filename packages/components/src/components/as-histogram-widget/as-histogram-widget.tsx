@@ -23,7 +23,7 @@ import drawService from './utils/draw.service';
 import interactionService from './utils/interaction.service';
 
 const CUSTOM_HANDLE_WIDTH = 6;
-const CUSTOM_HANDLE_HEIGHT = 28;
+const CUSTOM_HANDLE_HEIGHT = 14;
 
 // we could use getComputedStyle instead of these
 const X_PADDING = 38;
@@ -182,6 +182,9 @@ export class HistogramWidget {
    */
   @Event()
   private selectionChanged: EventEmitter<number[]>;
+
+  @Event()
+  private selectionInput: EventEmitter<number[]>;
 
   private tooltip: string;
 
@@ -400,10 +403,12 @@ export class HistogramWidget {
 
       if (this.draw) {
         this.draw({
+          binsScale: this.binsScale,
           container: this.container,
           height: this.height,
           padding: [X_PADDING, Y_PADDING],
-          width: this.width
+          width: this.width,
+          xScale: this.xScale
         });
       }
     });
@@ -512,6 +517,8 @@ export class HistogramWidget {
     this.selection = adjustedSelection;
     this._updateHandles(adjustedSelection);
     this._hideTooltip();
+
+    this.selectionInput.emit(this.selection);
   }
 
   private _selectionInData(selection: number[]) {

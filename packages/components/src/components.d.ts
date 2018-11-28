@@ -363,6 +363,7 @@ export namespace Components {
     * Fired when user update or clear the widget selection.
     */
     'onSelectionChanged'?: (event: CustomEvent<number[]>) => void;
+    'onSelectionInput'?: (event: CustomEvent<number[]>) => void;
     /**
     * Use this attribute to decide if the widget should be rerendered on window resize. Defaults to true.
     */
@@ -701,6 +702,7 @@ export namespace Components {
   }
 
   interface AsTimeSeriesWidget {
+    'animated': boolean;
     /**
     * Override color for the histogram bars
     */
@@ -777,6 +779,7 @@ export namespace Components {
     'yLabel': string;
   }
   interface AsTimeSeriesWidgetAttributes extends StencilHTMLAttributes {
+    'animated'?: boolean;
     /**
     * Override color for the histogram bars
     */
