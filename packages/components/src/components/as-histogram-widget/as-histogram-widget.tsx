@@ -199,6 +199,7 @@ export class HistogramWidget {
 
   private _color: string;
   private _selectedColor: string;
+  private _dataJustUpdated: boolean = false;
 
   constructor() {
     this._resizeRender = this._resizeRender.bind(this);
@@ -207,6 +208,8 @@ export class HistogramWidget {
   @Watch('data')
   public _onDataChanged(newData) {
     this.binsScale = binsScale(newData);
+
+    this._dataJustUpdated = true;
   }
 
   @Watch('color')
@@ -253,7 +256,10 @@ export class HistogramWidget {
   @Method()
   public setSelection(values: number[] | null) {
     this._setSelection(values);
-    this.selectionChanged.emit(this.selection);
+
+    if (!this._dataJustUpdated) {
+      this.selectionChanged.emit(this.selection);
+    }
   }
 
   /**
@@ -276,7 +282,9 @@ export class HistogramWidget {
 
     this.binsScale = binsScale(this.data);
 
-    this._renderGraph();
+    requestAnimationFrame(() => {
+      this._renderGraph();
+    });
   }
 
   public componentDidUpdate() {
@@ -300,7 +308,9 @@ export class HistogramWidget {
   }
 
   private _resizeRender() {
-    this._renderGraph();
+    requestAnimationFrame(() => {
+      this._renderGraph();
+    });
   }
 
   private _renderContent() {
@@ -331,141 +341,140 @@ export class HistogramWidget {
   }
 
   private _renderGraph() {
-    requestAnimationFrame(() => {
-      const bbox = this.container.node().getBoundingClientRect();
-      const firstRender = this.prevWidth === undefined || this.prevHeight === undefined;
-      this.prevWidth = this.width;
-      this.prevHeight = this.height;
-      this.width = bbox.width;
-      this.height = bbox.height;
-      const resizing = !firstRender && (this.prevWidth !== this.width || this.height !== this.prevHeight);
+    const bbox = this.container.node().getBoundingClientRect();
+    const firstRender = this.prevWidth === undefined || this.prevHeight === undefined;
+    this.prevWidth = this.width;
+    this.prevHeight = this.height;
+    this.width = bbox.width;
+    this.height = bbox.height;
+    const resizing = !firstRender && (this.prevWidth !== this.width || this.height !== this.prevHeight);
 
-      if (this.height === 0 || this.width === 0) { return; }
+    if (this.height < Y_PADDING || this.width === 0) { return; }
 
-      this._renderYAxis();
-      this._renderXAxis();
+    this._renderYAxis();
+    this._renderXAxis();
 
-      if (this.container.select('.plot').empty()) {
-        this.barsContainer = this.container
-          .append('g');
-        this.barsContainer
-          .attr('class', 'plot');
+    if (this.container.select('.plot').empty()) {
+      this.barsContainer = this.container
+        .append('g');
+      this.barsContainer
+        .attr('class', 'plot');
+    }
+
+    if (!this.disableInteractivity) {
+      if (!this.container.select('.brush').empty()) {
+        this.container.select('.brush').remove();
       }
 
-      if (!this.disableInteractivity) {
-        if (!this.container.select('.brush').empty()) {
-          this.container.select('.brush').remove();
-        }
+      this.brush = brushX()
+        .handleSize(CUSTOM_HANDLE_WIDTH)
+        .extent([[0, 0], [this.width - X_PADDING, this.height - Y_PADDING + (CUSTOM_HANDLE_HEIGHT / 2)]])
+        .on('brush', this._onBrush.bind(this))
+        .on('end', this._onBrushEnd.bind(this));
 
-        this.brush = brushX()
-          .handleSize(CUSTOM_HANDLE_WIDTH)
-          .extent([[0, 0], [this.width - X_PADDING, this.height - Y_PADDING + (CUSTOM_HANDLE_HEIGHT / 2)]])
-          .on('brush', this._onBrush.bind(this))
-          .on('end', this._onBrushEnd.bind(this));
+      this.brushArea = this.container
+        .append('g');
+      this.brushArea
+        .attr('class', 'brush');
 
-        this.brushArea = this.container
-          .append('g');
-        this.brushArea
-          .attr('class', 'brush');
+      this.brushArea.call(this.brush);
 
-        this.brushArea.call(this.brush);
+      this.bottomLine = this.brushArea.append('line')
+        .attr('class', 'bottomline')
+        .attr('stroke-width', 4)
+        .attr('y1', this.height - Y_PADDING)
+        .attr('y2', this.height - Y_PADDING)
+        .style('opacity', 0)
+        .attr('pointer-events', 'none');
 
-        this.bottomLine = this.brushArea.append('line')
-          .attr('class', 'bottomline')
-          .attr('stroke-width', 4)
-          .attr('y1', this.height - Y_PADDING)
-          .attr('y2', this.height - Y_PADDING)
-          .style('opacity', 0)
-          .attr('pointer-events', 'none');
+      this.customHandlers = this.brushArea.selectAll('.handle--custom')
+        .data([{ type: 'w' }, { type: 'e' }])
+        .enter()
+        .append('g')
+        .attr('class', 'handle--wrapper');
 
-        this.customHandlers = this.brushArea.selectAll('.handle--custom')
-          .data([{ type: 'w' }, { type: 'e' }])
-          .enter()
-          .append('g')
-          .attr('class', 'handle--wrapper');
+      // We're setting width, height and transform here instead of CSS because of IE11
+      this.customHandlers
+        .append('rect')
+        .attr('class', 'handle--custom')
+        .attr('width', CUSTOM_HANDLE_WIDTH)
+        .attr('height', CUSTOM_HANDLE_HEIGHT)
+        .attr('rx', 2)
+        .attr('ry', 2);
 
-        // We're setting width, height and transform here instead of CSS because of IE11
-        this.customHandlers
-          .append('rect')
-          .attr('class', 'handle--custom')
-          .attr('width', CUSTOM_HANDLE_WIDTH)
-          .attr('height', CUSTOM_HANDLE_HEIGHT)
-          .attr('rx', 2)
-          .attr('ry', 2);
-
-        const handleGrab = this.customHandlers
-          .append('g')
-          .attr('class', 'handle--grab');
+      const handleGrab = this.customHandlers
+        .append('g')
+        .attr('class', 'handle--grab');
 
 
-        for (let i = 0; i < 3; i++) {
-          handleGrab
-            .append('line')
-            .attr('x1', 2)
-            .attr('y1', i * 2)
-            .attr('x2', 4)
-            .attr('y2', i * 2)
-            .attr('class', 'grab-line');
-        }
+      for (let i = 0; i < 3; i++) {
+        handleGrab
+          .append('line')
+          .attr('x1', 2)
+          .attr('y1', i * 2)
+          .attr('x2', 4)
+          .attr('y2', i * 2)
+          .attr('class', 'grab-line');
       }
+    }
 
-      this.container.on('mousemove', () => {
-        const evt = d3event as MouseEvent;
-        const { clientX, clientY } = evt;
-        let anyHovered = false;
+    this.container.on('mousemove', () => {
+      const evt = d3event as MouseEvent;
+      const { clientX, clientY } = evt;
+      let anyHovered = false;
 
-        this.barsContainer.selectAll('rect')
-          .each((data: HistogramData, i, nodes) => {
-            const selected = this._isSelected(data);
-            const nodeSelection = select(nodes[i]);
-            const node = nodes[i] as Element;
-            const bb = node.getBoundingClientRect();
-            const isInsideBB = bb.left <= clientX &&
-              clientX <= bb.right &&
-              bb.top <= clientY &&
-              clientY <= bb.bottom;
+      this.barsContainer.selectAll('rect')
+        .each((data: HistogramData, i, nodes) => {
+          const selected = this._isSelected(data);
+          const nodeSelection = select(nodes[i]);
+          const node = nodes[i] as Element;
+          const bb = node.getBoundingClientRect();
+          const isInsideBB = bb.left <= clientX &&
+            clientX <= bb.right &&
+            bb.top <= clientY &&
+            clientY <= bb.bottom;
 
-            if (isInsideBB) {
-              let color = selected ? this._selectedColor : data.color || this._color;
-              color = shadeOrBlend(-0.16, color);
-              nodeSelection.style('fill', color);
-              this.tooltip = this.tooltipFormatter(data);
-              this._showTooltip(evt);
-              anyHovered = true;
-            } else {
-              nodeSelection.style('fill', selected ? this._selectedColor : data.color || this._color);
-            }
-          });
-
-        if (!anyHovered) {
-          this.tooltip = null;
-          this._hideTooltip();
-        }
-      })
-        .on('mouseleave', () => {
-          this.tooltip = null;
-          this._hideTooltip();
-          this.barsContainer.selectAll('rect')
-            .style('fill', (data: HistogramData) => {
-              if (this._isSelected(data)) {
-                return this._selectedColor;
-              }
-              return data.color || this._color;
-            });
+          if (isInsideBB) {
+            let color = selected ? this._selectedColor : data.color || this._color;
+            color = shadeOrBlend(-0.16, color);
+            nodeSelection.style('fill', color);
+            this.tooltip = this.tooltipFormatter(data);
+            this._showTooltip(evt);
+            anyHovered = true;
+          } else {
+            nodeSelection.style('fill', selected ? this._selectedColor : data.color || this._color);
+          }
         });
 
-      drawService.renderBars(
-        this.data,
-        this.yScale,
-        this.container,
-        this.barsContainer,
-        this._color,
-        X_PADDING + (this.yLabel ? LABEL_PADDING : 0),
-        Y_PADDING,
-        resizing);
+      if (!anyHovered) {
+        this.tooltip = null;
+        this._hideTooltip();
+      }
+    })
+      .on('mouseleave', () => {
+        this.tooltip = null;
+        this._hideTooltip();
+        this.barsContainer.selectAll('rect')
+          .style('fill', (data: HistogramData) => {
+            if (this._isSelected(data)) {
+              return this._selectedColor;
+            }
+            return data.color || this._color;
+          });
+      });
 
-      this._updateSelection();
-    });
+    drawService.renderBars(
+      this.data,
+      this.yScale,
+      this.container,
+      this.barsContainer,
+      this._color,
+      X_PADDING + (this.yLabel ? LABEL_PADDING : 0),
+      Y_PADDING,
+      resizing);
+
+    this._updateSelection();
+    this._dataJustUpdated = false;
   }
 
   private _updateSelection() {
@@ -543,7 +552,9 @@ export class HistogramWidget {
       return;
     }
 
-    this.selectionChanged.emit(this.selection);
+    if (!this._dataJustUpdated) {
+      this.selectionChanged.emit(this.selection);
+    }
   }
 
   private _setSelection(selection: number[]) {
