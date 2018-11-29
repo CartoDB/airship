@@ -142,7 +142,7 @@
           <as-stacked-bar-widget id="stackedFooter" show-legend="true" heading="Star Wars Revenue" description="Description"></as-stacked-bar-widget>
         </div>
         <div class="as-box">
-          <as-category-widget heading="Business Volume" description="Description" default-bar-color="#47DB99"></as-category-widget>
+          <as-category-widget id="categoryFooter" heading="Business Volume" description="Description" default-bar-color="#47DB99"></as-category-widget>
         </div>
         <div style="min-width: 192px;" class="as-box as-box--scroll">
           <p class="as-title">LEGEND 3b</p>
@@ -188,6 +188,9 @@
       <div class="as-container">
         <div class="as-box">
           <as-stacked-bar-widget id="stackedSidebar" show-legend="true" heading="Star Wars Revenue" description="Description"></as-stacked-bar-widget>
+        </div>
+        <div class="as-box">
+          <as-category-widget id="categorySidebar" heading="Business Volume" description="Description" default-bar-color="#47DB99"></as-category-widget>
         </div>
       </div>
       <div class="as-container as-container--scrollable">
@@ -279,12 +282,20 @@
       histogramFooter.data = histogramData;
       histogramSidebar.data = histogramData;
 
-      const categoryWidget = document.querySelector('as-category-widget');
-      categoryWidget.showHeader = true;
-      categoryWidget.showClearButton = true;
-      categoryWidget.useTotalPercentage = false;
-      categoryWidget.visibleCategories = Infinity;
-      categoryWidget.categories = [{
+      const categoryFooter = document.getElementById('categoryFooter');
+      const categorySidebar = document.getElementById('categorySidebar');
+
+      categoryFooter.showHeader = true;
+      categoryFooter.showClearButton = true;
+      categoryFooter.useTotalPercentage = false;
+      categoryFooter.visibleCategories = Infinity;
+
+      categorySidebar.showHeader = true;
+      categorySidebar.showClearButton = true;
+      categorySidebar.useTotalPercentage = false;
+      categorySidebar.visibleCategories = Infinity;
+
+      const categories = [{
           name: 'Bars & Restaurants',
           value: 1000,
           color: '#FABADA'
@@ -314,6 +325,8 @@
           value: 760
         }
       ];
+      categoryFooter.categories = categories;
+      categorySidebar.categories = categories;
     }
 
     var responsiveContent = document.querySelector('as-responsive-content');
