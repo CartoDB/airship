@@ -11,7 +11,7 @@ as-category-widget {
 
   display: flex;
   flex-direction: column;
-  min-width: 260px;
+  min-width: $widget-min-width;
   height: 100%;
   overflow-y: auto;
   background: var(--category-widget--background-color, $color-ui-01);
