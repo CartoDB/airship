@@ -1,6 +1,30 @@
-# [1.0.1](https://github.com/CartoDB/airship/compare/v1.0.0-beta.11...v1.0.1) (2018-11-20)
+## [1.0.3](https://github.com/CartoDB/airship/compare/v1.0.3-rc.0...v1.0.3) (2018-11-29)
 
-### First public version of Airship 🎉
+
+### Bug Fixes
+
+* **components:** fit category widget width to default sidebar ([#533](https://github.com/CartoDB/airship/issues/533)) ([74b68f5](https://github.com/CartoDB/airship/commit/74b68f5))
+* **components:** Histogram improvements for numbers between 0 and 1 ([c3d6ff9](https://github.com/CartoDB/airship/commit/c3d6ff9)), closes [#496](https://github.com/CartoDB/airship/issues/496)
+
+
+### Features
+
+* **components:** Adaptative stacked bar / histogram padding ([6ee8f22](https://github.com/CartoDB/airship/commit/6ee8f22)), closes [#519](https://github.com/CartoDB/airship/issues/519)
+
+
+
+## [1.0.2](https://github.com/CartoDB/airship/compare/v1.0.1...v1.0.2) (2018-11-21)
+
+
+### Bug Fixes
+
+* **components:** treat null footer and map element in `as-responsive-content` ([#522](https://github.com/CartoDB/airship/issues/522)) ([32e57cc](https://github.com/CartoDB/airship/commit/32e57cc))
+* **docs:** footer and stacked bar example didn't load ([d982149](https://github.com/CartoDB/airship/commit/d982149))
+
+
+
+## [1.0.1](https://github.com/CartoDB/airship/compare/v1.0.0-beta.11...v1.0.1) (2018-11-20)
+
 
 
 # [1.0.0-beta.11](https://github.com/CartoDB/airship/compare/v1.0.0-beta.10...v1.0.0-beta.11) (2018-11-19)
