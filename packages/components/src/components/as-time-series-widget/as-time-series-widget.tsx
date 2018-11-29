@@ -260,6 +260,10 @@ export class TimeSeriesWidget {
   }
 
   private _renderButton() {
+    if (!this.animated) {
+      return null;
+    }
+
     return <button class='as-btn as-btn--primary play-button' onClick={this._playPauseClick.bind(this)}>
       {
         this.playing
@@ -332,10 +336,6 @@ export class TimeSeriesWidget {
   }
 
   private _draw(renderOptions: DrawOptions) {
-    if (this.animated === false) {
-      return;
-    }
-
     const {
       container,
       height,
@@ -345,9 +345,19 @@ export class TimeSeriesWidget {
       binsScale,
       handleWidth
     } = renderOptions;
+
+    let timeSeries = container.select('.as-time-series--g');
+
+    if (!this.animated) {
+      if (!timeSeries.empty()) {
+        timeSeries.remove();
+      }
+
+      return;
+    }
+
     const { left } = container.node().getBoundingClientRect();
     const [X_PADDING, Y_PADDING] = padding;
-    let timeSeries = container.select('.as-time-series--g');
     const progressScale = scaleLinear().domain([0, 100]);
     let trackOffset = 0;
 
