@@ -1,5 +1,6 @@
 import { Component, Event, EventEmitter, Prop, Watch } from '@stencil/core';
 import { scaleLinear } from 'd3-scale';
+import { event as d3event } from 'd3-selection';
 import { HistogramColorRange, HistogramData } from '../as-histogram-widget/interfaces';
 import { DrawOptions } from '../as-histogram-widget/types/DrawOptions';
 import {
@@ -8,7 +9,7 @@ import {
 } from '../common/constants';
 import { TimeSeriesData } from './interfaces';
 
-const SCRUBBER_SIZE = 8;
+const SCRUBBER_SIZE = 4;
 
 /**
  * Time series
@@ -150,7 +151,7 @@ export class TimeSeriesWidget {
 
   @Prop() public playing: boolean = false;
 
-  @Prop() public animated: boolean = false;
+  @Prop({ reflectToAttr: true, attr: 'animated' }) public animated: boolean = false;
 
   @Event()
   private play: EventEmitter;
@@ -158,9 +159,22 @@ export class TimeSeriesWidget {
   @Event()
   private pause: EventEmitter;
 
+  @Event()
+  private selectionChanged: EventEmitter<Date[]>;
+
+  @Event()
+  private seek: EventEmitter<number>;
+
   private histogram: HTMLAsHistogramWidgetElement;
 
   private _selection: number[];
+
+  // Last position when putting the mouse over the scrubber track
+  private _lastMousePosition: number;
+
+  constructor() {
+    this._draw = this._draw.bind(this);
+  }
 
   @Watch('progress')
   public onProgressChanged() {
@@ -168,11 +182,21 @@ export class TimeSeriesWidget {
   }
 
   public async componentDidLoad() {
-    this._draw = this._draw.bind(this);
-
-    this.histogram.addEventListener('selectionInput', (e: CustomEvent) => {
-      this._selection = e.detail;
+    this.histogram.addEventListener('selectionInput', (evt: CustomEvent) => {
+      this._selection = evt.detail;
       this.histogram.forceUpdate();
+    });
+
+    this.histogram.addEventListener('selectionChanged', (evt: CustomEvent<number[]>) => {
+      evt.stopPropagation();
+
+      if (evt.detail === null) {
+        this.selectionChanged.emit(null);
+        return;
+      }
+
+      const selectedDates = evt.detail.map((epoch) => new Date(epoch));
+      this.selectionChanged.emit(selectedDates);
     });
 
     this._selection = await this.histogram.getSelection();
@@ -308,24 +332,53 @@ export class TimeSeriesWidget {
   }
 
   private _draw(renderOptions: DrawOptions) {
-    if (!this.animated) {
+    if (this.animated === false) {
       return;
     }
 
-    const { container, height, width, padding, xScale, binsScale } = renderOptions;
-    const Y_PADDING = padding[1];
+    const {
+      container,
+      height,
+      width,
+      padding,
+      xScale,
+      binsScale,
+      handleWidth
+    } = renderOptions;
+    const { left } = container.node().getBoundingClientRect();
+    const [X_PADDING, Y_PADDING] = padding;
     let timeSeries = container.select('.as-time-series--g');
     const progressScale = scaleLinear().domain([0, 100]);
+    let trackOffset = 0;
 
     if (this._selection) {
       const selection = this._selection.map(
         (e) => xScale(binsScale(e))
       );
 
-      progressScale.range(selection);
+      trackOffset = handleWidth / 2;
+      progressScale.range([
+        selection[0] + trackOffset + (SCRUBBER_SIZE / 2),
+        selection[1] - trackOffset - (SCRUBBER_SIZE / 2)
+      ]);
     } else {
-      progressScale.range([0, width]);
+      progressScale.range([0, width - X_PADDING]);
     }
+
+    const xPos = progressScale(this.progress);
+
+    container.on('click', () => {
+      const evt = d3event as MouseEvent;
+      const pctX = Math.round(progressScale.invert(evt.clientX - left - X_PADDING + 8));
+
+      // This probably means that there's a selection and you're clicking outside of it
+      if (pctX > 100 || pctX < 0) {
+        return;
+      }
+
+      this.seek.emit(pctX);
+    });
+
 
     if (timeSeries.empty()) {
       timeSeries = container
@@ -333,19 +386,31 @@ export class TimeSeriesWidget {
         .attr('class', 'as-time-series--g');
 
       timeSeries.append('line')
+        .attr('class', 'as-time-series--preview')
+        .attr('stroke-width', 4)
+        .attr('stroke', 'gray')
+        .attr('opacity', '0');
+
+      timeSeries.append('line')
         .attr('class', 'as-time-series--line')
         .attr('stroke-width', 4);
 
-      timeSeries.append('rect')
+      timeSeries.append('circle')
         .attr('class', 'as-time-series--scrubber')
-        .attr('width', SCRUBBER_SIZE)
-        .attr('height', SCRUBBER_SIZE)
-        .attr('rx', SCRUBBER_SIZE)
-        .attr('ry', SCRUBBER_SIZE)
+        .attr('r', SCRUBBER_SIZE)
         .attr('stroke-width', 0);
-    }
 
-    const xPos = progressScale(this.progress);
+      timeSeries.append('line')
+        .attr('class', 'as-time-series--track')
+        .attr('stroke-width', 16)
+        .attr('stroke', 'black')
+        .attr('opacity', '0')
+        .on('mouseleave', () => {
+          this._lastMousePosition = -1;
+          timeSeries.select('.as-time-series--preview')
+            .attr('opacity', '0');
+        });
+    }
 
     timeSeries.select('.as-time-series--line')
       .attr('x1', progressScale(0))
@@ -354,8 +419,35 @@ export class TimeSeriesWidget {
       .attr('y2', height - Y_PADDING)
       .attr('opacity', this._selection === null ? 1 : 0);
 
+    timeSeries.select('.as-time-series--track')
+      .attr('y1', height - Y_PADDING)
+      .attr('y2', height - Y_PADDING)
+      .attr('x1', progressScale(0) + trackOffset)
+      .attr('x2', progressScale(100) - trackOffset)
+      .on('mousemove', () => {
+        const evt = d3event as MouseEvent;
+        this._lastMousePosition = evt.clientX - left - X_PADDING + 8;
+
+        if (this._lastMousePosition > progressScale(this.progress)) {
+          timeSeries.select('.as-time-series--preview')
+            .attr('x2', this._lastMousePosition)
+            .attr('opacity', '1');
+        }
+      });
+
+    timeSeries.select('.as-time-series--preview')
+      .attr('x1', xPos - (SCRUBBER_SIZE / 2))
+      .attr('y1', height - Y_PADDING)
+      .attr('y2', height - Y_PADDING)
+      .attr('opacity', () => {
+        if (this._lastMousePosition > xPos) {
+          return '1';
+        }
+
+        return '0';
+      });
+
     timeSeries.select('.as-time-series--scrubber')
-      .attr('x', xPos - (SCRUBBER_SIZE / 2))
-      .attr('y', height - Y_PADDING - (SCRUBBER_SIZE / 2));
+      .attr('transform', `translate(${xPos - (SCRUBBER_SIZE / 2)},${height - Y_PADDING})`);
   }
 }

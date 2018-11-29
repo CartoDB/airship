@@ -17,4 +17,10 @@ as-time-series-widget {
     stroke: var(--as--color--primary, #{$color-primary});
     fill: var(--as--color--primary, #{$color-primary});
   }
+
+  .as-time-series--scrubber,
+  .as-time-series--line,
+  .as-time-series--track {
+    cursor: pointer;
+  }
 }

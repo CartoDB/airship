@@ -171,6 +171,7 @@ export class HistogramWidget {
   @Prop() public axisFormatter: (value: number | Date) => string;
 
   public selection: number[] = null;
+  public _lastEmittedSelection: number[] = null;
 
   @Element() private el: HTMLElement;
 
@@ -361,7 +362,7 @@ export class HistogramWidget {
           this._onBrushEnd.bind(this),
           CUSTOM_HANDLE_WIDTH,
           CUSTOM_HANDLE_HEIGHT,
-          X_PADDING,
+          X_PADDING + (this.yLabel ? LABEL_PADDING : 0),
           Y_PADDING
         );
 
@@ -405,8 +406,9 @@ export class HistogramWidget {
         this.draw({
           binsScale: this.binsScale,
           container: this.container,
+          handleWidth: CUSTOM_HANDLE_WIDTH,
           height: this.height,
-          padding: [X_PADDING, Y_PADDING],
+          padding: [X_PADDING + (this.yLabel ? LABEL_PADDING : 0), Y_PADDING],
           width: this.width,
           xScale: this.xScale
         });
@@ -514,11 +516,17 @@ export class HistogramWidget {
       return;
     }
 
-    this.selection = adjustedSelection;
-    this._updateHandles(adjustedSelection);
-    this._hideTooltip();
+    const sameSelection = this.selection !== null &&
+      adjustedSelection !== null &&
+      this.selection.every((d, i) => adjustedSelection[i] === d);
 
-    this.selectionInput.emit(this.selection);
+    this.selection = adjustedSelection;
+    this._updateHandles(adjustedSelection, !sameSelection);
+
+    if (!sameSelection) {
+      this._hideTooltip();
+      this.selectionInput.emit(this.selection);
+    }
   }
 
   private _selectionInData(selection: number[]) {
@@ -531,7 +539,7 @@ export class HistogramWidget {
     return inData.some((e) => e);
   }
 
-  private _updateHandles(values: number[] | null) {
+  private _updateHandles(values: number[] | null, moveBrush: boolean) {
     if (values === null) {
       this.barsContainer.selectAll('rect')
         .style('fill', (_d, i) => {
@@ -550,7 +558,9 @@ export class HistogramWidget {
       .map(this.binsScale)
       .map(this.xScale);
 
-    this.brushArea.call(this.brush.move, valuesSpace);
+    if (moveBrush) {
+      this.brushArea.call(this.brush.move, valuesSpace);
+    }
 
     this.customHandles
       .style('opacity', 1)

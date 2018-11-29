@@ -826,6 +826,8 @@ export namespace Components {
     'noDataHeaderMessage'?: string;
     'onPause'?: (event: CustomEvent) => void;
     'onPlay'?: (event: CustomEvent) => void;
+    'onSeek'?: (event: CustomEvent<number>) => void;
+    'onSelectionChanged'?: (event: CustomEvent<Date[]>) => void;
     'playing'?: boolean;
     'progress'?: number;
     /**
