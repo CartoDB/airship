@@ -37,6 +37,11 @@
       value: Math.random() * 1e5
     }));
 
+    histogramWidget.addEventListener('seek', (evt) => {
+      progress = evt.detail;
+      histogramWidget.progress = progress;
+    });
+
     let progress = 0;
 
     setInterval(() => {

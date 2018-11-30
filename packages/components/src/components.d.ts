@@ -28,6 +28,9 @@ import {
   TimeSeriesData,
 } from './components/as-time-series-widget/interfaces';
 import {
+  TimeLocaleDefinition,
+} from 'd3-time-format';
+import {
   LegendData,
 } from './components/common/as-legend/types/LegendData';
 
@@ -702,6 +705,9 @@ export namespace Components {
   }
 
   interface AsTimeSeriesWidget {
+    /**
+    * Whether it should have animated properties or not. Disabling this makes this look like a histogra widget with time capabilities
+    */
     'animated': boolean;
     /**
     * Override color for the histogram bars
@@ -747,7 +753,13 @@ export namespace Components {
     * Message shown in header when no data is available
     */
     'noDataHeaderMessage': string;
+    /**
+    * Whether the animation is playing or not.
+    */
     'playing': boolean;
+    /**
+    * This attribute is the percentage of progress elapsed on an animation.
+    */
     'progress': number;
     /**
     * Use this attribute to decide if the widget should be rerendered on window resize. Defaults to true.
@@ -766,6 +778,14 @@ export namespace Components {
     */
     'showHeader': boolean;
     /**
+    * This string will be parsed by d3-time-format (https://github.com/d3/d3-time-format) and will be used to format the graph's x-axis
+    */
+    'timeFormat': string;
+    /**
+    * Setting this property will make the date formatter be sensitive to locales. The format is described on https://github.com/d3/d3-time-format
+    */
+    'timeFormatLocale': TimeLocaleDefinition;
+    /**
     * Function that formats the tooltip. Receives TimeSeriesData and outputs a string
     */
     'tooltipFormatter': (value: TimeSeriesData) => string;
@@ -779,6 +799,9 @@ export namespace Components {
     'yLabel': string;
   }
   interface AsTimeSeriesWidgetAttributes extends StencilHTMLAttributes {
+    /**
+    * Whether it should have animated properties or not. Disabling this makes this look like a histogra widget with time capabilities
+    */
     'animated'?: boolean;
     /**
     * Override color for the histogram bars
@@ -824,11 +847,29 @@ export namespace Components {
     * Message shown in header when no data is available
     */
     'noDataHeaderMessage'?: string;
+    /**
+    * User clicks the pause button
+    */
     'onPause'?: (event: CustomEvent) => void;
+    /**
+    * User clicks the play button
+    */
     'onPlay'?: (event: CustomEvent) => void;
+    /**
+    * The user has seeked the animation to this percentage.
+    */
     'onSeek'?: (event: CustomEvent<number>) => void;
+    /**
+    * This method proxies the selectionChanged event on the underlying graph, but parses it into a Date
+    */
     'onSelectionChanged'?: (event: CustomEvent<Date[]>) => void;
+    /**
+    * Whether the animation is playing or not.
+    */
     'playing'?: boolean;
+    /**
+    * This attribute is the percentage of progress elapsed on an animation.
+    */
     'progress'?: number;
     /**
     * Use this attribute to decide if the widget should be rerendered on window resize. Defaults to true.
@@ -846,6 +887,14 @@ export namespace Components {
     * Toggles displaying title and description
     */
     'showHeader'?: boolean;
+    /**
+    * This string will be parsed by d3-time-format (https://github.com/d3/d3-time-format) and will be used to format the graph's x-axis
+    */
+    'timeFormat'?: string;
+    /**
+    * Setting this property will make the date formatter be sensitive to locales. The format is described on https://github.com/d3/d3-time-format
+    */
+    'timeFormatLocale'?: TimeLocaleDefinition;
     /**
     * Function that formats the tooltip. Receives TimeSeriesData and outputs a string
     */

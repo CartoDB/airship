@@ -1,6 +1,7 @@
 import { Component, Event, EventEmitter, Prop, Watch } from '@stencil/core';
 import { scaleLinear } from 'd3-scale';
 import { event as d3event } from 'd3-selection';
+import { timeFormat, timeFormatDefaultLocale, TimeLocaleDefinition } from 'd3-time-format';
 import { HistogramColorRange, HistogramData } from '../as-histogram-widget/interfaces';
 import { DrawOptions } from '../as-histogram-widget/types/DrawOptions';
 import {
@@ -147,33 +148,69 @@ export class TimeSeriesWidget {
    */
   @Prop() public responsive: boolean = true;
 
+  /**
+   * This attribute is the percentage of progress elapsed on an animation.
+   */
   @Prop() public progress: number = 0;
 
+  /**
+   * Whether the animation is playing or not.
+   */
   @Prop() public playing: boolean = false;
 
+  /**
+   * Whether it should have animated properties or not. Disabling this makes this look
+   * like a histogra widget with time capabilities
+   */
   @Prop({ reflectToAttr: true, attr: 'animated' }) public animated: boolean = false;
 
+  /**
+   * This string will be parsed by d3-time-format (https://github.com/d3/d3-time-format)
+   * and will be used to format the graph's x-axis
+   */
+  @Prop() public timeFormat: string = '%x - %X';
+
+  /**
+   * Setting this property will make the date formatter be sensitive to locales. The format
+   * is described on https://github.com/d3/d3-time-format
+   */
+  @Prop() public timeFormatLocale: TimeLocaleDefinition;
+
+  /**
+   * User clicks the play button
+   */
   @Event()
   private play: EventEmitter;
 
+  /**
+   * User clicks the pause button
+   */
   @Event()
   private pause: EventEmitter;
 
+  /**
+   * This method proxies the selectionChanged event on the underlying graph, but parses it into
+   * a Date
+   */
   @Event()
   private selectionChanged: EventEmitter<Date[]>;
 
+  /**
+   * The user has seeked the animation to this percentage.
+   */
   @Event()
   private seek: EventEmitter<number>;
 
   private histogram: HTMLAsHistogramWidgetElement;
-
   private _selection: number[];
+  private _formatter: (date: Date) => string;
 
   // Last position when putting the mouse over the scrubber track
   private _lastMousePosition: number;
 
   constructor() {
     this._draw = this._draw.bind(this);
+    this.axisFormatter = this.axisFormatter.bind(this);
   }
 
   @Watch('progress')
@@ -181,7 +218,35 @@ export class TimeSeriesWidget {
     this.histogram.forceUpdate();
   }
 
+  @Watch('timeFormat')
+  public onTimeFormatChanged(newFormat) {
+    this._formatter = timeFormat(newFormat);
+  }
+
+  @Watch('timeFormatLocale')
+  public onTimeFormatLocaleChanged(newLocale) {
+    try {
+      timeFormatDefaultLocale(newLocale);
+
+      if (this.timeFormat) {
+        this.onTimeFormatChanged(this.timeFormat);
+      }
+    } catch (e) {
+      throw new Error('Invalid time format.');
+    }
+
+  }
+
   public async componentDidLoad() {
+    // tslint:disable-next-line:no-console
+    console.warn('[as-time-series-widget] This is an unreleased component, use at your own risk');
+
+    if (this.timeFormatLocale) {
+      timeFormatDefaultLocale(this.timeFormatLocale);
+    }
+
+    this._formatter = timeFormat(this.timeFormat);
+
     this.histogram.addEventListener('selectionInput', (evt: CustomEvent) => {
       this._selection = evt.detail;
       this.histogram.forceUpdate();
@@ -200,10 +265,6 @@ export class TimeSeriesWidget {
     });
 
     this._selection = await this.histogram.getSelection();
-  }
-
-  public axisFormatter(value: number): string {
-    return `${new Date(value).toLocaleDateString()}`;
   }
 
   public render() {
@@ -233,6 +294,10 @@ export class TimeSeriesWidget {
           draw={this._draw}
         >
       </as-histogram-widget>];
+  }
+
+  private axisFormatter(value: number): string {
+    return this._formatter(new Date(value));
   }
 
   private _isDate(obj: any) {
