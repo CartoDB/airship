@@ -61,6 +61,47 @@ describe('as-time-series-widget', () => {
       expect(text.innerText).not.toBe('0');
       expect(text.innerText).toContain('1970');
     });
+
+    it('should fire a seek event', async () => {
+      const element: E2EElement = await page.find('as-time-series-widget');
+      element.setProperty('animated', 'true');
+      element.setProperty('data', histogramData);
+      element.setProperty('progress', '10');
+      await page.waitForChanges();
+
+      const bars = await element.findAll('.bar');
+      const centerBar = bars[Math.floor(bars.length / 2)];
+      const seekSpy = await element.spyOnEvent('seek');
+
+      await centerBar.click();
+
+      expect(seekSpy).toHaveReceivedEvent();
+    });
+
+    it('should fire play / pause events', async () => {
+      const element: E2EElement = await page.find('as-time-series-widget');
+      element.setProperty('animated', 'true');
+      element.setProperty('data', histogramData);
+      element.setProperty('progress', '10');
+      element.setProperty('playing', 'false');
+      await page.waitForChanges();
+
+      const playButton = await element.find('.play-button');
+      const playSpy = await element.spyOnEvent('play');
+      const pauseSpy = await element.spyOnEvent('pause');
+
+      await playButton.click();
+
+      expect(playSpy).toHaveReceivedEvent();
+
+      element.setProperty('playing', 'true');
+
+      await page.waitForChanges();
+
+      await playButton.click();
+
+      expect(pauseSpy).toHaveReceivedEvent();
+    });
   });
 });
 
