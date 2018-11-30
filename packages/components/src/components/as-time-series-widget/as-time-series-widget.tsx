@@ -2,13 +2,14 @@ import { Component, Event, EventEmitter, Prop, Watch } from '@stencil/core';
 import { scaleLinear } from 'd3-scale';
 import { event as d3event } from 'd3-selection';
 import { timeFormat, timeFormatDefaultLocale, TimeLocaleDefinition } from 'd3-time-format';
-import { HistogramColorRange, HistogramData } from '../as-histogram-widget/interfaces';
+import { HistogramColorRange } from '../as-histogram-widget/interfaces';
 import { DrawOptions } from '../as-histogram-widget/types/DrawOptions';
 import {
   DEFAULT_BAR_COLOR,
   DEFAULT_SELECTED_BAR_COLOR,
 } from '../common/constants';
 import { TimeSeriesData } from './interfaces';
+import { prepareData } from './utils/data.service';
 
 const SCRUBBER_SIZE = 4;
 
@@ -277,7 +278,7 @@ export class TimeSeriesWidget {
           showHeader={this.showHeader}
           showClear={this.showClear}
           disableInteractivity={this.disableInteractivity}
-          data={this._prepareData(this.data)}
+          data={prepareData(this.data)}
           color={this.color}
           selectedColor={this.selectedColor}
           colorRange={this.colorRange}
@@ -298,30 +299,6 @@ export class TimeSeriesWidget {
 
   private axisFormatter(value: number): string {
     return this._formatter(new Date(value));
-  }
-
-  private _isDate(obj: any) {
-    return Object.prototype.toString.call(obj) === '[object Date]';
-  }
-
-  private _prepareData(data: TimeSeriesData[]): HistogramData[] {
-    const isDate = data.every((d) => this._isDate(d.start) && this._isDate(d.end));
-
-    if (isDate) {
-      return data.map((d) => ({
-        color: d.color,
-        end: (d.end as Date).getTime(),
-        start: (d.start as Date).getTime(),
-        value: d.value
-      }));
-    }
-
-    return data.map((d) => ({
-      color: d.color,
-      end: (d.end as number),
-      start: (d.start as number),
-      value: d.value
-    }));
   }
 
   private _renderButton() {
