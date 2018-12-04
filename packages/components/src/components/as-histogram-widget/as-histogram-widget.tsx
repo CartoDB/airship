@@ -467,7 +467,7 @@ export class HistogramWidget {
     }
   }
 
-  private _hideCustomHandlers() {
+  private _hideCustomHandles() {
     this.customHandles.style('opacity', 0);
     this.brushArea.selectAll('.bottomline').style('opacity', 0);
   }
@@ -480,7 +480,7 @@ export class HistogramWidget {
     const evt = d3event as any; // I can't cast this properly :(
 
     if (evt.selection === null) {
-      this._hideCustomHandlers();
+      this._hideCustomHandles();
       return;
     }
 

@@ -57,16 +57,16 @@ export function addCustomHandles(
     .attr('y1', height - Y_PADDING)
     .attr('y2', height - Y_PADDING);
 
-  let customHandlers = brushArea.selectAll<SVGGElement, { type: string }>('.handle--wrapper');
+  let customHandles = brushArea.selectAll<SVGGElement, { type: string }>('.handle--wrapper');
 
-  if (customHandlers.empty()) {
-    customHandlers = customHandlers
+  if (customHandles.empty()) {
+    customHandles = customHandles
       .data([{ type: 'w' }, { type: 'e' }])
       .enter()
       .append('g')
       .attr('class', 'handle--wrapper');
 
-    customHandlers
+    customHandles
       .append('rect')
       .attr('class', 'handle--custom')
       .attr('width', CUSTOM_HANDLE_WIDTH)
@@ -74,7 +74,7 @@ export function addCustomHandles(
       .attr('rx', 2)
       .attr('ry', 2);
 
-    const handleGrab = customHandlers
+    const handleGrab = customHandles
       .append('g')
       .attr('class', 'handle--grab');
 
@@ -89,7 +89,7 @@ export function addCustomHandles(
     }
   }
 
-  return customHandlers;
+  return customHandles;
 }
 
 export default { addBrush, addBrushArea, addCustomHandles };
