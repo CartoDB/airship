@@ -30,11 +30,11 @@
                 <div class="as-footer">
                   <div>
                     <as-time-series-widget
-                      disable-interactivity
                       animated
                       heading='Animation'
                       description='controls'
                       time-format='%Q'
+                      show-clear
                     >
                     </as-time-series-widget>
                   </div>
@@ -99,6 +99,21 @@
         const dataLayer = new carto.Layer('dataLayer', source, dataViz);
 
         const timeWidget = document.querySelector('as-time-series-widget');
+        let selection = null;
+
+        timeWidget.addEventListener('selectionChanged', (evt) => {
+          selection = evt.detail === null ? null : evt.detail.map(e => e.getTime());
+
+          if (selection !== null) {
+            viz.variables.animation.input.min.blendTo(selection[0], 0);
+            viz.variables.animation.input.max.blendTo(selection[1], 0);
+          } else {
+            viz.variables.animation.input.min.blendTo(1900, 0);
+            viz.variables.animation.input.max.blendTo(2017, 0);
+          }
+
+          viz.variables.animation.setProgressPct(0);
+        });
 
         timeWidget.addEventListener('play', () => {
           viz.variables.animation.play();
@@ -125,7 +140,7 @@
         let lastData = null;
         dataLayer.on('updated', () => {
           const newHistogram = dataViz.variables.histogram.value;
-          if (histogramDiff(lastData, newHistogram)) {
+          if (histogramDiff(lastData, newHistogram) && selection === null) {
             console.log(newHistogram[0].x[0], newHistogram[newHistogram.length - 1].x[1]);
             viz.variables.animation.input.min.blendTo(newHistogram[0].x[0])
             viz.variables.animation.input.max.blendTo(newHistogram[newHistogram.length - 1].x[1])
