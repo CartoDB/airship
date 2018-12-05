@@ -339,6 +339,10 @@ export class HistogramWidget {
 
   private _renderGraph() {
     requestAnimationFrame(() => {
+      if (!this.container) {
+        return;
+      }
+
       const bbox = this.container.node().getBoundingClientRect();
       const firstRender = this.prevWidth === undefined || this.prevHeight === undefined;
       this.prevWidth = this.width;

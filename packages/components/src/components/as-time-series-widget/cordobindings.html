@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Airship histogram selectionChanged bug</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.11/lodash.min.js"></script>
+    <script src="https://libs.cartocdn.com/carto-vl/v1.0.0/carto-vl.min.js"></script>
+
+    <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.css" rel="stylesheet" />
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.js"></script>
+
+    <link rel="stylesheet" href="/packages/styles/dist/airship.css">
+    <script src="/packages/components/dist/airship.js"></script>
+    <script src="/packages/bindings/dist/asbindings.js"></script>
+</head>
+
+<body class="as-app-body">
+    <div class="as-app">
+        <div class="as-content">
+            <main class="as-main">
+                <div class="as-map-area">
+                    <div id="map"></div>
+                </div>
+                <div class="as-footer">
+                  <div>
+                    <as-time-series-widget
+                      disable-interactivity
+                      animated
+                      heading='Animation'
+                      description='controls'
+                      time-format='%Y'
+                    >
+                    </as-time-series-widget>
+                  </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        const map = new mapboxgl.Map({
+          container: 'map',
+          style: carto.basemaps.darkmatter,
+          center: [-4.77, 37.88],
+          zoom: 12
+        });
+
+        carto.setDefaultAuth({
+          username: 'roman-carto',
+          apiKey: 'default_public'
+        });
+
+        const source = new carto.source.SQL(`with t as (select *, date_part('epoch', beginning) * 1000 as tstmp from cordoba_catastro_simple) select * from t`);
+        const viz = new carto.Viz(`
+          @duration: 30
+          @min: globalMin($tstmp)
+          @max: globalMax($tstmp)
+          @animation: animation(linear($tstmp, @min, @max), @duration, fade(0.1, ${Number.MAX_SAFE_INTEGER}))
+
+          strokeWidth: 0.5
+          width: 8
+          color: red
+          strokeColor: red
+
+          filter: @animation
+        `);
+
+        const vizLayer = new carto.Layer('layer', source, viz);
+
+        const timeWidget = document.querySelector('as-time-series-widget');
+        
+        vizLayer.addTo(map, 'watername_ocean');
+
+        const magic = new AsBindings.VL.Animation(
+          carto,
+          map,
+          source,
+          vizLayer,
+          timeWidget,
+          30
+        );
+    </script>
+</body>
+
+</html>

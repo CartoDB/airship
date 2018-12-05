@@ -44,6 +44,24 @@
     </div>
 
     <script>
+        function histogramDiff (a, b) {
+          if (a === null || b === null) {
+            return true;
+          }
+
+          if (a.length !== b.length) {
+            return true;
+          }
+
+          for (let i = 0; i < a.length; i++) {
+            if (a[i].x[0] !== b[i].x[0] || a[i].x[1] !== b[i].x[1] || a[i].y !== b[i].y) {
+              return true;
+            }
+          }
+
+          return false;
+        }
+
         const map = new mapboxgl.Map({
           container: 'map',
           style: carto.basemaps.darkmatter,
@@ -72,12 +90,11 @@
           @histogram: viewportHistogram($year, 30)
 
           strokeWidth: 0
-          width: 8
+          color: rgba(255,255,255,0)
           filter: 1
         `)
 
         const source = new carto.source.SQL(`with t as (select *, date_part('year', beginning) as year from cordoba_catastro_simple) select * from t where year > 1900`);
-        // const dataSource = new carto.source.Dataset('cordoba_catastro_simple');
         const vizLayer = new carto.Layer('layer', source, viz);
         const dataLayer = new carto.Layer('dataLayer', source, dataViz);
 
@@ -105,19 +122,23 @@
           timeWidget.playing = viz.variables.animation._paused === false;
         });
 
-        let updated = 0;
+        let lastData = null;
         dataLayer.on('updated', () => {
-          if (updated < 5) {
-            const histogram = dataViz.variables.histogram.value;
-            timeWidget.data = histogram.map(entry => {
-                return {
-                    start: entry.x[0],
-                    end: entry.x[1],
-                    value: entry.y
-                }
-            });
+          const newHistogram = dataViz.variables.histogram.value;
+          if (histogramDiff(lastData, newHistogram)) {
+            console.log(newHistogram[0].x[0], newHistogram[newHistogram.length - 1].x[1]);
+            viz.variables.animation.input.min.blendTo(newHistogram[0].x[0])
+            viz.variables.animation.input.max.blendTo(newHistogram[newHistogram.length - 1].x[1])
+            
+            lastData = newHistogram;
 
-            updated++;
+            timeWidget.data = newHistogram.map(entry => {
+              return {
+                start: entry.x[0],
+                end: entry.x[1],
+                value: entry.y
+              }
+            });
           }
         });
 

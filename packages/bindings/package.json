@@ -1,0 +1,19 @@
+{
+  "name": "@carto/airship-bindings",
+  "version": "0.0.1",
+  "description": "Airship bindings to other libs",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "dev": "webpack --watch",
+    "build": "webpack"
+  },
+  "author": "CARTO Dev Team",
+  "license": "BSD-3-Clause",
+  "devDependencies": {
+    "ts-loader": "^5.3.1",
+    "typescript": "^3.2.1",
+    "webpack": "^4.27.0",
+    "webpack-cli": "^3.1.2"
+  }
+}
