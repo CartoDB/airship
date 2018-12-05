@@ -93,6 +93,8 @@
 
         timeWidget.addEventListener('seek', (evt) => {
           viz.variables.animation.setProgressPct(evt.detail / 100);
+
+          timeWidget.progress = evt.detail;
         })
 
         vizLayer.on('updated', function updateWidgets() {
