@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Airship histogram selectionChanged bug</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.11/lodash.min.js"></script>
+    <script src="https://libs.cartocdn.com/carto-vl/v1.0.0/carto-vl.min.js"></script>
+    <!-- <script src="/packages/bindings/dist/vl.js"></script> -->
+
+    <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.css" rel="stylesheet" />
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.js"></script>
+
+    <link rel="stylesheet" href="/packages/styles/dist/airship.css">
+    <script src="/packages/components/dist/airship.js"></script>
+    <script src="/packages/bindings/dist/asbindings.js"></script>
+</head>
+
+<body class="as-app-body">
+    <div class="as-app">
+        <div class="as-content">
+            <main class="as-main">
+                <div class="as-map-area">
+                    <div id="map"></div>
+                    <div data-name="MAP PANELS" class="as-map-panels">
+                        <div class="as-panel as-panel--top as-panel--left as-panel--vertical">
+                          <div class="as-panel__element">
+                            <section class="as-box">
+                              <p class="as-body as-font--mono">between($cartodb_id, 0, 1000)</p>
+                              <button id="btn1" class="as-btn as-btn--primary">
+                                Apply
+                              </button>
+                              <p class="as-body as-font--mono">between($timestamp, 1987, 2017)</p>
+                              <button id="btn2" class="as-btn as-btn--primary">
+                                Apply
+                              </button>
+                              <p class="as-body as-font--mono">and(
+                                  between($timestamp, 1987, 2017),
+                                  between($cartodb_id, 0, 1000)
+                                )</p>
+                              <button id="btn3" class="as-btn as-btn--primary">
+                                Apply
+                              </button>
+                              <p class="as-body as-font--mono">
+                                constant(1)
+                              </p>
+                              <button id="btn4" class="as-btn as-btn--primary">
+                                Apply
+                              </button>
+                            </section>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+                <div class="as-map-footer">
+                  <div class="as-box">
+                    <as-histogram-widget
+                      show-clear
+                      id="year"
+                      heading="Year"
+                    >
+                    </as-histogram-widget>
+                  </div>
+                  <div class="as-box">
+                    <as-histogram-widget
+                      id="area"
+                      heading="Area"
+                      show-clear
+                    >
+                    </as-histogram-widget>
+                  </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        const map = new mapboxgl.Map({
+          container: 'map',
+          style: carto.basemaps.darkmatter,
+          center: [-4.77, 37.88],
+          zoom: 12
+        });
+
+        carto.setDefaultAuth({
+          username: 'roman-carto',
+          apiKey: 'default_public'
+        });
+
+        const s = carto.expressions;
+
+        const source = new carto.source.SQL(`with t as (select *, date_part('year', beginning) as timestamp from cordoba_catastro_simple LIMIT 1000) select * from t`);
+        const viz = new carto.Viz(`
+          strokeWidth: 0.5
+          width: 8
+          color: red
+          strokeColor: red
+        `);
+
+        const vizLayer = new carto.Layer('layer', source, viz);
+
+        const yearWidget = document.querySelector('#year');
+        const areaWidget = document.querySelector('#area');
+
+        yearWidget.axisFormatter = (e) => {
+          if (isNaN(e)) {
+            return '...';
+          }
+
+          return e;
+        };
+        
+        vizLayer.addTo(map, 'watername_ocean');
+
+        const catastroLayer = new AsBindings.VL(
+          carto,
+          map,
+          vizLayer
+        );
+
+        catastroLayer.histogram({
+          column: 'timestamp',
+          buckets: 30,
+          readOnly: false,
+          source,
+          viz,
+          widget: yearWidget,
+        });
+
+        catastroLayer.histogram({
+          column: 'cartodb_id',
+          buckets: 10,
+          readOnly: false,
+          source,
+          viz,
+          widget: areaWidget
+        });
+
+        const exp1 = s.between(s.prop('cartodb_id'), 0, 1000);
+        document.querySelector('#btn1').addEventListener('click', () => {
+          console.log(exp1);
+          viz.filter.blendTo(exp1);
+        });
+
+        const exp2 = s.between(s.prop('timestamp'), 1987, 2017);
+        document.querySelector('#btn2').addEventListener('click', () => {
+          console.log(exp2);
+          viz.filter.blendTo(exp2);
+        });
+
+        document.querySelector('#btn3').addEventListener('click', () => {
+          const exp = s.and(
+            exp1,
+            exp2
+          );
+          console.log(exp);
+          viz.filter.blendTo(exp);
+        });
+
+        document.querySelector('#btn4').addEventListener('click', () => {
+          const exp = s.constant(1);
+          console.log(exp);
+          viz.filter.blendTo(exp);
+        });
+    </script>
+</body>
+
+</html>

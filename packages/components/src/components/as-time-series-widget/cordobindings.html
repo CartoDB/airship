@@ -30,7 +30,6 @@
                 <div class="as-footer">
                   <div>
                     <as-time-series-widget
-                      disable-interactivity
                       animated
                       heading='Animation'
                       description='controls'
@@ -56,7 +55,7 @@
           apiKey: 'default_public'
         });
 
-        const source = new carto.source.SQL(`with t as (select *, date_part('epoch', beginning) * 1000 as tstmp from cordoba_catastro_simple) select * from t`);
+        const source = new carto.source.SQL(`with t as (select *, date_part('epoch', beginning) * 1000 as tstmp from cordoba_catastro_simple) select * from t where tstmp > -2207520000000`);
         const viz = new carto.Viz(`
           @duration: 30
           @min: globalMin($tstmp)
@@ -68,7 +67,7 @@
           color: red
           strokeColor: red
 
-          filter: @animation
+          filter: @animation and 1 and $tstmp > 100
         `);
 
         const vizLayer = new carto.Layer('layer', source, viz);
@@ -85,6 +84,29 @@
           timeWidget,
           30
         );
+
+        const VLBindings = new AsBindings.VL(
+          carto,
+          map
+        );
+
+        VLBindings.histogram({
+          column: 'tstmp',
+          buckets: 30,
+          source,
+          viz,
+          readOnly: true
+        });
+
+        VLBindings.category({
+          column: 'type',
+          categories: 5,
+          viz
+        });
+
+        VLBindings.timeSeries({
+
+        });
     </script>
 </body>
 
