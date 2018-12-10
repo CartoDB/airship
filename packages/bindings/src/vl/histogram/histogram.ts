@@ -34,14 +34,17 @@ export class Histogram extends BaseFilter {
 
     histogram.disableInteractivity = readOnly;
 
+    this._onLayerLoaded = this._onLayerLoaded.bind(this);
+    this._selectionChanged = this._selectionChanged.bind(this);
+
     if (!readOnly) {
-      this._widget.addEventListener('selectionChanged', this._selectionChanged.bind(this));
+      this._widget.addEventListener('selectionChanged', this._selectionChanged);
     }
 
     if (layer.viz !== undefined) {
       this._onLayerLoaded();
     } else {
-      this._layer.on('loaded', this._onLayerLoaded.bind(this));
+      this._layer.on('loaded', this._onLayerLoaded);
     }
 
     this._layer.on('updated', () => {
@@ -113,10 +116,10 @@ export class Histogram extends BaseFilter {
   private _selectionChanged(evt: CustomEvent) {
     if (evt.detail === null) {
       this._selection = null;
-      this._filterChanged();
     } else {
       this._selection = evt.detail;
-      this._filterChanged();
     }
+
+    this._filterChanged();
   }
 }
