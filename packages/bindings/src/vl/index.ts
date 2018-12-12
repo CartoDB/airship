@@ -67,9 +67,10 @@ export default class VL {
   }
 
   private _buildFilters() {
-    const columns = this._vizFilters.map((hasFilter) => hasFilter.column);
+    const filters = this._vizFilters.filter((filter) => !filter.readOnly);
+    const columns = filters.map((hasFilter) => hasFilter.column);
 
-    for (const hasFilter of this._vizFilters) {
+    for (const hasFilter of filters) {
       const dataLayer = hasFilter.buildDataLayer(columns);
 
       dataLayer.addTo(this._map, 'watername_ocean');
