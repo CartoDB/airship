@@ -101,7 +101,7 @@ export default class VL {
   }
 
   private _rebuildFilters(name: string) {
-    // Filter data layers
+    // We need to rebuild filters for all layers that are not the one that caused it
     const layers = this._dataLayers.filter((layer) => layer.id !== name);
 
     for (const layer of layers) {
@@ -114,14 +114,16 @@ export default class VL {
       layer.viz.filter.blendTo(filters, 0);
     }
 
-    // Filter visualization
     const newFilter = this._combineFilters(
       this._vizFilters
         .filter((hasFilter) => hasFilter.filter !== null)
         .map((hasFilter) => hasFilter.filter)
     );
+
+    // Update the Visualization filter
     this._layer.viz.filter.blendTo(newFilter, 0);
 
+    // Update (if required) the readonly layer
     if (this._readOnlyLayer) {
       this._readOnlyLayer.viz.filter.blendTo(newFilter, 0);
     }
