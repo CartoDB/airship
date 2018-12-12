@@ -1,13 +1,13 @@
 import { BaseFilter } from './base/BaseFilter';
 import { Histogram } from './histogram/histogram';
+import { TimeSeries } from './time-series/times-series';
 
 interface HistogramOptions {
   column: string;
   buckets: number;
   readOnly: boolean;
   source: any;
-  viz?: any;
-  widget: HTMLAsHistogramWidgetElement;
+  widget: HTMLAsHistogramWidgetElement | HTMLAsTimeSeriesWidgetElement;
 }
 
 export default class VL {
@@ -19,6 +19,7 @@ export default class VL {
   private _dataLayers: any = [];
   private _readOnlyLayer: any;
   private _id: string;
+  private _animation: TimeSeries;
 
   constructor(carto, map, layer, source) {
     this._carto = carto;
@@ -51,14 +52,44 @@ export default class VL {
 
     histogram.on('filterChanged', this._rebuildFilters);
     this._vizFilters.push(histogram);
+
+    return histogram;
   }
 
   public category() {
     // TODO: create category interface
   }
 
-  public timeSeries() {
-    // TODO: create TS interface
+  public timeSeries({
+    column,
+    buckets,
+    readOnly,
+    source,
+    widget
+  }: HistogramOptions) {
+    if (this._animation) {
+      throw new Error('There can only be one Time Series animation');
+    }
+
+    this._animation = new TimeSeries(
+      this._layer,
+      widget as HTMLAsTimeSeriesWidgetElement,
+      () => {
+        this._rebuildFilters('');
+      }
+    );
+
+    const histogram = this.histogram({
+      buckets,
+      column,
+      readOnly,
+      source,
+      widget,
+    });
+
+    histogram.on('rangeChanged', (range) => {
+      this._animation.setRange(range);
+    });
   }
 
   public build() {
@@ -114,19 +145,24 @@ export default class VL {
       layer.viz.filter.blendTo(filters, 0);
     }
 
-    const newFilter = this._combineFilters(
+    let newFilter = this._combineFilters(
       this._vizFilters
         .filter((hasFilter) => hasFilter.filter !== null)
         .map((hasFilter) => hasFilter.filter)
     );
 
-    // Update the Visualization filter
-    this._layer.viz.filter.blendTo(newFilter, 0);
-
     // Update (if required) the readonly layer
     if (this._readOnlyLayer) {
       this._readOnlyLayer.viz.filter.blendTo(newFilter, 0);
     }
+
+    if (this._animation) {
+      newFilter = `@animation and ${newFilter}`;
+    }
+
+    // Update the Visualization filter
+    this._layer.viz.filter.blendTo(newFilter, 0);
+
   }
 
   private _combineFilters(filters) {
