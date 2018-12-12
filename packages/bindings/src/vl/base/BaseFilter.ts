@@ -28,7 +28,7 @@ export abstract class BaseFilter {
 
   public abstract buildDataLayer(columns: string[]): any;
   public abstract setDataLayer(layer: any);
-  public abstract get filter();
+  public abstract get filter(): string;
   public abstract get expression(): string;
 
   public get name(): string {

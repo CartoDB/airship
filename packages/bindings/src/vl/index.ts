@@ -126,24 +126,12 @@ export default class VL {
     }
   }
 
-  private _combineFilters(rest) {
-    if (rest.length === 0) {
-      const exp = this._carto.expressions.constant(1);
-      exp.default = true;
-      return exp;
+  private _combineFilters(filters) {
+    if (filters.length === 0) {
+      return '1';
     }
 
-    if (rest.length === 1) {
-      return rest[0];
-    }
-
-    const a = rest[0];
-    const b = rest.length > 2 ? this._combineFilters(rest.slice(1)) : rest[1];
-
-    return this._carto.expressions.and(
-      a,
-      b
-    );
+    return filters.join(' and ');
   }
 }
 

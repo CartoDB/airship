@@ -71,17 +71,11 @@ export class Histogram extends BaseFilter {
     return this._dataLayer;
   }
 
-  public get filter(): any {
-    const s = this._carto.expressions;
-
+  public get filter(): string {
     if (this._selection === null) {
       return null;
     } else {
-      return s.between(
-        s.prop(this._column),
-        this._selection[0],
-        this._selection[1]
-      );
+      return `between($${this._column}, ${this._selection[0]}, ${this._selection[1]})`;
     }
   }
 
