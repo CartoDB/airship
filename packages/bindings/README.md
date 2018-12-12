@@ -43,7 +43,6 @@ bindings.histogram({
   column: 'timestamp',
   buckets: 30,
   source,
-  viz,
   widget: timestampWidget,
 });
 
@@ -51,7 +50,6 @@ bindings.histogram({
   column: 'surface',
   buckets: 40,
   source,
-  viz,
   widget: surfaceWidget,
 });
 
