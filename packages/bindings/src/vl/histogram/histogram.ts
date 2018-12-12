@@ -4,16 +4,12 @@ import { isHistogramEqual } from '../utils/comparison/histogram';
 import { vlToAirship } from '../utils/conversion/histogram';
 
 export class Histogram extends BaseFilter {
-
-  private _columnName: string;
   private _buckets: number;
   private _carto: any;
-  private _viz: VL.Viz;
   private _lastHistogram: VL.HistogramData[] = null;
-  private _layer: any;
   private _widget: HTMLAsTimeSeriesWidgetElement | HTMLAsHistogramWidgetElement;
   private _selection: [number, number] = null;
-  private _variableName: string;
+  private _dataLayer: any;
 
   constructor(
     carto: any,
@@ -21,53 +17,22 @@ export class Histogram extends BaseFilter {
     histogram: HTMLAsTimeSeriesWidgetElement | HTMLAsHistogramWidgetElement,
     columnName: string,
     nBuckets: number,
+    source: any,
     readOnly: boolean = true
   ) {
+    super('histogram', columnName, layer, source, readOnly);
 
-    super();
-
-    this._columnName = columnName;
     this._buckets = nBuckets;
     this._widget = histogram;
-    this._layer = layer;
     this._carto = carto;
 
     histogram.disableInteractivity = readOnly;
 
-    this._onLayerLoaded = this._onLayerLoaded.bind(this);
     this._selectionChanged = this._selectionChanged.bind(this);
 
     if (!readOnly) {
       this._widget.addEventListener('selectionChanged', this._selectionChanged);
     }
-
-    if (layer.viz !== undefined) {
-      this._onLayerLoaded();
-    } else {
-      this._layer.on('loaded', this._onLayerLoaded);
-    }
-
-    this._layer.on('updated', () => {
-      const newHistogram = (this._viz.variables[this._variableName] as VL.Histogram).value;
-      if (!newHistogram) {
-        return;
-      }
-
-      if (this._selection !== null) {
-        return;
-      }
-
-      if (this._lastHistogram === null || !isHistogramEqual(this._lastHistogram, newHistogram)) {
-        this._emitter.emit('rangeChanged', [
-          newHistogram[0].x[0],
-          newHistogram[newHistogram.length - 1].x[1]
-        ]);
-
-        this._lastHistogram = newHistogram;
-
-        this._widget.data = vlToAirship(newHistogram);
-      }
-    });
   }
 
   public setLayer(layer: any) {
@@ -82,35 +47,72 @@ export class Histogram extends BaseFilter {
     this._emitter.on(type, handler);
   }
 
-  public getFilter() {
+  public getDataLayer() {
+    return this._dataLayer;
+  }
+
+  public buildDataLayer(columns: string[]) {
+    const carto = this._carto;
+    const variables = columns.map((column) => `@asbind_${column}: $${column}`);
+
+    // Create the data layer
+    const dataViz = new carto.Viz(`
+      ${this.expression}
+      ${variables.join('\n')}
+
+      strokeWidth: 0
+      color: rgba(255,255,255,0)
+    `);
+
+    this._dataLayer = new carto.Layer(this.name, this._source, dataViz);
+
+    this._bindDataLayer();
+
+    return this._dataLayer;
+  }
+
+  public get filter(): any {
     const s = this._carto.expressions;
 
     if (this._selection === null) {
       return null;
     } else {
       return s.between(
-        s.prop(this._columnName),
+        s.prop(this._column),
         this._selection[0],
         this._selection[1]
       );
     }
   }
 
-  private _onLayerLoaded() {
-    this._viz = this._layer.viz;
+  public get expression(): string {
+    return `@${this.name}: viewportHistogram($${this._column}, ${this._buckets})`;
+  }
 
-    this._variableName = `asbindings-hist-${this._columnName}`;
-    if (this._viz.variables[this._variableName]) {
-      throw new Error(`Viz cannot have a variable called ${this._variableName}`);
-    }
+  public setDataLayer(layer: any) {
+    this._dataLayer = layer;
 
-    const s = this._carto.expressions;
-    const histogram = s.viewportHistogram(
-      s.prop(this._columnName),
-      this._buckets
-    );
+    this._bindDataLayer();
+  }
 
-    this._viz.variables[this._variableName] = histogram;
+  private _bindDataLayer() {
+    this._dataLayer.on('updated', () => {
+      const newHistogram = (this._dataLayer.viz.variables[this.name] as VL.Histogram).value;
+      if (!newHistogram) {
+        return;
+      }
+
+      if (this._lastHistogram === null || !isHistogramEqual(this._lastHistogram, newHistogram)) {
+        this._emitter.emit('rangeChanged', [
+          newHistogram[0].x[0],
+          newHistogram[newHistogram.length - 1].x[1]
+        ]);
+
+        this._lastHistogram = newHistogram;
+
+        this._widget.data = vlToAirship(newHistogram);
+      }
+    });
   }
 
   private _selectionChanged(evt: CustomEvent) {
