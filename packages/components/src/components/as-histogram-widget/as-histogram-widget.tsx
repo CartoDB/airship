@@ -170,6 +170,11 @@ export class HistogramWidget {
 
   @Prop() public axisFormatter: (value: number | Date) => string;
 
+  /**
+   * Text rendered inside the clear selection button
+   */
+  @Prop() public clearText: string = 'Clear selection';
+
   @State()
   public selection: number[] = null;
   public _lastEmittedSelection: number[] = null;
@@ -696,7 +701,7 @@ export class HistogramWidget {
           class='as-btn as-btn--primary as-btn--s as-histogram-widget__clear'
           onClick={() => this._setSelection(null)}
           disabled={this.selection === null}
-          >Clear selection
+          >{this.clearText}
         </button>
       </div>
     );

@@ -65,6 +65,19 @@ describe('as-histogram-widget', () => {
       expect(actual).not.toBeFalsy();
       expect(actual.getAttribute('disabled')).toBeNull();
     });
+
+    it('should render custom clear button text', async () => {
+      const element: E2EElement = await page.find('as-histogram-widget');
+      element.setProperty('showClear', true);
+      element.setProperty('clearText', 'Radio Gaga');
+      element.setProperty('data', histogramData);
+      element.callMethod('setSelection', [0, 10]);
+      await page.waitForChanges();
+
+      const actual = await page.find('.as-histogram-widget__clear');
+
+      expect(actual.innerText).toEqual('Radio Gaga');
+    });
   });
 });
 

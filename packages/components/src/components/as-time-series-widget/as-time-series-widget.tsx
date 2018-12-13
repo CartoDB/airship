@@ -178,6 +178,11 @@ export class TimeSeriesWidget {
   @Prop() public timeFormatLocale: TimeLocaleDefinition;
 
   /**
+   * Text rendered inside the clear selection button
+   */
+  @Prop() public clearText: string = 'Clear selection';
+
+  /**
    * User clicks the play button
    */
   @Event()
@@ -293,6 +298,7 @@ export class TimeSeriesWidget {
           noDataBodyMessage={this.noDataBodyMessage}
           responsive={this.responsive}
           draw={this._draw}
+          clearText={this.clearText}
         >
       </as-histogram-widget>];
   }
