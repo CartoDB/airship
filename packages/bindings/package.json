@@ -2,12 +2,12 @@
   "name": "@carto/airship-bindings",
   "version": "0.0.1",
   "description": "Airship bindings to other libs",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
     "dev": "webpack --watch",
-    "build": "webpack"
+    "build": "rm -rf dist && tsc -d && webpack --config webpack.prod.js"
   },
   "author": "CARTO Dev Team",
   "license": "BSD-3-Clause",
