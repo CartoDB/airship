@@ -1,4 +1,4 @@
-import { Component, Element, Event, EventEmitter, Method, Prop, Watch } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, Method, Prop, State, Watch } from '@stencil/core';
 import { BrushBehavior } from 'd3-brush';
 import { ScaleLinear } from 'd3-scale';
 import {
@@ -170,6 +170,7 @@ export class HistogramWidget {
 
   @Prop() public axisFormatter: (value: number | Date) => string;
 
+  @State()
   public selection: number[] = null;
   public _lastEmittedSelection: number[] = null;
 
@@ -339,6 +340,10 @@ export class HistogramWidget {
 
   private _renderGraph() {
     requestAnimationFrame(() => {
+      if (!this.container || !this.container.node()) {
+        return;
+      }
+
       const bbox = this.container.node().getBoundingClientRect();
       const firstRender = this.prevWidth === undefined || this.prevHeight === undefined;
       this.prevWidth = this.width;
@@ -540,6 +545,10 @@ export class HistogramWidget {
   }
 
   private _updateHandles(values: number[] | null, moveBrush: boolean) {
+    if (!this.xScale) {
+      return;
+    }
+
     if (values === null) {
       this.barsContainer.selectAll('rect')
         .style('fill', (_d, i) => {
@@ -685,7 +694,9 @@ export class HistogramWidget {
       <div>
         <button
           class='as-btn as-btn--primary as-btn--s as-histogram-widget__clear'
-          onClick={() => this._setSelection(null)}>Clear selection
+          onClick={() => this._setSelection(null)}
+          disabled={this.selection === null}
+          >Clear selection
         </button>
       </div>
     );
