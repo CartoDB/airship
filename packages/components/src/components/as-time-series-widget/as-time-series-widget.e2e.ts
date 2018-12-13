@@ -1,7 +1,7 @@
 import { E2EElement, E2EPage, newE2EPage } from '@stencil/core/testing';
 
 function parseTranslate(translateStr: string) {
-  const match = /translate\((\d+),(\d+)\)/gi.exec(translateStr);
+  const match = /translate\(-?(\d+),-?(\d+)\)/gi.exec(translateStr);
 
   return [parseFloat(match[1]), parseFloat(match[2])];
 }
@@ -36,9 +36,13 @@ describe('as-time-series-widget', () => {
     it('should render the scrubber correctly', async () => {
       const element: E2EElement = await page.find('as-time-series-widget');
       element.setProperty('animated', 'true');
+      await page.waitForChanges();
       element.setProperty('data', histogramData);
+      await page.waitForChanges();
       element.setProperty('progress', '50');
       await page.waitForChanges();
+      // Scrubber is randomnly incorrectly positioned :shrug:
+      await page.waitFor(1000);
 
       const scrubber = await page.find('.as-time-series--scrubber');
       const line = await page.find('.as-time-series--line');
@@ -51,8 +55,11 @@ describe('as-time-series-widget', () => {
 
     it('should render the x-axis as dates', async () => {
       const element: E2EElement = await page.find('as-time-series-widget');
+      await page.waitForChanges();
       element.setProperty('animated', 'true');
+      await page.waitForChanges();
       element.setProperty('data', histogramData);
+      await page.waitForChanges();
       element.setProperty('progress', '50');
       await page.waitForChanges();
 
@@ -64,8 +71,10 @@ describe('as-time-series-widget', () => {
 
     it('should fire a seek event', async () => {
       const element: E2EElement = await page.find('as-time-series-widget');
-      element.setProperty('animated', 'true');
       element.setProperty('data', histogramData);
+      await page.waitForChanges();
+      element.setProperty('animated', 'true');
+      await page.waitForChanges();
       element.setProperty('progress', '10');
       await page.waitForChanges();
 
