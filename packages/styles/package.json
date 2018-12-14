@@ -1,6 +1,6 @@
 {
   "name": "@carto/airship-style",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Airship is a set of tools designed to facilitate the development of location intelligence apps by offering layouts, basic patterns, templates, CSS classes, components, widgets and much more.",
   "main": "src/airship.scss",
   "files": [
@@ -19,7 +19,7 @@
     "build": "npm run build:min && npm run build:css && node scripts/add-banner.js",
     "build:css": "node-sass src -o dist",
     "build:min": "node-sass src -o dist --output-style compressed && sh scripts/rename-css-files.sh",
-    "dev": "sass --watch src:dist",
+    "dev": "node-sass --watch src -o dist",
     "lint:fix": "stylelint 'src/**/*.scss' --fix",
     "lint": "stylelint 'src/**/*.scss'"
   },
