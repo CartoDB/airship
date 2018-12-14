@@ -7,7 +7,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "dev": "webpack --watch",
-    "build": "rm -rf dist && tsc -d && webpack --config webpack.prod.js"
+    "build": "rm -rf dist && tsc -d && webpack --config webpack.prod.js && webpack --config webpack.config.js"
   },
   "author": "CARTO Dev Team",
   "license": "BSD-3-Clause",
