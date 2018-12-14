@@ -34,7 +34,8 @@
     "test:styles:ci": "backstop test --configPath=backstop_data/backstop.config.js",
     "test:styles:reset-references": "docker run --rm -v $(pwd):/src backstopjs/backstopjs reference --configPath=backstop_data/backstop.config.js",
     "test:styles": "npm run build:styles && docker run --rm -v $(pwd):/src backstopjs/backstopjs test --configPath=backstop_data/backstop.config.js; open ./backstop_data/html_report/index.html",
+    "test:bindings": "lerna exec --scope @carto/airship-bindings npm run test",
     "test:watch": "lerna run --parallel test:watch",
-    "test": "npm run lint && npm run test:components && npm run test:styles"
+    "test": "npm run lint && npm run test:components && npm run test:styles && npm run test:bindings"
   }
 }
