@@ -1,3 +1,4 @@
+const readline = require('readline');
 const AWS = require('aws-sdk');
 const fs = require('fs');
 const path = require('path');
@@ -112,9 +113,9 @@ async function listFiles (prefix = 'airship-style/') {
 }
 
 function parseFiles(files) {
-  return files.map((file) => ({
-    name: path.basename(file),
-    dir: path.dirname(file)
+  return files.map((filePath) => ({
+    filePath,
+    dst: path.basename(filePath)
   }));
 }
 
@@ -136,13 +137,33 @@ async function getAllFiles(fd) {
 
     return files;
   } else {
-    return [{
-      name: path.basename(fd),
-      dir: path.dirname(fd)
-    }];
+    return fd;
   }
 }
 
+
+/**
+ * Upload config
+ * 
+ * name is just for debugging purposes / documentation
+ *
+ * src can be a directory (string) or an array of files. 
+ * 
+ * For the directory, we'll recursively get all the absolute paths, and then we'll build objects with said
+ * absolute path and the relative path to the rootPath. This relative path is used for the destination in S3
+ * 
+ * For the array of files, they will all be placed on the root of the specified subfolder.
+ * 
+ * dst is the 'subfolder' on s3 <dst>/<version>/<relativePathOfFile>
+ * 
+ * version will be used on the destination on S3. It will get parsed with semver to create 'symlinks' pointing
+ * to major and minor versions. Example:
+ * 
+ * The following version will be uploaded to the first, and copied to the other
+ * v1.0.1 => <dst>/v1.0.1/...
+ *           <dst>/v1.0/...
+ *           <dst>/v1/...
+ */
 const UPLOAD = [
   {
     name: 'Airship Components',
@@ -193,9 +214,7 @@ async function uploadAllFiles (files, version, destination) {
   }
 }
 
-async function uploadFile ({ dir, name}, destination, copyVersions) {
-  const filePath = path.join(dir, name);
-
+async function uploadFile ({ filePath, dst }, destination, copyVersions) {
   const extension = path.extname(filePath);
   const objectConfig = {
     ACL: 'public-read',
@@ -224,7 +243,7 @@ async function uploadFile ({ dir, name}, destination, copyVersions) {
     return;
   }
 
-  objectConfig.Key = `${destination}/v${version}/${name}`;
+  objectConfig.Key = `${destination}/v${version}/${dst}`;
 
   putObject(objectConfig, DRY_RUN)
     .then(() => {
@@ -232,7 +251,7 @@ async function uploadFile ({ dir, name}, destination, copyVersions) {
     })
     .then(() => {
       for (copyVersion of copyVersions) {
-        const dest = `${destination}/${copyVersion}/${name}`;
+        const dest = `${destination}/${copyVersion}/${dst}`;
         spinner.setMessage(`Copying ${dest}`);
         copyObject(objectConfig.Key, dest, DRY_RUN)
           .then(() => {
@@ -245,7 +264,7 @@ async function uploadFile ({ dir, name}, destination, copyVersions) {
       }
     })
     .catch((e) => {
-      console.error(`❌  ${name}`, e);
+      console.error(`❌  ${dst}`, e);
     });
 }
 
@@ -256,9 +275,6 @@ async function upload () {
     log(`🌵 🌵 🌵 🌵 🌵 🌵 🌵 🌵 🌵 🌵 🌵`)
   }
   for ({ version, src, name, dst } of UPLOAD) {
-    const parsedVersion = PRERELEASE ? PRERELEASE_VERSION : `v${version}`;
-    log(`Uploading files for ${name}(${parsedVersion})`);
-
     if (VERBOSE) {
       spinner.start();
     }
@@ -269,6 +285,14 @@ async function upload () {
       files = parseFiles(src);
     } else {
       files = await getAllFiles(src);
+
+      // We need to know the relative path from the source directory
+      files = files.map((filePath) => {
+        return {
+          filePath,
+          dst: path.relative(src, filePath)
+        }
+      });
     }
 
     await uploadAllFiles(files, version, dst);
