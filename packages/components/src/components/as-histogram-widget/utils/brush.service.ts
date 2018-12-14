@@ -63,7 +63,7 @@ export function addCustomHandles(
     customHandles = customHandles
       .data([{ type: 'w' }, { type: 'e' }])
       .enter()
-      .append('g')
+      .append<SVGGElement>('g')
       .attr('class', 'handle--wrapper');
 
     customHandles

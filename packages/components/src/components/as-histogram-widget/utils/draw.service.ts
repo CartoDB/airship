@@ -45,7 +45,7 @@ export function updateAxes(
 export function renderPlot(container: SVGContainer): SVGGContainer {
   if (container.select('.plot').empty()) {
     const barsContainer = container
-      .append('g');
+      .append<SVGGElement>('g');
     barsContainer
       .attr('class', 'plot');
 
