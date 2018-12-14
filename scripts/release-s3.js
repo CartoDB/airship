@@ -194,6 +194,10 @@ const UPLOAD = [
   }
 ];
 
+let totalFiles = 0;
+let uploaded = 0;
+let failed = 0;
+
 async function uploadAllFiles (files, version, destination) {
   const parsedVersion = semver(version);
 
@@ -209,9 +213,12 @@ async function uploadAllFiles (files, version, destination) {
     copyVersions.push(PRERELEASE_VERSION);
   }
 
+  let promises = [];
   for (const file of files) {
-    uploadFile(file, destination, copyVersions);
+    promises.push(uploadFile(file, destination, copyVersions));
   }
+
+  return Promise.all(promises);
 }
 
 async function uploadFile ({ filePath, dst }, destination, copyVersions) {
@@ -244,28 +251,47 @@ async function uploadFile ({ filePath, dst }, destination, copyVersions) {
   }
 
   objectConfig.Key = `${destination}/v${version}/${dst}`;
+  
+  totalFiles++;
+  updateSpinner();
 
-  putObject(objectConfig, DRY_RUN)
+  return putObject(objectConfig, DRY_RUN)
     .then(() => {
       log(`✅  ${objectConfig.Key} ${fileContent.length} bytes. Compressed ${ratio > 100 ? `⚠️  \x1b[33m${ratio}` : ratio}%\x1b[0m`);
+      uploaded++;
+      updateSpinner();
     })
     .then(() => {
       for (copyVersion of copyVersions) {
         const dest = `${destination}/${copyVersion}/${dst}`;
-        spinner.setMessage(`Copying ${dest}`);
         copyObject(objectConfig.Key, dest, DRY_RUN)
           .then(() => {
-            log(`  ✅  Copied to ${dest}`);
+            log(`✅  Copied to ${dest}`);
+            uploaded++;
+            updateSpinner();
           })
           .catch((e) => {
-            console.error(`  ❌  Failed to copy to ${dest}`);
+            console.error(`❌  Failed to copy to ${dest}`);
             console.error(e);
+            failed++;
+            updateSpinner();
           });
+        
+        totalFiles++;
+        updateSpinner();
       }
     })
     .catch((e) => {
       console.error(`❌  ${dst}`, e);
+      failed++;
+      updateSpinner();
     });
+}
+
+function updateSpinner() {
+  if (VERBOSE) {
+    spinner.setMessage(`${uploaded}/${totalFiles} (${failed} failed)`);
+  }
 }
 
 async function upload () {
@@ -274,11 +300,13 @@ async function upload () {
     log(`🌵 THIS IS A DRY RUN 🌵`)
     log(`🌵 🌵 🌵 🌵 🌵 🌵 🌵 🌵 🌵 🌵 🌵`)
   }
+  
+  if (VERBOSE) {
+    spinner.start();
+  }
+  
+  const startTime = Date.now();
   for ({ version, src, name, dst } of UPLOAD) {
-    if (VERBOSE) {
-      spinner.start();
-    }
-
     let files;
 
     if (Array.isArray(src)) {
@@ -295,14 +323,18 @@ async function upload () {
       });
     }
 
+    // We wait for all the files of each group to be uploaded.
     await uploadAllFiles(files, version, dst);
-
-    if (VERBOSE) {
-      spinner.stop();
-    }
   }
 
-  log(`Done`);
+  const endTime = Date.now();
+
+  if (VERBOSE) {
+    spinner.stop();
+
+    log(`Uploaded ${totalFiles} with ${failed === 0 ? 'no' : failed} failures`);
+    log(`Took ${(endTime - startTime) / 1000} seconds`);
+  }
 }
 
 upload();
