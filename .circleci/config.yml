@@ -23,7 +23,7 @@ jobs:
   test-unit:components:
     docker:
       # specify the version you desire here
-      - image: circleci/node:latest-browsers
+      - image: circleci/node:8.11.3-stretch
     working_directory: ~/airship
     steps:
       - checkout
