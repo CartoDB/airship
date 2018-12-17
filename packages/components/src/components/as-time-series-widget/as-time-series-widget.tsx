@@ -3,13 +3,13 @@ import { scaleLinear } from 'd3-scale';
 import { event as d3event } from 'd3-selection';
 import { timeFormat, timeFormatDefaultLocale, TimeLocaleDefinition } from 'd3-time-format';
 import { HistogramColorRange } from '../as-histogram-widget/interfaces';
-import { DrawOptions } from '../as-histogram-widget/types/DrawOptions';
+import { RenderOptions } from '../as-histogram-widget/types/RenderOptions';
 import {
   DEFAULT_BAR_COLOR,
   DEFAULT_SELECTED_BAR_COLOR,
 } from '../common/constants';
 import { TimeSeriesData } from './interfaces';
-import { prepareData } from './utils/data.service';
+import { prepareData, sameData } from './utils/data.service';
 
 const SCRUBBER_SIZE = 4;
 
@@ -205,18 +205,28 @@ export class TimeSeriesWidget {
   private histogram: HTMLAsHistogramWidgetElement;
   private _selection: number[];
   private _formatter: (date: Date) => string;
+  private _renderOptions: RenderOptions;
 
   // Last position when putting the mouse over the scrubber track
   private _lastMousePosition: number;
+  private _data: any;
 
   constructor() {
-    this._draw = this._draw.bind(this);
     this.axisFormatter = this.axisFormatter.bind(this);
+  }
+
+  @Watch('data')
+  public onDataChanged(newData, oldData) {
+    if (sameData(newData, oldData)) {
+      return;
+    } else {
+      this._data = prepareData(newData);
+    }
   }
 
   @Watch('progress')
   public onProgressChanged() {
-    this.histogram.forceUpdate();
+    this._render();
   }
 
   @Watch('timeFormat')
@@ -250,7 +260,8 @@ export class TimeSeriesWidget {
 
     this.histogram.addEventListener('selectionInput', (evt: CustomEvent) => {
       this._selection = evt.detail;
-      this.histogram.forceUpdate();
+
+      this._render();
     });
 
     this.histogram.addEventListener('selectionChanged', (evt: CustomEvent<number[]>) => {
@@ -263,6 +274,14 @@ export class TimeSeriesWidget {
 
       const selectedDates = evt.detail.map((epoch) => new Date(epoch));
       this.selectionChanged.emit(selectedDates);
+
+      this._render();
+    });
+
+    this.histogram.addEventListener('drawParametersChanged', (evt: CustomEvent<RenderOptions>) => {
+      this._renderOptions = evt.detail;
+
+      this._render();
     });
 
     this._selection = await this.histogram.getSelection();
@@ -278,7 +297,7 @@ export class TimeSeriesWidget {
           showHeader={this.showHeader}
           showClear={this.showClear}
           disableInteractivity={this.disableInteractivity}
-          data={prepareData(this.data)}
+          data={this._data}
           color={this.color}
           selectedColor={this.selectedColor}
           colorRange={this.colorRange}
@@ -292,7 +311,6 @@ export class TimeSeriesWidget {
           noDataHeaderMessage={this.noDataHeaderMessage}
           noDataBodyMessage={this.noDataBodyMessage}
           responsive={this.responsive}
-          draw={this._draw}
         >
       </as-histogram-widget>];
   }
@@ -377,7 +395,11 @@ export class TimeSeriesWidget {
     this.playing ? this.pause.emit() : this.play.emit();
   }
 
-  private _draw(renderOptions: DrawOptions) {
+  private _render() {
+    if (!this._renderOptions) {
+      return;
+    }
+
     const {
       container,
       height,
@@ -386,7 +408,7 @@ export class TimeSeriesWidget {
       xScale,
       binsScale,
       handleWidth
-    } = renderOptions;
+    } = this._renderOptions;
 
     let timeSeries = container.select('.as-time-series--g');
 

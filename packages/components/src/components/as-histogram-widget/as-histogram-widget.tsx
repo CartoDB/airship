@@ -16,7 +16,7 @@ import {
 import contentFragment from '../common/content.fragment';
 import { HistogramColorRange, HistogramData } from './interfaces';
 import { SVGContainer, SVGGContainer } from './types/Container';
-import { DrawOptions } from './types/DrawOptions';
+import { RenderOptions } from './types/DrawOptions';
 import brushService from './utils/brush.service';
 import dataService, { binsScale } from './utils/data.service';
 import drawService from './utils/draw.service';
@@ -166,8 +166,6 @@ export class HistogramWidget {
    */
   @Prop() public responsive: boolean = true;
 
-  @Prop() public draw: (props: DrawOptions) => void = null;
-
   @Prop() public axisFormatter: (value: number | Date) => string;
 
   public selection: number[] = null;
@@ -186,6 +184,9 @@ export class HistogramWidget {
 
   @Event()
   private selectionInput: EventEmitter<number[]>;
+
+  @Event()
+  private drawParametersChanged: EventEmitter<RenderOptions>;
 
   private tooltip: string;
 
@@ -406,17 +407,15 @@ export class HistogramWidget {
 
       this._updateSelection();
 
-      if (this.draw) {
-        this.draw({
-          binsScale: this.binsScale,
-          container: this.container,
-          handleWidth: CUSTOM_HANDLE_WIDTH,
-          height: this.height,
-          padding: [X_PADDING + (this.yLabel ? LABEL_PADDING : 0), Y_PADDING],
-          width: this.width,
-          xScale: this.xScale
-        });
-      }
+      this.drawParametersChanged.emit({
+        binsScale: this.binsScale,
+        container: this.container,
+        handleWidth: CUSTOM_HANDLE_WIDTH,
+        height: this.height,
+        padding: [X_PADDING + (this.yLabel ? LABEL_PADDING : 0), Y_PADDING],
+        width: this.width,
+        xScale: this.xScale
+      });
     });
   }
 

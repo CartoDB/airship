@@ -1,7 +1,7 @@
 import { ScaleLinear } from 'd3';
 import { SVGContainer } from './Container';
 
-interface DrawOptions {
+export interface RenderOptions {
   container: SVGContainer;
   width: number;
   handleWidth: number;

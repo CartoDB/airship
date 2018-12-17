@@ -16,8 +16,11 @@ import {
   HistogramData,
 } from './components/as-histogram-widget/interfaces';
 import {
-  DrawOptions,
-} from './components/as-histogram-widget/types/DrawOptions';
+  EventEmitter,
+} from '@stencil/core';
+import {
+  RenderOptions,
+} from './components/as-histogram-widget/types/RenderOptions';
 import {
   RawStackedbarData,
 } from './components/as-stacked-bar-widget/types/RawStackedbarData';
@@ -253,7 +256,6 @@ export namespace Components {
     * Disables selection brushes and events for the widget
     */
     'disableInteractivity': boolean;
-    'draw': (props: DrawOptions) => void;
     /**
     * Use this widget to put the widget in "error mode". When error mode is active. The header will display the given text. And the body will be display the errorDescription instead any data.
     */
@@ -337,7 +339,6 @@ export namespace Components {
     * Disables selection brushes and events for the widget
     */
     'disableInteractivity'?: boolean;
-    'draw'?: (props: DrawOptions) => void;
     /**
     * Use this widget to put the widget in "error mode". When error mode is active. The header will display the given text. And the body will be display the errorDescription instead any data.
     */
@@ -362,6 +363,7 @@ export namespace Components {
     * Message shown in header when no data is available
     */
     'noDataHeaderMessage'?: string;
+    'onDrawParametersChanged'?: (event: CustomEvent<RenderOptions>) => void;
     /**
     * Fired when user update or clear the widget selection.
     */
