@@ -64,7 +64,7 @@ export class Histogram extends BaseFilter {
       color: rgba(255,255,255,0)
     `);
 
-    this._dataLayer = new carto.Layer(this.name, this._source, dataViz);
+    this._dataLayer = new carto.Layer(this.name, this.source, dataViz);
 
     this._bindDataLayer();
 

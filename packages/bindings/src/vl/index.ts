@@ -6,7 +6,6 @@ interface HistogramOptions {
   column: string;
   buckets: number;
   readOnly: boolean;
-  source: any;
   widget: HTMLAsHistogramWidgetElement | HTMLAsTimeSeriesWidgetElement;
 }
 
@@ -36,7 +35,6 @@ export default class VL {
     column,
     buckets,
     readOnly,
-    source,
     widget
   }: HistogramOptions) {
 
@@ -46,7 +44,7 @@ export default class VL {
       widget,
       column,
       buckets,
-      source,
+      this._source,
       readOnly
     );
 
@@ -64,7 +62,6 @@ export default class VL {
     column,
     buckets,
     readOnly,
-    source,
     widget
   }: HistogramOptions) {
     if (this._animation) {
@@ -83,7 +80,6 @@ export default class VL {
       buckets,
       column,
       readOnly,
-      source,
       widget,
     });
 

@@ -16,9 +16,9 @@
     <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.css" rel="stylesheet" />
     <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.js"></script>
 
-    <link rel="stylesheet" href="/packages/styles/dist/airship.css">
-    <script src="/packages/components/dist/airship.js"></script>
-    <script src="/packages/bindings/dist/asbindings.js"></script>
+    <link rel="stylesheet" href="https://libs.cartocdn.com/airship-style/v1/airship.css">
+    <script src="https://libs.cartocdn.com/airship-components/v1/airship.js"></script>
+    <script src="https://libs.cartocdn.com/airship-bindings/v1/asbindings.js"></script>
 </head>
 
 <body class="as-app-body">
@@ -75,8 +75,7 @@
 
         const source = new carto.source.SQL(`with t as (select *, date_part('year', beginning) as timestamp from cordoba_catastro_simple) select * from t`);
         const viz = new carto.Viz(`
-          strokeWidth: 0.5
-          width: 8
+          strokeWidth: 0
         `);
 
         const vizLayer = new carto.Layer('layer', source, viz);

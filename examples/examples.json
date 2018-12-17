@@ -157,6 +157,13 @@
           "file": "components/as-range-slider/multivalue.html"
         }
       ]
+    },
+    {
+      "title": "VL Bindings",
+      "samples": [{
+        "title": "animation",
+        "file": "bindings/time-series/simple.html"
+      }]
     }
   ]
 }
