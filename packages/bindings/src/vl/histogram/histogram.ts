@@ -27,6 +27,7 @@ export class Histogram extends BaseFilter {
     this._carto = carto;
 
     histogram.disableInteractivity = readOnly;
+    histogram.showClear = !readOnly;
 
     this._selectionChanged = this._selectionChanged.bind(this);
 
@@ -53,7 +54,7 @@ export class Histogram extends BaseFilter {
 
   public buildDataLayer(columns: string[]) {
     const carto = this._carto;
-    const variables = columns.map((column) => `@asbind_${column}: $${column}`);
+    const variables = columns.map((column, i) => `@asbind_${column}_${i}: $${column}`);
 
     // Create the data layer
     const dataViz = new carto.Viz(`
@@ -113,8 +114,10 @@ export class Histogram extends BaseFilter {
     if (evt.detail === null) {
       this._selection = null;
     } else {
-      this._selection = evt.detail;
+      this._selection = [Number(evt.detail[0]), Number(evt.detail[1])];
     }
+
+    this._emitter.emit('rangeChanged', this._selection);
 
     this._filterChanged();
   }

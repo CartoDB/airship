@@ -80,7 +80,7 @@ export default class VL {
       buckets,
       column,
       readOnly,
-      widget,
+      widget
     });
 
     histogram.on('rangeChanged', (range) => {

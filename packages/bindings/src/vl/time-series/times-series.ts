@@ -4,6 +4,8 @@ export class TimeSeries {
   private _layer: any;
   private _viz: VL.Viz;
   private _dataLayer: any;
+  private _min: number;
+  private _max: number;
 
   constructor(
     layer: any,
@@ -34,8 +36,14 @@ export class TimeSeries {
       return;
     }
 
-    this._animation.input.min.blendTo(range[0], 0);
-    this._animation.input.max.blendTo(range[1], 0);
+    if (range === null) {
+      this._animation.input.min.blendTo(this._min, 0);
+      this._animation.input.max.blendTo(this._max, 0);
+    } else {
+      this._animation.input.min.blendTo(range[0], 0);
+      this._animation.input.max.blendTo(range[1], 0);
+    }
+
   }
 
   public getFilter() {
@@ -54,6 +62,8 @@ export class TimeSeries {
     }
 
     this._animation = this._viz.variables.animation;
+    this._max = this._viz.variables.animation.input.max;
+    this._min = this._viz.variables.animation.input.min;
 
     this._layer.on('updated', () => {
       this._timeSeries.progress = this._animation.getProgressPct() * 100;
