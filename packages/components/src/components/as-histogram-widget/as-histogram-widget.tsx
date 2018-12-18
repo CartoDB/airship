@@ -16,7 +16,7 @@ import {
 import contentFragment from '../common/content.fragment';
 import { HistogramColorRange, HistogramData } from './interfaces';
 import { SVGContainer, SVGGContainer } from './types/Container';
-import { RenderOptions } from './types/DrawOptions';
+import { RenderOptions } from './types/RenderOptions';
 import brushService from './utils/brush.service';
 import dataService, { binsScale } from './utils/data.service';
 import drawService from './utils/draw.service';
