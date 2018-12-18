@@ -7,7 +7,7 @@
 - Click on generate font
 - Set the following preferences:
   - font name: `airship`
-  - class prefix: `as-`
+  - class prefix: `as-icon`
   - disable all checks
   - use `<i>` for selecting
 - Dowload the font

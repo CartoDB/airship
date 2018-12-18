@@ -1,9 +1,10 @@
+/* stylelint-disable */
 @font-face {
   font-family: 'airship';
   src:
-    url('fonts/airship.ttf?6nj4gp') format('truetype'),
-    url('fonts/airship.woff?6nj4gp') format('woff'),
-    url('fonts/airship.svg?6nj4gp#airship') format('svg');
+    url('fonts/airship.ttf?vgkfz5') format('truetype'),
+    url('fonts/airship.woff?vgkfz5') format('woff'),
+    url('fonts/airship.svg?vgkfz5#airship') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -23,93 +24,102 @@ i {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.as-icon-alert-fill:before {
+.as-icon-undo:before {
   content: "\e900";
 }
-.as-icon-alert:before {
+.as-icon-twitter:before {
   content: "\e901";
 }
-.as-icon-arrow-down:before {
+.as-icon-tick-circle-fill:before {
   content: "\e902";
 }
-.as-icon-arrow-left:before {
+.as-icon-tick-circle:before {
   content: "\e903";
 }
-.as-icon-arrow-right:before {
+.as-icon-tick:before {
   content: "\e904";
 }
-.as-icon-arrow-up:before {
+.as-icon-settings:before {
   content: "\e905";
 }
-.as-icon-chevron-down:before {
+.as-icon-redo:before {
   content: "\e906";
 }
-.as-icon-chevron-left:before {
+.as-icon-question:before {
   content: "\e907";
 }
-.as-icon-chevron-right:before {
+.as-icon-points:before {
   content: "\e908";
 }
-.as-icon-chevron-up:before {
+.as-icon-plus:before {
   content: "\e909";
 }
-.as-icon-close:before {
+.as-icon-play:before {
   content: "\e90a";
 }
-.as-icon-facebook:before {
+.as-icon-pencil:before {
   content: "\e90b";
 }
-.as-icon-hamburguer:before {
+.as-icon-pause:before {
   content: "\e90c";
 }
-.as-icon-home:before {
+.as-icon-minus:before {
   content: "\e90d";
 }
-.as-icon-info:before {
+.as-icon-marker:before {
   content: "\e90e";
 }
-.as-icon-linkedin:before {
+.as-icon-magnify:before {
   content: "\e90f";
 }
-.as-icon-magnify:before {
+.as-icon-linkedin:before {
   content: "\e910";
 }
-.as-icon-marker:before {
+.as-icon-info:before {
   content: "\e911";
 }
-.as-icon-minus:before {
+.as-icon-home:before {
   content: "\e912";
 }
-.as-icon-pencil:before {
+.as-icon-hamburguer:before {
   content: "\e913";
 }
-.as-icon-plus:before {
+.as-icon-hamburger:before {
   content: "\e914";
 }
-.as-icon-points:before {
+.as-icon-facebook:before {
   content: "\e915";
 }
-.as-icon-question:before {
+.as-icon-close:before {
   content: "\e916";
 }
-.as-icon-redo:before {
+.as-icon-chevron-up:before {
   content: "\e917";
 }
-.as-icon-settings:before {
+.as-icon-chevron-right:before {
   content: "\e918";
 }
-.as-icon-tick-circle-fill:before {
+.as-icon-chevron-left:before {
   content: "\e919";
 }
-.as-icon-tick-circle:before {
+.as-icon-chevron-down:before {
   content: "\e91a";
 }
-.as-icon-tick:before {
+.as-icon-arrow-up:before {
   content: "\e91b";
 }
-.as-icon-twitter:before {
+.as-icon-arrow-right:before {
   content: "\e91c";
 }
-.as-icon-undo:before {
+.as-icon-arrow-left:before {
   content: "\e91d";
+}
+.as-icon-arrow-down:before {
+  content: "\e91e";
+}
+.as-icon-alert-fill:before {
+  content: "\e91f";
+}
+.as-icon-alert:before {
+  content: "\e920";
 }
