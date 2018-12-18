@@ -6,11 +6,8 @@ as-time-series-widget {
   height: 100%;
 
   .play-button {
-    width: 32px;
-    min-width: 32px;
-    height: 32px;
-
     margin-right: get-spacing(4);
+    cursor: pointer;
   }
 
   .as-time-series--scrubber,
