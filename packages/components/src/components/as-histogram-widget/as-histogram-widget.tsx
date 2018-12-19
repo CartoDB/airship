@@ -571,30 +571,30 @@ export class HistogramWidget {
     const yCoord = this.height - Y_PADDING;
 
     // Convert back to space coordinates
-    const valuesSpace = values
+    const spaceValues = values
       .map(this.binsScale)
       .map(this.xScale);
 
     if (moveBrush) {
-      this.brushArea.call(this.brush.move, valuesSpace);
+      this.brushArea.call(this.brush.move, spaceValues);
     }
 
     this.customHandles
       .style('opacity', 1)
       .attr('transform', (_d, i) => {
-        return `translate(${(valuesSpace[i] - (CUSTOM_HANDLE_WIDTH / 2) - 1)},${yCoord - CUSTOM_HANDLE_HEIGHT / 2})`;
+        return `translate(${(spaceValues[i] - (CUSTOM_HANDLE_WIDTH / 2) - 1)},${yCoord - CUSTOM_HANDLE_HEIGHT / 2})`;
       });
 
     this.brushArea.selectAll('.handle--e')
-      .attr('x', valuesSpace[1]);
+      .attr('x', spaceValues[1]);
 
     this.brushArea.selectAll('.handle--w')
-      .attr('x', valuesSpace[0]);
+      .attr('x', spaceValues[0]);
 
     this.brushArea.selectAll('.bottomline')
       .style('opacity', 1)
-      .attr('x1', valuesSpace[0])
-      .attr('x2', valuesSpace[1]);
+      .attr('x1', spaceValues[0])
+      .attr('x2', spaceValues[1]);
 
     this.barsContainer.selectAll('.bar')
       .style('fill', (_d, i) => {
