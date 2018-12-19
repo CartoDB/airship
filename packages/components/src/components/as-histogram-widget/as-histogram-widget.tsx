@@ -532,7 +532,7 @@ export class HistogramWidget {
       this.selection.every((d, i) => adjustedSelection[i] === d);
 
     this.selection = adjustedSelection;
-    this._updateHandles(adjustedSelection, !sameSelection);
+    this._updateHandles(adjustedSelection);
 
     if (!sameSelection) {
       this._hideTooltip();
@@ -552,7 +552,7 @@ export class HistogramWidget {
     return inData.some((e) => e);
   }
 
-  private _updateHandles(values: number[] | null, moveBrush: boolean) {
+  private _updateHandles(values: number[] | null) {
     if (!this.xScale) {
       return;
     }
@@ -575,21 +575,13 @@ export class HistogramWidget {
       .map(this.binsScale)
       .map(this.xScale);
 
-    if (moveBrush) {
-      this.brushArea.call(this.brush.move, spaceValues);
-    }
+    this.brushArea.call(this.brush.move, spaceValues);
 
     this.customHandles
       .style('opacity', 1)
       .attr('transform', (_d, i) => {
         return `translate(${(spaceValues[i] - (CUSTOM_HANDLE_WIDTH / 2) - 1)},${yCoord - CUSTOM_HANDLE_HEIGHT / 2})`;
       });
-
-    this.brushArea.selectAll('.handle--e')
-      .attr('x', spaceValues[1]);
-
-    this.brushArea.selectAll('.handle--w')
-      .attr('x', spaceValues[0]);
 
     this.brushArea.selectAll('.bottomline')
       .style('opacity', 1)
