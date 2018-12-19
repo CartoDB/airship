@@ -254,6 +254,10 @@ export class TimeSeriesWidget {
 
   }
 
+  public async componentWillLoad() {
+    this.onDataChanged(this.data, []);
+  }
+
   public async componentDidLoad() {
     // tslint:disable-next-line:no-console
     console.warn('[as-time-series-widget] This is an unreleased component, use at your own risk');
