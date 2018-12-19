@@ -325,6 +325,10 @@ export class TimeSeriesWidget {
       return null;
     }
 
+    if (!this.data.length) {
+      return null;
+    }
+
     return <div class='play-button' onClick={this._playPauseClick.bind(this)}>
       {icon(this.playing ? 'PAUSE' : 'PLAY', 'var(--as--color--primary)', { width: '32px', height: '32px'})}
     </div>;
