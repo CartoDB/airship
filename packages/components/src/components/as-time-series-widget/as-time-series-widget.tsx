@@ -238,6 +238,8 @@ export class TimeSeriesWidget {
   @Watch('timeFormat')
   public onTimeFormatChanged(newFormat) {
     this._formatter = timeFormat(newFormat);
+
+    this.histogram.forceUpdate();
   }
 
   @Watch('timeFormatLocale')
