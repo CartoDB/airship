@@ -9,6 +9,8 @@ noSource: true
 
 [See example](/developers/airship/examples/#example-as-time-series-simple)
 
+If the interactivity is preserved, the progress will move between the selected range.
+
 ### Props
 
 All the histogram properties are there, but also a few more:

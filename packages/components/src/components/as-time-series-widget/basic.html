@@ -26,29 +26,49 @@
 </head>
 
 <body>
-  <as-time-series-widget animated x-label="x-axis" y-label="y-axis" responsive show-clear heading="Business Volume" description="Description">
+  <as-time-series-widget
+    x-label="Time" 
+    y-label="Overall world coolness"
+    responsive
+    show-clear
+    heading="A time series"
+  >
   </as-time-series-widget>
 
   <script>
-    var histogramWidget = document.querySelector('as-time-series-widget');
-    histogramWidget.data = [...Array(100)].map((_, i) => ({
-      start: new Date(i * 1000 * 60 * 60),
-      end: new Date((i + 1) * 1000 * 60 * 60),
-      value: Math.random() * 1e5
-    }));
+    var timeData = [{
+      start: Date.parse('1987-06-18'),
+      end: Date.parse('1987-06-19'),
+      value: 1
+    },
+    {
+      start: Date.parse('1987-06-19'),
+      end: Date.parse('1987-06-20'),
+      value: 2
+    },
+    {
+      start: Date.parse('1987-06-20'),
+      end: Date.parse('1987-06-21'),
+      value: 4
+    },
+    {
+      start: Date.parse('1987-06-21'),
+      end: Date.parse('1987-06-22'),
+      value: 8
+    },
+    {
+      start: Date.parse('1987-06-22'),
+      end: Date.parse('1987-06-23'),
+      value: 16
+    },
+    {
+      start: Date.parse('1987-06-23'),
+      end: Date.parse('1987-06-24'),
+      value: 32
+    }];
 
-    histogramWidget.addEventListener('seek', (evt) => {
-      progress = evt.detail;
-      histogramWidget.progress = progress;
-    });
-
-    let progress = 0;
-
-    setInterval(() => {
-      histogramWidget.progress = progress;
-      progress = progress === 100 ? 0 : progress + 1;
-    }, 500);
-
+    var timeSeriesWidget = document.querySelector('as-time-series-widget');
+    timeSeriesWidget.data = timeData;
   </script>
 </body>
 
