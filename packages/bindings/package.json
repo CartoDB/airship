@@ -6,6 +6,7 @@
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
+    "lint": "tslint -c tslint.json src/**/*.{ts,tsx}",
     "dev": "webpack --watch",
     "build": "rm -rf dist && tsc -d && webpack --config webpack.prod.js && webpack --config webpack.config.js"
   },
