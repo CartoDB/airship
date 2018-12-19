@@ -65,6 +65,10 @@ export function renderBars(
   Y_PADDING: number,
   disableAnimation: boolean = false) {
 
+  if (!container || !container.node()) {
+    return;
+  }
+
   let barsSeparation = 1;
   const HEIGHT = container.node().getBoundingClientRect().height - Y_PADDING;
   const WIDTH = container.node().getBoundingClientRect().width - X_PADDING;
@@ -114,6 +118,10 @@ export function renderXAxis(
   X_PADDING: number,
   Y_PADDING: number,
   customFormatter: (value: Date | number) => string = _conditionalFormatter): Axis<{ valueOf(): number }> {
+
+  if (!container || !container.node()) {
+    return;
+  }
 
   const HEIGHT = container.node().getBoundingClientRect().height - Y_PADDING;
   const WIDTH = container.node().getBoundingClientRect().width - X_PADDING;
@@ -196,6 +204,11 @@ export function renderYAxis(
   domain: Domain,
   X_PADDING: number,
   Y_PADDING: number): Axis<{ valueOf(): number }> {
+
+  if (!container || !container.node()) {
+    return;
+  }
+
 
   const HEIGHT = container.node().getBoundingClientRect().height - Y_PADDING;
   const WIDTH = container.node().getBoundingClientRect().width - X_PADDING;

@@ -237,6 +237,10 @@ export namespace Components {
     */
     'clearSelection': () => void;
     /**
+    * Text rendered inside the clear selection button
+    */
+    'clearText': string;
+    /**
     * Override color for the histogram bars
     */
     'color': string;
@@ -319,6 +323,10 @@ export namespace Components {
   }
   interface AsHistogramWidgetAttributes extends StencilHTMLAttributes {
     'axisFormatter'?: (value: number | Date) => string;
+    /**
+    * Text rendered inside the clear selection button
+    */
+    'clearText'?: string;
     /**
     * Override color for the histogram bars
     */
@@ -712,6 +720,10 @@ export namespace Components {
     */
     'animated': boolean;
     /**
+    * Text rendered inside the clear selection button
+    */
+    'clearText': string;
+    /**
     * Override color for the histogram bars
     */
     'color': string;
@@ -805,6 +817,10 @@ export namespace Components {
     * Whether it should have animated properties or not. Disabling this makes this look like a histogra widget with time capabilities
     */
     'animated'?: boolean;
+    /**
+    * Text rendered inside the clear selection button
+    */
+    'clearText'?: string;
     /**
     * Override color for the histogram bars
     */

@@ -136,6 +136,21 @@ lang: javascript
 histogram.showClear = true;
 ```
 
+#### **clearText**: string = 'Clear selection'
+String to disply on the button that clears the selection.
+
+```code
+lang: html
+---
+<as-histogram-widget clear-text="Lopetegui"></as-histogram-widget>
+```
+
+```code
+lang: javascript
+---
+histogram.clear-text = "Lopetegui";
+```
+
 #### **showHeader**: boolean = true
 If truthy, it'll render the heading and the component's description. Default value is `true`.
 

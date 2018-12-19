@@ -6,14 +6,14 @@ describe('as-toolbar', () => {
     page = await newE2EPage({
       html: `
         <as-toolbar>
-          <div href="#" class="as-toolbar__item">LOGO</div>
+          <div href="%23" class="as-toolbar__item">LOGO</div>
           <nav class="as-toolbar__actions">
             <ul>
               <li>
-                <a href="#" class="as-toolbar__item">Link 1</a>
+                <a href="%23" class="as-toolbar__item">Link 1</a>
               </li>
               <li>
-                <a href="#" class="as-toolbar__item">Link 2</a>
+                <a href="%23" class="as-toolbar__item">Link 2</a>
               </li>
             </ul>
           </nav>
