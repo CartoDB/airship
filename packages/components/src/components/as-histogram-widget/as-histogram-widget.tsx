@@ -173,7 +173,6 @@ export class HistogramWidget {
    */
   @Prop() public clearText: string = 'Clear selection';
 
-  @State()
   public selection: number[] = null;
   public _lastEmittedSelection: number[] = null;
 
@@ -214,6 +213,9 @@ export class HistogramWidget {
 
   private _color: string;
   private _selectedColor: string;
+
+  @State()
+  private selectionEmpty: boolean = true;
 
   constructor() {
     this._resizeRender = this._resizeRender.bind(this);
@@ -536,6 +538,8 @@ export class HistogramWidget {
       this._hideTooltip();
       this.selectionInput.emit(this.selection);
     }
+
+    this.selectionEmpty = this.selection === null;
   }
 
   private _selectionInData(selection: number[]) {
@@ -699,7 +703,7 @@ export class HistogramWidget {
         <button
           class='as-btn as-btn--primary as-btn--s as-histogram-widget__clear'
           onClick={() => this._setSelection(null)}
-          disabled={this.selection === null}
+          disabled={this.selectionEmpty}
           >{this.clearText}
         </button>
       </div>
