@@ -1,27 +1,23 @@
-declare namespace VL {
-  type VLBase = any;
+interface VLViz {
+  variables: {
+    [key: string]: any
+  };
+}
 
-  interface Viz {
-    variables: {
-      [key: string]: any
-    };
-  }
-  
-  interface Animation {
-    input: any;
-    getProgressPct(): number;
-    setProgressPct(pct: number): void;
-    play(): void;
-    pause(): void;
-    _paused: boolean;
-  }
+interface VLAnimation {
+  input: any;
+  _paused: boolean;
+  getProgressPct(): number;
+  setProgressPct(pct: number): void;
+  play(): void;
+  pause(): void;
+}
 
-  interface Histogram {
-    value: HistogramData[];
-  }
+interface VLHistogram {
+  value: VLHistogramData[];
+}
 
-  interface HistogramData {
-    x: [number, number];
-    y: number;
-  }
+interface VLHistogramData {
+  x: [number, number];
+  y: number;
 }

@@ -1,8 +1,8 @@
 export class TimeSeries {
   private _timeSeries: HTMLAsTimeSeriesWidgetElement;
-  private _animation: VL.Animation;
+  private _animation: VLAnimation;
   private _layer: any;
-  private _viz: VL.Viz;
+  private _viz: VLViz;
   private _dataLayer: any;
   private _min: number;
   private _max: number;

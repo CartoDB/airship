@@ -6,7 +6,7 @@ import { vlToAirship } from '../utils/conversion/histogram';
 export class Histogram extends BaseFilter {
   private _buckets: number;
   private _carto: any;
-  private _lastHistogram: VL.HistogramData[] = null;
+  private _lastHistogram: VLHistogramData[] = null;
   private _widget: HTMLAsTimeSeriesWidgetElement | HTMLAsHistogramWidgetElement;
   private _selection: [number, number] = null;
   private _dataLayer: any;
@@ -92,7 +92,7 @@ export class Histogram extends BaseFilter {
 
   private _bindDataLayer() {
     this._dataLayer.on('updated', () => {
-      const newHistogram = (this._dataLayer.viz.variables[this.name] as VL.Histogram).value;
+      const newHistogram = (this._dataLayer.viz.variables[this.name] as VLHistogram).value;
       if (!newHistogram) {
         return;
       }

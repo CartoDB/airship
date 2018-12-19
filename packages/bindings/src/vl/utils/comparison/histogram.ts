@@ -1,4 +1,4 @@
-export function isHistogramEqual(first: VL.HistogramData[], second: VL.HistogramData[]) {
+export function isHistogramEqual(first: VLHistogramData[], second: VLHistogramData[]) {
   if (first.length !== second.length) {
     return false;
   }

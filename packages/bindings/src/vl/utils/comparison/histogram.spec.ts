@@ -1,6 +1,6 @@
 import { isHistogramEqual } from './histogram';
 
-const hist1: VL.HistogramData[] = [
+const hist1: VLHistogramData[] = [
   {
     x: [0, 10],
     y: 30
