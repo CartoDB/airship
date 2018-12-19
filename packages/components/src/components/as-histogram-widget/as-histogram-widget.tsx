@@ -174,7 +174,6 @@ export class HistogramWidget {
   @Prop() public clearText: string = 'Clear selection';
 
   public selection: number[] = null;
-  public _lastEmittedSelection: number[] = null;
 
   @Element() private el: HTMLElement;
 

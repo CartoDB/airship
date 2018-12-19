@@ -161,7 +161,7 @@
     {
       "title": "Time Series",
       "samples": [{
-          "title": "time-series",
+          "title": "time-series Simple",
           "file": "components/as-time-series-widget/simple.html"
         },
         {

@@ -263,6 +263,22 @@ histogramWidget.addEventListener('selectionChanged', event => {
 });
 ```
 
+#### **selectionInput**
+Same as `selectionChanged`, but fires constantly, not only when the selection has finished.
+
+#### **drawParametersChanged**
+This event is triggered whenever the widget renders, and it emits an object containing parameters useful to extend the histogram:
+
+- container: the DOM element that contains the Histogram
+- width: the current width of the histogram
+- handleWidth: the width of the selection handles
+- height: the current height of the histogram
+- padding: the padding around the histogram
+- xScale: d3 scale between (0, width) to (0, nBins)
+- binsScale: d3 scale between (0, nBins) to the actual data
+
+For instance, this is used internally by the time-series-widget to draw the progress above the histogram.
+
 ### Methods
 
 #### **getSelection**
@@ -329,9 +345,6 @@ histogramWidget.clearSelection()
 ```hint|directive
 Please note that you always need to wrap your `await` code in an `async` function. If you use it outside of an async function, it will raise a `SyntaxError`. Learn more about it [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await).
 ```
-
-#### **redraw**
-Forces a re-render of the widget. This method is useful in case you need to explicitely redraw the widget, for instance, after a visibility change.
 
 ### Examples
 
