@@ -585,6 +585,12 @@ export class HistogramWidget {
         return `translate(${(valuesSpace[i] - (CUSTOM_HANDLE_WIDTH / 2) - 1)},${yCoord - CUSTOM_HANDLE_HEIGHT / 2})`;
       });
 
+    this.brushArea.selectAll('.handle--e')
+      .attr('x', valuesSpace[1]);
+
+    this.brushArea.selectAll('.handle--w')
+      .attr('x', valuesSpace[0]);
+
     this.brushArea.selectAll('.bottomline')
       .style('opacity', 1)
       .attr('x1', valuesSpace[0])
