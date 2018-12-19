@@ -159,11 +159,24 @@
       ]
     },
     {
-      "title": "VL Bindings",
+      "title": "Time Series",
       "samples": [{
-        "title": "animation",
-        "file": "bindings/time-series/simple.html"
-      }]
+          "title": "time-series",
+          "file": "components/as-time-series-widget/simple.html"
+        },
+        {
+          "title": "time-series using Date objects",
+          "file": "components/as-time-series-widget/simple-dates.html"
+        },
+        {
+          "title": "time-series custom date format",
+          "file": "components/as-time-series-widget/format.html"
+        },
+        {
+          "title": "time-series animation",
+          "file": "components/as-time-series-widget/animation.html"
+        }
+      ]
     }
   ]
 }
