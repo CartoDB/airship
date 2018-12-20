@@ -28,7 +28,7 @@
     "@stencil/core": "0.16.1",
     "@stencil/sass": "0.0.6",
     "@types/d3": "5.0.1",
-    "@types/jest": "23.3.3",
+    "@types/jest": "23.3.10",
     "@types/puppeteer": "1.9.0",
     "conventional-changelog-cli": "^2.0.1",
     "jest": "23.6.0",
@@ -40,7 +40,7 @@
     "stylelint-config-property-sort-order-smacss": "^4.0.0",
     "stylelint-config-standard": "^18.2.0",
     "tslint": "^5.11.0",
-    "typescript": "^2.9.2"
+    "typescript": "^3.1.6"
   },
   "repository": {
     "type": "git",
