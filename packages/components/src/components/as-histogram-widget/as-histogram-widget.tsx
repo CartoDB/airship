@@ -212,6 +212,7 @@ export class HistogramWidget {
 
   private _color: string;
   private _selectedColor: string;
+  private _dataJustUpdated: boolean = false;
 
   @State()
   private selectionEmpty: boolean = true;
@@ -223,6 +224,8 @@ export class HistogramWidget {
   @Watch('data')
   public _onDataChanged(newData) {
     this.binsScale = binsScale(newData);
+
+    this._dataJustUpdated = true;
   }
 
   @Watch('color')
@@ -269,7 +272,10 @@ export class HistogramWidget {
   @Method()
   public setSelection(values: number[] | null) {
     this._setSelection(values);
-    this.selectionChanged.emit(this.selection);
+
+    if (!this._dataJustUpdated) {
+      this.selectionChanged.emit(this.selection);
+    }
   }
 
   /**
@@ -292,7 +298,9 @@ export class HistogramWidget {
 
     this.binsScale = binsScale(this.data);
 
-    this._renderGraph();
+    requestAnimationFrame(() => {
+      this._renderGraph();
+    });
   }
 
   public componentDidUpdate() {
@@ -315,7 +323,9 @@ export class HistogramWidget {
   }
 
   private _resizeRender() {
-    this._renderGraph();
+    requestAnimationFrame(() => {
+      this._renderGraph();
+    });
   }
 
   private _renderContent() {
@@ -346,84 +356,84 @@ export class HistogramWidget {
   }
 
   private _renderGraph() {
-    requestAnimationFrame(() => {
-      if (!this.container || !this.container.node()) {
-        return;
-      }
+    if (!this.container || !this.container.node()) {
+      return;
+    }
 
-      const bbox = this.container.node().getBoundingClientRect();
-      const firstRender = this.prevWidth === undefined || this.prevHeight === undefined;
-      this.prevWidth = this.width;
-      this.prevHeight = this.height;
-      this.width = bbox.width;
-      this.height = bbox.height;
-      const resizing = !firstRender && (this.prevWidth !== this.width || this.height !== this.prevHeight);
+    const bbox = this.container.node().getBoundingClientRect();
+    const firstRender = this.prevWidth === undefined || this.prevHeight === undefined;
+    this.prevWidth = this.width;
+    this.prevHeight = this.height;
+    this.width = bbox.width;
+    this.height = bbox.height;
+    const resizing = !firstRender && (this.prevWidth !== this.width || this.height !== this.prevHeight);
 
-      if (this.height === 0 || this.width === 0) { return; }
+    if (this.height === 0 || this.width === 0) { return; }
 
-      this._renderYAxis();
-      this._renderXAxis();
+    this._renderYAxis();
+    this._renderXAxis();
 
-      this.barsContainer = drawService.renderPlot(this.container);
+    this.barsContainer = drawService.renderPlot(this.container);
 
-      if (!this.disableInteractivity) {
-        this.brush = brushService.addBrush(
-          this.width,
-          this.height,
-          this._onBrush.bind(this),
-          this._onBrushEnd.bind(this),
-          CUSTOM_HANDLE_WIDTH,
-          CUSTOM_HANDLE_HEIGHT,
-          X_PADDING + (this.yLabel ? LABEL_PADDING : 0),
-          Y_PADDING
-        );
-
-        this.brushArea = brushService.addBrushArea(
-          this.brush,
-          this.container,
-        );
-
-        this.customHandles = brushService.addCustomHandles(
-          this.brushArea,
-          this.height,
-          CUSTOM_HANDLE_WIDTH,
-          CUSTOM_HANDLE_HEIGHT,
-          Y_PADDING
-        );
-      }
-
-      interactionService.addTooltip(
-        this.container,
-        this.barsContainer,
-        this,
-        this._color,
-        this._selectedColor,
-        this.tooltipFormatter,
-        this._setTooltip.bind(this)
+    if (!this.disableInteractivity) {
+      this.brush = brushService.addBrush(
+        this.width,
+        this.height,
+        this._onBrush.bind(this),
+        this._onBrushEnd.bind(this),
+        CUSTOM_HANDLE_WIDTH,
+        CUSTOM_HANDLE_HEIGHT,
+        X_PADDING + (this.yLabel ? LABEL_PADDING : 0),
+        Y_PADDING
       );
 
-      drawService.renderBars(
-        this.data,
-        this.yScale,
+      this.brushArea = brushService.addBrushArea(
+        this.brush,
         this.container,
-        this.barsContainer,
-        this._color,
-        X_PADDING + (this.yLabel ? LABEL_PADDING : 0),
-        Y_PADDING,
-        resizing);
+      );
 
-      this._updateSelection();
+      this.customHandles = brushService.addCustomHandles(
+        this.brushArea,
+        this.height,
+        CUSTOM_HANDLE_WIDTH,
+        CUSTOM_HANDLE_HEIGHT,
+        Y_PADDING
+      );
+    }
 
-      this.drawParametersChanged.emit({
-        binsScale: this.binsScale,
-        container: this.container,
-        handleWidth: CUSTOM_HANDLE_WIDTH,
-        height: this.height,
-        padding: [X_PADDING + (this.yLabel ? LABEL_PADDING : 0), Y_PADDING],
-        width: this.width,
-        xScale: this.xScale
-      });
+    interactionService.addTooltip(
+      this.container,
+      this.barsContainer,
+      this,
+      this._color,
+      this._selectedColor,
+      this.tooltipFormatter,
+      this._setTooltip.bind(this)
+    );
+
+    drawService.renderBars(
+      this.data,
+      this.yScale,
+      this.container,
+      this.barsContainer,
+      this._color,
+      X_PADDING + (this.yLabel ? LABEL_PADDING : 0),
+      Y_PADDING,
+      resizing);
+
+    this._updateSelection();
+
+    this.drawParametersChanged.emit({
+      binsScale: this.binsScale,
+      container: this.container,
+      handleWidth: CUSTOM_HANDLE_WIDTH,
+      height: this.height,
+      padding: [X_PADDING + (this.yLabel ? LABEL_PADDING : 0), Y_PADDING],
+      width: this.width,
+      xScale: this.xScale
     });
+
+    this._dataJustUpdated = false;
   }
 
   private _setTooltip(value: string | null, evt?: MouseEvent) {
@@ -512,7 +522,9 @@ export class HistogramWidget {
       return;
     }
 
-    this.selectionChanged.emit(this.selection);
+    if (!this._dataJustUpdated) {
+      this.selectionChanged.emit(this.selection);
+    }
   }
 
   private _setSelection(selection: number[]) {
