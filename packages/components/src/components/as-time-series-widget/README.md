@@ -1,3 +1,6 @@
+```hint|directive
+Please note that this widget is a work in progress and as such, might be subject to changes to the props and the API.
+```
 
 The time series widget displays a histogram widget with the ability of display dates on the x-axis, as well as controlling and displaying animations.
 
@@ -8,8 +11,6 @@ noSource: true
 ```
 
 [See example](/developers/airship/examples/#example-as-time-series-simple)
-
-If the interactivity is preserved, the progress will move between the selected range.
 
 ### Props
 
