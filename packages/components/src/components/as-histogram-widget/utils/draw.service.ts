@@ -3,17 +3,19 @@ import { axisLeft } from 'd3-axis';
 import { format } from 'd3-format';
 import { ScaleLinear, scaleLinear } from 'd3-scale';
 import { HistogramData } from '../interfaces';
-import { Container } from '../types/Container';
+import { SVGContainer, SVGGContainer } from '../types/Container';
 import { Domain } from '../types/Domain';
 
 const BAR_WIDTH_THRESHOLD = 3;
+const formatter = format('.2~s');
+const decimalFormatter = format('.2');
 
-export function cleanAxes(yAxisSelection: Container) {
+export function cleanAxes(yAxisSelection: SVGGContainer) {
   yAxisSelection.select('.domain').remove();
 }
 
 export function updateAxes(
-  container: Container,
+  container: SVGContainer,
   xScale: ScaleLinear<number, number>,
   yScale: ScaleLinear<number, number>,
   xAxis: Axis<{ valueOf(): number }>,
@@ -21,8 +23,8 @@ export function updateAxes(
   xDomain: Domain,
   yDomain: Domain) {
 
-  const xAxisSelection: Container = container.select('.xAxis');
-  const yAxisSelection: Container = container.select('.yAxis');
+  const xAxisSelection: SVGContainer = container.select('.xAxis');
+  const yAxisSelection: SVGContainer = container.select('.yAxis');
 
   // -- Update scales
   yScale
@@ -40,18 +42,32 @@ export function updateAxes(
     .call(yAxis);
 }
 
-const formatter = format('.2~s');
-const decimalFormatter = format('.2');
+export function renderPlot(container: SVGContainer): SVGGContainer {
+  if (container.select('.plot').empty()) {
+    const barsContainer = container
+      .append<SVGGElement>('g');
+    barsContainer
+      .attr('class', 'plot');
+
+    return barsContainer;
+  }
+
+  return container.select('.plot');
+}
 
 export function renderBars(
   data: HistogramData[],
   yScale: ScaleLinear<number, number>,
-  container: Container,
-  barsContainer: Container,
+  container: SVGContainer,
+  barsContainer: SVGGContainer,
   color: string,
   X_PADDING: number,
   Y_PADDING: number,
   disableAnimation: boolean = false) {
+
+  if (!container || !container.node()) {
+    return;
+  }
 
   let barsSeparation = 1;
   const HEIGHT = container.node().getBoundingClientRect().height - Y_PADDING;
@@ -96,11 +112,16 @@ export function renderBars(
 }
 
 export function renderXAxis(
-  container: Container,
+  container: SVGContainer,
   domain: Domain,
   bins: number,
   X_PADDING: number,
-  Y_PADDING: number): Axis<{ valueOf(): number }> {
+  Y_PADDING: number,
+  customFormatter: (value: Date | number) => string = _conditionalFormatter): Axis<{ valueOf(): number }> {
+
+  if (!container || !container.node()) {
+    return;
+  }
 
   const HEIGHT = container.node().getBoundingClientRect().height - Y_PADDING;
   const WIDTH = container.node().getBoundingClientRect().width - X_PADDING;
@@ -117,13 +138,13 @@ export function renderXAxis(
     .range([0, bins]);
 
   const xAxis = axisBottom(xScale)
-    .tickSize(-WIDTH)
+    .tickSize(-HEIGHT)
     .tickValues(ticks)
     .tickPadding(10)
     .tickFormat((value) => {
       const realValue = realScale.invert(value);
 
-      return _conditionalFormatter(realValue);
+      return customFormatter(realValue);
     });
 
   if (container.select('.x-axis').empty()) {
@@ -139,14 +160,55 @@ export function renderXAxis(
       .call(xAxis);
   }
 
+  container.selectAll('.x-axis text')
+    .attr('transform', (_d, i, collection) => {
+      const node = collection[i];
+      const { width } = (node as SVGTextElement).getBoundingClientRect();
+      let xOffset = 0;
+
+      if (i === 0) {
+        xOffset = width / 2;
+      } else if (i === collection.length - 1) {
+        xOffset = -width / 2;
+      }
+
+      return `translate(${xOffset})`;
+    })
+    .attr('opacity', (_d, i, collection) => {
+      // We never hide the first or the last text node
+      if (i === 0 || i === collection.length - 1) {
+        return 1;
+      }
+
+      let textWidth = 0;
+      const textElements = (collection as SVGTextElement[]);
+
+
+      for (const textEl of textElements) {
+        textWidth += textEl.getBoundingClientRect().width;
+      }
+
+      // Hide all other text nodes when there's not enough space
+      if (WIDTH - textWidth < 0) {
+        return 0;
+      }
+
+      return 1;
+    });
+
   return xAxis;
 }
 
 export function renderYAxis(
-  container: Container,
+  container: SVGContainer,
   domain: Domain,
   X_PADDING: number,
   Y_PADDING: number): Axis<{ valueOf(): number }> {
+
+  if (!container || !container.node()) {
+    return;
+  }
+
 
   const HEIGHT = container.node().getBoundingClientRect().height - Y_PADDING;
   const WIDTH = container.node().getBoundingClientRect().width - X_PADDING;
@@ -188,4 +250,4 @@ function _conditionalFormatter(value) {
   return formatter(value);
 }
 
-export default { cleanAxes, updateAxes, renderBars, renderXAxis, renderYAxis };
+export default { cleanAxes, updateAxes, renderBars, renderXAxis, renderYAxis, renderPlot };

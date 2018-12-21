@@ -2,7 +2,7 @@ export interface HistogramData {
   start: number;
   end: number;
   value: number;
-  color: string;
+  color?: string;
 }
 
 export interface HistogramColorRange {

@@ -73,10 +73,6 @@ as-histogram-widget {
       .tick line {
         display: none;
       }
-
-      .tick:last-of-type text {
-        transform: translateX(-10px);
-      }
     }
 
     .handle--wrapper {
@@ -126,10 +122,11 @@ as-histogram-widget {
 
   .y-label {
     position: absolute;
-    top: calc(50% - #{$label-height});
+    top: 50%;
     left: 0;
-    transform: rotate(-90deg);
-    transform-origin: center;
+    margin-left: get-spacing(1);
+    transform: rotate(-90deg) translate(-50%);
+    transform-origin: 0 0;
   }
 
   [role="tooltip"] {

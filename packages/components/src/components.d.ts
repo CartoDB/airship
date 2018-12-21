@@ -16,11 +16,23 @@ import {
   HistogramData,
 } from './components/as-histogram-widget/interfaces';
 import {
+  EventEmitter,
+} from '@stencil/core';
+import {
+  RenderOptions,
+} from './components/as-histogram-widget/types/RenderOptions';
+import {
   RawStackedbarData,
 } from './components/as-stacked-bar-widget/types/RawStackedbarData';
 import {
   Metadata,
 } from './components/as-stacked-bar-widget/types/Metadata';
+import {
+  TimeSeriesData,
+} from './components/as-time-series-widget/interfaces';
+import {
+  TimeLocaleDefinition,
+} from 'd3-time-format';
 import {
   LegendData,
 } from './components/common/as-legend/types/LegendData';
@@ -219,10 +231,15 @@ export namespace Components {
   }
 
   interface AsHistogramWidget {
+    'axisFormatter': (value: number | Date) => string;
     /**
     * Clears the Histogram selection
     */
     'clearSelection': () => void;
+    /**
+    * Text rendered inside the clear selection button
+    */
+    'clearText': string;
     /**
     * Override color for the histogram bars
     */
@@ -305,6 +322,11 @@ export namespace Components {
     'yLabel': string;
   }
   interface AsHistogramWidgetAttributes extends StencilHTMLAttributes {
+    'axisFormatter'?: (value: number | Date) => string;
+    /**
+    * Text rendered inside the clear selection button
+    */
+    'clearText'?: string;
     /**
     * Override color for the histogram bars
     */
@@ -349,10 +371,12 @@ export namespace Components {
     * Message shown in header when no data is available
     */
     'noDataHeaderMessage'?: string;
+    'onDrawParametersChanged'?: (event: CustomEvent<RenderOptions>) => void;
     /**
     * Fired when user update or clear the widget selection.
     */
     'onSelectionChanged'?: (event: CustomEvent<number[]>) => void;
+    'onSelectionInput'?: (event: CustomEvent<number[]>) => void;
     /**
     * Use this attribute to decide if the widget should be rerendered on window resize. Defaults to true.
     */
@@ -690,6 +714,219 @@ export namespace Components {
     'xl'?: boolean;
   }
 
+  interface AsTimeSeriesWidget {
+    /**
+    * Whether it should have animated properties or not. Disabling this makes this look like a histogra widget with time capabilities
+    */
+    'animated': boolean;
+    /**
+    * Text rendered inside the clear selection button
+    */
+    'clearText': string;
+    /**
+    * Override color for the histogram bars
+    */
+    'color': string;
+    /**
+    * Color range for histogram data
+    */
+    'colorRange': HistogramColorRange[];
+    /**
+    * Histogram data to be displayed
+    */
+    'data': TimeSeriesData[];
+    /**
+    * Description of the widget to be displayed
+    */
+    'description': string;
+    /**
+    * Disables selection brushes and events for the widget
+    */
+    'disableInteractivity': boolean;
+    /**
+    * Use this widget to put the widget in "error mode". When error mode is active. The header will display the given text. And the body will be display the errorDescription instead any data.
+    */
+    'error': string;
+    /**
+    * Extended error description, only shown when error is present
+    */
+    'errorDescription': string;
+    /**
+    * Title of the widget to be displayed
+    */
+    'heading': string;
+    /**
+    * Use this attribute to put the widget in "loading mode". When loading mode is active, a spinner will be shown and the data will be hidden.
+    */
+    'isLoading': boolean;
+    /**
+    * Message shown in body when no data is available
+    */
+    'noDataBodyMessage': string;
+    /**
+    * Message shown in header when no data is available
+    */
+    'noDataHeaderMessage': string;
+    /**
+    * Whether the animation is playing or not.
+    */
+    'playing': boolean;
+    /**
+    * This attribute is the percentage of progress elapsed on an animation.
+    */
+    'progress': number;
+    /**
+    * Use this attribute to decide if the widget should be rerendered on window resize. Defaults to true.
+    */
+    'responsive': boolean;
+    /**
+    * Override color for the selected histogram bars
+    */
+    'selectedColor': string;
+    /**
+    * Display a clear button that clears the histogram selection.
+    */
+    'showClear': boolean;
+    /**
+    * Toggles displaying title and description
+    */
+    'showHeader': boolean;
+    /**
+    * This string will be parsed by d3-time-format (https://github.com/d3/d3-time-format) and will be used to format the graph's x-axis
+    */
+    'timeFormat': string;
+    /**
+    * Setting this property will make the date formatter be sensitive to locales. The format is described on https://github.com/d3/d3-time-format
+    */
+    'timeFormatLocale': TimeLocaleDefinition;
+    /**
+    * Function that formats the tooltip. Receives TimeSeriesData and outputs a string
+    */
+    'tooltipFormatter': (value: TimeSeriesData) => string;
+    /**
+    * Label the x axis of the histogram with the given string.
+    */
+    'xLabel': string;
+    /**
+    * Label the y axis of the histogram with the given string.
+    */
+    'yLabel': string;
+  }
+  interface AsTimeSeriesWidgetAttributes extends StencilHTMLAttributes {
+    /**
+    * Whether it should have animated properties or not. Disabling this makes this look like a histogra widget with time capabilities
+    */
+    'animated'?: boolean;
+    /**
+    * Text rendered inside the clear selection button
+    */
+    'clearText'?: string;
+    /**
+    * Override color for the histogram bars
+    */
+    'color'?: string;
+    /**
+    * Color range for histogram data
+    */
+    'colorRange'?: HistogramColorRange[];
+    /**
+    * Histogram data to be displayed
+    */
+    'data'?: TimeSeriesData[];
+    /**
+    * Description of the widget to be displayed
+    */
+    'description'?: string;
+    /**
+    * Disables selection brushes and events for the widget
+    */
+    'disableInteractivity'?: boolean;
+    /**
+    * Use this widget to put the widget in "error mode". When error mode is active. The header will display the given text. And the body will be display the errorDescription instead any data.
+    */
+    'error'?: string;
+    /**
+    * Extended error description, only shown when error is present
+    */
+    'errorDescription'?: string;
+    /**
+    * Title of the widget to be displayed
+    */
+    'heading'?: string;
+    /**
+    * Use this attribute to put the widget in "loading mode". When loading mode is active, a spinner will be shown and the data will be hidden.
+    */
+    'isLoading'?: boolean;
+    /**
+    * Message shown in body when no data is available
+    */
+    'noDataBodyMessage'?: string;
+    /**
+    * Message shown in header when no data is available
+    */
+    'noDataHeaderMessage'?: string;
+    /**
+    * User clicks the pause button
+    */
+    'onPause'?: (event: CustomEvent) => void;
+    /**
+    * User clicks the play button
+    */
+    'onPlay'?: (event: CustomEvent) => void;
+    /**
+    * The user has seeked the animation to this percentage.
+    */
+    'onSeek'?: (event: CustomEvent<number>) => void;
+    /**
+    * This method proxies the selectionChanged event on the underlying graph, but parses it into a Date
+    */
+    'onSelectionChanged'?: (event: CustomEvent<Date[]>) => void;
+    /**
+    * Whether the animation is playing or not.
+    */
+    'playing'?: boolean;
+    /**
+    * This attribute is the percentage of progress elapsed on an animation.
+    */
+    'progress'?: number;
+    /**
+    * Use this attribute to decide if the widget should be rerendered on window resize. Defaults to true.
+    */
+    'responsive'?: boolean;
+    /**
+    * Override color for the selected histogram bars
+    */
+    'selectedColor'?: string;
+    /**
+    * Display a clear button that clears the histogram selection.
+    */
+    'showClear'?: boolean;
+    /**
+    * Toggles displaying title and description
+    */
+    'showHeader'?: boolean;
+    /**
+    * This string will be parsed by d3-time-format (https://github.com/d3/d3-time-format) and will be used to format the graph's x-axis
+    */
+    'timeFormat'?: string;
+    /**
+    * Setting this property will make the date formatter be sensitive to locales. The format is described on https://github.com/d3/d3-time-format
+    */
+    'timeFormatLocale'?: TimeLocaleDefinition;
+    /**
+    * Function that formats the tooltip. Receives TimeSeriesData and outputs a string
+    */
+    'tooltipFormatter'?: (value: TimeSeriesData) => string;
+    /**
+    * Label the x axis of the histogram with the given string.
+    */
+    'xLabel'?: string;
+    /**
+    * Label the y axis of the histogram with the given string.
+    */
+    'yLabel'?: string;
+  }
+
   interface AsToolbar {}
   interface AsToolbarAttributes extends StencilHTMLAttributes {}
 
@@ -805,6 +1042,7 @@ declare global {
     'AsStackedBarWidget': Components.AsStackedBarWidget;
     'AsSwitch': Components.AsSwitch;
     'AsTabs': Components.AsTabs;
+    'AsTimeSeriesWidget': Components.AsTimeSeriesWidget;
     'AsToolbar': Components.AsToolbar;
     'AsLegend': Components.AsLegend;
     'AsLoader': Components.AsLoader;
@@ -824,6 +1062,7 @@ declare global {
     'as-stacked-bar-widget': Components.AsStackedBarWidgetAttributes;
     'as-switch': Components.AsSwitchAttributes;
     'as-tabs': Components.AsTabsAttributes;
+    'as-time-series-widget': Components.AsTimeSeriesWidgetAttributes;
     'as-toolbar': Components.AsToolbarAttributes;
     'as-legend': Components.AsLegendAttributes;
     'as-loader': Components.AsLoaderAttributes;
@@ -898,6 +1137,12 @@ declare global {
     new (): HTMLAsTabsElement;
   };
 
+  interface HTMLAsTimeSeriesWidgetElement extends Components.AsTimeSeriesWidget, HTMLStencilElement {}
+  var HTMLAsTimeSeriesWidgetElement: {
+    prototype: HTMLAsTimeSeriesWidgetElement;
+    new (): HTMLAsTimeSeriesWidgetElement;
+  };
+
   interface HTMLAsToolbarElement extends Components.AsToolbar, HTMLStencilElement {}
   var HTMLAsToolbarElement: {
     prototype: HTMLAsToolbarElement;
@@ -940,6 +1185,7 @@ declare global {
     'as-stacked-bar-widget': HTMLAsStackedBarWidgetElement
     'as-switch': HTMLAsSwitchElement
     'as-tabs': HTMLAsTabsElement
+    'as-time-series-widget': HTMLAsTimeSeriesWidgetElement
     'as-toolbar': HTMLAsToolbarElement
     'as-legend': HTMLAsLegendElement
     'as-loader': HTMLAsLoaderElement
@@ -959,6 +1205,7 @@ declare global {
     'as-stacked-bar-widget': HTMLAsStackedBarWidgetElement;
     'as-switch': HTMLAsSwitchElement;
     'as-tabs': HTMLAsTabsElement;
+    'as-time-series-widget': HTMLAsTimeSeriesWidgetElement;
     'as-toolbar': HTMLAsToolbarElement;
     'as-legend': HTMLAsLegendElement;
     'as-loader': HTMLAsLoaderElement;

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+  <base href="/">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+  <title>Airship</title>
+  <link rel="stylesheet" href="../../../packages/styles/dist/airship.css">
+  <script src="../../../packages/components/dist/airship.js"></script>
+  <style>
+    body {
+      height: 100vh;
+      margin: 0;
+      padding: 0;
+      background: #F2F2F2;
+    }
+
+    as-time-series-widget {
+      width: 100%;
+      height: 100%;
+      background: white;
+    }
+
+  </style>
+</head>
+
+<body>
+  <as-time-series-widget
+    animated
+    x-label="Time" 
+    y-label="Overall world coolness"
+    responsive
+    show-clear
+    heading="World coolness evolution"
+    time-format="%x"
+  >
+  </as-time-series-widget>
+
+  <script>
+    var timeData = [{
+      start: Date.parse('1987-06-18'),
+      end: Date.parse('1987-06-19'),
+      value: 1
+    },
+    {
+      start: Date.parse('1987-06-19'),
+      end: Date.parse('1987-06-20'),
+      value: 2
+    },
+    {
+      start: Date.parse('1987-06-20'),
+      end: Date.parse('1987-06-21'),
+      value: 4
+    },
+    {
+      start: Date.parse('1987-06-21'),
+      end: Date.parse('1987-06-22'),
+      value: 8
+    },
+    {
+      start: Date.parse('1987-06-22'),
+      end: Date.parse('1987-06-23'),
+      value: 16
+    }];
+
+    var paused = false;
+    var progress = 0;
+
+    var timeSeriesWidget = document.querySelector('as-time-series-widget');
+    timeSeriesWidget.data = timeData;
+    timeSeriesWidget.playing = !paused;
+
+    // Simulate an animation progress
+    setInterval(() => {
+      if (paused) {
+        return;
+      }
+
+      progress = Math.min(progress + 20, 100);
+      
+      timeSeriesWidget.progress = progress;
+      timeSeriesWidget.playing = !paused;
+
+      if (progress >= 100) {
+        progress = 0;
+      }
+    }, 1000);
+
+    timeSeriesWidget.addEventListener('seek', (evt) => {
+      progress = evt.detail;
+      timeSeriesWidget.progress = progress;
+    });
+
+    timeSeriesWidget.addEventListener('pause', () => {
+      paused = true;
+      timeSeriesWidget.playing = !paused;
+    });
+
+    timeSeriesWidget.addEventListener('play', () => {
+      paused = false;
+      timeSeriesWidget.playing = !paused;
+    });
+  </script>
+</body>
+
+</html>

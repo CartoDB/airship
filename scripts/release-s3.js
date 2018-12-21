@@ -1,3 +1,4 @@
+const readline = require('readline');
 const AWS = require('aws-sdk');
 const fs = require('fs');
 const path = require('path');
@@ -50,34 +51,42 @@ function log (what) {
   console.log(what);
 }
 
-async function putObject (args) {
+async function putObject (args, dry = false) {
   return new Promise((resolve, reject) => {
-    S3.putObject(args, function (err, data) {
-      if (err) {
-        reject(err);
-        return;
-      }
-
-      resolve(data);
-    });
+    if (dry) {
+      resolve();
+    } else {
+      S3.putObject(args, function (err, data) {
+        if (err) {
+          reject(err);
+          return;
+        }
+  
+        resolve(data);
+      });
+    }
   });
 }
 
-async function copyObject (source, destination) {
+async function copyObject (source, destination, dry = false) {
   return new Promise((resolve, reject) => {
-    S3.copyObject({
-      Bucket: secrets.AWS_S3_BUCKET,
-      ACL: 'public-read',
-      CopySource: `${secrets.AWS_S3_BUCKET}/${source}`,
-      Key: destination
-    }, (err, data) => {
-      if (err) {
-        reject(err);
-        return;
-      }
-
-      resolve(data);
-    });
+    if (dry) {
+      resolve();
+    } else {
+      S3.copyObject({
+        Bucket: secrets.AWS_S3_BUCKET,
+        ACL: 'public-read',
+        CopySource: `${secrets.AWS_S3_BUCKET}/${source}`,
+        Key: destination
+      }, (err, data) => {
+        if (err) {
+          reject(err);
+          return;
+        }
+  
+        resolve(data);
+      });
+    }
   });
 }
 
@@ -94,6 +103,67 @@ async function listObjects (args) {
   });
 }
 
+// For debugging
+async function listFiles (prefix = 'airship-style/') {
+  const files = await listObjects({Prefix: prefix, Bucket: secrets.AWS_S3_BUCKET });
+  log(`${files.Contents.length} with prefix '${prefix}'`)
+  for (let file of files.Contents) {
+    log(`${file.Key}`)
+  }
+}
+
+function parseFiles(files) {
+  return files.map((filePath) => ({
+    filePath,
+    dst: path.basename(filePath)
+  }));
+}
+
+/**
+ * Recursively walks through directory structure, returns all files as { name, dir }
+ * @param {string} fd Base directory to start walking
+ */
+async function getAllFiles(fd) {
+  if (fs.lstatSync(fd).isDirectory()) {
+    const fileList = await readdir(fd);
+    let files = [];
+
+    for (let file of fileList) {
+      const filePath = path.join(fd, file);
+
+      const subFiles = await getAllFiles(filePath)
+      files = files.concat(subFiles);
+    }
+
+    return files;
+  } else {
+    return fd;
+  }
+}
+
+
+/**
+ * Upload config
+ * 
+ * name is just for debugging purposes / documentation
+ *
+ * src can be a directory (string) or an array of files. 
+ * 
+ * For the directory, we'll recursively get all the absolute paths, and then we'll build objects with said
+ * absolute path and the relative path to the rootPath. This relative path is used for the destination in S3
+ * 
+ * For the array of files, they will all be placed on the root of the specified subfolder.
+ * 
+ * dst is the 'subfolder' on s3 <dst>/<version>/<relativePathOfFile>
+ * 
+ * version will be used on the destination on S3. It will get parsed with semver to create 'symlinks' pointing
+ * to major and minor versions. Example:
+ * 
+ * The following version will be uploaded to the first, and copied to the other
+ * v1.0.1 => <dst>/v1.0.1/...
+ *           <dst>/v1.0/...
+ *           <dst>/v1/...
+ */
 const UPLOAD = [
   {
     name: 'Airship Components',
@@ -112,18 +182,24 @@ const UPLOAD = [
     src: path.join(__dirname, '../packages/styles/dist'),
     dst: 'airship-style',
     version: require('../packages/styles/package.json').version
+  },
+  {
+    name: 'Airship Bindings',
+    src: [
+      path.join(__dirname, '../packages/bindings/dist/asbindings.js'),
+      path.join(__dirname, '../packages/bindings/dist/asbindings.min.js')
+    ],
+    dst: 'airship-bindings',
+    version: require('../packages/bindings/package.json').version
   }
 ];
 
-async function uploadAllFiles (dir, version, destination, subfolder='') {
+let totalFiles = 0;
+let uploaded = 0;
+let failed = 0;
+
+async function uploadAllFiles (files, version, destination) {
   const parsedVersion = semver(version);
-  let files;
-  try {
-    files = await readdir(dir);
-  } catch (e) {
-    console.error(e);
-    return;
-  }
 
   // All files will be uploaded to /version/, and copied to each of the versions here
   let copyVersions = [];
@@ -137,69 +213,84 @@ async function uploadAllFiles (dir, version, destination, subfolder='') {
     copyVersions.push(PRERELEASE_VERSION);
   }
 
-  for (const fileName of files) {
-    const filePath = path.join(dir, fileName);
+  let promises = [];
+  for (const file of files) {
+    promises.push(uploadFile(file, destination, copyVersions));
+  }
 
-    if (fs.lstatSync(filePath).isDirectory()) {
-      await uploadAllFiles(filePath, version, destination, fileName);
-    } else {
-      const dst = path.join(subfolder, fileName);
-      const extension = path.extname(filePath);
-      const objectConfig = {
-        ACL: 'public-read',
-        Bucket: secrets.AWS_S3_BUCKET
-      };
-      let fileLength = 0; // uncompressed size
-      let fileContent;
-      let ratio = 0;
+  return Promise.all(promises);
+}
 
-      objectConfig.ContentType = `${mime.getType(filePath)}${needsUTF8(extension) ? '; charset=utf-8' : ''}`;
+async function uploadFile ({ filePath, dst }, destination, copyVersions) {
+  const extension = path.extname(filePath);
+  const objectConfig = {
+    ACL: 'public-read',
+    Bucket: secrets.AWS_S3_BUCKET
+  };
+  let fileLength = 0; // uncompressed size
+  let fileContent;
+  let ratio = 0;
 
-      try {
-        fileContent = await readFile(filePath, needsUTF8(extension) ? { encoding: 'utf8' } : {});
-        fileLength = fileContent.length;
+  objectConfig.ContentType = `${mime.getType(filePath)}${needsUTF8(extension) ? '; charset=utf-8' : ''}`;
 
-        if (shouldZip(extension)) {
-          fileContent = await gzip(fileContent);
-          objectConfig.ContentEncoding = 'gzip';
-        }
+  try {
+    fileContent = await readFile(filePath, needsUTF8(extension) ? { encoding: 'utf8' } : {});
+    fileLength = fileContent.length;
 
-        objectConfig.Body = fileContent;
+    if (shouldZip(extension)) {
+      fileContent = await gzip(fileContent);
+      objectConfig.ContentEncoding = 'gzip';
+    }
 
-        ratio = Math.round((fileContent.length / fileLength) * 100);
-      } catch (e) {
-        console.error(e);
-        continue;
-      }
+    objectConfig.Body = fileContent;
 
-      objectConfig.Key = `${destination}/v${version}/${dst}`;
+    ratio = Math.round((fileContent.length / fileLength) * 100);
+  } catch (e) {
+    console.error(e);
+    return;
+  }
 
-      try {
-        spinner.setMessage(`Uploading ${objectConfig.Key}`);
-        if (!DRY_RUN) {
-          await putObject(objectConfig);
-        }
+  objectConfig.Key = `${destination}/v${version}/${dst}`;
+  
+  totalFiles++;
+  updateSpinner();
 
-        log(`✅  ${objectConfig.Key} ${fileContent.length} bytes. Compressed ${ratio > 100 ? `⚠️  \x1b[33m${ratio}` : ratio}%\x1b[0m`);
-      } catch (e) {
-        console.error(`❌  ${dst}`, e);
-        continue;
-      }
-
+  return putObject(objectConfig, DRY_RUN)
+    .then(() => {
+      log(`✅  ${objectConfig.Key} ${fileContent.length} bytes. Compressed ${ratio > 100 ? `⚠️  \x1b[33m${ratio}` : ratio}%\x1b[0m`);
+      uploaded++;
+      updateSpinner();
+    })
+    .then(() => {
       for (copyVersion of copyVersions) {
         const dest = `${destination}/${copyVersion}/${dst}`;
-        spinner.setMessage(`Copying ${dest}`);
-        try {
-          if (!DRY_RUN) {
-            await copyObject(objectConfig.Key, dest);
-          }
-          log(`  ✅  Copied to ${dest}`);
-        } catch (e) {
-          console.error(`  ❌  Failed to copy to ${dest}`);
-          console.error(e);
-        }
+        copyObject(objectConfig.Key, dest, DRY_RUN)
+          .then(() => {
+            log(`✅  Copied to ${dest}`);
+            uploaded++;
+            updateSpinner();
+          })
+          .catch((e) => {
+            console.error(`❌  Failed to copy to ${dest}`);
+            console.error(e);
+            failed++;
+            updateSpinner();
+          });
+        
+        totalFiles++;
+        updateSpinner();
       }
-    }
+    })
+    .catch((e) => {
+      console.error(`❌  ${dst}`, e);
+      failed++;
+      updateSpinner();
+    });
+}
+
+function updateSpinner() {
+  if (VERBOSE) {
+    spinner.setMessage(`${uploaded}/${totalFiles} (${failed} failed)`);
   }
 }
 
@@ -209,28 +300,41 @@ async function upload () {
     log(`🌵 THIS IS A DRY RUN 🌵`)
     log(`🌵 🌵 🌵 🌵 🌵 🌵 🌵 🌵 🌵 🌵 🌵`)
   }
+  
+  if (VERBOSE) {
+    spinner.start();
+  }
+  
+  const startTime = Date.now();
   for ({ version, src, name, dst } of UPLOAD) {
-    const parsedVersion = PRERELEASE ? PRERELEASE_VERSION : `v${version}`;
-    log(`Uploading files for ${name}(${parsedVersion})`);
+    let files;
 
-    if (VERBOSE) {
-      spinner.start();
+    if (Array.isArray(src)) {
+      files = parseFiles(src);
+    } else {
+      files = await getAllFiles(src);
+
+      // We need to know the relative path from the source directory
+      files = files.map((filePath) => {
+        return {
+          filePath,
+          dst: path.relative(src, filePath)
+        }
+      });
     }
 
-    await uploadAllFiles(src, version, dst);
-
-    if (VERBOSE) {
-      spinner.stop();
-    }
+    // We wait for all the files of each group to be uploaded.
+    await uploadAllFiles(files, version, dst);
   }
 
-  log(`Done`);
-}
+  const endTime = Date.now();
 
-// For debugging
-async function listFiles (prefix = 'airship-components-test/') {
-  const files = await listObjects({Prefix: prefix, Bucket: secrets.AWS_S3_BUCKET });
-  log(`${files.Contents.length} with prefix '${prefix}'`)
+  if (VERBOSE) {
+    spinner.stop();
+
+    log(`Uploaded ${totalFiles} with ${failed === 0 ? 'no' : failed} failures`);
+    log(`Took ${(endTime - startTime) / 1000} seconds`);
+  }
 }
 
 upload();
