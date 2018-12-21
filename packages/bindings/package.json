@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Airship bindings to other libs",
   "main": "dist/index.js",
+  "private": true,
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
