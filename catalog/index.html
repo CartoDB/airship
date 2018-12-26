@@ -14,7 +14,6 @@
     body {
       margin: 0;
     }
-
   </style>
 </head>
 
@@ -54,20 +53,20 @@
       title: 'Airship',
       useBrowserHistory: false,
       responsiveSizes: [{
-          name: 'mobile',
-          width: 375,
-          height: 667
-        },
-        {
-          name: 'tablet',
-          width: 1024,
-          height: 768
-        },
-        {
-          name: 'desktop',
-          width: 1920,
-          height: 1080
-        },
+        name: 'mobile',
+        width: 375,
+        height: 667
+      },
+      {
+        name: 'tablet',
+        width: 1024,
+        height: 768
+      },
+      {
+        name: 'desktop',
+        width: 1920,
+        height: 1080
+      },
       ],
       theme: {
         background: '#FFFFFF',
@@ -81,238 +80,239 @@
         baseFontSize: 16,
       },
       pages: [{
-          path: '/',
-          title: 'Introduction',
-          src: 'intro.md'
+        path: '/',
+        title: 'Introduction',
+        src: 'intro.md'
+      },
+      {
+        title: 'Layout',
+        pages: [{
+          path: '/layout',
+          title: 'Overview',
+          src: '../packages/styles/src/core/layout/README.md'
         },
         {
-          title: 'Layout',
-          pages: [{
-              path: '/layout',
-              title: 'Overview',
-              src: '../packages/styles/src/core/layout/README.md'
-            },
-            {
-              path: '/layout/toolbar',
-              title: 'Toolbar',
-              src: '../packages/styles/src/core/layout/toolbar/README.md'
-            },
-            {
-              path: '/layout/sidebar',
-              title: 'Sidebar',
-              src: '../packages/styles/src/core/layout/sidebar/README.md'
-            },
-            {
-              path: '/layout/sidebar-containers',
-              title: 'Sidebar containers',
-              src: '../packages/styles/src/core/layout/sidebar/README-CONTAINERS.md'
-            },
-            {
-              path: '/layout/map-area',
-              title: 'Map Area',
-              src: '../packages/styles/src/core/layout/main/map-area/README.md'
-            },
-            {
-              path: '/layout/panels',
-              title: 'Map Panels',
-              src: '../packages/styles/src/core/layout/main/map-area/map-panels/README.md'
-            },
-            {
-              path: '/layout/footer',
-              title: 'Map Footer',
-              src: '../packages/styles/src/core/layout/main/map-footer/README.md'
-            },
-            {
-              path: '/components/responsive-layout',
-              title: 'Responsive Layout',
-              src: '../packages/components/src/components/as-responsive-content/README.md'
-            },
-          ]
+          path: '/layout/toolbar',
+          title: 'Toolbar',
+          src: '../packages/styles/src/core/layout/toolbar/README.md'
         },
         {
-          title: 'Components',
-          pages: [{
-              path: '/components/category-widget',
-              title: 'Category Widget',
-              src: '../packages/components/src/components/as-category-widget/README.md'
-            },
-            {
-              path: '/components/dropdown',
-              title: 'Dropdown',
-              src: '../packages/components/src/components/as-dropdown/README.md'
-            },
-            {
-              path: '/components/histogram-widget',
-              title: 'Histogram Widget',
-              src: '../packages/components/src/components/as-histogram-widget/README.md'
-            },
-            {
-              path: '/components/info-window',
-              title: 'Infowindow',
-              src: '../packages/components/src/components/as-infowindow/README.md'
-            },
-            {
-              path: '/components/as-range-slider',
-              title: 'Range Slider',
-              src: '../packages/components/src/components/as-range-slider/slider/README.md'
-            },
-            {
-              path: '/components/application-content',
-              title: 'Responsive Layout',
-              src: '../packages/components/src/components/as-responsive-content/README.md',
-            },
-            {
-              path: '/components/stacked-bar-widget',
-              title: 'Stacked Bar Widget',
-              src: '../packages/components/src/components/as-stacked-bar-widget/README.md'
-            },
-            {
-              path: '/components/switch',
-              title: 'Switch',
-              src: '../packages/components/src/components/as-switch/README.md'
-            },
-            {
-              path: '/components/toolbar',
-              title: 'Toolbar',
-              src: '../packages/components/src/components/as-toolbar/README.md'
-            },
-            {
-              path: '/components/tabs',
-              title: 'Tabs',
-              src: '../packages/components/src/components/as-tabs/README.md'
-            },
-            {
-              path: '/components/time-series-widget',
-              title: 'Tabs',
-              src: '../packages/components/src/components/as-time-series-widget/README.md'
-            }
-          ]
+          path: '/layout/sidebar',
+          title: 'Sidebar',
+          src: '../packages/styles/src/core/layout/sidebar/README.md'
         },
         {
-          title: 'Styles',
-          pages: [{
-              path: '/styles/avatar',
-              title: 'Avatar',
-              src: '../packages/styles/src/avatar/README.md'
-            },
-            {
-              path: '/styles/badges',
-              title: 'Badges',
-              src: '../packages/styles/src/badges/README.md'
-            },
-            {
-              path: '/styles/banner',
-              title: 'Banner',
-              src: '../packages/styles/src/banner/README.md'
-            },
-            {
-              path: '/styles/breadcrumb',
-              title: 'Breadcrumb',
-              src: '../packages/styles/src/breadcrumb/README.md'
-            },
-            {
-              path: '/styles/buttons',
-              title: 'Buttons',
-              src: '../packages/styles/src/buttons/README.md'
-            },
-            {
-              path: '/styles/checkbox',
-              title: 'Checkbox',
-              src: '../packages/styles/src/checkbox/README.md'
-            },
-            {
-              path: '/styles/colors',
-              title: 'Colors',
-              src: '../packages/styles/src/core/variables/colors.md'
-            },
-            {
-              path: '/styles/flag',
-              title: 'Flag',
-              src: '../packages/styles/src/flag/README.md'
-            },
-            {
-              path: '/styles/inputs',
-              title: 'Inputs',
-              src: '../packages/styles/src/inputs/README.md'
-            },
-            {
-              path: '/styles/lists',
-              title: 'Lists',
-              src: '../packages/styles/src/core/lists/README.md'
-            },
-            {
-              path: '/styles/loading',
-              title: 'Loading',
-              src: '../packages/styles/src/loading/README.md'
-            },
-            {
-              path: '/styles/menu-dropdown',
-              title: 'Menu Dropdown',
-              src: '../packages/styles/src/menu-dropdown/README.md'
-            },
-            {
-              path: '/styles/modal',
-              title: 'Modals',
-              src: '../packages/styles/src/modal/README.md'
-            },
-            {
-              path: '/styles/radio',
-              title: 'Radio button',
-              src: '../packages/styles/src/radio/README.md'
-            },
-            {
-              path: '/styles/sidebar',
-              title: 'Sidebar',
-              src: '../packages/styles/src/core/layout/sidebar/README.md'
-            },
-            {
-              path: '/styles/tables',
-              title: 'Tables',
-              src: '../packages/styles/src/table/README.md'
-            },
-            {
-              path: '/styles/tabs',
-              title: 'Tabs',
-              src: '../packages/styles/src/tabs/README.md'
-            },
-            {
-              path: '/styles/tooltips',
-              title: 'Tooltips',
-              src: '../packages/styles/src/tooltip/README.md'
-            },
-            {
-              path: '/styles/typography',
-              title: 'Typography',
-              src: '../packages/styles/src/core/typography/README.md'
-            },
-            {
-              path: '/styles/utilities',
-              title: 'Utilities',
-              src: '../packages/styles/src/utilities/README.md'
-              // }, {
-              //   path: '/styles/positioning',
-              //   title: 'Positioning',
-              //   src: '../packages/styles/src/utilities/positioning/README.md'
-            }
-          ]
+          path: '/layout/sidebar-containers',
+          title: 'Sidebar containers',
+          src: '../packages/styles/src/core/layout/sidebar/README-CONTAINERS.md'
         },
         {
-          title: 'Icons',
-          pages: [{
-            path: '/icons/icons',
-            title: 'Icons',
-            src: '../packages/icons/README.md'
-          }, ]
+          path: '/layout/map-area',
+          title: 'Map Area',
+          src: '../packages/styles/src/core/layout/main/map-area/README.md'
         },
         {
-          title: 'Bindings',
-          pages: [{
-            path: '/bindings/vl/intro',
-            title: 'CARTO VL',
-            src: '../packages/bindings/src/vl/README.md'
-          }
-          ]
+          path: '/layout/panels',
+          title: 'Map Panels',
+          src: '../packages/styles/src/core/layout/main/map-area/map-panels/README.md'
+        },
+        {
+          path: '/layout/footer',
+          title: 'Map Footer',
+          src: '../packages/styles/src/core/layout/main/map-footer/README.md'
+        },
+        {
+          path: '/components/responsive-layout',
+          title: 'Responsive Layout',
+          src: '../packages/components/src/components/as-responsive-content/README.md'
+        },
+        ]
+      },
+      {
+        title: 'Components',
+        pages: [{
+          path: '/components/category-widget',
+          title: 'Category Widget',
+          src: '../packages/components/src/components/as-category-widget/README.md'
+        },
+        {
+          path: '/components/dropdown',
+          title: 'Dropdown',
+          src: '../packages/components/src/components/as-dropdown/README.md'
+        },
+        {
+          path: '/components/histogram-widget',
+          title: 'Histogram Widget',
+          src: '../packages/components/src/components/as-histogram-widget/README.md'
+        },
+        {
+          path: '/components/info-window',
+          title: 'Infowindow',
+          src: '../packages/components/src/components/as-infowindow/README.md'
+        },
+        {
+          path: '/components/as-range-slider',
+          title: 'Range Slider',
+          src: '../packages/components/src/components/as-range-slider/slider/README.md'
+        },
+        {
+          path: '/components/application-content',
+          title: 'Responsive Layout',
+          src: '../packages/components/src/components/as-responsive-content/README.md',
+        },
+        {
+          path: '/components/stacked-bar-widget',
+          title: 'Stacked Bar Widget',
+          src: '../packages/components/src/components/as-stacked-bar-widget/README.md'
+        },
+        {
+          path: '/components/switch',
+          title: 'Switch',
+          src: '../packages/components/src/components/as-switch/README.md'
+        },
+        {
+          path: '/components/toolbar',
+          title: 'Toolbar',
+          src: '../packages/components/src/components/as-toolbar/README.md'
+        },
+        {
+          path: '/components/tabs',
+          title: 'Tabs',
+          src: '../packages/components/src/components/as-tabs/README.md'
+        },
+        {
+          path: '/components/time-series-widget',
+          title: 'Time Series Widget',
+          src: '../packages/components/src/components/as-time-series-widget/README.md'
         }
+        ]
+      },
+      {
+        title: 'Styles',
+        pages: [{
+          path: '/styles/avatar',
+          title: 'Avatar',
+          src: '../packages/styles/src/avatar/README.md'
+        },
+        {
+          path: '/styles/badges',
+          title: 'Badges',
+          src: '../packages/styles/src/badges/README.md'
+        },
+        {
+          path: '/styles/banner',
+          title: 'Banner',
+          src: '../packages/styles/src/banner/README.md'
+        },
+        {
+          path: '/styles/breadcrumb',
+          title: 'Breadcrumb',
+          src: '../packages/styles/src/breadcrumb/README.md'
+        },
+        {
+          path: '/styles/buttons',
+          title: 'Buttons',
+          src: '../packages/styles/src/buttons/README.md'
+        },
+        {
+          path: '/styles/checkbox',
+          title: 'Checkbox',
+          src: '../packages/styles/src/checkbox/README.md'
+        },
+        {
+          path: '/styles/colors',
+          title: 'Colors',
+          src: '../packages/styles/src/core/variables/colors.md'
+        },
+        {
+          path: '/styles/flag',
+          title: 'Flag',
+          src: '../packages/styles/src/flag/README.md'
+        },
+        {
+          path: '/styles/inputs',
+          title: 'Inputs',
+          src: '../packages/styles/src/inputs/README.md'
+        },
+        {
+          path: '/styles/lists',
+          title: 'Lists',
+          src: '../packages/styles/src/core/lists/README.md'
+        },
+        {
+          path: '/styles/loading',
+          title: 'Loading',
+          src: '../packages/styles/src/loading/README.md'
+        },
+        {
+          path: '/styles/menu-dropdown',
+          title: 'Menu Dropdown',
+          src: '../packages/styles/src/menu-dropdown/README.md'
+        },
+        {
+          path: '/styles/modal',
+          title: 'Modals',
+          src: '../packages/styles/src/modal/README.md'
+        },
+        {
+          path: '/styles/radio',
+          title: 'Radio button',
+          src: '../packages/styles/src/radio/README.md'
+        },
+        {
+          path: '/styles/sidebar',
+          title: 'Sidebar',
+          src: '../packages/styles/src/core/layout/sidebar/README.md'
+        },
+        {
+          path: '/styles/tables',
+          title: 'Tables',
+          src: '../packages/styles/src/table/README.md'
+        },
+        {
+          path: '/styles/tabs',
+          title: 'Tabs',
+          src: '../packages/styles/src/tabs/README.md'
+        },
+        {
+          path: '/styles/tooltips',
+          title: 'Tooltips',
+          src: '../packages/styles/src/tooltip/README.md'
+        },
+        {
+          path: '/styles/typography',
+          title: 'Typography',
+          src: '../packages/styles/src/core/typography/README.md'
+        },
+        {
+          path: '/styles/utilities',
+          title: 'Utilities',
+          src: '../packages/styles/src/utilities/README.md'
+          // }, {
+          //   path: '/styles/positioning',
+          //   title: 'Positioning',
+          //   src: '../packages/styles/src/utilities/positioning/README.md'
+        }
+        ]
+      },
+      {
+        title: 'Icons',
+        pages: [{
+          path: '/icons/icons',
+          title: 'Icons',
+          src: '../packages/icons/README.md'
+        }
+        ]
+      },
+      {
+        title: 'Bindings',
+        pages: [{
+          path: '/bindings/vl/intro',
+          title: 'CARTO VL',
+          src: '../packages/bindings/src/vl/README.md'
+        }
+        ]
+      }
       ]
     }, document.getElementById('catalog'));
 
