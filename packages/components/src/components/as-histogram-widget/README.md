@@ -228,6 +228,19 @@ histogramWidget.tooltipFormatter = function (data) {
 };
 ```
 
+#### **selectedFormatter**: function
+Function that receives the selection and must return a string. It is used to display a message on the footer to indicate what range has been selected.
+
+This is useful for localization purposes.
+
+```code
+lang: javascript
+---
+histogramWidget.selectedFormatter = function (selection) {
+  return `Selected from %{selection[0]} to ${selection[1]}.;
+};
+```
+
 ### Styles
 There are some CSS Variables that you can override to change visual styles.
 

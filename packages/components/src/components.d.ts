@@ -297,6 +297,10 @@ export namespace Components {
     */
     'selectedColor': string;
     /**
+    * Function to format the range selected text displayed below the histogram
+    */
+    'selectedFormatter': (value: number[]) => string;
+    /**
     * Programmatically set the selection. It will be adjusted to the buckets present in {@link data}. To clear see {@link clearSelection} or call with null
     */
     'setSelection': (values: number[]) => void;
@@ -385,6 +389,10 @@ export namespace Components {
     * Override color for the selected histogram bars
     */
     'selectedColor'?: string;
+    /**
+    * Function to format the range selected text displayed below the histogram
+    */
+    'selectedFormatter'?: (value: number[]) => string;
     /**
     * Display a clear button that clears the histogram selection.
     */

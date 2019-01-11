@@ -173,9 +173,16 @@ export class HistogramWidget {
    */
   @Prop() public clearText: string = 'Clear selection';
 
+  /**
+   * Function to format the range selected text displayed below the histogram
+   *
+   * @memberof HistogramWidget
+   */
+  @Prop() public selectedFormatter: (value: number[]) => string = this._selectionFormatter;
+
   public selection: number[] = null;
 
-  @Element() private el: HTMLElement;
+  @Element() private el: HTMLStencilElement;
 
   /**
    * Fired when user update or clear the widget selection.
@@ -216,6 +223,9 @@ export class HistogramWidget {
 
   @State()
   private selectionEmpty: boolean = true;
+
+  @State()
+  private selectionFooter: string = '';
 
   constructor() {
     this._resizeRender = this._resizeRender.bind(this);
@@ -351,8 +361,33 @@ export class HistogramWidget {
           {this._renderLabels()}
           {this._renderTooltip()}
         </div>,
-        this.showClear && !this.disableInteractivity ? this._renderClearBtn() : ''
+        this._renderFooter()
       ]);
+  }
+
+  private _renderFooter() {
+    return (
+      <footer class='as-histogram-widget__footer'>
+        <div class='as-histogram-widget__selection as-body'>{this.selectionFooter}</div>
+        {this.showClear && !this.disableInteractivity ? this._renderClearBtn() : ''}
+      </footer>
+    );
+  }
+
+  private _selectionFormatter(selection: number[]) {
+    if (selection === null) {
+      return '';
+    }
+
+    let formattedSelection;
+
+    if (this.axisFormatter) {
+      formattedSelection = selection.map(this.axisFormatter);
+    } else {
+      formattedSelection = selection.map((e) => `${e}`);
+    }
+
+    return `Selected from ${formattedSelection[0]} to ${formattedSelection[1]}`;
   }
 
   private _renderGraph() {
@@ -551,6 +586,7 @@ export class HistogramWidget {
     }
 
     this.selectionEmpty = this.selection === null;
+    this.selectionFooter = this._selectionFormatter(this.selection);
   }
 
   private _selectionInData(selection: number[]) {
@@ -708,14 +744,12 @@ export class HistogramWidget {
 
   private _renderClearBtn() {
     return (
-      <div>
-        <button
-          class='as-btn as-btn--primary as-btn--s as-histogram-widget__clear'
-          onClick={() => this._setSelection(null)}
-          disabled={this.selectionEmpty}
-          >{this.clearText}
-        </button>
-      </div>
+      <button
+        class='as-btn as-btn--primary as-btn--s as-histogram-widget__clear'
+        onClick={() => this._setSelection(null)}
+        disabled={this.selectionEmpty}
+        >{this.clearText}
+      </button>
     );
   }
 

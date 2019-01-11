@@ -23,10 +23,6 @@ as-histogram-widget {
     min-height: 0;
   }
 
-  .as-histogram-widget__clear {
-    margin-top: get-spacing(2);
-  }
-
   .figure {
     $basePaddingLeft: 30;
     box-sizing: border-box;
@@ -104,6 +100,17 @@ as-histogram-widget {
     svg .bar {
       cursor: inherit;
     }
+  }
+
+  .as-histogram-widget__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: get-spacing(2);
+  }
+
+  .as-histogram-widget__selection {
+    margin: 0;
   }
 
   .x-label,
