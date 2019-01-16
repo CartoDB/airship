@@ -12,7 +12,13 @@
   <script src="../../packages/components/dist/airship.js"></script>
   <style>
     :root {
-      /* Theme Colors #212129, #323949, #3d3e51, #40445a, #4c5265, #3f6892 */
+      /* Theme Colors
+
+      Backgrounds: #212129, #323949, #3d3e51, #40445a, #4c5265, #3f6892
+      Fonts: #edf2f7, #dbe6f0, #c9d9e8, #b8cce0
+      Tetradic Color: ##3f9269, ##3f6892, #923f68, #92693f
+
+      */
 
       /* Brand */
       --as--color--primary: #3d3e51;
@@ -21,22 +27,33 @@
 
 
       /* Typography */
-      --as--color--type-01: #323949;
-      --as--color--type-02: #FFFFFF;
-      --as--color--type-03: #FFFFFF;
-      --as--color--type-04: #FFFFFF;
+      --as--color--type-01: #edf2f7;
+      --as--color--type-02: #dbe6f0;
+      --as--color--type-03: #c9d9e8;
+      --as--color--type-04: #b8cce0;
 
       /* UI  */
       --as--color--ui-01: #323949;
-      --as--color--ui-02: #323949;
-      --as--color--ui-03: #323949;
-      --as--color--ui-04: #323949;
+      --as--color--ui-02: #edf2f7;
+      --as--color--ui-03: #edf2f7;
+      --as--color--ui-04: #edf2f7;
 
       /* UI  */
       --as--color--alpha-light-01: var(--as--color--alpha-dark-01);
       --as--color--alpha-light-02: var(--as--color--alpha-dark-02);
       --as--color--alpha-01: var(--as--color--alpha-dark-01);
       --as--color--alpha-02: var(--as--color--alpha-dark-02);
+      --as--color--alpha-primary: #3f6892;
+
+      /* Badges */
+      --as--color--badge-gray: #4c5265;
+      --as--color--badge-blue: #3f6892;
+      --as--color--badge-green: #3f9269;
+      --as--color--badge-pink: #923f68;
+      --as--color--badge-yellow: #92693f;
+
+      /* Toolbar */
+      --as-tabs--item--border-color-active: #3f6892;
     }
 
     as-infowindow {
@@ -47,6 +64,10 @@
 
     .as-map-area {
       background: #B5E0F9;
+    }
+
+    .as-toolbar {
+      --as-toolbar--link-color: #FFFFFF;
     }
   </style>
 </head>
@@ -165,15 +186,16 @@
           widget0.metadata = {
             dvd: {
               label: 'Domestic DVD Sales',
-              color: '#33ACEE'
+              color: '#3f6892'
             },
             blue: {
               label: 'Domestic Blu-ray Sales',
-              color: '#EEC649'
+              color: '#92693f'
             }
           }
 
           var histogramWidget = document.querySelector('as-histogram-widget');
+          histogramWidget.color = "#3f9269";
           histogramWidget.data = [{
               start: 0,
               end: 10,
@@ -217,7 +239,7 @@
           categoryWidget.categories = [{
               name: 'Bars & Restaurants',
               value: 1000,
-              color: '#FABADA'
+              color: '#923f68'
             },
             {
               name: 'Fashion',

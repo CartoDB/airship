@@ -81,7 +81,7 @@ as-histogram-widget {
 
     .handle--custom {
       stroke-linecap: round;
-      stroke: #1785FB;
+      stroke: var(--as--color--primary, #{$color-primary});
       fill: white;
       cursor: ew-resize;
       pointer-events: none;
