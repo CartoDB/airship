@@ -97,7 +97,7 @@ describe('as-category-widget', () => {
 
       const categoriesSelectedSpy = await page.spyOnEvent('categoriesSelected');
 
-      await page.click('.as-category-widget__clear');
+      await page.click('.as-widget-selection__clear');
       await page.waitForChanges();
 
       expect(categoriesSelectedSpy).toHaveReceivedEventDetail([]);

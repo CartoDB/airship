@@ -319,6 +319,7 @@ export class HistogramWidget {
 
   public componentWillLoad() {
     addEventListener('resize', this._resizeRender);
+    this.selectionFooter = this._selectionFormatter(this.selection);
   }
 
   public componentDidUnload() {
@@ -328,6 +329,7 @@ export class HistogramWidget {
   public render() {
     return [
       this._renderHeader(),
+      this._renderSelection(),
       this._renderContent(),
     ];
   }
@@ -355,28 +357,17 @@ export class HistogramWidget {
       this.heading,
       this.errorDescription,
       this.noDataBodyMessage,
-      [
-        <div class={histogramClasses}>
-          <svg class={svgClasses} ref={(ref: SVGElement) => this.container = select(ref)}></svg>
-          {this._renderLabels()}
-          {this._renderTooltip()}
-        </div>,
-        this._renderFooter()
-      ]);
-  }
-
-  private _renderFooter() {
-    return (
-      <footer class='as-histogram-widget__footer'>
-        <div class='as-histogram-widget__selection as-body'>{this.selectionFooter}</div>
-        {this.showClear && !this.disableInteractivity ? this._renderClearBtn() : ''}
-      </footer>
-    );
+      <div class={histogramClasses}>
+        <svg class={svgClasses} ref={(ref: SVGElement) => this.container = select(ref)}></svg>
+        {this._renderLabels()}
+        {this._renderTooltip()}
+      </div>
+      );
   }
 
   private _selectionFormatter(selection: number[]) {
     if (selection === null) {
-      return '';
+      return 'All selected';
     }
 
     let formattedSelection;
@@ -388,6 +379,20 @@ export class HistogramWidget {
     }
 
     return `Selected from ${formattedSelection[0]} to ${formattedSelection[1]}`;
+  }
+
+  private _renderSelection() {
+    if (this.isLoading || this._isEmpty() || this.error || !this.showClear) {
+      return '';
+    }
+
+    return <as-widget-selection
+      selection={this.selectionFooter}
+      clearText={this.clearText}
+      showClear={!this.selectionEmpty}
+      onClear={() => this._setSelection(null)}
+      >
+    </as-widget-selection>;
   }
 
   private _renderGraph() {
@@ -740,17 +745,6 @@ export class HistogramWidget {
       role='tooltip'
       class='as-tooltip as-tooltip--top'>
     </span>);
-  }
-
-  private _renderClearBtn() {
-    return (
-      <button
-        class='as-btn as-btn--primary as-btn--s as-histogram-widget__clear'
-        onClick={() => this._setSelection(null)}
-        disabled={this.selectionEmpty}
-        >{this.clearText}
-      </button>
-    );
   }
 
   private _renderLabels() {
