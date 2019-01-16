@@ -43,6 +43,9 @@ $color-alpha-light-02: unquote('#74747429') !default;
 $color-alpha-dark-01: unquote('#2c2c2cd6') !default;
 $color-alpha-dark-02: unquote('#747474d6') !default;
 
+$color-alpha-01: $color-alpha-light-01 !default;
+$color-alpha-02: $color-alpha-light-02 !default;
+
 @mixin colors-vars {
   // Brand
   --as--color--primary: #{$color-primary};
@@ -88,4 +91,7 @@ $color-alpha-dark-02: unquote('#747474d6') !default;
   --as--color--alpha-light-02: #{$color-alpha-light-02};
   --as--color--alpha-dark-01: #{$color-alpha-dark-01};
   --as--color--alpha-dark-02: #{$color-alpha-dark-02};
+
+  --as--color--alpha-01: #{$color-alpha-01};
+  --as--color--alpha-02: #{$color-alpha-02};
 }

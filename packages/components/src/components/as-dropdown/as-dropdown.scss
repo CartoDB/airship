@@ -52,7 +52,7 @@ as-dropdown {
     border: 1px solid var(--as--color--ui-03, #{$color-ui-03});
     border-radius: 4px;
     background: $color-ui-01;
-    box-shadow: 0 2px 8px 0 var(--as--color--alpha-light-01, #{$color-alpha-light-01});
+    box-shadow: 0 2px 8px 0 var(--as--color--alpha-01, #{$color-alpha-01});
   }
 
   .as-dropdown__list-item {

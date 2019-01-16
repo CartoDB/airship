@@ -13,7 +13,7 @@
     width: get-spacing(4);
     height: get-spacing(4);
     overflow: hidden;
-    border: 1px solid var(--as--color--alpha-light-02, #{$color-alpha-light-02});
+    border: 1px solid var(--as--color--alpha-02, #{$color-alpha-02});
     border-radius: 3px;
     pointer-events: none;
   }
@@ -99,8 +99,8 @@
     }
 
     &:disabled:checked + .as-checkbox-decoration {
-      border-color: var(--as--color--alpha-light-02, #{$color-alpha-light-02});
-      stroke: var(--as--color--alpha-light-02, #{$color-alpha-light-02});
+      border-color: var(--as--color--alpha-02, #{$color-alpha-02});
+      stroke: var(--as--color--alpha-02, #{$color-alpha-02});
     }
 
     &:enabled:not(:checked):not(.as-checkbox-input--error):hover + .as-checkbox-decoration {

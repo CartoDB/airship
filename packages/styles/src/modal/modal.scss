@@ -1,6 +1,6 @@
 @import "../core/_dev";
 
-$modal-background: var(--as--color--alpha-light-01, #{$color-alpha-light-01});
+$modal-background: var(--as--color--alpha-01, #{$color-alpha-01});
 
 .as-modal {
   --as-modal--color--background: #{$modal-background};

@@ -42,13 +42,13 @@
     }
 
     &::placeholder {
-      color: var(--as--color--alpha-light-01, #{$color-alpha-light-01});
+      color: var(--as--color--alpha-01, #{$color-alpha-01});
     }
   }
 
   &:disabled {
     background: var(--as--color--ui-02);
-    color: var(--as--color--alpha-light-02, #{$color-alpha-light-02});
+    color: var(--as--color--alpha-02, #{$color-alpha-02});
 
     &:hover,
     &:focus,
@@ -57,7 +57,7 @@
     }
 
     &::placeholder {
-      color: var(--as--color--alpha-light-02, #{$color-alpha-light-02});
+      color: var(--as--color--alpha-02, #{$color-alpha-02});
     }
   }
 

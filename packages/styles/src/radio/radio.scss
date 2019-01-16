@@ -17,7 +17,7 @@
     border: none;
     border-radius: 50%;
     background: none;
-    box-shadow: inset 0 0 0 1px var(--as--color--alpha-light-01, #{$color-alpha-light-01});
+    box-shadow: inset 0 0 0 1px var(--as--color--alpha-01, #{$color-alpha-01});
     cursor: pointer;
     -webkit-appearance: none;
 
@@ -54,15 +54,15 @@
 
     &:disabled {
       background-color: var(--as--color--ui-03);
-      box-shadow: inset 0 0 0 1px var(--as--color--alpha-light-01, #{$color-alpha-light-01});
+      box-shadow: inset 0 0 0 1px var(--as--color--alpha-01, #{$color-alpha-01});
       cursor: not-allowed;
     }
 
     &:checked:disabled {
-      box-shadow: inset 0 0 0 1px var(--as--color--alpha-light-01, #{$color-alpha-light-01});
+      box-shadow: inset 0 0 0 1px var(--as--color--alpha-01, #{$color-alpha-01});
 
       &::after {
-        background-color: var(--as--color--alpha-light-01, #{$color-alpha-light-01});
+        background-color: var(--as--color--alpha-01, #{$color-alpha-01});
       }
     }
 
