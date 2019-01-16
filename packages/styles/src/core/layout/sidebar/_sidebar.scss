@@ -15,7 +15,7 @@
 
   &--left {
     order: -1;
-    box-shadow: var(--as--color--alpha-light-01, #{$color-alpha-light-01}) 1px 0 4px 0;
+    box-shadow: var(--as--color--alpha-01, #{$color-alpha-01}) 1px 0 4px 0;
 
     &.as-sidebar--visible {
       display: flex;
@@ -25,7 +25,7 @@
 
   &--right {
     order: 9999;
-    box-shadow: var(--as--color--alpha-light-01, #{$color-alpha-light-01}) 0 1px 4px 0;
+    box-shadow: var(--as--color--alpha-01, #{$color-alpha-01}) 0 1px 4px 0;
 
     &.as-sidebar--visible {
       display: flex;
