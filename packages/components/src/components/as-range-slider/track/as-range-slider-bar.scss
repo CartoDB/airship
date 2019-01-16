@@ -5,7 +5,7 @@ as-range-slider-bar {
 
   .as-range-slider__range-bar {
     position: absolute;
-    z-index: 1;
+    z-index: $z-index-1;
     top: 50%;
     height: 2px;
     transform: translate3d(0, -50%, 0);

@@ -1,13 +1,13 @@
 @import "../core/_dev";
 
-$modal-background: rgba($color-type-01, 0.8);
+$modal-background: var(--as--color--shadow-light-01, #{$color-shadow-light-01});
 
 .as-modal {
   --as-modal--color--background: #{$modal-background};
 
   display: flex;
   position: absolute;
-  z-index: 100;
+  z-index: $z-index-100;
   top: 0;
   right: 0;
   bottom: 0;

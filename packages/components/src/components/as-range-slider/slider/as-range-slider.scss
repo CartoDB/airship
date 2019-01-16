@@ -21,7 +21,7 @@ as-range-slider {
     &::before {
       content: ' ';
       position: absolute;
-      z-index: 0;
+      z-index: $z-index-0;
       top: 50%;
       left: 0;
       width: 100%;
