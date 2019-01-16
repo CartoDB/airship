@@ -1,4 +1,4 @@
 // -- Shadows
-$shadow-4: 0 1px 4px 0 var(--as--color--shadow-light-01, #{$color-shadow-light-01});
-$shadow-8: 0 2px 8px 0 var(--as--color--shadow-light-01, #{$color-shadow-light-01});
-$shadow-16: 0 4px 16px 0 var(--as--color--shadow-light-01, #{$color-shadow-light-01});
+$shadow-4: 0 1px 4px 0 var(--as--color--alpha-light-01, #{$color-alpha-light-01});
+$shadow-8: 0 2px 8px 0 var(--as--color--alpha-light-01, #{$color-alpha-light-01});
+$shadow-16: 0 4px 16px 0 var(--as--color--alpha-light-01, #{$color-alpha-light-01});

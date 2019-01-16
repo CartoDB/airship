@@ -30,18 +30,18 @@ $color-badge-pink: #E4D8EB !default;
 $color-badge-yellow: #F8E71C !default;
 
 // Shadows
-$color-shadow-primary: unquote('#1785FB29') !default;
-$color-shadow-secondary:unquote('#0F2D5329') !default;
-$color-shadow-complementary: unquote('#47db9929') !default;
+$color-alpha-primary: unquote('#1785FB29') !default;
+$color-alpha-secondary:unquote('#0F2D5329') !default;
+$color-alpha-complementary: unquote('#47db9929') !default;
 
-$color-shadow-support-01: unquote('#F3522B29') !default;
-$color-shadow-support-02: unquote('#FDB32B29') !default;
-$color-shadow-support-03: unquote('#80B62229') !default;
+$color-alpha-support-01: unquote('#F3522B29') !default;
+$color-alpha-support-02: unquote('#FDB32B29') !default;
+$color-alpha-support-03: unquote('#80B62229') !default;
 
-$color-shadow-light-01: unquote('#2c2c2c29') !default;
-$color-shadow-light-02: unquote('#74747429') !default;
-$color-shadow-dark-01: unquote('#2c2c2cd6') !default;
-$color-shadow-dark-02: unquote('#747474d6') !default;
+$color-alpha-light-01: unquote('#2c2c2c29') !default;
+$color-alpha-light-02: unquote('#74747429') !default;
+$color-alpha-dark-01: unquote('#2c2c2cd6') !default;
+$color-alpha-dark-02: unquote('#747474d6') !default;
 
 @mixin colors-vars {
   // Brand
@@ -76,16 +76,16 @@ $color-shadow-dark-02: unquote('#747474d6') !default;
   --as--color--badge-yellow: #{$color-badge-yellow};
 
   // Shadows
-  --as--color--shadow-primary: #{$color-shadow-primary};
-  --as--color--shadow-secondary: #{$color-shadow-secondary};
-  --as--color--shadow-complementary: #{$color-shadow-complementary};
+  --as--color--alpha-primary: #{$color-alpha-primary};
+  --as--color--alpha-secondary: #{$color-alpha-secondary};
+  --as--color--alpha-complementary: #{$color-alpha-complementary};
 
-  --as--color---shadow-support-01: #{$color-shadow-support-01};
-  --as--color---shadow-support-02: #{$color-shadow-support-02};
-  --as--color---shadow-support-03: #{$color-shadow-support-03};
+  --as--color---alpha-support-01: #{$color-alpha-support-01};
+  --as--color---alpha-support-02: #{$color-alpha-support-02};
+  --as--color---alpha-support-03: #{$color-alpha-support-03};
 
-  --as--color--shadow-light-01: #{$color-shadow-light-01};
-  --as--color--shadow-light-02: #{$color-shadow-light-02};
-  --as--color--shadow-dark-01: #{$color-shadow-dark-01};
-  --as--color--shadow-dark-02: #{$color-shadow-dark-02};
+  --as--color--alpha-light-01: #{$color-alpha-light-01};
+  --as--color--alpha-light-02: #{$color-alpha-light-02};
+  --as--color--alpha-dark-01: #{$color-alpha-dark-01};
+  --as--color--alpha-dark-02: #{$color-alpha-dark-02};
 }
