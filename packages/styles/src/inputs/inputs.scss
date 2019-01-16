@@ -4,6 +4,11 @@
 
 .as-input,
 .as-textarea {
+  --as--input--background--invalid: #fef2ee;
+  --as--input--color--placeholder: #d1d5d7;
+  --as--input--color--disabled: #d1d5d7;
+  --as--input--background--disabled: #f5f5f5;
+
   box-sizing: border-box;
   width: 100%;
   min-height: 32px;
@@ -32,7 +37,7 @@
   }
 
   &:invalid {
-    background: rgba($color-support-01, 0.12);
+    background: var(--as--input--background--invalid);
     box-shadow: inset 0 0 0 1px var(--as--color---support-01);
 
     &:hover,
@@ -42,13 +47,13 @@
     }
 
     &::placeholder {
-      color: rgba($color-type-01, 0.4);
+      color: var(--as--input--color--placeholder);
     }
   }
 
   &:disabled {
-    background: var(--as--color--ui-02);
-    color: rgba($color-type-02, 0.4);
+    background: var(--as--input--background--disabled);
+    color: var(--as--input--color--disabled);
 
     &:hover,
     &:focus,
@@ -57,7 +62,7 @@
     }
 
     &::placeholder {
-      color: rgba($color-type-02, 0.4);
+      color: var(--as--input--color--disabled);
     }
   }
 

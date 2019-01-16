@@ -4,6 +4,8 @@
 $color-primary: #1785FB !default;
 $color-secondary: #0F2D53 !default;
 $color-complementary: #47DB99 !default;
+$color-complementary-hover: #e0f9ee !default;
+$color-complementary-selected: #c6f4df !default;
 
 // Typography
 $color-type-01: #2C2C2C !default;
@@ -29,11 +31,18 @@ $color-badge-blue: #B5E0F9 !default;
 $color-badge-pink: #E4D8EB !default;
 $color-badge-yellow: #F8E71C !default;
 
+// With alpha
+
+$color-shadow: rgba(44, 44, 44, 0.16);
+$color-modal: rgba(44, 44, 44, 0.8);
+
 @mixin colors-vars {
   // Brand
   --as--color--primary: #{$color-primary};
   --as--color--secondary: #{$color-secondary};
   --as--color--complementary: #{$color-complementary};
+  --as--color--complementary-hover: #{$color-complementary-hover};
+  --as--color--complementary-selected: #{$color-complementary-selected};
 
   // Typography
   --as--color--type-01: #{$color-type-01};
@@ -58,4 +67,8 @@ $color-badge-yellow: #F8E71C !default;
   --as--color--badge-blue: #{$color-badge-blue};
   --as--color--badge-pink: #{$color-badge-pink};
   --as--color--badge-yellow: #{$color-badge-yellow};
+
+  // With alpha
+  --as--color--shadow: #{$color-shadow};
+  --as--color--modal: #{$color-modal};
 }

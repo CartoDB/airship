@@ -2,6 +2,8 @@
 
 .as-toolbar {
   --as-toolbar--background-color: var(--as--color--secondary);
+  --as-toolbar--text-color: var(--as--color--type-01, #{$color-type-01});
+  --as-toolbar--link-color: var(--as-toolbar--text-color);
 
   display: flex;
   justify-content: space-between;
@@ -20,13 +22,13 @@
     min-height: $toolbar-size;
     margin: 0;
     padding: 0 get-spacing(3);
-    color: var(--as--color--type-04);
+    color: var(--as-toolbar--text-color);
     font: $font-body;
     cursor: pointer;
   }
 
   a {
-    color: var(--as--color--ui-01);
+    color: var(--as-toolbar--link-color);
     text-decoration: none;
   }
 

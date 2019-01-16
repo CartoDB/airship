@@ -1,6 +1,18 @@
 @import "../core/_dev";
 
 .as-checkbox {
+  --as-checkbox--border-color: #d1d5d7;
+  --as-checkbox--border-color--hover: var(--as--color--complementary);
+  --as-checkbox--border-color--focus: var(--as--color--primary);
+
+  --as-checkbox--color--checked: var(--as--color--primary);
+
+  --as-checkbox--color--error: var(--as--color---support-01);
+  --as-checkbox--background--error:rgba(243, 82, 43, 0.15);
+  --as-checkbox--background--disabled: var(--as--color--ui-02);
+  --as-checkbox--color--disabled: var(--as--color--ui-03);
+  --as-checkbox--color--error--disabled: rgba(243, 82, 43, 0.3);
+
   display: flex;
   position: relative;
   align-items: center;
@@ -13,7 +25,7 @@
     width: get-spacing(4);
     height: get-spacing(4);
     overflow: hidden;
-    border: 1px solid rgba($color-type-02, 0.16);
+    border: 1px solid var(--as-checkbox--border-color);
     border-radius: 3px;
     pointer-events: none;
   }
@@ -49,22 +61,23 @@
     cursor: pointer;
 
     &:disabled {
-      background: #F4F4F4;
+      background: var(--as-checkbox--background--disabled);
       cursor: not-allowed;
+      pointer-events: none;
     }
 
     &:focus:not(:hover) {
-      border: 2px solid var(--as--color--primary);
+      border: 2px solid var(--as-checkbox--border-color--focus);
     }
 
     &:focus.as-checkbox-input--error {
-      border: 2px solid var(--as--color---support-01);
+      border: 2px solid var(--as-checkbox--color--error);
     }
 
     &--error + .as-checkbox-decoration {
-      border-color: var(--as--color---support-01);
-      stroke: var(--as--color---support-01);
-      background: rgba($color-support-01, 0.16);
+      border-color: var(--as-checkbox--color--error);
+      stroke: var(--as-checkbox--color--error);
+      background: var(--as-checkbox--background--error);
     }
 
     &:checked + .as-checkbox-decoration {
@@ -89,22 +102,28 @@
     }
 
     &:checked:not(.as-checkbox-input--error) + .as-checkbox-decoration {
-      border: 1px solid var(--as--color--primary);
-      stroke: var(--as--color--primary);
+      border: 1px solid var(--as-checkbox--color--checked);
+      stroke: var(--as-checkbox--color--checked);
     }
 
     &:disabled:checked + {
       background: var(--as--color--ui-02);
       cursor: not-allowed;
+      pointer-events: none;
     }
 
     &:disabled:checked + .as-checkbox-decoration {
-      border-color: rgba(116, 116, 116, 0.16);
-      stroke: rgba(116, 116, 116, 0.16);
+      border-color: var(--as-checkbox--color--disabled);
+      stroke: var(--as-checkbox--color--disabled);
     }
 
     &:enabled:not(:checked):not(.as-checkbox-input--error):hover + .as-checkbox-decoration {
-      border: 1px solid var(--as--color--complementary);
+      border: 1px solid var(--as-checkbox--border-color--hover);
+    }
+
+    &:disabled.as-checkbox-input--error + .as-checkbox-decoration {
+      border-color: var(--as-checkbox--color--error--disabled);
+      stroke: var(--as-checkbox--color--error--disabled);
     }
   }
 

@@ -3,9 +3,11 @@
 as-switch {
   --as-switch--color--background-default: var(--as--color--type-03);
   --as-switch--color--background-disabled: var(--as--color--ui-02);
+  --as-switch--color--color-disabled: var(--as--color--ui-04);
   --as-switch--color--background-checked: var(--as--color--primary);
   --as-switch--color--background-active: var(--as--color--complementary);
   --as-switch--color--thumb: var(--as--color--ui-01);
+  --as-switch--color--checked-thumb: var(--as--color--ui-01);
 
   display: inline-block;
   position: relative;
@@ -78,19 +80,21 @@ as-switch {
   }
 
   .as-switch__input[disabled] + .as-switch__toggle::after {
-    background: var(--as--color--ui-04, #{$color-ui-04});
+    background: var(--as-switch--color--color-disabled);
   }
 
   .as-switch__input:checked + .as-switch__toggle,
   .as-switch__input:checked + .as-switch__toggle:hover {
-    background: var(--as--color--primary, #{$color-primary});
+    background: var(--as-switch--color--background-checked, #{$color-primary});
   }
 
   .as-switch__input:checked + .as-switch__toggle::after {
     transform: translateX(18px);
+    background: var(--as-switch--color--checked-thumb);
   }
 
   .as-switch__input:checked ~ svg {
     opacity: 1;
+    color: var(--as-switch--color--checked-thumb);
   }
 }

@@ -1,7 +1,7 @@
 @import '../../../../styles/src/core/_dev';
 
 as-infowindow {
-  --as-infowindow--color--shadow: #{rgba($color-type-01, 0.16)};
+  --as-infowindow--color--shadow: var(--as--color--shadow, #{$color-shadow});
   --as-infowindow--color--background: var(--as--color--ui-01, #{$color-ui-01});
 
   display: inline-block;
@@ -9,9 +9,9 @@ as-infowindow {
   .as-infowindow {
     display: inline-block;
     position: relative;
-    z-index: 3;
+    z-index: $z-index-3;
     width: 260px;
-    border-radius: 4px;
+    border-radius: 4px 4px 4px 0;
     background: var(--as-infowindow--color--background);
     box-shadow: 0 4px 16px 0 var(--as-infowindow--color--shadow);
 
@@ -35,7 +35,7 @@ as-infowindow {
 
     &__hook {
       position: absolute;
-      z-index: 10;
+      z-index: $z-index-10;
       bottom: 1px;
       left: 0;
       background: var(--as-infowindow--color--background);
@@ -43,7 +43,7 @@ as-infowindow {
       &::before {
         content: '';
         position: absolute;
-        z-index: 3;
+        z-index: $z-index-3;
         top: 0;
         left: 0;
         width: 0;
@@ -56,7 +56,7 @@ as-infowindow {
       &::after {
         content: '';
         position: absolute;
-        z-index: 2;
+        z-index: $z-index-2;
         top: 3px;
         left: 0;
         width: 0;
@@ -69,13 +69,13 @@ as-infowindow {
 
     &__imageHook {
       position: absolute;
-      z-index: 10;
+      z-index: $z-index-10;
       bottom: 0;
 
       &::after {
         content: '';
         position: absolute;
-        z-index: 1;
+        z-index: $z-index-1;
         top: 3px;
         left: 0;
         width: 0;
@@ -88,7 +88,7 @@ as-infowindow {
 
     &__imageHook--inner {
       position: absolute;
-      z-index: 3;
+      z-index: $z-index-3;
       top: -1px;
       width: 18px;
       height: 12px;

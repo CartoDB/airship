@@ -1,14 +1,20 @@
 @import "../core/_dev";
 
 .as-table {
-  --as-color-table-row-hover: #E2F9EE;
-  --as-color-table-cell-hover: #C8F3DF;
+  --as-table-border--color: var(--as--color--ui-04);
+  --as-table-cell--background-color: var(--as--color--ui-01);
+  --as-table-header--background-color: var(--as--color--ui-04);
+  --as-table-header--color: var(--as--color--type-01);
+  --as-table--color: var(--as--color--type-01);
+  --as-table-row--color-hover: var(--as--color--complementary-hover, #{$color-complementary-hover});
+  --as-table-cell-color-hover: var(--as--color--complementary-selected, #{$color-complementary-selected});
 
   border-collapse: collapse;
-  border: 1px solid var(--as--color--ui-04);
-  background: var(--as--color--ui-01);
+  border: 1px solid var(--as-table-border--color);
+  background: var(--as-table-cell--background-color);
   font: var(--as--font--body);
   text-align: left;
+  color: var(--as-table--color);
 
   th,
   td {
@@ -17,27 +23,28 @@
   }
 
   th {
-    background: #E2E6E3;
+    background: var(--as-table-header--background-color);
   }
 
   thead {
-    border: 1px solid var(--as--color--ui-04);
+    border: 1px solid var(--as-table-header--background-color);
+    color: var(--as-table-header--color);
   }
 
   &--stripped {
     th,
     td {
-      border: 1px solid var(--as--color--ui-04);
+      border: 1px solid var(--as-table-border--color);
     }
   }
 
   tr:hover {
-    border-top: 1px solid var(--as-color-table-cell-hover, #C8F3DF);
-    border-bottom: 1px solid var(--as-color-table-cell-hover, #C8F3DF);
-    background-color: var(--as-color-table-row-hover, #E2F9EE);
+    border-top: 1px solid var(--as-table-cell-color-hover, #C8F3DF);
+    border-bottom: 1px solid var(--as-table-cell-color-hover, #C8F3DF);
+    background-color: var(--as-table-row--color-hover, #E2F9EE);
   }
 
   td:hover {
-    background: var(--as-color-table-cell-hover, #C8F3DF);
+    background: var(--as-table-cell-color-hover, #C8F3DF);
   }
 }

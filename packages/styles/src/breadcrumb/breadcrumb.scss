@@ -1,6 +1,9 @@
 @import "../core/_dev";
 
 .as-breadcrumb {
+  --as-breadcrumb--color--current: var(--as--color--type-01);
+  --as-breadcrumb--color--visited: var(--as--color--primary);
+
   display: flex;
   margin: 0;
   padding: 0;
@@ -8,14 +11,14 @@
 
   &__item {
     display: flex;
-    color: var(--as--color--type-01);
+    color: var(--as-breadcrumb--color--current);
     font: $font-body;
     cursor: default;
 
     &::after {
       content: '›';
       margin: 0 get-spacing(2);
-      color: var(--as--color--primary);
+      color: var(--as-breadcrumb--color--visited);
       font-size: 12px;
     }
 
@@ -24,7 +27,7 @@
     }
 
     a {
-      color: var(--as--color--primary);
+      color: var(--as-breadcrumb--color--visited);
       text-decoration: none;
 
       :hover {
