@@ -50,7 +50,7 @@ describe('as-time-series-widget', () => {
       const translateX = parseTranslate(scrubber.getAttribute('transform'))[0];
       const lineX2 = parseFloat(line.getAttribute('x2'));
 
-      expect(Math.abs(translateX - lineX2)).not.toBeGreaterThan(2);
+      expect(Math.abs(translateX - lineX2)).not.toBeGreaterThan(3);
     });
 
     it('should render the x-axis as dates', async () => {
