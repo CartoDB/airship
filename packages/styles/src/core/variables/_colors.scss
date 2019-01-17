@@ -37,7 +37,7 @@ $color-alpha-support-03: unquote('#80B62229') !default;
 
 $color-alpha-shadow-01: unquote('#2c2c2c29') !default;
 
-$color-alpha-light-01: unquote('#ffffffb9')!default; // 0.75
+$color-alpha-light-01: unquote('#ffffffb9') !default; // 0.75
 $color-alpha-light-02: unquote('#ffffff80') !default; // 0.5
 $color-alpha-light-03: unquote('#ffffff26') !default; // 0.15
 $color-alpha-dark-01: unquote('#000000b9') !default; // 0.75
@@ -82,15 +82,12 @@ $color-alpha-02: $color-alpha-light-02;
   --as--color--alpha-support-01: #{$color-alpha-support-01};
   --as--color--alpha-support-02: #{$color-alpha-support-02};
   --as--color--alpha-support-03: #{$color-alpha-support-03};
-
   --as--color--alpha-shadow-01: #{$color-alpha-shadow-01};
-
   --as--color--alpha-light-01: #{$color-alpha-light-01};
   --as--color--alpha-light-02: #{$color-alpha-light-02};
   --as--color--alpha-dark-01: #{$color-alpha-dark-01};
   --as--color--alpha-dark-02: #{$color-alpha-dark-02};
   --as--color--alpha-dark-03: #{$color-alpha-dark-03};
-
   --as--color--alpha-01: var(--as--color--alpha-light-01);
   --as--color--alpha-02: var(--as--color--alpha-light-02);
 }

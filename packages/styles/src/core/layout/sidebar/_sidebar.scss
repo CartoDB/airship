@@ -15,10 +15,11 @@
 
   &--left {
     order: -1;
-    box-shadow: (
-      var(--as--color--alpha-shadow-01, #{$color-alpha-shadow-01}) 1px 0 4px 0,
-      var(--as--color--alpha-02, #{$color-alpha-02}) 1px 0 4px 0
-    );
+    box-shadow:
+      (
+        var(--as--color--alpha-shadow-01, #{$color-alpha-shadow-01}) 1px 0 4px 0,
+        var(--as--color--alpha-02, #{$color-alpha-02}) 1px 0 4px 0
+      );
 
     &.as-sidebar--visible {
       display: flex;
@@ -28,10 +29,11 @@
 
   &--right {
     order: 9999;
-    box-shadow: (
-      var(--as--color--alpha-shadow-01, #{$color-alpha-shadow-01}) -1px 0 4px 0,
-      var(--as--color--alpha-02, #{$color-alpha-02}) -1px 0 4px 0
-    );
+    box-shadow:
+      (
+        var(--as--color--alpha-shadow-01, #{$color-alpha-shadow-01}) -1px 0 4px 0,
+        var(--as--color--alpha-02, #{$color-alpha-02}) -1px 0 4px 0
+      );
 
     &.as-sidebar--visible {
       display: flex;
