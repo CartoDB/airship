@@ -6,8 +6,8 @@ import { icon } from '../../utils/icons';
 import { HistogramColorRange } from '../as-histogram-widget/interfaces';
 import { RenderOptions } from '../as-histogram-widget/types/RenderOptions';
 import {
-  DEFAULT_BAR_COLOR,
-  DEFAULT_SELECTED_BAR_COLOR,
+  DEFAULT_BACKGROUND_BAR_COLOR,
+  DEFAULT_BAR_COLOR
 } from '../common/constants';
 import { TimeSeriesData } from './interfaces';
 import { prepareData, sameData } from './utils/data.service';
@@ -88,7 +88,7 @@ export class TimeSeriesWidget {
    * @type {string}
    * @memberof HistogramWidget
    */
-  @Prop() public selectedColor: string = DEFAULT_SELECTED_BAR_COLOR;
+  @Prop() public unselectedColor: string = DEFAULT_BACKGROUND_BAR_COLOR;
 
   /**
    * Color range for histogram data
@@ -311,7 +311,7 @@ export class TimeSeriesWidget {
           disableInteractivity={this.disableInteractivity}
           data={this._data}
           color={this.color}
-          selectedColor={this.selectedColor}
+          unselectedColor={this.unselectedColor}
           colorRange={this.colorRange}
           axisFormatter={this.axisFormatter}
           tooltipFormatter={this.tooltipFormatter}

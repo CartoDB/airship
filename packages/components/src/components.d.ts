@@ -293,10 +293,6 @@ export namespace Components {
     */
     'responsive': boolean;
     /**
-    * Override color for the selected histogram bars
-    */
-    'selectedColor': string;
-    /**
     * Function to format the range selected text displayed below the histogram
     */
     'selectedFormatter': (value: number[]) => string;
@@ -316,6 +312,10 @@ export namespace Components {
     * Function that formats the tooltip. Receives HistogramData and outputs a string
     */
     'tooltipFormatter': (value: HistogramData) => string;
+    /**
+    * Override color for the non selected histogram bars
+    */
+    'unselectedColor': string;
     /**
     * Label the x axis of the histogram with the given string.
     */
@@ -386,10 +386,6 @@ export namespace Components {
     */
     'responsive'?: boolean;
     /**
-    * Override color for the selected histogram bars
-    */
-    'selectedColor'?: string;
-    /**
     * Function to format the range selected text displayed below the histogram
     */
     'selectedFormatter'?: (value: number[]) => string;
@@ -405,6 +401,10 @@ export namespace Components {
     * Function that formats the tooltip. Receives HistogramData and outputs a string
     */
     'tooltipFormatter'?: (value: HistogramData) => string;
+    /**
+    * Override color for the non selected histogram bars
+    */
+    'unselectedColor'?: string;
     /**
     * Label the x axis of the histogram with the given string.
     */
@@ -788,10 +788,6 @@ export namespace Components {
     */
     'responsive': boolean;
     /**
-    * Override color for the selected histogram bars
-    */
-    'selectedColor': string;
-    /**
     * Display a clear button that clears the histogram selection.
     */
     'showClear': boolean;
@@ -811,6 +807,10 @@ export namespace Components {
     * Function that formats the tooltip. Receives TimeSeriesData and outputs a string
     */
     'tooltipFormatter': (value: TimeSeriesData) => string;
+    /**
+    * Override color for the selected histogram bars
+    */
+    'unselectedColor': string;
     /**
     * Label the x axis of the histogram with the given string.
     */
@@ -902,10 +902,6 @@ export namespace Components {
     */
     'responsive'?: boolean;
     /**
-    * Override color for the selected histogram bars
-    */
-    'selectedColor'?: string;
-    /**
     * Display a clear button that clears the histogram selection.
     */
     'showClear'?: boolean;
@@ -925,6 +921,10 @@ export namespace Components {
     * Function that formats the tooltip. Receives TimeSeriesData and outputs a string
     */
     'tooltipFormatter'?: (value: TimeSeriesData) => string;
+    /**
+    * Override color for the selected histogram bars
+    */
+    'unselectedColor'?: string;
     /**
     * Label the x axis of the histogram with the given string.
     */

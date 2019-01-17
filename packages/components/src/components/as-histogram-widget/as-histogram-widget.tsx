@@ -8,10 +8,10 @@ import {
 import 'd3-transition';
 import readableNumber from '../../utils/readable-number';
 import {
+  DEFAULT_BACKGROUND_BAR_COLOR,
+  DEFAULT_BACKGROUND_BAR_COLOR_HEX,
   DEFAULT_BAR_COLOR,
-  DEFAULT_BAR_COLOR_HEX,
-  DEFAULT_SELECTED_BAR_COLOR,
-  DEFAULT_SELECTED_BAR_COLOR_HEX
+  DEFAULT_BAR_COLOR_HEX
 } from '../common/constants';
 import contentFragment from '../common/content.fragment';
 import { HistogramColorRange, HistogramData } from './interfaces';
@@ -99,12 +99,12 @@ export class HistogramWidget {
   @Prop() public color: string = DEFAULT_BAR_COLOR;
 
   /**
-   * Override color for the selected histogram bars
+   * Override color for the non selected histogram bars
    *
    * @type {string}
    * @memberof HistogramWidget
    */
-  @Prop() public selectedColor: string = DEFAULT_SELECTED_BAR_COLOR;
+  @Prop() public unselectedColor: string = DEFAULT_BACKGROUND_BAR_COLOR;
 
   /**
    * Color range for histogram data
@@ -218,7 +218,7 @@ export class HistogramWidget {
   private prevHeight: number;
 
   private _color: string;
-  private _selectedColor: string;
+  private _barBackgroundColor: string;
   private _dataJustUpdated: boolean = false;
 
   @State()
@@ -244,10 +244,10 @@ export class HistogramWidget {
     this._color = this._toColor(incomingColor, DEFAULT_BAR_COLOR_HEX);
   }
 
-  @Watch('selectedColor')
+  @Watch('unselectedColor')
   public _onSelectedColorChanged(newColor) {
-    const incomingColor = newColor || DEFAULT_SELECTED_BAR_COLOR;
-    this._selectedColor = this._toColor(incomingColor, DEFAULT_SELECTED_BAR_COLOR_HEX);
+    const incomingColor = newColor || DEFAULT_BACKGROUND_BAR_COLOR;
+    this._barBackgroundColor = this._toColor(incomingColor, DEFAULT_BACKGROUND_BAR_COLOR_HEX);
   }
 
   /**
@@ -300,7 +300,7 @@ export class HistogramWidget {
 
   public componentDidLoad() {
     this._color = this._toColor(this.color, DEFAULT_BAR_COLOR_HEX);
-    this._selectedColor = this._toColor(this.selectedColor, DEFAULT_SELECTED_BAR_COLOR_HEX);
+    this._barBackgroundColor = this._toColor(this.unselectedColor, DEFAULT_BACKGROUND_BAR_COLOR_HEX);
 
     if (!this._hasDataToDisplay()) {
       return;
@@ -446,7 +446,7 @@ export class HistogramWidget {
       this.barsContainer,
       this,
       this._color,
-      this._selectedColor,
+      this._barBackgroundColor,
       this.tooltipFormatter,
       this._setTooltip.bind(this)
     );
@@ -643,8 +643,8 @@ export class HistogramWidget {
     this.barsContainer.selectAll('.bar')
       .style('fill', (_d, i) => {
         const d = this.data[i];
-        if ((values[0] <= d.start && d.end <= values[1])) {
-          return this._selectedColor;
+        if (!(values[0] <= d.start && d.end <= values[1])) {
+          return this._barBackgroundColor;
         }
         return d.color || this._color;
       });

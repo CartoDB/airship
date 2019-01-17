@@ -11,7 +11,7 @@ export function addTooltip(
   barsContainer: SVGGContainer,
   hasSelection: { selection: number[] | null },
   color: string,
-  selectedColor: string,
+  unselectedColor: string,
   formatter: (d: HistogramData) => string,
   setTooltip: (tooltip: string | null, evt?: MouseEvent) => void
 ) {
@@ -32,13 +32,13 @@ export function addTooltip(
           clientY <= bb.bottom;
 
         if (isInsideBB) {
-          let _color = selected ? selectedColor : data.color || color;
+          let _color = selected ? data.color || color : unselectedColor;
           _color = shadeOrBlend(-0.16, _color);
           nodeSelection.style('fill', _color);
           setTooltip(formatter(data), evt);
           anyHovered = true;
         } else {
-          nodeSelection.style('fill', selected ? selectedColor : data.color || color);
+          nodeSelection.style('fill', selected ? data.color || color : unselectedColor);
         }
       });
 
@@ -51,16 +51,16 @@ export function addTooltip(
     barsContainer.selectAll('rect')
       .style('fill', (data: HistogramData) => {
         if (_isSelected(data, hasSelection.selection)) {
-          return selectedColor;
+          return data.color || color;
         }
-        return data.color || color;
+        return unselectedColor;
       });
   });
 }
 
 function _isSelected(data: HistogramData, range: number[] | null) {
   if (range === null) {
-    return false;
+    return true;
   }
 
   return data.start >= range[0] && data.end <= range[1];

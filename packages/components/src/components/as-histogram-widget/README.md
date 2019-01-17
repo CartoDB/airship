@@ -51,8 +51,8 @@ histogramWidget.data = [
   { start: 80, end: 90, value: 60 },
 ];
 ```
-#### **color**: string = '#1785FB'
-Overrides default bar color. Default value is `#1785FB`
+#### **color**: string = '#47DB99'
+Overrides default bar color. Default value is `#47DB99`
 
 ```code
 lang: html
@@ -65,13 +65,13 @@ lang: javascript
 histogramWidget.color = `#FABADA`;
 ```
 
-#### **selectedColor**: string = '#47DB99'
-Overrides default bar color for bars that are currently selected. It's also the color for the selection elements.
+#### **unselectedColor**: string = '#E2E6E3'
+Overrides default bar color for bars outside the selection.
 
 ```code
 lang: html
 ---
-<as-histogram-widget selectedColor="#120918"></as-histogram-widget>
+<as-histogram-widget unselected-color="#120918"></as-histogram-widget>
 ```
 ```code
 lang: javascript
