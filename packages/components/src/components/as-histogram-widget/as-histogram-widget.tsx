@@ -22,12 +22,12 @@ import dataService, { binsScale } from './utils/data.service';
 import drawService from './utils/draw.service';
 import interactionService from './utils/interaction.service';
 
-const CUSTOM_HANDLE_WIDTH = 6;
-const CUSTOM_HANDLE_HEIGHT = 14;
+const CUSTOM_HANDLE_WIDTH = 8;
+const CUSTOM_HANDLE_HEIGHT = 20;
 
 // we could use getComputedStyle instead of these
 const X_PADDING = 38;
-const Y_PADDING = 36;
+const Y_PADDING = 40;
 const LABEL_PADDING = 25;
 
 /**
@@ -637,6 +637,7 @@ export class HistogramWidget {
 
     this.brushArea.selectAll('.bottomline')
       .style('opacity', 1)
+      .attr('stroke-width', 2)
       .attr('x1', spaceValues[0])
       .attr('x2', spaceValues[1]);
 

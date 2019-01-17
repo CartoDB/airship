@@ -59,6 +59,8 @@ export function addCustomHandles(
 
   let customHandles = brushArea.selectAll<SVGGElement, { type: string }>('.handle--wrapper');
 
+  const linesMargin = Math.floor((CUSTOM_HANDLE_WIDTH - 2) / 2);
+
   if (customHandles.empty()) {
     customHandles = customHandles
       .data([{ type: 'w' }, { type: 'e' }])
@@ -71,8 +73,8 @@ export function addCustomHandles(
       .attr('class', 'handle--custom')
       .attr('width', CUSTOM_HANDLE_WIDTH)
       .attr('height', CUSTOM_HANDLE_HEIGHT)
-      .attr('rx', 2)
-      .attr('ry', 2);
+      .attr('rx', 1)
+      .attr('ry', 1);
 
     const handleGrab = customHandles
       .append('g')
@@ -81,9 +83,10 @@ export function addCustomHandles(
     for (let i = 0; i < 3; i++) {
       handleGrab
         .append('line')
-        .attr('x1', 2)
+        .attr('transform', `translate(0 ${(CUSTOM_HANDLE_HEIGHT / 2) - 2})`)
+        .attr('x1', linesMargin)
         .attr('y1', i * 2)
-        .attr('x2', 4)
+        .attr('x2', CUSTOM_HANDLE_WIDTH - linesMargin)
         .attr('y2', i * 2)
         .attr('class', 'grab-line');
     }

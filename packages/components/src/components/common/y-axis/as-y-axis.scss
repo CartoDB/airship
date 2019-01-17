@@ -1,5 +1,5 @@
 .y-axis {
-  --widget-axis-line-color: var(--as--color--type-02, #747474);
+  --widget-axis-line-color: var(--as--color--type-02, $color-type-02);
 
   .tick {
     text {
@@ -9,7 +9,7 @@
     }
 
     line {
-      stroke: var(--widget-axis-line-color, rgba(46, 60, 67, 0.16));
+      stroke: var(--widget-axis-line-color, $color-type-02);
       opacity: 0.1;
     }
   }

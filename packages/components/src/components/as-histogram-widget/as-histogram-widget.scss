@@ -71,20 +71,20 @@ as-histogram-widget {
       }
     }
 
+    .y-axis .tick:first-of-type line {
+      opacity: 0.5;
+    }
+
     .handle--wrapper {
       opacity: 0;
     }
 
     .handle--custom {
       stroke-linecap: round;
-      stroke: #1785FB;
+      stroke: var(--as--color--secondary, #{$color-secondary});
       fill: white;
       cursor: ew-resize;
       pointer-events: none;
-    }
-
-    .handle--grab {
-      transform: translateY(5px);
     }
 
     .grab-line {
@@ -92,7 +92,7 @@ as-histogram-widget {
     }
 
     .bottomline {
-      stroke: var(--as--color--primary, #{$color-primary});
+      stroke: var(--as--color--secondary, #{$color-secondary});
     }
   }
 

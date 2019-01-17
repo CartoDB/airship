@@ -140,7 +140,7 @@ export function renderXAxis(
   const xAxis = axisBottom(xScale)
     .tickSize(-HEIGHT)
     .tickValues(ticks)
-    .tickPadding(10)
+    .tickPadding(13)
     .tickFormat((value) => {
       const realValue = realScale.invert(value);
 

@@ -12,7 +12,7 @@ import {
 import { TimeSeriesData } from './interfaces';
 import { prepareData, sameData } from './utils/data.service';
 
-const SCRUBBER_SIZE = 4;
+const SCRUBBER_SIZE = 6;
 
 /**
  * Time series
@@ -442,11 +442,10 @@ export class TimeSeriesWidget {
     }
 
     timeSeries.select('.as-time-series--line')
-      .attr('x1', progressScale(0))
+      .attr('x1', progressScale(0) - (SCRUBBER_SIZE / 2))
       .attr('x2', xPos)
       .attr('y1', height - Y_PADDING)
-      .attr('y2', height - Y_PADDING)
-      .attr('opacity', this._selection === null ? 1 : 0);
+      .attr('y2', height - Y_PADDING);
 
     timeSeries.select('.as-time-series--track')
       .attr('y1', height - Y_PADDING)
