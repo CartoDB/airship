@@ -64,7 +64,7 @@
     &--error + .as-checkbox-decoration {
       border-color: var(--as--color---support-01);
       stroke: var(--as--color---support-01);
-      background: var(--as--color---alpha-support-01, #{$color-alpha-support-01})
+      background: var(--as--color--alpha-support-01, #{$color-alpha-support-01})
     }
 
     &:checked + .as-checkbox-decoration {

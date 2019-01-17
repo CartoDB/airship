@@ -1,7 +1,7 @@
 @import '../../../../styles/src/core/_dev';
 
 as-infowindow {
-  --as-infowindow--color--alpha: var(--as--color--alpha-01, #{$color-alpha-01});
+  --as-infowindow--color--alpha: var( --as--color--alpha-dark-02, #{$color-alpha-dark-02});
   --as-infowindow--color--background: var(--as--color--ui-01, #{$color-ui-01});
 
   display: inline-block;

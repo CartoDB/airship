@@ -12,38 +12,30 @@
   <script src="../../packages/components/dist/airship.js"></script>
   <style>
     :root {
-      /* Theme Colors
 
-      Backgrounds: #212129, #323949, #3d3e51, #40445a, #4c5265, #3f6892
-      Fonts: #edf2f7, #dbe6f0, #c9d9e8, #b8cce0
-      Tetradic Color: ##3f9269, ##3f6892, #923f68, #92693f
+      /* Theme Colors */
 
-      */
+      /* Use 'dark' as default alpha value */
+      --as--color--alpha-01: var(--as--color--alpha-dark-01);
+      --as--color--alpha-02: var(--as--color--alpha-dark-02);
+      --as--color--alpha-03: var(--as--color--alpha-dark-03);
 
       /* Brand */
-      --as--color--primary: #3d3e51;
+      --as--color--primary: #17b0ff;
       --as--color--secondary: #212129;
-      --as--color--complementary: #3f6892;
+      --as--color--complementary: #17ff66;
 
-
-      /* Typography */
+      /* "Type Colors" from lighter to darker */
       --as--color--type-01: #edf2f7;
       --as--color--type-02: #dbe6f0;
       --as--color--type-03: #c9d9e8;
       --as--color--type-04: #b8cce0;
 
-      /* UI  */
+      /* "UI Colors" from darker to lighter */
       --as--color--ui-01: #323949;
-      --as--color--ui-02: #edf2f7;
-      --as--color--ui-03: #edf2f7;
-      --as--color--ui-04: #edf2f7;
-
-      /* UI  */
-      --as--color--alpha-light-01: var(--as--color--alpha-dark-01);
-      --as--color--alpha-light-02: var(--as--color--alpha-dark-02);
-      --as--color--alpha-01: var(--as--color--alpha-dark-01);
-      --as--color--alpha-02: var(--as--color--alpha-dark-02);
-      --as--color--alpha-primary: #3f6892;
+      --as--color--ui-02: #3d3e51;
+      --as--color--ui-03: #40445a;
+      --as--color--ui-04: #4c5265;
 
       /* Badges */
       --as--color--badge-gray: #4c5265;
@@ -53,26 +45,14 @@
       --as--color--badge-yellow: #92693f;
     }
 
-    as-infowindow {
-      position: absolute;
-      top: 30px;
-      right: 30px;
-    }
-
     .as-map-area {
       background: #B5E0F9;
     }
 
-    .as-tabs {
-      --as-tabs--item--color: #b8cce0;
-      --as-tabs--item--color-active: #ffffff;
-      --as-tabs--item--border-color-hover: #923f68;
-      --as-tabs--item--border-color-active: #923f68;
-      --as-tabs--item--border-color-hover-active: #923f68;
-    }
-
-    .as-toolbar {
-      --as-toolbar--link-color: #FFFFFF;
+    as-infowindow {
+      position: absolute;
+      top: 30px;
+      right: 30px;
     }
   </style>
 </head>
@@ -191,16 +171,16 @@
           widget0.metadata = {
             dvd: {
               label: 'Domestic DVD Sales',
-              color: '#3f6892'
+              color: '#17b0ff'
             },
             blue: {
               label: 'Domestic Blu-ray Sales',
-              color: '#92693f'
+              color: '#17ff66'
             }
           }
 
           var histogramWidget = document.querySelector('as-histogram-widget');
-          histogramWidget.color = "#3f9269";
+          histogramWidget.color = "#ff17b0";
           histogramWidget.data = [{
               start: 0,
               end: 10,
@@ -234,7 +214,7 @@
 
     <aside class="as-sidebar as-sidebar--right as-sidebar--l">
       <div class="as-container">
-        <as-category-widget class="as-p--16" heading="Business Volume" description="Description" default-bar-color="#47DB99"></as-category-widget>
+        <as-category-widget class="as-p--16" heading="Business Volume" description="Description" default-bar-color="#17ff66"></as-category-widget>
         <script>
           const categoryWidget = document.querySelector('as-category-widget');
           categoryWidget.showHeader = true;
@@ -244,7 +224,7 @@
           categoryWidget.categories = [{
               name: 'Bars & Restaurants',
               value: 1000,
-              color: '#923f68'
+              color: '#ff17b0'
             },
             {
               name: 'Fashion',

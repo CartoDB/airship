@@ -7,6 +7,7 @@ as-switch {
   --as-switch--color--background-checked: var(--as--color--primary);
   --as-switch--color--background-active: var(--as--color--complementary);
   --as-switch--color--thumb: var(--as--color--ui-01);
+  --as-switch--color--checked-thumb: var(--as--color--ui-01);
 
   display: inline-block;
   position: relative;
@@ -89,9 +90,11 @@ as-switch {
 
   .as-switch__input:checked + .as-switch__toggle::after {
     transform: translateX(18px);
+    background: var(--as-switch--color--checked-thumb);
   }
 
   .as-switch__input:checked ~ svg {
     opacity: 1;
+    color: var(--as-switch--color--checked-thumb);
   }
 }

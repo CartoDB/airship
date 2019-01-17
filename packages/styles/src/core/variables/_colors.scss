@@ -29,22 +29,23 @@ $color-badge-blue: #B5E0F9 !default;
 $color-badge-pink: #E4D8EB !default;
 $color-badge-yellow: #F8E71C !default;
 
-// Shadows
-$color-alpha-primary: unquote('#1785FB29') !default;
-$color-alpha-secondary:unquote('#0F2D5329') !default;
-$color-alpha-complementary: unquote('#47db9929') !default;
+// Alpha
 
 $color-alpha-support-01: unquote('#F3522B29') !default;
 $color-alpha-support-02: unquote('#FDB32B29') !default;
 $color-alpha-support-03: unquote('#80B62229') !default;
 
-$color-alpha-light-01: unquote('#2c2c2c29') !default;
-$color-alpha-light-02: unquote('#74747429') !default;
-$color-alpha-dark-01: unquote('#2c2c2cd6') !default;
-$color-alpha-dark-02: unquote('#747474d6') !default;
+$color-alpha-shadow-01: unquote('#2c2c2c29') !default;
 
-$color-alpha-01: $color-alpha-light-01 !default;
-$color-alpha-02: $color-alpha-light-02 !default;
+$color-alpha-light-01: unquote('#ffffffb9')!default; // 0.75
+$color-alpha-light-02: unquote('#ffffff80') !default; // 0.5
+$color-alpha-light-03: unquote('#ffffff26') !default; // 0.15
+$color-alpha-dark-01: unquote('#000000b9') !default; // 0.75
+$color-alpha-dark-02: unquote('#00000080') !default; // 0.5
+$color-alpha-dark-03: unquote('#00000026') !default; // 0.15
+
+$color-alpha-01: $color-alpha-light-02;
+$color-alpha-02: $color-alpha-light-02;
 
 @mixin colors-vars {
   // Brand
@@ -76,20 +77,20 @@ $color-alpha-02: $color-alpha-light-02 !default;
   --as--color--badge-pink: #{$color-badge-pink};
   --as--color--badge-yellow: #{$color-badge-yellow};
 
-  // Shadows
-  --as--color--alpha-primary: #{$color-alpha-primary};
-  --as--color--alpha-secondary: #{$color-alpha-secondary};
-  --as--color--alpha-complementary: #{$color-alpha-complementary};
+  // Alpha
 
-  --as--color---alpha-support-01: #{$color-alpha-support-01};
-  --as--color---alpha-support-02: #{$color-alpha-support-02};
-  --as--color---alpha-support-03: #{$color-alpha-support-03};
+  --as--color--alpha-support-01: #{$color-alpha-support-01};
+  --as--color--alpha-support-02: #{$color-alpha-support-02};
+  --as--color--alpha-support-03: #{$color-alpha-support-03};
+
+  --as--color--alpha-shadow-01: #{$color-alpha-shadow-01};
 
   --as--color--alpha-light-01: #{$color-alpha-light-01};
   --as--color--alpha-light-02: #{$color-alpha-light-02};
   --as--color--alpha-dark-01: #{$color-alpha-dark-01};
   --as--color--alpha-dark-02: #{$color-alpha-dark-02};
+  --as--color--alpha-dark-03: #{$color-alpha-dark-03};
 
-  --as--color--alpha-01: #{$color-alpha-01};
-  --as--color--alpha-02: #{$color-alpha-02};
+  --as--color--alpha-01: var(--as--color--alpha-light-01);
+  --as--color--alpha-02: var(--as--color--alpha-light-02);
 }

@@ -2,7 +2,7 @@
 
 .as-toolbar {
   --as-toolbar--background-color: var(--as--color--secondary);
-  --as-toolbar--link-color: var(--as--color--ui-01, #{$color-ui-01});
+  --as-toolbar--link-color: var(--as--color--type-04, #{$color-type-04});
 
   display: flex;
   justify-content: space-between;

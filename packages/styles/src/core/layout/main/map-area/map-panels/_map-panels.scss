@@ -89,7 +89,7 @@
       max-width: 200px;
       border-radius: 4px;
       background: var(--panels-element-bg-color);
-      box-shadow: var(--as--color--alpha-01, #{$color-alpha-01}) 0 1px 4px 0;
+      box-shadow: var(--as--color--alpha-shadow-01, #{$color-alpha-shadow-01}) 0 1px 4px 0;
 
       &:not(:last-child) {
         margin-right: get-spacing(2);

@@ -32,7 +32,7 @@
   }
 
   &:invalid {
-    background: var(--as--color---alpha-support-01, #{$color-alpha-support-01});
+    background: var(--as--color--alpha-support-01, #{$color-alpha-support-01});
     box-shadow: inset 0 0 0 1px var(--as--color---support-01);
 
     &:hover,
