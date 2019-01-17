@@ -19,7 +19,7 @@ describe('as-time-series-widget', () => {
       element.setProperty('show-clear', 'false');
       await page.waitForChanges();
 
-      const actual = await page.find('.play-button');
+      const actual = await page.find('.as-time-series--play-button');
 
       expect(actual).toBeFalsy();
     });
@@ -95,7 +95,7 @@ describe('as-time-series-widget', () => {
       element.setProperty('playing', 'false');
       await page.waitForChanges();
 
-      const playButton = await element.find('.play-button');
+      const playButton = await element.find('.as-time-series--play-button');
       const playSpy = await element.spyOnEvent('play');
       const pauseSpy = await element.spyOnEvent('pause');
 
