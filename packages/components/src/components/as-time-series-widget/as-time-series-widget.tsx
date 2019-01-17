@@ -337,11 +337,13 @@ export class TimeSeriesWidget {
       return null;
     }
 
-    if (!this.data.length) {
-      return null;
-    }
+    const classes = {
+      'as-time-series--play-button': true,
+      'as-time-series--play-button-hidden': !this.data.length || this.isLoading || !!this.error,
+      'as-time-series--play-button-x-label': !!this.xLabel
+    };
 
-    return <div class='play-button' onClick={this._playPauseClick.bind(this)}>
+    return <div class={classes} onClick={this._playPauseClick.bind(this)}>
       {icon(this.playing ? 'PAUSE' : 'PLAY', 'var(--as--color--primary)', { width: '32px', height: '32px'})}
     </div>;
   }

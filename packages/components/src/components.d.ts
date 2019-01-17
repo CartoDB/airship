@@ -1007,39 +1007,6 @@ export namespace Components {
     'subheader'?: string;
   }
 
-  interface AsWidgetSelection {
-    /**
-    * Text for the clear text
-    */
-    'clearText': string;
-    /**
-    * The text to be displayed
-    */
-    'selection': string;
-    /**
-    * Whether to display the clear button or not
-    */
-    'showClear': boolean;
-  }
-  interface AsWidgetSelectionAttributes extends StencilHTMLAttributes {
-    /**
-    * Text for the clear text
-    */
-    'clearText'?: string;
-    /**
-    * Event fired when clicking on clear text
-    */
-    'onClear'?: (event: CustomEvent) => void;
-    /**
-    * The text to be displayed
-    */
-    'selection'?: string;
-    /**
-    * Whether to display the clear button or not
-    */
-    'showClear'?: boolean;
-  }
-
   interface AsYAxis {
     /**
     * Lower limit of the axis
@@ -1088,7 +1055,6 @@ declare global {
     'AsLegend': Components.AsLegend;
     'AsLoader': Components.AsLoader;
     'AsWidgetHeader': Components.AsWidgetHeader;
-    'AsWidgetSelection': Components.AsWidgetSelection;
     'AsYAxis': Components.AsYAxis;
   }
 
@@ -1109,7 +1075,6 @@ declare global {
     'as-legend': Components.AsLegendAttributes;
     'as-loader': Components.AsLoaderAttributes;
     'as-widget-header': Components.AsWidgetHeaderAttributes;
-    'as-widget-selection': Components.AsWidgetSelectionAttributes;
     'as-y-axis': Components.AsYAxisAttributes;
   }
 
@@ -1210,12 +1175,6 @@ declare global {
     new (): HTMLAsWidgetHeaderElement;
   };
 
-  interface HTMLAsWidgetSelectionElement extends Components.AsWidgetSelection, HTMLStencilElement {}
-  var HTMLAsWidgetSelectionElement: {
-    prototype: HTMLAsWidgetSelectionElement;
-    new (): HTMLAsWidgetSelectionElement;
-  };
-
   interface HTMLAsYAxisElement extends Components.AsYAxis, HTMLStencilElement {}
   var HTMLAsYAxisElement: {
     prototype: HTMLAsYAxisElement;
@@ -1239,7 +1198,6 @@ declare global {
     'as-legend': HTMLAsLegendElement
     'as-loader': HTMLAsLoaderElement
     'as-widget-header': HTMLAsWidgetHeaderElement
-    'as-widget-selection': HTMLAsWidgetSelectionElement
     'as-y-axis': HTMLAsYAxisElement
   }
 
@@ -1260,7 +1218,6 @@ declare global {
     'as-legend': HTMLAsLegendElement;
     'as-loader': HTMLAsLoaderElement;
     'as-widget-header': HTMLAsWidgetHeaderElement;
-    'as-widget-selection': HTMLAsWidgetSelectionElement;
     'as-y-axis': HTMLAsYAxisElement;
   }
 
