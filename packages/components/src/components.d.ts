@@ -231,6 +231,9 @@ export namespace Components {
   }
 
   interface AsHistogramWidget {
+    /**
+    * Function used to format the x-axis values
+    */
     'axisFormatter': (value: number | Date) => string;
     /**
     * Clears the Histogram selection
@@ -252,6 +255,10 @@ export namespace Components {
     * Histogram data to be displayed
     */
     'data': HistogramData[];
+    /**
+    * Default formatting function. Makes the value a readable number and converts it into a string. Useful to compose with your own formatting function.
+    */
+    'defaultFormatter': (data: HistogramData) => string;
     /**
     * Description of the widget to be displayed
     */
@@ -311,11 +318,15 @@ export namespace Components {
     /**
     * Function that formats the tooltip. Receives HistogramData and outputs a string
     */
-    'tooltipFormatter': (value: HistogramData) => string;
+    'tooltipFormatter': (value: HistogramData) => string | string[];
     /**
     * Override color for the non selected histogram bars
     */
     'unselectedColor': string;
+    /**
+    * Formats a number using the component's x-axis formatter if present
+    */
+    'xFormatter': (value: any) => any;
     /**
     * Label the x axis of the histogram with the given string.
     */
@@ -326,6 +337,9 @@ export namespace Components {
     'yLabel': string;
   }
   interface AsHistogramWidgetAttributes extends StencilHTMLAttributes {
+    /**
+    * Function used to format the x-axis values
+    */
     'axisFormatter'?: (value: number | Date) => string;
     /**
     * Text rendered inside the clear selection button
@@ -400,7 +414,7 @@ export namespace Components {
     /**
     * Function that formats the tooltip. Receives HistogramData and outputs a string
     */
-    'tooltipFormatter'?: (value: HistogramData) => string;
+    'tooltipFormatter'?: (value: HistogramData) => string | string[];
     /**
     * Override color for the non selected histogram bars
     */
@@ -728,6 +742,10 @@ export namespace Components {
     */
     'animated': boolean;
     /**
+    * Proxy to as-histogram-widget clearSelection()
+    */
+    'clearSelection': () => void;
+    /**
     * Text rendered inside the clear selection button
     */
     'clearText': string;
@@ -744,6 +762,10 @@ export namespace Components {
     */
     'data': TimeSeriesData[];
     /**
+    * Proxy to as-histogram-widget defaultFormatter()
+    */
+    'defaultFormatter': (data: HistogramData) => any;
+    /**
     * Description of the widget to be displayed
     */
     'description': string;
@@ -759,6 +781,10 @@ export namespace Components {
     * Extended error description, only shown when error is present
     */
     'errorDescription': string;
+    /**
+    * Proxy to as-histogram-widget getSelection()
+    */
+    'getSelection': () => Promise<number[]>;
     /**
     * Title of the widget to be displayed
     */
@@ -788,6 +814,10 @@ export namespace Components {
     */
     'responsive': boolean;
     /**
+    * Proxy to as-histogram-widget setSelection()
+    */
+    'setSelection': (values: number[]) => void;
+    /**
     * Display a clear button that clears the histogram selection.
     */
     'showClear': boolean;
@@ -811,6 +841,10 @@ export namespace Components {
     * Override color for the selected histogram bars
     */
     'unselectedColor': string;
+    /**
+    * Proxy to as-histogram-widget xFormatter method
+    */
+    'xFormatter': (value: any) => any;
     /**
     * Label the x axis of the histogram with the given string.
     */
@@ -1007,6 +1041,39 @@ export namespace Components {
     'subheader'?: string;
   }
 
+  interface AsWidgetSelection {
+    /**
+    * Text for the clear text
+    */
+    'clearText': string;
+    /**
+    * The text to be displayed
+    */
+    'selection': string;
+    /**
+    * Whether to display the clear button or not
+    */
+    'showClear': boolean;
+  }
+  interface AsWidgetSelectionAttributes extends StencilHTMLAttributes {
+    /**
+    * Text for the clear text
+    */
+    'clearText'?: string;
+    /**
+    * Event fired when clicking on clear text
+    */
+    'onClear'?: (event: CustomEvent) => void;
+    /**
+    * The text to be displayed
+    */
+    'selection'?: string;
+    /**
+    * Whether to display the clear button or not
+    */
+    'showClear'?: boolean;
+  }
+
   interface AsYAxis {
     /**
     * Lower limit of the axis
@@ -1055,6 +1122,7 @@ declare global {
     'AsLegend': Components.AsLegend;
     'AsLoader': Components.AsLoader;
     'AsWidgetHeader': Components.AsWidgetHeader;
+    'AsWidgetSelection': Components.AsWidgetSelection;
     'AsYAxis': Components.AsYAxis;
   }
 
@@ -1075,6 +1143,7 @@ declare global {
     'as-legend': Components.AsLegendAttributes;
     'as-loader': Components.AsLoaderAttributes;
     'as-widget-header': Components.AsWidgetHeaderAttributes;
+    'as-widget-selection': Components.AsWidgetSelectionAttributes;
     'as-y-axis': Components.AsYAxisAttributes;
   }
 
@@ -1175,6 +1244,12 @@ declare global {
     new (): HTMLAsWidgetHeaderElement;
   };
 
+  interface HTMLAsWidgetSelectionElement extends Components.AsWidgetSelection, HTMLStencilElement {}
+  var HTMLAsWidgetSelectionElement: {
+    prototype: HTMLAsWidgetSelectionElement;
+    new (): HTMLAsWidgetSelectionElement;
+  };
+
   interface HTMLAsYAxisElement extends Components.AsYAxis, HTMLStencilElement {}
   var HTMLAsYAxisElement: {
     prototype: HTMLAsYAxisElement;
@@ -1198,6 +1273,7 @@ declare global {
     'as-legend': HTMLAsLegendElement
     'as-loader': HTMLAsLoaderElement
     'as-widget-header': HTMLAsWidgetHeaderElement
+    'as-widget-selection': HTMLAsWidgetSelectionElement
     'as-y-axis': HTMLAsYAxisElement
   }
 
@@ -1218,6 +1294,7 @@ declare global {
     'as-legend': HTMLAsLegendElement;
     'as-loader': HTMLAsLoaderElement;
     'as-widget-header': HTMLAsWidgetHeaderElement;
+    'as-widget-selection': HTMLAsWidgetSelectionElement;
     'as-y-axis': HTMLAsYAxisElement;
   }
 

@@ -120,7 +120,7 @@ export class HistogramWidget {
    * @type {(HistogramData) => string}
    * @memberof HistogramWidget
    */
-  @Prop() public tooltipFormatter: (value: HistogramData) => string = this.defaultFormatter;
+  @Prop() public tooltipFormatter: (value: HistogramData) => string | string[] = this.defaultFormatter;
 
   /**
    * Label the x axis of the histogram with the given string.
@@ -166,6 +166,11 @@ export class HistogramWidget {
    */
   @Prop() public responsive: boolean = true;
 
+  /**
+   * Function used to format the x-axis values
+   *
+   * @memberof HistogramWidget
+   */
   @Prop() public axisFormatter: (value: number | Date) => string;
 
   /**
@@ -199,7 +204,8 @@ export class HistogramWidget {
   @Event()
   private drawParametersChanged: EventEmitter<RenderOptions>;
 
-  private tooltip: string;
+  @State()
+  private tooltip: string | string[] = null;
 
   private container: SVGContainer;
   private tooltipElement: HTMLElement;
@@ -219,7 +225,7 @@ export class HistogramWidget {
 
   private _color: string;
   private _barBackgroundColor: string;
-  private _dataJustUpdated: boolean = false;
+  private _muteSelectionChanged: boolean = false;
 
   @State()
   private selectionEmpty: boolean = true;
@@ -235,7 +241,7 @@ export class HistogramWidget {
   public _onDataChanged(newData) {
     this.binsScale = binsScale(newData);
 
-    this._dataJustUpdated = true;
+    this._muteSelectionChanged = true;
   }
 
   @Watch('color')
@@ -257,8 +263,9 @@ export class HistogramWidget {
    *
    * @memberof HistogramWidget
    */
+  @Method()
   public defaultFormatter(data: HistogramData) {
-    return `${readableNumber(data.value)}`;
+    return `${readableNumber(data.value).trim()}`;
   }
 
   /**
@@ -283,7 +290,7 @@ export class HistogramWidget {
   public setSelection(values: number[] | null) {
     this._setSelection(values);
 
-    if (!this._dataJustUpdated) {
+    if (!this._muteSelectionChanged) {
       this.selectionChanged.emit(this.selection);
     }
   }
@@ -296,6 +303,20 @@ export class HistogramWidget {
   @Method()
   public clearSelection() {
     this.setSelection(null);
+  }
+
+  /**
+   * Formats a number using the component's x-axis formatter if present
+   *
+   * @memberof HistogramWidget
+   */
+  @Method()
+  public xFormatter(value) {
+    if (this.axisFormatter) {
+      return this.axisFormatter(value);
+    }
+
+    return value;
   }
 
   public componentDidLoad() {
@@ -447,7 +468,7 @@ export class HistogramWidget {
       this,
       this._color,
       this._barBackgroundColor,
-      this.tooltipFormatter,
+      (value) => this.tooltipFormatter(value),
       this._setTooltip.bind(this)
     );
 
@@ -473,17 +494,18 @@ export class HistogramWidget {
       xScale: this.xScale
     });
 
-    this._dataJustUpdated = false;
+    this._muteSelectionChanged = false;
   }
 
-  private _setTooltip(value: string | null, evt?: MouseEvent) {
-    this.tooltip = value;
+  private _setTooltip(value: string | string[] | null, evt?: MouseEvent) {
+    this._muteSelectionChanged = true;
 
     if (value === null) {
       this._hideTooltip();
       return;
     }
 
+    this.tooltip = value;
     this._showTooltip(evt);
   }
 
@@ -562,7 +584,7 @@ export class HistogramWidget {
       return;
     }
 
-    if (!this._dataJustUpdated) {
+    if (!this._muteSelectionChanged) {
       this.selectionChanged.emit(this.selection);
     }
   }
@@ -713,8 +735,7 @@ export class HistogramWidget {
     select(this.tooltipElement)
       .style('display', 'inline')
       .style('left', `${x}px`)
-      .style('top', `${y}px`)
-      .text(this.tooltip);
+      .style('top', `${y}px`);
   }
 
   private _hideTooltip() {
@@ -738,14 +759,28 @@ export class HistogramWidget {
   }
 
   private _renderTooltip() {
-    if (this.tooltip === null) {
-      return;
-    }
     return (<span
       ref={(ref: HTMLElement) => this.tooltipElement = ref}
       role='tooltip'
       class='as-tooltip as-tooltip--top'>
+      {this._parseTooltip(this.tooltip)}
     </span>);
+  }
+
+  private _parseTooltip(tooltip: string | string[] | null) {
+    if (tooltip === null) {
+      return null;
+    }
+
+    if (Array.isArray(tooltip)) {
+      return tooltip.map((text) => this._renderTooltipLine(text));
+    }
+
+    return this._renderTooltipLine(tooltip);
+  }
+
+  private _renderTooltipLine(value) {
+    return <div>{value}</div>;
   }
 
   private _renderLabels() {

@@ -12,8 +12,8 @@ export function addTooltip(
   hasSelection: { selection: number[] | null },
   color: string,
   unselectedColor: string,
-  formatter: (d: HistogramData) => string,
-  setTooltip: (tooltip: string | null, evt?: MouseEvent) => void
+  formatter: (d: HistogramData) => string | string[],
+  setTooltip: (tooltip: string | string[] | null, evt?: MouseEvent) => void
 ) {
   container.on('mousemove', () => {
     const evt = d3event as MouseEvent;

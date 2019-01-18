@@ -214,11 +214,13 @@ histogramWidget.isLoading = true;
 
 
 #### **tooltipFormatter**: function
-Function that receives one value of the **data** property and returns a string. The value is the one for the bar the user is hovering.
+Function that receives one value of the **data** property and returns a string or array of strings. The value is the one for the bar the user is hovering.
 
 By default, it returns the _value_ field formatted sensibly.
 
 The default implementation is the method _defaultFormatter_, so you can use it to keep the original behaviour and add something extra.
+
+If you return an array of strings, each will be rendered on a different line.
 
 ```code
 lang: javascript

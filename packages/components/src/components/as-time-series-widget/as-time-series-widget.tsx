@@ -1,9 +1,9 @@
-import { Component, Event, EventEmitter, Prop, Watch } from '@stencil/core';
+import { Component, Event, EventEmitter, Method, Prop, Watch } from '@stencil/core';
 import { scaleLinear } from 'd3-scale';
 import { event as d3event } from 'd3-selection';
 import { timeFormat, timeFormatDefaultLocale, TimeLocaleDefinition } from 'd3-time-format';
 import { icon } from '../../utils/icons';
-import { HistogramColorRange } from '../as-histogram-widget/interfaces';
+import { HistogramColorRange, HistogramData } from '../as-histogram-widget/interfaces';
 import { RenderOptions } from '../as-histogram-widget/types/RenderOptions';
 import {
   DEFAULT_BACKGROUND_BAR_COLOR,
@@ -254,6 +254,57 @@ export class TimeSeriesWidget {
       throw new Error('Invalid time format.');
     }
 
+  }
+
+  /**
+   * Proxy to as-histogram-widget defaultFormatter()
+   *
+   * @memberof TimeSeriesWidget
+   */
+  @Method()
+  public defaultFormatter(data: HistogramData) {
+    return this.histogram.defaultFormatter(data);
+  }
+
+  /**
+   * Proxy to as-histogram-widget getSelection()
+   *
+   * @returns {number[]}
+   * @memberof TimeSeriesWidget
+   */
+  @Method()
+  public async getSelection(): Promise<number[]> {
+    return this.histogram.getSelection();
+  }
+
+  /**
+   * Proxy to as-histogram-widget setSelection()
+   *
+   * @param {number[] | null} values
+   * @memberof TimeSeriesWidget
+   */
+  @Method()
+  public setSelection(values: number[] | null) {
+    this.histogram.setSelection(values);
+  }
+
+  /**
+   * Proxy to as-histogram-widget clearSelection()
+   *
+   * @memberof TimeSeriesWidget
+   */
+  @Method()
+  public clearSelection() {
+    this.histogram.clearSelection();
+  }
+
+  /**
+   * Proxy to as-histogram-widget xFormatter method
+   * @param value
+   */
+  @Method()
+  public xFormatter(value) {
+    return this.histogram.xFormatter(value);
   }
 
   public async componentWillLoad() {
