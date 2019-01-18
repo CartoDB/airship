@@ -43,6 +43,11 @@
       --as--color--badge-green: #3f9269;
       --as--color--badge-pink: #923f68;
       --as--color--badge-yellow: #92693f;
+
+      /* Support colors */
+      --as--color---support-01: #E53304;
+      --as--color---support-02: #FA7202;
+      --as--color---support-03: #17B233;
     }
 
     .as-map-area {
@@ -53,6 +58,10 @@
       position: absolute;
       top: 30px;
       right: 30px;
+    }
+
+    .as-banner {
+      --as-banner--background-color: #3f6892;
     }
   </style>
 </head>
@@ -85,6 +94,32 @@
             <h1 class="as-title">Dropdown</h1>
             <as-dropdown default-text="Dropdown" can-clear="true"></as-dropdown>
           </div>
+          <div class="as-p--12" role="tabpanel" data-title="Banner">
+            <div class="as-banner">
+              <div class="as-banner__icon">
+                <i class="as-icon-info"></i>
+              </div>
+              <div class="as-banner__content">This is the default banner without any support colors</div>
+            </div>
+            <div class="as-banner as-bg--success">
+              <div class="as-banner__icon">
+                <i class="as-icon-tick-circle-fill"></i>
+              </div>
+              <div class="as-banner__content">Your profile settings have been updated successfully</div>
+            </div>
+            <div class="as-banner as-bg--warning">
+              <div class="as-banner__icon">
+                <i class="as-icon-alert-fill"></i>
+              </div>
+              <div class="as-banner__content">It seems like you're over platforms limits, please contact us or upgrade your account plan</div>
+            </div>
+            <div class="as-banner as-bg--error">
+              <div class="as-banner__icon">
+                <i class="as-icon-alert-fill"></i>
+              </div>
+              <div class="as-banner__content">An error has ocurred. Could not retreive customer information</div>
+            </div>              
+          </div>  
         </as-tabs>
       </div>
     </aside>
