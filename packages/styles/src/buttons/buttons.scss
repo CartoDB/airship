@@ -1,12 +1,14 @@
 @import "../core/_dev";
 
 .as-btn {
-  --as-btn--color--default-hover: var(--as--color--ui-02);
-  --as-btn--color--default-active: var(--as--color--ui-03);
+  --as-btn--color--default-hover: var(--as--color--ui-02, #{$color-ui-02});
+  --as-btn--color--default-active: var(--as--color--ui-03, #{$color-ui-03});
   --as-btn--color--primary-hover: var(--as--color--primary, #{$color-primary});
   --as-btn--color--primary-active: var(--as--color--primary, #{$color-primary});
-  --as-btn--color--secondary-hover: var(--as--color--ui-01, #{$color-ui-01});
-  --as-btn--color--secondary-active: var(--as--color--ui-01, #{$color-ui-01});
+  --as-btn--color--secondary-hover: var(--as--color--ui-02, #{$color-ui-02});
+  --as-btn--color--secondary-active: var(--as--color--ui-03, #{$color-ui-03});
+  --as-btn--color--alpha-01: var(--as--color--alpha-dark-01, #{$color-alpha-dark-01});
+  --as-btn--color--alpha-02: var(--as--color--alpha-dark-02, #{$color-alpha-dark-02});
 
   display: inline-flex;
   align-items: center;
@@ -45,7 +47,6 @@
 
   &:enabled:hover {
     background:
-      linear-gradient(to top, var(--as--color--alpha-dark-02), var(--as--color--alpha-dark-02))
       var(--as-btn--color--default-hover);
   }
 
@@ -59,13 +60,13 @@
 
     &:enabled:hover {
       background:
-        linear-gradient(to top, var(--as--color--alpha-dark-02), var(--as--color--alpha-dark-02))
+        linear-gradient(to top, var(--as-btn--color--alpha-02), var(--as-btn--color--alpha-02))
         var(--as-btn--color--primary-hover);
     }
 
     &:enabled:active {
       background:
-        linear-gradient(to top, var(--as--color--alpha-dark-01), var(--as--color--alpha-dark-01))
+        linear-gradient(to top, var(--as-btn--color--alpha-01), var(--as-btn--color--alpha-01))
         var(--as-btn--color--primary-active);
     }
   }
@@ -77,13 +78,11 @@
 
     &:enabled:hover {
       background:
-        linear-gradient(to top, var(--as--color--alpha-dark-03), var(--as--color--alpha-dark-03))
         var(--as-btn--color--secondary-hover);
     }
 
     &:enabled:active {
       background:
-        linear-gradient(to top, var(--as--color--alpha-dark-03), var(--as--color--alpha-dark-03))
         var(--as-btn--color--secondary-active);
     }
   }
@@ -119,13 +118,13 @@ a.as-btn {
 a.as-btn.as-btn--primary {
   &:hover {
     background:
-      linear-gradient(to top, var(--as--color--alpha-dark-02), var(--as--color--alpha-dark-02))
+      linear-gradient(to top, var(--as-btn--color--alpha-02), var(--as-btn--color--alpha-02))
       var(--as-btn--color--primary-hover);
   }
 
   &:active {
     background:
-      linear-gradient(to top, var(--as--color--alpha-dark-03), var(--as--color--alpha-dark-03))
+      linear-gradient(to top, var(--as-btn--color--alpha-03), var(--as-btn--color--alpha-03))
       var(--as-btn--color--primary-active);
   }
 }
@@ -133,13 +132,11 @@ a.as-btn.as-btn--primary {
 a.as-btn.as-btn--secondary {
   &:hover {
     background:
-      linear-gradient(to top, var(--as--color--alpha-dark-03), var(--as--color--alpha-dark-03))
       var(--as-btn--color--secondary-hover);
   }
 
   &:active {
     background:
-      linear-gradient(to top, var(--as--color--alpha-dark-02), var(--as--color--alpha-dark-02))
       var(--as-btn--color--secondary-hover);
   }
 }
