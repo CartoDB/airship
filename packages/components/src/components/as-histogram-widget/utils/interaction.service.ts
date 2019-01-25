@@ -23,8 +23,8 @@ export function addTooltip(
     let anyHovered = false;
 
     _forEachRect(barsContainer, clientX, clientY,
-      (data, node) => {
-        const selected = _isSelected(data, hasSelection.selection);
+      (data, node, bucketIndex) => {
+        const selected = _isSelected(hasSelection.selection, bucketIndex);
 
         let _color = selected ? data.color || color : unselectedColor;
         _color = shadeOrBlend(-0.16, _color);
@@ -32,8 +32,8 @@ export function addTooltip(
         setTooltip(formatter(data), evt);
         anyHovered = true;
       },
-      (data, node) => {
-        const selected = _isSelected(data, hasSelection.selection);
+      (data, node, bucketIndex) => {
+        const selected = _isSelected(hasSelection.selection, bucketIndex);
         node.style('fill', selected ? data.color || color : unselectedColor);
       });
 
@@ -52,8 +52,8 @@ export function addTooltip(
   .on('mouseleave', () => {
     setTooltip(null);
     barsContainer.selectAll('rect')
-      .style('fill', (data: HistogramData) => {
-        if (_isSelected(data, hasSelection.selection)) {
+      .style('fill', (data: HistogramData, bucketIndex) => {
+        if (_isSelected(hasSelection.selection, bucketIndex)) {
           return data.color || color;
         }
         return unselectedColor;
@@ -61,15 +61,15 @@ export function addTooltip(
   });
 }
 
-function _isSelected(data: HistogramData, range: number[] | null) {
+function _isSelected(range: number[] | null, bucketIndex: number) {
   if (range === null) {
     return true;
   }
 
-  return data.start >= range[0] && data.end <= range[1];
+  return bucketIndex >= range[0] && bucketIndex < range[1];
 }
 
-type RectCallback = (data: HistogramData, node: Selection<BaseType, {}, null, undefined>) => void;
+type RectCallback = (data: HistogramData, node: Selection<BaseType, {}, null, undefined>, index: number) => void;
 
 /**
  * Cycles through all rects in container, fires a callback for the rect that contains the x / y points,
@@ -98,12 +98,12 @@ function _forEachRect(
         y <= bb.bottom;
 
       if (isInsideBB) {
-        insideCallback(data, nodeSelection);
+        insideCallback(data, nodeSelection, i);
         return;
       }
 
       if (outsideCallback) {
-        outsideCallback(data, nodeSelection);
+        outsideCallback(data, nodeSelection, i);
       }
     });
 }

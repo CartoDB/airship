@@ -14,6 +14,7 @@ import {
 import {
   HistogramColorRange,
   HistogramData,
+  HistogramSelection,
 } from './components/as-histogram-widget/interfaces';
 import {
   EventEmitter,
@@ -258,7 +259,7 @@ export namespace Components {
     /**
     * Default formatting function. Makes the value a readable number and converts it into a string. Useful to compose with your own formatting function.
     */
-    'defaultFormatter': (data: HistogramData) => string;
+    'defaultFormatter': (data: HistogramData) => any[];
     /**
     * Description of the widget to be displayed
     */
@@ -393,8 +394,8 @@ export namespace Components {
     /**
     * Fired when user update or clear the widget selection.
     */
-    'onSelectionChanged'?: (event: CustomEvent<number[]>) => void;
-    'onSelectionInput'?: (event: CustomEvent<number[]>) => void;
+    'onSelectionChanged'?: (event: CustomEvent<HistogramSelection>) => void;
+    'onSelectionInput'?: (event: CustomEvent<HistogramSelection>) => void;
     /**
     * Use this attribute to decide if the widget should be rerendered on window resize. Defaults to true.
     */

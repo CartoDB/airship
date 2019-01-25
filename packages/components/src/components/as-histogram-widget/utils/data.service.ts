@@ -26,7 +26,35 @@ export function getXScale(domain: Domain, width: number): ScaleLinear<number, nu
     .range([0, width]);
 }
 
+export function isCategoricalData(data: HistogramData[]): boolean {
+  // Histogram data is categorical if all elements contain the category property
+  return data.every(_hasCategory);
+}
+
+export function prepareData(data: HistogramData[]) {
+  const hasRange = data.every(_hasRange);
+
+  return data.map((d, index) => {
+    const parsed = {
+      ...d
+    };
+
+    if (!hasRange) {
+      parsed.start = index;
+      parsed.end = index + 1;
+    }
+
+    return parsed;
+  });
+}
+
+function _hasCategory(data: HistogramData) {
+  return data.category !== undefined;
+}
+
+function _hasRange(data: HistogramData) {
+  return data.start !== undefined && data.end !== undefined;
+}
 
 
-
-export default { getXDomain, getXScale, getYDomain };
+export default { getXDomain, getXScale, getYDomain, isCategoricalData, prepareData };

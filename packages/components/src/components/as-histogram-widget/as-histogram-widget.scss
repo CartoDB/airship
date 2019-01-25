@@ -23,6 +23,12 @@ as-histogram-widget {
     min-height: 0;
   }
 
+  .as-histogram-widget--categorical {
+    .x-axis {
+      opacity: 0;
+    }
+  }
+
   .figure {
     $basePaddingLeft: 30;
     box-sizing: border-box;
