@@ -10,7 +10,7 @@
   </head>
 
   <body>
-    <div style="width: 250px">
+    <div style="width: 250px;">
       <as-histogram-widget
         show-header="false"
         show-clear>
@@ -36,7 +36,7 @@
         if (e.detail === null) {
           selectionEl.innerText = 'Nothing selected';
         } else {
-          selectionEl.innerText = 'Selected from ' + e.detail[0] + ' to ' + e.detail[1];
+          selectionEl.innerText = 'Selected from ' + e.detail.selection[0] + ' to ' + e.detail.selection[1];
         }
       });
     </script>

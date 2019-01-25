@@ -3,7 +3,7 @@ import { scaleLinear } from 'd3-scale';
 import { event as d3event } from 'd3-selection';
 import { timeFormat, timeFormatDefaultLocale, TimeLocaleDefinition } from 'd3-time-format';
 import { icon } from '../../utils/icons';
-import { HistogramColorRange, HistogramData } from '../as-histogram-widget/interfaces';
+import { HistogramColorRange, HistogramData, HistogramSelection } from '../as-histogram-widget/interfaces';
 import { RenderOptions } from '../as-histogram-widget/types/RenderOptions';
 import {
   DEFAULT_BACKGROUND_BAR_COLOR,
@@ -322,12 +322,12 @@ export class TimeSeriesWidget {
     this._formatter = timeFormat(this.timeFormat);
 
     this.histogram.addEventListener('selectionInput', (evt: CustomEvent) => {
-      this._selection = evt.detail;
+      this._selection = evt.detail.selection;
 
       this._render();
     });
 
-    this.histogram.addEventListener('selectionChanged', (evt: CustomEvent<number[]>) => {
+    this.histogram.addEventListener('selectionChanged', (evt: CustomEvent<HistogramSelection>) => {
       evt.stopPropagation();
 
       if (evt.detail === null) {
@@ -335,7 +335,8 @@ export class TimeSeriesWidget {
         return;
       }
 
-      const selectedDates = evt.detail.map((epoch) => new Date(epoch));
+      // We have to coerce to number[] because it can also be string[] for categorical histograms
+      const selectedDates = (evt.detail.selection as number[]).map((epoch) => new Date(epoch));
       this.selectionChanged.emit(selectedDates);
 
       this._render();

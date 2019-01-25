@@ -114,7 +114,7 @@ export class Histogram extends BaseFilter {
     if (evt.detail === null) {
       this._selection = null;
     } else {
-      this._selection = [Number(evt.detail[0]), Number(evt.detail[1])];
+      this._selection = [Number(evt.detail.selection[0]), Number(evt.detail.selection[1])];
     }
 
     this._emitter.emit('rangeChanged', this._selection);
