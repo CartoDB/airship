@@ -7,9 +7,9 @@ export interface HistogramData {
 }
 
 export interface HistogramSelection {
-  selection: CategoricalSelectionPayload | ContinuousSelectionPayload
-  payload: HistogramData[]
-  type: HistogramType
+  selection: CategoricalSelectionPayload | ContinuousSelectionPayload;
+  payload: HistogramData[];
+  type: HistogramType;
 }
 
 type CategoricalSelectionPayload = string[];
