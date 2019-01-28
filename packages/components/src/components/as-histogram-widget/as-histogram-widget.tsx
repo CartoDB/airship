@@ -228,6 +228,7 @@ export class HistogramWidget {
   private _barBackgroundColor: string;
   private _muteSelectionChanged: boolean = false;
   private _skipRender: boolean;
+  private _dataJustChanged: boolean;
 
   @State()
   private selectionEmpty: boolean = true;
@@ -249,6 +250,7 @@ export class HistogramWidget {
     this.isCategoricalData = isCategoricalData(this._data);
 
     this._muteSelectionChanged = true;
+    this._dataJustChanged = true;
   }
 
   @Watch('color')
@@ -365,11 +367,12 @@ export class HistogramWidget {
   }
 
   public componentDidUpdate() {
-    if (!this._skipRender) {
+    if (!this._skipRender || this._dataJustChanged) {
       this._renderGraph();
     }
 
     this._skipRender = false;
+    this._dataJustChanged = false;
   }
 
   public componentWillLoad() {
