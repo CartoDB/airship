@@ -279,7 +279,7 @@ export namespace Components {
     /**
     * Returns the current selection
     */
-    'getSelection': () => Promise<number[]>;
+    'getSelection': () => Promise<number[] | string[]>;
     /**
     * Title of the widget to be displayed
     */
@@ -785,7 +785,7 @@ export namespace Components {
     /**
     * Proxy to as-histogram-widget getSelection()
     */
-    'getSelection': () => Promise<number[]>;
+    'getSelection': () => Promise<number[] | string[]>;
     /**
     * Title of the widget to be displayed
     */

@@ -286,12 +286,13 @@ export class HistogramWidget {
   /**
    * Returns the current selection
    *
-   * @returns {number[]}
+   * @returns {number[] | string[]}
    * @memberof HistogramWidget
    */
   @Method()
-  public async getSelection(): Promise<number[]> {
-    return this.selection;
+  public async getSelection(): Promise<number[] | string[]> {
+    const data = this._dataForSelection(this.selection);
+    return this._simplifySelection(data);
   }
 
   /**

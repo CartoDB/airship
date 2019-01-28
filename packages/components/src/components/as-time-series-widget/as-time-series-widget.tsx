@@ -269,11 +269,11 @@ export class TimeSeriesWidget {
   /**
    * Proxy to as-histogram-widget getSelection()
    *
-   * @returns {number[]}
+   * @returns {number[]|string[]}
    * @memberof TimeSeriesWidget
    */
   @Method()
-  public async getSelection(): Promise<number[]> {
+  public async getSelection(): Promise<number[]|string[]> {
     return this.histogram.getSelection();
   }
 
@@ -348,7 +348,7 @@ export class TimeSeriesWidget {
       this._render();
     });
 
-    this._selection = await this.histogram.getSelection();
+    this._selection = (await this.histogram.getSelection() as number[]);
   }
 
   public render() {
