@@ -322,7 +322,11 @@ export class TimeSeriesWidget {
     this._formatter = timeFormat(this.timeFormat);
 
     this.histogram.addEventListener('selectionInput', (evt: CustomEvent) => {
-      this._selection = evt.detail.selection;
+      if (evt.detail === null) {
+        this._selection = null;
+      } else {
+        this._selection = evt.detail.selection;
+      }
 
       this._render();
     });
