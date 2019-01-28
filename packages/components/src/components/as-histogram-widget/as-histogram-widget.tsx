@@ -661,13 +661,7 @@ export class HistogramWidget {
         .map((d) => d);
     }
 
-    const data = [this.data[selection[0]]];
-
-    if (selection[0] !== selection[1] - 1) {
-      data.push(this.data[selection[1] - 1]);
-    }
-
-    return data;
+    return [this.data[selection[0]], this.data[selection[1] - 1]];
   }
 
   private _simplifySelection(selection: HistogramData[]): string[] | number[] {
@@ -679,13 +673,7 @@ export class HistogramWidget {
       return selection.map((value) => value.category);
     }
 
-    const simplified = [selection[0].start];
-
-    if (selection.length > 1) {
-      simplified.push(selection[selection.length - 1].end);
-    }
-
-    return simplified;
+    return [selection[0].start, selection[selection.length - 1].end];
   }
 
   private emitSelection(emitter: EventEmitter<HistogramSelection>, selection: number[]) {
