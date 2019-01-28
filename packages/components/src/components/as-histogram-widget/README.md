@@ -81,6 +81,17 @@ histogramWidget.data = [
   { start: 80, end: 90, value: 60 },
 ];
 ```
+
+#### **backgroundData**: HistogramData[] = []
+
+This property must be an array of Histogram data compatible with the current data. This means that:
+
+- They are equal in length
+- For continuous histograms, all start / end ranges are the same
+- For categorical histograms, all categories are the same
+
+Whenever a bucket has a value of zero, the value on this array for that bucket will be displayed instead. This is useful when using the histogram to filter a visualization. The visualization might return 0 for everything outside your selection, but you might want to have the background information for context purposes.
+
 #### **color**: string = '#47DB99'
 Overrides default bar color. Default value is `#47DB99`
 

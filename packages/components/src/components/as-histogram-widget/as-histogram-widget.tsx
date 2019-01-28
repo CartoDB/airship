@@ -18,7 +18,7 @@ import { HistogramColorRange, HistogramData, HistogramSelection, HistogramType }
 import { SVGContainer, SVGGContainer } from './types/Container';
 import { RenderOptions } from './types/RenderOptions';
 import brushService from './utils/brush.service';
-import dataService, { binsScale, isCategoricalData, prepareData } from './utils/data.service';
+import dataService, { binsScale, isBackgroundCompatible, isCategoricalData, prepareData } from './utils/data.service';
 import drawService from './utils/draw.service';
 import interactionService from './utils/interaction.service';
 
@@ -89,6 +89,14 @@ export class HistogramWidget {
    * @memberof HistogramWidget
    */
   @Prop() public data: HistogramData[] = [];
+
+  /**
+   * Data that will be merged into buckets with value === 0
+   *
+   * @type {HistogramData[]}
+   * @memberof HistogramWidget
+   */
+  @Prop() public backgroundData: HistogramData[] = null;
 
   /**
    * Override color for the histogram bars
@@ -229,6 +237,7 @@ export class HistogramWidget {
   private _muteSelectionChanged: boolean = false;
   private _skipRender: boolean;
   private _dataJustChanged: boolean;
+  private _lastEmittedSelection: number[] = null;
 
   @State()
   private selectionEmpty: boolean = true;
@@ -243,9 +252,27 @@ export class HistogramWidget {
     this._resizeRender = this._resizeRender.bind(this);
   }
 
+  @Watch('backgroundData')
+  public _onBackgroundDataChanged(newBackgroundData) {
+    if (isBackgroundCompatible(this.data, newBackgroundData)) {
+      this._prepareData(this.data, newBackgroundData);
+    }
+  }
+
   @Watch('data')
   public _onDataChanged(newData) {
-    this._data = prepareData(newData);
+    // Invalidated, indexes might be different data now
+    this._lastEmittedSelection = null;
+
+    if (isBackgroundCompatible(newData, this.backgroundData)) {
+      this._prepareData(this.data, this.backgroundData);
+    } else {
+      this._prepareData(this.data, null);
+    }
+  }
+
+  public _prepareData(data, backgroundData) {
+    this._data = prepareData(data, backgroundData);
     this.binsScale = binsScale(this._data);
     this.isCategoricalData = isCategoricalData(this._data);
 
@@ -378,7 +405,7 @@ export class HistogramWidget {
   public componentWillLoad() {
     addEventListener('resize', this._resizeRender);
     this.selectionFooter = this.selectedFormatter(this.selection);
-    this._data = prepareData(this.data);
+    this._data = prepareData(this.data, this.backgroundData);
   }
 
   public componentDidUnload() {
@@ -679,7 +706,19 @@ export class HistogramWidget {
     return [selection[0].start, selection[selection.length - 1].end];
   }
 
+  private _sameSelection(first: number[], second: number[]) {
+    if (first === null || second === null) {
+      return false;
+    }
+
+    return (first[0] === second[0] && first[1] === second[1]);
+  }
+
   private emitSelection(emitter: EventEmitter<HistogramSelection>, selection: number[]) {
+    if (this._sameSelection(selection, this._lastEmittedSelection)) {
+      return;
+    }
+
     if (selection === null) {
       emitter.emit(null);
       return;
@@ -694,6 +733,10 @@ export class HistogramWidget {
     };
 
     emitter.emit(evt);
+
+    if (emitter === this.selectionChanged) {
+      this._lastEmittedSelection = [selection[0], selection[1]];
+    }
   }
 
   private _eventType(): HistogramType {

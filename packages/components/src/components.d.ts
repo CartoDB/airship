@@ -237,6 +237,10 @@ export namespace Components {
     */
     'axisFormatter': (value: number | Date) => string;
     /**
+    * Data that will be merged into buckets with value === 0
+    */
+    'backgroundData': HistogramData[];
+    /**
     * Clears the Histogram selection
     */
     'clearSelection': () => void;
@@ -342,6 +346,10 @@ export namespace Components {
     * Function used to format the x-axis values
     */
     'axisFormatter'?: (value: number | Date) => string;
+    /**
+    * Data that will be merged into buckets with value === 0
+    */
+    'backgroundData'?: HistogramData[];
     /**
     * Text rendered inside the clear selection button
     */

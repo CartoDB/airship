@@ -31,7 +31,7 @@ export function isCategoricalData(data: HistogramData[]): boolean {
   return data.every(_hasCategory);
 }
 
-export function prepareData(data: HistogramData[]) {
+export function prepareData(data: HistogramData[], backgroundData?: HistogramData[]) {
   const hasRange = data.every(_hasRange);
 
   return data.map((d, index) => {
@@ -42,6 +42,13 @@ export function prepareData(data: HistogramData[]) {
     if (!hasRange) {
       parsed.start = index;
       parsed.end = index + 1;
+    }
+
+    if (d.value === 0 && backgroundData) {
+      return {
+        ...parsed,
+        value: backgroundData[index].value
+      };
     }
 
     return parsed;
@@ -56,5 +63,52 @@ function _hasRange(data: HistogramData) {
   return data.start !== undefined && data.end !== undefined;
 }
 
+/**
+ * Checks if an array of data and background data are compatible
+ */
+export function isBackgroundCompatible(
+  data: HistogramData[],
+  backgroundData: HistogramData[]): boolean {
+  const isNull = [data, backgroundData].map((value) => value === null);
 
-export default { getXDomain, getXScale, getYDomain, isCategoricalData, prepareData };
+  // Both must be null or both must not be null
+  if (isNull[0] !== isNull[1]) {
+    return false;
+  }
+
+  // If both are null, they're automatically compatible
+  if (isNull[0] && isNull[1]) {
+    return true;
+  }
+
+  // They must have the same length
+  if (data.length !== backgroundData.length) {
+    return true;
+  }
+
+  const isCategorical = data.every(_hasCategory);
+  const hasRange = data.every(_hasRange);
+
+  for (let index = 0; index < data.length; index++) {
+
+    // If every element has start / end, they must be equal on both arrays for every element
+    if (hasRange) {
+      if (backgroundData[index].start !== data[index].start ||
+          backgroundData[index].end !== data[index].end) {
+        return false;
+      }
+    }
+
+    // If every element has category, they must be equal on both arrays for every element
+    if (isCategorical) {
+      if (backgroundData[index].category !== data[index].category) {
+        return false;
+      }
+    }
+  }
+
+  return true;
+}
+
+
+export default { getXDomain, getXScale, getYDomain, isCategoricalData, prepareData, isBackgroundCompatible };
