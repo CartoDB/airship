@@ -305,7 +305,9 @@ export class HistogramWidget {
   @Method()
   public setSelection(values: number[] | null) {
     if (values === null) {
-      return this._setSelection(null);
+      this._setSelection(null);
+      this.emitSelection(this.selectionChanged, this.selection);
+      return;
     }
 
     // This is too tricky, we'd have to make sure that categories are contiguous
@@ -451,7 +453,7 @@ export class HistogramWidget {
       selection={this.selectionFooter}
       clearText={this.clearText}
       showClear={!this.selectionEmpty}
-      onClear={() => this._setSelection(null)}
+      onClear={() => this.clearSelection()}
       >
     </as-widget-selection>;
   }
@@ -687,6 +689,11 @@ export class HistogramWidget {
   }
 
   private emitSelection(emitter: EventEmitter<HistogramSelection>, selection: number[]) {
+    if (selection === null) {
+      emitter.emit(null);
+      return;
+    }
+
     const payload = this._dataForSelection(selection);
 
     const evt = {
