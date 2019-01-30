@@ -139,6 +139,10 @@
         {
           "title": "as-histogram Interaction disabled",
           "file": "components/as-histogram-widget/interaction-disabled.html"
+        },
+        {
+          "title": "as-histogram Background data",
+          "file": "components/as-histogram-widget/interaction-disabled.html"
         }
       ]
     },
