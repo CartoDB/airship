@@ -90,7 +90,9 @@ This property must be an array of Histogram data compatible with the current dat
 - For continuous histograms, all start / end ranges are the same
 - For categorical histograms, all categories are the same
 
-Whenever a bucket has a value of zero, the value on this array for that bucket will be displayed instead. This is useful when using the histogram to filter a visualization. The visualization might return 0 for everything outside your selection, but you might want to have the background information for context purposes.
+This data is rendered behind the actual data, filled with the `unselectedColor` prop. This is useful to keep some context if you have "global" visualization data.
+
+Since this data is considered 'background', is assumed that `data` will be a subset of this. This means that the scale is calculated with this data (if present) instead of `data`.
 
 #### **color**: string = '#47DB99'
 Overrides default bar color. Default value is `#47DB99`
