@@ -1,6 +1,6 @@
 .y-axis {
   --widget-axis-text-color: var(--as--color--type-01, #{$color-type-01});
-  --widget-axis-line-color: var(--as--color--type-02, #{$color-type-02});
+  --widget-axis-line-color: rgb(var(--as--color--type-02, #{$color-type-02}));
 
   .tick {
     text {

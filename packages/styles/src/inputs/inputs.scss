@@ -63,7 +63,7 @@
 
   &:read-only {
     background: var(--as--color--ui-02);
-    color: var(--as--color--type-02);
+    color: RGB(var(--as--color--type-02));
 
     &:hover,
     &:focus,
@@ -72,7 +72,7 @@
     }
 
     &::placeholder {
-      color: var(--as--color--type-02);
+      color: RGB(var(--as--color--type-02));
     }
   }
 }

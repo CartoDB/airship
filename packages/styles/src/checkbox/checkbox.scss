@@ -13,7 +13,7 @@
     width: get-spacing(4);
     height: get-spacing(4);
     overflow: hidden;
-    border: 1px solid var(--as--color--alpha-02, #{$color-alpha-02});
+    border: 1px solid rgba(var(--as--color--type-02), 0.16);
     border-radius: 3px;
     pointer-events: none;
   }
