@@ -45,7 +45,7 @@ as-histogram-widget {
     }
 
     text {
-      fill: var(--as--color--type-01);
+      fill: RGB(var(--as--color--type-01));
     }
 
     .brush {
@@ -81,7 +81,7 @@ as-histogram-widget {
 
     .handle--custom {
       stroke-linecap: round;
-      stroke: var(--as--color--primary, #{$color-primary});
+      stroke: RGB(var(--as--color--primary, #{$color-primary}));
       fill: white;
       cursor: ew-resize;
       pointer-events: none;
@@ -96,7 +96,7 @@ as-histogram-widget {
     }
 
     .bottomline {
-      stroke: var(--as--color--primary, #{$color-primary});
+      stroke: RGB(var(--as--color--primary, #{$color-primary}));
     }
   }
 
@@ -108,7 +108,7 @@ as-histogram-widget {
 
   .x-label,
   .y-label {
-    color: var(--as--color--type-01);
+    color: RGB(var(--as--color--type-01));
     font: var(--as--font--caption);
     text-align: center;
   }

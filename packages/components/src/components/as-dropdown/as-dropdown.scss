@@ -24,7 +24,7 @@ as-dropdown {
     border-radius: 4px;
     background-color: var(--as--color--ui-01, #{$color-ui-01});
     box-shadow: inset 0 0 0 1px var(--as-dropdown--color--secondary, #{$color-ui-04});
-    color: var(--as--color--type-01, #{$color-type-01});
+    color: RGB(var(--as--color--type-01, #{$color-type-01}));
     text-align: left;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -40,7 +40,7 @@ as-dropdown {
     background-repeat: no-repeat;
 
     path {
-      fill: var(--as-dropdown--color--main);
+      fill: RGB(var(--as-dropdown--color--main));
     }
   }
 
@@ -79,7 +79,7 @@ as-dropdown {
       border: 0;
       outline: none;
       background-color: var(--as--color--ui-01, #{$color-ui-01});
-      color: var(--as--color--type-01, #{$color-type-01});
+      color: RGB(var(--as--color--type-01, #{$color-type-01}));
       text-align: left;
       cursor: inherit;
 
@@ -94,7 +94,7 @@ as-dropdown {
 
   .as-dropdown--open {
     .as-dropdown__control {
-      box-shadow: inset 0 0 0 2px var(--as-dropdown--color--main);
+      box-shadow: inset 0 0 0 2px RGB(var(--as-dropdown--color--main));
     }
 
     .as-dropdown__list {
@@ -120,7 +120,7 @@ as-dropdown {
     cursor: pointer;
 
     path {
-      fill: var(--as-dropdown--color--main);
+      fill: RGB(var(--as-dropdown--color--main));
     }
   }
 }

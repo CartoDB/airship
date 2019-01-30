@@ -85,7 +85,7 @@ as-switch {
 
   .as-switch__input:checked + .as-switch__toggle,
   .as-switch__input:checked + .as-switch__toggle:hover {
-    background: var(--as-switch--color--background-checked, #{$color-primary});
+    background: RGB(var(--as-switch--color--background-checked, #{$color-primary}));
   }
 
   .as-switch__input:checked + .as-switch__toggle::after {

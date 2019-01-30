@@ -1,7 +1,7 @@
 @import '../../../../styles/src/core/_dev';
 
 as-infowindow {
-  --as-infowindow--color--alpha: var(--as--color--alpha-dark-02, #{$color-alpha-dark-02});
+  --as-infowindow--color--shadow: var(--as--color--type-01, #{$color-type-01});
   --as-infowindow--color--background: var(--as--color--ui-01, #{$color-ui-01});
 
   display: inline-block;
@@ -13,7 +13,7 @@ as-infowindow {
     width: 260px;
     border-radius: 4px 4px 4px 0;
     background: var(--as-infowindow--color--background);
-    box-shadow: 0 4px 16px 0 var(--as-infowindow--color--alpha);
+    box-shadow: 0 4px 16px 0 rgba(var(--as-infowindow--color--shadow), 0.16);
 
     img {
       display: block;
@@ -61,7 +61,7 @@ as-infowindow {
         left: 0;
         width: 0;
         height: 0;
-        border-top: 12px solid var(--as-infowindow--color--alpha);
+        border-top: 12px solid rgba(var(--as-infowindow--color--alpha), 0.16);
         border-right: 18px solid transparent;
         filter: blur(2px);
       }
@@ -80,7 +80,7 @@ as-infowindow {
         left: 0;
         width: 0;
         height: 0;
-        border-top: 12px solid var(--as-infowindow--color--alpha);
+        border-top: 12px solid rgba(var(--as-infowindow--color--alpha), 0.16);
         border-right: 18px solid transparent;
         filter: blur(2px);
       }

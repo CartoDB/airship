@@ -27,7 +27,7 @@ as-range-slider-thumb {
     width: 12px;
     height: 12px;
     transition: transform 200ms ease;
-    border: 1px solid var(--as--color--primary, #{$color-primary});
+    border: 1px solid RGB(var(--as--color--primary, #{$color-primary}));
     border-radius: 50%;
     background: #FFF;
     cursor: grab;
@@ -66,7 +66,7 @@ as-range-slider-thumb {
     outline: none;
 
     .as-range-slider__thumb-handle {
-      background: var(--as--color--primary, #{$color-primary});
+      background: RGB(var(--as--color--primary, #{$color-primary}));
     }
   }
 

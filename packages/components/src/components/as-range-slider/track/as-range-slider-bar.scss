@@ -9,7 +9,7 @@ as-range-slider-bar {
     top: 50%;
     height: 2px;
     transform: translate3d(0, -50%, 0);
-    background-color: var(--slider--color--range, #{$color-primary});
+    background-color: RGB(var(--slider--color--range, #{$color-primary}));
   }
 
   .as-range-slider__range-bar--disabled {

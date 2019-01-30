@@ -12,8 +12,8 @@ as-time-series-widget {
 
   .as-time-series--scrubber,
   .as-time-series--line {
-    stroke: var(--as--color--primary, #{$color-primary});
-    fill: var(--as--color--primary, #{$color-primary});
+    stroke: RGB(var(--as--color--primary, #{$color-primary}));
+    fill: RGB(var(--as--color--primary, #{$color-primary}));
   }
 
   .as-time-series--scrubber,

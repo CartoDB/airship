@@ -10,13 +10,13 @@ as-widget-header {
 
   .as-widget-header__header {
     margin: 0;
-    color: var(--as-widget-header__header--color);
+    color: RGB(var(--as-widget-header__header--color));
     font: var(--as--font--subheader);
   }
 
   .as-widget-header__subheader {
     margin-bottom: 16px;
-    color: rgb(var(--as-widget-subheader--color));
+    color: RGB(var(--as-widget-subheader--color));
 
     &--error {
       color: var(--widget--subheader-color-error, #F3522B);
