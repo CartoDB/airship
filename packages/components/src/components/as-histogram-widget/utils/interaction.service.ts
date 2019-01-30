@@ -15,14 +15,15 @@ export function addTooltip(
   color: string,
   unselectedColor: string,
   formatter: (d: HistogramData) => string | string[],
-  setTooltip: (tooltip: string | string[] | null, evt?: MouseEvent) => void
+  setTooltip: (tooltip: string | string[] | null, evt?: MouseEvent) => void,
+  className: string
 ) {
   container.on('mousemove', () => {
     const evt = d3event as MouseEvent;
     const { clientX, clientY } = evt;
     let anyHovered = false;
 
-    _forEachRect(barsContainer, clientX, clientY,
+    _forEachRect(barsContainer, clientX, clientY, className,
       (data, node, bucketIndex) => {
         const selected = _isSelected(hasSelection.selection, bucketIndex);
 
@@ -45,13 +46,13 @@ export function addTooltip(
     const evt = d3event as MouseEvent;
     const { clientX, clientY } = evt;
 
-    _forEachRect(barsContainer, clientX, clientY, (data) => {
+    _forEachRect(barsContainer, clientX, clientY, className, (data) => {
       hasSelection.setSelection([data.start, data.end]);
     });
   })
   .on('mouseleave', () => {
     setTooltip(null);
-    barsContainer.selectAll('rect')
+    barsContainer.selectAll(`rect.${className}`)
       .style('fill', (data: HistogramData, bucketIndex) => {
         if (_isSelected(hasSelection.selection, bucketIndex)) {
           return data.color || color;
@@ -85,9 +86,10 @@ function _forEachRect(
   container: SVGGContainer,
   x: number,
   y: number,
+  className: string,
   insideCallback: RectCallback,
   outsideCallback?: RectCallback) {
-  container.selectAll('rect')
+  container.selectAll(`rect.${className}`)
     .each((data: HistogramData, i, nodes) => {
       const nodeSelection = select(nodes[i]);
       const node = nodes[i] as Element;

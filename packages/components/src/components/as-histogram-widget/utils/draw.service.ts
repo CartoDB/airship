@@ -63,7 +63,8 @@ export function renderBars(
   color: string,
   X_PADDING: number,
   Y_PADDING: number,
-  disableAnimation: boolean = false) {
+  disableAnimation: boolean = false,
+  className: string = '') {
 
   if (!container || !container.node()) {
     return;
@@ -73,6 +74,8 @@ export function renderBars(
   const HEIGHT = container.node().getBoundingClientRect().height - Y_PADDING;
   const WIDTH = container.node().getBoundingClientRect().width - X_PADDING;
 
+  data = data === null ? [] : data;
+
   const barWidth = data.length === 0 ? WIDTH : WIDTH / data.length;
 
   if (barWidth - barsSeparation < BAR_WIDTH_THRESHOLD) {
@@ -81,7 +84,7 @@ export function renderBars(
 
   // -- Draw bars
   this.bars = barsContainer
-    .selectAll('rect')
+    .selectAll(`rect.${className}`)
     .data(data);
 
   // -- Exit
@@ -96,7 +99,7 @@ export function renderBars(
       .attr('y', HEIGHT)
       .attr('height', 0)
       .merge(this.bars)
-      .attr('class', 'bar')
+      .attr('class', `bar ${className}`)
       .attr('x', (_d: HistogramData, index: number) => index * barWidth)
       .attr('width', () => Math.max(0, barWidth - barsSeparation))
       .style('fill', (d: HistogramData) => d.color || color);
@@ -201,14 +204,32 @@ export function renderXAxis(
 
 export function renderYAxis(
   container: SVGContainer,
-  domain: Domain,
-  X_PADDING: number,
-  Y_PADDING: number): Axis<{ valueOf(): number }> {
+  yAxis: Axis<{ valueOf(): number }>) {
 
   if (!container || !container.node()) {
     return;
   }
 
+  if (container.select('.y-axis').empty()) {
+    container
+      .append('g')
+      .attr('class', 'y-axis')
+      .call(yAxis);
+  } else {
+    container.select('.y-axis')
+      .call(yAxis);
+  }
+}
+
+export function generateYScale(
+  container: SVGContainer,
+  domain: Domain,
+  X_PADDING: number,
+  Y_PADDING: number) {
+
+  if (!container || !container.node()) {
+    return;
+  }
 
   const HEIGHT = container.node().getBoundingClientRect().height - Y_PADDING;
   const WIDTH = container.node().getBoundingClientRect().width - X_PADDING;
@@ -225,16 +246,6 @@ export function renderYAxis(
     .tickPadding(10)
     .tickFormat(_conditionalFormatter);
 
-  if (container.select('.y-axis').empty()) {
-    container
-      .append('g')
-      .attr('class', 'y-axis')
-      .call(yAxis);
-  } else {
-    container.select('.y-axis')
-      .call(yAxis);
-  }
-
   return yAxis;
 }
 
@@ -250,4 +261,4 @@ function _conditionalFormatter(value) {
   return formatter(value);
 }
 
-export default { cleanAxes, updateAxes, renderBars, renderXAxis, renderYAxis, renderPlot };
+export default { cleanAxes, updateAxes, renderBars, renderXAxis, renderYAxis, generateYScale, renderPlot };

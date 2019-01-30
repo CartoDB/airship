@@ -75,6 +75,14 @@ export class TimeSeriesWidget {
   @Prop() public data: TimeSeriesData[] = [];
 
   /**
+   * Histogram data to be displayed
+   *
+   * @type {HistogramData[]}
+   * @memberof HistogramWidget
+   */
+  @Prop() public backgroundData: TimeSeriesData[] = [];
+
+  /**
    * Override color for the histogram bars
    *
    * @type {string}
@@ -216,6 +224,7 @@ export class TimeSeriesWidget {
   // Last position when putting the mouse over the scrubber track
   private _lastMousePosition: number;
   private _data: any;
+  private _backgroundData: HistogramData[];
 
   constructor() {
     this.axisFormatter = this.axisFormatter.bind(this);
@@ -228,6 +237,11 @@ export class TimeSeriesWidget {
     } else {
       this._data = prepareData(newData);
     }
+  }
+
+  @Watch('backgroundData')
+  public onBackgroundDataChanged(newData) {
+    this._backgroundData = prepareData(newData);
   }
 
   @Watch('progress')
@@ -309,6 +323,7 @@ export class TimeSeriesWidget {
 
   public async componentWillLoad() {
     this.onDataChanged(this.data, []);
+    this.onBackgroundDataChanged(this.backgroundData);
   }
 
   public async componentDidLoad() {
@@ -366,6 +381,7 @@ export class TimeSeriesWidget {
           showClear={this.showClear}
           disableInteractivity={this.disableInteractivity}
           data={this._data}
+          backgroundData={this._backgroundData}
           color={this.color}
           unselectedColor={this.unselectedColor}
           colorRange={this.colorRange}

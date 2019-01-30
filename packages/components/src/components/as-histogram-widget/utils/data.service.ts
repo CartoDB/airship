@@ -31,7 +31,7 @@ export function isCategoricalData(data: HistogramData[]): boolean {
   return data.every(_hasCategory);
 }
 
-export function prepareData(data: HistogramData[], backgroundData?: HistogramData[]) {
+export function prepareData(data: HistogramData[]) {
   const hasRange = data.every(_hasRange);
 
   return data.map((d, index) => {
@@ -42,13 +42,6 @@ export function prepareData(data: HistogramData[], backgroundData?: HistogramDat
     if (!hasRange) {
       parsed.start = index;
       parsed.end = index + 1;
-    }
-
-    if (d.value === 0 && backgroundData) {
-      return {
-        ...parsed,
-        value: backgroundData[index].value
-      };
     }
 
     return parsed;

@@ -61,8 +61,11 @@
       },
     ];
     
-    histogramWidget.data = data;
-    histogramWidget.backgroundData = data;
+    let dataSource = histogramWidget.data = data;
+    histogramWidget.backgroundData = data.map((value) => ({
+      ...value,
+      value: value.value + (value.value)
+    }));
 
     histogramWidget.addEventListener('selectionChanged', (event) => {
       if (event.detail === null) {
@@ -115,11 +118,17 @@
     ];
 
     function changeBackgroundData() {
-      histogramWidget.backgroundData = otherData;
+      histogramWidget.backgroundData = otherData.map((value) => ({
+        ...value,
+        value: Math.random() * 100000
+      }));
     }
 
     function changeData() {
-      histogramWidget.data = otherData;
+      histogramWidget.data = otherData.map((value) => ({
+        ...value,
+        value: Math.random() * 100000
+      }));
     }
 
     function wrongBackground() {

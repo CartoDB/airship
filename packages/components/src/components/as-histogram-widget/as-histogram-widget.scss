@@ -57,18 +57,11 @@ as-histogram-widget {
       }
     }
 
-    .bar {
-      opacity: 0.7;
+    .foreground-bar {
       cursor: pointer;
     }
 
     @import '../common/y-axis/as-y-axis.scss';
-
-    .plot {
-      rect {
-        cursor: pointer;
-      }
-    }
 
     .x-axis {
       .domain,

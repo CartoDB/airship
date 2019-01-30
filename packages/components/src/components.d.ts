@@ -751,6 +751,10 @@ export namespace Components {
     */
     'animated': boolean;
     /**
+    * Histogram data to be displayed
+    */
+    'backgroundData': TimeSeriesData[];
+    /**
     * Proxy to as-histogram-widget clearSelection()
     */
     'clearSelection': () => void;
@@ -868,6 +872,10 @@ export namespace Components {
     * Whether it should have animated properties or not. Disabling this makes this look like a histogra widget with time capabilities
     */
     'animated'?: boolean;
+    /**
+    * Histogram data to be displayed
+    */
+    'backgroundData'?: TimeSeriesData[];
     /**
     * Text rendered inside the clear selection button
     */

@@ -1,4 +1,5 @@
 import { Component, Element, Event, EventEmitter, Method, Prop, State, Watch } from '@stencil/core';
+import { Axis } from 'd3';
 import { BrushBehavior } from 'd3-brush';
 import { ScaleLinear } from 'd3-scale';
 import {
@@ -29,6 +30,9 @@ const CUSTOM_HANDLE_HEIGHT = 20;
 const X_PADDING = 38;
 const Y_PADDING = 40;
 const LABEL_PADDING = 25;
+
+const FG_CLASSNAME = 'foreground-bar';
+const BG_CLASSNAME = 'background-bar';
 
 /**
  * Histogram Widget
@@ -221,6 +225,7 @@ export class HistogramWidget {
   private xScale: ScaleLinear<number, number>;
   private binsScale: ScaleLinear<number, number>;
   private yScale: ScaleLinear<number, number>;
+  private yAxis: Axis<{ valueOf(): number }>;
   private barsContainer: SVGGContainer;
   private brush: BrushBehavior<{}>;
   private brushArea: SVGGContainer;
@@ -232,6 +237,8 @@ export class HistogramWidget {
   private prevHeight: number;
 
   private _data: HistogramData[];
+  private _backgroundData: HistogramData[];
+  private _mockBackground: boolean = false;
   private _color: string;
   private _barBackgroundColor: string;
   private _muteSelectionChanged: boolean = false;
@@ -254,6 +261,11 @@ export class HistogramWidget {
 
   @Watch('backgroundData')
   public _onBackgroundDataChanged(newBackgroundData) {
+    if (newBackgroundData === null || newBackgroundData.length === 0) {
+      this._prepareData(this.data, null);
+      return;
+    }
+
     if (isBackgroundCompatible(this.data, newBackgroundData)) {
       this._prepareData(this.data, newBackgroundData);
     }
@@ -272,7 +284,9 @@ export class HistogramWidget {
   }
 
   public _prepareData(data, backgroundData) {
-    this._data = prepareData(data, backgroundData);
+    this._data = prepareData(data);
+    this._backgroundData = backgroundData === null ? this._mockBackgroundData(data) : prepareData(backgroundData);
+    this._mockBackground = backgroundData === null;
     this.binsScale = binsScale(this._data);
     this.isCategoricalData = isCategoricalData(this._data);
 
@@ -405,7 +419,8 @@ export class HistogramWidget {
   public componentWillLoad() {
     addEventListener('resize', this._resizeRender);
     this.selectionFooter = this.selectedFormatter(this.selection);
-    this._data = prepareData(this.data, this.backgroundData);
+    this._onBackgroundDataChanged(this.backgroundData);
+    this._onDataChanged(this.data);
   }
 
   public componentDidUnload() {
@@ -450,6 +465,13 @@ export class HistogramWidget {
         {this._renderTooltip()}
       </div>
       );
+  }
+
+  private _mockBackgroundData(data: HistogramData[]) {
+    return data.map((value) => ({
+      ...value,
+      value: 0
+    }));
   }
 
   private _selectionFormatter(selection: number[]) {
@@ -503,7 +525,7 @@ export class HistogramWidget {
 
     if (this.height === 0 || this.width === 0) { return; }
 
-    this._renderYAxis();
+    this._generateYAxis();
     this._renderXAxis();
 
     this.barsContainer = drawService.renderPlot(this.container);
@@ -541,7 +563,20 @@ export class HistogramWidget {
       this._color,
       this._barBackgroundColor,
       (value) => this.tooltipFormatter(value),
-      this._setTooltip.bind(this)
+      this._setTooltip.bind(this),
+      FG_CLASSNAME
+    );
+
+    drawService.renderBars(
+      this._backgroundData,
+      this.yScale,
+      this.container,
+      this.barsContainer,
+      this._barBackgroundColor,
+      X_PADDING + (this.yLabel ? LABEL_PADDING : 0),
+      Y_PADDING,
+      resizing,
+      BG_CLASSNAME
     );
 
     drawService.renderBars(
@@ -552,7 +587,11 @@ export class HistogramWidget {
       this._color,
       X_PADDING + (this.yLabel ? LABEL_PADDING : 0),
       Y_PADDING,
-      resizing);
+      resizing,
+      FG_CLASSNAME
+    );
+
+    this._renderYAxis();
 
     this._updateSelection();
 
@@ -760,7 +799,7 @@ export class HistogramWidget {
     }
 
     if (values === null) {
-      this.barsContainer.selectAll('rect')
+      this.barsContainer.selectAll(`rect.${FG_CLASSNAME}`)
         .style('fill', (_d, i) => {
           const d = this._data[i];
           return d.color || this._color;
@@ -792,7 +831,7 @@ export class HistogramWidget {
       .attr('x1', spaceValues[0])
       .attr('x2', spaceValues[1]);
 
-    this.barsContainer.selectAll('.bar')
+    this.barsContainer.selectAll(`rect.${FG_CLASSNAME}`)
       .style('fill', (_d, i) => {
         const d = this._data[i];
         if (!(domainValues[0] <= d.start && d.end <= domainValues[1])) {
@@ -803,14 +842,26 @@ export class HistogramWidget {
   }
 
   private _renderYAxis() {
-    const yDomain = dataService.getYDomain(this._data);
-    const yAxis = drawService.renderYAxis(
+    drawService.renderYAxis(this.container, this.yAxis);
+  }
+
+  private _dataForDomain() {
+    if (this._backgroundData === null || this._backgroundData.length === 0 || this._mockBackground) {
+      return this._data;
+    }
+
+    return this._backgroundData;
+  }
+
+  private _generateYAxis() {
+    const yDomain = dataService.getYDomain(this._dataForDomain());
+    this.yAxis = drawService.generateYScale(
       this.container,
       yDomain,
       X_PADDING + (this.yLabel ? LABEL_PADDING : 0),
       Y_PADDING);
 
-    this.yScale = yAxis.scale();
+    this.yScale = this.yAxis.scale();
   }
 
   private _renderXAxis() {

@@ -147,6 +147,14 @@
             
             lastData = newHistogram;
 
+            timeWidget.backgroundData = newHistogram.map(entry => {
+              return {
+                start: entry.x[0],
+                end: entry.x[1],
+                value: entry.y * 1.25
+              }
+            })
+
             timeWidget.data = newHistogram.map(entry => {
               return {
                 start: entry.x[0],
