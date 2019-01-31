@@ -143,6 +143,10 @@
         {
           "title": "as-histogram Background data",
           "file": "components/as-histogram-widget/interaction-disabled.html"
+        },
+        {
+          "title": "as-histogram Custom range",
+          "file": "components/as-histogram-widget/custom-range.html"
         }
       ]
     },
