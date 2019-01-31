@@ -197,6 +197,22 @@ export class HistogramWidget {
    */
   @Prop() public selectedFormatter: (value: number[]) => string = this._selectionFormatter;
 
+  /**
+   * This prop lets you provide the range of the y-axis so it's not automatically calculated with
+   * data or backgroundData. It always starts at 0, you can provide the top value.
+   *
+   * @memberof HistogramWidget
+   */
+  @Prop() public range: [number, number] = null;
+
+  /**
+   * This lets you disable the animations for the bars when showing / updating the data
+   *
+   * @type {boolean}
+   * @memberof HistogramWidget
+   */
+  @Prop() public disableAnimation: boolean = false;
+
   public selection: number[] = null;
 
   @Element() private el: HTMLStencilElement;
@@ -468,9 +484,10 @@ export class HistogramWidget {
   }
 
   private _mockBackgroundData(data: HistogramData[]) {
+    const min = dataService.getLowerBounds(data);
     return data.map((value) => ({
       ...value,
-      value: 0
+      value: Math.max(0, min)
     }));
   }
 
@@ -530,32 +547,6 @@ export class HistogramWidget {
 
     this.barsContainer = drawService.renderPlot(this.container);
 
-    if (!this.disableInteractivity) {
-      this.brush = brushService.addBrush(
-        this.width,
-        this.height,
-        this._onBrush.bind(this),
-        this._onBrushEnd.bind(this),
-        CUSTOM_HANDLE_WIDTH,
-        CUSTOM_HANDLE_HEIGHT,
-        X_PADDING + (this.yLabel ? LABEL_PADDING : 0),
-        Y_PADDING
-      );
-
-      this.brushArea = brushService.addBrushArea(
-        this.brush,
-        this.container,
-      );
-
-      this.customHandles = brushService.addCustomHandles(
-        this.brushArea,
-        this.height,
-        CUSTOM_HANDLE_WIDTH,
-        CUSTOM_HANDLE_HEIGHT,
-        Y_PADDING
-      );
-    }
-
     interactionService.addTooltip(
       this.container,
       this.barsContainer,
@@ -575,7 +566,7 @@ export class HistogramWidget {
       this._barBackgroundColor,
       X_PADDING + (this.yLabel ? LABEL_PADDING : 0),
       Y_PADDING,
-      resizing,
+      this.disableAnimation || resizing,
       BG_CLASSNAME
     );
 
@@ -587,11 +578,36 @@ export class HistogramWidget {
       this._color,
       X_PADDING + (this.yLabel ? LABEL_PADDING : 0),
       Y_PADDING,
-      resizing,
+      this.disableAnimation || resizing,
       FG_CLASSNAME
     );
 
-    this._renderYAxis();
+    drawService.renderYAxis(this.container, this.yAxis, X_PADDING);
+
+    if (!this.disableInteractivity) {
+      this.brush = brushService.addBrush(
+        this.width,
+        this.height,
+        this._onBrush.bind(this),
+        this._onBrushEnd.bind(this),
+        CUSTOM_HANDLE_WIDTH,
+        CUSTOM_HANDLE_HEIGHT,
+        X_PADDING + (this.yLabel ? LABEL_PADDING : 0),
+        Y_PADDING
+      );
+
+      this.brushArea = brushService.addBrushArea(
+        this.brush,
+        this.container,
+      );
+
+      this.customHandles = brushService.addCustomHandles(
+        this.brushArea,
+        CUSTOM_HANDLE_WIDTH,
+        CUSTOM_HANDLE_HEIGHT,
+        this.yScale
+      );
+    }
 
     this._updateSelection();
 
@@ -809,7 +825,7 @@ export class HistogramWidget {
       return;
     }
 
-    const yCoord = this.height - Y_PADDING;
+    const yCoord = this.yScale(this.yScale.domain()[0]);
 
     // Convert back to space coordinates
     const spaceValues = values
@@ -841,10 +857,6 @@ export class HistogramWidget {
       });
   }
 
-  private _renderYAxis() {
-    drawService.renderYAxis(this.container, this.yAxis);
-  }
-
   private _dataForDomain() {
     if (this._backgroundData === null || this._backgroundData.length === 0 || this._mockBackground) {
       return this._data;
@@ -854,7 +866,7 @@ export class HistogramWidget {
   }
 
   private _generateYAxis() {
-    const yDomain = dataService.getYDomain(this._dataForDomain());
+    const yDomain: [number, number] = this.range !== null ? this.range : dataService.getYDomain(this._dataForDomain());
     this.yAxis = drawService.generateYScale(
       this.container,
       yDomain,

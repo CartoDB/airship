@@ -104,14 +104,21 @@ export function renderBars(
       .attr('width', () => Math.max(0, barWidth - barsSeparation))
       .style('fill', (d: HistogramData) => d.color || color);
 
+  const minDomain = yScale.domain()[0];
+  const yZero = yScale(Math.max(0, minDomain));
+
   (disableAnimation ? mergeSelection : mergeSelection.transition().delay(_delayFn))
-    .attr('height', (d: HistogramData) => HEIGHT - yScale(d.value))
-    .attr('y', (d: HistogramData) => yScale(d.value));
+    .attr('height', (d: HistogramData) => {
+      return Math.abs(yScale(d.value) - yZero);
+    })
+    .attr('y', (d: HistogramData) => d.value > 0 ? yScale(d.value) : yZero);
 
   // -- Update
   (disableAnimation ? this.bars : this.bars.transition().delay(_delayFn))
-    .attr('height', (d) => HEIGHT - yScale(d.value))
-    .attr('y', (d) => yScale(d.value));
+    .attr('height', (d: HistogramData) => {
+      return Math.abs(yScale(d.value) - yZero);
+    })
+    .attr('y', (d: HistogramData) => d.value > 0 ? yScale(d.value) : yZero);
 }
 
 export function renderXAxis(
@@ -204,7 +211,8 @@ export function renderXAxis(
 
 export function renderYAxis(
   container: SVGContainer,
-  yAxis: Axis<{ valueOf(): number }>) {
+  yAxis: Axis<{ valueOf(): number }>,
+  X_PADDING: number) {
 
   if (!container || !container.node()) {
     return;
@@ -219,6 +227,19 @@ export function renderYAxis(
     container.select('.y-axis')
       .call(yAxis);
   }
+
+  // 0 line
+  container
+    .select('.y-axis')
+    .append('g')
+    .attr('class', 'tick')
+    .attr('opacity', '1')
+    .attr('transform', `translate(0,${yAxis.scale()(0)})`)
+    .append('line')
+    .attr('shape-rendering', 'crisp')
+    .attr('stroke', '#000')
+    .attr('class', 'zero')
+    .attr('x2', container.node().getBoundingClientRect().width - X_PADDING);
 }
 
 export function generateYScale(
@@ -237,8 +258,7 @@ export function generateYScale(
   // -- Y Axis
   const yScale = scaleLinear()
     .domain(domain)
-    .range([HEIGHT, 0])
-    .nice();
+    .range([HEIGHT, 0]);
 
   const yAxis = axisLeft(yScale)
     .tickSize(-WIDTH)
