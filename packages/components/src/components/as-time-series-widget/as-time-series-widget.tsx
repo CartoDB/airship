@@ -192,6 +192,22 @@ export class TimeSeriesWidget {
   @Prop() public clearText: string = 'Clear selection';
 
   /**
+   * This prop lets you provide the range of the y-axis so it's not automatically calculated with
+   * data or backgroundData. It always starts at 0, you can provide the top value.
+   *
+   * @memberof HistogramWidget
+   */
+  @Prop() public range: [number, number] = null;
+
+  /**
+   * This lets you disable the animations for the bars when showing / updating the data
+   *
+   * @type {boolean}
+   * @memberof HistogramWidget
+   */
+  @Prop() public disableAnimation: boolean = false;
+
+  /**
    * User clicks the play button
    */
   @Event()
@@ -396,6 +412,8 @@ export class TimeSeriesWidget {
           noDataBodyMessage={this.noDataBodyMessage}
           responsive={this.responsive}
           clearText={this.clearText}
+          range={this.range}
+          disableAnimation={this.disableAnimation}
         >
       </as-histogram-widget>];
   }

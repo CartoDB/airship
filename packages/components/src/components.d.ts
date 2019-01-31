@@ -799,6 +799,10 @@ export namespace Components {
     */
     'description': string;
     /**
+    * This lets you disable the animations for the bars when showing / updating the data
+    */
+    'disableAnimation': boolean;
+    /**
     * Disables selection brushes and events for the widget
     */
     'disableInteractivity': boolean;
@@ -813,7 +817,7 @@ export namespace Components {
     /**
     * Proxy to as-histogram-widget getSelection()
     */
-    'getSelection': () => Promise<string[] | number[]>;
+    'getSelection': () => Promise<number[] | string[]>;
     /**
     * Title of the widget to be displayed
     */
@@ -838,6 +842,10 @@ export namespace Components {
     * This attribute is the percentage of progress elapsed on an animation.
     */
     'progress': number;
+    /**
+    * This prop lets you provide the range of the y-axis so it's not automatically calculated with data or backgroundData. It always starts at 0, you can provide the top value.
+    */
+    'range': [number, number];
     /**
     * Use this attribute to decide if the widget should be rerendered on window resize. Defaults to true.
     */
@@ -913,6 +921,10 @@ export namespace Components {
     */
     'description'?: string;
     /**
+    * This lets you disable the animations for the bars when showing / updating the data
+    */
+    'disableAnimation'?: boolean;
+    /**
     * Disables selection brushes and events for the widget
     */
     'disableInteractivity'?: boolean;
@@ -964,6 +976,10 @@ export namespace Components {
     * This attribute is the percentage of progress elapsed on an animation.
     */
     'progress'?: number;
+    /**
+    * This prop lets you provide the range of the y-axis so it's not automatically calculated with data or backgroundData. It always starts at 0, you can provide the top value.
+    */
+    'range'?: [number, number];
     /**
     * Use this attribute to decide if the widget should be rerendered on window resize. Defaults to true.
     */
