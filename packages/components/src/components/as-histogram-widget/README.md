@@ -286,6 +286,39 @@ histogramWidget.selectedFormatter = function (selection) {
 };
 ```
 
+#### **range**: [number, number]
+
+This prop lets you specify the range of the data, so it will not be calculated each time the data changes. This is very useful to better appreciate data variations when filtering.
+
+```code
+lang: javascript
+---
+histogramWidget.data = [
+  { start: 50, end: 60, value: 5 },
+  { start: 60, end: 70, value: 30 },
+  { start: 70, end: 80, value: 45 },
+  { start: 80, end: 90, value: 60 },
+];
+
+histogramWidget.range = [0, 100]
+```
+
+#### **disableAnimation**: boolean
+
+This prop lets you disable bars animations
+
+```code
+lang: javascript
+---
+histogramWidget.disableAnimation = true
+```
+
+```code
+lang: html
+---
+<as-histogram-widget disable-animation></as-histogram-widget>
+```
+
 ### Styles
 There are some CSS Variables that you can override to change visual styles.
 
