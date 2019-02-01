@@ -12,6 +12,7 @@ import {
   DropdownOption,
 } from './components/as-dropdown/types/DropdownOption';
 import {
+  AxisOptions,
   HistogramColorRange,
   HistogramData,
   HistogramSelection,
@@ -337,6 +338,10 @@ export namespace Components {
     */
     'unselectedColor': string;
     /**
+    * This prop is a proxy to some d3-axis options for the X Axis
+    */
+    'xAxisOptions': AxisOptions;
+    /**
     * Formats a number using the component's x-axis formatter if present
     */
     'xFormatter': (value: any) => any;
@@ -344,6 +349,10 @@ export namespace Components {
     * Label the x axis of the histogram with the given string.
     */
     'xLabel': string;
+    /**
+    * This prop is a proxy to some d3-axis options for the Y Axis
+    */
+    'yAxisOptions': AxisOptions;
     /**
     * Label the y axis of the histogram with the given string.
     */
@@ -445,9 +454,17 @@ export namespace Components {
     */
     'unselectedColor'?: string;
     /**
+    * This prop is a proxy to some d3-axis options for the X Axis
+    */
+    'xAxisOptions'?: AxisOptions;
+    /**
     * Label the x axis of the histogram with the given string.
     */
     'xLabel'?: string;
+    /**
+    * This prop is a proxy to some d3-axis options for the Y Axis
+    */
+    'yAxisOptions'?: AxisOptions;
     /**
     * Label the y axis of the histogram with the given string.
     */
@@ -879,6 +896,10 @@ export namespace Components {
     */
     'unselectedColor': string;
     /**
+    * This prop is a proxy to some d3-axis options for the X Axis
+    */
+    'xAxisOptions': AxisOptions;
+    /**
     * Proxy to as-histogram-widget xFormatter method
     */
     'xFormatter': (value: any) => any;
@@ -886,6 +907,10 @@ export namespace Components {
     * Label the x axis of the histogram with the given string.
     */
     'xLabel': string;
+    /**
+    * This prop is a proxy to some d3-axis options for the Y Axis
+    */
+    'yAxisOptions': AxisOptions;
     /**
     * Label the y axis of the histogram with the given string.
     */
@@ -1009,9 +1034,17 @@ export namespace Components {
     */
     'unselectedColor'?: string;
     /**
+    * This prop is a proxy to some d3-axis options for the X Axis
+    */
+    'xAxisOptions'?: AxisOptions;
+    /**
     * Label the x axis of the histogram with the given string.
     */
     'xLabel'?: string;
+    /**
+    * This prop is a proxy to some d3-axis options for the Y Axis
+    */
+    'yAxisOptions'?: AxisOptions;
     /**
     * Label the y axis of the histogram with the given string.
     */

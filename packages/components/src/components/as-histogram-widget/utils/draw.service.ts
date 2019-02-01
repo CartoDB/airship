@@ -2,7 +2,7 @@ import { Axis, axisBottom } from 'd3-axis';
 import { axisLeft } from 'd3-axis';
 import { format } from 'd3-format';
 import { ScaleLinear, scaleLinear } from 'd3-scale';
-import { HistogramData } from '../interfaces';
+import { AxisOptions, HistogramData } from '../interfaces';
 import { SVGContainer, SVGGContainer } from '../types/Container';
 import { Domain } from '../types/Domain';
 
@@ -127,7 +127,8 @@ export function renderXAxis(
   bins: number,
   X_PADDING: number,
   Y_PADDING: number,
-  customFormatter: (value: Date | number) => string = _conditionalFormatter): Axis<{ valueOf(): number }> {
+  customFormatter: (value: Date | number) => string = _conditionalFormatter,
+  axisOptions: AxisOptions): Axis<{ valueOf(): number }> {
 
   if (!container || !container.node()) {
     return;
@@ -135,9 +136,10 @@ export function renderXAxis(
 
   const HEIGHT = container.node().getBoundingClientRect().height - Y_PADDING;
   const WIDTH = container.node().getBoundingClientRect().width - X_PADDING;
-
   // Display first, last and middle point bins
-  const ticks = [0, bins / 2, bins];
+  const tickValues = [0, bins / 2, bins];
+  const tickPadding = axisOptions.padding !== undefined ? axisOptions.padding : 13;
+  const ticks = axisOptions.ticks !== undefined ? axisOptions.ticks : tickValues.length;
 
   const xScale = scaleLinear()
     .domain([0, bins])
@@ -147,15 +149,31 @@ export function renderXAxis(
     .domain(domain)
     .range([0, bins]);
 
-  const xAxis = axisBottom(xScale)
-    .tickSize(-HEIGHT)
-    .tickValues(ticks)
-    .tickPadding(13)
-    .tickFormat((value) => {
-      const realValue = realScale.invert(value);
+  let xAxis;
 
-      return customFormatter(realValue);
-    });
+  if (axisOptions.values || axisOptions.format) {
+    const altScale = scaleLinear()
+      .domain(domain)
+      .range([0, WIDTH]);
+
+    xAxis = axisBottom(altScale)
+      .tickValues(axisOptions.values || null)
+      .tickFormat(axisOptions.format || customFormatter);
+  } else {
+    xAxis = axisBottom(xScale)
+      // tickValues has precedence over ticks, must set null if user wants custom tick number
+      .tickValues(ticks !== undefined ? null : tickValues)
+      .tickFormat((value) => {
+        const realValue = realScale.invert(value);
+
+        return customFormatter(realValue);
+      });
+  }
+
+  xAxis
+    .tickSize(-HEIGHT)
+    .tickPadding(tickPadding)
+    .ticks(ticks);
 
   if (container.select('.x-axis').empty()) {
     container
@@ -246,7 +264,8 @@ export function generateYScale(
   container: SVGContainer,
   domain: Domain,
   X_PADDING: number,
-  Y_PADDING: number) {
+  Y_PADDING: number,
+  axisOptions: AxisOptions) {
 
   if (!container || !container.node()) {
     return;
@@ -254,6 +273,8 @@ export function generateYScale(
 
   const HEIGHT = container.node().getBoundingClientRect().height - Y_PADDING;
   const WIDTH = container.node().getBoundingClientRect().width - X_PADDING;
+  const ticks = axisOptions.ticks !== undefined ? axisOptions.ticks : 5;
+  const tickPadding = axisOptions.padding !== undefined ? axisOptions.padding : 10;
 
   // -- Y Axis
   const yScale = scaleLinear()
@@ -262,9 +283,10 @@ export function generateYScale(
 
   const yAxis = axisLeft(yScale)
     .tickSize(-WIDTH)
-    .ticks(5)
-    .tickPadding(10)
-    .tickFormat(_conditionalFormatter);
+    .ticks(ticks)
+    .tickPadding(tickPadding)
+    .tickFormat(axisOptions.format || _conditionalFormatter)
+    .tickValues(axisOptions.values || null);
 
   return yAxis;
 }

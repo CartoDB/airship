@@ -147,6 +147,10 @@
         {
           "title": "as-histogram Custom range",
           "file": "components/as-histogram-widget/custom-range.html"
+        },
+        {
+          "title": "as-histogram Axis Options",
+          "file": "components/as-histogram-widget/axis-options.html"
         }
       ]
     },

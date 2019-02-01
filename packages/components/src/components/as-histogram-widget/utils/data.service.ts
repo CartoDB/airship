@@ -17,7 +17,7 @@ export function getXDomain(data: HistogramData[]): Domain {
 }
 
 export function getYDomain(data: HistogramData[]): Domain {
-  return [getLowerBounds(data), max(data, (d) => d.value)];
+  return [Math.min(0, getLowerBounds(data)), max(data, (d) => d.value)];
 }
 
 export function getLowerBounds(data: HistogramData[]): number {

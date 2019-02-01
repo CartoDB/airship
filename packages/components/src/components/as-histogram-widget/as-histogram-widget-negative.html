@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+  <base href="/">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+  <title>Airship</title>
+  <link rel="stylesheet" href="packages/styles/dist/airship.css">
+  <script src="packages/components/dist/airship.js"></script>
+  <style>
+    body {
+      height: 100vh;
+      margin: 0;
+      padding: 0;
+      background: white;
+    }
+
+    as-histogram-widget {
+      width: 100%;
+      height: 100%;
+      background: white;
+    }
+
+  </style>
+</head>
+
+<body>
+    <div style="width: 250px; margin-top: 16px; display: flex;">
+      <as-histogram-widget
+        id="withRange"
+        heading="With custom range"
+        description="My range is always [0, 30]"
+        show-header
+        disable-interactivity>
+      </as-histogram-widget>
+    </div>
+
+    <script>
+      var histogramWidgetWithRange = document.querySelector('#withRange');
+
+      var data = [
+        { start: 0, end: 10, value: -10 },
+        { start: 10, end: 20, value: -5 },
+        { start: 20, end: 30, value: 15 },
+        { start: 30, end: 40, value: 20 },
+        { start: 40, end: 50, value: 30 },
+      ];
+
+      histogramWidgetWithRange.data = data;
+    </script>
+  </body>
+
+</html>

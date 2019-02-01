@@ -3,7 +3,7 @@ import { scaleLinear } from 'd3-scale';
 import { event as d3event } from 'd3-selection';
 import { timeFormat, timeFormatDefaultLocale, TimeLocaleDefinition } from 'd3-time-format';
 import { icon } from '../../utils/icons';
-import { HistogramColorRange, HistogramData, HistogramSelection } from '../as-histogram-widget/interfaces';
+import { AxisOptions, HistogramColorRange, HistogramData, HistogramSelection } from '../as-histogram-widget/interfaces';
 import { RenderOptions } from '../as-histogram-widget/types/RenderOptions';
 import {
   DEFAULT_BACKGROUND_BAR_COLOR,
@@ -206,6 +206,22 @@ export class TimeSeriesWidget {
    * @memberof HistogramWidget
    */
   @Prop() public disableAnimation: boolean = false;
+
+  /**
+   * This prop is a proxy to some d3-axis options for the X Axis
+   *
+   * @type {AxisOptions}
+   * @memberof TimeSeriesWidget
+   */
+  @Prop() public xAxisOptions: AxisOptions = {};
+
+  /**
+   * This prop is a proxy to some d3-axis options for the Y Axis
+   *
+   * @type {AxisOptions}
+   * @memberof TimeSeriesWidget
+   */
+  @Prop() public yAxisOptions: AxisOptions = {};
 
   /**
    * User clicks the play button
@@ -414,6 +430,8 @@ export class TimeSeriesWidget {
           clearText={this.clearText}
           range={this.range}
           disableAnimation={this.disableAnimation}
+          xAxisOptions={this.xAxisOptions}
+          yAxisOptions={this.yAxisOptions}
         >
       </as-histogram-widget>];
   }

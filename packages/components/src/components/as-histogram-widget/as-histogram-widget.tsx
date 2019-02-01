@@ -15,7 +15,7 @@ import {
   DEFAULT_BAR_COLOR_HEX
 } from '../common/constants';
 import contentFragment from '../common/content.fragment';
-import { HistogramColorRange, HistogramData, HistogramSelection, HistogramType } from './interfaces';
+import { AxisOptions, HistogramColorRange, HistogramData, HistogramSelection, HistogramType } from './interfaces';
 import { SVGContainer, SVGGContainer } from './types/Container';
 import { RenderOptions } from './types/RenderOptions';
 import brushService from './utils/brush.service';
@@ -212,6 +212,22 @@ export class HistogramWidget {
    * @memberof HistogramWidget
    */
   @Prop() public disableAnimation: boolean = false;
+
+  /**
+   * This prop is a proxy to some d3-axis options for the X Axis
+   *
+   * @type {AxisOptions}
+   * @memberof TimeSeriesWidget
+   */
+  @Prop() public xAxisOptions: AxisOptions = {};
+
+  /**
+   * This prop is a proxy to some d3-axis options for the Y Axis
+   *
+   * @type {AxisOptions}
+   * @memberof TimeSeriesWidget
+   */
+  @Prop() public yAxisOptions: AxisOptions = {};
 
   public selection: number[] = null;
 
@@ -871,7 +887,8 @@ export class HistogramWidget {
       this.container,
       yDomain,
       X_PADDING + (this.yLabel ? LABEL_PADDING : 0),
-      Y_PADDING);
+      Y_PADDING,
+      this.yAxisOptions);
 
     this.yScale = this.yAxis.scale();
   }
@@ -884,7 +901,8 @@ export class HistogramWidget {
       this._data.length,
       X_PADDING + (this.yLabel ? LABEL_PADDING : 0),
       Y_PADDING,
-      this.axisFormatter);
+      this.axisFormatter,
+      this.xAxisOptions);
 
     this.xScale = xAxis.scale();
   }
