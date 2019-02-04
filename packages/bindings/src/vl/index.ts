@@ -1,15 +1,22 @@
 import semver from 'semver';
 import { BaseFilter } from './base/BaseFilter';
-import { Histogram } from './histogram/histogram';
+import { CategoricalHistogram } from './histogram/categorical';
+import { NumericalHistogram } from './histogram/numerical';
 import { TimeSeries } from './time-series/times-series';
 
 const VL_VERSION = '^1.1.0';
 
-interface HistogramOptions {
+interface NumericalHistogramOptions {
   column: string;
   buckets: number;
   readOnly: boolean;
   widget: HTMLAsHistogramWidgetElement | HTMLAsTimeSeriesWidgetElement;
+}
+
+interface CategoricalHistogramOptions {
+  column: string;
+  readOnly: boolean;
+  widget: HTMLAsHistogramWidgetElement;
 }
 
 export default class VL {
@@ -38,14 +45,13 @@ export default class VL {
     }
   }
 
-  public histogram({
+  public numericalHistogram({
     column,
     buckets,
     readOnly,
     widget
-  }: HistogramOptions) {
-
-    const histogram = new Histogram(
+  }: NumericalHistogramOptions) {
+    const histogram = new NumericalHistogram(
       this._carto,
       this._layer,
       widget,
@@ -61,6 +67,40 @@ export default class VL {
     return histogram;
   }
 
+  public categoricalHistogram({
+    column,
+    readOnly,
+    widget
+  }: CategoricalHistogramOptions) {
+    const histogram = new CategoricalHistogram(
+      this._carto,
+      this._layer,
+      widget,
+      column,
+      this._source,
+      readOnly
+    );
+
+    histogram.on('filterChanged', this._rebuildFilters);
+    this._vizFilters.push(histogram);
+
+    return histogram;
+  }
+
+  public histogram({
+    column,
+    buckets,
+    readOnly,
+    widget
+  }: any) {
+
+    if (buckets === undefined) {
+      return this.categoricalHistogram({ column, readOnly, widget });
+    }
+
+    return this.numericalHistogram({ column, readOnly, buckets, widget });
+  }
+
   public category() {
     // TODO: create category interface
   }
@@ -70,7 +110,7 @@ export default class VL {
     buckets,
     readOnly,
     widget
-  }: HistogramOptions) {
+  }: NumericalHistogramOptions) {
     if (this._animation) {
       throw new Error('There can only be one Time Series animation');
     }
@@ -150,8 +190,8 @@ export default class VL {
 
     let newFilter = this._combineFilters(
       this._vizFilters
-        .filter((hasFilter) => hasFilter.filter !== null)
-        .map((hasFilter) => hasFilter.filter)
+      .filter((hasFilter) => hasFilter.filter !== null)
+      .map((hasFilter) => hasFilter.filter)
     );
 
     // Update (if required) the readonly layer
@@ -165,7 +205,6 @@ export default class VL {
 
     // Update the Visualization filter
     this._layer.viz.filter.blendTo(newFilter, 0);
-
   }
 
   private _combineFilters(filters) {

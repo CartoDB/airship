@@ -14,11 +14,18 @@ interface VLAnimation {
   isPlaying(): boolean;
 }
 
-interface VLHistogram {
-  value: VLHistogramData[];
+
+type NumericalHistogramData = VLHistogramData<[number, number]>;
+type CategoricalHistogramData = VLHistogramData<string>;
+interface VLNumericalHistogram {
+  value: NumericalHistogramData[];
 }
 
-interface VLHistogramData {
-  x: [number, number];
+interface VLCategoricalHistogram {
+  value: CategoricalHistogramData[];
+}
+
+interface VLHistogramData<T> {
+  x: T;
   y: number;
 }
