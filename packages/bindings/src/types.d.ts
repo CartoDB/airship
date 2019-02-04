@@ -11,6 +11,7 @@ interface VLAnimation {
   setProgressPct(pct: number): void;
   play(): void;
   pause(): void;
+  isPlaying(): boolean;
 }
 
 interface VLHistogram {

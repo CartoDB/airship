@@ -1,6 +1,9 @@
+import semver from 'semver';
 import { BaseFilter } from './base/BaseFilter';
 import { Histogram } from './histogram/histogram';
 import { TimeSeries } from './time-series/times-series';
+
+const VL_VERSION = '^1.1.0';
 
 interface HistogramOptions {
   column: string;
@@ -29,6 +32,10 @@ export default class VL {
     this._id = layer.id;
 
     this._rebuildFilters = this._rebuildFilters.bind(this);
+
+    if (!semver.satisfies(carto.version, VL_VERSION)) {
+      throw new Error(`Provided VL version ${carto.version} not supported. Must satisfy ${VL_VERSION}`);
+    }
   }
 
   public histogram({

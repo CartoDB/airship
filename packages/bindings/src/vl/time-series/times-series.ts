@@ -68,8 +68,7 @@ export class TimeSeries {
     this._layer.on('updated', () => {
       this._timeSeries.progress = this._animation.getProgressPct() * 100;
 
-      // TODO: fix with new VL api
-      this._timeSeries.playing = !this._animation._paused;
+      this._timeSeries.playing = this._animation.isPlaying();
     });
 
     this._timeSeries.animated = true;
