@@ -45,7 +45,7 @@ export class NumericalHistogram extends Histogram<[number, number]> {
           newHistogram.value[newHistogram.value.length - 1].x[1]
         ]);
 
-        this._lastHistogram = newHistogram;
+        this._lastHistogram = { value: newHistogram.value };
 
         this._widget.data = conversion.numerical(newHistogram);
       }
