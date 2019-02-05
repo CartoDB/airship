@@ -304,7 +304,7 @@ export class RangeSlider {
   }
 
   private _getStepValue(value) {
-    const stepValue = Math.round(value / this.step) * this.step;
+    const stepValue = Math.max(this.minValue, Math.round(value / this.step) * this.step);
     return this.roundToStep(stepValue, this.step);
   }
 

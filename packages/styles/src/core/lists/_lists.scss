@@ -2,6 +2,10 @@
   padding-left: 24px;
   font: var(--as--font--body);
 
+  &--simple {
+    padding-left: 0;
+  }
+
   &__item {
     padding-left: 12px;
   }

@@ -1,6 +1,6 @@
 {
   "name": "@carto/airship-bindings",
-  "version": "1.0.4-rc.3",
+  "version": "1.0.4-rc.4",
   "description": "Airship bindings to other libs",
   "main": "dist/index.js",
   "private": true,

@@ -77,6 +77,10 @@
   }
 }
 
+.as-radio-list {
+  padding-left: 0;
+}
+
 @keyframes radioIn {
   from {
     transform: scale3d(0.3, 0.3, 0.3);
