@@ -1,10 +1,10 @@
 @import "../core/_dev";
 
 .as-tabs {
-  @include padding(0 3);
   display: flex;
   flex-wrap: nowrap;
   margin: 0;
+  padding: 0;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   -ms-overflow-style: -ms-autohiding-scrollbar;
