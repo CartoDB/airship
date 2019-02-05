@@ -1,7 +1,7 @@
 @import '_actions';
 
 .as-toolbar {
-  --as-toolbar--background-color: var(--as--color--secondary);
+  --as-toolbar--background-color: var(--as--color--primary);
   --as-toolbar--text-color: var(--as--color--type-01, #{$color-type-01});
   --as-toolbar--link-color: var(--as-toolbar--text-color);
 
