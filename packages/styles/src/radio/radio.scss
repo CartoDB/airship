@@ -1,9 +1,11 @@
 @import "../core/_dev";
 
 .as-radio {
-  --as--radio--color--border: #d1d5d7;
-  --as--radio--color--disabled: #d1d5d7;
-  --as--radio--background--disabled: #f5f5f5;
+  --as--radio--border-color: var(--as--color--ui-04, #{$color-ui-04});
+  --as--radio--hover--border-color: var(--as--color--complementary, #{$color-complementary});
+  --as--radio--checked--border-color: var(--as--color--primary, #{$color-primary});
+  --as--radio--disabled--color: var(--as--color--ui-04, #{$color-ui-04});
+  --as--radio--disabled--background: var(--as--color--ui-02, #{$color-ui-02});
 
   display: flex;
   align-items: center;
@@ -21,7 +23,7 @@
     border: none;
     border-radius: 50%;
     background: none;
-    box-shadow: inset 0 0 0 1px var(--as--radio--color--border);
+    box-shadow: inset 0 0 0 1px var(--as--radio--border-color);
     cursor: pointer;
     -webkit-appearance: none;
 
@@ -37,37 +39,36 @@
     }
 
     &:hover {
-      box-shadow: inset 0 0 0 1px var(--as--color--complementary);
+      box-shadow: inset 0 0 0 1px var(--as--radio--hover--border-color);
     }
 
     &:checked {
-      box-shadow: inset 0 0 0 1px var(--as--color--primary);
+      box-shadow: inset 0 0 0 1px var(--as--radio--checked--border-color);
 
       &::after {
         animation: radioIn 300ms;
         opacity: 1;
         animation-fill-mode: forwards;
-        background-color: var(--as--color--primary);
+        background-color: var(--as--radio--checked--border-color);
       }
     }
 
     &:focus {
       outline: none;
-      box-shadow: inset 0 0 0 2px var(--as--color--primary);
+      box-shadow: inset 0 0 0 2px var(--as--radio--checked--border-color);
     }
 
     &:disabled {
-      //background-color: var(--as--color--ui-03);
-      background-color: var(--as--radio--background--disabled);
-      box-shadow: inset 0 0 0 1px var(--as--radio--color--disabled);
+      background-color: var(--as--radio--disabled--background);
+      box-shadow: inset 0 0 0 1px var(--as--radio--disabled--color);
       cursor: not-allowed;
     }
 
     &:checked:disabled {
-      box-shadow: inset 0 0 0 1px var(--as--radio--color--disabled);
+      box-shadow: inset 0 0 0 1px var(--as--radio--disabled--color);
 
       &::after {
-        background-color: var(--as--radio--color--disabled);
+        background-color: var(--as--radio--disabled--color);
       }
     }
 
