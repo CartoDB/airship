@@ -2,12 +2,17 @@
 @import '../../../../styles/src/menu-dropdown/menu-dropdown';
 
 as-dropdown {
-  display: block;
-
+  --as-dropdown--color: var(--as--color--type-01, #{$color-type-01});
   --as-dropdown--color--main: var(--as--color--primary, #{$color-primary});
   --as-dropdown--color--secondary: var(--as--color--ui-04, #{$color-ui-04});
   --as-dropdown--color--hover: var(--as--color--complementary-hover, #{$color-complementary-hover});
   --as-dropdown--color--selected: var(--as--color--complementary-selected, #{$color-complementary-selected});
+  --as-dropdown--background-color: var(--as--color--ui-01, #{$color-ui-01});
+  --as-dropdown__arrow-color: var(--as-dropdown--color--main);
+  --as-dropdown__list--border-color: var(--as--color--ui-03, #{$color-ui-03});
+  --as-dropdown__list--background-color: var(--as--color--ui-01, #{$color-ui-01});
+
+  display: block;
 
   .as-dropdown {
     position: relative;
@@ -22,9 +27,9 @@ as-dropdown {
     overflow: hidden;
     border: 0;
     border-radius: 4px;
-    background-color: var(--as--color--ui-01, #{$color-ui-01});
-    box-shadow: inset 0 0 0 1px var(--as-dropdown--color--secondary, #{$color-ui-04});
-    color: var(--as--color--type-01, #{$color-type-01});
+    background-color: var(--as-dropdown--background-color);
+    box-shadow: inset 0 0 0 1px var(--as-dropdown--color--secondary);
+    color: var(--as-dropdown--color);
     text-align: left;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -40,7 +45,7 @@ as-dropdown {
     background-repeat: no-repeat;
 
     path {
-      fill: var(--as-dropdown--color--main);
+      fill: var(--as-dropdown__arrow-color);
     }
   }
 
@@ -56,9 +61,9 @@ as-dropdown {
     margin: 8px 0 0;
     padding: 0;
     overflow: hidden;
-    border: 1px solid var(--as--color--ui-03, #{$color-ui-03});
+    border: 1px solid var(--as-dropdown__list--border-color);
     border-radius: 4px;
-    background-color: var(--as--color--ui-01, #{$color-ui-01});
+    background-color: var(--as-dropdown__list--background-color);
     box-shadow: 0 2px 8px 0 var(--as--color--shadow, #{$color-shadow});
   }
 
@@ -68,7 +73,7 @@ as-dropdown {
     cursor: pointer;
 
     &:not(:last-child) {
-      border-bottom: 1px solid var(--as--color--ui-03, #{$color-ui-03});
+      border-bottom: 1px solid var(--as-dropdown__list--border-color);
     }
 
     button {
@@ -78,8 +83,8 @@ as-dropdown {
       padding: get-spacing(2) get-spacing(3);
       border: 0;
       outline: none;
-      background-color: var(--as--color--ui-01, #{$color-ui-01});
-      color: var(--as--color--type-01, #{$color-type-01});
+      background-color: var(--as-dropdown--background-color);
+      color: var(--as-dropdown--color);
       text-align: left;
       cursor: inherit;
 
@@ -117,7 +122,7 @@ as-dropdown {
     padding: 0;
     transform: translate3d(0, -50%, 0);
     border: 0;
-    background-color: $color-ui-01;
+    background-color: var(--as-dropdown--background-color);
     cursor: pointer;
 
     path {
