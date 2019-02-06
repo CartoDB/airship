@@ -1,6 +1,8 @@
 @import "../core/_dev";
 
 .as-loading {
+  --as-loading--stroke-color: var(--as--color--type-01, #{$color-type-01});
+
   display: inline-flex;
   width: get-spacing(10);
   height: get-spacing(10);
@@ -17,7 +19,7 @@
     stroke-linecap: square;
     stroke-dasharray: 90, 150;
     stroke-dashoffset: 0;
-    stroke: var(--as--color--type-01);
+    stroke: var(--as-loading--stroke-color);
   }
 
   &--s {
