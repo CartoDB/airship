@@ -64,8 +64,10 @@
       <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzJweCIgaGVpZ2h0PSIzMnB4IiB2aWV3Qm94PSI3NjIgLTU4IDMyIDMyIiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPgogIDxnIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDc2Mi4wMDAwMDAsIC01OC4wMDAwMDApIj4KICAgIDxjaXJjbGUgY2xhc3M9IkhhbG8iIGZpbGw9IiNGRkZGRkYiIG9wYWNpdHk9IjAuMiIgY3g9IjE2IiBjeT0iMTYiIHI9IjE2Ij48L2NpcmNsZT4KICAgIDxjaXJjbGUgY2xhc3M9InBvaW50IiBmaWxsPSIjRkZGRkZGIiBjeD0iMTYiIGN5PSIxNiIgcj0iNS41Ij48L2NpcmNsZT4KICA8L2c+Cjwvc3ZnPgo="
         alt="Logo" />
     </div>
-    <a href="#" class="as-toolbar__item">Link</a>
     <p class="as-toolbar__item">Paragraph</p>
+    <a href="/examples/themes/default" class="as-toolbar__item">Default Theme</a>
+    <a href="/examples/themes/light" class="as-toolbar__item">Light Theme</a>
+    <a href="/examples/themes/dark" class="as-toolbar__item">Dark Theme</a>
     <i class="as-toolbar__item as-icon-points"></i>
   </as-toolbar>
 
@@ -285,6 +287,12 @@
             <h1 class="as-title">Switch</h1>
             <as-switch label="Test me"></as-switch>
           </div>
+          <div class="as-p--12" role="tabpanel" data-title="Modal">
+            <h2 class="as-title">Modal</h2>
+            <button class="as-btn as-btn--primary as-m--4" id="js-button-modal">
+              Open modal
+            </button>
+          </div>
           <div class="as-p--12" role="tabpanel" data-title="Range slider">
             <h1 class="as-title">Range slider</h1>
             <as-range-slider></as-range-slider>
@@ -384,6 +392,24 @@
       </div>
     </aside>
   </as-responsive-content>
+
+  <div id="js-modal" class="as-modal--hidden">
+    <div class="as-modal__content">
+      <a style="position: absolute; right: 12px; top: 12px;" id="js-button-modal-close" class="as-btn">Close</a>
+      <h2 class="as-title">This is a modal</h2>
+      <p class="as-body">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam suscipit sequi provident maxime illum possimus debitis, at
+        natus voluptatem praesentium itaque sunt commodi odio incidunt fugiat, cupiditate ipsum officiis eligendi?
+      </p>
+      <hr>
+      <h2 class="as-subheader">I have padding</h2>
+      <p class="as-body">
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque voluptas vitae praesentium itaque corporis, soluta iure optio
+        labore minus modi ab quibusdam accusamus delectus dolores rem impedit cupiditate tenetur illum?
+      </p>
+    </div>
+  </div>
+
   <script>
     function feedRangeSlider () {
       var rangeSliderWidget = document.querySelector('as-range-slider');
@@ -518,11 +544,28 @@
       ];
     }
 
+    function setModal() {
+      const jsButtonModal = document.getElementById('js-button-modal');
+      const jsButtonModalClose = document.getElementById('js-button-modal-close');
+      const jsModal = document.getElementById('js-modal');
+
+      jsButtonModal.addEventListener('click', function() {
+        jsModal.classList.remove('as-modal--hidden');
+        jsModal.classList.add('as-modal');
+      });
+
+      jsButtonModalClose.addEventListener('click', function() {
+        jsModal.classList.remove('as-modal');
+        jsModal.classList.add('as-modal--hidden');
+      });
+    }
+
     function onLoad () {
       feedRangeSlider();
       feedDropdown();
       feedHistogram();
       feedCategories();
+      setModal();
     };
 
     const responsiveContent = document.querySelector('as-responsive-content');

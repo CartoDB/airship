@@ -2,8 +2,8 @@
 
 .as-toolbar {
   --as-toolbar--background-color: var(--as--color--secondary, #{$color-secondary});
-  --as-toolbar--text-color: var(--as--color--type-01, #{$color-type-01});
-  --as-toolbar--link-color: var(--as-toolbar--text-color, #{$color-type-01});
+  --as-toolbar--text-color: var(--as--color--type-04, #{$color-type-04});
+  --as-toolbar--link-color: var(--as-toolbar--text-color, #{$color-type-04});
 
   display: flex;
   justify-content: space-between;
@@ -28,6 +28,7 @@
   }
 
   a {
+    background-color: inherit;
     color: var(--as-toolbar--link-color);
     text-decoration: none;
   }
