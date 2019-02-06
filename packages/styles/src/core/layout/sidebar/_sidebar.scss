@@ -1,7 +1,7 @@
 .as-sidebar {
   --as-sidebar--background-color: var(--as--color--ui-01, #{$color-ui-01});
   --as-sidebar--shadow-color: var(--as--color--shadow, #{$color-shadow});
-  --as-sidebar--box--border-color: var(--as--color--ui-01, #{$color-ui-04});
+  --as-sidebar--box--border-color: var(--as--color--ui-04, #{$color-ui-04});
 
   display: none;
   position: absolute;

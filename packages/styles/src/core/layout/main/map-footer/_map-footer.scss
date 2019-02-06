@@ -1,5 +1,6 @@
 .as-map-footer {
-  --as-map-footer--background-color: var(--as--color--ui-01);
+  --as-map-footer--background-color: var(--as--color--ui-01, #{$color-ui-01});
+  --as-map-footer--box--border-color: var(--as--color--ui-04, #{$color-ui-04});
 
   display: none;
   z-index: $z-index-1;
@@ -46,7 +47,7 @@
       }
 
       &--border {
-        border-right: 1px solid $color-ui-04;
+        border-right: 1px solid var(--as-map-footer--box--border-color);
       }
 
       &--scroll {

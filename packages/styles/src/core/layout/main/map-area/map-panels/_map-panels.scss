@@ -90,7 +90,7 @@
     &__element {
       max-width: 200px;
       border-radius: 4px;
-      background: var( --as-map-panels--element--background-color);
+      background: var(--as-map-panels--element--background-color);
       box-shadow: 0 2px 8px 0 var(--as-map-panels--element--shadow-color);
 
       &:not(:last-child) {
