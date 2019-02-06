@@ -53,16 +53,18 @@ Most of the color in our components come from general variables, such as the one
 
 In that case, you need to override it within the components' selector.
 
-So, we have `--panels-bg-color` in `_panels.scss`, and we want it to be `#EEE`. As `--panels-bg-color` is within `.as-panels`, we need to do it like this:
+We're going to change the default background color for the `.map_panels` style. For each layout element and component, we've a set of **css-variables**, also called **custom properties**, to customize these elements individually.
+
+In this case, the variable is called `--as-map-panels--background-color`, and we want it to be `#EEE`. As we can see, `--as-map-panels--background-color` is within `.as-map-panels`, we need to do it like this:
 
 ```html
 <!-- Include CSS -->
 <link rel="stylesheet" href="https://libs.cartocdn.com/airship-style/%AS-VERSION%/airship.css">
 
-<!-- Override --panels-bg-color -->
+<!-- Override --as-map-panels--background-color -->
 <style>
-  .as-panels {
-    --panels-bg-color: #EEE;
+  .as-map-panels {
+    --as-map-panels--background-color: #EEE;
   }
 </style>
 ```
@@ -86,8 +88,8 @@ Likewise, if you want to override a CSS variable inside a component selector, yo
 ```css
 @import '~@carto/airship-styles';
 
-.as-panels {
-  --panels-bg-color: #EEE;
+.as-map-panels {
+  --as-map-panels--background-color: #EEE;
 }
 ```
 
@@ -106,7 +108,7 @@ document.body.style.setProperty('--main-background-color', '#FFF');
 
 To override a variable which is inside a component, you need to get the reference and then you can do the usual override procedure:
 ```js
-const componentElement = document.querySelector('.as-panels');
+const componentElement = document.querySelector('.as-map-panels');
 componentElement.style.setProperty('--panels-bg-color', '#EEE');
 ```
 

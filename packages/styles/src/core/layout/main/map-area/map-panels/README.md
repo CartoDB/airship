@@ -1,6 +1,6 @@
 ## .as-map-panels
 
-Map panels is the section where the `as-panels` element will be placed.
+Map panels is the section where the `as-map-panels` element will be placed.
 
 > The `map-panels` element must be a direct child of the `map-area` at the same level of `#map`.
 
