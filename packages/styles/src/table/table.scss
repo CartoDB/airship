@@ -12,9 +12,9 @@
   border-collapse: collapse;
   border: 1px solid var(--as-table-border--color);
   background: var(--as-table-cell--background-color);
+  color: var(--as-table--color);
   font: var(--as--font--body);
   text-align: left;
-  color: var(--as-table--color);
 
   th,
   td {
@@ -39,12 +39,12 @@
   }
 
   tr:hover {
-    border-top: 1px solid var(--as-table-cell-color-hover, #C8F3DF);
-    border-bottom: 1px solid var(--as-table-cell-color-hover, #C8F3DF);
-    background-color: var(--as-table-row--color-hover, #E2F9EE);
+    border-top: 1px solid var(--as-table-cell-color-hover);
+    border-bottom: 1px solid var(--as-table-cell-color-hover);
+    background-color: var(--as-table-row--color-hover);
   }
 
   td:hover {
-    background: var(--as-table-cell-color-hover, #C8F3DF);
+    background: var(--as-table-cell-color-hover);
   }
 }
