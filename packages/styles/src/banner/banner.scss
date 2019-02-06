@@ -21,8 +21,23 @@
     padding-top: get-spacing(1);
   }
 
+  &--error,
+  &--support-01 {
+    background-color: var(--as--color--support-01, #{$color-support-01});
+  }
+
+  &--warning,
+  &--support-02 {
+    background-color: var(--as--color--support-02, #{$color-support-02});
+  }
+
+  &--success,
+  &--support-03 {
+    background-color: var(--as--color--support-03, #{$color-support-03});
+  }
+
   @media all and (min-width: $tablet-breakpoint) {
-    align-items: center;
+    align-items: baseline;
 
     &__icon {
       padding: 0;

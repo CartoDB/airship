@@ -18,7 +18,7 @@ showSource: true
 ```html
 showSource: true
 ---
-<div class="as-banner as-bg--success as-color--type-04">
+<div class="as-banner as-banner--success">
   <div class="as-banner__icon">
     <i class="as-icon-tick-circle-fill"></i>
   </div>

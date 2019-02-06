@@ -69,22 +69,22 @@
 
   // Badges
   &--badge-gray {
-    background-color: var(--as--color--badge-gray, #{$color-badge-gray});
+    background-color: var(--as--color--badge-gray, #{$color-gray});
   }
 
   &--badge-green {
-    background-color: var(--as--color--badge-green, #{$color-badge-green});
+    background-color: var(--as--color--badge-green, #{$color-green});
   }
 
   &--badge-blue {
-    background-color: var(--as--color--badge-blue, #{$color-badge-blue});
+    background-color: var(--as--color--badge-blue, #{$color-blue});
   }
 
   &--badge-pink {
-    background-color: var(--as--color--badge-pink, #{$color-badge-pink});
+    background-color: var(--as--color--badge-pink, #{$color-pink});
   }
 
   &--badge-yellow {
-    background-color: var(--as--color--badge-yellow, #{$color-badge-yellow});
+    background-color: var(--as--color--badge-yellow, #{$color-yellow});
   }
 }
