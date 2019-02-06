@@ -75,13 +75,13 @@
 
       &:focus,
       &:hover {
-        border-bottom: 4px solid var(--as--color--complementary);
+        border-bottom: 4px solid var(--as-tabs--item--border-color-hover);
       }
 
       &--active,
       &:active {
-        border-bottom: 4px solid var(--as--color--secondary);
-        color: var(--as--color--type-01);
+        border-bottom: 4px solid var(--as-tabs--item--border-color-active);
+        color: var(--as-tabs--item--color-active);
       }
     }
   }
