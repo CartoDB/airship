@@ -1,12 +1,21 @@
 @import "../core/_dev";
 
 .as-tooltip {
+  --as-tooltip--background-color: var(--as--color--type-01, #{$color-type-01});
+  --as-tooltip--color: var(--as--color--type-04, #{$color-type-04}, #{$color-type-04});
+  --as-tooltip--primary--background-color: var(--as--primary--success, #{$color-primary});
+  --as-tooltip--secondary--background-color: var(--as--secondary--success, #{$color-secondary});
+  --as-tooltip--complementary--background-color: var(--as--complementary--success, #{$color-complementary});
+  --as-tooltip--error--background-color: var(--as--error--success, #{$color-support-01});
+  --as-tooltip--warning--background-color: var(--as--warning--success, #{$color-support-02});
+  --as-tooltip--success--background-color: var(--as--color--success, #{$color-support-03});
+
   display: inline-flex;
   position: relative;
   padding: get-spacing(1) get-spacing(2);
   border-radius: get-spacing(1);
-  background: var(--as--color--type-01);
-  color: var(--as--color--type-04);
+  background: var(--as-tooltip--background-color);
+  color: var(--as-tooltip--color);
   font: var(--as--font--body);
 
   &::after {
@@ -15,7 +24,7 @@
     border-width: 5px;
     border-style: solid;
     border-radius: 2px;
-    border-color: var(--as--color--type-01);
+    border-color: var(--as-tooltip--background-color);
   }
 
   &--top::after {
@@ -24,7 +33,8 @@
     transform: translateY(-6px) translateX(-5px) rotateZ(45deg);
   }
 
-  &--bot::after {
+  &--bot::after,
+  &--bottom::after {
     bottom: 100%;
     left: 50%;
     transform: translateY(6px) translateX(-5px) rotateZ(45deg);
@@ -40,5 +50,53 @@
     top: 50%;
     right: 0;
     transform: translateY(-4px) translateX(4px) rotateZ(45deg);
+  }
+
+  &--primary {
+    background: var(--as-tooltip--primary--background-color);
+
+    &::after {
+      border-color: var(--as-tooltip--primary--background-color);
+    }
+  }
+
+  &--secondary {
+    background: var(--as-tooltip--secondary--background-color);
+
+    &::after {
+      border-color: var(--as-tooltip--secondary--background-color);
+    }
+  }
+
+  &--complementary {
+    background: var(--as-tooltip--complementary--background-color);
+
+    &::after {
+      border-color: var(--as-tooltip--complementary--background-color);
+    }
+  }
+
+  &--error {
+    background: var(--as-tooltip--error--background-color);
+
+    &::after {
+      border-color: var(--as-tooltip--error--background-color);
+    }
+  }
+
+  &--warning {
+    background: var(--as-tooltip--warning--background-color);
+
+    &::after {
+      border-color: var(--as-tooltip--warning--background-color);
+    }
+  }
+
+  &--success {
+    background: var(--as-tooltip--success--background-color);
+
+    &::after {
+      border-color: var(--as-tooltip--success--background-color);
+    }
   }
 }
