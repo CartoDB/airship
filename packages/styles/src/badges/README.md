@@ -12,14 +12,38 @@ showSource: true
 
 ## Colors
 
-You need to add a background color modifier to change the badge color. There are five specific color for badges:
+### Background Colors
+
+If you need to change **any** element background color, you can use the following clases.
+
+- `as-bg--primary`
+- `as-bg--secondary`
+- `as-bg--complementary`
+- `as-bg--ui-01`
+- `as-bg--ui-02`
+- `as-bg--ui-03`
+- `as-bg--ui-04`
+- `as-bg--gray`
+- `as-bg--blue`
+- `as-bg--pink`
+- `as-bg--green`
+- `as-bg--yellow`
+- `as-bg--warning`
+- `as-bg--error`
+- `as-bg--success`
+- `as-bg--support-01`
+- `as-bg--support-02`
+- `as-bg--support-03`
+
+You need to to change the badge color. There are five **specific** color for badges:
+
 - `as-bg--badge-gray`
 - `as-bg--badge-blue`
 - `as-bg--badge-pink`
 - `as-bg--badge-green`
 - `as-bg--badge-yellow`
 
-You can also use any other background utility class, like `as-bg--warning`.
+As you can see in the list of color classes, you can also use any other background utility class, like `as-bg--warning`.
 
 ```html
 showSource: true

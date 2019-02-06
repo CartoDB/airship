@@ -32,7 +32,7 @@ showSource: true
 ---
 <div class="as-app" style="width:100%; height:300px;">
   <div class="as-content">
-    <main class="as-main as-bg--badge-blue">
+    <main class="as-main as-bg--blue">
       <div class="as-map-area">
       <div id="map"></div>
       <div class="as-map-panels">

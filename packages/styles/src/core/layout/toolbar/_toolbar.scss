@@ -1,9 +1,9 @@
 @import '_actions';
 
 .as-toolbar {
-  --as-toolbar--background-color: var(--as--color--primary);
+  --as-toolbar--background-color: var(--as--color--secondary, #{$color-secondary});
   --as-toolbar--text-color: var(--as--color--type-01, #{$color-type-01});
-  --as-toolbar--link-color: var(--as-toolbar--text-color);
+  --as-toolbar--link-color: var(--as-toolbar--text-color, #{$color-type-01});
 
   display: flex;
   justify-content: space-between;

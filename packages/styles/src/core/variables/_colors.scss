@@ -24,12 +24,12 @@ $color-support-01: #F3522B !default;
 $color-support-02: #FDB32B !default;
 $color-support-03: #80B622 !default;
 
-// Badges
-$color-badge-gray: #E2E6E3 !default;
-$color-badge-green: #E1EECA !default;
-$color-badge-blue: #B5E0F9 !default;
-$color-badge-pink: #E4D8EB !default;
-$color-badge-yellow: #F8E71C !default;
+// Utils
+$color-gray: #E2E6E3 !default;
+$color-green: #E1EECA !default;
+$color-blue: #B5E0F9 !default;
+$color-pink: #E4D8EB !default;
+$color-yellow: #F8E71C !default;
 
 // With alpha
 
@@ -57,16 +57,35 @@ $color-modal: rgba(44, 44, 44, 0.8);
   --as--color--ui-04: #{$color-ui-04};
 
   // Support
-  --as--color---support-01: #{$color-support-01};
-  --as--color---support-02: #{$color-support-02};
-  --as--color---support-03: #{$color-support-03};
+  --as--color--support-01: #{$color-support-01};
+  --as--color---error: #{$color-support-01};
+  --as--color--support-02: #{$color-support-02};
+  --as--color---warning: #{$color-support-02};
+  --as--color--support-03: #{$color-support-03};
+  --as--color---success: #{$color-support-03};
 
-  // Badges
-  --as--color--badge-gray: #{$color-badge-gray};
-  --as--color--badge-green: #{$color-badge-green};
-  --as--color--badge-blue: #{$color-badge-blue};
-  --as--color--badge-pink: #{$color-badge-pink};
-  --as--color--badge-yellow: #{$color-badge-yellow};
+  // Utils - Backgrounds
+  --as--color--gray: #{$color-gray};
+  --as--color--green: #{$color-green};
+  --as--color--blue: #{$color-blue};
+  --as--color--pink: #{$color-pink};
+  --as--color--yellow: #{$color-yellow};
+  --as--color--primary: #{$color-primary};
+  --as--color--secondary: #{$color-secondary};
+  --as--color--complementary: #{$color-complementary};
+  --as--color--support-01: #{$color-support-01};
+  --as--color--error: #{$color-support-01};
+  --as--color--support-02: #{$color-support-02};
+  --as--color--warning: #{$color-support-02};
+  --as--color--support-03: #{$color-support-03};
+  --as--color--success: #{$color-support-03};
+
+  // Utils - Badges
+  --as--color--badge-gray: #{$color-gray};
+  --as--color--badge-green: #{$color-green};
+  --as--color--badge-blue: #{$color-blue};
+  --as--color--badge-pink: #{$color-pink};
+  --as--color--badge-yellow: #{$color-yellow};
 
   // With alpha
   --as--color--shadow: #{$color-shadow};
