@@ -16,10 +16,10 @@ showSource: true
 <div class="as-app" style="width:100%; height:300px;">
   <div class="as-content">
     <main class="as-main">
-      <div class="as-map-area as-bg--badge-blue">
+      <div class="as-map-area as-bg--blue">
         <div id="map"></div>
         <!-- as-map-footer code starts here -->
-        <footer class="as-map-footer as-bg--badge-yellow" style="height: 100px;"></footer>
+        <footer class="as-map-footer as-bg--yellow" style="height: 100px;"></footer>
         <!-- as-map-footer code ends here -->
       </div>
     </div>
@@ -38,10 +38,10 @@ showSource: true
 <div class="as-app" style="width:100%; height:300px;">
   <div class="as-content">
     <main class="as-main">
-      <div class="as-map-area as-bg--badge-blue">
+      <div class="as-map-area as-bg--blue">
         <div id="map"></div>
         <!-- as-map-footer--visible code starts here -->
-        <footer class="as-map-footer as-bg--badge-yellow as-map-footer--visible" style="min-height: 100px;"></footer>
+        <footer class="as-map-footer as-bg--yellow as-map-footer--visible" style="min-height: 100px;"></footer>
         <!-- as-map-footer--visible code ends here -->
       </div>
     </div>

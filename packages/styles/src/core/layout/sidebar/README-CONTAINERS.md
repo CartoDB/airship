@@ -10,7 +10,7 @@ showSource: true
 ---
 <div class="as-app"  style="height: 400px; width:100%;">
   <div class="as-content">
-    <main class="as-main as-bg--badge-blue">
+    <main class="as-main as-bg--blue">
       <!-- Put your map here -->
     </main>
     <aside class="as-sidebar as-sidebar--right as-bg--support-02">
@@ -62,7 +62,7 @@ showSource: true
 ---
 <div class="as-app"  style="height: 400px; width:100%;">
   <div class="as-content">
-    <main class="as-main as-bg--badge-blue">
+    <main class="as-main as-bg--blue">
       <!-- Put your map here -->
     </main>
     <aside class="as-sidebar as-sidebar--right as-bg--support-02">
@@ -113,7 +113,7 @@ showSource: true
 ---
 <div class="as-app"  style="height: 400px; width:100%;">
   <div class="as-content">
-    <main class="as-main as-bg--badge-blue">
+    <main class="as-main as-bg--blue">
       <!-- Put your map here -->
     </main>
     <aside class="as-sidebar as-sidebar--right as-bg--support-02">
@@ -162,7 +162,7 @@ showSource: true
 ---
 <div class="as-app"  style="height: 400px; width:100%;">
   <div class="as-content">
-    <main class="as-main as-bg--badge-blue">
+    <main class="as-main as-bg--blue">
       <!-- Put your map here -->
     </main>
     <aside class="as-sidebar as-sidebar--right as-bg--badge-yellow">
@@ -189,7 +189,7 @@ showSource: true
 ---
 <div class="as-app"  style="height: 400px; width:100%;">
   <div class="as-content">
-    <main class="as-main as-bg--badge-blue">
+    <main class="as-main as-bg--blue">
       <!-- Put your map here -->
     </main>
     <aside class="as-sidebar as-sidebar--right">

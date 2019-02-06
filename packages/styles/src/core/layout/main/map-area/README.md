@@ -17,7 +17,7 @@ showSource: true
 <div class="as-app" style="width:100%; height:300px;">
     <main class="as-content">
       <!-- map-area code starts here -->
-      <div class="as-map-area as-bg--badge-blue">
+      <div class="as-map-area as-bg--blue">
         <div id="map"></div> 
       </div>
       <!-- map-area code ends here -->
