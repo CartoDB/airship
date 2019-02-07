@@ -13,7 +13,9 @@
   display: inline-flex;
   position: relative;
   padding: get-spacing(1) get-spacing(2);
+  border-width: 0;
   border-radius: get-spacing(1);
+  border-color: var(--as-tooltip--background-color);
   background: var(--as-tooltip--background-color);
   color: var(--as-tooltip--color);
   font: var(--as--font--body);
@@ -24,7 +26,7 @@
     border-width: 5px;
     border-style: solid;
     border-radius: 2px;
-    border-color: var(--as-tooltip--background-color);
+    border-color: inherit;
   }
 
   &--top::after {
@@ -53,50 +55,32 @@
   }
 
   &--primary {
+    border-color: var(--as-tooltip--primary--background-color);
     background: var(--as-tooltip--primary--background-color);
-
-    &::after {
-      border-color: var(--as-tooltip--primary--background-color);
-    }
   }
 
   &--secondary {
+    border-color: var(--as-tooltip--secondary--background-color);
     background: var(--as-tooltip--secondary--background-color);
-
-    &::after {
-      border-color: var(--as-tooltip--secondary--background-color);
-    }
   }
 
   &--complementary {
+    border-color: var(--as-tooltip--complementary--background-color);
     background: var(--as-tooltip--complementary--background-color);
-
-    &::after {
-      border-color: var(--as-tooltip--complementary--background-color);
-    }
   }
 
   &--error {
+    border-color: var(--as-tooltip--error--background-color);
     background: var(--as-tooltip--error--background-color);
-
-    &::after {
-      border-color: var(--as-tooltip--error--background-color);
-    }
   }
 
   &--warning {
+    border-color: var(--as-tooltip--warning--background-color);
     background: var(--as-tooltip--warning--background-color);
-
-    &::after {
-      border-color: var(--as-tooltip--warning--background-color);
-    }
   }
 
   &--success {
+    border-color: var(--as-tooltip--success--background-color);
     background: var(--as-tooltip--success--background-color);
-
-    &::after {
-      border-color: var(--as-tooltip--success--background-color);
-    }
   }
 }
