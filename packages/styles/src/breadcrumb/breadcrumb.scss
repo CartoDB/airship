@@ -12,7 +12,7 @@
   &__item {
     display: flex;
     color: var(--as-breadcrumb--color--current);
-    font: $font-body;
+    font: var(--as--font--body);
     cursor: default;
 
     &::after {

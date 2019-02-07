@@ -6,7 +6,7 @@
   padding: 0 get-spacing(2);
   border-radius: get-spacing(5);
   background-color: var(--as--color--badge-blue);
-  font: $font-body;
+  font: var(--as--font--body);
 
   p {
     margin: 0;

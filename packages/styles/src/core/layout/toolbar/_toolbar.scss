@@ -23,7 +23,7 @@
     margin: 0;
     padding: 0 get-spacing(3);
     color: var(--as-toolbar--text-color);
-    font: $font-body;
+    font: var(--as--font--body);
     cursor: pointer;
   }
 

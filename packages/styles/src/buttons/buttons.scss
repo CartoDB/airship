@@ -33,7 +33,7 @@
   outline: none;
   background-color: var(--as-btn--ui-color--default);
   color: var(--as-btn--type-color--default);
-  font: $font-body;
+  font: var(--as--font--body);
   cursor: pointer;
 
   p {
