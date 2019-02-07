@@ -17,7 +17,7 @@
 
     <link rel="stylesheet" href="/packages/styles/dist/airship.css">
     <script src="/packages/components/dist/airship.js"></script>
-    <script src="/packages/bindings/dist/asbindings.js"></script>
+    <script src="/packages/bridge/dist/asbridge.js"></script>
 </head>
 
 <body class="as-app-body">
@@ -83,7 +83,7 @@
 
         vizLayer.addTo(map, 'watername_ocean');
 
-        const airportLayer = new AsBindings.VL(
+        const airportLayer = new AsBridge.VL(
           carto,
           map,
           vizLayer,

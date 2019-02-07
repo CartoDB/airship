@@ -16,7 +16,7 @@
 
     <link rel="stylesheet" href="https://libs.cartocdn.com/airship-style/v1/airship.css">
     <script src="https://libs.cartocdn.com/airship-components/v1/airship.js"></script>
-    <script src="https://libs.cartocdn.com/airship-bindings/v1/asbindings.js"></script>
+    <script src="https://libs.cartocdn.com/airship-bridge/prerelease/asbridge.js"></script>
 </head>
 
 <body class="as-app-body">
@@ -87,7 +87,7 @@
           return Math.round(e);
         };
 
-        const catastroLayer = new AsBindings.VL(
+        const catastroLayer = new AsBridge.VL(
           carto,
           map,
           vizLayer,

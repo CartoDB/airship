@@ -17,7 +17,7 @@
 
     <link rel="stylesheet" href="/packages/styles/dist/airship.css">
     <script src="/packages/components/dist/airship.js"></script>
-    <script src="/packages/bindings/dist/asbindings.js"></script>
+    <script src="/packages/bridge/dist/asbridge.js"></script>
 </head>
 
 <body class="as-app-body">
@@ -88,7 +88,7 @@
           return Math.round(e);
         };
 
-        const catastroLayer = new AsBindings.VL(
+        const bridge = new AsBridge.VL(
           carto,
           map,
           vizLayer,
@@ -96,15 +96,15 @@
           'catastro'
         );
           
-        catastroLayer.timeSeries({
+        bridge.timeSeries({
           column: 'timestamp',
           buckets: 30,
           source,
-          readOnly: true,
+          readOnly: false,
           widget: timeWidget
         });
 
-        catastroLayer.histogram({
+        bridge.histogram({
           column: 'timestamp',
           buckets: 30,
           readOnly: false,
@@ -112,7 +112,9 @@
           widget: yearWidget,
         });
 
-        catastroLayer.build();
+        vizLayer.on('loaded', () => {
+          bridge.build();
+        });
     </script>
 </body>
 

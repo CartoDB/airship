@@ -17,8 +17,8 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'asbindings.js',
-    library: 'AsBindings',
+    filename: 'asbridge.js',
+    library: 'AsBridge',
     libraryTarget: 'umd'
   }
 };

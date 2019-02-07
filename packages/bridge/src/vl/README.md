@@ -7,7 +7,7 @@ Airship components are a great tool to build Location Intelligence dashboards, a
 In order to start binding your visualization to your Airship widgets, you'll need to create the base `VL` object like this:
 
 ```
-const bindings = new AsBindings.VL(
+const bindings = new AsBridge.VL(
   carto,
   map,
   layer,
@@ -106,15 +106,15 @@ Just include the following tag:
 
 ```
 <!-- Minified Version -->
-<script src="https://libs.cartocdn.com/airship-bindings/v1/asbindings.min.js"></script>
+<script src="https://libs.cartocdn.com/airship-bridge/prerelease/asbindings.min.js"></script>
 
 <!-- Non-Minified Version -->
-<script src="https://libs.cartocdn.com/airship-bindings/v1/asbindings.js"></script>
+<script src="https://libs.cartocdn.com/airship-bridge/prerelease/asbridge.js"></script>
 ```
 
 And start binding your visualizations to your widgets.
 
 ### Usage from NPM
 
-You will need to install the package [@carto/airship-bindings](https://www.npmjs.com/package/@carto/airship-bindings). It will contain both a bundled version, like the one you use from the CDN, and the whole source code for you to import freely.
+You will need to install the package [@carto/airship-bridge](https://www.npmjs.com/package/@carto/airship-bridge). It will contain both a bundled version, like the one you use from the CDN, and the whole source code for you to import freely.
 

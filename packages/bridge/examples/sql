@@ -1,0 +1,9 @@
+# Numerical
+with 
+source as (select * from (select * from ne_10m_airports) as wadus),
+the_range as (select min(scalerank) as min, max(scalerank) as max from source),
+hist as (SELECT width_bucket(scalerank, the_range.min, the_range.max, 6) as buckets, count(*) as freq from source, the_range group by buckets order by buckets)
+select buckets, freq from hist
+
+# Categorical
+select location, count(location) from ne_10m_airports group by (location)
