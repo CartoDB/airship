@@ -1,4 +1,3 @@
-import mitt from 'mitt';
 import { HistogramSelection } from '../../../../components/src/components/as-histogram-widget/interfaces';
 import { BaseFilter } from '../base/BaseFilter';
 
@@ -41,31 +40,7 @@ export abstract class Histogram<T> extends BaseFilter {
     this._layer.remove();
   }
 
-  public on(type: string, handler: mitt.Handler) {
-    this._emitter.on(type, handler);
-  }
-
   public getDataLayer() {
-    return this._dataLayer;
-  }
-
-  public buildDataLayer(columns: string[]) {
-    const carto = this._carto;
-    const variables = columns.map((column, i) => `@asbind_${column}_${i}: $${column}`);
-
-    // Create the data layer
-    const dataViz = new carto.Viz(`
-      ${this.expression}
-      ${variables.join('\n')}
-
-      strokeWidth: 0
-      color: rgba(255,255,255,0)
-    `);
-
-    this._dataLayer = new carto.Layer(this.name, this.source, dataViz);
-
-    this.bindDataLayer();
-
     return this._dataLayer;
   }
 

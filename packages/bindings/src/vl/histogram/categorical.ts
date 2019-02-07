@@ -1,15 +1,10 @@
 import { HistogramSelection } from '../../../../components/src/components/as-histogram-widget/interfaces';
-import { isCategoricalHistogramEqual } from '../utils/comparison/histogram/histogram';
-import * as conversion from '../utils/conversion/histogram/histogram';
+import { isCategoricalHistogramEqual } from '../utils/comparison/histogram';
+import * as conversion from '../utils/conversion/histogram';
 import { Histogram } from './histogram';
-
 
 export class CategoricalHistogram extends Histogram<string[]> {
   private _lastHistogram: VLCategoricalHistogram = null;
-
-  public get expression(): string {
-    return `@${this.name}: viewportHistogram($${this._column})`;
-  }
 
   constructor(
     carto: any,
@@ -28,6 +23,11 @@ export class CategoricalHistogram extends Histogram<string[]> {
     } else {
       return `$${this._column} in [${this._selection.map((value) => `'${value}'`).join(',')}]`;
     }
+  }
+
+  public get expression(): any {
+    const s = this._carto.expressions;
+    return s.viewportHistogram(s.prop(this._column));
   }
 
   protected bindDataLayer()  {

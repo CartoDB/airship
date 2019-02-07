@@ -1,5 +1,6 @@
 import semver from 'semver';
 import { BaseFilter } from './base/BaseFilter';
+import { Category } from './category/category';
 import { CategoricalHistogram } from './histogram/categorical';
 import { NumericalHistogram } from './histogram/numerical';
 import { TimeSeries } from './time-series/times-series';
@@ -11,6 +12,12 @@ interface NumericalHistogramOptions {
   buckets: number;
   readOnly: boolean;
   widget: HTMLAsHistogramWidgetElement | HTMLAsTimeSeriesWidgetElement;
+}
+
+interface CategoryOptions {
+  column: string;
+  readOnly: boolean;
+  widget: HTMLAsCategoryWidgetElement;
 }
 
 interface CategoricalHistogramOptions {
@@ -25,7 +32,6 @@ export default class VL {
   private _layer: any;
   private _source: any;
   private _vizFilters: BaseFilter[] = [];
-  private _dataLayers: any = [];
   private _readOnlyLayer: any;
   private _id: string;
   private _animation: TimeSeries;
@@ -61,8 +67,7 @@ export default class VL {
       readOnly
     );
 
-    histogram.on('filterChanged', this._rebuildFilters);
-    this._vizFilters.push(histogram);
+    this._addFilter(histogram);
 
     return histogram;
   }
@@ -81,8 +86,7 @@ export default class VL {
       readOnly
     );
 
-    histogram.on('filterChanged', this._rebuildFilters);
-    this._vizFilters.push(histogram);
+    this._addFilter(histogram);
 
     return histogram;
   }
@@ -101,8 +105,23 @@ export default class VL {
     return this.numericalHistogram({ column, readOnly, buckets, widget });
   }
 
-  public category() {
-    // TODO: create category interface
+  public category({
+    column,
+    readOnly,
+    widget
+  }: CategoryOptions) {
+    const category = new Category(
+      this._carto,
+      this._layer,
+      widget,
+      column,
+      this._source,
+      readOnly
+    );
+
+    this._addFilter(category);
+
+    return category;
   }
 
   public timeSeries({
@@ -119,7 +138,7 @@ export default class VL {
       this._layer,
       widget as HTMLAsTimeSeriesWidgetElement,
       () => {
-        this._rebuildFilters('');
+        this._rebuildFilters();
       }
     );
 
@@ -136,58 +155,50 @@ export default class VL {
   }
 
   public build() {
-    this._buildReadOnly();
-    this._buildFilters();
-  }
-
-  private _buildFilters() {
-    const filters = this._vizFilters.filter((filter) => !filter.readOnly);
-    const columns = filters.map((hasFilter) => hasFilter.column);
-
-    for (const hasFilter of filters) {
-      const dataLayer = hasFilter.buildDataLayer(columns);
-
-      dataLayer.addTo(this._map, 'watername_ocean');
-
-      this._dataLayers.push(dataLayer);
-    }
-  }
-
-  private _buildReadOnly() {
-    const carto = this._carto;
-    const readOnlyFilters = this._vizFilters.filter((hasFilter) => hasFilter.readOnly);
-
-    if (readOnlyFilters.length > 0) {
-      const readOnlyExpr = readOnlyFilters.map((filter) => filter.expression).join('\n');
-      const readOnlyViz = new carto.Viz(`
-        ${readOnlyExpr}
-
-        strokeWidth: 0
-        color: rgba(255,255,255,0)
-      `);
-
-      this._readOnlyLayer = new carto.Layer(`asbind_ro_${this._id}`, this._source, readOnlyViz);
-      this._readOnlyLayer.addTo(this._map, 'watername_ocean');
-
-      readOnlyFilters.forEach((filter) => filter.setDataLayer(this._readOnlyLayer));
+    if (this._vizFilters.length === 0) {
+      return;
     }
 
+    this._appendVariables();
+    this._buildDataLayer();
   }
 
-  private _rebuildFilters(name: string) {
-    // We need to rebuild filters for all layers that are not the one that caused it
-    const layers = this._dataLayers.filter((layer) => layer.id !== name);
+  private _addFilter(filter: BaseFilter) {
+    filter.on('filterChanged', this._rebuildFilters);
+    this._vizFilters.push(filter);
+  }
 
-    for (const layer of layers) {
-      const filters = this._combineFilters(
-        this._vizFilters
-          .filter((hasFilter) => hasFilter.name !== layer.id && hasFilter.filter !== null)
-          .map((hasFilter) => hasFilter.filter)
-      );
+  // Add variables for each required column to original viz
+  private _appendVariables() {
+    const s = this._carto.expressions;
 
-      layer.viz.filter.blendTo(filters, 0);
+    this._vizFilters.forEach(
+      (filter) => this._layer.viz.variables[`${filter.name}_col`] = s.prop(filter.column)
+    );
+  }
+
+  // Create a new layer, will be source of data for all widgets
+  private _buildDataLayer() {
+    const variables = {};
+    const s = this._carto.expressions;
+
+    for (const filter of this._vizFilters) {
+      variables[filter.name] = filter.expression;
     }
 
+    const viz = new this._carto.Viz({
+      color: s.rgba(0, 0, 0, 0),
+      strokeWidth: 0,
+      variables,
+    });
+
+    this._readOnlyLayer = new this._carto.Layer(`asbind_ro_${this._id}`, this._source, viz);
+    this._readOnlyLayer.addTo(this._map);
+
+    this._vizFilters.forEach((filter) => filter.setDataLayer(this._readOnlyLayer));
+  }
+
+  private _rebuildFilters() {
     let newFilter = this._combineFilters(
       this._vizFilters
       .filter((hasFilter) => hasFilter.filter !== null)

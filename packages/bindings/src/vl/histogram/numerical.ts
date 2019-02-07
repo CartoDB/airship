@@ -1,15 +1,10 @@
 import { HistogramSelection } from '../../../../components/src/components/as-histogram-widget/interfaces';
-import { isNumericalHistogramEqual } from '../utils/comparison/histogram/histogram';
-import * as conversion from '../utils/conversion/histogram/histogram';
+import { isNumericalHistogramEqual } from '../utils/comparison/histogram';
+import * as conversion from '../utils/conversion/histogram';
 import { Histogram } from './histogram';
-
 
 export class NumericalHistogram extends Histogram<[number, number]> {
   private _lastHistogram: VLNumericalHistogram = null;
-
-  public get expression(): string {
-    return `@${this.name}: viewportHistogram($${this._column}, ${this._buckets})`;
-  }
 
   constructor(
     carto: any,
@@ -30,6 +25,11 @@ export class NumericalHistogram extends Histogram<[number, number]> {
     } else {
       return `between($${this._column}, ${this._selection[0]}, ${this._selection[1]})`;
     }
+  }
+
+  public get expression(): string {
+    const s = this._carto.expressions;
+    return s.viewportHistogram(s.prop(this._column), this._buckets);
   }
 
   protected bindDataLayer()  {

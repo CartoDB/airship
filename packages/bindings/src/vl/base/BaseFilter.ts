@@ -26,10 +26,9 @@ export abstract class BaseFilter {
     BaseFilter._counter++;
   }
 
-  public abstract buildDataLayer(columns: string[]): any;
   public abstract setDataLayer(layer: any);
   public abstract get filter(): string;
-  public abstract get expression(): string;
+  public abstract get expression(): any;
 
   public get name(): string {
     return this._name;
@@ -53,6 +52,10 @@ export abstract class BaseFilter {
 
   public get source(): any {
     return this._source;
+  }
+
+  public on(type: string, handler: mitt.Handler) {
+    this._emitter.on(type, handler);
   }
 
   protected _filterChanged() {

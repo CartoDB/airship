@@ -1,4 +1,4 @@
-import { isNumericalHistogramEqual } from './histogram';
+import { isNumericalHistogramEqual } from '.';
 
 const hist1 = [
   {

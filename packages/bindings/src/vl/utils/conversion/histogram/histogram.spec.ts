@@ -1,4 +1,4 @@
-import * as conversion from './histogram';
+import * as conversion from '.';
 
 describe('utils/conversion/histogram', () => {
   it('should correctly convert from VL data to Airship format', () => {
