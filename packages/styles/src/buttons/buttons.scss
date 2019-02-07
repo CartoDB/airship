@@ -165,11 +165,13 @@ a.as-btn.as-btn--complementary {
 }
 
 .as-button-group {
+  --as-button-group--type-color--default: var(--as--color--primary, #{$color-primary});
+
   display: inline-flex;
   margin: 0;
   padding: 0;
   border-radius: 4px;
-  box-shadow: 0 0 0 1px var(--as-btn--type-color--default);
+  box-shadow: 0 0 0 1px var(--as-button-group--type-color--default);
   list-style: none;
 
   .as-btn:first-child {
@@ -179,13 +181,13 @@ a.as-btn.as-btn--complementary {
   }
 
   .as-btn:last-child {
-    border-left: 1px solid var(--as-btn--type-color--default);
+    border-left: 1px solid var(--as-button-group--type-color--default);
     border-radius: 0 4px 4px 0;
     box-shadow: none;
   }
 
   .as-btn:not(:first-child):not(:last-child) {
-    border-left: 1px solid var(--as-btn--type-color--default);
+    border-left: 1px solid var(--as-button-group--type-color--default);
     border-radius: 0;
     box-shadow: none;
   }

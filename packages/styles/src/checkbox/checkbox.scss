@@ -1,7 +1,7 @@
 @import "../core/_dev";
 
 .as-checkbox {
-  --as-checkbox--border-color: #D1D5D7;
+  --as-checkbox--border-color: var(--as--color--ui-03, #{$color-ui-03});
   --as-checkbox--border-color--hover: var(--as--color--complementary);
   --as-checkbox--border-color--focus: var(--as--color--primary);
   --as-checkbox--color--checked: var(--as--color--primary);

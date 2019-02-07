@@ -2,6 +2,7 @@
 
 .as-banner {
   --as-banner--background-color: var(--as--color--ui-04, #{$color-ui-04});
+  --as-banner--color: #FFF;
 
   display: flex;
   box-sizing: border-box;
@@ -23,14 +24,17 @@
 
   &--error {
     background-color: var(--as--color--error, #{$color-error});
+    color: var(--as-banner--color);
   }
 
   &--warning {
     background-color: var(--as--color--warning, #{$color-warning});
+    color: var(--as-banner--color);
   }
 
   &--success {
     background-color: var(--as--color--success, #{$color-success});
+    color: var(--as-banner--color);
   }
 
   @media all and (min-width: $tablet-breakpoint) {
