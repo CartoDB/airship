@@ -2,10 +2,14 @@
 
 // Brand
 $color-primary: #1785FB !default;
+$color-primary--hover: #1A5FAA !default;
+$color-primary--active: #263D56 !default;
 $color-secondary: #0F2D53 !default;
+$color-secondary--hover: #0F2D53 !default;
+$color-secondary--active: #0F2D53 !default;
 $color-complementary: #47DB99 !default;
-$color-complementary-hover: #e0f9ee !default;
-$color-complementary-selected: #c6f4df !default;
+$color-complementary--hover: #E0F9EE !default;
+$color-complementary--active: #C6F4DF !default;
 
 // Typography
 $color-type-01: #2C2C2C !default;
@@ -38,11 +42,21 @@ $color-modal: rgba(44, 44, 44, 0.8);
 
 @mixin colors-vars {
   // Brand
+
+  // Primary
   --as--color--primary: #{$color-primary};
+  --as--color--primary--hover: #{$color-primary--hover};
+  --as--color--primary--active: #{$color-primary--active};
+
+  // Secondary
   --as--color--secondary: #{$color-secondary};
+  --as--color--secondary--hover: #{$color-secondary--hover};
+  --as--color--secondary--active: #{$color-secondary--active};
+
+  // Complementary
   --as--color--complementary: #{$color-complementary};
-  --as--color--complementary-hover: #{$color-complementary-hover};
-  --as--color--complementary-selected: #{$color-complementary-selected};
+  --as--color--complementary--hover: #{$color-complementary--hover};
+  --as--color--complementary--active: #{$color-complementary--active};
 
   // Typography
   --as--color--type-01: #{$color-type-01};
@@ -63,8 +77,6 @@ $color-modal: rgba(44, 44, 44, 0.8);
   --as--color--pink: #{$color-pink};
   --as--color--yellow: #{$color-yellow};
   --as--color--primary: #{$color-primary};
-  --as--color--secondary: #{$color-secondary};
-  --as--color--complementary: #{$color-complementary};
   --as--color--error: #{$color-error};
   --as--color--warning: #{$color-warning};
   --as--color--success: #{$color-success};

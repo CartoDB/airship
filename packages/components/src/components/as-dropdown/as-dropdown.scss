@@ -5,8 +5,8 @@ as-dropdown {
   --as-dropdown--color: var(--as--color--type-01, #{$color-type-01});
   --as-dropdown--color--main: var(--as--color--primary, #{$color-primary});
   --as-dropdown--color--secondary: var(--as--color--ui-04, #{$color-ui-04});
-  --as-dropdown--color--hover: var(--as--color--complementary-hover, #{$color-complementary-hover});
-  --as-dropdown--color--selected: var(--as--color--complementary-selected, #{$color-complementary-selected});
+  --as-dropdown--color--hover: var(--as--color--complementary--hover, #{$color-complementary--hover});
+  --as-dropdown--color--selected: var(--as--color--complementary--active, #{$color-complementary--active});
   --as-dropdown--background-color: var(--as--color--ui-01, #{$color-ui-01});
   --as-dropdown__arrow-color: var(--as-dropdown--color--main);
   --as-dropdown__list--border-color: var(--as--color--ui-03, #{$color-ui-03});

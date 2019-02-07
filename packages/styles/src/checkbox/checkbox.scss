@@ -1,7 +1,7 @@
 @import "../core/_dev";
 
 .as-checkbox {
-  --as-checkbox--border-color: #d1d5d7;
+  --as-checkbox--border-color: #D1D5D7;
   --as-checkbox--border-color--hover: var(--as--color--complementary);
   --as-checkbox--border-color--focus: var(--as--color--primary);
   --as-checkbox--color--checked: var(--as--color--primary);
@@ -117,11 +117,6 @@
 
     &:enabled:not(:checked):not(.as-checkbox-input--error):hover + .as-checkbox-decoration {
       border: 1px solid var(--as-checkbox--border-color--hover);
-    }
-
-    &:disabled.as-checkbox-input--error + .as-checkbox-decoration {
-      border-color: var(--as-checkbox--color--error--disabled);
-      stroke: var(--as-checkbox--color--error--disabled);
     }
   }
 

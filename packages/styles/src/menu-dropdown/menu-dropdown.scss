@@ -1,7 +1,7 @@
 @import "../core/_dev";
 
 .as-menu-dropdown {
-  --as-menu-dropdown--color--hover: var(--as--color--complementary-hover, #{$color-complementary-hover});
+  --as-menu-dropdown--color--hover: var(--as--color--complementary--hover, #{$color-complementary--hover});
 
   position: relative;
 
@@ -19,8 +19,7 @@
 
     &:hover,
     &:focus {
-      background:
-        var(--as-menu-dropdown--color--hover);
+      background-color: var(--as-menu-dropdown--color--hover);
     }
   }
 
