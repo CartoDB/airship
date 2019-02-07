@@ -8,19 +8,20 @@
   // Default
   --as--input--background-color: var(--as--color--ui-01, #{$color-ui-01});
   --as--input--color: var(--as--color--type-01, #{$color-type-01});
-  --as--input--placeholder-color: var(--as--color--complementary, #{$color-complementary});
+  --as--input--placeholder-color: var(--as--color--type-02, #{$color-type-02});
   --as--input--shadow-color: var(--as--color--ui-04, #{$color-ui-04});
   --as--input--hover--shadow-color: var(--as--color--primary, #{$color-primary});
   // Invalid
-  --as--input--invalid--background-color: var(--as--color--ui-03, #{$color-ui-03});
+  // --as--input--invalid--background-color: var(--as--color--ui-03, #{$color-ui-03});
+  --as--input--invalid--background-color: rgba($color-support-01, 0.12);
   --as--input--invalid--color: var(--as--color--type-03, #{$color-type-03});
   --as--input--invalid-placeholder--color: var(--as--color--type-04, #{$color-type-04});
   --as--input--invalid-shadow-color: var(--as--color--error, #{$color-error});
   --as--input--invalid-hover--shadow-color: var(--as--color--error, #{$color-error});
   // Disabled
   --as--input--disabled--background-color: var(--as--color--ui-02, #{$color-ui-02});
-  --as--input--disabled--color: var(--as--color--type-04, #{$color-type-04});
-  --as--input--disabled-placeholder--color: var(--as--color--type-04, #{$color-type-04});
+  --as--input--disabled--color: var(--as--color--type-03, #{$color-type-03});
+  --as--input--disabled-placeholder--color: var(--as--color--type-03, #{$color-type-03});
   --as--input--disabled-hover--shadow-color: var(--as--color--ui-04, #{$color-ui-04});
   // Read Only
   --as--input--disabled--background-color: var(--as--color--ui-02, #{$color-ui-02});

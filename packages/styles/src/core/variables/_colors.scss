@@ -34,6 +34,8 @@ $color-green: #E1EECA !default;
 $color-blue: #B5E0F9 !default;
 $color-pink: #E4D8EB !default;
 $color-yellow: #F8E71C !default;
+$color-black: #000 !default;
+$color-white: #FFF !default;
 
 // With alpha
 
@@ -76,6 +78,8 @@ $color-modal: rgba(44, 44, 44, 0.8);
   --as--color--blue: #{$color-blue};
   --as--color--pink: #{$color-pink};
   --as--color--yellow: #{$color-yellow};
+  --as--color--white: #{$color-white};
+  --as--color--black: #{$color-black};
   --as--color--primary: #{$color-primary};
   --as--color--error: #{$color-error};
   --as--color--warning: #{$color-warning};

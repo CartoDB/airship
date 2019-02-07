@@ -112,6 +112,14 @@
     color: var(--as--color--yellow, #{$color-yellow});
   }
 
+  &--black {
+    color: var(--as--color--black, #{$color-black});
+  }
+
+  &--white {
+    color: var(--as--color--white, #{$color-white});
+  }
+
   // Support
   &--success {
     color: var(--as--color--success);

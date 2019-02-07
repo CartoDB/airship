@@ -17,10 +17,7 @@
 
   &--left {
     order: -1;
-    box-shadow:
-      (
-        var(--as-sidebar--shadow-color) 1px 0 4px 0
-      );
+    box-shadow: var(--as-sidebar--shadow-color) 1px 0 4px 0;
 
     &.as-sidebar--visible {
       display: flex;
@@ -30,10 +27,7 @@
 
   &--right {
     order: 9999;
-    box-shadow:
-      (
-        var(--as-sidebar--shadow-color) -1px 0 4px 0
-      );
+    box-shadow: var(--as-sidebar--shadow-color) -1px 0 4px 0;
 
     &.as-sidebar--visible {
       display: flex;
