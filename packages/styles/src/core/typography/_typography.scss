@@ -113,18 +113,15 @@
   }
 
   // Support
-  &--success,
-  &--support-03 {
-    color: var(--as--color--support-03);
+  &--success {
+    color: var(--as--color--success);
   }
 
-  &--warning,
-  &--support-02 {
-    color: var(--as--color--support-02);
+  &--warning {
+    color: var(--as--color--warning);
   }
 
-  &--error,
-  &--support-01 {
-    color: var(--as--color--support-01);
+  &--error {
+    color: var(--as--color--error);
   }
 }

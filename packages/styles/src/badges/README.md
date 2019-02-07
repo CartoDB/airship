@@ -31,9 +31,6 @@ If you need to change **any** element background color, you can use the followin
 - `as-bg--warning`
 - `as-bg--error`
 - `as-bg--success`
-- `as-bg--support-01`
-- `as-bg--support-02`
-- `as-bg--support-03`
 
 You need to to change the badge color. There are five **specific** color for badges:
 

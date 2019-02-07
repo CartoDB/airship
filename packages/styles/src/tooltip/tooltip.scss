@@ -6,9 +6,9 @@
   --as-tooltip--primary--background-color: var(--as--primary--success, #{$color-primary});
   --as-tooltip--secondary--background-color: var(--as--secondary--success, #{$color-secondary});
   --as-tooltip--complementary--background-color: var(--as--complementary--success, #{$color-complementary});
-  --as-tooltip--error--background-color: var(--as--error--success, #{$color-support-01});
-  --as-tooltip--warning--background-color: var(--as--warning--success, #{$color-support-02});
-  --as-tooltip--success--background-color: var(--as--color--success, #{$color-support-03});
+  --as-tooltip--error--background-color: var(--as--color--error, #{$color-error});
+  --as-tooltip--warning--background-color: var(--as--color--warning, #{$color-warning});
+  --as-tooltip--success--background-color: var(--as--color--success, #{$color-success});
 
   display: inline-flex;
   position: relative;

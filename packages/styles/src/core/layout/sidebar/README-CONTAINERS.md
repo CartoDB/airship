@@ -13,7 +13,7 @@ showSource: true
     <main class="as-main as-bg--blue">
       <!-- Put your map here -->
     </main>
-    <aside class="as-sidebar as-sidebar--right as-bg--support-02">
+    <aside class="as-sidebar as-sidebar--right as-bg--warning">
       <div class="as-container as-container--border">
         <section class="as-box">
           <h1 class="as-title">Fixed container</h1>
@@ -65,7 +65,7 @@ showSource: true
     <main class="as-main as-bg--blue">
       <!-- Put your map here -->
     </main>
-    <aside class="as-sidebar as-sidebar--right as-bg--support-02">
+    <aside class="as-sidebar as-sidebar--right as-bg--warning">
       <!-- as-container code starts here -->
       <div class="as-container">
         <section class="as-box">
@@ -116,7 +116,7 @@ showSource: true
     <main class="as-main as-bg--blue">
       <!-- Put your map here -->
     </main>
-    <aside class="as-sidebar as-sidebar--right as-bg--support-02">
+    <aside class="as-sidebar as-sidebar--right as-bg--warning">
       <div class="as-container">
         <section class="as-box">
           <h1 class="as-title">Container 0</h1>

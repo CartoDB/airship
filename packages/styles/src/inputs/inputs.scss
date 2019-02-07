@@ -15,8 +15,8 @@
   --as--input--invalid--background-color: var(--as--color--ui-03, #{$color-ui-03});
   --as--input--invalid--color: var(--as--color--type-03, #{$color-type-03});
   --as--input--invalid-placeholder--color: var(--as--color--type-04, #{$color-type-04});
-  --as--input--invalid-shadow-color: var(--as--color--support-01, #{$color-support-01});
-  --as--input--invalid-hover--shadow-color: var(--as--color--support-01, #{$color-support-01});
+  --as--input--invalid-shadow-color: var(--as--color--error, #{$color-error});
+  --as--input--invalid-hover--shadow-color: var(--as--color--error, #{$color-error});
   // Disabled
   --as--input--disabled--background-color: var(--as--color--ui-02, #{$color-ui-02});
   --as--input--disabled--color: var(--as--color--type-04, #{$color-type-04});

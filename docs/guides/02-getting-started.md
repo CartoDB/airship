@@ -160,7 +160,7 @@ For example a range slider
 
           <div class="as-map-panels">
             <div class="as-panel as-panel--top as-panel--right">
-              <div class="as-panel__element as-p--32 as-bg--support-02"></div>
+              <div class="as-panel__element as-p--32 as-bg--warning"></div>
             </div>
           </div>
 

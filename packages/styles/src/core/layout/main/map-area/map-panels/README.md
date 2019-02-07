@@ -69,7 +69,7 @@ showSource: true
         <div class="as-map-panels">
           <div class="as-panel as-panel--middle as-panel--center">
             <!-- as-panel__element code starts here -->
-            <div class="as-panel__element as-p--32 as-bg--support-02">
+            <div class="as-panel__element as-p--32 as-bg--warning">
               <p class="as-body"> Center Panel </p>
             </div>
             <!-- as-panel__element code ends here -->
@@ -96,19 +96,19 @@ showSource: true
         <div id="map"></div>
         <div class="as-map-panels">
           <div class="as-panel as-panel--top as-panel--left">
-            <div class="as-panel__element as-p--32 as-bg--support-02">
+            <div class="as-panel__element as-p--32 as-bg--warning">
               <p class="as-body"> Panel 0 </p>
             </div>
-            <div class="as-panel__element as-p--32 as-bg--support-03">
+            <div class="as-panel__element as-p--32 as-bg--success">
               <p class="as-body"> Panel 1 </p>
             </div>
           </div>
           <!-- as-panel--vertical code starts here -->
           <div class="as-panel as-panel--vertical as-panel--middle as-panel--right">
-            <div class="as-panel__element as-p--32 as-bg--support-02">
+            <div class="as-panel__element as-p--32 as-bg--warning">
               <p class="as-body"> Panel 2 </p>
             </div>
-            <div class="as-panel__element as-p--32 as-bg--support-03">
+            <div class="as-panel__element as-p--32 as-bg--success">
               <p class="as-body"> Panel 3 </p>
             </div>
           </div>

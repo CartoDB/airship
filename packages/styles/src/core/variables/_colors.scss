@@ -20,9 +20,9 @@ $color-ui-03:#E2E6E3 !default;
 $color-ui-04:#D1D5D7 !default;
 
 // Support
-$color-support-01: #F3522B !default;
-$color-support-02: #FDB32B !default;
-$color-support-03: #80B622 !default;
+$color-error: #F3522B !default;
+$color-warning: #FDB32B !default;
+$color-success: #80B622 !default;
 
 // Utils
 $color-gray: #E2E6E3 !default;
@@ -56,14 +56,6 @@ $color-modal: rgba(44, 44, 44, 0.8);
   --as--color--ui-03: #{$color-ui-03};
   --as--color--ui-04: #{$color-ui-04};
 
-  // Support
-  --as--color--support-01: #{$color-support-01};
-  --as--color---error: #{$color-support-01};
-  --as--color--support-02: #{$color-support-02};
-  --as--color---warning: #{$color-support-02};
-  --as--color--support-03: #{$color-support-03};
-  --as--color---success: #{$color-support-03};
-
   // Utils - Backgrounds
   --as--color--gray: #{$color-gray};
   --as--color--green: #{$color-green};
@@ -73,12 +65,9 @@ $color-modal: rgba(44, 44, 44, 0.8);
   --as--color--primary: #{$color-primary};
   --as--color--secondary: #{$color-secondary};
   --as--color--complementary: #{$color-complementary};
-  --as--color--support-01: #{$color-support-01};
-  --as--color--error: #{$color-support-01};
-  --as--color--support-02: #{$color-support-02};
-  --as--color--warning: #{$color-support-02};
-  --as--color--support-03: #{$color-support-03};
-  --as--color--success: #{$color-support-03};
+  --as--color--error: #{$color-error};
+  --as--color--warning: #{$color-warning};
+  --as--color--success: #{$color-success};
 
   // Utils - Badges
   --as--color--badge-gray: #{$color-gray};

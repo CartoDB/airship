@@ -3,8 +3,8 @@
 as-widget-header {
   --as-widget-header__header--color: var(--as--color--type-01);
   --as-widget-subheader--color: var(--as--color--type-02);
-  --as-widget-header__subheader--color-error: var(--as--color--support-01);
-  --as-widget-header__subheader--color-empty: var(--as--color--support-02);
+  --as-widget-header__subheader--color-error: var(--as--color--error);
+  --as-widget-header__subheader--color-empty: var(--as--color--warning);
 
   display: block;
 
