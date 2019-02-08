@@ -1,9 +1,7 @@
 @import "../core/_dev";
 
-$modal-background: var(--as--color--modal, #{$color-modal});
-
 .as-modal {
-  --as--modal--background-color: #{$modal-background};
+  --as--modal--background-color: var(--as--color--modal, #{$color-modal});
   --as--modal--content--background-color: var(--as--color--ui-01, #{$color-ui-01});
 
   display: flex;

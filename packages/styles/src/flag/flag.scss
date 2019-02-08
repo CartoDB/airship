@@ -2,7 +2,7 @@
 
 .as-flag {
   --as--flag--background-color: var(--as--color--ui-01, #{$color-ui-01});
-  --as--flag__button--color: var(--as--color--primary, #{$color-primary});
+  --as--flag--button--color: var(--as--color--primary, #{$color-primary});
 
   display: flex;
   max-width: get-spacing(65);
@@ -35,7 +35,7 @@
     outline: none;
     background: transparent;
     box-shadow: none;
-    color: var(--as--flag__button--color);
+    color: var(--as--flag--button--color);
     cursor: pointer;
   }
 

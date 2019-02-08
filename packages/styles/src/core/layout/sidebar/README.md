@@ -112,3 +112,11 @@ responsive: true
 <iframe src="/examples/layouts/sidebar/sidebar.html" style="width: 100%; height: 100%;">
 ```
 [See example](/developers/airship/examples/#example-basic-sidebar)
+
+## CSS Variables
+
+.as-sidebar {
+  --as--sidebar--background-color
+  --as--sidebar--box--border-color
+  --as--sidebar--shadow-color
+}

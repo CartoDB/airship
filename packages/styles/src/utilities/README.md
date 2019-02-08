@@ -44,6 +44,13 @@ showSource: true
 <div class="as-p--12 as-mb--12 as-subheader as-bg--error">.as-bg--error</div>
 <div class="as-p--12 as-mb--12 as-subheader as-bg--warning">.as-bg--warning</div>
 <div class="as-p--12 as-mb--12 as-subheader as-bg--success">.as-bg--success</div>
+
+<!-- Palette colors -->
+<div class="as-p--12 as-mb--12 as-subheader as-bg--gray">.as-bg--gray</div>
+<div class="as-p--12 as-mb--12 as-subheader as-bg--blue">.as-bg--blue</div>
+<div class="as-p--12 as-mb--12 as-subheader as-bg--green">.as-bg--green</div>
+<div class="as-p--12 as-mb--12 as-subheader as-bg--yellow">.as-bg--yellow</div>
+<div class="as-p--12 as-mb--12 as-subheader as-bg--pink">.as-bg--pink</div>
 ```
 
 # Spacing utilities
