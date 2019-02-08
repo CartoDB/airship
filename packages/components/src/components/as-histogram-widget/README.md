@@ -33,6 +33,18 @@ showSource: false
 </script>
 ```
 
+### CSS Variables
+
+```
+as-histogram-widget {
+  --as--histogram-widget--background-color
+  --as--histogram-widget--figure--stroke-color
+  --as--histogram-widget--figure--text-color
+  --as--histogram-widget--label-color
+  --as--histogram-widget--label-font
+}
+```
+
 ### Props
 
 #### **data**: HistogramData[] = []

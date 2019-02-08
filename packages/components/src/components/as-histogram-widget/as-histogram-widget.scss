@@ -5,8 +5,8 @@ $label-height: 20px;
 
 as-histogram-widget {
   --as--histogram-widget--background-color: var(--as--color--ui-01, #FFF);
-  --as--histogram-widget--figure--text-color: var(--as--color--type-01, #{$color-type-01});
   --as--histogram-widget--figure--stroke-color: var(--as--color--primary, #{$color-primary});
+  --as--histogram-widget--figure--text-color: var(--as--color--type-01, #{$color-type-01});
   --as--histogram-widget--label-color: var(--as--color--type-01, #{$color-type-01});
   --as--histogram-widget--label-font: var(--as--font--caption);
 
