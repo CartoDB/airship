@@ -1,9 +1,9 @@
 import { HistogramSelection } from '../../../../components/src/components/as-histogram-widget/interfaces';
 import { isCategoricalHistogramEqual } from '../utils/comparison/histogram';
 import * as conversion from '../utils/conversion/histogram';
-import { Histogram } from './histogram';
+import { BaseHistogramFilter } from './BaseHistogramFilter';
 
-export class CategoricalHistogram extends Histogram<string[]> {
+export class CategoricalHistogramFilter extends BaseHistogramFilter<string[]> {
   private _lastHistogram: VLCategoricalHistogram = null;
 
   constructor(

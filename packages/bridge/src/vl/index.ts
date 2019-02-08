@@ -1,9 +1,9 @@
 import semver from 'semver';
 import { BaseFilter } from './base/BaseFilter';
-import { Category } from './category/category';
-import { CategoricalHistogram } from './histogram/categorical';
-import { NumericalHistogram } from './histogram/numerical';
-import { TimeSeries } from './time-series/times-series';
+import { CategoryFilter } from './category/CategoryFilter';
+import { CategoricalHistogramFilter } from './histogram/CategoricalHistogramFilter';
+import { NumericalHistogramFilter } from './histogram/NumericalHistogramFilter';
+import { TimeSeries } from './time-series/TimeSeries';
 
 const VL_VERSION = '^1.1.0';
 
@@ -57,7 +57,7 @@ export default class VL {
     readOnly,
     widget
   }: NumericalHistogramOptions) {
-    const histogram = new NumericalHistogram(
+    const histogram = new NumericalHistogramFilter(
       this._carto,
       this._layer,
       widget,
@@ -77,7 +77,7 @@ export default class VL {
     readOnly,
     widget
   }: CategoricalHistogramOptions) {
-    const histogram = new CategoricalHistogram(
+    const histogram = new CategoricalHistogramFilter(
       this._carto,
       this._layer,
       widget,
@@ -110,7 +110,7 @@ export default class VL {
     readOnly,
     widget
   }: CategoryOptions) {
-    const category = new Category(
+    const category = new CategoryFilter(
       this._carto,
       this._layer,
       widget,

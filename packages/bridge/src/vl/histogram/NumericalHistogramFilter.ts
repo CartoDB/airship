@@ -1,9 +1,9 @@
 import { HistogramSelection } from '../../../../components/src/components/as-histogram-widget/interfaces';
 import { isNumericalHistogramEqual } from '../utils/comparison/histogram';
 import * as conversion from '../utils/conversion/histogram';
-import { Histogram } from './histogram';
+import { BaseHistogramFilter } from './BaseHistogramFilter';
 
-export class NumericalHistogram extends Histogram<[number, number]> {
+export class NumericalHistogramFilter extends BaseHistogramFilter<[number, number]> {
   private _lastHistogram: VLNumericalHistogram = null;
   private _isTimeSeries: boolean;
 

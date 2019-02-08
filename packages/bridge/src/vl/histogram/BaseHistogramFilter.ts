@@ -1,7 +1,7 @@
 import { HistogramSelection } from '../../../../components/src/components/as-histogram-widget/interfaces';
 import { BaseFilter } from '../base/BaseFilter';
 
-export abstract class Histogram<T> extends BaseFilter {
+export abstract class BaseHistogramFilter<T> extends BaseFilter {
   protected _buckets: number;
   protected _carto: any;
   protected _widget: HTMLAsTimeSeriesWidgetElement | HTMLAsHistogramWidgetElement;

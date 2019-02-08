@@ -1,7 +1,7 @@
 import * as mitt from 'mitt';
-import TimeSeries from './times-series';
+import TimeSeries from './TimeSeries';
 
-describe('vl/time-series/time-series', () => {
+describe('vl/time-series/TimeSeries', () => {
   let widget: HTMLAsTimeSeriesWidgetElement;
   let layer: any;
 

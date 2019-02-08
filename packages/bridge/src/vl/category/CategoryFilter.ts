@@ -2,7 +2,7 @@ import { BaseFilter } from '../base/BaseFilter';
 import { isCategoricalHistogramEqual } from '../utils/comparison/histogram';
 import vlToCategory from '../utils/conversion/category';
 
-export class Category extends BaseFilter {
+export class CategoryFilter extends BaseFilter {
   protected _widget: HTMLAsCategoryWidgetElement;
   private _carto: any;
   private _selection: string[] = [];
