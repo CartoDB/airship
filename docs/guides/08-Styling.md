@@ -55,16 +55,16 @@ In that case, you need to override it within the components' selector.
 
 We're going to change the default background color for the `.map_panels` style. For each layout element and component, we've a set of **css-variables**, also called **custom properties**, to customize these elements individually.
 
-In this case, the variable is called `--as-map-panels--background-color`, and we want it to be `#EEE`. As we can see, `--as-map-panels--background-color` is within `.as-map-panels`, we need to do it like this:
+In this case, the variable is called `--as--map-panels--background-color`, and we want it to be `#EEE`. As we can see, `--as--map-panels--background-color` is within `.as-map-panels`, we need to do it like this:
 
 ```html
 <!-- Include CSS -->
 <link rel="stylesheet" href="https://libs.cartocdn.com/airship-style/%AS-VERSION%/airship.css">
 
-<!-- Override --as-map-panels--background-color -->
+<!-- Override --as--map-panels--background-color -->
 <style>
   .as-map-panels {
-    --as-map-panels--background-color: #EEE;
+    --as--map-panels--background-color: #EEE;
   }
 </style>
 ```
@@ -89,7 +89,7 @@ Likewise, if you want to override a CSS variable inside a component selector, yo
 @import '~@carto/airship-styles';
 
 .as-map-panels {
-  --as-map-panels--background-color: #EEE;
+  --as--map-panels--background-color: #EEE;
 }
 ```
 
