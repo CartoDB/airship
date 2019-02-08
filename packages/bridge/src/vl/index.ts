@@ -159,8 +159,16 @@ export default class VL {
       return;
     }
 
-    this._appendVariables();
-    this._buildDataLayer();
+    const onLoaded = () => {
+      this._appendVariables();
+      this._buildDataLayer();
+    };
+
+    if (!this._layer.viz) {
+      this._layer.on('loaded', onLoaded);
+    } else {
+      onLoaded();
+    }
   }
 
   private _addFilter(filter: BaseFilter) {
