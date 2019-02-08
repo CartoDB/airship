@@ -1,8 +1,8 @@
 @import '../../../../styles/src/core/_dev';
 
 as-infowindow {
-  --as--infowindow--color--shadow: var(--as--color--shadow, #{$color-shadow});
   --as--infowindow--color--background: var(--as--color--ui-01, #{$color-ui-01});
+  --as--infowindow--color--shadow: var(--as--color--shadow, #{$color-shadow});
 
   display: inline-block;
 
