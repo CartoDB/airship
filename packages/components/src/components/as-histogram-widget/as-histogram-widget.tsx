@@ -20,7 +20,7 @@ import { SVGContainer, SVGGContainer } from './types/Container';
 import { RenderOptions } from './types/RenderOptions';
 import brushService from './utils/brush.service';
 import dataService, { binsScale, isBackgroundCompatible, isCategoricalData, prepareData } from './utils/data.service';
-import drawService from './utils/draw.service';
+import drawService, { conditionalFormatter } from './utils/draw.service';
 import interactionService from './utils/interaction.service';
 
 const CUSTOM_HANDLE_WIDTH = 8;
@@ -523,7 +523,7 @@ export class HistogramWidget {
     if (this.axisFormatter) {
       formattedSelection = domainSelection.map(this.axisFormatter);
     } else {
-      formattedSelection = domainSelection.map((e) => `${e}`);
+      formattedSelection = domainSelection.map((e) => `${conditionalFormatter(e)}`);
     }
 
     return `Selected from ${formattedSelection[0]} to ${formattedSelection[1]}`;
