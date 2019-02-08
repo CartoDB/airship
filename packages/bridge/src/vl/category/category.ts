@@ -3,8 +3,8 @@ import { isCategoricalHistogramEqual } from '../utils/comparison/histogram';
 import vlToCategory from '../utils/conversion/category';
 
 export class Category extends BaseFilter {
+  protected _widget: HTMLAsCategoryWidgetElement;
   private _carto: any;
-  private _widget: HTMLAsCategoryWidgetElement;
   private _selection: string[] = [];
   private _lastHistogram: VLCategoricalHistogram = null;
   private _dataLayer: any;
@@ -52,7 +52,7 @@ export class Category extends BaseFilter {
       if (this._lastHistogram === null || !isCategoricalHistogramEqual(this._lastHistogram, newHistogram)) {
         this._lastHistogram = { value: newHistogram.value };
 
-        this._widget.categories = vlToCategory(newHistogram);
+        this._widget.categories = vlToCategory(newHistogram, this._legendData);
       }
     });
   }

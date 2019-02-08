@@ -29,3 +29,18 @@ interface VLHistogramData<T> {
   x: T;
   y: number;
 }
+
+interface RGBColor {
+  r: number;
+  g: number;
+  b: number;
+  a?: number;
+}
+interface LegendEntry {
+  key: string | number;
+  value: RGBColor | string;
+}
+interface LegendData {
+  type: string;
+  data: LegendEntry[];
+}

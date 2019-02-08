@@ -40,7 +40,7 @@ export class CategoricalHistogram extends Histogram<string[]> {
       if (this._lastHistogram === null || !isCategoricalHistogramEqual(this._lastHistogram, newHistogram)) {
         this._lastHistogram = { value: newHistogram.value };
 
-        this._widget.data = conversion.categorical(newHistogram);
+        this._widget.data = conversion.categorical(newHistogram, this._legendData);
       }
     });
   }

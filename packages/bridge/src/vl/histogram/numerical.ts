@@ -37,6 +37,14 @@ export class NumericalHistogram extends Histogram<[number, number]> {
     this._isTimeSeries = value;
   }
 
+  public enableColorMapping() {
+    throw new Error('Unsupported for numerical histograms');
+  }
+
+  public setLegendData() {
+    throw new Error('Unsupported for numerical histograms');
+  }
+
   protected bindDataLayer()  {
     this._dataLayer.on('updated', () => {
       const newHistogram = (this._dataLayer.viz.variables[this.name] as VLNumericalHistogram);

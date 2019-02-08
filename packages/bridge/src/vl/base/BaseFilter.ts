@@ -9,6 +9,9 @@ export abstract class BaseFilter {
   protected _column: string;
   protected _layer: any;
   protected _source: any;
+  protected _legendData: LegendEntry[];
+  protected _mapColors: boolean;
+  protected _widget: HTMLStencilElement;
   private _readOnly: boolean;
   private _name: string;
   private _type: string;
@@ -24,6 +27,8 @@ export abstract class BaseFilter {
     this._type = type;
 
     BaseFilter._counter++;
+
+    this._loadLegendData = this._loadLegendData.bind(this);
   }
 
   public abstract setDataLayer(layer: any);
@@ -58,8 +63,36 @@ export abstract class BaseFilter {
     this._emitter.on(type, handler);
   }
 
+  public setLegendData(legendData: LegendData) {
+    this._legendData = legendData.data;
+  }
+
+  public enableColorMapping() {
+    this._mapColors = true;
+
+    if (this._layer.viz) {
+      this._loadLegendData();
+    } else {
+      this._layer.on('loaded', this._loadLegendData);
+    }
+  }
+
   protected _filterChanged() {
     this._emitter.emit('filterChanged', this._name);
+  }
+
+  protected _loadLegendData() {
+    const color = this._layer.viz.color;
+
+    if (!color.getLegendData) {
+      return;
+    }
+
+    this.setLegendData(color.getLegendData(this._getLegendConfig()));
+  }
+
+  protected _getLegendConfig() {
+    return undefined;
   }
 
 }

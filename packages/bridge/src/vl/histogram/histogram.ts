@@ -50,6 +50,12 @@ export abstract class Histogram<T> extends BaseFilter {
     this.bindDataLayer();
   }
 
+  protected _getLegendConfig() {
+    return {
+      samples: this._buckets
+    };
+  }
+
   protected abstract selectionChanged(evt: CustomEvent<HistogramSelection>);
   protected abstract bindDataLayer();
 }
