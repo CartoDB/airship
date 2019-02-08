@@ -2,6 +2,14 @@
 
 as-range-slider-thumb {
   .as-range-slider__thumb {
+    --as--range-slider--disabled--value--color: var(--as--color--ui-03, #{$color-ui-03});
+    --as--range-slider--thumb-handle--border-color: var(--as--color--primary, #{$color-primary});
+    --as--range-slider--thumb-handle--background-color: var(--as--color--white, #{$color-white});
+    --as--range-slider--disabled--thumb-handle--border-color: var(--as--color--ui-03, #{$color-ui-03});
+    --as--range-slider--disabled--thumb-handle--background-color: var(--as--color--ui-02, #{$color-ui-02});
+    --as--range-slider--disabled--thumb-handle--focus-background-color: var(--as--color--ui-02, #{$color-ui-02});
+    --as--range-slider--focus--thumb-handle--background-color: var(--as--color--primary, #{$color-primary});
+
     position: absolute;
     z-index: $z-index-2;
     width: 12px;
@@ -19,7 +27,7 @@ as-range-slider-thumb {
     pointer-events: none;
 
     &--disabled {
-      color: var(--as--color--type-03, #{$color-type-03});
+      color: var(--as--range-slider--disabled--value--color);
     }
   }
 
@@ -27,9 +35,9 @@ as-range-slider-thumb {
     width: 12px;
     height: 12px;
     transition: transform 200ms ease;
-    border: 1px solid var(--as--color--primary, #{$color-primary});
+    border: 1px solid var(--as--range-slider--thumb-handle--border-color);
     border-radius: 50%;
-    background: #FFF;
+    background-color: var(--as--range-slider--thumb-handle--background-color);
     cursor: grab;
 
     &::before {
@@ -53,11 +61,11 @@ as-range-slider-thumb {
 
   .as-range-slider__thumb--disabled {
     .as-range-slider__thumb-handle {
-      border: 1px solid var(--as--color--ui-03, #{$color-ui-03});
-      background: var(--as--color--ui-02, #{$color-ui-02});
+      border: 1px solid var(--as--range-slider--disabled--thumb-handle--border-color);
+      background-color: var(--as--range-slider--disabled--thumb-handle--background-color);
 
       &:focus {
-        background: var(--as--color--ui-02, #{$color-ui-02});
+        background: var(--as--range-slider--disabled--thumb-handle--focus-background-color);
       }
     }
   }
@@ -66,7 +74,7 @@ as-range-slider-thumb {
     outline: none;
 
     .as-range-slider__thumb-handle {
-      background: var(--as--color--primary, #{$color-primary});
+      background: var(--as--range-slider--focus--thumb-handle--background-color);
     }
   }
 
