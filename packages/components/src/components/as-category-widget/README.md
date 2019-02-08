@@ -36,6 +36,19 @@ showSource: false
   ];
 </script>
 ```
+### CSS Variables
+
+```
+as-category-widget {
+  --as--category-bar--background-color
+  --as--category-bar--color
+  --as--category-widget--background-color
+  --as--category-widget--bar--height
+  --as--category-widget--description--color
+}
+```
+
+
 
 ### Props
 

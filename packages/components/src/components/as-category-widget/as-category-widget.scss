@@ -3,11 +3,11 @@
 $bar--height: get-spacing(1);
 
 as-category-widget {
-  --as--category-widget--description--color: var(--as--color--type-02, #{$color-type-02});
-  --as--category-widget--background-color: var(--as--color--ui-01, #{$color-ui-01});
   --as--category-bar--background-color: var(--as--color--ui-02, #{$color-ui-02});
   --as--category-bar--color: var(--as--color--complementary, #{$color-complementary});
+  --as--category-widget--background-color: var(--as--color--ui-01, #{$color-ui-01});
   --as--category-widget--bar--height: #{$bar--height};
+  --as--category-widget--description--color: var(--as--color--type-02, #{$color-type-02});
 
   display: flex;
   flex-direction: column;
