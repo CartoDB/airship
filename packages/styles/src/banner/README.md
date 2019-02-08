@@ -51,3 +51,40 @@ showSource: true
   <div class="as-banner__content">An error has ocurred. Could not retreive customer information</div>
 </div>
 ```
+
+## CSS Variables
+
+### Default
+
+```
+.as-banner {
+  --as--banner--background-color
+  --as--banner--color
+}
+```
+
+### For notifications
+
+```
+.as-banner--success {
+  --as--banner--background-color
+  --as--banner--color
+}
+```
+### For warnings
+
+```
+.as-banner--warning {
+  --as--banner--background-color
+  --as--banner--color
+}
+```
+
+### For errors
+
+```
+.as-banner--error {
+  --as--banner--background-color
+  --as--banner--color
+}
+```
