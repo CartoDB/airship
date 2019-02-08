@@ -27,7 +27,21 @@ showSource: false
   ];
 </script>
 ```
+### CSS Variables
 
+```
+as-dropdown {
+  --as-dropdown__arrow-color
+  --as-dropdown__list--background-color
+  --as-dropdown__list--border-color
+  --as-dropdown--background-color
+  --as-dropdown--color--hover
+  --as-dropdown--color--main
+  --as-dropdown--color--secondary
+  --as-dropdown--color--selected
+  --as-dropdown--color
+}
+```
 ### Props
 
 #### **options**: DropdownOption[] = []
