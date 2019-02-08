@@ -2,7 +2,7 @@
 
 as-switch {
   --as--switch--color--background-active: var(--as--color--complementary, #{$color-complementary});
-  --as--switch--color--background-checked: var(--as--color--primary, #{$color-priary});
+  --as--switch--color--background-checked: var(--as--color--primary, #{$color-primary});
   --as--switch--color--background-default: var(--as--color--type-03, #{$color-type-03});
   --as--switch--color--background-disabled: var(--as--color--ui-02, #{$color-ui-02});
   --as--switch--color--checked-thumb: var(--as--color--ui-01, #{$color-ui-01});
