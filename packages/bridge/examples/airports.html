@@ -73,6 +73,7 @@
         const source = new carto.source.SQL(`select * from ne_10m_airports`);
         const viz = new carto.Viz(`
           strokeWidth: 0
+          color: ramp($location, vivid)
         `);
 
         const vizLayer = new carto.Layer('layer', source, viz);
@@ -96,14 +97,14 @@
           readOnly: true,
           source,
           widget: typeHistogram,
-        });
+        }).enableColorMapping();
 
         airportLayer.category({
           column: 'location',
           readOnly: false,
           source,
           widget: category,
-        });
+        }).enableColorMapping();
 
         airportLayer.histogram({
           column: 'scalerank',

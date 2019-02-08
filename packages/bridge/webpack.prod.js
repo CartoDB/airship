@@ -2,6 +2,6 @@ const path = require('path');
 const config = require('./webpack.config.js');
 
 config.mode = 'production';
-config.output.filename = 'asbindings.min.js';
+config.output.filename = 'asbridge.min.js';
 
 module.exports = config;

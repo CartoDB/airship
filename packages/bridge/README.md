@@ -18,7 +18,7 @@ Both numerical and categorical histograms are supported. You can use the `histog
 
 ### Time series
 
-The time series bindings lets you display the progress of a VL animation on a time-series-widget and binds all the events to control it (seeking, pausing).
+The time series bridge lets you display the progress of a VL animation on a time-series-widget and binds all the events to control it (seeking, pausing).
 
 It will also automatically do the logic to play the animation when selecting a range.
 
@@ -39,7 +39,7 @@ const bridge = new AsBridge.VL(
 );
 ```
 
-And then creating all the bindings necessary:
+And then creating all the necessary filters:
 
 ```
 bridge.histogram({
@@ -61,7 +61,7 @@ bridge.histogram({
 And then simply bundling it all together
 
 ```
-bindings.build();
+bridge.build();
 ```
 
 There are [several examples](https://github.com/CartoDB/airship/tree/master/packages/bridge/examples) under the `/examples/` folder of the package.

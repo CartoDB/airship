@@ -1,4 +1,4 @@
-# CARTO VL bindings
+# CARTO VL bridge
 
 Airship components are a great tool to build Location Intelligence dashboards, and CARTO VL and CARTO.js are both amazing mapping tools. This library makes them work together easily.
 
@@ -7,7 +7,7 @@ Airship components are a great tool to build Location Intelligence dashboards, a
 In order to start binding your visualization to your Airship widgets, you'll need to create the base `VL` object like this:
 
 ```
-const bindings = new AsBridge.VL(
+const bridge = new AsBridge.VL(
   carto,
   map,
   layer,
@@ -15,10 +15,10 @@ const bindings = new AsBridge.VL(
 );
 ```
 
-This object will let you add all the bindings to your application. After adding some of them, you will have to indicate that you are done by calling:
+This object will let you add all the filters to your application. After adding some of them, you will have to indicate that you are done by calling:
 
 ```
-bindings.build();
+bridge.build();
 ```
 
 ### Parameters
@@ -44,7 +44,7 @@ This is the same source you have added to your layer.
 In order to bind a histogram widget to a visualization, you need to call the VL#histogram method like this:
 
 ```
-bindings.histogram({
+bridge.histogram({
   column: 'timestamp',
   buckets: 30,
   widget: timestampWidget,
@@ -88,10 +88,10 @@ new carto.Viz(`
 `);
 ```
 
-Then, you can use the bindings like this:
+Then, you can use the bridge like this:
 
 ```
-bindings.timeSeries({
+bridge.timeSeries({
   column: 'timestamp',
   buckets: 30,
   widget: timeWidget
@@ -106,7 +106,7 @@ Just include the following tag:
 
 ```
 <!-- Minified Version -->
-<script src="https://libs.cartocdn.com/airship-bridge/prerelease/asbindings.min.js"></script>
+<script src="https://libs.cartocdn.com/airship-bridge/prerelease/asbridge.min.js"></script>
 
 <!-- Non-Minified Version -->
 <script src="https://libs.cartocdn.com/airship-bridge/prerelease/asbridge.js"></script>

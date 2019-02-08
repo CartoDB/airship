@@ -187,7 +187,7 @@ const UPLOAD = [
     name: 'Airship Bridge',
     src: [
       path.join(__dirname, '../packages/bridge/dist/asbridge.js'),
-      path.join(__dirname, '../packages/bridge/dist/asbindings.min.js')
+      path.join(__dirname, '../packages/bridge/dist/asbridge.min.js')
     ],
     dst: 'airship-bridge',
     version: require('../packages/bridge/package.json').version
