@@ -113,11 +113,11 @@
   }
 
   &--black {
-    color: var(--as--color--black, #{$color-black});
+    color: var(--as--color--text, #{$color-text});
   }
 
   &--white {
-    color: var(--as--color--white, #{$color-white});
+    color: var(--as--color--text-contrast, #{$color-text-contrast});
   }
 
   // Support

@@ -7,7 +7,7 @@ body.as-app-body {
   height: 100vh;
   margin: 0;
   padding: 0;
-  color: var(--as--color--black, #{$color-black});
+  color: var(--as--color--text, #{$color-text});
 }
 
 .as-app {

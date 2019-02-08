@@ -2,7 +2,7 @@
 @import '../../../../styles/src/menu-dropdown/menu-dropdown';
 
 as-dropdown {
-  --as-dropdown--color: var(--as--color--black, #{$color-type-01});
+  --as-dropdown--color: var(--as--color--text, #{$color-text});
   --as-dropdown--color--main: var(--as--color--primary, #{$color-primary});
   --as-dropdown--color--secondary: var(--as--color--ui-04, #{$color-ui-04});
   --as-dropdown--color--hover: var(--as--color--complementary--hover, #{$color-complementary--hover});

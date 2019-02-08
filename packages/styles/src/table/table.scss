@@ -2,10 +2,10 @@
 
 .as-table {
   --as-table-border--color: var(--as--color--ui-04);
-  --as-table-cell--background-color: var(--as--color--ui-01);
-  --as-table-header--background-color: var(--as--color--secondary, #{$color-secondary});
-  --as-table-header--color: var(--as--color--type-04);
-  --as-table--color: var(--as--color--type-01);
+  --as-table-cell--background-color: var(--as--color--ui-01, #{$color-ui-01});
+  --as-table-header--background-color: var(--as--color--ui-03, #{$color-ui-03});
+  --as-table-header--color: var(--as--color--text, #{$color-text});
+  --as-table--color: var(--as--color--text, #{$color-text});
   --as-table-row--color-hover: var(--as--color--complementary--hover, #{$color-complementary--hover});
   --as-table-cell-color-hover: var(--as--color--complementary--active, #{$color-complementary--active});
 

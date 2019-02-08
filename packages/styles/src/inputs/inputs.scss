@@ -8,26 +8,25 @@
   // Default
   --as--input--background-color: var(--as--color--ui-01, #{$color-ui-01});
   --as--input--color: var(--as--color--type-01, #{$color-type-01});
-  --as--input--placeholder-color: var(--as--color--type-02, #{$color-type-02});
+  --as--input--placeholder-color: var(--as--color--type-03, #{$color-type-03});
   --as--input--shadow-color: var(--as--color--ui-04, #{$color-ui-04});
   --as--input--hover--shadow-color: var(--as--color--primary, #{$color-primary});
   // Invalid
-  // --as--input--invalid--background-color: var(--as--color--ui-03, #{$color-ui-03});
-  --as--input--invalid--background-color: rgba($color-support-01, 0.12);
-  --as--input--invalid--color: var(--as--color--type-03, #{$color-type-03});
-  --as--input--invalid-placeholder--color: var(--as--color--type-04, #{$color-type-04});
+  --as--input--invalid--background-color: var(--as--color--error-alpha, #{$color-error-alpha});
+  --as--input--invalid--color: var(--as--color--type-03, #{$color-type-02});
+  --as--input--invalid-placeholder--color: var(--as--color--type-03, #{$color-type-02});
   --as--input--invalid-shadow-color: var(--as--color--error, #{$color-error});
   --as--input--invalid-hover--shadow-color: var(--as--color--error, #{$color-error});
   // Disabled
   --as--input--disabled--background-color: var(--as--color--ui-02, #{$color-ui-02});
   --as--input--disabled--color: var(--as--color--type-03, #{$color-type-03});
-  --as--input--disabled-placeholder--color: var(--as--color--type-03, #{$color-type-03});
+  --as--input--disabled-placeholder--color: var(--as--color--type-03, #{$color-type-02});
   --as--input--disabled-hover--shadow-color: var(--as--color--ui-04, #{$color-ui-04});
   // Read Only
-  --as--input--disabled--background-color: var(--as--color--ui-02, #{$color-ui-02});
-  --as--input--disabled--color: var(--as--color--type-02, #{$color-type-02});
-  --as--input--disabled-placeholder--color: var(--as--color--type-04, #{$color-type-04});
-  --as--input--disabled-hover--shadow-color: var(--as--color--ui-04, #{$color-ui-04});
+  --as--input--readonly--background-color: var(--as--color--ui-02, #{$color-ui-02});
+  --as--input--readonly--color: var(--as--color--type-02, #{$color-type-02});
+  --as--input--readonly-placeholder--color: var(--as--color--type-02, #{$color-type-02});
+  --as--input--readonly-hover--shadow-color: var(--as--color--ui-04, #{$color-ui-04});
 
   box-sizing: border-box;
   width: 100%;
@@ -87,17 +86,17 @@
   }
 
   &:read-only {
-    background: var(--as--color--ui-02);
-    color: var(--as--color--type-02);
+    background: var(--as--input--readonly--background-color);
+    color: var(--as--input--readonly--color);
 
     &:hover,
     &:focus,
     &:hover:focus {
-      box-shadow: inset 0 0 0 1px var(--as--input--disabled-hover--shadow-color);
+      box-shadow: inset 0 0 0 1px var(--as--input--readonly-hover--shadow-color);
     }
 
     &::placeholder {
-      color: var(--as--color--type-02);
+      color: var(--as--input--readonly-placeholder--color);
     }
   }
 }

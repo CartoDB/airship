@@ -42,10 +42,7 @@ showSource: true
 
 <!-- Support colors -->
 <div class="as-p--12 as-mb--12 as-subheader as-bg--error">.as-bg--error</div>
-<div class="as-p--12 as-mb--12 as-subheader as-bg--error">.as-bg--error</div>
 <div class="as-p--12 as-mb--12 as-subheader as-bg--warning">.as-bg--warning</div>
-<div class="as-p--12 as-mb--12 as-subheader as-bg--warning">.as-bg--warning</div>
-<div class="as-p--12 as-mb--12 as-subheader as-bg--success">.as-bg--success</div>
 <div class="as-p--12 as-mb--12 as-subheader as-bg--success">.as-bg--success</div>
 ```
 

@@ -2,14 +2,14 @@
 
 .as-checkbox {
   --as-checkbox--border-color: var(--as--color--ui-03, #{$color-ui-03});
-  --as-checkbox--border-color--hover: var(--as--color--complementary);
-  --as-checkbox--border-color--focus: var(--as--color--primary);
-  --as-checkbox--color--checked: var(--as--color--primary);
-  --as-checkbox--color--error: var(--as--color--error);
-  --as-checkbox--background--error: rgba(243, 82, 43, 0.15);
-  --as-checkbox--background--disabled: var(--as--color--ui-03, #{$color-ui-03});
-  --as-checkbox--color--disabled: var(--as--color--ui-03);
-  --as-checkbox--color--error--disabled: rgba(243, 82, 43, 0.3);
+  --as-checkbox--border-color--hover: var(--as--color--complementary, #{$color-complementary});
+  --as-checkbox--border-color--focus: var(--as--color--primary, #{$color-primary});
+  --as-checkbox--color--checked: var(--as--color--primary, #{$color-primary});
+  --as-checkbox--color--error: var(--as--color--error, #{$color-error});
+  --as-checkbox--background--error: var(--as--color--error-alpha, #{$color-error-alpha});
+  --as-checkbox--background--disabled: var(--as--color--ui-02, #{$color-ui-02});
+  --as-checkbox--color--disabled: var(--as--color--ui-03, #{$color-ui-03});
+  --as-checkbox--color--error--disabled: var(--as--color--error-alpha, #{$color-error-alpha});
 
   display: flex;
   position: relative;
