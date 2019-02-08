@@ -154,3 +154,12 @@ showSource: true
 </footer>
 <!-- as-box code ends here -->
 ```
+
+## CSS Variables
+
+```
+.as-map-footer {
+  --as--map-footer--background-color
+  --as--map-footer--box--border-color
+}
+```
