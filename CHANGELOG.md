@@ -164,7 +164,7 @@ Instead of `import { defineCustomElements } from '@carto/airship-components';` y
 `as-app` is meant to be applied to the node that contains the whole application made with Airship.
 
 Previous to this, since the app needs typically more than one node (one for the toolbar, one for the content), when used in a framework like Vue those two nodes needed to be wrapped in one div. Since components don't create the body tag, it caused an extra `div` that broke the display setting for the app and the layout broke.
-* **styles:** buttons / `<a>` buttons state now use different variables for active and hover state (`--as-button-primary-color-active`, `--as-button-secondary-color-active`. `--as-button-secondary-color-focus`)
+* **styles:** buttons / `<a>` buttons state now use different variables for active and hover state (`--as--button-primary-color-active`, `--as--button-secondary-color-active`. `--as--button-secondary-color-focus`)
 * **components:** Component methods should be invoked asynchronously with async/await or promises from now on. Please check documentation.
 
 
