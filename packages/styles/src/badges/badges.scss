@@ -1,11 +1,14 @@
 @import "../core/_dev";
 
 .as-badge {
+  --as--color--badge-default: var(--as--color--badge-blue, #{$color-blue});
+
   display: inline-flex;
   align-items: center;
   padding: 0 get-spacing(2);
   border-radius: get-spacing(5);
-  background-color: var(--as--color--badge-blue);
+  background-color: var(--as--color--badge--default-color);
+
   font: var(--as--font--body);
 
   p {

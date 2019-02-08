@@ -110,6 +110,10 @@ Badge colors can be modified via CSS variables. There are five specific backgrou
 - `--as--color--badge-pink`
 - `--as--color--badge-yellow`
 
+The default color is `blue`, but this can be modified through this variable:
+
+- `--as--color--badge-default`
+
 They can be modified globally:
 
 ```
