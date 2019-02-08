@@ -142,12 +142,14 @@ export default class VL {
       }
     );
 
-    const histogram = this.histogram({
+    const histogram = this.numericalHistogram({
       buckets,
       column,
       readOnly,
       widget
     });
+
+    histogram.setTimeSeries(true);
 
     histogram.on('rangeChanged', (range) => {
       this._animation.setRange(range);

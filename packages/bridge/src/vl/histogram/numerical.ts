@@ -5,6 +5,7 @@ import { Histogram } from './histogram';
 
 export class NumericalHistogram extends Histogram<[number, number]> {
   private _lastHistogram: VLNumericalHistogram = null;
+  private _isTimeSeries: boolean;
 
   constructor(
     carto: any,
@@ -32,6 +33,10 @@ export class NumericalHistogram extends Histogram<[number, number]> {
     return s.viewportHistogram(s.prop(this._column), this._buckets);
   }
 
+  public setTimeSeries(value: boolean) {
+    this._isTimeSeries = value;
+  }
+
   protected bindDataLayer()  {
     this._dataLayer.on('updated', () => {
       const newHistogram = (this._dataLayer.viz.variables[this.name] as VLNumericalHistogram);
@@ -56,7 +61,7 @@ export class NumericalHistogram extends Histogram<[number, number]> {
     if (evt.detail === null) {
       this._selection = null;
     } else {
-      const selection = evt.detail.selection as [number, number];
+      const selection = (this._isTimeSeries ? evt.detail : evt.detail.selection) as [number, number];
       this._selection = [Number(selection[0]), Number(selection[1])];
     }
 
