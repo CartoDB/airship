@@ -12,6 +12,14 @@ noSource: true
 
 [See example](/developers/airship/examples/#example-as-time-series-simple)
 
+### CSS Variables
+
+```
+as-time-series-widget {
+  --as--time-series--line-color
+}
+```
+
 ### Props
 
 All the histogram properties are there, but also a few more:

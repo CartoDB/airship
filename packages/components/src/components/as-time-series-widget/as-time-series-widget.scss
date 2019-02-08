@@ -1,6 +1,8 @@
 @import '../../../../styles/src/core/_dev';
 
 as-time-series-widget {
+  --as--time-series--line-color: var(--as--color--primary, #{$color-primary});
+
   display: flex;
   align-items: center;
   height: 100%;
@@ -12,8 +14,8 @@ as-time-series-widget {
 
   .as-time-series--scrubber,
   .as-time-series--line {
-    stroke: var(--as--color--primary, #{$color-primary});
-    fill: var(--as--color--primary, #{$color-primary});
+    stroke: var(--as--time-series--line-color);
+    fill: var(--as--time-series--line-color);
   }
 
   .as-time-series--scrubber,
