@@ -17,3 +17,12 @@ showSource: true
   </li>
 </ul>
 ```
+
+## CSS Variables
+
+```
+.as-breadcrumb {
+  --as--breadcrumb--color--current
+  --as--breadcrumb--color--visited
+}
+```
