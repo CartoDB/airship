@@ -1,11 +1,11 @@
 @import "../core/_dev";
 
 .as-menu-dropdown {
-  --as-menu-dropdown--color--hover: var(--as--color--complementary--hover, #{$color-complementary--hover});
-  --as-menu-dropdown--top-border--color: var(--as--color--ui-01, #{$color-ui-01});
-  --as-menu-dropdown--li--border-color: var(--as--color--ui-04, #{$color-ui-04});
-  --as-menu-dropdown--li--background-color: var(--as--color--ui-01, #{$color-ui-01});
-  --as-menu-dropdown--li--color: var(--as--color--text, #{$color-text});
+  --as--menu-dropdown--color--hover: var(--as--color--complementary--hover, #{$color-complementary--hover});
+  --as--menu-dropdown--top-border--color: var(--as--color--ui-01, #{$color-ui-01});
+  --as--menu-dropdown--li--border-color: var(--as--color--ui-04, #{$color-ui-04});
+  --as--menu-dropdown--li--background-color: var(--as--color--ui-01, #{$color-ui-01});
+  --as--menu-dropdown--li--color: var(--as--color--text, #{$color-text});
 
   position: relative;
 
@@ -24,7 +24,7 @@
 
     &:hover,
     &:focus {
-      background-color: var(--as-menu-dropdown--color--hover);
+      background-color: var(--as--menu-dropdown--color--hover);
     }
   }
 
@@ -47,16 +47,16 @@
       padding: 0 get-spacing(3);
       transition: background-color 0.3s;
       border: 0;
-      border-bottom: 1px solid var(--as-menu-dropdown--li--border-color);
+      border-bottom: 1px solid var(--as--menu-dropdown--li--border-color);
       outline: none;
-      background-color: var(--as-menu-dropdown--li--background-color);
-      color: var(--as-menu-dropdown--li--color);
+      background-color: var(--as--menu-dropdown--li--background-color);
+      color: var(--as--menu-dropdown--li--color);
       font: var(--as--font--body);
       list-style: none;
       cursor: pointer;
 
       &:first-child {
-        border-top: 1px solid var(--as-menu-dropdown--top-border--color);
+        border-top: 1px solid var(--as--menu-dropdown--top-border--color);
         border-radius: 4px 4px 0 0;
       }
 
@@ -67,7 +67,7 @@
 
       &:hover,
       &:focus-within {
-        background-color: var(--as-menu-dropdown--color--hover);
+        background-color: var(--as--menu-dropdown--color--hover);
       }
 
       button {

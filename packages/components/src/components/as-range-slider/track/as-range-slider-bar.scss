@@ -1,8 +1,8 @@
 @import '../../../../../styles/src/core/_dev';
 
 as-range-slider-bar {
-  --as-range-slider__range-bar--background-color: var(--as--color--primary, #{$color-primary});
-  --as-range-slider__range-bar--background-color--disabled: var(--as--color--ui-03, #{$color-ui-03});
+  --as--range-slider__range-bar--background-color: var(--as--color--primary, #{$color-primary});
+  --as--range-slider__range-bar--background-color--disabled: var(--as--color--ui-03, #{$color-ui-03});
 
   .as-range-slider__range-bar {
     position: absolute;
@@ -10,11 +10,11 @@ as-range-slider-bar {
     top: 50%;
     height: 2px;
     transform: translate3d(0, -50%, 0);
-    background-color: var(--as-range-slider__range-bar--background-color, #{$color-primary});
+    background-color: var(--as--range-slider__range-bar--background-color, #{$color-primary});
   }
 
   .as-range-slider__range-bar--disabled {
-    background-color: var(--as-range-slider__range-bar--background-color--disabled);
+    background-color: var(--as--range-slider__range-bar--background-color--disabled);
   }
 
   .as-range-slider__range-bar--draggable {

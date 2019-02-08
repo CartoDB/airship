@@ -1,40 +1,42 @@
 @import "../core/_dev";
 
 .as-banner {
-  --as-banner--background-color: var(--as--color--ui-04, #{$color-ui-04});
-  --as-banner--color: #FFF;
+  --as--banner--background-color: var(--as--color--ui-04, #{$color-ui-04});
+  --as--banner--color: var(--as--color--text-contrast, #{$color-text-contrast});
 
   display: flex;
   box-sizing: border-box;
   align-items: flex-start;
   padding: get-spacing(3);
   border-radius: 0;
-  background-color: var(--as-banner--background-color);
+  background-color: var(--as--banner--background-color);
   font: var(--as--font--body);
 
   &__content {
     flex: 1;
     padding-left: get-spacing(2);
+    color: inherit;
   }
 
   &__icon {
     display: flex;
     padding-top: get-spacing(1);
+    color: inherit;
   }
 
   &--error {
     background-color: var(--as--color--error, #{$color-error});
-    color: var(--as-banner--color);
+    color: var(--as--banner--color);
   }
 
   &--warning {
     background-color: var(--as--color--warning, #{$color-warning});
-    color: var(--as-banner--color);
+    color: var(--as--banner--color);
   }
 
   &--success {
     background-color: var(--as--color--success, #{$color-success});
-    color: var(--as-banner--color);
+    color: var(--as--banner--color);
   }
 
   @media all and (min-width: $tablet-breakpoint) {

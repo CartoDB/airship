@@ -1,30 +1,30 @@
 @import "../core/_dev";
 
 .as-tooltip {
-  --as-tooltip--background-color: var(--as--color--type-01, #{$color-type-01});
-  --as-tooltip--color: var(--as--color--text-contrast, #{$color-text-contrast});
-  --as-tooltip--support-color: var(--as--color--white, #{$color-white});
-  --as-tooltip--primary--background-color: var(--as--primary--success, #{$color-primary});
-  --as-tooltip--primary--color: var(--as-tooltip--support-color);
-  --as-tooltip--secondary--background-color: var(--as--secondary--success, #{$color-secondary});
-  --as-tooltip--secondary--color: var(--as-tooltip--support-color);
-  --as-tooltip--complementary--background-color: var(--as--complementary--success, #{$color-complementary});
-  --as-tooltip--complementary--color: var(--as-tooltip--support-color);
-  --as-tooltip--error--background-color: var(--as--color--error, #{$color-error});
-  --as-tooltip--error--color: var(--as-tooltip--support-color);
-  --as-tooltip--warning--background-color: var(--as--color--warning, #{$color-warning});
-  --as-tooltip--warning--color: var(--as-tooltip--support-color);
-  --as-tooltip--success--background-color: var(--as--color--success, #{$color-success});
-  --as-tooltip--success--color: var(--as-tooltip--support-color);
+  --as--tooltip--background-color: var(--as--color--type-01, #{$color-type-01});
+  --as--tooltip--color: var(--as--color--text-contrast, #{$color-text-contrast});
+  --as--tooltip--support-color: var(--as--color--white, #{$color-white});
+  --as--tooltip--primary--background-color: var(--as--primary--success, #{$color-primary});
+  --as--tooltip--primary--color: var(--as--tooltip--support-color);
+  --as--tooltip--secondary--background-color: var(--as--secondary--success, #{$color-secondary});
+  --as--tooltip--secondary--color: var(--as--tooltip--support-color);
+  --as--tooltip--complementary--background-color: var(--as--complementary--success, #{$color-complementary});
+  --as--tooltip--complementary--color: var(--as--tooltip--support-color);
+  --as--tooltip--error--background-color: var(--as--color--error, #{$color-error});
+  --as--tooltip--error-color: var(--as--tooltip--support-color);
+  --as--tooltip--warning--background-color: var(--as--color--warning, #{$color-warning});
+  --as--tooltip--warning--color: var(--as--tooltip--support-color);
+  --as--tooltip--success--background-color: var(--as--color--success, #{$color-success});
+  --as--tooltip--success--color: var(--as--tooltip--support-color);
 
   display: inline-flex;
   position: relative;
   padding: get-spacing(1) get-spacing(2);
   border-width: 0;
   border-radius: get-spacing(1);
-  border-color: var(--as-tooltip--background-color);
-  background: var(--as-tooltip--background-color);
-  color: var(--as-tooltip--color);
+  border-color: var(--as--tooltip--background-color);
+  background: var(--as--tooltip--background-color);
+  color: var(--as--tooltip--color);
   font: var(--as--font--body);
 
   &::after {
@@ -62,38 +62,38 @@
   }
 
   &--primary {
-    border-color: var(--as-tooltip--primary--background-color);
-    background: var(--as-tooltip--primary--background-color);
-    color: var(--as-tooltip--primary-color);
+    border-color: var(--as--tooltip--primary--background-color);
+    background: var(--as--tooltip--primary--background-color);
+    color: var(--as--tooltip--primary--color);
   }
 
   &--secondary {
-    border-color: var(--as-tooltip--secondary--background-color);
-    background: var(--as-tooltip--secondary--background-color);
-    color: var(--as-tooltip--secondary-color);
+    border-color: var(--as--tooltip--secondary--background-color);
+    background: var(--as--tooltip--secondary--background-color);
+    color: var(--as--tooltip--secondary--color);
   }
 
   &--complementary {
-    border-color: var(--as-tooltip--complementary--background-color);
-    background: var(--as-tooltip--complementary--background-color);
-    color: var(--as-tooltip--complementary-color);
+    border-color: var(--as--tooltip--complementary--background-color);
+    background: var(--as--tooltip--complementary--background-color);
+    color: var(--as--tooltip--complementary--color);
   }
 
   &--error {
-    border-color: var(--as-tooltip--error--background-color);
-    background: var(--as-tooltip--error--background-color);
-    color: var(--as-tooltip--error-color);
+    border-color: var(--as--tooltip--error--background-color);
+    background: var(--as--tooltip--error--background-color);
+    color: var(--as--tooltip--error--color);
   }
 
   &--warning {
-    border-color: var(--as-tooltip--warning--background-color);
-    background: var(--as-tooltip--warning--background-color);
-    color: var(--as-tooltip--warning-color);
+    border-color: var(--as--tooltip--warning--background-color);
+    background: var(--as--tooltip--warning--background-color);
+    color: var(--as--tooltip--warning--color);
   }
 
   &--success {
-    border-color: var(--as-tooltip--success--background-color);
-    background: var(--as-tooltip--success--background-color);
-    color: var(--as-tooltip--success-color);
+    border-color: var(--as--tooltip--success--background-color);
+    background: var(--as--tooltip--success--background-color);
+    color: var(--as--tooltip--success--color);
   }
 }

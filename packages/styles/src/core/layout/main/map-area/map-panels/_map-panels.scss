@@ -1,9 +1,9 @@
 @import "../../../../../core/_dev";
 
 .as-map-panels {
-  --as-map-panels--background-color: var(--as--color--ui-01, #{$color-ui-01});
-  --as-map-panels--element--background-color: var(--as--color--ui-01, #{$color-ui-01});
-  --as-map-panels--element--shadow-color: var(--as--color--shadow, #{$color-shadow});
+  --as--map-panels--background-color: var(--as--color--ui-01, #{$color-ui-01});
+  --as--map-panels--element--background-color: var(--as--color--ui-01, #{$color-ui-01});
+  --as--map-panels--element--shadow-color: var(--as--color--shadow, #{$color-shadow});
 
   display: none;
   position: absolute;
@@ -11,7 +11,7 @@
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: var(--as-map-panels--background-color);
+  background-color: var(--as--map-panels--background-color);
 
   &--visible {
     display: flex;
@@ -90,8 +90,8 @@
     &__element {
       max-width: 200px;
       border-radius: 4px;
-      background: var(--as-map-panels--element--background-color);
-      box-shadow: 0 2px 8px 0 var(--as-map-panels--element--shadow-color);
+      background: var(--as--map-panels--element--background-color);
+      box-shadow: 0 2px 8px 0 var(--as--map-panels--element--shadow-color);
 
       &:not(:last-child) {
         margin-right: get-spacing(2);

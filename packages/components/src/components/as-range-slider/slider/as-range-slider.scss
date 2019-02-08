@@ -1,8 +1,8 @@
 @import '../../../../../styles/src/core/_dev';
 
 as-range-slider {
-  --as-range-slider--rail-color: var(--as--color--ui-03, #{$color-ui-03});
-  --as-range-slider--range-color: var(--as--color--primary, #{$color-primary});
+  --as--range-slider--rail-color: var(--as--color--ui-03, #{$color-ui-03});
+  --as--range-slider--range-color: var(--as--color--primary, #{$color-primary});
 
   display: block;
   height: get-spacing(8);
@@ -27,7 +27,7 @@ as-range-slider {
       width: 100%;
       height: 2px;
       transform: translate3d(0, -50%, 0);
-      background-color: var(--as-range-slider--rail-color, #{$color-ui-03});
+      background-color: var(--as--range-slider--rail-color, #{$color-ui-03});
       pointer-events: none;
     }
   }

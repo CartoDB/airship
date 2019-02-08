@@ -1,18 +1,18 @@
 @import "../core/_dev";
 
 .as-table {
-  --as-table-border--color: var(--as--color--ui-04);
-  --as-table-cell--background-color: var(--as--color--ui-01, #{$color-ui-01});
-  --as-table-header--background-color: var(--as--color--ui-03, #{$color-ui-03});
-  --as-table-header--color: var(--as--color--text, #{$color-text});
-  --as-table--color: var(--as--color--text, #{$color-text});
-  --as-table-row--color-hover: var(--as--color--complementary--hover, #{$color-complementary--hover});
-  --as-table-cell-color-hover: var(--as--color--complementary--active, #{$color-complementary--active});
+  --as--table-border--color: var(--as--color--ui-04);
+  --as--table-cell--background-color: var(--as--color--ui-01, #{$color-ui-01});
+  --as--table-header--background-color: var(--as--color--ui-03, #{$color-ui-03});
+  --as--table-header--color: var(--as--color--text, #{$color-text});
+  --as--table--color: var(--as--color--text, #{$color-text});
+  --as--table-row--color-hover: var(--as--color--complementary--hover, #{$color-complementary--hover});
+  --as--table-cell-color-hover: var(--as--color--complementary--active, #{$color-complementary--active});
 
   border-collapse: collapse;
-  border: 1px solid var(--as-table-border--color);
-  background: var(--as-table-cell--background-color);
-  color: var(--as-table--color);
+  border: 1px solid var(--as--table-border--color);
+  background: var(--as--table-cell--background-color);
+  color: var(--as--table--color);
   font: var(--as--font--body);
   text-align: left;
 
@@ -23,28 +23,28 @@
   }
 
   th {
-    background: var(--as-table-header--background-color);
+    background: var(--as--table-header--background-color);
   }
 
   thead {
-    border: 1px solid var(--as-table-header--background-color);
-    color: var(--as-table-header--color);
+    border: 1px solid var(--as--table-header--background-color);
+    color: var(--as--table-header--color);
   }
 
   &--stripped {
     th,
     td {
-      border: 1px solid var(--as-table-border--color);
+      border: 1px solid var(--as--table-border--color);
     }
   }
 
   tr:hover {
-    border-top: 1px solid var(--as-table-cell-color-hover);
-    border-bottom: 1px solid var(--as-table-cell-color-hover);
-    background-color: var(--as-table-row--color-hover);
+    border-top: 1px solid var(--as--table-cell-color-hover);
+    border-bottom: 1px solid var(--as--table-cell-color-hover);
+    background-color: var(--as--table-row--color-hover);
   }
 
   td:hover {
-    background: var(--as-table-cell-color-hover);
+    background: var(--as--table-cell-color-hover);
   }
 }

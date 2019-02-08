@@ -4,11 +4,11 @@
 $label-height: 20px;
 
 as-histogram-widget {
-  --as-histogram-widget--background-color: var(--as--color--ui-01, #FFF);
-  --as-histogram-widget--figure--text-color: var(--as--color--type-01, #{$color-type-01});
-  --as-histogram-widget--figure--stroke-color: var(--as--color--primary, #{$color-primary});
-  --as-histogram-widget--label-color: var(--as--color--type-01, #{$color-type-01});
-  --as-histogram-widget--label-font: var(--as--font--caption);
+  --as--histogram-widget--background-color: var(--as--color--ui-01, #FFF);
+  --as--histogram-widget--figure--text-color: var(--as--color--type-01, #{$color-type-01});
+  --as--histogram-widget--figure--stroke-color: var(--as--color--primary, #{$color-primary});
+  --as--histogram-widget--label-color: var(--as--color--type-01, #{$color-type-01});
+  --as--histogram-widget--label-font: var(--as--font--caption);
 
   display: flex;
   flex-direction: column;
@@ -17,7 +17,7 @@ as-histogram-widget {
   height: 100%;
   max-height: 100%;
   overflow: auto;
-  background: var(--as-histogram-widget--background-color);
+  background: var(--as--histogram-widget--background-color);
 
   .as-histogram-widget__wrapper {
     display: flex;
@@ -50,7 +50,7 @@ as-histogram-widget {
     }
 
     text {
-      fill: var(--as-histogram-widget--figure--text-color);
+      fill: var(--as--histogram-widget--figure--text-color);
     }
 
     .brush {
@@ -86,7 +86,7 @@ as-histogram-widget {
 
     .handle--custom {
       stroke-linecap: round;
-      stroke: var(--as-histogram-widget--stroke--text-color);
+      stroke: var(--as--histogram-widget--stroke--text-color);
       fill: white;
       cursor: ew-resize;
       pointer-events: none;
@@ -101,7 +101,7 @@ as-histogram-widget {
     }
 
     .bottomline {
-      stroke: var(--as-histogram-widget--stroke--text-color);
+      stroke: var(--as--histogram-widget--stroke--text-color);
     }
   }
 
@@ -113,8 +113,8 @@ as-histogram-widget {
 
   .x-label,
   .y-label {
-    color: var(--as-histogram-widget--label-color);
-    font: var(--as-histogram-widget--label-font);
+    color: var(--as--histogram-widget--label-color);
+    font: var(--as--histogram-widget--label-font);
     text-align: center;
   }
 

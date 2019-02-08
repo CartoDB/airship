@@ -1,14 +1,14 @@
 @import '_actions';
 
 .as-toolbar {
-  --as-toolbar--background-color: var(--as--color--secondary, #{$color-secondary});
-  --as-toolbar--text-color: var(--as--color--type-04, #{$color-type-04});
-  --as-toolbar--link-color: var(--as-toolbar--text-color, #{$color-type-04});
+  --as--toolbar--background-color: var(--as--color--secondary, #{$color-secondary});
+  --as--toolbar--text-color: var(--as--color--type-04, #{$color-type-04});
+  --as--toolbar--link-color: var(--as--toolbar--text-color, #{$color-type-04});
 
   display: flex;
   justify-content: space-between;
   height: $toolbar-size;
-  background-color: var(--as-toolbar--background-color);
+  background-color: var(--as--toolbar--background-color);
 
   &__toggle {
     border: none;
@@ -22,14 +22,14 @@
     min-height: $toolbar-size;
     margin: 0;
     padding: 0 get-spacing(3);
-    color: var(--as-toolbar--text-color);
+    color: var(--as--toolbar--text-color);
     font: var(--as--font--body);
     cursor: pointer;
   }
 
   a {
     background-color: inherit;
-    color: var(--as-toolbar--link-color);
+    color: var(--as--toolbar--link-color);
     text-decoration: none;
   }
 

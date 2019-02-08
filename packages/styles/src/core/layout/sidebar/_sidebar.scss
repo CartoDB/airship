@@ -1,7 +1,7 @@
 .as-sidebar {
-  --as-sidebar--background-color: var(--as--color--ui-01, #{$color-ui-01});
-  --as-sidebar--shadow-color: var(--as--color--shadow, #{$color-shadow});
-  --as-sidebar--box--border-color: var(--as--color--ui-04, #{$color-ui-04});
+  --as--sidebar--background-color: var(--as--color--ui-01, #{$color-ui-01});
+  --as--sidebar--shadow-color: var(--as--color--shadow, #{$color-shadow});
+  --as--sidebar--box--border-color: var(--as--color--ui-04, #{$color-ui-04});
 
   display: none;
   position: absolute;
@@ -13,11 +13,11 @@
   height: 100%;
   overflow-y: auto;
   transition: opacity 0.3s;
-  background-color: var(--as-sidebar--background-color);
+  background-color: var(--as--sidebar--background-color);
 
   &--left {
     order: -1;
-    box-shadow: var(--as-sidebar--shadow-color) 1px 0 4px 0;
+    box-shadow: var(--as--sidebar--shadow-color) 1px 0 4px 0;
 
     &.as-sidebar--visible {
       display: flex;
@@ -27,7 +27,7 @@
 
   &--right {
     order: 9999;
-    box-shadow: var(--as-sidebar--shadow-color) -1px 0 4px 0;
+    box-shadow: var(--as--sidebar--shadow-color) -1px 0 4px 0;
 
     &.as-sidebar--visible {
       display: flex;
@@ -72,7 +72,7 @@
 
     .as-box {
       &--border {
-        border-bottom: 1px solid var(--as-sidebar--box--border-color);
+        border-bottom: 1px solid var(--as--sidebar--box--border-color);
       }
     }
   }

@@ -3,8 +3,8 @@
 $modal-background: var(--as--color--modal, #{$color-modal});
 
 .as-modal {
-  --as-modal--background-color: #{$modal-background};
-  --as-modal--content--background-color: var(--as--color--ui-01, #{$color-ui-01});
+  --as--modal--background-color: #{$modal-background};
+  --as--modal--content--background-color: var(--as--color--ui-01, #{$color-ui-01});
 
   display: flex;
   position: absolute;
@@ -15,7 +15,7 @@ $modal-background: var(--as--color--modal, #{$color-modal});
   left: 0;
   align-items: center;
   justify-content: center;
-  background: var(--as-modal--background-color);
+  background: var(--as--modal--background-color);
 
   &__content {
     position: relative;
@@ -23,7 +23,7 @@ $modal-background: var(--as--color--modal, #{$color-modal});
     max-height: 80vh;
     padding: get-spacing(10);
     border-radius: get-spacing(1);
-    background: var(--as-modal--content--background-color);
+    background: var(--as--modal--content--background-color);
     box-shadow: $shadow-8;
   }
 

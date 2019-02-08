@@ -1,8 +1,8 @@
 @import '../../../../styles/src/core/_dev';
 
 as-infowindow {
-  --as-infowindow--color--shadow: var(--as--color--shadow, #{$color-shadow});
-  --as-infowindow--color--background: var(--as--color--ui-01, #{$color-ui-01});
+  --as--infowindow--color--shadow: var(--as--color--shadow, #{$color-shadow});
+  --as--infowindow--color--background: var(--as--color--ui-01, #{$color-ui-01});
 
   display: inline-block;
 
@@ -12,8 +12,8 @@ as-infowindow {
     z-index: $z-index-3;
     width: 260px;
     border-radius: 4px 4px 4px 0;
-    background: var(--as-infowindow--color--background);
-    box-shadow: 0 4px 16px 0 var(--as-infowindow--color--shadow);
+    background: var(--as--infowindow--color--background);
+    box-shadow: 0 4px 16px 0 var(--as--infowindow--color--shadow);
 
     img {
       display: block;
@@ -38,7 +38,7 @@ as-infowindow {
       z-index: $z-index-10;
       bottom: 1px;
       left: 0;
-      background: var(--as-infowindow--color--background);
+      background: var(--as--infowindow--color--background);
 
       &::before {
         content: '';
@@ -48,7 +48,7 @@ as-infowindow {
         left: 0;
         width: 0;
         height: 0;
-        border-top: 12px solid var(--as-infowindow--color--background);
+        border-top: 12px solid var(--as--infowindow--color--background);
         border-right: 18px solid transparent;
         border-radius: 0 0 0 4px;
       }
@@ -61,7 +61,7 @@ as-infowindow {
         left: 0;
         width: 0;
         height: 0;
-        border-top: 12px solid var(--as-infowindow--color--shadow);
+        border-top: 12px solid var(--as--infowindow--color--shadow);
         border-right: 18px solid transparent;
         filter: blur(2px);
       }
@@ -80,7 +80,7 @@ as-infowindow {
         left: 0;
         width: 0;
         height: 0;
-        border-top: 12px solid var(--as-infowindow--color--shadow);
+        border-top: 12px solid var(--as--infowindow--color--shadow);
         border-right: 18px solid transparent;
         filter: blur(2px);
       }
