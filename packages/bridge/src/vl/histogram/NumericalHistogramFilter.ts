@@ -21,11 +21,11 @@ export class NumericalHistogramFilter extends BaseHistogramFilter<[number, numbe
   }
 
   public get filter(): string {
-    if (this._selection === null) {
+    if (this._selection === null || this._isTimeSeries) {
       return null;
-    } else {
-      return `between($${this._column}, ${this._selection[0]}, ${this._selection[1]})`;
     }
+
+    return `between($${this._column}, ${this._selection[0]}, ${this._selection[1]})`;
   }
 
   public get expression(): string {
