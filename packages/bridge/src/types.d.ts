@@ -44,3 +44,24 @@ interface LegendData {
   type: string;
   data: LegendEntry[];
 }
+
+type BucketRange = [number, number];
+interface NumericalHistogramOptions {
+  column: string;
+  buckets: number;
+  bucketRanges?: BucketRange[];
+  readOnly: boolean;
+  widget: HTMLAsHistogramWidgetElement | HTMLAsTimeSeriesWidgetElement;
+}
+
+interface CategoryOptions {
+  column: string;
+  readOnly: boolean;
+  widget: HTMLAsCategoryWidgetElement;
+}
+
+interface CategoricalHistogramOptions {
+  column: string;
+  readOnly: boolean;
+  widget: HTMLAsHistogramWidgetElement;
+}

@@ -6,6 +6,7 @@ import { BaseHistogramFilter } from './BaseHistogramFilter';
 export class NumericalHistogramFilter extends BaseHistogramFilter<[number, number]> {
   private _lastHistogram: VLNumericalHistogram = null;
   private _isTimeSeries: boolean;
+  private _bucketRanges: BucketRange[];
 
   constructor(
     carto: any,
@@ -14,10 +15,12 @@ export class NumericalHistogramFilter extends BaseHistogramFilter<[number, numbe
     columnName: string,
     nBuckets: number,
     source: any,
+    bucketRanges: BucketRange[],
     readOnly: boolean = true
   ) {
     super('numerical', carto, layer, histogram, columnName, source, readOnly);
-    this._buckets = nBuckets;
+    this._buckets = bucketRanges !== undefined ? bucketRanges.length : nBuckets;
+    this._bucketRanges = bucketRanges;
   }
 
   public get filter(): string {
@@ -25,12 +28,13 @@ export class NumericalHistogramFilter extends BaseHistogramFilter<[number, numbe
       return null;
     }
 
-    return `between($${this._column}, ${this._selection[0]}, ${this._selection[1]})`;
+    return `($${this._column} >= ${this._selection[0]} and $${this._column} < ${this._selection[1]})`;
   }
 
   public get expression(): string {
     const s = this._carto.expressions;
-    return s.viewportHistogram(s.prop(this._column), this._buckets);
+
+    return s.viewportHistogram(s.prop(this._column), this._bucketArg());
   }
 
   public setTimeSeries(value: boolean) {
@@ -76,6 +80,14 @@ export class NumericalHistogramFilter extends BaseHistogramFilter<[number, numbe
     this._emitter.emit('rangeChanged', this._selection);
 
     this._filterChanged();
+  }
+
+  private _bucketArg() {
+    if (this._bucketRanges !== undefined) {
+      return this._bucketRanges;
+    }
+
+    return this._buckets;
   }
 
 }

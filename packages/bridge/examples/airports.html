@@ -70,6 +70,8 @@
           apiKey: 'default_public'
         });
 
+        const s = carto.expressions;
+
         const source = new carto.source.SQL(`select * from ne_10m_airports`);
         const viz = new carto.Viz(`
           strokeWidth: 0
@@ -84,7 +86,7 @@
 
         vizLayer.addTo(map, 'watername_ocean');
 
-        const airportLayer = new AsBridge.VL(
+        const airportLayer = new AsBridge.VLBridge(
           carto,
           map,
           vizLayer,
@@ -108,7 +110,7 @@
 
         airportLayer.histogram({
           column: 'scalerank',
-          buckets: 7,
+          bucketRanges: [[2, 3], [3, 4], [4, 5], [5, 6], [6, 7], [7, 8], [8, 9]],
           readOnly: false,
           source,
           widget: scaleHistogram,

@@ -31,7 +31,7 @@ Very similar to a histogram, but the data is displayed using an `as-category-wid
 A typical use of this library implies creating a new binding for an existing layer:
 
 ```
-const bridge = new AsBridge.VL(
+const bridge = new AsBridge.VLBridge(
   carto,
   map,
   vizLayer,

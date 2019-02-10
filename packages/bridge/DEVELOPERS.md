@@ -10,9 +10,9 @@ Disclaimer
 
 A filter matches an airship component and internally handles logic to connect it to VL. There's one for the histogram, one for the time series, and one for the category widget. Technically, you have one for Categorical Histograms and one for numerical ones.
 
-### Orchestrator
+### Bridge
 
-This is a classs unoriginally called `VL`, which exposes methods to create each and every type of filter. It also contains most of the internal logic to achieve things like multi widget filtering.
+This is a classs unoriginally called `VLBridge`, which exposes methods to create each and every type of filter. It's the responsible of combining and assigning filters to the viz.
 
 This orchestrator requires lots of parameters for convenience:
 

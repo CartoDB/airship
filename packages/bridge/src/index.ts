@@ -1,3 +1,3 @@
-import VL from './vl';
+import VLBridge from './vl/VLBridge';
 
-export { VL };
+export { VLBridge };

@@ -7,7 +7,7 @@ Airship components are a great tool to build Location Intelligence dashboards, a
 In order to start binding your visualization to your Airship widgets, you'll need to create the base `VL` object like this:
 
 ```
-const bridge = new AsBridge.VL(
+const bridge = new AsBridge.VLBridge(
   carto,
   map,
   layer,

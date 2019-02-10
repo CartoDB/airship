@@ -7,26 +7,7 @@ import { TimeSeries } from './time-series/TimeSeries';
 
 const VL_VERSION = '^1.1.0';
 
-interface NumericalHistogramOptions {
-  column: string;
-  buckets: number;
-  readOnly: boolean;
-  widget: HTMLAsHistogramWidgetElement | HTMLAsTimeSeriesWidgetElement;
-}
-
-interface CategoryOptions {
-  column: string;
-  readOnly: boolean;
-  widget: HTMLAsCategoryWidgetElement;
-}
-
-interface CategoricalHistogramOptions {
-  column: string;
-  readOnly: boolean;
-  widget: HTMLAsHistogramWidgetElement;
-}
-
-export default class VL {
+export default class VLBridge {
   private _carto: any;
   private _map: any;
   private _layer: any;
@@ -54,6 +35,7 @@ export default class VL {
   public numericalHistogram({
     column,
     buckets,
+    bucketRanges,
     readOnly,
     widget
   }: NumericalHistogramOptions) {
@@ -64,6 +46,7 @@ export default class VL {
       column,
       buckets,
       this._source,
+      bucketRanges,
       readOnly
     );
 
@@ -94,15 +77,16 @@ export default class VL {
   public histogram({
     column,
     buckets,
+    bucketRanges,
     readOnly,
     widget
   }: any) {
 
-    if (buckets === undefined) {
+    if (buckets === undefined && bucketRanges === undefined) {
       return this.categoricalHistogram({ column, readOnly, widget });
     }
 
-    return this.numericalHistogram({ column, readOnly, buckets, widget });
+    return this.numericalHistogram({ column, readOnly, buckets, bucketRanges, widget });
   }
 
   public category({
