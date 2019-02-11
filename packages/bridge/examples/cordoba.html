@@ -92,14 +92,12 @@
           carto,
           map,
           vizLayer,
-          source,
-          'catastro'
+          source
         );
           
         bridge.timeSeries({
           column: 'timestamp',
           buckets: 30,
-          source,
           readOnly: false,
           widget: timeWidget
         });
@@ -108,8 +106,7 @@
           column: 'timestamp',
           buckets: 30,
           readOnly: false,
-          source,
-          widget: yearWidget,
+          widget: yearWidget
         });
 
         bridge.build();
