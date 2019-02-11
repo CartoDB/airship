@@ -52,7 +52,7 @@ type BucketRange = [number, number];
  *
  * @interface NumericalHistogramOptions
  */
-type NumericalHistogramOptions = {
+interface NumericalHistogramOptions {
   /**
    * Which column the histogram will get fed data from.
    *
@@ -60,16 +60,17 @@ type NumericalHistogramOptions = {
    * @memberof NumericalHistogramOptions
    */
   column: string;
-  
+
   /**
    * Number of buckets for the histogram
    *
    * @type {number}
    */
   buckets: number;
-  
+
   /**
-   * Explicit bucket declarations. See [the VL docs]{@link https://carto.com/developers/carto-vl/reference/#cartoexpressionsviewporthistogram} 
+   * Explicit bucket declarations. See
+   * [the VL docs]{@link https://carto.com/developers/carto-vl/reference/#cartoexpressionsviewporthistogram}
    * for more details
    *
    * @type {BucketRange[]}
@@ -96,7 +97,7 @@ type NumericalHistogramOptions = {
  *
  * @interface CategoryOptions
  */
-type CategoryOptions = {
+interface CategoryOptions {
   /**
    * Column that will feed the category widget data.
    *
