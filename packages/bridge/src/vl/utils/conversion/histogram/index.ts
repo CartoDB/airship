@@ -1,6 +1,15 @@
 import { HistogramData } from '../../../../../../components/src/components/as-histogram-widget/interfaces';
 import { toHex } from '../../color';
 
+/**
+ * Converts a numerical VL Histogram data to Airship's Histogram format.
+ *
+ * Has no support for `color` for now.
+ *
+ * @export
+ * @param {VLNumericalHistogram} data Histogram data in VL format
+ * @returns {HistogramData[]}
+ */
 export function numerical(data: VLNumericalHistogram): HistogramData[] {
   return data.value.map((d) => ({
     end: d.x[1],
@@ -9,6 +18,16 @@ export function numerical(data: VLNumericalHistogram): HistogramData[] {
   }));
 }
 
+/**
+ * Converts a categorical VL Histogram to Airship's Histogram widget format.
+ *
+ * The second argument is used to provide custom colors for the widget.
+ *
+ * @export
+ * @param {VLCategoricalHistogram} data Histogram data in VL format
+ * @param {LegendEntry[]} [colors] VL Legend data, which maps values to colors.
+ * @returns {HistogramData[]}
+ */
 export function categorical(data: VLCategoricalHistogram, colors?: LegendEntry[]): HistogramData[] {
   return data.value.map((d) => ({
     category: d.x,
@@ -19,6 +38,14 @@ export function categorical(data: VLCategoricalHistogram, colors?: LegendEntry[]
   }));
 }
 
+/**
+ * Looks for a color in an array of VL Legend Data and converts it into a hex string.
+ *
+ * @export
+ * @param {string} category
+ * @param {LegendEntry[]} colors
+ * @returns {(string | undefined)}
+ */
 export function findColorForCategory(category: string, colors: LegendEntry[]): string | undefined {
   if (!colors) {
     return undefined;

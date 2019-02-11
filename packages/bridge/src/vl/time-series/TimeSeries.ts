@@ -1,3 +1,13 @@
+/**
+ * This class is an orchestrator for Time Series widgets. It does not extend BaseFilter because for all intents
+ * and purposes, we can use a numerical histogram. This class is only responsible of particular Time Series event
+ * handling with regards to VL.
+ *
+ * The provided layer Viz object *must have* a variable called `@animation`
+ *
+ * @export
+ * @class TimeSeries
+ */
 export class TimeSeries {
   private _timeSeries: HTMLAsTimeSeriesWidgetElement;
   private _animation: VLAnimation;
@@ -7,6 +17,13 @@ export class TimeSeries {
   private _min: number;
   private _max: number;
 
+  /**
+   * Creates an instance of TimeSeries.
+   * @param {*} layer A CARTO VL layer
+   * @param {HTMLAsTimeSeriesWidgetElement} timeSeries An Airship TimeSeries HTML element
+   * @param {() => void} readyCb A callback to be called when we're done configuring internals
+   * @memberof TimeSeries
+   */
   constructor(
     layer: any,
     timeSeries: HTMLAsTimeSeriesWidgetElement,
@@ -31,6 +48,15 @@ export class TimeSeries {
     this._dataLayer.remove();
   }
 
+  /**
+   * Set the range of the animation input.
+   *
+   * This is called when the time series selection is changed.
+   *
+   * @param {[number, number]} range
+   * @returns
+   * @memberof TimeSeries
+   */
   public setRange(range: [number, number]) {
     if (!this._animation || !this._animation.input || !this._animation.input.min || !this._animation.input.max) {
       return;
@@ -46,14 +72,15 @@ export class TimeSeries {
 
   }
 
-  public getFilter() {
-    return `animation(
-      ${(this._animation as any)._input.toString()},
-      ${(this._animation as any).duration.toString()},
-      ${(this._animation as any).fade.toString()}
-    )`;
-  }
-
+  /**
+   * This method sets up the events to handle animation updates and bind it to the TimeSeries widget:
+   *  - Update the progress
+   *  - Update the progress when user seeks
+   *  - Play / Pause events
+   *
+   * @private
+   * @memberof TimeSeries
+   */
   private _onLayerLoaded() {
     this._viz = this._layer.viz;
 

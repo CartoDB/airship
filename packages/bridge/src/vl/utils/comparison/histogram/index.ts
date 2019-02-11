@@ -1,9 +1,25 @@
 type Comparer<T> = (first: VLHistogramData<T>, second: VLHistogramData<T>) => boolean;
 
+/**
+ * Compares two numerical histograms for equality
+ *
+ * @export
+ * @param {VLNumericalHistogram} first
+ * @param {VLNumericalHistogram} second
+ * @returns
+ */
 export function isNumericalHistogramEqual(first: VLNumericalHistogram, second: VLNumericalHistogram) {
   return isHistogramEqual(first.value, second.value, numericalCompare);
 }
 
+/**
+ * Compares two categorical histograms for equality
+ *
+ * @export
+ * @param {VLCategoricalHistogram} first
+ * @param {VLCategoricalHistogram} second
+ * @returns
+ */
 export function isCategoricalHistogramEqual(first: VLCategoricalHistogram, second: VLCategoricalHistogram) {
   return isHistogramEqual(first.value, second.value, categoricalCompare);
 }

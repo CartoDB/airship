@@ -2,6 +2,13 @@ import { BaseFilter } from '../base/BaseFilter';
 import { isCategoricalHistogramEqual } from '../utils/comparison/histogram';
 import vlToCategory from '../utils/conversion/category';
 
+/**
+ * Class that binds a CARTO VL categorical histogram to an Airship category widget
+ *
+ * @export
+ * @class CategoryFilter
+ * @extends {BaseFilter}
+ */
 export class CategoryFilter extends BaseFilter {
   protected _widget: HTMLAsCategoryWidgetElement;
   private _carto: any;
@@ -9,6 +16,17 @@ export class CategoryFilter extends BaseFilter {
   private _lastHistogram: VLCategoricalHistogram = null;
   private _dataLayer: any;
 
+
+  /**
+   * Creates an instance of CategoryFilter.
+   * @param {*} carto CARTO VL namespace
+   * @param {*} layer CARTO VL layer
+   * @param {HTMLAsCategoryWidgetElement} widget A Category Widget HTML element
+   * @param {string} columnName The column to pull data from
+   * @param {*} source CARTO VL source
+   * @param {boolean} [readOnly=true] Whether this widget filters or not
+   * @memberof CategoryFilter
+   */
   constructor(
     carto: any,
     layer: any,
@@ -30,14 +48,6 @@ export class CategoryFilter extends BaseFilter {
     if (!readOnly) {
       this._widget.addEventListener('categoriesSelected', this.selectionChanged);
     }
-  }
-
-  public setLayer(layer: any) {
-    this._layer = layer;
-  }
-
-  public getDataLayer() {
-    return this._dataLayer;
   }
 
   public setDataLayer(layer: any) {
