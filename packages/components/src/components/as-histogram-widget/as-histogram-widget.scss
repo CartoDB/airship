@@ -23,6 +23,12 @@ as-histogram-widget {
     min-height: 0;
   }
 
+  .as-histogram-widget--categorical {
+    .x-axis {
+      opacity: 0;
+    }
+  }
+
   .figure {
     $basePaddingLeft: 30;
     box-sizing: border-box;
@@ -51,28 +57,17 @@ as-histogram-widget {
       }
     }
 
-    .bar {
-      opacity: 0.7;
+    .foreground-bar {
       cursor: pointer;
     }
 
     @import '../common/y-axis/as-y-axis.scss';
-
-    .plot {
-      rect {
-        cursor: pointer;
-      }
-    }
 
     .x-axis {
       .domain,
       .tick line {
         display: none;
       }
-    }
-
-    .y-axis .tick:first-of-type line {
-      opacity: 0.5;
     }
 
     .handle--wrapper {
