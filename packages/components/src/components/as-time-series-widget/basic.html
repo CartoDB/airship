@@ -40,6 +40,37 @@
     var timeData = [{
       start: Date.parse('1987-06-18'),
       end: Date.parse('1987-06-19'),
+      value: 0
+    },
+    {
+      start: Date.parse('1987-06-19'),
+      end: Date.parse('1987-06-20'),
+      value: 2
+    },
+    {
+      start: Date.parse('1987-06-20'),
+      end: Date.parse('1987-06-21'),
+      value: 4
+    },
+    {
+      start: Date.parse('1987-06-21'),
+      end: Date.parse('1987-06-22'),
+      value: 8
+    },
+    {
+      start: Date.parse('1987-06-22'),
+      end: Date.parse('1987-06-23'),
+      value: 16
+    },
+    {
+      start: Date.parse('1987-06-23'),
+      end: Date.parse('1987-06-24'),
+      value: 0
+    }];
+
+    var bgData = [{
+      start: Date.parse('1987-06-18'),
+      end: Date.parse('1987-06-19'),
       value: 1
     },
     {
@@ -69,7 +100,26 @@
     }];
 
     var timeSeriesWidget = document.querySelector('as-time-series-widget');
+    timeSeriesWidget.backgroundData = bgData;
     timeSeriesWidget.data = timeData;
+
+    function changeBackgroundData() {
+      const tmpData = bgData.map((value, index) => {
+        if (index === 0 || index === bgData.length - 1) {
+          console.log(value.value);
+          return {
+            ...value,
+            value: value.value * 100
+          };
+        }
+
+        return value;
+      });
+
+      console.log(tmpData);
+
+      timeSeriesWidget.backgroundData = tmpData;
+    }
   </script>
 </body>
 

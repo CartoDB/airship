@@ -1,3 +1,4 @@
+import { ScaleLinear } from 'd3';
 import { BrushBehavior, brushX } from 'd3-brush';
 import { SVGContainer, SVGGContainer } from '../types/Container';
 
@@ -37,10 +38,9 @@ export function addBrushArea(
 
 export function addCustomHandles(
   brushArea: SVGGContainer,
-  height: number,
   CUSTOM_HANDLE_WIDTH: number,
   CUSTOM_HANDLE_HEIGHT: number,
-  Y_PADDING: number
+  scale: ScaleLinear<number, number>,
 ): SVGGContainer<{ type: string }, SVGGElement, {}> {
 
   let bottomLine = brushArea.select('line.bottomline');
@@ -54,8 +54,8 @@ export function addCustomHandles(
   }
 
   bottomLine
-    .attr('y1', height - Y_PADDING)
-    .attr('y2', height - Y_PADDING);
+    .attr('y1', scale(0))
+    .attr('y2', scale(0));
 
   let customHandles = brushArea.selectAll<SVGGElement, { type: string }>('.handle--wrapper');
 
