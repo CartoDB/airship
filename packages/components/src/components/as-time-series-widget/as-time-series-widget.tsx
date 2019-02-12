@@ -3,7 +3,7 @@ import { scaleLinear } from 'd3-scale';
 import { event as d3event } from 'd3-selection';
 import { timeFormat, timeFormatDefaultLocale, TimeLocaleDefinition } from 'd3-time-format';
 import { icon } from '../../utils/icons';
-import { HistogramColorRange, HistogramData, HistogramSelection } from '../as-histogram-widget/interfaces';
+import { AxisOptions, HistogramColorRange, HistogramData, HistogramSelection } from '../as-histogram-widget/interfaces';
 import { RenderOptions } from '../as-histogram-widget/types/RenderOptions';
 import {
   DEFAULT_BACKGROUND_BAR_COLOR,
@@ -73,6 +73,14 @@ export class TimeSeriesWidget {
    * @memberof HistogramWidget
    */
   @Prop() public data: TimeSeriesData[] = [];
+
+  /**
+   * Histogram data to be displayed
+   *
+   * @type {HistogramData[]}
+   * @memberof HistogramWidget
+   */
+  @Prop() public backgroundData: TimeSeriesData[] = [];
 
   /**
    * Override color for the histogram bars
@@ -184,6 +192,38 @@ export class TimeSeriesWidget {
   @Prop() public clearText: string = 'Clear selection';
 
   /**
+   * This prop lets you provide the range of the y-axis so it's not automatically calculated with
+   * data or backgroundData. It always starts at 0, you can provide the top value.
+   *
+   * @memberof HistogramWidget
+   */
+  @Prop() public range: [number, number] = null;
+
+  /**
+   * This lets you disable the animations for the bars when showing / updating the data
+   *
+   * @type {boolean}
+   * @memberof HistogramWidget
+   */
+  @Prop() public disableAnimation: boolean = false;
+
+  /**
+   * This prop is a proxy to some d3-axis options for the X Axis
+   *
+   * @type {AxisOptions}
+   * @memberof TimeSeriesWidget
+   */
+  @Prop() public xAxisOptions: AxisOptions = {};
+
+  /**
+   * This prop is a proxy to some d3-axis options for the Y Axis
+   *
+   * @type {AxisOptions}
+   * @memberof TimeSeriesWidget
+   */
+  @Prop() public yAxisOptions: AxisOptions = {};
+
+  /**
    * User clicks the play button
    */
   @Event()
@@ -216,6 +256,7 @@ export class TimeSeriesWidget {
   // Last position when putting the mouse over the scrubber track
   private _lastMousePosition: number;
   private _data: any;
+  private _backgroundData: HistogramData[];
 
   constructor() {
     this.axisFormatter = this.axisFormatter.bind(this);
@@ -228,6 +269,11 @@ export class TimeSeriesWidget {
     } else {
       this._data = prepareData(newData);
     }
+  }
+
+  @Watch('backgroundData')
+  public onBackgroundDataChanged(newData) {
+    this._backgroundData = prepareData(newData);
   }
 
   @Watch('progress')
@@ -309,6 +355,7 @@ export class TimeSeriesWidget {
 
   public async componentWillLoad() {
     this.onDataChanged(this.data, []);
+    this.onBackgroundDataChanged(this.backgroundData);
   }
 
   public async componentDidLoad() {
@@ -322,7 +369,11 @@ export class TimeSeriesWidget {
     this._formatter = timeFormat(this.timeFormat);
 
     this.histogram.addEventListener('selectionInput', (evt: CustomEvent) => {
-      this._selection = evt.detail.selection;
+      if (evt.detail === null) {
+        this._selection = null;
+      } else {
+        this._selection = evt.detail.selection;
+      }
 
       this._render();
     });
@@ -362,6 +413,7 @@ export class TimeSeriesWidget {
           showClear={this.showClear}
           disableInteractivity={this.disableInteractivity}
           data={this._data}
+          backgroundData={this._backgroundData}
           color={this.color}
           unselectedColor={this.unselectedColor}
           colorRange={this.colorRange}
@@ -376,6 +428,10 @@ export class TimeSeriesWidget {
           noDataBodyMessage={this.noDataBodyMessage}
           responsive={this.responsive}
           clearText={this.clearText}
+          range={this.range}
+          disableAnimation={this.disableAnimation}
+          xAxisOptions={this.xAxisOptions}
+          yAxisOptions={this.yAxisOptions}
         >
       </as-histogram-widget>];
   }

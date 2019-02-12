@@ -1,4 +1,4 @@
-import { max } from 'd3-array';
+import { max, min } from 'd3-array';
 import { ScaleLinear, scaleLinear } from 'd3-scale';
 import { HistogramData } from '../interfaces';
 import { Domain } from '../types/Domain';
@@ -17,7 +17,11 @@ export function getXDomain(data: HistogramData[]): Domain {
 }
 
 export function getYDomain(data: HistogramData[]): Domain {
-  return [0, max(data, (d) => d.value)];
+  return [Math.min(0, getLowerBounds(data)), max(data, (d) => d.value)];
+}
+
+export function getLowerBounds(data: HistogramData[]): number {
+  return min(data, (d) => d.value);
 }
 
 export function getXScale(domain: Domain, width: number): ScaleLinear<number, number> {
@@ -56,5 +60,60 @@ function _hasRange(data: HistogramData) {
   return data.start !== undefined && data.end !== undefined;
 }
 
+/**
+ * Checks if an array of data and background data are compatible
+ */
+export function isBackgroundCompatible(
+  data: HistogramData[],
+  backgroundData: HistogramData[]): boolean {
+  const isNull = [data, backgroundData].map((value) => value === null);
 
-export default { getXDomain, getXScale, getYDomain, isCategoricalData, prepareData };
+  // Both must be null or both must not be null
+  if (isNull[0] !== isNull[1]) {
+    return false;
+  }
+
+  // If both are null, they're automatically compatible
+  if (isNull[0] && isNull[1]) {
+    return true;
+  }
+
+  // They must have the same length
+  if (data.length !== backgroundData.length) {
+    return true;
+  }
+
+  const isCategorical = data.every(_hasCategory);
+  const hasRange = data.every(_hasRange);
+
+  for (let index = 0; index < data.length; index++) {
+
+    // If every element has start / end, they must be equal on both arrays for every element
+    if (hasRange) {
+      if (backgroundData[index].start !== data[index].start ||
+          backgroundData[index].end !== data[index].end) {
+        return false;
+      }
+    }
+
+    // If every element has category, they must be equal on both arrays for every element
+    if (isCategorical) {
+      if (backgroundData[index].category !== data[index].category) {
+        return false;
+      }
+    }
+  }
+
+  return true;
+}
+
+
+export default {
+  getLowerBounds,
+  getXDomain,
+  getXScale,
+  getYDomain,
+  isBackgroundCompatible,
+  isCategoricalData,
+  prepareData,
+};

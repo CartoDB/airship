@@ -57,28 +57,17 @@ as-histogram-widget {
       }
     }
 
-    .bar {
-      opacity: 0.7;
+    .foreground-bar {
       cursor: pointer;
     }
 
     @import '../common/y-axis/as-y-axis.scss';
-
-    .plot {
-      rect {
-        cursor: pointer;
-      }
-    }
 
     .x-axis {
       .domain,
       .tick line {
         display: none;
       }
-    }
-
-    .y-axis .tick:first-of-type line {
-      opacity: 0.5;
     }
 
     .handle--wrapper {

@@ -184,13 +184,13 @@ const UPLOAD = [
     version: require('../packages/styles/package.json').version
   },
   {
-    name: 'Airship Bindings',
+    name: 'Airship Bridge',
     src: [
-      path.join(__dirname, '../packages/bindings/dist/asbindings.js'),
-      path.join(__dirname, '../packages/bindings/dist/asbindings.min.js')
+      path.join(__dirname, '../packages/bridge/dist/asbridge.js'),
+      path.join(__dirname, '../packages/bridge/dist/asbridge.min.js')
     ],
-    dst: 'airship-bindings',
-    version: require('../packages/bindings/package.json').version
+    dst: 'airship-bridge',
+    version: require('../packages/bridge/package.json').version
   }
 ];
 

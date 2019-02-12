@@ -1,4 +1,5 @@
 import { Component, Element, Event, EventEmitter, Method, Prop, State, Watch } from '@stencil/core';
+import { Axis } from 'd3';
 import { BrushBehavior } from 'd3-brush';
 import { ScaleLinear } from 'd3-scale';
 import {
@@ -14,12 +15,12 @@ import {
   DEFAULT_BAR_COLOR_HEX
 } from '../common/constants';
 import contentFragment from '../common/content.fragment';
-import { HistogramColorRange, HistogramData, HistogramSelection, HistogramType } from './interfaces';
+import { AxisOptions, HistogramColorRange, HistogramData, HistogramSelection, HistogramType } from './interfaces';
 import { SVGContainer, SVGGContainer } from './types/Container';
 import { RenderOptions } from './types/RenderOptions';
 import brushService from './utils/brush.service';
-import dataService, { binsScale, isCategoricalData, prepareData } from './utils/data.service';
-import drawService from './utils/draw.service';
+import dataService, { binsScale, isBackgroundCompatible, isCategoricalData, prepareData } from './utils/data.service';
+import drawService, { conditionalFormatter } from './utils/draw.service';
 import interactionService from './utils/interaction.service';
 
 const CUSTOM_HANDLE_WIDTH = 8;
@@ -29,6 +30,9 @@ const CUSTOM_HANDLE_HEIGHT = 20;
 const X_PADDING = 38;
 const Y_PADDING = 40;
 const LABEL_PADDING = 25;
+
+const FG_CLASSNAME = 'foreground-bar';
+const BG_CLASSNAME = 'background-bar';
 
 /**
  * Histogram Widget
@@ -89,6 +93,14 @@ export class HistogramWidget {
    * @memberof HistogramWidget
    */
   @Prop() public data: HistogramData[] = [];
+
+  /**
+   * Data that will be merged into buckets with value === 0
+   *
+   * @type {HistogramData[]}
+   * @memberof HistogramWidget
+   */
+  @Prop() public backgroundData: HistogramData[] = null;
 
   /**
    * Override color for the histogram bars
@@ -185,6 +197,38 @@ export class HistogramWidget {
    */
   @Prop() public selectedFormatter: (value: number[]) => string = this._selectionFormatter;
 
+  /**
+   * This prop lets you provide the range of the y-axis so it's not automatically calculated with
+   * data or backgroundData. It always starts at 0, you can provide the top value.
+   *
+   * @memberof HistogramWidget
+   */
+  @Prop() public range: [number, number] = null;
+
+  /**
+   * This lets you disable the animations for the bars when showing / updating the data
+   *
+   * @type {boolean}
+   * @memberof HistogramWidget
+   */
+  @Prop() public disableAnimation: boolean = false;
+
+  /**
+   * This prop is a proxy to some d3-axis options for the X Axis
+   *
+   * @type {AxisOptions}
+   * @memberof TimeSeriesWidget
+   */
+  @Prop() public xAxisOptions: AxisOptions = {};
+
+  /**
+   * This prop is a proxy to some d3-axis options for the Y Axis
+   *
+   * @type {AxisOptions}
+   * @memberof TimeSeriesWidget
+   */
+  @Prop() public yAxisOptions: AxisOptions = {};
+
   public selection: number[] = null;
 
   @Element() private el: HTMLStencilElement;
@@ -213,6 +257,7 @@ export class HistogramWidget {
   private xScale: ScaleLinear<number, number>;
   private binsScale: ScaleLinear<number, number>;
   private yScale: ScaleLinear<number, number>;
+  private yAxis: Axis<{ valueOf(): number }>;
   private barsContainer: SVGGContainer;
   private brush: BrushBehavior<{}>;
   private brushArea: SVGGContainer;
@@ -224,10 +269,14 @@ export class HistogramWidget {
   private prevHeight: number;
 
   private _data: HistogramData[];
+  private _backgroundData: HistogramData[];
+  private _mockBackground: boolean = false;
   private _color: string;
   private _barBackgroundColor: string;
   private _muteSelectionChanged: boolean = false;
   private _skipRender: boolean;
+  private _dataJustChanged: boolean;
+  private _lastEmittedSelection: number[] = null;
 
   @State()
   private selectionEmpty: boolean = true;
@@ -242,13 +291,49 @@ export class HistogramWidget {
     this._resizeRender = this._resizeRender.bind(this);
   }
 
+  @Watch('backgroundData')
+  public _onBackgroundDataChanged(newBackgroundData) {
+    if (newBackgroundData === null || newBackgroundData.length === 0) {
+      this._prepareData(this.data, null);
+      return;
+    }
+
+    if (isBackgroundCompatible(this.data, newBackgroundData)) {
+      this._prepareData(this.data, newBackgroundData);
+    }
+  }
+
   @Watch('data')
-  public _onDataChanged(newData) {
-    this._data = prepareData(newData);
-    this.binsScale = binsScale(this._data);
+  public _onDataChanged(newData, oldData) {
+    // Invalidated, indexes might be different data now
+    this._lastEmittedSelection = null;
+
+    if (isBackgroundCompatible(newData, this.backgroundData)) {
+      this._prepareData(this.data, this.backgroundData, oldData);
+    } else {
+      this._prepareData(this.data, null, oldData);
+    }
+  }
+
+  public _prepareData(data, backgroundData, oldData?: HistogramData[]) {
+    this._data = prepareData(data);
+    this._backgroundData = backgroundData === null ? this._mockBackgroundData(data) : prepareData(backgroundData);
+    this._mockBackground = backgroundData === null;
+
+    const newScale = binsScale(this._data);
+    const wasCategoricalData = !!this.isCategoricalData;
     this.isCategoricalData = isCategoricalData(this._data);
 
+    if (wasCategoricalData !== this.isCategoricalData) {
+      this.selection = null;
+    } else {
+      this.selection = this._preadjustSelection(oldData, newScale, data.length);
+    }
+
+    this.binsScale = newScale;
+
     this._muteSelectionChanged = true;
+    this._dataJustChanged = true;
   }
 
   @Watch('color')
@@ -365,17 +450,19 @@ export class HistogramWidget {
   }
 
   public componentDidUpdate() {
-    if (!this._skipRender) {
+    if (!this._skipRender || this._dataJustChanged) {
       this._renderGraph();
     }
 
     this._skipRender = false;
+    this._dataJustChanged = false;
   }
 
   public componentWillLoad() {
     addEventListener('resize', this._resizeRender);
     this.selectionFooter = this.selectedFormatter(this.selection);
-    this._data = prepareData(this.data);
+    this._onBackgroundDataChanged(this.backgroundData);
+    this._onDataChanged(this.data, null);
   }
 
   public componentDidUnload() {
@@ -422,6 +509,14 @@ export class HistogramWidget {
       );
   }
 
+  private _mockBackgroundData(data: HistogramData[]) {
+    const min = dataService.getLowerBounds(data);
+    return data.map((value) => ({
+      ...value,
+      value: Math.max(0, min)
+    }));
+  }
+
   private _selectionFormatter(selection: number[]) {
     if (selection === null) {
       return 'All selected';
@@ -438,7 +533,7 @@ export class HistogramWidget {
     if (this.axisFormatter) {
       formattedSelection = domainSelection.map(this.axisFormatter);
     } else {
-      formattedSelection = domainSelection.map((e) => `${e}`);
+      formattedSelection = domainSelection.map((e) => `${conditionalFormatter(e)}`);
     }
 
     return `Selected from ${formattedSelection[0]} to ${formattedSelection[1]}`;
@@ -473,10 +568,47 @@ export class HistogramWidget {
 
     if (this.height === 0 || this.width === 0) { return; }
 
-    this._renderYAxis();
+    this._generateYAxis();
     this._renderXAxis();
 
     this.barsContainer = drawService.renderPlot(this.container);
+
+    interactionService.addTooltip(
+      this.container,
+      this.barsContainer,
+      this,
+      this._color,
+      this._barBackgroundColor,
+      (value) => this.tooltipFormatter(value),
+      this._setTooltip.bind(this),
+      FG_CLASSNAME
+    );
+
+    drawService.renderBars(
+      this._backgroundData,
+      this.yScale,
+      this.container,
+      this.barsContainer,
+      this._barBackgroundColor,
+      X_PADDING + (this.yLabel ? LABEL_PADDING : 0),
+      Y_PADDING,
+      this.disableAnimation || resizing,
+      BG_CLASSNAME
+    );
+
+    drawService.renderBars(
+      this._data,
+      this.yScale,
+      this.container,
+      this.barsContainer,
+      this._color,
+      X_PADDING + (this.yLabel ? LABEL_PADDING : 0),
+      Y_PADDING,
+      this.disableAnimation || resizing,
+      FG_CLASSNAME
+    );
+
+    drawService.renderYAxis(this.container, this.yAxis, X_PADDING);
 
     if (!this.disableInteractivity) {
       this.brush = brushService.addBrush(
@@ -497,32 +629,11 @@ export class HistogramWidget {
 
       this.customHandles = brushService.addCustomHandles(
         this.brushArea,
-        this.height,
         CUSTOM_HANDLE_WIDTH,
         CUSTOM_HANDLE_HEIGHT,
-        Y_PADDING
+        this.yScale
       );
     }
-
-    interactionService.addTooltip(
-      this.container,
-      this.barsContainer,
-      this,
-      this._color,
-      this._barBackgroundColor,
-      (value) => this.tooltipFormatter(value),
-      this._setTooltip.bind(this)
-    );
-
-    drawService.renderBars(
-      this._data,
-      this.yScale,
-      this.container,
-      this.barsContainer,
-      this._color,
-      X_PADDING + (this.yLabel ? LABEL_PADDING : 0),
-      Y_PADDING,
-      resizing);
 
     this._updateSelection();
 
@@ -650,18 +761,47 @@ export class HistogramWidget {
     this.selectionFooter = this.selectedFormatter(this.selection);
   }
 
-  private _dataForSelection(selection: number[]) {
+  // Adjust the selection to the new data
+  private _preadjustSelection(oldData: HistogramData[], newScale: ScaleLinear<number, number>, nBuckets: number) {
+    if (!(oldData && this.selection)) {
+      return this.selection;
+    }
+
+    // For categorical data, we map back the previously selected values into indexes, and return [first, last]
+    if (this.isCategoricalData) {
+      const selectedCats = (this._simplifySelection(this._dataForSelection(this.selection, oldData)) as string[]);
+      const selection = selectedCats.map((value) => {
+        return this._data.findIndex((d) => d.category === value);
+      });
+
+      // At least one of the previous values are missing, we clear the selection
+      if (selection.some((e) => e === -1)) {
+        return null;
+      }
+
+      return [selection[0], selection[selection.length - 1] + 1];
+    }
+
+    const oldSelection = (this._simplifySelection(this._dataForSelection(this.selection, oldData)) as number[]);
+    const newSelection = oldSelection.map(newScale);
+
+    return [Math.max(0, newSelection[0]), Math.min(nBuckets, newSelection[1])];
+  }
+
+  private _dataForSelection(selection: number[], from?: HistogramData[]) {
     if (selection === null) {
       return null;
     }
 
+    const data = from !== undefined ? from : this.data;
+
     if (this.isCategoricalData) {
-      return this.data
+      return data
         .slice(selection[0], selection[1])
         .map((d) => d);
     }
 
-    return [this.data[selection[0]], this.data[selection[1] - 1]];
+    return [data[selection[0]], data[selection[1] - 1]];
   }
 
   private _simplifySelection(selection: HistogramData[]): string[] | number[] {
@@ -676,7 +816,19 @@ export class HistogramWidget {
     return [selection[0].start, selection[selection.length - 1].end];
   }
 
+  private _sameSelection(first: number[], second: number[]) {
+    if (first === null || second === null) {
+      return false;
+    }
+
+    return (first[0] === second[0] && first[1] === second[1]);
+  }
+
   private emitSelection(emitter: EventEmitter<HistogramSelection>, selection: number[]) {
+    if (this._sameSelection(selection, this._lastEmittedSelection)) {
+      return;
+    }
+
     if (selection === null) {
       emitter.emit(null);
       return;
@@ -691,6 +843,10 @@ export class HistogramWidget {
     };
 
     emitter.emit(evt);
+
+    if (emitter === this.selectionChanged) {
+      this._lastEmittedSelection = [selection[0], selection[1]];
+    }
   }
 
   private _eventType(): HistogramType {
@@ -714,7 +870,7 @@ export class HistogramWidget {
     }
 
     if (values === null) {
-      this.barsContainer.selectAll('rect')
+      this.barsContainer.selectAll(`rect.${FG_CLASSNAME}`)
         .style('fill', (_d, i) => {
           const d = this._data[i];
           return d.color || this._color;
@@ -724,7 +880,7 @@ export class HistogramWidget {
       return;
     }
 
-    const yCoord = this.height - Y_PADDING;
+    const yCoord = this.yScale(this.yScale.domain()[0]);
 
     // Convert back to space coordinates
     const spaceValues = values
@@ -746,9 +902,15 @@ export class HistogramWidget {
       .attr('x1', spaceValues[0])
       .attr('x2', spaceValues[1]);
 
-    this.barsContainer.selectAll('.bar')
+    this.barsContainer.selectAll(`rect.${FG_CLASSNAME}`)
       .style('fill', (_d, i) => {
         const d = this._data[i];
+
+        // This should not be possible, but in some weird cases this happens on an intermediate step
+        if (!d) {
+          return;
+        }
+
         if (!(domainValues[0] <= d.start && d.end <= domainValues[1])) {
           return this._barBackgroundColor;
         }
@@ -756,15 +918,24 @@ export class HistogramWidget {
       });
   }
 
-  private _renderYAxis() {
-    const yDomain = dataService.getYDomain(this._data);
-    const yAxis = drawService.renderYAxis(
+  private _dataForDomain() {
+    if (this._backgroundData === null || this._backgroundData.length === 0 || this._mockBackground) {
+      return this._data;
+    }
+
+    return this._backgroundData;
+  }
+
+  private _generateYAxis() {
+    const yDomain: [number, number] = this.range !== null ? this.range : dataService.getYDomain(this._dataForDomain());
+    this.yAxis = drawService.generateYScale(
       this.container,
       yDomain,
       X_PADDING + (this.yLabel ? LABEL_PADDING : 0),
-      Y_PADDING);
+      Y_PADDING,
+      this.yAxisOptions);
 
-    this.yScale = yAxis.scale();
+    this.yScale = this.yAxis.scale();
   }
 
   private _renderXAxis() {
@@ -775,7 +946,8 @@ export class HistogramWidget {
       this._data.length,
       X_PADDING + (this.yLabel ? LABEL_PADDING : 0),
       Y_PADDING,
-      this.axisFormatter);
+      this.axisFormatter,
+      this.xAxisOptions);
 
     this.xScale = xAxis.scale();
   }
