@@ -20,7 +20,7 @@ import { SVGContainer, SVGGContainer } from './types/Container';
 import { RenderOptions } from './types/RenderOptions';
 import brushService from './utils/brush.service';
 import dataService, { binsScale, isBackgroundCompatible, isCategoricalData, prepareData } from './utils/data.service';
-import drawService from './utils/draw.service';
+import drawService, { conditionalFormatter } from './utils/draw.service';
 import interactionService from './utils/interaction.service';
 
 const CUSTOM_HANDLE_WIDTH = 8;
@@ -304,23 +304,33 @@ export class HistogramWidget {
   }
 
   @Watch('data')
-  public _onDataChanged(newData) {
+  public _onDataChanged(newData, oldData) {
     // Invalidated, indexes might be different data now
     this._lastEmittedSelection = null;
 
     if (isBackgroundCompatible(newData, this.backgroundData)) {
-      this._prepareData(this.data, this.backgroundData);
+      this._prepareData(this.data, this.backgroundData, oldData);
     } else {
-      this._prepareData(this.data, null);
+      this._prepareData(this.data, null, oldData);
     }
   }
 
-  public _prepareData(data, backgroundData) {
+  public _prepareData(data, backgroundData, oldData?: HistogramData[]) {
     this._data = prepareData(data);
     this._backgroundData = backgroundData === null ? this._mockBackgroundData(data) : prepareData(backgroundData);
     this._mockBackground = backgroundData === null;
-    this.binsScale = binsScale(this._data);
+
+    const newScale = binsScale(this._data);
+    const wasCategoricalData = !!this.isCategoricalData;
     this.isCategoricalData = isCategoricalData(this._data);
+
+    if (wasCategoricalData !== this.isCategoricalData) {
+      this.selection = null;
+    } else {
+      this.selection = this._preadjustSelection(oldData, newScale, data.length);
+    }
+
+    this.binsScale = newScale;
 
     this._muteSelectionChanged = true;
     this._dataJustChanged = true;
@@ -452,7 +462,7 @@ export class HistogramWidget {
     addEventListener('resize', this._resizeRender);
     this.selectionFooter = this.selectedFormatter(this.selection);
     this._onBackgroundDataChanged(this.backgroundData);
-    this._onDataChanged(this.data);
+    this._onDataChanged(this.data, null);
   }
 
   public componentDidUnload() {
@@ -523,7 +533,7 @@ export class HistogramWidget {
     if (this.axisFormatter) {
       formattedSelection = domainSelection.map(this.axisFormatter);
     } else {
-      formattedSelection = domainSelection.map((e) => `${e}`);
+      formattedSelection = domainSelection.map((e) => `${conditionalFormatter(e)}`);
     }
 
     return `Selected from ${formattedSelection[0]} to ${formattedSelection[1]}`;
@@ -751,18 +761,47 @@ export class HistogramWidget {
     this.selectionFooter = this.selectedFormatter(this.selection);
   }
 
-  private _dataForSelection(selection: number[]) {
+  // Adjust the selection to the new data
+  private _preadjustSelection(oldData: HistogramData[], newScale: ScaleLinear<number, number>, nBuckets: number) {
+    if (!(oldData && this.selection)) {
+      return this.selection;
+    }
+
+    // For categorical data, we map back the previously selected values into indexes, and return [first, last]
+    if (this.isCategoricalData) {
+      const selectedCats = (this._simplifySelection(this._dataForSelection(this.selection, oldData)) as string[]);
+      const selection = selectedCats.map((value) => {
+        return this._data.findIndex((d) => d.category === value);
+      });
+
+      // At least one of the previous values are missing, we clear the selection
+      if (selection.some((e) => e === -1)) {
+        return null;
+      }
+
+      return [selection[0], selection[selection.length - 1] + 1];
+    }
+
+    const oldSelection = (this._simplifySelection(this._dataForSelection(this.selection, oldData)) as number[]);
+    const newSelection = oldSelection.map(newScale);
+
+    return [Math.max(0, newSelection[0]), Math.min(nBuckets, newSelection[1])];
+  }
+
+  private _dataForSelection(selection: number[], from?: HistogramData[]) {
     if (selection === null) {
       return null;
     }
 
+    const data = from !== undefined ? from : this.data;
+
     if (this.isCategoricalData) {
-      return this.data
+      return data
         .slice(selection[0], selection[1])
         .map((d) => d);
     }
 
-    return [this.data[selection[0]], this.data[selection[1] - 1]];
+    return [data[selection[0]], data[selection[1] - 1]];
   }
 
   private _simplifySelection(selection: HistogramData[]): string[] | number[] {
@@ -866,6 +905,12 @@ export class HistogramWidget {
     this.barsContainer.selectAll(`rect.${FG_CLASSNAME}`)
       .style('fill', (_d, i) => {
         const d = this._data[i];
+
+        // This should not be possible, but in some weird cases this happens on an intermediate step
+        if (!d) {
+          return;
+        }
+
         if (!(domainValues[0] <= d.start && d.end <= domainValues[1])) {
           return this._barBackgroundColor;
         }

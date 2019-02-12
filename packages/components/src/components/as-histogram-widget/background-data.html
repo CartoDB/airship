@@ -75,17 +75,9 @@
 
       var selection = event.detail.selection;
 
-      const newData = histogramWidget.data.map((d) => {
-        if (d.start >= selection[0] && d.end <= selection[1]) {
-          return d;
-        } else {
-          return {
-            start: d.start,
-            end: d.end,
-            value: 0
-          };
-        }
-      });
+      const newData = histogramWidget.data
+        .filter((d) => d.start >= selection[0] && d.end <= selection[1])
+        .map(d => d);
 
       histogramWidget.data = newData;
     });

@@ -127,7 +127,7 @@ export function renderXAxis(
   bins: number,
   X_PADDING: number,
   Y_PADDING: number,
-  customFormatter: (value: Date | number) => string = _conditionalFormatter,
+  customFormatter: (value: Date | number) => string = conditionalFormatter,
   axisOptions: AxisOptions): Axis<{ valueOf(): number }> {
 
   if (!container || !container.node()) {
@@ -285,7 +285,7 @@ export function generateYScale(
     .tickSize(-WIDTH)
     .ticks(ticks)
     .tickPadding(tickPadding)
-    .tickFormat(axisOptions.format || _conditionalFormatter)
+    .tickFormat(axisOptions.format || conditionalFormatter)
     .tickValues(axisOptions.values || null);
 
   return yAxis;
@@ -295,7 +295,7 @@ function _delayFn(_d, i) {
   return i;
 }
 
-function _conditionalFormatter(value) {
+export function conditionalFormatter(value) {
   if (value > 0 && value < 1) {
     return decimalFormatter(value);
   }
@@ -303,4 +303,13 @@ function _conditionalFormatter(value) {
   return formatter(value);
 }
 
-export default { cleanAxes, updateAxes, renderBars, renderXAxis, renderYAxis, generateYScale, renderPlot };
+export default {
+  cleanAxes,
+  conditionalFormatter,
+  generateYScale,
+  renderBars,
+  renderPlot,
+  renderXAxis,
+  renderYAxis,
+  updateAxes
+};
