@@ -1,8 +1,8 @@
 ## Advanced guide: Styling
 
-In this guide, you'll learn how to apply custom styling to Airship components and styles letting them look like your brand.
+In this guide, you will learn how to apply custom styling to Airship components and styles letting them look like your brand.
 
-We'll show you three levels of customization, which will let you customize styles through different levels of difficulty.
+We will show you three levels of customization, which will let you customize styles through different levels of difficulty.
 
 ### Customizing Airship with CSS variables
 CSS variables are entities that contain values meant to be reused throughout the CSS styles. In Airship, we use them to create consistent design all over the components and styles.
@@ -27,7 +27,7 @@ element.style.setProperty('--element-background-color', '#E1E2E3');
 
 We defined many CSS variables all over our styles to be customizable. Please go to component's documentation to find which variables you can override in your application.
 
-Let's say that we want to override our application primary's color, which is set in `--as--color--primary`.
+Say that we want to override our application primary's color, which is set in `--as--color--primary`.
 
 As all CSS variables we want to override, we would need to override it after requiring Airship styles or each component style, depending on the case, in our HTML, JavaScript, or SASS, due to CSS cascade.
 
@@ -35,7 +35,7 @@ As all CSS variables we want to override, we would need to override it after req
 
 Customizing a CSS variable is simple. You just have to write the selector and put the variable to override inside that selector rules.
 
-To override a global variable like `--as--color--primary`, which doesn't specifically belong to any of the components, you need to put it into a `:root` selector.
+To override a global variable like `--as--color--primary`, which does not specifically belong to any of the components, you need to put it into a `:root` selector.
 
 ```html
 <!-- Include CSS -->
@@ -53,7 +53,7 @@ Most of the color in our components come from general variables, such as the one
 
 In that case, you need to override it within the components' selector.
 
-We're going to change the default background color for the `.map_panels` style. For each layout element and component, we've a set of **css-variables**, also called **custom properties**, to customize these elements individually.
+We are going to change the default background color for the `.map_panels` style. For each layout element and component, we have a set of **css-variables**, also called **custom properties**, to customize these elements individually.
 
 In this case, the variable is called `--as--map-panels--background-color`, and we want it to be `#EEE`. As we can see, `--as--map-panels--background-color` is within `.as-map-panels`, we need to do it like this:
 
@@ -93,7 +93,7 @@ Likewise, if you want to override a CSS variable inside a component selector, yo
 }
 ```
 
-**Warning**: Assigning SASS variables to CSS variables won't work as you would expect. If you want to set CSS variable's value to a SASS variable, you will have to interpolate its value into the variable itself: `--css-variable: #{$sass-variable}`.
+**Warning**: Assigning SASS variables to CSS variables will not work as you would expect. If you want to set CSS variable's value to a SASS variable, you will have to interpolate its value into the variable itself: `--css-variable: #{$sass-variable}`.
 
 **Customizing CSS variables in JavaScript**
 
@@ -141,11 +141,11 @@ Doing it that way, it will take first defined variables as the one to use to gen
 Please find SASS variables to override within each style reference documentation.
 
 ### Overriding any rule with CSS
-CSS and SASS variables are powerful, but they don't allow you to modify each rule within Airship Styles. So, if you want to customize Airship beyond variables, you will need to override rules by targeting specific selectors.
+CSS and SASS variables are powerful, but they do not allow you to modify each rule within Airship Styles. So, if you want to customize Airship beyond variables, you will need to override rules by targeting specific selectors.
 
 As you might now, every DOM node should have one or many CSS classes set, so whenever you want to modify something you will need write a selector that targets that node.
 
-Let's say that you want to make all title's font size bigger. Looking at the typography classes, you find one named `as-title` whose font definition is:
+Say that you want to make all title's font size bigger. Looking at the typography classes, you find one named `as-title` whose font definition is:
 ```css
 font: 24px/32px var(--font-family-base, Roboto, sans-serif);
 ```

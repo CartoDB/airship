@@ -52,7 +52,7 @@ Whenever you need to import any of those components, include the appropriate sni
   - JavaScript import: `import '@carto/airship-style/dist/{path}';`
   - SASS import: `@import '~@carto/airship-style/dist/{path}';`
 
-So, let's say that you want to import badges component, these are the snippets you can choose from:
+Assuming that you want to import badges component, these are the snippets you can choose from:
 
 - SASS styles:
   - JavaScript import: `import '@carto/airship-style/src/badges/badges';`

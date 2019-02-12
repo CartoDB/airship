@@ -58,7 +58,7 @@ use javascript to add event listeners and pass complex objects as parameter.
 
 In the **render** function you can bind `string`, `number`and `boolean` values as simple HTML attributes. Just as you do with a normal HTML tag.
 
-In the **componentDidMount** you can setup event listeners and bind attributes that are `arrays` or `objects`. Those types can't be passed as simple HTML attributes so you need to hook them up here.
+In the **componentDidMount** you can setup event listeners and bind attributes that are `arrays` or `objects`. Those types cannot be passed as simple HTML attributes so you need to hook them up here.
 
 Use **componentDidUpdate** to update the bind properties values.
 
