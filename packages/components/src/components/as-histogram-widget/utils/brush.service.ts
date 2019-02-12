@@ -1,3 +1,4 @@
+import { ScaleLinear } from 'd3';
 import { BrushBehavior, brushX } from 'd3-brush';
 import { SVGContainer, SVGGContainer } from '../types/Container';
 
@@ -37,10 +38,9 @@ export function addBrushArea(
 
 export function addCustomHandles(
   brushArea: SVGGContainer,
-  height: number,
   CUSTOM_HANDLE_WIDTH: number,
   CUSTOM_HANDLE_HEIGHT: number,
-  Y_PADDING: number
+  scale: ScaleLinear<number, number>,
 ): SVGGContainer<{ type: string }, SVGGElement, {}> {
 
   let bottomLine = brushArea.select('line.bottomline');
@@ -54,10 +54,12 @@ export function addCustomHandles(
   }
 
   bottomLine
-    .attr('y1', height - Y_PADDING)
-    .attr('y2', height - Y_PADDING);
+    .attr('y1', scale(0))
+    .attr('y2', scale(0));
 
   let customHandles = brushArea.selectAll<SVGGElement, { type: string }>('.handle--wrapper');
+
+  const linesMargin = Math.floor((CUSTOM_HANDLE_WIDTH - 2) / 2);
 
   if (customHandles.empty()) {
     customHandles = customHandles
@@ -71,8 +73,8 @@ export function addCustomHandles(
       .attr('class', 'handle--custom')
       .attr('width', CUSTOM_HANDLE_WIDTH)
       .attr('height', CUSTOM_HANDLE_HEIGHT)
-      .attr('rx', 2)
-      .attr('ry', 2);
+      .attr('rx', 1)
+      .attr('ry', 1);
 
     const handleGrab = customHandles
       .append('g')
@@ -81,9 +83,10 @@ export function addCustomHandles(
     for (let i = 0; i < 3; i++) {
       handleGrab
         .append('line')
-        .attr('x1', 2)
+        .attr('transform', `translate(0 ${(CUSTOM_HANDLE_HEIGHT / 2) - 2})`)
+        .attr('x1', linesMargin)
         .attr('y1', i * 2)
-        .attr('x2', 4)
+        .attr('x2', CUSTOM_HANDLE_WIDTH - linesMargin)
         .attr('y2', i * 2)
         .attr('class', 'grab-line');
     }

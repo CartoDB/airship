@@ -1,0 +1,13 @@
+@import '../../../../../styles/src/core/dev';
+
+as-widget-selection {
+  .as-widget-selection__wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  .as-widget-selection__clear {
+    margin-left: get-spacing(2);
+    cursor: pointer;
+  }
+}

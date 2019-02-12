@@ -12,8 +12,10 @@ import {
   DropdownOption,
 } from './components/as-dropdown/types/DropdownOption';
 import {
+  AxisOptions,
   HistogramColorRange,
   HistogramData,
+  HistogramSelection,
 } from './components/as-histogram-widget/interfaces';
 import {
   EventEmitter,
@@ -231,7 +233,14 @@ export namespace Components {
   }
 
   interface AsHistogramWidget {
+    /**
+    * Function used to format the x-axis values
+    */
     'axisFormatter': (value: number | Date) => string;
+    /**
+    * Data that will be merged into buckets with value === 0
+    */
+    'backgroundData': HistogramData[];
     /**
     * Clears the Histogram selection
     */
@@ -253,9 +262,17 @@ export namespace Components {
     */
     'data': HistogramData[];
     /**
+    * Default formatting function. Makes the value a readable number and converts it into a string. Useful to compose with your own formatting function.
+    */
+    'defaultFormatter': (data: HistogramData) => any[];
+    /**
     * Description of the widget to be displayed
     */
     'description': string;
+    /**
+    * This lets you disable the animations for the bars when showing / updating the data
+    */
+    'disableAnimation': boolean;
     /**
     * Disables selection brushes and events for the widget
     */
@@ -271,7 +288,7 @@ export namespace Components {
     /**
     * Returns the current selection
     */
-    'getSelection': () => Promise<number[]>;
+    'getSelection': () => Promise<number[] | string[]>;
     /**
     * Title of the widget to be displayed
     */
@@ -289,13 +306,17 @@ export namespace Components {
     */
     'noDataHeaderMessage': string;
     /**
+    * This prop lets you provide the range of the y-axis so it's not automatically calculated with data or backgroundData. It always starts at 0, you can provide the top value.
+    */
+    'range': [number, number];
+    /**
     * Use this attribute to decide if the widget should be rerendered on window resize. Defaults to true.
     */
     'responsive': boolean;
     /**
-    * Override color for the selected histogram bars
+    * Function to format the range selected text displayed below the histogram
     */
-    'selectedColor': string;
+    'selectedFormatter': (value: number[]) => string;
     /**
     * Programmatically set the selection. It will be adjusted to the buckets present in {@link data}. To clear see {@link clearSelection} or call with null
     */
@@ -311,18 +332,41 @@ export namespace Components {
     /**
     * Function that formats the tooltip. Receives HistogramData and outputs a string
     */
-    'tooltipFormatter': (value: HistogramData) => string;
+    'tooltipFormatter': (value: HistogramData) => string | string[];
+    /**
+    * Override color for the non selected histogram bars
+    */
+    'unselectedColor': string;
+    /**
+    * This prop is a proxy to some d3-axis options for the X Axis
+    */
+    'xAxisOptions': AxisOptions;
+    /**
+    * Formats a number using the component's x-axis formatter if present
+    */
+    'xFormatter': (value: any) => any;
     /**
     * Label the x axis of the histogram with the given string.
     */
     'xLabel': string;
+    /**
+    * This prop is a proxy to some d3-axis options for the Y Axis
+    */
+    'yAxisOptions': AxisOptions;
     /**
     * Label the y axis of the histogram with the given string.
     */
     'yLabel': string;
   }
   interface AsHistogramWidgetAttributes extends StencilHTMLAttributes {
+    /**
+    * Function used to format the x-axis values
+    */
     'axisFormatter'?: (value: number | Date) => string;
+    /**
+    * Data that will be merged into buckets with value === 0
+    */
+    'backgroundData'?: HistogramData[];
     /**
     * Text rendered inside the clear selection button
     */
@@ -343,6 +387,10 @@ export namespace Components {
     * Description of the widget to be displayed
     */
     'description'?: string;
+    /**
+    * This lets you disable the animations for the bars when showing / updating the data
+    */
+    'disableAnimation'?: boolean;
     /**
     * Disables selection brushes and events for the widget
     */
@@ -375,16 +423,20 @@ export namespace Components {
     /**
     * Fired when user update or clear the widget selection.
     */
-    'onSelectionChanged'?: (event: CustomEvent<number[]>) => void;
-    'onSelectionInput'?: (event: CustomEvent<number[]>) => void;
+    'onSelectionChanged'?: (event: CustomEvent<HistogramSelection>) => void;
+    'onSelectionInput'?: (event: CustomEvent<HistogramSelection>) => void;
+    /**
+    * This prop lets you provide the range of the y-axis so it's not automatically calculated with data or backgroundData. It always starts at 0, you can provide the top value.
+    */
+    'range'?: [number, number];
     /**
     * Use this attribute to decide if the widget should be rerendered on window resize. Defaults to true.
     */
     'responsive'?: boolean;
     /**
-    * Override color for the selected histogram bars
+    * Function to format the range selected text displayed below the histogram
     */
-    'selectedColor'?: string;
+    'selectedFormatter'?: (value: number[]) => string;
     /**
     * Display a clear button that clears the histogram selection.
     */
@@ -396,11 +448,23 @@ export namespace Components {
     /**
     * Function that formats the tooltip. Receives HistogramData and outputs a string
     */
-    'tooltipFormatter'?: (value: HistogramData) => string;
+    'tooltipFormatter'?: (value: HistogramData) => string | string[];
+    /**
+    * Override color for the non selected histogram bars
+    */
+    'unselectedColor'?: string;
+    /**
+    * This prop is a proxy to some d3-axis options for the X Axis
+    */
+    'xAxisOptions'?: AxisOptions;
     /**
     * Label the x axis of the histogram with the given string.
     */
     'xLabel'?: string;
+    /**
+    * This prop is a proxy to some d3-axis options for the Y Axis
+    */
+    'yAxisOptions'?: AxisOptions;
     /**
     * Label the y axis of the histogram with the given string.
     */
@@ -720,6 +784,14 @@ export namespace Components {
     */
     'animated': boolean;
     /**
+    * Histogram data to be displayed
+    */
+    'backgroundData': TimeSeriesData[];
+    /**
+    * Proxy to as-histogram-widget clearSelection()
+    */
+    'clearSelection': () => void;
+    /**
     * Text rendered inside the clear selection button
     */
     'clearText': string;
@@ -736,9 +808,17 @@ export namespace Components {
     */
     'data': TimeSeriesData[];
     /**
+    * Proxy to as-histogram-widget defaultFormatter()
+    */
+    'defaultFormatter': (data: HistogramData) => any;
+    /**
     * Description of the widget to be displayed
     */
     'description': string;
+    /**
+    * This lets you disable the animations for the bars when showing / updating the data
+    */
+    'disableAnimation': boolean;
     /**
     * Disables selection brushes and events for the widget
     */
@@ -751,6 +831,10 @@ export namespace Components {
     * Extended error description, only shown when error is present
     */
     'errorDescription': string;
+    /**
+    * Proxy to as-histogram-widget getSelection()
+    */
+    'getSelection': () => Promise<string[] | number[]>;
     /**
     * Title of the widget to be displayed
     */
@@ -776,13 +860,17 @@ export namespace Components {
     */
     'progress': number;
     /**
+    * This prop lets you provide the range of the y-axis so it's not automatically calculated with data or backgroundData. It always starts at 0, you can provide the top value.
+    */
+    'range': [number, number];
+    /**
     * Use this attribute to decide if the widget should be rerendered on window resize. Defaults to true.
     */
     'responsive': boolean;
     /**
-    * Override color for the selected histogram bars
+    * Proxy to as-histogram-widget setSelection()
     */
-    'selectedColor': string;
+    'setSelection': (values: number[]) => void;
     /**
     * Display a clear button that clears the histogram selection.
     */
@@ -804,9 +892,25 @@ export namespace Components {
     */
     'tooltipFormatter': (value: TimeSeriesData) => string;
     /**
+    * Override color for the selected histogram bars
+    */
+    'unselectedColor': string;
+    /**
+    * This prop is a proxy to some d3-axis options for the X Axis
+    */
+    'xAxisOptions': AxisOptions;
+    /**
+    * Proxy to as-histogram-widget xFormatter method
+    */
+    'xFormatter': (value: any) => any;
+    /**
     * Label the x axis of the histogram with the given string.
     */
     'xLabel': string;
+    /**
+    * This prop is a proxy to some d3-axis options for the Y Axis
+    */
+    'yAxisOptions': AxisOptions;
     /**
     * Label the y axis of the histogram with the given string.
     */
@@ -817,6 +921,10 @@ export namespace Components {
     * Whether it should have animated properties or not. Disabling this makes this look like a histogra widget with time capabilities
     */
     'animated'?: boolean;
+    /**
+    * Histogram data to be displayed
+    */
+    'backgroundData'?: TimeSeriesData[];
     /**
     * Text rendered inside the clear selection button
     */
@@ -837,6 +945,10 @@ export namespace Components {
     * Description of the widget to be displayed
     */
     'description'?: string;
+    /**
+    * This lets you disable the animations for the bars when showing / updating the data
+    */
+    'disableAnimation'?: boolean;
     /**
     * Disables selection brushes and events for the widget
     */
@@ -890,13 +1002,13 @@ export namespace Components {
     */
     'progress'?: number;
     /**
+    * This prop lets you provide the range of the y-axis so it's not automatically calculated with data or backgroundData. It always starts at 0, you can provide the top value.
+    */
+    'range'?: [number, number];
+    /**
     * Use this attribute to decide if the widget should be rerendered on window resize. Defaults to true.
     */
     'responsive'?: boolean;
-    /**
-    * Override color for the selected histogram bars
-    */
-    'selectedColor'?: string;
     /**
     * Display a clear button that clears the histogram selection.
     */
@@ -918,9 +1030,21 @@ export namespace Components {
     */
     'tooltipFormatter'?: (value: TimeSeriesData) => string;
     /**
+    * Override color for the selected histogram bars
+    */
+    'unselectedColor'?: string;
+    /**
+    * This prop is a proxy to some d3-axis options for the X Axis
+    */
+    'xAxisOptions'?: AxisOptions;
+    /**
     * Label the x axis of the histogram with the given string.
     */
     'xLabel'?: string;
+    /**
+    * This prop is a proxy to some d3-axis options for the Y Axis
+    */
+    'yAxisOptions'?: AxisOptions;
     /**
     * Label the y axis of the histogram with the given string.
     */
@@ -999,6 +1123,39 @@ export namespace Components {
     'subheader'?: string;
   }
 
+  interface AsWidgetSelection {
+    /**
+    * Text for the clear text
+    */
+    'clearText': string;
+    /**
+    * The text to be displayed
+    */
+    'selection': string;
+    /**
+    * Whether to display the clear button or not
+    */
+    'showClear': boolean;
+  }
+  interface AsWidgetSelectionAttributes extends StencilHTMLAttributes {
+    /**
+    * Text for the clear text
+    */
+    'clearText'?: string;
+    /**
+    * Event fired when clicking on clear text
+    */
+    'onClear'?: (event: CustomEvent) => void;
+    /**
+    * The text to be displayed
+    */
+    'selection'?: string;
+    /**
+    * Whether to display the clear button or not
+    */
+    'showClear'?: boolean;
+  }
+
   interface AsYAxis {
     /**
     * Lower limit of the axis
@@ -1047,6 +1204,7 @@ declare global {
     'AsLegend': Components.AsLegend;
     'AsLoader': Components.AsLoader;
     'AsWidgetHeader': Components.AsWidgetHeader;
+    'AsWidgetSelection': Components.AsWidgetSelection;
     'AsYAxis': Components.AsYAxis;
   }
 
@@ -1067,6 +1225,7 @@ declare global {
     'as-legend': Components.AsLegendAttributes;
     'as-loader': Components.AsLoaderAttributes;
     'as-widget-header': Components.AsWidgetHeaderAttributes;
+    'as-widget-selection': Components.AsWidgetSelectionAttributes;
     'as-y-axis': Components.AsYAxisAttributes;
   }
 
@@ -1167,6 +1326,12 @@ declare global {
     new (): HTMLAsWidgetHeaderElement;
   };
 
+  interface HTMLAsWidgetSelectionElement extends Components.AsWidgetSelection, HTMLStencilElement {}
+  var HTMLAsWidgetSelectionElement: {
+    prototype: HTMLAsWidgetSelectionElement;
+    new (): HTMLAsWidgetSelectionElement;
+  };
+
   interface HTMLAsYAxisElement extends Components.AsYAxis, HTMLStencilElement {}
   var HTMLAsYAxisElement: {
     prototype: HTMLAsYAxisElement;
@@ -1190,6 +1355,7 @@ declare global {
     'as-legend': HTMLAsLegendElement
     'as-loader': HTMLAsLoaderElement
     'as-widget-header': HTMLAsWidgetHeaderElement
+    'as-widget-selection': HTMLAsWidgetSelectionElement
     'as-y-axis': HTMLAsYAxisElement
   }
 
@@ -1210,6 +1376,7 @@ declare global {
     'as-legend': HTMLAsLegendElement;
     'as-loader': HTMLAsLoaderElement;
     'as-widget-header': HTMLAsWidgetHeaderElement;
+    'as-widget-selection': HTMLAsWidgetSelectionElement;
     'as-y-axis': HTMLAsYAxisElement;
   }
 

@@ -158,7 +158,6 @@
       fetch(locale)
         .then(response => response.json())
         .then((json) => {
-          console.log(json);
           timeSeriesWidget.timeFormatLocale = json;
         });
     });

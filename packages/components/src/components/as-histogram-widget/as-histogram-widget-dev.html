@@ -63,7 +63,7 @@
         if (event.detail === null) {
           selectionP.innerText = 'Nothing selected';
         } else {
-          selectionP.innerText = 'Selection is: ' + event.detail[0] + ',' + event.detail[1];
+          selectionP.innerText = 'Selection is: ' + event.detail.selection[0] + ',' + event.detail.selection[1];
         }
       });
     </script>
