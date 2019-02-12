@@ -2,7 +2,7 @@ import { Axis, axisBottom } from 'd3-axis';
 import { axisLeft } from 'd3-axis';
 import { format } from 'd3-format';
 import { ScaleLinear, scaleLinear } from 'd3-scale';
-import { HistogramData } from '../interfaces';
+import { AxisOptions, HistogramData } from '../interfaces';
 import { SVGContainer, SVGGContainer } from '../types/Container';
 import { Domain } from '../types/Domain';
 
@@ -104,14 +104,21 @@ export function renderBars(
       .attr('width', () => Math.max(0, barWidth - barsSeparation))
       .style('fill', (d: HistogramData) => d.color || color);
 
+  const minDomain = yScale.domain()[0];
+  const yZero = yScale(Math.max(0, minDomain));
+
   (disableAnimation ? mergeSelection : mergeSelection.transition().delay(_delayFn))
-    .attr('height', (d: HistogramData) => HEIGHT - yScale(d.value))
-    .attr('y', (d: HistogramData) => yScale(d.value));
+    .attr('height', (d: HistogramData) => {
+      return Math.abs(yScale(d.value) - yZero);
+    })
+    .attr('y', (d: HistogramData) => d.value > 0 ? yScale(d.value) : yZero);
 
   // -- Update
   (disableAnimation ? this.bars : this.bars.transition().delay(_delayFn))
-    .attr('height', (d) => HEIGHT - yScale(d.value))
-    .attr('y', (d) => yScale(d.value));
+    .attr('height', (d: HistogramData) => {
+      return Math.abs(yScale(d.value) - yZero);
+    })
+    .attr('y', (d: HistogramData) => d.value > 0 ? yScale(d.value) : yZero);
 }
 
 export function renderXAxis(
@@ -120,7 +127,8 @@ export function renderXAxis(
   bins: number,
   X_PADDING: number,
   Y_PADDING: number,
-  customFormatter: (value: Date | number) => string = _conditionalFormatter): Axis<{ valueOf(): number }> {
+  customFormatter: (value: Date | number) => string = conditionalFormatter,
+  axisOptions: AxisOptions): Axis<{ valueOf(): number }> {
 
   if (!container || !container.node()) {
     return;
@@ -128,9 +136,10 @@ export function renderXAxis(
 
   const HEIGHT = container.node().getBoundingClientRect().height - Y_PADDING;
   const WIDTH = container.node().getBoundingClientRect().width - X_PADDING;
-
   // Display first, last and middle point bins
-  const ticks = [0, bins / 2, bins];
+  const tickValues = [0, bins / 2, bins];
+  const tickPadding = axisOptions.padding !== undefined ? axisOptions.padding : 13;
+  const ticks = axisOptions.ticks !== undefined ? axisOptions.ticks : tickValues.length;
 
   const xScale = scaleLinear()
     .domain([0, bins])
@@ -140,15 +149,31 @@ export function renderXAxis(
     .domain(domain)
     .range([0, bins]);
 
-  const xAxis = axisBottom(xScale)
-    .tickSize(-HEIGHT)
-    .tickValues(ticks)
-    .tickPadding(13)
-    .tickFormat((value) => {
-      const realValue = realScale.invert(value);
+  let xAxis;
 
-      return customFormatter(realValue);
-    });
+  if (axisOptions.values || axisOptions.format) {
+    const altScale = scaleLinear()
+      .domain(domain)
+      .range([0, WIDTH]);
+
+    xAxis = axisBottom(altScale)
+      .tickValues(axisOptions.values || null)
+      .tickFormat(axisOptions.format || customFormatter);
+  } else {
+    xAxis = axisBottom(xScale)
+      // tickValues has precedence over ticks, must set null if user wants custom tick number
+      .tickValues(ticks !== undefined ? null : tickValues)
+      .tickFormat((value) => {
+        const realValue = realScale.invert(value);
+
+        return customFormatter(realValue);
+      });
+  }
+
+  xAxis
+    .tickSize(-HEIGHT)
+    .tickPadding(tickPadding)
+    .ticks(ticks);
 
   if (container.select('.x-axis').empty()) {
     container
@@ -204,7 +229,8 @@ export function renderXAxis(
 
 export function renderYAxis(
   container: SVGContainer,
-  yAxis: Axis<{ valueOf(): number }>) {
+  yAxis: Axis<{ valueOf(): number }>,
+  X_PADDING: number) {
 
   if (!container || !container.node()) {
     return;
@@ -219,13 +245,27 @@ export function renderYAxis(
     container.select('.y-axis')
       .call(yAxis);
   }
+
+  // 0 line
+  container
+    .select('.y-axis')
+    .append('g')
+    .attr('class', 'tick')
+    .attr('opacity', '1')
+    .attr('transform', `translate(0,${yAxis.scale()(0)})`)
+    .append('line')
+    .attr('shape-rendering', 'crisp')
+    .attr('stroke', '#000')
+    .attr('class', 'zero')
+    .attr('x2', container.node().getBoundingClientRect().width - X_PADDING);
 }
 
 export function generateYScale(
   container: SVGContainer,
   domain: Domain,
   X_PADDING: number,
-  Y_PADDING: number) {
+  Y_PADDING: number,
+  axisOptions: AxisOptions) {
 
   if (!container || !container.node()) {
     return;
@@ -233,18 +273,20 @@ export function generateYScale(
 
   const HEIGHT = container.node().getBoundingClientRect().height - Y_PADDING;
   const WIDTH = container.node().getBoundingClientRect().width - X_PADDING;
+  const ticks = axisOptions.ticks !== undefined ? axisOptions.ticks : 5;
+  const tickPadding = axisOptions.padding !== undefined ? axisOptions.padding : 10;
 
   // -- Y Axis
   const yScale = scaleLinear()
     .domain(domain)
-    .range([HEIGHT, 0])
-    .nice();
+    .range([HEIGHT, 0]);
 
   const yAxis = axisLeft(yScale)
     .tickSize(-WIDTH)
-    .ticks(5)
-    .tickPadding(10)
-    .tickFormat(_conditionalFormatter);
+    .ticks(ticks)
+    .tickPadding(tickPadding)
+    .tickFormat(axisOptions.format || conditionalFormatter)
+    .tickValues(axisOptions.values || null);
 
   return yAxis;
 }
@@ -253,7 +295,7 @@ function _delayFn(_d, i) {
   return i;
 }
 
-function _conditionalFormatter(value) {
+export function conditionalFormatter(value) {
   if (value > 0 && value < 1) {
     return decimalFormatter(value);
   }
@@ -261,4 +303,13 @@ function _conditionalFormatter(value) {
   return formatter(value);
 }
 
-export default { cleanAxes, updateAxes, renderBars, renderXAxis, renderYAxis, generateYScale, renderPlot };
+export default {
+  cleanAxes,
+  conditionalFormatter,
+  generateYScale,
+  renderBars,
+  renderPlot,
+  renderXAxis,
+  renderYAxis,
+  updateAxes
+};

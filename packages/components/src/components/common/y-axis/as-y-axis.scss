@@ -12,6 +12,10 @@
       stroke: var(--widget-axis-line-color, $color-type-02);
       opacity: 0.1;
     }
+
+    line.zero {
+      opacity: 0.5;
+    }
   }
 
   .domain {

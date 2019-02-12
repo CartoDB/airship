@@ -1,4 +1,4 @@
-import { max } from 'd3-array';
+import { max, min } from 'd3-array';
 import { ScaleLinear, scaleLinear } from 'd3-scale';
 import { HistogramData } from '../interfaces';
 import { Domain } from '../types/Domain';
@@ -17,7 +17,11 @@ export function getXDomain(data: HistogramData[]): Domain {
 }
 
 export function getYDomain(data: HistogramData[]): Domain {
-  return [0, max(data, (d) => d.value)];
+  return [Math.min(0, getLowerBounds(data)), max(data, (d) => d.value)];
+}
+
+export function getLowerBounds(data: HistogramData[]): number {
+  return min(data, (d) => d.value);
 }
 
 export function getXScale(domain: Domain, width: number): ScaleLinear<number, number> {
@@ -104,4 +108,12 @@ export function isBackgroundCompatible(
 }
 
 
-export default { getXDomain, getXScale, getYDomain, isCategoricalData, prepareData, isBackgroundCompatible };
+export default {
+  getLowerBounds,
+  getXDomain,
+  getXScale,
+  getYDomain,
+  isBackgroundCompatible,
+  isCategoricalData,
+  prepareData,
+};

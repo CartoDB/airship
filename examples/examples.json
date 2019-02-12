@@ -143,6 +143,14 @@
         {
           "title": "as-histogram Background data",
           "file": "components/as-histogram-widget/interaction-disabled.html"
+        },
+        {
+          "title": "as-histogram Custom range",
+          "file": "components/as-histogram-widget/custom-range.html"
+        },
+        {
+          "title": "as-histogram Axis Options",
+          "file": "components/as-histogram-widget/axis-options.html"
         }
       ]
     },
@@ -179,6 +187,22 @@
         {
           "title": "time-series animation",
           "file": "components/as-time-series-widget/animation.html"
+        }
+      ]
+    },
+    {
+      "title": "Airship Bridge",
+      "samples": [{
+          "title": "Category bridge",
+          "file": "bridge/category/category.html"
+        },
+        {
+          "title": "Histogram bridge",
+          "file": "bridge/histogram/simple.html"
+        },
+        {
+          "title": "Time Series bridge",
+          "file": "bridge/time-series/simple.html"
         }
       ]
     }

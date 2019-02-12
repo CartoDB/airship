@@ -286,6 +286,67 @@ histogramWidget.selectedFormatter = function (selection) {
 };
 ```
 
+#### **range**: [number, number]
+
+This prop lets you specify the range of the data, so it will not be calculated each time the data changes. This is very useful to better appreciate data variations when filtering.
+
+```code
+lang: javascript
+---
+histogramWidget.data = [
+  { start: 50, end: 60, value: 5 },
+  { start: 60, end: 70, value: 30 },
+  { start: 70, end: 80, value: 45 },
+  { start: 80, end: 90, value: 60 },
+];
+
+histogramWidget.range = [0, 100]
+```
+
+#### **disableAnimation**: boolean
+
+This prop lets you disable bars animations
+
+```code
+lang: javascript
+---
+histogramWidget.disableAnimation = true
+```
+
+```code
+lang: html
+---
+<as-histogram-widget disable-animation></as-histogram-widget>
+```
+
+#### **xAxisOptions**: object
+
+This prop lets you configure several features of the X axis. It is an object that proxies several features of [d3-axis](https://github.com/d3/d3-axis/tree/a329626cdf632a1af61b7124873b70c04c42b6a8):
+
+- format: A function that takes a numeric value and returns a string
+- padding: A number, to control the space between number and axis
+- values: An array of numbers, to specify which values to display on the axis
+- ticks: A number, to specify how many values to display on the axis
+
+```hint|directive
+Please note that `values` has precedence over `ticks`, so if you set an array of values, the number of ticks is ignored.
+```
+
+```code
+lang: javascript
+---
+histogramWidget.xAxisOptions = {
+  values: [20, 25],
+  ticks: 2,
+  padding: 0,
+  format: (value) => `${value} y.o.`
+};
+```
+
+#### **yAxisOptions**: object
+
+Same as `xAxisOptions`, but for the Y axis
+
 ### Styles
 There are some CSS Variables that you can override to change visual styles.
 

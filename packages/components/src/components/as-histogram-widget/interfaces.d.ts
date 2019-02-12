@@ -22,3 +22,10 @@ export interface HistogramColorRange {
   max: number;
   color: string;
 }
+
+export interface AxisOptions {
+  format?: (value: number) => string;
+  padding?: number;
+  values?: number[];
+  ticks?: number;
+}

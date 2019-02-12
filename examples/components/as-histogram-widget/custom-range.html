@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+    <base href="/">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+    <title>Airship</title>
+    <link rel="stylesheet" href="../../../packages/styles/dist/core/core.css">
+    <link rel="stylesheet" href="../../../packages/styles/dist/buttons/buttons.css">
+    <script src="../../../packages/components/dist/airship.js"></script>
+  </head>
+
+  <body>
+    <div>
+      <button class="as-btn as-btn--primary js-data">Click to toggle data</button>
+      <p class="as-body">Note how on the first histogram, the bar height remains consistent and on the second histogram the bar height is adapted to the new data.</p>
+      <p class="as-caption">This feature is useful to have more context when filtering or showing a subset of data.</p>
+    </div>
+    <div style="width: 500px; margin-top: 16px; display: flex;">
+      <as-histogram-widget
+        id="withRange"
+        heading="With custom range"
+        description="My range is always [0, 30]"
+        show-header
+        disable-interactivity>
+      </as-histogram-widget>
+      <as-histogram-widget
+        id="withoutRange"
+        heading="Without custom range"
+        description="My range is calculated with each new data"
+        color="#FABADA"
+        show-header
+        disable-interactivity>
+      </as-histogram-widget>
+    </div>
+
+    <script>
+      var histogramWidgetWithRange = document.querySelector('#withRange');
+      var histogramWidgetWithoutRange = document.querySelector('#withoutRange');
+      var newData = false;
+
+      var data = [
+        { start: 0, end: 10, value: 0 },
+        { start: 10, end: 20, value: 10 },
+        { start: 20, end: 30, value: 15 },
+        { start: 30, end: 40, value: 20 },
+        { start: 40, end: 50, value: 30 },
+      ];
+
+      var secondData = [
+        { start: 0, end: 10, value: 0 },
+        { start: 10, end: 20, value: 10 },
+        { start: 20, end: 30, value: 15 },
+        { start: 30, end: 40, value: 0 },
+        { start: 40, end: 50, value: 0 },
+      ];
+
+      histogramWidgetWithRange.range = [0, 30];
+      histogramWidgetWithRange.data = data;
+      histogramWidgetWithoutRange.data = data;
+
+      document.querySelector('.js-data').addEventListener('click', function () {
+        histogramWidgetWithRange.data = newData ? data : secondData;
+        histogramWidgetWithoutRange.data = newData ? data : secondData;
+        newData = !newData;
+      });
+    </script>
+  </body>
+</html>

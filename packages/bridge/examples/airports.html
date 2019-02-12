@@ -1,0 +1,119 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Airship histogram & Category widget bridge example</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.11/lodash.min.js"></script>
+    <script src="https://libs.cartocdn.com/carto-vl/v1.1.1/carto-vl.js"></script>
+
+    <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.css" rel="stylesheet" />
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.js"></script>
+
+    <link rel="stylesheet" href="/packages/styles/dist/airship.css">
+    <script src="/packages/components/dist/airship.js"></script>
+    <script src="/packages/bridge/dist/asbridge.js"></script>
+</head>
+
+<body class="as-app-body">
+    <div class="as-app">
+        <div class="as-content">
+            <main class="as-main">
+                <div class="as-map-area">
+                    <div id="map"></div>
+                </div>
+                <div class="as-map-footer">
+                  <div class="as-box">
+                    <as-histogram-widget
+                      show-clear
+                      id="typeHist"
+                      heading="Type"
+                    >
+                    </as-histogram-widget>
+                  </div>
+                  <div class="as-box">
+                    <as-histogram-widget
+                      show-clear
+                      id="scaleHist"
+                      heading="Scalerank"
+                    >
+                    </as-histogram-widget>
+                  </div>
+                  <div class="as-box">
+                    <as-category-widget
+                      show-clear
+                      id="typeCat"
+                      heading="Type"
+                    >
+                    </as-category-widget>
+                  </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        const map = new mapboxgl.Map({
+          container: 'map',
+          style: carto.basemaps.darkmatter,
+          center: [-4.77, 37.88],
+          zoom: 4
+        });
+
+        carto.setDefaultAuth({
+          username: 'roman-carto',
+          apiKey: 'default_public'
+        });
+
+        const s = carto.expressions;
+
+        const source = new carto.source.SQL(`select * from ne_10m_airports`);
+        const viz = new carto.Viz(`
+          strokeWidth: 0
+          color: ramp($location, vivid)
+        `);
+
+        const vizLayer = new carto.Layer('layer', source, viz);
+
+        const typeHistogram = document.querySelector('#typeHist');
+        const scaleHistogram = document.querySelector('#scaleHist');
+        const category = document.querySelector('#typeCat');
+
+        vizLayer.addTo(map, 'watername_ocean');
+
+        const airportLayer = new AsBridge.VLBridge(
+          carto,
+          map,
+          vizLayer,
+          source
+        );
+
+        airportLayer.histogram({
+          column: 'location',
+          readOnly: false,
+          widget: typeHistogram,
+        }).enableColorMapping();
+
+        airportLayer.category({
+          column: 'location',
+          readOnly: false,
+          widget: category,
+        }).enableColorMapping();
+
+        airportLayer.histogram({
+          column: 'scalerank',
+          bucketRanges: [[2, 3], [3, 4], [4, 5], [5, 6], [6, 7], [7, 8], [8, 9]],
+          readOnly: false,
+          widget: scaleHistogram,
+        });
+
+        airportLayer.build();
+    </script>
+</body>
+
+</html>

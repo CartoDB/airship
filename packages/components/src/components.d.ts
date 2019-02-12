@@ -12,6 +12,7 @@ import {
   DropdownOption,
 } from './components/as-dropdown/types/DropdownOption';
 import {
+  AxisOptions,
   HistogramColorRange,
   HistogramData,
   HistogramSelection,
@@ -269,6 +270,10 @@ export namespace Components {
     */
     'description': string;
     /**
+    * This lets you disable the animations for the bars when showing / updating the data
+    */
+    'disableAnimation': boolean;
+    /**
     * Disables selection brushes and events for the widget
     */
     'disableInteractivity': boolean;
@@ -301,6 +306,10 @@ export namespace Components {
     */
     'noDataHeaderMessage': string;
     /**
+    * This prop lets you provide the range of the y-axis so it's not automatically calculated with data or backgroundData. It always starts at 0, you can provide the top value.
+    */
+    'range': [number, number];
+    /**
     * Use this attribute to decide if the widget should be rerendered on window resize. Defaults to true.
     */
     'responsive': boolean;
@@ -329,6 +338,10 @@ export namespace Components {
     */
     'unselectedColor': string;
     /**
+    * This prop is a proxy to some d3-axis options for the X Axis
+    */
+    'xAxisOptions': AxisOptions;
+    /**
     * Formats a number using the component's x-axis formatter if present
     */
     'xFormatter': (value: any) => any;
@@ -336,6 +349,10 @@ export namespace Components {
     * Label the x axis of the histogram with the given string.
     */
     'xLabel': string;
+    /**
+    * This prop is a proxy to some d3-axis options for the Y Axis
+    */
+    'yAxisOptions': AxisOptions;
     /**
     * Label the y axis of the histogram with the given string.
     */
@@ -371,6 +388,10 @@ export namespace Components {
     */
     'description'?: string;
     /**
+    * This lets you disable the animations for the bars when showing / updating the data
+    */
+    'disableAnimation'?: boolean;
+    /**
     * Disables selection brushes and events for the widget
     */
     'disableInteractivity'?: boolean;
@@ -405,6 +426,10 @@ export namespace Components {
     'onSelectionChanged'?: (event: CustomEvent<HistogramSelection>) => void;
     'onSelectionInput'?: (event: CustomEvent<HistogramSelection>) => void;
     /**
+    * This prop lets you provide the range of the y-axis so it's not automatically calculated with data or backgroundData. It always starts at 0, you can provide the top value.
+    */
+    'range'?: [number, number];
+    /**
     * Use this attribute to decide if the widget should be rerendered on window resize. Defaults to true.
     */
     'responsive'?: boolean;
@@ -429,9 +454,17 @@ export namespace Components {
     */
     'unselectedColor'?: string;
     /**
+    * This prop is a proxy to some d3-axis options for the X Axis
+    */
+    'xAxisOptions'?: AxisOptions;
+    /**
     * Label the x axis of the histogram with the given string.
     */
     'xLabel'?: string;
+    /**
+    * This prop is a proxy to some d3-axis options for the Y Axis
+    */
+    'yAxisOptions'?: AxisOptions;
     /**
     * Label the y axis of the histogram with the given string.
     */
@@ -783,6 +816,10 @@ export namespace Components {
     */
     'description': string;
     /**
+    * This lets you disable the animations for the bars when showing / updating the data
+    */
+    'disableAnimation': boolean;
+    /**
     * Disables selection brushes and events for the widget
     */
     'disableInteractivity': boolean;
@@ -797,7 +834,7 @@ export namespace Components {
     /**
     * Proxy to as-histogram-widget getSelection()
     */
-    'getSelection': () => Promise<number[] | string[]>;
+    'getSelection': () => Promise<string[] | number[]>;
     /**
     * Title of the widget to be displayed
     */
@@ -822,6 +859,10 @@ export namespace Components {
     * This attribute is the percentage of progress elapsed on an animation.
     */
     'progress': number;
+    /**
+    * This prop lets you provide the range of the y-axis so it's not automatically calculated with data or backgroundData. It always starts at 0, you can provide the top value.
+    */
+    'range': [number, number];
     /**
     * Use this attribute to decide if the widget should be rerendered on window resize. Defaults to true.
     */
@@ -855,6 +896,10 @@ export namespace Components {
     */
     'unselectedColor': string;
     /**
+    * This prop is a proxy to some d3-axis options for the X Axis
+    */
+    'xAxisOptions': AxisOptions;
+    /**
     * Proxy to as-histogram-widget xFormatter method
     */
     'xFormatter': (value: any) => any;
@@ -862,6 +907,10 @@ export namespace Components {
     * Label the x axis of the histogram with the given string.
     */
     'xLabel': string;
+    /**
+    * This prop is a proxy to some d3-axis options for the Y Axis
+    */
+    'yAxisOptions': AxisOptions;
     /**
     * Label the y axis of the histogram with the given string.
     */
@@ -896,6 +945,10 @@ export namespace Components {
     * Description of the widget to be displayed
     */
     'description'?: string;
+    /**
+    * This lets you disable the animations for the bars when showing / updating the data
+    */
+    'disableAnimation'?: boolean;
     /**
     * Disables selection brushes and events for the widget
     */
@@ -949,6 +1002,10 @@ export namespace Components {
     */
     'progress'?: number;
     /**
+    * This prop lets you provide the range of the y-axis so it's not automatically calculated with data or backgroundData. It always starts at 0, you can provide the top value.
+    */
+    'range'?: [number, number];
+    /**
     * Use this attribute to decide if the widget should be rerendered on window resize. Defaults to true.
     */
     'responsive'?: boolean;
@@ -977,9 +1034,17 @@ export namespace Components {
     */
     'unselectedColor'?: string;
     /**
+    * This prop is a proxy to some d3-axis options for the X Axis
+    */
+    'xAxisOptions'?: AxisOptions;
+    /**
     * Label the x axis of the histogram with the given string.
     */
     'xLabel'?: string;
+    /**
+    * This prop is a proxy to some d3-axis options for the Y Axis
+    */
+    'yAxisOptions'?: AxisOptions;
     /**
     * Label the y axis of the histogram with the given string.
     */
