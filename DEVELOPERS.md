@@ -189,10 +189,10 @@ The variables should have a less specific one as fallback, so for example when d
   --as--color--primary: white;
 
   /** <stacked-bar-widget.scss> The values used with chained fallbacks, last fallback is a css-value **/
-  --as-stacked-bar-widget--background-color: var(--as--widget__header--background-color, --as--color--primary);
+  --as--stacked-bar-widget--background-color: var(--as--widget__header--background-color, --as--color--primary);
 ```
 
-With `--stacked-bar-widget--background-color` users can control specific widgets, with the shared variable `--as--widget__header--background-color` they can control all widgets, or they can just redefine the default value `--as--color--primary`.
+With `--as--stacked-bar-widget--background-color` users can control specific widgets, with the shared variable `--as--widget__header--background-color` they can control all widgets, or they can just redefine the default value `--as--color--primary`.
 
 
 ### Naming

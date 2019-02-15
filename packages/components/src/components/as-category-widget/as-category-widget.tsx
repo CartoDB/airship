@@ -265,7 +265,7 @@ export class CategoryWidget {
     const barColor = this._getBarColor(category.color, { isSelected, isOther });
 
     const progressStyles = {
-      backgroundColor: barColor ? barColor : `var(--category-bar--color)`,
+      backgroundColor: barColor ? barColor : `var(--as--category-bar--color)`,
       width: `${(category.value / maximumValue) * 100}%`
     };
 

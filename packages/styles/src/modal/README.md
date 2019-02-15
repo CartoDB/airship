@@ -19,3 +19,12 @@ showSource: true
   </div>
 </main>
 ```
+
+### CSS Variables
+
+```
+.as-modal {
+  --as--modal--background-color
+  --as--modal--content--background-color
+}
+```

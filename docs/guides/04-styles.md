@@ -94,7 +94,7 @@ There are many properties that can be customizable to create your own look and f
 
 **SASS Variables**
 
-You can customize Airship even more using SASS Variables. There's a whole set of variables for colors, shadows, sizes and typography to customize within Airship. Please check them out [here](https://github.com/CartoDB/airship/tree/master/packages/styles/src/core/variables).
+You can customize Airship even more using SASS Variables. There is a whole set of variables for colors, shadows, sizes and typography to customize within Airship. Please check them out [here](https://github.com/CartoDB/airship/tree/master/packages/styles/src/core/variables).
 
 To customize SASS variables, you need to include your own variables matching Airship ones before including Airship styles.
 

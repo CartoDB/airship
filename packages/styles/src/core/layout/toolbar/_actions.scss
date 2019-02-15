@@ -3,7 +3,7 @@
 
   display: flex;
   position: absolute;
-  z-index: 5;
+  z-index: $z-index-5;
   top: $toolbar-size;
   right: 0;
   bottom: 0;

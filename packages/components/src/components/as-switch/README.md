@@ -26,7 +26,19 @@ It is a two state button that can be on or off. This component issues a "changed
 ```html
 <as-switch label="Entire Apartment"></as-switch>
 ```
+## CSS Variables
 
+```
+as-switch {
+  --as--switch--color--background-active
+  --as--switch--color--background-checked
+  --as--switch--color--background-default
+  --as--switch--color--background-disabled
+  --as--switch--color--checked-thumb
+  --as--switch--color--color-disabled
+  --as--switch--color--thumb
+}
+```
 
 ## Props
 

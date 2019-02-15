@@ -36,6 +36,19 @@ showSource: false
   ];
 </script>
 ```
+### CSS Variables
+
+```
+as-category-widget {
+  --as--category-bar--background-color
+  --as--category-bar--color
+  --as--category-widget--background-color
+  --as--category-widget--bar--height
+  --as--category-widget--description--color
+}
+```
+
+
 
 ### Props
 
@@ -230,40 +243,40 @@ stackedBar.errorDescription = 'There is no internet connection.';
 ### Styles
 There are some CSS Variables that you can override to change visual styles.
 
-#### **\--category-widget\--description\--color**
+#### **\--as--category-widget\--description\--color**
 Default: $color-type-02 (`#1785FB`)
 
 ```code
 lang: javascript
 ---
-document.body.style.setProperty('--category-widget--description--color', '#1785FB')
+document.body.style.setProperty('--as--category-widget--description--color', '#1785FB')
 ```
 
-#### **\--category-widget\--bar\--height**
+#### **\--as--category-widget\--bar\--height**
 Default: `4px`
 
 ```code
 lang: javascript
 ---
-document.body.style.setProperty('--category-widget--bar--height', '8px')
+document.body.style.setProperty('--as--category-widget--bar--height', '8px')
 ```
 
-#### **\--category-widget\--background-color**
+#### **\--as--category-widget\--background-color**
 Default: $color-ui-10 (`#FFF`)
 
 ```code
 lang: javascript
 ---
-document.body.style.setProperty('--category-widget--background-color', '#F5F5F5')
+document.body.style.setProperty('--as--category-widget--background-color', '#F5F5F5')
 ```
 
-#### **\--category-bar\--background-color**
+#### **\--as--category-bar\--background-color**
 Default: $color-ui-20 (`#F5F5F5`)
 
 ```code
 lang: javascript
 ---
-document.body.style.setProperty('--category-bar--background-color', '#E2E6E3')
+document.body.style.setProperty('--as--category-bar--background-color', '#E2E6E3')
 ```
 
 ### Events

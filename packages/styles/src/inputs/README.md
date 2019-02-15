@@ -85,3 +85,34 @@ showSource: true
   <textarea class="as-textarea" rows="4" required></textarea>
 </p>
 ```
+
+## CSS Variables
+
+```
+.as-input,
+.as-textarea {
+    --as--input--font
+  // Default
+  --as--input--background-color
+  --as--input--color
+  --as--input--placeholder-color
+  --as--input--shadow-color
+  --as--input--hover--shadow-color
+  // Invalid
+  --as--input--invalid--background-color
+  --as--input--invalid--color
+  --as--input--invalid-placeholder--color
+  --as--input--invalid-shadow-color
+  --as--input--invalid-hover--shadow-color
+  // Disabled
+  --as--input--disabled--background-color
+  --as--input--disabled--color
+  --as--input--disabled-placeholder--color
+  --as--input--disabled-hover--shadow-color
+  // Read Only
+  --as--input--readonly--background-color
+  --as--input--readonly--color
+  --as--input--readonly-placeholder--color
+  --as--input--readonly-hover--shadow-color
+}
+```

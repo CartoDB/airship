@@ -18,11 +18,8 @@ showSource: true
 <p class="as-subheader as-color--type-04">.as-color--type-04</p>
 
 <!-- Support colors -->
-<p class="as-subheader as-color--support-01">.as-color--support-01</p>
 <p class="as-subheader as-color--error">.as-color--error</p>
-<p class="as-subheader as-color--support-02">.as-color--support-02</p>
 <p class="as-subheader as-color--warning">.as-color--warning</p>
-<p class="as-subheader as-color--support-03">.as-color--support-03</p>
 <p class="as-subheader as-color--success">.as-color--success</p>
 ```
 
@@ -44,12 +41,16 @@ showSource: true
 <div class="as-p--12 as-mb--12 as-subheader as-bg--ui-04">.as-bg--ui-04</div>
 
 <!-- Support colors -->
-<div class="as-p--12 as-mb--12 as-subheader as-bg--support-01">.as-bg--support-01</div>
 <div class="as-p--12 as-mb--12 as-subheader as-bg--error">.as-bg--error</div>
-<div class="as-p--12 as-mb--12 as-subheader as-bg--support-02">.as-bg--support-02</div>
 <div class="as-p--12 as-mb--12 as-subheader as-bg--warning">.as-bg--warning</div>
-<div class="as-p--12 as-mb--12 as-subheader as-bg--support-03">.as-bg--support-03</div>
 <div class="as-p--12 as-mb--12 as-subheader as-bg--success">.as-bg--success</div>
+
+<!-- Palette colors -->
+<div class="as-p--12 as-mb--12 as-subheader as-bg--gray">.as-bg--gray</div>
+<div class="as-p--12 as-mb--12 as-subheader as-bg--blue">.as-bg--blue</div>
+<div class="as-p--12 as-mb--12 as-subheader as-bg--green">.as-bg--green</div>
+<div class="as-p--12 as-mb--12 as-subheader as-bg--yellow">.as-bg--yellow</div>
+<div class="as-p--12 as-mb--12 as-subheader as-bg--pink">.as-bg--pink</div>
 ```
 
 # Spacing utilities

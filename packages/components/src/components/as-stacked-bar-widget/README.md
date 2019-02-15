@@ -53,6 +53,13 @@ showSource: false
 </script>
 ```
 
+### CSS Variables
+
+```
+as-stacked-bar-widget {
+  --as--stacked-bar-widget--background-color
+}
+```
 
 ### Props
 

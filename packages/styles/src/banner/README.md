@@ -18,7 +18,7 @@ showSource: true
 ```html
 showSource: true
 ---
-<div class="as-banner as-bg--success as-color--type-04">
+<div class="as-banner as-banner--success">
   <div class="as-banner__icon">
     <i class="as-icon-tick-circle-fill"></i>
   </div>
@@ -50,4 +50,41 @@ showSource: true
   </div>
   <div class="as-banner__content">An error has ocurred. Could not retreive customer information</div>
 </div>
+```
+
+## CSS Variables
+
+### Default
+
+```
+.as-banner {
+  --as--banner--background-color
+  --as--banner--color
+}
+```
+
+### For notifications
+
+```
+.as-banner--success {
+  --as--banner--background-color
+  --as--banner--color
+}
+```
+### For warnings
+
+```
+.as-banner--warning {
+  --as--banner--background-color
+  --as--banner--color
+}
+```
+
+### For errors
+
+```
+.as-banner--error {
+  --as--banner--background-color
+  --as--banner--color
+}
 ```

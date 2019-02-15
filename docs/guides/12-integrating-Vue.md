@@ -13,7 +13,7 @@ To import the styles, we need to include `airship.css` in the file:
 import '@carto/airship-style/dist/airship.css';
 ```
 
-If you are not using Vue CLI, you will need to include `css` webpack loader to be able to parse and include styles within your bundle as long as you haven't had them installed yet.
+If you are not using Vue CLI, you will need to include `css` webpack loader to be able to parse and include styles within your bundle as long as you have not had them installed yet.
 
 To install CSS loader:
 ```
@@ -31,7 +31,7 @@ You will need to tell Webpack to use these loaders by changing the configuration
 ### Integrating Web Components
 On top of adding Airship styles, we need to load our components into your application. You can do it below our styles import in the main entry point of the application.
 
-First, we need to tell Vue to ignore elements starting with `as-`, which are our Airship components. We don't want Vue to raise an error everytime an Airship component is included in a template.
+First, we need to tell Vue to ignore elements starting with `as-`, which are our Airship components. We do not want Vue to raise an error everytime an Airship component is included in a template.
 
 ```js
 import Vue from 'vue';
@@ -50,7 +50,7 @@ defineCustomElements(window);
 #### Using Web Components in templates
 To add a Web Component to a Vue template you just need to use the HTML syntax that is provided in the reference.
 
-Although Web Components are supported in Vue, there's one caveat when it comes to injecting data into the component. The only properties that can be passed via attributes are text and number properties, whether via direct text or injecting the property in the template.
+Although Web Components are supported in Vue, there is one caveat when it comes to injecting data into the component. The only properties that can be passed via attributes are text and number properties, whether via direct text or injecting the property in the template.
 
 ```html
 <as-category-widget
@@ -96,7 +96,7 @@ export default {
 
 We create an easy-to-use reference to the widget so that we can reuse it in other parts of our component. Then, we listen to `categoriesSelected` event where you can put your own custom code to perform the action that you want.
 
-It will only listen once to component event and it won't create multiple unneeded event listeners by doing it in `mounted` callback.
+It will only listen once to component event and it will not create multiple unneeded event listeners by doing it in `mounted` callback.
 
 ##### Passing complex properties to component
 The way to pass complex properties to the component is very similar to listening to events.
@@ -181,7 +181,7 @@ To mirror the Airship Component, we need to create a new Vue component like this
 </script>
 ```
 
-It includes all the logic management encapsulated in one component. You don't have to mimick all component's properties or events either, only the ones that you are going to use.
+It includes all the logic management encapsulated in one component. You do not have to mimick all component's properties or events either, only the ones that you are going to use.
 
 And then, you will use that component as you would do with your other Vue components.
 

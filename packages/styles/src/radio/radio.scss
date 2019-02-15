@@ -1,6 +1,12 @@
 @import "../core/_dev";
 
 .as-radio {
+  --as--radio--border-color: var(--as--color--ui-04, #{$color-ui-04});
+  --as--radio--hover--border-color: var(--as--color--complementary, #{$color-complementary});
+  --as--radio--checked--border-color: var(--as--color--primary, #{$color-primary});
+  --as--radio--disabled--color: var(--as--color--ui-04, #{$color-ui-04});
+  --as--radio--disabled--background: var(--as--color--ui-03, #{$color-ui-03});
+
   display: flex;
   align-items: center;
   margin-bottom: get-spacing(2);
@@ -17,7 +23,7 @@
     border: none;
     border-radius: 50%;
     background: none;
-    box-shadow: inset 0 0 0 1px rgba($color-type-01, 0.16);
+    box-shadow: inset 0 0 0 1px var(--as--radio--border-color);
     cursor: pointer;
     -webkit-appearance: none;
 
@@ -33,36 +39,36 @@
     }
 
     &:hover {
-      box-shadow: inset 0 0 0 1px var(--as--color--complementary);
+      box-shadow: inset 0 0 0 1px var(--as--radio--hover--border-color);
     }
 
     &:checked {
-      box-shadow: inset 0 0 0 1px var(--as--color--primary);
+      box-shadow: inset 0 0 0 1px var(--as--radio--checked--border-color);
 
       &::after {
         animation: radioIn 300ms;
         opacity: 1;
         animation-fill-mode: forwards;
-        background-color: var(--as--color--primary);
+        background-color: var(--as--radio--checked--border-color);
       }
     }
 
     &:focus {
       outline: none;
-      box-shadow: inset 0 0 0 2px var(--as--color--primary);
+      box-shadow: inset 0 0 0 2px var(--as--radio--checked--border-color);
     }
 
     &:disabled {
-      background-color: var(--as--color--ui-03);
-      box-shadow: inset 0 0 0 1px rgba($color-type-01, 0.16);
+      background-color: var(--as--radio--disabled--background);
+      box-shadow: inset 0 0 0 1px var(--as--radio--disabled--color);
       cursor: not-allowed;
     }
 
     &:checked:disabled {
-      box-shadow: inset 0 0 0 1px rgba($color-type-01, 0.16);
+      box-shadow: inset 0 0 0 1px var(--as--radio--disabled--color);
 
       &::after {
-        background-color: rgba($color-type-01, 0.16);
+        background-color: var(--as--radio--disabled--color);
       }
     }
 
@@ -70,6 +76,10 @@
       margin-left: 8px;
     }
   }
+}
+
+.as-radio-list {
+  padding-left: 0;
 }
 
 @keyframes radioIn {

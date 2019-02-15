@@ -149,3 +149,41 @@ showSource: true
 <input type="button" value="Input button primary" class="as-btn as-btn--primary"/>
 <input type="button" value="Input button secondary" class="as-btn as-btn--secondary"/>
 ```
+
+## CSS Variables
+
+### Buttons
+
+```
+.as-btn {
+  --as--btn--opacity--disabled
+  // Default
+  --as--btn--type-color--default
+  --as--btn--ui-color--default--hover
+  --as--btn--ui-color--default--active
+  --as--btn--ui-color--default
+  // Primary
+  --as--btn--type-color--primary
+  --as--btn--ui-color--primary
+  --as--btn--ui-color--primary--hover
+  --as--btn--ui-color--primary--active
+  // Secondary
+  --as--btn--type-color--secondary
+  --as--btn--ui-color--secondary
+  --as--btn--ui-color--secondary--hover
+  --as--btn--ui-color--secondary--active
+  // Complementary
+  --as--btn--type-color--complementary
+  --as--btn--ui-color--complementary
+  --as--btn--ui-color--complementary--hover
+  --as--btn--ui-color--complementary--active
+}
+```
+
+### Button Groups
+
+```
+.as-button-group {
+  --as--button-group--type-color--default
+}
+```

@@ -1,15 +1,16 @@
 .y-axis {
-  --widget-axis-line-color: var(--as--color--type-02, $color-type-02);
+  --widget-axis-text-color: var(--as--color--type-01, #{$color-type-01});
+  --widget-axis-line-color: var(--as--color--ui-05, #{$color-ui-05});
 
   .tick {
     text {
       width: 30px;
-      fill: var(--widget-axis-text-color, rgb(44, 44, 44));
+      fill: var(--widget-axis-text-color);
       white-space: pre;
     }
 
     line {
-      stroke: var(--widget-axis-line-color, $color-type-02);
+      stroke: var(--widget-axis-line-color);
       opacity: 0.1;
     }
 

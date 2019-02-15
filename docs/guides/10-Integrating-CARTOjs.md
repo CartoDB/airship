@@ -2,10 +2,10 @@
 
 In this guide, you will learn how to create a map and a Category Widget showing data coming from the map, and reacting to changes in the map, as well as filtering data by using Category Widget.
 
-We'll use CARTO.js v4 and Airship to show how they work together properly.
+We will use CARTO.js v4 and Airship to show how they work together properly.
 
 ### Airship setup
-Let's start from scratch creating an empty `index.html` file with this scaffolding for this guide.
+We will start from scratch creating an empty `index.html` file with this scaffolding for this guide.
 ```html
 > index.html
 
@@ -27,7 +27,7 @@ Let's start from scratch creating an empty `index.html` file with this scaffoldi
 
 To use Airship styles and components we need to include them in our HTML.
 
-Let's include Airship components and styles by including the following snippet in the `<head>` of our application.
+We will include Airship components and styles by adding the following snippet to the `<head>` of our application.
 ```html
 <!-- Include CSS  -->
 <link rel="stylesheet" href="https://libs.cartocdn.com/airship-style/%AS-VERSION%/airship.css">
@@ -143,7 +143,7 @@ Adding a Category Widget is as simple as including `<as-category-widget>` tag wi
 </body>
 ```
 
-Although the widget is present in our layout, it lacks some data to display. Let's populate it with data from CARTO.js dataviews.
+Although the widget is present in our layout, it lacks some data to display. Let us populate it with data from CARTO.js dataviews.
 
 **Populating Category Widget with CARTO.js dataviews**
 

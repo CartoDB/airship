@@ -83,3 +83,17 @@ showSource: true
   </tbody>
 </table>
 ```
+
+## CSS Variables
+
+```
+.as-table {
+  --as--table-border--color
+  --as--table-cell--background-color
+  --as--table-header--background-color
+  --as--table-header--color
+  --as--table--color
+  --as--table-row--color-hover
+  --as--table-cell-color-hover
+}
+```
