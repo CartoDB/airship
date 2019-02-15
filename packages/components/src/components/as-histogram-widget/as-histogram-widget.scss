@@ -5,7 +5,7 @@ $label-height: 20px;
 
 as-histogram-widget {
   --as--histogram-widget--background-color: var(--as--color--ui-01, #FFF);
-  --as--histogram-widget--figure--stroke-color: var(--as--color--primary, #{$color-primary});
+  --as--histogram-widget--figure--stroke-color: var(--as--color--secondary, #{$color-secondary});
   --as--histogram-widget--figure--text-color: var(--as--color--type-01, #{$color-type-01});
   --as--histogram-widget--label-color: var(--as--color--type-01, #{$color-type-01});
   --as--histogram-widget--label-font: var(--as--font--caption);
@@ -81,7 +81,7 @@ as-histogram-widget {
 
     .handle--custom {
       stroke-linecap: round;
-      stroke: var(--as--histogram-widget--stroke--text-color);
+      stroke: var(--as--histogram-widget--figure--stroke-color);
       fill: white;
       cursor: ew-resize;
       pointer-events: none;
@@ -92,7 +92,7 @@ as-histogram-widget {
     }
 
     .bottomline {
-      stroke: var(--as--histogram-widget--stroke--text-color);
+      stroke: var(--as--histogram-widget--figure--stroke-color);
     }
   }
 
