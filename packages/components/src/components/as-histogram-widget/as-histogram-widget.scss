@@ -28,8 +28,10 @@ as-histogram-widget {
     min-height: 0;
   }
 
-  .as-histogram-widget__clear {
-    margin-top: get-spacing(2);
+  .as-histogram-widget--categorical {
+    .x-axis {
+      opacity: 0;
+    }
   }
 
   .figure {
@@ -60,18 +62,11 @@ as-histogram-widget {
       }
     }
 
-    .bar {
-      opacity: 0.7;
+    .foreground-bar {
       cursor: pointer;
     }
 
     @import '../common/y-axis/as-y-axis.scss';
-
-    .plot {
-      rect {
-        cursor: pointer;
-      }
-    }
 
     .x-axis {
       .domain,
@@ -92,10 +87,6 @@ as-histogram-widget {
       pointer-events: none;
     }
 
-    .handle--grab {
-      transform: translateY(5px);
-    }
-
     .grab-line {
       stroke: #CCC;
     }
@@ -109,6 +100,17 @@ as-histogram-widget {
     svg .bar {
       cursor: inherit;
     }
+  }
+
+  .as-histogram-widget__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: get-spacing(2);
+  }
+
+  .as-histogram-widget__selection {
+    margin: 0;
   }
 
   .x-label,
