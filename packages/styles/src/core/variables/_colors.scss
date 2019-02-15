@@ -4,15 +4,15 @@
 $color-primary: #1785FB !default;
 $color-primary--hover: #1A5FAA !default;
 $color-primary--active: #263D56 !default;
-$color-primary-alpha: #263D561F !default;
+$color-primary-alpha: unquote('#263D561F') !default;
 $color-secondary: #0F2D53 !default;
 $color-secondary--hover: #0F2D53 !default;
 $color-secondary--active: #0F2D53 !default;
-$color-secondary-alpha: #0F2D531F !default;
+$color-secondary-alpha: unquote('#0F2D531F') !default;
 $color-complementary: #47DB99 !default;
 $color-complementary--hover: #E0F9EE !default;
 $color-complementary--active: #C6F4DF !default;
-$color-complementary-alpha: #47DB991F !default;
+$color-complementary-alpha: unquote('#47DB991F') !default;
 
 // Typography
 $color-type-01: #2C2C2C !default;
@@ -42,18 +42,18 @@ $color-text: #000 !default;
 $color-text-contrast: #FFF !default;
 
 // Utils - Colors with alpha
-$color-gray-alpha: #E2E6E31F !default;
-$color-green-alpha: #E1EECA1F !default;
-$color-blue-alpha: #B5E0F91F !default;
-$color-pink-alpha: #E4D8EB1F !default;
-$color-yellow-alpha: #F8E71C1F !default;
-$color-black-alpha: #0000001F !default;
-$color-white-alpha: #FFFFFF1F !default;
-$color-text-alpha: #0000001F !default;
-$color-text-contrast-alpha: #FFFFFF1F !default;
-$color-error-alpha: #F3522B1F !default;
-$color-warning-alpha: #FDB32B1F !default;
-$color-success-alpha: #80B6221F !default;
+$color-gray-alpha: unquote('#E2E6E31F') !default;
+$color-green-alpha: unquote('#E1EECA1F') !default;
+$color-blue-alpha: unquote('#B5E0F91F') !default;
+$color-pink-alpha: unquote('#E4D8EB1F') !default;
+$color-yellow-alpha: unquote('#F8E71C1F') !default;
+$color-black-alpha: unquote('#0000001F') !default;
+$color-white-alpha: unquote('#FFFFFF1F') !default;
+$color-text-alpha: unquote('#0000001F') !default;
+$color-text-contrast-alpha: unquote('#FFFFFF1F') !default;
+$color-error-alpha: unquote('#F3522B1F') !default;
+$color-warning-alpha: unquote('#FDB32B1F') !default;
+$color-success-alpha: unquote('#80B6221F') !default;
 $color-shadow: rgba(44, 44, 44, 0.16) !default;
 $color-modal: rgba(44, 44, 44, 0.8) !default;
 
