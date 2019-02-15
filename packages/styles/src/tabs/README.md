@@ -97,5 +97,6 @@ lang: html
   --as--tabs--item--border-color-active
   --as--tabs--item--border-color-hover-active
   --as--tabs--subheader--font
+  --as--tabs--horizontal-padding
 }
 ```

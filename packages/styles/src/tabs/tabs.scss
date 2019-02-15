@@ -11,13 +11,13 @@
   --as--tabs--item--border-color-active: var(--as--color--secondary, #{$color-secondary});
   --as--tabs--item--border-color-hover-active: var(--as--color--secondary, #{$color-secondary});
   --as--tabs--subheader--font: var(--as--font--subheader);
+  --as--tabs--horizontal-padding: 12px;
 
-  @include padding(0 3);
   display: flex;
   flex-wrap: nowrap;
   justify-content: flex-start;
   margin: 0;
-  padding: 0;
+  padding: 0 var(--as--tabs--horizontal-padding);
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   -ms-overflow-style: -ms-autohiding-scrollbar;
