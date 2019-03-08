@@ -10,7 +10,8 @@
     <title>Airship Bridge Time Series example</title>
 
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.11/lodash.min.js"></script>
-    <script src="https://libs.cartocdn.com/carto-vl/v1.1.1/carto-vl.min.js"></script>
+    <!-- <script src="https://libs.cartocdn.com/carto-vl/v1.1.1/carto-vl.min.js"></script> -->
+    <script src="/packages/bridge/lib/carto-vl.js"></script>
 
     <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.css" rel="stylesheet" />
     <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.js"></script>
@@ -42,6 +43,7 @@
                       show-clear
                       id="year"
                       heading="Year"
+                      description='in which building was registered'
                     >
                     </as-histogram-widget>
                   </div>
@@ -63,12 +65,16 @@
           apiKey: 'default_public'
         });
 
-        const source = new carto.source.SQL(`with t as (select *, date_part('year', beginning) as timestamp from cordoba_catastro_simple) select * from t where timestamp > 1900`);
+        const source = new carto.source.SQL(`
+          select * from cordoba_catastro_simple where year > 1900 and year < 2018
+        `);
+
         const viz = new carto.Viz(`
           @duration: 30
-          @min: globalMin($timestamp)
-          @max: globalMax($timestamp)
-          @animation: animation(linear($timestamp, 1900, 2017), @duration, fade(0.1, ${Number.MAX_SAFE_INTEGER}))
+          @min: globalMin($year)
+          @max: globalMax($year)
+          @derp: globalHistogram($year)
+          @animation: animation(linear($year, 1900, 2017), @duration, fade(0.1, ${Number.MAX_SAFE_INTEGER}))
 
           strokeWidth: 0
         `);
@@ -96,17 +102,19 @@
         );
           
         bridge.timeSeries({
-          column: 'timestamp',
+          column: 'year',
           buckets: 30,
           readOnly: false,
-          widget: timeWidget
+          widget: timeWidget,
+          totals: true
         });
 
         bridge.histogram({
-          column: 'timestamp',
+          column: 'year',
           buckets: 30,
           readOnly: false,
-          widget: yearWidget
+          widget: yearWidget,
+          totals: true
         });
 
         bridge.build();

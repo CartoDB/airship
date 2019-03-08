@@ -10,7 +10,8 @@
     <title>Airship histogram & Category widget bridge example</title>
 
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.11/lodash.min.js"></script>
-    <script src="https://libs.cartocdn.com/carto-vl/v1.1.1/carto-vl.js"></script>
+    <!-- <script src="https://libs.cartocdn.com/carto-vl/v1.1.1/carto-vl.js"></script> -->
+    <script src="/packages/bridge/lib/carto-vl.js"></script>
 
     <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.css" rel="stylesheet" />
     <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.js"></script>
@@ -52,6 +53,14 @@
                     >
                     </as-category-widget>
                   </div>
+                  <div class="as-box">
+                    <as-histogram-widget
+                      show-clear
+                      id="lonCat"
+                      heading="Longitude"
+                    >
+                    </as-histogram-widget>
+                  </div>
                 </div>
             </main>
         </div>
@@ -72,7 +81,7 @@
 
         const s = carto.expressions;
 
-        const source = new carto.source.SQL(`select * from ne_10m_airports`);
+        const source = new carto.source.SQL(`select *, ST_X(the_geom) as lon from ne_10m_airports`);
         const viz = new carto.Viz(`
           strokeWidth: 0
           color: ramp($location, vivid)
@@ -83,36 +92,46 @@
         const typeHistogram = document.querySelector('#typeHist');
         const scaleHistogram = document.querySelector('#scaleHist');
         const category = document.querySelector('#typeCat');
+        const lonCat = document.querySelector('#lonCat');
 
         vizLayer.addTo(map, 'watername_ocean');
 
-        const airportLayer = new AsBridge.VLBridge(
+        const bridge = new AsBridge.VLBridge(
           carto,
           map,
           vizLayer,
           source
         );
 
-        airportLayer.histogram({
+        bridge.histogram({
           column: 'location',
           readOnly: false,
           widget: typeHistogram,
         }).enableColorMapping();
 
-        airportLayer.category({
+        bridge.category({
           column: 'location',
           readOnly: false,
           widget: category,
         }).enableColorMapping();
 
-        airportLayer.histogram({
+        bridge.histogram({
           column: 'scalerank',
           bucketRanges: [[2, 3], [3, 4], [4, 5], [5, 6], [6, 7], [7, 8], [8, 9]],
           readOnly: false,
           widget: scaleHistogram,
+          totals: true
         });
 
-        airportLayer.build();
+        bridge.histogram({
+          column: 'lon',
+          buckets: 10,
+          readOnly: false,
+          widget: lonCat,
+          totals: true
+        });
+
+        bridge.build();
     </script>
 </body>
 

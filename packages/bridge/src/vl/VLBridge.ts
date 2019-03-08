@@ -58,6 +58,7 @@ export default class VLBridge {
     this._id = layer.id;
 
     this._rebuildFilters = this._rebuildFilters.bind(this);
+    this._updateDataLayerVariables = this._updateDataLayerVariables.bind(this);
 
     if (!semver.satisfies(carto.version, VL_VERSION)) {
       throw new Error(`Provided VL version ${carto.version} not supported. Must satisfy ${VL_VERSION}`);
@@ -77,7 +78,8 @@ export default class VLBridge {
       buckets,
       bucketRanges,
       readOnly,
-      widget
+      widget,
+      totals
     } = args;
 
     const histogram = new NumericalHistogramFilter(
@@ -88,7 +90,8 @@ export default class VLBridge {
       buckets,
       this._source,
       bucketRanges,
-      readOnly
+      readOnly,
+      totals
     );
 
     this._addFilter(histogram);
@@ -139,7 +142,8 @@ export default class VLBridge {
       buckets,
       bucketRanges,
       readOnly,
-      widget
+      widget,
+      totals
     } = args;
 
     if (buckets === undefined && bucketRanges === undefined) {
@@ -147,7 +151,7 @@ export default class VLBridge {
       return this.categoricalHistogram({ column, readOnly, widget: histogramWidget });
     }
 
-    return this.numericalHistogram({ column, readOnly, buckets, bucketRanges, widget });
+    return this.numericalHistogram({ column, readOnly, buckets, bucketRanges, widget, totals });
   }
 
   /**
@@ -195,7 +199,8 @@ export default class VLBridge {
     column,
     buckets,
     readOnly,
-    widget
+    widget,
+    totals
   }: NumericalHistogramOptions) {
     if (this._animation) {
       throw new Error('There can only be one Time Series animation');
@@ -213,7 +218,8 @@ export default class VLBridge {
       buckets,
       column,
       readOnly,
-      widget
+      widget,
+      totals
     });
 
     histogram.setTimeSeries(true);
@@ -251,6 +257,7 @@ export default class VLBridge {
 
   private _addFilter(filter: BaseFilter) {
     filter.on('filterChanged', this._rebuildFilters);
+    filter.on('expressionReady', this._updateDataLayerVariables);
     this._vizFilters.push(filter);
   }
 
@@ -281,12 +288,8 @@ export default class VLBridge {
    * @memberof VLBridge
    */
   private _buildDataLayer() {
-    const variables = {};
+    const variables = this._getVariables();
     const s = this._carto.expressions;
-
-    for (const filter of this._vizFilters) {
-      variables[filter.name] = filter.expression;
-    }
 
     const viz = new this._carto.Viz({
       color: s.rgba(0, 0, 0, 0),
@@ -298,6 +301,32 @@ export default class VLBridge {
     this._readOnlyLayer.addTo(this._map);
 
     this._vizFilters.forEach((filter) => filter.setDataLayer(this._readOnlyLayer));
+  }
+
+  private _getVariables() {
+    const variables = this._readOnlyLayer !== undefined ? this._readOnlyLayer.viz.variables : {};
+
+    for (const filter of this._vizFilters) {
+      const name = filter.name;
+
+      if (filter.globalExpression) {
+        variables[`${name}_global`] = filter.globalExpression;
+      }
+
+      if (filter.expression) {
+        variables[name] = filter.expression;
+      }
+    }
+
+    return variables;
+  }
+
+  private _updateDataLayerVariables(payload) {
+    if (!this._readOnlyLayer.viz) {
+      return;
+    }
+
+    this._readOnlyLayer.viz.variables[payload.name] = payload.expression;
   }
 
   /**

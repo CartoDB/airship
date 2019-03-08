@@ -441,7 +441,6 @@ export class HistogramWidget {
       return;
     }
 
-    this.binsScale = binsScale(this._data);
     this.isCategoricalData = isCategoricalData(this._data);
 
     requestAnimationFrame(() => {
@@ -919,7 +918,10 @@ export class HistogramWidget {
   }
 
   private _dataForDomain() {
-    if (this._backgroundData === null || this._backgroundData.length === 0 || this._mockBackground) {
+    const maxData = Math.max.apply(window, this._data.map((data) => data.value));
+    const maxBackground = Math.max.apply(window, this._backgroundData.map((data) => data.value));
+
+    if (maxData > maxBackground) {
       return this._data;
     }
 

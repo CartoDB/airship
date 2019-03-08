@@ -76,6 +76,18 @@ export abstract class BaseFilter {
   public abstract get expression(): any;
 
   /**
+   * If the filter returns this, this expression will be assigned to a variable called this.name_global
+   *
+   * @readonly
+   * @abstract
+   * @type {*}
+   * @memberof BaseFilter
+   */
+  public get globalExpression() {
+    return null;
+  }
+
+  /**
    * Returns the name of the filter. The name is a compound of the type, the column and an internal counter to prevent
    * collisions. It will be used as the name for the VL variable containing BaseFilter.expression.
    *

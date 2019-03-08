@@ -19,7 +19,9 @@ import { BaseHistogramFilter } from './BaseHistogramFilter';
 export class NumericalHistogramFilter extends BaseHistogramFilter<[number, number]> {
   private _lastHistogram: VLNumericalHistogram = null;
   private _isTimeSeries: boolean;
+  private _totals: boolean;
   private _bucketRanges: BucketRange[];
+  private _globalHistogram: VLNumericalHistogram;
 
   /**
    * Creates an instance of NumericalHistogramFilter.
@@ -47,11 +49,13 @@ export class NumericalHistogramFilter extends BaseHistogramFilter<[number, numbe
     nBuckets: number,
     source: any,
     bucketRanges: BucketRange[],
-    readOnly: boolean = true
+    readOnly: boolean = true,
+    showTotals: boolean = false
   ) {
     super('numerical', carto, layer, histogram, columnName, source, readOnly);
     this._buckets = bucketRanges !== undefined ? bucketRanges.length : nBuckets;
     this._bucketRanges = bucketRanges;
+    this._totals = showTotals;
   }
 
   /**
@@ -81,9 +85,22 @@ export class NumericalHistogramFilter extends BaseHistogramFilter<[number, numbe
    * @memberof NumericalHistogramFilter
    */
   public get expression(): string {
+    if (this._totals && !this._globalHistogram) {
+      return null;
+    }
+
     const s = this._carto.expressions;
 
     return s.viewportHistogram(s.prop(this._column), this._bucketArg());
+  }
+
+  public get globalExpression(): any {
+    if (!this._totals) {
+      return null;
+    }
+
+    const s = this._carto.expressions;
+    return s.globalHistogram(s.prop(this._column), this._bucketArg());
   }
 
   /**
@@ -116,12 +133,27 @@ export class NumericalHistogramFilter extends BaseHistogramFilter<[number, numbe
 
   protected bindDataLayer()  {
     this._dataLayer.on('updated', () => {
+      if (this._totals && !this._globalHistogram) {
+        this._globalHistogram = (this._dataLayer.viz.variables[`${this.name}_global`] as VLNumericalHistogram);
+
+        if (this._globalHistogram) {
+          this._bucketRanges = this._globalHistogram.value.map(
+            (value) => ([value.x[0], value.x[1]] as [number, number])
+          );
+
+          this._emitter.emit('expressionReady', { name: this.name, expression: this.expression });
+        }
+
+        this._widget.backgroundData = conversion.numerical(this._globalHistogram);
+      }
+
       const newHistogram = (this._dataLayer.viz.variables[this.name] as VLNumericalHistogram);
       if (!newHistogram) {
         return;
       }
 
-      if (this._lastHistogram === null || !isNumericalHistogramEqual(this._lastHistogram, newHistogram)) {
+      if (newHistogram.value !== null &&
+          (this._lastHistogram === null || !isNumericalHistogramEqual(this._lastHistogram, newHistogram))) {
         this._emitter.emit('rangeChanged', [
           newHistogram.value[0].x[0],
           newHistogram.value[newHistogram.value.length - 1].x[1]

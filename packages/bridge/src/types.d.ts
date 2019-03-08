@@ -90,6 +90,14 @@ interface NumericalHistogramOptions {
    * @type {(HTMLAsHistogramWidgetElement | HTMLAsTimeSeriesWidgetElement)}
    */
   widget: HTMLAsHistogramWidgetElement | HTMLAsTimeSeriesWidgetElement;
+
+  /**
+   * Whether the widget should show the totals or not
+   *
+   * @type {boolean}
+   * @memberof NumericalHistogramOptions
+   */
+  totals: boolean;
 }
 
 /**
