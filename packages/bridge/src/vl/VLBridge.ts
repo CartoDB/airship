@@ -3,8 +3,8 @@ import { BaseFilter } from './base/BaseFilter';
 import { CategoryFilter } from './category/CategoryFilter';
 import { CategoricalHistogramFilter } from './histogram/CategoricalHistogramFilter';
 import { NumericalHistogramFilter } from './histogram/NumericalHistogramFilter';
-import { TimeSeries } from './time-series/TimeSeries';
 import { GlobalRangeFilter } from './range/GlobalRangeFilter';
+import { TimeSeries } from './time-series/TimeSeries';
 
 const VL_VERSION = '^1.1.0';
 
@@ -219,8 +219,8 @@ export default class VLBridge {
       buckets,
       column,
       readOnly,
-      widget,
-      totals
+      totals,
+      widget
     });
 
     histogram.setTimeSeries(true);
