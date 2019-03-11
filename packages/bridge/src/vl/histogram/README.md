@@ -90,6 +90,7 @@ NumericalHistogramOptions {
   widget: HTMLAsHistogramWidgetElement;
   nBuckets: number;
   bucketRanges?: BucketRanges[];
+  totals: boolean;
 }
 
 BucketRanges = [number, number]
@@ -100,6 +101,7 @@ BucketRanges = [number, number]
 `widget` is your as-histogram-widget HTML element.
 `nBuckets` is a number to specify the number of buckets the histogram should have
 `bucketRanges` is an array of pairs of numbers, which lets you specify the bucket ranges by hand
+`totals` will use a VL GlobalHistogram expression to display the totals as background bars on the widget
 
 **It is highly recommended** that you use bucketRanges when you specify `readOnly: false`, because of how the filtering works.
 

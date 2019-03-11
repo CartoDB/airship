@@ -270,7 +270,6 @@ export class HistogramWidget {
 
   private _data: HistogramData[];
   private _backgroundData: HistogramData[];
-  private _mockBackground: boolean = false;
   private _color: string;
   private _barBackgroundColor: string;
   private _muteSelectionChanged: boolean = false;
@@ -318,7 +317,6 @@ export class HistogramWidget {
   public _prepareData(data, backgroundData, oldData?: HistogramData[]) {
     this._data = prepareData(data);
     this._backgroundData = backgroundData === null ? this._mockBackgroundData(data) : prepareData(backgroundData);
-    this._mockBackground = backgroundData === null;
 
     const newScale = binsScale(this._data);
     const wasCategoricalData = !!this.isCategoricalData;
