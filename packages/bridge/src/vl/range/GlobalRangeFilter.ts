@@ -50,7 +50,7 @@ export class GlobalRangeFilter extends BaseFilter {
 
   public get filter(): string {
     if (this._value === null) {
-      return null
+      return null;
     } else {
       return `$${this.column} > ${this._value[0]} and $${this.column} < ${this._value[1]}`;
     }
@@ -58,6 +58,6 @@ export class GlobalRangeFilter extends BaseFilter {
 
   public get expression(): any {
     const s = this._carto.expressions;
-    return s.list([s.globalMin(s.prop(this._column)), s.globalMax(s.prop(this._column))])
+    return s.list([s.globalMin(s.prop(this._column)), s.globalMax(s.prop(this._column))]);
   }
 }
