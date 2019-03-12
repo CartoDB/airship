@@ -1,0 +1,119 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Airship range filter example</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.11/lodash.min.js"></script>
+    <!-- <script src="https://libs.cartocdn.com/carto-vl/v1.1.1/carto-vl.js"></script> -->
+    <script src="/packages/bridge/lib/carto-vl.js"></script>
+
+    <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.css" rel="stylesheet" />
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.js"></script>
+
+    <link rel="stylesheet" href="/packages/styles/dist/airship.css">
+    <script src="/packages/components/dist/airship.js"></script>
+    <script src="/packages/bridge/dist/asbridge.js"></script>
+</head>
+
+<body class="as-app-body">
+    <div class="as-app">
+        <div class="as-content">
+            <main class="as-main">
+              <div class="as-map-area">
+                  <div id="map"></div>
+              </div>
+            </main>
+            <aside class="as-sidebar as-sidebar--left">
+              <div class="as-container">
+                <div class="as-box">
+                  <h2 class="as-subheader">Filter longitude</h2>
+                  <as-range-slider
+                    id="lonRange"
+                  >
+                  </as-range-slider>
+                </div>
+                <div class="as-box">
+                  <h2 class="as-subheader">Filter latitude</h2>
+                  <as-range-slider
+                    id="latRange"
+                  >
+                  </as-range-slider>
+                </div>
+                <div class="as-box">
+                  <as-histogram-widget
+                    show-clear
+                    id="typeHist"
+                    heading="Type"
+                  >
+                  </as-histogram-widget>
+                </div>
+              </div>
+            </aside>
+        </div>
+    </div>
+
+    <script>
+        const map = new mapboxgl.Map({
+          container: 'map',
+          style: carto.basemaps.darkmatter,
+          center: [-4.77, 37.88],
+          zoom: 4
+        });
+
+        carto.setDefaultAuth({
+          username: 'roman-carto',
+          apiKey: 'default_public'
+        });
+
+        const s = carto.expressions;
+
+        const source = new carto.source.SQL(`select *, ST_X(the_geom) as lon, ST_Y(the_geom) as lat from ne_10m_airports`);
+        const viz = new carto.Viz(`
+          strokeWidth: 0
+          color: ramp($location, vivid)
+        `);
+
+        const vizLayer = new carto.Layer('layer', source, viz);
+
+        const typeHistogram = document.querySelector('#typeHist');
+        const lonRange = document.querySelector('#lonRange');
+        const latRange = document.querySelector('#latRange');
+
+        lonRange.formatValue = latRange.formatValue = (value) => `${Math.floor(value)}º`;
+
+        vizLayer.addTo(map, 'watername_ocean');
+
+        const bridge = new AsBridge.VLBridge(
+          carto,
+          map,
+          vizLayer,
+          source
+        );
+
+        bridge.histogram({
+          column: 'location',
+          readOnly: false,
+          widget: typeHistogram,
+        }).enableColorMapping();
+
+        bridge.globalRange({
+          column: 'lon',
+          widget: lonRange
+        });
+
+        bridge.globalRange({
+          column: 'lat',
+          widget: latRange
+        });
+
+        bridge.build();
+    </script>
+</body>
+
+</html>

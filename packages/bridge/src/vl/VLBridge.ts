@@ -3,6 +3,7 @@ import { BaseFilter } from './base/BaseFilter';
 import { CategoryFilter } from './category/CategoryFilter';
 import { CategoricalHistogramFilter } from './histogram/CategoricalHistogramFilter';
 import { NumericalHistogramFilter } from './histogram/NumericalHistogramFilter';
+import { GlobalRangeFilter } from './range/GlobalRangeFilter';
 import { TimeSeries } from './time-series/TimeSeries';
 
 const VL_VERSION = '^1.1.0';
@@ -222,8 +223,8 @@ export default class VLBridge {
       buckets,
       column,
       readOnly,
-      widget,
-      totals
+      totals,
+      widget
     });
 
     histogram.setTimeSeries(true);
@@ -231,6 +232,17 @@ export default class VLBridge {
     histogram.on('rangeChanged', (range) => {
       this._animation.setRange(range);
     });
+  }
+
+  public globalRange({
+    column,
+    widget
+  }: GlobalRangeOptions) {
+    const range = new GlobalRangeFilter(this._carto, this._layer, widget, column, this._source);
+
+    this._addFilter(range);
+
+    return range;
   }
 
   /**
