@@ -94,7 +94,7 @@ export class CategoryFilter extends BaseFilter {
   private selectionChanged(evt: CustomEvent) {
     this._selection = evt.detail;
 
-    if (this._selection.length === 0 || this._button === null) {
+    if (this._selection.length === 0 || !this._button) {
       this._filterChanged();
     }
 
