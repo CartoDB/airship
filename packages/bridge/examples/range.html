@@ -81,7 +81,6 @@
 
         const vizLayer = new carto.Layer('layer', source, viz);
 
-        const typeHistogram = document.querySelector('#typeHist');
         const lonRange = document.querySelector('#lonRange');
         const latRange = document.querySelector('#latRange');
 
@@ -96,10 +95,8 @@
           source: source
         });
 
-        bridge.histogram({
-          column: 'location',
-          readOnly: false,
-          widget: typeHistogram,
+        bridge.histogram('#typeHist', 'location', {
+          readOnly: false
         });
 
         bridge.globalRange(lonRange, 'lon');

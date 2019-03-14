@@ -1,3 +1,5 @@
+import { select } from '../../util/Utils';
+
 /**
  * This class is an orchestrator for Time Series widgets. It does not extend BaseFilter because for all intents
  * and purposes, we can use a numerical histogram. This class is only responsible of particular Time Series event
@@ -26,11 +28,11 @@ export class TimeSeries {
    */
   constructor(
     layer: any,
-    timeSeries: HTMLAsTimeSeriesWidgetElement,
+    timeSeries: HTMLAsTimeSeriesWidgetElement | string,
     readyCb: () => void
   ) {
 
-    this._timeSeries = timeSeries;
+    this._timeSeries = select(timeSeries) as HTMLAsTimeSeriesWidgetElement;
     this._layer = layer;
 
     if (layer.viz) {

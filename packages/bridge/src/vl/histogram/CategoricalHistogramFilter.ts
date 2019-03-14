@@ -21,7 +21,7 @@ export class CategoricalHistogramFilter extends BaseHistogramFilter<string[]> {
    * Creates an instance of CategoricalHistogramFilter.
    * @param {*} carto CARTO VL namespace
    * @param {*} layer CARTO VL layer
-   * @param {(HTMLAsTimeSeriesWidgetElement | HTMLAsHistogramWidgetElement)} histogram
+   * @param {(HTMLAsHistogramWidgetElement)} histogram
    * Airship histogram widget HTML element
    * @param {string} columnName The column to pull data from
    * @param {*} source CARTO VL source
@@ -31,7 +31,7 @@ export class CategoricalHistogramFilter extends BaseHistogramFilter<string[]> {
   constructor(
     carto: any,
     layer: any,
-    histogram: HTMLAsTimeSeriesWidgetElement | HTMLAsHistogramWidgetElement,
+    histogram: HTMLAsHistogramWidgetElement | string,
     columnName: string,
     source: any,
     readOnly: boolean = true

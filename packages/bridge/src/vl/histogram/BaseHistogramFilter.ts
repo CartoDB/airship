@@ -1,4 +1,5 @@
 import { HistogramSelection } from '../../../../components/src/components/as-histogram-widget/interfaces';
+import { select } from '../../util/Utils';
 import { BaseFilter } from '../base/BaseFilter';
 
 /**
@@ -33,18 +34,18 @@ export abstract class BaseHistogramFilter<T> extends BaseFilter {
     type: 'categorical' | 'numerical',
     carto: any,
     layer: any,
-    histogram: HTMLAsTimeSeriesWidgetElement | HTMLAsHistogramWidgetElement,
+    histogram: HTMLAsTimeSeriesWidgetElement | HTMLAsHistogramWidgetElement | string,
     columnName: string,
     source: any,
     readOnly: boolean = true
   ) {
     super(`histogram_${type}`, columnName, layer, source, readOnly);
 
-    this._widget = histogram;
+    this._widget = select(histogram) as HTMLAsHistogramWidgetElement | HTMLAsTimeSeriesWidgetElement;
     this._carto = carto;
 
-    histogram.disableInteractivity = readOnly;
-    histogram.showClear = !readOnly;
+    this._widget.disableInteractivity = readOnly;
+    this._widget.showClear = !readOnly;
 
     this.selectionChanged = this.selectionChanged.bind(this);
 

@@ -78,12 +78,11 @@
           strokeWidth: 0
         `);
 
+        
         const vizLayer = new carto.Layer('layer', source, viz);
-
-        const timeWidget = document.querySelector('as-time-series-widget');
-        const yearWidget = document.querySelector('#year');
-
         vizLayer.addTo(map, 'watername_ocean');
+
+        const yearWidget = document.querySelector('#year');
 
         yearWidget.axisFormatter = (e) => {
           if (isNaN(e)) {
@@ -100,19 +99,15 @@
           source: source
         });
           
-        bridge.timeSeries({
-          column: 'year',
+        bridge.timeSeries('as-time-series-widget', 'year', {
           buckets: 30,
           readOnly: false,
-          widget: timeWidget,
           totals: true
         });
 
-        bridge.histogram({
-          column: 'year',
+        bridge.histogram(yearWidget, 'year', {
           buckets: 30,
           readOnly: false,
-          widget: yearWidget,
           totals: true
         });
 

@@ -38,8 +38,6 @@
                   <as-histogram-widget
                     show-clear
                     id="typeHist"
-                    heading="With custom colors"
-                    description="Colors will be whatever you want ✨"
                   >
                   </as-histogram-widget>
                 </div>
@@ -47,8 +45,6 @@
                   <as-category-widget
                     show-clear
                     id="typeCat"
-                    heading="With color mapping"
-                    description="Colors will match the map"
                   >
                   </as-category-widget>
                 </div>
@@ -80,9 +76,6 @@
 
         const vizLayer = new carto.Layer('layer', source, viz);
 
-        const typeHistogram = document.querySelector('#typeHist');
-        const category = document.querySelector('#typeCat');
-
         const airportLayer = new AsBridge.VLBridge({
           carto: carto,
           map: map,
@@ -90,13 +83,11 @@
           source: source
         });
 
-        airportLayer.histogram({
-          column: 'location',
-          readOnly: false,
-          widget: typeHistogram,
+        airportLayer.histogram('#typeHist', 'location', {
+          readOnly: false
         });
 
-        airportLayer.category(category, 'location', {
+        airportLayer.category('#typeCat', 'location', {
           readOnly: false
         });
 

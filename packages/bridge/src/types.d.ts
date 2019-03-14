@@ -61,19 +61,11 @@ interface VLBridgeOptions {
  */
 interface NumericalHistogramOptions {
   /**
-   * Which column the histogram will get fed data from.
-   *
-   * @type {string}
-   * @memberof NumericalHistogramOptions
-   */
-  column: string;
-
-  /**
    * Number of buckets for the histogram
    *
    * @type {number}
    */
-  buckets: number;
+  buckets?: number;
 
   /**
    * Explicit bucket declarations. See
@@ -89,14 +81,7 @@ interface NumericalHistogramOptions {
    *
    * @type {boolean}
    */
-  readOnly: boolean;
-
-  /**
-   * The HTML element for an as-histogram-widget or an as-time-series-widget
-   *
-   * @type {(HTMLAsHistogramWidgetElement | HTMLAsTimeSeriesWidgetElement)}
-   */
-  widget: HTMLAsHistogramWidgetElement | HTMLAsTimeSeriesWidgetElement;
+  readOnly?: boolean;
 
   /**
    * Whether the widget should show the totals or not
@@ -104,7 +89,7 @@ interface NumericalHistogramOptions {
    * @type {boolean}
    * @memberof NumericalHistogramOptions
    */
-  totals: boolean;
+  totals?: boolean;
 }
 
 /**
@@ -136,26 +121,10 @@ interface CategoryOptions {
  */
 interface CategoricalHistogramOptions {
   /**
-   * Column that will feed the as-histogram-widget data.
-   *
-   * @type {string}
-   * @memberof CategoricalHistogramOptions
-   */
-  column: string;
-
-  /**
    * Whether this widget will be able to filter or not.
    *
    * @type {boolean}
    * @memberof CategoricalHistogramOptions
    */
-  readOnly: boolean;
-
-  /**
-   * The HTML Element for an Airship's as-histogram-widget
-   *
-   * @type {HTMLAsHistogramWidgetElement}
-   * @memberof CategoricalHistogramOptions
-   */
-  widget: HTMLAsHistogramWidgetElement;
+  readOnly?: boolean;
 }

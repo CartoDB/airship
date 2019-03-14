@@ -39,11 +39,9 @@ const bridge = new AsBridge.VLBridge({
 Use the `timeSeries` method like this:
 
 ```
-bridge.timeSeries({
-  column: 'timestamp',
+bridge.timeSeries(timeWidget, 'timestamp', {
   buckets: 30,
-  readOnly: false,
-  widget: timeWidget
+  readOnly: false
 });
 ```
 
@@ -55,15 +53,13 @@ bridge.build();
 
 ### Reference
 
-#### VLBridge.timeSeries(options: NumericalHistogramOptions) => void
+#### VLBridge.timeSeries(widget: HTMLAsTimeSeriesWidget, column: string, options: NumericalHistogramOptions = {}) => void
 
 This method receives the exact same arguments as VLBridge.numericalHistogram
 
 ```
 NumericalHistogramOptions {
-  column: string;
   readOnly: boolean;
-  widget: HTMLAsHistogramWidgetElement;
   nBuckets: number;
   bucketRanges?: BucketRanges[];
 }
@@ -71,10 +67,16 @@ NumericalHistogramOptions {
 BucketRanges = [number, number]
 ```
 
-`column` is a string for the visualization column to get the data from.
 `readOnly` is a boolean to specify whether this widget should filter or not.
-`widget` is your as-histogram-widget HTML element.
 `nBuckets` is a number to specify the number of buckets the histogram should have
 `bucketRanges` is an array of pairs of numbers, which lets you specify the bucket ranges by hand
 
 Internally, a numerical histogram will be created, as well as the necessary bindings to VLs animation object API
+
+### Widget side effects
+
+Since this filter internally creates a histogram, the same properties are affected. Moreover, the following as-time-series properties are affected:
+
+- `animated`
+- `playing`
+- `progress`

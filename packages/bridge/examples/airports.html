@@ -90,11 +90,6 @@
         `);
 
         const vizLayer = new carto.Layer('layer', source, viz);
-
-        const typeHistogram = document.querySelector('#typeHist');
-        const scaleHistogram = document.querySelector('#scaleHist');
-        const lonCat = document.querySelector('#lonCat');
-
         vizLayer.addTo(map, 'watername_ocean');
 
         const bridge = new AsBridge.VLBridge({
@@ -104,10 +99,8 @@
           source: source
         });
 
-        bridge.histogram({
-          column: 'location',
-          readOnly: false,
-          widget: typeHistogram,
+        bridge.histogram('#typeHist', 'location', {
+          readOnly: false
         });
 
         bridge.category('#typeCat', 'location', {
@@ -115,19 +108,15 @@
           button: typeApplyBtn
         });
 
-        bridge.histogram({
-          column: 'scalerank',
+        bridge.histogram('#scaleHist', 'scalerank', {
           bucketRanges: [[2, 3], [3, 4], [4, 5], [5, 6], [6, 7], [7, 8], [8, 9]],
           readOnly: false,
-          widget: scaleHistogram,
           totals: true
         });
 
-        bridge.histogram({
-          column: 'lon',
+        bridge.histogram('#lonCat', 'lon', {
           buckets: 10,
           readOnly: false,
-          widget: lonCat,
           totals: true
         });
 

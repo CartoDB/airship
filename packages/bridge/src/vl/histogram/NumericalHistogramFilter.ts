@@ -44,11 +44,11 @@ export class NumericalHistogramFilter extends BaseHistogramFilter<[number, numbe
   constructor(
     carto: any,
     layer: any,
-    histogram: HTMLAsTimeSeriesWidgetElement | HTMLAsHistogramWidgetElement,
+    histogram: HTMLAsTimeSeriesWidgetElement | HTMLAsHistogramWidgetElement | string,
     columnName: string,
-    nBuckets: number,
+    nBuckets: number = 20,
     source: any,
-    bucketRanges: BucketRange[],
+    bucketRanges?: BucketRange[],
     readOnly: boolean = true,
     showTotals: boolean = false
   ) {

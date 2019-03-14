@@ -38,8 +38,7 @@
                   <as-histogram-widget
                     show-clear
                     id="typeHist"
-                    heading="With color mapping"
-                    description="Colors will match map"
+                    heading="Location"
                   >
                   </as-histogram-widget>
                 </div>
@@ -48,7 +47,6 @@
                     show-clear
                     id="scaleHist"
                     heading="Scalerank"
-                    description="Numerical histograms do not support color mapping"
                   >
                   </as-histogram-widget>
                 </div>
@@ -80,10 +78,6 @@
 
         const vizLayer = new carto.Layer('layer', source, viz);
 
-        const typeHistogram = document.querySelector('#typeHist');
-        const scaleHistogram = document.querySelector('#scaleHist');
-        const category = document.querySelector('#typeCat');
-
         const airportLayer = new AsBridge.VLBridge({
           carto: carto,
           map: map,
@@ -91,17 +85,14 @@
           source: source
         });
 
-        airportLayer.histogram({
-          column: 'location',
-          readOnly: false,
-          widget: typeHistogram,
-        }).enableColorMapping();
+        airportLayer.histogram('#typeHist', 'location', {
+          readOnly: false
+        });
 
-        airportLayer.histogram({
-          column: 'scalerank',
+        airportLayer.histogram('#scaleHist', 'scalerank', {
           bucketRanges: [[2, 3], [3, 4], [4, 5], [5, 6], [6, 7], [7, 8], [8, 9]],
           readOnly: false,
-          widget: scaleHistogram,
+          totals: true
         });
 
         airportLayer.build();
