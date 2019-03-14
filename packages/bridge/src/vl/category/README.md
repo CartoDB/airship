@@ -46,3 +46,11 @@ CategoryOptions {
 `button` is an HTMLElement or a selector that will be used to trigger the filtering. If this is present, you will be able to select multiple categories and the filtering will happen when the user clicks on the element.
 
 This method returns the CategoryFilter instance.
+
+### Widget side effects
+
+The following properties of the widget are updated internally, so you should avoid changing them:
+
+- `disableInteractivity`
+- `showClearButton`
+- `categories`
