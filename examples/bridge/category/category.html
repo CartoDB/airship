@@ -94,29 +94,11 @@
           column: 'location',
           readOnly: false,
           widget: typeHistogram,
-        })
-        .setLegendData({
-          data: [{
-            key: 'terminal',
-            value: '#fabada'
-          },
-          {
-            key: 'ramp',
-            value: '#2255FF'
-          }]
         });
 
-        airportLayer.category({
-          column: 'location',
-          readOnly: false,
-          widget: category,
-        }).enableColorMapping();
-
-        airportLayer.category({
-          column: 'location',
-          readOnly: false,
-          widget: category,
-        }).enableColorMapping();
+        airportLayer.category(category, 'location', {
+          readOnly: false
+        });
 
         airportLayer.build();
 

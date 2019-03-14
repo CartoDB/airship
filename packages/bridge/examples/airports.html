@@ -47,11 +47,13 @@
                   </div>
                   <div class="as-box">
                     <as-category-widget
+                      style="height: 80%;"
                       show-clear
                       id="typeCat"
                       heading="Type"
                     >
                     </as-category-widget>
+                    <button id="typeApplyBtn" class="as-btn as-btn--primary">Apply</button>
                   </div>
                   <div class="as-box">
                     <as-histogram-widget
@@ -91,7 +93,6 @@
 
         const typeHistogram = document.querySelector('#typeHist');
         const scaleHistogram = document.querySelector('#scaleHist');
-        const category = document.querySelector('#typeCat');
         const lonCat = document.querySelector('#lonCat');
 
         vizLayer.addTo(map, 'watername_ocean');
@@ -109,10 +110,9 @@
           widget: typeHistogram,
         });
 
-        bridge.category({
-          column: 'location',
+        bridge.category('#typeCat', 'location', {
           readOnly: false,
-          widget: category,
+          button: typeApplyBtn
         });
 
         bridge.histogram({

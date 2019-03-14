@@ -114,25 +114,19 @@ interface NumericalHistogramOptions {
  */
 interface CategoryOptions {
   /**
-   * Column that will feed the category widget data.
-   *
-   * @type {string}
-   */
-  column: string;
-
-  /**
    * Whether the widget will be able to filter or not
    *
    * @type {boolean}
    */
-  readOnly: boolean;
+  readOnly?: boolean;
 
   /**
-   * The HTML Element for an Airship's as-category-widget
+   * If this is passed, the filtering will happen after this button is pressed
    *
-   * @type {HTMLAsCategoryWidgetElement}
+   * @type {HTMLElement}
+   * @memberof CategoryOptions
    */
-  widget: HTMLAsCategoryWidgetElement;
+  button?: HTMLElement;
 }
 
 /**

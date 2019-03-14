@@ -18,9 +18,8 @@ const bridge = new AsBridge.VLBridge({
 Use the `category` method to connect your category widget.
 
 ```
-const category = bridge.category({
-  column: 'a_valid_column',
-  widget: categoryWidget
+const category = bridge.category(categoryWidget, 'a_valid_column', {
+  readyOnly: false
 });
 ```
 
@@ -32,20 +31,18 @@ bridge.build();
 
 ### Reference
 
-#### VLBridge.category(options: CategoryOptions) => CategoryFilter
+#### VLBridge.category(widget: HTMLAsCategoryWidgetElement | string, column: string, options: CategoryOptions) => CategoryFilter
 
-This method receives the following object as options:
+This method requires an Airship Category widget element or DOM selector, a column name and accepts the following options:
 
 ```
 CategoryOptions {
-  column: string
   readOnly: boolean
-  widget: HTMLAsCategoryWidgetElement
+  button: HTMLElement | string
 }
 ```
 
-`column` is a string for the visualization column to get the data from.
 `readOnly` is a boolean to specify whether this widget should filter or not.
-`widget` is your as-category-widget HTML element.
+`button` is an HTMLElement or a selector that will be used to trigger the filtering. If this is present, you will be able to select multiple categories and the filtering will happen when the user clicks on the element.
 
 This method returns the CategoryFilter instance.

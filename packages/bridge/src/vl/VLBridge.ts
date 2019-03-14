@@ -166,11 +166,10 @@ export default class VLBridge {
    * @returns
    * @memberof VLBridge
    */
-  public category(args: CategoryOptions) {
+  public category(widget: HTMLAsCategoryWidgetElement, column: string, args: CategoryOptions = {}) {
     const {
-      column,
       readOnly,
-      widget
+      button
     } = args;
 
     const category = new CategoryFilter(
@@ -179,7 +178,8 @@ export default class VLBridge {
       widget,
       column,
       this._source,
-      readOnly
+      readOnly,
+      button
     );
 
     this._addFilter(category);
