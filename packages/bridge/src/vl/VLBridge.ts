@@ -234,7 +234,7 @@ export default class VLBridge {
     });
   }
 
-  public globalRange(widget: HTMLAsRangeSliderElement, column: string) {
+  public globalRange(widget: HTMLAsRangeSliderElement | string, column: string) {
     const range = new GlobalRangeFilter(this._carto, this._layer, widget, column, this._source);
 
     this._addFilter(range);
