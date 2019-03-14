@@ -35,12 +35,12 @@ Very similar to a histogram, but the data is displayed using an `as-category-wid
 A typical use of this library implies creating a new bridge for an existing layer:
 
 ```
-const bridge = new AsBridge.VLBridge(
-  carto,
-  map,
-  vizLayer,
-  source
-);
+const bridge = new AsBridge.VLBridge({
+  carto: carto,
+  map: map,
+  vizLayer: vizLayer,
+  source: source
+});
 ```
 
 `carto` is your CARTO VL namespace object, which is required in order to create new layers.

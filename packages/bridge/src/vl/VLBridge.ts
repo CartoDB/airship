@@ -50,23 +50,23 @@ export default class VLBridge {
    * @param {*} source CARTO VL source
    * @memberof VLBridge
    */
-  constructor(carto: any, map: any, layer: any, source: any) {
+  constructor({ carto, map, layer, source }: VLBridgeOptions) {
     this._carto = carto;
     this._map = map;
     this._layer = layer;
     this._source = source;
 
-    this._id = layer.id;
+    this._id = this._layer.id;
 
     this._rebuildFilters = this._rebuildFilters.bind(this);
     this._updateDataLayerVariables = this._updateDataLayerVariables.bind(this);
 
-    if (!carto.expressions.globalHistogram) {
-      throw new Error(`Provided VL version ${carto.version} lacks globalHistogram support.`);
+    if (!this._carto.expressions.globalHistogram) {
+      throw new Error(`Provided VL version ${this._carto.version} lacks globalHistogram support.`);
     }
 
-    if (!semver.satisfies(carto.version, VL_VERSION)) {
-      throw new Error(`Provided VL version ${carto.version} not supported. Must satisfy ${VL_VERSION}`);
+    if (!semver.satisfies(this._carto.version, VL_VERSION)) {
+      throw new Error(`Provided VL version ${this._carto.version} not supported. Must satisfy ${VL_VERSION}`);
     }
   }
 

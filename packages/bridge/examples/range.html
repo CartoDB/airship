@@ -89,12 +89,12 @@
 
         vizLayer.addTo(map, 'watername_ocean');
 
-        const bridge = new AsBridge.VLBridge(
-          carto,
-          map,
-          vizLayer,
-          source
-        );
+        const bridge = new AsBridge.VLBridge({
+          carto: carto,
+          map: map,
+          vizLayer: vizLayer,
+          source: source
+        });
 
         bridge.histogram({
           column: 'location',

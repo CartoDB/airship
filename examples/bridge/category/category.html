@@ -83,12 +83,12 @@
         const typeHistogram = document.querySelector('#typeHist');
         const category = document.querySelector('#typeCat');
 
-        const airportLayer = new AsBridge.VLBridge(
-          carto,
-          map,
-          vizLayer,
-          source
-        );
+        const airportLayer = new AsBridge.VLBridge({
+          carto: carto,
+          map: map,
+          vizLayer: vizLayer,
+          source: source
+        });
 
         airportLayer.histogram({
           column: 'location',

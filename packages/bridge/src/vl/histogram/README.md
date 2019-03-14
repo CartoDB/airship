@@ -14,12 +14,12 @@ The latter uses a VL `viewportHistogram` but does not specify the buckets. The v
 As usual, create the bridge instance with the required parameters
 
 ```
-const bridge = new AsBridge.VLBridge(
-  carto,
-  map,
-  layer,
-  source
-);
+const bridge = new AsBridge.VLBridge({
+  carto: carto,
+  map: map,
+  vizLayer: vizLayer,
+  source: source
+});
 ```
 
 There's a generic `histogram` method, that will create either of the two depending on which arguments you provide.

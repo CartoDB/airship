@@ -28,12 +28,12 @@ const viz = new carto.Viz(`
 If your viz meets the requirements, you might create the bridge instance as usual with the required parameters.
 
 ```
-const bridge = new AsBridge.VLBridge(
-  carto,
-  map,
-  layer,
-  source
-);
+const bridge = new AsBridge.VLBridge({
+  carto: carto,
+  map: map,
+  vizLayer: vizLayer,
+  source: source
+});
 ```
 
 Use the `timeSeries` method like this:

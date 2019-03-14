@@ -9,12 +9,12 @@ All the event handling will be done so the widget filters the visualization. Sin
 As usual, create the bridge instance with the required parameters
 
 ```
-const bridge = new AsBridge.VLBridge(
-  carto,
-  map,
-  layer,
-  source
-);
+const bridge = new AsBridge.VLBridge({
+  carto: carto,
+  map: map,
+  vizLayer: vizLayer,
+  source: source
+});
 ```
 
 Then, you will just have to call the `globalRange` method, like the following:

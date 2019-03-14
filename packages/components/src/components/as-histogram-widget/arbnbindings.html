@@ -95,11 +95,12 @@
         const latWidget = document.querySelector('#lat');
         const lonWidget = document.querySelector('#lon');
 
-        const listingsLayer = new AsBridge.VLBridge(
-          carto,
-          map,
-          vizLayer
-        );
+        const listingsLayer = new AsBridge.VLBridge({
+          carto: carto,
+          map: map,
+          vizLayer: vizLayer,
+          source: source
+        });
           
         listingsLayer.histogram({
           column: 'price',

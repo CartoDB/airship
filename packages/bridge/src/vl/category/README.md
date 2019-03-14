@@ -7,12 +7,12 @@ Use this in order to connect a category widget with your VL visualization. Inter
 As usual, create the bridge instance with the required parameters
 
 ```
-const bridge = new AsBridge.VLBridge(
-  carto,
-  map,
-  layer,
-  source
-);
+const bridge = new AsBridge.VLBridge({
+  carto: carto,
+  map: map,
+  vizLayer: vizLayer,
+  source: source
+});
 ```
 
 Use the `category` method to connect your category widget.

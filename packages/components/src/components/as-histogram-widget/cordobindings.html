@@ -92,13 +92,12 @@
           return Math.round(e);
         };
 
-        const bridge = new AsBridge.VLBridge(
-          carto,
-          map,
-          vizLayer,
-          source,
-          'catastro'
-        );
+        const bridge = new AsBridge.VLBridge({
+          carto: carto,
+          map: map,
+          vizLayer: vizLayer,
+          source: source
+        });
           
         bridge.histogram({
           column: 'timestamp',

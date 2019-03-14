@@ -47,6 +47,13 @@ interface LegendData {
 
 type BucketRange = [number, number];
 
+interface VLBridgeOptions {
+  carto: any;
+  map: any;
+  layer: any;
+  source: any;
+}
+
 /**
  * Options for creating a {@link NumericalHistogramFilter}
  *
