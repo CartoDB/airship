@@ -20,10 +20,7 @@ const bridge = new AsBridge.VLBridge({
 Then, you will just have to call the `globalRange` method, like the following:
 
 ```
-bridge.globalRange({
-  column: 'gdp',
-  widget: gdpRange
-});
+bridge.globalRange('#gdpRange', 'gdp');
 ```
 
 The gdpRange widget will get its range set to the global range of the `gdp` column, and filter the visualization.
@@ -36,25 +33,17 @@ bridge.build();
 
 ### Reference
 
-#### VLBridge.globalRange(options: GlobalRangeOptions) => GlobalRangeFilter
+#### VLBridge.globalRange(widget: HTMLAsRangeSliderElement | string, column: string) => GlobalRangeFilter
 
-This method receives the following object as options:
+This method requires an Airship range slider HTML element or a selector, and the column that you want to filter with it.
 
-```
-GlobalRangeOptions {
-  column: string;
-  widget: HTMLAsRangeSliderElement;
-}
-```
-
-`column` is a string for the visualization column to get the data from.
-`widget` is your as-range-slider HTML element.
+**This column should be numerical**
 
 This method returns the GlobalRangeFilter instance.
 
 ### Widget side effects
 
-When using this filter, several properties will be updated internally, so you should avoid updating them:
+When using this filter, several properties of the widget will be updated internally, so you should avoid updating them:
 
 - `range`
 - `minValue`

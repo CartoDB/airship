@@ -102,15 +102,8 @@
           widget: typeHistogram,
         });
 
-        bridge.globalRange({
-          column: 'lon',
-          widget: lonRange
-        });
-
-        bridge.globalRange({
-          column: 'lat',
-          widget: latRange
-        });
+        bridge.globalRange(lonRange, 'lon');
+        bridge.globalRange(latRange, 'lat');
 
         bridge.build();
     </script>

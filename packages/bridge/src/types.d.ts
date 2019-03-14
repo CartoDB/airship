@@ -159,21 +159,3 @@ interface CategoricalHistogramOptions {
    */
   widget: HTMLAsHistogramWidgetElement;
 }
-
-interface GlobalRangeOptions {
-  /**
-   * The HTML Element for an Airship as-range-slider
-   *
-   * @type {HTMLAsRangeSliderElement}
-   * @memberof GlobalRangeOptions
-   */
-  widget: HTMLAsRangeSliderElement;
-
-  /**
-   * The column you want to filter using the range slider
-   *
-   * @type {string}
-   * @memberof GlobalRangeOptions
-   */
-  column: string;
-}
