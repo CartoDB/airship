@@ -38,7 +38,7 @@ A typical use of this library implies creating a new bridge for an existing laye
 const bridge = new AsBridge.VLBridge({
   carto: carto,
   map: map,
-  vizLayer: vizLayer,
+  layer: vizLayer,
   source: source
 });
 ```

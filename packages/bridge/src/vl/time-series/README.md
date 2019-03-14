@@ -31,7 +31,7 @@ If your viz meets the requirements, you might create the bridge instance as usua
 const bridge = new AsBridge.VLBridge({
   carto: carto,
   map: map,
-  vizLayer: vizLayer,
+  layer: vizLayer,
   source: source
 });
 ```

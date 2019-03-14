@@ -17,7 +17,7 @@ As usual, create the bridge instance with the required parameters
 const bridge = new AsBridge.VLBridge({
   carto: carto,
   map: map,
-  vizLayer: vizLayer,
+  layer: vizLayer,
   source: source
 });
 ```
