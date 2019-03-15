@@ -165,13 +165,18 @@ export default class VLBridge {
   }
 
   /**
-   * Creates a category widget filter. See {@link CategoryOptions} for more details
+   * Creates a category widget filter.
    *
-   * @param {CategoryOptions} options
+   * You can provide an HTML element (like a button) on the options, so the filtering takes place
+   * after the user clicks on it. This option is ignored if readOnly
+   *
+   * @param {HTMLAsCategoryWidgetElement | string} widget An airship category widget, or a selector
+   * @param {string} column Column to pull data from
+   * @param {CategoryOptions} [options={}]
    * @returns
    * @memberof VLBridge
    */
-  public category(widget: HTMLAsCategoryWidgetElement, column: string, options: CategoryOptions = {}) {
+  public category(widget: HTMLAsCategoryWidgetElement | string, column: string, options: CategoryOptions = {}) {
     const {
       readOnly,
       button
