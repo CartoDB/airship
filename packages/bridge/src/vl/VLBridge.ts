@@ -1,4 +1,5 @@
 import semver from 'semver';
+import { getColumnName, getExpression } from '../util/Utils';
 import { BaseFilter } from './base/BaseFilter';
 import { CategoryFilter } from './category/CategoryFilter';
 import { CategoricalHistogramFilter } from './histogram/CategoricalHistogramFilter';
@@ -77,7 +78,7 @@ export default class VLBridge {
    */
   public numericalHistogram(
     widget: HTMLAsHistogramWidgetElement | HTMLAsTimeSeriesWidgetElement | string,
-    column: string,
+    column: string | { propertyName: string },
     options: NumericalHistogramOptions = {}): NumericalHistogramFilter {
     const {
       buckets,
@@ -86,16 +87,20 @@ export default class VLBridge {
       totals
     } = options;
 
+    const colName = getColumnName(column);
+    const expression = getExpression(column);
+
     const histogram = new NumericalHistogramFilter(
       this._carto,
       this._layer,
       widget,
-      column,
+      colName,
       buckets,
       this._source,
       bucketRanges,
       readOnly,
-      totals
+      totals,
+      expression
     );
 
     this._addFilter(histogram);
@@ -114,19 +119,23 @@ export default class VLBridge {
    */
   public categoricalHistogram(
     widget: HTMLAsHistogramWidgetElement | string,
-    column: string,
+    column: string | { propertyName: string },
     options: CategoricalHistogramOptions = {}): CategoricalHistogramFilter {
     const {
       readOnly
     } = options;
 
+    const colName = getColumnName(column);
+    const expression = getExpression(column);
+
     const histogram = new CategoricalHistogramFilter(
       this._carto,
       this._layer,
       widget,
-      column,
+      colName,
       this._source,
-      readOnly
+      readOnly,
+      expression
     );
 
     this._addFilter(histogram);
@@ -147,7 +156,7 @@ export default class VLBridge {
    */
   public histogram(
     widget: HTMLAsHistogramWidgetElement | HTMLAsTimeSeriesWidgetElement | string,
-    column: string,
+    column: string | { propertyName: string },
     options: NumericalHistogramOptions = {}): NumericalHistogramFilter | CategoricalHistogramFilter {
     const {
       buckets,
@@ -176,20 +185,27 @@ export default class VLBridge {
    * @returns
    * @memberof VLBridge
    */
-  public category(widget: HTMLAsCategoryWidgetElement | string, column: string, options: CategoryOptions = {}) {
+  public category(
+    widget: HTMLAsCategoryWidgetElement | string,
+    column: string | { propertyName: string },
+    options: CategoryOptions = {}) {
     const {
       readOnly,
       button
     } = options;
 
+    const colName = getColumnName(column);
+    const expression = getExpression(column);
+
     const category = new CategoryFilter(
       this._carto,
       this._layer,
       widget,
-      column,
+      colName,
       this._source,
       readOnly,
-      button
+      button,
+      expression
     );
 
     this._addFilter(category);

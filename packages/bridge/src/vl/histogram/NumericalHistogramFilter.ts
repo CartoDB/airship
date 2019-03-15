@@ -39,6 +39,7 @@ export class NumericalHistogramFilter extends BaseHistogramFilter<[number, numbe
    * @param {BucketRange[]} bucketRanges Array describing the bucket ranges. This has priority over nBuckets.
    * See https://carto.com/developers/carto-vl/reference/#cartoexpressionsviewporthistogram for more information
    * @param {boolean} [readOnly=true] Whether this histogram can filter the Visualization or not.
+   * @param {object} [inputExpression=null] VL Expression to use instead of s.prop for the histogram input
    * @memberof NumericalHistogramFilter
    */
   constructor(
@@ -50,9 +51,10 @@ export class NumericalHistogramFilter extends BaseHistogramFilter<[number, numbe
     source: any,
     bucketRanges?: BucketRange[],
     readOnly: boolean = true,
-    showTotals: boolean = false
+    showTotals: boolean = false,
+    inputExpression: object = null
   ) {
-    super('numerical', carto, layer, histogram, columnName, source, readOnly);
+    super('numerical', carto, layer, histogram, columnName, source, readOnly, inputExpression);
     this._buckets = bucketRanges !== undefined ? bucketRanges.length : nBuckets;
     this._bucketRanges = bucketRanges;
     this._totals = showTotals;
@@ -91,7 +93,10 @@ export class NumericalHistogramFilter extends BaseHistogramFilter<[number, numbe
 
     const s = this._carto.expressions;
 
-    return s.viewportHistogram(s.prop(this._column), this._bucketArg());
+    return s.viewportHistogram(
+      this._inputExpression ? this._inputExpression : s.prop(this._column),
+      this._bucketArg()
+    );
   }
 
   public get globalExpression(): any {

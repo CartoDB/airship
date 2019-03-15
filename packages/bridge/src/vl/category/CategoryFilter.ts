@@ -17,7 +17,7 @@ export class CategoryFilter extends BaseFilter {
   private _lastHistogram: VLCategoricalHistogram = null;
   private _dataLayer: any;
   private _button: HTMLElement = null;
-
+  private _expression;
 
   /**
    * Creates an instance of CategoryFilter.
@@ -36,7 +36,8 @@ export class CategoryFilter extends BaseFilter {
     columnName: string,
     source: any,
     readOnly: boolean = true,
-    button: HTMLElement | string
+    button: HTMLElement | string,
+    expression: object
   ) {
     super(`category`, columnName, layer, source, readOnly);
 
@@ -44,6 +45,7 @@ export class CategoryFilter extends BaseFilter {
 
     this._carto = carto;
     this._button = select(button);
+    this._expression = expression;
 
     this._widget.disableInteractivity = readOnly;
     this._widget.showClearButton = !readOnly;
@@ -88,7 +90,7 @@ export class CategoryFilter extends BaseFilter {
 
   public get expression(): any {
     const s = this._carto.expressions;
-    return s.viewportHistogram(s.prop(this._column));
+    return s.viewportHistogram(this._expression ? this._expression : s.prop(this._column));
   }
 
   private selectionChanged(evt: CustomEvent) {

@@ -47,6 +47,8 @@ CategoryOptions {
 
 This method returns the CategoryFilter instance.
 
+The `column` can be a CARTO VL expression instead of a column. This will be used as the first argument of the histogram that feeds its data, so refer to the CARTO VL documentation to see which expressions are compatible.
+
 ### Widget side effects
 
 The following properties of the widget are updated internally, so you should avoid changing them:

@@ -26,6 +26,7 @@ export class CategoricalHistogramFilter extends BaseHistogramFilter<string[]> {
    * @param {string} columnName The column to pull data from
    * @param {*} source CARTO VL source
    * @param {boolean} [readOnly=true] Whether this histogram allows filtering or not
+   * @param {object} [inputExpression=null] VL Expression to use instead of s.prop for the histogram input
    * @memberof CategoricalHistogramFilter
    */
   constructor(
@@ -34,9 +35,10 @@ export class CategoricalHistogramFilter extends BaseHistogramFilter<string[]> {
     histogram: HTMLAsHistogramWidgetElement | string,
     columnName: string,
     source: any,
-    readOnly: boolean = true
+    readOnly: boolean = true,
+    inputExpression: object = null
   ) {
-    super('categorical', carto, layer, histogram, columnName, source, readOnly);
+    super('categorical', carto, layer, histogram, columnName, source, readOnly, inputExpression);
   }
 
   /**
@@ -63,7 +65,8 @@ export class CategoricalHistogramFilter extends BaseHistogramFilter<string[]> {
    */
   public get expression(): any {
     const s = this._carto.expressions;
-    return s.viewportHistogram(s.prop(this._column));
+
+    return s.viewportHistogram(this._inputExpression ? this._inputExpression : s.prop(this._column));
   }
 
   protected bindDataLayer()  {

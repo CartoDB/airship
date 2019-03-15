@@ -17,6 +17,7 @@ export abstract class BaseHistogramFilter<T> extends BaseFilter {
   protected _widget: HTMLAsTimeSeriesWidgetElement | HTMLAsHistogramWidgetElement;
   protected _selection: T = null;
   protected _dataLayer: any;
+  protected _inputExpression = null;
 
   /**
    * Creates an instance of BaseHistogramFilter.
@@ -28,6 +29,7 @@ export abstract class BaseHistogramFilter<T> extends BaseFilter {
    * @param {string} columnName The column to pull data from
    * @param {*} source A CARTO VL source
    * @param {boolean} [readOnly=true] Whether the widget will be able to filter the visualization or not
+   * @param {object} [inputExpression=null] VL Expression to use instead of s.prop for the histogram input
    * @memberof BaseHistogramFilter
    */
   constructor(
@@ -37,7 +39,8 @@ export abstract class BaseHistogramFilter<T> extends BaseFilter {
     histogram: HTMLAsTimeSeriesWidgetElement | HTMLAsHistogramWidgetElement | string,
     columnName: string,
     source: any,
-    readOnly: boolean = true
+    readOnly: boolean = true,
+    inputExpression: object = null
   ) {
     super(`histogram_${type}`, columnName, layer, source, readOnly);
 
@@ -46,6 +49,8 @@ export abstract class BaseHistogramFilter<T> extends BaseFilter {
 
     this._widget.disableInteractivity = readOnly;
     this._widget.showClear = !readOnly;
+
+    this._inputExpression = inputExpression;
 
     this.selectionChanged = this.selectionChanged.bind(this);
 

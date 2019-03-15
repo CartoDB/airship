@@ -68,6 +68,8 @@ CategoricalHistogramOptions {
 
 This method returns the CategoricalHistogram instance.
 
+The `column` can be a CARTO VL expression instead of a column. This will be used as the first argument of the histogram that feeds its data, so refer to the CARTO VL documentation to see which expressions are compatible.
+
 #### VLBridge.numericalHistogram(widget: HTMLASHistogramWidget | string, column: string, options: NumericalHistogramOptions = {}) => NumericalHistogramFilter
 
 This method requires a widget or selector, a column, and can have the following options:
