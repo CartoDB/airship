@@ -21,7 +21,7 @@ export class NumericalHistogramFilter extends BaseHistogramFilter<[number, numbe
   private _isTimeSeries: boolean;
   private _totals: boolean;
   private _bucketRanges: BucketRange[];
-  private _globalHistogram: VLNumericalHistogram;
+  private _sampleHistogram: VLNumericalHistogram;
 
   /**
    * Creates an instance of NumericalHistogramFilter.
@@ -85,7 +85,7 @@ export class NumericalHistogramFilter extends BaseHistogramFilter<[number, numbe
    * @memberof NumericalHistogramFilter
    */
   public get expression(): string {
-    if (this._totals && !this._globalHistogram) {
+    if (this._totals && !this._sampleHistogram) {
       return null;
     }
 
@@ -100,7 +100,7 @@ export class NumericalHistogramFilter extends BaseHistogramFilter<[number, numbe
     }
 
     const s = this._carto.expressions;
-    return s.globalHistogram(s.prop(this._column), this._bucketArg());
+    return s.sampleHistogram(s.prop(this._column), this._bucketArg());
   }
 
   /**
@@ -133,18 +133,18 @@ export class NumericalHistogramFilter extends BaseHistogramFilter<[number, numbe
 
   protected bindDataLayer()  {
     this._dataLayer.on('updated', () => {
-      if (this._totals && !this._globalHistogram) {
-        this._globalHistogram = (this._dataLayer.viz.variables[`${this.name}_global`] as VLNumericalHistogram);
+      if (this._totals && !this._sampleHistogram) {
+        this._sampleHistogram = (this._dataLayer.viz.variables[`${this.name}_global`] as VLNumericalHistogram);
 
-        if (this._globalHistogram) {
-          this._bucketRanges = this._globalHistogram.value.map(
+        if (this._sampleHistogram) {
+          this._bucketRanges = this._sampleHistogram.value.map(
             (value) => ([value.x[0], value.x[1]] as [number, number])
           );
 
           this._emitter.emit('expressionReady', { name: this.name, expression: this.expression });
         }
 
-        this._widget.backgroundData = conversion.numerical(this._globalHistogram);
+        this._widget.backgroundData = conversion.numerical(this._sampleHistogram);
       }
 
       const newHistogram = (this._dataLayer.viz.variables[this.name] as VLNumericalHistogram);

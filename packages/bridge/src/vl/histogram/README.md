@@ -86,9 +86,9 @@ BucketRanges = [number, number]
 `readOnly` is a boolean to specify whether this widget should filter or not.
 `nBuckets` is a number to specify the number of buckets the histogram should have
 `bucketRanges` is an array of pairs of numbers, which lets you specify the bucket ranges by hand
-`totals` will use a VL GlobalHistogram expression to display the totals as background bars on the widget
+`totals` will use a VL sampleHistogram expression to display the totals as background bars on the widget
 
-**It is highly recommended** that you use bucketRanges when you specify `readOnly: false`, because of how the filtering works, or `totals`, which will internally set `bucketRanges` to the ones generate via the VL GlobalHistogram
+**It is highly recommended** that you use bucketRanges when you specify `readOnly: false`, because of how the filtering works, or `totals`, which will internally set `bucketRanges` to the ones generate via the VL sampleHistogram
 
 If both `nBuckets` and `bucketRanges` are provided, `nBuckets` will be ignored, and the number of buckets will be the length of `bucketRanges`
 
