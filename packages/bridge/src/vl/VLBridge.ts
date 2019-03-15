@@ -122,7 +122,8 @@ export default class VLBridge {
     column: string | { propertyName: string },
     options: CategoricalHistogramOptions = {}): CategoricalHistogramFilter {
     const {
-      readOnly
+      readOnly,
+      totals
     } = options;
 
     const colName = getColumnName(column);
@@ -135,6 +136,7 @@ export default class VLBridge {
       colName,
       this._source,
       readOnly,
+      totals,
       expression
     );
 
@@ -167,7 +169,7 @@ export default class VLBridge {
 
     if (buckets === undefined && bucketRanges === undefined) {
       const histogramWidget = widget as HTMLAsHistogramWidgetElement;
-      return this.categoricalHistogram(histogramWidget, column, { readOnly });
+      return this.categoricalHistogram(histogramWidget, column, { readOnly, totals });
     }
 
     return this.numericalHistogram(widget, column, { readOnly, buckets, bucketRanges, totals });

@@ -127,4 +127,12 @@ interface CategoricalHistogramOptions {
    * @memberof CategoricalHistogramOptions
    */
   readOnly?: boolean;
+
+  /**
+   * Whether this widget should show the total values or not
+   *
+   * @type {boolean}
+   * @memberof CategoricalHistogramOptions
+   */
+  totals?: boolean;
 }

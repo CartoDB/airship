@@ -19,7 +19,6 @@ import { BaseHistogramFilter } from './BaseHistogramFilter';
 export class NumericalHistogramFilter extends BaseHistogramFilter<[number, number]> {
   private _lastHistogram: VLNumericalHistogram = null;
   private _isTimeSeries: boolean;
-  private _totals: boolean;
   private _bucketRanges: BucketRange[];
   private _sampleHistogram: VLNumericalHistogram;
 
@@ -54,10 +53,9 @@ export class NumericalHistogramFilter extends BaseHistogramFilter<[number, numbe
     showTotals: boolean = false,
     inputExpression: object = null
   ) {
-    super('numerical', carto, layer, histogram, columnName, source, readOnly, inputExpression);
+    super('numerical', carto, layer, histogram, columnName, source, readOnly, showTotals, inputExpression);
     this._buckets = bucketRanges !== undefined ? bucketRanges.length : nBuckets;
     this._bucketRanges = bucketRanges;
-    this._totals = showTotals;
   }
 
   /**
@@ -105,7 +103,7 @@ export class NumericalHistogramFilter extends BaseHistogramFilter<[number, numbe
     }
 
     const s = this._carto.expressions;
-    return s.sampleHistogram(s.prop(this._column), this._bucketArg());
+    return s.sampleHistogram(this._inputExpression ? this._inputExpression : s.prop(this._column), this._bucketArg());
   }
 
   /**

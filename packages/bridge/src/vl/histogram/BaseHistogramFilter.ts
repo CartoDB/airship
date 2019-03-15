@@ -18,6 +18,7 @@ export abstract class BaseHistogramFilter<T> extends BaseFilter {
   protected _selection: T = null;
   protected _dataLayer: any;
   protected _inputExpression = null;
+  protected _totals = false;
 
   /**
    * Creates an instance of BaseHistogramFilter.
@@ -40,12 +41,14 @@ export abstract class BaseHistogramFilter<T> extends BaseFilter {
     columnName: string,
     source: any,
     readOnly: boolean = true,
+    showTotals: boolean = false,
     inputExpression: object = null
   ) {
     super(`histogram_${type}`, columnName, layer, source, readOnly);
 
     this._widget = select(histogram) as HTMLAsHistogramWidgetElement | HTMLAsTimeSeriesWidgetElement;
     this._carto = carto;
+    this._totals = showTotals;
 
     this._widget.disableInteractivity = readOnly;
     this._widget.showClear = !readOnly;
