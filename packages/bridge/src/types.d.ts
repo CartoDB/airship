@@ -2,11 +2,14 @@ interface VLViz {
   variables: {
     [key: string]: any
   };
+  _changed: () => void;
 }
 
 interface VLAnimation {
   input: any;
   _paused: boolean;
+  parent: any;
+  notify: () => void;
   getProgressPct(): number;
   setProgressPct(pct: number): void;
   play(): void;
@@ -90,6 +93,14 @@ interface NumericalHistogramOptions {
    * @memberof NumericalHistogramOptions
    */
   totals?: boolean;
+}
+
+interface AnimationOptions extends NumericalHistogramOptions {
+  duration?: number;
+
+  fade?: [number, number];
+
+  variableName?: string;
 }
 
 /**

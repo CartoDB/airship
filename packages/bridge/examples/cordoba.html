@@ -70,11 +70,6 @@
         `);
 
         const viz = new carto.Viz(`
-          @duration: 30
-          @min: globalMin($year)
-          @max: globalMax($year)
-          @animation: animation(linear($year, 1900, 2017), @duration, fade(0.1, ${Number.MAX_SAFE_INTEGER}))
-
           strokeWidth: 0
         `);
 
@@ -102,7 +97,9 @@
         bridge.timeSeries('as-time-series-widget', 'year', {
           buckets: 30,
           readOnly: false,
-          totals: true
+          totals: true,
+          duration: 20,
+          fade: [0.1, Number.MAX_SAFE_INTEGER]
         });
 
         bridge.histogram(yearWidget, 'year', {

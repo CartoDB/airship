@@ -226,32 +226,42 @@ export default class VLBridge {
    *
    * @param {(HTMLAsTimeSeriesWidgetElement | string)} widget The Time series widget, or a selector
    * @param {string} column The string to pull data from it
-   * @param {NumericalHistogramOptions} [options={}]
+   * @param {AnimationOptions} [options={}]
    * @memberof VLBridge
    */
   public timeSeries(
     widget: HTMLAsTimeSeriesWidgetElement | string,
     column: string,
-    options: NumericalHistogramOptions = {}) {
+    options: AnimationOptions = {}) {
     if (this._animation) {
       throw new Error('There can only be one animation');
     }
 
     const {
       buckets,
+      bucketRanges,
       readOnly,
-      totals
+      totals,
+      duration,
+      fade,
+      variableName
     } = options;
 
     this._animation = new TimeSeries(
+      this._carto,
       this._layer,
+      column,
       widget,
       () => {
         this._rebuildFilters();
-      }
+      },
+      duration,
+      fade,
+      variableName
     );
 
     const histogram = this.numericalHistogram(widget, column, {
+      bucketRanges,
       buckets,
       readOnly,
       totals
@@ -402,7 +412,7 @@ export default class VLBridge {
     }
 
     if (this._animation) {
-      newFilter = `@animation and ${newFilter}`;
+      newFilter = `@${this._animation.variableName} and ${newFilter}`;
     }
 
     // Update the Visualization filter
