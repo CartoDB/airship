@@ -81,7 +81,6 @@
 
         const vizLayer = new carto.Layer('layer', source, viz);
 
-        const typeHistogram = document.querySelector('#typeHist');
         const lonRange = document.querySelector('#lonRange');
         const latRange = document.querySelector('#latRange');
 
@@ -89,28 +88,19 @@
 
         vizLayer.addTo(map, 'watername_ocean');
 
-        const bridge = new AsBridge.VLBridge(
-          carto,
-          map,
-          vizLayer,
-          source
-        );
-
-        bridge.histogram({
-          column: 'location',
-          readOnly: false,
-          widget: typeHistogram,
+        const bridge = new AsBridge.VLBridge({
+          carto: carto,
+          map: map,
+          layer: vizLayer,
+          source: source
         });
 
-        bridge.globalRange({
-          column: 'lon',
-          widget: lonRange
+        bridge.histogram('#typeHist', 'location', {
+          readOnly: false
         });
 
-        bridge.globalRange({
-          column: 'lat',
-          widget: latRange
-        });
+        bridge.globalRange(lonRange, 'lon');
+        bridge.globalRange(latRange, 'lat');
 
         bridge.build();
     </script>

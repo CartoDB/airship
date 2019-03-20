@@ -70,20 +70,14 @@
         `);
 
         const viz = new carto.Viz(`
-          @duration: 30
-          @min: globalMin($year)
-          @max: globalMax($year)
-          @animation: animation(linear($year, 1900, 2017), @duration, fade(0.1, ${Number.MAX_SAFE_INTEGER}))
-
           strokeWidth: 0
         `);
 
+        
         const vizLayer = new carto.Layer('layer', source, viz);
-
-        const timeWidget = document.querySelector('as-time-series-widget');
-        const yearWidget = document.querySelector('#year');
-
         vizLayer.addTo(map, 'watername_ocean');
+
+        const yearWidget = document.querySelector('#year');
 
         yearWidget.axisFormatter = (e) => {
           if (isNaN(e)) {
@@ -93,26 +87,24 @@
           return Math.round(e);
         };
 
-        const bridge = new AsBridge.VLBridge(
-          carto,
-          map,
-          vizLayer,
-          source
-        );
+        const bridge = new AsBridge.VLBridge({
+          carto: carto,
+          map: map,
+          layer: vizLayer,
+          source: source
+        });
           
-        bridge.timeSeries({
-          column: 'year',
+        bridge.timeSeries('as-time-series-widget', 'year', {
           buckets: 30,
           readOnly: false,
-          widget: timeWidget,
-          totals: true
+          totals: true,
+          duration: 20,
+          fade: [0.1, Number.MAX_SAFE_INTEGER]
         });
 
-        bridge.histogram({
-          column: 'year',
+        bridge.histogram(yearWidget, 'year', {
           buckets: 30,
           readOnly: false,
-          widget: yearWidget,
           totals: true
         });
 

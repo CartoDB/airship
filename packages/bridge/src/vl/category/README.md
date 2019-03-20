@@ -7,20 +7,19 @@ Use this in order to connect a category widget with your VL visualization. Inter
 As usual, create the bridge instance with the required parameters
 
 ```
-const bridge = new AsBridge.VLBridge(
-  carto,
-  map,
-  layer,
-  source
-);
+const bridge = new AsBridge.VLBridge({
+  carto: carto,
+  map: map,
+  layer: vizLayer,
+  source: source
+});
 ```
 
 Use the `category` method to connect your category widget.
 
 ```
-const category = bridge.category({
-  column: 'a_valid_column',
-  widget: categoryWidget
+const category = bridge.category(categoryWidget, 'a_valid_column', {
+  readyOnly: false
 });
 ```
 
@@ -32,20 +31,28 @@ bridge.build();
 
 ### Reference
 
-#### VLBridge.category(options: CategoryOptions) => CategoryFilter
+#### VLBridge.category(widget: HTMLAsCategoryWidgetElement | string, column: string, options: CategoryOptions) => CategoryFilter
 
-This method receives the following object as options:
+This method requires an Airship Category widget element or DOM selector, a column name and accepts the following options:
 
 ```
 CategoryOptions {
-  column: string
   readOnly: boolean
-  widget: HTMLAsCategoryWidgetElement
+  button: HTMLElement | string
 }
 ```
 
-`column` is a string for the visualization column to get the data from.
 `readOnly` is a boolean to specify whether this widget should filter or not.
-`widget` is your as-category-widget HTML element.
+`button` is an HTMLElement or a selector that will be used to trigger the filtering. If this is present, you will be able to select multiple categories and the filtering will happen when the user clicks on the element.
 
 This method returns the CategoryFilter instance.
+
+The `column` can be a CARTO VL expression instead of a column. This will be used as the first argument of the histogram that feeds its data, so refer to the CARTO VL documentation to see which expressions are compatible.
+
+### Widget side effects
+
+The following properties of the widget are updated internally, so you should avoid changing them:
+
+- `disableInteractivity`
+- `showClearButton`
+- `categories`

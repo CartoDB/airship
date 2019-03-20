@@ -1,4 +1,5 @@
 import { HistogramSelection } from '../../../../components/src/components/as-histogram-widget/interfaces';
+import { select } from '../../util/Utils';
 import { BaseFilter } from '../base/BaseFilter';
 
 /**
@@ -16,6 +17,8 @@ export abstract class BaseHistogramFilter<T> extends BaseFilter {
   protected _widget: HTMLAsTimeSeriesWidgetElement | HTMLAsHistogramWidgetElement;
   protected _selection: T = null;
   protected _dataLayer: any;
+  protected _inputExpression = null;
+  protected _totals = false;
 
   /**
    * Creates an instance of BaseHistogramFilter.
@@ -27,24 +30,30 @@ export abstract class BaseHistogramFilter<T> extends BaseFilter {
    * @param {string} columnName The column to pull data from
    * @param {*} source A CARTO VL source
    * @param {boolean} [readOnly=true] Whether the widget will be able to filter the visualization or not
+   * @param {object} [inputExpression=null] VL Expression to use instead of s.prop for the histogram input
    * @memberof BaseHistogramFilter
    */
   constructor(
     type: 'categorical' | 'numerical',
     carto: any,
     layer: any,
-    histogram: HTMLAsTimeSeriesWidgetElement | HTMLAsHistogramWidgetElement,
+    histogram: HTMLAsTimeSeriesWidgetElement | HTMLAsHistogramWidgetElement | string,
     columnName: string,
     source: any,
-    readOnly: boolean = true
+    readOnly: boolean = true,
+    showTotals: boolean = false,
+    inputExpression: object = null
   ) {
     super(`histogram_${type}`, columnName, layer, source, readOnly);
 
-    this._widget = histogram;
+    this._widget = select(histogram) as HTMLAsHistogramWidgetElement | HTMLAsTimeSeriesWidgetElement;
     this._carto = carto;
+    this._totals = showTotals;
 
-    histogram.disableInteractivity = readOnly;
-    histogram.showClear = !readOnly;
+    this._widget.disableInteractivity = readOnly;
+    this._widget.showClear = !readOnly;
+
+    this._inputExpression = inputExpression;
 
     this.selectionChanged = this.selectionChanged.bind(this);
 

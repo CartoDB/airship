@@ -19,9 +19,8 @@ import { BaseHistogramFilter } from './BaseHistogramFilter';
 export class NumericalHistogramFilter extends BaseHistogramFilter<[number, number]> {
   private _lastHistogram: VLNumericalHistogram = null;
   private _isTimeSeries: boolean;
-  private _totals: boolean;
   private _bucketRanges: BucketRange[];
-  private _globalHistogram: VLNumericalHistogram;
+  private _sampleHistogram: VLNumericalHistogram;
 
   /**
    * Creates an instance of NumericalHistogramFilter.
@@ -39,23 +38,24 @@ export class NumericalHistogramFilter extends BaseHistogramFilter<[number, numbe
    * @param {BucketRange[]} bucketRanges Array describing the bucket ranges. This has priority over nBuckets.
    * See https://carto.com/developers/carto-vl/reference/#cartoexpressionsviewporthistogram for more information
    * @param {boolean} [readOnly=true] Whether this histogram can filter the Visualization or not.
+   * @param {object} [inputExpression=null] VL Expression to use instead of s.prop for the histogram input
    * @memberof NumericalHistogramFilter
    */
   constructor(
     carto: any,
     layer: any,
-    histogram: HTMLAsTimeSeriesWidgetElement | HTMLAsHistogramWidgetElement,
+    histogram: HTMLAsTimeSeriesWidgetElement | HTMLAsHistogramWidgetElement | string,
     columnName: string,
-    nBuckets: number,
+    nBuckets: number = 20,
     source: any,
-    bucketRanges: BucketRange[],
+    bucketRanges?: BucketRange[],
     readOnly: boolean = true,
-    showTotals: boolean = false
+    showTotals: boolean = false,
+    inputExpression: object = null
   ) {
-    super('numerical', carto, layer, histogram, columnName, source, readOnly);
+    super('numerical', carto, layer, histogram, columnName, source, readOnly, showTotals, inputExpression);
     this._buckets = bucketRanges !== undefined ? bucketRanges.length : nBuckets;
     this._bucketRanges = bucketRanges;
-    this._totals = showTotals;
   }
 
   /**
@@ -85,13 +85,16 @@ export class NumericalHistogramFilter extends BaseHistogramFilter<[number, numbe
    * @memberof NumericalHistogramFilter
    */
   public get expression(): string {
-    if (this._totals && !this._globalHistogram) {
+    if (this._totals && !this._sampleHistogram) {
       return null;
     }
 
     const s = this._carto.expressions;
 
-    return s.viewportHistogram(s.prop(this._column), this._bucketArg());
+    return s.viewportHistogram(
+      this._inputExpression ? this._inputExpression : s.prop(this._column),
+      this._bucketArg()
+    );
   }
 
   public get globalExpression(): any {
@@ -100,7 +103,7 @@ export class NumericalHistogramFilter extends BaseHistogramFilter<[number, numbe
     }
 
     const s = this._carto.expressions;
-    return s.globalHistogram(s.prop(this._column), this._bucketArg());
+    return s.sampleHistogram(this._inputExpression ? this._inputExpression : s.prop(this._column), this._bucketArg());
   }
 
   /**
@@ -133,18 +136,18 @@ export class NumericalHistogramFilter extends BaseHistogramFilter<[number, numbe
 
   protected bindDataLayer()  {
     this._dataLayer.on('updated', () => {
-      if (this._totals && !this._globalHistogram) {
-        this._globalHistogram = (this._dataLayer.viz.variables[`${this.name}_global`] as VLNumericalHistogram);
+      if (this._totals && !this._sampleHistogram) {
+        this._sampleHistogram = (this._dataLayer.viz.variables[`${this.name}_global`] as VLNumericalHistogram);
 
-        if (this._globalHistogram) {
-          this._bucketRanges = this._globalHistogram.value.map(
+        if (this._sampleHistogram) {
+          this._bucketRanges = this._sampleHistogram.value.map(
             (value) => ([value.x[0], value.x[1]] as [number, number])
           );
 
           this._emitter.emit('expressionReady', { name: this.name, expression: this.expression });
         }
 
-        this._widget.backgroundData = conversion.numerical(this._globalHistogram);
+        this._widget.backgroundData = conversion.numerical(this._sampleHistogram);
       }
 
       const newHistogram = (this._dataLayer.viz.variables[this.name] as VLNumericalHistogram);

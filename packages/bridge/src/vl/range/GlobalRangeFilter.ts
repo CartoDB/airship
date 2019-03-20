@@ -1,3 +1,4 @@
+import { select } from '../../util/Utils';
 import { BaseFilter } from '../base/BaseFilter';
 
 /**
@@ -17,13 +18,13 @@ export class GlobalRangeFilter extends BaseFilter {
   constructor(
     carto: any,
     layer: any,
-    widget: HTMLAsRangeSliderElement,
+    widget: HTMLAsRangeSliderElement | string,
     columnName: string,
     source: any
   ) {
     super(`category`, columnName, layer, source, false);
 
-    this._widget = widget;
+    this._widget = select(widget) as HTMLAsRangeSliderElement;
     this._carto = carto;
 
     this._widget.addEventListener('change', (event: CustomEvent) => {

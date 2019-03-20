@@ -11266,8 +11266,11 @@ class Metadata {
     }
 
     codec (propertyName) {
-        // FIXME: default identity code for debugging purposes
-        return this.properties[this.baseName(propertyName)].codec || new _codecs_Identity__WEBPACK_IMPORTED_MODULE_1__["default"]();
+        const name = this.baseName(propertyName);
+
+        return this.properties[name] && this.properties[name].codec
+            ? this.properties[name].codec
+            : new _codecs_Identity__WEBPACK_IMPORTED_MODULE_1__["default"]();
     }
 }
 
@@ -13365,4 +13368,4 @@ function isTimeRange (t) {
 /***/ })
 
 /******/ });
-//# sourceMappingURL=carto-vl-afe4c87fc75f296b1698.worker.js.map
+//# sourceMappingURL=carto-vl-8a9d881814e7b9fb915f.worker.js.map

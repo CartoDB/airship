@@ -1,4 +1,5 @@
 import semver from 'semver';
+import { getColumnName, getExpression } from '../util/Utils';
 import { BaseFilter } from './base/BaseFilter';
 import { CategoryFilter } from './category/CategoryFilter';
 import { CategoricalHistogramFilter } from './histogram/CategoricalHistogramFilter';
@@ -38,65 +39,68 @@ export default class VLBridge {
 
   /**
    * Creates an instance of VLBridge.
-   *
-   * The CARTO VL namespace is required to create new expressions
-   * The map is required in order to add an internal invisble layer to it
-   * The VL Layer is used for event handling purposes
-   * The source will be reused for the internal invisible layer
-   *
-   * @param {*} carto CARTO VL namespace
-   * @param {*} map CARTO VL map instance (Mapbox gl)
-   * @param {*} layer CARTO VL layer
-   * @param {*} source CARTO VL source
+   * @param {VLBridgeOptions} { carto, map, layer, source }
+   *  - carto: CARTO VL namespace
+   *  - map: CARTO VL map instance (Mapbox GL)
+   *  - layer: CARTO VL layer
+   *  - source: CARTO VL source
    * @memberof VLBridge
    */
-  constructor(carto: any, map: any, layer: any, source: any) {
+  constructor({ carto, map, layer, source }: VLBridgeOptions) {
     this._carto = carto;
     this._map = map;
     this._layer = layer;
     this._source = source;
 
-    this._id = layer.id;
+    this._id = this._layer.id;
 
     this._rebuildFilters = this._rebuildFilters.bind(this);
     this._updateDataLayerVariables = this._updateDataLayerVariables.bind(this);
 
-    if (!carto.expressions.globalHistogram) {
-      throw new Error(`Provided VL version ${carto.version} lacks globalHistogram support.`);
+    if (!this._carto.expressions.sampleHistogram) {
+      throw new Error(`Provided VL version ${this._carto.version} lacks sampleHistogram support.`);
     }
 
-    if (!semver.satisfies(carto.version, VL_VERSION)) {
-      throw new Error(`Provided VL version ${carto.version} not supported. Must satisfy ${VL_VERSION}`);
+    if (!semver.satisfies(this._carto.version, VL_VERSION)) {
+      throw new Error(`Provided VL version ${this._carto.version} not supported. Must satisfy ${VL_VERSION}`);
     }
   }
 
   /**
    * Create a numerical histogram filter. See {@link NumericalHistogramOptions} for more details
    *
-   * @param {NumericalHistogramOptions} args
-   * @returns
+   * @param {(HTMLAsHistogramWidgetElement | HTMLAsTimeSeriesWidgetElement | string)} widget Your widget or a
+   * selector to locate it
+   * @param {string} column The column you want to pull data from
+   * @param {NumericalHistogramOptions} [options={}] Options for the bridge
+   * @returns {NumericalHistogramFilter}
    * @memberof VLBridge
    */
-  public numericalHistogram(args: NumericalHistogramOptions) {
+  public numericalHistogram(
+    widget: HTMLAsHistogramWidgetElement | HTMLAsTimeSeriesWidgetElement | string,
+    column: string | { propertyName: string },
+    options: NumericalHistogramOptions = {}): NumericalHistogramFilter {
     const {
-      column,
       buckets,
       bucketRanges,
       readOnly,
-      widget,
       totals
-    } = args;
+    } = options;
+
+    const colName = getColumnName(column);
+    const expression = getExpression(column);
 
     const histogram = new NumericalHistogramFilter(
       this._carto,
       this._layer,
       widget,
-      column,
+      colName,
       buckets,
       this._source,
       bucketRanges,
       readOnly,
-      totals
+      totals,
+      expression
     );
 
     this._addFilter(histogram);
@@ -107,24 +111,33 @@ export default class VLBridge {
   /**
    * Create a categorical histogram filter. See {@link CategoricalHistogramOptions} for more details
    *
-   * @param {CategoricalHistogramOptions} args
-   * @returns
+   * @param {(HTMLAsHistogramWidgetElement | string)} widget Your widget or a selector to locate it
+   * @param {string} column The column to pull data from
+   * @param {CategoricalHistogramOptions} [options={}] Options for this particular filter
+   * @returns {CategoricalHistogramFilter}
    * @memberof VLBridge
    */
-  public categoricalHistogram(args: CategoricalHistogramOptions) {
+  public categoricalHistogram(
+    widget: HTMLAsHistogramWidgetElement | string,
+    column: string | { propertyName: string },
+    options: CategoricalHistogramOptions = {}): CategoricalHistogramFilter {
     const {
-      column,
       readOnly,
-      widget
-    } = args;
+      totals
+    } = options;
+
+    const colName = getColumnName(column);
+    const expression = getExpression(column);
 
     const histogram = new CategoricalHistogramFilter(
       this._carto,
       this._layer,
       widget,
-      column,
+      colName,
       this._source,
-      readOnly
+      readOnly,
+      totals,
+      expression
     );
 
     this._addFilter(histogram);
@@ -137,49 +150,64 @@ export default class VLBridge {
    *
    * If neither buckets or bucketRanges are provided, a categorical one will be created. A numerical one otherwise
    *
-   * @param {NumericalHistogramOptions} args
-   * @returns
+   * @param {(HTMLAsHistogramWidgetElement | HTMLAsTimeSeriesWidgetElement | string)} widget Your widget or a selector
+   * @param {string} column The column to pull data from
+   * @param {NumericalHistogramOptions} options Options for the Histogram
+   * @returns {NumericalHistogramFilter | CategoricalHistogramFilter}
    * @memberof VLBridge
    */
-  public histogram(args: NumericalHistogramOptions) {
+  public histogram(
+    widget: HTMLAsHistogramWidgetElement | HTMLAsTimeSeriesWidgetElement | string,
+    column: string | { propertyName: string },
+    options: NumericalHistogramOptions = {}): NumericalHistogramFilter | CategoricalHistogramFilter {
     const {
-      column,
       buckets,
       bucketRanges,
       readOnly,
-      widget,
       totals
-    } = args;
+    } = options;
 
     if (buckets === undefined && bucketRanges === undefined) {
       const histogramWidget = widget as HTMLAsHistogramWidgetElement;
-      return this.categoricalHistogram({ column, readOnly, widget: histogramWidget });
+      return this.categoricalHistogram(histogramWidget, column, { readOnly, totals });
     }
 
-    return this.numericalHistogram({ column, readOnly, buckets, bucketRanges, widget, totals });
+    return this.numericalHistogram(widget, column, { readOnly, buckets, bucketRanges, totals });
   }
 
   /**
-   * Creates a category widget filter. See {@link CategoryOptions} for more details
+   * Creates a category widget filter.
    *
-   * @param {CategoryOptions} args
+   * You can provide an HTML element (like a button) on the options, so the filtering takes place
+   * after the user clicks on it. This option is ignored if readOnly
+   *
+   * @param {HTMLAsCategoryWidgetElement | string} widget An airship category widget, or a selector
+   * @param {string} column Column to pull data from
+   * @param {CategoryOptions} [options={}]
    * @returns
    * @memberof VLBridge
    */
-  public category(args: CategoryOptions) {
+  public category(
+    widget: HTMLAsCategoryWidgetElement | string,
+    column: string | { propertyName: string },
+    options: CategoryOptions = {}) {
     const {
-      column,
       readOnly,
-      widget
-    } = args;
+      button
+    } = options;
+
+    const colName = getColumnName(column);
+    const expression = getExpression(column);
 
     const category = new CategoryFilter(
       this._carto,
       this._layer,
       widget,
-      column,
+      colName,
       this._source,
-      readOnly
+      readOnly,
+      button,
+      expression
     );
 
     this._addFilter(category);
@@ -196,35 +224,47 @@ export default class VLBridge {
    *
    * There can only be one animation per layer (per VLBridge instance)
    *
-   * @param {CategoryOptions} args
-   * @returns
+   * @param {(HTMLAsTimeSeriesWidgetElement | string)} widget The Time series widget, or a selector
+   * @param {string} column The string to pull data from it
+   * @param {AnimationOptions} [options={}]
    * @memberof VLBridge
    */
-  public timeSeries({
-    column,
-    buckets,
-    readOnly,
-    widget,
-    totals
-  }: NumericalHistogramOptions) {
+  public timeSeries(
+    widget: HTMLAsTimeSeriesWidgetElement | string,
+    column: string,
+    options: AnimationOptions = {}) {
     if (this._animation) {
-      throw new Error('There can only be one Time Series animation');
+      throw new Error('There can only be one animation');
     }
 
-    this._animation = new TimeSeries(
-      this._layer,
-      widget as HTMLAsTimeSeriesWidgetElement,
-      () => {
-        this._rebuildFilters();
-      }
-    );
-
-    const histogram = this.numericalHistogram({
+    const {
       buckets,
-      column,
+      bucketRanges,
       readOnly,
       totals,
-      widget
+      duration,
+      fade,
+      variableName
+    } = options;
+
+    this._animation = new TimeSeries(
+      this._carto,
+      this._layer,
+      column,
+      widget,
+      () => {
+        this._rebuildFilters();
+      },
+      duration,
+      fade,
+      variableName
+    );
+
+    const histogram = this.numericalHistogram(widget, column, {
+      bucketRanges,
+      buckets,
+      readOnly,
+      totals
     });
 
     histogram.setTimeSeries(true);
@@ -234,10 +274,15 @@ export default class VLBridge {
     });
   }
 
-  public globalRange({
-    column,
-    widget
-  }: GlobalRangeOptions) {
+  /**
+   * Creates a global range slider filter.
+   *
+   * @param {(HTMLAsRangeSliderElement | string)} widget A range slider widget or a selector
+   * @param {string} column The column to pull data from
+   * @returns {GlobalRangeFilter}
+   * @memberof VLBridge
+   */
+  public globalRange(widget: HTMLAsRangeSliderElement | string, column: string): GlobalRangeFilter {
     const range = new GlobalRangeFilter(this._carto, this._layer, widget, column, this._source);
 
     this._addFilter(range);
@@ -367,7 +412,7 @@ export default class VLBridge {
     }
 
     if (this._animation) {
-      newFilter = `@animation and ${newFilter}`;
+      newFilter = `@${this._animation.variableName} and ${newFilter}`;
     }
 
     // Update the Visualization filter

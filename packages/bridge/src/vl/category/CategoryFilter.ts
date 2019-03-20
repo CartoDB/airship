@@ -1,3 +1,4 @@
+import { select } from '../../util/Utils';
 import { BaseFilter } from '../base/BaseFilter';
 import { isCategoricalHistogramEqual } from '../utils/comparison/histogram';
 import vlToCategory from '../utils/conversion/category';
@@ -15,7 +16,8 @@ export class CategoryFilter extends BaseFilter {
   private _selection: string[] = [];
   private _lastHistogram: VLCategoricalHistogram = null;
   private _dataLayer: any;
-
+  private _button: HTMLElement = null;
+  private _expression;
 
   /**
    * Creates an instance of CategoryFilter.
@@ -30,23 +32,34 @@ export class CategoryFilter extends BaseFilter {
   constructor(
     carto: any,
     layer: any,
-    widget: HTMLAsCategoryWidgetElement,
+    widget: HTMLAsCategoryWidgetElement | string,
     columnName: string,
     source: any,
-    readOnly: boolean = true
+    readOnly: boolean = true,
+    button: HTMLElement | string,
+    expression: object
   ) {
     super(`category`, columnName, layer, source, readOnly);
 
-    this._widget = widget;
-    this._carto = carto;
+    this._widget = select(widget) as HTMLAsCategoryWidgetElement;
 
-    widget.disableInteractivity = readOnly;
-    widget.showClearButton = !readOnly;
+    this._carto = carto;
+    this._button = select(button);
+    this._expression = expression;
+
+    this._widget.disableInteractivity = readOnly;
+    this._widget.showClearButton = !readOnly;
 
     this.selectionChanged = this.selectionChanged.bind(this);
 
     if (!readOnly) {
       this._widget.addEventListener('categoriesSelected', this.selectionChanged);
+
+      if (this._button && this._button.addEventListener) {
+        this._button.addEventListener('click', () => {
+          this._filterChanged();
+        });
+      }
     }
   }
 
@@ -77,12 +90,15 @@ export class CategoryFilter extends BaseFilter {
 
   public get expression(): any {
     const s = this._carto.expressions;
-    return s.viewportHistogram(s.prop(this._column));
+    return s.viewportHistogram(this._expression ? this._expression : s.prop(this._column));
   }
 
   private selectionChanged(evt: CustomEvent) {
     this._selection = evt.detail;
 
-    this._filterChanged();
+    if (this._selection.length === 0 || !this._button) {
+      this._filterChanged();
+    }
+
   }
 }

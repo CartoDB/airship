@@ -2,11 +2,14 @@ interface VLViz {
   variables: {
     [key: string]: any
   };
+  _changed: () => void;
 }
 
 interface VLAnimation {
   input: any;
   _paused: boolean;
+  parent: any;
+  notify: () => void;
   getProgressPct(): number;
   setProgressPct(pct: number): void;
   play(): void;
@@ -47,6 +50,13 @@ interface LegendData {
 
 type BucketRange = [number, number];
 
+interface VLBridgeOptions {
+  carto: any;
+  map: any;
+  layer: any;
+  source: any;
+}
+
 /**
  * Options for creating a {@link NumericalHistogramFilter}
  *
@@ -54,19 +64,11 @@ type BucketRange = [number, number];
  */
 interface NumericalHistogramOptions {
   /**
-   * Which column the histogram will get fed data from.
-   *
-   * @type {string}
-   * @memberof NumericalHistogramOptions
-   */
-  column: string;
-
-  /**
    * Number of buckets for the histogram
    *
    * @type {number}
    */
-  buckets: number;
+  buckets?: number;
 
   /**
    * Explicit bucket declarations. See
@@ -82,14 +84,7 @@ interface NumericalHistogramOptions {
    *
    * @type {boolean}
    */
-  readOnly: boolean;
-
-  /**
-   * The HTML element for an as-histogram-widget or an as-time-series-widget
-   *
-   * @type {(HTMLAsHistogramWidgetElement | HTMLAsTimeSeriesWidgetElement)}
-   */
-  widget: HTMLAsHistogramWidgetElement | HTMLAsTimeSeriesWidgetElement;
+  readOnly?: boolean;
 
   /**
    * Whether the widget should show the totals or not
@@ -97,7 +92,15 @@ interface NumericalHistogramOptions {
    * @type {boolean}
    * @memberof NumericalHistogramOptions
    */
-  totals: boolean;
+  totals?: boolean;
+}
+
+interface AnimationOptions extends NumericalHistogramOptions {
+  duration?: number;
+
+  fade?: [number, number];
+
+  variableName?: string;
 }
 
 /**
@@ -107,25 +110,19 @@ interface NumericalHistogramOptions {
  */
 interface CategoryOptions {
   /**
-   * Column that will feed the category widget data.
-   *
-   * @type {string}
-   */
-  column: string;
-
-  /**
    * Whether the widget will be able to filter or not
    *
    * @type {boolean}
    */
-  readOnly: boolean;
+  readOnly?: boolean;
 
   /**
-   * The HTML Element for an Airship's as-category-widget
+   * If this is passed, the filtering will happen after this button is pressed
    *
-   * @type {HTMLAsCategoryWidgetElement}
+   * @type {HTMLElement}
+   * @memberof CategoryOptions
    */
-  widget: HTMLAsCategoryWidgetElement;
+  button?: HTMLElement;
 }
 
 /**
@@ -135,44 +132,18 @@ interface CategoryOptions {
  */
 interface CategoricalHistogramOptions {
   /**
-   * Column that will feed the as-histogram-widget data.
-   *
-   * @type {string}
-   * @memberof CategoricalHistogramOptions
-   */
-  column: string;
-
-  /**
    * Whether this widget will be able to filter or not.
    *
    * @type {boolean}
    * @memberof CategoricalHistogramOptions
    */
-  readOnly: boolean;
+  readOnly?: boolean;
 
   /**
-   * The HTML Element for an Airship's as-histogram-widget
+   * Whether this widget should show the total values or not
    *
-   * @type {HTMLAsHistogramWidgetElement}
+   * @type {boolean}
    * @memberof CategoricalHistogramOptions
    */
-  widget: HTMLAsHistogramWidgetElement;
-}
-
-interface GlobalRangeOptions {
-  /**
-   * The HTML Element for an Airship as-range-slider
-   *
-   * @type {HTMLAsRangeSliderElement}
-   * @memberof GlobalRangeOptions
-   */
-  widget: HTMLAsRangeSliderElement;
-
-  /**
-   * The column you want to filter using the range slider
-   *
-   * @type {string}
-   * @memberof GlobalRangeOptions
-   */
-  column: string;
+  totals?: boolean;
 }

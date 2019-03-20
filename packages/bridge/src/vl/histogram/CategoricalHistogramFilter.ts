@@ -16,27 +16,31 @@ import { BaseHistogramFilter } from './BaseHistogramFilter';
  */
 export class CategoricalHistogramFilter extends BaseHistogramFilter<string[]> {
   private _lastHistogram: VLCategoricalHistogram = null;
+  private _sampleHistogram: VLCategoricalHistogram;
 
   /**
    * Creates an instance of CategoricalHistogramFilter.
    * @param {*} carto CARTO VL namespace
    * @param {*} layer CARTO VL layer
-   * @param {(HTMLAsTimeSeriesWidgetElement | HTMLAsHistogramWidgetElement)} histogram
+   * @param {(HTMLAsHistogramWidgetElement)} histogram
    * Airship histogram widget HTML element
    * @param {string} columnName The column to pull data from
    * @param {*} source CARTO VL source
    * @param {boolean} [readOnly=true] Whether this histogram allows filtering or not
+   * @param {object} [inputExpression=null] VL Expression to use instead of s.prop for the histogram input
    * @memberof CategoricalHistogramFilter
    */
   constructor(
     carto: any,
     layer: any,
-    histogram: HTMLAsTimeSeriesWidgetElement | HTMLAsHistogramWidgetElement,
+    histogram: HTMLAsHistogramWidgetElement | string,
     columnName: string,
     source: any,
-    readOnly: boolean = true
+    readOnly: boolean = true,
+    showTotals: boolean = false,
+    inputExpression: object = null
   ) {
-    super('categorical', carto, layer, histogram, columnName, source, readOnly);
+    super('categorical', carto, layer, histogram, columnName, source, readOnly, showTotals, inputExpression);
   }
 
   /**
@@ -63,11 +67,27 @@ export class CategoricalHistogramFilter extends BaseHistogramFilter<string[]> {
    */
   public get expression(): any {
     const s = this._carto.expressions;
-    return s.viewportHistogram(s.prop(this._column));
+
+    return s.viewportHistogram(this._inputExpression ? this._inputExpression : s.prop(this._column));
+  }
+
+  public get globalExpression(): any {
+    if (!this._totals) {
+      return null;
+    }
+
+    const s = this._carto.expressions;
+    return s.sampleHistogram(this._inputExpression ? this._inputExpression : s.prop(this._column));
   }
 
   protected bindDataLayer()  {
     this._dataLayer.on('updated', () => {
+      if (this._totals && !this._sampleHistogram) {
+        this._sampleHistogram = (this._dataLayer.viz.variables[`${this.name}_global`] as VLCategoricalHistogram);
+
+        this._widget.backgroundData = conversion.categorical(this._sampleHistogram);
+      }
+
       const newHistogram = (this._dataLayer.viz.variables[this.name] as VLCategoricalHistogram);
       if (!newHistogram) {
         return;
@@ -76,7 +96,20 @@ export class CategoricalHistogramFilter extends BaseHistogramFilter<string[]> {
       if (this._lastHistogram === null || !isCategoricalHistogramEqual(this._lastHistogram, newHistogram)) {
         this._lastHistogram = { value: newHistogram.value };
 
-        this._widget.data = conversion.categorical(newHistogram, this._legendData);
+        if (this._sampleHistogram) {
+          const baseData = this._sampleHistogram.value.map((data) => {
+            const value = newHistogram.value.find((item) => item.x === data.x);
+            return ({
+              x: data.x,
+              y: value ? value.y : 0
+            });
+          });
+
+          this._widget.data = conversion.categorical({ value: baseData }, this._legendData);
+        } else {
+          this._widget.data = conversion.categorical(newHistogram, this._legendData);
+        }
+
       }
     });
   }
