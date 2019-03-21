@@ -16,7 +16,7 @@ import { BaseHistogramFilter } from './BaseHistogramFilter';
  */
 export class CategoricalHistogramFilter extends BaseHistogramFilter<string[]> {
   private _lastHistogram: VLCategoricalHistogram = null;
-  private _sampleHistogram: VLCategoricalHistogram;
+  private _globalHistogram: VLCategoricalHistogram;
 
   /**
    * Creates an instance of CategoricalHistogramFilter.
@@ -77,15 +77,15 @@ export class CategoricalHistogramFilter extends BaseHistogramFilter<string[]> {
     }
 
     const s = this._carto.expressions;
-    return s.sampleHistogram(this._inputExpression ? this._inputExpression : s.prop(this._column));
+    return s.globalHistogram(this._inputExpression ? this._inputExpression : s.prop(this._column));
   }
 
   protected bindDataLayer()  {
     this._dataLayer.on('updated', () => {
-      if (this._totals && !this._sampleHistogram) {
-        this._sampleHistogram = (this._dataLayer.viz.variables[`${this.name}_global`] as VLCategoricalHistogram);
+      if (this._totals && !this._globalHistogram) {
+        this._globalHistogram = (this._dataLayer.viz.variables[`${this.name}_global`] as VLCategoricalHistogram);
 
-        this._widget.backgroundData = conversion.categorical(this._sampleHistogram);
+        this._widget.backgroundData = conversion.categorical(this._globalHistogram);
       }
 
       const newHistogram = (this._dataLayer.viz.variables[this.name] as VLCategoricalHistogram);
@@ -96,8 +96,8 @@ export class CategoricalHistogramFilter extends BaseHistogramFilter<string[]> {
       if (this._lastHistogram === null || !isCategoricalHistogramEqual(this._lastHistogram, newHistogram)) {
         this._lastHistogram = { value: newHistogram.value };
 
-        if (this._sampleHistogram) {
-          const baseData = this._sampleHistogram.value.map((data) => {
+        if (this._globalHistogram) {
+          const baseData = this._globalHistogram.value.map((data) => {
             const value = newHistogram.value.find((item) => item.x === data.x);
             return ({
               x: data.x,

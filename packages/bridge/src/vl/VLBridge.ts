@@ -57,8 +57,8 @@ export default class VLBridge {
     this._rebuildFilters = this._rebuildFilters.bind(this);
     this._updateDataLayerVariables = this._updateDataLayerVariables.bind(this);
 
-    if (!this._carto.expressions.sampleHistogram) {
-      throw new Error(`Provided VL version ${this._carto.version} lacks sampleHistogram support.`);
+    if (!this._carto.expressions.globalHistogram) {
+      throw new Error(`Provided VL version ${this._carto.version} lacks globalHistogram support.`);
     }
 
     if (!semver.satisfies(this._carto.version, VL_VERSION)) {
