@@ -9,6 +9,7 @@ interface VLAnimation {
   input: any;
   _paused: boolean;
   parent: any;
+  duration: any;
   notify: () => void;
   getProgressPct(): number;
   setProgressPct(pct: number): void;

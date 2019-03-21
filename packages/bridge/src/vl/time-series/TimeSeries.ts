@@ -16,8 +16,8 @@ export class TimeSeries {
   private _layer: any;
   private _viz: VLViz;
   private _dataLayer: any;
-  private _min: number;
-  private _max: number;
+  private _min: any;
+  private _max: any;
   private _carto: any;
   private _columnName: string;
   private _duration: number;
@@ -83,15 +83,28 @@ export class TimeSeries {
     if (range === null) {
       this._animation.input.min.blendTo(this._min, 0);
       this._animation.input.max.blendTo(this._max, 0);
-    } else {
+      this._animation.duration.blendTo(this._duration, 0);
+    } else if (range[0] !== range[1]) {
+      const ratio = Math.min(1, (range[1] - range[0]) / (this._max.value - this._min.value));
       this._animation.input.min.blendTo(range[0], 0);
       this._animation.input.max.blendTo(range[1], 0);
+
+      this._animation.duration.blendTo(this._duration * ratio, 0);
     }
 
   }
 
   public get variableName(): string {
     return this._variableName;
+  }
+
+  public setDuration(duration: number) {
+    this._duration = duration;
+    this._animation.duration.blendTo(duration, 0);
+  }
+
+  public get animation(): VLAnimation {
+    return this._animation;
   }
 
   /**
@@ -120,6 +133,7 @@ export class TimeSeries {
 
     this._max = this._animation.input.max;
     this._min = this._animation.input.min;
+    this._duration = this._animation.duration.value;
 
     this._layer.on('updated', () => {
       this._timeSeries.progress = this._animation.getProgressPct() * 100;

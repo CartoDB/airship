@@ -94,7 +94,7 @@
           source: source
         });
           
-        bridge.timeSeries('as-time-series-widget', 'year', {
+        const ts = bridge.timeSeries('as-time-series-widget', 'year', {
           buckets: 30,
           readOnly: false,
           totals: true,

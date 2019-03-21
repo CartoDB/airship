@@ -8,6 +8,8 @@ Internally, a histogram is created to display the bars, and also all the necessa
 - Play / Pause support
 - Range playback
 
+When playing a range, the animation duration is scaled down to a proportional duration. For instance, if you select half of the data, the animation will last half the time.
+
 ### Usage
 
 There are two ways of using this:
@@ -51,7 +53,7 @@ bridge.timeSeries(timeWidget, 'timestamp', {
 
 ### Reference
 
-#### VLBridge.timeSeries(widget: HTMLAsTimeSeriesWidget, column: string, options: AnimationOptions = {}) => void
+#### VLBridge.timeSeries(widget: HTMLAsTimeSeriesWidget, column: string, options: AnimationOptions = {}) => TimeSeries
 
 This method receives a Time Series widget, a column name and an options objects like the following:
 
@@ -76,6 +78,27 @@ BucketRanges = [number, number]
 `variableName` Name for the animation variable creation / lookup. Will be called `animation` by default.
 
 Internally, a numerical histogram will be created, as well as the necessary bindings to VLs animation object API
+
+#### TimeSeries.setDuration(duration: number)
+
+Sets the duration of the animation in seconds.
+
+```
+const ts = bridge.timeSeries(...);
+
+ts.setDuration(15);
+
+```
+
+#### TimeSeries.animation : VLAnimation
+
+Returns the CARTO VL animation object, in case you need some tweaking.
+
+```
+const ts = bridge.timeSeries(...);
+
+console.log('Animation duration is', ts.animation.duration)
+```
 
 ### Widget side effects
 

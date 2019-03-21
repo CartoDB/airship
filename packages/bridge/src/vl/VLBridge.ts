@@ -272,6 +272,8 @@ export default class VLBridge {
     histogram.on('rangeChanged', (range) => {
       this._animation.setRange(range);
     });
+
+    return this._animation;
   }
 
   /**
