@@ -71,7 +71,7 @@ BucketRanges = [number, number]
 `readOnly` is a boolean to specify whether this widget should filter or not.
 `nBuckets` is a number to specify the number of buckets the histogram should have
 `bucketRanges` is an array of pairs of numbers, which lets you specify the bucket ranges by hand
-`duration` how long should the animation be, defaults to 30
+`duration` how long should the animation be in seconds, defaults to 10
 `fade` an array of two durations for fading in and out, check the VL Animation [documentation](https://carto.com/developers/carto-vl/reference/#cartoexpressionsanimation), defaults to [0.15, 0.15]
 `variableName` Name for the animation variable creation / lookup. Will be called `animation` by default.
 

@@ -38,7 +38,7 @@ export class TimeSeries {
     column: string,
     timeSeries: HTMLAsTimeSeriesWidgetElement | string,
     readyCb: () => void,
-    duration: number = 30,
+    duration: number = 10,
     fade: [number, number] = [0.15, 0.15],
     variableName: string = 'animation'
   ) {
