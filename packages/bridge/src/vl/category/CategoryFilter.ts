@@ -84,7 +84,7 @@ export class CategoryFilter extends BaseFilter {
     if (this._selection.length === 0) {
       return null;
     } else {
-      return `$${this._column} in [${this._selection.map((value) => `'${value}'`).join(',')}]`;
+      return `@${this.columnPropName} in [${this._selection.map((value) => `'${value}'`).join(',')}]`;
     }
   }
 

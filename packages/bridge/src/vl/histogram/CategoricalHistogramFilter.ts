@@ -54,7 +54,7 @@ export class CategoricalHistogramFilter extends BaseHistogramFilter<string[]> {
     if (this._selection === null) {
       return null;
     } else {
-      return `$${this._column} in [${this._selection.map((value) => `'${value}'`).join(',')}]`;
+      return `@${this.columnPropName} in [${this._selection.map((value) => `'${value}'`).join(',')}]`;
     }
   }
 

@@ -110,6 +110,10 @@ export abstract class BaseFilter {
     return this._column;
   }
 
+  public get columnPropName(): string {
+    return `${this._name}_col`;
+  }
+
   /**
    * Get whether the filter is read only or not.
    *

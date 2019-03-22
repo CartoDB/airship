@@ -72,7 +72,7 @@ export class NumericalHistogramFilter extends BaseHistogramFilter<[number, numbe
       return null;
     }
 
-    return `($${this._column} >= ${this._selection[0]} and $${this._column} < ${this._selection[1]})`;
+    return `(@${this.columnPropName} >= ${this._selection[0]} and @${this.columnPropName} < ${this._selection[1]})`;
   }
 
   /**

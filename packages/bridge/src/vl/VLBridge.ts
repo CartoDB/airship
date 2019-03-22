@@ -337,7 +337,7 @@ export default class VLBridge {
     const s = this._carto.expressions;
 
     this._vizFilters.forEach(
-      (filter) => this._layer.viz.variables[`${filter.name}_col`] = s.prop(filter.column)
+      (filter) => this._layer.viz.variables[filter.columnPropName] = s.prop(filter.column)
     );
   }
 
@@ -379,6 +379,8 @@ export default class VLBridge {
       if (filter.expression) {
         variables[name] = filter.expression;
       }
+
+      variables[filter.columnPropName] = this._carto.expressions.prop(filter.column);
     }
 
     return variables;

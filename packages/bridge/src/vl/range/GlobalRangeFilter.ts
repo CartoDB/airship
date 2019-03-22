@@ -53,7 +53,7 @@ export class GlobalRangeFilter extends BaseFilter {
     if (this._value === null) {
       return null;
     } else {
-      return `$${this.column} > ${this._value[0]} and $${this.column} < ${this._value[1]}`;
+      return `@${this.columnPropName} > ${this._value[0]} and @${this.columnPropName} < ${this._value[1]}`;
     }
   }
 
