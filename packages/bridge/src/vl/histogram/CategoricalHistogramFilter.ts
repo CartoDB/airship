@@ -1,4 +1,4 @@
-import { HistogramSelection } from '../../../../components/src/components/as-histogram-widget/interfaces';
+import { VLCategoricalHistogram } from '../../types';
 import { isCategoricalHistogramEqual } from '../utils/comparison/histogram';
 import * as conversion from '../utils/conversion/histogram';
 import { BaseHistogramFilter } from './BaseHistogramFilter';
@@ -22,8 +22,7 @@ export class CategoricalHistogramFilter extends BaseHistogramFilter<string[]> {
    * Creates an instance of CategoricalHistogramFilter.
    * @param {*} carto CARTO VL namespace
    * @param {*} layer CARTO VL layer
-   * @param {(HTMLAsHistogramWidgetElement)} histogram
-   * Airship histogram widget HTML element
+   * @param {(any | string)} histogram Airship histogram widget HTML element or a selector
    * @param {string} columnName The column to pull data from
    * @param {*} source CARTO VL source
    * @param {boolean} [readOnly=true] Whether this histogram allows filtering or not
@@ -33,7 +32,7 @@ export class CategoricalHistogramFilter extends BaseHistogramFilter<string[]> {
   constructor(
     carto: any,
     layer: any,
-    histogram: HTMLAsHistogramWidgetElement | string,
+    histogram: any | string,
     columnName: string,
     source: any,
     readOnly: boolean = true,
@@ -114,7 +113,7 @@ export class CategoricalHistogramFilter extends BaseHistogramFilter<string[]> {
     });
   }
 
-  protected selectionChanged(evt: CustomEvent<HistogramSelection>) {
+  protected selectionChanged(evt: CustomEvent<any>) {
     if (evt.detail === null) {
       this._selection = null;
     } else {

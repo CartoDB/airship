@@ -1,4 +1,4 @@
-import { HistogramSelection } from '../../../../components/src/components/as-histogram-widget/interfaces';
+import { BucketRange, VLNumericalHistogram } from '../../types';
 import { isNumericalHistogramEqual } from '../utils/comparison/histogram';
 import * as conversion from '../utils/conversion/histogram';
 import { BaseHistogramFilter } from './BaseHistogramFilter';
@@ -30,8 +30,7 @@ export class NumericalHistogramFilter extends BaseHistogramFilter<[number, numbe
    *
    * @param {*} carto CARTO VL namespace
    * @param {*} layer CARTO VL layer
-   * @param {(HTMLAsTimeSeriesWidgetElement | HTMLAsHistogramWidgetElement)} histogram
-   * Airship histogram / time series HTML element
+   * @param {(any)} histogram Airship histogram / time series HTML element, or a selector
    * @param {string} columnName Column to pull data from
    * @param {number} nBuckets Number of buckets
    * @param {*} source CARTO VL source
@@ -44,7 +43,7 @@ export class NumericalHistogramFilter extends BaseHistogramFilter<[number, numbe
   constructor(
     carto: any,
     layer: any,
-    histogram: HTMLAsTimeSeriesWidgetElement | HTMLAsHistogramWidgetElement | string,
+    histogram: any | string,
     columnName: string,
     nBuckets: number = 20,
     source: any,
@@ -169,7 +168,7 @@ export class NumericalHistogramFilter extends BaseHistogramFilter<[number, numbe
     });
   }
 
-  protected selectionChanged(evt: CustomEvent<HistogramSelection>) {
+  protected selectionChanged(evt: CustomEvent<any>) {
     if (evt.detail === null) {
       this._selection = null;
     } else {

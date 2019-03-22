@@ -19,8 +19,7 @@
     "rootDir": "src"
   },
   "include": [
-    "src",
-    "../components/src/**/*.d.ts"
+    "src"
   ],
   "exclude": [
     "node_modules",

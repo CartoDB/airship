@@ -9,7 +9,7 @@ import { BaseFilter } from '../base/BaseFilter';
  * @extends {BaseFilter}
  */
 export class GlobalRangeFilter extends BaseFilter {
-  protected _widget: HTMLAsRangeSliderElement;
+  protected _widget: any;
   private _carto: any;
   private _dataLayer: any;
   private _populated: boolean;
@@ -18,13 +18,13 @@ export class GlobalRangeFilter extends BaseFilter {
   constructor(
     carto: any,
     layer: any,
-    widget: HTMLAsRangeSliderElement | string,
+    widget: any | string,
     columnName: string,
     source: any
   ) {
     super(`global_range`, columnName, layer, source, false);
 
-    this._widget = select(widget) as HTMLAsRangeSliderElement;
+    this._widget = select(widget) as any;
     this._carto = carto;
 
     this._widget.addEventListener('change', (event: CustomEvent) => {

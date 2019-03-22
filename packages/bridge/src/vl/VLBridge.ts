@@ -1,4 +1,10 @@
 import semver from 'semver';
+import {
+  AnimationOptions,
+  CategoricalHistogramOptions,
+  CategoryOptions,
+  NumericalHistogramOptions,
+  VLBridgeOptions } from '../types';
 import { getColumnName, getExpression } from '../util/Utils';
 import { BaseFilter } from './base/BaseFilter';
 import { CategoryFilter } from './category/CategoryFilter';
@@ -69,7 +75,7 @@ export default class VLBridge {
   /**
    * Create a numerical histogram filter. See {@link NumericalHistogramOptions} for more details
    *
-   * @param {(HTMLAsHistogramWidgetElement | HTMLAsTimeSeriesWidgetElement | string)} widget Your widget or a
+   * @param {(any | string)} widget Your widget or a
    * selector to locate it
    * @param {string} column The column you want to pull data from
    * @param {NumericalHistogramOptions} [options={}] Options for the bridge
@@ -77,7 +83,7 @@ export default class VLBridge {
    * @memberof VLBridge
    */
   public numericalHistogram(
-    widget: HTMLAsHistogramWidgetElement | HTMLAsTimeSeriesWidgetElement | string,
+    widget: any | string,
     column: string | { propertyName: string },
     options: NumericalHistogramOptions = {}): NumericalHistogramFilter {
     const {
@@ -111,14 +117,14 @@ export default class VLBridge {
   /**
    * Create a categorical histogram filter. See {@link CategoricalHistogramOptions} for more details
    *
-   * @param {(HTMLAsHistogramWidgetElement | string)} widget Your widget or a selector to locate it
+   * @param {(any | string)} widget Your widget or a selector to locate it
    * @param {string} column The column to pull data from
    * @param {CategoricalHistogramOptions} [options={}] Options for this particular filter
    * @returns {CategoricalHistogramFilter}
    * @memberof VLBridge
    */
   public categoricalHistogram(
-    widget: HTMLAsHistogramWidgetElement | string,
+    widget: any | string,
     column: string | { propertyName: string },
     options: CategoricalHistogramOptions = {}): CategoricalHistogramFilter {
     const {
@@ -150,14 +156,14 @@ export default class VLBridge {
    *
    * If neither buckets or bucketRanges are provided, a categorical one will be created. A numerical one otherwise
    *
-   * @param {(HTMLAsHistogramWidgetElement | HTMLAsTimeSeriesWidgetElement | string)} widget Your widget or a selector
+   * @param {(any | string)} widget Your widget or a selector
    * @param {string} column The column to pull data from
    * @param {NumericalHistogramOptions} options Options for the Histogram
    * @returns {NumericalHistogramFilter | CategoricalHistogramFilter}
    * @memberof VLBridge
    */
   public histogram(
-    widget: HTMLAsHistogramWidgetElement | HTMLAsTimeSeriesWidgetElement | string,
+    widget: any | string,
     column: string | { propertyName: string },
     options: NumericalHistogramOptions = {}): NumericalHistogramFilter | CategoricalHistogramFilter {
     const {
@@ -168,7 +174,7 @@ export default class VLBridge {
     } = options;
 
     if (buckets === undefined && bucketRanges === undefined) {
-      const histogramWidget = widget as HTMLAsHistogramWidgetElement;
+      const histogramWidget = widget as any;
       return this.categoricalHistogram(histogramWidget, column, { readOnly, totals });
     }
 
@@ -181,14 +187,14 @@ export default class VLBridge {
    * You can provide an HTML element (like a button) on the options, so the filtering takes place
    * after the user clicks on it. This option is ignored if readOnly
    *
-   * @param {HTMLAsCategoryWidgetElement | string} widget An airship category widget, or a selector
+   * @param {any | string} widget An airship category widget, or a selector
    * @param {string} column Column to pull data from
    * @param {CategoryOptions} [options={}]
    * @returns
    * @memberof VLBridge
    */
   public category(
-    widget: HTMLAsCategoryWidgetElement | string,
+    widget: any | string,
     column: string | { propertyName: string },
     options: CategoryOptions = {}) {
     const {
@@ -224,13 +230,13 @@ export default class VLBridge {
    *
    * There can only be one animation per layer (per VLBridge instance)
    *
-   * @param {(HTMLAsTimeSeriesWidgetElement | string)} widget The Time series widget, or a selector
+   * @param {(any | string)} widget The Time series widget, or a selector
    * @param {string} column The string to pull data from it
    * @param {AnimationOptions} [options={}]
    * @memberof VLBridge
    */
   public timeSeries(
-    widget: HTMLAsTimeSeriesWidgetElement | string,
+    widget: any | string,
     column: string,
     options: AnimationOptions = {}) {
     if (this._animation) {
@@ -279,12 +285,12 @@ export default class VLBridge {
   /**
    * Creates a global range slider filter.
    *
-   * @param {(HTMLAsRangeSliderElement | string)} widget A range slider widget or a selector
+   * @param {(any | string)} widget A range slider widget or a selector
    * @param {string} column The column to pull data from
    * @returns {GlobalRangeFilter}
    * @memberof VLBridge
    */
-  public globalRange(widget: HTMLAsRangeSliderElement | string, column: string): GlobalRangeFilter {
+  public globalRange(widget: any | string, column: string): GlobalRangeFilter {
     const range = new GlobalRangeFilter(this._carto, this._layer, widget, column, this._source);
 
     this._addFilter(range);

@@ -1,4 +1,5 @@
 import mitt from 'mitt';
+import { LegendData, LegendEntry } from '../../types';
 
 /**
  * Base class for all possible CARTO VL Filters to be combined with Airship
@@ -18,7 +19,7 @@ export abstract class BaseFilter {
   protected _source: any;
   protected _legendData: LegendEntry[];
   protected _mapColors: boolean;
-  protected _widget: HTMLStencilElement;
+  protected _widget: any;
   private _readOnly: boolean;
   private _name: string;
 

@@ -1,3 +1,5 @@
+import { RGBColor } from '../../types';
+
 /**
  * Converts VL RGB Colors to hex
  *

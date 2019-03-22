@@ -1,3 +1,4 @@
+import { VLCategoricalHistogram } from '../../types';
 import { select } from '../../util/Utils';
 import { BaseFilter } from '../base/BaseFilter';
 import { isCategoricalHistogramEqual } from '../utils/comparison/histogram';
@@ -11,7 +12,7 @@ import vlToCategory from '../utils/conversion/category';
  * @extends {BaseFilter}
  */
 export class CategoryFilter extends BaseFilter {
-  protected _widget: HTMLAsCategoryWidgetElement;
+  protected _widget: any;
   private _carto: any;
   private _selection: string[] = [];
   private _lastHistogram: VLCategoricalHistogram = null;
@@ -23,7 +24,7 @@ export class CategoryFilter extends BaseFilter {
    * Creates an instance of CategoryFilter.
    * @param {*} carto CARTO VL namespace
    * @param {*} layer CARTO VL layer
-   * @param {HTMLAsCategoryWidgetElement} widget A Category Widget HTML element
+   * @param {any | string} widget A Category Widget HTML element or a selector
    * @param {string} columnName The column to pull data from
    * @param {*} source CARTO VL source
    * @param {boolean} [readOnly=true] Whether this widget filters or not
@@ -32,7 +33,7 @@ export class CategoryFilter extends BaseFilter {
   constructor(
     carto: any,
     layer: any,
-    widget: HTMLAsCategoryWidgetElement | string,
+    widget: any | string,
     columnName: string,
     source: any,
     readOnly: boolean = true,
@@ -41,7 +42,7 @@ export class CategoryFilter extends BaseFilter {
   ) {
     super(`category`, columnName, layer, source, readOnly);
 
-    this._widget = select(widget) as HTMLAsCategoryWidgetElement;
+    this._widget = select(widget) as any;
 
     this._carto = carto;
     this._button = select(button);

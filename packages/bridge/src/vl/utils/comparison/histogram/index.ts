@@ -1,3 +1,10 @@
+import {
+  CategoricalHistogramData,
+  NumericalHistogramData,
+  VLCategoricalHistogram,
+  VLHistogramData,
+  VLNumericalHistogram } from '../../../../types';
+
 type Comparer<T> = (first: VLHistogramData<T>, second: VLHistogramData<T>) => boolean;
 
 /**

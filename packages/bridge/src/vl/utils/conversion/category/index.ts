@@ -1,3 +1,4 @@
+import { VLCategoricalHistogram } from '../../../../types';
 import { findColorForCategory } from '../histogram';
 
 /**

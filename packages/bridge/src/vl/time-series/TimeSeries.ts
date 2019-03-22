@@ -1,3 +1,4 @@
+import { VLAnimation, VLViz } from '../../types';
 import { select } from '../../util/Utils';
 
 /**
@@ -11,7 +12,7 @@ import { select } from '../../util/Utils';
  * @class TimeSeries
  */
 export class TimeSeries {
-  private _timeSeries: HTMLAsTimeSeriesWidgetElement;
+  private _timeSeries: any;
   private _animation: VLAnimation;
   private _layer: any;
   private _viz: VLViz;
@@ -28,7 +29,7 @@ export class TimeSeries {
    * Creates an instance of TimeSeries.
    * @param {*} carto CARTO VL namespace
    * @param {*} layer A CARTO VL layer
-   * @param {HTMLAsTimeSeriesWidgetElement} timeSeries An Airship TimeSeries HTML element
+   * @param {any | string} timeSeries An Airship TimeSeries HTML element, or a selector
    * @param {() => void} readyCb A callback to be called when we're done configuring internals
    * @memberof TimeSeries
    */
@@ -36,14 +37,14 @@ export class TimeSeries {
     carto: any,
     layer: any,
     column: string,
-    timeSeries: HTMLAsTimeSeriesWidgetElement | string,
+    timeSeries: any | string,
     readyCb: () => void,
     duration: number = 10,
     fade: [number, number] = [0.15, 0.15],
     variableName: string = 'animation'
   ) {
 
-    this._timeSeries = select(timeSeries) as HTMLAsTimeSeriesWidgetElement;
+    this._timeSeries = select(timeSeries) as any;
     this._layer = layer;
     this._carto = carto;
     this._columnName = column;

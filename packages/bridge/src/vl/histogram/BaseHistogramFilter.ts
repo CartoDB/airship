@@ -1,4 +1,3 @@
-import { HistogramSelection } from '../../../../components/src/components/as-histogram-widget/interfaces';
 import { select } from '../../util/Utils';
 import { BaseFilter } from '../base/BaseFilter';
 
@@ -14,7 +13,7 @@ import { BaseFilter } from '../base/BaseFilter';
 export abstract class BaseHistogramFilter<T> extends BaseFilter {
   protected _buckets: number;
   protected _carto: any;
-  protected _widget: HTMLAsTimeSeriesWidgetElement | HTMLAsHistogramWidgetElement;
+  protected _widget: any;
   protected _selection: T = null;
   protected _dataLayer: any;
   protected _inputExpression = null;
@@ -25,8 +24,7 @@ export abstract class BaseHistogramFilter<T> extends BaseFilter {
    * @param {('categorical' | 'numerical')} type Whether it is a categorical or a numerical histogram
    * @param {*} carto The CARTO VL namespace
    * @param {*} layer A CARTO VL layer
-   * @param {(HTMLAsTimeSeriesWidgetElement | HTMLAsHistogramWidgetElement)} histogram
-   * An Airship Histogram or TimeSeries HTML element
+   * @param {(any | string)} histogram An Airship Histogram or TimeSeries HTML element, or a selector
    * @param {string} columnName The column to pull data from
    * @param {*} source A CARTO VL source
    * @param {boolean} [readOnly=true] Whether the widget will be able to filter the visualization or not
@@ -37,7 +35,7 @@ export abstract class BaseHistogramFilter<T> extends BaseFilter {
     type: 'categorical' | 'numerical',
     carto: any,
     layer: any,
-    histogram: HTMLAsTimeSeriesWidgetElement | HTMLAsHistogramWidgetElement | string,
+    histogram: any | string,
     columnName: string,
     source: any,
     readOnly: boolean = true,
@@ -46,7 +44,7 @@ export abstract class BaseHistogramFilter<T> extends BaseFilter {
   ) {
     super(`histogram_${type}`, columnName, layer, source, readOnly);
 
-    this._widget = select(histogram) as HTMLAsHistogramWidgetElement | HTMLAsTimeSeriesWidgetElement;
+    this._widget = select(histogram);
     this._carto = carto;
     this._totals = showTotals;
 
@@ -83,10 +81,10 @@ export abstract class BaseHistogramFilter<T> extends BaseFilter {
    *
    * @protected
    * @abstract
-   * @param {CustomEvent<HistogramSelection>} evt A Custom Event with the HistogramSelection
+   * @param {CustomEvent<any>} evt A Custom Event with the Histogram Selection
    * @memberof BaseHistogramFilter
    */
-  protected abstract selectionChanged(evt: CustomEvent<HistogramSelection>);
+  protected abstract selectionChanged(evt: CustomEvent<any>);
 
   /**
    * Function called right after the Data Layer has been set, allows for each type of histogram filter to

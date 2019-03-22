@@ -1,11 +1,11 @@
-interface VLViz {
+export interface VLViz {
   variables: {
     [key: string]: any
   };
   _changed: () => void;
 }
 
-interface VLAnimation {
+export interface VLAnimation {
   input: any;
   _paused: boolean;
   parent: any;
@@ -19,39 +19,39 @@ interface VLAnimation {
 }
 
 
-type NumericalHistogramData = VLHistogramData<[number, number]>;
-type CategoricalHistogramData = VLHistogramData<string>;
-interface VLNumericalHistogram {
+export type NumericalHistogramData = VLHistogramData<[number, number]>;
+export type CategoricalHistogramData = VLHistogramData<string>;
+export interface VLNumericalHistogram {
   value: NumericalHistogramData[];
 }
 
-interface VLCategoricalHistogram {
+export interface VLCategoricalHistogram {
   value: CategoricalHistogramData[];
 }
 
-interface VLHistogramData<T> {
+export interface VLHistogramData<T> {
   x: T;
   y: number;
 }
 
-interface RGBColor {
+export interface RGBColor {
   r: number;
   g: number;
   b: number;
   a?: number;
 }
-interface LegendEntry {
+export interface LegendEntry {
   key: string | number;
   value: RGBColor | string;
 }
-interface LegendData {
+export interface LegendData {
   type: string;
   data: LegendEntry[];
 }
 
-type BucketRange = [number, number];
+export type BucketRange = [number, number];
 
-interface VLBridgeOptions {
+export interface VLBridgeOptions {
   carto: any;
   map: any;
   layer: any;
@@ -63,7 +63,7 @@ interface VLBridgeOptions {
  *
  * @interface NumericalHistogramOptions
  */
-interface NumericalHistogramOptions {
+export interface NumericalHistogramOptions {
   /**
    * Number of buckets for the histogram
    *
@@ -96,7 +96,7 @@ interface NumericalHistogramOptions {
   totals?: boolean;
 }
 
-interface AnimationOptions extends NumericalHistogramOptions {
+export interface AnimationOptions extends NumericalHistogramOptions {
   duration?: number;
 
   fade?: [number, number];
@@ -109,7 +109,7 @@ interface AnimationOptions extends NumericalHistogramOptions {
  *
  * @interface CategoryOptions
  */
-interface CategoryOptions {
+export interface CategoryOptions {
   /**
    * Whether the widget will be able to filter or not
    *
@@ -131,7 +131,7 @@ interface CategoryOptions {
  *
  * @interface CategoricalHistogramOptions
  */
-interface CategoricalHistogramOptions {
+export interface CategoricalHistogramOptions {
   /**
    * Whether this widget will be able to filter or not.
    *

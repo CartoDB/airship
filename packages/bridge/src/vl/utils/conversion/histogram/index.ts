@@ -1,4 +1,4 @@
-import { HistogramData } from '../../../../../../components/src/components/as-histogram-widget/interfaces';
+import { LegendEntry, VLCategoricalHistogram, VLNumericalHistogram } from '../../../../types';
 import { toHex } from '../../color';
 
 /**
@@ -8,9 +8,9 @@ import { toHex } from '../../color';
  *
  * @export
  * @param {VLNumericalHistogram} data Histogram data in VL format
- * @returns {HistogramData[]}
+ * @returns {any[]}
  */
-export function numerical(data: VLNumericalHistogram): HistogramData[] {
+export function numerical(data: VLNumericalHistogram): any[] {
   return data.value.map((d) => ({
     end: d.x[1],
     start: d.x[0],
@@ -26,9 +26,9 @@ export function numerical(data: VLNumericalHistogram): HistogramData[] {
  * @export
  * @param {VLCategoricalHistogram} data Histogram data in VL format
  * @param {LegendEntry[]} [colors] VL Legend data, which maps values to colors.
- * @returns {HistogramData[]}
+ * @returns {any[]}
  */
-export function categorical(data: VLCategoricalHistogram, colors?: LegendEntry[]): HistogramData[] {
+export function categorical(data: VLCategoricalHistogram, colors?: LegendEntry[]): any[] {
   return data.value.map((d) => ({
     category: d.x,
     color: findColorForCategory(d.x, colors),
