@@ -4,7 +4,7 @@
   "description": "Airship bridge to other libs (CARTO VL, CARTO.js)",
   "main": "dist/index.js",
   "scripts": {
-    "test": "echo 'disabled while unreleased'",
+    "test": "jest",
     "test:watch": "jest --watch",
     "lint": "tslint -c tslint.json src/**/*.{ts,tsx}",
     "dev": "webpack --watch",

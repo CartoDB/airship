@@ -15,7 +15,15 @@ describe('vl/time-series/TimeSeries', () => {
       },
       viz: {
         variables: {
-          animation: {}
+          animation: {
+            duration: {
+              value: 10
+            },
+            input: {
+              max: 10,
+              min: 0
+            }
+          }
         }
       }
     };
@@ -31,7 +39,7 @@ describe('vl/time-series/TimeSeries', () => {
 
       const init = () => {
         // tslint:disable no-unused-expression
-        new TimeSeries(layer, widget, mockCb);
+        new TimeSeries({}, layer, 'column', widget, mockCb);
       };
 
       expect(init).toThrow();
@@ -43,7 +51,7 @@ describe('vl/time-series/TimeSeries', () => {
       const mockedCb = jest.fn();
 
       // tslint:disable no-unused-expression
-      new TimeSeries(layer, widget, mockedCb);
+      new TimeSeries({}, layer, 'column', widget, mockedCb);
 
       expect(mockedCb).toHaveBeenCalled();
     });
@@ -55,7 +63,7 @@ describe('vl/time-series/TimeSeries', () => {
       layer.viz = undefined;
 
       // tslint:disable no-unused-expression
-      new TimeSeries(layer, widget, mockedCb);
+      new TimeSeries({}, layer, 'column', widget, mockedCb);
 
       expect(mockedCb).not.toHaveBeenCalled();
 
