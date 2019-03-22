@@ -5,6 +5,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://libs.cartocdn.com/carto-vl/v1.2/carto-vl.min.js"></script>
+
+  <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.css" rel="stylesheet" />
+  <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.js"></script>
   <title>Smoke 0</title>
 <style>
     body {
@@ -139,7 +143,12 @@
           <as-stacked-bar-widget id="stackedFooter" show-legend="true" heading="Star Wars Revenue" description="Description"></as-stacked-bar-widget>
         </div>
         <div class="as-box">
-          <as-category-widget heading="Business Volume" description="Description" default-bar-color="#47DB99"></as-category-widget>
+          <as-category-widget
+            show-clear
+            id="typeCat"
+            heading="Type"
+          >
+          </as-category-widget>
         </div>
         <div style="min-width: 192px;" class="as-box as-box--scroll">
           <p class="as-title">LEGEND 3b</p>
@@ -201,127 +210,6 @@
     </aside>
   </as-responsive-content>
 
-  <script>
-    function onReady () {
-      var stackedData = [{
-          category: 'Star Wars Ep. IV: A New Hope',
-          values: {
-            dvd: 27229125,
-            blue: 3555058,
-          }
-        },
-        {
-          category: 'Star Wars Ep. V: The Empire Strikes Back',
-          values: {
-            dvd: 24928640,
-            blue: 2738207,
-          },
-        },
-        {
-          category: 'Star Wars Ep. VI: Return of the Jedi',
-          values: {
-            dvd: 23786454,
-            blue: 1908593,
-          }
-        }
-      ];
-
-      var stackedMetadata = {
-        dvd: {
-          label: 'Domestic DVD Sales',
-          color: '#33ACEE'
-        },
-        blue: {
-          label: 'Domestic Blu-ray Sales',
-          color: '#EEC649'
-        }
-      }
-
-      const stackedFooter = document.getElementById('stackedFooter');
-      const stackedSidebar = document.getElementById('stackedSidebar');
-      stackedFooter.data = stackedData;
-      stackedFooter.metadata = stackedMetadata;
-      stackedSidebar.data = stackedData;
-      stackedSidebar.metadata = stackedMetadata;
-
-      var histogramData =  [{
-          start: 0,
-          end: 10,
-          value: 5
-        },
-        {
-          start: 10,
-          end: 20,
-          value: 10
-        },
-        {
-          start: 20,
-          end: 30,
-          value: 15
-        },
-        {
-          start: 30,
-          end: 40,
-          value: 20
-        },
-        {
-          start: 40,
-          end: 50,
-          value: 30
-        },
-      ];
-
-      var histogramFooter = document.getElementById('histogramFooter');
-      var histogramSidebar = document.getElementById('histogramSidebar');
-      histogramFooter.data = histogramData;
-      histogramSidebar.data = histogramData;
-
-      const categoryWidget = document.querySelector('as-category-widget');
-      categoryWidget.showHeader = true;
-      categoryWidget.showClearButton = true;
-      categoryWidget.useTotalPercentage = false;
-      categoryWidget.visibleCategories = Infinity;
-      categoryWidget.categories = [{
-          name: 'Bars & Restaurants',
-          value: 1000,
-          color: '#FABADA'
-        },
-        {
-          name: 'Fashion',
-          value: 900
-        },
-        {
-          name: 'Grocery',
-          value: 800
-        },
-        {
-          name: 'Health',
-          value: 400
-        },
-        {
-          name: 'Shopping mall',
-          value: 250
-        },
-        {
-          name: 'Transportation',
-          value: 1000
-        },
-        {
-          name: 'Leisure',
-          value: 760
-        }
-      ];
-    }
-
-    var responsiveContent = document.querySelector('as-responsive-content');
-    if (!responsiveContent) {
-      console.log('tucutu');
-      onReady();
-    } else {
-      console.log('tacata');
-      responsiveContent.addEventListener('ready', onReady);
-    }
-  </script>
   <script src="./dist/bundle.js"></script>
 </body>
 
