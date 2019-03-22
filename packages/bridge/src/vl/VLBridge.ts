@@ -7,7 +7,7 @@ import { NumericalHistogramFilter } from './histogram/NumericalHistogramFilter';
 import { GlobalRangeFilter } from './range/GlobalRangeFilter';
 import { TimeSeries } from './time-series/TimeSeries';
 
-const VL_VERSION = '^1.1.0';
+const VL_VERSION = '^1.2.3';
 
 /**
  * This class is the main interface to bind a VL layer to one or more Airship widgets.
