@@ -22,6 +22,7 @@
   "dependencies": {
     "@carto/airship-components": "prerelease",
     "@carto/airship-icons": "prerelease",
-    "@carto/airship-style": "prerelease"
+    "@carto/airship-style": "prerelease",
+    "@carto/airship-bridge": "prerelease"
   }
 }
