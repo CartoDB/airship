@@ -9,6 +9,7 @@ Essentially, it lets you take your existing CARTO VL visualizations and easily c
 - Histogram widgets (numerical & categorical)
 - Time Series widget
 - Category widget
+- Range Slider, for a global range of a numerical value
 
 As Airship expands and adds further components, expect them to get their respective filter here as well.
 
@@ -30,17 +31,21 @@ It will also automatically do the logic to play the animation when selecting a r
 
 Very similar to a histogram, but the data is displayed using an `as-category-widget`.
 
+### Global Range Filter
+
+This lets you assign a Range Slider to a numerical column, and will set its range to the global min / max of said column, allowing filtering by it.
+
 ## How can I use this?
 
 A typical use of this library implies creating a new bridge for an existing layer:
 
 ```
-const bridge = new AsBridge.VLBridge(
-  carto,
-  map,
-  vizLayer,
-  source
-);
+const bridge = new AsBridge.VLBridge({
+  carto: carto,
+  map: map,
+  layer: vizLayer,
+  source: source
+});
 ```
 
 `carto` is your CARTO VL namespace object, which is required in order to create new layers.
@@ -51,18 +56,14 @@ const bridge = new AsBridge.VLBridge(
 And then creating all the necessary filters:
 
 ```
-bridge.histogram({
-  column: 'timestamp',
+bridge.histogram(timestampWidget, 'timestamp', {
   buckets: 30,
-  source,
-  widget: timestampWidget,
+  source
 });
 
-bridge.histogram({
-  column: 'surface',
+bridge.histogram(surfaceWidget, 'surface', {
   buckets: 40,
-  source,
-  widget: surfaceWidget,
+  source
 });
 
 ```

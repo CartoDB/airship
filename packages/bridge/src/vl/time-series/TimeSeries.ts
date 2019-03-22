@@ -1,3 +1,5 @@
+import { select } from '../../util/Utils';
+
 /**
  * This class is an orchestrator for Time Series widgets. It does not extend BaseFilter because for all intents
  * and purposes, we can use a numerical histogram. This class is only responsible of particular Time Series event
@@ -14,24 +16,40 @@ export class TimeSeries {
   private _layer: any;
   private _viz: VLViz;
   private _dataLayer: any;
-  private _min: number;
-  private _max: number;
+  private _min: any;
+  private _max: any;
+  private _carto: any;
+  private _columnName: string;
+  private _duration: number;
+  private _fade: [number, number];
+  private _variableName: string;
 
   /**
    * Creates an instance of TimeSeries.
+   * @param {*} carto CARTO VL namespace
    * @param {*} layer A CARTO VL layer
    * @param {HTMLAsTimeSeriesWidgetElement} timeSeries An Airship TimeSeries HTML element
    * @param {() => void} readyCb A callback to be called when we're done configuring internals
    * @memberof TimeSeries
    */
   constructor(
+    carto: any,
     layer: any,
-    timeSeries: HTMLAsTimeSeriesWidgetElement,
-    readyCb: () => void
+    column: string,
+    timeSeries: HTMLAsTimeSeriesWidgetElement | string,
+    readyCb: () => void,
+    duration: number = 10,
+    fade: [number, number] = [0.15, 0.15],
+    variableName: string = 'animation'
   ) {
 
-    this._timeSeries = timeSeries;
+    this._timeSeries = select(timeSeries) as HTMLAsTimeSeriesWidgetElement;
     this._layer = layer;
+    this._carto = carto;
+    this._columnName = column;
+    this._duration = duration;
+    this._fade = fade;
+    this._variableName = variableName;
 
     if (layer.viz) {
       this._onLayerLoaded();
@@ -65,11 +83,28 @@ export class TimeSeries {
     if (range === null) {
       this._animation.input.min.blendTo(this._min, 0);
       this._animation.input.max.blendTo(this._max, 0);
-    } else {
+      this._animation.duration.blendTo(this._duration, 0);
+    } else if (range[0] !== range[1]) {
+      const ratio = Math.min(1, (range[1] - range[0]) / (this._max.value - this._min.value));
       this._animation.input.min.blendTo(range[0], 0);
       this._animation.input.max.blendTo(range[1], 0);
+
+      this._animation.duration.blendTo(this._duration * ratio, 0);
     }
 
+  }
+
+  public get variableName(): string {
+    return this._variableName;
+  }
+
+  public setDuration(duration: number) {
+    this._duration = duration;
+    this._animation.duration.blendTo(duration, 0);
+  }
+
+  public get animation(): VLAnimation {
+    return this._animation;
   }
 
   /**
@@ -84,13 +119,21 @@ export class TimeSeries {
   private _onLayerLoaded() {
     this._viz = this._layer.viz;
 
-    if (!this._viz.variables.animation) {
-      throw new Error('Variable @animation missing!');
+    if (!this._viz.variables[this._variableName]) {
+      this._animation = this._createAnimation();
+
+      /* Big hack, this is done internally on VL */
+      this._animation.parent = this._viz;
+      this._animation.notify = this._viz._changed.bind(this._viz);
+
+      this._viz.variables[this._variableName] = this._animation;
+    } else {
+      this._animation = this._viz.variables[this._variableName];
     }
 
-    this._animation = this._viz.variables.animation;
-    this._max = this._viz.variables.animation.input.max;
-    this._min = this._viz.variables.animation.input.min;
+    this._max = this._animation.input.max;
+    this._min = this._animation.input.min;
+    this._duration = this._animation.duration.value;
 
     this._layer.on('updated', () => {
       this._timeSeries.progress = this._animation.getProgressPct() * 100;
@@ -113,6 +156,23 @@ export class TimeSeries {
     this._timeSeries.addEventListener('pause', () => {
       this._animation.pause();
     });
+  }
+
+  private _createAnimation() {
+    const s = this._carto.expressions;
+
+    return s.animation(
+      s.linear(
+        s.prop(this._columnName),
+        s.globalMin(s.prop(this._columnName)),
+        s.globalMax(s.prop(this._columnName))
+      ),
+      this._duration,
+      s.fade(
+        this._fade[0],
+        this._fade[1]
+      )
+    );
   }
 }
 

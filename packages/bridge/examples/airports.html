@@ -10,10 +10,10 @@
     <title>Airship histogram & Category widget bridge example</title>
 
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.11/lodash.min.js"></script>
-    <script src="https://libs.cartocdn.com/carto-vl/v1.1.1/carto-vl.js"></script>
+    <script src="https://libs.cartocdn.com/carto-vl/v1.2.3/carto-vl.js"></script>
 
-    <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.css" rel="stylesheet" />
-    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.js"></script>
+    <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.css" rel="stylesheet" />
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.js"></script>
 
     <link rel="stylesheet" href="/packages/styles/dist/airship.css">
     <script src="/packages/components/dist/airship.js"></script>
@@ -46,11 +46,21 @@
                   </div>
                   <div class="as-box">
                     <as-category-widget
+                      style="height: 80%;"
                       show-clear
                       id="typeCat"
                       heading="Type"
                     >
                     </as-category-widget>
+                    <button id="typeApplyBtn" class="as-btn as-btn--primary">Apply</button>
+                  </div>
+                  <div class="as-box">
+                    <as-histogram-widget
+                      show-clear
+                      id="lonCat"
+                      heading="Longitude"
+                    >
+                    </as-histogram-widget>
                   </div>
                 </div>
             </main>
@@ -72,47 +82,44 @@
 
         const s = carto.expressions;
 
-        const source = new carto.source.SQL(`select * from ne_10m_airports`);
+        const source = new carto.source.SQL(`select *, ST_X(the_geom) as lon from ne_10m_airports`);
         const viz = new carto.Viz(`
           strokeWidth: 0
           color: ramp($location, vivid)
         `);
 
         const vizLayer = new carto.Layer('layer', source, viz);
-
-        const typeHistogram = document.querySelector('#typeHist');
-        const scaleHistogram = document.querySelector('#scaleHist');
-        const category = document.querySelector('#typeCat');
-
         vizLayer.addTo(map, 'watername_ocean');
 
-        const airportLayer = new AsBridge.VLBridge(
-          carto,
-          map,
-          vizLayer,
-          source
-        );
-
-        airportLayer.histogram({
-          column: 'location',
-          readOnly: false,
-          widget: typeHistogram,
-        }).enableColorMapping();
-
-        airportLayer.category({
-          column: 'location',
-          readOnly: false,
-          widget: category,
-        }).enableColorMapping();
-
-        airportLayer.histogram({
-          column: 'scalerank',
-          bucketRanges: [[2, 3], [3, 4], [4, 5], [5, 6], [6, 7], [7, 8], [8, 9]],
-          readOnly: false,
-          widget: scaleHistogram,
+        const bridge = new AsBridge.VLBridge({
+          carto: carto,
+          map: map,
+          layer: vizLayer,
+          source: source
         });
 
-        airportLayer.build();
+        bridge.histogram('#typeHist', 'location', {
+          readOnly: false
+        });
+
+        bridge.category('#typeCat', 'location', {
+          readOnly: false,
+          button: typeApplyBtn
+        });
+
+        bridge.histogram('#scaleHist', 'scalerank', {
+          bucketRanges: [[2, 3], [3, 4], [4, 5], [5, 6], [6, 7], [7, 8], [8, 9]],
+          readOnly: false,
+          totals: true
+        });
+
+        bridge.histogram('#lonCat', 'lon', {
+          buckets: 10,
+          readOnly: false,
+          totals: true
+        });
+
+        bridge.build();
     </script>
 </body>
 

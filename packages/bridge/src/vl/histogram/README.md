@@ -14,12 +14,12 @@ The latter uses a VL `viewportHistogram` but does not specify the buckets. The v
 As usual, create the bridge instance with the required parameters
 
 ```
-const bridge = new AsBridge.VLBridge(
-  carto,
-  map,
-  layer,
-  source
-);
+const bridge = new AsBridge.VLBridge({
+  carto: carto,
+  map: map,
+  layer: vizLayer,
+  source: source
+});
 ```
 
 There's a generic `histogram` method, that will create either of the two depending on which arguments you provide.
@@ -29,28 +29,21 @@ a categorical one will.
 
 This will create a numerical one
 ```
-const scaleFilter = bridge.histogram({
-  column: 'scalerank',
-  bucketRanges: [[2, 3], [3, 4], [4, 5], [5, 6], [6, 7], [7, 8], [8, 9]],
-  widget: scaleHistogram
+const scaleFilter = bridge.histogram(scaleHistogram, 'scalerank', {
+  bucketRanges: [[2, 3], [3, 4], [4, 5], [5, 6], [6, 7], [7, 8], [8, 9]]
 });
 ```
 
 So will this one:
 ```
-const scaleFilter = bridge.histogram({
-  column: 'scalerank',
-  nBuckets: 7,
-  widget: scaleHistogram
+const scaleFilter = bridge.histogram(scaleHistogram, 'scalerank', {
+  nBuckets: 7
 });
 ```
 
 And this one will create a categorical one:
 ```
-const locationFilter = bridge.histogram({
-  column: 'location',
-  widget: scaleHistogram
-});
+const locationFilter = bridge.histogram(locationHistogram, 'location');
 ```
 
 As usual, create any other filters if required and call the `build` method.
@@ -61,104 +54,57 @@ bridge.build();
 
 ### Reference
 
-#### VLBridge.categoricalHistogram(options: CategoricalHistogramOptions) => CategoricalHistogramFilter
+#### VLBridge.categoricalHistogram(widget: HTMLASHistogramWidget | string, column: string, options: CategoricalHistogramOptions = {}) => CategoricalHistogramFilter
 
-This method receives the following object as options:
+This method requires a widget or selector, a column, and the following options:
 
 ```
 CategoricalHistogramOptions {
-  column: string;
-  readOnly: boolean;
-  widget: HTMLAsHistogramWidgetElement;
+  readOnly?: boolean;
 }
 ```
 
-`column` is a string for the visualization column to get the data from.
 `readOnly` is a boolean to specify whether this widget should filter or not.
-`widget` is your as-histogram-widget HTML element.
 
 This method returns the CategoricalHistogram instance.
 
-#### VLBridge.numericalHistogram(options: NumericalHistogramOptions) => NumericalHistogramFilter
+The `column` can be a CARTO VL expression instead of a column. This will be used as the first argument of the histogram that feeds its data, so refer to the CARTO VL documentation to see which expressions are compatible.
 
-This method receives the following object as options:
+#### VLBridge.numericalHistogram(widget: HTMLASHistogramWidget | string, column: string, options: NumericalHistogramOptions = {}) => NumericalHistogramFilter
+
+This method requires a widget or selector, a column, and can have the following options:
 
 ```
 NumericalHistogramOptions {
-  column: string;
-  readOnly: boolean;
-  widget: HTMLAsHistogramWidgetElement;
-  nBuckets: number;
+  readOnly?: boolean;
+  nBuckets?: number;
   bucketRanges?: BucketRanges[];
+  totals?: boolean;
 }
 
 BucketRanges = [number, number]
 ```
 
-`column` is a string for the visualization column to get the data from.
 `readOnly` is a boolean to specify whether this widget should filter or not.
-`widget` is your as-histogram-widget HTML element.
 `nBuckets` is a number to specify the number of buckets the histogram should have
 `bucketRanges` is an array of pairs of numbers, which lets you specify the bucket ranges by hand
+`totals` will use a VL globalHistogram expression to display the totals as background bars on the widget
 
-**It is highly recommended** that you use bucketRanges when you specify `readOnly: false`, because of how the filtering works.
+**It is highly recommended** that you use bucketRanges when you specify `readOnly: false`, because of how the filtering works, or `totals`, which will internally set `bucketRanges` to the ones generate via the VL globalHistogram
 
 If both `nBuckets` and `bucketRanges` are provided, `nBuckets` will be ignored, and the number of buckets will be the length of `bucketRanges`
 
 This method returns the NumericalHistogram instance.
 
-#### CategoricalHistogramFilter.enableColorMapping() => void
+#### VLBridge.histogram
 
-```hint|warning
-This method is **not** supported by NumericalHistogramFilter
-```
+This is a generic method that accepts the same arguments as `numericalHistogram` and `categoricalHistogram` but will automatically determine which type of histogram you are using. It will do so by checking whether buckets or bucketRanges are present in the options.
 
-If your visualization is styling the `color` using a ramp, like this for instance:
+### Widget side effects
 
-```
-const viz = new carto.Viz(`
-  color: ramp($location, vivid)
-`);
-```
+The following properties of the histogram will be modified internally, so modifying them should be avoided:
 
-You can use this method so that the widget will get its color from the Viz object automatically.
-
-#### CategoricalHistogramFilter.setLegendData(LegendData) => void
-
-```hint|warning
-This method is **not** supported by NumericalHistogramFilter
-```
-
-This method lets you specify a color mapping object.
-
-```
-LegendData {
-  data: LegendEntry[]
-}
-
-LegendEntry {
-  key: string | number
-  value: Color
-}
-```
-
-LegendData is an object with the format of [carto.expressions.ramp.getLegendData](https://carto.com/developers/carto-vl/reference/#expressionsrampgetlegenddata).
-
-An example of this would be:
-
-```
-categoryFilter.setLegendData({
-  data: [{
-    key: 'category_1',
-    value: '#fabada'
-  },
-  {
-    key: 'category_2',
-    value: '#febe00'
-  }]
-});
-```
-
-Categories with values 'category_1' will be displayed with that color, and so on.
-
-Internally, this is used by the `enableColorMapping` method.
+- `backgroundData`
+- `data`
+- `disableInteractivity`
+- `showClear`

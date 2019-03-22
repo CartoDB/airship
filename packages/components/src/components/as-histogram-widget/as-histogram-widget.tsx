@@ -270,7 +270,6 @@ export class HistogramWidget {
 
   private _data: HistogramData[];
   private _backgroundData: HistogramData[];
-  private _mockBackground: boolean = false;
   private _color: string;
   private _barBackgroundColor: string;
   private _muteSelectionChanged: boolean = false;
@@ -318,7 +317,6 @@ export class HistogramWidget {
   public _prepareData(data, backgroundData, oldData?: HistogramData[]) {
     this._data = prepareData(data);
     this._backgroundData = backgroundData === null ? this._mockBackgroundData(data) : prepareData(backgroundData);
-    this._mockBackground = backgroundData === null;
 
     const newScale = binsScale(this._data);
     const wasCategoricalData = !!this.isCategoricalData;
@@ -441,7 +439,6 @@ export class HistogramWidget {
       return;
     }
 
-    this.binsScale = binsScale(this._data);
     this.isCategoricalData = isCategoricalData(this._data);
 
     requestAnimationFrame(() => {
@@ -919,7 +916,10 @@ export class HistogramWidget {
   }
 
   private _dataForDomain() {
-    if (this._backgroundData === null || this._backgroundData.length === 0 || this._mockBackground) {
+    const maxData = Math.max.apply(window, this._data.map((data) => data.value));
+    const maxBackground = Math.max.apply(window, this._backgroundData.map((data) => data.value));
+
+    if (maxData > maxBackground) {
       return this._data;
     }
 
