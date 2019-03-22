@@ -1,7 +1,3 @@
-```hint|directive
-Please note that this widget is a work in progress and as such, might be subject to changes to the props and the API.
-```
-
 The time series widget displays a histogram widget with the ability of display dates on the x-axis, as well as controlling and displaying animations.
 
 ```html
