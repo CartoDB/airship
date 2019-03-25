@@ -2,12 +2,12 @@ import * as mitt from 'mitt';
 import TimeSeries from './TimeSeries';
 
 describe('vl/time-series/TimeSeries', () => {
-  let widget: HTMLAsTimeSeriesWidgetElement;
+  let widget: any;
   let layer: any;
 
   beforeEach(() => {
     // Big hack, we need addEventListener for some tests, and using the real widget is not easy
-    widget = ((document.createElement('div') as unknown) as HTMLAsTimeSeriesWidgetElement);
+    widget = document.createElement('div'),
     layer = {
       emitter: null,
       on(event, cb) {
