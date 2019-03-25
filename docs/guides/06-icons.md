@@ -25,7 +25,7 @@ First, you need to include our `icons.css` file in the head of your app.
   <link rel="stylesheet" href="https://libs.cartocdn.com/airship-icons/%AS-VERSION%/icons.css">
 </head>
 
-Then you can use the icons inside an `i` tag by adding the `as-icon` class, and also the `as-icon as-icon-` class followed by the icon name you want to use.
+Then you can use the icons inside an `i` tag by adding the `as-icon` class, and also the `as-icon-` class followed by the icon name you want to use.
 
 ```html
 <i class="as-icon as-icon-twitter"></i>
