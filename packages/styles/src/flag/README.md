@@ -9,7 +9,7 @@ showSource: true
 ---
 <div class="as-flag">
   <div class="as-flag__icon">
-    <i style="color: #80B622;" class="as-icon-alert-fill"></i>
+    <i style="color: #80B622;" class="as-icon as-icon-alert-fill"></i>
   </div>
   <div class="as-flag__content">
     <h4 class="as-body as-color--type-01">You are now connected</h4>
@@ -25,7 +25,7 @@ showSource: true
 ---
 <div class="as-flag">
   <div class="as-flag__icon">
-    <i style="color: #80B622;" class="as-icon-alert-fill"></i>
+    <i style="color: #80B622;" class="as-icon as-icon-alert-fill"></i>
   </div>
   <div class="as-flag__content">
     <h4 class="as-body as-color--type-01">You are now connected</h4>
@@ -33,7 +33,7 @@ showSource: true
   </div>
   <div class="as-flag__icon">
     <button class="as-flag__button">
-      <i style="color: #1785FB;" class="as-icon-close"></i>
+      <i style="color: #1785FB;" class="as-icon as-icon-close"></i>
     </button>
   </div>
 </div>
@@ -48,7 +48,7 @@ showSource: true
 ---
 <div class="as-flag as-flag--l">
   <div class="as-flag__icon">
-    <i style="color: #80B622;" class="as-icon-alert-fill"></i>
+    <i style="color: #80B622;" class="as-icon as-icon-alert-fill"></i>
   </div>
   <div class="as-flag__content">
     <h4 class="as-body as-color--type-01">You are now connected</h4>
@@ -56,7 +56,7 @@ showSource: true
   </div>
   <div class="as-flag__icon">
     <button class="as-flag__button">
-      <i style="color: #1785FB;" class="as-icon-close"></i>
+      <i style="color: #1785FB;" class="as-icon as-icon-close"></i>
     </button>
   </div>
 </div>
@@ -69,7 +69,7 @@ showSource: true
 ---
 <div class="as-flag as-flag--xl">
   <div class="as-flag__icon">
-    <i style="color: #80B622;" class="as-icon-alert-fill"></i>
+    <i style="color: #80B622;" class="as-icon as-icon-alert-fill"></i>
   </div>
   <div class="as-flag__content">
     <h4 class="as-body as-color--type-01">You are now connected</h4>
@@ -77,7 +77,7 @@ showSource: true
   </div>
   <div class="as-flag__icon">
     <button class="as-flag__button">
-      <i style="color: #1785FB;" class="as-icon-close"></i>
+      <i style="color: #1785FB;" class="as-icon as-icon-close"></i>
     </button>
   </div>
 </div>
@@ -90,7 +90,7 @@ showSource: true
 ---
 <div class="as-flag as-flag--block">
   <div class="as-flag__icon">
-    <i style="color: #80B622;" class="as-icon-alert-fill"></i>
+    <i style="color: #80B622;" class="as-icon as-icon-alert-fill"></i>
   </div>
   <div class="as-flag__content">
     <h4 class="as-body as-color--type-01">You are now connected</h4>
@@ -98,7 +98,7 @@ showSource: true
   </div>
   <div class="as-flag__icon">
     <button class="as-flag__button">
-      <i style="color: #1785FB;" class="as-icon-close"></i>
+      <i style="color: #1785FB;" class="as-icon as-icon-close"></i>
     </button>
   </div>
 </div>

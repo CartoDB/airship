@@ -9,7 +9,7 @@
   font-style: normal;
 }
 
-i {
+i.as-icon {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'airship' !important;
   speak: none;
@@ -80,9 +80,6 @@ i {
 }
 .as-icon-home:before {
   content: "\e912";
-}
-.as-icon-hamburguer:before {
-  content: "\e913";
 }
 .as-icon-hamburger:before {
   content: "\e914";

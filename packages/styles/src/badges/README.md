@@ -96,8 +96,8 @@ Badges can be also used along with icons:
 ```html
 showSource: true
 ---
-<span class="as-badge as-bg--warning as-color--type-04"><i class="as-icon-alert"></i><p>Warning</p></span>
-<span class="as-badge as-bg--success as-color--type-04"><p>Everything OK</p><i class="as-icon-info"></i></span>
+<span class="as-badge as-bg--warning as-color--type-04"><i class="as-icon as-icon-alert"></i><p>Warning</p></span>
+<span class="as-badge as-bg--success as-color--type-04"><p>Everything OK</p><i class="as-icon as-icon-info"></i></span>
 ```
 
 ## Customization

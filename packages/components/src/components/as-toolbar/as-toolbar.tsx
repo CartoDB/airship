@@ -45,7 +45,7 @@ export class Toolbar {
 
     return (
       <button onClick={this._toggleDrawer.bind(this)} class='as-toolbar__item as-toolbar__toggle'>
-        <i class='as-icon-hamburguer as-title as-m--0'></i>
+        <i class='as-icon as-icon-hamburger as-title as-m--0'></i>
       </button>
     );
   }

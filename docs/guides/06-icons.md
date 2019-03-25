@@ -25,17 +25,17 @@ First, you need to include our `icons.css` file in the head of your app.
   <link rel="stylesheet" href="https://libs.cartocdn.com/airship-icons/%AS-VERSION%/icons.css">
 </head>
 
-Then you can use the icons inside an `i` tag by adding the `as-icon-` class followed by the icon name you want to use.
+Then you can use the icons inside an `i` tag by adding the `as-icon` class, and also the `as-icon-` class followed by the icon name you want to use.
 
 ```html
-<i class="as-icon-twitter"></i>
+<i class="as-icon as-icon-twitter"></i>
 ```
 
 This method allows styling easily through CSS
 
 ```html
 <!-- Change color and icon size -->
-<i style="color:red; font-size: 20px;" class="as-icon-twitter"></i>
+<i style="color:red; font-size: 20px;" class="as-icon as-icon-twitter"></i>
 ```
 
 
@@ -44,7 +44,7 @@ Icons can be used inside elements, like a button.
 
 ```html
  <button class="as-btn as-btn--primary">
-  <i class="as-icon-plus"></i>
+  <i class="as-icon as-icon-plus"></i>
   <p>Icon button</p>
 </button>
 ```
