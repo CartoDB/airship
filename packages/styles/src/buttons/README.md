@@ -94,7 +94,7 @@ showSource: true
 showSource: true
 ---
 <button class="as-btn as-btn--primary">
-  <i aria-hidden class="as-icon-plus"></i>
+  <i aria-hidden class="as-icon as-icon-plus"></i>
   <p>Icon button</p>
 </button>
 ```
@@ -104,7 +104,7 @@ showSource: true
 ---
 <button class="as-btn as-btn--secondary">
   <p>Icon button</p>
-  <i aria-hidden class="as-icon-twitter"></i>
+  <i aria-hidden class="as-icon as-icon-twitter"></i>
 </button>
 ```
 
@@ -118,13 +118,13 @@ showSource: true
 ---
 <div class="as-button-group" role="group">
   <button aria-label="twitter" class="as-btn as-btn--secondary">
-    <i aria-hidden class="as-icon-twitter"></i>
+    <i aria-hidden class="as-icon as-icon-twitter"></i>
   </button>
   <button aria-label="facebook" class="as-btn as-btn--secondary">
-    <i aria-hidden class="as-icon-facebook"></i>
+    <i aria-hidden class="as-icon as-icon-facebook"></i>
   </button>
   <button aria-label="home" class="as-btn as-btn--secondary">
-    <i aria-hidden class="as-icon-home"></i>
+    <i aria-hidden class="as-icon as-icon-home"></i>
   </button>
 </div>
 ```

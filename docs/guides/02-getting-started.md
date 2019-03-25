@@ -98,7 +98,7 @@ You can use Airship icons in two different ways.
 To display an icon only a class and an `i` tag is required.
 
 ```html
-<i class="as-icon-twitter"></i>
+<i class="as-icon as-icon-twitter"></i>
 ```
 
 

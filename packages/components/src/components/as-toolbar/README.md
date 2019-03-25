@@ -39,6 +39,6 @@ showSource: true
   </div>
   <a href="#" class="as-toolbar__item">Link</a>
   <p class="as-toolbar__item">Paragraph</p>
-  <i class="as-toolbar__item as-icon-points"></i>
+  <i class="as-toolbar__item as-icon as-icon-points"></i>
 </as-toolbar>
 ```
