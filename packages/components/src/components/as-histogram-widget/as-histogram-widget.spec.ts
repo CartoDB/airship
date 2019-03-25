@@ -25,7 +25,7 @@ xdescribe('as-histogram-widget', () => {
     await histogramWidget.setSelection([0, 20]);
     const actual = await histogramWidget.getSelection();
 
-    expect(actual).toEqual([0, 20]);
+    expect(actual.selection).toEqual([0, 20]);
   });
 
   it('should clear the selection', async () => {
@@ -40,7 +40,7 @@ xdescribe('as-histogram-widget', () => {
     await histogramWidget.setSelection([4, 22]);
 
     const actual = await histogramWidget.getSelection();
-    expect(actual).toEqual([0, 20]);
+    expect(actual.selection).toEqual([0, 20]);
   });
 });
 

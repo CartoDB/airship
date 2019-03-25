@@ -8,13 +8,14 @@
   "license": "BSD-3-Clause",
   "devDependencies": {
     "aws-sdk": "^2.300.0",
-    "backstopjs": "^3.5.5",
-    "fastly": "^2.2.0",
+    "backstopjs": "^3.9.2",
+    "fastly": "^2.2.1",
     "jest": "23.6.0",
     "jest-cli": "23.6.0",
     "lerna": "2.11.0",
     "map-stream": "0.0.7",
     "mime": "^2.3.1",
+    "opener": "^1.5.1",
     "puppeteer": "1.8.0",
     "serve": "^9.6.0",
     "zlib": "^1.0.5"
@@ -36,9 +37,9 @@
     "test:styles:build-references": "npm run build:styles && docker run --rm -v $(pwd):/src backstopjs/backstopjs reference --i --configPath=backstop_data/backstop.config.js",
     "test:styles:ci": "backstop test --configPath=backstop_data/backstop.config.js",
     "test:styles:reset-references": "docker run --rm -v $(pwd):/src backstopjs/backstopjs reference --configPath=backstop_data/backstop.config.js",
-    "test:styles": "npm run build:styles && docker run --rm -v $(pwd):/src backstopjs/backstopjs test --configPath=backstop_data/backstop.config.js; open ./backstop_data/html_report/index.html",
-    "test:bindings": "lerna exec --scope @carto/airship-bindings npm run test",
+    "test:styles": "npm run build:styles && docker run --rm -v $(pwd):/src backstopjs/backstopjs test --configPath=backstop_data/backstop.config.js; opener ./backstop_data/html_report/index.html",
+    "test:bridge": "lerna exec --scope @carto/airship-bridge npm run test",
     "test:watch": "lerna run --parallel test:watch",
-    "test": "npm run lint && npm run test:components && npm run test:styles && npm run test:bindings"
+    "test": "npm run lint && npm run test:components && npm run test:styles && npm run test:bridge"
   }
 }

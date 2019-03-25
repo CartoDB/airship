@@ -196,3 +196,18 @@ responsive: true
 ---
 <iframe src="/examples/layouts/toolbar/toolbar.html" style="width: 100%; height: 100%;">
 ```
+
+## CSS Variables 
+
+```
+.as-toolbar {
+  --as--toolbar--background-color
+  --as--toolbar--text-color
+  --as--toolbar--link-color
+}
+```
+
+.as-toolbar__actions {
+  --as--toolbar__actions--background-color
+}
+```

@@ -2,11 +2,11 @@
 
 In this guide, you will learn how to create a map and a Category Widget showing data coming from the map, and reacting to changes in the map, as well as filtering data by using Category Widget.
 
-We'll use [CARTO-VL](https://carto.com/developers/carto-vl/) and Airship to show how they work together properly.
+We will use [CARTO-VL](https://carto.com/developers/carto-vl/) and Airship to show how they work together properly.
 
 ### Airship setup
 
-Let's start from scratch creating an empty `index.html` file with this scaffolding for this guide.
+We will start from scratch creating an empty `index.html` file with this scaffolding for this guide.
 
 ```html
 <!DOCTYPE html>
@@ -41,10 +41,8 @@ As pointed in the [CARTO-VL docs](https://carto.com/developers/carto-vl/guides/g
 <head>
   <!-- Include CARTO VL JS -->
   <script src="https://libs.cartocdn.com/carto-vl/%VL-VERSION%/carto-vl.min.js"></script>
-  <!-- Include Mapbox GL JS -->
-  <script src="https://libs.cartocdn.com/mapbox-gl/v0.48.0-carto1/mapbox-gl.js"></script>
-  <!-- Include Mapbox GL CSS -->
-  <link href="https://libs.cartocdn.com/mapbox-gl/v0.48.0-carto1/mapbox-gl.css" rel="stylesheet" />
+  <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.css" rel="stylesheet" />
+  <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.js"></script>
 </head>
 ```
 

@@ -103,3 +103,12 @@ showSource: true
   </div>
 </div>
 ```
+
+## CSS Variables
+
+```
+.as-flag {
+  --as--flag--background-color
+  --as--flag--button--color
+}
+```

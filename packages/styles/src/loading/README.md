@@ -40,3 +40,11 @@ showSource: true
   </svg>
 </span>
 ```
+
+## CSS Variables
+
+```
+.as-loading {
+  --as--loading--stroke-color
+}
+```

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+  <base href="/">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+  <title>Airship</title>
+  <link rel="stylesheet" href="packages/styles/dist/airship.css">
+  <script src="packages/components/dist/airship.js"></script>
+  <style>
+    body {
+      height: 100vh;
+      margin: 0;
+      padding: 0;
+      background: #F2F2F2;
+    }
+
+    as-histogram-widget {
+      width: 100%;
+      height: 100%;
+      background: white;
+    }
+
+  </style>
+</head>
+
+<body>
+  <as-histogram-widget x-label="x-axis" y-label="y-axis" responsive show-clear heading="Business Volume" description="Description">
+  </as-histogram-widget>
+
+  <script>
+    var histogramWidget = document.querySelector('as-histogram-widget');
+    const data = [{
+        category: 'a: 0x0',
+        value: 500
+      },
+      {
+        category: 'a: 0x10',
+        value: 1000
+      },
+      {
+        category: 'a: 0x20',
+        value: 2000
+      },
+      {
+        category: 'a: 0x30',
+        value: 3000
+      },
+      {
+        category: 'a: 0x40',
+        value: 4000
+      },
+    ];
+    
+    let dataSource = histogramWidget.data = data;
+    histogramWidget.backgroundData = data.map((value) => ({
+      ...value,
+      value: value.value + (value.value)
+    }));
+
+    histogramWidget.addEventListener('selectionChanged', (event) => {
+      if (event.detail === null) {
+        histogramWidget.data = data;
+        return;
+      }
+
+      var selection = event.detail.selection;
+
+      const newData = histogramWidget.data
+        .filter((d) => selection.indexOf(d.category) !== -1)
+        .map(d => d);
+      
+      histogramWidget.data = newData;
+    });
+  </script>
+</body>
+
+</html>

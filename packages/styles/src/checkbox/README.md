@@ -87,3 +87,19 @@ showSource: true
   <label class="as-caption" for="checkbox3"> Checkbox Error Disabled</label>
 </div>
 ```
+
+## CSS Variables
+
+```
+.as-checkbox {
+  --as--checkbox--background--disabled
+  --as--checkbox--background--error
+  --as--checkbox--border-color--focus
+  --as--checkbox--border-color--hover
+  --as--checkbox--border-color
+  --as--checkbox--color--checked
+  --as--checkbox--color--disabled
+  --as--checkbox--color--error--disabled
+  --as--checkbox--color--error
+}
+```

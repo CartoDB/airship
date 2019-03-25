@@ -144,6 +144,12 @@ For example a range slider
   <link rel="stylesheet" href="https://libs.cartocdn.com/airship-icons/%AS-VERSION%/icons.css">
   <!-- Include airship components -->
   <script src="https://libs.cartocdn.com/airship-components/%AS-VERSION%/airship.js"></script>
+  <!-- Include CARTO VL -->
+  <script src="https://libs.cartocdn.com/carto-vl/v1.2/carto-vl.min.js"></script>
+  <!-- Include Mapbox GL JS -->
+  <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.js"></script>
+  <!-- Include Mapbox GL CSS -->
+  <link rel="stylesheet" href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.css" />
 </head>
 <body class="as-app-body">
 
@@ -160,7 +166,7 @@ For example a range slider
 
           <div class="as-map-panels">
             <div class="as-panel as-panel--top as-panel--right">
-              <div class="as-panel__element as-p--32 as-bg--support-02"></div>
+              <div class="as-panel__element as-p--32 as-bg--warning"></div>
             </div>
           </div>
 
@@ -176,12 +182,9 @@ For example a range slider
   <script>
     const map = new mapboxgl.Map({
       container: 'map',
-      style: 'https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json',
+      style: carto.basemaps.voyager,
       center: [0, 30],
-      zoom: 2,
-      scrollZoom: false,
-      dragRotate: false,
-      touchZoomRotate: false
+      zoom: 2
     });
 
   </script>

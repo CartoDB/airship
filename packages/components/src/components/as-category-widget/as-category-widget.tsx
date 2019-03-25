@@ -179,8 +179,25 @@ export class CategoryWidget {
   public render() {
     return [
       this._renderHeader(),
+      this._renderSelection(),
       this._renderContent(),
     ];
+  }
+
+  private _renderSelection() {
+    if (this.isLoading || this._isEmpty() || this.error || !this.showClearButton) {
+      return '';
+    }
+
+    const selectedCount = this.selectedCategories.length;
+
+    return <as-widget-selection
+      selection={`${selectedCount || 'All'} selected`}
+      clearText='Clear selection'
+      showClear={selectedCount > 0}
+      onClear={() => this.clearSelection() }
+      >
+    </as-widget-selection>;
   }
 
   private _renderHeader() {
@@ -206,10 +223,8 @@ export class CategoryWidget {
       this.heading,
       this.errorDescription,
       this.noDataBodyMessage,
-      [
-        this._renderCategoryList(),
-        !this.disableInteractivity ? this._renderFooter() : '',
-      ]);
+      this._renderCategoryList()
+    );
   }
 
   private _renderCategoryList() {
@@ -250,7 +265,7 @@ export class CategoryWidget {
     const barColor = this._getBarColor(category.color, { isSelected, isOther });
 
     const progressStyles = {
-      backgroundColor: barColor ? barColor : `var(--category-bar--color)`,
+      backgroundColor: barColor ? barColor : `var(--as--category-bar--color)`,
       width: `${(category.value / maximumValue) * 100}%`
     };
 
@@ -286,25 +301,6 @@ export class CategoryWidget {
     };
 
     return this._renderCategory(categoryData, { maximumValue: options.maximumValue, isOther: true });
-  }
-
-  private _renderFooter() {
-    const selectedCount = this.selectedCategories.length;
-
-    return (
-      <footer class='as-category-widget__footer'>
-        <div class='as-category-widget__count as-body'>{selectedCount || 'All'} selected</div>
-        {this.showClearButton && (
-          <button
-            class='as-btn as-btn--primary as-btn--s as-category-widget__clear'
-            disabled={!selectedCount}
-            onClick={() => this.clearSelection()}
-          >
-            Clear selection
-          </button>
-        )}
-      </footer>
-    );
   }
 
   private _isSelected(categoryName: string) {

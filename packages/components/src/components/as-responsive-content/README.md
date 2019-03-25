@@ -12,7 +12,7 @@ The component searches for these classes in order to know how many tabs it must 
 - `as-map-panels`.
 - `as-map-footer`.
 
-As long as you follow the proper markup, as the `Layout` section shows, you won't have to worry about anything else.
+As long as you follow the proper markup, as the `Layout` section shows, you will not have to worry about anything else.
 
 This component replaces `.as-content` HTML element, so it needs to wrap all your children elements to work properly. Here is an example:
 
@@ -72,7 +72,7 @@ responsive: true
 
 If you want to change the tabs order, you can add a data attribute to tell the component their positions.
 
-Let's put `Legends` in the first position, `Stores` in the second and `Containers` in third place.
+Let us put `Legends` in the first position, `Stores` in the second and `Containers` in third place.
 
 ```code
 lang: html

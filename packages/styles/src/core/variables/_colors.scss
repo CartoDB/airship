@@ -2,8 +2,17 @@
 
 // Brand
 $color-primary: #1785FB !default;
+$color-primary--hover: #1A5FAA !default;
+$color-primary--active: #263D56 !default;
+$color-primary-alpha: unquote('#263D561F') !default;
 $color-secondary: #0F2D53 !default;
+$color-secondary--hover: #0F2D53 !default;
+$color-secondary--active: #0F2D53 !default;
+$color-secondary-alpha: unquote('#0F2D531F') !default;
 $color-complementary: #47DB99 !default;
+$color-complementary--hover: #E0F9EE !default;
+$color-complementary--active: #C6F4DF !default;
+$color-complementary-alpha: unquote('#47DB991F') !default;
 
 // Typography
 $color-type-01: #2C2C2C !default;
@@ -16,24 +25,55 @@ $color-ui-01: #FFF !default;
 $color-ui-02:#F5F5F5 !default;
 $color-ui-03:#E2E6E3 !default;
 $color-ui-04:#D1D5D7 !default;
+$color-ui-05:#B3B3B3 !default;
 
-// Support
-$color-support-01: #F3522B !default;
-$color-support-02: #FDB32B !default;
-$color-support-03: #80B622 !default;
+// Utils - Colors
+$color-gray: #E2E6E3 !default;
+$color-green: #E1EECA !default;
+$color-blue: #B5E0F9 !default;
+$color-pink: #E4D8EB !default;
+$color-yellow: #F8E71C !default;
+$color-white: #FFF !default;
+$color-black: #000 !default;
+$color-error: #F3522B !default;
+$color-warning: #FDB32B !default;
+$color-success: #80B622 !default;
+$color-text: #000 !default;
+$color-text-contrast: #FFF !default;
 
-// Badges
-$color-badge-gray: #E2E6E3 !default;
-$color-badge-green: #E1EECA !default;
-$color-badge-blue: #B5E0F9 !default;
-$color-badge-pink: #E4D8EB !default;
-$color-badge-yellow: #F8E71C !default;
+// Utils - Colors with alpha
+$color-gray-alpha: unquote('#E2E6E31F') !default;
+$color-green-alpha: unquote('#E1EECA1F') !default;
+$color-blue-alpha: unquote('#B5E0F91F') !default;
+$color-pink-alpha: unquote('#E4D8EB1F') !default;
+$color-yellow-alpha: unquote('#F8E71C1F') !default;
+$color-black-alpha: unquote('#0000001F') !default;
+$color-white-alpha: unquote('#FFFFFF1F') !default;
+$color-text-alpha: unquote('#0000001F') !default;
+$color-text-contrast-alpha: unquote('#FFFFFF1F') !default;
+$color-error-alpha: unquote('#F3522B1F') !default;
+$color-warning-alpha: unquote('#FDB32B1F') !default;
+$color-success-alpha: unquote('#80B6221F') !default;
+$color-shadow: rgba(44, 44, 44, 0.16) !default;
+$color-modal: rgba(44, 44, 44, 0.8) !default;
 
 @mixin colors-vars {
   // Brand
+
+  // Primary
   --as--color--primary: #{$color-primary};
+  --as--color--primary--hover: #{$color-primary--hover};
+  --as--color--primary--active: #{$color-primary--active};
+
+  // Secondary
   --as--color--secondary: #{$color-secondary};
+  --as--color--secondary--hover: #{$color-secondary--hover};
+  --as--color--secondary--active: #{$color-secondary--active};
+
+  // Complementary
   --as--color--complementary: #{$color-complementary};
+  --as--color--complementary--hover: #{$color-complementary--hover};
+  --as--color--complementary--active: #{$color-complementary--active};
 
   // Typography
   --as--color--type-01: #{$color-type-01};
@@ -46,16 +86,46 @@ $color-badge-yellow: #F8E71C !default;
   --as--color--ui-02: #{$color-ui-02};
   --as--color--ui-03: #{$color-ui-03};
   --as--color--ui-04: #{$color-ui-04};
+  --as--color--ui-05: #{$color-ui-05};
 
-  // Support
-  --as--color---support-01: #{$color-support-01};
-  --as--color---support-02: #{$color-support-02};
-  --as--color---support-03: #{$color-support-03};
+  // Utils - Colors
+  --as--color--gray: #{$color-gray};
+  --as--color--green: #{$color-green};
+  --as--color--blue: #{$color-blue};
+  --as--color--pink: #{$color-pink};
+  --as--color--yellow: #{$color-yellow};
+  --as--color--white: #{$color-white};
+  --as--color--black: #{$color-black};
+  --as--color--text-contrast: #{$color-text-contrast};
+  --as--color--text: #{$color-text};
+  --as--color--primary: #{$color-primary};
+  --as--color--error: #{$color-error};
+  --as--color--warning: #{$color-warning};
+  --as--color--success: #{$color-success};
 
-  // Badges
-  --as--color--badge-gray: #{$color-badge-gray};
-  --as--color--badge-green: #{$color-badge-green};
-  --as--color--badge-blue: #{$color-badge-blue};
-  --as--color--badge-pink: #{$color-badge-pink};
-  --as--color--badge-yellow: #{$color-badge-yellow};
+  // Utils - Colors with alpha
+  --as--color--gray-alpha: #{$color-gray-alpha};
+  --as--color--green-alpha: #{$color-green-alpha};
+  --as--color--blue-alpha: #{$color-blue-alpha};
+  --as--color--pink-alpha: #{$color-pink-alpha};
+  --as--color--yellow-alpha: #{$color-yellow-alpha};
+  --as--color--white-alpha: #{$color-text-contrast-alpha};
+  --as--color--black-alpha: #{$color-text-alpha};
+  --as--color--text-contrast-alpha: #{$color-text-contrast-alpha};
+  --as--color--text-alpha: #{$color-text-alpha};
+  --as--color--primary-alpha: #{$color-primary-alpha};
+  --as--color--secondary-alpha: #{$color-secondary-alpha};
+  --as--color--complementary-alpha: #{$color-complementary-alpha};
+  --as--color--error-alpha: #{$color-error-alpha};
+  --as--color--warning-alpha: #{$color-warning-alpha};
+  --as--color--success-alpha: #{$color-success-alpha};
+  --as--color--shadow: #{$color-shadow};
+  --as--color--modal: #{$color-modal};
+
+  // Utils - Badges
+  --as--color--badge-gray: #{$color-gray};
+  --as--color--badge-green: #{$color-green};
+  --as--color--badge-blue: #{$color-blue};
+  --as--color--badge-pink: #{$color-pink};
+  --as--color--badge-yellow: #{$color-yellow};
 }

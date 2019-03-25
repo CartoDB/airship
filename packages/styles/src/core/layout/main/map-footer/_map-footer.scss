@@ -1,16 +1,17 @@
 .as-map-footer {
-  --as-map-footer--background-color: var(--as--color--ui-01);
+  --as--map-footer--background-color: var(--as--color--ui-01, #{$color-ui-01});
+  --as--map-footer--box--border-color: var(--as--color--ui-04, #{$color-ui-04});
 
   display: none;
-  z-index: 1;
+  z-index: $z-index-1;
   width: 100%;
   height: 100%;
-  background-color: var(--as-map-footer--background-color);
+  background-color: var(--as--map-footer--background-color);
   pointer-events: auto;
 
   &--visible {
     display: initial;
-    z-index: 4;
+    z-index: $z-index-4;
     overflow-x: auto;
   }
 
@@ -46,7 +47,7 @@
       }
 
       &--border {
-        border-right: 1px solid $color-ui-04;
+        border-right: 1px solid var(--as--map-footer--box--border-color);
       }
 
       &--scroll {

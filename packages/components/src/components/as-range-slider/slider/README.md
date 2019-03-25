@@ -82,6 +82,15 @@ showSource: false
 </script>
 ```
 
+### CSS Variables
+
+```
+as-range-slider {
+  --as--range-slider--rail-color
+  --as--range-slider--range-color
+}
+```
+
 ### Props
 
 > Note: Remember to use camelCase with javascript and dash-case with html attributes.

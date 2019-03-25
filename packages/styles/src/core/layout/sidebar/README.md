@@ -23,7 +23,7 @@ showSource: true
 <div class="as-app"  style="height: 300px; width:100%;">
   <div class="as-content">
     <!-- as-sidebar--left code starts here -->
-    <aside class="as-sidebar as-sidebar--left as-bg--support-03"></aside>
+    <aside class="as-sidebar as-sidebar--left as-bg--success"></aside>
     <!-- as-sidebar--left code ends here -->
     <main class="as-main as-bg--badge-blue">
       <!-- Map will be here -->
@@ -45,7 +45,7 @@ showSource: true
       <!-- Put your map here -->
     </main>
     <!-- as-sidebar--right code starts here -->
-    <aside class="as-sidebar as-sidebar--right as-bg--support-02"></aside>
+    <aside class="as-sidebar as-sidebar--right as-bg--warning"></aside>
     <!-- as-sidebar--right code end here -->
   </div>
 </div>
@@ -63,7 +63,7 @@ showSource: true
 <div class="as-app"  style="height: 300px; width:100%;">
   <div class="as-content">
     <!-- as-sidebar--l code starts here -->
-    <aside class="as-sidebar as-sidebar--l as-sidebar--left as-bg--support-03"></aside>
+    <aside class="as-sidebar as-sidebar--l as-sidebar--left as-bg--success"></aside>
     <!-- as-sidebar--l code ends here -->
     <main class="as-main as-bg--badge-blue">
       <!-- Put your map here -->
@@ -82,7 +82,7 @@ showSource: true
 <div class="as-app"  style="height: 300px; width:100%;">
   <div class="as-content">
     <!-- as-sidebar--xl code starts here -->
-    <aside class="as-sidebar as-sidebar--xl as-sidebar--left as-bg--support-03"></aside>
+    <aside class="as-sidebar as-sidebar--xl as-sidebar--left as-bg--success"></aside>
     <!-- as-sidebar--xl code end here -->
     <main class="as-main as-bg--badge-blue">
       <!-- Put your map here -->
@@ -112,3 +112,11 @@ responsive: true
 <iframe src="/examples/layouts/sidebar/sidebar.html" style="width: 100%; height: 100%;">
 ```
 [See example](/developers/airship/examples/#example-basic-sidebar)
+
+## CSS Variables
+
+.as-sidebar {
+  --as--sidebar--background-color
+  --as--sidebar--box--border-color
+  --as--sidebar--shadow-color
+}

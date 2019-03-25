@@ -1,19 +1,41 @@
 @import '../../../../styles/src/core/_dev';
 
 as-time-series-widget {
-  display: flex;
-  align-items: center;
-  height: 100%;
+  --as--time-series--line-color: var(--as--color--primary, #{$color-primary});
+  --as-histogram-widget--background-color: var(--as--color--ui-01);
 
-  .play-button {
-    margin-right: get-spacing(4);
+  display: flex;
+  align-items: flex-end;
+  height: 100%;
+  background: var(--as-histogram-widget--background-color, #FFF);
+
+  as-histogram-widget {
+    overflow: unset;
+
+    as-widget-header,
+    as-widget-selection,
+    .content {
+      margin-left: -32px;
+    }
+  }
+
+  .as-time-series--play-button {
+    margin-bottom: 2px;
     cursor: pointer;
+  }
+
+  .as-time-series--play-button-hidden {
+    opacity: 0;
+  }
+
+  .as-time-series--play-button-x-label {
+    margin-bottom: 27px;
   }
 
   .as-time-series--scrubber,
   .as-time-series--line {
-    stroke: var(--as--color--primary, #{$color-primary});
-    fill: var(--as--color--primary, #{$color-primary});
+    stroke: var(--as--time-series--line-color);
+    fill: var(--as--time-series--line-color);
   }
 
   .as-time-series--scrubber,

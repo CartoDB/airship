@@ -33,11 +33,53 @@ showSource: false
 </script>
 ```
 
+### CSS Variables
+
+```
+as-histogram-widget {
+  --as--histogram-widget--background-color
+  --as--histogram-widget--figure--stroke-color
+  --as--histogram-widget--figure--text-color
+  --as--histogram-widget--label-color
+  --as--histogram-widget--label-font
+}
+```
+
 ### Props
 
 #### **data**: HistogramData[] = []
-Array of histogram data, each one of which should include a `value`, `start` and `end` and an optional `color`.
- 
+Histogram accepts two kinds of data: categorical and continuous. Both must have a `value` property, which represents the value on the y-axis.
+
+Continuous data must also have start / end properties, which should be continuous:
+
+```code
+lang: javascript
+---
+histogramWidget.data = [
+  { start: 50, end: 60, value: 5 },
+  { start: 60, end: 70, value: 30 },
+  { start: 70, end: 80, value: 45 },
+  { start: 80, end: 90, value: 60 },
+];
+```
+
+Categorical widgets must have a category for each element in the data.
+
+```code
+lang: javascript
+---
+histogramWidget.data = [
+  { category: 'five', value: 5 },
+  { category: 'thirty', value: 30 },
+  { category: 'forty-five', value: 45 },
+  { category: 'sixty', value: 60 },
+];
+```
+
+If you provide a start / end as well as a category for each element, it will be treated as a categorical histogram, but will keep the start / end ranges as well.
+
+Optionally, you can provide a color for each data entry.
+
 > Color can´t be a named color, use `hex` or `rgb` form instead!
 
 
@@ -51,8 +93,21 @@ histogramWidget.data = [
   { start: 80, end: 90, value: 60 },
 ];
 ```
-#### **color**: string = '#1785FB'
-Overrides default bar color. Default value is `#1785FB`
+
+#### **backgroundData**: HistogramData[] = []
+
+This property must be an array of Histogram data compatible with the current data. This means that:
+
+- They are equal in length
+- For continuous histograms, all start / end ranges are the same
+- For categorical histograms, all categories are the same
+
+This data is rendered behind the actual data, filled with the `unselectedColor` prop. This is useful to keep some context if you have "global" visualization data.
+
+Since this data is considered 'background', is assumed that `data` will be a subset of this. This means that the scale is calculated with this data (if present) instead of `data`.
+
+#### **color**: string = '#47DB99'
+Overrides default bar color. Default value is `#47DB99`
 
 ```code
 lang: html
@@ -65,13 +120,13 @@ lang: javascript
 histogramWidget.color = `#FABADA`;
 ```
 
-#### **selectedColor**: string = '#47DB99'
-Overrides default bar color for bars that are currently selected. It's also the color for the selection elements.
+#### **unselectedColor**: string = '#E2E6E3'
+Overrides default bar color for bars outside the selection.
 
 ```code
 lang: html
 ---
-<as-histogram-widget selectedColor="#120918"></as-histogram-widget>
+<as-histogram-widget unselected-color="#120918"></as-histogram-widget>
 ```
 ```code
 lang: javascript
@@ -214,11 +269,13 @@ histogramWidget.isLoading = true;
 
 
 #### **tooltipFormatter**: function
-Function that receives one value of the **data** property and returns a string. The value is the one for the bar the user is hovering.
+Function that receives one value of the **data** property and returns a string or array of strings. The value is the one for the bar the user is hovering.
 
 By default, it returns the _value_ field formatted sensibly.
 
 The default implementation is the method _defaultFormatter_, so you can use it to keep the original behaviour and add something extra.
+
+If you return an array of strings, each will be rendered on a different line.
 
 ```code
 lang: javascript
@@ -227,6 +284,80 @@ histogramWidget.tooltipFormatter = function (data) {
   return histogramWidget.defaultFormatter(data) + ' schmeckles';
 };
 ```
+
+#### **selectedFormatter**: function
+Function that receives the selection and must return a string. It is used to display a message on the footer to indicate what range has been selected.
+
+This is useful for localization purposes.
+
+```code
+lang: javascript
+---
+histogramWidget.selectedFormatter = function (selection) {
+  return `Selected from %{selection[0]} to ${selection[1]}.;
+};
+```
+
+#### **range**: [number, number]
+
+This prop lets you specify the range of the data, so it will not be calculated each time the data changes. This is very useful to better appreciate data variations when filtering.
+
+```code
+lang: javascript
+---
+histogramWidget.data = [
+  { start: 50, end: 60, value: 5 },
+  { start: 60, end: 70, value: 30 },
+  { start: 70, end: 80, value: 45 },
+  { start: 80, end: 90, value: 60 },
+];
+
+histogramWidget.range = [0, 100]
+```
+
+#### **disableAnimation**: boolean
+
+This prop lets you disable bars animations
+
+```code
+lang: javascript
+---
+histogramWidget.disableAnimation = true
+```
+
+```code
+lang: html
+---
+<as-histogram-widget disable-animation></as-histogram-widget>
+```
+
+#### **xAxisOptions**: object
+
+This prop lets you configure several features of the X axis. It is an object that proxies several features of [d3-axis](https://github.com/d3/d3-axis/tree/a329626cdf632a1af61b7124873b70c04c42b6a8):
+
+- format: A function that takes a numeric value and returns a string
+- padding: A number, to control the space between number and axis
+- values: An array of numbers, to specify which values to display on the axis
+- ticks: A number, to specify how many values to display on the axis
+
+```hint|directive
+Please note that `values` has precedence over `ticks`, so if you set an array of values, the number of ticks is ignored.
+```
+
+```code
+lang: javascript
+---
+histogramWidget.xAxisOptions = {
+  values: [20, 25],
+  ticks: 2,
+  padding: 0,
+  format: (value) => `${value} y.o.`
+};
+```
+
+#### **yAxisOptions**: object
+
+Same as `xAxisOptions`, but for the Y axis
 
 ### Styles
 There are some CSS Variables that you can override to change visual styles.
@@ -254,17 +385,29 @@ document.body.style.setProperty('--histogram-widget--background-color', '#F5F5F5
 #### **selectionChanged**
 Fired when the user selects a range, updates it or clears it. See _getSelection_, _setSelection_ and _clearSelection_ methods for programmatic control.
 
+The data on the event for this widget changes slightly depending on the type of data provided. In order to detect which type it is, a _type_ member is provided, which will have the value `continuous` or `categorical`.
+
+For continuous data histograms, the properties have the following content:
+
+- selection: An array of numbers of length 2, with the start of the first bucket and the end of the last one.
+- payload: An array with the corresponding buckets of the _selection_ field.
+
+For categorical data histograms:
+
+- selection: A string array of undetermined length (1 - n), corresponding to the selected categories.
+- payload: A bucket array of undetermined length (1 - n), corresponding to the categories on _selection_. This is useful to retrieve the start / end data if originally provided.
+
 ```code
 lang: javascript
 ---
 const histogramWidget = document.querySelector('as-histogram-widget');
 histogramWidget.addEventListener('selectionChanged', event => {
-  console.log('Selection is now: ', event.detail)
+  console.log('Selection is now: ', event.detail.selection)
 });
 ```
 
 #### **selectionInput**
-Same as `selectionChanged`, but fires constantly, not only when the selection has finished.
+Same as `selectionChanged`, but fires with every selection change (i.e: dragging), not only when the selection has finished.
 
 #### **drawParametersChanged**
 This event is triggered whenever the widget renders, and it emits an object containing parameters useful to extend the histogram:
@@ -277,13 +420,13 @@ This event is triggered whenever the widget renders, and it emits an object cont
 - xScale: d3 scale between (0, width) to (0, nBins)
 - binsScale: d3 scale between (0, nBins) to the actual data
 
-For instance, this is used internally by the time-series-widget to draw the progress above the histogram.
+For instance, this is used internally by the as-time-series-widget to draw the progress above the histogram.
 
 ### Methods
 
 #### **getSelection**
 Get current selection, or null.
-`Returns: Promise<number[] | null>`
+`Returns: Promise<number[] | string[] | null>`
 
 ```code
 lang: javascript
@@ -304,6 +447,8 @@ Please note that you always need to wrap your `await` code in an `async` functio
 
 #### **setSelection**
 Set a new selection. The component will round the values to the nearest intervals. Calling this with `null` has the same effect as _clearSelection_
+
+Note that this method is only supported for continuous values (providing a numeric range).
 
 ```code
 lang: javascript

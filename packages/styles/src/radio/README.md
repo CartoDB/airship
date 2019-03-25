@@ -27,3 +27,15 @@ showSource: true
   </li>
 </ul>
 ```
+
+## CSS Variables
+
+```
+.as-radio {
+  --as--radio--border-color
+  --as--radio--hover--border-color
+  --as--radio--checked--border-color
+  --as--radio--disabled--color
+  --as--radio--disabled--background
+}
+```

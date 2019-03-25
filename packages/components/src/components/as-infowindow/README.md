@@ -36,6 +36,15 @@ Use this component to show extra information about the data.
 <as-infowindow src="http://on-desktop.com/wps/Animals___Cats_Black_Cat_Panther_043844_.jpg"></as-infowindow>
 ```
 
+### CSS Variables
+
+````
+as-infowindow{
+  --as--infowindow--color--background
+  --as--infowindow--color--shadow
+}
+```
+
 ### Props
 
 #### **src**: string

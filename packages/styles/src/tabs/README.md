@@ -82,3 +82,21 @@ lang: html
   <button role="tab" class="as-tabs__item">Widgets</button>
 </div>
 ```
+
+## CSS Variables
+
+```
+.as-tabs {
+  --as--tabs--background-color
+  --as--tabs--border-color
+  --as--tabs--item--font
+  --as--tabs--item--color
+  --as--tabs--item--color-hover
+  --as--tabs--item--color-active
+  --as--tabs--item--border-color-hover
+  --as--tabs--item--border-color-active
+  --as--tabs--item--border-color-hover-active
+  --as--tabs--subheader--font
+  --as--tabs--horizontal-padding
+}
+```

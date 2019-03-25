@@ -10,10 +10,10 @@ showSource: true
 ---
 <div class="as-app"  style="height: 400px; width:100%;">
   <div class="as-content">
-    <main class="as-main as-bg--badge-blue">
+    <main class="as-main as-bg--blue">
       <!-- Put your map here -->
     </main>
-    <aside class="as-sidebar as-sidebar--right as-bg--support-02">
+    <aside class="as-sidebar as-sidebar--right as-bg--warning">
       <div class="as-container as-container--border">
         <section class="as-box">
           <h1 class="as-title">Fixed container</h1>
@@ -62,10 +62,10 @@ showSource: true
 ---
 <div class="as-app"  style="height: 400px; width:100%;">
   <div class="as-content">
-    <main class="as-main as-bg--badge-blue">
+    <main class="as-main as-bg--blue">
       <!-- Put your map here -->
     </main>
-    <aside class="as-sidebar as-sidebar--right as-bg--support-02">
+    <aside class="as-sidebar as-sidebar--right as-bg--warning">
       <!-- as-container code starts here -->
       <div class="as-container">
         <section class="as-box">
@@ -113,10 +113,10 @@ showSource: true
 ---
 <div class="as-app"  style="height: 400px; width:100%;">
   <div class="as-content">
-    <main class="as-main as-bg--badge-blue">
+    <main class="as-main as-bg--blue">
       <!-- Put your map here -->
     </main>
-    <aside class="as-sidebar as-sidebar--right as-bg--support-02">
+    <aside class="as-sidebar as-sidebar--right as-bg--warning">
       <div class="as-container">
         <section class="as-box">
           <h1 class="as-title">Container 0</h1>
@@ -162,7 +162,7 @@ showSource: true
 ---
 <div class="as-app"  style="height: 400px; width:100%;">
   <div class="as-content">
-    <main class="as-main as-bg--badge-blue">
+    <main class="as-main as-bg--blue">
       <!-- Put your map here -->
     </main>
     <aside class="as-sidebar as-sidebar--right as-bg--badge-yellow">
@@ -189,7 +189,7 @@ showSource: true
 ---
 <div class="as-app"  style="height: 400px; width:100%;">
   <div class="as-content">
-    <main class="as-main as-bg--badge-blue">
+    <main class="as-main as-bg--blue">
       <!-- Put your map here -->
     </main>
     <aside class="as-sidebar as-sidebar--right">

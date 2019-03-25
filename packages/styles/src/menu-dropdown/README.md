@@ -22,3 +22,15 @@ showSource: true
   </ul>
 </div>
 ```
+
+## CSS Variables
+
+```
+.as-menu-dropdown {
+  --as--menu-dropdown--color--hover
+  --as--menu-dropdown--top-border--color
+  --as--menu-dropdown--li--border-color
+  --as--menu-dropdown--li--background-color
+  --as--menu-dropdown--li--color
+}
+```

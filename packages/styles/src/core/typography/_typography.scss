@@ -92,19 +92,44 @@
     color: var(--as--color--type-04);
   }
 
+  &--gray {
+    color: var(--as--color--gray, #{$color-gray});
+  }
+
+  &--green {
+    color: var(--as--color--green, #{$color-green});
+  }
+
+  &--blue {
+    color: var(--as--color--blue, #{$color-blue});
+  }
+
+  &--pink {
+    color: var(--as--color--pink, #{$color-pink});
+  }
+
+  &--yellow {
+    color: var(--as--color--yellow, #{$color-yellow});
+  }
+
+  &--black {
+    color: var(--as--color--text, #{$color-text});
+  }
+
+  &--white {
+    color: var(--as--color--text-contrast, #{$color-text-contrast});
+  }
+
   // Support
-  &--success,
-  &--support-03 {
-    color: var(--as--color---support-03);
+  &--success {
+    color: var(--as--color--success);
   }
 
-  &--warning,
-  &--support-02 {
-    color: var(--as--color---support-02);
+  &--warning {
+    color: var(--as--color--warning);
   }
 
-  &--error,
-  &--support-01 {
-    color: var(--as--color---support-01);
+  &--error {
+    color: var(--as--color--error);
   }
 }

@@ -1,6 +1,6 @@
 ## .as-map-panels
 
-Map panels is the section where the `as-panels` element will be placed.
+Map panels is the section where the `as-map-panels` element will be placed.
 
 > The `map-panels` element must be a direct child of the `map-area` at the same level of `#map`.
 
@@ -32,7 +32,7 @@ showSource: true
 ---
 <div class="as-app" style="width:100%; height:300px;">
   <div class="as-content">
-    <main class="as-main as-bg--badge-blue">
+    <main class="as-main as-bg--blue">
       <div class="as-map-area">
       <div id="map"></div>
       <div class="as-map-panels">
@@ -63,13 +63,13 @@ showSource: true
 ---
 <div class="as-app" style="width:100%; height:300px;">
   <div class="as-content">
-    <main class="as-main as-bg--badge-blue">
+    <main class="as-main as-bg--blue">
       <div class="as-map-area">
         <div id="map"></div>
         <div class="as-map-panels">
           <div class="as-panel as-panel--middle as-panel--center">
             <!-- as-panel__element code starts here -->
-            <div class="as-panel__element as-p--32 as-bg--support-02">
+            <div class="as-panel__element as-p--32 as-bg--warning">
               <p class="as-body"> Center Panel </p>
             </div>
             <!-- as-panel__element code ends here -->
@@ -91,24 +91,24 @@ showSource: true
 ---
 <div class="as-app" style="width:100%; height:300px;">
   <div class="as-content">
-    <main class="as-main as-bg--badge-blue">
+    <main class="as-main as-bg--blue">
       <div class="as-map-area">
         <div id="map"></div>
         <div class="as-map-panels">
           <div class="as-panel as-panel--top as-panel--left">
-            <div class="as-panel__element as-p--32 as-bg--support-02">
+            <div class="as-panel__element as-p--32 as-bg--warning">
               <p class="as-body"> Panel 0 </p>
             </div>
-            <div class="as-panel__element as-p--32 as-bg--support-03">
+            <div class="as-panel__element as-p--32 as-bg--success">
               <p class="as-body"> Panel 1 </p>
             </div>
           </div>
           <!-- as-panel--vertical code starts here -->
           <div class="as-panel as-panel--vertical as-panel--middle as-panel--right">
-            <div class="as-panel__element as-p--32 as-bg--support-02">
+            <div class="as-panel__element as-p--32 as-bg--warning">
               <p class="as-body"> Panel 2 </p>
             </div>
-            <div class="as-panel__element as-p--32 as-bg--support-03">
+            <div class="as-panel__element as-p--32 as-bg--success">
               <p class="as-body"> Panel 3 </p>
             </div>
           </div>

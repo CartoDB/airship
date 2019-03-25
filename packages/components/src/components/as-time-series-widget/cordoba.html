@@ -10,14 +10,13 @@
     <title>Airship histogram selectionChanged bug</title>
 
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.11/lodash.min.js"></script>
-    <script src="https://libs.cartocdn.com/carto-vl/v1.0.0/carto-vl.min.js"></script>
+    <script src="https://libs.cartocdn.com/carto-vl/v1.2/carto-vl.min.js"></script>
 
-    <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.css" rel="stylesheet" />
-    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.js"></script>
+    <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.css" rel="stylesheet" />
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.js"></script>
 
     <link rel="stylesheet" href="/packages/styles/dist/airship.css">
     <script src="/packages/components/dist/airship.js"></script>
-    <script src="/packages/bindings/dist/asbindings.js"></script>
 </head>
 
 <body class="as-app-body">
@@ -146,6 +145,14 @@
             viz.variables.animation.input.max.blendTo(newHistogram[newHistogram.length - 1].x[1])
             
             lastData = newHistogram;
+
+            timeWidget.backgroundData = newHistogram.map(entry => {
+              return {
+                start: entry.x[0],
+                end: entry.x[1],
+                value: entry.y * 1.25
+              }
+            })
 
             timeWidget.data = newHistogram.map(entry => {
               return {
