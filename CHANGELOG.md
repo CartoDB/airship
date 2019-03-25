@@ -1,4 +1,59 @@
+# [0.0.0](https://github.com/CartoDB/airship/compare/v2.0.0...v0.0.0) (2019-03-25)
+
+
+
+# [2.0.0](https://github.com/CartoDB/airship/compare/v1.0.4-rc.4...v2.0.0) (2019-03-25)
+
+
+### Bug Fixes
+
+* **icons:** Add extra as-icon class for i elements ([3dea28b](https://github.com/CartoDB/airship/commit/3dea28b))
+
+
+### Features
+
+* Airship v2 ([#571](https://github.com/CartoDB/airship/issues/571)) ([40c92ba](https://github.com/CartoDB/airship/commit/40c92ba))
+
+
+### BREAKING CHANGES
+
+* **icons:** Icons require an extra class `as-icon` on `i` elements.
+* **components:** Histogram property 'selectedColor' has been removed check #560
+* **components:** Histogram selectionChanged event has been changed to support categorical data, check #564 
+* **styles:** as-bg-color--support-n variables and classes have been renamed to success / warning / error, check #568 
+* **styles** Many variable names have been renamed for consistency and many many more have been added, check the docs or the changes in #568
+
+
+
+## [1.0.4-rc.4](https://github.com/CartoDB/airship/compare/v1.0.4-rc.3...v1.0.4-rc.4) (2019-01-22)
+
+
+### Bug Fixes
+
+* **catalog:** fix Time Series Widget title ([3d92cb3](https://github.com/CartoDB/airship/commit/3d92cb3))
+* **components:** Set min value or max value when mouse is past edge bounds ([#562](https://github.com/CartoDB/airship/issues/562)) ([75413cc](https://github.com/CartoDB/airship/commit/75413cc))
+
+
+
+## [1.0.4-rc.3](https://github.com/CartoDB/airship/compare/v1.0.3...v1.0.4-rc.3) (2018-12-21)
+
+
+### Bug Fixes
+
+* **components:** don't fire selectionChanged event when data just updated ([#531](https://github.com/CartoDB/airship/issues/531)) ([d1f4165](https://github.com/CartoDB/airship/commit/d1f4165))
+
+
+### Features
+
+* **components:** Time series widget preview ([f25b588](https://github.com/CartoDB/airship/commit/f25b588)), closes [#534](https://github.com/CartoDB/airship/issues/534) [#536](https://github.com/CartoDB/airship/issues/536) [#537](https://github.com/CartoDB/airship/issues/537) [#538](https://github.com/CartoDB/airship/issues/538) [#513](https://github.com/CartoDB/airship/issues/513) [#530](https://github.com/CartoDB/airship/issues/530) [#440](https://github.com/CartoDB/airship/issues/440) [#457](https://github.com/CartoDB/airship/issues/457)
+
+
+
 ## [1.0.3](https://github.com/CartoDB/airship/compare/v1.0.3-rc.0...v1.0.3) (2018-11-29)
+
+
+
+## [1.0.3-rc.0](https://github.com/CartoDB/airship/compare/v1.0.2...v1.0.3-rc.0) (2018-11-29)
 
 
 ### Bug Fixes
@@ -164,7 +219,7 @@ Instead of `import { defineCustomElements } from '@carto/airship-components';` y
 `as-app` is meant to be applied to the node that contains the whole application made with Airship.
 
 Previous to this, since the app needs typically more than one node (one for the toolbar, one for the content), when used in a framework like Vue those two nodes needed to be wrapped in one div. Since components don't create the body tag, it caused an extra `div` that broke the display setting for the app and the layout broke.
-* **styles:** buttons / `<a>` buttons state now use different variables for active and hover state (`--as--button-primary-color-active`, `--as--button-secondary-color-active`. `--as--button-secondary-color-focus`)
+* **styles:** buttons / `<a>` buttons state now use different variables for active and hover state (`--as-button-primary-color-active`, `--as-button-secondary-color-active`. `--as-button-secondary-color-focus`)
 * **components:** Component methods should be invoked asynchronously with async/await or promises from now on. Please check documentation.
 
 
