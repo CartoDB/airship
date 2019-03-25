@@ -172,7 +172,7 @@ lang: html
 ---
 <header class="as-toolbar">
   <button onclick="toggleDrawer()" class="as-toolbar__item as-toolbar__toggle">
-    <i class="as-icon-hamburguer as-title as-m--0"></i>
+    <i class="as-icon-hamburger as-title as-m--0"></i>
   </button>
   <div href="#" class="as-toolbar__item">LOGO</div>
   <nav class="as-toolbar__actions">
