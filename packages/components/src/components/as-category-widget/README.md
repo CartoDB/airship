@@ -16,8 +16,7 @@ showSource: false
 <as-category-widget
   class="as-p--16"
   heading="Business Volume"
-  description="Description"
-  default-bar-color="#47DB99"></as-category-widget>
+  description="Description"></as-category-widget>
 
 <script>
   const categoryWidget = document.querySelector('as-category-widget');
@@ -67,6 +66,11 @@ categoryWidget.categories = [
 ];
 ```
 #### **defaultBarColor**: string = '#47DB99'
+
+```hint|warning
+This prop has been deprecated and will be removed in the future. Please use the CSS variable `--as--category-bar--color` instead.
+```
+
 Overrides default color to draw the bars. Default value is `#47DB99`.
 
 ```code
