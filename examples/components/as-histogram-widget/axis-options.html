@@ -5,14 +5,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
     <title>Airship</title>
-    <link rel="stylesheet" href="../../../packages/styles/dist/core/core.css">
-    <link rel="stylesheet" href="../../../packages/styles/dist/buttons/buttons.css">
+    <link rel="stylesheet" href="../../../packages/styles/dist/airship.css">
     <script src="../../../packages/components/dist/airship.js"></script>
+    <style>
+      as-histogram-widget {
+        flex: 1;
+        min-width: 200px;
+      }
+    </style>
   </head>
 
   <body>
     <h2 class="as-title">Y-Axis options</p>
-    <div style="width: 100%; display: flex;">
+    <div style="display: flex; flex-wrap: wrap;">
       <as-histogram-widget
         id="y1"
         heading="With custom tick values"
@@ -36,18 +41,18 @@
       </as-histogram-widget>
     </div>
     <h2 class="as-title">X-Axis options</p>
-    <div style="width: 100%; display: flex;">
+    <div style="display: flex; flex-wrap: wrap;">
       <as-histogram-widget
         id="x1"
         heading="With custom tick values"
-        description="Show 20 and 25"
+        description="Show 20"
         show-header
         disable-interactivity>
       </as-histogram-widget>
       <as-histogram-widget
         id="x2"
         heading="With custom tick count"
-        description="Show 1 tick"
+        description="Show 1 tick (besides 0)"
         show-header
         disable-interactivity>
       </as-histogram-widget>
