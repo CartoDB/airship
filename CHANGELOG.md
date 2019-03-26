@@ -1,4 +1,21 @@
-# [0.0.0](https://github.com/CartoDB/airship/compare/v2.0.0...v0.0.0) (2019-03-25)
+# [0.0.0](https://github.com/CartoDB/airship/compare/v2.0.4...v0.0.0) (2019-03-26)
+
+
+
+## [2.0.4](https://github.com/CartoDB/airship/compare/v2.0.3...v2.0.4) (2019-03-26)
+
+
+
+## [2.0.3](https://github.com/CartoDB/airship/compare/v2.0.2...v2.0.3) (2019-03-26)
+
+
+
+## [2.0.2](https://github.com/CartoDB/airship/compare/v2.0.0...v2.0.2) (2019-03-26)
+
+
+### Bug Fixes
+
+* **docs:** Fix docs CSS for dev center ([30d8766](https://github.com/CartoDB/airship/commit/30d8766)), closes [#575](https://github.com/CartoDB/airship/issues/575) [#540](https://github.com/CartoDB/airship/issues/540)
 
 
 
