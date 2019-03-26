@@ -1,4 +1,13 @@
-# [0.0.0](https://github.com/CartoDB/airship/compare/v2.0.4...v0.0.0) (2019-03-26)
+# [0.0.0](https://github.com/CartoDB/airship/compare/v2.0.5...v0.0.0) (2019-03-26)
+
+
+
+## [2.0.5](https://github.com/CartoDB/airship/compare/v2.0.4...v2.0.5) (2019-03-26)
+
+
+### Bug Fixes
+
+* **docs:** broken theming example ([#580](https://github.com/CartoDB/airship/issues/580)) ([1872020](https://github.com/CartoDB/airship/commit/1872020))
 
 
 
