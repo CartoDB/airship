@@ -156,8 +156,8 @@ The updateWidgets function will:
 function updateWidgets() {
     $categoryWidget.categories = viz.variables.cities.value
       .map(feature => ({
-        name: feature.name,
-        value: feature.pop_max,
+        name: feature.properties.name,
+        value: feature.properties.pop_max,
       }))
       .sort((a, b) => b.value - a.value);
   };
