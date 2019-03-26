@@ -43,15 +43,6 @@
                   >
                   </as-time-series-widget>
                 </div>
-                <div class="as-box">
-                  <as-histogram-widget
-                    show-clear
-                    id="year"
-                    heading="Year"
-                    description='A selection here will affect the time series'
-                  >
-                  </as-histogram-widget>
-                </div>
               </div>
           </main>
       </div>
@@ -81,17 +72,8 @@
       const vizLayer = new carto.Layer('layer', source, viz);
 
       const timeWidget = document.querySelector('as-time-series-widget');
-      const yearWidget = document.querySelector('#year');
 
       vizLayer.addTo(map, 'watername_ocean');
-
-      yearWidget.axisFormatter = (e) => {
-        if (isNaN(e)) {
-          return '...';
-        }
-
-        return Math.round(e);
-      };
 
       const bridge = new AsBridge.VLBridge({
         carto: carto,
@@ -101,11 +83,6 @@
       });
         
       bridge.timeSeries('as-time-series-widget', 'year', {
-        buckets: 30,
-        readOnly: false
-      });
-
-      bridge.histogram(yearWidget, 'year', {
         buckets: 30,
         readOnly: false
       });

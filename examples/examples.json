@@ -100,6 +100,13 @@
       ]
     },
     {
+      "title": "Theming",
+      "samples": [{
+        "title": "Custom themes (default, dark, light)",
+        "file": "themes/default.html"
+      }]
+    },
+    {
       "title": "Category Widget",
       "samples": [{
           "title": "category-widget",
@@ -142,7 +149,15 @@
         },
         {
           "title": "as-histogram Background data",
-          "file": "components/as-histogram-widget/interaction-disabled.html"
+          "file": "components/as-histogram-widget/background-data.html"
+        },
+        {
+          "title": "as-histogram Categorical data",
+          "file": "components/as-histogram-widget/categorical-data.html"
+        },
+        {
+          "title": "as-histogram Multiline tooltip",
+          "file": "components/as-histogram-widget/multiline-tooltip.html"
         },
         {
           "title": "as-histogram Custom range",
