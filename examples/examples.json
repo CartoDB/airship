@@ -102,7 +102,7 @@
     {
       "title": "Theming",
       "samples": [{
-        "title": "Custom themes (default, dark, light)",
+        "title": "Custom themes",
         "file": "themes/default.html"
       }]
     },
