@@ -383,10 +383,11 @@ export class HistogramWidget {
    * present in {@link data}. To clear see {@link clearSelection} or call with null
    *
    * @param {number[] | null} values
+   * @param {boolean} emit Set to true to force emitting the selectionChanged event.
    * @memberof HistogramWidget
    */
   @Method()
-  public setSelection(values: number[] | null) {
+  public setSelection(values: number[] | null, emit = false) {
     if (values === null) {
       this._setSelection(null);
       this.emitSelection(this.selectionChanged, this.selection);
@@ -402,7 +403,7 @@ export class HistogramWidget {
 
     this._setSelection(bins);
 
-    if (!this._muteSelectionChanged) {
+    if (emit || !this._muteSelectionChanged) {
       this.emitSelection(this.selectionChanged, this.selection);
     }
   }
