@@ -1,0 +1,20 @@
+@import '../../../../../styles/src/core/_dev';
+
+as-basic-legend-polygon {
+  --as--basic--legend--polygon-font: var(--as--font--body);
+
+  .as-basic-legend-polygon--wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  .as-basic-legend-polygon--label {
+    font: var(--as--basic--legend--polygon-font);
+  }
+
+  .as-basic-legend-polygon--box {
+    width: get-spacing(4);
+    height: get-spacing(3);
+    margin: auto;
+  }
+}

@@ -1,0 +1,12 @@
+@import '../../../../../styles/src/core/_dev';
+
+as-legends {
+  --as--basic--legend--padding: #{get-spacing(2)};
+  --as--basic-legend--background-color: var(--as--color--ui-01);
+
+  background: var(--as--basic-legend--background-color);
+
+  .as-legends--wrapper {
+    padding: var(--as--basic--legend--padding);
+  }
+}

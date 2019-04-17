@@ -1,0 +1,24 @@
+@import '../../../../../styles/src/core/_dev';
+
+as-basic-legend-point {
+  --as--basic--legend--point-font: var(--as--font--body);
+
+  .as-basic-legend-point--wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  .as-basic-legend-point--label {
+    font: var(--as--basic--legend--point-font);
+  }
+
+  .as-basic-legend-point--symbol {
+    width: 100%;
+    height: auto;
+    margin: auto;
+  }
+
+  .as-basic-legend-point--point {
+    border-radius: 50%;
+  }
+}

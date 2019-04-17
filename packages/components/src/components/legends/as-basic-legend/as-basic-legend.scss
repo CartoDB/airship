@@ -1,0 +1,26 @@
+@import '../../../../../styles/src/core/_dev';
+
+as-basic-legend {
+  .as-basic-legend--wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  & .as-basic-legend--figure--wrapper {
+    width: var(--as--basic--legend--figure-width);
+    margin-right: get-spacing(2);
+  }
+
+  .as-basic-legend--wrapper:not(.as-basic-legend--wrapper-horizontal) > .as-basic-legend--entry:not(:first-child) {
+    margin-top: get-spacing(3);
+  }
+
+  .as-basic-legend--wrapper-horizontal {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .as-basic-legend--wrapper-horizontal > .as-basic-legend--entry:not(:first-child) {
+    margin-left: get-spacing(3);
+  }
+}

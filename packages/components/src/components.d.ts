@@ -288,7 +288,7 @@ export namespace Components {
     /**
     * Returns the current selection
     */
-    'getSelection': () => Promise<number[] | string[]>;
+    'getSelection': () => Promise<string[] | number[]>;
     /**
     * Title of the widget to be displayed
     */
@@ -1184,6 +1184,71 @@ export namespace Components {
     */
     'to'?: number;
   }
+
+  interface AsBasicLegendLine {
+    'color': string;
+    'label': string;
+    'strokeStyle': string;
+    'width': number;
+  }
+  interface AsBasicLegendLineAttributes extends StencilHTMLAttributes {
+    'color'?: string;
+    'label'?: string;
+    'strokeStyle'?: string;
+    'width'?: number;
+  }
+
+  interface AsBasicLegendPoint {
+    'color': string;
+    'label': string;
+    'marker': string;
+    'strokeColor': string;
+    'strokeStyle': string;
+    'width': number;
+  }
+  interface AsBasicLegendPointAttributes extends StencilHTMLAttributes {
+    'color'?: string;
+    'label'?: string;
+    'marker'?: string;
+    'strokeColor'?: string;
+    'strokeStyle'?: string;
+    'width'?: number;
+  }
+
+  interface AsBasicLegendPolygon {
+    'color': string;
+    'label': string;
+    'strokeColor': string;
+    'strokeStyle': string;
+  }
+  interface AsBasicLegendPolygonAttributes extends StencilHTMLAttributes {
+    'color'?: string;
+    'label'?: string;
+    'strokeColor'?: string;
+    'strokeStyle'?: string;
+  }
+
+  interface AsBasicLegend {
+    'data': LegendData[];
+    'orientation': 'horizontal' | 'vertical';
+    'width': number;
+  }
+  interface AsBasicLegendAttributes extends StencilHTMLAttributes {
+    'data'?: LegendData[];
+    'orientation'?: 'horizontal' | 'vertical';
+    'width'?: number;
+  }
+
+  interface AsLegends {
+    'description': string;
+    'heading': string;
+    'loading': boolean;
+  }
+  interface AsLegendsAttributes extends StencilHTMLAttributes {
+    'description'?: string;
+    'heading'?: string;
+    'loading'?: boolean;
+  }
 }
 
 declare global {
@@ -1206,6 +1271,11 @@ declare global {
     'AsWidgetHeader': Components.AsWidgetHeader;
     'AsWidgetSelection': Components.AsWidgetSelection;
     'AsYAxis': Components.AsYAxis;
+    'AsBasicLegendLine': Components.AsBasicLegendLine;
+    'AsBasicLegendPoint': Components.AsBasicLegendPoint;
+    'AsBasicLegendPolygon': Components.AsBasicLegendPolygon;
+    'AsBasicLegend': Components.AsBasicLegend;
+    'AsLegends': Components.AsLegends;
   }
 
   interface StencilIntrinsicElements {
@@ -1227,6 +1297,11 @@ declare global {
     'as-widget-header': Components.AsWidgetHeaderAttributes;
     'as-widget-selection': Components.AsWidgetSelectionAttributes;
     'as-y-axis': Components.AsYAxisAttributes;
+    'as-basic-legend-line': Components.AsBasicLegendLineAttributes;
+    'as-basic-legend-point': Components.AsBasicLegendPointAttributes;
+    'as-basic-legend-polygon': Components.AsBasicLegendPolygonAttributes;
+    'as-basic-legend': Components.AsBasicLegendAttributes;
+    'as-legends': Components.AsLegendsAttributes;
   }
 
 
@@ -1338,6 +1413,36 @@ declare global {
     new (): HTMLAsYAxisElement;
   };
 
+  interface HTMLAsBasicLegendLineElement extends Components.AsBasicLegendLine, HTMLStencilElement {}
+  var HTMLAsBasicLegendLineElement: {
+    prototype: HTMLAsBasicLegendLineElement;
+    new (): HTMLAsBasicLegendLineElement;
+  };
+
+  interface HTMLAsBasicLegendPointElement extends Components.AsBasicLegendPoint, HTMLStencilElement {}
+  var HTMLAsBasicLegendPointElement: {
+    prototype: HTMLAsBasicLegendPointElement;
+    new (): HTMLAsBasicLegendPointElement;
+  };
+
+  interface HTMLAsBasicLegendPolygonElement extends Components.AsBasicLegendPolygon, HTMLStencilElement {}
+  var HTMLAsBasicLegendPolygonElement: {
+    prototype: HTMLAsBasicLegendPolygonElement;
+    new (): HTMLAsBasicLegendPolygonElement;
+  };
+
+  interface HTMLAsBasicLegendElement extends Components.AsBasicLegend, HTMLStencilElement {}
+  var HTMLAsBasicLegendElement: {
+    prototype: HTMLAsBasicLegendElement;
+    new (): HTMLAsBasicLegendElement;
+  };
+
+  interface HTMLAsLegendsElement extends Components.AsLegends, HTMLStencilElement {}
+  var HTMLAsLegendsElement: {
+    prototype: HTMLAsLegendsElement;
+    new (): HTMLAsLegendsElement;
+  };
+
   interface HTMLElementTagNameMap {
     'as-category-widget': HTMLAsCategoryWidgetElement
     'as-dropdown': HTMLAsDropdownElement
@@ -1357,6 +1462,11 @@ declare global {
     'as-widget-header': HTMLAsWidgetHeaderElement
     'as-widget-selection': HTMLAsWidgetSelectionElement
     'as-y-axis': HTMLAsYAxisElement
+    'as-basic-legend-line': HTMLAsBasicLegendLineElement
+    'as-basic-legend-point': HTMLAsBasicLegendPointElement
+    'as-basic-legend-polygon': HTMLAsBasicLegendPolygonElement
+    'as-basic-legend': HTMLAsBasicLegendElement
+    'as-legends': HTMLAsLegendsElement
   }
 
   interface ElementTagNameMap {
@@ -1378,6 +1488,11 @@ declare global {
     'as-widget-header': HTMLAsWidgetHeaderElement;
     'as-widget-selection': HTMLAsWidgetSelectionElement;
     'as-y-axis': HTMLAsYAxisElement;
+    'as-basic-legend-line': HTMLAsBasicLegendLineElement;
+    'as-basic-legend-point': HTMLAsBasicLegendPointElement;
+    'as-basic-legend-polygon': HTMLAsBasicLegendPolygonElement;
+    'as-basic-legend': HTMLAsBasicLegendElement;
+    'as-legends': HTMLAsLegendsElement;
   }
 
 
