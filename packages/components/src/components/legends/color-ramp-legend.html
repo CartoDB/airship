@@ -36,8 +36,8 @@
                           </as-legends>
                           <as-legends
                             id="legends"
-                            heading="Longitude">
-                            <as-basic-legend id="legendStroke">
+                            heading="Rivers">
+                            <as-basic-legend id="rivers">
                             </as-basic-legend>
                           </as-legends>
                       </div>
@@ -54,7 +54,7 @@
 
     const map = new mapboxgl.Map({
       container: 'map',
-      style: carto.basemaps.voyager,
+      style: carto.basemaps.darkmatter,
       center: [-4.77, 37.88],
       zoom: 5
     });
@@ -72,8 +72,20 @@
         label: 'Airports'
       },
       style: `
-        color: ramp($location, PURPOR)
-        strokeWidth: 0
+        color: #ffffff00
+        strokeColor: ramp($location, PURPOR)
+        strokeWidth: 2
+        width: 16
+      `
+    },
+    {
+      name: 'ne_50m_rivers_lake_centerlines',
+      props: {
+        label: 'Rivers'
+      },
+      style: `
+        color: ramp($lgth, SUNSET)
+        width: 3
       `
     }];
 
@@ -93,6 +105,12 @@
 
     AsBridge.VL.Legends.rampLegend(legend, 
       datasets[0].data.layer,
+      'strokeColor',
+      { dynamic: true }
+    );
+
+    AsBridge.VL.Legends.rampLegend(rivers, 
+      datasets[1].data.layer,
       'color',
       { dynamic: true }
     );
