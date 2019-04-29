@@ -67,8 +67,9 @@
         label: 'Airports'
       },
       style: `
-        color: #FF928B
-        strokeColor: #FF00FF
+        color: ramp($longitude, PURPOR)
+        strokeColor: blue
+        width: 16
         strokeWidth: 0
       `
     },{
@@ -77,7 +78,8 @@
         label: 'Places'
       },
       style: `
-        symbol: HOUSE
+        symbol: ramp(buckets($featurecla, ['Admin-0 capital','Admin-1 capital','Populated place']), [star, triangle, marker])
+        width: 12
         color: #000
       `
     },

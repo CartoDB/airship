@@ -1,4 +1,4 @@
-import Legends from './vl/Legends';
+import Legends from './vl/legends';
 import VLBridge from './vl/VLBridge';
 
 const VL = {

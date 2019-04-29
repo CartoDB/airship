@@ -44,8 +44,8 @@ export class BasicLegendPoint {
     }
 
     return {
-      height: `${this.width}px`,
-      width: `${this.width}px`
+      height: `${this.width + 2}px`,
+      width: `${this.width + 2}px`
     };
   }
 
@@ -58,9 +58,11 @@ export class BasicLegendPoint {
       '-webkit-mask-image': `url(${this.marker})`,
       '-webkit-mask-position': 'center',
       '-webkit-mask-repeat': 'no-repeat',
+      '-webkit-mask-size': `${this.width}px`,
       'maskImage': `url(${this.marker})`,
       'maskPosition': 'center',
-      'maskRepeat': 'no-repeat'
+      'maskRepeat': 'no-repeat',
+      'maskSize': `${this.width}px`
     };
   }
 }
