@@ -107,23 +107,28 @@ function _formatLegendKey(key) {
 }
 
 export default class Legends {
-  public static layersLegend(widget, layers, options) {
+  public static layersLegend(widget, layers, options: any = {}) {
     const parsedLayers = layers.map(_parseLayer);
 
     parsedLayers.forEach((layerWithOpts) => {
       waitUntilLoaded(layerWithOpts.layer, () => {
         const data = parsedLayers.map(_styleFromLayer);
         widget.data = data;
+
+        if (options.onLoad) {
+          // Fire onLoad on the next cycle, to let the widget paint
+          setTimeout(options.onLoad, 0);
+        }
+
       }, options && options.dynamic);
     });
   }
 
   public static rampLegend(widget, layer, prop, options) {
-    waitUntilLoaded(layer, () => {
-      const baseStyle = _styleFromLayer({
-        layer,
-        props: {}
-      });
+    const parsedLayer = _parseLayer(layer);
+
+    waitUntilLoaded(parsedLayer.layer, () => {
+      const baseStyle = _styleFromLayer(parsedLayer);
 
       const legendData = layer.viz[prop].getLegendData().data;
 
@@ -134,6 +139,12 @@ export default class Legends {
           label: _formatLegendKey(data.key)
         };
       });
+
+      if (options.onLoad) {
+        // Fire onLoad on the next cycle, to let the widget paint
+        setTimeout(options.onLoad, 0);
+      }
+
     }, options && options.dynamic);
   }
 }

@@ -116,13 +116,20 @@
       };
     }
 
+    legends.style.visibility = 'hidden';
+
     AsBridge.VL.Legends.layersLegend(legend, 
       datasets
         .reverse()
         .map(
           e => ({ layer: e.data.layer, props: e.props })
         ),
-      { dynamic: true }
+      { 
+        dynamic: true,
+        onLoad: () => {
+          legends.style.visibility = 'visible';
+        }
+      }
     );
 
     window.datasets = datasets;

@@ -18,6 +18,20 @@
     <link rel="stylesheet" href="packages/icons/dist/icons.css">
     <script src="packages/components/dist/airship.js"></script>
     <script src="/packages/bridge/dist/asbridge.js"></script>
+    <style>
+      #legends {
+        display: flex;
+        flex-direction: column;
+      }
+
+      #legends as-legends {
+        width: 100%;
+      }
+
+      #legends as-legends:not(:first-child) {
+        margin-top: 4px;
+      }
+    </style>
 </head>
 
 <body class="as-app-body">
@@ -27,19 +41,28 @@
               <div class="as-map-area">
                   <div id="map"></div>
                   <div class="as-map-panels">
-                      <div class="as-panel as-panel--top as-panel--left">
-                          <as-legends
-                            id="legends"
-                            heading="Location">
-                            <as-basic-legend id="legend">
-                            </as-basic-legend>
-                          </as-legends>
-                          <as-legends
-                            id="legends"
-                            heading="Rivers">
-                            <as-basic-legend id="rivers">
-                            </as-basic-legend>
-                          </as-legends>
+                      <div class="as-panel as-panel--top as-panel--left" id="legends">
+                        <as-legends
+                          id="legendsLocation"
+                          heading="Location"
+                          description="Color intensity is defined by location">
+                          <as-basic-legend id="legend">
+                          </as-basic-legend>
+                        </as-legends>
+                        <as-legends
+                          id="legendsRivers"
+                          heading="Rivers"
+                          description="Color intensity is defined by river length">
+                          <as-basic-legend id="rivers">
+                          </as-basic-legend>
+                        </as-legends>
+                        <as-legends
+                          id="legendsWorld"
+                          heading="World borders"
+                          description="Color intensity is defined by latitude">
+                          <as-basic-legend id="borders">
+                          </as-basic-legend>
+                        </as-legends>
                       </div>
                   </div>
               </div>
@@ -49,6 +72,17 @@
 </body>
 <script>
   const resp = document.querySelector('as-responsive-content');
+  let horizontal = true;
+
+  function toggleOrientation() {
+    [legend, rivers, borders].forEach((e) => {
+      e.orientation = horizontal ? 'horizontal' : 'vertical';
+    });
+
+    horizontal = !horizontal;
+  }
+
+  toggleOrientation();
 
   resp.addEventListener('ready', () => {
 
@@ -56,7 +90,7 @@
       container: 'map',
       style: carto.basemaps.darkmatter,
       center: [-4.77, 37.88],
-      zoom: 5
+      zoom: 2
     });
 
     carto.setDefaultAuth({
@@ -72,10 +106,9 @@
         label: 'Airports'
       },
       style: `
-        color: #ffffff00
-        strokeColor: ramp($location, PURPOR)
-        strokeWidth: 2
-        width: 16
+        color: ramp($location, PURPOR)
+        strokeWidth: 0
+        width: 10
       `
     },
     {
@@ -87,9 +120,19 @@
         color: ramp($lgth, SUNSET)
         width: 3
       `
+    },
+    {
+      name: 'world_borders',
+      props: {
+        label: 'World borders'
+      },
+      style: `
+        color: ramp($lat, TEALGRN)
+        strokeWidth: 0
+      `
     }];
 
-    for (dataset of datasets) {
+    for (dataset of datasets.slice().reverse()) {
       const source = new carto.source.Dataset(dataset.name);
       const viz = new carto.Viz(dataset.style);
       const layer = new carto.Layer(dataset.name, source, viz);
@@ -103,16 +146,35 @@
       };
     }
 
+    legendsLocation.style.visibility = 'hidden';
+    legendsRivers.style.visibility = 'hidden';
+    legendsWorld.style.visibility = 'hidden';
+
     AsBridge.VL.Legends.rampLegend(legend, 
       datasets[0].data.layer,
-      'strokeColor',
-      { dynamic: true }
+      'color',
+      { 
+        dynamic: true,
+        onLoad: () => { legendsLocation.style.visibility = 'visible'; }
+      }
     );
 
     AsBridge.VL.Legends.rampLegend(rivers, 
       datasets[1].data.layer,
       'color',
-      { dynamic: true }
+      { 
+        dynamic: true,
+        onLoad: () => { legendsRivers.style.visibility = 'visible'; }
+      }
+    );
+
+    AsBridge.VL.Legends.rampLegend(borders, 
+      datasets[2].data.layer,
+      'color',
+      { 
+        dynamic: true,
+        onLoad: () => { legendsWorld.style.visibility = 'visible'; }
+      }
     );
 
     window.datasets = datasets;
