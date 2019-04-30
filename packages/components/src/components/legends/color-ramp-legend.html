@@ -59,7 +59,7 @@
                         <as-legends
                           id="legendsWorld"
                           heading="World borders"
-                          description="Color intensity is defined by latitude">
+                          description="Color intensity is defined by area">
                           <as-basic-legend id="borders">
                           </as-basic-legend>
                         </as-legends>
@@ -127,7 +127,7 @@
         label: 'World borders'
       },
       style: `
-        color: ramp($lat, TEALGRN)
+        color: ramp($area, TEALGRN)
         strokeWidth: 0
       `
     }];
@@ -150,7 +150,7 @@
     legendsRivers.style.visibility = 'hidden';
     legendsWorld.style.visibility = 'hidden';
 
-    AsBridge.VL.Legends.rampLegend(legend, 
+    AsBridge.VL.Legends.rampLegend('#legend', 
       datasets[0].data.layer,
       'color',
       { 
@@ -159,20 +159,22 @@
       }
     );
 
-    AsBridge.VL.Legends.rampLegend(rivers, 
+    AsBridge.VL.Legends.rampLegend('#rivers', 
       datasets[1].data.layer,
       'color',
       { 
         dynamic: true,
+        format: (meters) => `${Math.floor(meters / 1000)} km`,
         onLoad: () => { legendsRivers.style.visibility = 'visible'; }
       }
     );
 
-    AsBridge.VL.Legends.rampLegend(borders, 
+    AsBridge.VL.Legends.rampLegend('#borders', 
       datasets[2].data.layer,
       'color',
       { 
         dynamic: true,
+        format: (meters) => `${Math.floor(meters / 1000)} km²`,
         onLoad: () => { legendsWorld.style.visibility = 'visible'; }
       }
     );

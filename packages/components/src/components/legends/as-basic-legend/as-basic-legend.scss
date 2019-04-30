@@ -4,6 +4,7 @@ as-basic-legend {
   .as-basic-legend--wrapper {
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
   }
 
   & .as-basic-legend--figure--wrapper {
@@ -20,7 +21,7 @@ as-basic-legend {
     align-items: center;
   }
 
-  .as-basic-legend--wrapper-horizontal > .as-basic-legend--entry:not(:first-child) {
-    margin-left: get-spacing(3);
+  .as-basic-legend--wrapper-horizontal > .as-basic-legend--entry {
+    margin-right: get-spacing(3);
   }
 }

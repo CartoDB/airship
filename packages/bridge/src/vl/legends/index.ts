@@ -1,3 +1,4 @@
+import { select } from '../../util/Utils';
 import { rgbToHex } from '../utils/color';
 import { waitUntilLoaded } from '../utils/layers';
 
@@ -106,13 +107,27 @@ function _formatLegendKey(key) {
   return key;
 }
 
+interface LegendOptions {
+  // Callback to customize labels on legends
+  format?: (value: number | number[]) => string;
+  // Will be called after setting legend data
+  onLoad?: () => void;
+  // Should the legend repaint after layer updates or just initially
+  dynamic?: boolean;
+}
 export default class Legends {
-  public static layersLegend(widget, layers, options: any = {}) {
+  public static layersLegend(widget, layers, options: LegendOptions = {}) {
+    widget = select(widget);
     const parsedLayers = layers.map(_parseLayer);
 
     parsedLayers.forEach((layerWithOpts) => {
       waitUntilLoaded(layerWithOpts.layer, () => {
         const data = parsedLayers.map(_styleFromLayer);
+
+        if (options.format) {
+          data.label = options.format(data.label);
+        }
+
         widget.data = data;
 
         if (options.onLoad) {
@@ -120,11 +135,12 @@ export default class Legends {
           setTimeout(options.onLoad, 0);
         }
 
-      }, options && options.dynamic);
+      }, options.dynamic);
     });
   }
 
-  public static rampLegend(widget, layer, prop, options) {
+  public static rampLegend(widget, layer, prop, options: LegendOptions = {}) {
+    widget = select(widget);
     const parsedLayer = _parseLayer(layer);
 
     waitUntilLoaded(parsedLayer.layer, () => {
@@ -136,7 +152,7 @@ export default class Legends {
         return {
           ...baseStyle,
           [prop]: rgbToHex(data.value),
-          label: _formatLegendKey(data.key)
+          label: options.format ? options.format(data.key) : _formatLegendKey(data.key)
         };
       });
 
@@ -145,6 +161,6 @@ export default class Legends {
         setTimeout(options.onLoad, 0);
       }
 
-    }, options && options.dynamic);
+    }, options.dynamic);
   }
 }
