@@ -18,14 +18,14 @@ function _getColorValue(viz, propName) {
     return rgbToHex(_getDefaultRampValue(prop));
   }
 
-  if (prop.color) {
+  if (prop.color || prop.expressionName === 'opacity') {
     return rgbToHex(prop.value);
   }
 
   return FALLBACK_COLOR;
 }
 
-function _getSizeValue(viz, propName, defaultValue?) {
+function _getNumberValue(viz, propName, defaultValue?) {
   const prop = viz[propName];
 
   if (prop.expressionName === 'ramp') {
@@ -36,7 +36,7 @@ function _getSizeValue(viz, propName, defaultValue?) {
     return prop.value;
   }
 
-  return FALLBACK_WIDTH;
+  return defaultValue;
 }
 
 function _getSymbolValue(viz) {
@@ -67,9 +67,9 @@ function _styleFromLayer(layerWithProps) {
     label: props.label,
     marker: viz.symbol.default ? undefined : _getSymbolValue(viz),
     strokeColor: _getColorValue(viz, 'strokeColor'),
-    strokeStyle: _getSizeValue(viz, 'strokeWidth') === 0 ? 'hidden' : undefined,
+    strokeStyle: _getNumberValue(viz, 'strokeWidth') === 0 ? 'hidden' : undefined,
     type: layer.metadata.geomType,
-    width: _getSizeValue(viz, 'width'),
+    width: _getNumberValue(viz, 'width', FALLBACK_WIDTH),
     ...props
   };
 }

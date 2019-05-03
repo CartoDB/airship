@@ -1,16 +1,5 @@
 import { Component, Prop } from '@stencil/core';
 
-interface LegendData {
-  type: 'point' | 'line' | 'polygon';
-  color?: string;
-  marker?: string;
-  strokeColor?: string;
-  strokeStyle?: string;
-  strokeWidth?: number;
-  label: string;
-  width: number;
-}
-
 const DEFAULT_WIDTH = 16;
 
 @Component({
