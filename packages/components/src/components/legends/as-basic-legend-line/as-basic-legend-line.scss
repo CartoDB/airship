@@ -1,15 +1,9 @@
 @import '../../../../../styles/src/core/_dev';
 
 as-basic-legend-line {
-  --as--basic--legend--line-font: var(--as--font--body);
-
   .as-basic-legend-line--wrapper {
     display: flex;
     align-items: center;
-  }
-
-  .as-basic-legend-line--label {
-    font: var(--as--basic--legend--line-font);
   }
 
   .as-basic-legend-line--line {

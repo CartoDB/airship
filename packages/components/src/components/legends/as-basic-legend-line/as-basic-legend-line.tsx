@@ -23,7 +23,7 @@ export class BasicLegendLine {
         <div class='as-basic-legend--figure--wrapper'>
           <div class='as-basic-legend-line--line' style={this.getStyle()}></div>
         </div>
-        <span class='as-basic-legend-line--label'>{this.label}</span>
+        <span class='as-basic-legend--label'>{this.label}</span>
       </div>
     );
   }

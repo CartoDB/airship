@@ -24,7 +24,7 @@ export class BasicLegendPoint {
         <div class='as-basic-legend--figure--wrapper'>
           <div class={classes} style={this.getStyle()}></div>
         </div>
-        <span class='as-basic-legend-point--label'>{this.label}</span>
+        <span class='as-basic-legend--label'>{this.label}</span>
       </div>
     );
   }

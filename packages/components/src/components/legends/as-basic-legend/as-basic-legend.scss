@@ -1,10 +1,18 @@
 @import '../../../../../styles/src/core/_dev';
 
 as-basic-legend {
+  --as--basic--legend--font: var(--as--font--body);
+  --as--basic--legend--text-transform: capitalize;
+
   .as-basic-legend--wrapper {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+  }
+
+  .as-basic-legend--label {
+    font: var(--as--basic--legend--font);
+    text-transform: var(--as--basic--legend--text-transform);
   }
 
   & .as-basic-legend--figure--wrapper {

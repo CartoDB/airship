@@ -17,7 +17,7 @@ export class BasicLegendPolygon {
         <div class='as-basic-legend--figure--wrapper'>
           <div class='as-basic-legend-polygon--box' style={this.getStyle()}></div>
         </div>
-        <span class='as-basic-legend-polygon--label'>{this.label}</span>
+        <span class='as-basic-legend--label'>{this.label}</span>
       </div>
     );
   }
