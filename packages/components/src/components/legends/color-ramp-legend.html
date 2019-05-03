@@ -102,20 +102,14 @@
 
     const datasets = [{
       name: 'ne_10m_airports',
-      props: {
-        label: 'Airports'
-      },
       style: `
-        color: ramp($location, PURPOR)
+        color: ramp($location, bold)
         strokeWidth: 0
         width: 10
       `
     },
     {
       name: 'ne_50m_rivers_lake_centerlines',
-      props: {
-        label: 'Rivers'
-      },
       style: `
         color: ramp($lgth, SUNSET)
         width: 3
@@ -123,11 +117,8 @@
     },
     {
       name: 'world_borders',
-      props: {
-        label: 'World borders'
-      },
       style: `
-        color: ramp($area, TEALGRN)
+        color: ramp(globalQuantiles($area, 5), TEALGRN)
         strokeWidth: 0
       `
     }];
@@ -174,7 +165,6 @@
       'color',
       { 
         dynamic: true,
-        format: (meters) => `${Math.floor(meters / 1000)} km²`,
         onLoad: () => { legendsWorld.style.visibility = 'visible'; }
       }
     );
