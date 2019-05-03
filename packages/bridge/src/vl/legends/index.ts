@@ -95,9 +95,23 @@ function _parseLayer(layer) {
   };
 }
 
+function _formatRangeValue(value) {
+  const [first, second] = value;
+
+  if (first === -Infinity) {
+    return `< ${second}`;
+  }
+
+  if (second === Infinity) {
+    return `> ${first}`;
+  }
+
+  return `${first} - ${second}`;
+}
+
 function _formatLegendKey(key) {
   if (Array.isArray(key)) {
-    return `${key[0]} - ${key[1]}`;
+    return _formatRangeValue(key);
   }
 
   if (key.toFixed) {
