@@ -161,7 +161,13 @@
     );
 
     AsBridge.VL.Legends.rampLegend('#borders', 
-      datasets[2].data.layer,
+      {
+        layer: datasets[2].data.layer,
+        // Uncomment to set all the labels to one value and a dashed #fabada stroke
+        // props: { label: 'This makes no sense', strokeColor: '#fabada', strokeStyle: 'dashed' }
+        // Fuzzy labels
+        props: [{ label: 'Tiny' }, { label: 'Smallish' }, { label: 'Pretty big' }, { label: 'Huge'}, { label: 'Humongous'}]
+      },
       'color',
       { 
         dynamic: true,

@@ -160,15 +160,27 @@ export default class Legends {
     waitUntilLoaded(parsedLayer.layer, () => {
       const baseStyle = _styleFromLayer(parsedLayer);
 
-      const legendData = layer.viz[prop].getLegendData().data;
+      const legendData = parsedLayer.layer.viz[prop].getLegendData().data;
 
-      widget.data = legendData.map((data) => {
+      const parsedData = legendData.map((data) => {
         return {
           ...baseStyle,
           [prop]: rgbToHex(data.value),
           label: options.format ? options.format(data.key) : _formatLegendKey(data.key)
         };
       });
+
+      if (Array.isArray(parsedLayer.props) && parsedLayer.props.length === legendData.length) {
+          widget.data = parsedData.map((d, i) => {
+            return {
+              ...d,
+              ...parsedLayer.props[i]
+            };
+          });
+      } else {
+        widget.data = parsedData;
+      }
+
 
       if (options.onLoad) {
         // Fire onLoad on the next cycle, to let the widget paint
