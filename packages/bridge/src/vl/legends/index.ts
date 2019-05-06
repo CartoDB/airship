@@ -123,7 +123,7 @@ function _formatLegendKey(key) {
 
 interface LegendOptions {
   // Callback to customize labels on legends
-  format?: (value: number | number[]) => string;
+  format?: (value: number | number[], index?: number, arr?: any[]) => string;
   // Will be called after setting legend data
   onLoad?: () => void;
   // Should the legend repaint after layer updates or just initially
@@ -134,12 +134,12 @@ export default class Legends {
     widget = select(widget);
     const parsedLayers = layers.map(_parseLayer);
 
-    parsedLayers.forEach((layerWithOpts) => {
+    parsedLayers.forEach((layerWithOpts, index, arr) => {
       waitUntilLoaded(layerWithOpts.layer, () => {
         const data = parsedLayers.map(_styleFromLayer);
 
         if (options.format) {
-          data.label = options.format(data.label);
+          data.label = options.format(data.label, index, arr);
         }
 
         widget.data = data;
@@ -162,11 +162,11 @@ export default class Legends {
 
       const legendData = parsedLayer.layer.viz[prop].getLegendData().data;
 
-      const parsedData = legendData.map((data) => {
+      const parsedData = legendData.map((data, index, arr) => {
         return {
           ...baseStyle,
           [prop]: rgbToHex(data.value),
-          label: options.format ? options.format(data.key) : _formatLegendKey(data.key)
+          label: options.format ? options.format(data.key, index, arr) : _formatLegendKey(data.key)
         };
       });
 

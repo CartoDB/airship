@@ -43,24 +43,27 @@
                   <div class="as-map-panels">
                       <div class="as-panel as-panel--top as-panel--left" id="legends">
                         <as-legends
+                          id="legendsWorld"
+                          heading="World borders"
+                          description="Color intensity is defined by area">
+                          <as-color-gradient-legend id="borders">
+                          </as-color-gradient-legend>
+                        </as-legends>
+                        <as-legends
                           id="legendsLocation"
                           heading="Location"
                           description="Color intensity is defined by location">
-                          <as-basic-legend id="legend">
-                          </as-basic-legend>
+                          <!-- <as-basic-legend id="legend">
+                          </as-basic-legend> -->
+                          <as-color-steps-legend
+                            id="legend">
+                          </as-color-steps-legend>
                         </as-legends>
                         <as-legends
                           id="legendsRivers"
                           heading="Rivers"
                           description="Color intensity is defined by river length">
                           <as-basic-legend id="rivers">
-                          </as-basic-legend>
-                        </as-legends>
-                        <as-legends
-                          id="legendsWorld"
-                          heading="World borders"
-                          description="Color intensity is defined by area">
-                          <as-basic-legend id="borders">
                           </as-basic-legend>
                         </as-legends>
                       </div>
@@ -103,7 +106,8 @@
     const datasets = [{
       name: 'ne_10m_airports',
       style: `
-        color: ramp($location, bold)
+        color: ramp($location, BOLD)
+        // color: ramp($longitude, PURPOR)
         strokeWidth: 0
         width: 10
       `
@@ -163,14 +167,16 @@
     AsBridge.VL.Legends.rampLegend('#borders', 
       {
         layer: datasets[2].data.layer,
+        props: {},
         // Uncomment to set all the labels to one value and a dashed #fabada stroke
         // props: { label: 'This makes no sense', strokeColor: '#fabada', strokeStyle: 'dashed' }
         // Fuzzy labels
-        props: [{ label: 'Tiny' }, { label: 'Smallish' }, { label: 'Pretty big' }, { label: 'Huge'}, { label: 'Humongous'}]
+        // props: [{ label: 'Tiny' }, { label: 'Smallish' }, { label: 'Pretty big' }, { label: 'Huge'}, { label: 'Humongous'}]
       },
       'color',
       { 
         dynamic: true,
+        format: (data) => data[1],
         onLoad: () => { legendsWorld.style.visibility = 'visible'; }
       }
     );

@@ -1,0 +1,57 @@
+as-color-steps-legend {
+  --as-color-steps-legend--border-color: rgba(0,0,0,0.16);
+
+  .as-color-steps-legend--outer-wrapper {
+    display: flex;
+    justify-content: center;
+
+    &.as-color-steps-legend--vertical {
+      flex-direction: row;
+    }
+
+    &.as-color-steps-legend--horizontal {
+      flex-direction: column;
+    }
+  }
+
+  .as-color-steps-legend--wrapper {
+    display: flex;
+  }
+
+  .as-color-steps-legend--horizontal {
+    .as-color-steps-legend--wrapper {
+      min-width: 300px;
+    }
+  }
+
+  .as-color-steps-legend--vertical {
+    .as-color-steps-legend--wrapper
+    {
+      flex-direction: column;
+      min-height: 300px;
+    }
+
+    .as-color-steps-legend--labels {
+      margin-left: 4px;
+    }
+  }
+
+  .as-color-steps-legend--horizontal .as-color-steps-legend--step {
+    height: 8px;
+  }
+
+  .as-color-steps-legend--vertical .as-color-steps-legend--step {
+    width: 8px;
+  }
+
+  .as-color-steps-legend--step {
+    flex: 1;
+    border: 1px solid rgba(0, 0, 0, 0.16);
+  }
+
+  .as-color-steps-legend--label {
+    font: var(--as--font--body);
+    white-space: nowrap;
+    flex: 1;
+  }
+}

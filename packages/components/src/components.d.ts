@@ -834,7 +834,7 @@ export namespace Components {
     /**
     * Proxy to as-histogram-widget getSelection()
     */
-    'getSelection': () => Promise<number[] | string[]>;
+    'getSelection': () => Promise<string[] | number[]>;
     /**
     * Title of the widget to be displayed
     */
@@ -1239,6 +1239,24 @@ export namespace Components {
     'width'?: number;
   }
 
+  interface AsColorGradientLegend {
+    'data': GradientData[];
+    'orientation': 'horizontal' | 'vertical';
+  }
+  interface AsColorGradientLegendAttributes extends StencilHTMLAttributes {
+    'data'?: GradientData[];
+    'orientation'?: 'horizontal' | 'vertical';
+  }
+
+  interface AsColorStepsLegend {
+    'data': GradientData[];
+    'orientation': 'horizontal' | 'vertical';
+  }
+  interface AsColorStepsLegendAttributes extends StencilHTMLAttributes {
+    'data'?: GradientData[];
+    'orientation'?: 'horizontal' | 'vertical';
+  }
+
   interface AsLegends {
     'description': string;
     'heading': string;
@@ -1275,6 +1293,8 @@ declare global {
     'AsBasicLegendPoint': Components.AsBasicLegendPoint;
     'AsBasicLegendPolygon': Components.AsBasicLegendPolygon;
     'AsBasicLegend': Components.AsBasicLegend;
+    'AsColorGradientLegend': Components.AsColorGradientLegend;
+    'AsColorStepsLegend': Components.AsColorStepsLegend;
     'AsLegends': Components.AsLegends;
   }
 
@@ -1301,6 +1321,8 @@ declare global {
     'as-basic-legend-point': Components.AsBasicLegendPointAttributes;
     'as-basic-legend-polygon': Components.AsBasicLegendPolygonAttributes;
     'as-basic-legend': Components.AsBasicLegendAttributes;
+    'as-color-gradient-legend': Components.AsColorGradientLegendAttributes;
+    'as-color-steps-legend': Components.AsColorStepsLegendAttributes;
     'as-legends': Components.AsLegendsAttributes;
   }
 
@@ -1437,6 +1459,18 @@ declare global {
     new (): HTMLAsBasicLegendElement;
   };
 
+  interface HTMLAsColorGradientLegendElement extends Components.AsColorGradientLegend, HTMLStencilElement {}
+  var HTMLAsColorGradientLegendElement: {
+    prototype: HTMLAsColorGradientLegendElement;
+    new (): HTMLAsColorGradientLegendElement;
+  };
+
+  interface HTMLAsColorStepsLegendElement extends Components.AsColorStepsLegend, HTMLStencilElement {}
+  var HTMLAsColorStepsLegendElement: {
+    prototype: HTMLAsColorStepsLegendElement;
+    new (): HTMLAsColorStepsLegendElement;
+  };
+
   interface HTMLAsLegendsElement extends Components.AsLegends, HTMLStencilElement {}
   var HTMLAsLegendsElement: {
     prototype: HTMLAsLegendsElement;
@@ -1466,6 +1500,8 @@ declare global {
     'as-basic-legend-point': HTMLAsBasicLegendPointElement
     'as-basic-legend-polygon': HTMLAsBasicLegendPolygonElement
     'as-basic-legend': HTMLAsBasicLegendElement
+    'as-color-gradient-legend': HTMLAsColorGradientLegendElement
+    'as-color-steps-legend': HTMLAsColorStepsLegendElement
     'as-legends': HTMLAsLegendsElement
   }
 
@@ -1492,6 +1528,8 @@ declare global {
     'as-basic-legend-point': HTMLAsBasicLegendPointElement;
     'as-basic-legend-polygon': HTMLAsBasicLegendPolygonElement;
     'as-basic-legend': HTMLAsBasicLegendElement;
+    'as-color-gradient-legend': HTMLAsColorGradientLegendElement;
+    'as-color-steps-legend': HTMLAsColorStepsLegendElement;
     'as-legends': HTMLAsLegendsElement;
   }
 

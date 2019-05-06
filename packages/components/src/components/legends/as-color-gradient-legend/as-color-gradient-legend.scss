@@ -1,0 +1,92 @@
+as-color-gradient-legend {
+  --as-color-gradient-legend--border-color: rgba(0,0,0,0.16);
+
+  .as-color-gradient-legend--outer-wrapper {
+    display: flex;
+    justify-content: center;
+
+    &.as-color-gradient-legend--vertical {
+      flex-direction: row;
+    }
+
+    &.as-color-gradient-legend--horizontal {
+      flex-direction: column;
+    }
+  }
+
+  .as-color-gradient-legend--wrapper {
+    display: flex;
+  }
+
+  .as-color-gradient-legend--horizontal {
+    .as-color-gradient-legend--wrapper {
+      min-width: 300px;
+    }
+  }
+
+  .as-color-gradient-legend--vertical {
+    .as-color-gradient-legend--wrapper
+    {
+      flex-direction: column;
+      min-height: 300px;
+    }
+
+    .as-color-gradient-legend--labels {
+      margin-left: 4px;
+    }
+  }
+
+  .as-color-gradient-legend--horizontal .as-color-gradient--step {
+    height: 8px;
+  }
+
+  .as-color-gradient-legend--vertical .as-color-gradient--step {
+    width: 8px;
+  }
+
+  .as-color-gradient--step {
+    flex: 1;
+  }
+
+  .as-color-gradient--label {
+    font: var(--as--font--body);
+    white-space: nowrap;
+    flex: 1;
+  }
+
+  .as-color-gradient-legend--horizontal {
+    .as-color-gradient--step {
+      border-top: 1px solid var(--as-color-gradient-legend--border-color);
+      border-bottom: 1px solid var(--as-color-gradient-legend--border-color);
+    }
+
+    .as-color-gradient--step:first-of-type {
+      border-left: 1px solid var(--as-color-gradient-legend--border-color);
+    }
+
+    .as-color-gradient--step:last-of-type {
+      border-right: 1px solid var(--as-color-gradient-legend--border-color);
+    }
+  }
+
+  .as-color-gradient-legend--vertical {
+    .as-color-gradient--step {
+      border-left: 1px solid var(--as-color-gradient-legend--border-color);
+      border-right: 1px solid var(--as-color-gradient-legend--border-color);
+    }
+
+    .as-color-gradient--step:first-of-type {
+      border-top: 1px solid var(--as-color-gradient-legend--border-color);
+    }
+
+    .as-color-gradient--step:last-of-type {
+      border-bottom: 1px solid var(--as-color-gradient-legend--border-color);
+    }
+
+    .as-color-gradient--label {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+  }
+}
