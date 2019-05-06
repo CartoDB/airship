@@ -3,7 +3,6 @@ as-color-steps-legend {
 
   .as-color-steps-legend--outer-wrapper {
     display: flex;
-    justify-content: center;
 
     &.as-color-steps-legend--vertical {
       flex-direction: row;
@@ -53,5 +52,6 @@ as-color-steps-legend {
     font: var(--as--font--body);
     white-space: nowrap;
     flex: 1;
+    text-transform: capitalize;
   }
 }
