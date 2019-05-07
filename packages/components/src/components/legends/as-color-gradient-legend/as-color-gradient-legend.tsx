@@ -1,10 +1,5 @@
 import { Component, Prop } from '@stencil/core';
 
-interface GradientData {
-  color?: string;
-  label: string;
-}
-
 @Component({
   shadow: false,
   styleUrl: './as-color-gradient-legend.scss',

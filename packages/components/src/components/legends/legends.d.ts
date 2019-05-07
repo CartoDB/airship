@@ -8,3 +8,7 @@ interface LegendData {
   label: string;
   width: number;
 }
+interface GradientData {
+  color?: string;
+  label: string;
+}
