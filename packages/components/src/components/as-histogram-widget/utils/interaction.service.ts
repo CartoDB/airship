@@ -47,7 +47,7 @@ export function addTooltip(
     const { clientX, clientY } = evt;
 
     _forEachRect(barsContainer, clientX, clientY, className, (data) => {
-      hasSelection.setSelection([data.start, data.end]);
+      hasSelection.setSelection([data.start, data.end], true);
     });
   })
   .on('mouseleave', () => {

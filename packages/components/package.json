@@ -26,7 +26,7 @@
   },
   "devDependencies": {
     "@stencil/core": "0.16.1",
-    "@stencil/sass": "0.0.6",
+    "@stencil/sass": "0.2.1",
     "@types/d3": "5.0.1",
     "@types/jest": "23.3.10",
     "@types/puppeteer": "1.9.0",
