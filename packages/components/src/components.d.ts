@@ -320,7 +320,7 @@ export namespace Components {
     /**
     * Programmatically set the selection. It will be adjusted to the buckets present in {@link data}. To clear see {@link clearSelection} or call with null
     */
-    'setSelection': (values: number[]) => void;
+    'setSelection': (values: number[], emit?: boolean) => void;
     /**
     * Display a clear button that clears the histogram selection.
     */

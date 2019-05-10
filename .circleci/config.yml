@@ -54,12 +54,14 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - visual-01-dependencies-
       - run: npm install
+      # Gotta run this manually right now, auto postinstall is broken in Circle
+      - run: npm run postinstall
       - run: npm run build:styles
       - run: npm run test:styles:ci
       - save_cache:
           paths:
             - node_modules
-          key: visual-dependencies-{{ checksum "package-lock.json" }}
+          key: visual-01-dependencies-{{ checksum "package-lock.json" }}
 
 workflows:
   version: 2
