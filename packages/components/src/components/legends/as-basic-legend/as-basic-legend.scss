@@ -20,6 +20,10 @@ as-basic-legend {
     margin-right: get-spacing(2);
   }
 
+  .as-basic-legend--wrapper-horizontal > .as-basic-legend--entry {
+    margin-right: get-spacing(3);
+  }
+
   .as-basic-legend--wrapper:not(.as-basic-legend--wrapper-horizontal) > .as-basic-legend--entry:not(:first-child) {
     margin-top: get-spacing(3);
   }
@@ -27,9 +31,5 @@ as-basic-legend {
   .as-basic-legend--wrapper-horizontal {
     flex-direction: row;
     align-items: center;
-  }
-
-  .as-basic-legend--wrapper-horizontal > .as-basic-legend--entry {
-    margin-right: get-spacing(3);
   }
 }
