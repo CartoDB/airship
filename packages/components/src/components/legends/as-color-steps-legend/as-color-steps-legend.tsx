@@ -21,7 +21,7 @@ export class ColorStepsLegend {
 
     return <div class={outerClasses}>
       <div class='as-color-steps-legend--wrapper'>
-        {this.data.map(this.renderGradientStep)}
+        {this.data.map(this.renderStep)}
       </div>
       <div class='as-color-steps-legend--wrapper as-color-steps-legend--labels'>
         {this.data.map(this.renderLabels)}
@@ -29,7 +29,7 @@ export class ColorStepsLegend {
     </div>;
   }
 
-  private renderGradientStep(data: GradientData) {
+  private renderStep(data: GradientData) {
     return (
       <div class='as-color-steps-legend--step' style={{ background: data.color }}>
       </div>
