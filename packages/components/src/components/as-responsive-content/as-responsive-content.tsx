@@ -82,14 +82,17 @@ export class ResponsiveContent {
     );
   }
 
-  private setActive(section: ApplicationSection) {
+  private setActive(section: ApplicationSection, redraw: boolean = true) {
     if (section.active) {
       return;
     }
 
     this.disableActiveSection();
     section.enable();
-    redrawChildren(section.element);
+
+    if (redraw) {
+      redrawChildren(section.element);
+    }
 
 
     this.activeSection = section;
@@ -117,7 +120,7 @@ export class ResponsiveContent {
 
     if (sections.length) {
       sections.sort((a, b) => a.order - b.order);
-      this.setActive(sections[0]);
+      this.setActive(sections[0], false);
     }
 
     return sections;
