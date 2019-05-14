@@ -5,7 +5,7 @@ import { Component, Prop } from '@stencil/core';
   styleUrl: './as-color-steps-legend.scss',
   tag: 'as-color-steps-legend',
 })
-export class BasicLegendLine {
+export class ColorStepsLegend {
   @Prop() public data: GradientData[];
   @Prop() public orientation: 'horizontal' | 'vertical' = 'vertical';
 
