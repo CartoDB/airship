@@ -25,7 +25,10 @@ export class BasicLegend {
     }
 
     return (<div>
-      <slot></slot>
+      <slot name='legends'></slot>
+      <div class='as-legends--source'>
+        <slot name='source'></slot>
+      </div>
     </div>);
   }
 

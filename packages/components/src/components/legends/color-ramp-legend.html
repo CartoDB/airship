@@ -46,7 +46,7 @@
                           id="legendsWorld"
                           heading="World borders"
                           description="Color intensity is defined by area">
-                          <as-color-gradient-legend id="borders">
+                          <as-color-gradient-legend id="borders" slot="legends">
                           </as-color-gradient-legend>
                         </as-legends>
                         <as-legends
@@ -54,6 +54,7 @@
                           heading="Location"
                           description="Color intensity is defined by location">
                           <as-color-steps-legend
+                            slot="legends"
                             id="legend">
                           </as-color-steps-legend>
                         </as-legends>
@@ -61,7 +62,7 @@
                           id="legendsRivers"
                           heading="Rivers"
                           description="Color intensity is defined by river length">
-                          <as-basic-legend id="rivers">
+                          <as-basic-legend id="rivers" slot="legends">
                           </as-basic-legend>
                         </as-legends>
                       </div>

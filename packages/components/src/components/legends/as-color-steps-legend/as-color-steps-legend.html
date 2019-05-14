@@ -45,14 +45,17 @@
                     id="legendsLocation"
                     heading="Location"
                     description="Color intensity is defined by location">
-                    <as-color-steps-legend
-                      orientation="horizontal"
-                      id="legendHorizontal">
-                    </as-color-steps-legend>
-                    <p></p>
-                    <as-color-steps-legend
-                      id="legend">
-                    </as-color-steps-legend>
+                    <div slot="legends">
+                      <as-color-steps-legend
+                        orientation="horizontal"
+                        id="legendHorizontal">
+                      </as-color-steps-legend>
+                      <p></p>
+                      <as-color-steps-legend
+                        id="legend">
+                      </as-color-steps-legend>
+                    </div>
+                    <span slot="source">Source: my own opinion</span>
                   </as-legends>
                 </div>
             </div>

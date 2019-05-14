@@ -45,13 +45,15 @@
                     id="legendsLocation"
                     heading="Location"
                     description="Color intensity is defined by location">
-                    <as-color-gradient-legend
-                      orientation="horizontal"
-                      id="legendHorizontal">
-                    </as-color-gradient-legend>
-                    <as-color-gradient-legend
-                      id="legend">
-                    </as-color-gradient-legend>
+                    <div slot="legends">
+                      <as-color-gradient-legend
+                        orientation="horizontal"
+                        id="legendHorizontal">
+                      </as-color-gradient-legend>
+                      <as-color-gradient-legend
+                        id="legend">
+                      </as-color-gradient-legend>
+                    </div>
                   </as-legends>
                 </div>
             </div>

@@ -1,12 +1,19 @@
 @import '../../../../../styles/src/core/_dev';
 
 as-legends {
-  --as--basic--legend--padding: #{get-spacing(2)};
-  --as--basic-legend--background-color: var(--as--color--ui-01);
+  --as-legends--padding: #{get-spacing(2)};
+  --as-legends--background-colo: var(--as--color--ui-01);
+  --as-legends--source-size: 8px;
 
-  background: var(--as--basic-legend--background-color);
+  background: var(--as-legends--background-colo);
 
   .as-legends--wrapper {
-    padding: var(--as--basic--legend--padding);
+    padding: var(--as-legends--padding);
+  }
+
+  .as-legends--source {
+    margin-top: get-spacing(4);
+    font-family: var(--as--font-family--base);
+    font-size: var(--as-legends--source-size);
   }
 }
