@@ -27,11 +27,11 @@ export class ColorGradientLegend {
     }
 
     return <div class={outerClasses}>
-      <div class='as-color-gradient-legend--wrapper'>
+      <div class='as-color-gradient-legend--wrapper as-color-gradient-legend--color'>
         {properData.map((data, index, arr) => this.renderGradientStep(data, index, arr))}
       </div>
       <div class='as-color-gradient-legend--wrapper as-color-gradient-legend--labels'>
-        {properData.map((data, index, arr) => this.renderLabels(data, index, arr))}
+        {properData.map((data, index, arr) => this.renderLabel(data, index, arr))}
       </div>
     </div>;
   }
@@ -46,16 +46,16 @@ export class ColorGradientLegend {
     const direction = this.orientation === 'vertical' ? '.5turn' : '.25turn';
 
     const style = {
-      background: `linear-gradient(${direction}, ${start}, ${end})`
+      backgroundImage: `linear-gradient(${direction}, ${start}, ${end})`
     };
 
     return (
-      <div class='as-color-gradient--step' style={style}>
+      <div class='as-color-gradient-legend--step' style={style}>
       </div>
     );
   }
 
-  private renderLabels(data: GradientData, index: number, arr: GradientData[]) {
+  private renderLabel(data: GradientData, index: number, arr: GradientData[]) {
     if (this.orientation === 'vertical' && index === 0) {
       return null;
     }
@@ -65,7 +65,7 @@ export class ColorGradientLegend {
     }
 
     return (
-      <div class='as-color-gradient--label'>
+      <div class='as-color-gradient-legend--label'>
         <span>
           {data.label}
         </span>

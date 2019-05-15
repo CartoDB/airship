@@ -20,7 +20,7 @@ export class ColorStepsLegend {
     };
 
     return <div class={outerClasses}>
-      <div class='as-color-steps-legend--wrapper'>
+      <div class='as-color-steps-legend--wrapper as-color-steps-legend--color'>
         {this.data.map(this.renderStep)}
       </div>
       <div class='as-color-steps-legend--wrapper as-color-steps-legend--labels'>

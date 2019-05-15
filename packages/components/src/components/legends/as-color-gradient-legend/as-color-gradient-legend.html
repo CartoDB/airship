@@ -19,17 +19,8 @@
     <script src="packages/components/dist/airship.js"></script>
     <script src="/packages/bridge/dist/asbridge.js"></script>
     <style>
-      #legends {
-        display: flex;
-        flex-direction: column;
-      }
-
-      #legends as-legends {
-        width: 100%;
-      }
-
-      #legends as-legends:not(:first-child) {
-        margin-top: 4px;
+      as-color-gradient-legend:first-of-type {
+        margin-bottom: 4px;
       }
     </style>
 </head>
@@ -62,13 +53,17 @@
   </div>
   <script>
     legendHorizontal.data = legend.data = [{
-      color: '#FF00FF'
+      color: '#FF00FF',
+      label: '#FF00FF'
     },{
-      color: '#FF0000'
+      color: '#FF0000',
+      label: '#FF0000'
     },{
-      color: '#0000FF'
+      color: '#0000FF',
+      label: '#0000FF'
     },{
-      color: '#00FFFF'
+      color: '#00FFFF',
+      label: '#00FFFF'
     }]
   </script>
 </body>
