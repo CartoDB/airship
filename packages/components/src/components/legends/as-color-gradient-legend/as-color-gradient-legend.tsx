@@ -19,19 +19,12 @@ export class ColorGradientLegend {
       [`as-color-gradient-legend--${this.orientation}`]: true
     };
 
-    const properData = this.data.slice();
-
-    // TODO: document this intrinsic behaviour
-    if (this.orientation === 'vertical') {
-      properData.reverse();
-    }
-
     return <div class={outerClasses}>
       <div class='as-color-gradient-legend--wrapper as-color-gradient-legend--color'>
-        {properData.map((data, index, arr) => this.renderGradientStep(data, index, arr))}
+        {this.data.map((data, index, arr) => this.renderGradientStep(data, index, arr))}
       </div>
       <div class='as-color-gradient-legend--wrapper as-color-gradient-legend--labels'>
-        {properData.map((data, index, arr) => this.renderLabel(data, index, arr))}
+        {this.data.map((data, index, arr) => this.renderLabel(data, index, arr))}
       </div>
     </div>;
   }
