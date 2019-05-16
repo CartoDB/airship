@@ -24,12 +24,14 @@ export class BasicLegend {
       return null;
     }
 
-    return (<div>
-      <slot name='legends'></slot>
+    return [
+      <div class='as-legends--legends-slot'>
+        <slot name='legends'></slot>
+      </div>,
       <div class='as-legends--source'>
         <slot name='source'></slot>
       </div>
-    </div>);
+    ];
   }
 
   private renderHeader() {

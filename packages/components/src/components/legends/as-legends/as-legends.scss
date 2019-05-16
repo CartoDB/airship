@@ -16,4 +16,8 @@ as-legends {
     font-family: var(--as--font-family--base);
     font-size: var(--as-legends--source-size);
   }
+
+  .as-legends--legends-slot {
+    overflow: auto;
+  }
 }
