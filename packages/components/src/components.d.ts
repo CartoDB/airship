@@ -834,7 +834,7 @@ export namespace Components {
     /**
     * Proxy to as-histogram-widget getSelection()
     */
-    'getSelection': () => Promise<string[] | number[]>;
+    'getSelection': () => Promise<number[] | string[]>;
     /**
     * Title of the widget to be displayed
     */
@@ -1239,6 +1239,17 @@ export namespace Components {
     'width'?: number;
   }
 
+  interface AsBubbleLegend {
+    'data': LegendData[];
+    'orientation': 'horizontal' | 'vertical';
+    'scale': number;
+  }
+  interface AsBubbleLegendAttributes extends StencilHTMLAttributes {
+    'data'?: LegendData[];
+    'orientation'?: 'horizontal' | 'vertical';
+    'scale'?: number;
+  }
+
   interface AsColorGradientLegend {
     'data': GradientData[];
     'orientation': 'horizontal' | 'vertical';
@@ -1302,6 +1313,7 @@ declare global {
     'AsBasicLegendPoint': Components.AsBasicLegendPoint;
     'AsBasicLegendPolygon': Components.AsBasicLegendPolygon;
     'AsBasicLegend': Components.AsBasicLegend;
+    'AsBubbleLegend': Components.AsBubbleLegend;
     'AsColorGradientLegend': Components.AsColorGradientLegend;
     'AsColorStepsLegend': Components.AsColorStepsLegend;
     'AsLegends': Components.AsLegends;
@@ -1331,6 +1343,7 @@ declare global {
     'as-basic-legend-point': Components.AsBasicLegendPointAttributes;
     'as-basic-legend-polygon': Components.AsBasicLegendPolygonAttributes;
     'as-basic-legend': Components.AsBasicLegendAttributes;
+    'as-bubble-legend': Components.AsBubbleLegendAttributes;
     'as-color-gradient-legend': Components.AsColorGradientLegendAttributes;
     'as-color-steps-legend': Components.AsColorStepsLegendAttributes;
     'as-legends': Components.AsLegendsAttributes;
@@ -1470,6 +1483,12 @@ declare global {
     new (): HTMLAsBasicLegendElement;
   };
 
+  interface HTMLAsBubbleLegendElement extends Components.AsBubbleLegend, HTMLStencilElement {}
+  var HTMLAsBubbleLegendElement: {
+    prototype: HTMLAsBubbleLegendElement;
+    new (): HTMLAsBubbleLegendElement;
+  };
+
   interface HTMLAsColorGradientLegendElement extends Components.AsColorGradientLegend, HTMLStencilElement {}
   var HTMLAsColorGradientLegendElement: {
     prototype: HTMLAsColorGradientLegendElement;
@@ -1517,6 +1536,7 @@ declare global {
     'as-basic-legend-point': HTMLAsBasicLegendPointElement
     'as-basic-legend-polygon': HTMLAsBasicLegendPolygonElement
     'as-basic-legend': HTMLAsBasicLegendElement
+    'as-bubble-legend': HTMLAsBubbleLegendElement
     'as-color-gradient-legend': HTMLAsColorGradientLegendElement
     'as-color-steps-legend': HTMLAsColorStepsLegendElement
     'as-legends': HTMLAsLegendsElement
@@ -1546,6 +1566,7 @@ declare global {
     'as-basic-legend-point': HTMLAsBasicLegendPointElement;
     'as-basic-legend-polygon': HTMLAsBasicLegendPolygonElement;
     'as-basic-legend': HTMLAsBasicLegendElement;
+    'as-bubble-legend': HTMLAsBubbleLegendElement;
     'as-color-gradient-legend': HTMLAsColorGradientLegendElement;
     'as-color-steps-legend': HTMLAsColorStepsLegendElement;
     'as-legends': HTMLAsLegendsElement;

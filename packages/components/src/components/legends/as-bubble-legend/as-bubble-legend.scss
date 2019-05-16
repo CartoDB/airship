@@ -1,0 +1,39 @@
+@import '../../../../../styles/src/core/_dev';
+
+as-bubble-legend {
+  --as-bubble-legend--color: var(--as--color--type-01);
+  --as-bubble-legend--shadow: rgba(0, 0, 0, 0.1);
+
+  .as-bubble-legend--steps {
+    display: flex;
+    position: relative;
+    align-items: center;
+    margin: get-spacing(2);
+  }
+
+  .as-bubble-legend--wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  .as-bubble-legend--circle {
+    position: absolute;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    box-shadow: -1px 0 2px 0 var(--as-bubble-legend--shadow);
+  }
+
+  .as-bubble-legend--label {
+    color: var(--as-bubble-legend--color);
+    font: var(--as--font--caption);
+    text-transform: capitalize;
+    white-space: nowrap;
+  }
+
+  .as-bubble-legend--vertical {
+    .as-bubble-legend--steps,
+    &.as-bubble-legend--wrapper {
+      flex-direction: column-reverse;
+    }
+  }
+}

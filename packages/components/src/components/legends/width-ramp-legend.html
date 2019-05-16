@@ -47,6 +47,10 @@
                           heading="Location"
                           description="Point size is defined by location">
                           <div slot="legends">
+                            <as-bubble-legend
+                              scale="3"
+                              id="bubbleLegend">
+                            </as-bubble-legend>
                             <as-point-size-legend
                               id="legend">
                             </as-point-size-legend>
@@ -69,7 +73,7 @@
   let horizontal = true;
 
   function toggleOrientation() {
-    [legend].forEach((e) => {
+    [legend, bubbleLegend].forEach((e) => {
       e.orientation = horizontal ? 'horizontal' : 'vertical';
     });
 
@@ -97,9 +101,11 @@
     const datasets = [{
       name: 'ne_10m_airports',
       style: `
+        @minWidth: 12
+        @maxWidth: 64
         strokeWidth: 1
         // width: ramp($location, [8, 24])
-        width: ramp($longitude, [8, 24])
+        width: ramp(globalQuantiles($longitude, 5), [@minWidth, @maxWidth])
       `
     }];
 
@@ -124,7 +130,19 @@
       'width',
       { 
         dynamic: true,
-        format: (e) => `${e.toFixed(2)}º`,
+        // format: (e) => `${e.toFixed(2)}º`,
+        // maxSteps: 3,
+        onLoad: () => { legendsLocation.style.visibility = 'visible'; }
+      }
+    );
+
+    AsBridge.VL.Legends.rampLegend('#bubbleLegend', 
+      datasets[0].data.layer,
+      'width',
+      { 
+        dynamic: true,
+        // format: (e) => `${e.toFixed(2)}º`,
+        // maxSteps: 4,
         onLoad: () => { legendsLocation.style.visibility = 'visible'; }
       }
     );
