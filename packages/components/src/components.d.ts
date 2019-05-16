@@ -288,7 +288,7 @@ export namespace Components {
     /**
     * Returns the current selection
     */
-    'getSelection': () => Promise<string[] | number[]>;
+    'getSelection': () => Promise<number[] | string[]>;
     /**
     * Title of the widget to be displayed
     */
@@ -1267,6 +1267,15 @@ export namespace Components {
     'heading'?: string;
     'loading'?: boolean;
   }
+
+  interface AsPointSizeLegend {
+    'data': LegendData[];
+    'orientation': 'horizontal' | 'vertical';
+  }
+  interface AsPointSizeLegendAttributes extends StencilHTMLAttributes {
+    'data'?: LegendData[];
+    'orientation'?: 'horizontal' | 'vertical';
+  }
 }
 
 declare global {
@@ -1296,6 +1305,7 @@ declare global {
     'AsColorGradientLegend': Components.AsColorGradientLegend;
     'AsColorStepsLegend': Components.AsColorStepsLegend;
     'AsLegends': Components.AsLegends;
+    'AsPointSizeLegend': Components.AsPointSizeLegend;
   }
 
   interface StencilIntrinsicElements {
@@ -1324,6 +1334,7 @@ declare global {
     'as-color-gradient-legend': Components.AsColorGradientLegendAttributes;
     'as-color-steps-legend': Components.AsColorStepsLegendAttributes;
     'as-legends': Components.AsLegendsAttributes;
+    'as-point-size-legend': Components.AsPointSizeLegendAttributes;
   }
 
 
@@ -1477,6 +1488,12 @@ declare global {
     new (): HTMLAsLegendsElement;
   };
 
+  interface HTMLAsPointSizeLegendElement extends Components.AsPointSizeLegend, HTMLStencilElement {}
+  var HTMLAsPointSizeLegendElement: {
+    prototype: HTMLAsPointSizeLegendElement;
+    new (): HTMLAsPointSizeLegendElement;
+  };
+
   interface HTMLElementTagNameMap {
     'as-category-widget': HTMLAsCategoryWidgetElement
     'as-dropdown': HTMLAsDropdownElement
@@ -1503,6 +1520,7 @@ declare global {
     'as-color-gradient-legend': HTMLAsColorGradientLegendElement
     'as-color-steps-legend': HTMLAsColorStepsLegendElement
     'as-legends': HTMLAsLegendsElement
+    'as-point-size-legend': HTMLAsPointSizeLegendElement
   }
 
   interface ElementTagNameMap {
@@ -1531,6 +1549,7 @@ declare global {
     'as-color-gradient-legend': HTMLAsColorGradientLegendElement;
     'as-color-steps-legend': HTMLAsColorStepsLegendElement;
     'as-legends': HTMLAsLegendsElement;
+    'as-point-size-legend': HTMLAsPointSizeLegendElement;
   }
 
 
