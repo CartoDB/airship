@@ -99,14 +99,14 @@ function _formatRangeValue(value) {
   const [first, second] = value;
 
   if (first === -Infinity) {
-    return `< ${second}`;
+    return `< ${second.toFixed(2)}`;
   }
 
   if (second === Infinity) {
-    return `> ${first}`;
+    return `> ${first.toFixed(2)}`;
   }
 
-  return `${first} - ${second}`;
+  return `${first.toFixed(2)} - ${second.toFixed(2)}`;
 }
 
 function _formatLegendKey(key) {
