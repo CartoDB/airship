@@ -66,7 +66,7 @@ export class BasicLegend {
   }
 
   private getStyle() {
-    let maxLegendWidth = this.data.sort(
+    let maxLegendWidth = this.data.slice().sort(
       (first, second) => second.width - first.width
     )[0].width;
 
