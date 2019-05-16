@@ -121,6 +121,14 @@ function _formatLegendKey(key) {
   return key;
 }
 
+function _formatProp(prop, value) {
+  if (prop.type === 'color') {
+    return rgbToHex(value);
+  }
+
+  return value;
+}
+
 interface LegendOptions {
   // Callback to customize labels on legends
   format?: (value: number | number[], index?: number, arr?: any[]) => string;
@@ -160,12 +168,13 @@ export default class Legends {
     waitUntilLoaded(parsedLayer.layer, () => {
       const baseStyle = _styleFromLayer(parsedLayer);
 
+      const vizProp = parsedLayer.layer.viz[prop];
       const legendData = parsedLayer.layer.viz[prop].getLegendData().data;
 
       const parsedData = legendData.map((data, index, arr) => {
         return {
           ...baseStyle,
-          [prop]: rgbToHex(data.value),
+          [prop]: _formatProp(vizProp, data.value),
           label: options.format ? options.format(data.key, index, arr) : _formatLegendKey(data.key)
         };
       });
