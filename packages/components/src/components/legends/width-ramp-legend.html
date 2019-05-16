@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <base href="/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Legends bridge</title>
+
+    <script src="https://libs.cartocdn.com/carto-vl/v1.2/carto-vl.js"></script>
+
+    <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.css" rel="stylesheet" />
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.js"></script>
+    <link rel="stylesheet" href="packages/styles/dist/airship.css">
+    <link rel="stylesheet" href="packages/icons/dist/icons.css">
+    <script src="packages/components/dist/airship.js"></script>
+    <script src="/packages/bridge/dist/asbridge.js"></script>
+    <style>
+      #legends {
+        display: flex;
+        flex-direction: column;
+      }
+
+      #legends as-legends {
+        width: 100%;
+      }
+
+      #legends as-legends:not(:first-child) {
+        margin-top: 4px;
+      }
+    </style>
+</head>
+
+<body class="as-app-body">
+  <div class="as-app">
+      <as-responsive-content>
+          <main class="as-main">
+              <div class="as-map-area">
+                  <div id="map"></div>
+                  <div class="as-map-panels">
+                      <div class="as-panel as-panel--top as-panel--left" id="legends">
+                        <as-legends
+                          id="legendsLocation"
+                          heading="Location"
+                          description="Point size is defined by location">
+                          <div slot="legends">
+                            <as-point-size-legend
+                              id="legend">
+                            </as-point-size-legend>
+                          </div>
+                          <span slot="source">
+                            My <a href="https://media.tenor.com/images/69cd472756085b8a4c891d8898013cab/tenor.gif" target="_blank">
+                              imagination
+                            </a>
+                          </span>
+                        </as-legends>
+                      </div>
+                  </div>
+              </div>
+          </main>
+      </as-responsive-content>
+  </div>
+</body>
+<script>
+  const resp = document.querySelector('as-responsive-content');
+  let horizontal = true;
+
+  function toggleOrientation() {
+    [legend].forEach((e) => {
+      e.orientation = horizontal ? 'horizontal' : 'vertical';
+    });
+
+    horizontal = !horizontal;
+  }
+
+  toggleOrientation();
+
+  resp.addEventListener('ready', () => {
+
+    const map = new mapboxgl.Map({
+      container: 'map',
+      style: carto.basemaps.darkmatter,
+      center: [-4.77, 37.88],
+      zoom: 2
+    });
+
+    carto.setDefaultAuth({
+      username: 'roman-carto',
+      apiKey: 'default_public'
+    });
+
+    const s = carto.expressions;
+
+    const datasets = [{
+      name: 'ne_10m_airports',
+      style: `
+        strokeWidth: 1
+        // width: ramp($location, [8, 24])
+        width: ramp($longitude, [8, 24])
+      `
+    }];
+
+    for (dataset of datasets.slice().reverse()) {
+      const source = new carto.source.Dataset(dataset.name);
+      const viz = new carto.Viz(dataset.style);
+      const layer = new carto.Layer(dataset.name, source, viz);
+
+      layer.addTo(map, `watername_ocean`);
+
+      dataset.data = {
+        source,
+        viz,
+        layer
+      };
+    }
+
+    legendsLocation.style.visibility = 'hidden';
+
+    AsBridge.VL.Legends.rampLegend('#legend', 
+      datasets[0].data.layer,
+      'width',
+      { 
+        dynamic: true,
+        format: (e) => `${e.toFixed(2)}º`,
+        onLoad: () => { legendsLocation.style.visibility = 'visible'; }
+      }
+    );
+
+    window.datasets = datasets;
+  });
+</script>
+
+</html>
