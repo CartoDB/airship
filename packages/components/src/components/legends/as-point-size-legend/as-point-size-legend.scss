@@ -36,6 +36,7 @@ as-point-size-legend {
   .as-point-size-legend--horizontal {
     flex-direction: row;
     align-items: flex-start;
+    justify-content: space-around;
 
     .as-point-size-legend--step {
       flex-direction: column;

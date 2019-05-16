@@ -43,17 +43,20 @@ export class PointSizeLegend {
       width: size,
     };
 
-    const wrapperStyle = {
-      height: `${this.maxSize + MARGIN_OFFSET}px`,
-      width: `${this.maxSize + MARGIN_OFFSET}px`
-    };
+    const wrapperStyle: any = { };
+
+    if (this.orientation === 'horizontal') {
+      wrapperStyle.height = `${this.maxSize + MARGIN_OFFSET}px`;
+    } else if (this.orientation === 'vertical') {
+      wrapperStyle.width = `${this.maxSize + MARGIN_OFFSET}px`;
+    }
 
     return (
       <div class='as-point-size-legend--step'>
         <div style={wrapperStyle} class='as-point-size-legend--circle-wrapper'>
           <div class='as-point-size-legend--circle' style={style}></div>
         </div>
-        <span style={{ height: `${this.maxSize}px` }} class='as-point-size-legend--label'>{data.label}</span>
+        <span class='as-point-size-legend--label'>{data.label}</span>
       </div>
     );
   }
