@@ -5,7 +5,7 @@ import { waitUntilLoaded } from '../utils/layers';
 const FALLBACK_WIDTH = 16;
 const FALLBACK_COLOR = '#000';
 
-function _getDefaultRampValue(ramp) {
+function _getLegendData(ramp) {
   const legendData = ramp.getLegendData();
   const index = Math.floor(legendData.data.length / 2);
   return legendData.data[index].value;
@@ -14,11 +14,11 @@ function _getDefaultRampValue(ramp) {
 function _getColorValue(viz, propName) {
   const prop = viz[propName];
 
-  if (prop.expressionName === 'ramp') {
-    return rgbToHex(_getDefaultRampValue(prop));
+  if (prop.expressionName === 'ramp' || prop.expressionName === 'opacity') {
+    return rgbToHex(_getLegendData(prop));
   }
 
-  if (prop.color || prop.expressionName === 'opacity') {
+  if (prop.color) {
     return rgbToHex(prop.value);
   }
 
@@ -29,7 +29,7 @@ function _getNumberValue(viz, propName, defaultValue?) {
   const prop = viz[propName];
 
   if (prop.expressionName === 'ramp') {
-    return defaultValue || _getDefaultRampValue(prop);
+    return defaultValue || _getLegendData(prop);
   }
 
   if (prop.type === 'number') {
@@ -43,7 +43,7 @@ function _getSymbolValue(viz) {
   const prop = viz.symbol;
 
   if (prop.expressionName === 'ramp') {
-    return _getDefaultRampValue(prop);
+    return _getLegendData(prop);
   }
 
   return prop.value;
