@@ -253,7 +253,7 @@ async function uploadFile ({ filePath, dst }, destination, copyVersions) {
     return;
   }
 
-  objectConfig.Key = `${destination}/v${version}/${dst}`;
+  objectConfig.Key = `${destination}/cartoframes/${dst}`;
   
   totalFiles++;
   updateSpinner();
