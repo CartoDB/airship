@@ -29,8 +29,8 @@ AWS.config.update({
 
 const S3 = new AWS.S3();
 const DRY_RUN = process.argv.some(arg => arg === '--dry');
-const VERBOSE = false;
-const PRERELEASE = process.argv.some(arg => arg === '--prerelease');
+const VERBOSE = true;
+const PRERELEASE = false;
 const spinner = new Spinner();
 
 // this is the s3 folder where the prereleased version will end up
@@ -211,11 +211,6 @@ async function uploadAllFiles (files, version, destination) {
 
   // All files will be uploaded to /version/, and copied to each of the versions here
   let copyVersions = [];
-
-  if (parsedVersion.prerelease.length === 0) {
-    copyVersions.push(`v${parsedVersion.major}`,
-        `v${parsedVersion.major}.${parsedVersion.minor}`);
-  }
 
   if (PRERELEASE) {
     copyVersions.push(PRERELEASE_VERSION);
