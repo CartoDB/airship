@@ -136,6 +136,7 @@ interface LegendOptions {
   onLoad?: () => void;
   // Should the legend repaint after layer updates or just initially
   dynamic?: boolean;
+  config?: { othersLabel?: string, samples?: number };
 }
 export default class Legends {
   public static layersLegend(widget, layers, options: LegendOptions = {}) {
@@ -163,13 +164,15 @@ export default class Legends {
 
   public static rampLegend(widget, layer, prop, options: LegendOptions = {}) {
     widget = select(widget);
+
     const parsedLayer = _parseLayer(layer);
 
     waitUntilLoaded(parsedLayer.layer, () => {
       const baseStyle = _styleFromLayer(parsedLayer);
 
       const vizProp = parsedLayer.layer.viz[prop];
-      const legendData = parsedLayer.layer.viz[prop].getLegendData().data;
+      const config = options.config;
+      const legendData = parsedLayer.layer.viz[prop].getLegendData(config).data;
 
       const parsedData = legendData.map((data, index, arr) => {
         return {
