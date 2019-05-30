@@ -24,11 +24,11 @@
         flex-direction: column;
       }
 
-      #legends as-legends {
+      #legends as-legend {
         width: 100%;
       }
 
-      #legends as-legends:not(:first-child) {
+      #legends as-legend:not(:first-child) {
         margin-top: 4px;
       }
     </style>
@@ -42,14 +42,14 @@
                   <div id="map"></div>
                   <div class="as-map-panels">
                       <div class="as-panel as-panel--top as-panel--left" id="legends">
-                        <as-legends
+                        <as-legend
                           id="legendsWorld"
                           heading="World borders"
                           description="Color intensity is defined by area">
                           <as-color-gradient-legend id="borders" slot="legends">
                           </as-color-gradient-legend>
-                        </as-legends>
-                        <as-legends
+                        </as-legend>
+                        <as-legend
                           id="legendsLocation"
                           heading="Location"
                           description="Color intensity is defined by location">
@@ -57,14 +57,14 @@
                             slot="legends"
                             id="legend">
                           </as-color-steps-legend>
-                        </as-legends>
-                        <as-legends
+                        </as-legend>
+                        <as-legend
                           id="legendsRivers"
                           heading="Rivers"
                           description="Color intensity is defined by river length">
                           <as-legend-color-category id="rivers" slot="legends">
                           </as-legend-color-category>
-                        </as-legends>
+                        </as-legend>
                       </div>
                   </div>
               </div>

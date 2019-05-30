@@ -2,8 +2,8 @@ import { Component, Prop } from '@stencil/core';
 
 @Component({
   shadow: false,
-  styleUrl: './as-legends.scss',
-  tag: 'as-legends',
+  styleUrl: './as-legend.scss',
+  tag: 'as-legend',
 })
 export class Legend {
   @Prop() public loading: boolean;
@@ -12,7 +12,7 @@ export class Legend {
 
   public render() {
     return (
-      <div class='as-legends--wrapper'>
+      <div class='as-legend--wrapper'>
         {this.renderHeader()}
         {this.renderContent()}
       </div>
@@ -25,10 +25,10 @@ export class Legend {
     }
 
     return [
-      <div class='as-legends--legends-slot'>
+      <div class='as-legend--legends-slot'>
         <slot name='legends'></slot>
       </div>,
-      <div class='as-legends--source'>
+      <div class='as-legend--source'>
         <slot name='source'></slot>
       </div>
     ];

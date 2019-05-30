@@ -1,0 +1,23 @@
+@import '../../../../../styles/src/core/_dev';
+
+as-legend {
+  --as-legend--padding: #{get-spacing(2)};
+  --as-legend--background-colo: var(--as--color--ui-01);
+  --as-legend--source-size: 8px;
+
+  background: var(--as-legend--background-colo);
+
+  .as-legend--wrapper {
+    padding: var(--as-legend--padding);
+  }
+
+  .as-legend--source {
+    margin-top: get-spacing(4);
+    font-family: var(--as--font-family--base);
+    font-size: var(--as-legend--source-size);
+  }
+
+  .as-legend--legends-slot {
+    overflow: auto;
+  }
+}

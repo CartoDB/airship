@@ -1,5 +1,5 @@
 import { Component, Prop } from '@stencil/core';
-import { LegendData } from './types/LegendData';
+import { WidgetLegendData } from './types/WidgetLegendData';
 
 
 /**
@@ -10,10 +10,10 @@ import { LegendData } from './types/LegendData';
  */
 @Component({
   shadow: false,
-  styleUrl: './as-legend.scss',
-  tag: 'as-legend',
+  styleUrl: './as-widget-legend.scss',
+  tag: 'as-widget-legend',
 })
-export class Legend {
+export class WidgetLegend {
 
   /**
    * Data to be displayed by the legend

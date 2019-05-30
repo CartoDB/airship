@@ -36,8 +36,8 @@ import {
   TimeLocaleDefinition,
 } from 'd3-time-format';
 import {
-  LegendData,
-} from './components/common/as-legend/types/LegendData';
+  WidgetLegendData,
+} from './components/common/as-widget-legend/types/WidgetLegendData';
 
 
 export namespace Components {
@@ -1054,17 +1054,17 @@ export namespace Components {
   interface AsToolbar {}
   interface AsToolbarAttributes extends StencilHTMLAttributes {}
 
-  interface AsLegend {
+  interface AsWidgetLegend {
     /**
     * Data to be displayed by the legend
     */
-    'data': LegendData;
+    'data': WidgetLegendData;
   }
-  interface AsLegendAttributes extends StencilHTMLAttributes {
+  interface AsWidgetLegendAttributes extends StencilHTMLAttributes {
     /**
     * Data to be displayed by the legend
     */
-    'data'?: LegendData;
+    'data'?: WidgetLegendData;
   }
 
   interface AsLoader {}
@@ -1228,12 +1228,12 @@ export namespace Components {
     'strokeStyle'?: string;
   }
 
-  interface AsLegend {
+  interface AsLegendColorCategory {
     'data': LegendData[];
     'orientation': 'horizontal' | 'vertical';
     'width': number;
   }
-  interface AsLegendAttributes extends StencilHTMLAttributes {
+  interface AsLegendColorCategoryAttributes extends StencilHTMLAttributes {
     'data'?: LegendData[];
     'orientation'?: 'horizontal' | 'vertical';
     'width'?: number;
@@ -1268,12 +1268,12 @@ export namespace Components {
     'orientation'?: 'horizontal' | 'vertical';
   }
 
-  interface AsLegends {
+  interface AsLegend {
     'description': string;
     'heading': string;
     'loading': boolean;
   }
-  interface AsLegendsAttributes extends StencilHTMLAttributes {
+  interface AsLegendAttributes extends StencilHTMLAttributes {
     'description'?: string;
     'heading'?: string;
     'loading'?: boolean;
@@ -1304,19 +1304,20 @@ declare global {
     'AsTabs': Components.AsTabs;
     'AsTimeSeriesWidget': Components.AsTimeSeriesWidget;
     'AsToolbar': Components.AsToolbar;
-    'AsLegend': Components.AsLegend;
+    'AsWidgetLegend': Components.AsWidgetLegend;
     'AsLoader': Components.AsLoader;
     'AsWidgetHeader': Components.AsWidgetHeader;
     'AsWidgetSelection': Components.AsWidgetSelection;
     'AsYAxis': Components.AsYAxis;
+    /* Legends */
+    'AsLegend': Components.AsLegend;
     'AsLegendColorCategoryLine': Components.AsLegendColorCategoryLine;
     'AsLegendColorCategoryPoint': Components.AsLegendColorCategoryPoint;
     'AsLegendColorCategoryPolygon': Components.AsLegendColorCategoryPolygon;
-    'AsLegend': Components.AsLegend;
+    'AsLegendColorCategory': Components.AsLegendColorCategory;
     'AsBubbleLegend': Components.AsBubbleLegend;
     'AsColorGradientLegend': Components.AsColorGradientLegend;
     'AsColorStepsLegend': Components.AsColorStepsLegend;
-    'AsLegends': Components.AsLegends;
     'AsPointSizeLegend': Components.AsPointSizeLegend;
   }
 
@@ -1334,19 +1335,20 @@ declare global {
     'as-tabs': Components.AsTabsAttributes;
     'as-time-series-widget': Components.AsTimeSeriesWidgetAttributes;
     'as-toolbar': Components.AsToolbarAttributes;
-    'as-legend': Components.AsLegendAttributes;
+    'as-widget-legend': Components.AsWidgetLegendAttributes;
     'as-loader': Components.AsLoaderAttributes;
     'as-widget-header': Components.AsWidgetHeaderAttributes;
     'as-widget-selection': Components.AsWidgetSelectionAttributes;
     'as-y-axis': Components.AsYAxisAttributes;
+    /* Legends */
+    'as-legend': Components.AsLegendAttributes;
     'as-legend-color-category-line': Components.AsLegendColorCategoryLineAttributes;
     'as-legend-color-category-point': Components.AsLegendColorCategoryPointAttributes;
     'as-legend-color-category-polygon': Components.AsLegendColorCategoryPolygonAttributes;
-    'as-legend-color-category': Components.AsLegendAttributes;
+    'as-legend-color-category': Components.AsLegendColorCategoryAttributes;
     'as-bubble-legend': Components.AsBubbleLegendAttributes;
     'as-color-gradient-legend': Components.AsColorGradientLegendAttributes;
     'as-color-steps-legend': Components.AsColorStepsLegendAttributes;
-    'as-legends': Components.AsLegendsAttributes;
     'as-point-size-legend': Components.AsPointSizeLegendAttributes;
   }
 
@@ -1429,10 +1431,10 @@ declare global {
     new (): HTMLAsToolbarElement;
   };
 
-  interface HTMLAsLegendElement extends Components.AsLegend, HTMLStencilElement {}
-  var HTMLAsLegendElement: {
-    prototype: HTMLAsLegendElement;
-    new (): HTMLAsLegendElement;
+  interface HTMLAsWidgetLegendElement extends Components.AsLegend, HTMLStencilElement {}
+  var HTMLAsWidgetLegendElement: {
+    prototype: HTMLAsWidgetLegendElement;
+    new (): HTMLAsWidgetLegendElement;
   };
 
   interface HTMLAsLoaderElement extends Components.AsLoader, HTMLStencilElement {}
@@ -1459,6 +1461,12 @@ declare global {
     new (): HTMLAsYAxisElement;
   };
 
+  interface HTMLAsLegendColorCategoryElement extends Components.AsLegendColorCategory, HTMLStencilElement {}
+  var HTMLAsLegendColorCategoryElement: {
+    prototype: HTMLAsLegendColorCategoryElement;
+    new (): HTMLAsLegendColorCategoryElement;
+  };
+
   interface HTMLAsLegendColorCategoryLineElement extends Components.AsLegendColorCategoryLine, HTMLStencilElement {}
   var HTMLAsLegendColorCategoryLineElement: {
     prototype: HTMLAsLegendColorCategoryLineElement;
@@ -1475,12 +1483,6 @@ declare global {
   var HTMLAsLegendColorCategoryPolygonElement: {
     prototype: HTMLAsLegendColorCategoryPolygonElement;
     new (): HTMLAsLegendColorCategoryPolygonElement;
-  };
-
-  interface HTMLAsLegendElement extends Components.AsLegend, HTMLStencilElement {}
-  var HTMLAsLegendElement: {
-    prototype: HTMLAsLegendElement;
-    new (): HTMLAsLegendElement;
   };
 
   interface HTMLAsBubbleLegendElement extends Components.AsBubbleLegend, HTMLStencilElement {}
@@ -1501,10 +1503,10 @@ declare global {
     new (): HTMLAsColorStepsLegendElement;
   };
 
-  interface HTMLAsLegendsElement extends Components.AsLegends, HTMLStencilElement {}
-  var HTMLAsLegendsElement: {
-    prototype: HTMLAsLegendsElement;
-    new (): HTMLAsLegendsElement;
+  interface HTMLAsLegendElement extends Components.AsLegend, HTMLStencilElement {}
+  var HTMLAsLegendElement: {
+    prototype: HTMLAsLegendElement;
+    new (): HTMLAsLegendElement;
   };
 
   interface HTMLAsPointSizeLegendElement extends Components.AsPointSizeLegend, HTMLStencilElement {}
@@ -1527,11 +1529,13 @@ declare global {
     'as-tabs': HTMLAsTabsElement
     'as-time-series-widget': HTMLAsTimeSeriesWidgetElement
     'as-toolbar': HTMLAsToolbarElement
-    'as-legend': HTMLAsLegendElement
+    'as-widget-legend': HTMLAsWidgetLegendElement
     'as-loader': HTMLAsLoaderElement
     'as-widget-header': HTMLAsWidgetHeaderElement
     'as-widget-selection': HTMLAsWidgetSelectionElement
     'as-y-axis': HTMLAsYAxisElement
+    /* Legends */
+    'as-legend': HTMLAsLegendElement
     'as-legend-color-category-line': HTMLAsLegendColorCategoryLineElement
     'as-legend-color-category-point': HTMLAsLegendColorCategoryPointElement
     'as-legend-color-category-polygon': HTMLAsLegendColorCategoryPolygonElement
@@ -1539,7 +1543,6 @@ declare global {
     'as-bubble-legend': HTMLAsBubbleLegendElement
     'as-color-gradient-legend': HTMLAsColorGradientLegendElement
     'as-color-steps-legend': HTMLAsColorStepsLegendElement
-    'as-legends': HTMLAsLegendsElement
     'as-point-size-legend': HTMLAsPointSizeLegendElement
   }
 
@@ -1557,19 +1560,20 @@ declare global {
     'as-tabs': HTMLAsTabsElement;
     'as-time-series-widget': HTMLAsTimeSeriesWidgetElement;
     'as-toolbar': HTMLAsToolbarElement;
-    'as-legend': HTMLAsLegendElement;
+    'as-widget-legend': HTMLAsWidgetLegendElement;
     'as-loader': HTMLAsLoaderElement;
     'as-widget-header': HTMLAsWidgetHeaderElement;
     'as-widget-selection': HTMLAsWidgetSelectionElement;
     'as-y-axis': HTMLAsYAxisElement;
+    /* Legends */
+    'as-legend': HTMLAsLegendElement;
     'as-legend-color-category-line': HTMLAsLegendColorCategoryLineElement;
     'as-legend-color-category-point': HTMLAsLegendColorCategoryPointElement;
     'as-legend-color-category-polygon': HTMLAsLegendColorCategoryPolygonElement;
-    'as-legend-color-category': HTMLAsLegendElement;
+    'as-legend-color-category': HTMLAsLegendColorCategoryElement;
     'as-bubble-legend': HTMLAsBubbleLegendElement;
     'as-color-gradient-legend': HTMLAsColorGradientLegendElement;
     'as-color-steps-legend': HTMLAsColorStepsLegendElement;
-    'as-legends': HTMLAsLegendsElement;
     'as-point-size-legend': HTMLAsPointSizeLegendElement;
   }
 
@@ -1581,5 +1585,4 @@ declare global {
     }
   }
   export interface HTMLAttributes extends StencilHTMLAttributes {}
-
 }
