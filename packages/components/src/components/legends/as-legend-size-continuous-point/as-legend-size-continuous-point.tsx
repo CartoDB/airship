@@ -4,10 +4,10 @@ const MARGIN_OFFSET = 2;
 
 @Component({
   shadow: false,
-  styleUrl: './as-point-size-legend.scss',
-  tag: 'as-point-size-legend',
+  styleUrl: './as-legend-size-continuous-point.scss',
+  tag: 'as-legend-size-continuous-point',
 })
-export class PointSizeLegend {
+export class LegendSizeContinuousPoint {
   @Prop() public data: LegendData[];
   @Prop() public orientation: 'horizontal' | 'vertical' = 'vertical';
 
@@ -19,8 +19,8 @@ export class PointSizeLegend {
     }
 
     const classes = {
-      'as-point-size-legend--steps': true,
-      [`as-point-size-legend--${this.orientation}`]: true
+      'as-legend-size-continuous-point--steps': true,
+      [`as-legend-size-continuous-point--${this.orientation}`]: true
     };
 
     this.maxSize = this.data.slice().sort(
@@ -52,11 +52,11 @@ export class PointSizeLegend {
     }
 
     return (
-      <div class='as-point-size-legend--step'>
-        <div style={wrapperStyle} class='as-point-size-legend--circle-wrapper'>
-          <div class='as-point-size-legend--circle' style={style}></div>
+      <div class='as-legend-size-continuous-point--step'>
+        <div style={wrapperStyle} class='as-legend-size-continuous-point--circle-wrapper'>
+          <div class='as-legend-size-continuous-point--circle' style={style}></div>
         </div>
-        <span class='as-point-size-legend--label'>{data.label}</span>
+        <span class='as-legend-size-continuous-point--label'>{data.label}</span>
       </div>
     );
   }

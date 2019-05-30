@@ -1279,11 +1279,11 @@ export namespace Components {
     'loading'?: boolean;
   }
 
-  interface AsPointSizeLegend {
+  interface AsLegendSizeContinuousPoint {
     'data': LegendData[];
     'orientation': 'horizontal' | 'vertical';
   }
-  interface AsPointSizeLegendAttributes extends StencilHTMLAttributes {
+  interface AsLegendSizeContinuousPointAttributes extends StencilHTMLAttributes {
     'data'?: LegendData[];
     'orientation'?: 'horizontal' | 'vertical';
   }
@@ -1318,7 +1318,7 @@ declare global {
     'AsLegendSizeBinsPoint': Components.AsLegendSizeBinsPoint;
     'AsLegendColorContinuousPolygon': Components.AsLegendColorContinuousPolygon;
     'AsLegendColorBinsPolygon': Components.AsLegendColorBinsPolygon;
-    'AsPointSizeLegend': Components.AsPointSizeLegend;
+    'AsLegendSizeContinuousPoint': Components.AsLegendSizeContinuousPoint;
   }
 
   interface StencilIntrinsicElements {
@@ -1349,7 +1349,7 @@ declare global {
     'as-legend-size-bins-point': Components.AsLegendSizeBinsPointAttributes;
     'as-legend-color-continuous-polygon': Components.AsLegendColorContinuousPolygonAttributes;
     'as-legend-color-bins-polygon': Components.AsLegendColorBinsPolygonAttributes;
-    'as-point-size-legend': Components.AsPointSizeLegendAttributes;
+    'as-legend-size-continuous-point': Components.AsLegendSizeContinuousPointAttributes;
   }
 
 
@@ -1509,10 +1509,10 @@ declare global {
     new (): HTMLAsLegendElement;
   };
 
-  interface HTMLAsPointSizeLegendElement extends Components.AsPointSizeLegend, HTMLStencilElement {}
-  var HTMLAsPointSizeLegendElement: {
-    prototype: HTMLAsPointSizeLegendElement;
-    new (): HTMLAsPointSizeLegendElement;
+  interface HTMLAsLegendSizeContinuousPointElement extends Components.AsLegendSizeContinuousPoint, HTMLStencilElement {}
+  var HTMLAsLegendSizeContinuousPointElement: {
+    prototype: HTMLAsLegendSizeContinuousPointElement;
+    new (): HTMLAsLegendSizeContinuousPointElement;
   };
 
   interface HTMLElementTagNameMap {
@@ -1543,7 +1543,7 @@ declare global {
     'as-legend-size-bins-point': HTMLAsLegendSizeBinsPointElement
     'as-legend-color-continuous-polygon': HTMLAsLegendColorContinuousPolygonElement
     'as-legend-color-bins-polygon': HTMLAsLegendColorBinsPolygonElement
-    'as-point-size-legend': HTMLAsPointSizeLegendElement
+    'as-legend-size-continuous-point': HTMLAsLegendSizeContinuousPointElement
   }
 
   interface ElementTagNameMap {
@@ -1574,7 +1574,7 @@ declare global {
     'as-legend-size-bins-point': HTMLAsLegendSizeBinsPointElement;
     'as-legend-color-continuous-polygon': HTMLAsLegendColorContinuousPolygonElement;
     'as-legend-color-bins-polygon': HTMLAsLegendColorBinsPolygonElement;
-    'as-point-size-legend': HTMLAsPointSizeLegendElement;
+    'as-legend-size-continuous-point': HTMLAsLegendSizeContinuousPointElement;
   }
 
 
