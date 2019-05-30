@@ -19,7 +19,7 @@
     <script src="packages/components/dist/airship.js"></script>
     <script src="/packages/bridge/dist/asbridge.js"></script>
     <style>
-      as-color-steps-legend:first-of-type {
+      as-legend-color-bins-polygon:first-of-type {
         margin-bottom: 4px;
       }
     </style>
@@ -37,13 +37,13 @@
                     heading="Location"
                     description="Color intensity is defined by location">
                     <div slot="legends">
-                      <as-color-steps-legend
+                      <as-legend-color-bins-polygon
                         orientation="horizontal"
                         id="legendHorizontal">
-                      </as-color-steps-legend>
-                      <as-color-steps-legend
+                      </as-legend-color-bins-polygon>
+                      <as-legend-color-bins-polygon
                         id="legend">
-                      </as-color-steps-legend>
+                      </as-legend-color-bins-polygon>
                     </div>
                     <span slot="source">Source: my own opinion</span>
                   </as-legend>

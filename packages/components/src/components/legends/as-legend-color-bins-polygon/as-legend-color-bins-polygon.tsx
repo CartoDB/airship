@@ -2,8 +2,8 @@ import { Component, Prop } from '@stencil/core';
 
 @Component({
   shadow: false,
-  styleUrl: './as-color-steps-legend.scss',
-  tag: 'as-color-steps-legend',
+  styleUrl: './as-legend-color-bins-polygon.scss',
+  tag: 'as-legend-color-bins-polygon',
 })
 export class ColorStepsLegend {
   @Prop() public data: GradientData[];
@@ -15,15 +15,15 @@ export class ColorStepsLegend {
     }
 
     const outerClasses = {
-      'as-color-steps-legend--outer-wrapper': true,
-      [`as-color-steps-legend--${this.orientation}`]: true
+      'as-legend-color-bins-polygon--outer-wrapper': true,
+      [`as-legend-color-bins-polygon--${this.orientation}`]: true
     };
 
     return <div class={outerClasses}>
-      <div class='as-color-steps-legend--wrapper as-color-steps-legend--color'>
+      <div class='as-legend-color-bins-polygon--wrapper as-legend-color-bins-polygon--color'>
         {this.data.map(this.renderStep)}
       </div>
-      <div class='as-color-steps-legend--wrapper as-color-steps-legend--labels'>
+      <div class='as-legend-color-bins-polygon--wrapper as-legend-color-bins-polygon--labels'>
         {this.data.map(this.renderLabels)}
       </div>
     </div>;
@@ -31,14 +31,14 @@ export class ColorStepsLegend {
 
   private renderStep(data: GradientData) {
     return (
-      <div class='as-color-steps-legend--step' style={{ background: data.color }}>
+      <div class='as-legend-color-bins-polygon--step' style={{ background: data.color }}>
       </div>
     );
   }
 
   private renderLabels(data: GradientData) {
     return (
-      <div class='as-color-steps-legend--label'>
+      <div class='as-legend-color-bins-polygon--label'>
         <span>
           {data.label}
         </span>
