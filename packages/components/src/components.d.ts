@@ -1215,25 +1215,25 @@ export namespace Components {
     'width'?: number;
   }
 
-  interface AsBasicLegendPolygon {
+  interface AsLegendColorCategoryPolygon {
     'color': string;
     'label': string;
     'strokeColor': string;
     'strokeStyle': string;
   }
-  interface AsBasicLegendPolygonAttributes extends StencilHTMLAttributes {
+  interface AsLegendColorCategoryPolygonAttributes extends StencilHTMLAttributes {
     'color'?: string;
     'label'?: string;
     'strokeColor'?: string;
     'strokeStyle'?: string;
   }
 
-  interface AsBasicLegend {
+  interface AsLegend {
     'data': LegendData[];
     'orientation': 'horizontal' | 'vertical';
     'width': number;
   }
-  interface AsBasicLegendAttributes extends StencilHTMLAttributes {
+  interface AsLegendAttributes extends StencilHTMLAttributes {
     'data'?: LegendData[];
     'orientation'?: 'horizontal' | 'vertical';
     'width'?: number;
@@ -1311,8 +1311,8 @@ declare global {
     'AsYAxis': Components.AsYAxis;
     'AsLegendColorCategoryLine': Components.AsLegendColorCategoryLine;
     'AsLegendColorCategoryPoint': Components.AsLegendColorCategoryPoint;
-    'AsBasicLegendPolygon': Components.AsBasicLegendPolygon;
-    'AsBasicLegend': Components.AsBasicLegend;
+    'AsLegendColorCategoryPolygon': Components.AsLegendColorCategoryPolygon;
+    'AsLegend': Components.AsLegend;
     'AsBubbleLegend': Components.AsBubbleLegend;
     'AsColorGradientLegend': Components.AsColorGradientLegend;
     'AsColorStepsLegend': Components.AsColorStepsLegend;
@@ -1341,8 +1341,8 @@ declare global {
     'as-y-axis': Components.AsYAxisAttributes;
     'as-legend-color-category-line': Components.AsLegendColorCategoryLineAttributes;
     'as-legend-color-category-point': Components.AsLegendColorCategoryPointAttributes;
-    'as-basic-legend-polygon': Components.AsBasicLegendPolygonAttributes;
-    'as-basic-legend': Components.AsBasicLegendAttributes;
+    'as-legend-color-category-polygon': Components.AsLegendColorCategoryPolygonAttributes;
+    'as-legend-color-category': Components.AsLegendAttributes;
     'as-bubble-legend': Components.AsBubbleLegendAttributes;
     'as-color-gradient-legend': Components.AsColorGradientLegendAttributes;
     'as-color-steps-legend': Components.AsColorStepsLegendAttributes;
@@ -1471,16 +1471,16 @@ declare global {
     new (): HTMLAsLegendColorCategoryPointElement;
   };
 
-  interface HTMLAsBasicLegendPolygonElement extends Components.AsBasicLegendPolygon, HTMLStencilElement {}
-  var HTMLAsBasicLegendPolygonElement: {
-    prototype: HTMLAsBasicLegendPolygonElement;
-    new (): HTMLAsBasicLegendPolygonElement;
+  interface HTMLAsLegendColorCategoryPolygonElement extends Components.AsLegendColorCategoryPolygon, HTMLStencilElement {}
+  var HTMLAsLegendColorCategoryPolygonElement: {
+    prototype: HTMLAsLegendColorCategoryPolygonElement;
+    new (): HTMLAsLegendColorCategoryPolygonElement;
   };
 
-  interface HTMLAsBasicLegendElement extends Components.AsBasicLegend, HTMLStencilElement {}
-  var HTMLAsBasicLegendElement: {
-    prototype: HTMLAsBasicLegendElement;
-    new (): HTMLAsBasicLegendElement;
+  interface HTMLAsLegendElement extends Components.AsLegend, HTMLStencilElement {}
+  var HTMLAsLegendElement: {
+    prototype: HTMLAsLegendElement;
+    new (): HTMLAsLegendElement;
   };
 
   interface HTMLAsBubbleLegendElement extends Components.AsBubbleLegend, HTMLStencilElement {}
@@ -1534,8 +1534,8 @@ declare global {
     'as-y-axis': HTMLAsYAxisElement
     'as-legend-color-category-line': HTMLAsLegendColorCategoryLineElement
     'as-legend-color-category-point': HTMLAsLegendColorCategoryPointElement
-    'as-basic-legend-polygon': HTMLAsBasicLegendPolygonElement
-    'as-basic-legend': HTMLAsBasicLegendElement
+    'as-legend-color-category-polygon': HTMLAsLegendColorCategoryPolygonElement
+    'as-legend-color-category': HTMLAsLegendElement
     'as-bubble-legend': HTMLAsBubbleLegendElement
     'as-color-gradient-legend': HTMLAsColorGradientLegendElement
     'as-color-steps-legend': HTMLAsColorStepsLegendElement
@@ -1564,8 +1564,8 @@ declare global {
     'as-y-axis': HTMLAsYAxisElement;
     'as-legend-color-category-line': HTMLAsLegendColorCategoryLineElement;
     'as-legend-color-category-point': HTMLAsLegendColorCategoryPointElement;
-    'as-basic-legend-polygon': HTMLAsBasicLegendPolygonElement;
-    'as-basic-legend': HTMLAsBasicLegendElement;
+    'as-legend-color-category-polygon': HTMLAsLegendColorCategoryPolygonElement;
+    'as-legend-color-category': HTMLAsLegendElement;
     'as-bubble-legend': HTMLAsBubbleLegendElement;
     'as-color-gradient-legend': HTMLAsColorGradientLegendElement;
     'as-color-steps-legend': HTMLAsColorStepsLegendElement;

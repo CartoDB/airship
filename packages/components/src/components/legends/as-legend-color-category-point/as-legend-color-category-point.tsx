@@ -21,10 +21,10 @@ export class LegendColorCategoryPoint {
 
     return (
       <div class='as-legend-color-category-point--wrapper'>
-        <div class='as-basic-legend--figure--wrapper'>
+        <div class='as-legend-color-category--figure--wrapper'>
           <div class={classes} style={this.getStyle()}></div>
         </div>
-        <span class='as-basic-legend--label'>{this.label}</span>
+        <span class='as-legend-color-category--label'>{this.label}</span>
       </div>
     );
   }

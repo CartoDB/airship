@@ -4,10 +4,10 @@ const DEFAULT_WIDTH = 16;
 
 @Component({
   shadow: false,
-  styleUrl: './as-basic-legend.scss',
-  tag: 'as-basic-legend',
+  styleUrl: './as-legend-color-category.scss',
+  tag: 'as-legend-color-category',
 })
-export class BasicLegend {
+export class LegendColorCategory {
   @Prop() public data: LegendData[];
   @Prop() public orientation: 'horizontal' | 'vertical';
   @Prop() public width: number;
@@ -18,8 +18,8 @@ export class BasicLegend {
     }
 
     const wrapper = {
-      'as-basic-legend--wrapper': true,
-      'as-basic-legend--wrapper-horizontal': this.orientation === 'horizontal'
+      'as-legend-color-category--wrapper': true,
+      'as-legend-color-category--wrapper-horizontal': this.orientation === 'horizontal'
     };
 
     return <div style={this.getStyle()} class={wrapper}>
@@ -27,7 +27,7 @@ export class BasicLegend {
         this.data
           .map((e) => this.renderLegend(e))
           .filter((e) => e !== null)
-          .map((e) => <div class='as-basic-legend--entry'>{e}</div>)
+          .map((e) => <div class='as-legend-color-category--entry'>{e}</div>)
       }
     </div>;
   }
@@ -53,13 +53,13 @@ export class BasicLegend {
           >
         </as-legend-color-category-line>;
       case 'polygon':
-        return <as-basic-legend-polygon
+        return <as-legend-color-category-polygon
           label={legend.label}
           color={legend.color}
           strokeColor={legend.strokeColor}
           strokeStyle={legend.strokeStyle}
           >
-        </as-basic-legend-polygon>;
+        </as-legend-color-category-polygon>;
       default:
         return null;
     }

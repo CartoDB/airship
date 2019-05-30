@@ -20,10 +20,10 @@ export class LegendColorCategoryLine {
   public render() {
     return (
       <div class='as-legend-color-category-line--wrapper'>
-        <div class='as-basic-legend--figure--wrapper'>
+        <div class='as-legend-color-category--figure--wrapper'>
           <div class='as-legend-color-category-line--line' style={this.getStyle()}></div>
         </div>
-        <span class='as-basic-legend--label'>{this.label}</span>
+        <span class='as-legend-color-category--label'>{this.label}</span>
       </div>
     );
   }

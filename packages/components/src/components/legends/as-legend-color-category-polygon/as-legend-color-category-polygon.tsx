@@ -2,10 +2,10 @@ import { Component, Prop } from '@stencil/core';
 
 @Component({
   shadow: false,
-  styleUrl: './as-basic-legend-polygon.scss',
-  tag: 'as-basic-legend-polygon',
+  styleUrl: './as-legend-color-category-polygon.scss',
+  tag: 'as-legend-color-category-polygon',
 })
-export class BasicLegendPolygon {
+export class LegendColorCategoryPolygon {
   @Prop() private label: string;
   @Prop() private color: string;
   @Prop() private strokeColor: string;
@@ -13,11 +13,11 @@ export class BasicLegendPolygon {
 
   public render() {
     return (
-      <div class='as-basic-legend-polygon--wrapper'>
-        <div class='as-basic-legend--figure--wrapper'>
-          <div class='as-basic-legend-polygon--box' style={this.getStyle()}></div>
+      <div class='as-legend-color-category-polygon--wrapper'>
+        <div class='as-legend-color-category--figure--wrapper'>
+          <div class='as-legend-color-category-polygon--box' style={this.getStyle()}></div>
         </div>
-        <span class='as-basic-legend--label'>{this.label}</span>
+        <span class='as-legend-color-category--label'>{this.label}</span>
       </div>
     );
   }

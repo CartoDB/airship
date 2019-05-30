@@ -5,7 +5,7 @@ import { Component, Prop } from '@stencil/core';
   styleUrl: './as-legends.scss',
   tag: 'as-legends',
 })
-export class BasicLegend {
+export class Legend {
   @Prop() public loading: boolean;
   @Prop() public heading: string;
   @Prop() public description: string;

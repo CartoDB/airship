@@ -1,34 +1,34 @@
 @import '../../../../../styles/src/core/_dev';
 
-as-basic-legend {
+as-legend-color-category {
   --as--basic--legend--font: var(--as--font--body);
   --as--basic--legend--text-transform: capitalize;
 
-  .as-basic-legend--wrapper {
+  .as-legend-color-category--wrapper {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
   }
 
-  .as-basic-legend--label {
+  .as-legend-color-category--label {
     font: var(--as--basic--legend--font);
     text-transform: var(--as--basic--legend--text-transform);
   }
 
-  & .as-basic-legend--figure--wrapper {
+  & .as-legend-color-category--figure--wrapper {
     width: var(--as--basic--legend--figure-width);
     margin-right: get-spacing(2);
   }
 
-  .as-basic-legend--wrapper-horizontal > .as-basic-legend--entry {
+  .as-legend-color-category--wrapper-horizontal > .as-legend-color-category--entry {
     margin-right: get-spacing(3);
   }
 
-  .as-basic-legend--wrapper:not(.as-basic-legend--wrapper-horizontal) > .as-basic-legend--entry:not(:first-child) {
+  .as-legend-color-category--wrapper:not(.as-legend-color-category--wrapper-horizontal) > .as-legend-color-category--entry:not(:first-child) {
     margin-top: get-spacing(3);
   }
 
-  .as-basic-legend--wrapper-horizontal {
+  .as-legend-color-category--wrapper-horizontal {
     flex-direction: row;
     align-items: center;
   }
