@@ -1,18 +1,18 @@
 @import '../../../../../styles/src/core/_dev';
 
-as-basic-legend-point {
-  .as-basic-legend-point--wrapper {
+as-legend-color-category-point {
+  .as-legend-color-category-point--wrapper {
     display: flex;
     align-items: center;
   }
 
-  .as-basic-legend-point--symbol {
+  .as-legend-color-category-point--symbol {
     width: 100%;
     height: auto;
     margin: auto;
   }
 
-  .as-basic-legend-point--point {
+  .as-legend-color-category-point--point {
     border-radius: 50%;
   }
 }

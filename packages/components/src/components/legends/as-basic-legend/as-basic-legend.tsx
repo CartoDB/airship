@@ -35,7 +35,7 @@ export class BasicLegend {
   private renderLegend(legend: LegendData) {
     switch (legend.type) {
       case 'point':
-        return <as-basic-legend-point
+        return <as-legend-color-category-point
           label={legend.label}
           width={this.width || legend.width}
           color={legend.color}
@@ -43,7 +43,7 @@ export class BasicLegend {
           marker={legend.marker}
           strokeStyle={legend.strokeStyle}
           >
-        </as-basic-legend-point>;
+        </as-legend-color-category-point>;
       case 'line':
         return <as-basic-legend-line
           label={legend.label}

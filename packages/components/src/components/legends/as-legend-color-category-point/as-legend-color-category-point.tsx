@@ -2,8 +2,8 @@ import { Component, Prop } from '@stencil/core';
 
 @Component({
   shadow: false,
-  styleUrl: './as-basic-legend-point.scss',
-  tag: 'as-basic-legend-point',
+  styleUrl: './as-legend-color-category-point.scss',
+  tag: 'as-legend-color-category-point',
 })
 export class BasicLegendPoint {
   @Prop() public label: string;
@@ -15,12 +15,12 @@ export class BasicLegendPoint {
 
   public render() {
     const classes = {
-      'as-basic-legend-point--point': !this.marker,
-      'as-basic-legend-point--symbol': true
+      'as-legend-color-category-point--point': !this.marker,
+      'as-legend-color-category-point--symbol': true
     };
 
     return (
-      <div class='as-basic-legend-point--wrapper'>
+      <div class='as-legend-color-category-point--wrapper'>
         <div class='as-basic-legend--figure--wrapper'>
           <div class={classes} style={this.getStyle()}></div>
         </div>
