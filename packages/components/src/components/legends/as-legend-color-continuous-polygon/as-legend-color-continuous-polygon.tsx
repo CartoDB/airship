@@ -2,10 +2,10 @@ import { Component, Prop } from '@stencil/core';
 
 @Component({
   shadow: false,
-  styleUrl: './as-color-gradient-legend.scss',
-  tag: 'as-color-gradient-legend',
+  styleUrl: './as-legend-color-continuous-polygon.scss',
+  tag: 'as-legend-color-continuous-polygon',
 })
-export class ColorGradientLegend {
+export class LegendColorContinuousPolygon {
   @Prop() public data: GradientData[];
   @Prop() public orientation: 'horizontal' | 'vertical' = 'vertical';
 
@@ -15,15 +15,15 @@ export class ColorGradientLegend {
     }
 
     const outerClasses = {
-      'as-color-gradient-legend--outer-wrapper': true,
-      [`as-color-gradient-legend--${this.orientation}`]: true
+      'as-legend-color-continuous-polygon--outer-wrapper': true,
+      [`as-legend-color-continuous-polygon--${this.orientation}`]: true
     };
 
     return <div class={outerClasses}>
-      <div class='as-color-gradient-legend--wrapper as-color-gradient-legend--color'>
+      <div class='as-legend-color-continuous-polygon--wrapper as-legend-color-continuous-polygon--color'>
         {this.data.map((data, index, arr) => this.renderGradientStep(data, index, arr))}
       </div>
-      <div class='as-color-gradient-legend--wrapper as-color-gradient-legend--labels'>
+      <div class='as-legend-color-continuous-polygon--wrapper as-legend-color-continuous-polygon--labels'>
         {this.data.map((data, index, arr) => this.renderLabel(data, index, arr))}
       </div>
     </div>;
@@ -43,7 +43,7 @@ export class ColorGradientLegend {
     };
 
     return (
-      <div class='as-color-gradient-legend--step' style={style}>
+      <div class='as-legend-color-continuous-polygon--step' style={style}>
       </div>
     );
   }
@@ -58,7 +58,7 @@ export class ColorGradientLegend {
     }
 
     return (
-      <div class='as-color-gradient-legend--label'>
+      <div class='as-legend-color-continuous-polygon--label'>
         <span>
           {data.label}
         </span>
