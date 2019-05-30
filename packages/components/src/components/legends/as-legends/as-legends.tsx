@@ -28,9 +28,7 @@ export class BasicLegend {
       <div class='as-legends--legends-slot'>
         <slot name='legends'></slot>
       </div>,
-      <div>
-        <slot name='source'></slot>
-      </div>
+      <slot name='footer'></slot>
     ];
   }
 

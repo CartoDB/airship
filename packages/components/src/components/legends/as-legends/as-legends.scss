@@ -3,7 +3,7 @@
 as-legends {
   --as-legends--padding: #{get-spacing(2)};
   --as-legends--background-colo: var(--as--color--ui-01);
-  --as-legends--source-size: 8px;
+  --as-legends--footer-size: 8px;
 
   background: var(--as-legends--background-colo);
 
@@ -11,10 +11,10 @@ as-legends {
     padding: var(--as-legends--padding);
   }
 
-  .as-legends--source {
+  *[slot="footer"] {
     margin-top: get-spacing(4);
     font-family: var(--as--font-family--base);
-    font-size: var(--as-legends--source-size);
+    font-size: var(--as-legends--footer-size);
   }
 
   .as-legends--legends-slot {
