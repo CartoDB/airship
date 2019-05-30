@@ -6,7 +6,7 @@ import { Component, Prop } from '@stencil/core';
   tag: 'as-legend-color-continuous-polygon',
 })
 export class LegendColorContinuousPolygon {
-  @Prop() public data: GradientData[];
+  @Prop() public data: LegendData[];
   @Prop() public orientation: 'horizontal' | 'vertical' = 'vertical';
 
   public render() {
@@ -29,7 +29,7 @@ export class LegendColorContinuousPolygon {
     </div>;
   }
 
-  private renderGradientStep(data: GradientData, index: number, arr: GradientData[]) {
+  private renderGradientStep(data: LegendData, index: number, arr: LegendData[]) {
     if (index === arr.length - 1) {
       return null;
     }
@@ -48,7 +48,7 @@ export class LegendColorContinuousPolygon {
     );
   }
 
-  private renderLabel(data: GradientData, index: number, arr: GradientData[]) {
+  private renderLabel(data: LegendData, index: number, arr: LegendData[]) {
     if (this.orientation === 'vertical' && index === 0) {
       return null;
     }

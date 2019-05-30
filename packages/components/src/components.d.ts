@@ -1254,6 +1254,17 @@ export namespace Components {
     'strokeStyle'?: string;
   }
 
+  interface AsLegendSizeBinsPoint {
+    'data': LegendData[];
+    'orientation': 'horizontal' | 'vertical';
+    'scale': number;
+  }
+  interface AsLegendSizeBinsPointAttributes extends StencilHTMLAttributes {
+    'data'?: LegendData[];
+    'orientation'?: 'horizontal' | 'vertical';
+    'scale'?: number;
+  }
+
   interface AsLegendColorBins {
     'data': LegendData[];
     'orientation': 'horizontal' | 'vertical';
@@ -1266,33 +1277,43 @@ export namespace Components {
     'width': number;
   }
 
-  interface AsLegendSizeBinsPoint {
+  interface AsLegendColorBinsLine {
     'data': LegendData[];
     'orientation': 'horizontal' | 'vertical';
-    'scale': number;
-  }
-  interface AsLegendSizeBinsPointAttributes extends StencilHTMLAttributes {
-    'data'?: LegendData[];
-    'orientation'?: 'horizontal' | 'vertical';
-    'scale'?: number;
+    'width': number;
   }
 
-  interface AsLegendSizeBinsLine {
-    'data': LegendData[];
-    'orientation': 'horizontal' | 'vertical';
-    'scale': number;
-  }
-  interface AsLegendSizeBinsLineAttributes extends StencilHTMLAttributes {
+  interface AsLegendColorBinsLineAttributes extends StencilHTMLAttributes {
     'data'?: LegendData[];
     'orientation'?: 'horizontal' | 'vertical';
-    'scale'?: number;
+    'width'?: number;
   }
-
   interface AsLegendColorBinsPolygon {
     'data': LegendData[];
     'orientation': 'horizontal' | 'vertical';
   }
   interface AsLegendColorBinsPolygonAttributes extends StencilHTMLAttributes {
+    'data'?: LegendData[];
+    'orientation'?: 'horizontal' | 'vertical';
+  }
+
+  interface AsLegendColorContinuous {
+    'data': LegendData[];
+    'orientation': 'horizontal' | 'vertical';
+    'width': number;
+  }
+
+  interface AsLegendColorContinuousAttributes extends StencilHTMLAttributes {
+    'data'?: LegendData[];
+    'orientation'?: 'horizontal' | 'vertical';
+    'width': number;
+  }
+
+  interface AsLegendColorContinuousPolygon {
+    'data': LegendData[];
+    'orientation': 'horizontal' | 'vertical';
+  }
+  interface AsLegendColorContinuousPolygonAttributes extends StencilHTMLAttributes {
     'data'?: LegendData[];
     'orientation'?: 'horizontal' | 'vertical';
   }
@@ -1303,15 +1324,6 @@ export namespace Components {
   }
   interface AsLegendSizeContinuousPointAttributes extends StencilHTMLAttributes {
     'data'?: LegendData[];
-    'orientation'?: 'horizontal' | 'vertical';
-  }
-
-  interface AsLegendColorContinuousPolygon {
-    'data': GradientData[];
-    'orientation': 'horizontal' | 'vertical';
-  }
-  interface AsLegendColorContinuousPolygonAttributes extends StencilHTMLAttributes {
-    'data'?: GradientData[];
     'orientation'?: 'horizontal' | 'vertical';
   }
 }
@@ -1347,8 +1359,8 @@ declare global {
     'AsLegendColorCategoryPolygon': Components.AsLegendColorCategoryPolygon;
 
     'AsLegendColorBins': Components.AsLegendColorBins;
-    'AsLegendSizeBinsPoint': Components.AsLegendSizeBinsPoint;
-    'AsLegendSizeBinsLine': Components.AsLegendSizeBinsLine;
+    'AsLegendColorBinsPoint': Components.AsLegendColorCategoryPoint; // alias
+    'AsLegendColorBinsLine': Components.AsLegendColorCategoryLine; // alias
     'AsLegendColorBinsPolygon': Components.AsLegendColorBinsPolygon;
 
     'AsLegendSizeContinuousPoint': Components.AsLegendSizeContinuousPoint;
@@ -1535,6 +1547,12 @@ declare global {
     new (): HTMLAsLegendSizeBinsPointElement;
   };
 
+  interface HTMLAsLegendColorContinuousElement extends Components.AsLegendColorContinuous, HTMLStencilElement {}
+  var HTMLAsLegendColorContinuousElement: {
+    prototype: HTMLAsLegendColorContinuousElement;
+    new (): HTMLAsLegendColorContinuousElement;
+  };
+
   interface HTMLAsLegendColorContinuousPolygonElement extends Components.AsLegendColorContinuousPolygon, HTMLStencilElement {}
   var HTMLAsLegendColorContinuousPolygonElement: {
     prototype: HTMLAsLegendColorContinuousPolygonElement;
@@ -1638,6 +1656,7 @@ declare global {
     'as-legend-color-bins-line': HTMLAsLegendColorCategoryLineElement; // alias
     'as-legend-color-bins-polygon': HTMLAsLegendColorBinsPolygonElement;
 
+    'as-legend-color-continuous': HTMLAsLegendColorContinuousElement;
     'as-legend-color-continuous-point': HTMLAsLegendColorCategoryPointElement; //alias
     'as-legend-color-continuous-line': HTMLAsLegendColorCategoryLineElement; // alias
     'as-legend-color-continuous-polygon': HTMLAsLegendColorContinuousPolygonElement;
