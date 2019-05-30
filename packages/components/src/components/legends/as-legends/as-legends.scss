@@ -1,0 +1,29 @@
+@import '../../../../../styles/src/core/_dev';
+
+as-legends {
+  --as-legends--color: var(--as--color--type-01);
+  --as-legends--background-color: var(--as--color--ui-01);
+  --as-legends--footer-font-size: 12px;
+  --as-legends--footer-color: var(--as--color--type-01);
+  --as-legends--footer-margin-top: #{get-spacing(3)};
+  --as-legends--padding: #{get-spacing(3)};
+
+  background: var(--as-legends--background-color);
+  color: var(--as-legends--color);
+
+  .as-legends--wrapper {
+    padding: var(--as-legends--padding);
+  }
+
+  *[slot="footer"] {
+    display: block;
+    margin-top: var(--as-legends--footer-margin-top);
+    color: var(--as-legends--footer-color);
+    font-family: var(--as--font-family--base);
+    font-size: var(--as-legends--footer-font-size);
+  }
+
+  .as-legends--legends-slot {
+    overflow: auto;
+  }
+}
