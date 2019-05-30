@@ -1239,12 +1239,12 @@ export namespace Components {
     'width'?: number;
   }
 
-  interface AsBubbleLegend {
+  interface AsLegendSizeBinsPoint {
     'data': LegendData[];
     'orientation': 'horizontal' | 'vertical';
     'scale': number;
   }
-  interface AsBubbleLegendAttributes extends StencilHTMLAttributes {
+  interface AsLegendSizeBinsPointAttributes extends StencilHTMLAttributes {
     'data'?: LegendData[];
     'orientation'?: 'horizontal' | 'vertical';
     'scale'?: number;
@@ -1315,7 +1315,7 @@ declare global {
     'AsLegendColorCategoryPoint': Components.AsLegendColorCategoryPoint;
     'AsLegendColorCategoryPolygon': Components.AsLegendColorCategoryPolygon;
     'AsLegendColorCategory': Components.AsLegendColorCategory;
-    'AsBubbleLegend': Components.AsBubbleLegend;
+    'AsLegendSizeBinsPoint': Components.AsLegendSizeBinsPoint;
     'AsLegendColorContinuousPolygon': Components.AsLegendColorContinuousPolygon;
     'AsLegendColorBinsPolygon': Components.AsLegendColorBinsPolygon;
     'AsPointSizeLegend': Components.AsPointSizeLegend;
@@ -1346,7 +1346,7 @@ declare global {
     'as-legend-color-category-point': Components.AsLegendColorCategoryPointAttributes;
     'as-legend-color-category-polygon': Components.AsLegendColorCategoryPolygonAttributes;
     'as-legend-color-category': Components.AsLegendColorCategoryAttributes;
-    'as-bubble-legend': Components.AsBubbleLegendAttributes;
+    'as-legend-size-bins-point': Components.AsLegendSizeBinsPointAttributes;
     'as-legend-color-continuous-polygon': Components.AsLegendColorContinuousPolygonAttributes;
     'as-legend-color-bins-polygon': Components.AsLegendColorBinsPolygonAttributes;
     'as-point-size-legend': Components.AsPointSizeLegendAttributes;
@@ -1485,10 +1485,10 @@ declare global {
     new (): HTMLAsLegendColorCategoryPolygonElement;
   };
 
-  interface HTMLAsBubbleLegendElement extends Components.AsBubbleLegend, HTMLStencilElement {}
-  var HTMLAsBubbleLegendElement: {
-    prototype: HTMLAsBubbleLegendElement;
-    new (): HTMLAsBubbleLegendElement;
+  interface HTMLAsLegendSizeBinsPointElement extends Components.AsLegendSizeBinsPoint, HTMLStencilElement {}
+  var HTMLAsLegendSizeBinsPointElement: {
+    prototype: HTMLAsLegendSizeBinsPointElement;
+    new (): HTMLAsLegendSizeBinsPointElement;
   };
 
   interface HTMLAsLegendColorContinuousPolygonElement extends Components.AsLegendColorContinuousPolygon, HTMLStencilElement {}
@@ -1540,7 +1540,7 @@ declare global {
     'as-legend-color-category-point': HTMLAsLegendColorCategoryPointElement
     'as-legend-color-category-polygon': HTMLAsLegendColorCategoryPolygonElement
     'as-legend-color-category': HTMLAsLegendElement
-    'as-bubble-legend': HTMLAsBubbleLegendElement
+    'as-legend-size-bins-point': HTMLAsLegendSizeBinsPointElement
     'as-legend-color-continuous-polygon': HTMLAsLegendColorContinuousPolygonElement
     'as-legend-color-bins-polygon': HTMLAsLegendColorBinsPolygonElement
     'as-point-size-legend': HTMLAsPointSizeLegendElement
@@ -1571,7 +1571,7 @@ declare global {
     'as-legend-color-category-point': HTMLAsLegendColorCategoryPointElement;
     'as-legend-color-category-polygon': HTMLAsLegendColorCategoryPolygonElement;
     'as-legend-color-category': HTMLAsLegendColorCategoryElement;
-    'as-bubble-legend': HTMLAsBubbleLegendElement;
+    'as-legend-size-bins-point': HTMLAsLegendSizeBinsPointElement;
     'as-legend-color-continuous-polygon': HTMLAsLegendColorContinuousPolygonElement;
     'as-legend-color-bins-polygon': HTMLAsLegendColorBinsPolygonElement;
     'as-point-size-legend': HTMLAsPointSizeLegendElement;

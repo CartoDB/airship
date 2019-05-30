@@ -19,7 +19,7 @@
     <script src="packages/components/dist/airship.js"></script>
     <script src="/packages/bridge/dist/asbridge.js"></script>
     <style>
-      as-bubble-legend:first-of-type {
+      as-legend-size-bins-point:first-of-type {
         margin-bottom: 4px;
       }
     </style>
@@ -37,13 +37,13 @@
                     heading="Population density"
                     description="Size is defined by inhabitants per square feet">
                     <div slot="legends">
-                      <as-bubble-legend
+                      <as-legend-size-bins-point
                         orientation="horizontal"
                         id="legendHorizontal">
-                      </as-bubble-legend>
-                      <as-bubble-legend
+                      </as-legend-size-bins-point>
+                      <as-legend-size-bins-point
                         id="legend">
-                      </as-bubble-legend>
+                      </as-legend-size-bins-point>
                     </div>
                     <span slot="source">Source: my own opinion</span>
                   </as-legend>

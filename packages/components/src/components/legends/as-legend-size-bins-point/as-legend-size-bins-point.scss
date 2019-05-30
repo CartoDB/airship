@@ -1,0 +1,39 @@
+@import '../../../../../styles/src/core/_dev';
+
+as-legend-size-bins-point {
+  --as-legend-size-bins-point--color: var(--as--color--type-01);
+  --as-legend-size-bins-point--shadow: rgba(0, 0, 0, 0.1);
+
+  .as-legend-size-bins-point--steps {
+    display: flex;
+    position: relative;
+    align-items: center;
+    margin: get-spacing(2);
+  }
+
+  .as-legend-size-bins-point--wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  .as-legend-size-bins-point--circle {
+    position: absolute;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    box-shadow: -1px 0 2px 0 var(--as-legend-size-bins-point--shadow);
+  }
+
+  .as-legend-size-bins-point--label {
+    color: var(--as-legend-size-bins-point--color);
+    font: var(--as--font--caption);
+    text-transform: capitalize;
+    white-space: nowrap;
+  }
+
+  .as-legend-size-bins-point--vertical {
+    .as-legend-size-bins-point--steps,
+    &.as-legend-size-bins-point--wrapper {
+      flex-direction: column-reverse;
+    }
+  }
+}

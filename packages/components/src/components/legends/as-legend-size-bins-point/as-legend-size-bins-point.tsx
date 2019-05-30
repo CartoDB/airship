@@ -2,10 +2,11 @@ import { Component, Prop } from '@stencil/core';
 
 @Component({
   shadow: false,
-  styleUrl: './as-bubble-legend.scss',
-  tag: 'as-bubble-legend',
+  styleUrl: './as-legend-size-bins-point.scss',
+  tag: 'as-legend-size-bins-point',
 })
-export class BubbleLegend {
+
+export class LegendSizeBinsPoint {
   @Prop() public data: LegendData[];
   @Prop() public orientation: 'horizontal' | 'vertical' = 'vertical';
   @Prop() public scale: number = 1;
@@ -18,8 +19,8 @@ export class BubbleLegend {
     }
 
     const classes = {
-      'as-bubble-legend--wrapper': true,
-      [`as-bubble-legend--${this.orientation}`]: true
+      'as-legend-size-bins-point--wrapper': true,
+      [`as-legend-size-bins-point--${this.orientation}`]: true
     };
 
     const sortedData = this.data.slice().sort(
@@ -34,9 +35,9 @@ export class BubbleLegend {
     };
 
     return <div class={classes}>
-      <span class='as-bubble-legend--label'>{sortedData[sortedData.length - 1].label}</span>
-      <div style={size} class='as-bubble-legend--steps'>{sortedData.map((data) => this.renderStep(data))}</div>
-      <span class='as-bubble-legend--label'>{sortedData[0].label}</span>
+      <span class='as-legend-size-bins-point--label'>{sortedData[sortedData.length - 1].label}</span>
+      <div style={size} class='as-legend-size-bins-point--steps'>{sortedData.map((data) => this.renderStep(data))}</div>
+      <span class='as-legend-size-bins-point--label'>{sortedData[0].label}</span>
     </div>;
   }
 
@@ -51,6 +52,6 @@ export class BubbleLegend {
       width: size,
     };
 
-    return <div class='as-bubble-legend--circle' style={style}></div>;
+    return <div class='as-legend-size-bins-point--circle' style={style}></div>;
   }
 }
