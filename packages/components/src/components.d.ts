@@ -1343,7 +1343,11 @@ declare global {
     /* Legends */
     'as-legend': Components.AsLegendAttributes;
     'as-legend-color-category-line': Components.AsLegendColorCategoryLineAttributes;
+    'as-legend-color-bins-line': Components.AsLegendColorCategoryLineAttributes; // alias
+    'as-legend-color-continuous-line': Components.AsLegendColorCategoryLineAttributes; // alias
     'as-legend-color-category-point': Components.AsLegendColorCategoryPointAttributes;
+    'as-legend-color-bins-point': Components.AsLegendColorCategoryPointAttributes; //alias
+    'as-legend-color-continuous-point': Components.AsLegendColorCategoryPointAttributes; //alias
     'as-legend-color-category-polygon': Components.AsLegendColorCategoryPolygonAttributes;
     'as-legend-color-category': Components.AsLegendColorCategoryAttributes;
     'as-legend-size-bins-point': Components.AsLegendSizeBinsPointAttributes;
@@ -1537,7 +1541,11 @@ declare global {
     /* Legends */
     'as-legend': HTMLAsLegendElement
     'as-legend-color-category-line': HTMLAsLegendColorCategoryLineElement
+    'as-legend-color-bins-line': HTMLAsLegendColorCategoryLineElement; // alias
+    'as-legend-color-continuous-line': HTMLAsLegendColorCategoryLineElement; // alias
     'as-legend-color-category-point': HTMLAsLegendColorCategoryPointElement
+    'as-legend-color-bins-point': HTMLAsLegendColorCategoryPointElement; //alias
+    'as-legend-color-continuous-point': HTMLAsLegendColorCategoryPointElement; //alias
     'as-legend-color-category-polygon': HTMLAsLegendColorCategoryPolygonElement
     'as-legend-color-category': HTMLAsLegendElement
     'as-legend-size-bins-point': HTMLAsLegendSizeBinsPointElement
@@ -1568,7 +1576,11 @@ declare global {
     /* Legends */
     'as-legend': HTMLAsLegendElement;
     'as-legend-color-category-line': HTMLAsLegendColorCategoryLineElement;
+    'as-legend-color-bins-line': HTMLAsLegendColorCategoryLineElement; // alias
+    'as-legend-color-continuous-line': HTMLAsLegendColorCategoryLineElement; // alias
     'as-legend-color-category-point': HTMLAsLegendColorCategoryPointElement;
+    'as-legend-color-bins-point': HTMLAsLegendColorCategoryPointElement; //alias
+    'as-legend-color-continuous-point': HTMLAsLegendColorCategoryPointElement; //alias
     'as-legend-color-category-polygon': HTMLAsLegendColorCategoryPolygonElement;
     'as-legend-color-category': HTMLAsLegendColorCategoryElement;
     'as-legend-size-bins-point': HTMLAsLegendSizeBinsPointElement;
