@@ -5,7 +5,7 @@ import { Component, Prop } from '@stencil/core';
   styleUrl: './as-legend-color-category-point.scss',
   tag: 'as-legend-color-category-point',
 })
-export class BasicLegendPoint {
+export class LegendColorCategoryPoint {
   @Prop() public label: string;
   @Prop() public color: string;
   @Prop() public strokeColor: string;
