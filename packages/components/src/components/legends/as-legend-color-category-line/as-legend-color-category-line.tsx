@@ -2,10 +2,10 @@ import { Component, Prop, State, Watch } from '@stencil/core';
 
 @Component({
   shadow: false,
-  styleUrl: './as-basic-legend-line.scss',
-  tag: 'as-basic-legend-line',
+  styleUrl: './as-legend-color-category-line.scss',
+  tag: 'as-legend-color-category-line',
 })
-export class BasicLegendLine {
+export class LegendColorCategoryLine {
   @Prop() public label: string;
   @Prop() public color: string;
   @Prop() public strokeStyle: string = 'solid';
@@ -19,9 +19,9 @@ export class BasicLegendLine {
 
   public render() {
     return (
-      <div class='as-basic-legend-line--wrapper'>
+      <div class='as-legend-color-category-line--wrapper'>
         <div class='as-basic-legend--figure--wrapper'>
-          <div class='as-basic-legend-line--line' style={this.getStyle()}></div>
+          <div class='as-legend-color-category-line--line' style={this.getStyle()}></div>
         </div>
         <span class='as-basic-legend--label'>{this.label}</span>
       </div>

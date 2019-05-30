@@ -45,13 +45,13 @@ export class BasicLegend {
           >
         </as-legend-color-category-point>;
       case 'line':
-        return <as-basic-legend-line
+        return <as-legend-color-category-line
           label={legend.label}
           width={legend.width}
           color={legend.color}
           strokeStyle={legend.strokeStyle}
           >
-        </as-basic-legend-line>;
+        </as-legend-color-category-line>;
       case 'polygon':
         return <as-basic-legend-polygon
           label={legend.label}

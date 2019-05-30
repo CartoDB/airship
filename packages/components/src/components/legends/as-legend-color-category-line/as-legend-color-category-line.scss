@@ -1,0 +1,15 @@
+@import '../../../../../styles/src/core/_dev';
+
+as-legend-color-category-line {
+  .as-legend-color-category-line--wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  .as-legend-color-category-line--line {
+    width: get-spacing(4);
+    height: 0;
+    margin: auto;
+    border-top-width: var(--as-legend-color-category-line--line-width);
+  }
+}

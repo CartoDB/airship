@@ -1185,13 +1185,13 @@ export namespace Components {
     'to'?: number;
   }
 
-  interface AsBasicLegendLine {
+  interface AsLegendColorCategoryLine {
     'color': string;
     'label': string;
     'strokeStyle': string;
     'width': number;
   }
-  interface AsBasicLegendLineAttributes extends StencilHTMLAttributes {
+  interface AsLegendColorCategoryLineAttributes extends StencilHTMLAttributes {
     'color'?: string;
     'label'?: string;
     'strokeStyle'?: string;
@@ -1309,7 +1309,7 @@ declare global {
     'AsWidgetHeader': Components.AsWidgetHeader;
     'AsWidgetSelection': Components.AsWidgetSelection;
     'AsYAxis': Components.AsYAxis;
-    'AsBasicLegendLine': Components.AsBasicLegendLine;
+    'AsLegendColorCategoryLine': Components.AsLegendColorCategoryLine;
     'AsLegendColorCategoryPoint': Components.AsLegendColorCategoryPoint;
     'AsBasicLegendPolygon': Components.AsBasicLegendPolygon;
     'AsBasicLegend': Components.AsBasicLegend;
@@ -1339,7 +1339,7 @@ declare global {
     'as-widget-header': Components.AsWidgetHeaderAttributes;
     'as-widget-selection': Components.AsWidgetSelectionAttributes;
     'as-y-axis': Components.AsYAxisAttributes;
-    'as-basic-legend-line': Components.AsBasicLegendLineAttributes;
+    'as-legend-color-category-line': Components.AsLegendColorCategoryLineAttributes;
     'as-legend-color-category-point': Components.AsLegendColorCategoryPointAttributes;
     'as-basic-legend-polygon': Components.AsBasicLegendPolygonAttributes;
     'as-basic-legend': Components.AsBasicLegendAttributes;
@@ -1459,10 +1459,10 @@ declare global {
     new (): HTMLAsYAxisElement;
   };
 
-  interface HTMLAsBasicLegendLineElement extends Components.AsBasicLegendLine, HTMLStencilElement {}
-  var HTMLAsBasicLegendLineElement: {
-    prototype: HTMLAsBasicLegendLineElement;
-    new (): HTMLAsBasicLegendLineElement;
+  interface HTMLAsLegendColorCategoryLineElement extends Components.AsLegendColorCategoryLine, HTMLStencilElement {}
+  var HTMLAsLegendColorCategoryLineElement: {
+    prototype: HTMLAsLegendColorCategoryLineElement;
+    new (): HTMLAsLegendColorCategoryLineElement;
   };
 
   interface HTMLAsLegendColorCategoryPointElement extends Components.AsLegendColorCategoryPoint, HTMLStencilElement {}
@@ -1532,7 +1532,7 @@ declare global {
     'as-widget-header': HTMLAsWidgetHeaderElement
     'as-widget-selection': HTMLAsWidgetSelectionElement
     'as-y-axis': HTMLAsYAxisElement
-    'as-basic-legend-line': HTMLAsBasicLegendLineElement
+    'as-legend-color-category-line': HTMLAsLegendColorCategoryLineElement
     'as-legend-color-category-point': HTMLAsLegendColorCategoryPointElement
     'as-basic-legend-polygon': HTMLAsBasicLegendPolygonElement
     'as-basic-legend': HTMLAsBasicLegendElement
@@ -1562,7 +1562,7 @@ declare global {
     'as-widget-header': HTMLAsWidgetHeaderElement;
     'as-widget-selection': HTMLAsWidgetSelectionElement;
     'as-y-axis': HTMLAsYAxisElement;
-    'as-basic-legend-line': HTMLAsBasicLegendLineElement;
+    'as-legend-color-category-line': HTMLAsLegendColorCategoryLineElement;
     'as-legend-color-category-point': HTMLAsLegendColorCategoryPointElement;
     'as-basic-legend-polygon': HTMLAsBasicLegendPolygonElement;
     'as-basic-legend': HTMLAsBasicLegendElement;
