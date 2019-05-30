@@ -28,17 +28,19 @@ export class BasicLegend {
       <div class='as-legends--legends-slot'>
         <slot name='legends'></slot>
       </div>,
-      <div class='as-legends--source'>
+      <div>
         <slot name='source'></slot>
       </div>
     ];
   }
 
   private renderHeader() {
-    return <as-widget-header
-              header={this.heading}
-              subheader={this.description}
-            >
-            </as-widget-header>;
+    if (this.heading || this.description) {
+      return <as-widget-header
+                header={this.heading}
+                subheader={this.description}
+              >
+              </as-widget-header>;
+    }
   }
 }
