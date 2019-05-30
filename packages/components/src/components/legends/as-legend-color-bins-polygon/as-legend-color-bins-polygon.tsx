@@ -5,7 +5,7 @@ import { Component, Prop } from '@stencil/core';
   styleUrl: './as-legend-color-bins-polygon.scss',
   tag: 'as-legend-color-bins-polygon',
 })
-export class ColorStepsLegend {
+export class LegendColorBinsPolygon {
   @Prop() public data: GradientData[];
   @Prop() public orientation: 'horizontal' | 'vertical' = 'vertical';
 
