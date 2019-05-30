@@ -6,7 +6,7 @@ import { Component, Prop } from '@stencil/core';
   tag: 'as-legend-color-bins-polygon',
 })
 export class LegendColorBinsPolygon {
-  @Prop() public data: GradientData[];
+  @Prop() public data: LegendData[];
   @Prop() public orientation: 'horizontal' | 'vertical' = 'vertical';
 
   public render() {
@@ -29,14 +29,14 @@ export class LegendColorBinsPolygon {
     </div>;
   }
 
-  private renderStep(data: GradientData) {
+  private renderStep(data: LegendData) {
     return (
       <div class='as-legend-color-bins-polygon--step' style={{ background: data.color }}>
       </div>
     );
   }
 
-  private renderLabels(data: GradientData) {
+  private renderLabels(data: LegendData) {
     return (
       <div class='as-legend-color-bins-polygon--label'>
         <span>
