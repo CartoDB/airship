@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>Point size legend</title>
+    <title>Legend Size Bins Point</title>
 
     <script src="https://libs.cartocdn.com/carto-vl/v1.2/carto-vl.js"></script>
 
@@ -32,7 +32,7 @@
             <div id="map"></div>
             <div class="as-map-panels">
                 <div class="as-panel as-panel--top as-panel--left" id="legends">
-                  <as-legends
+                  <as-legend
                     id="legendsLocation"
                     heading="Population density"
                     description="Size is defined by inhabitants per square feet">
@@ -46,7 +46,7 @@
                       </as-legend-size-continuous-point>
                     </div>
                     <span slot="footer">Source: my own opinion</span>
-                  </as-legends>
+                  </as-legend>
                 </div>
             </div>
         </div>
@@ -55,23 +55,23 @@
   <script>
     legendHorizontal.data = legend.data = [{
       width: 10,
-      color: '#FF00FF',
-      strokeColor: '#00FFFF',
+      color: '#FFC667',
+      strokeColor: '#0000001',
       label: 'Label'
     },{
       width: 16,
-      color: '#FF0000',
-      strokeColor: '#00FF00',
+      color: '#FFC667',
+      strokeColor: '#0000001',
       label: 'Longer label'
     },{
       width: 22,
-      color: '#0000FF',
-      strokeColor: '#00FFFF',
+      color: '#FFC667',
+      strokeColor: '#0000001',
       label: 'Slightly longer label'
     },{
       width: 28,
-      color: '#00FFFF',
-      strokeColor: '#FFFFFF',
+      color: '#FFC667',
+      strokeColor: '#0000001',
       label: 'Longish label'
     }];
   </script>

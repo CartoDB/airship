@@ -23,50 +23,50 @@
 <body class="as-app-body">
   <div class="as-app">
     <main class="as-main">
-        <div class="as-map-area">
-            <div id="map"></div>
-            <div class="as-map-panels">
-                <div class="as-panel as-panel--top as-panel--left" id="legends">
-                  <as-legend
-                    id="legendsLocation"
-                    heading="Population density"
-                    description="Size is defined by inhabitants per square feet">
-                    <div slot="legends">
-                      <as-legend-size-bins-point
-                        id="legend">
-                      </as-legend-size-bins-point>
-                    </div>
-                    <span slot="footer">Source: my own opinion</span>
-                  </as-legend>
+      <div class="as-map-area">
+          <div id="map"></div>
+          <div class="as-map-panels">
+            <div class="as-panel as-panel--top as-panel--left" id="legends">
+              <as-legend
+                id="legendsLocation"
+                heading="Population density"
+                description="Size is defined by inhabitants per square feet">
+                <div slot="legends">
+                  <as-legend-size-bins
+                    id="legend">
+                  </as-legend-size-bins>
                 </div>
+                <span slot="footer">Source: my own opinion</span>
+              </as-legend>
             </div>
-        </div>
+          </div>
+      </div>
     </main>
   </div>
   <script>
     legend.data = [{
       type: 'point',
       width: 10,
-      color: '#FFC667',
-      strokeColor: '#0000001',
+      color: '#FF00FF',
+      strokeColor: '#00FFFF',
       label: 'Label'
     },{
       type: 'point',
       width: 16,
-      color: '#FFC667',
-      strokeColor: '#0000001',
+      color: '#FF0000',
+      strokeColor: '#00FF00',
       label: 'Longer label'
     },{
       type: 'point',
       width: 22,
-      color: '#FFC667',
-      strokeColor: '#0000001',
+      color: '#0000FF',
+      strokeColor: '#00FFFF',
       label: 'Slightly longer label'
     },{
       type: 'point',
       width: 28,
-      color: '#FFC667',
-      strokeColor: '#0000001',
+      color: '#00FFFF',
+      strokeColor: '#FFFFFF',
       label: 'Longish label'
     }];
   </script>

@@ -1,14 +1,15 @@
 import { Component, Prop } from '@stencil/core';
 
+const MARGIN_OFFSET = 2;
+
 @Component({
   shadow: false,
   styleUrl: './as-legend-size-bins-point.scss',
   tag: 'as-legend-size-bins-point',
 })
-export class BubbleLegend {
+export class LegendSizeBinsPoint {
   @Prop() public data: LegendData[];
   @Prop() public orientation: 'horizontal' | 'vertical' = 'vertical';
-  @Prop() public scale: number = 1;
 
   private maxSize: number;
 
@@ -18,30 +19,21 @@ export class BubbleLegend {
     }
 
     const classes = {
-      'as-legend-size-bins-point--wrapper': true,
+      'as-legend-size-bins-point--steps': true,
       [`as-legend-size-bins-point--${this.orientation}`]: true
     };
 
-    const sortedData = this.data.slice().sort(
+    this.maxSize = this.data.slice().sort(
       (first, second) => second.width - first.width
-    );
-
-    this.maxSize = sortedData[0].width * this.scale;
-
-    const size = {
-      height: `${this.maxSize}px`,
-      width: `${this.maxSize}px`
-    };
+    )[0].width;
 
     return <div class={classes}>
-      <span class='as-legend-size-bins-point--label'>{sortedData[sortedData.length - 1].label}</span>
-      <div style={size} class='as-legend-size-bins-point--steps'>{sortedData.map((data) => this.renderStep(data))}</div>
-      <span class='as-legend-size-bins-point--label'>{sortedData[0].label}</span>
+      {this.data.map((data) => this.renderStep(data))}
     </div>;
   }
 
   private renderStep(data: LegendData) {
-    const size = `${Math.round(data.width * this.scale)}px`;
+    const size = `${Math.round(data.width)}px`;
     const strokeStyle = `1px ${data.strokeStyle || 'solid'} ${data.strokeColor}`;
 
     const style: any = {
@@ -51,6 +43,21 @@ export class BubbleLegend {
       width: size,
     };
 
-    return <div class='as-legend-size-bins-point--circle' style={style}></div>;
+    const wrapperStyle: any = { };
+
+    if (this.orientation === 'horizontal') {
+      wrapperStyle.height = `${this.maxSize + MARGIN_OFFSET}px`;
+    } else if (this.orientation === 'vertical') {
+      wrapperStyle.width = `${this.maxSize + MARGIN_OFFSET}px`;
+    }
+
+    return (
+      <div class='as-legend-size-bins-point--step'>
+        <div style={wrapperStyle} class='as-legend-size-bins-point--circle-wrapper'>
+          <div class='as-legend-size-bins-point--circle' style={style}></div>
+        </div>
+        <span class='as-legend-size-bins-point--label'>{data.label}</span>
+      </div>
+    );
   }
 }

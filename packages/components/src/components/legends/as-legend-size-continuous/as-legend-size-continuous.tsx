@@ -9,6 +9,7 @@ import { Component, Prop } from '@stencil/core';
 export class LegendSizeContinuous {
   @Prop() public data: LegendData[];
   @Prop() public orientation: 'horizontal' | 'vertical' = 'vertical';
+  @Prop() public scale: number = 1;
 
   public render() {
     if (!this.data || this.data.length === 0) {
@@ -28,10 +29,12 @@ export class LegendSizeContinuous {
   private renderLegend(legend: LegendData) {
     switch (legend.type) {
       case 'point':
-        return <as-legend-size-continuous
+        return <as-legend-size-continuous-point
+          data={this.data}
+          scale={this.scale}
           orientation={this.orientation}
         >
-        </as-legend-size-continuous>;
+        </as-legend-size-continuous-point>;
       default:
         return null;
     }
