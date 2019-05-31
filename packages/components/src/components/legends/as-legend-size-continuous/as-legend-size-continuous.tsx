@@ -2,8 +2,8 @@ import { Component, Prop } from '@stencil/core';
 
 @Component({
   shadow: false,
-  styleUrl: './as-legend-size-bins.scss',
-  tag: 'as-legend-size-bins',
+  styleUrl: './as-legend-size-continuous.scss',
+  tag: 'as-legend-size-continuous',
 })
 
 export class LegendSizeContinuous {
@@ -15,17 +15,12 @@ export class LegendSizeContinuous {
       return null;
     }
 
-    const wrapper = {
-      'as-legend-size-bins--wrapper': true,
-      'as-legend-size-bins--wrapper-horizontal': this.orientation === 'horizontal'
-    };
-
-    return <div class={wrapper}>
+    return <div class='as-legend-size-continuous--wrapper'>
       {
         this.data
           .map((e) => this.renderLegend(e))
           .filter((e) => e !== null)
-          .map((e) => <div class='as-legend-size-bins--entry'>{e}</div>)
+          .map((e) => <div class='as-legend-size-continuous--entry'>{e}</div>)
       }
     </div>;
   }
@@ -33,10 +28,8 @@ export class LegendSizeContinuous {
   private renderLegend(legend: LegendData) {
     switch (legend.type) {
       case 'point':
-        return <as-legend-size-bins-point
-          orientation={this.orientation}
-        >
-        </as-legend-size-bins-point>;
+        return <as-legend-size-continuous>
+        </as-legend-size-continuous>;
       default:
         return null;
     }

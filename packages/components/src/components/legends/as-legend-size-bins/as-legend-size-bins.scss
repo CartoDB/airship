@@ -6,12 +6,8 @@ as-legend-size-bins {
 
   .as-legend-size-bins--wrapper {
     display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-  }
-
-  .as-legend-size-bins--wrapper-horizontal {
     flex-direction: row;
+    flex-wrap: wrap;
     align-items: center;
   }
 }

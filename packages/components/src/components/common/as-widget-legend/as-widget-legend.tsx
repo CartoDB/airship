@@ -18,16 +18,16 @@ export class WidgetLegend {
   /**
    * Data to be displayed by the legend
    *
-   * @type {LegendData}
-   * @memberof Legend
+   * @type {WidgetLegendData}
+   * @memberof WidgetLegend
    */
-  @Prop() public data: LegendData;
+  @Prop() public data: WidgetLegendData;
 
   public render() {
     return Object.keys(this.data).map((key) => {
-      return <div class='legend-item'>
-        <span class='legend-item__box' style={{ background: this.data[key] }}></span>
-        <span class='legend-item__label as-body'>{key}</span>
+      return <div class='widget-legend-item'>
+        <span class='widget-legend-item__box' style={{ background: this.data[key] }}></span>
+        <span class='widget-legend-item__label as-body'>{key}</span>
       </div>;
     });
   }

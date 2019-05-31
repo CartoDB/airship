@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>Point size legend</title>
+    <title>Size Bins Legend</title>
 
     <script src="https://libs.cartocdn.com/carto-vl/v1.2/carto-vl.js"></script>
 
@@ -18,11 +18,6 @@
     <link rel="stylesheet" href="packages/icons/dist/icons.css">
     <script src="packages/components/dist/airship.js"></script>
     <script src="/packages/bridge/dist/asbridge.js"></script>
-    <style>
-      as-legend-size-bins-point:first-of-type {
-        margin-bottom: 4px;
-      }
-    </style>
 </head>
 
 <body class="as-app-body">
@@ -49,22 +44,26 @@
     </main>
   </div>
   <script>
-    legendHorizontal.data = legend.data = [{
+    legend.data = [{
+      type: 'point',
       width: 10,
       color: '#FFC667',
       strokeColor: '#0000001',
       label: 'Label'
     },{
+      type: 'point',
       width: 16,
       color: '#FFC667',
       strokeColor: '#0000001',
       label: 'Longer label'
     },{
+      type: 'point',
       width: 22,
       color: '#FFC667',
       strokeColor: '#0000001',
       label: 'Slightly longer label'
     },{
+      type: 'point',
       width: 28,
       color: '#FFC667',
       strokeColor: '#0000001',

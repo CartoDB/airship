@@ -250,7 +250,7 @@ export class StackedBarWidget {
   private _renderLegend() {
     if (this.showLegend && this.colorMap) {
       const legendData = dataService.createLegendData(this.metadata, this.colorMap);
-      return <as-legend data={legendData}></as-legend>;
+      return <as-widget-legend data={legendData}></as-widget-legend>;
     }
   }
 

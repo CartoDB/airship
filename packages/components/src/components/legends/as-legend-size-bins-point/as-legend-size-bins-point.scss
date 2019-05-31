@@ -1,39 +1,49 @@
 @import '../../../../../styles/src/core/_dev';
 
-as-legend-size-bins-point {
-  --as-legend-size-bins-point--color: var(--as--color--type-01);
-  --as-legend-size-bins-point--shadow: rgba(0, 0, 0, 0.1);
+as-legend-size-continuous-point {
+  --as-legend-size-continuous-point--color: var(--as--color--type-01);
+  --as-legend-size-continuous-point--shadow: rgba(0, 0, 0, 0.1);
 
-  .as-legend-size-bins-point--steps {
+  .as-legend-size-continuous-point {
     display: flex;
-    position: relative;
-    align-items: center;
-    margin: get-spacing(2);
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-around;
   }
 
-  .as-legend-size-bins-point--wrapper {
+  .as-legend-size-continuous-point--step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 get-spacing(1);
+  }
+
+  .as-legend-size-continuous-point--step:first-of-type {
+    margin-left: 0;
+  }
+
+  .as-legend-size-continuous-point--step:last-of-type {
+    margin-right: 0;
+  }
+
+  .as-legend-size-continuous-point--label {
     display: flex;
     align-items: center;
-  }
-
-  .as-legend-size-bins-point--circle {
-    position: absolute;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 50%;
-    box-shadow: -1px 0 2px 0 var(--as-legend-size-bins-point--shadow);
-  }
-
-  .as-legend-size-bins-point--label {
-    color: var(--as-legend-size-bins-point--color);
+    margin-top: get-spacing(2);
+    color: var(--as-legend-size-continuous-point--color);
     font: var(--as--font--caption);
     text-transform: capitalize;
     white-space: nowrap;
   }
 
-  .as-legend-size-bins-point--vertical {
-    .as-legend-size-bins-point--steps,
-    &.as-legend-size-bins-point--wrapper {
-      flex-direction: column-reverse;
-    }
+  .as-legend-size-continuous-point--circle-wrapper {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  .as-legend-size-continuous-point--circle {
+    border-radius: 50%;
+    box-shadow: -1px 0 2px 0 var(--as-legend-size-continuous-point--shadow);
   }
 }
