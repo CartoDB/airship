@@ -28,7 +28,9 @@ export class LegendSizeContinuous {
   private renderLegend(legend: LegendData) {
     switch (legend.type) {
       case 'point':
-        return <as-legend-size-continuous>
+        return <as-legend-size-continuous
+          orientation={this.orientation}
+        >
         </as-legend-size-continuous>;
       default:
         return null;

@@ -1,14 +1,13 @@
 import { Component, Prop } from '@stencil/core';
 
-const MARGIN_OFFSET = 2;
-
 @Component({
   shadow: false,
   styleUrl: './as-legend-size-bins-point.scss',
   tag: 'as-legend-size-bins-point',
 })
-export class LegendSizeBinsPoint {
+export class BubbleLegend {
   @Prop() public data: LegendData[];
+  @Prop() public orientation: 'horizontal' | 'vertical' = 'vertical';
   @Prop() public scale: number = 1;
 
   private maxSize: number;
@@ -18,17 +17,31 @@ export class LegendSizeBinsPoint {
       return null;
     }
 
-    this.maxSize = this.data.slice().sort(
-      (first, second) => second.width - first.width
-    )[0].width;
+    const classes = {
+      'as-legend-size-bins-point--wrapper': true,
+      [`as-legend-size-bins-point--${this.orientation}`]: true
+    };
 
-    return <div class='as-legend-size-bins-point'>
-      {this.data.map((data) => this.renderStep(data))}
+    const sortedData = this.data.slice().sort(
+      (first, second) => second.width - first.width
+    );
+
+    this.maxSize = sortedData[0].width * this.scale;
+
+    const size = {
+      height: `${this.maxSize}px`,
+      width: `${this.maxSize}px`
+    };
+
+    return <div class={classes}>
+      <span class='as-legend-size-bins-point--label'>{sortedData[sortedData.length - 1].label}</span>
+      <div style={size} class='as-legend-size-bins-point--steps'>{sortedData.map((data) => this.renderStep(data))}</div>
+      <span class='as-legend-size-bins-point--label'>{sortedData[0].label}</span>
     </div>;
   }
 
   private renderStep(data: LegendData) {
-    const size = `${Math.round(data.width)}px`;
+    const size = `${Math.round(data.width * this.scale)}px`;
     const strokeStyle = `1px ${data.strokeStyle || 'solid'} ${data.strokeColor}`;
 
     const style: any = {
@@ -38,16 +51,6 @@ export class LegendSizeBinsPoint {
       width: size,
     };
 
-    const wrapperStyle: any = { };
-    wrapperStyle.height = `${this.maxSize + MARGIN_OFFSET}px`;
-
-    return (
-      <div class='as-legend-size-bins-point--step'>
-        <div style={wrapperStyle} class='as-legend-size-bins-point--circle-wrapper'>
-          <div class='as-legend-size-bins-point--circle' style={style}></div>
-        </div>
-        <span class='as-legend-size-bins-point--label'>{data.label}</span>
-      </div>
-    );
+    return <div class='as-legend-size-bins-point--circle' style={style}></div>;
   }
 }

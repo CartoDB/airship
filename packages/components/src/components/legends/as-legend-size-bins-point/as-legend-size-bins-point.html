@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>Point size legend</title>
+    <title>Legend Size Bins Point</title>
 
     <script src="https://libs.cartocdn.com/carto-vl/v1.2/carto-vl.js"></script>
 
@@ -32,17 +32,21 @@
             <div id="map"></div>
             <div class="as-map-panels">
                 <div class="as-panel as-panel--top as-panel--left" id="legends">
-                  <as-legend
+                  <as-legends
                     id="legendsLocation"
                     heading="Population density"
                     description="Size is defined by inhabitants per square feet">
                     <div slot="legends">
                       <as-legend-size-bins-point
+                        orientation="horizontal"
+                        id="legendHorizontal">
+                      </as-legend-size-bins-point>
+                      <as-legend-size-bins-point
                         id="legend">
                       </as-legend-size-bins-point>
                     </div>
                     <span slot="footer">Source: my own opinion</span>
-                  </as-legend>
+                  </as-legends>
                 </div>
             </div>
         </div>

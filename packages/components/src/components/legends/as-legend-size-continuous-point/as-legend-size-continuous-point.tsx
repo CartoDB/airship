@@ -7,7 +7,7 @@ const MARGIN_OFFSET = 2;
   styleUrl: './as-legend-size-continuous-point.scss',
   tag: 'as-legend-size-continuous-point',
 })
-export class LegendSizeContinuousPoint {
+export class PointSizeLegend {
   @Prop() public data: LegendData[];
   @Prop() public orientation: 'horizontal' | 'vertical' = 'vertical';
 
