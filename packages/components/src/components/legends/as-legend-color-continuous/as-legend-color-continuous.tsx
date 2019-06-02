@@ -22,6 +22,18 @@ export class LegendColorCategory {
       'as-legend-color-continuous--wrapper-horizontal': this.orientation === 'horizontal'
     };
 
+    if (this.data[0].type === 'polygon') {
+      return <div style={this.getStyle()} class={wrapper}>
+        <div class='as-legend-color-continuous--entry'>
+          <as-legend-color-continuous-polygon
+            data={this.data}
+            orientation={this.orientation}
+          >
+        </as-legend-color-continuous-polygon>
+        </div>
+      </div>;
+    }
+
     return <div style={this.getStyle()} class={wrapper}>
       {
         this.data
@@ -52,12 +64,6 @@ export class LegendColorCategory {
           strokeStyle={legend.strokeStyle}
           >
         </as-legend-color-continuous-line>;
-      case 'polygon':
-        return <as-legend-color-continuous-polygon
-          data={this.data}
-          orientation={this.orientation}
-        >
-        </as-legend-color-continuous-polygon>;
       default:
         return null;
     }
