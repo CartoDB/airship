@@ -16,17 +16,16 @@ export class LegendSizeBins {
     }
 
     return <div class='as-legend-size-bins--wrapper'>
-      {
-        this.data
-          .map((e) => this.renderLegend(e))
-          .filter((e) => e !== null)
-          .map((e) => <div class='as-legend-size-bins--entry'>{e}</div>)
-      }
+      <div class='as-legend-size-bins--entry'>
+        {
+          this.renderLegend(this.data)
+        }
+      </div>
     </div>;
   }
 
-  private renderLegend(legend: LegendData) {
-    switch (legend.type) {
+  private renderLegend(data: LegendData[]) {
+    switch (data[0].type) {
       case 'point':
         return <as-legend-size-bins-point
           data={this.data}

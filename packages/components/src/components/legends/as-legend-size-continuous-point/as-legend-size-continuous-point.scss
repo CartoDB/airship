@@ -18,9 +18,9 @@ as-legend-size-continuous-point {
 
   .as-legend-size-continuous-point--circle {
     position: absolute;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    border: 2px solid var(--as-legend-size-continuous-point--shadow);
     border-radius: 50%;
-    box-shadow: -1px 0 2px 0 var(--as-legend-size-continuous-point--shadow);
+    box-shadow: 0 0 2px 0 var(--as-legend-size-continuous-point--shadow);
   }
 
   .as-legend-size-continuous-point--label {

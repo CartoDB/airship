@@ -17,21 +17,19 @@ export class LegendSizeContinuous {
     }
 
     return <div class='as-legend-size-continuous--wrapper'>
-      {
-        this.data
-          .map((e) => this.renderLegend(e))
-          .filter((e) => e !== null)
-          .map((e) => <div class='as-legend-size-continuous--entry'>{e}</div>)
-      }
+      <div class='as-legend-size-continuous--entry'>
+        {
+          this.renderLegend(this.data)
+        }
+      </div>
     </div>;
   }
 
-  private renderLegend(legend: LegendData) {
-    switch (legend.type) {
+  private renderLegend(data: LegendData[]) {
+    switch (data[0].type) {
       case 'point':
         return <as-legend-size-continuous-point
           data={this.data}
-          scale={this.scale}
           orientation={this.orientation}
         >
         </as-legend-size-continuous-point>;
