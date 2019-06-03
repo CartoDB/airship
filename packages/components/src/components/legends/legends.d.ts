@@ -8,7 +8,8 @@ interface LegendData {
   label: string;
   width: number;
 }
-interface GradientData {
+interface GradientData extends LegendData {
+  type: 'polygon';
   color?: string;
   label: string;
 }

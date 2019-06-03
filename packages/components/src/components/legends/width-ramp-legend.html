@@ -24,11 +24,11 @@
         flex-direction: column;
       }
 
-      #legends as-legends {
+      #legends as-legend {
         width: 100%;
       }
 
-      #legends as-legends:not(:first-child) {
+      #legends as-legend:not(:first-child) {
         margin-top: 4px;
       }
     </style>
@@ -42,23 +42,23 @@
                   <div id="map"></div>
                   <div class="as-map-panels">
                       <div class="as-panel as-panel--top as-panel--left" id="legends">
-                        <as-legends
+                        <as-legend
                           id="legendsLocation">
                           <div slot="legends">
-                            <as-bubble-legend
+                            <as-legend-size-continuous-point
                               scale="3"
                               id="bubbleLegend">
-                            </as-bubble-legend>
-                            <as-point-size-legend
+                            </as-legend-size-continuous-point>
+                            <as-legend-size-bins-point
                               id="legend">
-                            </as-point-size-legend>
+                            </as-legend-size-bins-point>
                           </div>
                           <span slot="footer">
                             My <a href="https://media.tenor.com/images/69cd472756085b8a4c891d8898013cab/tenor.gif" target="_blank">
                               imagination
                             </a>
                           </span>
-                        </as-legends>
+                        </as-legend>
                       </div>
                   </div>
               </div>
@@ -123,10 +123,10 @@
 
     legendsLocation.style.visibility = 'hidden';
 
-    AsBridge.VL.Legends.rampLegend('#legend', 
+    AsBridge.VL.Legends.rampLegend('#legend',
       datasets[0].data.layer,
       'width',
-      { 
+      {
         dynamic: true,
         // format: (e) => `${e.toFixed(2)}º`,
         // maxSteps: 3,
@@ -134,10 +134,10 @@
       }
     );
 
-    AsBridge.VL.Legends.rampLegend('#bubbleLegend', 
+    AsBridge.VL.Legends.rampLegend('#bubbleLegend',
       datasets[0].data.layer,
       'width',
-      { 
+      {
         dynamic: true,
         // format: (e) => `${e.toFixed(2)}º`,
         // maxSteps: 4,

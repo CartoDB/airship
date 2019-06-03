@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <base href="/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Legend Size Bins Point</title>
+
+    <script src="https://libs.cartocdn.com/carto-vl/v1.2/carto-vl.js"></script>
+
+    <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.css" rel="stylesheet" />
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.js"></script>
+    <link rel="stylesheet" href="packages/styles/dist/airship.css">
+    <link rel="stylesheet" href="packages/icons/dist/icons.css">
+    <script src="packages/components/dist/airship.js"></script>
+    <script src="/packages/bridge/dist/asbridge.js"></script>
+    <style>
+      as-legend-size-continuous-point:first-of-type {
+        margin-bottom: 4px;
+      }
+    </style>
+</head>
+
+<body class="as-app-body">
+  <div class="as-app">
+    <main class="as-main">
+        <div class="as-map-area">
+            <div id="map"></div>
+            <div class="as-map-panels">
+                <div class="as-panel as-panel--top as-panel--left" id="legends">
+                  <as-legend
+                    id="legendsLocation"
+                    heading="Population density"
+                    description="Size is defined by inhabitants per square feet">
+                    <div slot="legends">
+                      <as-legend-size-continuous-point
+                        orientation="horizontal"
+                        id="legendHorizontal">
+                      </as-legend-size-continuous-point>
+                      <as-legend-size-continuous-point
+                        id="legend">
+                      </as-legend-size-continuous-point>
+                    </div>
+                    <span slot="footer">Source: my own opinion</span>
+                  </as-legend>
+                </div>
+            </div>
+        </div>
+    </main>
+  </div>
+  <script>
+    legendHorizontal.data = legend.data = [{
+      width: 10,
+      color: '#FFC667',
+      strokeColor: '#0000001',
+      label: 'Label'
+    },{
+      width: 16,
+      color: '#FFC667',
+      strokeColor: '#0000001',
+      label: 'Longer label'
+    },{
+      width: 22,
+      color: '#FFC667',
+      strokeColor: '#0000001',
+      label: 'Slightly longer label'
+    },{
+      width: 28,
+      color: '#FFC667',
+      strokeColor: '#0000001',
+      label: 'Longish label'
+    }];
+  </script>
+</body>
+
+</html>

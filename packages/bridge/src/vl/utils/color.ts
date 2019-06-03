@@ -12,6 +12,17 @@ export function rgbToHex(color: RGBColor) {
 }
 
 /**
+ * Converts VL RGB Colors to string color
+ *
+ * @export
+ * @param {RGBColor} color
+ * @returns string
+ */
+export function rgbaToString(color: RGBColor) {
+  return `rgba(${color.r},${color.g},${color.b},${color.a})`;
+}
+
+/**
  * Converts colors to hex strings. If input is a string is assumed to be a valid HEX string.
  *
  * @export

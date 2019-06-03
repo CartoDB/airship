@@ -1,5 +1,5 @@
 import { select } from '../../util/Utils';
-import { rgbToHex } from '../utils/color';
+import { rgbaToString, rgbToHex } from '../utils/color';
 import { waitUntilLoaded } from '../utils/layers';
 
 const FALLBACK_WIDTH = 16;
@@ -15,11 +15,11 @@ function _getColorValue(viz, propName) {
   const prop = viz[propName];
 
   if (prop.expressionName === 'ramp' || prop.expressionName === 'opacity') {
-    return rgbToHex(_getLegendData(prop));
+    return rgbaToString(_getLegendData(prop));
   }
 
-  if (prop.color) {
-    return rgbToHex(prop.value);
+  if (propName === 'color' || propName === 'strokeColor') {
+    return rgbaToString(prop.value);
   }
 
   return FALLBACK_COLOR;

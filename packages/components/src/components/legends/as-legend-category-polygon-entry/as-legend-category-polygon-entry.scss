@@ -1,0 +1,15 @@
+
+@import '../../../../../styles/src/core/_dev';
+
+as-legend-category-polygon-entry {
+  .as-legend-category-polygon-entry--wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  .as-legend-category-polygon-entry--box {
+    width: get-spacing(4);
+    height: get-spacing(3);
+    margin: auto;
+  }
+}

@@ -28,13 +28,13 @@
                   <div id="map"></div>
                   <div class="as-map-panels">
                       <div class="as-panel as-panel--top as-panel--left">
-                          <as-legends
+                          <as-legend
                             id="legends"
                             heading="Legend title"
                             description="Legend description">
-                            <as-basic-legend id="legend" slot="legends">
-                            </as-basic-legend>
-                          </as-legends>
+                            <as-legend-color-category id="legend" slot="legends">
+                            </as-legend-color-category>
+                          </as-legend>
                       </div>
                   </div>
               </div>
@@ -118,13 +118,13 @@
 
     legends.style.visibility = 'hidden';
 
-    AsBridge.VL.Legends.layersLegend(legend, 
+    AsBridge.VL.Legends.layersLegend(legend,
       datasets
         .reverse()
         .map(
           e => ({ layer: e.data.layer, props: e.props })
         ),
-      { 
+      {
         dynamic: true,
         onLoad: () => {
           legends.style.visibility = 'visible';

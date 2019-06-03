@@ -1,0 +1,177 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <base href="/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Color Bins Legend</title>
+
+    <script src="https://libs.cartocdn.com/carto-vl/v1.2/carto-vl.js"></script>
+
+    <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.css" rel="stylesheet" />
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.js"></script>
+    <link rel="stylesheet" href="packages/styles/dist/airship.css">
+    <link rel="stylesheet" href="packages/icons/dist/icons.css">
+    <script src="packages/components/dist/airship.js"></script>
+    <script src="/packages/bridge/dist/asbridge.js"></script>
+</head>
+
+<body class="as-app-body">
+  <div class="as-app">
+    <main class="as-main">
+        <div class="as-map-area">
+            <div id="map"></div>
+            <div class="as-map-panels">
+                <div class="as-panel as-panel--top as-panel--left" id="legends">
+
+                  <!-- Point -->
+                  <as-legend
+                    id="legendsLocation"
+                    heading="Location"
+                    description="Color intensity is defined by location">
+                    <div slot="legends">
+                      <as-legend-color-bins
+                        orientation="horizontal"
+                        id="legendPointHorizontal">
+                      </as-legend-color-bins>
+                      <as-legend-color-bins
+                        id="legendPoint">
+                      </as-legend-color-bins>
+                    </div>
+                  </as-legend>
+
+                  <!-- Line -->
+                  <as-legend
+                    id="legendsLocation"
+                    heading="Location"
+                    description="Color intensity is defined by location">
+                    <div slot="legends">
+                      <as-legend-color-bins
+                        orientation="horizontal"
+                        id="legendLineHorizontal">
+                      </as-legend-color-bins>
+                      <as-legend-color-bins
+                        id="legendLine">
+                      </as-legend-color-bins>
+                    </div>
+                  </as-legend>
+
+                  <!-- Polygon -->
+                  <as-legend
+                    id="legendsLocation"
+                    heading="Location"
+                    description="Color intensity is defined by location">
+                    <div slot="legends">
+                      <as-legend-color-bins
+                        orientation="horizontal"
+                        id="legendPolygonHorizontal">
+                      </as-legend-color-bins>
+                      <as-legend-color-bins
+                        id="legendPolygon">
+                      </as-legend-color-bins>
+                    </div>
+                  </as-legend>
+
+                  <!-- Specific -->
+                  <as-legend
+                    id="legendsLocation"
+                    heading="Specific "
+                    description="Color intensity is defined by location">
+                    <div slot="legends">
+                      <as-legend-color-bins-point
+                        id="legendSpecPoint">
+                      </as-legend-color-bins-point>
+                      <as-legend-color-bins-line
+                        id="legendSpecLine">
+                      </as-legend-color-bins-line>
+                      <as-legend-color-bins-polygon
+                        id="legendSpecPolygon">
+                      </as-legend-color-bins-polygon>
+                    </div>
+                  </as-legend>
+                </div>
+            </div>
+        </div>
+    </main>
+  </div>
+  <script>
+    // Point
+    legendPointHorizontal.data = legendPoint.data = legendSpecPoint.data = [{
+      type: 'point',
+      width: 10,
+      color: '#FF00FF',
+      strokeColor: '#00FFFF',
+      label: 'Label'
+    },{
+      type: 'point',
+      width: 16,
+      color: '#FF0000',
+      strokeColor: '#00FF00',
+      label: 'Longer label'
+    },{
+      type: 'point',
+      width: 22,
+      color: '#0000FF',
+      strokeColor: '#00FFFF',
+      label: 'Slightly longer label'
+    },{
+      type: 'point',
+      width: 28,
+      color: '#00FFFF',
+      strokeColor: '#FFFFFF',
+      label: 'Longish label'
+    }];
+
+    // Line
+    legendLineHorizontal.data = legendLine.data = legendSpecLine.data = [{
+      type: 'line',
+      width: 10,
+      color: '#FF00FF',
+      strokeColor: '#00FFFF',
+      label: 'Label'
+    },{
+      type: 'line',
+      width: 16,
+      color: '#FF0000',
+      strokeColor: '#00FF00',
+      label: 'Longer label'
+    },{
+      type: 'line',
+      width: 22,
+      color: '#0000FF',
+      strokeColor: '#00FFFF',
+      label: 'Slightly longer label'
+    },{
+      type: 'line',
+      width: 28,
+      color: '#00FFFF',
+      strokeColor: '#FFFFFF',
+      label: 'Longish label'
+    }];
+
+    // Polygon
+    legendPolygonHorizontal.data = legendPolygon.data = legendSpecPolygon.data = [{
+      type: 'polygon',
+      color: '#FF00FF',
+      label: '#FF00FF'
+    },{
+      type: 'polygon',
+      color: '#FF0000',
+      label: '#FF0000'
+    },{
+      type: 'polygon',
+      color: '#0000FF',
+      label: '#0000FF'
+    },{
+      type: 'polygon',
+      color: '#00FFFF',
+      label: '#00FFFF'
+    }]
+  </script>
+</body>
+
+</html>

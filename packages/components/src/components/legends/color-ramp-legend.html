@@ -24,11 +24,11 @@
         flex-direction: column;
       }
 
-      #legends as-legends {
+      #legends as-legend {
         width: 100%;
       }
 
-      #legends as-legends:not(:first-child) {
+      #legends as-legend:not(:first-child) {
         margin-top: 4px;
       }
     </style>
@@ -42,29 +42,29 @@
                   <div id="map"></div>
                   <div class="as-map-panels">
                       <div class="as-panel as-panel--top as-panel--left" id="legends">
-                        <as-legends
+                        <as-legend
                           id="legendsWorld"
                           heading="World borders"
                           description="Color intensity is defined by area">
-                          <as-color-gradient-legend id="borders" slot="legends">
-                          </as-color-gradient-legend>
-                        </as-legends>
-                        <as-legends
+                          <as-legend-color-continuous-polygon id="borders" slot="legends">
+                          </as-legend-color-continuous-polygon>
+                        </as-legend>
+                        <as-legend
                           id="legendsLocation"
                           heading="Location"
                           description="Color intensity is defined by location">
-                          <as-color-steps-legend
+                          <as-legend-color-bins-polygon
                             slot="legends"
                             id="legend">
-                          </as-color-steps-legend>
-                        </as-legends>
-                        <as-legends
+                          </as-legend-color-bins-polygon>
+                        </as-legend>
+                        <as-legend
                           id="legendsRivers"
                           heading="Rivers"
                           description="Color intensity is defined by river length">
-                          <as-basic-legend id="rivers" slot="legends">
-                          </as-basic-legend>
-                        </as-legends>
+                          <as-legend-color-category id="rivers" slot="legends">
+                          </as-legend-color-category>
+                        </as-legend>
                       </div>
                   </div>
               </div>
@@ -143,26 +143,26 @@
     legendsRivers.style.visibility = 'hidden';
     legendsWorld.style.visibility = 'hidden';
 
-    AsBridge.VL.Legends.rampLegend('#legend', 
+    AsBridge.VL.Legends.rampLegend('#legend',
       datasets[0].data.layer,
       'color',
-      { 
+      {
         dynamic: true,
         onLoad: () => { legendsLocation.style.visibility = 'visible'; }
       }
     );
 
-    AsBridge.VL.Legends.rampLegend('#rivers', 
+    AsBridge.VL.Legends.rampLegend('#rivers',
       datasets[1].data.layer,
       'color',
-      { 
+      {
         dynamic: true,
         format: (meters) => `${Math.floor(meters / 1000)} km`,
         onLoad: () => { legendsRivers.style.visibility = 'visible'; }
       }
     );
 
-    AsBridge.VL.Legends.rampLegend('#borders', 
+    AsBridge.VL.Legends.rampLegend('#borders',
       {
         layer: datasets[2].data.layer,
         props: {},
@@ -172,7 +172,7 @@
         // props: [{ label: 'Tiny' }, { label: 'Smallish' }, { label: 'Pretty big' }, { label: 'Huge'}, { label: 'Humongous'}]
       },
       'color',
-      { 
+      {
         dynamic: true,
         format: (data) => data[1],
         onLoad: () => { legendsWorld.style.visibility = 'visible'; }
