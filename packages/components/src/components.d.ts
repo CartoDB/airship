@@ -1326,32 +1326,24 @@ export namespace Components {
   }
 
   interface AsLegendColorContinuousLine {
-    'color': string;
-    'label': string;
-    'strokeStyle': string;
+    'data': LegendData[];
+    'orientation': 'horizontal' | 'vertical';
     'width': number;
   }
   interface AsLegendColorContinuousLineAttributes extends StencilHTMLAttributes {
-    'color'?: string;
-    'label'?: string;
-    'strokeStyle'?: string;
+    'data'?: LegendData[];
+    'orientation'?: 'horizontal' | 'vertical';
     'width'?: number;
   }
 
   interface AsLegendColorContinuousPoint {
-    'color': string;
-    'label': string;
-    'marker': string;
-    'strokeColor': string;
-    'strokeStyle': string;
+    'data': LegendData[];
+    'orientation': 'horizontal' | 'vertical';
     'width': number;
   }
   interface AsLegendColorContinuousPointAttributes extends StencilHTMLAttributes {
-    'color'?: string;
-    'label'?: string;
-    'marker'?: string;
-    'strokeColor'?: string;
-    'strokeStyle'?: string;
+    'data'?: LegendData[];
+    'orientation'?: 'horizontal' | 'vertical';
     'width'?: number;
   }
 
