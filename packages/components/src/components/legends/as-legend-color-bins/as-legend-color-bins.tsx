@@ -2,7 +2,6 @@ import { Component, Prop } from '@stencil/core';
 
 @Component({
   shadow: false,
-  styleUrl: './as-legend-color-bins.scss',
   tag: 'as-legend-color-bins',
 })
 export class LegendColorBins {
