@@ -1,6 +1,6 @@
 {
   "name": "@carto/airship-bridge",
-  "version": "2.0.5",
+  "version": "2.1.0-rc.0",
   "description": "Airship bridge to other libs (CARTO VL, CARTO.js)",
   "main": "dist/index.js",
   "scripts": {
