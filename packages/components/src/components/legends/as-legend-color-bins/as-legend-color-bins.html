@@ -75,6 +75,24 @@
                       </as-legend-color-bins>
                     </div>
                   </as-legend>
+
+                  <!-- Specific -->
+                  <as-legend
+                    id="legendsLocation"
+                    heading="Specific "
+                    description="Color intensity is defined by location">
+                    <div slot="legends">
+                      <as-legend-color-bins-point
+                        id="legendSpecPoint">
+                      </as-legend-color-bins-point>
+                      <as-legend-color-bins-line
+                        id="legendSpecLine">
+                      </as-legend-color-bins-line>
+                      <as-legend-color-bins-polygon
+                        id="legendSpecPolygon">
+                      </as-legend-color-bins-polygon>
+                    </div>
+                  </as-legend>
                 </div>
             </div>
         </div>
@@ -82,7 +100,7 @@
   </div>
   <script>
     // Point
-    legendPointHorizontal.data = legendPoint.data = [{
+    legendPointHorizontal.data = legendPoint.data = legendSpecPoint.data = [{
       type: 'point',
       width: 10,
       color: '#FF00FF',
@@ -109,7 +127,7 @@
     }];
 
     // Line
-    legendLineHorizontal.data = legendLine.data = [{
+    legendLineHorizontal.data = legendLine.data = legendSpecLine.data = [{
       type: 'line',
       width: 10,
       color: '#FF00FF',
@@ -136,7 +154,7 @@
     }];
 
     // Polygon
-    legendPolygonHorizontal.data = legendPolygon.data = [{
+    legendPolygonHorizontal.data = legendPolygon.data = legendSpecPolygon.data = [{
       type: 'polygon',
       color: '#FF00FF',
       label: '#FF00FF'

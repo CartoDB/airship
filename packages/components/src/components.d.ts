@@ -1240,32 +1240,24 @@ export namespace Components {
   }
 
   interface AsLegendColorBinsLine {
-    'color': string;
-    'label': string;
-    'strokeStyle': string;
+    'data': LegendData[];
+    'orientation': 'horizontal' | 'vertical';
     'width': number;
   }
   interface AsLegendColorBinsLineAttributes extends StencilHTMLAttributes {
-    'color'?: string;
-    'label'?: string;
-    'strokeStyle'?: string;
+    'data'?: LegendData[];
+    'orientation'?: 'horizontal' | 'vertical';
     'width'?: number;
   }
 
   interface AsLegendColorBinsPoint {
-    'color': string;
-    'label': string;
-    'marker': string;
-    'strokeColor': string;
-    'strokeStyle': string;
+    'data': LegendData[];
+    'orientation': 'horizontal' | 'vertical';
     'width': number;
   }
   interface AsLegendColorBinsPointAttributes extends StencilHTMLAttributes {
-    'color'?: string;
-    'label'?: string;
-    'marker'?: string;
-    'strokeColor'?: string;
-    'strokeStyle'?: string;
+    'data'?: LegendData[];
+    'orientation'?: 'horizontal' | 'vertical';
     'width'?: number;
   }
 

@@ -1,43 +1,20 @@
-import { Component, Prop, State, Watch } from '@stencil/core';
+import { Component, Prop } from '@stencil/core';
 
 @Component({
   shadow: false,
-  styleUrl: './as-legend-color-bins-line.scss',
-  tag: 'as-legend-color-bins-line',
+  tag: 'as-legend-color-bins-line'
 })
-export class LegendColorCategoryLine {
-  @Prop() public label: string;
-  @Prop() public color: string;
-  @Prop() public strokeStyle: string = 'solid';
-  @Prop() public width: number = 1.5;
-
-  @State() private _width: number;
-
-  public componentWillLoad() {
-    this._widthChanged(this.width);
-  }
+export class LegendColorBinsLine {
+  @Prop() public data: LegendData[];
+  @Prop() public orientation: 'horizontal' | 'vertical';
+  @Prop() public width: number;
 
   public render() {
-    return (
-      <div class='as-legend-color-bins-line--wrapper'>
-        <div class='as-legend-color-bins--figure--wrapper'>
-          <div class='as-legend-color-bins-line--line' style={this.getStyle()}></div>
-        </div>
-        <span class='as-legend-color-bins--label'>{this.label}</span>
-      </div>
-    );
-  }
+    // TODO: check if all values are type: line?
 
-  @Watch('width')
-  public _widthChanged(newValue: number) {
-    this._width = Math.min(16, newValue);
-  }
-
-  private getStyle() {
-    return {
-      borderTopColor: this.color,
-      borderTopStyle: this.strokeStyle,
-      borderTopWidth: `${this._width}`
-    };
+    return (<as-legend-category
+      data={this.data}
+      orientation={this.orientation}
+      width={this.width}></as-legend-category>);
   }
 }
