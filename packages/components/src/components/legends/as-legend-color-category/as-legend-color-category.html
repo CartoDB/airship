@@ -75,6 +75,18 @@
                       </as-legend-color-category>
                     </div>
                   </as-legend>
+
+                  <as-legend>
+                    <as-legend-color-category-point
+                      id="legendSpecPoint">
+                    </as-legend-color-category-point>
+                    <as-legend-color-category-line
+                      id="legendSpecLine">
+                    </as-legend-color-category-line>
+                    <as-legend-color-category-polygon
+                      id="legendSpecPolygon">
+                    </as-legend-color-category-polygon>
+                  </as-legend>
                 </div>
             </div>
         </div>
@@ -82,7 +94,7 @@
   </div>
   <script>
     // Point
-    legendPointHorizontal.data = legendPoint.data = [{
+    legendPointHorizontal.data = legendPoint.data = legendSpecPoint.data = [{
       type: 'point',
       width: 10,
       color: '#FF00FF',
@@ -109,7 +121,7 @@
     }];
 
     // Line
-    legendLineHorizontal.data = legendLine.data = [{
+    legendLineHorizontal.data = legendLine.data = legendSpecLine.data = [{
       type: 'line',
       width: 10,
       color: '#FF00FF',
@@ -136,7 +148,7 @@
     }];
 
     // Polygon
-    legendPolygonHorizontal.data = legendPolygon.data = [{
+    legendPolygonHorizontal.data = legendPolygon.data = legendSpecPolygon.data = [{
       type: 'polygon',
       color: '#FF00FF',
       label: '#FF00FF'
@@ -152,7 +164,9 @@
       type: 'polygon',
       color: '#00FFFF',
       label: '#00FFFF'
-    }]
+    }];
+
+
   </script>
 </body>
 

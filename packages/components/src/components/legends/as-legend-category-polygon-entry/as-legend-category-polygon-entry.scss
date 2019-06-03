@@ -1,12 +1,13 @@
+
 @import '../../../../../styles/src/core/_dev';
 
-as-legend-color-category-polygon {
-  .as-legend-color-category-polygon--wrapper {
+as-legend-category-polygon-entry {
+  .as-legend-category-polygon-entry--wrapper {
     display: flex;
     align-items: center;
   }
 
-  .as-legend-color-category-polygon--box {
+  .as-legend-category-polygon-entry--box {
     width: get-spacing(4);
     height: get-spacing(3);
     margin: auto;

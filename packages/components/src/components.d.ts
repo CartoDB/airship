@@ -288,7 +288,7 @@ export namespace Components {
     /**
     * Returns the current selection
     */
-    'getSelection': () => Promise<number[] | string[]>;
+    'getSelection': () => Promise<string[] | number[]>;
     /**
     * Title of the widget to be displayed
     */
@@ -1185,6 +1185,60 @@ export namespace Components {
     'to'?: number;
   }
 
+  interface AsLegendCategoryLineEntry {
+    'color': string;
+    'label': string;
+    'strokeStyle': string;
+    'width': number;
+  }
+  interface AsLegendCategoryLineEntryAttributes extends StencilHTMLAttributes {
+    'color'?: string;
+    'label'?: string;
+    'strokeStyle'?: string;
+    'width'?: number;
+  }
+
+  interface AsLegendCategoryPointEntry {
+    'color': string;
+    'label': string;
+    'marker': string;
+    'strokeColor': string;
+    'strokeStyle': string;
+    'width': number;
+  }
+  interface AsLegendCategoryPointEntryAttributes extends StencilHTMLAttributes {
+    'color'?: string;
+    'label'?: string;
+    'marker'?: string;
+    'strokeColor'?: string;
+    'strokeStyle'?: string;
+    'width'?: number;
+  }
+
+  interface AsLegendCategoryPolygonEntry {
+    'color': string;
+    'label': string;
+    'strokeColor': string;
+    'strokeStyle': string;
+  }
+  interface AsLegendCategoryPolygonEntryAttributes extends StencilHTMLAttributes {
+    'color'?: string;
+    'label'?: string;
+    'strokeColor'?: string;
+    'strokeStyle'?: string;
+  }
+
+  interface AsLegendCategory {
+    'data': LegendData[];
+    'orientation': 'horizontal' | 'vertical';
+    'width': number;
+  }
+  interface AsLegendCategoryAttributes extends StencilHTMLAttributes {
+    'data'?: LegendData[];
+    'orientation'?: 'horizontal' | 'vertical';
+    'width'?: number;
+  }
+
   interface AsLegendColorBinsLine {
     'color': string;
     'label': string;
@@ -1236,46 +1290,36 @@ export namespace Components {
   }
 
   interface AsLegendColorCategoryLine {
-    'color': string;
-    'label': string;
-    'strokeStyle': string;
+    'data': LegendData[];
+    'orientation': 'horizontal' | 'vertical';
     'width': number;
   }
   interface AsLegendColorCategoryLineAttributes extends StencilHTMLAttributes {
-    'color'?: string;
-    'label'?: string;
-    'strokeStyle'?: string;
+    'data'?: LegendData[];
+    'orientation'?: 'horizontal' | 'vertical';
     'width'?: number;
   }
 
   interface AsLegendColorCategoryPoint {
-    'color': string;
-    'label': string;
-    'marker': string;
-    'strokeColor': string;
-    'strokeStyle': string;
+    'data': LegendData[];
+    'orientation': 'horizontal' | 'vertical';
     'width': number;
   }
   interface AsLegendColorCategoryPointAttributes extends StencilHTMLAttributes {
-    'color'?: string;
-    'label'?: string;
-    'marker'?: string;
-    'strokeColor'?: string;
-    'strokeStyle'?: string;
+    'data'?: LegendData[];
+    'orientation'?: 'horizontal' | 'vertical';
     'width'?: number;
   }
 
   interface AsLegendColorCategoryPolygon {
-    'color': string;
-    'label': string;
-    'strokeColor': string;
-    'strokeStyle': string;
+    'data': LegendData[];
+    'orientation': 'horizontal' | 'vertical';
+    'width': number;
   }
   interface AsLegendColorCategoryPolygonAttributes extends StencilHTMLAttributes {
-    'color'?: string;
-    'label'?: string;
-    'strokeColor'?: string;
-    'strokeStyle'?: string;
+    'data'?: LegendData[];
+    'orientation'?: 'horizontal' | 'vertical';
+    'width'?: number;
   }
 
   interface AsLegendColorCategory {
@@ -1411,6 +1455,10 @@ declare global {
     'AsWidgetLegend': Components.AsWidgetLegend;
     'AsWidgetSelection': Components.AsWidgetSelection;
     'AsYAxis': Components.AsYAxis;
+    'AsLegendCategoryLineEntry': Components.AsLegendCategoryLineEntry;
+    'AsLegendCategoryPointEntry': Components.AsLegendCategoryPointEntry;
+    'AsLegendCategoryPolygonEntry': Components.AsLegendCategoryPolygonEntry;
+    'AsLegendCategory': Components.AsLegendCategory;
     'AsLegendColorBinsLine': Components.AsLegendColorBinsLine;
     'AsLegendColorBinsPoint': Components.AsLegendColorBinsPoint;
     'AsLegendColorBinsPolygon': Components.AsLegendColorBinsPolygon;
@@ -1449,6 +1497,10 @@ declare global {
     'as-widget-legend': Components.AsWidgetLegendAttributes;
     'as-widget-selection': Components.AsWidgetSelectionAttributes;
     'as-y-axis': Components.AsYAxisAttributes;
+    'as-legend-category-line-entry': Components.AsLegendCategoryLineEntryAttributes;
+    'as-legend-category-point-entry': Components.AsLegendCategoryPointEntryAttributes;
+    'as-legend-category-polygon-entry': Components.AsLegendCategoryPolygonEntryAttributes;
+    'as-legend-category': Components.AsLegendCategoryAttributes;
     'as-legend-color-bins-line': Components.AsLegendColorBinsLineAttributes;
     'as-legend-color-bins-point': Components.AsLegendColorBinsPointAttributes;
     'as-legend-color-bins-polygon': Components.AsLegendColorBinsPolygonAttributes;
@@ -1577,6 +1629,30 @@ declare global {
     new (): HTMLAsYAxisElement;
   };
 
+  interface HTMLAsLegendCategoryLineEntryElement extends Components.AsLegendCategoryLineEntry, HTMLStencilElement {}
+  var HTMLAsLegendCategoryLineEntryElement: {
+    prototype: HTMLAsLegendCategoryLineEntryElement;
+    new (): HTMLAsLegendCategoryLineEntryElement;
+  };
+
+  interface HTMLAsLegendCategoryPointEntryElement extends Components.AsLegendCategoryPointEntry, HTMLStencilElement {}
+  var HTMLAsLegendCategoryPointEntryElement: {
+    prototype: HTMLAsLegendCategoryPointEntryElement;
+    new (): HTMLAsLegendCategoryPointEntryElement;
+  };
+
+  interface HTMLAsLegendCategoryPolygonEntryElement extends Components.AsLegendCategoryPolygonEntry, HTMLStencilElement {}
+  var HTMLAsLegendCategoryPolygonEntryElement: {
+    prototype: HTMLAsLegendCategoryPolygonEntryElement;
+    new (): HTMLAsLegendCategoryPolygonEntryElement;
+  };
+
+  interface HTMLAsLegendCategoryElement extends Components.AsLegendCategory, HTMLStencilElement {}
+  var HTMLAsLegendCategoryElement: {
+    prototype: HTMLAsLegendCategoryElement;
+    new (): HTMLAsLegendCategoryElement;
+  };
+
   interface HTMLAsLegendColorBinsLineElement extends Components.AsLegendColorBinsLine, HTMLStencilElement {}
   var HTMLAsLegendColorBinsLineElement: {
     prototype: HTMLAsLegendColorBinsLineElement;
@@ -1698,6 +1774,10 @@ declare global {
     'as-widget-legend': HTMLAsWidgetLegendElement
     'as-widget-selection': HTMLAsWidgetSelectionElement
     'as-y-axis': HTMLAsYAxisElement
+    'as-legend-category-line-entry': HTMLAsLegendCategoryLineEntryElement
+    'as-legend-category-point-entry': HTMLAsLegendCategoryPointEntryElement
+    'as-legend-category-polygon-entry': HTMLAsLegendCategoryPolygonEntryElement
+    'as-legend-category': HTMLAsLegendCategoryElement
     'as-legend-color-bins-line': HTMLAsLegendColorBinsLineElement
     'as-legend-color-bins-point': HTMLAsLegendColorBinsPointElement
     'as-legend-color-bins-polygon': HTMLAsLegendColorBinsPolygonElement
@@ -1736,6 +1816,10 @@ declare global {
     'as-widget-legend': HTMLAsWidgetLegendElement;
     'as-widget-selection': HTMLAsWidgetSelectionElement;
     'as-y-axis': HTMLAsYAxisElement;
+    'as-legend-category-line-entry': HTMLAsLegendCategoryLineEntryElement;
+    'as-legend-category-point-entry': HTMLAsLegendCategoryPointEntryElement;
+    'as-legend-category-polygon-entry': HTMLAsLegendCategoryPolygonEntryElement;
+    'as-legend-category': HTMLAsLegendCategoryElement;
     'as-legend-color-bins-line': HTMLAsLegendColorBinsLineElement;
     'as-legend-color-bins-point': HTMLAsLegendColorBinsPointElement;
     'as-legend-color-bins-polygon': HTMLAsLegendColorBinsPolygonElement;
