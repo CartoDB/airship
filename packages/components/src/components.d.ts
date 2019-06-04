@@ -1407,6 +1407,15 @@ export namespace Components {
     'scale'?: number;
   }
 
+  interface AsLegendSizeLine {
+    'data': LegendData[];
+    'orientation': 'horizontal' | 'vertical';
+  }
+  interface AsLegendSizeLineAttributes extends StencilHTMLAttributes {
+    'data'?: LegendData[];
+    'orientation'?: 'horizontal' | 'vertical';
+  }
+
   interface AsLegend {
     'description': string;
     'heading': string;
@@ -1459,6 +1468,7 @@ declare global {
     'AsLegendSizeBins': Components.AsLegendSizeBins;
     'AsLegendSizeContinuousPoint': Components.AsLegendSizeContinuousPoint;
     'AsLegendSizeContinuous': Components.AsLegendSizeContinuous;
+    'AsLegendSizeLine': Components.AsLegendSizeLine;
     'AsLegend': Components.AsLegend;
   }
 
@@ -1501,6 +1511,7 @@ declare global {
     'as-legend-size-bins': Components.AsLegendSizeBinsAttributes;
     'as-legend-size-continuous-point': Components.AsLegendSizeContinuousPointAttributes;
     'as-legend-size-continuous': Components.AsLegendSizeContinuousAttributes;
+    'as-legend-size-line': Components.AsLegendSizeLineAttributes;
     'as-legend': Components.AsLegendAttributes;
   }
 
@@ -1733,6 +1744,12 @@ declare global {
     new (): HTMLAsLegendSizeContinuousElement;
   };
 
+  interface HTMLAsLegendSizeLineElement extends Components.AsLegendSizeLine, HTMLStencilElement {}
+  var HTMLAsLegendSizeLineElement: {
+    prototype: HTMLAsLegendSizeLineElement;
+    new (): HTMLAsLegendSizeLineElement;
+  };
+
   interface HTMLAsLegendElement extends Components.AsLegend, HTMLStencilElement {}
   var HTMLAsLegendElement: {
     prototype: HTMLAsLegendElement;
@@ -1778,6 +1795,7 @@ declare global {
     'as-legend-size-bins': HTMLAsLegendSizeBinsElement
     'as-legend-size-continuous-point': HTMLAsLegendSizeContinuousPointElement
     'as-legend-size-continuous': HTMLAsLegendSizeContinuousElement
+    'as-legend-size-line': HTMLAsLegendSizeLineElement
     'as-legend': HTMLAsLegendElement
   }
 
@@ -1820,6 +1838,7 @@ declare global {
     'as-legend-size-bins': HTMLAsLegendSizeBinsElement;
     'as-legend-size-continuous-point': HTMLAsLegendSizeContinuousPointElement;
     'as-legend-size-continuous': HTMLAsLegendSizeContinuousElement;
+    'as-legend-size-line': HTMLAsLegendSizeLineElement;
     'as-legend': HTMLAsLegendElement;
   }
 
