@@ -33,6 +33,12 @@ export class LegendSizeContinuous {
           orientation={this.orientation}
         >
         </as-legend-size-continuous-point>;
+      case 'line':
+        return <as-legend-size-line
+            data={this.data}
+            orientation={this.orientation}
+          >
+        </as-legend-size-line>;
       default:
         return null;
     }

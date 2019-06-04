@@ -47,29 +47,56 @@
                     </div>
                     <span slot="footer">Source: my own opinion</span>
                   </as-legend>
+                  <as-legend 
+                    heading="Metacomponents"
+                    description="Some aliases"
+                  >
+                    <div slot="legends">
+                      <as-legend-size-bins-line
+                        orientation="horizontal"
+                        id="legendBins">
+                      </as-legend-size-bins-line>
+                      <as-legend-size-continuous-line
+                        orientation="horizontal"
+                        id="legendContinuous">
+                      </as-legend-size-continuous-line>
+                      <as-legend-size-bins
+                        orientation="horizontal"
+                        id="legendSizeBins">
+                      </as-legend-size-bins>
+                      <as-legend-size-continuous
+                        orientation="horizontal"
+                        id="legendSizeContinuous">
+                      </as-legend-size-continuous>
+                    </div>
+                  </as-legend>
                 </div>
             </div>
         </div>
     </main>
   </div>
   <script>
-    legendHorizontal.data = legend.data = [{
+    legendHorizontal.data = legend.data = legendBins.data = legendContinuous.data = legendSizeBins.data = legendSizeContinuous.data = [{
       width: 10,
+      type: 'line',
       color: '#FFC667',
       strokeColor: '#00FFFF',
       label: '< 10'
     },{
       width: 16,
+      type: 'line',
       color: '#FFC667',
       strokeColor: '#00FF00',
       label: '10 - 20'
     },{
       width: 22,
+      type: 'line',
       color: '#FFC667',
       strokeColor: '#00FFFF',
       label: '20 - 30'
     },{
       width: 28,
+      type: 'line',
       color: '#FFC667',
       strokeColor: '#FFFFFF',
       label: '> 30'
