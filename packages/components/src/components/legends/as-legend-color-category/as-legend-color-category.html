@@ -9,15 +9,17 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <title>Color Category Legend</title>
-
-    <script src="https://libs.cartocdn.com/carto-vl/v1.2/carto-vl.js"></script>
-
-    <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.css" rel="stylesheet" />
-    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.js"></script>
     <link rel="stylesheet" href="packages/styles/dist/airship.css">
     <link rel="stylesheet" href="packages/icons/dist/icons.css">
     <script src="packages/components/dist/airship.js"></script>
     <script src="/packages/bridge/dist/asbridge.js"></script>
+
+    <style>
+      #legends {
+        flex-direction: column;
+        width: 100%;
+      }
+    </style>
 </head>
 
 <body class="as-app-body">
@@ -76,16 +78,34 @@
                     </div>
                   </as-legend>
 
+                  <!-- Specific components -->
                   <as-legend>
-                    <as-legend-color-category-point
-                      id="legendSpecPoint">
-                    </as-legend-color-category-point>
-                    <as-legend-color-category-line
-                      id="legendSpecLine">
-                    </as-legend-color-category-line>
-                    <as-legend-color-category-polygon
-                      id="legendSpecPolygon">
-                    </as-legend-color-category-polygon>
+                    <div slot="legends">
+                      <as-legend-color-category-point
+                        id="legendSpecPoint">
+                      </as-legend-color-category-point>
+                      <as-legend-color-category-line
+                        id="legendSpecLine">
+                      </as-legend-color-category-line>
+                      <as-legend-color-category-polygon
+                        id="legendSpecPolygon">
+                      </as-legend-color-category-polygon>
+                    </div>
+                  </as-legend>
+
+                  <!-- Mixed content -->
+                  <as-legend
+                    id="legendsLocation"
+                    heading="Mixed content">
+                    <div slot="legends">
+                      <as-legend-color-category
+                        orientation="horizontal"
+                        id="legendMixedHorizontal">
+                      </as-legend-color-category>
+                      <as-legend-color-category
+                        id="legendMixed">
+                      </as-legend-color-category>
+                    </div>
                   </as-legend>
                 </div>
             </div>
@@ -94,7 +114,7 @@
   </div>
   <script>
     // Point
-    legendPointHorizontal.data = legendPoint.data = legendSpecPoint.data = [{
+    const point = legendPointHorizontal.data = legendPoint.data = legendSpecPoint.data = [{
       type: 'point',
       width: 10,
       color: '#FF00FF',
@@ -121,7 +141,7 @@
     }];
 
     // Line
-    legendLineHorizontal.data = legendLine.data = legendSpecLine.data = [{
+    const line = legendLineHorizontal.data = legendLine.data = legendSpecLine.data = [{
       type: 'line',
       width: 10,
       color: '#FF00FF',
@@ -148,7 +168,7 @@
     }];
 
     // Polygon
-    legendPolygonHorizontal.data = legendPolygon.data = legendSpecPolygon.data = [{
+    const polygon = legendPolygonHorizontal.data = legendPolygon.data = legendSpecPolygon.data = [{
       type: 'polygon',
       color: '#FF00FF',
       label: '#FF00FF'
@@ -166,7 +186,7 @@
       label: '#00FFFF'
     }];
 
-
+    legendMixedHorizontal.data = legendMixed.data = [].concat(point, line, polygon);
   </script>
 </body>
 
