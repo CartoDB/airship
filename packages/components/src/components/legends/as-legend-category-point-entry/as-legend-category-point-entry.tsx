@@ -5,6 +5,10 @@ import { borderStyleCounts } from '../../../utils/border-style-counts';
 // a 1px border.
 const FAKE_BORDER_SIZE = 1;
 
+const DEFAULT_WIDTH = 16;
+// Required for background masks to work properly
+const SYMBOL_OFFSET = 2;
+
 @Component({
   shadow: false,
   styleUrl: './as-legend-category-point-entry.scss',
@@ -16,7 +20,7 @@ export class LegendCategoryPointEntry {
   @Prop() public strokeColor: string;
   @Prop() public strokeStyle: string;
   @Prop() public marker: string;
-  @Prop() public width: number = 16;
+  @Prop() public width: number = DEFAULT_WIDTH;
 
   public render() {
     const classes = {
@@ -48,9 +52,13 @@ export class LegendCategoryPointEntry {
       return {};
     }
 
-    const sizeOffset = borderStyleCounts(this.strokeStyle)
+    let sizeOffset = borderStyleCounts(this.strokeStyle)
       ? FAKE_BORDER_SIZE * 2
       : 0;
+
+    if (this.marker) {
+      sizeOffset += SYMBOL_OFFSET;
+    }
 
     return {
       height: `${this.width + sizeOffset}px`,
