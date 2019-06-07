@@ -1,6 +1,6 @@
-import { Component, Prop } from '@stencil/core';
+import { Component, Prop, State } from '@stencil/core';
 
-const X_POS = 40;
+const MIN_LINE_SIZE = 10;
 const TEXT_MARGIN = 4;
 
 @Component({
@@ -11,13 +11,23 @@ const TEXT_MARGIN = 4;
 export class LegendSizeContinuousLine {
   @Prop() public data: LegendData[];
   @Prop() public orientation: 'horizontal' | 'vertical' = 'vertical';
-  @Prop() public size: number = 100;
+  @Prop() public size: number = 300;
   @Prop() public leadingLineStrokeWidth: number = 0.5;
-  // 1/4 of the line height of the font, which is 12 with the original as-caption
-  @Prop() public textVerticalOffset: number = 3;
+  // Line height of the font, which is 12 with the original as-caption
+  @Prop() public textLineHeight: number = 12;
 
   @Prop() public xMarginFactor: number = 0.1;
   @Prop() public yMarginFactor: number = 0.1;
+
+  @State() private rSize = 0;
+
+  public componentWillUpdate() {
+    this.parseSize();
+  }
+
+  public componentWillLoad() {
+    this.parseSize();
+  }
 
   public render() {
     const sortedData = this.data.slice().sort(
@@ -26,6 +36,8 @@ export class LegendSizeContinuousLine {
 
     const max = sortedData[0].width;
     const half = max / 2;
+
+    const X_POS = max + MIN_LINE_SIZE;
 
     // Path is painted counterclockwise starting from bottom left point
     const realPath = [];
@@ -105,12 +117,12 @@ export class LegendSizeContinuousLine {
             lines.map(({ label, x2, y2 }) => {
               const offset = {
                 x: TEXT_MARGIN,
-                y: this.textVerticalOffset
+                y: this.textLineHeight / 4
               };
 
               if (this.orientation === 'horizontal') {
                 offset.x = 0;
-                offset.y = this.textVerticalOffset * 4;
+                offset.y = this.textLineHeight;
               }
 
               return [
@@ -123,6 +135,16 @@ export class LegendSizeContinuousLine {
     </svg>;
   }
 
+  private parseSize() {
+    const sortedData = this.data.slice().sort(
+      (first, second) => second.width - first.width
+    );
+
+    const max = sortedData[0].width;
+
+    this.rSize = Math.max(max + MIN_LINE_SIZE + (this.textLineHeight), 0);
+  }
+
   private getPathStyle() {
     return {
       fill: `${this.data[0].color}`
@@ -130,17 +152,21 @@ export class LegendSizeContinuousLine {
   }
 
   private getSVGStyle() {
+    const height = (this.orientation === 'horizontal' ? this.rSize : this.size);
+
     return {
-      height: `${this.size * (1 + this.yMarginFactor)}px`,
+      height: `${height * (1 + this.yMarginFactor)}px`,
       width: `${this.size * (1 + this.xMarginFactor)}px`
     };
   }
 
   private getSVGViewBox() {
-    const marginX = this.size * (-this.xMarginFactor / 2);
-    const marginY = this.size * (-this.yMarginFactor / 2);
+    const height = (this.orientation === 'horizontal' ? this.rSize : this.size);
 
-    return `${marginX} ${marginY} ${this.size * (1 + this.xMarginFactor)} ${this.size * (1 + this.yMarginFactor)}`;
+    const marginX = this.size * (-this.xMarginFactor / 2);
+    const marginY = height * (-this.yMarginFactor / 2);
+
+    return `${marginX} ${marginY} ${this.size * (1 + this.xMarginFactor)} ${height * (1 + this.yMarginFactor)}`;
   }
 
   private getOffset(index, length) {

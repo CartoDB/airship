@@ -1399,7 +1399,7 @@ export namespace Components {
     'leadingLineStrokeWidth': number;
     'orientation': 'horizontal' | 'vertical';
     'size': number;
-    'textVerticalOffset': number;
+    'textLineHeight': number;
     'xMarginFactor': number;
     'yMarginFactor': number;
   }
@@ -1408,7 +1408,7 @@ export namespace Components {
     'leadingLineStrokeWidth'?: number;
     'orientation'?: 'horizontal' | 'vertical';
     'size'?: number;
-    'textVerticalOffset'?: number;
+    'textLineHeight'?: number;
     'xMarginFactor'?: number;
     'yMarginFactor'?: number;
   }
