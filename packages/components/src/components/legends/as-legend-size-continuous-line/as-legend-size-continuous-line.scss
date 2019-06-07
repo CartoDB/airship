@@ -1,0 +1,23 @@
+as-legend-size-continuous-line {
+  display: block;
+
+  svg {
+    text {
+      font: var(--as--font--caption);
+    }
+
+    line {
+      stroke: var(--as-legend--color);
+    }
+  }
+
+  svg.as-legend-size-continuous-line--horizontal {
+    text {
+      text-anchor: middle;
+    }
+
+    line {
+      stroke: transparent;
+    }
+  }
+}

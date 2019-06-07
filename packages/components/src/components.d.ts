@@ -1370,12 +1370,10 @@ export namespace Components {
   interface AsLegendSizeBinsLine {
     'data': LegendData[];
     'orientation': 'horizontal' | 'vertical';
-    'width': number;
   }
   interface AsLegendSizeBinsLineAttributes extends StencilHTMLAttributes {
     'data'?: LegendData[];
     'orientation'?: 'horizontal' | 'vertical';
-    'width'?: number;
   }
 
   interface AsLegendSizeBinsPoint {
@@ -1398,13 +1396,21 @@ export namespace Components {
 
   interface AsLegendSizeContinuousLine {
     'data': LegendData[];
+    'leadingLineStrokeWidth': number;
     'orientation': 'horizontal' | 'vertical';
-    'width': number;
+    'size': number;
+    'textVerticalOffset': number;
+    'xMarginFactor': number;
+    'yMarginFactor': number;
   }
   interface AsLegendSizeContinuousLineAttributes extends StencilHTMLAttributes {
     'data'?: LegendData[];
+    'leadingLineStrokeWidth'?: number;
     'orientation'?: 'horizontal' | 'vertical';
-    'width'?: number;
+    'size'?: number;
+    'textVerticalOffset'?: number;
+    'xMarginFactor'?: number;
+    'yMarginFactor'?: number;
   }
 
   interface AsLegendSizeContinuousPoint {
@@ -1427,15 +1433,6 @@ export namespace Components {
     'data'?: LegendData[];
     'orientation'?: 'horizontal' | 'vertical';
     'scale'?: number;
-  }
-
-  interface AsLegendSizeLine {
-    'data': LegendData[];
-    'orientation': 'horizontal' | 'vertical';
-  }
-  interface AsLegendSizeLineAttributes extends StencilHTMLAttributes {
-    'data'?: LegendData[];
-    'orientation'?: 'horizontal' | 'vertical';
   }
 
   interface AsLegend {
@@ -1492,7 +1489,6 @@ declare global {
     'AsLegendSizeContinuousLine': Components.AsLegendSizeContinuousLine;
     'AsLegendSizeContinuousPoint': Components.AsLegendSizeContinuousPoint;
     'AsLegendSizeContinuous': Components.AsLegendSizeContinuous;
-    'AsLegendSizeLine': Components.AsLegendSizeLine;
     'AsLegend': Components.AsLegend;
   }
 
@@ -1537,7 +1533,6 @@ declare global {
     'as-legend-size-continuous-line': Components.AsLegendSizeContinuousLineAttributes;
     'as-legend-size-continuous-point': Components.AsLegendSizeContinuousPointAttributes;
     'as-legend-size-continuous': Components.AsLegendSizeContinuousAttributes;
-    'as-legend-size-line': Components.AsLegendSizeLineAttributes;
     'as-legend': Components.AsLegendAttributes;
   }
 
@@ -1782,12 +1777,6 @@ declare global {
     new (): HTMLAsLegendSizeContinuousElement;
   };
 
-  interface HTMLAsLegendSizeLineElement extends Components.AsLegendSizeLine, HTMLStencilElement {}
-  var HTMLAsLegendSizeLineElement: {
-    prototype: HTMLAsLegendSizeLineElement;
-    new (): HTMLAsLegendSizeLineElement;
-  };
-
   interface HTMLAsLegendElement extends Components.AsLegend, HTMLStencilElement {}
   var HTMLAsLegendElement: {
     prototype: HTMLAsLegendElement;
@@ -1835,7 +1824,6 @@ declare global {
     'as-legend-size-continuous-line': HTMLAsLegendSizeContinuousLineElement
     'as-legend-size-continuous-point': HTMLAsLegendSizeContinuousPointElement
     'as-legend-size-continuous': HTMLAsLegendSizeContinuousElement
-    'as-legend-size-line': HTMLAsLegendSizeLineElement
     'as-legend': HTMLAsLegendElement
   }
 
@@ -1880,7 +1868,6 @@ declare global {
     'as-legend-size-continuous-line': HTMLAsLegendSizeContinuousLineElement;
     'as-legend-size-continuous-point': HTMLAsLegendSizeContinuousPointElement;
     'as-legend-size-continuous': HTMLAsLegendSizeContinuousElement;
-    'as-legend-size-line': HTMLAsLegendSizeLineElement;
     'as-legend': HTMLAsLegendElement;
   }
 

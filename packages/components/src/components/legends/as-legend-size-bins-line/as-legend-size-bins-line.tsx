@@ -2,10 +2,10 @@ import { Component, Prop } from '@stencil/core';
 
 @Component({
   shadow: false,
-  styleUrl: './as-legend-size-line.scss',
-  tag: 'as-legend-size-line',
+  styleUrl: './as-legend-size-bins-line.scss',
+  tag: 'as-legend-size-bins-line',
 })
-export class LegendSizeLine {
+export class LegendSizeBinsLine {
   @Prop() public data: LegendData[];
   @Prop() public orientation: 'horizontal' | 'vertical' = 'vertical';
 
@@ -15,15 +15,15 @@ export class LegendSizeLine {
     }
 
     const outerClasses = {
-      'as-legend-size-line--outer-wrapper': true,
-      [`as-legend-size-line--${this.orientation}`]: true
+      'as-legend-size-bins-line--outer-wrapper': true,
+      [`as-legend-size-bins-line--${this.orientation}`]: true
     };
 
     return <div class={outerClasses}>
-      <div class='as-legend-size-line--wrapper as-legend-size-line--color'>
+      <div class='as-legend-size-bins-line--wrapper as-legend-size-bins-line--color'>
         {this.data.map((d) => this.renderStep(d))}
       </div>
-      <div class='as-legend-size-line--wrapper as-legend-size-line--labels'>
+      <div class='as-legend-size-bins-line--wrapper as-legend-size-bins-line--labels'>
         {this.data.map(this.renderLabels)}
       </div>
     </div>;
@@ -38,14 +38,14 @@ export class LegendSizeLine {
     };
 
     return (
-      <div class='as-legend-size-line--step' style={style}>
+      <div class='as-legend-size-bins-line--step' style={style}>
       </div>
     );
   }
 
   private renderLabels(data: LegendData) {
     return (
-      <div class='as-legend-size-line--label'>
+      <div class='as-legend-size-bins-line--label'>
         <span>
           {data.label}
         </span>
