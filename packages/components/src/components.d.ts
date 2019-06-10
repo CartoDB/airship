@@ -1405,6 +1405,15 @@ export namespace Components {
     'orientation'?: 'horizontal' | 'vertical';
   }
 
+  interface AsLegendSizeCategory {
+    'data': LegendData[];
+    'orientation': 'horizontal' | 'vertical';
+  }
+  interface AsLegendSizeCategoryAttributes extends StencilHTMLAttributes {
+    'data'?: LegendData[];
+    'orientation'?: 'horizontal' | 'vertical';
+  }
+
   interface AsLegendSizeContinuousLine {
     'data': LegendData[];
     'leadingLineStrokeWidth': number;
@@ -1498,6 +1507,7 @@ declare global {
     'AsLegendSizeBinsPoint': Components.AsLegendSizeBinsPoint;
     'AsLegendSizeBins': Components.AsLegendSizeBins;
     'AsLegendSizeCategoryLine': Components.AsLegendSizeCategoryLine;
+    'AsLegendSizeCategory': Components.AsLegendSizeCategory;
     'AsLegendSizeContinuousLine': Components.AsLegendSizeContinuousLine;
     'AsLegendSizeContinuousPoint': Components.AsLegendSizeContinuousPoint;
     'AsLegendSizeContinuous': Components.AsLegendSizeContinuous;
@@ -1543,6 +1553,7 @@ declare global {
     'as-legend-size-bins-point': Components.AsLegendSizeBinsPointAttributes;
     'as-legend-size-bins': Components.AsLegendSizeBinsAttributes;
     'as-legend-size-category-line': Components.AsLegendSizeCategoryLineAttributes;
+    'as-legend-size-category': Components.AsLegendSizeCategoryAttributes;
     'as-legend-size-continuous-line': Components.AsLegendSizeContinuousLineAttributes;
     'as-legend-size-continuous-point': Components.AsLegendSizeContinuousPointAttributes;
     'as-legend-size-continuous': Components.AsLegendSizeContinuousAttributes;
@@ -1778,6 +1789,12 @@ declare global {
     new (): HTMLAsLegendSizeCategoryLineElement;
   };
 
+  interface HTMLAsLegendSizeCategoryElement extends Components.AsLegendSizeCategory, HTMLStencilElement {}
+  var HTMLAsLegendSizeCategoryElement: {
+    prototype: HTMLAsLegendSizeCategoryElement;
+    new (): HTMLAsLegendSizeCategoryElement;
+  };
+
   interface HTMLAsLegendSizeContinuousLineElement extends Components.AsLegendSizeContinuousLine, HTMLStencilElement {}
   var HTMLAsLegendSizeContinuousLineElement: {
     prototype: HTMLAsLegendSizeContinuousLineElement;
@@ -1841,6 +1858,7 @@ declare global {
     'as-legend-size-bins-point': HTMLAsLegendSizeBinsPointElement
     'as-legend-size-bins': HTMLAsLegendSizeBinsElement
     'as-legend-size-category-line': HTMLAsLegendSizeCategoryLineElement
+    'as-legend-size-category': HTMLAsLegendSizeCategoryElement
     'as-legend-size-continuous-line': HTMLAsLegendSizeContinuousLineElement
     'as-legend-size-continuous-point': HTMLAsLegendSizeContinuousPointElement
     'as-legend-size-continuous': HTMLAsLegendSizeContinuousElement
@@ -1886,6 +1904,7 @@ declare global {
     'as-legend-size-bins-point': HTMLAsLegendSizeBinsPointElement;
     'as-legend-size-bins': HTMLAsLegendSizeBinsElement;
     'as-legend-size-category-line': HTMLAsLegendSizeCategoryLineElement;
+    'as-legend-size-category': HTMLAsLegendSizeCategoryElement;
     'as-legend-size-continuous-line': HTMLAsLegendSizeContinuousLineElement;
     'as-legend-size-continuous-point': HTMLAsLegendSizeContinuousPointElement;
     'as-legend-size-continuous': HTMLAsLegendSizeContinuousElement;
