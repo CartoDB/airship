@@ -36,11 +36,14 @@ export class LegendSizeBinsPoint {
     const size = `${Math.round(data.width)}px`;
     const strokeStyle = `1px ${data.strokeStyle || 'solid'} ${data.strokeColor}`;
 
+    const mask = this.getMask(data);
+
     const style: any = {
       backgroundColor: data.color,
       border: strokeStyle,
       height: size,
       width: size,
+      ...mask
     };
 
     const wrapperStyle: any = { };
@@ -59,5 +62,22 @@ export class LegendSizeBinsPoint {
         <span class='as-legend-size-bins-point--label'>{data.label}</span>
       </div>
     );
+  }
+
+  private getMask(data) {
+    if (!data.marker) {
+      return {};
+    }
+
+    return {
+      '-webkit-mask-image': `url(${data.marker})`,
+      '-webkit-mask-position': 'center',
+      '-webkit-mask-repeat': 'no-repeat',
+      '-webkit-mask-size': `${data.width}px`,
+      'maskImage': `url(${data.marker})`,
+      'maskPosition': 'center',
+      'maskRepeat': 'no-repeat',
+      'maskSize': `${data.width}px`
+    };
   }
 }
