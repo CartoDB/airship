@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <base href="/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Color Bins Legend</title>
+
+    <script src="https://libs.cartocdn.com/carto-vl/v1.2/carto-vl.js"></script>
+
+    <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.css" rel="stylesheet" />
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.js"></script>
+    <link rel="stylesheet" href="packages/styles/dist/airship.css">
+    <link rel="stylesheet" href="packages/icons/dist/icons.css">
+    <script src="packages/components/dist/airship.js"></script>
+    <script src="/packages/bridge/dist/asbridge.js"></script>
+</head>
+
+<body class="as-app-body">
+  <div class="as-app">
+    <main class="as-main">
+        <div class="as-map-area">
+            <div id="map"></div>
+            <div class="as-map-panels">
+                <div class="as-panel as-panel--top as-panel--left" id="legends">
+
+                  <!-- Point -->
+                  <as-legend
+                    id="legendsLocation"
+                    heading="Location"
+                    description="Color intensity is defined by location">
+                    <div slot="legends">
+                      <as-legend-category
+                        orientation="horizontal"
+                        id="legendCatH">
+                      </as-legend-category>
+                      <as-legend-category
+                        id="legendCat">
+                      </as-legend-category>
+                    </div>
+                  </as-legend>
+                </div>
+            </div>
+        </div>
+    </main>
+  </div>
+  <script>
+
+    legendCat.data = legendCatH.data = [
+      {
+        "color": "rgba(195,112,177,1)",
+        "label": "Airports",
+        "strokeColor": "rgba(0,0,255,1)",
+        "strokeStyle": "hidden",
+        "type": "point",
+        "width": 16
+      },
+      {
+        "color": "rgba(0,0,0,1)",
+        "label": "Places",
+        "marker": "https://libs.cartocdn.com/carto-vl/assets/symbols/marker.svg",
+        "strokeColor": "rgba(255,255,255,1)",
+        "type": "point",
+        "width": 12
+      },
+      {
+        "color": "rgba(129,172,255,1)",
+        "label": "Rivers",
+        "strokeColor": "rgba(255,255,255,1)",
+        "type": "line",
+        "width": 35
+      },
+      {
+        "color": "rgba(205,234,192,1)",
+        "label": "World Borders",
+        "strokeColor": "rgba(255,0,255,1)",
+        "strokeStyle": "hidden",
+        "type": "polygon",
+        "width": 1
+      }
+    ];
+  </script>
+</body>
+
+</html>
