@@ -19,7 +19,7 @@
     <script src="packages/components/dist/airship.js"></script>
     <script src="/packages/bridge/dist/asbridge.js"></script>
     <style>
-      as-legend-size-category {
+      .legend {
         margin-bottom: 16px;
       }
     </style>
@@ -37,15 +37,34 @@
                     heading="Population density"
                     description="Size is defined by inhabitants per square feet">
                     <div slot="legends">
-                      <as-legend-size-category
+                      <as-legend-size-category-line
+                        aligned
+                        class="legend"
                         orientation="vertical"
                         id="legendLines">
-                      </as-legend-size-category>
+                      </as-legend-size-category-line>
+                      <as-legend-size-bins-line
+                        class="legend"
+                        orientation="vertical"
+                        id="bins">
+                      </as-legend-size-bins-line>
+                      <as-legend-size-continuous-line
+                        class="legend"
+                        orientation="vertical"
+                        id="cont">
+                      </as-legend-size-continuous-line>
+                      <as-legend-category
+                        class="legend"
+                        orientation="vertical"
+                        id="cbins">
+                      </as-legend-category>
                       <as-legend-size-category
+                        class="legend"
                         orientation="vertical"
                         id="legend">
                       </as-legend-size-category>
                       <as-legend-size-category
+                        class="legend"
                         orientation="vertical"
                         id="legendSymbols">
                       </as-legend-size-category>
@@ -58,30 +77,35 @@
     </main>
   </div>
   <script>
-    legendLines.data = [{
+    cbins.data = cont.data = bins.data = legendLines.data = [{
       type: 'line',
       width: 2,
-      strokeColor: '#FFC667',
+      color: '#FFC667',
       label: '10'
     },{
+      type: 'line',
       width: 4,
-      strokeColor: '#FFC667',
+      color: '#FFC667',
       label: '15'
     },{
+      type: 'line',
       width: 6,
-      strokeColor: '#FFC667',
+      color: '#FFC667',
       label: '18'
     },{
+      type: 'line',
       width: 10,
-      strokeColor: '#FFC667',
+      color: '#FFC667',
       label: '20'
     },{
-      width: 12,
-      strokeColor: '#FFC667',
+      type: 'line',
+      width: 11,
+      color: '#FFC667',
       label: '25'
     },{
-      width: 16,
-      strokeColor: '#FFC667',
+      type: 'line',
+      width: 24,
+      color: '#FFC667',
       label: '35'
     }];
 
@@ -108,6 +132,8 @@
       ...e,
       marker: 'https://libs.cartocdn.com/carto-vl/assets/symbols/marker.svg'
     }));
+
+  //  cont.width = cbins.width = bins.width = legend.width = legendSymbols.width = 72; Math.max(legendLines.data.slice().sort((a, b) => b.width - a.width)[0].width * legendLines.factor, legendLines.minWidth);
   </script>
 </body>
 

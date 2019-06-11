@@ -34,11 +34,11 @@ export class LegendSizeContinuous {
         >
         </as-legend-size-continuous-point>;
       case 'line':
-        return <as-legend-size-line
+        return <as-legend-size-continuous-line
             data={this.data}
             orientation={this.orientation}
           >
-        </as-legend-size-line>;
+        </as-legend-size-continuous-line>;
       default:
         return null;
     }

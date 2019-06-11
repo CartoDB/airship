@@ -8,6 +8,7 @@ import { Component, Prop } from '@stencil/core';
 export class LegendSizeBinsLine {
   @Prop() public data: LegendData[];
   @Prop() public orientation: 'horizontal' | 'vertical' = 'vertical';
+  @Prop() public width: number = null;
 
   public render() {
     if (!this.data) {
@@ -19,8 +20,12 @@ export class LegendSizeBinsLine {
       [`as-legend-size-bins-line--${this.orientation}`]: true
     };
 
+    const wrapperStyle = {
+      width: this.width !== null && this.orientation === 'vertical' ? `${this.width}px` : null
+    };
+
     return <div class={outerClasses}>
-      <div class='as-legend-size-bins-line--wrapper as-legend-size-bins-line--color'>
+      <div style={wrapperStyle} class='as-legend-size-bins-line--wrapper as-legend-size-bins-line--color'>
         {this.data.map((d) => this.renderStep(d))}
       </div>
       <div class='as-legend-size-bins-line--wrapper as-legend-size-bins-line--labels'>

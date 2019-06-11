@@ -1,7 +1,5 @@
 import { Component, Prop } from '@stencil/core';
 
-const MARGIN_OFFSET = 2;
-
 @Component({
   shadow: false,
   styleUrl: './as-legend-size-bins-point.scss',
@@ -10,6 +8,7 @@ const MARGIN_OFFSET = 2;
 export class LegendSizeBinsPoint {
   @Prop() public data: LegendData[];
   @Prop() public orientation: 'horizontal' | 'vertical' = 'vertical';
+  @Prop() public width: number = null;
 
   private maxSize: number;
 
@@ -23,7 +22,7 @@ export class LegendSizeBinsPoint {
       [`as-legend-size-bins-point--${this.orientation}`]: true
     };
 
-    this.maxSize = this.data.slice().sort(
+    this.maxSize = this.width || this.data.slice().sort(
       (first, second) => second.width - first.width
     )[0].width;
 
@@ -49,9 +48,9 @@ export class LegendSizeBinsPoint {
     const wrapperStyle: any = { };
 
     if (this.orientation === 'horizontal') {
-      wrapperStyle.height = `${this.maxSize + MARGIN_OFFSET}px`;
+      wrapperStyle.height = `${this.maxSize}px`;
     } else if (this.orientation === 'vertical') {
-      wrapperStyle.width = `${this.maxSize + MARGIN_OFFSET}px`;
+      wrapperStyle.width = `${this.maxSize}px`;
     }
 
     return (

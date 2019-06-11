@@ -1,6 +1,6 @@
 import { Component, Prop } from '@stencil/core';
 
-const MIN_WIDTH = 36;
+const MIN_WIDTH = 48;
 const FACTOR = 3;
 
 @Component({
@@ -12,6 +12,8 @@ export class LegendSizeBinsPoint {
   @Prop() public data: LegendData[];
   @Prop() public orientation: 'horizontal' | 'vertical' = 'vertical';
   @Prop() public aligned: boolean = false;
+  @Prop() public factor: number = FACTOR;
+  @Prop() public minWidth: number = MIN_WIDTH;
 
   private maxSize: number;
 
@@ -36,12 +38,12 @@ export class LegendSizeBinsPoint {
 
   private renderStep(data: LegendData) {
     const strokeStyle = {
-      borderTopColor: `${data.strokeColor}`,
+      borderTopColor: `${data.color}`,
       borderTopStyle: `${data.strokeStyle || 'solid'}`,
       borderTopWidth: `${data.width}px`
     };
 
-    const lineWidth = Math.max(MIN_WIDTH, this.maxSize * FACTOR);
+    const lineWidth = Math.max(MIN_WIDTH, this.maxSize * this.factor);
 
     const style: any = {
       height: `${data.width}px`,

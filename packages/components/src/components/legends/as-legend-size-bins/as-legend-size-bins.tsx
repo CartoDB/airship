@@ -9,6 +9,7 @@ import { Component, Prop } from '@stencil/core';
 export class LegendSizeBins {
   @Prop() public data: LegendData[];
   @Prop() public orientation: 'horizontal' | 'vertical' = 'vertical';
+  @Prop() public width: number = null;
 
   public render() {
     if (!this.data || this.data.length === 0) {
@@ -30,14 +31,16 @@ export class LegendSizeBins {
         return <as-legend-size-bins-point
           data={this.data}
           orientation={this.orientation}
+          width={this.width}
         >
         </as-legend-size-bins-point>;
       case 'line':
-        return <as-legend-size-line
+        return <as-legend-size-bins-line
             data={this.data}
             orientation={this.orientation}
+            width={this.width}
           >
-        </as-legend-size-line>;
+        </as-legend-size-bins-line>;
       default:
         return null;
     }

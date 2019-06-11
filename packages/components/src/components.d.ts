@@ -1370,48 +1370,60 @@ export namespace Components {
   interface AsLegendSizeBinsLine {
     'data': LegendData[];
     'orientation': 'horizontal' | 'vertical';
+    'width': number;
   }
   interface AsLegendSizeBinsLineAttributes extends StencilHTMLAttributes {
     'data'?: LegendData[];
     'orientation'?: 'horizontal' | 'vertical';
+    'width'?: number;
   }
 
   interface AsLegendSizeBinsPoint {
     'data': LegendData[];
     'orientation': 'horizontal' | 'vertical';
+    'width': number;
   }
   interface AsLegendSizeBinsPointAttributes extends StencilHTMLAttributes {
     'data'?: LegendData[];
     'orientation'?: 'horizontal' | 'vertical';
+    'width'?: number;
   }
 
   interface AsLegendSizeBins {
     'data': LegendData[];
     'orientation': 'horizontal' | 'vertical';
+    'width': number;
   }
   interface AsLegendSizeBinsAttributes extends StencilHTMLAttributes {
     'data'?: LegendData[];
     'orientation'?: 'horizontal' | 'vertical';
+    'width'?: number;
   }
 
   interface AsLegendSizeCategoryLine {
     'aligned': boolean;
     'data': LegendData[];
+    'factor': number;
+    'minWidth': number;
     'orientation': 'horizontal' | 'vertical';
   }
   interface AsLegendSizeCategoryLineAttributes extends StencilHTMLAttributes {
     'aligned'?: boolean;
     'data'?: LegendData[];
+    'factor'?: number;
+    'minWidth'?: number;
     'orientation'?: 'horizontal' | 'vertical';
   }
 
   interface AsLegendSizeCategory {
     'data': LegendData[];
     'orientation': 'horizontal' | 'vertical';
+    'width': number;
   }
   interface AsLegendSizeCategoryAttributes extends StencilHTMLAttributes {
     'data'?: LegendData[];
     'orientation'?: 'horizontal' | 'vertical';
+    'width'?: number;
   }
 
   interface AsLegendSizeContinuousLine {
@@ -1420,6 +1432,7 @@ export namespace Components {
     'orientation': 'horizontal' | 'vertical';
     'size': number;
     'textLineHeight': number;
+    'width': number;
     'xMarginFactor': number;
     'yMarginFactor': number;
   }
@@ -1429,6 +1442,7 @@ export namespace Components {
     'orientation'?: 'horizontal' | 'vertical';
     'size'?: number;
     'textLineHeight'?: number;
+    'width'?: number;
     'xMarginFactor'?: number;
     'yMarginFactor'?: number;
   }
