@@ -1,7 +1,7 @@
 import { Component, Prop, State } from '@stencil/core';
 
-const MIN_LINE_SIZE = 10;
 const TEXT_MARGIN = 4;
+const MIN_LINE_SIZE = 4;
 
 @Component({
   shadow: false,
@@ -19,7 +19,10 @@ export class LegendSizeContinuousLine {
   @Prop() public xMarginFactor: number = 0.1;
   @Prop() public yMarginFactor: number = 0.1;
 
+  @Prop() public width: number = null;
+
   @State() private rSize = 0;
+
 
   public componentWillUpdate() {
     this.parseSize();
@@ -37,7 +40,13 @@ export class LegendSizeContinuousLine {
     const max = sortedData[0].width;
     const half = max / 2;
 
-    const X_POS = max + MIN_LINE_SIZE;
+    const X_POS = Math.max(max + MIN_LINE_SIZE, this.width);
+
+    let X_OFF = (this.width - max) / 2;
+
+    if (this.orientation === 'horizontal' || this.width === null) {
+      X_OFF = 0;
+    }
 
     // Path is painted counterclockwise starting from bottom left point
     const realPath = [];
@@ -55,6 +64,9 @@ export class LegendSizeContinuousLine {
         bottom.reverse();
       }
 
+      top[0] += X_OFF;
+      bottom[0] += X_OFF;
+
       // Insert always at current index + 1 (to account for `M0 ${this.size}`)
       realPath.splice(i, 0, `L${top.join(' ')}`);
 
@@ -71,6 +83,9 @@ export class LegendSizeContinuousLine {
           first.reverse();
           second.reverse();
         }
+
+        first[0] += X_OFF;
+        second[0] += X_OFF;
 
         lines.push({
           label: d.label,
@@ -101,13 +116,19 @@ export class LegendSizeContinuousLine {
         <g>
           {
             lines.map(({ x1, x2, y1, y2 }) => {
-              return [
+              let xOff = -X_OFF;
+
+              if (this.orientation === 'horizontal') {
+                xOff = 0;
+              }
+
+              return (
                 <line
                   stroke-width={this.leadingLineStrokeWidth}
                   x1={x1} y1={y1}
-                  x2={x2} y2={y2}>
+                  x2={x2 + xOff} y2={y2}>
                 </line>
-              ];
+              );
             }
             )
           }
@@ -116,7 +137,7 @@ export class LegendSizeContinuousLine {
           {
             lines.map(({ label, x2, y2 }) => {
               const offset = {
-                x: TEXT_MARGIN,
+                x: TEXT_MARGIN - X_OFF,
                 y: this.textLineHeight / 4
               };
 
@@ -163,8 +184,12 @@ export class LegendSizeContinuousLine {
   private getSVGViewBox() {
     const height = (this.orientation === 'horizontal' ? this.rSize : this.size);
 
-    const marginX = this.size * (-this.xMarginFactor / 2);
+    let marginX = this.size * (-this.xMarginFactor / 2);
     const marginY = height * (-this.yMarginFactor / 2);
+
+    if (this.orientation === 'vertical') {
+      marginX = 0;
+    }
 
     return `${marginX} ${marginY} ${this.size * (1 + this.xMarginFactor)} ${height * (1 + this.yMarginFactor)}`;
   }
