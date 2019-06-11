@@ -4,6 +4,8 @@ as-legend-size-category-line {
   --as-legend-size-category-line--color: var(--as--color--type-01);
   --as-legend-size-category-line--shadow: rgba(0, 0, 0, 0.1);
 
+  display: block;
+
   .as-legend-size-category-line--steps {
     display: flex;
   }

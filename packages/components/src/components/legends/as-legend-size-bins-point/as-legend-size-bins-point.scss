@@ -4,6 +4,8 @@ as-legend-size-bins-point {
   --as-legend-size-bins-point--color: var(--as--color--type-01);
   --as-legend-size-bins-point--shadow: rgba(0, 0, 0, 0.1);
 
+  display: block;
+
   .as-legend-size-bins-point--steps {
     display: flex;
   }

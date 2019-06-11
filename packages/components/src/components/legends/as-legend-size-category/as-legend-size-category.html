@@ -19,8 +19,8 @@
     <script src="packages/components/dist/airship.js"></script>
     <script src="/packages/bridge/dist/asbridge.js"></script>
     <style>
-      as-legend-size-bins-point:first-of-type {
-        margin-bottom: 4px;
+      as-legend-size-category {
+        margin-bottom: 16px;
       }
     </style>
 </head>
@@ -38,12 +38,16 @@
                     description="Size is defined by inhabitants per square feet">
                     <div slot="legends">
                       <as-legend-size-category
-                        orientation="horizontal"
+                        orientation="vertical"
                         id="legendLines">
                       </as-legend-size-category>
                       <as-legend-size-category
-                        orientation="horizontal"
+                        orientation="vertical"
                         id="legend">
+                      </as-legend-size-category>
+                      <as-legend-size-category
+                        orientation="vertical"
+                        id="legendSymbols">
                       </as-legend-size-category>
                     </div>
                     <span slot="footer">Source: my own opinion</span>
@@ -99,6 +103,11 @@
       color: '#FFC667',
       label: 'Longish label'
     }];
+
+    legendSymbols.data = legend.data.map((e) => ({
+      ...e,
+      marker: 'https://libs.cartocdn.com/carto-vl/assets/symbols/marker.svg'
+    }));
   </script>
 </body>
 
