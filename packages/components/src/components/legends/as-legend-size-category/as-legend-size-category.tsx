@@ -2,7 +2,7 @@ import { Component, Prop } from '@stencil/core';
 
 @Component({
   shadow: false,
-  styleUrl: './as-legend-size-category.scss',
+  styles: 'as-legend-size-category { display: block; }',
   tag: 'as-legend-size-category',
 })
 export class LegendSizeCategory {

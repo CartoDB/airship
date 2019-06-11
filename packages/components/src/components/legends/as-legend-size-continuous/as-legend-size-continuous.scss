@@ -4,6 +4,8 @@ as-legend-size-continuous {
   --as--basic--legend--font: var(--as--font--body);
   --as--basic--legend--text-transform: capitalize;
 
+  display: block;
+
   .as-legend-size-continuous--wrapper {
     display: flex;
     flex-direction: column;

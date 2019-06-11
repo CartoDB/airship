@@ -2,6 +2,7 @@ import { Component, Prop } from '@stencil/core';
 
 @Component({
   shadow: false,
+  styles: 'as-legend-color-continuous { display: block; }',
   tag: 'as-legend-color-continuous',
 })
 export class LegendColorCategory {

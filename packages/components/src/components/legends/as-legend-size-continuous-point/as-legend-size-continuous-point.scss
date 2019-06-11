@@ -4,6 +4,8 @@ as-legend-size-continuous-point {
   --as-legend-size-continuous-point--color: var(--as--color--type-01);
   --as-legend-size-continuous-point--shadow: rgba(0, 0, 0, 0.1);
 
+  display: block;
+
   .as-legend-size-continuous-point--steps {
     display: flex;
     position: relative;

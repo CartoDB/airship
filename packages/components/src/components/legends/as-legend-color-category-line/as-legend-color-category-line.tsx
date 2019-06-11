@@ -2,6 +2,7 @@ import { Component, Prop } from '@stencil/core';
 
 @Component({
   shadow: false,
+  styles: 'as-legend-color-category-line { display: block; }',
   tag: 'as-legend-color-category-line'
 })
 export class LegendColorCategoryLine {

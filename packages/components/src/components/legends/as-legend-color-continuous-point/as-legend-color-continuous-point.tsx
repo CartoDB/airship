@@ -2,6 +2,7 @@ import { Component, Prop } from '@stencil/core';
 
 @Component({
   shadow: false,
+  styles: 'as-legend-color-continuous-point { display: block; }',
   tag: 'as-legend-color-continuous-point'
 })
 export class LegendColorBinsPoint {
