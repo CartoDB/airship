@@ -35,53 +35,57 @@ export class LegendSizeContinuousLine {
   public render() {
     const sortedData = this.getSortedData();
 
-    const max = sortedData[0].width;
-    const half = max / 2;
+    const MAX = sortedData[0].width;
+    const HALF = MAX / 2;
 
-    const X_POS = Math.max(max + MIN_LINE_SIZE, this.width);
+    const X_POS = Math.max(MAX + MIN_LINE_SIZE, this.width);
 
-    const X_OFF = this.orientation === 'horizontal' || this.width === null
+    const X_OFFSET = this.orientation === 'horizontal' || this.width === null
       ? 0
-      : (this.width - max) / 2;
+      : (this.width - MAX) / 2;
 
     // Path is painted counterclockwise starting from bottom left point
     const realPath = [];
     const lines = [];
 
     sortedData.forEach((d, i) => {
-      const factor = half * (d.width / max);
-      const yRatio = i / (sortedData.length - 1);
+      const FACTOR = HALF * (d.width / MAX);
+      const Y_RATIO = i / (sortedData.length - 1);
 
-      const top = [half + factor, this.size - (this.size * yRatio)];
-      const bottom = [half - factor, this.size - (this.size * yRatio)];
+      const TOP_X = HALF + FACTOR;
+      const BOTTOM_X = HALF - FACTOR;
+      const BOTTOM_Y = this.size - (this.size * Y_RATIO);
+      const TOP_Y = BOTTOM_Y;
 
-      if (this.orientation === 'horizontal') {
-        top.reverse();
-        bottom.reverse();
-      }
+      const TOP = this.orientation === 'vertical'
+        ? [TOP_X + X_OFFSET, TOP_Y]
+        : [TOP_Y + X_OFFSET, TOP_X];
 
-      top[0] += X_OFF;
-      bottom[0] += X_OFF;
+      const BOTTOM = this.orientation === 'vertical'
+        ? [BOTTOM_X + X_OFFSET, BOTTOM_Y]
+        : [TOP_Y + X_OFFSET, BOTTOM_X];
 
-      // Insert always at current index + 1 (to account for `M0 ${this.size}`)
-      realPath.splice(i, 0, `L${top.join(' ')}`);
+      // Insert always at current index
+      realPath.splice(i, 0, `L${TOP.join(' ')}`);
+      // Insert just before the last element
+      realPath.splice(realPath.length - i, 0, `L${BOTTOM.join(' ')}`);
 
       if (d.label) {
-        const yOffset = this.getOffset(i, sortedData.length - 1);
+        const Y_OFFSET = this.getOffset(i, sortedData.length - 1);
 
-        const x = half + factor;
-        const y = this.size - (this.size * yRatio) + yOffset;
+        const X = HALF + FACTOR;
+        const Y = this.size - (this.size * Y_RATIO) + Y_OFFSET;
 
-        const first = [x, y];
-        const second = [X_POS, y];
+        const first = [X, Y];
+        const second = [X_POS, Y];
 
         if (this.orientation === 'horizontal') {
           first.reverse();
           second.reverse();
         }
 
-        first[0] += X_OFF;
-        second[0] += X_OFF;
+        first[0] += X_OFFSET;
+        second[0] += X_OFFSET;
 
         lines.push({
           label: d.label,
@@ -91,9 +95,6 @@ export class LegendSizeContinuousLine {
           y2: second[1]
         });
       }
-
-      // Insert just before the last element
-      realPath.splice(realPath.length - i, 0, `L${bottom.join(' ')}`);
     });
 
     if (this.orientation === 'horizontal') {
@@ -112,7 +113,7 @@ export class LegendSizeContinuousLine {
         <g>
           {
             lines.map(({ x1, x2, y1, y2 }) => {
-              let xOff = -X_OFF;
+              let xOff = -X_OFFSET;
 
               if (this.orientation === 'horizontal') {
                 xOff = 0;
@@ -133,7 +134,7 @@ export class LegendSizeContinuousLine {
           {
             lines.map(({ label, x2, y2 }) => {
               const offset = {
-                x: TEXT_MARGIN - X_OFF,
+                x: TEXT_MARGIN - X_OFFSET,
                 y: this.textLineHeight / 4
               };
 
