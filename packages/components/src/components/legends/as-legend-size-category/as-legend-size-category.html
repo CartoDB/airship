@@ -133,7 +133,10 @@
       marker: 'https://libs.cartocdn.com/carto-vl/assets/symbols/marker.svg'
     }));
 
-  //  cont.width = cbins.width = bins.width = legend.width = legendSymbols.width = 72; Math.max(legendLines.data.slice().sort((a, b) => b.width - a.width)[0].width * legendLines.factor, legendLines.minWidth);
+  // Advanced alignment: all legends will attempt having this width on the "figure" side
+  legendLines.componentOnReady().then(() => {
+    cont.width = cbins.width = bins.width = legend.width = legendSymbols.width = Math.max(legendLines.data.slice().sort((a, b) => b.width - a.width)[0].width * legendLines.factor, legendLines.minWidth);
+  });
   </script>
 </body>
 
