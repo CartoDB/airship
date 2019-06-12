@@ -34,7 +34,10 @@
                     <div slot="legends">
                       <as-legend-size-continuous
                         id="legend"
-                        scale="3">
+                        scale="4">
+                      </as-legend-size-continuous>
+                      <as-legend-size-continuous
+                        id="legendLines">
                       </as-legend-size-continuous>
                     </div>
                     <span slot="footer">Source: my own opinion</span>
@@ -70,6 +73,11 @@
       strokeColor: '#0000001',
       label: 'Longish label'
     }];
+
+    legendLines.data = legend.data.map((e) => ({
+      ...e,
+      type: 'line'
+    }));
   </script>
 </body>
 
