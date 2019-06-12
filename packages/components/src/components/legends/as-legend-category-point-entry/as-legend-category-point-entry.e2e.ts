@@ -31,7 +31,7 @@ describe('as-legend-category-point-entry', async () => {
       element.setProperty('color', '#FABADA');
       element.setProperty('strokeColor', '#C0C1D0');
       element.setProperty('strokeStyle', 'dashed');
-      element.setProperty('marker', 'https://libs.cartocdn.com/carto-vl/assets/symbols/marker.svg');
+      element.setProperty('marker', 'wadus.svg');
       element.setProperty('width', '16');
       await page.waitForChanges();
       expect(element.outerHTML).toMatchSnapshot();
