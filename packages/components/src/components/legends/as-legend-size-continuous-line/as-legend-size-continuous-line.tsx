@@ -9,7 +9,7 @@ const MIN_LINE_SIZE = 4;
   tag: 'as-legend-size-continuous-line'
 })
 export class LegendSizeContinuousLine {
-  @Prop() public data: LegendData[];
+  @Prop() public data: LegendData[] = null;
   @Prop() public orientation: 'horizontal' | 'vertical' = 'vertical';
   @Prop() public size: number = 300;
   @Prop() public leadingLineStrokeWidth: number = 0.5;
@@ -33,6 +33,10 @@ export class LegendSizeContinuousLine {
   }
 
   public render() {
+    if (!this.data || this.data.length === 0) {
+      return;
+    }
+
     const sortedData = this.getSortedData();
 
     const MAX = sortedData[0].width;
@@ -154,6 +158,10 @@ export class LegendSizeContinuousLine {
   }
 
   private parseSize() {
+    if (!this.data || this.data.length === 0) {
+      return;
+    }
+
     const sortedData = this.getSortedData();
 
     const max = sortedData[0].width;
@@ -162,6 +170,10 @@ export class LegendSizeContinuousLine {
   }
 
   private getSortedData() {
+    if (this.data === null) {
+      return this.data;
+    }
+
     return this.data.slice().sort(
       (first, second) => second.width - first.width
     );
