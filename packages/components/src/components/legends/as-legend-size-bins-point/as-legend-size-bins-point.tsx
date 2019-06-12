@@ -1,4 +1,9 @@
 import { Component, Prop } from '@stencil/core';
+import { borderStyleCounts } from '../../../utils/border-style-counts';
+
+// This component ignores the strokeWidth property, and always paints
+// a 1px border.
+const FAKE_BORDER_SIZE = 1;
 
 @Component({
   shadow: false,
@@ -32,8 +37,14 @@ export class LegendSizeBinsPoint {
   }
 
   private renderStep(data: LegendData) {
-    const size = `${Math.round(data.width)}px`;
-    const strokeStyle = `1px ${data.strokeStyle || 'solid'} ${data.strokeColor}`;
+    const strokeStyle = `${FAKE_BORDER_SIZE}px ${data.strokeStyle || 'solid'} ${data.strokeColor}`;
+
+    // Elements are box-sizing: border-box, so we have to compensate
+    const sizeOffset = borderStyleCounts(data.strokeStyle)
+      ? FAKE_BORDER_SIZE * 2
+      : 0;
+
+    const size = `${Math.round(data.width) + sizeOffset}px`;
 
     const mask = this.getMask(data);
 

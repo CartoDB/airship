@@ -1,4 +1,9 @@
 import { Component, Prop } from '@stencil/core';
+import { borderStyleCounts } from '../../../utils/border-style-counts';
+
+// This component ignores the strokeWidth property, and always paints
+// a 1px border.
+const FAKE_BORDER_SIZE = 1;
 
 @Component({
   shadow: false,
@@ -32,7 +37,7 @@ export class LegendCategoryPointEntry {
   private getStyle() {
     return {
       backgroundColor: this.color,
-      border: `1px ${this.strokeStyle || 'solid'} ${this.strokeColor}`,
+      border: `${FAKE_BORDER_SIZE}px ${this.strokeStyle || 'solid'} ${this.strokeColor}`,
       ...this.getWidth(),
       ...this.getMask()
     };
@@ -43,9 +48,13 @@ export class LegendCategoryPointEntry {
       return {};
     }
 
+    const sizeOffset = borderStyleCounts(this.strokeStyle)
+      ? FAKE_BORDER_SIZE * 2
+      : 0;
+
     return {
-      height: `${this.width + 2}px`,
-      width: `${this.width + 2}px`
+      height: `${this.width + sizeOffset}px`,
+      width: `${this.width + sizeOffset}px`
     };
   }
 
