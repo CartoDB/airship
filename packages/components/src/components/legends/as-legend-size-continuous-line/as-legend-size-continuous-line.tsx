@@ -33,20 +33,16 @@ export class LegendSizeContinuousLine {
   }
 
   public render() {
-    const sortedData = this.data.slice().sort(
-      (first, second) => second.width - first.width
-    );
+    const sortedData = this.getSortedData();
 
     const max = sortedData[0].width;
     const half = max / 2;
 
     const X_POS = Math.max(max + MIN_LINE_SIZE, this.width);
 
-    let X_OFF = (this.width - max) / 2;
-
-    if (this.orientation === 'horizontal' || this.width === null) {
-      X_OFF = 0;
-    }
+    const X_OFF = this.orientation === 'horizontal' || this.width === null
+      ? 0
+      : (this.width - max) / 2;
 
     // Path is painted counterclockwise starting from bottom left point
     const realPath = [];
@@ -157,13 +153,17 @@ export class LegendSizeContinuousLine {
   }
 
   private parseSize() {
-    const sortedData = this.data.slice().sort(
-      (first, second) => second.width - first.width
-    );
+    const sortedData = this.getSortedData();
 
     const max = sortedData[0].width;
 
     this.rSize = Math.max(max + MIN_LINE_SIZE + (this.textLineHeight), 0);
+  }
+
+  private getSortedData() {
+    return this.data.slice().sort(
+      (first, second) => second.width - first.width
+    );
   }
 
   private getPathStyle() {
