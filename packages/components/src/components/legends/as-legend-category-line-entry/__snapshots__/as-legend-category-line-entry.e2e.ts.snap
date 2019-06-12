@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`as-legend-category-line-entry Rendering should render label and color, with 1.5px solid style by default 1`] = `"<as-legend-category-line-entry class=\\"hydrated\\"><div class=\\"as-legend-category-line-entry--wrapper\\"><div class=\\"as-legend-category--figure--wrapper\\"><div class=\\"as-legend-category-line-entry--line\\" style=\\"border-top: 1.5px solid rgb(250, 186, 218);\\"></div></div><span class=\\"as-legend-category--label\\">Hello there</span></div></as-legend-category-line-entry>"`;
+
+exports[`as-legend-category-line-entry Rendering should support custom stroke style 1`] = `"<as-legend-category-line-entry class=\\"hydrated\\"><div class=\\"as-legend-category-line-entry--wrapper\\"><div class=\\"as-legend-category--figure--wrapper\\"><div class=\\"as-legend-category-line-entry--line\\" style=\\"border-top: 1.5px dotted rgb(250, 186, 218);\\"></div></div><span class=\\"as-legend-category--label\\">Hello there</span></div></as-legend-category-line-entry>"`;
+
+exports[`as-legend-category-line-entry Rendering should support custom stroke width 1`] = `"<as-legend-category-line-entry class=\\"hydrated\\"><div class=\\"as-legend-category-line-entry--wrapper\\"><div class=\\"as-legend-category--figure--wrapper\\"><div class=\\"as-legend-category-line-entry--line\\" style=\\"border-top: 10px solid rgb(250, 186, 218);\\"></div></div><span class=\\"as-legend-category--label\\">Hello there</span></div></as-legend-category-line-entry>"`;

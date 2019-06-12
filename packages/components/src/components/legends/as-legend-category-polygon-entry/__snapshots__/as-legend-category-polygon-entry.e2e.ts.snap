@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`as-legend-category-polygon-entry Rendering basic polygons 1`] = `"<as-legend-category-polygon-entry class=\\"hydrated\\"><div class=\\"as-legend-category-polygon-entry--wrapper\\"><div class=\\"as-legend-category--figure--wrapper\\"><div class=\\"as-legend-category-polygon-entry--box\\" style=\\"background-color: rgb(250, 186, 218); border: 1px dashed rgb(192, 193, 208);\\"></div></div><span class=\\"as-legend-category--label\\">Hello there</span></div></as-legend-category-polygon-entry>"`;
