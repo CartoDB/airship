@@ -1,27 +1,27 @@
 import { E2EPage, newE2EPage } from '@stencil/core/testing';
 
-describe('as-legend-color-bins-polygon', async () => {
+describe('as-legend-size-bins-line', async () => {
   describe('Rendering', async () => {
     let page: E2EPage;
 
     it('basic', async () => {
       page = await newE2EPage({ html: `
-        <as-legend-color-bins-polygon>
-        </as-legend-color-bins-polygon>
+        <as-legend-size-bins-line>
+        </as-legend-size-bins-line>
       ` });
 
-      const element = await page.find('as-legend-color-bins-polygon');
+      const element = await page.find('as-legend-size-bins-line');
       element.setProperty('data', [{
-        color: '#FF0000',
-        label: 'point label'
+        label: 'point label',
+        width: 10,
       },
       {
-        color: '#00FF00',
-        label: 'line label'
+        label: 'line label',
+        width: 12,
       },
       {
-        color: '#0000FF',
-        label: 'polygon label'
+        label: 'polygon label',
+        width: 14,
       }]);
       await page.waitForChanges();
       expect(element.outerHTML).toMatchSnapshot();
@@ -29,22 +29,22 @@ describe('as-legend-color-bins-polygon', async () => {
 
     it('basic horizontal', async () => {
       page = await newE2EPage({ html: `
-        <as-legend-color-bins-polygon>
-        </as-legend-color-bins-polygon>
+        <as-legend-size-bins-line>
+        </as-legend-size-bins-line>
       ` });
 
-      const element = await page.find('as-legend-color-bins-polygon');
+      const element = await page.find('as-legend-size-bins-line');
       element.setProperty('data', [{
-        color: '#FF0000',
-        label: 'point label'
+        label: 'point label',
+        width: 10,
       },
       {
-        color: '#00FF00',
-        label: 'line label'
+        label: 'line label',
+        width: 12,
       },
       {
-        color: '#0000FF',
-        label: 'polygon label'
+        label: 'polygon label',
+        width: 14,
       }]);
       element.setProperty('orientation', 'horizontal');
       await page.waitForChanges();
