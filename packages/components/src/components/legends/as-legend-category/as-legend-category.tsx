@@ -1,6 +1,6 @@
 import { Component, Prop } from '@stencil/core';
 
-const DEFAULT_WIDTH = 16;
+const MIN_WIDTH = 16;
 
 @Component({
   shadow: false,
@@ -66,16 +66,12 @@ export class LegendColorCategory {
   }
 
   private getStyle() {
-    let maxLegendWidth = this.data.slice().sort(
+    const maxLegendWidth = this.data.slice().sort(
       (first, second) => second.width - first.width
     )[0].width;
 
-    if (maxLegendWidth < DEFAULT_WIDTH) {
-      maxLegendWidth = DEFAULT_WIDTH;
-    }
-
     return {
-      '--as--basic--legend--figure-width': `${this.width || maxLegendWidth}px`
+      '--as--basic--legend--figure-width': `${this.width || Math.max(maxLegendWidth, MIN_WIDTH)}px`
     };
   }
 }
