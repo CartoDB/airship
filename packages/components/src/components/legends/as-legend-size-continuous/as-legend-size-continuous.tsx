@@ -5,7 +5,6 @@ import { Component, Prop } from '@stencil/core';
   styleUrl: './as-legend-size-continuous.scss',
   tag: 'as-legend-size-continuous',
 })
-
 export class LegendSizeContinuous {
   @Prop() public data: LegendData[];
   @Prop() public orientation: 'horizontal' | 'vertical' = 'vertical';

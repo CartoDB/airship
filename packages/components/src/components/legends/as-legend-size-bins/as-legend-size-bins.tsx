@@ -5,7 +5,6 @@ import { Component, Prop } from '@stencil/core';
   styleUrl: './as-legend-size-bins.scss',
   tag: 'as-legend-size-bins',
 })
-
 export class LegendSizeBins {
   @Prop() public data: LegendData[];
   @Prop() public orientation: 'horizontal' | 'vertical' = 'vertical';
@@ -16,13 +15,7 @@ export class LegendSizeBins {
       return null;
     }
 
-    return <div class='as-legend-size-bins--wrapper'>
-      <div class='as-legend-size-bins--entry'>
-        {
-          this.renderLegend(this.data)
-        }
-      </div>
-    </div>;
+    return this.renderLegend(this.data);
   }
 
   private renderLegend(data: LegendData[]) {

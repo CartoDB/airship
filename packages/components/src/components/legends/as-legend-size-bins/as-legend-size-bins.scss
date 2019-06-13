@@ -1,37 +1,5 @@
 @import '../../../../../styles/src/core/_dev';
 
 as-legend-size-bins {
-  --as--basic--legend--font: var(--as--font--body);
-  --as--basic--legend--text-transform: capitalize;
-
   display: block;
-
-  .as-legend-size-bins--wrapper {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-items: inherit;
-  }
-
-  .as-legend-size-bins--label {
-    font: var(--as--basic--legend--font);
-    text-transform: var(--as--basic--legend--text-transform);
-  }
-
-  & .as-legend-size-bins--figure--wrapper {
-    margin-right: get-spacing(2);
-  }
-
-  .as-legend-size-bins--wrapper-horizontal > .as-legend-size-bins--entry {
-    margin-right: get-spacing(3);
-  }
-
-  .as-legend-size-bins--wrapper:not(.as-legend-size-bins--wrapper-horizontal) > .as-legend-size-bins--entry:not(:first-child) {
-    margin-top: get-spacing(3);
-  }
-
-  .as-legend-size-bins--wrapper-horizontal {
-    flex-direction: row;
-    align-items: center;
-  }
 }
