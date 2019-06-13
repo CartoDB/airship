@@ -1,5 +1,7 @@
 import { Component, Prop, State, Watch } from '@stencil/core';
 
+const MAX_WIDTH = 16;
+
 @Component({
   shadow: false,
   styleUrl: './as-legend-category-line-entry.scss',
@@ -30,7 +32,7 @@ export class LegendCategoryLineEntry {
 
   @Watch('width')
   public _widthChanged(newValue: number) {
-    this._width = Math.min(16, newValue);
+    this._width = Math.min(MAX_WIDTH, newValue);
   }
 
   private getStyle() {

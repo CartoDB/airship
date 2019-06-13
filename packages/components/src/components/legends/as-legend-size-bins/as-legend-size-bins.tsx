@@ -5,23 +5,17 @@ import { Component, Prop } from '@stencil/core';
   styleUrl: './as-legend-size-bins.scss',
   tag: 'as-legend-size-bins',
 })
-
 export class LegendSizeBins {
   @Prop() public data: LegendData[];
   @Prop() public orientation: 'horizontal' | 'vertical' = 'vertical';
+  @Prop() public width: number = null;
 
   public render() {
     if (!this.data || this.data.length === 0) {
       return null;
     }
 
-    return <div class='as-legend-size-bins--wrapper'>
-      <div class='as-legend-size-bins--entry'>
-        {
-          this.renderLegend(this.data)
-        }
-      </div>
-    </div>;
+    return this.renderLegend(this.data);
   }
 
   private renderLegend(data: LegendData[]) {
@@ -30,8 +24,16 @@ export class LegendSizeBins {
         return <as-legend-size-bins-point
           data={this.data}
           orientation={this.orientation}
+          width={this.width}
         >
         </as-legend-size-bins-point>;
+      case 'line':
+        return <as-legend-size-bins-line
+            data={this.data}
+            orientation={this.orientation}
+            width={this.width}
+          >
+        </as-legend-size-bins-line>;
       default:
         return null;
     }

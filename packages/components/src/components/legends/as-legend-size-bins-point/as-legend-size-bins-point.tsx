@@ -1,6 +1,9 @@
 import { Component, Prop } from '@stencil/core';
+import { borderStyleCounts } from '../../../utils/border-style-counts';
 
-const MARGIN_OFFSET = 2;
+// This component ignores the strokeWidth property, and always paints
+// a 1px border.
+const FAKE_BORDER_SIZE = 1;
 
 @Component({
   shadow: false,
@@ -10,6 +13,7 @@ const MARGIN_OFFSET = 2;
 export class LegendSizeBinsPoint {
   @Prop() public data: LegendData[];
   @Prop() public orientation: 'horizontal' | 'vertical' = 'vertical';
+  @Prop() public width: number = null;
 
   private maxSize: number;
 
@@ -23,7 +27,7 @@ export class LegendSizeBinsPoint {
       [`as-legend-size-bins-point--${this.orientation}`]: true
     };
 
-    this.maxSize = this.data.slice().sort(
+    this.maxSize = this.width || this.data.slice().sort(
       (first, second) => second.width - first.width
     )[0].width;
 
@@ -33,22 +37,31 @@ export class LegendSizeBinsPoint {
   }
 
   private renderStep(data: LegendData) {
-    const size = `${Math.round(data.width)}px`;
-    const strokeStyle = `1px ${data.strokeStyle || 'solid'} ${data.strokeColor}`;
+    const strokeStyle = `${FAKE_BORDER_SIZE}px ${data.strokeStyle || 'solid'} ${data.strokeColor}`;
+
+    // Elements are box-sizing: border-box, so we have to compensate
+    const sizeOffset = borderStyleCounts(data.strokeStyle)
+      ? FAKE_BORDER_SIZE * 2
+      : 0;
+
+    const size = `${Math.round(data.width) + sizeOffset}px`;
+
+    const mask = this.getMask(data);
 
     const style: any = {
       backgroundColor: data.color,
       border: strokeStyle,
       height: size,
       width: size,
+      ...mask
     };
 
     const wrapperStyle: any = { };
 
     if (this.orientation === 'horizontal') {
-      wrapperStyle.height = `${this.maxSize + MARGIN_OFFSET}px`;
+      wrapperStyle.height = `${this.maxSize}px`;
     } else if (this.orientation === 'vertical') {
-      wrapperStyle.width = `${this.maxSize + MARGIN_OFFSET}px`;
+      wrapperStyle.width = `${this.maxSize}px`;
     }
 
     return (
@@ -59,5 +72,22 @@ export class LegendSizeBinsPoint {
         <span class='as-legend-size-bins-point--label'>{data.label}</span>
       </div>
     );
+  }
+
+  private getMask(data) {
+    if (!data.marker) {
+      return {};
+    }
+
+    return {
+      '-webkit-mask-image': `url(${data.marker})`,
+      '-webkit-mask-position': 'center',
+      '-webkit-mask-repeat': 'no-repeat',
+      '-webkit-mask-size': `${data.width}px`,
+      'maskImage': `url(${data.marker})`,
+      'maskPosition': 'center',
+      'maskRepeat': 'no-repeat',
+      'maskSize': `${data.width}px`
+    };
   }
 }

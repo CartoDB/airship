@@ -2,6 +2,7 @@ import { Component, Prop } from '@stencil/core';
 
 @Component({
   shadow: false,
+  styles: 'as-legend-color-bins-point { display: block; }',
   tag: 'as-legend-color-bins-point'
 })
 export class LegendColorBinsPoint {

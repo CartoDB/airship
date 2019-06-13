@@ -1,8 +1,10 @@
 @import '../../../../../styles/src/core/_dev';
 
 as-legend-category {
-  --as--basic--legend--font: var(--as--font--body);
+  --as--basic--legend--font: var(--as--font--caption);
   --as--basic--legend--text-transform: capitalize;
+
+  display: block;
 
   .as-legend-category--wrapper {
     display: flex;

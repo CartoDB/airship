@@ -1367,22 +1367,95 @@ export namespace Components {
     'width'?: number;
   }
 
+  interface AsLegendSizeBinsLine {
+    'data': LegendData[];
+    'orientation': 'horizontal' | 'vertical';
+    'width': number;
+  }
+  interface AsLegendSizeBinsLineAttributes extends StencilHTMLAttributes {
+    'data'?: LegendData[];
+    'orientation'?: 'horizontal' | 'vertical';
+    'width'?: number;
+  }
+
   interface AsLegendSizeBinsPoint {
     'data': LegendData[];
     'orientation': 'horizontal' | 'vertical';
+    'width': number;
   }
   interface AsLegendSizeBinsPointAttributes extends StencilHTMLAttributes {
     'data'?: LegendData[];
     'orientation'?: 'horizontal' | 'vertical';
+    'width'?: number;
   }
 
   interface AsLegendSizeBins {
     'data': LegendData[];
     'orientation': 'horizontal' | 'vertical';
+    'width': number;
   }
   interface AsLegendSizeBinsAttributes extends StencilHTMLAttributes {
     'data'?: LegendData[];
     'orientation'?: 'horizontal' | 'vertical';
+    'width'?: number;
+  }
+
+  interface AsLegendSizeCategoryLine {
+    'aligned': boolean;
+    'data': LegendData[];
+    'factor': number;
+    'minWidth': number;
+    'orientation': 'horizontal' | 'vertical';
+  }
+  interface AsLegendSizeCategoryLineAttributes extends StencilHTMLAttributes {
+    'aligned'?: boolean;
+    'data'?: LegendData[];
+    'factor'?: number;
+    'minWidth'?: number;
+    'orientation'?: 'horizontal' | 'vertical';
+  }
+
+  interface AsLegendSizeCategoryPoint {
+    'data': LegendData[];
+    'orientation': 'horizontal' | 'vertical';
+    'width': number;
+  }
+  interface AsLegendSizeCategoryPointAttributes extends StencilHTMLAttributes {
+    'data'?: LegendData[];
+    'orientation'?: 'horizontal' | 'vertical';
+    'width'?: number;
+  }
+
+  interface AsLegendSizeCategory {
+    'data': LegendData[];
+    'orientation': 'horizontal' | 'vertical';
+    'width': number;
+  }
+  interface AsLegendSizeCategoryAttributes extends StencilHTMLAttributes {
+    'data'?: LegendData[];
+    'orientation'?: 'horizontal' | 'vertical';
+    'width'?: number;
+  }
+
+  interface AsLegendSizeContinuousLine {
+    'data': LegendData[];
+    'leadingLineStrokeWidth': number;
+    'orientation': 'horizontal' | 'vertical';
+    'size': number;
+    'textLineHeight': number;
+    'width': number;
+    'xMarginFactor': number;
+    'yMarginFactor': number;
+  }
+  interface AsLegendSizeContinuousLineAttributes extends StencilHTMLAttributes {
+    'data'?: LegendData[];
+    'leadingLineStrokeWidth'?: number;
+    'orientation'?: 'horizontal' | 'vertical';
+    'size'?: number;
+    'textLineHeight'?: number;
+    'width'?: number;
+    'xMarginFactor'?: number;
+    'yMarginFactor'?: number;
   }
 
   interface AsLegendSizeContinuousPoint {
@@ -1455,8 +1528,13 @@ declare global {
     'AsLegendColorContinuousPoint': Components.AsLegendColorContinuousPoint;
     'AsLegendColorContinuousPolygon': Components.AsLegendColorContinuousPolygon;
     'AsLegendColorContinuous': Components.AsLegendColorContinuous;
+    'AsLegendSizeBinsLine': Components.AsLegendSizeBinsLine;
     'AsLegendSizeBinsPoint': Components.AsLegendSizeBinsPoint;
     'AsLegendSizeBins': Components.AsLegendSizeBins;
+    'AsLegendSizeCategoryLine': Components.AsLegendSizeCategoryLine;
+    'AsLegendSizeCategoryPoint': Components.AsLegendSizeCategoryPoint;
+    'AsLegendSizeCategory': Components.AsLegendSizeCategory;
+    'AsLegendSizeContinuousLine': Components.AsLegendSizeContinuousLine;
     'AsLegendSizeContinuousPoint': Components.AsLegendSizeContinuousPoint;
     'AsLegendSizeContinuous': Components.AsLegendSizeContinuous;
     'AsLegend': Components.AsLegend;
@@ -1497,8 +1575,13 @@ declare global {
     'as-legend-color-continuous-point': Components.AsLegendColorContinuousPointAttributes;
     'as-legend-color-continuous-polygon': Components.AsLegendColorContinuousPolygonAttributes;
     'as-legend-color-continuous': Components.AsLegendColorContinuousAttributes;
+    'as-legend-size-bins-line': Components.AsLegendSizeBinsLineAttributes;
     'as-legend-size-bins-point': Components.AsLegendSizeBinsPointAttributes;
     'as-legend-size-bins': Components.AsLegendSizeBinsAttributes;
+    'as-legend-size-category-line': Components.AsLegendSizeCategoryLineAttributes;
+    'as-legend-size-category-point': Components.AsLegendSizeCategoryPointAttributes;
+    'as-legend-size-category': Components.AsLegendSizeCategoryAttributes;
+    'as-legend-size-continuous-line': Components.AsLegendSizeContinuousLineAttributes;
     'as-legend-size-continuous-point': Components.AsLegendSizeContinuousPointAttributes;
     'as-legend-size-continuous': Components.AsLegendSizeContinuousAttributes;
     'as-legend': Components.AsLegendAttributes;
@@ -1709,6 +1792,12 @@ declare global {
     new (): HTMLAsLegendColorContinuousElement;
   };
 
+  interface HTMLAsLegendSizeBinsLineElement extends Components.AsLegendSizeBinsLine, HTMLStencilElement {}
+  var HTMLAsLegendSizeBinsLineElement: {
+    prototype: HTMLAsLegendSizeBinsLineElement;
+    new (): HTMLAsLegendSizeBinsLineElement;
+  };
+
   interface HTMLAsLegendSizeBinsPointElement extends Components.AsLegendSizeBinsPoint, HTMLStencilElement {}
   var HTMLAsLegendSizeBinsPointElement: {
     prototype: HTMLAsLegendSizeBinsPointElement;
@@ -1719,6 +1808,30 @@ declare global {
   var HTMLAsLegendSizeBinsElement: {
     prototype: HTMLAsLegendSizeBinsElement;
     new (): HTMLAsLegendSizeBinsElement;
+  };
+
+  interface HTMLAsLegendSizeCategoryLineElement extends Components.AsLegendSizeCategoryLine, HTMLStencilElement {}
+  var HTMLAsLegendSizeCategoryLineElement: {
+    prototype: HTMLAsLegendSizeCategoryLineElement;
+    new (): HTMLAsLegendSizeCategoryLineElement;
+  };
+
+  interface HTMLAsLegendSizeCategoryPointElement extends Components.AsLegendSizeCategoryPoint, HTMLStencilElement {}
+  var HTMLAsLegendSizeCategoryPointElement: {
+    prototype: HTMLAsLegendSizeCategoryPointElement;
+    new (): HTMLAsLegendSizeCategoryPointElement;
+  };
+
+  interface HTMLAsLegendSizeCategoryElement extends Components.AsLegendSizeCategory, HTMLStencilElement {}
+  var HTMLAsLegendSizeCategoryElement: {
+    prototype: HTMLAsLegendSizeCategoryElement;
+    new (): HTMLAsLegendSizeCategoryElement;
+  };
+
+  interface HTMLAsLegendSizeContinuousLineElement extends Components.AsLegendSizeContinuousLine, HTMLStencilElement {}
+  var HTMLAsLegendSizeContinuousLineElement: {
+    prototype: HTMLAsLegendSizeContinuousLineElement;
+    new (): HTMLAsLegendSizeContinuousLineElement;
   };
 
   interface HTMLAsLegendSizeContinuousPointElement extends Components.AsLegendSizeContinuousPoint, HTMLStencilElement {}
@@ -1774,8 +1887,13 @@ declare global {
     'as-legend-color-continuous-point': HTMLAsLegendColorContinuousPointElement
     'as-legend-color-continuous-polygon': HTMLAsLegendColorContinuousPolygonElement
     'as-legend-color-continuous': HTMLAsLegendColorContinuousElement
+    'as-legend-size-bins-line': HTMLAsLegendSizeBinsLineElement
     'as-legend-size-bins-point': HTMLAsLegendSizeBinsPointElement
     'as-legend-size-bins': HTMLAsLegendSizeBinsElement
+    'as-legend-size-category-line': HTMLAsLegendSizeCategoryLineElement
+    'as-legend-size-category-point': HTMLAsLegendSizeCategoryPointElement
+    'as-legend-size-category': HTMLAsLegendSizeCategoryElement
+    'as-legend-size-continuous-line': HTMLAsLegendSizeContinuousLineElement
     'as-legend-size-continuous-point': HTMLAsLegendSizeContinuousPointElement
     'as-legend-size-continuous': HTMLAsLegendSizeContinuousElement
     'as-legend': HTMLAsLegendElement
@@ -1816,8 +1934,13 @@ declare global {
     'as-legend-color-continuous-point': HTMLAsLegendColorContinuousPointElement;
     'as-legend-color-continuous-polygon': HTMLAsLegendColorContinuousPolygonElement;
     'as-legend-color-continuous': HTMLAsLegendColorContinuousElement;
+    'as-legend-size-bins-line': HTMLAsLegendSizeBinsLineElement;
     'as-legend-size-bins-point': HTMLAsLegendSizeBinsPointElement;
     'as-legend-size-bins': HTMLAsLegendSizeBinsElement;
+    'as-legend-size-category-line': HTMLAsLegendSizeCategoryLineElement;
+    'as-legend-size-category-point': HTMLAsLegendSizeCategoryPointElement;
+    'as-legend-size-category': HTMLAsLegendSizeCategoryElement;
+    'as-legend-size-continuous-line': HTMLAsLegendSizeContinuousLineElement;
     'as-legend-size-continuous-point': HTMLAsLegendSizeContinuousPointElement;
     'as-legend-size-continuous': HTMLAsLegendSizeContinuousElement;
     'as-legend': HTMLAsLegendElement;
