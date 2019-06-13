@@ -1,5 +1,5 @@
 import { Component, Element, Event, EventEmitter, Method, Prop, State, Watch } from '@stencil/core';
-import { Axis, map } from 'd3';
+import { Axis } from 'd3';
 import { BrushBehavior } from 'd3-brush';
 import { ScaleLinear } from 'd3-scale';
 import {
