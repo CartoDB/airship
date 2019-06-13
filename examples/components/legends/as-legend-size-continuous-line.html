@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+  <base href="/">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+  <title>Airship</title>
+  <link rel="stylesheet" href="../../../packages/styles/dist/airship.css">
+  <script src="../../../packages/components/dist/airship.js"></script>
+  <style>
+    body {
+      background-color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <as-legend-size-continuous-line id="legend" orientation="horizontal"></as-legend-size-continuous-line>
+  
+  <script>
+    const legend = document.querySelector('#legend');
+    legend.data = [
+      { color: '#FFC667', width: 28, label: '280' },
+      { color: '#FFC667', width: 24, label: '240' },
+      { color: '#FFC667', width: 16, label: '160' }
+    ]
+  </script>
+</body>
+
+</html>
