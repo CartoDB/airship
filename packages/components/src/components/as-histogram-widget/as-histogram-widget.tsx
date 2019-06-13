@@ -781,7 +781,7 @@ export class HistogramWidget {
     }
 
     const oldSelection = (this._simplifySelection(this._dataForSelection(this.selection, oldData)) as number[]);
-    const newSelection = oldSelection.map(newScale);
+    const newSelection = oldSelection.map(newScale).map(Math.round);
 
     return [Math.max(0, newSelection[0]), Math.min(nBuckets, newSelection[1])];
   }
