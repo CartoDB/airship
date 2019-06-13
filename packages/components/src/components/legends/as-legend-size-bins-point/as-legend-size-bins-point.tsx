@@ -5,6 +5,7 @@ import { borderStyleCounts } from '../../../utils/border-style-counts';
 // a 1px border.
 const FAKE_BORDER_SIZE = 1;
 
+
 @Component({
   shadow: false,
   styleUrl: './as-legend-size-bins-point.scss',
@@ -44,25 +45,28 @@ export class LegendSizeBinsPoint {
       ? FAKE_BORDER_SIZE * 2
       : 0;
 
-    const size = `${Math.round(data.width) + sizeOffset}px`;
+    const SIZE = Math.round(data.width) + sizeOffset;
+    const SIZE_PX = `${SIZE}px`;
+    const MAX_SIZE = SIZE > this.maxSize ? SIZE : this.maxSize + sizeOffset;
+    const MAX_SIZE_PX = `${MAX_SIZE}px`;
 
     const mask = this.getMask(data);
-
-    const style: any = {
-      backgroundColor: data.color,
-      border: strokeStyle,
-      height: size,
-      width: size,
-      ...mask
-    };
 
     const wrapperStyle: any = { };
 
     if (this.orientation === 'horizontal') {
-      wrapperStyle.height = `${this.maxSize}px`;
+      wrapperStyle.height = MAX_SIZE_PX;
     } else if (this.orientation === 'vertical') {
-      wrapperStyle.width = `${this.maxSize}px`;
+      wrapperStyle.width = MAX_SIZE_PX;
     }
+
+    const style: any = {
+      backgroundColor: data.color,
+      border: strokeStyle,
+      height: SIZE_PX,
+      width: SIZE_PX,
+      ...mask
+    };
 
     return (
       <div class='as-legend-size-bins-point--step'>
