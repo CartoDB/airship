@@ -16,13 +16,11 @@ export class LegendSizeContinuous {
       return null;
     }
 
-    return <div class='as-legend-size-continuous--wrapper'>
-      <div class='as-legend-size-continuous--entry'>
-        {
-          this.renderLegend(this.data)
-        }
-      </div>
-    </div>;
+    const classes = {
+      'as-legend-size-continuous--overflow': this.data[0].type === 'line'
+    };
+
+    return <div class={classes}>{this.renderLegend(this.data)}</div>;
   }
 
   private renderLegend(data: LegendData[]) {
