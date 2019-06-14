@@ -1,8 +1,8 @@
 Airship offers a big selection of legends to add to your visualizations. They are named after three factors:
 
-- Dimension they represent (color / size)
-- Type of representation (bins / category / continuous)
-- Geometry
+- Dimension they represent (color / size).
+- Type of representation (bins / category / continuous).
+- Geometry.
 
 And all follow the following format:
 
@@ -12,7 +12,7 @@ The geometry is optional, Airship exposes metacomponents that will select the ap
 
 Note that not all combinations exist, for instance, there are no *-size-polygon legends, since polygons cannot really have varying size.
 
-There is one exception to this norm, the component `as-legend-category`, which is documented below.
+There is one exception to this norm, the component [as-legend-category](#as-legend-category), which is documented below.
 
 ### Props
 
@@ -36,13 +36,13 @@ LegendData {
 
 For legends that only display color values, but no size dimension, width will be ignored. On other types, stroke properties are not used.
 
-- **type**: This property indicates the type of legend it is. Most of the time is not required, except for legends that can display mixed types of geometries (such as `as-legend-category`) or for generic legends (`as-legend-color-bins`).
+- **type**: This property indicates the type of legend it is. Most of the time is not required, except for legends that can display mixed types of geometries (such as [as-legend-category](#as-legend-category)) or for generic legends ([as-legend-color-bins](#as-legend-color-bins)).
 - **color**: This property is used for the main color of the legend. That means, the fill color for points and polygons, but the color of lines as well.
 - **marker**: This property only makes sense in legends that display points, and let you specify an image URL.
-- **strokeColor**: the outline of a point or a polygon. Has no effect on lines
+- **strokeColor**: the outline of a point or a polygon. Has no effect on lines.
 - **strokeStyle**: the style of the outline. Directly mapped to CSS `border-style`, so check out all [possible values](https://developer.mozilla.org/en-US/docs/Web/CSS/border-style)
-- **label**: A label for a step
-- **width**: The diameter of a point, or the width of a line. Completely ignored for polygon-related-legends
+- **label**: A label for a step.
+- **width**: The diameter of a point, or the width of a line. Completely ignored for polygon-related-legends.
 
 #### Orientation = 'vertical' | 'horizontal'
 
@@ -133,16 +133,16 @@ noSource: true
 
 This component is rendered also with the following tags:
 
-- `as-legend-color-category`
-- `as-legend-color-category-point`
-- `as-legend-color-category-line`
-- `as-legend-color-category-polygon`
-- `as-legend-color-bins` when the `type` value in the first element of `data` is `line` or `point`
-- `as-legend-color-bins-point`
-- `as-legend-color-bins-line`
-- `as-legend-color-continuous` when the `type` value in the first element of `data` is `line` or `point`
-- `as-legend-color-continuous-point`
-- `as-legend-color-continuous-line`
+- [as-legend-color-category](#as-legend-color-category)
+- [as-legend-color-category-point](#as-legend-color-category-point)
+- [as-legend-color-category-line](#as-legend-color-category-line)
+- [as-legend-color-category-polygon](#as-legend-color-category-polygon)
+- [as-legend-color-bins](#as-legend-color-bins) when the `type` value in the first element of `data` is `line` or `point`
+- [as-legend-color-bins-point](#as-legend-color-bins-point)
+- [as-legend-color-bins-line](#as-legend-color-bins-line)
+- [as-legend-color-continuous](#as-legend-color-continuous) when the `type` value in the first element of `data` is `line` or `point`
+- [as-legend-color-continuous-point](#as-legend-color-continuous-point)
+- [as-legend-color-continuous-line](#as-legend-color-continuous-line)
 
 #### as-legend-color-bins-polygon
 
@@ -175,7 +175,7 @@ noSource: true
 
 This component is rendered also with the following tag:
 
-- `as-legend-color-bins` when the `type` value in the first element of `data` is `polygon`
+- [as-legend-color-bins](#as-legend-color-bins) when the `type` value in the first element of `data` is `polygon`
 
 ```hint|directive
 Despite having polygon in its name, you can use this for any type of geometry.
@@ -183,7 +183,7 @@ Despite having polygon in its name, you can use this for any type of geometry.
 
 #### as-legend-color-continuous-polygon
 
-Very similar to `<as-legend-color-bins-polygon>`, but instead of hard stops, it renders a gradient between each pair of colors. It works best when the palette is a continuous color
+Very similar to `as-legend-color-bins-polygon`, but instead of hard stops, it renders a gradient between each pair of colors. It works best when the palette is a continuous color.
 
 ```html
 noSource: true
@@ -210,11 +210,11 @@ noSource: true
 
 This component is rendered also with the following tag:
 
-- `as-legend-color-continuous` when the `type` value in the first element of `data` is `polygon`
+- [as-legend-color-continuous](#as-legend-color-continuous) when the `type` value in the first element of `data` is `polygon`.
 
 ### as-legend-size-bins-point
 
-This component renders a list of points of varying size. Is quite similar to the `as-category` component, although the label layout is slightly different.
+This component renders a list of points of varying size. Is quite similar to the [as-category](#as-category) component, although the label layout is slightly different.
 
 As with most legends that render points, it supports the marker property.
 
@@ -241,9 +241,9 @@ noSource: true
 
 This component is rendered also with the following tags:
 
-- `as-legend-size-bins` when the `type` value in the first element of `data` is `point`
-- `as-legend-size-category` when the `type` value in the first element of `data` is `point`
-- `as-legend-size-category-point`
+- [as-legend-size-bins](#as-legend-size-bins) when the `type` value in the first element of `data` is `point`.
+- [as-legend-size-category](#as-legend-size-category) when the `type` value in the first element of `data` is `point`.
+- [as-legend-size-category-point](#as-legend-size-category-point).
 
 ### as-legend-size-bins-line
 
@@ -273,7 +273,7 @@ noSource: true
 
 This component is rendered also with the following tag:
 
-- `as-legend-size-bins` when the `type` value in the first element of `data` is `line`
+- [as-legend-size-bins](#as-legend-size-bins) when the `type` value in the first element of `data` is `line`.
 
 ### as-legend-size-category-line
 
@@ -302,11 +302,11 @@ noSource: true
 
 This component is rendered also with the following tag:
 
-- `as-legend-size-category` when the `type` value in the first element of `data` is `line`
+- [as-legend-size-category](#as-legend-size-category) when the `type` value in the first element of `data` is `line`.
 
 ### as-legend-size-continuous-line
 
-This component is very similar to `as-legend-size-bins-line` but instead of hard stops it connects all steps into a polygon.
+This component is very similar to [as-legend-size-bins-line](#as-legend-size-bins-line) but instead of hard stops it connects all steps into a polygon.
 
 ```html
 noSource: true
@@ -327,18 +327,18 @@ noSource: true
 </script>
 ```
 
-Because of how this widget is rendered internally, it behaves less flexibly than the others. However we provide a series of props to customize it
+Because of how this widget is rendered internally, it behaves less flexibly than the others. However we provide a series of props to customize it.
 
 - **size**: in pixels, will be its width and height. When rendering vertically, the height is shortened to whatever is required.
 - **x-margin-factor** and **y-margin-factor**: by default 0.1, the percentage (10%) of space left on all sides. Use this is if you find your labels do not fit.
-- **leading-line-stroke-width**: the width of lines pointing to the labels, in pixels
-- **text-line-height**: change this if you change the font used for the labels, set to the font's line-height for better alignment
+- **leading-line-stroke-width**: the width of lines pointing to the labels, in pixels.
+- **text-line-height**: change this if you change the font used for the labels, set to the font's line-height for better alignment.
 
 ##### Aliases
 
 This component is rendered also with the following tag:
 
-- `as-legend-size-continuous` when the `type` value in the first element of `data` is `line`
+- [as-legend-size-continuous](#as-legend-size-continuous) when the `type` value in the first element of `data` is `line`
 
 
 ### as-legend-size-continuous-point
@@ -357,9 +357,9 @@ noSource: true
 <script>
   const legend = document.querySelector('#legend');
   legend.data = [
-    { color: '#000000', strokeColor: '#FFFFFF', width: 64, label: '64' },
-    { color: '#000000', strokeColor: '#FFFFFF', width: 96, label: '96' },
-    { color: '#000000', strokeColor: '#FFFFFF', width: 128, label: '128' }
+    { color: '#FFC667', strokeColor: '#0000001', width: 64, label: '64' },
+    { color: '#FFC667', strokeColor: '#0000001', width: 96, label: '96' },
+    { color: '#FFC667', strokeColor: '#0000001', width: 128, label: '128' }
   ]
 </script>
 ```
@@ -380,9 +380,9 @@ noSource: true
 <script>
   const legend = document.querySelector('#legend');
   legend.data = [
-    { color: '#000000', strokeColor: '#FFFFFF', width: 16, label: '16' },
-    { color: '#000000', strokeColor: '#FFFFFF', width: 24, label: '24' },
-    { color: '#000000', strokeColor: '#FFFFFF', width: 32, label: '32' }
+    { color: '#FFC667', strokeColor: '#0000001', width: 16, label: '64' },
+    { color: '#FFC667', strokeColor: '#0000001', width: 24, label: '96' },
+    { color: '#FFC667', strokeColor: '#0000001', width: 32, label: '128' }
   ]
 </script>
 ```
@@ -391,4 +391,42 @@ noSource: true
 
 This component is rendered also with the following tag:
 
-- `as-legend-size-continuous` when the `type` value in the first element of `data` is `point`
+- [as-legend-size-continuous](#as-legend-size-continuous) when the `type` value in the first element of `data` is `point`
+
+### Generic Legends
+
+As seen on the aliases all legend types can be used with more generic components, as long as you provide the correct type in the data you pass. Here's a rundown of them.
+
+### as-legend-color-bins
+
+Renders:
+
+- [as-legend-color-bins-polygon](#as-legend-size-continuous-point) for polygons.
+- [as-legend-category](#as-legend-category) for the rest.
+
+### as-legend-color-category
+### as-legend-color-category-point
+### as-legend-color-category-line
+### as-legend-color-category-polygon
+
+All of the above are aliases to [as-legend-category](#as-legend-category), independently of the geometry type.
+
+### as-legend-color-continuous
+
+- [as-legend-color-continuous-polygon](#as-legend-color-continuous-polygon) for polygons.
+- [as-legend-category](#as-legend-category) for the rest.
+
+### as-legend-size-bins
+
+- [as-legend-size-bins-point](#as-legend-size-bins-point) for points.
+- [as-legend-size-bins-line](#as-legend-size-bins-line) for lines.
+
+### as-legend-size-category
+
+- [as-legend-size-bins-point](#as-legend-size-bins-point) for points.
+- [as-legend-size-category-line](#as-legend-size-category-line) for lines.
+
+### as-legend-size-continuous
+
+- [as-legend-size-continuous-point](#as-legend-size-continuous-point) for points.
+- [as-legend-size-continuous-line](#as-legend-size-continuous-line) for lines.
