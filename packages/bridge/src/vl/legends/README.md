@@ -135,3 +135,56 @@ AsBridge.VL.Legends.rampLegend(
 ```hint|directive
 Having less samples can be a good thing for certain types of legends, like the [as-legend-size-continuous-point](/components/legends#as-legend-size-continuous-point), which works best with 3 or 4 samples.
 ```
+
+#### Ramp example
+
+```html
+noSource: true
+---
+<iframe src="/examples/bridge/legends/ramp-legends.html" style="width: 100%; height: 800px;">
+```
+
+```code
+lang: js
+---
+const airportSource = new carto.source.Dataset('ne_10m_airports');
+const airportViz = new carto.Viz(`
+  strokeWidth: 0
+  width: ramp($location, [8, 24])
+`);
+const airportLayer = new carto.Layer('airports', airportSource, airportViz);
+airportLayer.addTo(map, 'watername_ocean');
+
+const riversSource = new carto.source.Dataset('ne_50m_rivers_lake_centerlines');
+const riversViz = new carto.Viz(`
+  color: ramp($lgth, SUNSET)
+  width: 3
+`);
+const riversLayer = new carto.Layer('rivers', riversSource, riversViz);
+riversLayer.addTo(map, 'watername_ocean');
+
+AsBridge.VL.Legends.rampLegend('#airportLegend',
+  airportLayer,
+  'width',
+  {
+    dynamic: true
+  }
+);
+
+AsBridge.VL.Legends.rampLegend('#rivers',
+  riversLayer,
+  'color',
+  {
+    dynamic: true
+  }
+);
+
+AsBridge.VL.Legends.rampLegend('#riversGradient',
+  riversLayer,
+  'color',
+  {
+    dynamic: true
+  }
+);
+});
+```
