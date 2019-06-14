@@ -266,6 +266,10 @@
         {
           "title": "Time Series bridge",
           "file": "bridge/time-series/simple.html"
+        },
+        {
+          "title": "Legend ramp bridge",
+          "file": "bridge/legends/ramp-legends.html"
         }
       ]
     }
