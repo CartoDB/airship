@@ -270,6 +270,10 @@
         {
           "title": "Legend ramp bridge",
           "file": "bridge/legends/ramp-legends.html"
+        },
+        {
+          "title": "Multiple layer legend bridge",
+          "file": "bridge/legends/multi-layer-legends.html"
         }
       ]
     }
