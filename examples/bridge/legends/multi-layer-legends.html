@@ -99,6 +99,7 @@
         }
       );
 
+      // When this fires, the legend will update because we are using dynamic: true
       document.querySelector('#changeStyle').addEventListener('click', () => {
         bordersViz.color.blendTo('#483c69');
         airportViz.width.blendTo(16);

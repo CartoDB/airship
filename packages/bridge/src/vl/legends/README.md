@@ -102,6 +102,39 @@ noSource: true
 <iframe src="/examples/bridge/legends/multi-layer-legends.html" style="width: 100%; height: 400px;">
 ```
 
+```code
+lang: js
+---
+const bordersSource = new carto.source.Dataset('world_borders');
+const bordersViz = new carto.Viz('strokeWidth: 0');
+const bordersLayer = new carto.Layer('borders', bordersSource, bordersViz);
+bordersLayer.addTo(map, 'watername_ocean');
+
+const airportSource = new carto.source.Dataset('ne_10m_airports');
+const airportViz = new carto.Viz('strokeWidth: 0');
+const airportLayer = new carto.Layer('airports', airportSource, airportViz);
+airportLayer.addTo(map, 'watername_ocean');
+
+const riversSource = new carto.source.Dataset('ne_50m_rivers_lake_centerlines');
+const riversViz = new carto.Viz();
+const riversLayer = new carto.Layer('rivers', riversSource, riversViz);
+riversLayer.addTo(map, 'watername_ocean');
+
+AsBridge.VL.Legends.layersLegend('#legend',
+  [{ layer: airportLayer, props: { label: 'World Airports' }}, riversLayer, bordersLayer],
+  {
+    dynamic: true
+  }
+);
+
+// When this fires, the legend will update because we are using dynamic: true
+document.querySelector('#changeStyle').addEventListener('click', () => {
+  bordersViz.color.blendTo('#483c69');
+  airportViz.width.blendTo(16);
+  riversViz.color.blendTo('#ffcc37')
+});
+```
+
 #### Ramp legend
 
 Whenever you are styling a property with a ramp and you want to show how that property varies with the value its based on, this is the function you want to use. All currently available legends are appropriate for this.
