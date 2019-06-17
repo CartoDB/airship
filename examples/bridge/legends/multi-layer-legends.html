@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Airship bridge ramp legends</title>
+  <title>Airship bridge multi layer legend</title>
 
   <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.11/lodash.min.js"></script>
   <script src="https://libs.cartocdn.com/carto-vl/v1.2/carto-vl.min.js"></script>
@@ -20,9 +20,16 @@
   <style>
     .as-panel {
       flex-direction: column;
+      padding: 16px;
+      background: white;
+    }
+
+    .as-btn {
+      margin-top: 16px;
     }
 
     as-legend {
+      --as-legend--padding: 0;
       width: 100%;
     }
   </style>
@@ -38,27 +45,13 @@
             <div class="as-panel as-panel--top as-panel--left" id="legends">
               <as-legend
                 id="legendsLocation"
-                heading="Location"
-                description="Point size is defined by location">
-                <as-legend-size-bins-point
+                heading="Layers">
+                <as-legend-category
                   slot="legends"
-                  id="airportLegend">
-                </as-legend-size-bins-point>
+                  id="legend">
+                </as-legend-category>
               </as-legend>
-              <as-legend
-                id="legendsRivers"
-                heading="Rivers"
-                description="Color intensity is defined by river length">
-                <as-legend-color-continuous id="rivers" slot="legends">
-                </as-legend-color-continuous>
-              </as-legend>
-              <as-legend
-                id="legendsRivers"
-                heading="Rivers"
-                description="Same as above, using a gradient legend">
-                <as-legend-color-continuous-polygon id="riversGradient" slot="legends">
-                </as-legend-color-continuous-polygon>
-              </as-legend>
+              <button id="changeStyle" class="as-btn as-btn--primary">Change style</button>
             </div>
           </div>
         </div>
@@ -84,45 +77,33 @@
 
       const s = carto.expressions;
 
+      const bordersSource = new carto.source.Dataset('world_borders');
+      const bordersViz = new carto.Viz('strokeWidth: 0');
+      const bordersLayer = new carto.Layer('borders', bordersSource, bordersViz);
+      bordersLayer.addTo(map, 'watername_ocean');
+
       const airportSource = new carto.source.Dataset('ne_10m_airports');
-      const airportViz = new carto.Viz(`
-        strokeWidth: 0
-        width: ramp($location, [8, 24])
-      `);
+      const airportViz = new carto.Viz('strokeWidth: 0');
       const airportLayer = new carto.Layer('airports', airportSource, airportViz);
       airportLayer.addTo(map, 'watername_ocean');
 
       const riversSource = new carto.source.Dataset('ne_50m_rivers_lake_centerlines');
-      const riversViz = new carto.Viz(`
-        color: ramp($lgth, SUNSET)
-        width: 3
-      `);
+      const riversViz = new carto.Viz();
       const riversLayer = new carto.Layer('rivers', riversSource, riversViz);
       riversLayer.addTo(map, 'watername_ocean');
 
-      AsBridge.VL.Legends.rampLegend('#airportLegend',
-        airportLayer,
-        'width',
+      AsBridge.VL.Legends.layersLegend('#legend',
+        [{ layer: airportLayer, props: { label: 'World Airports' }}, riversLayer, bordersLayer],
         {
           dynamic: true
         }
       );
 
-      AsBridge.VL.Legends.rampLegend('#rivers',
-        riversLayer,
-        'color',
-        {
-          dynamic: true
-        }
-      );
-
-      AsBridge.VL.Legends.rampLegend('#riversGradient',
-        riversLayer,
-        'color',
-        {
-          dynamic: true
-        }
-      );
+      document.querySelector('#changeStyle').addEventListener('click', () => {
+        bordersViz.color.blendTo('#483c69');
+        airportViz.width.blendTo(16);
+        riversViz.color.blendTo('#ffcc37')
+      });
     });
   </script>
 </body>

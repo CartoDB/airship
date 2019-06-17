@@ -92,6 +92,16 @@ AsBridge.VL.Legends.layersLegend(
 )
 ```
 
+#### Layers example
+
+As you can see, using `dynamic` and altering the visual properties of the layer will reflect the changes on the legend.
+
+```html
+noSource: true
+---
+<iframe src="/examples/bridge/legends/multi-layer-legends.html" style="width: 100%; height: 400px;">
+```
+
 #### Ramp legend
 
 Whenever you are styling a property with a ramp and you want to show how that property varies with the value its based on, this is the function you want to use. All currently available legends are appropriate for this.
