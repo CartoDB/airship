@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <base href="/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Color gradient legend</title>
+
+    <script src="https://libs.cartocdn.com/carto-vl/v1.2/carto-vl.js"></script>
+
+    <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.css" rel="stylesheet" />
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.js"></script>
+    <link rel="stylesheet" href="packages/styles/dist/airship.css">
+    <link rel="stylesheet" href="packages/icons/dist/icons.css">
+    <script src="packages/components/dist/airship.js"></script>
+    <script src="/packages/bridge/dist/asbridge.js"></script>
+    <style>
+      as-legend-color-continuous-polygon:first-of-type {
+        margin-bottom: 4px;
+      }
+    </style>
+</head>
+
+<body class="as-app-body">
+  <div class="as-app">
+    <main class="as-main">
+        <div class="as-map-area">
+            <div id="map"></div>
+            <div class="as-map-panels">
+                <div class="as-panel as-panel--top as-panel--left" id="legends">
+                  <as-legend
+                    id="legendsLocation"
+                    heading="Location"
+                    description="Color intensity is defined by location">
+                    <div slot="legends">
+                      <as-legend-color-continuous-polygon
+                        orientation="horizontal"
+                        id="legendHorizontal">
+                      </as-legend-color-continuous-polygon>
+                      <as-legend-color-continuous-polygon
+                        id="legend">
+                      </as-legend-color-continuous-polygon>
+                    </div>
+                  </as-legend>
+                </div>
+            </div>
+        </div>
+    </main>
+  </div>
+  <script>
+    legendHorizontal.data = legend.data = [{
+      color: '#FF00FF',
+      label: '#FF00FF'
+    },{
+      color: '#FF0000',
+      label: '#FF0000'
+    },{
+      color: '#0000FF',
+      label: '#0000FF'
+    },{
+      color: '#00FFFF',
+      label: '#00FFFF'
+    }]
+  </script>
+</body>
+
+</html>

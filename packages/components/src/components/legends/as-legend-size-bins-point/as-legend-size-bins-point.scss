@@ -1,0 +1,76 @@
+@import '../../../../../styles/src/core/_dev';
+
+as-legend-size-bins-point {
+  --as-legend-size-bins-point--color: var(--as--color--type-01);
+  --as-legend-size-bins-point--shadow: rgba(0, 0, 0, 0.1);
+
+  display: block;
+
+  .as-legend-size-bins-point--steps {
+    display: flex;
+  }
+
+  .as-legend-size-bins-point--step {
+    display: flex;
+    align-items: center;
+  }
+
+  .as-legend-size-bins-point--circle {
+    border-radius: 50%;
+    box-shadow: -1px 0 2px 0 var(--as-legend-size-bins-point--shadow);
+  }
+
+  .as-legend-size-bins-point--circle-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .as-legend-size-bins-point--label {
+    display: flex;
+    align-items: center;
+    color: var(--as-legend-size-bins-point--color);
+    font: var(--as--font--caption);
+    text-transform: capitalize;
+    white-space: nowrap;
+  }
+
+  .as-legend-size-bins-point--horizontal {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-around;
+
+    .as-legend-size-bins-point--step {
+      flex-direction: column;
+      margin: 0 get-spacing(1);
+    }
+
+    .as-legend-size-bins-point--step:first-of-type {
+      margin-left: 0;
+    }
+
+    .as-legend-size-bins-point--step:last-of-type {
+      margin-right: 0;
+    }
+
+    .as-legend-size-bins-point--label {
+      margin-top: get-spacing(2);
+    }
+
+    .as-legend-size-bins-point--circle-wrapper {
+      align-items: flex-end;
+    }
+  }
+
+  .as-legend-size-bins-point--vertical {
+    flex-direction: column;
+
+    .as-legend-size-bins-point--label {
+      margin-left: get-spacing(2);
+    }
+
+    .as-legend-size-bins-point--step:not(:first-of-type) {
+      margin-top: get-spacing(2);
+    }
+  }
+}

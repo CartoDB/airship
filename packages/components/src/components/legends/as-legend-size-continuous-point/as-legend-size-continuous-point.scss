@@ -1,0 +1,41 @@
+@import '../../../../../styles/src/core/_dev';
+
+as-legend-size-continuous-point {
+  --as-legend-size-continuous-point--color: var(--as--color--type-01);
+  --as-legend-size-continuous-point--shadow: rgba(0, 0, 0, 0.1);
+
+  display: block;
+
+  .as-legend-size-continuous-point--steps {
+    display: flex;
+    position: relative;
+    align-items: center;
+    margin: get-spacing(2);
+  }
+
+  .as-legend-size-continuous-point--wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  .as-legend-size-continuous-point--circle {
+    position: absolute;
+    border: 2px solid var(--as-legend-size-continuous-point--shadow);
+    border-radius: 50%;
+    box-shadow: 0 0 2px 0 var(--as-legend-size-continuous-point--shadow);
+  }
+
+  .as-legend-size-continuous-point--label {
+    color: var(--as-legend-size-continuous-point--color);
+    font: var(--as--font--caption);
+    text-transform: capitalize;
+    white-space: nowrap;
+  }
+
+  .as-legend-size-continuous-point--vertical {
+    .as-legend-size-continuous-point--steps,
+    &.as-legend-size-continuous-point--wrapper {
+      flex-direction: column-reverse;
+    }
+  }
+}

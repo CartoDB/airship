@@ -206,6 +206,54 @@
       ]
     },
     {
+      "title": "Legends",
+      "samples": [{
+          "title": "as-legend wrapper basic usage",
+          "file": "components/legends/as-legend-basic.html"
+        },
+        {
+          "title": "Legend orientation",
+          "file": "components/legends/orientation.html"
+        },
+        {
+          "title": "as-legend-category",
+          "file": "components/legends/as-legend-category.html"
+        },
+        {
+          "title": "as-legend-color-bins-polygon",
+          "file": "components/legends/as-legend-color-bins-polygon.html"
+        },
+        {
+          "title": "as-legend-color-continuous-polygon",
+          "file": "components/legends/as-legend-color-continuous-polygon.html"
+        },
+        {
+          "title": "as-legend-size-bins-line",
+          "file": "components/legends/as-legend-size-bins-line.html"
+        },
+        {
+          "title": "as-legend-size-bins-point",
+          "file": "components/legends/as-legend-size-bins-point.html"
+        },
+        {
+          "title": "as-legend-size-category-line",
+          "file": "components/legends/as-legend-size-category-line.html"
+        },
+        {
+          "title": "as-legend-size-continuous-line",
+          "file": "components/legends/as-legend-size-continuous-line.html"
+        },
+        {
+          "title": "as-legend-size-continuous-point",
+          "file": "components/legends/as-legend-size-continuous-point.html"
+        },
+        {
+          "title": "as-legend-size-continuous-point with scale",
+          "file": "components/legends/as-legend-size-continuous-point-scaled.html"
+        }
+      ]
+    },
+    {
       "title": "Airship Bridge",
       "samples": [{
           "title": "Category bridge",
@@ -218,6 +266,14 @@
         {
           "title": "Time Series bridge",
           "file": "bridge/time-series/simple.html"
+        },
+        {
+          "title": "Legend ramp bridge",
+          "file": "bridge/legends/ramp-legends.html"
+        },
+        {
+          "title": "Multiple layer legend bridge",
+          "file": "bridge/legends/multi-layer-legends.html"
         }
       ]
     }

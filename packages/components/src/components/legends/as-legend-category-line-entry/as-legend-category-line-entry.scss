@@ -1,0 +1,14 @@
+@import '../../../../../styles/src/core/_dev';
+
+as-legend-category-line-entry {
+  .as-legend-category-line-entry--wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  .as-legend-category-line-entry--line {
+    width: get-spacing(4);
+    height: 0;
+    margin: auto;
+  }
+}

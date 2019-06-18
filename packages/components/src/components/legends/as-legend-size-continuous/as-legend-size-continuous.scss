@@ -1,0 +1,9 @@
+@import '../../../../../styles/src/core/_dev';
+
+as-legend-size-continuous {
+  display: block;
+
+  .as-legend-size-continuous--overflow {
+    overflow: hidden;
+  }
+}

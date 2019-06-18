@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <base href="/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Legends bridge</title>
+
+    <script src="https://libs.cartocdn.com/carto-vl/v1.2/carto-vl.js"></script>
+
+    <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.css" rel="stylesheet" />
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.js"></script>
+    <link rel="stylesheet" href="packages/styles/dist/airship.css">
+    <link rel="stylesheet" href="packages/icons/dist/icons.css">
+    <script src="packages/components/dist/airship.js"></script>
+    <script src="/packages/bridge/dist/asbridge.js"></script>
+</head>
+
+<body class="as-app-body">
+  <div class="as-app">
+      <as-responsive-content>
+          <main class="as-main">
+              <div class="as-map-area">
+                  <div id="map"></div>
+                  <div class="as-map-panels">
+                      <div class="as-panel as-panel--top as-panel--left">
+                          <as-legend
+                            id="legends"
+                            heading="Legend title"
+                            description="Legend description">
+                            <as-legend-color-category id="legend" slot="legends">
+                            </as-legend-color-category>
+                          </as-legend>
+                      </div>
+                  </div>
+              </div>
+          </main>
+      </as-responsive-content>
+  </div>
+</body>
+<script>
+  const resp = document.querySelector('as-responsive-content');
+
+  resp.addEventListener('ready', () => {
+
+    const map = new mapboxgl.Map({
+      container: 'map',
+      style: carto.basemaps.voyager,
+      center: [-4.77, 37.88],
+      zoom: 5
+    });
+
+    carto.setDefaultAuth({
+      username: 'roman-carto',
+      apiKey: 'default_public'
+    });
+
+    const s = carto.expressions;
+
+    const datasets = [{
+      name: 'ne_10m_airports',
+      props: {
+        label: 'Airports'
+      },
+      style: `
+        color: ramp($longitude, PURPOR)
+        strokeColor: blue
+        width: 16
+        strokeWidth: 0
+      `
+    },{
+      name: 'ne_10m_populated_places_simple',
+      props: {
+        label: 'Places'
+      },
+      style: `
+        symbol: ramp(buckets($featurecla, ['Admin-0 capital','Admin-1 capital','Populated place']), [star, triangle, marker])
+        width: 12
+        color: #000
+      `
+    },
+    {
+      name: 'ne_50m_rivers_lake_centerlines',
+      props: {
+        label: 'Rivers'
+      },
+      style: 'color: #81ACFF'
+    },{
+      name: 'world_borders',
+      props: {
+        label: 'World Borders'
+      },
+      style: `
+        color: #CDEAC0
+        strokeColor: #FF00FF
+        strokeWidth: 0
+      `
+    }
+    ].reverse();
+
+    for (dataset of datasets) {
+      const source = new carto.source.Dataset(dataset.name);
+      const viz = new carto.Viz(dataset.style);
+      const layer = new carto.Layer(dataset.name, source, viz);
+
+      layer.addTo(map, `watername_ocean`);
+
+      dataset.data = {
+        source,
+        viz,
+        layer
+      };
+    }
+
+    legends.style.visibility = 'hidden';
+
+    AsBridge.VL.Legends.layersLegend(legend,
+      datasets
+        .reverse()
+        .map(
+          e => ({ layer: e.data.layer, props: e.props })
+        ),
+      {
+        dynamic: true,
+        onLoad: () => {
+          legends.style.visibility = 'visible';
+        }
+      }
+    );
+
+    window.datasets = datasets;
+  });
+</script>
+
+</html>

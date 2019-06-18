@@ -8,7 +8,18 @@ import { RGBColor } from '../../types';
  * @returns
  */
 export function rgbToHex(color: RGBColor) {
-  return `#${_toHex(color.r)}${_toHex(color.g)}${_toHex(color.b)}${_toHex(color.a * 255)}`;
+  return `#${_toHex(color.r)}${_toHex(color.g)}${_toHex(color.b)}${_toHex(Math.floor(color.a * 255))}`;
+}
+
+/**
+ * Converts VL RGB Colors to string color
+ *
+ * @export
+ * @param {RGBColor} color
+ * @returns string
+ */
+export function rgbaToString(color: RGBColor) {
+  return `rgba(${color.r},${color.g},${color.b},${color.a})`;
 }
 
 /**
