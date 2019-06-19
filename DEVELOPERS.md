@@ -135,7 +135,7 @@ To release a 'beta' version of the current status of Airship (master / develop),
 
     npm run publish:prerelease
 
-This command should increment the [semver](https://semver.org/) according to the [commit code](https://www.conventionalcommits.org/en/) and append a `prerelease` code.
+This command will prompt you with what version you want to publish.
 
 So for example we are in the version `2.3.12` and we merge branch with a hotfix.
 
@@ -154,6 +154,12 @@ master ---   A      ---------------------   B  ------------>
               \                            /
                 --------- hotfix ----------
 ```
+
+If you don't want to risk typing the wrong version, you can always use `npm run publish:prepatch` which will generate the correct one.
+
+If you are on 2.3.12 and you want to publish a new feature on a minor, the prerelease version should be 2.4.0-rc. Alternatively, use `npm run publish:preminor`.
+
+Likewise, if you plan on releasing a new major version, it should be 3.0.0-rc. Alternatively `npm run publish:preminor`.
 
 Once our `prerelease` version is published the [prerelease version in the CDN](https://libs.cartocdn.com/airship-components/prerelease/airship.js) will point to `v2.3.13-rc` and the [prerelease dist-tag in NPM](https://www.npmjs.com/package/@carto/airship-components) will point to `v2.3.13-rc`.
 
