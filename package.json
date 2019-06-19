@@ -30,7 +30,7 @@
     "lint": "lerna run lint",
     "postinstall": "lerna bootstrap --hoist",
     "publish": "npm install && npm run test && npm run build && lerna publish --force-publish=* --conventional-commits && ./release.sh",
-    "publish:prerelease": "npm install && npm run test && npm run build && lerna publish --npm-tag prerelease --force-publish=* && ./prerelease.sh",
+    "publish:prerelease": "npm install && npm run test && npm run build && lerna publish prerelease --npm-tag prerelease --force-publish=* && ./prerelease.sh",
     "serve": "serve",
     "test:components:watch": "lerna exec --scope @carto/airship-components -- npm run test:watch",
     "test:components": "lerna exec --scope @carto/airship-components npm run test",
