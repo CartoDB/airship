@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+  <base href="/">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+  <title>Airship</title>
+  <link rel="stylesheet" href="packages/styles/dist/airship.css">
+  <script src="packages/components/dist/airship.js"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #fff;
+    }
+
+    as-donut-widget {
+      display: inline-block;
+      width: 300px;
+      height: 200px;
+      background-color: white;
+      border: 1px solid whitesmoke;
+    }
+  </style>
+</head>
+
+<body>
+  <button class="one">One</button>
+  <button class="two">Two</button>
+
+  <as-donut-widget id="donut"></as-donut-widget>
+
+  <script>
+    const donut = document.querySelector('#donut')
+    const data = [
+      [
+        { id: '0', key: 'Category one', value: 50, color: '#80b622' },
+        { id: '1', key: 'Category two', value: 22, color: '#fdb32b' },
+        { id: '2', key: 'Category three', value: 17, color: '#f3522b' }
+      ],
+      [
+        { id: '0', key: 'Category one', value: 80, color: '#80b622' },
+        { id: '1', key: 'Category two', value: 12, color: '#fdb32b' },
+        { id: '2', key: 'Category three', value: 58, color: '#f3522b' },
+        { id: '3', key: 'Category four', value: 30, color: '#e2e6e3' }
+      ]
+    ]
+
+    donut.data = data[0]
+
+    document.querySelectorAll('button').forEach((button, i) => {
+      button.addEventListener('click', () => {
+        donut.data = data[i]
+      })
+    })
+  </script>
+
+</body>
+
+</html>

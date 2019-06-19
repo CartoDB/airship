@@ -9,6 +9,9 @@ import '@stencil/core';
 
 
 import {
+  DonutData,
+} from './components/as-donut-widget/interfaces';
+import {
   DropdownOption,
 } from './components/as-dropdown/types/DropdownOption';
 import {
@@ -177,6 +180,43 @@ export namespace Components {
     * The number of visible categories without aggregation.
     */
     'visibleCategories'?: number;
+  }
+
+  interface AsDonutWidget {
+    /**
+    * Donut arc size
+    */
+    'arcSize': number;
+    /**
+    * Donut data to be displayed
+    */
+    'data': DonutData[];
+    /**
+    * Donut label title
+    */
+    'labelTitle': string;
+    /**
+    * Donut chart padding
+    */
+    'padding': number;
+  }
+  interface AsDonutWidgetAttributes extends StencilHTMLAttributes {
+    /**
+    * Donut arc size
+    */
+    'arcSize'?: number;
+    /**
+    * Donut data to be displayed
+    */
+    'data'?: DonutData[];
+    /**
+    * Donut label title
+    */
+    'labelTitle'?: string;
+    /**
+    * Donut chart padding
+    */
+    'padding'?: number;
   }
 
   interface AsDropdown {
@@ -1189,6 +1229,7 @@ export namespace Components {
 declare global {
   interface StencilElementInterfaces {
     'AsCategoryWidget': Components.AsCategoryWidget;
+    'AsDonutWidget': Components.AsDonutWidget;
     'AsDropdown': Components.AsDropdown;
     'AsHistogramWidget': Components.AsHistogramWidget;
     'AsInfowindow': Components.AsInfowindow;
@@ -1210,6 +1251,7 @@ declare global {
 
   interface StencilIntrinsicElements {
     'as-category-widget': Components.AsCategoryWidgetAttributes;
+    'as-donut-widget': Components.AsDonutWidgetAttributes;
     'as-dropdown': Components.AsDropdownAttributes;
     'as-histogram-widget': Components.AsHistogramWidgetAttributes;
     'as-infowindow': Components.AsInfowindowAttributes;
@@ -1234,6 +1276,12 @@ declare global {
   var HTMLAsCategoryWidgetElement: {
     prototype: HTMLAsCategoryWidgetElement;
     new (): HTMLAsCategoryWidgetElement;
+  };
+
+  interface HTMLAsDonutWidgetElement extends Components.AsDonutWidget, HTMLStencilElement {}
+  var HTMLAsDonutWidgetElement: {
+    prototype: HTMLAsDonutWidgetElement;
+    new (): HTMLAsDonutWidgetElement;
   };
 
   interface HTMLAsDropdownElement extends Components.AsDropdown, HTMLStencilElement {}
@@ -1340,6 +1388,7 @@ declare global {
 
   interface HTMLElementTagNameMap {
     'as-category-widget': HTMLAsCategoryWidgetElement
+    'as-donut-widget': HTMLAsDonutWidgetElement
     'as-dropdown': HTMLAsDropdownElement
     'as-histogram-widget': HTMLAsHistogramWidgetElement
     'as-infowindow': HTMLAsInfowindowElement
@@ -1361,6 +1410,7 @@ declare global {
 
   interface ElementTagNameMap {
     'as-category-widget': HTMLAsCategoryWidgetElement;
+    'as-donut-widget': HTMLAsDonutWidgetElement;
     'as-dropdown': HTMLAsDropdownElement;
     'as-histogram-widget': HTMLAsHistogramWidgetElement;
     'as-infowindow': HTMLAsInfowindowElement;
