@@ -199,6 +199,10 @@ export namespace Components {
     * Donut chart padding
     */
     'padding': number;
+    /**
+    * Margin between mouse and tooltip
+    */
+    'tooltipMargin': number;
   }
   interface AsDonutWidgetAttributes extends StencilHTMLAttributes {
     /**
@@ -217,6 +221,10 @@ export namespace Components {
     * Donut chart padding
     */
     'padding'?: number;
+    /**
+    * Margin between mouse and tooltip
+    */
+    'tooltipMargin'?: number;
   }
 
   interface AsDropdown {
@@ -874,7 +882,7 @@ export namespace Components {
     /**
     * Proxy to as-histogram-widget getSelection()
     */
-    'getSelection': () => Promise<number[] | string[]>;
+    'getSelection': () => Promise<string[] | number[]>;
     /**
     * Title of the widget to be displayed
     */
