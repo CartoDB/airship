@@ -33,7 +33,7 @@
     "publish:prerelease": "npm install && npm run test && npm run build && lerna publish --npm-tag prerelease --force-publish=* --preid rc && ./prerelease.sh",
     "publish:prepatch": "npm install && npm run test && npm run build && lerna publish prepatch --npm-tag prerelease --force-publish=* --preid rc && ./prerelease.sh",
     "publish:preminor": "npm install && npm run test && npm run build && lerna publish preminor --npm-tag prerelease --force-publish=* --preid rc && ./prerelease.sh",
-    "publish:premajor": "npm install && npm run test && npm run build && lerna publish preminor --npm-tag prerelease --force-publish=* --preid rc && ./prerelease.sh",
+    "publish:premajor": "npm install && npm run test && npm run build && lerna publish premajor --npm-tag prerelease --force-publish=* --preid rc && ./prerelease.sh",
     "serve": "serve",
     "test:components:watch": "lerna exec --scope @carto/airship-components -- npm run test:watch",
     "test:components": "lerna exec --scope @carto/airship-components npm run test",
