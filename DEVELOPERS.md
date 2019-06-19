@@ -106,48 +106,62 @@ chore|fix|feat(styles|components|icons|chore|docs): message (#PR)
 Fix #issue
 ```
 
+### Workflow
+
+The main branch is `master`, and should reflect the last published version. The branch with the new changes for the next **major** or **minor** release is `develop`.
+
+We should follow this convention when creating branches:
+
+* Features: `feature/<id>-<description>` (i.e: feature/624-donut-chart)
+* Fixes: `fix/<id>-<description>`  (i.e: fix/617-size-point-distorted)
+* Hotfix: `hotfix/<id>-<description>` (i.e: hotfix/618-round-histogram-seletion)
+* Release (minor & major): `release/<version>` (i.e: release/v2.1.0)
+
+As a rule of thumb:
+
+- `Features` and `Fixes` are created from `develop` and the PR is opened against `develop`.
+- `Release` should be created from `develop` and opened against `master`. See the 'Release' section for more details.
+- `Hotfix` should be created from `master` and the PR opened against it as well.
+
+Note: as soon as hotfixes are incorporated and released, `master` should be merged into develop. Develop must always be in sync with master.
+
 ## Releasing a new version
 
 We use [lerna](https://lernajs.io/) wrapped with a npm script to keep all internal packages in sync.
 
 ### Prerelase
 
-Once you merge a new branch into the master branch an optional `prerelease` tag can be published to do some acceptance testing.
+To release a 'beta' version of the current status of Airship (master / develop), you can use the following command:
 
     npm run publish:prerelease
 
-### Release
+This command should increment the [semver](https://semver.org/) according to the [commit code](https://www.conventionalcommits.org/en/) and append a `prerelease` code.
 
-Use the following script to release a public version.
-
-    npm run publish
-
-
-### Workflow
-
-Everytime a branch is merged to master, an beta version can be released using the `npm run publish:prerelease` command. This command should increment the [semver](https://semver.org/) according to the [commit code](https://www.conventionalcommits.org/en/) and append a `prerelease` code.
-
-So for example we are in the version `2.3.12` and we merge branch with a brand new feature.
+So for example we are in the version `2.3.12` and we merge branch with a hotfix.
 
 ```
 tags   --- v2.3.12  ------------------------------>
 master ---   A      ---------------------   B  --->
               \                            /
-                --- new_feature_branch ---- 
+                --------- hotfix ----------
 ```
 
-The new version should be `v2.4.0` but before making it public we want to do a little QA generating a release candidate or prerelease pointing to **B**.
+The new version should be `v2.3.13` but before making it public we want to do a little QA generating a release candidate or prerelease pointing to **B**.
 
 ```
-tags   --- v2.3.12  --------------------- v2.4.0-rc ---->
+tags   --- v2.3.12  --------------------- v2.3.13-rc ---->
 master ---   A      ---------------------   B  ------------>
               \                            /
-                --- new_feature_branch ---- 
+                --------- hotfix ----------
 ```
 
-Once our `prerelease` version is published the [prerelease version in the CDN](https://libs.cartocdn.com/airship-components/prerelease/airship.js) will point to `v2.4.0-rc` and the [prerelease dist-tag in NPM](https://www.npmjs.com/package/@carto/airship-components) will point to `v2.4.0-rc`. The examples in the `smoke` folder relies on this prerelease version and they are as close as possible to a production environment so a QA can be done.
+Once our `prerelease` version is published the [prerelease version in the CDN](https://libs.cartocdn.com/airship-components/prerelease/airship.js) will point to `v2.3.13-rc` and the [prerelease dist-tag in NPM](https://www.npmjs.com/package/@carto/airship-components) will point to `v2.3.13-rc`.
 
-#### Fixing bugs on a prerelease
+You can also do this from develop to release previews of new features.
+
+#### Finding and fixing bugs on a prerelease
+
+There is a `smoke` folder under `packages` that has examples using the NPM and the CDN versions of Airship, they are always pointing to the latest prerelease. You can use those to check if anything obvious has broken during the release process.
 
 If you find a bug and merge a fix branch into master the new version should be `v2.4.0-rc.1`.
 
@@ -158,17 +172,23 @@ master ---   A      ---------------------   B  ---------------> C
                 --- new_feature_branch ----    --- bug_fix ---
 ```
 
+### Release
+
+Use the following script to release a public version.
+
+    npm run publish
+
+It will install dependencies, run all the tests and let you tweak the version to be released. It will first upload to npm and then to the CDN.
+
+If you are going to release a patch, and you have followed the workflow, you will have some hotfix changes in master that have not been released yet. In this case, you can release from master.
+
+If you are releasing a minor or major, you should create a branch `release/<version>` from develop and do the release procedure from there. When you are done you can merge it into master, and merge master into develop.
+
+For the time being, all packages are published every time, even if there are no changes.
+
 ## Changelog
 
-We keep an automated changelog tracking every change affecting public versions. 
-
-Once a new version is released just run `npm run changelog` and push your changes.
-
-    npm run changelog
-
-We dont want prereleases to be shown in the changelog so **git tags corresponding to a prerelase should be removed once the QA is done**.
-
-> NOTE: You only need to remove it from github and the `changelog` script will prune all removed tags.
+CHANGELOG.md is automatically generated when doing a release using conventional commits via lerna.
 
 ## CSS Variables
 
