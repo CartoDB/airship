@@ -1,4 +1,4 @@
-import { Component, Event, EventEmitter, Method, Prop, State, Watch } from '@stencil/core';
+import { Component, h, Event, EventEmitter, Method, Prop, State, Watch } from '@stencil/core';
 import { DropdownOption } from './types/DropdownOption';
 
 /**

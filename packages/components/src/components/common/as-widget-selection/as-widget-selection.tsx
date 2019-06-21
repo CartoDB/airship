@@ -1,4 +1,4 @@
-import { Component, Event, Prop } from '@stencil/core';
+import { Component, h, Event, Prop } from '@stencil/core';
 
 /**
  * Helper class to draw widget selections

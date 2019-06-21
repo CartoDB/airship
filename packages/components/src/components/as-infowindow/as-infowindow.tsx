@@ -1,4 +1,4 @@
-import { Component, Element, Prop, } from '@stencil/core';
+import { Component, h, Element, Prop, } from '@stencil/core';
 
 @Component({
   shadow: false,

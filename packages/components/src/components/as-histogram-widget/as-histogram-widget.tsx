@@ -1,4 +1,4 @@
-import { Component, Element, Event, EventEmitter, Method, Prop, State, Watch } from '@stencil/core';
+import { Component, h, Element, Event, EventEmitter, Method, Prop, State, Watch } from '@stencil/core';
 import { Axis } from 'd3';
 import { BrushBehavior } from 'd3-brush';
 import { ScaleLinear } from 'd3-scale';

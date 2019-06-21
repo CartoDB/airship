@@ -1,3 +1,5 @@
+import { h } from '@stencil/core';
+
 /**
  * Common fragment used in widgets to manage status.
  *

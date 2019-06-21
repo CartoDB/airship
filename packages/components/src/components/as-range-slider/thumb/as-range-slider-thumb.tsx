@@ -1,4 +1,4 @@
-import { Component, Element, Event, EventEmitter, Listen, Prop } from '@stencil/core';
+import { Component, h, Element, Event, EventEmitter, Listen, Prop } from '@stencil/core';
 import { handleMouseDown } from '../MouseTrack';
 
 @Component({

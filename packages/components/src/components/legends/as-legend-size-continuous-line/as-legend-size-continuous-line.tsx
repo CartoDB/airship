@@ -1,4 +1,4 @@
-import { Component, Prop, State } from '@stencil/core';
+import { Component, h, Prop, State } from '@stencil/core';
 
 const TEXT_MARGIN = 4;
 const MIN_LINE_SIZE = 4;

@@ -1,4 +1,4 @@
-import { Component, Event, EventEmitter, Prop, State, Watch } from '@stencil/core';
+import { Component, h, Event, EventEmitter, Prop, State, Watch } from '@stencil/core';
 import getDecimalPlaces from '../../../utils/get-decimal-places';
 import { Thumb } from '../thumb/interfaces';
 
