@@ -12,7 +12,7 @@ export class Infowindow {
   @Element() private element: HTMLElement;
 
   public render() {
-    return !this.element.innerHTML && this.src
+    return this.element.childElementCount === 0 && this.src
       ? this._renderImageInfoWindow()
       : this._renderStandarInfowindow();
   }
