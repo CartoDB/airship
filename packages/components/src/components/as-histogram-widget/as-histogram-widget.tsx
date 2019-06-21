@@ -231,7 +231,7 @@ export class HistogramWidget {
 
   public selection: number[] = null;
 
-  @Element() private el: HTMLStencilElement;
+  @Element() private el: HTMLAsHistogramWidgetElement;
 
   /**
    * Fired when user update or clear the widget selection.

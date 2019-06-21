@@ -97,7 +97,7 @@ export class StackedBarWidget {
   /**
    * Store a reference to the element to force repaint on window resize.
    */
-  @Element() public el: HTMLStencilElement;
+  @Element() public el: HTMLAsStackedBarWidgetElement;
 
   /**
    * Hold a reference to the tooltip to show on mouseover
