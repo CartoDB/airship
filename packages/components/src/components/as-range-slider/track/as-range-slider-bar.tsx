@@ -1,4 +1,4 @@
-import { Component, h, Element, Event, EventEmitter, Listen, Prop } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, h, Listen, Prop } from '@stencil/core';
 import { handleMouseDown } from '../MouseTrack';
 
 const MAX_PERCENTAGE = 100;
