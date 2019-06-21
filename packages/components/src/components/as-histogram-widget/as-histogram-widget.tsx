@@ -354,7 +354,7 @@ export class HistogramWidget {
    * @memberof HistogramWidget
    */
   @Method()
-  public defaultFormatter(data: HistogramData) {
+  public async defaultFormatter(data: HistogramData) {
     const tooltip = [];
 
     if (this.isCategoricalData) {
@@ -387,7 +387,7 @@ export class HistogramWidget {
    * @memberof HistogramWidget
    */
   @Method()
-  public setSelection(values: number[] | null, emit = false) {
+  public async setSelection(values: number[] | null, emit = false) {
     if (values === null) {
       this._setSelection(null);
       this.emitSelection(this.selectionChanged, this.selection);
@@ -414,7 +414,7 @@ export class HistogramWidget {
    * @memberof HistogramWidget
    */
   @Method()
-  public clearSelection() {
+  public async clearSelection() {
     this.setSelection(null);
   }
 
@@ -424,7 +424,7 @@ export class HistogramWidget {
    * @memberof HistogramWidget
    */
   @Method()
-  public xFormatter(value) {
+  public async xFormatter(value) {
     if (this.axisFormatter) {
       return this.axisFormatter(value);
     }

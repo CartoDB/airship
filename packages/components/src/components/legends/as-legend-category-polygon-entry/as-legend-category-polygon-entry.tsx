@@ -6,10 +6,10 @@ import { Component, Prop } from '@stencil/core';
   tag: 'as-legend-category-polygon-entry',
 })
 export class LegendColorCategoryPolygonEntry {
-  @Prop() private label: string;
-  @Prop() private color: string;
-  @Prop() private strokeColor: string;
-  @Prop() private strokeStyle: string;
+  @Prop() public label: string;
+  @Prop() public color: string;
+  @Prop() public strokeColor: string;
+  @Prop() public strokeStyle: string;
 
   public render() {
     return (
