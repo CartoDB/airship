@@ -409,14 +409,15 @@ export namespace Components {
     * Disables component if truthy
     */
     'disabled': boolean;
-    /**
-    * If this property is set to true, and it has multiple value, you can drag the entire track.
-    */
     'draggable': boolean;
     /**
     * If this property receives a function, it will be used to format the numbers (eg. for adding $ or €).
     */
     'formatValue': (value: number) => string|number;
+    /**
+    * If this property is set to true, and it has multiple value, you can drag the entire track.
+    */
+    'isDraggable': boolean;
     /**
     * Top limit of the range. You cannot drag your slider beyond this value. By default the value is 10.
     */
@@ -440,7 +441,7 @@ export namespace Components {
   }
   interface AsRangeSliderBar {
     'disabled': boolean;
-    'draggable': boolean;
+    'isDraggable': boolean;
     'rangeEndPercentage': number;
     'rangeStartPercentage': number;
     'stepPercentage': number;
@@ -1412,14 +1413,15 @@ declare namespace LocalJSX {
     * Disables component if truthy
     */
     'disabled'?: boolean;
-    /**
-    * If this property is set to true, and it has multiple value, you can drag the entire track.
-    */
     'draggable'?: boolean;
     /**
     * If this property receives a function, it will be used to format the numbers (eg. for adding $ or €).
     */
     'formatValue'?: (value: number) => string|number;
+    /**
+    * If this property is set to true, and it has multiple value, you can drag the entire track.
+    */
+    'isDraggable'?: boolean;
     /**
     * Top limit of the range. You cannot drag your slider beyond this value. By default the value is 10.
     */
@@ -1446,7 +1448,7 @@ declare namespace LocalJSX {
   }
   interface AsRangeSliderBar extends JSXBase.HTMLAttributes<HTMLAsRangeSliderBarElement> {
     'disabled'?: boolean;
-    'draggable'?: boolean;
+    'isDraggable'?: boolean;
     'onBarChangeEnd'?: (event: CustomEvent<void>) => void;
     'onBarChangeStart'?: (event: CustomEvent<void>) => void;
     'onBarMove'?: (event: CustomEvent<number[]>) => void;
