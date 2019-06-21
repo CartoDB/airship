@@ -1,4 +1,4 @@
-import { Component, h, Element, Event, EventEmitter, Method, Prop, State, Watch } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, h, Method, Prop, State, Watch } from '@stencil/core';
 import { Axis } from 'd3';
 import { BrushBehavior } from 'd3-brush';
 import { ScaleLinear } from 'd3-scale';
@@ -132,7 +132,7 @@ export class HistogramWidget {
    * @type {(HistogramData) => string}
    * @memberof HistogramWidget
    */
-  @Prop() public tooltipFormatter: (value: HistogramData) => string | string[] = this.defaultFormatter;
+  @Prop() public tooltipFormatter: (value: HistogramData) => string | string[] = this.formatter;
 
   /**
    * Label the x axis of the histogram with the given string.
@@ -355,15 +355,7 @@ export class HistogramWidget {
    */
   @Method()
   public async defaultFormatter(data: HistogramData) {
-    const tooltip = [];
-
-    if (this.isCategoricalData) {
-      tooltip.push(`${data.category}`);
-    }
-
-    tooltip.push(`${readableNumber(data.value).trim()}`);
-
-    return tooltip;
+    return this.formatter(data);
   }
 
   /**
@@ -1080,5 +1072,17 @@ export class HistogramWidget {
 
   private _hasDataToDisplay() {
     return !(this.isLoading || this._isEmpty() || this.error);
+  }
+
+  private formatter(data: HistogramData) {
+    const tooltip = [];
+
+    if (this.isCategoricalData) {
+      tooltip.push(`${data.category}`);
+    }
+
+    tooltip.push(`${readableNumber(data.value).trim()}`);
+
+    return tooltip;
   }
 }

@@ -1,4 +1,4 @@
-import { Component, h, Element, Prop } from '@stencil/core';
+import { Component, Element, h, Prop } from '@stencil/core';
 import { redrawChildren } from '../../utils/redraw-children';
 
 /**
