@@ -489,8 +489,8 @@ export class HistogramWidget {
     };
     const svgClasses = {
       'figure': true,
-      'figure--has-x-label': this.xLabel,
-      'figure--has-y-label': this.yLabel
+      'figure--has-x-label': !!this.xLabel,
+      'figure--has-y-label': !!this.yLabel
     };
     return contentFragment(
       this.isLoading,
