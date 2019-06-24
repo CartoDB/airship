@@ -102,18 +102,19 @@ export class DonutWidget {
 
   private prepareData() {
     // TODO: color map
-    this.totalValue = this.data.reduce((prev, curr) => prev + curr.value, 0);
+    if (this.selected) {
+      const sel = this.data.filter((item: any) => item.id === this.selected.data.id)[0];
+      if (sel) {
+        this.setLabel(sel.key, sel.value);
+      } else {
+        this.selected = null;
+        this.totalValue = this.data.reduce((prev, curr) => prev + curr.value, 0);
+        this.setLabel(this.labelTitle, this.totalValue);
+      }
+    }
 
     this.clearGraph();
     this.renderGraph();
-
-    if (this.selected) {
-      this.data.map((item: any) => {
-        if (item.id === this.selected.data.id) {
-          this.setLabel(item.key, item.value);
-        }
-      });
-    }
   }
 
   private renderContent() {
