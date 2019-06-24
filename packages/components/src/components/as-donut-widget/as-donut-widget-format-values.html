@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+  <base href="/">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+  <title>Airship</title>
+  <link rel="stylesheet" href="packages/styles/dist/airship.css">
+  <script src="packages/components/dist/airship.js"></script>
+  <style>
+    body {
+      font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fff;
+    }
+
+    as-donut-widget {
+      display: inline-block;
+      width: 300px;
+      height: 200px;
+      background-color: white;
+      border: 1px solid whitesmoke;
+    }
+  </style>
+</head>
+
+<body>
+  <as-donut-widget id="donut" arc-size="16" padding="20" label-title="Total"></as-donut-widget>
+
+  <script>
+    const donut = document.querySelector('#donut')
+    const data = [
+      { id: '0', key: 'Category one', value: 50, color: '#80b622' },
+      { id: '1', key: 'Category two', value: 22, color: '#fdb32b' },
+      { id: '2', key: 'Category three', value: 17, color: '#f3522b' }
+    ]
+
+    donut.data = data
+  </script>
+
+</body>
+
+</html>

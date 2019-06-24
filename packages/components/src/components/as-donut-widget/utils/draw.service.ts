@@ -5,7 +5,11 @@ import { event as d3event, select } from 'd3-selection';
 import { interpolate } from 'd3-interpolate';
 import 'd3-transition';
 
+const GREY_COLOR = '#e2e6e3';
 const TRANSITION_DURATION = 500;
+let pie;
+let arc;
+let donut;
 
 export function renderDonut(
   container: SVGContainer,
@@ -14,6 +18,7 @@ export function renderDonut(
   height: number,
   arcSize: number,
   padding: number,
+  selected?: any,
   onMouseOver?,
   onMouseOut?,
   onMouseMove?,
@@ -21,14 +26,14 @@ export function renderDonut(
 
   const radius = Math.min(width, height);
   const center = radius / 2;
-  const pie = d3Pie().value((d: any) => d.value).padAngle(0.01);  // TODO: check this
-  const arc = d3Arc()
+
+  pie = d3Pie().value((d: any) => d.value).padAngle(0.01);  // TODO: check this
+  
+  arc = d3Arc()
     .innerRadius((center - arcSize) - padding)
     .outerRadius(center - padding);
 
-  let selected = null;
-
-  const donut = container.append('g')
+  donut = container.append('g')
     .attr('class', 'donut')
     .style('transform', 'translate(50%, 50%)')
     .selectAll('path')
@@ -37,7 +42,7 @@ export function renderDonut(
     .append('path')
     .attr('class', 'path')
     .attr('d', <any>arc)  // TODO: check this
-    .attr('fill', (d: any) => d.data.color)
+    .attr('fill', (d: any) => (selected && selected.data.id !== d.data.id) ? GREY_COLOR : d.data.color)
     .style('cursor', 'pointer');
 
   donut.on('mouseover', function (d: any) {
@@ -74,6 +79,7 @@ export function renderDonut(
       unselectItem(container)
     } else {
       selected = d;
+      
       if (onClick) onClick(d);
       selectItem(container, selected)
     }
@@ -96,7 +102,7 @@ function selectItem(svg: SVGContainer, selected: any) {
       if (selected === d) {
         return selected.data.color;
       } else {
-        return '#e2e6e3';
+        return GREY_COLOR;
       }
     })
 }

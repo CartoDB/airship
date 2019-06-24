@@ -80,19 +80,18 @@ export class DonutWidget {
    */
   private totalValue: number;
 
+  private selected: any;
+
   @Watch('data')
   public _onDataChanged() {
     this.prepareData();
-    this.clearGraph();
-    this.renderGraph();
-    this.renderLabel();
   }
 
   public componentDidLoad() {
     this.prepareData();
-    this.clearGraph();
     this.renderGraph();
     this.renderLabel();
+    this.setLabel(this.labelTitle, this.totalValue);
   }
 
   public render() {
@@ -102,7 +101,19 @@ export class DonutWidget {
   }
 
   private prepareData() {
+    // TODO: color map
     this.totalValue = this.data.reduce((prev, curr) => prev + curr.value, 0);
+
+    this.clearGraph();
+    this.renderGraph();
+
+    if (this.selected) {
+      this.data.map((item: any) => {
+        if (item.id === this.selected.data.id) {
+          this.setLabel(item.key, item.value);
+        }
+      });
+    }
   }
 
   private renderContent() {
@@ -133,6 +144,7 @@ export class DonutWidget {
       height,
       this.arcSize,
       this.padding,
+      this.selected,
       this.onGraphMouseOver.bind(this),
       this.onGraphMouseOut.bind(this),
       this.onGraphMouseMove.bind(this),
@@ -145,8 +157,6 @@ export class DonutWidget {
   }
 
   private renderLabel() {
-    this.setLabel(this.labelTitle, this.totalValue);
-
     return (
       <div ref={(ref) => this.labelElement = ref} class='as-donut-label'>
         <p class='as-label-title'></p>
@@ -189,6 +199,7 @@ export class DonutWidget {
     this.hideTooltip();
 
     if (item) {
+      this.selected = item;
       this.setLabel(item.data.key, item.data.value);
     } else {
       this.setLabel(this.labelTitle, this.totalValue);
