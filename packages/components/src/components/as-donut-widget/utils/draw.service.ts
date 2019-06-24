@@ -5,6 +5,8 @@ import { event as d3event, select } from 'd3-selection';
 import { interpolate } from 'd3-interpolate';
 import 'd3-transition';
 
+const TRANSITION_DURATION = 500;
+
 export function renderDonut(
   container: SVGContainer,
   data: any,
@@ -44,7 +46,7 @@ export function renderDonut(
 
     select(this)
       .transition('arc-fill-in')
-      .duration(250)
+      .duration(TRANSITION_DURATION)
       .attr('fill', <any>d3Color(d.data.color).darker(0.6));  // TODO: check this
   });
 
@@ -59,7 +61,7 @@ export function renderDonut(
 
     select(this)
       .transition('arc-fill-out')
-      .duration(250)
+      .duration(TRANSITION_DURATION)
       .attr('fill', d.data.color);
   });
 
@@ -79,7 +81,7 @@ export function renderDonut(
 
   // TODO: think different transitions for new data and updates
   donut.transition('enter-donut')
-    .duration(500)
+    .duration(TRANSITION_DURATION)
     .attrTween('d', (d: any) => {
       const interp = interpolate({ startAngle: 0, endAngle: 0 }, d);
       return (t) => arc(interp(t));
@@ -89,7 +91,7 @@ export function renderDonut(
 function selectItem(svg: SVGContainer, selected: any) {
   svg.selectAll('.donut path')
     .transition('arc-fill-in-out')
-    .duration(250)
+    .duration(TRANSITION_DURATION)
     .attr('fill', (d: any) => {
       if (selected === d) {
         return selected.data.color;
@@ -102,7 +104,7 @@ function selectItem(svg: SVGContainer, selected: any) {
 function unselectItem(svg: SVGContainer) {
   svg.selectAll('.donut path')
     .transition('arc-fill-in-out')
-    .duration(250)
+    .duration(TRANSITION_DURATION)
     .attr('fill', (d: any) => d.data.color);
 }
 

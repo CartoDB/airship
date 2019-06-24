@@ -5,6 +5,8 @@ import { SVGContainer } from './types/Container';
 import { DonutData } from './interfaces';
 import drawService from './utils/draw.service';
 
+const TRANSITION_DURATION = 500;
+
 /**
  * Donut Widget
  *
@@ -80,12 +82,14 @@ export class DonutWidget {
 
   @Watch('data')
   public _onDataChanged() {
+    this.prepareData();
     this.clearGraph();
     this.renderGraph();
     this.renderLabel();
   }
 
   public componentDidLoad() {
+    this.prepareData();
     this.clearGraph();
     this.renderGraph();
     this.renderLabel();
@@ -97,15 +101,16 @@ export class DonutWidget {
     ];
   }
 
+  private prepareData() {
+    this.totalValue = this.data.reduce((prev, curr) => prev + curr.value, 0);
+  }
+
   private renderContent() {
     return (
       <div class='as-donut-wrapper'>
         <svg class='as-donut-svg' ref={(ref: SVGElement) => this.container = select(ref)}></svg>
-        <div ref={(ref) => this.labelElement = ref} class='as-donut-label'>
-          <p class='as-label-title'></p>
-          <p class='as-label-value'></p>
-        </div>
-        <div ref={(ref) => this.tooltipElement = ref} class='as-donut-tooltip' role='tooltip'></div>
+        {this.renderLabel()}
+        {this.renderTooltip()}
       </div>
     );
   }
@@ -140,13 +145,18 @@ export class DonutWidget {
   }
 
   private renderLabel() {
-    this.label = select(this.labelElement);
-
-    this.totalValue = this.data.reduce((prev, curr) => prev + curr.value, 0);
     this.setLabel(this.labelTitle, this.totalValue);
+
+    return (
+      <div ref={(ref) => this.labelElement = ref} class='as-donut-label'>
+        <p class='as-label-title'></p>
+        <p class='as-label-value'></p>
+      </div>
+    );
   }
 
   private setLabel(key?: string, value?: number) {
+    this.label = select(this.labelElement);
     this.label.select('.as-label-title').text(key ? key : this.labelTitle);
     this.label.select('.as-label-value')
       .transition()
@@ -176,11 +186,19 @@ export class DonutWidget {
   }
 
   private onGraphClick(item?: any) {
+    this.hideTooltip();
+
     if (item) {
       this.setLabel(item.data.key, item.data.value);
     } else {
       this.setLabel(this.labelTitle, this.totalValue);
     }
+  }
+
+  private renderTooltip() {
+    return (
+      <div ref={(ref) => this.tooltipElement = ref} class='as-donut-tooltip' role='tooltip'></div>
+    );
   }
 
   private showTooltip(data: any, pageX: number, pageY: number) {
@@ -198,7 +216,7 @@ export class DonutWidget {
 
     this.tooltip
       .transition('show-tooltip')
-      .duration(250)
+      .duration(TRANSITION_DURATION)
       .style('opacity', 1);
   }
 
