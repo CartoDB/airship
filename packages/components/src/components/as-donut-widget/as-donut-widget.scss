@@ -68,6 +68,7 @@ as-donut-widget {
       transform: translateX(-50%);
       opacity: 0;
       pointer-events: none;
+      user-select: none;
       z-index: 5;
     }
   

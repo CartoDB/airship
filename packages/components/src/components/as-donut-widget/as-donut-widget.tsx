@@ -80,6 +80,9 @@ export class DonutWidget {
    */
   private totalValue: number;
 
+  /**
+   * Holds a selected item
+   */
   private selected: any;
 
   @Watch('data')
@@ -104,12 +107,11 @@ export class DonutWidget {
     // TODO: color map
     let title;
     let value;
-    if (this.selected) {
-      const sel = this.data.filter((item: any) => item.id === this.selected.data.id)[0];
-      if (sel) {
-        title = sel.key;
-        value = sel.value;
-      }
+    const sel = this.data.filter((item: any) => this.selected && item.id === this.selected.data.id)[0];
+
+    if (sel) {
+      title = sel.key;
+      value = sel.value;
     } else {
       this.selected = null;
       this.totalValue = this.data.reduce((prev, curr) => prev + curr.value, 0);
@@ -176,7 +178,7 @@ export class DonutWidget {
     this.label.select('.as-label-title').text(key ? key : this.labelTitle);
     this.label.select('.as-label-value')
       .transition()
-      .tween('text', function() {
+      .tween('text', function () {
         const selection = select(this);
         const start = parseInt(select(this).text(), 0) || 0;
         const end = value ? value : 0;
@@ -238,7 +240,10 @@ export class DonutWidget {
   }
 
   private hideTooltip() {
-    this.tooltip.style('opacity', 0);
+    this.tooltip
+      .transition('show-tooltip')
+      .duration(TRANSITION_DURATION / 2)
+      .style('opacity', 0);
   }
 
   private moveTooltip(pageX: number, pageY: number) {
