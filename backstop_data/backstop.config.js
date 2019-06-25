@@ -21,7 +21,7 @@ const defaultOptions = {
       "height": 768
     }
   ],
-  "delay": "250",
+  "delay": "1000",
   "onBeforeScript": "puppet/onBefore.js",
   "onReadyScript": "puppet/onReady.js",
   "paths": {
