@@ -1,23 +1,23 @@
 
 as-donut-widget {
-  --as--donut-widget--label-title--font-size: 12px;
+  --as--donut-widget--label-title--font-size: var(--as--size--font-02, #{$font-size-02});
   --as--donut-widget--label-title--font-weight: normal;
   --as--donut-widget--label-title--line-height: 1.5;
-  --as--donut-widget--label-title--color: #bababa;
+  --as--donut-widget--label-title--color: var(--as--color--ui-03, #{$color-ui-03});
 
-  --as--donut-widget--label-value--font-size: 24px;
+  --as--donut-widget--label-value--font-size: var(--as--size--font-04, #{$font-size-04});
   --as--donut-widget--label-value--font-weight: bold;
   --as--donut-widget--label-value--line-height: 1.33;
-  --as--donut-widget--label-value--color: #2c2c2c;
+  --as--donut-widget--label-value--color: var(--as--color--type-01, #{$color-type-01});
   
   --as--donut-widget--tooltip--border-radius: 4px;
-  --as--donut-widget--tooltip--background-color: #2c2c2c;
-  --as--donut-widget--tooltip--name--font-size: 12px;
+  --as--donut-widget--tooltip--background-color: var(--as--color--type-01, #{$color-type-01});
+  --as--donut-widget--tooltip--name--font-size: var(--as--size--font-02, #{$font-size-02});
   --as--donut-widget--tooltip--name--line-height: 1.67;
-  --as--donut-widget--tooltip--name--color: #bababa;
-  --as--donut-widget--tooltip--value--font-size: 12px;
+  --as--donut-widget--tooltip--name--color: var(--as--color--ui-03, #{$color-ui-03});
+  --as--donut-widget--tooltip--value--font-size: var(--as--size--font-02, #{$font-size-02});
   --as--donut-widget--tooltip--value--line-height: 1.67;
-  --as--donut-widget--tooltip--value--color: #bababa;
+  --as--donut-widget--tooltip--value--color: var(--as--color--ui-03, #{$color-ui-03});
 
   .as-donut-wrapper {
     position: relative;
