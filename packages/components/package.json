@@ -25,7 +25,7 @@
     "test:e2e:watch": "npm run build &&  stencil test --e2e --watch"
   },
   "devDependencies": {
-    "@stencil/core": "^1.0.0",
+    "@stencil/core": "^1.1.0",
     "@stencil/sass": "^1.0.0",
     "@types/d3": "5.0.1",
     "@types/jest": "24.0.15",
@@ -35,7 +35,7 @@
     "jest-cli": "24.8.0",
     "jest-environment-node": "23.4.0",
     "lerna": "2.11.0",
-    "puppeteer": "1.17.0",
+    "puppeteer": "1.18.0",
     "stylelint": "^9.3.0",
     "stylelint-config-property-sort-order-smacss": "^4.0.0",
     "stylelint-config-standard": "^18.2.0",
