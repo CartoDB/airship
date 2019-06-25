@@ -110,13 +110,13 @@ export class DonutWidget {
         title = sel.key;
         value = sel.value;
       }
-    }else {
+    } else {
       this.selected = null;
       this.totalValue = this.data.reduce((prev, curr) => prev + curr.value, 0);
       title = this.labelTitle;
       value = this.totalValue;
     }
-    
+
     this.setLabel(title, value);
     this.clearGraph();
     this.renderGraph();
