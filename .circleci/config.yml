@@ -42,7 +42,7 @@ jobs:
   test-unit:styles:
     docker:
       # specify the version you desire here
-      - image: backstopjs/backstopjs:latest
+      - image: backstopjs/backstopjs:version-3.9.13
     working_directory: ~/airship
     steps:
       - run: git config --global user.email "frontend@carto.com"
