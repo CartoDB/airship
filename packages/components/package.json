@@ -17,7 +17,7 @@
     "lint:fix": "npm run lint:css:fix",
     "lint:ts": "tslint -c tslint.json src/components/**/*.{ts,tsx}",
     "lint": "npm run lint:ts && npm run lint:css",
-    "test": "stencil test --spec --e2e",
+    "test": "stencil test --spec --e2e --runInBand",
     "test:watch": "stencil test --spec --e2e --watch",
     "test:unit": "npm run build &&  stencil test --spec",
     "test:unit:watch": "npm run build &&  stencil test --spec --watch",
