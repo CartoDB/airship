@@ -283,6 +283,7 @@ export class DonutWidget {
       this.selected = item;
       this.setLabel(item.data.key, item.data.value);
     } else {
+      this.selected = null;
       this.setLabel(this.labelTitle, this.totalValue);
     }
   }
