@@ -19,7 +19,7 @@
     as-donut-widget {
       display: inline-block;
       width: 300px;
-      height: 200px;
+      height: auto;
       background-color: white;
       border: 1px solid whitesmoke;
     }
@@ -27,7 +27,13 @@
 </head>
 
 <body>
-  <as-donut-widget id="donut" arc-size="16" padding="20" label-title="Total"></as-donut-widget>
+  <as-donut-widget id="donut" 
+    arc-size="16" 
+    padding="20" 
+    label-title="Total"
+    heading="Business Volume"
+    description="Description">
+  </as-donut-widget>
 
   <button class="one">One</button>
   <button class="two">Two</button>

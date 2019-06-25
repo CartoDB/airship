@@ -48,6 +48,63 @@ export class DonutWidget {
    */
   @Prop() public tooltipMargin: number = 40;
 
+  /**
+   * Description text of the widget
+   *
+   * @type {string}
+   * @memberof CategoryWidget
+   */
+  @Prop() public description: string;
+
+  /**
+   * Heading text of the widget
+   *
+   * @type {string}
+   * @memberof CategoryWidget
+   */
+  @Prop() public heading: string;
+
+  /**
+   * If truthy, it'll show a button to clear selected categories when there are any. Default value is `false`.
+   *
+   * @type {boolean}
+   * @memberof CategoryWidget
+   */
+  @Prop() public showClearButton: boolean = false;
+
+  /**
+   * If truthy, it'll render the heading and component's description. Default value is `true`.
+   *
+   * @type {boolean}
+   * @memberof CategoryWidget
+   */
+  @Prop() public showHeader: boolean = true;
+
+  /**
+   * Boolean property to control the widget loading state. If true, a spinner is shown.
+   */
+  @Prop() public isLoading: boolean = false;
+
+  /**
+   * Text shown in the header subtitle when there's an error
+   */
+  @Prop() public error: string = '';
+
+  /**
+   * Extended error description, only shown when error is present
+   */
+  @Prop() public errorDescription: string = '';
+
+  /**
+   * Message shown in header when no data is available
+   */
+  @Prop() public noDataHeaderMessage: string = 'NO DATA AVAILABLE';
+
+  /**
+   * Message shown in body when no data is available
+   */
+  @Prop() public noDataBodyMessage: string = 'There is no data to display.';
+
   @Element() private el: HTMLStencilElement;
 
   /**
@@ -84,6 +141,9 @@ export class DonutWidget {
    * Holds a selected item
    */
   private selected: any;
+  private wrapper: any;
+
+  private bbox: any;
 
   @Watch('data')
   public _onDataChanged() {
@@ -91,7 +151,9 @@ export class DonutWidget {
   }
 
   public componentDidLoad() {
+    this.bbox = this.el.getBoundingClientRect();
     this.prepareData();
+    this.clearGraph();
     this.renderGraph();
     this.renderLabel();
     this.setLabel(this.labelTitle, this.totalValue);
@@ -99,34 +161,46 @@ export class DonutWidget {
 
   public render() {
     return [
+      this.renderHeader(),
+      // this.renderSelection(),
       this.renderContent()
     ];
   }
 
+  private renderHeader() {
+    if (!this.showHeader) {
+      return;
+    }
+
+    return <as-widget-header
+      header={this.heading}
+      subheader={this.description}
+      is-empty={this._isEmpty()}
+      is-loading={this.isLoading}
+      error={this.error}
+      no-data-message={this.noDataHeaderMessage}>
+    </as-widget-header>;
+  }
+
   private prepareData() {
     // TODO: color map
-    let title;
-    let value;
     const sel = this.data.filter((item: any) => this.selected && item.id === this.selected.data.id)[0];
 
     if (sel) {
-      title = sel.key;
-      value = sel.value;
+      this.setLabel(sel.key, sel.value);
     } else {
       this.selected = null;
       this.totalValue = this.data.reduce((prev, curr) => prev + curr.value, 0);
-      title = this.labelTitle;
-      value = this.totalValue;
+      this.setLabel(this.labelTitle, this.totalValue);
     }
 
-    this.setLabel(title, value);
     this.clearGraph();
     this.renderGraph();
   }
 
   private renderContent() {
     return (
-      <div class='as-donut-wrapper'>
+      <div class='as-donut-wrapper' ref={(ref) => this.wrapper = ref}>
         <svg class='as-donut-svg' ref={(ref: SVGElement) => this.container = select(ref)}></svg>
         {this.renderLabel()}
         {this.renderTooltip()}
@@ -139,9 +213,8 @@ export class DonutWidget {
       return;
     }
 
-    const bbox = this.el.getBoundingClientRect();
-    const width = bbox.width;
-    const height = bbox.height;
+    const width = this.bbox.width;
+    const height = this.bbox.height;
 
     this.container.attr('viewBox', `0 0 ${width} ${height}`);
 
@@ -178,7 +251,7 @@ export class DonutWidget {
     this.label.select('.as-label-title').text(key ? key : this.labelTitle);
     this.label.select('.as-label-value')
       .transition()
-      .tween('text', function () {
+      .tween('text', function() {
         const selection = select(this);
         const start = parseInt(select(this).text(), 0) || 0;
         const end = value ? value : 0;
@@ -231,7 +304,7 @@ export class DonutWidget {
 
     this.tooltip
       .style('left', pageX + 'px')
-      .style('top', pageY - this.tooltipMargin + 'px');
+      .style('top', pageY - this.wrapper.offsetTop - this.tooltipMargin + 'px');
 
     this.tooltip
       .transition('show-tooltip')
@@ -249,6 +322,10 @@ export class DonutWidget {
   private moveTooltip(pageX: number, pageY: number) {
     this.tooltip
       .style('left', pageX + 'px')
-      .style('top', (pageY - this.tooltipMargin) + 'px');
+      .style('top', pageY - this.wrapper.offsetTop - this.tooltipMargin + 'px');
+  }
+
+  private _isEmpty(): boolean {
+    return !this.data || !this.data.length;
   }
 }

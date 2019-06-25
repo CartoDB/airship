@@ -65,7 +65,7 @@ as-donut-widget {
       padding: 0 8px;
       border-radius: var(--as--donut-widget--tooltip--border-radius);
       background-color: var(--as--donut-widget--tooltip--background-color);
-      transform: translateX(-50%);
+      transform: translate(-50%);
       opacity: 0;
       pointer-events: none;
       user-select: none;

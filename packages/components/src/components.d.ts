@@ -192,13 +192,49 @@ export namespace Components {
     */
     'data': DonutData[];
     /**
+    * Description text of the widget
+    */
+    'description': string;
+    /**
+    * Text shown in the header subtitle when there's an error
+    */
+    'error': string;
+    /**
+    * Extended error description, only shown when error is present
+    */
+    'errorDescription': string;
+    /**
+    * Heading text of the widget
+    */
+    'heading': string;
+    /**
+    * Boolean property to control the widget loading state. If true, a spinner is shown.
+    */
+    'isLoading': boolean;
+    /**
     * Donut label title
     */
     'labelTitle': string;
     /**
+    * Message shown in body when no data is available
+    */
+    'noDataBodyMessage': string;
+    /**
+    * Message shown in header when no data is available
+    */
+    'noDataHeaderMessage': string;
+    /**
     * Donut chart padding
     */
     'padding': number;
+    /**
+    * If truthy, it'll show a button to clear selected categories when there are any. Default value is `false`.
+    */
+    'showClearButton': boolean;
+    /**
+    * If truthy, it'll render the heading and component's description. Default value is `true`.
+    */
+    'showHeader': boolean;
     /**
     * Margin between mouse and tooltip
     */
@@ -214,13 +250,49 @@ export namespace Components {
     */
     'data'?: DonutData[];
     /**
+    * Description text of the widget
+    */
+    'description'?: string;
+    /**
+    * Text shown in the header subtitle when there's an error
+    */
+    'error'?: string;
+    /**
+    * Extended error description, only shown when error is present
+    */
+    'errorDescription'?: string;
+    /**
+    * Heading text of the widget
+    */
+    'heading'?: string;
+    /**
+    * Boolean property to control the widget loading state. If true, a spinner is shown.
+    */
+    'isLoading'?: boolean;
+    /**
     * Donut label title
     */
     'labelTitle'?: string;
     /**
+    * Message shown in body when no data is available
+    */
+    'noDataBodyMessage'?: string;
+    /**
+    * Message shown in header when no data is available
+    */
+    'noDataHeaderMessage'?: string;
+    /**
     * Donut chart padding
     */
     'padding'?: number;
+    /**
+    * If truthy, it'll show a button to clear selected categories when there are any. Default value is `false`.
+    */
+    'showClearButton'?: boolean;
+    /**
+    * If truthy, it'll render the heading and component's description. Default value is `true`.
+    */
+    'showHeader'?: boolean;
     /**
     * Margin between mouse and tooltip
     */
