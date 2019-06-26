@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`as-infowindow Rendering should render content 1`] = `"<as-infowindow><!----> <div class=\\"as-infowindow\\"><div class=\\"as-infowindow__content\\"> Hello there!</div><div class=\\"as-infowindow__hook\\"></div></div></as-infowindow>"`;
+
+exports[`as-infowindow Rendering should render content and image 1`] = `"<as-infowindow src=\\"general_kenobi.jpg\\"><!---->Hello there!<div class=\\"as-infowindow\\"><div class=\\"as-infowindow__media\\"><img src=\\"general_kenobi.jpg\\"></div><div class=\\"as-infowindow__imageHook\\"><div class=\\"as-infowindow__imageHook--inner\\"><img src=\\"general_kenobi.jpg\\"></div></div></div></as-infowindow>"`;
+
+exports[`as-infowindow Rendering should render with only an image 1`] = `"<as-infowindow src=\\"general_kenobi.jpg\\"><!----><div class=\\"as-infowindow\\"><div class=\\"as-infowindow__media\\"><img src=\\"general_kenobi.jpg\\"></div><div class=\\"as-infowindow__imageHook\\"><div class=\\"as-infowindow__imageHook--inner\\"><img src=\\"general_kenobi.jpg\\"></div></div></div></as-infowindow>"`;

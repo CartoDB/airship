@@ -1,4 +1,4 @@
-import { Component, Element, Event, EventEmitter, Listen, Prop } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, h, Listen, Prop } from '@stencil/core';
 import { handleMouseDown } from '../MouseTrack';
 
 const MAX_PERCENTAGE = 100;
@@ -13,7 +13,7 @@ export class RangeSliderBar {
   @Prop({ mutable: true }) public rangeStartPercentage: number;
   @Prop({ mutable: true }) public rangeEndPercentage: number;
   @Prop() public stepPercentage: number;
-  @Prop() public draggable: boolean;
+  @Prop() public isDraggable: boolean;
   @Prop() public disabled: boolean;
 
   @Event() public barMove: EventEmitter<number[]>;
@@ -35,7 +35,7 @@ export class RangeSliderBar {
     const cssClasses = {
       'as-range-slider__range-bar': true,
       'as-range-slider__range-bar--disabled': this.disabled,
-      'as-range-slider__range-bar--draggable': this.draggable
+      'as-range-slider__range-bar--draggable': this.isDraggable
     };
 
     return <div class={cssClasses} style={barStyles}></div>;
@@ -44,7 +44,7 @@ export class RangeSliderBar {
   @Listen('mousedown')
   @Listen('touchstart')
   public onMouseDown(event: MouseEvent) {
-    if (!this.draggable) {
+    if (!this.isDraggable) {
       return;
     }
 

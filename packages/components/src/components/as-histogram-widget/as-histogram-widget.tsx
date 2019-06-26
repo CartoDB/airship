@@ -1,4 +1,4 @@
-import { Component, Element, Event, EventEmitter, Method, Prop, State, Watch } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, h, Method, Prop, State, Watch } from '@stencil/core';
 import { Axis } from 'd3';
 import { BrushBehavior } from 'd3-brush';
 import { ScaleLinear } from 'd3-scale';
@@ -132,7 +132,7 @@ export class HistogramWidget {
    * @type {(HistogramData) => string}
    * @memberof HistogramWidget
    */
-  @Prop() public tooltipFormatter: (value: HistogramData) => string | string[] = this.defaultFormatter;
+  @Prop() public tooltipFormatter: (value: HistogramData) => string | string[] = this.formatter;
 
   /**
    * Label the x axis of the histogram with the given string.
@@ -231,7 +231,7 @@ export class HistogramWidget {
 
   public selection: number[] = null;
 
-  @Element() private el: HTMLStencilElement;
+  @Element() private el: HTMLAsHistogramWidgetElement;
 
   /**
    * Fired when user update or clear the widget selection.
@@ -354,16 +354,8 @@ export class HistogramWidget {
    * @memberof HistogramWidget
    */
   @Method()
-  public defaultFormatter(data: HistogramData) {
-    const tooltip = [];
-
-    if (this.isCategoricalData) {
-      tooltip.push(`${data.category}`);
-    }
-
-    tooltip.push(`${readableNumber(data.value).trim()}`);
-
-    return tooltip;
+  public async defaultFormatter(data: HistogramData) {
+    return this.formatter(data);
   }
 
   /**
@@ -387,7 +379,7 @@ export class HistogramWidget {
    * @memberof HistogramWidget
    */
   @Method()
-  public setSelection(values: number[] | null, emit = false) {
+  public async setSelection(values: number[] | null, emit = false) {
     if (values === null) {
       this._setSelection(null);
       this.emitSelection(this.selectionChanged, this.selection);
@@ -414,7 +406,7 @@ export class HistogramWidget {
    * @memberof HistogramWidget
    */
   @Method()
-  public clearSelection() {
+  public async clearSelection() {
     this.setSelection(null);
   }
 
@@ -424,7 +416,7 @@ export class HistogramWidget {
    * @memberof HistogramWidget
    */
   @Method()
-  public xFormatter(value) {
+  public async xFormatter(value) {
     if (this.axisFormatter) {
       return this.axisFormatter(value);
     }
@@ -489,8 +481,8 @@ export class HistogramWidget {
     };
     const svgClasses = {
       'figure': true,
-      'figure--has-x-label': this.xLabel,
-      'figure--has-y-label': this.yLabel
+      'figure--has-x-label': !!this.xLabel,
+      'figure--has-y-label': !!this.yLabel
     };
     return contentFragment(
       this.isLoading,
@@ -1080,5 +1072,17 @@ export class HistogramWidget {
 
   private _hasDataToDisplay() {
     return !(this.isLoading || this._isEmpty() || this.error);
+  }
+
+  private formatter(data: HistogramData) {
+    const tooltip = [];
+
+    if (this.isCategoricalData) {
+      tooltip.push(`${data.category}`);
+    }
+
+    tooltip.push(`${readableNumber(data.value).trim()}`);
+
+    return tooltip;
   }
 }

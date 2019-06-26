@@ -1,4 +1,4 @@
-import { Component, Event, EventEmitter, Method, Prop, Watch } from '@stencil/core';
+import { Component, Event, EventEmitter, h, Method, Prop, Watch } from '@stencil/core';
 import { scaleLinear } from 'd3-scale';
 import { event as d3event } from 'd3-selection';
 import { timeFormat, timeFormatDefaultLocale, TimeLocaleDefinition } from 'd3-time-format';
@@ -308,7 +308,7 @@ export class TimeSeriesWidget {
    * @memberof TimeSeriesWidget
    */
   @Method()
-  public defaultFormatter(data: HistogramData) {
+  public async defaultFormatter(data: HistogramData) {
     return this.histogram.defaultFormatter(data);
   }
 
@@ -319,7 +319,7 @@ export class TimeSeriesWidget {
    * @memberof TimeSeriesWidget
    */
   @Method()
-  public async getSelection(): Promise<number[]|string[]> {
+  public async getSelection() {
     return this.histogram.getSelection();
   }
 
@@ -330,7 +330,7 @@ export class TimeSeriesWidget {
    * @memberof TimeSeriesWidget
    */
   @Method()
-  public setSelection(values: number[] | null) {
+  public async setSelection(values: number[] | null) {
     this.histogram.setSelection(values);
   }
 
@@ -340,7 +340,7 @@ export class TimeSeriesWidget {
    * @memberof TimeSeriesWidget
    */
   @Method()
-  public clearSelection() {
+  public async clearSelection() {
     this.histogram.clearSelection();
   }
 
@@ -349,7 +349,7 @@ export class TimeSeriesWidget {
    * @param value
    */
   @Method()
-  public xFormatter(value) {
+  public async xFormatter(value) {
     return this.histogram.xFormatter(value);
   }
 

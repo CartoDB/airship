@@ -1,4 +1,4 @@
-import { Component, Event, EventEmitter, Prop, State, Watch } from '@stencil/core';
+import { Component, Event, EventEmitter, h, Prop, State, Watch } from '@stencil/core';
 import getDecimalPlaces from '../../../utils/get-decimal-places';
 import { Thumb } from '../thumb/interfaces';
 
@@ -60,12 +60,19 @@ export class RangeSlider {
   @Prop() public disabled: boolean = false;
 
   /**
+   * @deprecated Use isDraggable instead
+   * @type {boolean}
+   * @memberof RangeSlider
+   */
+  @Prop() public draggable: boolean = false;
+
+  /**
    * If this property is set to true, and it has multiple value, you can drag the entire track.
    *
    * @type {number}
    * @memberof RangeSlider
    */
-  @Prop() public draggable: boolean = false;
+  @Prop() public isDraggable: boolean = false;
 
   /**
    * If this property receives a function, it will be used to format the numbers (eg. for adding $ or €).
@@ -151,11 +158,11 @@ export class RangeSlider {
 
   private _renderRangeBar() {
     const [firstThumbPercentage, lastThumbPercentage] = this._getCurrentThumbPercentages();
-    const draggable = this.draggable && this.range !== undefined;
+    const draggable = (this.isDraggable || this.draggable) && this.range !== undefined;
     return <as-range-slider-bar
              rangeStartPercentage={firstThumbPercentage}
              rangeEndPercentage={lastThumbPercentage}
-             draggable={draggable}
+             isDraggable={draggable}
              disabled={this.disabled}
              stepPercentage={this._getStepPercentage()}
              onBarChangeStart={() => this._emitChangeIn(this.changeStart)}

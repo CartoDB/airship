@@ -114,6 +114,9 @@ Increment/decrement step of the slider. You can change the step setting a differ
 Disables component if truthy. False by default.
 
 #### **draggable**: boolean = false
+**DEPRECATED** use **isDraggable** instead.
+
+#### **isDraggable**: boolean = false
 If this property is set to true, and it has multiple value, you can drag the entire track. False by default
 
 #### **formatValue**: (value: number) => void

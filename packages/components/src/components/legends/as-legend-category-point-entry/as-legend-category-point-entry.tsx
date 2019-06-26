@@ -1,4 +1,4 @@
-import { Component, Prop } from '@stencil/core';
+import { Component, h, Prop } from '@stencil/core';
 import { borderStyleCounts } from '../../../utils/border-style-counts';
 
 // This component ignores the strokeWidth property, and always paints

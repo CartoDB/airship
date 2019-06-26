@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`as-legend Rendering should not render content if loading 1`] = `"<as-legend loading=\\"\\" class=\\"hydrated\\"><div class=\\"as-legend--wrapper\\"></div></as-legend>"`;
-
-exports[`as-legend Rendering should render a heading and description 1`] = `"<as-legend heading=\\"Heading\\" description=\\"Description\\" class=\\"hydrated\\"><div class=\\"as-legend--wrapper\\"><as-widget-header class=\\"hydrated\\"><h2 class=\\"as-widget-header__header\\">Heading</h2><p class=\\"as-widget-header__subheader as-body\\">Description</p></as-widget-header><div class=\\"as-legend--legends-slot\\"></div></div></as-legend>"`;
-
-exports[`as-legend Rendering should support a slot for legends 1`] = `"<as-legend class=\\"hydrated\\"><div class=\\"as-legend--wrapper\\"><div class=\\"as-legend--legends-slot\\"><span slot=\\"legends\\">Legend</span></div></div></as-legend>"`;
-
-exports[`as-legend Rendering should support a slot for the footer 1`] = `"<as-legend class=\\"hydrated\\"><div class=\\"as-legend--wrapper\\"><div class=\\"as-legend--legends-slot\\"></div><span slot=\\"footer\\">Footer</span></div></as-legend>"`;

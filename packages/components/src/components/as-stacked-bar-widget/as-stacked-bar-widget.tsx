@@ -1,4 +1,4 @@
-import { Component, Element, Prop, Watch } from '@stencil/core';
+import { Component, Element, h, Prop, Watch } from '@stencil/core';
 import { event as d3event } from 'd3-selection';
 import contentFragment from '../common/content.fragment';
 import { ColorMap } from './types/ColorMap';
@@ -97,7 +97,7 @@ export class StackedBarWidget {
   /**
    * Store a reference to the element to force repaint on window resize.
    */
-  @Element() public el: HTMLStencilElement;
+  @Element() public el: HTMLAsStackedBarWidgetElement;
 
   /**
    * Hold a reference to the tooltip to show on mouseover
