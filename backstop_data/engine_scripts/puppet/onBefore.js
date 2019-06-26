@@ -4,7 +4,7 @@ module.exports = async (page, scenario, vp) => {
       document.fonts.ready.then(() => {
         setTimeout(() => {
           console.log('_READY');
-        }, 250);
+        }, 750);
       });
     });
   });
