@@ -1,11 +1,13 @@
 import semver from 'semver';
 import {
+  AnimationControlsOptions,
   AnimationOptions,
   CategoricalHistogramOptions,
   CategoryOptions,
   NumericalHistogramOptions,
   VLBridgeOptions } from '../types';
 import { getColumnName, getExpression } from '../util/Utils';
+import { AnimationControls } from './animation-controls/AnimationControls';
 import { BaseFilter } from './base/BaseFilter';
 import { CategoryFilter } from './category/CategoryFilter';
 import { CategoricalHistogramFilter } from './histogram/CategoricalHistogramFilter';
@@ -41,7 +43,7 @@ export default class VLBridge {
   private _vizFilters: BaseFilter[] = [];
   private _readOnlyLayer: any;
   private _id: string;
-  private _animation: TimeSeries;
+  private _animation: TimeSeries | AnimationControls;
 
   /**
    * Creates an instance of VLBridge.
@@ -250,7 +252,8 @@ export default class VLBridge {
       totals,
       duration,
       fade,
-      variableName
+      variableName,
+      propertyName
     } = options;
 
     this._animation = new TimeSeries(
@@ -258,12 +261,11 @@ export default class VLBridge {
       this._layer,
       column,
       widget,
-      () => {
-        this._rebuildFilters();
-      },
+      this._rebuildFilters,
       duration,
       fade,
-      variableName
+      variableName,
+      propertyName
     );
 
     const histogram = this.numericalHistogram(widget, column, {
@@ -282,6 +284,49 @@ export default class VLBridge {
     return this._animation;
   }
 
+  /**
+   * Creates an animation controls widget
+   *
+   * By default, the animation is set to the 'filter' property,
+   * but it is possible to animate any style property using the 'propertyName' option.
+   *
+   * There can only be one animation per layer (per VLBridge instance)
+   *
+   * @param {(any | string)} widget The Animation Controls widget, or a selector
+   * @param {string} column The name of the column in the dataset used in the animation
+   * @param {AnimationControlsOptions} [options={}]
+   * @param {number} [options.duration] Animation duration in seconds. It is 10 by default
+   * @param {[number, number]} [options.fade] Animation fade in and out.
+   * @param {string} [options.variableName] Name of the viz variable that has the animation assigned
+   * @param {string} [options.propertyName] Name of the style property to apply the animation, 'filter' by default.
+   * @memberof VLBridge
+   */
+  public animationControls(
+    widget: any | string,
+    column: string,
+    options: AnimationControlsOptions = {}) {
+
+    const {
+      duration,
+      fade,
+      variableName,
+      propertyName
+    } = options;
+
+    this._animation = new AnimationControls(
+      widget,
+      this._carto,
+      column,
+      variableName,
+      propertyName,
+      duration,
+      fade,
+      this._layer,
+      this._rebuildFilters
+    );
+
+    return this._animation;
+  }
   /**
    * Creates a global range slider filter.
    *
@@ -421,7 +466,7 @@ export default class VLBridge {
       this._readOnlyLayer.viz.filter.blendTo(newFilter, 0);
     }
 
-    if (this._animation) {
+    if (this._animation && this._animation.propertyName === 'filter') {
       newFilter = `@${this._animation.variableName} and ${newFilter}`;
     }
 

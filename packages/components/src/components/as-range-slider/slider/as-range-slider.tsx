@@ -54,7 +54,7 @@ export class RangeSlider {
   /**
    * Disables component if truthy
    *
-   * @type {number}
+   * @type {boolean}
    * @memberof RangeSlider
    */
   @Prop() public disabled: boolean = false;
@@ -73,6 +73,22 @@ export class RangeSlider {
    * @memberof RangeSlider
    */
   @Prop() public isDraggable: boolean = false;
+
+  /**
+   * Disables the range slider thumb
+   *
+   * @type {boolean}
+   * @memberof RangeSlider
+   */
+  @Prop() public showThumb: boolean = true;
+
+  /**
+   * Disables the range slider thumb caption
+   *
+   * @type {boolean}
+   * @memberof RangeSlider
+   */
+  @Prop() public showThumbCaption: boolean = true;
 
   /**
    * If this property receives a function, it will be used to format the numbers (eg. for adding $ or €).
@@ -141,28 +157,31 @@ export class RangeSlider {
   }
 
   private _renderThumb(thumb: Thumb) {
-    return <as-range-slider-thumb
-      value={thumb.value}
-      valueMin={thumb.valueMin}
-      valueMax={thumb.valueMax}
-      percentage={thumb.percentage}
-      disabled={this.disabled}
-      formatValue={this.formatValue}
-      onThumbMove={(event) => this._onThumbMove(thumb, event.detail)}
-      onThumbIncrease={() => this._onKeyboardThumbMove(thumb, +1)}
-      onThumbDecrease={() => this._onKeyboardThumbMove(thumb, -1)}
-      onThumbChangeStart={() => this._emitChangeIn(this.changeStart)}
-      onThumbChangeEnd={() => this._emitChangeIn(this.changeEnd)}>
-    </as-range-slider-thumb>;
+    if (this.showThumb) {
+      return <as-range-slider-thumb
+        value={thumb.value}
+        valueMin={thumb.valueMin}
+        valueMax={thumb.valueMax}
+        percentage={thumb.percentage}
+        disabled={this.disabled}
+        formatValue={this.formatValue}
+        showCaption={this.showThumbCaption}
+        onThumbMove={(event) => this._onThumbMove(thumb, event.detail)}
+        onThumbIncrease={() => this._onKeyboardThumbMove(thumb, +1)}
+        onThumbDecrease={() => this._onKeyboardThumbMove(thumb, -1)}
+        onThumbChangeStart={() => this._emitChangeIn(this.changeStart)}
+        onThumbChangeEnd={() => this._emitChangeIn(this.changeEnd)}>
+      </as-range-slider-thumb>;
+    }
   }
 
   private _renderRangeBar() {
     const [firstThumbPercentage, lastThumbPercentage] = this._getCurrentThumbPercentages();
-    const draggable = (this.isDraggable || this.draggable) && this.range !== undefined;
+    const isDraggable = (this.isDraggable || this.draggable) && this.range !== undefined;
     return <as-range-slider-bar
              rangeStartPercentage={firstThumbPercentage}
              rangeEndPercentage={lastThumbPercentage}
-             isDraggable={draggable}
+             isDraggable={isDraggable}
              disabled={this.disabled}
              stepPercentage={this._getStepPercentage()}
              onBarChangeStart={() => this._emitChangeIn(this.changeStart)}
@@ -264,7 +283,6 @@ export class RangeSlider {
 
     this._emitChangeIn(this.change);
   }
-
 
   private _onBarMove(percentage) {
     const percentageRange = percentage.detail;
