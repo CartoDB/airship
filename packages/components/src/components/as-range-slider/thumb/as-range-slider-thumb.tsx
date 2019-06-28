@@ -61,7 +61,7 @@ export class RangeSliderThumb {
 
     if (this.showCaption) {
       this.thumbValue = thumb.parentElement.querySelector('.as-range-slider__value');
-      this.thumbValue.classList.add('as-range-slider__value--moving');  
+      this.thumbValue.classList.add('as-range-slider__value--moving');
     }
 
     this.railBoundingClientRect = this.railElement.getBoundingClientRect();
