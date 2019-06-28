@@ -12,6 +12,7 @@ export interface VLAnimation {
   duration: any;
   notify: () => void;
   getProgressPct(): number;
+  getProgressValue(): number | Date;
   setProgressPct(pct: number): void;
   play(): void;
   pause(): void;
@@ -97,6 +98,14 @@ export interface NumericalHistogramOptions {
 }
 
 export interface AnimationOptions extends NumericalHistogramOptions {
+  duration?: number;
+
+  fade?: [number, number];
+
+  variableName?: string;
+}
+
+export interface AnimationControlsOptions {
   duration?: number;
 
   fade?: [number, number];

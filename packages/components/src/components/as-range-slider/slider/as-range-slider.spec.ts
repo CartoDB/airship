@@ -1,7 +1,7 @@
 import { RangeSlider } from './as-range-slider';
 
 /**
- * Commented until we can deprecate the prop "draggable" because stencil is throwing an error when
+ * Commented until we can deprecate the prop "isDraggable" because stencil is throwing an error when
  * there's a warning on the build, apparently
  */
 describe('as-range-slider', () => {

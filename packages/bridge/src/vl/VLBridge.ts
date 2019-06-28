@@ -1,11 +1,13 @@
 import semver from 'semver';
 import {
+  AnimationControlsOptions,
   AnimationOptions,
   CategoricalHistogramOptions,
   CategoryOptions,
   NumericalHistogramOptions,
   VLBridgeOptions } from '../types';
 import { getColumnName, getExpression } from '../util/Utils';
+import { AnimationControls } from './animation-controls/AnimationControls';
 import { BaseFilter } from './base/BaseFilter';
 import { CategoryFilter } from './category/CategoryFilter';
 import { CategoricalHistogramFilter } from './histogram/CategoricalHistogramFilter';
@@ -282,6 +284,33 @@ export default class VLBridge {
     return this._animation;
   }
 
+  /**
+   * TODO
+   */
+  public animationControls(
+    widget: any | string,
+    column: string,
+    options: AnimationControlsOptions = {}) {
+
+    const {
+      duration,
+      fade,
+      variableName
+    } = options;
+
+    return new AnimationControls(
+      widget,
+      this._carto,
+      column,
+      duration,
+      fade,
+      this._layer,
+      () => {
+        this._rebuildFilters();
+      },
+      variableName,
+    );
+  }
   /**
    * Creates a global range slider filter.
    *

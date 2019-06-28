@@ -17,7 +17,7 @@ as-range-slider-bar {
     background-color: var(--as--range-slider__range-bar--background-color--disabled);
   }
 
-  .as-range-slider__range-bar--draggable {
+  .as-range-slider__range-bar--isDraggable {
     cursor: grab;
 
     &::after {

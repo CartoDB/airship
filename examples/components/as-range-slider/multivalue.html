@@ -18,7 +18,7 @@
         const rangeSliderWidget = document.querySelector('as-range-slider');
         rangeSliderWidget.range = [30, 70];
         rangeSliderWidget.step = 5;
-        rangeSliderWidget.draggable = true;
+        rangeSliderWidget.isDraggable = true;
         rangeSliderWidget.formatValue = (value) => (`${value}€`);
         rangeSliderWidget.addEventListener('change', (event) => console.log('Changed:', event.detail));
         rangeSliderWidget.addEventListener('changeStart', (event) => console.log('Change Start:', event.detail));
