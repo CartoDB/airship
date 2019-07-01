@@ -59,12 +59,12 @@ export class RangeSlider {
    */
   @Prop() public disabled: boolean = false;
 
-  // /**
-  //  * @deprecated Use isDraggable instead
-  //  * @type {boolean}
-  //  * @memberof RangeSlider
-  //  */
-  // @Prop() public isDraggable: boolean = false;
+  /**
+   * @deprecated Use isDraggable instead
+   * @type {boolean}
+   * @memberof RangeSlider
+   */
+  @Prop() public draggable: boolean = false;
 
   /**
    * If this property is set to true, and it has multiple value, you can drag the entire track.

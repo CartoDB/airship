@@ -25,7 +25,6 @@ export class AnimationControlsWidget {
   @Prop() public showThumb: boolean = true;
   @Prop() public showThumbCaption: boolean = false;
   @Prop() public playing: boolean = false;
-  @Prop() public progressValue: number = 0;
 
   /**
    * Title of the widget to be displayed

@@ -35,7 +35,7 @@ export class RangeSliderBar {
     const cssClasses = {
       'as-range-slider__range-bar': true,
       'as-range-slider__range-bar--disabled': this.disabled,
-      'as-range-slider__range-bar--isDraggable': this.isDraggable
+      'as-range-slider__range-bar--draggable': this.isDraggable
     };
 
     return <div class={cssClasses} style={barStyles}></div>;

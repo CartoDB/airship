@@ -77,7 +77,6 @@ export class AnimationControls {
 
     this._layer.on('updated', () => {
       this._animationWidget.progress = this._animation.getProgressPct() * 100;
-      this._animationWidget.progressValue = this._animation.getProgressValue();
     });
   }
 

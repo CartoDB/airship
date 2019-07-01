@@ -75,7 +75,6 @@ export namespace Components {
     * This attribute is the percentage of progress elapsed on an animation.
     */
     'progress': number;
-    'progressValue': number;
     /**
     * Toggles displaying title and description
     */
@@ -235,7 +234,7 @@ export namespace Components {
     /**
     * Returns the current selection
     */
-    'getSelection': () => Promise<number[] | string[]>;
+    'getSelection': () => Promise<string[] | number[]>;
     /**
     * Title of the widget to be displayed
     */
@@ -454,6 +453,7 @@ export namespace Components {
     * Disables component if truthy
     */
     'disabled': boolean;
+    'draggable': boolean;
     /**
     * If this property receives a function, it will be used to format the numbers (eg. for adding $ or €).
     */
@@ -1169,7 +1169,6 @@ declare namespace LocalJSX {
     * This attribute is the percentage of progress elapsed on an animation.
     */
     'progress'?: number;
-    'progressValue'?: number;
     /**
     * Toggles displaying title and description
     */
@@ -1530,6 +1529,7 @@ declare namespace LocalJSX {
     * Disables component if truthy
     */
     'disabled'?: boolean;
+    'draggable'?: boolean;
     /**
     * If this property receives a function, it will be used to format the numbers (eg. for adding $ or €).
     */
