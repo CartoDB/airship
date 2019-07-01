@@ -26,7 +26,7 @@ as-animation-controls-widget {
 
     as-range-slider {
       width: 100%;
-      padding-top: 8px;
+      padding-top: get-spacing(2);
     }
   }
 }
