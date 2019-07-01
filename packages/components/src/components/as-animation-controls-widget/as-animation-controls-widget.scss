@@ -18,7 +18,7 @@ as-animation-controls-widget {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    padding: 4px 0;
+    padding: get-spacing(1) 0;
 
     .as-btn {
       padding: 0;
