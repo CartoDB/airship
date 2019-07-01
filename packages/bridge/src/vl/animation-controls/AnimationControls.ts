@@ -6,31 +6,31 @@ export class AnimationControls {
   private _animationWidget: any;
   private _carto: any;
   private _column: string;
+  private _name: string;
   private _duration: number;
   private _fade: [number, number];
   private _layer: any;
-  private _variableName: string;
   private _viz: VLViz;
 
   constructor(
     animationWidget: any | string,
     carto: any,
     column: string,
+    name: string = 'animationControls',
     duration: number = 10,
     fade: [number, number] = [0.15, 0.15],
     layer: any,
-    readyCb: () => void,
-    variableName: string = 'animationControls'
+    readyCb: () => void
   ) {
     this._animationWidget = select(animationWidget) as any;
     this._column = column;
+    this._name = name;
     this._carto = carto;
     this._duration = duration;
     this._fade = fade;
     this._animationWidget.playing = false;
     this._animationWidget.isLoading = true;
     this._layer = layer;
-    this._variableName = variableName;
 
     if (layer.viz) {
       this._onLayerLoaded();
@@ -46,16 +46,16 @@ export class AnimationControls {
   private _onLayerLoaded() {
     this._viz = this._layer.viz;
 
-    if (!this._viz.variables[this._variableName]) {
+    if (!this._viz.variables[this._name]) {
       this._animation = this._createAnimation();
 
       /* Big hack, this is done internally on VL */
       this._animation.parent = this._viz;
       this._animation.notify = this._viz._changed.bind(this._viz);
 
-      this._viz.variables[this._variableName] = this._animation;
+      this._viz.variables[this._name] = this._animation;
     } else {
-      this._animation = this._viz.variables[this._variableName];
+      this._animation = this._viz.variables[this._name];
     }
 
     this._animationWidget.duration = this._animation.duration.value;

@@ -290,25 +290,25 @@ export default class VLBridge {
   public animationControls(
     widget: any | string,
     column: string,
+    name: string,
     options: AnimationControlsOptions = {}) {
 
     const {
       duration,
-      fade,
-      variableName
+      fade
     } = options;
 
     return new AnimationControls(
       widget,
       this._carto,
       column,
+      name,
       duration,
       fade,
       this._layer,
       () => {
         this._rebuildFilters();
-      },
-      variableName,
+      }
     );
   }
   /**
