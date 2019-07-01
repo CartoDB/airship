@@ -177,7 +177,7 @@ export class RangeSlider {
 
   private _renderRangeBar() {
     const [firstThumbPercentage, lastThumbPercentage] = this._getCurrentThumbPercentages();
-    const isDraggable = (this.isDraggable || this.isDraggable) && this.range !== undefined;
+    const isDraggable = (this.isDraggable || this.draggable) && this.range !== undefined;
     return <as-range-slider-bar
              rangeStartPercentage={firstThumbPercentage}
              rangeEndPercentage={lastThumbPercentage}
