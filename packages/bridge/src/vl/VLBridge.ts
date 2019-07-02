@@ -43,7 +43,7 @@ export default class VLBridge {
   private _vizFilters: BaseFilter[] = [];
   private _readOnlyLayer: any;
   private _id: string;
-  private _animation: TimeSeries;
+  private _animation: TimeSeries | AnimationControls;
 
   /**
    * Creates an instance of VLBridge.
@@ -290,7 +290,7 @@ export default class VLBridge {
   public animationControls(
     widget: any | string,
     column: string,
-    name: string,
+    variableName: string,
     options: AnimationControlsOptions = {}) {
 
     const {
@@ -298,11 +298,11 @@ export default class VLBridge {
       fade
     } = options;
 
-    return new AnimationControls(
+    this._animation = new AnimationControls(
       widget,
       this._carto,
       column,
-      name,
+      variableName,
       duration,
       fade,
       this._layer,
@@ -310,6 +310,8 @@ export default class VLBridge {
         this._rebuildFilters();
       }
     );
+
+    return this._animation;
   }
   /**
    * Creates a global range slider filter.
