@@ -46,7 +46,7 @@ export class AnimationControls {
   private _onLayerLoaded() {
     this._viz = this._layer.viz;
 
-    if (!this._viz.variables[this._name]) {
+    if ((!this._viz.variables[this._name]) && (!this._viz[this._name])) {
       this._animation = this._createAnimation();
 
       /* Big hack, this is done internally on VL */
@@ -54,8 +54,10 @@ export class AnimationControls {
       this._animation.notify = this._viz._changed.bind(this._viz);
 
       this._viz.variables[this._name] = this._animation;
-    } else {
+    } else if (this._viz.variables[this._name]) {
       this._animation = this._viz.variables[this._name];
+    } else {
+      this._animation = this._viz[this._name];
     }
 
     this._animationWidget.duration = this._animation.duration.value;
