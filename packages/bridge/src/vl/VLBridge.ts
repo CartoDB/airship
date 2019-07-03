@@ -285,7 +285,21 @@ export default class VLBridge {
   }
 
   /**
-   * TODO
+   * Creates an animation controls widget
+   *
+   * By default, the animation is set to the 'filter' property,
+   * but it is possible to animate any style property using the 'propertyName' option.
+   *
+   * There can only be one animation per layer (per VLBridge instance)
+   *
+   * @param {(any | string)} widget The Animation Controls widget, or a selector
+   * @param {string} column The name of the column in the dataset used in the animation
+   * @param {AnimationControlsOptions} [options={}]
+   * @param {number} [options.duration] Animation duration in seconds. It is 10 by default
+   * @param {[number, number]} [options.fade] Animation fade in and out.
+   * @param {string} [options.variableName] Name of the viz variable that has the animation assigned
+   * @param {string} [options.propertyName] Name of the style property to apply the animation, 'filter' by default.
+   * @memberof VLBridge
    */
   public animationControls(
     widget: any | string,

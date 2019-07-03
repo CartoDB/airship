@@ -124,6 +124,11 @@ export interface AnimationOptions extends NumericalHistogramOptions {
   propertyName?: string;
 }
 
+/**
+ * Options for the Animation Controls widget
+ *
+ * @type {AnimationControlsOptions}
+ */
 export interface AnimationControlsOptions {
   duration?: number;
 
