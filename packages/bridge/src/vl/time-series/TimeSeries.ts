@@ -24,6 +24,7 @@ export class TimeSeries {
   private _duration: number;
   private _fade: [number, number];
   private _variableName: string;
+  private _propertyName: string;
 
   /**
    * Creates an instance of TimeSeries.
@@ -41,7 +42,8 @@ export class TimeSeries {
     readyCb: () => void,
     duration: number = 10,
     fade: [number, number] = [0.15, 0.15],
-    variableName: string = 'animation'
+    variableName: string = 'animation',
+    propertyName: string = 'filter'
   ) {
 
     this._timeSeries = select(timeSeries) as any;
@@ -51,6 +53,7 @@ export class TimeSeries {
     this._duration = duration;
     this._fade = fade;
     this._variableName = variableName;
+    this._propertyName = propertyName;
 
     if (layer.viz) {
       this._onLayerLoaded();
@@ -97,6 +100,14 @@ export class TimeSeries {
 
   public get variableName(): string {
     return this._variableName;
+  }
+
+  public get propertyName(): string {
+    return this._propertyName;
+  }
+
+  public set propertyName(name) {
+    this._propertyName = name;
   }
 
   public setDuration(duration: number) {
@@ -161,8 +172,7 @@ export class TimeSeries {
 
   private _createAnimation() {
     const s = this._carto.expressions;
-
-    return s.animation(
+    const animation = s.animation(
       s.linear(
         s.prop(this._columnName),
         s.globalMin(s.prop(this._columnName)),
@@ -174,6 +184,8 @@ export class TimeSeries {
         this._fade[1]
       )
     );
+
+    return animation;
   }
 }
 

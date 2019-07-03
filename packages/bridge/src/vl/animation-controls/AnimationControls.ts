@@ -7,6 +7,7 @@ export class AnimationControls {
   private _carto: any;
   private _column: string;
   private _variableName: string;
+  private _propertyName: string;
   private _duration: number;
   private _fade: [number, number];
   private _layer: any;
@@ -17,6 +18,7 @@ export class AnimationControls {
     carto: any,
     column: string,
     variableName: string = 'animation',
+    propertyName: string = 'filter',
     duration: number = 10,
     fade: [number, number] = [0.15, 0.15],
     layer: any,
@@ -25,6 +27,7 @@ export class AnimationControls {
     this._animationWidget = select(animationWidget) as any;
     this._column = column;
     this._variableName = variableName;
+    this._propertyName = propertyName;
     this._carto = carto;
     this._duration = duration;
     this._fade = fade;
@@ -47,6 +50,14 @@ export class AnimationControls {
     return this._variableName;
   }
 
+  public get propertyName(): string {
+    return this._propertyName;
+  }
+
+  public set propertyName(name) {
+    this._propertyName = name;
+  }
+
   public setRange() {
     // TODO
   }
@@ -63,7 +74,12 @@ export class AnimationControls {
 
       this._viz.variables[this._variableName] = this._animation;
     } else {
-      this._animation = this._viz.variables[this._variableName];
+      const expr = this._viz.variables[this._variableName];
+      if (expr.expressionName === 'mul') {
+        this._animation = expr.a.expressionName === 'animation' ? expr.a : expr.b;
+      } else {
+        this._animation = expr;
+      }
     }
 
     this._animationWidget.duration = this._animation.duration.value;
@@ -90,8 +106,7 @@ export class AnimationControls {
 
   private _createAnimation() {
     const s = this._carto.expressions;
-
-    return s.animation(
+    const animation = s.animation(
       s.linear(
         s.prop(this._column),
         s.globalMin(s.prop(this._column)),
@@ -103,5 +118,7 @@ export class AnimationControls {
         this._fade[1]
       )
     );
+
+    return animation;
   }
 }

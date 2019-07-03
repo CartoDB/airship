@@ -50,19 +50,20 @@
     const map = new mapboxgl.Map({
       container: 'map',
       style: carto.basemaps.darkmatter,
-      center: [-4.77, 37.88],
-      zoom: 12
+      center: [-122.30571212980425, 47.6181],
+      zoom: 10
     });
 
     carto.setDefaultAuth({
-      username: 'roman-carto',
+      username: 'cartovl',
       apiKey: 'default_public'
     });
 
-    const source = new carto.source.SQL(`select * from cordoba_catastro_simple where year > 1900 and year < 2018`);
+    const source = new carto.source.Dataset('seattle_collisions');
     const viz = new carto.Viz(`
-      @duration: 30
-      @myVariable: animation(linear($year, 1900, 2017), @duration, fade(0.1, ${Number.MAX_SAFE_INTEGER}))
+      color: ramp($addrtype, Bold)
+      @myVariable: animation(linear($incdate), 20,fade(1, 1)) * ramp(linear($personcount, 2, 5), [5, 20])
+      width: @myVariable
       strokeWidth: 0
     `);
 
@@ -79,7 +80,7 @@
       source: source
     });
 
-    bridge.animationControls('as-animation-controls-widget', 'year', { variableName: 'myVariable' });
+    bridge.animationControls('as-animation-controls-widget', 'incdate', { variableName: 'myVariable', propertyName: 'width' });
     bridge.build();
   </script>
 </body>

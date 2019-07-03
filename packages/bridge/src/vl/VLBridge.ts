@@ -252,7 +252,8 @@ export default class VLBridge {
       totals,
       duration,
       fade,
-      variableName
+      variableName,
+      propertyName
     } = options;
 
     this._animation = new TimeSeries(
@@ -260,12 +261,11 @@ export default class VLBridge {
       this._layer,
       column,
       widget,
-      () => {
-        this._rebuildFilters();
-      },
+      this._rebuildFilters,
       duration,
       fade,
-      variableName
+      variableName,
+      propertyName
     );
 
     const histogram = this.numericalHistogram(widget, column, {
@@ -290,12 +290,13 @@ export default class VLBridge {
   public animationControls(
     widget: any | string,
     column: string,
-    variableName: string,
     options: AnimationControlsOptions = {}) {
 
     const {
       duration,
-      fade
+      fade,
+      variableName,
+      propertyName
     } = options;
 
     this._animation = new AnimationControls(
@@ -303,12 +304,11 @@ export default class VLBridge {
       this._carto,
       column,
       variableName,
+      propertyName,
       duration,
       fade,
       this._layer,
-      () => {
-        this._rebuildFilters();
-      }
+      this._rebuildFilters
     );
 
     return this._animation;
@@ -452,7 +452,7 @@ export default class VLBridge {
       this._readOnlyLayer.viz.filter.blendTo(newFilter, 0);
     }
 
-    if (this._animation) {
+    if (this._animation && this._animation.propertyName === 'filter') {
       newFilter = `@${this._animation.variableName} and ${newFilter}`;
     }
 

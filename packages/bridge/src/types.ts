@@ -10,6 +10,7 @@ export interface VLAnimation {
   _paused: boolean;
   parent: any;
   duration: any;
+  propertyName: string;
   notify: () => void;
   getProgressPct(): number;
   getProgressValue(): number | Date;
@@ -103,6 +104,8 @@ export interface AnimationOptions extends NumericalHistogramOptions {
   fade?: [number, number];
 
   variableName?: string;
+
+  propertyName?: string;
 }
 
 export interface AnimationControlsOptions {
@@ -111,6 +114,8 @@ export interface AnimationControlsOptions {
   fade?: [number, number];
 
   variableName?: string;
+
+  propertyName?: string;
 }
 
 /**
