@@ -10,14 +10,32 @@ export interface VLAnimation {
   _paused: boolean;
   parent: any;
   duration: any;
+  propertyName: string;
   notify: () => void;
   getProgressPct(): number;
+  getProgressValue(): number | Date;
   setProgressPct(pct: number): void;
   play(): void;
   pause(): void;
   isPlaying(): boolean;
 }
 
+export const VL_BINARY_EXPRESSION_TYPES = [
+  'add',
+  'and',
+  'div',
+  'eq',
+  'gt',
+  'gte',
+  'lt',
+  'lte',
+  'mod',
+  'mul',
+  'noteq',
+  'or',
+  'pow',
+  'sub'
+];
 
 export type NumericalHistogramData = VLHistogramData<[number, number]>;
 export type CategoricalHistogramData = VLHistogramData<string>;
@@ -102,6 +120,23 @@ export interface AnimationOptions extends NumericalHistogramOptions {
   fade?: [number, number];
 
   variableName?: string;
+
+  propertyName?: string;
+}
+
+/**
+ * Options for the Animation Controls widget
+ *
+ * @type {AnimationControlsOptions}
+ */
+export interface AnimationControlsOptions {
+  duration?: number;
+
+  fade?: [number, number];
+
+  variableName?: string;
+
+  propertyName?: string;
 }
 
 /**

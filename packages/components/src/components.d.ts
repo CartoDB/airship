@@ -38,6 +38,50 @@ import {
 } from './components/common/as-widget-legend/types/WidgetLegendData';
 
 export namespace Components {
+  interface AsAnimationControlsWidget {
+    /**
+    * Description of the widget to be displayed
+    */
+    'description': string;
+    'duration': number;
+    /**
+    * Use this widget to put the widget in "error mode". When error mode is active. The header will display the given text. And the body will be display the errorDescription instead any data.
+    */
+    'error': string;
+    /**
+    * Extended error description, only shown when error is present
+    */
+    'errorDescription': string;
+    /**
+    * Title of the widget to be displayed
+    */
+    'heading': string;
+    /**
+    * Use this attribute to put the widget in "loading mode". When loading mode is active, a spinner will be shown and the data will be hidden.
+    */
+    'isLoading': boolean;
+    'max': number;
+    'min': number;
+    /**
+    * Message shown in body when no data is available
+    */
+    'noDataBodyMessage': string;
+    /**
+    * Message shown in header when no data is available
+    */
+    'noDataHeaderMessage': string;
+    'playing': boolean;
+    /**
+    * This attribute is the percentage of progress elapsed on an animation.
+    */
+    'progress': number;
+    /**
+    * Toggles displaying title and description
+    */
+    'showHeader': boolean;
+    'showThumb': boolean;
+    'showThumbCaption': boolean;
+  }
   interface AsCategoryWidget {
     /**
     * Array of categories to display in the widget. Each category should include a `name` and a `value`. You can also override the bar color for each category with `color`.
@@ -190,7 +234,7 @@ export namespace Components {
     /**
     * Returns the current selection
     */
-    'getSelection': () => Promise<string[] | number[]>;
+    'getSelection': () => Promise<number[] | string[]>;
     /**
     * Title of the widget to be displayed
     */
@@ -431,6 +475,14 @@ export namespace Components {
     */
     'range': number[];
     /**
+    * Disables the range slider thumb
+    */
+    'showThumb': boolean;
+    /**
+    * Disables the range slider thumb caption
+    */
+    'showThumbCaption': boolean;
+    /**
     * Increment/decrement step of the slider. You can change the step setting a different number to this property. Defaults to 1.
     */
     'step': number;
@@ -450,6 +502,7 @@ export namespace Components {
     'disabled': boolean;
     'formatValue': (value: number) => string|number;
     'percentage': number;
+    'showCaption': boolean;
     'value': number;
     'valueMax': number;
     'valueMin': number;
@@ -748,6 +801,12 @@ export namespace Components {
 declare global {
 
 
+  interface HTMLAsAnimationControlsWidgetElement extends Components.AsAnimationControlsWidget, HTMLStencilElement {}
+  var HTMLAsAnimationControlsWidgetElement: {
+    prototype: HTMLAsAnimationControlsWidgetElement;
+    new (): HTMLAsAnimationControlsWidgetElement;
+  };
+
   interface HTMLAsCategoryWidgetElement extends Components.AsCategoryWidget, HTMLStencilElement {}
   var HTMLAsCategoryWidgetElement: {
     prototype: HTMLAsCategoryWidgetElement;
@@ -1012,6 +1071,7 @@ declare global {
     new (): HTMLAsYAxisElement;
   };
   interface HTMLElementTagNameMap {
+    'as-animation-controls-widget': HTMLAsAnimationControlsWidgetElement;
     'as-category-widget': HTMLAsCategoryWidgetElement;
     'as-dropdown': HTMLAsDropdownElement;
     'as-histogram-widget': HTMLAsHistogramWidgetElement;
@@ -1060,6 +1120,62 @@ declare global {
 }
 
 declare namespace LocalJSX {
+  interface AsAnimationControlsWidget extends JSXBase.HTMLAttributes<HTMLAsAnimationControlsWidgetElement> {
+    /**
+    * Description of the widget to be displayed
+    */
+    'description'?: string;
+    'duration'?: number;
+    /**
+    * Use this widget to put the widget in "error mode". When error mode is active. The header will display the given text. And the body will be display the errorDescription instead any data.
+    */
+    'error'?: string;
+    /**
+    * Extended error description, only shown when error is present
+    */
+    'errorDescription'?: string;
+    /**
+    * Title of the widget to be displayed
+    */
+    'heading'?: string;
+    /**
+    * Use this attribute to put the widget in "loading mode". When loading mode is active, a spinner will be shown and the data will be hidden.
+    */
+    'isLoading'?: boolean;
+    'max'?: number;
+    'min'?: number;
+    /**
+    * Message shown in body when no data is available
+    */
+    'noDataBodyMessage'?: string;
+    /**
+    * Message shown in header when no data is available
+    */
+    'noDataHeaderMessage'?: string;
+    /**
+    * User clicks the pause button
+    */
+    'onPause'?: (event: CustomEvent<any>) => void;
+    /**
+    * User clicks the play button
+    */
+    'onPlay'?: (event: CustomEvent<any>) => void;
+    /**
+    * The user has seeked the animation to this percentage.
+    */
+    'onSeek'?: (event: CustomEvent<any>) => void;
+    'playing'?: boolean;
+    /**
+    * This attribute is the percentage of progress elapsed on an animation.
+    */
+    'progress'?: number;
+    /**
+    * Toggles displaying title and description
+    */
+    'showHeader'?: boolean;
+    'showThumb'?: boolean;
+    'showThumbCaption'?: boolean;
+  }
   interface AsCategoryWidget extends JSXBase.HTMLAttributes<HTMLAsCategoryWidgetElement> {
     /**
     * Array of categories to display in the widget. Each category should include a `name` and a `value`. You can also override the bar color for each category with `color`.
@@ -1438,6 +1554,14 @@ declare namespace LocalJSX {
     */
     'range'?: number[];
     /**
+    * Disables the range slider thumb
+    */
+    'showThumb'?: boolean;
+    /**
+    * Disables the range slider thumb caption
+    */
+    'showThumbCaption'?: boolean;
+    /**
     * Increment/decrement step of the slider. You can change the step setting a different number to this property. Defaults to 1.
     */
     'step'?: number;
@@ -1465,6 +1589,7 @@ declare namespace LocalJSX {
     'onThumbIncrease'?: (event: CustomEvent<number>) => void;
     'onThumbMove'?: (event: CustomEvent<number>) => void;
     'percentage'?: number;
+    'showCaption'?: boolean;
     'value'?: number;
     'valueMax'?: number;
     'valueMin'?: number;
@@ -1764,6 +1889,7 @@ declare namespace LocalJSX {
   }
 
   interface IntrinsicElements {
+    'as-animation-controls-widget': AsAnimationControlsWidget;
     'as-category-widget': AsCategoryWidget;
     'as-dropdown': AsDropdown;
     'as-histogram-widget': AsHistogramWidget;
