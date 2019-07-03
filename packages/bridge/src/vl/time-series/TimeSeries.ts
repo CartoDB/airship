@@ -1,4 +1,4 @@
-import { VLAnimation, VLViz } from '../../types';
+import { VL_BINARY_EXPRESSION_TYPES, VLAnimation, VLViz } from '../../types';
 import { select } from '../../util/Utils';
 
 /**
@@ -140,7 +140,12 @@ export class TimeSeries {
 
       this._viz.variables[this._variableName] = this._animation;
     } else {
-      this._animation = this._viz.variables[this._variableName];
+      const expr = this._viz.variables[this._variableName];
+      if (VL_BINARY_EXPRESSION_TYPES.indexOf(expr.expressionName) > -1) {
+        this._animation = expr.a.expressionName === 'animation' ? expr.a : expr.b;
+      } else {
+        this._animation = expr;
+      }
     }
 
     this._max = this._animation.input.max;
