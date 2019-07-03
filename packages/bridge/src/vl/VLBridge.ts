@@ -5,7 +5,8 @@ import {
   CategoricalHistogramOptions,
   CategoryOptions,
   NumericalHistogramOptions,
-  VLBridgeOptions } from '../types';
+  VLBridgeOptions
+} from '../types';
 import { getColumnName, getExpression } from '../util/Utils';
 import { AnimationControls } from './animation-controls/AnimationControls';
 import { BaseFilter } from './base/BaseFilter';
@@ -14,6 +15,7 @@ import { CategoricalHistogramFilter } from './histogram/CategoricalHistogramFilt
 import { NumericalHistogramFilter } from './histogram/NumericalHistogramFilter';
 import { GlobalRangeFilter } from './range/GlobalRangeFilter';
 import { TimeSeries } from './time-series/TimeSeries';
+
 
 const VL_VERSION = '^1.2.3';
 
@@ -310,7 +312,7 @@ export default class VLBridge {
       duration,
       fade,
       variableName,
-      propertyName
+      propertyName = 'filter'
     } = options;
 
     this._animation = new AnimationControls(
@@ -322,7 +324,12 @@ export default class VLBridge {
       duration,
       fade,
       this._layer,
-      this._rebuildFilters
+      () => {
+        if (propertyName === 'filter') {
+          this._rebuildFilters();
+        }
+      },
+      null
     );
 
     return this._animation;
@@ -457,8 +464,8 @@ export default class VLBridge {
   private _rebuildFilters() {
     let newFilter = this._combineFilters(
       this._vizFilters
-      .filter((hasFilter) => hasFilter.filter !== null)
-      .map((hasFilter) => hasFilter.filter)
+        .filter((hasFilter) => hasFilter.filter !== null)
+        .map((hasFilter) => hasFilter.filter)
     );
 
     // Update (if required) the readonly layer
@@ -466,7 +473,7 @@ export default class VLBridge {
       this._readOnlyLayer.viz.filter.blendTo(newFilter, 0);
     }
 
-    if (this._animation && this._animation.propertyName === 'filter') {
+    if (this._layer.viz.filter.isAnimated()) {
       newFilter = `@${this._animation.variableName} and ${newFilter}`;
     }
 
