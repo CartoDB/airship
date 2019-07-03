@@ -65,21 +65,14 @@ export class AnimationControls {
   private _onLayerLoaded() {
     this._viz = this._layer.viz;
 
-    if (!this._viz.variables[this._variableName]) {
-      this._animation = this._createAnimation();
+    const expr = this._variableName && this._viz.variables[this._variableName]
+      ? this._viz.variables[this._variableName]
+      : this._propertyName ? this._viz[this._propertyName] : this._createAnimation();
 
-      /* Big hack, this is done internally on VL */
-      this._animation.parent = this._viz;
-      this._animation.notify = this._viz._changed.bind(this._viz);
-
-      this._viz.variables[this._variableName] = this._animation;
+    if (VL_BINARY_EXPRESSION_TYPES.indexOf(expr.expressionName) > -1) {
+      this._animation = expr.a.expressionName === 'animation' ? expr.a : expr.b;
     } else {
-      const expr = this._viz.variables[this._variableName];
-      if (VL_BINARY_EXPRESSION_TYPES.indexOf(expr.expressionName) > -1) {
-        this._animation = expr.a.expressionName === 'animation' ? expr.a : expr.b;
-      } else {
-        this._animation = expr;
-      }
+      this._animation = expr;
     }
 
     this._animationWidget.duration = this._animation.duration.value;

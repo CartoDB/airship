@@ -5,7 +5,8 @@ import {
   CategoricalHistogramOptions,
   CategoryOptions,
   NumericalHistogramOptions,
-  VLBridgeOptions } from '../types';
+  VLBridgeOptions,
+} from '../types';
 import { getColumnName, getExpression } from '../util/Utils';
 import { AnimationControls } from './animation-controls/AnimationControls';
 import { BaseFilter } from './base/BaseFilter';
@@ -14,6 +15,7 @@ import { CategoricalHistogramFilter } from './histogram/CategoricalHistogramFilt
 import { NumericalHistogramFilter } from './histogram/NumericalHistogramFilter';
 import { GlobalRangeFilter } from './range/GlobalRangeFilter';
 import { TimeSeries } from './time-series/TimeSeries';
+
 
 const VL_VERSION = '^1.2.3';
 
@@ -252,8 +254,7 @@ export default class VLBridge {
       totals,
       duration,
       fade,
-      variableName,
-      propertyName
+      variableName
     } = options;
 
     this._animation = new TimeSeries(
@@ -261,11 +262,12 @@ export default class VLBridge {
       this._layer,
       column,
       widget,
-      this._rebuildFilters,
+      () => {
+        this._rebuildFilters();
+      },
       duration,
       fade,
-      variableName,
-      propertyName
+      variableName
     );
 
     const histogram = this.numericalHistogram(widget, column, {
@@ -322,7 +324,12 @@ export default class VLBridge {
       duration,
       fade,
       this._layer,
-      this._rebuildFilters
+      () => {
+        const property = propertyName ? propertyName : 'filter';
+        if (property === 'filter') {
+          this._rebuildFilters();
+        }
+      }
     );
 
     return this._animation;
@@ -466,7 +473,7 @@ export default class VLBridge {
       this._readOnlyLayer.viz.filter.blendTo(newFilter, 0);
     }
 
-    if (this._animation && this._animation.propertyName === 'filter') {
+    if (this._animation) {
       newFilter = `@${this._animation.variableName} and ${newFilter}`;
     }
 
