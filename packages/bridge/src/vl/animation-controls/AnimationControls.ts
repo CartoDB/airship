@@ -2,7 +2,6 @@ import { VL_BINARY_EXPRESSION_TYPES, VLAnimation, VLTimeZoneDate, VLViz } from '
 import { select } from '../../util/Utils';
 
 export class AnimationControls {
-  protected _formatCb: (value) => void;
   private _animation: VLAnimation;
   private _animationWidget: any;
   private _carto: any;
@@ -13,6 +12,7 @@ export class AnimationControls {
   private _fade: [number, number];
   private _layer: any;
   private _viz: VLViz;
+  private _formatCb: (value: number | Date | VLTimeZoneDate) => string;
 
 
   constructor(
@@ -25,7 +25,7 @@ export class AnimationControls {
     fade: [number, number] = [0.15, 0.15],
     layer: any,
     readyCb: () => void,
-    formatCb: () => void
+    formatCb: (value: number | Date | VLTimeZoneDate) => string
   ) {
     this._animationWidget = select(animationWidget) as any;
     this._column = column;
@@ -48,10 +48,6 @@ export class AnimationControls {
         readyCb();
       });
     }
-  }
-
-  public fn(x: any): any {
-    return x;
   }
 
   public get variableName(): string {
@@ -114,7 +110,7 @@ export class AnimationControls {
       return this._formatCb ? this._formatCb(progressValue) : progressValue.toISOString();
     }
 
-    if (this._isVLTimeZoneDate(progressValue)) {
+    if (progressValue instanceof Object && this._isVLTimeZoneDate(progressValue)) {
       return this._formatCb ? this._formatCb(progressValue._date) : progressValue._date.toISOString();
     }
 
@@ -140,6 +136,8 @@ export class AnimationControls {
       )
     );
 
+    animation.parent = this._viz;
+    animation.notify = this._viz._changed.bind(this._viz);
     return animation;
   }
 }

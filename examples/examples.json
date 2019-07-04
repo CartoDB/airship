@@ -186,6 +186,17 @@
       ]
     },
     {
+      "title": "Animation Controls",
+      "samples": [{
+          "title": "animation-controls-widget",
+          "file": "components/as-animation-controls-widget/simple.html"
+        }, {
+          "title": "animation-controls-widget Animation",
+          "file": "components/as-animation-controls-widget/animation.html"
+        }
+      ]
+    },
+    {
       "title": "Time Series",
       "samples": [{
           "title": "time-series Simple",
@@ -202,22 +213,6 @@
         {
           "title": "time-series animation",
           "file": "components/as-time-series-widget/animation.html"
-        }
-      ]
-    },
-    {
-      "title": "Animation Controls",
-      "samples": [{
-          "title": "animation-controls-widget simple",
-          "file": "components/as-animation-controls-widget/simple.html"
-        },
-        {
-          "title": "animation-controls-widget display dates",
-          "file": "components/as-animation-controls-widget/date-format.html"
-        },
-        {
-          "title": "animation-controls-widget animate a property",
-          "file": "components/as-animation-controls-widget/property.html"
         }
       ]
     },
@@ -282,6 +277,10 @@
         {
           "title": "Time Series bridge",
           "file": "bridge/time-series/simple.html"
+        },
+        {
+          "title": "Animation Controls bridge",
+          "file": "bridge/animation-controls-widget/simple.html"
         },
         {
           "title": "Legend ramp bridge",

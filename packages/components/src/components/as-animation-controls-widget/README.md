@@ -6,14 +6,14 @@ noSource: true
 <iframe src="/examples/components/as-animation-controls-widget/simple.html" style="width: 100%; height: 300px;">
 ```
 
-[See example](/developers/airship/examples/#example-as-animation-controls-simple)
+[See example](/developers/airship/examples/#example-animation-controls-widget)
 
 ### CSS Variables
 
 ```
 as-animation-controls-widget {
   --as--animation-controls-widget--background-color
-  --as--animation-controls__progress-value--color
+  --as--animation-controls-widget__progress-value--color
 }
 ```
 

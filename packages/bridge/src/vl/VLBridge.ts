@@ -262,9 +262,7 @@ export default class VLBridge {
       this._layer,
       column,
       widget,
-      () => {
-        this._rebuildFilters();
-      },
+      this._rebuildFilters,
       duration,
       fade,
       variableName
@@ -312,7 +310,7 @@ export default class VLBridge {
       duration,
       fade,
       variableName,
-      propertyName
+      propertyName = 'filter'
     } = options;
 
     this._animation = new AnimationControls(
@@ -325,8 +323,7 @@ export default class VLBridge {
       fade,
       this._layer,
       () => {
-        const property = propertyName ? propertyName : 'filter';
-        if (property === 'filter') {
+        if (propertyName === 'filter') {
           this._rebuildFilters();
         }
       },

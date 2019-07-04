@@ -2,7 +2,7 @@
 
 as-animation-controls-widget {
   --as--animation-controls-widget--background-color: var(--as--color--ui-01, #FFF);
-  --as--animation-controls__progress-value--color: var(--as--color--type-02);
+  --as--animation-controls-widget__progress-value--color: var(--as--color--type-02);
 
   display: flex;
   flex-direction: column;
@@ -23,7 +23,7 @@ as-animation-controls-widget {
   }
 
   .as-animation-controls__progress-value {
-    color: var(--as--animation-controls__progress-value--color);
+    color: var(--as--animation-controls-widget__progress-value--color);
   }
 
   .as-animation-controls-widget__player {
