@@ -329,7 +329,8 @@ export default class VLBridge {
         if (property === 'filter') {
           this._rebuildFilters();
         }
-      }
+      },
+      null
     );
 
     return this._animation;
