@@ -12,6 +12,7 @@ export class AnimationControls {
   private _fade: [number, number];
   private _layer: any;
   private _viz: VLViz;
+  private _formatCb: () => void;
 
   constructor(
     animationWidget: any | string,
@@ -22,7 +23,8 @@ export class AnimationControls {
     duration: number = 10,
     fade: [number, number] = [0.15, 0.15],
     layer: any,
-    readyCb: () => void
+    readyCb: () => void,
+    formatCb: () => void
   ) {
     this._animationWidget = select(animationWidget) as any;
     this._column = column;
@@ -34,6 +36,7 @@ export class AnimationControls {
     this._animationWidget.playing = false;
     this._animationWidget.isLoading = true;
     this._layer = layer;
+    this._formatCb = formatCb;
 
     if (layer.viz) {
       this._onLayerLoaded();
@@ -44,6 +47,10 @@ export class AnimationControls {
         readyCb();
       });
     }
+  }
+
+  public fn(x: any): any {
+    return x;
   }
 
   public get variableName(): string {
@@ -90,14 +97,41 @@ export class AnimationControls {
     this._animationWidget.addEventListener('seek', (evt) => {
       this._animation.setProgressPct(evt.detail[0] / 100);
       this._animation.notify();
-      this._animationWidget.progressValue = this._animation.getProgressValue();
+      this._animationWidget.progressValue = this._formatProgressValue();
     });
 
     this._layer.on('updated', () => {
-      this._animationWidget.progressValue = this._animation.getProgressValue();
       this._animationWidget.progress = this._animation.getProgressPct() * 100;
+      this._animationWidget.progressValue = this._formatProgressValue();
     });
   }
+
+  private _formatProgressValue() {
+    const type = this._animation.input.type;
+    const progressValue = this._animation.getProgressValue();
+    const formats = {
+      dateFormat(value) {
+        const date = value._date;
+        return this._formatCb ? this._formatCb(date) : date.toISOString();
+      },
+
+      timerangeFormat(value) {
+        const date = value._date;
+        return this._formatCb ? this._formatCb(date) : date.toISOString();
+      },
+
+      numberFormat(value) {
+        return this._formatCb ? this._formatCb(value) : value;
+      },
+
+      categoryFormat(value) {
+        return this._formatCb ? this._formatCb(value) : value;
+      }
+    };
+
+    return formats[`${type}Format`](progressValue);
+  }
+
 
   private _createAnimation() {
     const s = this._carto.expressions;

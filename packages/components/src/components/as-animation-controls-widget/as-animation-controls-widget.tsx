@@ -16,7 +16,7 @@ export class AnimationControlsWidget {
   @Prop () public min: number = 0;
   @Prop () public max: number = 100;
   @Prop () public duration: number = 0;
-  @Prop () public progressValue: number = 0;
+  @Prop () public progressValue: number | string;
   /**
    * Use this attribute to put the widget in "loading mode".
    * When loading mode is active, a spinner will be shown and the data will be hidden.
@@ -121,7 +121,7 @@ export class AnimationControlsWidget {
       this.heading,
       this.errorDescription,
       this.noDataBodyMessage,
-      <div class='as-animation-controls-widget__wrapper'>
+      <div class='as-animation-controls-widget__wrapper as-body'>
         <div class='as-animation-controls-widget__player'>
           <button class='as-btn' onClick={this._onPlayPauseClick.bind(this)}>
             {icon(this.playing ? 'PAUSE' : 'PLAY', 'var(--as--color--primary)', { width: '32px', height: '32px'})}
@@ -137,7 +137,7 @@ export class AnimationControlsWidget {
             onChangeEnd={this._onThumbChangeEnd.bind(this)}>
           </as-range-slider>
         </div>
-        <p>{this.progressValue}</p>
+        <footer class='as-animation-controls__progress-value'>{this.progressValue}</footer>
       </div>
     );
   }
