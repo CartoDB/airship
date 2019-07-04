@@ -206,6 +206,22 @@
       ]
     },
     {
+      "title": "Animation Controls",
+      "samples": [{
+          "title": "animation-controls-widget simple",
+          "file": "components/as-animation-controls-widget/simple.html"
+        },
+        {
+          "title": "animation-controls-widget display dates",
+          "file": "components/as-animation-controls-widget/date-format.html"
+        },
+        {
+          "title": "animation-controls-widget animate a property",
+          "file": "components/as-animation-controls-widget/property.html"
+        }
+      ]
+    },
+    {
       "title": "Legends",
       "samples": [{
           "title": "as-legend wrapper basic usage",
