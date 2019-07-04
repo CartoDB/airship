@@ -50,6 +50,10 @@ export class AnimationControls {
     }
   }
 
+  public get animation() {
+    return this._animation;
+  }
+
   public get variableName(): string {
     return this._variableName;
   }
