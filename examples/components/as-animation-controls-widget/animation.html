@@ -60,42 +60,36 @@
       value: 16
     }];
 
-    var paused = false;
     var progress = 0;
-
     var animationControlsWidget = document.querySelector('as-animation-controls-widget');
     animationControlsWidget.data = timeData;
-    animationControlsWidget.playing = !paused;
 
     // Simulate an animation progress
     setInterval(() => {
-      if (paused) {
+      if (!animationControlsWidget.playing) {
         return;
       }
 
       progress = Math.min(progress + 20, 100);
 
       animationControlsWidget.progress = progress;
-      animationControlsWidget.playing = !paused;
 
       if (progress >= 100) {
         progress = 0;
       }
-    }, 100);
+    }, 500);
 
     animationControlsWidget.addEventListener('seek', (evt) => {
       progress = evt.detail;
       animationControlsWidget.progress = progress;
     });
 
-    animationControlsWidget.addEventListener('pause', () => {
-      paused = true;
-      animationControlsWidget.playing = !paused;
+    animationControlsWidget.addEventListener('pause', (evt) => {
+      console.log('Paused!', evt);
     });
 
-    animationControlsWidget.addEventListener('play', () => {
-      paused = false;
-      animationControlsWidget.playing = !paused;
+    animationControlsWidget.addEventListener('play', (evt) => {
+      console.log('Paused!', evt);
     });
   </script>
 </body>

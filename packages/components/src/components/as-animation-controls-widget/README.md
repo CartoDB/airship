@@ -104,7 +104,7 @@ lang: javascript
 ---
 const animationControls = document.querySelector('as-animation-controls-widget');
 animationControls.addEventListener('play', event => {
-  // Start playing the animation
+  // Handle the play event
 });
 ```
 
@@ -117,6 +117,6 @@ lang: javascript
 ---
 const animationControls = document.querySelector('as-animation-controls-widget');
 animationControls.addEventListener('pause', event => {
-  // Pause the animation
+  // Handle the pause event
 });
 ```
