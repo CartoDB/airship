@@ -2,6 +2,7 @@ export interface VLViz {
   variables: {
     [key: string]: any
   };
+  [key: string]: any;
   _changed: () => void;
 }
 

@@ -19,8 +19,8 @@ export class AnimationControls {
     animationWidget: any | string,
     carto: any,
     column: string,
-    variableName: string = 'animation',
-    propertyName: string = 'filter',
+    variableName: string,
+    propertyName: string,
     duration: number = 10,
     fade: [number, number] = [0.15, 0.15],
     layer: any,
@@ -29,8 +29,8 @@ export class AnimationControls {
   ) {
     this._animationWidget = select(animationWidget) as any;
     this._column = column;
-    this._variableName = variableName;
-    this._propertyName = propertyName;
+    this._variableName = variableName || 'animation';
+    this._propertyName = propertyName || 'filter';
     this._carto = carto;
     this._duration = duration;
     this._fade = fade;

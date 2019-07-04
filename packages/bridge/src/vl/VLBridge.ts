@@ -5,7 +5,8 @@ import {
   CategoricalHistogramOptions,
   CategoryOptions,
   NumericalHistogramOptions,
-  VLBridgeOptions,
+  VL_BINARY_EXPRESSION_TYPES,
+  VLBridgeOptions
 } from '../types';
 import { getColumnName, getExpression } from '../util/Utils';
 import { AnimationControls } from './animation-controls/AnimationControls';
@@ -464,8 +465,8 @@ export default class VLBridge {
   private _rebuildFilters() {
     let newFilter = this._combineFilters(
       this._vizFilters
-      .filter((hasFilter) => hasFilter.filter !== null)
-      .map((hasFilter) => hasFilter.filter)
+        .filter((hasFilter) => hasFilter.filter !== null)
+        .map((hasFilter) => hasFilter.filter)
     );
 
     // Update (if required) the readonly layer
@@ -473,8 +474,19 @@ export default class VLBridge {
       this._readOnlyLayer.viz.filter.blendTo(newFilter, 0);
     }
 
-    if (this._animation) {
-      newFilter = `@${this._animation.variableName} and ${newFilter}`;
+    if (this._layer.viz.filter.isAnimated()) {
+      const filterExpr = this._layer.viz.filter;
+      const animationFilter = VL_BINARY_EXPRESSION_TYPES.indexOf(filterExpr.expressionName) > -1
+        ? filterExpr.a.expressionName === 'animation' ? filterExpr.a : filterExpr.b
+        : filterExpr;
+
+      // TODO change animation.toString()
+      const animation = `animation(
+        ${animationFilter.input.toString()},
+        ${animationFilter.duration.toString()},
+        ${animationFilter.fade.toString()})`;
+
+      newFilter = `${animation} and ${newFilter}`;
     }
 
     // Update the Visualization filter

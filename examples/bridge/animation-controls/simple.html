@@ -62,7 +62,7 @@
     const source = new carto.source.SQL(`select * from cordoba_catastro_simple where year > 1900 and year < 2018`);
     const viz = new carto.Viz(`
       @duration: 30
-      @animation: animation(linear($year, 1900, 2017), @duration, fade(0.1, ${Number.MAX_SAFE_INTEGER}))
+      filter: animation(linear($year, 1900, 2017), @duration, fade(0.1, ${Number.MAX_SAFE_INTEGER}))
       strokeWidth: 0
     `);
 
