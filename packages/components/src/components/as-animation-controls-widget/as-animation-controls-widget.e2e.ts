@@ -70,7 +70,7 @@ describe('as-animation-controls-widget', async () => {
 
     it('should emit a play event when clicking to the button the first time', async () => {
       const element: E2EElement = await page.find('as-animation-controls-widget');
-      const playPauseButton = await element.find('.as-animation-controls-widget__wrapper > button');
+      const playPauseButton = await element.find('.as-animation-controls-widget__player > button');
       const pauseEventSpy = await element.spyOnEvent('play');
 
       // Click on pause
@@ -82,7 +82,7 @@ describe('as-animation-controls-widget', async () => {
 
     it('should emit a pause event when clicking to the button the second time', async () => {
       const element: E2EElement = await page.find('as-animation-controls-widget');
-      const playPauseButton = await element.find('.as-animation-controls-widget__wrapper > button');
+      const playPauseButton = await element.find('.as-animation-controls-widget__player > button');
       const playEventSpy = await element.spyOnEvent('pause');
 
       // Click on play and pause
