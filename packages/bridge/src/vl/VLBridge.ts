@@ -254,7 +254,8 @@ export default class VLBridge {
       totals,
       duration,
       fade,
-      variableName
+      variableName,
+      propertyName
     } = options;
 
     this._animation = new TimeSeries(
@@ -265,7 +266,8 @@ export default class VLBridge {
       this._rebuildFilters,
       duration,
       fade,
-      variableName
+      variableName,
+      propertyName
     );
 
     const histogram = this.numericalHistogram(widget, column, {
