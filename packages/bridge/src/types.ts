@@ -13,11 +13,17 @@ export interface VLAnimation {
   propertyName: string;
   notify: () => void;
   getProgressPct(): number;
-  getProgressValue(): number | Date;
+  getProgressValue(): number | Date | VLTimeZoneDate;
   setProgressPct(pct: number): void;
   play(): void;
   pause(): void;
   isPlaying(): boolean;
+}
+
+export interface VLTimeZoneDate {
+  _value: number | string;
+  _date: Date;
+  _timeZone: number | string;
 }
 
 export const VL_BINARY_EXPRESSION_TYPES = [

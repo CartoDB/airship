@@ -1,7 +1,8 @@
-import { VL_BINARY_EXPRESSION_TYPES, VLAnimation, VLViz } from '../../types';
+import { VL_BINARY_EXPRESSION_TYPES, VLAnimation, VLTimeZoneDate, VLViz } from '../../types';
 import { select } from '../../util/Utils';
 
 export class AnimationControls {
+  protected _formatCb: (value) => void;
   private _animation: VLAnimation;
   private _animationWidget: any;
   private _carto: any;
@@ -12,7 +13,7 @@ export class AnimationControls {
   private _fade: [number, number];
   private _layer: any;
   private _viz: VLViz;
-  private _formatCb: () => void;
+
 
   constructor(
     animationWidget: any | string,
@@ -107,31 +108,22 @@ export class AnimationControls {
   }
 
   private _formatProgressValue() {
-    const type = this._animation.input.type;
     const progressValue = this._animation.getProgressValue();
-    const formats = {
-      dateFormat(value) {
-        const date = value._date;
-        return this._formatCb ? this._formatCb(date) : date.toISOString();
-      },
 
-      timerangeFormat(value) {
-        const date = value._date;
-        return this._formatCb ? this._formatCb(date) : date.toISOString();
-      },
+    if (progressValue instanceof Date) {
+      return this._formatCb ? this._formatCb(progressValue) : progressValue.toISOString();
+    }
 
-      numberFormat(value) {
-        return this._formatCb ? this._formatCb(value) : value;
-      },
+    if (this._isVLTimeZoneDate(progressValue)) {
+      return this._formatCb ? this._formatCb(progressValue._date) : progressValue._date.toISOString();
+    }
 
-      categoryFormat(value) {
-        return this._formatCb ? this._formatCb(value) : value;
-      }
-    };
-
-    return formats[`${type}Format`](progressValue);
+    return this._formatCb ? this._formatCb(progressValue) : progressValue;
   }
 
+  private _isVLTimeZoneDate(object: any): object is VLTimeZoneDate {
+    return '_date' in object;
+  }
 
   private _createAnimation() {
     const s = this._carto.expressions;
