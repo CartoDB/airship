@@ -90,9 +90,11 @@ export class AnimationControls {
     this._animationWidget.addEventListener('seek', (evt) => {
       this._animation.setProgressPct(evt.detail[0] / 100);
       this._animation.notify();
+      this._animationWidget.progressValue = this._animation.getProgressValue();
     });
 
     this._layer.on('updated', () => {
+      this._animationWidget.progressValue = this._animation.getProgressValue();
       this._animationWidget.progress = this._animation.getProgressPct() * 100;
     });
   }

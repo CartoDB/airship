@@ -18,6 +18,11 @@ as-animation-controls-widget {
 
   .as-animation-controls-widget__wrapper {
     display: flex;
+    flex-direction: column;
+  }
+
+  .as-animation-controls-widget__player {
+    display: flex;
     align-items: center;
     justify-content: flex-start;
     padding: get-spacing(1) 0;

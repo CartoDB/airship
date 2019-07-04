@@ -16,12 +16,12 @@ export class AnimationControlsWidget {
   @Prop () public min: number = 0;
   @Prop () public max: number = 100;
   @Prop () public duration: number = 0;
+  @Prop () public progressValue: number = 0;
   /**
    * Use this attribute to put the widget in "loading mode".
    * When loading mode is active, a spinner will be shown and the data will be hidden.
    */
   @Prop() public isLoading: boolean = false;
-
   @Prop() public showThumb: boolean = true;
   @Prop() public showThumbCaption: boolean = false;
   @Prop() public playing: boolean = false;
@@ -122,19 +122,22 @@ export class AnimationControlsWidget {
       this.errorDescription,
       this.noDataBodyMessage,
       <div class='as-animation-controls-widget__wrapper'>
-        <button class='as-btn' onClick={this._onPlayPauseClick.bind(this)}>
-          {icon(this.playing ? 'PAUSE' : 'PLAY', 'var(--as--color--primary)', { width: '32px', height: '32px'})}
-        </button>
-        <as-range-slider
-          value={this.progress}
-          min-value={this.min}
-          max-value={this.max}
-          showThumb={this.showThumb}
-          showThumbCaption={this.showThumbCaption}
-          onChange={this._onThumbChange.bind(this)}
-          onChangeStart={this._onThumbChangeStart.bind(this)}
-          onChangeEnd={this._onThumbChangeEnd.bind(this)}>
-        </as-range-slider>
+        <div class='as-animation-controls-widget__player'>
+          <button class='as-btn' onClick={this._onPlayPauseClick.bind(this)}>
+            {icon(this.playing ? 'PAUSE' : 'PLAY', 'var(--as--color--primary)', { width: '32px', height: '32px'})}
+          </button>
+          <as-range-slider
+            value={this.progress}
+            min-value={this.min}
+            max-value={this.max}
+            showThumb={this.showThumb}
+            showThumbCaption={this.showThumbCaption}
+            onChange={this._onThumbChange.bind(this)}
+            onChangeStart={this._onThumbChangeStart.bind(this)}
+            onChangeEnd={this._onThumbChangeEnd.bind(this)}>
+          </as-range-slider>
+        </div>
+        <p>{this.progressValue}</p>
       </div>
     );
   }

@@ -75,6 +75,7 @@ export namespace Components {
     * This attribute is the percentage of progress elapsed on an animation.
     */
     'progress': number;
+    'progressValue': number;
     /**
     * Toggles displaying title and description
     */
@@ -1169,6 +1170,7 @@ declare namespace LocalJSX {
     * This attribute is the percentage of progress elapsed on an animation.
     */
     'progress'?: number;
+    'progressValue'?: number;
     /**
     * Toggles displaying title and description
     */
