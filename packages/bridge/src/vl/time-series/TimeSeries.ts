@@ -1,4 +1,4 @@
-import { VL_BINARY_EXPRESSION_TYPES, VLAnimation, VLViz } from '../../types';
+import { VLAnimation, VLViz } from '../../types';
 import { select } from '../../util/Utils';
 
 /**
@@ -141,15 +141,12 @@ export class TimeSeries {
       this._viz.variables[this._variableName] = this._animation;
     } else {
       const expr = this._viz.variables[this._variableName];
-      if (VL_BINARY_EXPRESSION_TYPES.indexOf(expr.expressionName) > -1) {
+      if (expr.a && expr.b) {
         this._animation = expr.a.expressionName === 'animation' ? expr.a : expr.b;
       } else {
         this._animation = expr;
       }
     }
-
-    this._animation.parent = this._viz;
-    this._animation.notify = this._viz._changed.bind(this._viz);
 
     this._max = this._animation.input.max;
     this._min = this._animation.input.min;
@@ -157,7 +154,6 @@ export class TimeSeries {
 
     this._layer.on('updated', () => {
       this._timeSeries.progress = this._animation.getProgressPct() * 100;
-
       this._timeSeries.playing = this._animation.isPlaying();
     });
 

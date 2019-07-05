@@ -93,17 +93,12 @@ export class AnimationControlsWidget {
   private seek: EventEmitter;
 
   public render() {
-    return [
-      this._renderHeader(),
-      this._renderContent()
-    ];
+    return this.showHeader
+      ? [this._renderHeader(), this._renderContent()]
+      : this._renderContent();
   }
 
   private _renderHeader() {
-    if (!this.showHeader) {
-      return;
-    }
-
     return <as-widget-header
       header={this.heading}
       subheader={this.description}

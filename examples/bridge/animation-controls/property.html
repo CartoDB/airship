@@ -63,13 +63,10 @@
     const viz = new carto.Viz(`
       color: ramp($addrtype, Bold)
       @myVariable: animation(linear($incdate), 20,fade(1, 1)) * ramp(linear($personcount, 2, 5), [5, 20])
-      width: @myVariable
       strokeWidth: 0
     `);
 
     const vizLayer = new carto.Layer('layer', source, viz);
-
-    const timeWidget = document.querySelector('as-animation-controls-widget');
 
     vizLayer.addTo(map, 'watername_ocean');
 

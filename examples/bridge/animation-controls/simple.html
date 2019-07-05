@@ -68,8 +68,6 @@
 
     const vizLayer = new carto.Layer('layer', source, viz);
 
-    const timeWidget = document.querySelector('as-animation-controls-widget');
-
     vizLayer.addTo(map, 'watername_ocean');
 
     const bridge = new AsBridge.VLBridge({

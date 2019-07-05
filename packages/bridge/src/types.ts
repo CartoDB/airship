@@ -27,23 +27,6 @@ export interface VLTimeZoneDate {
   _timeZone: number | string;
 }
 
-export const VL_BINARY_EXPRESSION_TYPES = [
-  'add',
-  'and',
-  'div',
-  'eq',
-  'gt',
-  'gte',
-  'lt',
-  'lte',
-  'mod',
-  'mul',
-  'noteq',
-  'or',
-  'pow',
-  'sub'
-];
-
 export type NumericalHistogramData = VLHistogramData<[number, number]>;
 export type CategoricalHistogramData = VLHistogramData<string>;
 export interface VLNumericalHistogram {

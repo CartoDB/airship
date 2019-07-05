@@ -5,7 +5,6 @@ import {
   CategoricalHistogramOptions,
   CategoryOptions,
   NumericalHistogramOptions,
-  VL_BINARY_EXPRESSION_TYPES,
   VLBridgeOptions
 } from '../types';
 import { getColumnName, getExpression } from '../util/Utils';
@@ -476,11 +475,11 @@ export default class VLBridge {
 
     if (this._layer.viz.filter.isAnimated()) {
       const filterExpr = this._layer.viz.filter;
-      const animationFilter = VL_BINARY_EXPRESSION_TYPES.indexOf(filterExpr.expressionName) > -1
+      const animationFilter = filterExpr.a && filterExpr.b
         ? filterExpr.a.expressionName === 'animation' ? filterExpr.a : filterExpr.b
         : filterExpr;
 
-      // TODO change animation.toString()
+      // TODO change animation.toString() https://github.com/CartoDB/carto-vl/issues/1381
       const animation = `animation(
         ${animationFilter.input.toString()},
         ${animationFilter.duration.toString()},

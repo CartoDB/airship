@@ -1,4 +1,4 @@
-import { VL_BINARY_EXPRESSION_TYPES, VLAnimation, VLTimeZoneDate, VLViz } from '../../types';
+import { VLAnimation, VLTimeZoneDate, VLViz } from '../../types';
 import { select } from '../../util/Utils';
 
 export class AnimationControls {
@@ -73,15 +73,16 @@ export class AnimationControls {
   private _onLayerLoaded() {
     this._viz = this._layer.viz;
 
-    const expr = this._variableName && this._viz.variables[this._variableName]
-      ? this._viz.variables[this._variableName]
-      : this._propertyName ? this._viz[this._propertyName] : this._createAnimation();
+    const expr = this._getAnimationExpression();
 
-    if (VL_BINARY_EXPRESSION_TYPES.indexOf(expr.expressionName) > -1) {
+    if (expr.a && expr.b) {
       this._animation = expr.a.expressionName === 'animation' ? expr.a : expr.b;
     } else {
       this._animation = expr;
     }
+
+    this._animation.parent = this._viz;
+    this._animation.notify = this._viz._changed.bind(this._viz);
 
     this._animationWidget.duration = this._animation.duration.value;
     this._animationWidget.playing = true;
@@ -107,6 +108,19 @@ export class AnimationControls {
     });
   }
 
+  private _getAnimationExpression() {
+    if (this._variableName && this._viz.variables[this._variableName]) {
+      this._viz[this._propertyName] = this._viz.variables[this._variableName];
+      return this._viz.variables[this._variableName];
+    }
+
+    this._viz.variables[this._variableName] = this._propertyName && this._viz[this._propertyName].isAnimated()
+      ? this._viz[this._propertyName]
+      : this._createDefaultAnimation();
+
+    return this._viz.variables[this._variableName];
+  }
+
   private _formatProgressValue() {
     const progressValue = this._animation.getProgressValue();
 
@@ -125,7 +139,7 @@ export class AnimationControls {
     return '_date' in object;
   }
 
-  private _createAnimation() {
+  private _createDefaultAnimation() {
     const s = this._carto.expressions;
     const animation = s.animation(
       s.linear(
@@ -140,8 +154,7 @@ export class AnimationControls {
       )
     );
 
-    animation.parent = this._viz;
-    animation.notify = this._viz._changed.bind(this._viz);
+    this._viz[this._propertyName] = animation;
     return animation;
   }
 }

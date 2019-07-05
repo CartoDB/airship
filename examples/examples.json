@@ -279,8 +279,20 @@
           "file": "bridge/time-series/simple.html"
         },
         {
-          "title": "Animation Controls bridge",
+          "title": "Animation Controls bridge simple",
           "file": "bridge/animation-controls-widget/simple.html"
+        },
+        {
+          "title": "Animation Controls bridge default",
+          "file": "bridge/animation-controls-widget/default.html"
+        },
+        {
+          "title": "Animation Controls bridge property",
+          "file": "bridge/animation-controls-widget/property.html"
+        },
+        {
+          "title": "Animation Controls bridge date format",
+          "file": "bridge/animation-controls-widget/date-format.html"
         },
         {
           "title": "Legend ramp bridge",
