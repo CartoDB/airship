@@ -9,7 +9,7 @@ There are two ways of using this:
 - Creating an animation expression on the viz
 - Automatically creating an animation where you can control certain parameters
 
-If you create the animation expression, you can call it `@animation` or if you need to, name it as you wish and specify such name on the options object of this.
+Let's see how it works:
 
 ```
 const viz = new carto.Viz(`
@@ -22,14 +22,14 @@ const viz = new carto.Viz(`
 `);
 ```
 
-Then use the `animationControls` method like this:
+Now that we've the viz, we can use the `animationControls` method as follows. By default, the animation controls widget asumes the animation is assigned to the `filter` viz property:
 
 ```
 const widget = document.querySelector('as-animation-controls-widget');
 bridge.animationControls(widget, 'timestamp');
 ```
 
-If you do not want to create it yourself, you can have an empty Viz and call the `animationControls` function like this:
+It is also possible to generate automatically a basic animation by using the Bridge. You can have an empty Viz and call the `animationControls` function directly:
 
 ```
 const widget = document.querySelector('as-animation-controls-widget');
@@ -39,16 +39,30 @@ bridge.animationControls(widget, 'timestamp', {
 });
 ```
 
-By default, the animation is applied to the `filter` style property. However, it is possible to set it to a different property by using the `propertyName` option as follows:
+In this case, the animation is also applied by default to the `filter` style property. However, it is possible to set it to a different property by using the `propertyName` option:
 
 ```
 const viz = new carto.Viz(`
-  width: animation(linear($timevalue), 20,fade(1, 1)) * ramp(linear($number, 2, 5), [5, 20])
+  width: animation(linear($timestamp), 20,fade(1, 1)) * ramp(linear($number, 2, 5), [5, 20])
 `);
 
 const widget = document.querySelector('as-animation-controls-widget');
 bridge.animationControls(widget, 'timestamp', {
   propertyName: 'width'
+});
+```
+
+The Bridge allows to get the animation from a viz variable instead of form a style property:
+
+```
+const viz = new carto.Viz(`
+  @myAnimation: animation(linear($timestamp), 20,fade(1, 1)) * ramp(linear($number, 2, 5), [5, 20])
+`);
+
+const widget = document.querySelector('as-animation-controls-widget');
+bridge.animationControls(widget, 'timestamp', {
+  propertyName: 'width',
+  variableName: 'myAnimation'
 });
 ```
 
@@ -69,7 +83,7 @@ AnimationControlsOptions {
 
 `duration` how long should the animation be in seconds, defaults to 10
 `fade` an array of two durations for fading in and out, check the VL Animation [documentation](https://carto.com/developers/carto-vl/reference/#cartoexpressionsanimation), defaults to [0.15, 0.15]
-`variableName` Name for the animation variable creation / lookup. Will be called `animation` by default.
+`variableName` Name for the animation variable creation / lookup, if needed.
 `propertyName` Name for the style property that is animated. Will be set to `filter` by default.
 
 #### AnimationControls.animation : VLAnimation
