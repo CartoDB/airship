@@ -68,7 +68,7 @@
       @duration: 30
       strokeWidth: 0
       color: ramp($addrtype, Bold)
-      filter: animation($incdate, 30, fade(1, 1))
+      @animation: animation($incdate, 30, fade(1, 1))
     `);
 
     const layer = new carto.Layer('layer', source, viz);

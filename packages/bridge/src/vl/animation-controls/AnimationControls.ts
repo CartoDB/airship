@@ -81,6 +81,8 @@ export class AnimationControls {
       this._animation = expr;
     }
 
+    this._viz[this._propertyName].blendTo(this._animation, 0);
+
     this._animation.parent = this._viz;
     this._animation.notify = this._viz._changed.bind(this._viz);
 
@@ -110,15 +112,12 @@ export class AnimationControls {
 
   private _getAnimationExpression() {
     if (this._variableName && this._viz.variables[this._variableName]) {
-      this._viz[this._propertyName] = this._viz.variables[this._variableName];
       return this._viz.variables[this._variableName];
     }
 
-    this._viz.variables[this._variableName] = this._propertyName && this._viz[this._propertyName].isAnimated()
+    return this._propertyName && this._viz[this._propertyName].isAnimated()
       ? this._viz[this._propertyName]
       : this._createDefaultAnimation();
-
-    return this._viz.variables[this._variableName];
   }
 
   private _formatProgressValue() {
@@ -154,7 +153,6 @@ export class AnimationControls {
       )
     );
 
-    this._viz[this._propertyName] = animation;
     return animation;
   }
 }

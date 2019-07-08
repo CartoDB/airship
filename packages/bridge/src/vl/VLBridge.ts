@@ -474,18 +474,7 @@ export default class VLBridge {
     }
 
     if (this._layer.viz.filter.isAnimated()) {
-      const filterExpr = this._layer.viz.filter;
-      const animationFilter = filterExpr.a && filterExpr.b
-        ? filterExpr.a.expressionName === 'animation' ? filterExpr.a : filterExpr.b
-        : filterExpr;
-
-      // TODO change animation.toString() https://github.com/CartoDB/carto-vl/issues/1381
-      const animation = `animation(
-        ${animationFilter.input.toString()},
-        ${animationFilter.duration.toString()},
-        ${animationFilter.fade.toString()})`;
-
-      newFilter = `${animation} and ${newFilter}`;
+      newFilter = `@${this._animation.variableName} and ${newFilter}`;
     }
 
     // Update the Visualization filter
