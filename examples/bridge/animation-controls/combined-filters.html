@@ -37,9 +37,13 @@
             <as-animation-controls-widget
               animated
               heading='Animation'
-              description='Try seeking and pausing'
-            >
+              description='Try seeking and pausing'>
             </as-animation-controls-widget>
+          </div>
+          <div class="as-box">
+            <as-category-widget
+              show-clear>
+            </as-category-widget>
           </div>
         </div>
       </main>
@@ -50,7 +54,7 @@
     const map = new mapboxgl.Map({
       container: 'map',
       style: carto.basemaps.darkmatter,
-      center: [-122.30571212980425, 47.6181],
+      center: [-122.327739, 47.615199],
       zoom: 10
     });
 
@@ -61,23 +65,30 @@
 
     const source = new carto.source.Dataset('seattle_collisions');
     const viz = new carto.Viz(`
-      color: ramp($addrtype, Bold)
-      @myVariable: animation(linear($incdate), 20,fade(1, 1)) * ramp(linear($personcount, 2, 5), [5, 20])
+      @duration: 30
       strokeWidth: 0
+      color: ramp($addrtype, Bold)
+      filter: animation($incdate, 30, fade(1, 1))
     `);
 
-    const vizLayer = new carto.Layer('layer', source, viz);
+    const layer = new carto.Layer('layer', source, viz);
+    const animationControlsWidget = document.querySelector('as-animation-controls-widget');
+    const categoryWidget = document.querySelector('as-category-widget');
 
-    vizLayer.addTo(map, 'watername_ocean');
+    layer.addTo(map, 'watername_ocean');
 
     const bridge = new AsBridge.VLBridge({
       carto: carto,
       map: map,
-      layer: vizLayer,
+      layer: layer,
       source: source
     });
 
-    bridge.animationControls('as-animation-controls-widget', 'incdate', { variableName: 'myVariable', propertyName: 'width' });
+    bridge.animationControls(animationControlsWidget, 'year');
+    bridge.category(categoryWidget, 'addrtype', {
+      readOnly: false
+    });
+
     bridge.build();
   </script>
 </body>

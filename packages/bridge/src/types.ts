@@ -2,6 +2,7 @@ export interface VLViz {
   variables: {
     [key: string]: any
   };
+  [key: string]: any;
   _changed: () => void;
 }
 
@@ -13,29 +14,18 @@ export interface VLAnimation {
   propertyName: string;
   notify: () => void;
   getProgressPct(): number;
-  getProgressValue(): number | Date;
+  getProgressValue(): number | Date | VLTimeZoneDate;
   setProgressPct(pct: number): void;
   play(): void;
   pause(): void;
   isPlaying(): boolean;
 }
 
-export const VL_BINARY_EXPRESSION_TYPES = [
-  'add',
-  'and',
-  'div',
-  'eq',
-  'gt',
-  'gte',
-  'lt',
-  'lte',
-  'mod',
-  'mul',
-  'noteq',
-  'or',
-  'pow',
-  'sub'
-];
+export interface VLTimeZoneDate {
+  _value: number | string;
+  _date: Date;
+  _timeZone: number | string;
+}
 
 export type NumericalHistogramData = VLHistogramData<[number, number]>;
 export type CategoricalHistogramData = VLHistogramData<string>;

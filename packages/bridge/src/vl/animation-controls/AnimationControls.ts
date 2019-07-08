@@ -1,4 +1,4 @@
-import { VL_BINARY_EXPRESSION_TYPES, VLAnimation, VLViz } from '../../types';
+import { VLAnimation, VLTimeZoneDate, VLViz } from '../../types';
 import { select } from '../../util/Utils';
 
 export class AnimationControls {
@@ -12,28 +12,32 @@ export class AnimationControls {
   private _fade: [number, number];
   private _layer: any;
   private _viz: VLViz;
+  private _formatCb: (value: number | Date | VLTimeZoneDate) => string;
+
 
   constructor(
     animationWidget: any | string,
     carto: any,
     column: string,
-    variableName: string = 'animation',
-    propertyName: string = 'filter',
+    variableName: string,
+    propertyName: string,
     duration: number = 10,
     fade: [number, number] = [0.15, 0.15],
     layer: any,
-    readyCb: () => void
+    readyCb: () => void,
+    formatCb: (value: number | Date | VLTimeZoneDate) => string
   ) {
     this._animationWidget = select(animationWidget) as any;
     this._column = column;
-    this._variableName = variableName;
-    this._propertyName = propertyName;
+    this._variableName = variableName || 'animation';
+    this._propertyName = propertyName || 'filter';
     this._carto = carto;
     this._duration = duration;
     this._fade = fade;
     this._animationWidget.playing = false;
     this._animationWidget.isLoading = true;
     this._layer = layer;
+    this._formatCb = formatCb;
 
     if (layer.viz) {
       this._onLayerLoaded();
@@ -44,6 +48,10 @@ export class AnimationControls {
         readyCb();
       });
     }
+  }
+
+  public get animation() {
+    return this._animation;
   }
 
   public get variableName(): string {
@@ -65,22 +73,18 @@ export class AnimationControls {
   private _onLayerLoaded() {
     this._viz = this._layer.viz;
 
-    if (!this._viz.variables[this._variableName]) {
-      this._animation = this._createAnimation();
+    const expr = this._getAnimationExpression();
 
-      /* Big hack, this is done internally on VL */
-      this._animation.parent = this._viz;
-      this._animation.notify = this._viz._changed.bind(this._viz);
-
-      this._viz.variables[this._variableName] = this._animation;
+    if (expr.a && expr.b) {
+      this._animation = expr.a.expressionName === 'animation' ? expr.a : expr.b;
     } else {
-      const expr = this._viz.variables[this._variableName];
-      if (VL_BINARY_EXPRESSION_TYPES.indexOf(expr.expressionName) > -1) {
-        this._animation = expr.a.expressionName === 'animation' ? expr.a : expr.b;
-      } else {
-        this._animation = expr;
-      }
+      this._animation = expr;
     }
+
+    this._viz[this._propertyName].blendTo(expr, 0);
+
+    this._animation.parent = this._viz;
+    this._animation.notify = this._viz._changed.bind(this._viz);
 
     this._animationWidget.duration = this._animation.duration.value;
     this._animationWidget.playing = true;
@@ -97,14 +101,46 @@ export class AnimationControls {
     this._animationWidget.addEventListener('seek', (evt) => {
       this._animation.setProgressPct(evt.detail[0] / 100);
       this._animation.notify();
+      this._animationWidget.progressValue = this._formatProgressValue();
     });
 
     this._layer.on('updated', () => {
       this._animationWidget.progress = this._animation.getProgressPct() * 100;
+      this._animationWidget.progressValue = this._formatProgressValue();
     });
   }
 
-  private _createAnimation() {
+  private _getAnimationExpression() {
+    if (this._variableName && this._viz.variables[this._variableName]) {
+      return this._viz.variables[this._variableName];
+    }
+
+    this._viz.variables[this._variableName] = this._propertyName && this._viz[this._propertyName].isAnimated()
+      ? this._viz[this._propertyName]
+      : this._createDefaultAnimation();
+
+    return this._viz.variables[this._variableName];
+  }
+
+  private _formatProgressValue() {
+    const progressValue = this._animation.getProgressValue();
+
+    if (progressValue instanceof Date) {
+      return this._formatCb ? this._formatCb(progressValue) : progressValue.toISOString();
+    }
+
+    if (progressValue instanceof Object && this._isVLTimeZoneDate(progressValue)) {
+      return this._formatCb ? this._formatCb(progressValue._date) : progressValue._date.toISOString();
+    }
+
+    return this._formatCb ? this._formatCb(progressValue) : progressValue;
+  }
+
+  private _isVLTimeZoneDate(object: any): object is VLTimeZoneDate {
+    return '_date' in object;
+  }
+
+  private _createDefaultAnimation() {
     const s = this._carto.expressions;
     const animation = s.animation(
       s.linear(
