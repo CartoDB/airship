@@ -295,6 +295,10 @@
           "file": "bridge/animation-controls-widget/date-format.html"
         },
         {
+          "title": "Animation Controls bridge combined filters",
+          "file": "bridge/animation-controls-widget/combined-filters.html"
+        },
+        {
           "title": "Legend ramp bridge",
           "file": "bridge/legends/ramp-legends.html"
         },
