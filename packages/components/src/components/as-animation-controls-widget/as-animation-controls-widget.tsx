@@ -93,7 +93,7 @@ export class AnimationControlsWidget {
   private seek: EventEmitter;
 
   public render() {
-    return this.showHeader
+    return this.showHeader && (this.heading || this.description)
       ? [this._renderHeader(), this._renderContent()]
       : this._renderContent();
   }

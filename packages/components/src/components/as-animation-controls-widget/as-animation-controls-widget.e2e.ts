@@ -8,7 +8,11 @@ describe('as-animation-controls-widget', async () => {
       page = await newE2EPage();
 
       await page.setContent(`
-        <as-animation-controls-widget></as-animation-controls-widget>
+        <as-animation-controls-widget
+          heading='Title'
+          description='Description'
+          >
+        </as-animation-controls-widget>
       `);
     });
 
@@ -50,6 +54,33 @@ describe('as-animation-controls-widget', async () => {
     it('should not render show the range slider thumb caption if set to false', async () => {
       const element = await page.find('as-animation-controls-widget');
       element.setProperty('showCaption', false);
+
+      await page.waitForChanges();
+
+      expect(element.outerHTML).toMatchSnapshot();
+    });
+
+    it('should not render the widget header if showHeader property is False', async () => {
+      const element = await page.find('as-animation-controls-widget');
+      element.setProperty('showHeader', false);
+
+      await page.waitForChanges();
+
+      expect(element.outerHTML).toMatchSnapshot();
+    });
+
+    it('should not render the header if the heading is not present', async () => {
+      const element = await page.find('as-animation-controls-widget');
+      element.setProperty('heading', null);
+
+      await page.waitForChanges();
+
+      expect(element.outerHTML).toMatchSnapshot();
+    });
+
+    it('should not render the header if the description is not present', async () => {
+      const element = await page.find('as-animation-controls-widget');
+      element.setProperty('description', null);
 
       await page.waitForChanges();
 
