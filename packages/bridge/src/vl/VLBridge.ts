@@ -243,6 +243,7 @@ export default class VLBridge {
     widget: any | string,
     column: string,
     options: AnimationOptions = {}) {
+
     if (this._animation) {
       throw new Error('There can only be one animation');
     }
@@ -263,14 +264,18 @@ export default class VLBridge {
       this._layer,
       column,
       widget,
-      this._rebuildFilters,
+      () => {
+        if (propertyName === 'filter') {
+          this._rebuildFilters();
+        }
+      },
       duration,
       fade,
       variableName,
       propertyName
     );
 
-    const histogram = this.numericalHistogram(widget, column, {
+    const histogram = this.histogram(widget, column, {
       bucketRanges,
       buckets,
       readOnly,

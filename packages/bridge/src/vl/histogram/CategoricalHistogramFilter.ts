@@ -15,6 +15,7 @@ import { BaseHistogramFilter } from './BaseHistogramFilter';
  * @extends {BaseHistogramFilter<string[]>}
  */
 export class CategoricalHistogramFilter extends BaseHistogramFilter<string[]> {
+  private _isTimeSeries: boolean;
   private _lastHistogram: VLCategoricalHistogram = null;
   private _globalHistogram: VLCategoricalHistogram;
 
@@ -50,7 +51,7 @@ export class CategoricalHistogramFilter extends BaseHistogramFilter<string[]> {
    * @memberof CategoricalHistogramFilter
    */
   public get filter(): string {
-    if (this._selection === null) {
+    if (this._selection === null || this._isTimeSeries) {
       return null;
     } else {
       return `@${this.columnPropName} in [${this._selection.map((value) => `'${value}'`).join(',')}]`;
@@ -68,6 +69,16 @@ export class CategoricalHistogramFilter extends BaseHistogramFilter<string[]> {
     const s = this._carto.expressions;
 
     return s.viewportHistogram(this._inputExpression ? this._inputExpression : s.prop(this._column));
+  }
+
+  /**
+   * Mark this histogram as a the source for a time-series.
+   *
+   * @param {boolean} value
+   * @memberof CategoricalHistogramFilter
+   */
+  public setTimeSeries(value: boolean) {
+    this._isTimeSeries = value;
   }
 
   public get globalExpression(): any {
