@@ -275,7 +275,7 @@ export default class VLBridge {
       propertyName
     );
 
-    const histogram = this.histogram(widget, column, {
+    const histogram = this.numericalHistogram(widget, column, {
       bucketRanges,
       buckets,
       readOnly,
