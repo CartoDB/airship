@@ -146,8 +146,8 @@ export class NumericalHistogramFilter extends BaseHistogramFilter<[number, numbe
           );
 
           this._emitter.emit('expressionReady', { name: this.name, expression: this.expression });
-          this._widget.backgroundData = conversion.numerical(this._globalHistogram);
-          this._widget.data = type === 'number'
+
+          this._widget.backgroundData = type === 'number'
             ? conversion.numerical(this._globalHistogram)
             : conversion.date(this._globalHistogram);
         }

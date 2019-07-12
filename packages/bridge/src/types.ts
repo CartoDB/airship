@@ -58,7 +58,7 @@ export interface LegendData {
   data: LegendEntry[];
 }
 
-export type BucketRange = [number, number];
+export type BucketRange = [Date | number, Date | number];
 
 export interface VLBridgeOptions {
   carto: any;

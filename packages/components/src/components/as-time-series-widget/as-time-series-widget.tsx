@@ -10,7 +10,7 @@ import {
   DEFAULT_BAR_COLOR
 } from '../common/constants';
 import { TimeSeriesData } from './interfaces';
-import { prepareData, sameData } from './utils/data.service';
+import { sameData } from './utils/data.service';
 
 const SCRUBBER_SIZE = 6;
 
@@ -267,13 +267,13 @@ export class TimeSeriesWidget {
     if (sameData(newData, oldData)) {
       return;
     } else {
-      this._data = prepareData(newData);
+      this._data = newData;
     }
   }
 
   @Watch('backgroundData')
   public onBackgroundDataChanged(newData) {
-    this._backgroundData = prepareData(newData);
+    this._backgroundData = newData;
   }
 
   @Watch('progress')

@@ -1,5 +1,4 @@
 import { TimeSeriesWidget } from './as-time-series-widget';
-import { prepareData } from './utils/data.service';
 
 describe('as-time-series-widget', () => {
   let timeSeriesWidget;
@@ -9,13 +8,6 @@ describe('as-time-series-widget', () => {
     timeSeriesWidget.data = numberData;
     timeSeriesWidget.render();
     timeSeriesWidget.componentDidLoad();
-  });
-
-  it('should parse time data into numeric data', () => {
-    const newData = prepareData(timeData);
-
-    expect(newData[0].start).toBe(0);
-    expect(newData[0].end).toBe(1);
   });
 });
 
