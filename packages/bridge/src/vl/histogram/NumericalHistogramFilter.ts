@@ -139,31 +139,40 @@ export class NumericalHistogramFilter extends BaseHistogramFilter<[number, numbe
         this._globalHistogram = (this._dataLayer.viz.variables[`${this.name}_global`] as VLNumericalHistogram);
 
         if (this._globalHistogram) {
+          const type = this._globalHistogram.input.type;
+
           this._bucketRanges = this._globalHistogram.value.map(
             (value) => ([value.x[0], value.x[1]] as [number, number])
           );
 
           this._emitter.emit('expressionReady', { name: this.name, expression: this.expression });
+          this._widget.backgroundData = conversion.numerical(this._globalHistogram);
+          this._widget.data = type === 'number'
+            ? conversion.numerical(this._globalHistogram)
+            : conversion.date(this._globalHistogram);
         }
-
-        this._widget.backgroundData = conversion.numerical(this._globalHistogram);
       }
 
       const newHistogram = (this._dataLayer.viz.variables[this.name] as VLNumericalHistogram);
+
       if (!newHistogram) {
         return;
       }
 
       if (newHistogram.value !== null &&
           (this._lastHistogram === null || !isNumericalHistogramEqual(this._lastHistogram, newHistogram))) {
+
+        const type = newHistogram.input.type;
         this._emitter.emit('rangeChanged', [
           newHistogram.value[0].x[0],
           newHistogram.value[newHistogram.value.length - 1].x[1]
         ]);
 
-        this._lastHistogram = { value: newHistogram.value };
+        this._lastHistogram = { value: newHistogram.value, input: { type } };
 
-        this._widget.data = conversion.numerical(newHistogram);
+        this._widget.data = type === 'number'
+          ? conversion.numerical(newHistogram)
+          : conversion.date(newHistogram);
       }
     });
   }
@@ -172,8 +181,8 @@ export class NumericalHistogramFilter extends BaseHistogramFilter<[number, numbe
     if (evt.detail === null) {
       this._selection = null;
     } else {
-      const selection = (this._isTimeSeries ? evt.detail : evt.detail.selection) as [number, number];
-      this._selection = [Number(selection[0]), Number(selection[1])];
+      const selection = (this._isTimeSeries ? evt.detail : evt.detail.selection) as [number , number];
+      this._selection = [selection[0], selection[1]];
     }
 
     this._emitter.emit('rangeChanged', this._selection);

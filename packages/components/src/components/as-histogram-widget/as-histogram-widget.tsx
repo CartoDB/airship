@@ -365,7 +365,7 @@ export class HistogramWidget {
    * @memberof HistogramWidget
    */
   @Method()
-  public async getSelection(): Promise<number[] | string[]> {
+  public async getSelection(): Promise<Array<number | Date> | string[]> {
     const data = this._dataForSelection(this.selection);
     return this._simplifySelection(data);
   }
@@ -794,7 +794,7 @@ export class HistogramWidget {
     return [data[selection[0]], data[selection[1] - 1]];
   }
 
-  private _simplifySelection(selection: HistogramData[]): string[] | number[] {
+  private _simplifySelection(selection: HistogramData[]): string[] | Array<Date | number> {
     if (selection === null) {
       return null;
     }
@@ -920,7 +920,9 @@ export class HistogramWidget {
   }
 
   private _generateYAxis() {
-    const yDomain: [number, number] = this.range !== null ? this.range : dataService.getYDomain(this._dataForDomain());
+    const yDomain: [number | Date, number | Date] = this.range !== null
+      ? this.range
+      : dataService.getYDomain(this._dataForDomain());
     this.yAxis = drawService.generateYScale(
       this.container,
       yDomain,

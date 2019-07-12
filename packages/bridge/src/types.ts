@@ -27,10 +27,11 @@ export interface VLTimeZoneDate {
   _timeZone: number | string;
 }
 
-export type NumericalHistogramData = VLHistogramData<[number, number]>;
+export type NumericalHistogramData = VLHistogramData<[number | Date, number | Date]>;
 export type CategoricalHistogramData = VLHistogramData<string>;
 export interface VLNumericalHistogram {
   value: NumericalHistogramData[];
+  input: any;
 }
 
 export interface VLCategoricalHistogram {

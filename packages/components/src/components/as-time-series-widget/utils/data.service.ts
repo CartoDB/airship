@@ -26,8 +26,8 @@ export function prepareData(data: TimeSeriesData[]): HistogramData[] {
   if (isDate) {
     return data.map((d) => ({
       color: d.color,
-      end: (d.end as Date).getTime(),
-      start: (d.start as Date).getTime(),
+      end: (d.end as Date),
+      start: (d.start as Date),
       value: d.value
     }));
   }

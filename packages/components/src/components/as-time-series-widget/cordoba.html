@@ -144,7 +144,7 @@
             console.log(newHistogram[0].x[0], newHistogram[newHistogram.length - 1].x[1]);
             viz.variables.animation.input.min.blendTo(newHistogram[0].x[0])
             viz.variables.animation.input.max.blendTo(newHistogram[newHistogram.length - 1].x[1])
-            
+
             lastData = newHistogram;
 
             timeWidget.backgroundData = newHistogram.map(entry => {
@@ -167,7 +167,7 @@
 
         dataLayer.addTo(map, 'watername_ocean');
         vizLayer.addTo(map, 'watername_ocean');
-        
+
         let previousMin = null;
         let previousMax = null;
 

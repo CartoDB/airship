@@ -235,7 +235,7 @@ export namespace Components {
     /**
     * Returns the current selection
     */
-    'getSelection': () => Promise<string[] | number[]>;
+    'getSelection': () => Promise<string[] | (number | Date)[]>;
     /**
     * Title of the widget to be displayed
     */
