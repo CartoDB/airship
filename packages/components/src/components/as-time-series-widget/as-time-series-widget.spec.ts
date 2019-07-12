@@ -9,6 +9,10 @@ describe('as-time-series-widget', () => {
     timeSeriesWidget.render();
     timeSeriesWidget.componentDidLoad();
   });
+
+  it('should set by default time format to "auto"', () => {
+    expect(timeSeriesWidget.timeFormat).toEqual('auto');
+  });
 });
 
 const timeData = [];
