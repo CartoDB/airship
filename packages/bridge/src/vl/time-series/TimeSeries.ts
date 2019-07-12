@@ -140,6 +140,9 @@ export class TimeSeries {
 
     this._viz[this._propertyName].blendTo(expr, 0);
 
+    this._animation.parent = this._viz;
+    this._animation.notify = this._viz._changed.bind(this._viz);
+
     this._max = this._animation.input.max;
     this._min = this._animation.input.min;
     this._duration = this._animation.duration.value;
