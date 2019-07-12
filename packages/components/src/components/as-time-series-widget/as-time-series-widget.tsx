@@ -442,7 +442,7 @@ export class TimeSeriesWidget {
       ? data.start.toLocaleString()
       : data.start;
 
-    return `${start}, ${data.value}`;
+    return `${start}, ${data.value}`;
   }
 
   private _renderButton() {

@@ -660,7 +660,7 @@ export class HistogramWidget {
       ? data.start.toLocaleString()
       : data.start;
 
-    return `${start}, ${data.value}`;
+    return `${start}, ${data.value}`;
   }
 
   private _updateSelection() {
