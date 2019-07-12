@@ -240,7 +240,7 @@ export class TimeSeriesWidget {
    * a Date
    */
   @Event()
-  private selectionChanged: EventEmitter<Date[]>;
+  private selectionChanged: EventEmitter<Array<Date | number>>;
 
   /**
    * The user has seeked the animation to this percentage.
@@ -250,7 +250,7 @@ export class TimeSeriesWidget {
 
   private histogram: HTMLAsHistogramWidgetElement;
   private _selection: number[];
-  private _formatter: (date: Date) => string;
+  private _formatter: (value: Date | number) => string;
   private _renderOptions: RenderOptions;
 
   // Last position when putting the mouse over the scrubber track
@@ -384,7 +384,7 @@ export class TimeSeriesWidget {
       }
 
       // We have to coerce to number[] because it can also be string[] for categorical histograms
-      const selectedDates = (evt.detail.selection as number[]).map((epoch) => new Date(epoch));
+      const selectedDates = (evt.detail.selection as Array<number | Date>);
       this.selectionChanged.emit(selectedDates);
 
       this._render();
@@ -433,16 +433,12 @@ export class TimeSeriesWidget {
       </as-histogram-widget>];
   }
 
-  private axisFormatter(value: number): string {
-    return this._formatter(new Date(value));
+  private axisFormatter(value: number | Date): string {
+    return this._formatter(value);
   }
 
   private _tooltipFormatter(data: TimeSeriesData): string {
-    const start = data.start instanceof Date
-      ? data.start.toLocaleString()
-      : data.start;
-
-    return `${start}, ${data.value}`;
+    return `${data.start}, ${data.value}`;
   }
 
   private _renderButton() {

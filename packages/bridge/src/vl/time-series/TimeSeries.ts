@@ -12,7 +12,7 @@ import { select } from '../../util/Utils';
  * @class TimeSeries
  */
 export class TimeSeries {
-  private _timeSeries: any;
+  private _timeSeriesWidget: any;
   private _animation: VLAnimation;
   private _layer: any;
   private _viz: VLViz;
@@ -45,7 +45,7 @@ export class TimeSeries {
     variableName: string,
     propertyName: string
   ) {
-    this._timeSeries = select(timeSeries) as any;
+    this._timeSeriesWidget = select(timeSeries) as any;
     this._layer = layer;
     this._carto = carto;
     this._columnName = column;
@@ -147,26 +147,34 @@ export class TimeSeries {
     this._min = this._animation.input.min;
     this._duration = this._animation.duration.value;
 
+    this._timeSeriesWidget.timeFormat = this._timeSeriesWidget.timeFormat === 'auto'
+      ? this._getTimeFormat(this._animation)
+      : this._timeSeriesWidget.timeFormat;
+
     this._layer.on('updated', () => {
-      this._timeSeries.progress = this._animation.getProgressPct() * 100;
-      this._timeSeries.playing = this._animation.isPlaying();
+      this._timeSeriesWidget.progress = this._animation.getProgressPct() * 100;
+      this._timeSeriesWidget.playing = this._animation.isPlaying();
     });
 
-    this._timeSeries.animated = true;
+    this._timeSeriesWidget.animated = true;
 
-    this._timeSeries.addEventListener('seek', (evt: CustomEvent) => {
+    this._timeSeriesWidget.addEventListener('seek', (evt: CustomEvent) => {
       this._animation.setProgressPct(evt.detail / 100);
 
-      this._timeSeries.progress = evt.detail;
+      this._timeSeriesWidget.progress = evt.detail;
     });
 
-    this._timeSeries.addEventListener('play', () => {
+    this._timeSeriesWidget.addEventListener('play', () => {
       this._animation.play();
     });
 
-    this._timeSeries.addEventListener('pause', () => {
+    this._timeSeriesWidget.addEventListener('pause', () => {
       this._animation.pause();
     });
+  }
+
+  private _getTimeFormat(expr) {
+    return expr.input.type === 'date' ? '%x' : '%Q';
   }
 
   private _getAnimationExpression() {
@@ -174,15 +182,11 @@ export class TimeSeries {
       return this._viz.variables[this._variableName];
     }
 
-    const expr =  this._propertyName && this._viz[this._propertyName].isAnimated()
+    this._viz.variables[this._variableName] = this._propertyName && this._viz[this._propertyName].isAnimated()
       ? this._viz[this._propertyName]
       : this._createDefaultAnimation();
 
-    if (!this._viz.variables[this._variableName]) {
-      this._viz.variables[this._variableName] = expr;
-    }
-
-    return expr;
+    return this._viz.variables[this._variableName];
   }
 
   private _createDefaultAnimation() {

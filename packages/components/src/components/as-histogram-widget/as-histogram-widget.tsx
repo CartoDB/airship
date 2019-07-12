@@ -656,11 +656,7 @@ export class HistogramWidget {
   }
 
   private _tooltipFormatter(data: HistogramData): string {
-    const start = data.start instanceof Date
-      ? data.start.toLocaleString()
-      : data.start;
-
-    return `${start}, ${data.value}`;
+    return `${data.start}, ${data.value}`;
   }
 
   private _updateSelection() {
