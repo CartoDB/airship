@@ -415,7 +415,7 @@ export class TimeSeriesWidget {
           unselectedColor={this.unselectedColor}
           colorRange={this.colorRange}
           axisFormatter={this.axisFormatter}
-          tooltipFormatter={this.tooltipFormatter}
+          tooltipFormatter={this.tooltipFormatter || this._tooltipFormatter}
           xLabel={this.xLabel}
           yLabel={this.yLabel}
           isLoading={this.isLoading}
@@ -435,6 +435,14 @@ export class TimeSeriesWidget {
 
   private axisFormatter(value: number): string {
     return this._formatter(new Date(value));
+  }
+
+  private _tooltipFormatter(data: TimeSeriesData): string {
+    const start = data.start instanceof Date
+      ? data.start.toLocaleString()
+      : data.start;
+
+    return `${start}, ${data.value}`;
   }
 
   private _renderButton() {

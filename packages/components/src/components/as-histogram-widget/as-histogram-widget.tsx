@@ -563,13 +563,15 @@ export class HistogramWidget {
 
     this.barsContainer = drawService.renderPlot(this.container);
 
+    const tooltipFormatter = this.tooltipFormatter || this._tooltipFormatter;
+
     interactionService.addTooltip(
       this.container,
       this.barsContainer,
       this,
       this._color,
       this._barBackgroundColor,
-      (value) => this.tooltipFormatter(value),
+      (value) => tooltipFormatter(value),
       this._setTooltip.bind(this),
       FG_CLASSNAME
     );
@@ -651,6 +653,14 @@ export class HistogramWidget {
     this._skipRender = true;
     this.tooltip = value;
     this._showTooltip(evt);
+  }
+
+  private _tooltipFormatter(data: HistogramData): string {
+    const start = data.start instanceof Date
+      ? data.start.toLocaleString()
+      : data.start;
+
+    return `${start}, ${data.value}`;
   }
 
   private _updateSelection() {
