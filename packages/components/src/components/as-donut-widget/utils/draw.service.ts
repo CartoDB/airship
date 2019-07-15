@@ -2,7 +2,7 @@ import { SVGContainer } from '../types/Container';
 import { ascending, descending } from 'd3-array';
 import { arc as d3Arc, pie as d3Pie } from 'd3-shape';
 import { color as d3Color } from 'd3-color';
-import { event as d3event, select, mouse as d3mouse } from 'd3-selection';
+import { event as d3event, select } from 'd3-selection';
 import { interpolate } from 'd3-interpolate';
 import 'd3-transition';
 

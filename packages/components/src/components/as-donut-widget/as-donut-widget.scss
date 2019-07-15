@@ -25,7 +25,6 @@ as-donut-widget {
   min-width: 228px;
   height: 100%;
   max-height: 100%;
-  overflow: auto;
   background: var(--as--histogram-widget--background-color);
 
   .as-donut-wrapper {
@@ -90,6 +89,7 @@ as-donut-widget {
       background-color: var(--as--donut-widget--tooltip--background-color);
       pointer-events: none;
       user-select: none;
+      z-index: 999999;
     }
 
     .as-donut-tooltip::after {
