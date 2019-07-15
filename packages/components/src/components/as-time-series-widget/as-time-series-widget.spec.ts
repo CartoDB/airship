@@ -1,3 +1,4 @@
+import { AUTO_FORMAT, DEFAULT_DATE_FORMAT, DEFAULT_NUMBER_FORMAT } from '../common/constants';
 import { TimeSeriesWidget } from './as-time-series-widget';
 
 describe('as-time-series-widget', () => {
@@ -5,13 +6,34 @@ describe('as-time-series-widget', () => {
 
   beforeEach(() => {
     timeSeriesWidget = new TimeSeriesWidget();
+  });
+
+  it('should set by default time format to "%x - %X"', () => {
     timeSeriesWidget.data = numberData;
     timeSeriesWidget.render();
     timeSeriesWidget.componentDidLoad();
+
+    expect(timeSeriesWidget.timeFormat).toEqual('%x - %X');
   });
 
-  it('should set by default time format to "auto"', () => {
-    expect(timeSeriesWidget.timeFormat).toEqual('auto');
+  it('should set automatically number format to "%x" if data type is "number"', () => {
+    timeSeriesWidget.timeFormat = AUTO_FORMAT;
+    timeSeriesWidget.data = numberData;
+    timeSeriesWidget.render();
+    timeSeriesWidget.componentWillLoad();
+    timeSeriesWidget.componentDidLoad();
+
+    expect(timeSeriesWidget.timeFormat).toEqual(DEFAULT_NUMBER_FORMAT);
+  });
+
+  it('should set automatically time format to "%x" if data type is "date"', () => {
+    timeSeriesWidget.timeFormat = AUTO_FORMAT;
+    timeSeriesWidget.data = timeData;
+    timeSeriesWidget.render();
+    timeSeriesWidget.componentWillLoad();
+    timeSeriesWidget.componentDidLoad();
+
+    expect(timeSeriesWidget.timeFormat).toEqual(DEFAULT_DATE_FORMAT);
   });
 });
 

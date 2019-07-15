@@ -32,9 +32,9 @@ Whether the animation is playing or not. Play / Pause button icon depends on thi
 
 How much the animation has progressed. Must be a number between 0 and 100.
 
-#### **timeFormat**: string = 'auto'
+#### **timeFormat**: string = '%x - %X'
 
-A string represeting a format [compatible with d3-time-format](https://github.com/d3/d3-time-format#locale_format). It will be used to format the X-Axis of the histogram. If set to 'auto' it will set a default format depending on the input type (date or number)
+A string represeting a format [compatible with d3-time-format](https://github.com/d3/d3-time-format#locale_format). It will be used to format the X-Axis of the histogram. It is set to default '%x - %X'. If it is set to 'auto', it will use a default format depending on the input type (date or number)
 
 #### **timeFormatLocale**: Object
 

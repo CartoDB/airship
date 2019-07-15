@@ -1,13 +1,20 @@
 import { Component, Event, EventEmitter, h, Method, Prop, Watch } from '@stencil/core';
 import { scaleLinear } from 'd3-scale';
 import { event as d3event } from 'd3-selection';
-import { timeFormat, timeFormatDefaultLocale, TimeLocaleDefinition } from 'd3-time-format';
+import {
+  timeFormat,
+  timeFormatDefaultLocale,
+  TimeLocaleDefinition
+} from 'd3-time-format';
 import { icon } from '../../utils/icons';
 import { AxisOptions, HistogramColorRange, HistogramData, HistogramSelection } from '../as-histogram-widget/interfaces';
 import { RenderOptions } from '../as-histogram-widget/types/RenderOptions';
 import {
+  AUTO_FORMAT,
   DEFAULT_BACKGROUND_BAR_COLOR,
-  DEFAULT_BAR_COLOR
+  DEFAULT_BAR_COLOR,
+  DEFAULT_DATE_FORMAT,
+  DEFAULT_NUMBER_FORMAT
 } from '../common/constants';
 import { TimeSeriesData } from './interfaces';
 import { sameData } from './utils/data.service';
@@ -178,7 +185,7 @@ export class TimeSeriesWidget {
    * This string will be parsed by d3-time-format (https://github.com/d3/d3-time-format)
    * and will be used to format the graph's x-axis
    */
-  @Prop() public timeFormat: string = 'auto';
+  @Prop() public timeFormat: string = '%x - %X';
 
   /**
    * Setting this property will make the date formatter be sensitive to locales. The format
@@ -268,6 +275,10 @@ export class TimeSeriesWidget {
       return;
     } else {
       this._data = newData;
+
+      this.timeFormat = this.timeFormat === AUTO_FORMAT
+        ? typeof this.data[0].start === 'number' ? DEFAULT_NUMBER_FORMAT : DEFAULT_DATE_FORMAT
+        : this.timeFormat;
     }
   }
 

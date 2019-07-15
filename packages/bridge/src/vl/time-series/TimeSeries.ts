@@ -147,10 +147,6 @@ export class TimeSeries {
     this._min = this._animation.input.min;
     this._duration = this._animation.duration.value;
 
-    this._timeSeriesWidget.timeFormat = this._timeSeriesWidget.timeFormat === 'auto'
-      ? this._getTimeFormat(this._animation)
-      : this._timeSeriesWidget.timeFormat;
-
     this._layer.on('updated', () => {
       this._timeSeriesWidget.progress = this._animation.getProgressPct() * 100;
       this._timeSeriesWidget.playing = this._animation.isPlaying();
@@ -171,10 +167,6 @@ export class TimeSeries {
     this._timeSeriesWidget.addEventListener('pause', () => {
       this._animation.pause();
     });
-  }
-
-  private _getTimeFormat(expr) {
-    return expr.input.type === 'date' ? '%x' : '%Q';
   }
 
   private _getAnimationExpression() {
