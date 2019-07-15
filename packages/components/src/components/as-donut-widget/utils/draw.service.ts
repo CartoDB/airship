@@ -27,7 +27,7 @@ export function renderDonut(
   const radius = Math.min(width, height);
   const center = radius / 2;
 
-  pie = d3Pie().value((d: any) => d.value).padAngle(0.01);  // TODO: check this
+  pie = d3Pie().value((d: any) => d.value).padAngle(0.01);  // TODO: check this  
   
   arc = d3Arc()
     .innerRadius((center - arcSize) - padding)

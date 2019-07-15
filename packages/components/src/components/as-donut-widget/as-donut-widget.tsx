@@ -151,7 +151,6 @@ export class DonutWidget {
   }
 
   public componentDidLoad() {
-    this.bbox = this.el.getBoundingClientRect();
     this.prepareData();
     this.clearGraph();
     this.renderGraph();
@@ -213,6 +212,7 @@ export class DonutWidget {
       return;
     }
 
+    this.bbox = this.wrapper.getBoundingClientRect();
     const width = this.bbox.width;
     const height = this.bbox.height;
 

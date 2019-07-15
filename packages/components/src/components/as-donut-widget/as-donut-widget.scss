@@ -1,5 +1,6 @@
 
 as-donut-widget {
+  --as--donut-widget--background-color: var(--as--color--ui-01, #{$color-ui-01});
   --as--donut-widget--label-title--font-size: var(--as--size--font-02, #{$font-size-02});
   --as--donut-widget--label-title--font-weight: normal;
   --as--donut-widget--label-title--line-height: 1.5;
@@ -19,10 +20,22 @@ as-donut-widget {
   --as--donut-widget--tooltip--value--line-height: 1.67;
   --as--donut-widget--tooltip--value--color: var(--as--color--ui-03, #{$color-ui-03});
 
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 228px;
+  height: 100%;
+  max-height: 100%;
+  overflow: auto;
+  background: var(--as--histogram-widget--background-color);
+  
   .as-donut-wrapper {
+    display: flex;
+		flex-direction: column;
+    justify-content: center;
     position: relative;
-    width: 100%;
-    height: 100%;
+    flex: 1;
+    min-height: 136px;
   
     .as-donut-label {
       position: absolute;
