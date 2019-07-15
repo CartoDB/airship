@@ -63,6 +63,11 @@ export class DonutWidget {
   @Prop() public labelTitle: string;
 
   /**
+   * Donut label units
+   */
+  @Prop() public labelUnits: string;
+
+  /**
    * Margin between mouse and tooltip
    */
   @Prop() public tooltipMargin: number = 40;
@@ -227,13 +232,14 @@ export class DonutWidget {
       }
     });
     
+    this.totalValue = this.data.reduce((prev, curr) => prev + curr.value, 0);
+    
     const sel = this.data.filter((item: any) => this.selected && item.id === this.selected.data.id)[0];
 
     if (sel) {
       this.setLabel(sel.key, sel.value);
     } else {
       this.selected = null;
-      this.totalValue = this.data.reduce((prev, curr) => prev + curr.value, 0);
       this.setLabel(this.labelTitle, this.totalValue);
     }
 
@@ -285,7 +291,10 @@ export class DonutWidget {
     return (
       <div ref={(ref) => this.labelElement = ref} class='as-donut-label'>
         <p class='as-label-title'></p>
-        <p class='as-label-value'></p>
+        <p class='as-label-value'>
+          <span class="as-label-value-value"></span>
+          <span class="as-label-value-unit">{this.labelUnits}</span>
+        </p>
       </div>
     );
   }
@@ -293,14 +302,14 @@ export class DonutWidget {
   private setLabel(key?: string, value?: number) {
     this.label = select(this.labelElement);
     this.label.select('.as-label-title').text(key ? key : this.labelTitle);
-    this.label.select('.as-label-value')
+    this.label.select('.as-label-value .as-label-value-value')
       .transition()
       .tween('text', function() {
         const selection = select(this);
         const start = parseInt(select(this).text(), 0) || 0;
         const end = value ? value : 0;
         const interpolator = interpolateNumber(start, end);
-
+        
         return (t) => {
           selection.text(Math.round(interpolator(t)));
         };
@@ -344,7 +353,7 @@ export class DonutWidget {
         <span style="background-color: ${data.color};"></span>
         <p>${data.key}</p>
       </div>
-      <p class="value">${data.value}%</p>
+      <p class="value">${Math.floor(data.value / this.totalValue * 100)}%</p>
     `);
 
     this.tooltip

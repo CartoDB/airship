@@ -5,12 +5,11 @@ as-donut-widget {
   --as--donut-widget--label-title--font-weight: normal;
   --as--donut-widget--label-title--line-height: 1.5;
   --as--donut-widget--label-title--color: var(--as--color--ui-03, #{$color-ui-03});
-
   --as--donut-widget--label-value--font-size: var(--as--size--font-04, #{$font-size-04});
   --as--donut-widget--label-value--font-weight: bold;
   --as--donut-widget--label-value--line-height: 1.33;
   --as--donut-widget--label-value--color: var(--as--color--type-01, #{$color-type-01});
-  
+  --as--donut-widget--label-value--unit--color: var(--as--color--type-02, #{$color-type-02});
   --as--donut-widget--tooltip--border-radius: 4px;
   --as--donut-widget--tooltip--background-color: var(--as--color--type-01, #{$color-type-01});
   --as--donut-widget--tooltip--name--font-size: var(--as--size--font-02, #{$font-size-02});
@@ -28,15 +27,15 @@ as-donut-widget {
   max-height: 100%;
   overflow: auto;
   background: var(--as--histogram-widget--background-color);
-  
+
   .as-donut-wrapper {
     display: flex;
-		flex-direction: column;
-    justify-content: center;
     position: relative;
     flex: 1;
+    flex-direction: column;
+    justify-content: center;
     min-height: 136px;
-  
+
     .as-donut-label {
       position: absolute;
       top: 50%;
@@ -45,62 +44,70 @@ as-donut-widget {
       font-family: inherit;
       text-align: center;
     }
-  
+
     .as-donut-label .as-label-title {
       margin: 0;
+      overflow: hidden;
+      color: var(--as--donut-widget--label-title--color);
       font-size: var(--as--donut-widget--label-title--font-size);
       font-weight: var(--as--donut-widget--label-title--font-weight);
       line-height: var(--as--donut-widget--label-title--line-height);
-      color: var(--as--donut-widget--label-title--color);
       text-align: center;
-      white-space: nowrap;
       text-overflow: ellipsis;
-      overflow: hidden;
+      white-space: nowrap;
     }
-  
+
     .as-donut-label .as-label-value {
       margin: 0;
       font-size: var(--as--donut-widget--label-value--font-size);
-      font-weight: var(--as--donut-widget--label-value--font-weight);
       line-height: var(--as--donut-widget--label-value--line-height);
-      color: var(--as--donut-widget--label-value--color);
+
+      .as-label-value-value {
+        color: var(--as--donut-widget--label-value--color);
+        font-weight: var(--as--donut-widget--label-value--font-weight);
+      }
+
+      .as-label-value-unit {
+        color: var(--as--donut-widget--label-value--unit--color);
+        font-weight: var(--as--donut-widget--label-title--font-weight);
+      }
     }
-  
+
     .as-donut-tooltip {
       display: flex;
+      position: absolute;
+      z-index: 5;
       flex-direction: row;
       align-items: center;
       justify-content: space-between;
-      position: absolute;
       width: auto;
       min-width: 136px;
       height: 28px;
       padding: 0 8px;
-      border-radius: var(--as--donut-widget--tooltip--border-radius);
-      background-color: var(--as--donut-widget--tooltip--background-color);
       transform: translate(-50%);
+      border-radius: var(--as--donut-widget--tooltip--border-radius);
       opacity: 0;
+      background-color: var(--as--donut-widget--tooltip--background-color);
       pointer-events: none;
       user-select: none;
-      z-index: 5;
     }
-  
-    .as-donut-tooltip:after {
+
+    .as-donut-tooltip::after {
       content: "";
       position: absolute;
-      left: calc(50% - 4px);
       bottom: -4px;
-      border-width: 4px 4px 0 4px;
-      border-color: var(--as--donut-widget--tooltip--background-color) transparent transparent transparent;
+      left: calc(50% - 4px);
+      border-width: 4px 4px 0;
       border-style: solid;
+      border-color: var(--as--donut-widget--tooltip--background-color) transparent transparent transparent;
     }
-  
+
     .as-donut-tooltip .name {
       display: flex;
       flex-direction: row;
       align-items: center;
     }
-  
+
     .as-donut-tooltip .name p {
       margin-right: 6px;
       color: var(--as--donut-widget--tooltip--name--color);
@@ -108,14 +115,14 @@ as-donut-widget {
       line-height: var(--as--donut-widget--tooltip--name--line-height);
       white-space: nowrap;
     }
-  
+
     .as-donut-tooltip .name span {
       width: 8px;
       height: 8px;
       margin-right: 8px;
       border-radius: 2px;
     }
-    
+
     .as-donut-tooltip .value {
       color: var(--as--donut-widget--tooltip--value--color);
       font-size: var(--as--donut-widget--tooltip--value--font-size);

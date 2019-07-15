@@ -218,6 +218,10 @@ export namespace Components {
     */
     'labelTitle': string;
     /**
+    * Donut label units
+    */
+    'labelUnits': string;
+    /**
     * Message shown in body when no data is available
     */
     'noDataBodyMessage': string;
@@ -280,6 +284,10 @@ export namespace Components {
     * Donut label title
     */
     'labelTitle'?: string;
+    /**
+    * Donut label units
+    */
+    'labelUnits'?: string;
     /**
     * Message shown in body when no data is available
     */
