@@ -1,4 +1,5 @@
 import { Component, Element, Prop, Watch, Method } from '@stencil/core';
+import { ascending, descending } from 'd3-array';
 import { select } from 'd3-selection';
 import { interpolateNumber } from 'd3-interpolate';
 import { SVGContainer } from './types/Container';
@@ -76,7 +77,6 @@ export class DonutWidget {
    * Description text of the widget
    *
    * @type {string}
-   * @memberof CategoryWidget
    */
   @Prop() public description: string;
 
@@ -84,7 +84,6 @@ export class DonutWidget {
    * Heading text of the widget
    *
    * @type {string}
-   * @memberof CategoryWidget
    */
   @Prop() public heading: string;
 
@@ -92,7 +91,6 @@ export class DonutWidget {
    * If truthy, it'll show a button to clear selected categories when there are any. Default value is `false`.
    *
    * @type {boolean}
-   * @memberof CategoryWidget
    */
   @Prop() public showClearButton: boolean = false;
 
@@ -133,6 +131,12 @@ export class DonutWidget {
    * Boolean property to control color scheme
    */
   @Prop() public statusColors: boolean = false;
+
+  /**
+   * Sorting data
+   * 
+   */
+  @Prop() public order: string = null;
 
   @Element() private el: HTMLStencilElement;
 
@@ -271,6 +275,7 @@ export class DonutWidget {
     drawService.renderDonut(
       this.container,
       this.data,
+      this.order,
       width,
       height,
       this.arcSize,

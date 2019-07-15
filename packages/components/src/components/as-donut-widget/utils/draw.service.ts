@@ -1,4 +1,5 @@
 import { SVGContainer } from '../types/Container';
+import { ascending, descending } from 'd3-array';
 import { arc as d3Arc, pie as d3Pie } from 'd3-shape';
 import { color as d3Color } from 'd3-color';
 import { event as d3event, select, mouse as d3mouse } from 'd3-selection';
@@ -14,6 +15,7 @@ let donut;
 export function renderDonut(
   container: SVGContainer,
   data: any,
+  order: string,
   width: number,
   height: number,
   arcSize: number,
@@ -27,7 +29,16 @@ export function renderDonut(
   const radius = Math.min(width, height);
   const center = radius / 2;
 
-  pie = d3Pie().value((d: any) => d.value).padAngle(0.01);  // TODO: check this  
+  if (order && order !== 'ascending' && order !== 'descending') { 
+    throw new Error(`Airship: DonutChart: the order property can be 'ascending' or 'descending'`) 
+  }
+
+  pie = d3Pie()
+    .sort((a: any, b: any) => 
+      (!order) ? null : 
+      (order === 'ascending') ?
+      ascending(a.value, b.value) : descending(a.value, b.value))
+    .value((d: any) => d.value).padAngle(0.01);  // TODO: check this  
   
   arc = d3Arc()
     .innerRadius((center - arcSize) - padding)

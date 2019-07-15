@@ -230,6 +230,10 @@ export namespace Components {
     */
     'noDataHeaderMessage': string;
     /**
+    * Sorting data
+    */
+    'order': string;
+    /**
     * Donut chart padding
     */
     'padding': number;
@@ -296,6 +300,10 @@ export namespace Components {
     * Message shown in header when no data is available
     */
     'noDataHeaderMessage'?: string;
+    /**
+    * Sorting data
+    */
+    'order'?: string;
     /**
     * Donut chart padding
     */
