@@ -76,6 +76,7 @@ as-donut-widget {
       display: flex;
       position: absolute;
       z-index: 5;
+      z-index: 999999;
       flex-direction: row;
       align-items: center;
       justify-content: space-between;
@@ -89,7 +90,6 @@ as-donut-widget {
       background-color: var(--as--donut-widget--tooltip--background-color);
       pointer-events: none;
       user-select: none;
-      z-index: 999999;
     }
 
     .as-donut-tooltip::after {

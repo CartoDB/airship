@@ -1,5 +1,5 @@
 import { Component, Element, Prop, Watch, Method } from '@stencil/core';
-import { ascending, descending } from 'd3-array';
+import { format as d3Format } from 'd3-format';
 import { select } from 'd3-selection';
 import { interpolateNumber } from 'd3-interpolate';
 import { SVGContainer } from './types/Container';
@@ -8,22 +8,22 @@ import drawService from './utils/draw.service';
 
 const TRANSITION_DURATION = 500;
 const CATEGORICAL_COLORS = [
-  '#7F3C8D', 
-  '#11A579', 
-  '#3969AC', 
-  '#F2B701', 
-  '#E73F74', 
-  '#80BA5A', 
-  '#E68310', 
-  '#008695', 
-  '#CF1C90', 
-  '#f97b72', 
-  '#4b4b8f', 
+  '#7F3C8D',
+  '#11A579',
+  '#3969AC',
+  '#F2B701',
+  '#E73F74',
+  '#80BA5A',
+  '#E68310',
+  '#008695',
+  '#CF1C90',
+  '#f97b72',
+  '#4b4b8f',
   '#A5AA99'
 ];
 const STATUS_COLORS = [
-  '#80b622', 
-  '#fdb32b', 
+  '#80b622',
+  '#fdb32b',
   '#f3522b'
 ];
 
@@ -134,9 +134,15 @@ export class DonutWidget {
 
   /**
    * Sorting data
-   * 
+   * ascending/descending
    */
   @Prop() public order: string = null;
+
+  /**
+   * Format for the donut label
+   * https://github.com/d3/d3-format
+   */
+  @Prop() public labelFormat: string;
 
   @Element() private el: HTMLStencilElement;
 
@@ -184,12 +190,12 @@ export class DonutWidget {
   }
 
   @Method()
-  public getSelection () {
+  public getSelection() {
     // TODO
   }
 
   @Method()
-  public setSelection () {
+  public setSelection() {
     // TODO
   }
 
@@ -235,9 +241,9 @@ export class DonutWidget {
         item.color = (this.statusColors && this.data.length <= 3) ? STATUS_COLORS[i] : CATEGORICAL_COLORS[i];
       }
     });
-    
+
     this.totalValue = this.data.reduce((prev, curr) => prev + curr.value, 0);
-    
+
     const sel = this.data.filter((item: any) => this.selected && item.id === this.selected.data.id)[0];
 
     if (sel) {
@@ -307,19 +313,24 @@ export class DonutWidget {
   private setLabel(key?: string, value?: number) {
     this.label = select(this.labelElement);
     this.label.select('.as-label-title').text(key ? key : this.labelTitle);
-    this.label.select('.as-label-value .as-label-value-value')
-      .transition()
-      .tween('text', function() {
-        const selection = select(this);
-        const start = parseInt(select(this).text(), 0) || 0;
-        const end = value ? value : 0;
-        const interpolator = interpolateNumber(start, end);
-        
-        return (t) => {
-          selection.text(Math.round(interpolator(t)));
-        };
-      })
-      .duration(500);
+    if (this.labelFormat) {
+      this.label.select('.as-label-value .as-label-value-value')
+        .text(d3Format(this.labelFormat)(value));
+    } else {   
+      this.label.select('.as-label-value .as-label-value-value')
+        .transition()
+        .tween('text', function () {
+          const selection = select(this);
+          const start = parseInt(select(this).text(), 0) || 0;
+          const end = value ? value : 0;
+          const interpolator = interpolateNumber(start, end);
+
+          return (t) => {
+            selection.text(Math.round(interpolator(t)));
+          };
+        })
+        .duration(500);
+    }
   }
 
   private onGraphMouseOver(data: any, pageX: number, pageY: number) {

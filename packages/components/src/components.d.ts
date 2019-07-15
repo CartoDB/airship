@@ -214,6 +214,10 @@ export namespace Components {
     */
     'isLoading': boolean;
     /**
+    * Format for the donut label https://github.com/d3/d3-format
+    */
+    'labelFormat': string;
+    /**
     * Donut label title
     */
     'labelTitle': string;
@@ -230,7 +234,7 @@ export namespace Components {
     */
     'noDataHeaderMessage': string;
     /**
-    * Sorting data
+    * Sorting data ascending/descending
     */
     'order': string;
     /**
@@ -285,6 +289,10 @@ export namespace Components {
     */
     'isLoading'?: boolean;
     /**
+    * Format for the donut label https://github.com/d3/d3-format
+    */
+    'labelFormat'?: string;
+    /**
     * Donut label title
     */
     'labelTitle'?: string;
@@ -301,7 +309,7 @@ export namespace Components {
     */
     'noDataHeaderMessage'?: string;
     /**
-    * Sorting data
+    * Sorting data ascending/descending
     */
     'order'?: string;
     /**
@@ -981,7 +989,7 @@ export namespace Components {
     /**
     * Proxy to as-histogram-widget getSelection()
     */
-    'getSelection': () => Promise<number[] | string[]>;
+    'getSelection': () => Promise<string[] | number[]>;
     /**
     * Title of the widget to be displayed
     */
