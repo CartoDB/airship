@@ -1,4 +1,4 @@
-import { Component, Element, Prop, Watch } from '@stencil/core';
+import { Component, Element, Prop, Watch, Method } from '@stencil/core';
 import { select } from 'd3-selection';
 import { interpolateNumber } from 'd3-interpolate';
 import { SVGContainer } from './types/Container';
@@ -6,6 +6,25 @@ import { DonutData } from './interfaces';
 import drawService from './utils/draw.service';
 
 const TRANSITION_DURATION = 500;
+const CATEGORICAL_COLORS = [
+  '#7F3C8D', 
+  '#11A579', 
+  '#3969AC', 
+  '#F2B701', 
+  '#E73F74', 
+  '#80BA5A', 
+  '#E68310', 
+  '#008695', 
+  '#CF1C90', 
+  '#f97b72', 
+  '#4b4b8f', 
+  '#A5AA99'
+];
+const STATUS_COLORS = [
+  '#80b622', 
+  '#fdb32b', 
+  '#f3522b'
+];
 
 /**
  * Donut Widget
@@ -105,6 +124,11 @@ export class DonutWidget {
    */
   @Prop() public noDataBodyMessage: string = 'There is no data to display.';
 
+  /**
+   * Boolean property to control color scheme
+   */
+  @Prop() public statusColors: boolean = false;
+
   @Element() private el: HTMLStencilElement;
 
   /**
@@ -150,6 +174,21 @@ export class DonutWidget {
     this.prepareData();
   }
 
+  @Method()
+  public getSelection () {
+    // TODO
+  }
+
+  @Method()
+  public setSelection () {
+    // TODO
+  }
+
+  @Method()
+  public clearSelection() {
+    // TODO
+  }
+
   public componentDidLoad() {
     this.prepareData();
     this.clearGraph();
@@ -182,7 +221,12 @@ export class DonutWidget {
   }
 
   private prepareData() {
-    // TODO: color map
+    this.data.map((item: any, i: number) => {
+      if (!item.color) {
+        item.color = (this.statusColors && this.data.length <= 3) ? STATUS_COLORS[i] : CATEGORICAL_COLORS[i];
+      }
+    });
+    
     const sel = this.data.filter((item: any) => this.selected && item.id === this.selected.data.id)[0];
 
     if (sel) {

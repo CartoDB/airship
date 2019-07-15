@@ -187,6 +187,7 @@ export namespace Components {
     * Donut arc size
     */
     'arcSize': number;
+    'clearSelection': () => void;
     /**
     * Donut data to be displayed
     */
@@ -203,6 +204,7 @@ export namespace Components {
     * Extended error description, only shown when error is present
     */
     'errorDescription': string;
+    'getSelection': () => void;
     /**
     * Heading text of the widget
     */
@@ -227,6 +229,7 @@ export namespace Components {
     * Donut chart padding
     */
     'padding': number;
+    'setSelection': () => void;
     /**
     * If truthy, it'll show a button to clear selected categories when there are any. Default value is `false`.
     */
@@ -235,6 +238,10 @@ export namespace Components {
     * If truthy, it'll render the heading and component's description. Default value is `true`.
     */
     'showHeader': boolean;
+    /**
+    * Boolean property to control color scheme
+    */
+    'statusColors': boolean;
     /**
     * Margin between mouse and tooltip
     */
@@ -293,6 +300,10 @@ export namespace Components {
     * If truthy, it'll render the heading and component's description. Default value is `true`.
     */
     'showHeader'?: boolean;
+    /**
+    * Boolean property to control color scheme
+    */
+    'statusColors'?: boolean;
     /**
     * Margin between mouse and tooltip
     */
