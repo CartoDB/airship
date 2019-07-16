@@ -235,7 +235,7 @@ export namespace Components {
     /**
     * Returns the current selection
     */
-    'getSelection': () => Promise<string[] | number[]>;
+    'getSelection': () => Promise<(string | number | Date)[]>;
     /**
     * Title of the widget to be displayed
     */
@@ -1766,7 +1766,7 @@ declare namespace LocalJSX {
     /**
     * This method proxies the selectionChanged event on the underlying graph, but parses it into a Date
     */
-    'onSelectionChanged'?: (event: CustomEvent<Date[]>) => void;
+    'onSelectionChanged'?: (event: CustomEvent<Array<Date | number>>) => void;
     /**
     * Whether the animation is playing or not.
     */
