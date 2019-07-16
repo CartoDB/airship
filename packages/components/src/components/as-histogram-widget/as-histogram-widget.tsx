@@ -288,6 +288,7 @@ export class HistogramWidget {
 
   constructor() {
     this._resizeRender = this._resizeRender.bind(this);
+    this._setTooltip = this._setTooltip.bind(this);
   }
 
   @Watch('backgroundData')
@@ -566,7 +567,7 @@ export class HistogramWidget {
       this._color,
       this._barBackgroundColor,
       (value) => this.tooltipFormatter(value),
-      this._setTooltip.bind(this),
+      this._setTooltip,
       FG_CLASSNAME
     );
 
@@ -636,7 +637,7 @@ export class HistogramWidget {
     this._muteSelectionChanged = false;
   }
 
-  private _setTooltip(value: string | string[] | null, evt?: MouseEvent) {
+  private _setTooltip(value: string | string[] | null, barBBox: ClientRect) {
     this._muteSelectionChanged = true;
 
     if (value === null) {
@@ -646,7 +647,7 @@ export class HistogramWidget {
 
     this._skipRender = true;
     this.tooltip = value;
-    this._showTooltip(evt);
+    this._showTooltip(barBBox);
   }
 
   private _updateSelection() {
@@ -943,40 +944,15 @@ export class HistogramWidget {
     this.xScale = xAxis.scale();
   }
 
-  private _getTooltipPosition(mouseX: number, mouseY: number) {
-    const y = mouseY;
-    let x = mouseX;
-
-    const viewportBoundaries = {
-      bottom: window.innerHeight + window.pageYOffset,
-      right: window.innerWidth + window.pageXOffset,
-    };
-
-    const tooltipContainerBoundingRect = this.tooltipElement.getBoundingClientRect();
-
-    const tooltipBoundaries = {
-      bottom: mouseY + tooltipContainerBoundingRect.height,
-      right: mouseX + tooltipContainerBoundingRect.width,
-    };
-
-    if (viewportBoundaries.right < tooltipBoundaries.right) {
-      x = mouseX - tooltipContainerBoundingRect.width;
-    }
-
-    return [x, y];
-  }
-
-  private _showTooltip(event: MouseEvent) {
+  private _showTooltip(barBoundingBox: ClientRect) {
     if (!this.tooltipElement) {
       return;
     }
 
-    const [x, y] = this._getTooltipPosition(event.clientX, event.clientY);
-
     select(this.tooltipElement)
       .style('display', 'inline')
-      .style('left', `${x}px`)
-      .style('top', `${y}px`);
+      .style('left', `${barBoundingBox.left + (barBoundingBox.width / 2)}px`)
+      .style('top', `${barBoundingBox.top}px`);
   }
 
   private _hideTooltip() {

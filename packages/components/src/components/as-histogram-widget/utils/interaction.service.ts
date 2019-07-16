@@ -15,7 +15,7 @@ export function addTooltip(
   color: string,
   unselectedColor: string,
   formatter: (d: HistogramData) => string | string[],
-  setTooltip: (tooltip: string | string[] | null, evt?: MouseEvent) => void,
+  setTooltip: (tooltip: string | string[] | null, node: ClientRect, evt?: MouseEvent) => void,
   className: string
 ) {
   container.on('mousemove', () => {
@@ -24,13 +24,13 @@ export function addTooltip(
     let anyHovered = false;
 
     _forEachRect(barsContainer, clientX, clientY, className,
-      (data, node, bucketIndex) => {
+      (data, node, bucketIndex, boundingBox: ClientRect) => {
         const selected = _isSelected(hasSelection.selection, bucketIndex);
 
         let _color = selected ? data.color || color : unselectedColor;
         _color = shadeOrBlend(-0.16, _color);
         node.style('fill', _color);
-        setTooltip(formatter(data), evt);
+        setTooltip(formatter(data), boundingBox, evt);
         anyHovered = true;
       },
       (data, node, bucketIndex) => {
@@ -39,7 +39,7 @@ export function addTooltip(
       });
 
     if (!anyHovered) {
-      setTooltip(null);
+      setTooltip(null, null);
     }
   })
   .on('click', () => {
@@ -51,7 +51,7 @@ export function addTooltip(
     });
   })
   .on('mouseleave', () => {
-    setTooltip(null);
+    setTooltip(null, null);
     barsContainer.selectAll(`rect.${className}`)
       .style('fill', (data: HistogramData, bucketIndex) => {
         if (_isSelected(hasSelection.selection, bucketIndex)) {
@@ -70,7 +70,12 @@ function _isSelected(range: number[] | null, bucketIndex: number) {
   return bucketIndex >= range[0] && bucketIndex < range[1];
 }
 
-type RectCallback = (data: HistogramData, node: Selection<BaseType, {}, null, undefined>, index: number) => void;
+type RectCallback = (
+  data: HistogramData,
+  node: Selection<BaseType, {}, null, undefined>,
+  index: number,
+  boundingBox: ClientRect
+) => void;
 
 /**
  * Cycles through all rects in container, fires a callback for the rect that contains the x / y points,
@@ -100,12 +105,12 @@ function _forEachRect(
         y <= bb.bottom;
 
       if (isInsideBB) {
-        insideCallback(data, nodeSelection, i);
+        insideCallback(data, nodeSelection, i, bb);
         return;
       }
 
       if (outsideCallback) {
-        outsideCallback(data, nodeSelection, i);
+        outsideCallback(data, nodeSelection, i, null);
       }
     });
 }
