@@ -1,6 +1,6 @@
 {
   "name": "@carto/airship-components",
-  "version": "2.2.0-rc.0",
+  "version": "2.2.0-rc.1",
   "description": "Airship is a set of tools designed to facilitate the development of location intelligence apps by offering layouts, basic patterns, templates, CSS classes, components, widgets and much more.",
   "module": "dist/index.mjs",
   "main": "dist/index.js",
@@ -34,7 +34,7 @@
     "jest": "24.8.0",
     "jest-cli": "24.8.0",
     "jest-environment-node": "23.4.0",
-    "puppeteer": "1.18.0",
+    "puppeteer": "1.17.0",
     "stylelint": "^9.3.0",
     "stylelint-config-property-sort-order-smacss": "^4.0.0",
     "stylelint-config-standard": "^18.2.0",
