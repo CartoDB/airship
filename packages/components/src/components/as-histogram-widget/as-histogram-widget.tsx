@@ -873,8 +873,6 @@ export class HistogramWidget {
     const spaceValues = values
       .map(this.xScale);
 
-    const domainValues = values.map(this.binsScale.invert);
-
     this.brushArea.call(this.brush.move, spaceValues);
 
     this.customHandles
@@ -898,9 +896,10 @@ export class HistogramWidget {
           return;
         }
 
-        if (!(domainValues[0] <= d.start && d.end <= domainValues[1])) {
+        if (i < values[0] || i >= values[1]) {
           return this._barBackgroundColor;
         }
+
         return d.color || this._color;
       });
   }
