@@ -18,6 +18,14 @@ export function numerical(data: VLNumericalHistogram): any[] {
   }));
 }
 
+export function date(data: VLNumericalHistogram): any[] {
+  return data.value.map((d) => ({
+    end: new Date(d.x[1]),
+    start: new Date(d.x[0]),
+    value: d.y,
+  }));
+}
+
 /**
  * Converts a categorical VL Histogram to Airship's Histogram widget format.
  *

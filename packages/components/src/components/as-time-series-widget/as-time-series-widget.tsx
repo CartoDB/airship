@@ -1,16 +1,23 @@
 import { Component, Event, EventEmitter, h, Method, Prop, Watch } from '@stencil/core';
 import { scaleLinear } from 'd3-scale';
 import { event as d3event } from 'd3-selection';
-import { timeFormat, timeFormatDefaultLocale, TimeLocaleDefinition } from 'd3-time-format';
+import {
+  timeFormat,
+  timeFormatDefaultLocale,
+  TimeLocaleDefinition
+} from 'd3-time-format';
 import { icon } from '../../utils/icons';
 import { AxisOptions, HistogramColorRange, HistogramData, HistogramSelection } from '../as-histogram-widget/interfaces';
 import { RenderOptions } from '../as-histogram-widget/types/RenderOptions';
 import {
+  AUTO_FORMAT,
   DEFAULT_BACKGROUND_BAR_COLOR,
-  DEFAULT_BAR_COLOR
+  DEFAULT_BAR_COLOR,
+  DEFAULT_DATE_FORMAT,
+  DEFAULT_NUMBER_FORMAT
 } from '../common/constants';
 import { TimeSeriesData } from './interfaces';
-import { prepareData, sameData } from './utils/data.service';
+import { sameData } from './utils/data.service';
 
 const SCRUBBER_SIZE = 6;
 
@@ -178,7 +185,7 @@ export class TimeSeriesWidget {
    * This string will be parsed by d3-time-format (https://github.com/d3/d3-time-format)
    * and will be used to format the graph's x-axis
    */
-  @Prop() public timeFormat: string = '%x - %X';
+  @Prop() public timeFormat: string = AUTO_FORMAT;
 
   /**
    * Setting this property will make the date formatter be sensitive to locales. The format
@@ -240,7 +247,7 @@ export class TimeSeriesWidget {
    * a Date
    */
   @Event()
-  private selectionChanged: EventEmitter<Date[]>;
+  private selectionChanged: EventEmitter<Array<Date | number>>;
 
   /**
    * The user has seeked the animation to this percentage.
@@ -250,12 +257,11 @@ export class TimeSeriesWidget {
 
   private histogram: HTMLAsHistogramWidgetElement;
   private _selection: number[];
-  private _formatter: (date: Date) => string;
+  private _formatter: (value: Date | number) => string;
   private _renderOptions: RenderOptions;
 
   // Last position when putting the mouse over the scrubber track
   private _lastMousePosition: number;
-  private _data: any;
   private _backgroundData: HistogramData[];
 
   constructor() {
@@ -267,13 +273,15 @@ export class TimeSeriesWidget {
     if (sameData(newData, oldData)) {
       return;
     } else {
-      this._data = prepareData(newData);
+      this.timeFormat = this.timeFormat === AUTO_FORMAT
+        ? typeof this.data[0].start === 'number' ? DEFAULT_NUMBER_FORMAT : DEFAULT_DATE_FORMAT
+        : this.timeFormat;
     }
   }
 
   @Watch('backgroundData')
   public onBackgroundDataChanged(newData) {
-    this._backgroundData = prepareData(newData);
+    this._backgroundData = newData;
   }
 
   @Watch('progress')
@@ -383,8 +391,8 @@ export class TimeSeriesWidget {
         return;
       }
 
-      // We have to coerce to number[] because it can also be string[] for categorical histograms
-      const selectedDates = (evt.detail.selection as number[]).map((epoch) => new Date(epoch));
+      // We have to coerce to Array<number | Date> because it can also be string[] for categorical histograms
+      const selectedDates = (evt.detail.selection as Array<number | Date>);
       this.selectionChanged.emit(selectedDates);
 
       this._render();
@@ -409,13 +417,13 @@ export class TimeSeriesWidget {
           showHeader={this.showHeader}
           showClear={this.showClear}
           disableInteractivity={this.disableInteractivity}
-          data={this._data}
+          data={this.data}
           backgroundData={this._backgroundData}
           color={this.color}
           unselectedColor={this.unselectedColor}
           colorRange={this.colorRange}
           axisFormatter={this.axisFormatter}
-          tooltipFormatter={this.tooltipFormatter}
+          tooltipFormatter={this.tooltipFormatter || this._tooltipFormatter.bind(this)}
           xLabel={this.xLabel}
           yLabel={this.yLabel}
           isLoading={this.isLoading}
@@ -433,8 +441,16 @@ export class TimeSeriesWidget {
       </as-histogram-widget>];
   }
 
-  private axisFormatter(value: number): string {
-    return this._formatter(new Date(value));
+  private axisFormatter(value: number | Date): string {
+    return this._formatter(value);
+  }
+
+  private _tooltipFormatter(data: TimeSeriesData): string[] {
+    return [
+      `start: ${this.axisFormatter(data.start)}`,
+      `end: ${this.axisFormatter(data.end)}`,
+      `value: ${data.value}`
+    ];
   }
 
   private _renderButton() {

@@ -147,7 +147,7 @@ For example a range slider
   <script type="module" src="https://libs.cartocdn.com/airship-components/%AS-VERSION%/airship/airship.esm.js"></script>
   <script nomodule="" src="https://libs.cartocdn.com/airship-components/%AS-VERSION%/airship/airship.js"></script>
   <!-- Include CARTO VL -->
-  <script src="https://libs.cartocdn.com/carto-vl/v1.2/carto-vl.min.js"></script>
+  <script src="https://libs.cartocdn.com/carto-vl/v1.4/carto-vl.min.js"></script>
   <!-- Include Mapbox GL JS -->
   <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.js"></script>
   <!-- Include Mapbox GL CSS -->

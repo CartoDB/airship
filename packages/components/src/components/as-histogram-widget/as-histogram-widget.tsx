@@ -365,7 +365,7 @@ export class HistogramWidget {
    * @memberof HistogramWidget
    */
   @Method()
-  public async getSelection(): Promise<number[] | string[]> {
+  public async getSelection(): Promise<Array<number | Date | string>> {
     const data = this._dataForSelection(this.selection);
     return this._simplifySelection(data);
   }
@@ -563,13 +563,15 @@ export class HistogramWidget {
 
     this.barsContainer = drawService.renderPlot(this.container);
 
+    const tooltipFormatter = this.tooltipFormatter || this._tooltipFormatter;
+
     interactionService.addTooltip(
       this.container,
       this.barsContainer,
       this,
       this._color,
       this._barBackgroundColor,
-      (value) => this.tooltipFormatter(value),
+      (value) => tooltipFormatter(value),
       this._setTooltip.bind(this),
       FG_CLASSNAME
     );
@@ -651,6 +653,10 @@ export class HistogramWidget {
     this._skipRender = true;
     this.tooltip = value;
     this._showTooltip(evt);
+  }
+
+  private _tooltipFormatter(data: HistogramData): string {
+    return `${data.start}, ${data.value}`;
   }
 
   private _updateSelection() {
@@ -794,7 +800,7 @@ export class HistogramWidget {
     return [data[selection[0]], data[selection[1] - 1]];
   }
 
-  private _simplifySelection(selection: HistogramData[]): string[] | number[] {
+  private _simplifySelection(selection: HistogramData[]): string[] | Array<Date | number> {
     if (selection === null) {
       return null;
     }
@@ -920,7 +926,9 @@ export class HistogramWidget {
   }
 
   private _generateYAxis() {
-    const yDomain: [number, number] = this.range !== null ? this.range : dataService.getYDomain(this._dataForDomain());
+    const yDomain: [number | Date, number | Date] = this.range !== null
+      ? this.range
+      : dataService.getYDomain(this._dataForDomain());
     this.yAxis = drawService.generateYScale(
       this.container,
       yDomain,
