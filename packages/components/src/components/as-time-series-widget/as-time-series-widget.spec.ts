@@ -8,12 +8,12 @@ describe('as-time-series-widget', () => {
     timeSeriesWidget = new TimeSeriesWidget();
   });
 
-  it(`should set by default time format to "${DEFAULT_DATE_FORMAT}"`, () => {
+  it(`should set by default time format to "${AUTO_FORMAT}"`, () => {
     timeSeriesWidget.data = numberData;
     timeSeriesWidget.render();
     timeSeriesWidget.componentDidLoad();
 
-    expect(timeSeriesWidget.timeFormat).toEqual(DEFAULT_DATE_FORMAT);
+    expect(timeSeriesWidget.timeFormat).toEqual(AUTO_FORMAT);
   });
 
   it('should set automatically number format to "%x" if data type is "number"', () => {
