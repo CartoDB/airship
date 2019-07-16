@@ -10,7 +10,6 @@
   <script src="packages/components/dist/airship.js"></script>
   <style>
     body {
-      font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
       margin: 0;
       padding: 0;
       background: #fff;
@@ -26,14 +25,11 @@
 </head>
 
 <body>
-  <as-gauge-widget id="gauge" value="5000">
+  <as-gauge-widget id="gauge" value="6000" min="0" max="10000">
   </as-gauge-widget>
 
   <script>
     const gauge = document.querySelector('#gauge')
-    const max = 8000
-    const min = 2000
-    const value = 5000
     const threshold = [
       {
         value: 7700,
@@ -44,6 +40,8 @@
         color: '#fdb32b'
       }
     ]
+
+    gauge.threshold = threshold
 
   </script>
 

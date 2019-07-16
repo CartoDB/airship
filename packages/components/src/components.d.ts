@@ -232,6 +232,57 @@ export namespace Components {
     'showClearButton'?: boolean;
   }
 
+  interface AsGaugeWidget {
+    /**
+    * Gauge arc size
+    */
+    'arcSize': number;
+    /**
+    * Gauge label title
+    */
+    'labelTitle': string;
+    /**
+    * Gauge label units
+    */
+    'labelUnits': string;
+    'max': number;
+    'min': number;
+    /**
+    * Gauge chart padding
+    */
+    'padding': number;
+    'threshold': [];
+    /**
+    * Gauge data to be displayed
+    */
+    'value': number;
+  }
+  interface AsGaugeWidgetAttributes extends StencilHTMLAttributes {
+    /**
+    * Gauge arc size
+    */
+    'arcSize'?: number;
+    /**
+    * Gauge label title
+    */
+    'labelTitle'?: string;
+    /**
+    * Gauge label units
+    */
+    'labelUnits'?: string;
+    'max'?: number;
+    'min'?: number;
+    /**
+    * Gauge chart padding
+    */
+    'padding'?: number;
+    'threshold'?: [];
+    /**
+    * Gauge data to be displayed
+    */
+    'value'?: number;
+  }
+
   interface AsHistogramWidget {
     /**
     * Function used to format the x-axis values
@@ -834,7 +885,7 @@ export namespace Components {
     /**
     * Proxy to as-histogram-widget getSelection()
     */
-    'getSelection': () => Promise<string[] | number[]>;
+    'getSelection': () => Promise<number[] | string[]>;
     /**
     * Title of the widget to be displayed
     */
@@ -1496,6 +1547,7 @@ declare global {
   interface StencilElementInterfaces {
     'AsCategoryWidget': Components.AsCategoryWidget;
     'AsDropdown': Components.AsDropdown;
+    'AsGaugeWidget': Components.AsGaugeWidget;
     'AsHistogramWidget': Components.AsHistogramWidget;
     'AsInfowindow': Components.AsInfowindow;
     'AsRangeSlider': Components.AsRangeSlider;
@@ -1543,6 +1595,7 @@ declare global {
   interface StencilIntrinsicElements {
     'as-category-widget': Components.AsCategoryWidgetAttributes;
     'as-dropdown': Components.AsDropdownAttributes;
+    'as-gauge-widget': Components.AsGaugeWidgetAttributes;
     'as-histogram-widget': Components.AsHistogramWidgetAttributes;
     'as-infowindow': Components.AsInfowindowAttributes;
     'as-range-slider': Components.AsRangeSliderAttributes;
@@ -1598,6 +1651,12 @@ declare global {
   var HTMLAsDropdownElement: {
     prototype: HTMLAsDropdownElement;
     new (): HTMLAsDropdownElement;
+  };
+
+  interface HTMLAsGaugeWidgetElement extends Components.AsGaugeWidget, HTMLStencilElement {}
+  var HTMLAsGaugeWidgetElement: {
+    prototype: HTMLAsGaugeWidgetElement;
+    new (): HTMLAsGaugeWidgetElement;
   };
 
   interface HTMLAsHistogramWidgetElement extends Components.AsHistogramWidget, HTMLStencilElement {}
@@ -1855,6 +1914,7 @@ declare global {
   interface HTMLElementTagNameMap {
     'as-category-widget': HTMLAsCategoryWidgetElement
     'as-dropdown': HTMLAsDropdownElement
+    'as-gauge-widget': HTMLAsGaugeWidgetElement
     'as-histogram-widget': HTMLAsHistogramWidgetElement
     'as-infowindow': HTMLAsInfowindowElement
     'as-range-slider': HTMLAsRangeSliderElement
@@ -1902,6 +1962,7 @@ declare global {
   interface ElementTagNameMap {
     'as-category-widget': HTMLAsCategoryWidgetElement;
     'as-dropdown': HTMLAsDropdownElement;
+    'as-gauge-widget': HTMLAsGaugeWidgetElement;
     'as-histogram-widget': HTMLAsHistogramWidgetElement;
     'as-infowindow': HTMLAsInfowindowElement;
     'as-range-slider': HTMLAsRangeSliderElement;
