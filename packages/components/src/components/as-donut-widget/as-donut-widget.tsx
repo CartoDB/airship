@@ -204,6 +204,18 @@ export class DonutWidget {
     // TODO
   }
 
+  constructor() {
+    this.resizeRender = this.resizeRender.bind(this);
+  }
+
+  public componentWillLoad() {
+    addEventListener('resize', this.resizeRender);
+  }
+
+  public componentDidUnload() {
+    removeEventListener('resize', this.resizeRender);
+  }
+
   public componentDidLoad() {
     this.prepareData();
     this.clearGraph();
@@ -219,6 +231,13 @@ export class DonutWidget {
       this.renderContent()
     ];
   }
+
+  private resizeRender() {
+    requestAnimationFrame(() => {
+      this.clearGraph();
+      this.renderGraph(false);
+    });
+  } 
 
   private renderHeader() {
     if (!this.showHeader) {
@@ -267,7 +286,7 @@ export class DonutWidget {
     );
   }
 
-  private renderGraph() {
+  private renderGraph(transition: boolean = true) {
     if (!this.container || !this.container.node()) {
       return;
     }
@@ -287,6 +306,7 @@ export class DonutWidget {
       this.arcSize,
       this.padding,
       this.selected,
+      transition,
       this.onGraphMouseOver.bind(this),
       this.onGraphMouseOut.bind(this),
       this.onGraphMouseMove.bind(this),

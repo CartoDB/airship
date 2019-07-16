@@ -21,6 +21,7 @@ export function renderDonut(
   arcSize: number,
   padding: number,
   selected?: any,
+  transition: boolean,
   onMouseOver?,
   onMouseOut?,
   onMouseMove?,
@@ -55,6 +56,16 @@ export function renderDonut(
     .attr('d', <any>arc)  // TODO: check this
     .attr('fill', (d: any) => (selected && selected.data.id !== d.data.id) ? GREY_COLOR : d.data.color)
     .style('cursor', 'pointer');
+
+  // TODO: think different transitions for new data and updates
+  if (transition) {
+    donut.transition('enter-donut')
+      .duration(TRANSITION_DURATION)
+      .attrTween('d', (d: any) => {
+        const interp = interpolate({ startAngle: 0, endAngle: 0 }, d);
+        return (t) => arc(interp(t));
+      });
+  }
 
   donut.on('mouseover', function (d: any) {
     if (selected) return;
@@ -95,14 +106,6 @@ export function renderDonut(
       selectItem(container, selected)
     }
   })
-
-  // TODO: think different transitions for new data and updates
-  donut.transition('enter-donut')
-    .duration(TRANSITION_DURATION)
-    .attrTween('d', (d: any) => {
-      const interp = interpolate({ startAngle: 0, endAngle: 0 }, d);
-      return (t) => arc(interp(t));
-    });
 }
 
 function selectItem(svg: SVGContainer, selected: any) {
