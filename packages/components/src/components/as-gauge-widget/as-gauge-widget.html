@@ -25,6 +25,8 @@
 </head>
 
 <body>
+  <button class="random">random</button>
+
   <as-gauge-widget id="gauge" value="6000" min="0" max="10000">
   </as-gauge-widget>
 
@@ -42,6 +44,13 @@
     ]
 
     gauge.threshold = threshold
+
+    document.querySelector('.random').addEventListener('click', () => {
+      const random = Math.floor(Math.random() * (1 + 10000 + 1) + 1)
+      gauge.value = random
+      console.log(gauge);
+      
+    })
 
   </script>
 
