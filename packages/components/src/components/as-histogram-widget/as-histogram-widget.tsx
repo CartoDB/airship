@@ -417,11 +417,7 @@ export class HistogramWidget {
    */
   @Method()
   public async xFormatter(value) {
-    if (this.axisFormatter) {
-      return this.axisFormatter(value);
-    }
-
-    return value;
+    return this._xFormatter(value);
   }
 
   public componentDidLoad() {
@@ -563,15 +559,13 @@ export class HistogramWidget {
 
     this.barsContainer = drawService.renderPlot(this.container);
 
-    const tooltipFormatter = this.tooltipFormatter || this._tooltipFormatter;
-
     interactionService.addTooltip(
       this.container,
       this.barsContainer,
       this,
       this._color,
       this._barBackgroundColor,
-      (value) => tooltipFormatter(value),
+      (value) => this.tooltipFormatter(value),
       this._setTooltip.bind(this),
       FG_CLASSNAME
     );
@@ -653,10 +647,6 @@ export class HistogramWidget {
     this._skipRender = true;
     this.tooltip = value;
     this._showTooltip(evt);
-  }
-
-  private _tooltipFormatter(data: HistogramData): string {
-    return `${data.start}, ${data.value}`;
   }
 
   private _updateSelection() {
@@ -1087,10 +1077,20 @@ export class HistogramWidget {
 
     if (this.isCategoricalData) {
       tooltip.push(`${data.category}`);
+    } else {
+      tooltip.push(`${this._xFormatter(data.start)} - ${this._xFormatter(data.end)}`);
     }
 
     tooltip.push(`${readableNumber(data.value).trim()}`);
 
     return tooltip;
+  }
+
+  private _xFormatter(value: Date | number): string {
+    if (this.axisFormatter) {
+      return this.axisFormatter(value);
+    } else {
+      return conditionalFormatter(value);
+    }
   }
 }

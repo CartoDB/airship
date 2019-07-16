@@ -291,7 +291,7 @@ export namespace Components {
     /**
     * Formats a number using the component's x-axis formatter if present
     */
-    'xFormatter': (value: any) => Promise<any>;
+    'xFormatter': (value: any) => Promise<string>;
     /**
     * Label the x axis of the histogram with the given string.
     */
