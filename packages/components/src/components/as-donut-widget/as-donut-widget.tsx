@@ -385,7 +385,7 @@ export class DonutWidget {
       selection={this.selectionText}
       clearText={this.clearText}
       showClear={!this.selectionEmpty}
-      onClear={() => this.clearSelection()}
+      onClear={() => this.onGraphClick()}
     ></as-widget-selection>;
   }
 
@@ -407,10 +407,14 @@ export class DonutWidget {
     if (this.tooltipVisible) {
       this.hideTooltip();
     }
+
+    console.log('sisis');
+    console.log(item);
+    
     
     if (item) {
       this.selected = item;
-      this.selectionEmpty = true;
+      this.selectionEmpty = false;
       this.selectionText = '1 selected';
       this.selectionEmpty = false;
       drawService.selectItem(this.container, item);

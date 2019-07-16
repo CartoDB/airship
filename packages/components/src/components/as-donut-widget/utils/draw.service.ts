@@ -98,7 +98,7 @@ export function renderDonut(
   donut.on('click', function (d: any) {
     if (onMouseOut) onMouseOut();
     
-    if (selectedItem && selectedItem === d) {
+    if (selectedItem && selectedItem.data.id === d.data.id) {
       selectedItem = null;
       if (onClick) onClick();
       unselectItem(container)
@@ -127,6 +127,8 @@ function selectItem(svg: SVGContainer, selected: any) {
 }
 
 function unselectItem(svg: SVGContainer) {
+  selectedItem = null;
+
   svg.selectAll('.donut path')
     .transition('arc-fill-in-out')
     .duration(TRANSITION_DURATION)
