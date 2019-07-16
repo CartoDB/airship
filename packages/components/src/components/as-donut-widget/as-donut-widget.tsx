@@ -202,6 +202,7 @@ export class DonutWidget {
 
   @Watch('data')
   public _onDataChanged() {
+    this.clearSelection();
     this.prepareData();
   }
 
@@ -407,10 +408,6 @@ export class DonutWidget {
     if (this.tooltipVisible) {
       this.hideTooltip();
     }
-
-    console.log('sisis');
-    console.log(item);
-    
     
     if (item) {
       this.selected = item;
@@ -420,9 +417,11 @@ export class DonutWidget {
       drawService.selectItem(this.container, item);
       this.setLabel(item.data.key, item.data.value);
     } else {
+      console.log('click');
+      console.log(item);
+      this.selectionEmpty = true;
       this.selected = null;
       this.selectionText = 'All selected';
-      this.selectionEmpty = true;
       drawService.unselectItem(this.container);
       this.setLabel(this.labelTitle, this.totalValue);
     }
