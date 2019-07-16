@@ -454,9 +454,8 @@ export class TimeSeriesWidget {
 
   private _tooltipFormatter(data: TimeSeriesData): string[] {
     return [
-      `start: ${this.axisFormatter(data.start)}`,
-      `end: ${this.axisFormatter(data.end)}`,
-      `value: ${data.value}`
+      `${this.axisFormatter(data.start)} - ${this.axisFormatter(data.end)}`,
+      `${data.value}`
     ];
   }
 
