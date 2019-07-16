@@ -944,9 +944,8 @@ export class HistogramWidget {
   }
 
   private _getTooltipPosition(mouseX: number, mouseY: number) {
-    const OFFSET = 25;
+    const y = mouseY;
     let x = mouseX;
-    let y = mouseY;
 
     const viewportBoundaries = {
       bottom: window.innerHeight + window.pageYOffset,
@@ -962,10 +961,6 @@ export class HistogramWidget {
 
     if (viewportBoundaries.right < tooltipBoundaries.right) {
       x = mouseX - tooltipContainerBoundingRect.width;
-    }
-
-    if (viewportBoundaries.bottom < tooltipBoundaries.bottom) {
-      y = mouseY - tooltipContainerBoundingRect.height - OFFSET;
     }
 
     return [x, y];
