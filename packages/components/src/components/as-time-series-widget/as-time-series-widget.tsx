@@ -293,7 +293,9 @@ export class TimeSeriesWidget {
   public onTimeFormatChanged(newFormat) {
     this._formatter = timeFormat(newFormat);
 
+    if (this.histogram) {
     this.histogram.forceUpdate();
+  }
   }
 
   @Watch('timeFormatLocale')
