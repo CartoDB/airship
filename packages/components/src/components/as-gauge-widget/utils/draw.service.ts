@@ -138,8 +138,6 @@ export function renderGauge(
 
     // Get new color
     for (let i = 0; i < threshold.length; i++) {
-      console.log(threshold[i].color);
-      
       if (currentValue >= threshold[i].value) {
         nextColor = threshold[i].color
         break
