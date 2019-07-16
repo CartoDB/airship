@@ -411,7 +411,7 @@ export class DonutWidget {
     if (item) {
       this.selected = item;
       this.selectionEmpty = true;
-      this.selectionText = `Selected ${item.data.key}`;
+      this.selectionText = '1 selected';
       this.selectionEmpty = false;
       drawService.selectItem(this.container, item);
       this.setLabel(item.data.key, item.data.value);
