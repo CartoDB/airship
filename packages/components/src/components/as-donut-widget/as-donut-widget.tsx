@@ -417,8 +417,6 @@ export class DonutWidget {
       drawService.selectItem(this.container, item);
       this.setLabel(item.data.key, item.data.value);
     } else {
-      console.log('click');
-      console.log(item);
       this.selectionEmpty = true;
       this.selected = null;
       this.selectionText = 'All selected';
