@@ -21,7 +21,7 @@ export function renderDonut(
   arcSize: number,
   padding: number,
   selected?: any,
-  transition: boolean,
+  transition?: boolean,
   onMouseOver?,
   onMouseOut?,
   onMouseMove?,
