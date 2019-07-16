@@ -14,6 +14,10 @@ describe('vl/time-series/TimeSeries', () => {
         this.emitter.on(event, cb);
       },
       viz: {
+        _changed: () => ({}),
+        filter: {
+          blendTo: () => ({})
+        },
         variables: {
           animation: {
             duration: {
