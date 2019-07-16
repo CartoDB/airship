@@ -185,7 +185,7 @@ export class TimeSeriesWidget {
    * This string will be parsed by d3-time-format (https://github.com/d3/d3-time-format)
    * and will be used to format the graph's x-axis
    */
-  @Prop() public timeFormat: string = '%x - %X';
+  @Prop() public timeFormat: string = AUTO_FORMAT;
 
   /**
    * Setting this property will make the date formatter be sensitive to locales. The format

@@ -15,7 +15,6 @@ import { BaseHistogramFilter } from './BaseHistogramFilter';
  * @extends {BaseHistogramFilter<string[]>}
  */
 export class CategoricalHistogramFilter extends BaseHistogramFilter<string[]> {
-  private _isTimeSeries: boolean;
   private _lastHistogram: VLCategoricalHistogram = null;
   private _globalHistogram: VLCategoricalHistogram;
 
@@ -51,7 +50,7 @@ export class CategoricalHistogramFilter extends BaseHistogramFilter<string[]> {
    * @memberof CategoricalHistogramFilter
    */
   public get filter(): string {
-    if (this._selection === null || this._isTimeSeries) {
+    if (this._selection === null) {
       return null;
     } else {
       return `@${this.columnPropName} in [${this._selection.map((value) => `'${value}'`).join(',')}]`;
