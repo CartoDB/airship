@@ -391,7 +391,7 @@ export class TimeSeriesWidget {
         return;
       }
 
-      // We have to coerce to number[] because it can also be string[] for categorical histograms
+      // We have to coerce to Array<number | Date> because it can also be string[] for categorical histograms
       const selectedDates = (evt.detail.selection as Array<number | Date>);
       this.selectionChanged.emit(selectedDates);
 
