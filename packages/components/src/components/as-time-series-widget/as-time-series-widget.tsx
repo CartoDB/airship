@@ -262,7 +262,6 @@ export class TimeSeriesWidget {
 
   // Last position when putting the mouse over the scrubber track
   private _lastMousePosition: number;
-  private _data: any;
   private _backgroundData: HistogramData[];
 
   constructor() {
@@ -274,8 +273,6 @@ export class TimeSeriesWidget {
     if (sameData(newData, oldData)) {
       return;
     } else {
-      this._data = newData;
-
       this.timeFormat = this.timeFormat === AUTO_FORMAT
         ? typeof this.data[0].start === 'number' ? DEFAULT_NUMBER_FORMAT : DEFAULT_DATE_FORMAT
         : this.timeFormat;
@@ -420,13 +417,13 @@ export class TimeSeriesWidget {
           showHeader={this.showHeader}
           showClear={this.showClear}
           disableInteractivity={this.disableInteractivity}
-          data={this._data}
+          data={this.data}
           backgroundData={this._backgroundData}
           color={this.color}
           unselectedColor={this.unselectedColor}
           colorRange={this.colorRange}
           axisFormatter={this.axisFormatter}
-          tooltipFormatter={this.tooltipFormatter || this._tooltipFormatter}
+          tooltipFormatter={this.tooltipFormatter || this._tooltipFormatter.bind(this)}
           xLabel={this.xLabel}
           yLabel={this.yLabel}
           isLoading={this.isLoading}
@@ -448,8 +445,12 @@ export class TimeSeriesWidget {
     return this._formatter(value);
   }
 
-  private _tooltipFormatter(data: TimeSeriesData): string {
-    return `${data.start}, ${data.value}`;
+  private _tooltipFormatter(data: TimeSeriesData): string[] {
+    return [
+      `start: ${this.axisFormatter(data.start)}`,
+      `end: ${this.axisFormatter(data.end)}`,
+      `value: ${data.value}`
+    ];
   }
 
   private _renderButton() {

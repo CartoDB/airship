@@ -365,7 +365,7 @@ export class HistogramWidget {
    * @memberof HistogramWidget
    */
   @Method()
-  public async getSelection(): Promise<Array<number | Date> | string[]> {
+  public async getSelection(): Promise<Array<number | Date | string>> {
     const data = this._dataForSelection(this.selection);
     return this._simplifySelection(data);
   }

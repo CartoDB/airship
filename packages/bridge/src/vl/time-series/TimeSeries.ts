@@ -174,9 +174,11 @@ export class TimeSeries {
       return this._viz.variables[this._variableName];
     }
 
-    this._viz.variables[this._variableName] = this._propertyName && this._viz[this._propertyName].isAnimated()
-      ? this._viz[this._propertyName]
-      : this._createDefaultAnimation();
+    this._viz.variables[this._variableName] = this._propertyName &&
+      this._viz[this._propertyName] &&
+      this._viz[this._propertyName].isAnimated()
+        ? this._viz[this._propertyName]
+        : this._createDefaultAnimation();
 
     return this._viz.variables[this._variableName];
   }
