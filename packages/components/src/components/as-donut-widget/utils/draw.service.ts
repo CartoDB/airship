@@ -11,6 +11,7 @@ const TRANSITION_DURATION = 500;
 let pie;
 let arc;
 let donut;
+let selectedItem;
 
 export function renderDonut(
   container: SVGContainer,
@@ -26,6 +27,8 @@ export function renderDonut(
   onMouseOut?,
   onMouseMove?,
   onClick?) {
+  
+  selectedItem = selected;
 
   const radius = Math.min(width, height);
   const center = radius / 2;
@@ -54,7 +57,7 @@ export function renderDonut(
     .append('path')
     .attr('class', 'path')
     .attr('d', <any>arc)  // TODO: check this
-    .attr('fill', (d: any) => (selected && selected.data.id !== d.data.id) ? GREY_COLOR : d.data.color)
+    .attr('fill', (d: any) => (selectedItem && selectedItem.data.id !== d.data.id) ? GREY_COLOR : d.data.color)
     .style('cursor', 'pointer');
 
   // TODO: think different transitions for new data and updates
@@ -68,7 +71,7 @@ export function renderDonut(
   }
 
   donut.on('mouseover', function (d: any) {
-    if (selected) return;
+    if (selectedItem) return;
     if (onMouseOver) onMouseOver(d.data, d3event.pageX, d3event.pageY);
 
     select(this)
@@ -78,12 +81,12 @@ export function renderDonut(
   });
 
   donut.on('mousemove', function () {
-    if (selected) return;
+    if (selectedItem) return;
     if (onMouseMove) onMouseMove(d3event.pageX, d3event.pageY);
   })
 
   donut.on('mouseout', function (d: any) {
-    if (selected) return;
+    if (selectedItem) return;
     if (onMouseOut) onMouseOut();
 
     select(this)
@@ -95,26 +98,28 @@ export function renderDonut(
   donut.on('click', function (d: any) {
     if (onMouseOut) onMouseOut();
     
-    if (selected && selected === d) {
-      selected = null;
+    if (selectedItem && selectedItem === d) {
+      selectedItem = null;
       if (onClick) onClick();
       unselectItem(container)
     } else {
-      selected = d;
+      selectedItem = d;
       
       if (onClick) onClick(d);
-      selectItem(container, selected)
+      selectItem(container, selectedItem)
     }
   })
 }
 
 function selectItem(svg: SVGContainer, selected: any) {
+  selectedItem = selected;
+
   svg.selectAll('.donut path')
     .transition('arc-fill-in-out')
     .duration(TRANSITION_DURATION)
     .attr('fill', (d: any) => {
-      if (selected === d) {
-        return selected.data.color;
+      if (selectedItem.data.id === d.data.id) {
+        return selectedItem.data.color;
       } else {
         return GREY_COLOR;
       }
@@ -129,5 +134,7 @@ function unselectItem(svg: SVGContainer) {
 }
 
 export default {
-  renderDonut
+  renderDonut,
+  selectItem,
+  unselectItem
 };

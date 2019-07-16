@@ -1,4 +1,4 @@
-import { Component, Element, Prop, Watch, Method } from '@stencil/core';
+import { Component, Element, Prop, Watch, Method, State } from '@stencil/core';
 import { format as d3Format } from 'd3-format';
 import { select } from 'd3-selection';
 import { interpolateNumber } from 'd3-interpolate';
@@ -92,7 +92,7 @@ export class DonutWidget {
    *
    * @type {boolean}
    */
-  @Prop() public showClearButton: boolean = false;
+  @Prop() public showClear: boolean = false;
 
   /**
    * If truthy, it'll render the heading and component's description. Default value is `true`.
@@ -101,6 +101,14 @@ export class DonutWidget {
    * @memberof CategoryWidget
    */
   @Prop() public showHeader: boolean = true;
+
+  /**
+   * Disable category selection in Widget
+   *
+   * @type {string}
+   * @memberof CategoryWidget
+   */
+  @Prop() public disableInteractivity: boolean = false;
 
   /**
    * Boolean property to control the widget loading state. If true, a spinner is shown.
@@ -126,6 +134,11 @@ export class DonutWidget {
    * Message shown in body when no data is available
    */
   @Prop() public noDataBodyMessage: string = 'There is no data to display.';
+
+  /**
+   * Text rendered inside the clear selection button
+   */
+  @Prop() public clearText: string = 'Clear selection';
 
   /**
    * Boolean property to control color scheme
@@ -171,6 +184,8 @@ export class DonutWidget {
    */
   private tooltip: any;
 
+  private tooltipVisible: boolean;
+
   /**
    * Represents the sum of all item values
    */
@@ -180,6 +195,7 @@ export class DonutWidget {
    * Holds a selected item
    */
   private selected: any;
+  private selectionText: string = 'All selected';
   private wrapper: any;
 
   private bbox: any;
@@ -191,18 +207,25 @@ export class DonutWidget {
 
   @Method()
   public getSelection() {
-    // TODO
+    return this.selected;
   }
 
   @Method()
-  public setSelection() {
-    // TODO
+  public setSelection(id: any) {
+    const itemData = this.data.find(item => item.id === id)
+    const item = {
+      data: itemData
+    }
+    this.onGraphClick(item);
   }
 
   @Method()
   public clearSelection() {
-    // TODO
+    this.onGraphClick();
   }
+
+  @State()
+  private selectionEmpty: boolean = true;
 
   constructor() {
     this.resizeRender = this.resizeRender.bind(this);
@@ -227,7 +250,7 @@ export class DonutWidget {
   public render() {
     return [
       this.renderHeader(),
-      // this.renderSelection(),
+      this.renderSelection(),
       this.renderContent()
     ];
   }
@@ -353,6 +376,19 @@ export class DonutWidget {
     }
   }
 
+  private renderSelection() {
+    if (this.isLoading || this._isEmpty() || this.error || !this.showClear) {
+      return '';
+    }
+    
+    return <as-widget-selection
+      selection={this.selectionText}
+      clearText={this.clearText}
+      showClear={!this.selectionEmpty}
+      onClear={() => this.clearSelection()}
+    ></as-widget-selection>;
+  }
+
   private onGraphMouseOver(data: any, pageX: number, pageY: number) {
     this.showTooltip(data, pageX, pageY);
   }
@@ -362,17 +398,28 @@ export class DonutWidget {
   }
 
   private onGraphMouseOut() {
-    this.hideTooltip();
+    if (this.tooltipVisible) {
+      this.hideTooltip();
+    }
   }
 
   private onGraphClick(item?: any) {
-    this.hideTooltip();
-
+    if (this.tooltipVisible) {
+      this.hideTooltip();
+    }
+    
     if (item) {
       this.selected = item;
+      this.selectionEmpty = true;
+      this.selectionText = `Selected ${item.data.key}`;
+      this.selectionEmpty = false;
+      drawService.selectItem(this.container, item);
       this.setLabel(item.data.key, item.data.value);
     } else {
       this.selected = null;
+      this.selectionText = 'All selected';
+      this.selectionEmpty = true;
+      drawService.unselectItem(this.container);
       this.setLabel(this.labelTitle, this.totalValue);
     }
   }
@@ -384,6 +431,8 @@ export class DonutWidget {
   }
 
   private showTooltip(data: any, pageX: number, pageY: number) {
+    this.tooltipVisible = true;
+
     this.tooltip = select(this.tooltipElement).html(`
       <div class="name">
         <span style="background-color: ${data.color};"></span>
@@ -403,6 +452,8 @@ export class DonutWidget {
   }
 
   private hideTooltip() {
+    this.tooltipVisible = false;
+
     this.tooltip
       .transition('show-tooltip')
       .duration(TRANSITION_DURATION / 2)

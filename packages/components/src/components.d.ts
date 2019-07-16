@@ -189,6 +189,10 @@ export namespace Components {
     'arcSize': number;
     'clearSelection': () => void;
     /**
+    * Text rendered inside the clear selection button
+    */
+    'clearText': string;
+    /**
     * Donut data to be displayed
     */
     'data': DonutData[];
@@ -197,6 +201,10 @@ export namespace Components {
     */
     'description': string;
     /**
+    * Disable category selection in Widget
+    */
+    'disableInteractivity': boolean;
+    /**
     * Text shown in the header subtitle when there's an error
     */
     'error': string;
@@ -204,7 +212,7 @@ export namespace Components {
     * Extended error description, only shown when error is present
     */
     'errorDescription': string;
-    'getSelection': () => void;
+    'getSelection': () => any;
     /**
     * Heading text of the widget
     */
@@ -241,11 +249,11 @@ export namespace Components {
     * Donut chart padding
     */
     'padding': number;
-    'setSelection': () => void;
+    'setSelection': (id: any) => void;
     /**
     * If truthy, it'll show a button to clear selected categories when there are any. Default value is `false`.
     */
-    'showClearButton': boolean;
+    'showClear': boolean;
     /**
     * If truthy, it'll render the heading and component's description. Default value is `true`.
     */
@@ -265,6 +273,10 @@ export namespace Components {
     */
     'arcSize'?: number;
     /**
+    * Text rendered inside the clear selection button
+    */
+    'clearText'?: string;
+    /**
     * Donut data to be displayed
     */
     'data'?: DonutData[];
@@ -272,6 +284,10 @@ export namespace Components {
     * Description text of the widget
     */
     'description'?: string;
+    /**
+    * Disable category selection in Widget
+    */
+    'disableInteractivity'?: boolean;
     /**
     * Text shown in the header subtitle when there's an error
     */
@@ -319,7 +335,7 @@ export namespace Components {
     /**
     * If truthy, it'll show a button to clear selected categories when there are any. Default value is `false`.
     */
-    'showClearButton'?: boolean;
+    'showClear'?: boolean;
     /**
     * If truthy, it'll render the heading and component's description. Default value is `true`.
     */
