@@ -1,6 +1,6 @@
 import { SVGContainer } from '../types/Container';
-import { arc as d3Arc } from 'd3-shape';
 import { color as d3Color } from 'd3-color';
+import { format as d3Format } from 'd3-format';
 import { event as d3Event, select, selectAll } from 'd3-selection';
 import { interpolate as d3Interpolate, interpolateNumber } from 'd3-interpolate';
 import 'd3-transition';
@@ -20,11 +20,8 @@ export function renderBackground(container: SVGContainer, arc: any) {
     .append('path')
     .datum({ endAngle: 90 * (Math.PI / 180) })
     .attr('class', 'background')
-    .style('fill', '#ddd')
-    .attr('d', arc)
-    .on('mouseover', function () {
-      // hideTooltip()
-    });
+    .style('fill', GREY_COLOR)
+    .attr('d', arc);
 }
 
 /**
@@ -111,29 +108,29 @@ export function renderThresholds(
 
 export function renderTicks(
   container: SVGContainer,
+  min: number,
+  max: number,
   innerRadius: number,
-  outerRadius: number
+  outerRadius: number,
+  absolute: boolean,
+  format?: string
 ) {
-  // @note:  que mostramos en los ticks?
-  // el valor máximo formateado o de 0 a 100%
-  // Esto también puede ser configurable?¿
-  const maxTick = container.select('g')
-    .append('text')
-    .attr('class', 'tick')
-    .attr('transform', `translate(${(innerRadius + ((outerRadius - innerRadius) / 2))}, 16)`)
-    .attr('text-anchor', 'middle')
-    .text(() => {
-      return '100%'
-    });
+  const mn = (format && min !== 0) ? d3Format(format)(min) : min;
+  const mx = format ? d3Format(format)(max) : max;
 
-  const minTick = container.select('g')
+  container.select('g')
     .append('text')
     .attr('class', 'tick')
     .attr('transform', `translate(${-(innerRadius + ((outerRadius - innerRadius) / 2))}, 16)`)
     .attr('text-anchor', 'middle')
-    .text(() => {
-      return '0'
-    });
+    .text(() => absolute ? mn : '0');
+
+  container.select('g')
+    .append('text')
+    .attr('class', 'tick')
+    .attr('transform', `translate(${(innerRadius + ((outerRadius - innerRadius) / 2))}, 16)`)
+    .attr('text-anchor', 'middle')
+    .text(() => absolute ? mx : '100%');
 }
 
 export function update(

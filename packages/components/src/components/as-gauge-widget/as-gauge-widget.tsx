@@ -1,18 +1,11 @@
-import { Component, Element, Prop, Watch, Method, State } from '@stencil/core';
+import { Component, Element, Prop, Watch } from '@stencil/core';
 import { format as d3Format } from 'd3-format';
 import { select } from 'd3-selection';
 import { arc as d3Arc } from 'd3-shape';
-import { interpolateNumber } from 'd3-interpolate';
 import { SVGContainer } from './types/Container';
 import drawService from './utils/draw.service';
-import dataService from '../as-stacked-bar-widget/utils/data.service';
 
 const TRANSITION_DURATION = 500;
-const STATUS_COLORS = [
-  '#80b622',
-  '#fdb32b',
-  '#f3522b'
-];
 
 /**
  * Gauge Widget
@@ -77,6 +70,16 @@ export class GaugeWidget {
    */
   @Prop() public tooltipMargin: number = 40;
 
+  /**
+   * Defines the type of data representation
+   */
+  @Prop() public absolute: boolean = true;
+
+  /**
+   * Values format
+   */
+  @Prop() public format: string;
+
 
   @Element() private el: HTMLStencilElement;
 
@@ -92,7 +95,6 @@ export class GaugeWidget {
   private foreground: any;
 
   private tooltipElement: HTMLElement;
-  private tooltipVisible: boolean = false;
 
   @Watch('value')
   public _onValueChanged() {
@@ -113,23 +115,17 @@ export class GaugeWidget {
   }
 
   public componentDidLoad() {
-    // this.prepareData();
-    // this.clearGraph();
     this.renderGraph();
-    // this.renderLabel();
   }
 
   public render() {
     return [
-      // this.renderHeader(),
-      // this.renderSelection(),
       this.renderContent()
     ];
   }
 
   private resizeRender() {
     requestAnimationFrame(() => {
-      // this.clearGraph();
       this.renderGraph();
     });
   }
@@ -168,7 +164,7 @@ export class GaugeWidget {
 
     drawService.renderBackground(this.container, this.arc);
     this.foreground = drawService.renderForeground(
-      this.container, 
+      this.container,
       this.arc,
       this.onGraphMouseOver.bind(this),
       this.onGraphMouseMove.bind(this),
@@ -179,7 +175,7 @@ export class GaugeWidget {
       drawService.renderThresholds(this.container, this.threshold, this.min, this.max, innerRadius, outerRadius);
     }
 
-    drawService.renderTicks(this.container, innerRadius, outerRadius);
+    drawService.renderTicks(this.container, this.min, this.max, innerRadius, outerRadius, this.absolute, this.format);
     drawService.update(this.el, this.value, this.min, this.max, this.arc, this.foreground, this.threshold);
   }
 
@@ -202,13 +198,14 @@ export class GaugeWidget {
   private renderLabel() {
     const percentage = Math.floor((this.value - this.min) / (this.max - this.min) * 100);
     const transform = `translate3d(-50%, calc(50% - ${30 / 2}px), 0)`;
+    const value = (this.format && this.value !== 0) ? d3Format(this.format)(this.value) : this.value;
 
     return (
       <div class="as-gauge-label" style={{ transform }}>
         <p class="as-gauge-label-title">{this.labelTitle}</p>
         <span class="as-gauge-label-value-wrapper">
-          <p class="as-gauge-label-value">{percentage}</p>
-          <p class="as-gauge-symbol">{this.labelSymbol}</p>
+          <p class="as-gauge-label-value">{this.absolute ? value : percentage}</p>
+          {this.labelSymbol && <p class="as-gauge-symbol">{this.labelSymbol}</p>}
         </span>
       </div>
     );
@@ -226,7 +223,7 @@ export class GaugeWidget {
 
   private showTooltip(pageX: number, pageY: number) {
     const tooltip = select(this.tooltipElement).html(
-      `<p class="as-gauge-tooltip-value">${d3Format('.4n')(this.value)}</p>`
+      `<p class="as-gauge-tooltip-value">${this.value}</p>`
     );
 
     tooltip.style('left', pageX + 'px')
@@ -238,8 +235,6 @@ export class GaugeWidget {
   }
 
   private hideTooltip() {
-    console.log('entra');
-    
     select(this.tooltipElement)
       .transition('hide-tooltip')
       .duration(TRANSITION_DURATION / 2)

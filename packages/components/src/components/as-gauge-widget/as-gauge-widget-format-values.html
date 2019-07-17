@@ -25,19 +25,18 @@
 </head>
 
 <body>
-  <h1>Whith thresholds</h1>
-  <button class="random">random</button>
-  <as-gauge-widget id="gauge" value="20300" min="0" max="30000" label-title="liters" label-symbol="">
-  </as-gauge-widget>
-  
-  <h1>Simple</h1>
-  <button class="random2">random</button>
-  <as-gauge-widget id="gauge2" value="70" min="0" max="100" label-title="Tooooooooo long text here UGAÑFLDSA" label-symbol="%">
+  <as-gauge-widget id="gauge" 
+    value="20300" 
+    min="0" 
+    max="30000" 
+    label-title="liters" 
+    label-symbol="" 
+    absolute="true"
+    format=".3s">
   </as-gauge-widget>
 
   <script>
     const gauge = document.querySelector('#gauge')
-    const gauge2 = document.querySelector('#gauge2')
     const threshold = [
       {
         value: 29500,
@@ -50,14 +49,6 @@
     ]
 
     gauge.threshold = threshold
-
-    document.querySelector('.random').addEventListener('click', () => {
-      gauge.value = Math.floor(Math.random() * (1 + 10000 + 1) + 1)
-    })
-
-    document.querySelector('.random2').addEventListener('click', () => {
-      gauge2.value = Math.floor(Math.random() * (1 + 100 + 1) + 1)
-    })
 
   </script>
 
