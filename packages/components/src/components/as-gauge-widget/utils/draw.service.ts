@@ -1,7 +1,7 @@
 import { SVGContainer } from '../types/Container';
 import { arc as d3Arc } from 'd3-shape';
 import { color as d3Color } from 'd3-color';
-import { event as d3event, select, selectAll } from 'd3-selection';
+import { event as d3Event, select, selectAll } from 'd3-selection';
 import { interpolate as d3Interpolate, interpolateNumber } from 'd3-interpolate';
 import 'd3-transition';
 
@@ -30,7 +30,13 @@ export function renderBackground(container: SVGContainer, arc: any) {
 /**
  * Renders the data arc
  */
-export function renderForeground(container: SVGContainer, arc: any) {
+export function renderForeground(
+  container: SVGContainer,
+  arc: any,
+  onMouseOver?,
+  onMouseMove?,
+  onMouseOut?
+) {
   const foreground = container.select('g')
     .append('path')
     .datum({ endAngle: -90 * (Math.PI / 180) })
@@ -39,16 +45,22 @@ export function renderForeground(container: SVGContainer, arc: any) {
     .style('fill', BASE_COLOR)
     .attr('d', arc);
 
-  foreground.on('mouseover', function () {
+  foreground.on('mouseover', function (d: any) {
+    if (onMouseOver) onMouseOver(d.data, d3Event.pageX, d3Event.pageY);
+
     select(this)
       .transition()
       .duration(500)
       .attr('fill', () => d3Color(BASE_COLOR).darker(0.6))
   });
 
-  foreground.on('mousemove', function () { });
+  foreground.on('mousemove', function () {
+    if (onMouseMove) onMouseMove(d3Event.pageX, d3Event.pageY);
+  });
 
   foreground.on('mouseout', function () {
+    if (onMouseOut) onMouseOut();
+
     select(this)
       .transition('arc-fill-out')
       .duration(250)
@@ -122,12 +134,6 @@ export function renderTicks(
     .text(() => {
       return '0'
     });
-}
-
-export function renderTooltip() {
-  const tooltip = select('.as-gauge-wrapper')
-    .append('div')
-    .attr('class', 'tooltip');
 }
 
 export function update(
@@ -205,7 +211,6 @@ export default {
   renderForeground,
   renderThresholds,
   renderTicks,
-  renderTooltip,
   update,
   updateLabel
 };

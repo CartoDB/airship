@@ -76,5 +76,41 @@ as-gauge-widget {
         line-height: var(--as--gauge-widget--label-value--symbol--line-height);
       }
     }
+
+    .as-gauge-tooltip {
+      display: flex;
+      position: absolute;
+      z-index: 5;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      width: auto;
+      min-width: 40px;
+      height: 28px;
+      padding: 0 8px;
+      transform: translateX(-50%);
+      border-radius: 4px;
+      opacity: 0;
+      background-color: #2C2C2C;
+      pointer-events: none;
+
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: -4px;
+        left: calc(50% - 4px);
+        border-width: 4px 4px 0;
+        border-style: solid;
+        border-color: #2C2C2C transparent transparent;
+      }
+
+      .as-gauge-tooltip-value {
+        color: #FFF;
+        font-size: 12px;
+        line-height: 1.67;
+        text-align: right;
+        white-space: nowrap;
+      }
+    }
   }
 }

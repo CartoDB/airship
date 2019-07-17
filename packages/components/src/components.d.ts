@@ -266,6 +266,10 @@ export namespace Components {
     */
     'threshold': [];
     /**
+    * Margin between mouse and tooltip
+    */
+    'tooltipMargin': number;
+    /**
     * Gauge data to be displayed
     */
     'value': number;
@@ -303,6 +307,10 @@ export namespace Components {
     * Gauge thresholds
     */
     'threshold'?: [];
+    /**
+    * Margin between mouse and tooltip
+    */
+    'tooltipMargin'?: number;
     /**
     * Gauge data to be displayed
     */
