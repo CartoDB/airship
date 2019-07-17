@@ -41,6 +41,7 @@ as-gauge-widget {
       position: absolute;
       top: 50%;
       left: 50%;
+      max-width: 70%;
       transform: translate3d(-50%, 0, 0);
       text-align: center;
 
@@ -58,6 +59,7 @@ as-gauge-widget {
 
       .as-gauge-label-value-wrapper {
         display: flex;
+        justify-content: center;
       }
 
       .as-gauge-label-value {
