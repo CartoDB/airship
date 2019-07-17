@@ -181,7 +181,7 @@ export class NumericalHistogramFilter extends BaseHistogramFilter<[number, numbe
     if (evt.detail === null) {
       this._selection = null;
     } else {
-      const selection = (this._isTimeSeries ? evt.detail : evt.detail.selection) as [number, number];
+      const selection = (this._isTimeSeries ? evt.detail : evt.detail.selection);
       this._selection = [selection[0], selection[1]];
     }
 

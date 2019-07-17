@@ -479,7 +479,9 @@ export default class VLBridge {
     }
 
     if (this._layer.viz.filter.isAnimated()) {
-      newFilter = `@${this._animation.variableName} and ${newFilter}`;
+      if (this._layer.viz.variables[this._animation.variableName]) {
+        newFilter = `@${this._animation.variableName} and ${newFilter}`;
+      }
     }
 
     // Update the Visualization filter
