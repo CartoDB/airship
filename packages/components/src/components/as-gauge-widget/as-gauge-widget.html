@@ -25,13 +25,19 @@
 </head>
 
 <body>
+  <h1>Whith thresholds</h1>
   <button class="random">random</button>
-
-  <as-gauge-widget id="gauge" value="6000" min="0" max="10000">
+  <as-gauge-widget id="gauge" value="6000" min="0" max="10000" label-title="Level" label-symbol="%">
+  </as-gauge-widget>
+  
+  <h1>Simple</h1>
+  <button class="random2">random</button>
+  <as-gauge-widget id="gauge2" value="70" min="0" max="100" label-title="Level" label-symbol="%">
   </as-gauge-widget>
 
   <script>
     const gauge = document.querySelector('#gauge')
+    const gauge2 = document.querySelector('#gauge2')
     const threshold = [
       {
         value: 7700,
@@ -46,10 +52,11 @@
     gauge.threshold = threshold
 
     document.querySelector('.random').addEventListener('click', () => {
-      const random = Math.floor(Math.random() * (1 + 10000 + 1) + 1)
-      gauge.value = random
-      console.log(gauge);
-      
+      gauge.value = Math.floor(Math.random() * (1 + 10000 + 1) + 1)
+    })
+
+    document.querySelector('.random2').addEventListener('click', () => {
+      gauge2.value = Math.floor(Math.random() * (1 + 100 + 1) + 1)
     })
 
   </script>

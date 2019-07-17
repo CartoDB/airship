@@ -240,17 +240,30 @@ export namespace Components {
     /**
     * Gauge label title
     */
+    'labelSymbol': string;
+    /**
+    * Gauge label title
+    */
     'labelTitle': string;
     /**
     * Gauge label units
     */
     'labelUnits': string;
+    /**
+    * Gauge max value
+    */
     'max': number;
+    /**
+    * Gauge nim value
+    */
     'min': number;
     /**
     * Gauge chart padding
     */
     'padding': number;
+    /**
+    * Gauge thresholds
+    */
     'threshold': [];
     /**
     * Gauge data to be displayed
@@ -265,17 +278,30 @@ export namespace Components {
     /**
     * Gauge label title
     */
+    'labelSymbol'?: string;
+    /**
+    * Gauge label title
+    */
     'labelTitle'?: string;
     /**
     * Gauge label units
     */
     'labelUnits'?: string;
+    /**
+    * Gauge max value
+    */
     'max'?: number;
+    /**
+    * Gauge nim value
+    */
     'min'?: number;
     /**
     * Gauge chart padding
     */
     'padding'?: number;
+    /**
+    * Gauge thresholds
+    */
     'threshold'?: [];
     /**
     * Gauge data to be displayed

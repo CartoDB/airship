@@ -1,6 +1,6 @@
 as-gauge-widget {
   --as--gauge-widget--background-color: var(--as--color--ui-01, #{$color-ui-01});
-  --as--gauge-widget--label-title--font-size: var(--as--size--font-02, #{$font-size-02});
+  --as--gauge-widget--label-title--font-size: var(--as--size--font-03, #{$font-size-03});
   --as--gauge-widget--label-title--font-weight: normal;
   --as--gauge-widget--label-title--line-height: 1.5;
   --as--gauge-widget--label-title--color: var(--as--color--ui-03, #{$color-ui-03});
@@ -8,7 +8,10 @@ as-gauge-widget {
   --as--gauge-widget--label-value--font-weight: bold;
   --as--gauge-widget--label-value--line-height: 1.33;
   --as--gauge-widget--label-value--color: var(--as--color--type-01, #{$color-type-01});
-  --as--gauge-widget--label-value--unit--color: var(--as--color--type-02, #{$color-type-02});
+  --as--gauge-widget--label-value--symbol--font-size: var(--as--size--font-04, #{$font-size-04});
+  --as--gauge-widget--label-value--symbol--font-weight: normal;
+  --as--gauge-widget--label-value--symbol--line-height: 1.33;
+  --as--gauge-widget--label-value--symbol--color: var(--as--color--type-02, #{$color-type-02});
   --as--gauge-widget--tooltip--border-radius: 4px;
   --as--gauge-widget--tooltip--background-color: var(--as--color--type-01, #{$color-type-01});
   --as--gauge-widget--tooltip--name--font-size: var(--as--size--font-02, #{$font-size-02});
@@ -33,5 +36,45 @@ as-gauge-widget {
     flex-direction: column;
     justify-content: center;
     min-height: 136px;
+
+    .as-gauge-label {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate3d(-50%, 0, 0);
+      text-align: center;
+
+      .as-gauge-label-title {
+        margin: 0 0 4px;
+        overflow: hidden;
+        color: var(--as--gauge-widget--label-title--color);
+        font-size: var(--as--gauge-widget--label-title--font-size);
+        font-weight: var(--as--gauge-widget--label-title--font-weight);
+        line-height: var(--as--gauge-widget--label-title--line-height);
+        text-align: center;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .as-gauge-label-value-wrapper {
+        display: flex;
+      }
+
+      .as-gauge-label-value {
+        margin: 0;
+        color: var(--as--gauge-widget--label-value--color);
+        font-size: var(--as--gauge-widget--label-value--font-size);
+        font-weight: var(--as--gauge-widget--label-value--font-weight);
+        line-height: var(--as--gauge-widget--label-value--line-height);
+      }
+
+      .as-gauge-symbol {
+        margin: 0;
+        color: var(--as--gauge-widget--label-value--symbol--color);
+        font-size: var(--as--gauge-widget--label-value--font-size);
+        font-weight: var(--as--gauge-widget--label-value--symbol--font-weight);
+        line-height: var(--as--gauge-widget--label-value--symbol--line-height);
+      }
+    }
   }
 }
