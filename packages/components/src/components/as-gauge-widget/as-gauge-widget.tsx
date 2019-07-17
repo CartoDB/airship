@@ -196,16 +196,14 @@ export class GaugeWidget {
   }
 
   private renderLabel() {
-    const percentage = Math.floor((this.value - this.min) / (this.max - this.min) * 100);
     const transform = `translate3d(-50%, calc(50% - ${30 / 2}px), 0)`;
-    const value = (this.format && this.value !== 0) ? d3Format(this.format)(this.value) : this.value;
 
     return (
       <div class="as-gauge-label" style={{ transform }}>
         <p class="as-gauge-label-title">{this.labelTitle}</p>
         <span class="as-gauge-label-value-wrapper">
-          <p class="as-gauge-label-value">{this.absolute ? value : percentage}</p>
-          {this.labelSymbol && <p class="as-gauge-symbol">{this.labelSymbol}</p>}
+          <p class="as-gauge-label-value">{this.absolute ? this.getFormattedValue() : this.getPercentageValue()}</p>
+          {this.labelSymbol && !this.absolute && <p class="as-gauge-symbol">{this.labelSymbol}</p>}
         </span>
       </div>
     );
@@ -223,7 +221,7 @@ export class GaugeWidget {
 
   private showTooltip(pageX: number, pageY: number) {
     const tooltip = select(this.tooltipElement).html(
-      `<p class="as-gauge-tooltip-value">${this.value}</p>`
+      `<p class="as-gauge-tooltip-value">${this.absolute ? this.getPercentageValue() : this.getFormattedValue()}${this.absolute ? '%' : ''}</p>`
     );
 
     tooltip.style('left', pageX + 'px')
@@ -245,5 +243,13 @@ export class GaugeWidget {
     select(this.tooltipElement)
       .style('left', pageX + 'px')
       .style('top', pageY - this.wrapper.offsetTop - this.tooltipMargin + 'px');
+  }
+
+  private getFormattedValue() {
+    return (this.format && this.value !== 0) ? d3Format(this.format)(this.value) : this.value;
+  }
+
+  private getPercentageValue() {
+    return Math.floor((this.value - this.min) / (this.max - this.min) * 100);
   }
 }

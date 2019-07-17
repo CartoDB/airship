@@ -234,9 +234,17 @@ export namespace Components {
 
   interface AsGaugeWidget {
     /**
+    * Defines the type of data representation
+    */
+    'absolute': boolean;
+    /**
     * Gauge arc size
     */
     'arcSize': number;
+    /**
+    * Values format
+    */
+    'format': string;
     /**
     * Gauge label title
     */
@@ -276,9 +284,17 @@ export namespace Components {
   }
   interface AsGaugeWidgetAttributes extends StencilHTMLAttributes {
     /**
+    * Defines the type of data representation
+    */
+    'absolute'?: boolean;
+    /**
     * Gauge arc size
     */
     'arcSize'?: number;
+    /**
+    * Values format
+    */
+    'format'?: string;
     /**
     * Gauge label title
     */
