@@ -34,20 +34,12 @@
         </div>
         <div class="as-map-footer">
           <div class="as-box">
-            <as-histogram-widget
-              show-clear
-              id="typeHist"
-              heading="Location"
+            <as-time-series-widget
+              animated
+              heading='Animation'
+              description='Try seeking, pausing or selecting a range'
             >
-            </as-histogram-widget>
-          </div>
-          <div class="as-box">
-            <as-histogram-widget
-              show-clear
-              id="scaleHist"
-              heading="Scalerank"
-            >
-            </as-histogram-widget>
+            </as-time-series-widget>
           </div>
         </div>
       </main>
@@ -58,45 +50,42 @@
     const map = new mapboxgl.Map({
       container: 'map',
       style: carto.basemaps.darkmatter,
-      center: [-4.77, 37.88],
-      zoom: 3
+      center: [-122.327739, 47.615199],
+      zoom: 10
     });
 
     carto.setDefaultAuth({
-      username: 'roman-carto',
+      username: 'cartovl',
       apiKey: 'default_public'
     });
 
-    const s = carto.expressions;
-
-    const source = new carto.source.Dataset('ne_10m_airports');
+    const source = new carto.source.Dataset('seattle_collisions');
     const viz = new carto.Viz(`
+      @duration: 30
+      filter: animation($incdate, @duration, fade(0.5, 0.5))
+
       strokeWidth: 0
-      color: ramp($location, vivid)
     `);
 
     const vizLayer = new carto.Layer('layer', source, viz);
 
-    const airportLayer = new AsBridge.VLBridge({
+    const timeWidget = document.querySelector('as-time-series-widget');
+
+    vizLayer.addTo(map, 'watername_ocean');
+
+    const bridge = new AsBridge.VLBridge({
       carto: carto,
       map: map,
       layer: vizLayer,
       source: source
     });
 
-    airportLayer.histogram('#typeHist', 'location', {
+    bridge.timeSeries('as-time-series-widget', 'incdate', {
+      buckets: 30,
       readOnly: false
     });
 
-    airportLayer.histogram('#scaleHist', 'scalerank', {
-      bucketRanges: [[2, 3], [3, 4], [4, 5], [5, 6], [6, 7], [7, 8], [8, 9]],
-      readOnly: false,
-      totals: true
-    });
-
-    airportLayer.build();
-
-    vizLayer.addTo(map, 'watername_ocean');
+    bridge.build();
   </script>
 </body>
 

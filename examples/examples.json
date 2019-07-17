@@ -279,6 +279,10 @@
           "file": "bridge/time-series/simple.html"
         },
         {
+          "title": "Time Series bridge combined",
+          "file": "bridge/time-series/combined.html"
+        },
+        {
           "title": "Animation Controls bridge simple",
           "file": "bridge/animation-controls-widget/simple.html"
         },

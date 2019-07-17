@@ -66,7 +66,6 @@ export abstract class BaseHistogramFilter<T> extends BaseFilter {
 
   public setDataLayer(layer: any) {
     this._dataLayer = layer;
-
     this.bindDataLayer();
   }
 

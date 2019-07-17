@@ -14,6 +14,10 @@ describe('vl/time-series/TimeSeries', () => {
         this.emitter.on(event, cb);
       },
       viz: {
+        _changed: () => ({}),
+        filter: {
+          blendTo: () => ({})
+        },
         variables: {
           animation: {
             duration: {
@@ -39,7 +43,7 @@ describe('vl/time-series/TimeSeries', () => {
 
       const init = () => {
         // tslint:disable no-unused-expression
-        new TimeSeries({}, layer, 'column', widget, mockCb);
+        new TimeSeries({}, layer, 'column', widget, mockCb, null, null, null, null);
       };
 
       expect(init).toThrow();
@@ -48,29 +52,29 @@ describe('vl/time-series/TimeSeries', () => {
 
   describe('readyCb', () => {
     it('should fire immediately if layer is already loaded', () => {
-      const mockedCb = jest.fn();
+      const mockCb = jest.fn();
 
       // tslint:disable no-unused-expression
-      new TimeSeries({}, layer, 'column', widget, mockedCb);
+      new TimeSeries({}, layer, 'column', widget, mockCb, null, null, null, null);
 
-      expect(mockedCb).toHaveBeenCalled();
+      expect(mockCb).toHaveBeenCalled();
     });
 
     it('should fire after layer fires loaded event', () => {
-      const mockedCb = jest.fn();
+      const mockCb = jest.fn();
 
       const oldViz = layer.viz;
       layer.viz = undefined;
 
       // tslint:disable no-unused-expression
-      new TimeSeries({}, layer, 'column', widget, mockedCb);
+      new TimeSeries({}, layer, 'column', widget, mockCb, null, null, null, null);
 
-      expect(mockedCb).not.toHaveBeenCalled();
+      expect(mockCb).not.toHaveBeenCalled();
 
       layer.viz = oldViz;
       layer.emitter.emit('loaded');
 
-      expect(mockedCb).toHaveBeenCalled();
+      expect(mockCb).toHaveBeenCalled();
     });
   });
 });

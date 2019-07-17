@@ -12,7 +12,7 @@ import { select } from '../../util/Utils';
  * @class TimeSeries
  */
 export class TimeSeries {
-  private _timeSeries: any;
+  private _timeSeriesWidget: any;
   private _animation: VLAnimation;
   private _layer: any;
   private _viz: VLViz;
@@ -42,18 +42,17 @@ export class TimeSeries {
     readyCb: () => void,
     duration: number = 10,
     fade: [number, number] = [0.15, 0.15],
-    variableName: string = 'animation',
-    propertyName: string = 'filter'
+    variableName: string,
+    propertyName: string
   ) {
-
-    this._timeSeries = select(timeSeries) as any;
+    this._timeSeriesWidget = select(timeSeries) as any;
     this._layer = layer;
     this._carto = carto;
     this._columnName = column;
     this._duration = duration;
     this._fade = fade;
-    this._variableName = variableName;
-    this._propertyName = propertyName;
+    this._variableName = variableName || 'animation';
+    this._propertyName = propertyName || 'filter';
 
     if (layer.viz) {
       this._onLayerLoaded();
@@ -131,50 +130,60 @@ export class TimeSeries {
   private _onLayerLoaded() {
     this._viz = this._layer.viz;
 
-    if (!this._viz.variables[this._variableName]) {
-      this._animation = this._createAnimation();
+    const expr = this._getAnimationExpression();
 
-      /* Big hack, this is done internally on VL */
-      this._animation.parent = this._viz;
-      this._animation.notify = this._viz._changed.bind(this._viz);
-
-      this._viz.variables[this._variableName] = this._animation;
+    if (expr.a && expr.b) {
+      this._animation = expr.a.expressionName === 'animation' ? expr.a : expr.b;
     } else {
-      const expr = this._viz.variables[this._variableName];
-      if (expr.a && expr.b) {
-        this._animation = expr.a.expressionName === 'animation' ? expr.a : expr.b;
-      } else {
-        this._animation = expr;
-      }
+      this._animation = expr;
     }
+
+    this._viz[this._propertyName].blendTo(expr, 0);
+
+    this._animation.parent = this._viz;
+    this._animation.notify = this._viz._changed.bind(this._viz);
 
     this._max = this._animation.input.max;
     this._min = this._animation.input.min;
     this._duration = this._animation.duration.value;
 
     this._layer.on('updated', () => {
-      this._timeSeries.progress = this._animation.getProgressPct() * 100;
-      this._timeSeries.playing = this._animation.isPlaying();
+      this._timeSeriesWidget.progress = this._animation.getProgressPct() * 100;
+      this._timeSeriesWidget.playing = this._animation.isPlaying();
     });
 
-    this._timeSeries.animated = true;
+    this._timeSeriesWidget.animated = true;
 
-    this._timeSeries.addEventListener('seek', (evt: CustomEvent) => {
+    this._timeSeriesWidget.addEventListener('seek', (evt: CustomEvent) => {
       this._animation.setProgressPct(evt.detail / 100);
 
-      this._timeSeries.progress = evt.detail;
+      this._timeSeriesWidget.progress = evt.detail;
     });
 
-    this._timeSeries.addEventListener('play', () => {
+    this._timeSeriesWidget.addEventListener('play', () => {
       this._animation.play();
     });
 
-    this._timeSeries.addEventListener('pause', () => {
+    this._timeSeriesWidget.addEventListener('pause', () => {
       this._animation.pause();
     });
   }
 
-  private _createAnimation() {
+  private _getAnimationExpression() {
+    if (this._variableName && this._viz.variables[this._variableName]) {
+      return this._viz.variables[this._variableName];
+    }
+
+    this._viz.variables[this._variableName] = this._propertyName &&
+      this._viz[this._propertyName] &&
+      this._viz[this._propertyName].isAnimated()
+        ? this._viz[this._propertyName]
+        : this._createDefaultAnimation();
+
+    return this._viz.variables[this._variableName];
+  }
+
+  private _createDefaultAnimation() {
     const s = this._carto.expressions;
     const animation = s.animation(
       s.linear(

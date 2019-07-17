@@ -75,7 +75,6 @@ export function renderBars(
   const WIDTH = container.node().getBoundingClientRect().width - X_PADDING;
 
   data = data === null ? [] : data;
-
   const barWidth = data.length === 0 ? WIDTH : WIDTH / data.length;
 
   if (barWidth - barsSeparation < BAR_WIDTH_THRESHOLD) {
@@ -165,7 +164,6 @@ export function renderXAxis(
       .tickValues(ticks !== undefined ? null : tickValues)
       .tickFormat((value) => {
         const realValue = realScale.invert(value);
-
         return customFormatter(realValue);
       });
   }
