@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+  <base href="/">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+  <title>Airship</title>
+  <link rel="stylesheet" href="packages/styles/dist/airship.css">
+  <script src="packages/components/dist/airship.js"></script>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: #fff;
+      font: var(--as--font--subheader);
+    }
+
+    as-gauge-widget {
+      width: 100%;
+      height: 100%;
+      border: 1px solid whitesmoke;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+
+<body>
+  <as-gauge-widget id="gauge" 
+    value="20300" 
+    min="0" 
+    max="30000" 
+    padding="60"
+    label-title="liters" 
+    absolute="false" 
+    format=".3s"
+    heading="Widget title" 
+    description="Widget description here">
+  </as-gauge-widget>
+
+  <script>
+    const gauge = document.querySelector('#gauge')
+    const threshold = [
+      {
+        value: 29500,
+        color: '#f3522b'
+      },
+      {
+        value: 22000,
+        color: '#fdb32b'
+      }
+    ]
+
+    gauge.threshold = threshold
+
+  </script>
+
+</body>
+
+</html>

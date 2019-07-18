@@ -159,6 +159,7 @@ export class GaugeWidget {
   }
 
   public componentDidLoad() {
+    this.clearGraph();
     this.renderGraph();
   }
 
@@ -171,6 +172,7 @@ export class GaugeWidget {
 
   private resizeRender() {
     requestAnimationFrame(() => {
+      this.clearGraph();
       this.renderGraph();
     });
   }
@@ -210,7 +212,7 @@ export class GaugeWidget {
     const height = this.bbox.height;
     const outerRadius = (width / 2) - this.padding;
     const innerRadius = ((width / 2) - this.arcSize) - this.padding;
-
+    
     this.arc = d3Arc()
       .innerRadius(innerRadius)
       .outerRadius(outerRadius)
@@ -237,10 +239,18 @@ export class GaugeWidget {
 
     drawService.renderTicks(this.container, this.min, this.max, innerRadius, outerRadius, this.absolute, this.format);
     drawService.update(this.el, this.value, this.min, this.max, this.arc, this.foreground, this.threshold);
+
+    // force the repositioning of the label 
+    select(this.el).select('.as-gauge-label')
+      .style('transform', `translate(-50%, calc(50% + ${outerRadius / 2}px - 100% - 22px))`);
   }
 
   private updateGraph() {
     drawService.update(this.el, this.value, this.min, this.max, this.arc, this.foreground, this.threshold);
+  }
+
+  private clearGraph() {
+    this.container.selectAll('g').remove();
   }
 
   private onGraphMouseOver(pageX: number, pageY: number) {
