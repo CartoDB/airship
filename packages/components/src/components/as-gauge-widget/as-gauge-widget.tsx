@@ -197,13 +197,14 @@ export class GaugeWidget {
 
   private renderLabel() {
     const transform = `translate3d(-50%, calc(50% - ${30 / 2}px), 0)`;
+    const symbol = !this.absolute ? '%' : this.labelSymbol; 
 
     return (
       <div class="as-gauge-label" style={{ transform }}>
         <p class="as-gauge-label-title">{this.labelTitle}</p>
         <span class="as-gauge-label-value-wrapper">
           <p class="as-gauge-label-value">{this.absolute ? this.getFormattedValue() : this.getPercentageValue()}</p>
-          {this.labelSymbol && !this.absolute && <p class="as-gauge-symbol">{this.labelSymbol}</p>}
+          <p class="as-gauge-symbol">{symbol}</p>
         </span>
       </div>
     );
