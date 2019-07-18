@@ -242,9 +242,29 @@ export namespace Components {
     */
     'arcSize': number;
     /**
+    * Description text of the widget
+    */
+    'description': string;
+    /**
+    * Text shown in the header subtitle when there's an error
+    */
+    'error': string;
+    /**
+    * Extended error description, only shown when error is present
+    */
+    'errorDescription': string;
+    /**
     * Values format
     */
     'format': string;
+    /**
+    * Heading text of the widget
+    */
+    'heading': string;
+    /**
+    * Boolean property to control the widget loading state. If true, a spinner is shown.
+    */
+    'isLoading': boolean;
     /**
     * Gauge label title
     */
@@ -266,9 +286,21 @@ export namespace Components {
     */
     'min': number;
     /**
+    * Message shown in body when no data is available
+    */
+    'noDataBodyMessage': string;
+    /**
+    * Message shown in header when no data is available
+    */
+    'noDataHeaderMessage': string;
+    /**
     * Gauge chart padding
     */
     'padding': number;
+    /**
+    * If truthy, it'll render the heading and component's description. Default value is `true`.
+    */
+    'showHeader': boolean;
     /**
     * Gauge thresholds
     */
@@ -292,9 +324,29 @@ export namespace Components {
     */
     'arcSize'?: number;
     /**
+    * Description text of the widget
+    */
+    'description'?: string;
+    /**
+    * Text shown in the header subtitle when there's an error
+    */
+    'error'?: string;
+    /**
+    * Extended error description, only shown when error is present
+    */
+    'errorDescription'?: string;
+    /**
     * Values format
     */
     'format'?: string;
+    /**
+    * Heading text of the widget
+    */
+    'heading'?: string;
+    /**
+    * Boolean property to control the widget loading state. If true, a spinner is shown.
+    */
+    'isLoading'?: boolean;
     /**
     * Gauge label title
     */
@@ -316,9 +368,21 @@ export namespace Components {
     */
     'min'?: number;
     /**
+    * Message shown in body when no data is available
+    */
+    'noDataBodyMessage'?: string;
+    /**
+    * Message shown in header when no data is available
+    */
+    'noDataHeaderMessage'?: string;
+    /**
     * Gauge chart padding
     */
     'padding'?: number;
+    /**
+    * If truthy, it'll render the heading and component's description. Default value is `true`.
+    */
+    'showHeader'?: boolean;
     /**
     * Gauge thresholds
     */

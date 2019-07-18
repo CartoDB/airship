@@ -12,6 +12,10 @@ as-gauge-widget {
   --as--gauge-widget--label-value--symbol--font-weight: normal;
   --as--gauge-widget--label-value--symbol--line-height: 1.33;
   --as--gauge-widget--label-value--symbol--color: var(--as--color--type-02, #{$color-type-02});
+  --as--gauge-widget--tick--font-size: var(--as--size--font-02, #{$font-size-02});
+  --as--gauge-widget--tick--color: var(--as--color--ui-05, #{$color-ui-05});
+  --as--gauge-widget--tick--line-height: 1.33;
+  --as--gauge-widget--tick--font-weight: normal;
   --as--gauge-widget--tooltip--border-radius: 4px;
   --as--gauge-widget--tooltip--background-color: var(--as--color--type-01, #{$color-type-01});
   --as--gauge-widget--tooltip--font-size: var(--as--size--font-02, #{$font-size-02});
@@ -74,6 +78,14 @@ as-gauge-widget {
         font-weight: var(--as--gauge-widget--label-value--symbol--font-weight);
         line-height: var(--as--gauge-widget--label-value--symbol--line-height);
       }
+    }
+
+    .tick {
+      fill: var(--as--gauge-widget--tick--color);
+      font-size: var(--as--gauge-widget--tick--font-size);
+      font-weight: var(--as--gauge-widget--tick--font-weight);
+      line-height: var(--as--gauge-widget--tick--line-height);
+      text-align: center;
     }
 
     .as-gauge-tooltip {

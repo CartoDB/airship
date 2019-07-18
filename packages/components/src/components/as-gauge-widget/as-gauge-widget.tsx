@@ -80,6 +80,50 @@ export class GaugeWidget {
    */
   @Prop() public format: string;
 
+  /**
+   * Description text of the widget
+   *
+   * @type {string}
+   */
+  @Prop() public description: string;
+
+  /**
+   * Heading text of the widget
+   *
+   * @type {string}
+   */
+  @Prop() public heading: string;
+
+  /**
+   * If truthy, it'll render the heading and component's description. Default value is `true`.
+   */
+  @Prop() public showHeader: boolean = true;
+
+  /**
+   * Boolean property to control the widget loading state. If true, a spinner is shown.
+   */
+  @Prop() public isLoading: boolean = false;
+
+  /**
+   * Text shown in the header subtitle when there's an error
+   */
+  @Prop() public error: string = '';
+
+  /**
+   * Extended error description, only shown when error is present
+   */
+  @Prop() public errorDescription: string = '';
+
+  /**
+   * Message shown in header when no data is available
+   */
+  @Prop() public noDataHeaderMessage: string = 'NO DATA AVAILABLE';
+
+  /**
+   * Message shown in body when no data is available
+   */
+  @Prop() public noDataBodyMessage: string = 'There is no data to display.';
+
 
   @Element() private el: HTMLStencilElement;
 
@@ -120,6 +164,7 @@ export class GaugeWidget {
 
   public render() {
     return [
+      this.renderHeader(),
       this.renderContent()
     ];
   }
@@ -128,6 +173,21 @@ export class GaugeWidget {
     requestAnimationFrame(() => {
       this.renderGraph();
     });
+  }
+
+  private renderHeader() {
+    if (!this.showHeader) {
+      return;
+    }
+
+    return <as-widget-header
+      header={this.heading}
+      subheader={this.description}
+      is-empty={!this.value}
+      is-loading={this.isLoading}
+      error={this.error}
+      no-data-message={this.noDataHeaderMessage}>
+    </as-widget-header>;
   }
 
   private renderContent() {

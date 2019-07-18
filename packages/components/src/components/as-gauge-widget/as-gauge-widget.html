@@ -13,6 +13,7 @@
       margin: 0;
       padding: 0;
       background: #fff;
+      font: var(--as--font--subheader);
     }
 
     as-gauge-widget {
@@ -27,7 +28,15 @@
 <body>
   <h1>Whith thresholds</h1>
   <button class="random">random</button>
-  <as-gauge-widget id="gauge" value="20300" min="0" max="30000" label-title="liters" absolute="false">
+  <as-gauge-widget id="gauge" 
+    value="20300" 
+    min="0" 
+    max="30000" 
+    label-title="liters" 
+    absolute="false" 
+    format=".3s"
+    heading="Widget title"
+    description="Widget description here">
   </as-gauge-widget>
   
   <h1>Simple</h1>
