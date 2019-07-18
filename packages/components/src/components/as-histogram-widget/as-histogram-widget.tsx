@@ -273,7 +273,6 @@ export class HistogramWidget {
   private _color: string;
   private _barBackgroundColor: string;
   private _muteSelectionChanged: boolean = false;
-  private _skipRender: boolean;
   private _dataJustChanged: boolean;
   private _lastEmittedSelection: number[] = null;
 
@@ -437,11 +436,11 @@ export class HistogramWidget {
   }
 
   public componentDidUpdate() {
-    if (!this._skipRender || this._dataJustChanged) {
-      this._renderGraph();
+    if (!this._dataJustChanged) {
+      return;
     }
 
-    this._skipRender = false;
+    this._renderGraph();
     this._dataJustChanged = false;
   }
 
@@ -638,14 +637,11 @@ export class HistogramWidget {
   }
 
   private _setTooltip(value: string | string[] | null, barBBox: ClientRect) {
-    this._muteSelectionChanged = true;
-
     if (value === null) {
       this._hideTooltip();
       return;
     }
 
-    this._skipRender = true;
     this.tooltip = value;
     this._showTooltip(barBBox);
   }
