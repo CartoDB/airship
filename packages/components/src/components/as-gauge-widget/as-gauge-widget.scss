@@ -16,6 +16,8 @@ as-gauge-widget {
   --as--gauge-widget--tick--color: var(--as--color--ui-05, #{$color-ui-05});
   --as--gauge-widget--tick--line-height: 1.33;
   --as--gauge-widget--tick--font-weight: normal;
+  --as--gauge-widget--tooltip--height: 28px;
+  --as--gauge-widget--tooltip--padding: 0 8px;
   --as--gauge-widget--tooltip--border-radius: 4px;
   --as--gauge-widget--tooltip--background-color: var(--as--color--type-01, #{$color-type-01});
   --as--gauge-widget--tooltip--font-size: var(--as--size--font-02, #{$font-size-02});
@@ -97,8 +99,8 @@ as-gauge-widget {
       justify-content: space-between;
       width: auto;
       min-width: 40px;
-      height: 28px;
-      padding: 0 8px;
+      height: var(--as--gauge-widget--tooltip--height);
+      padding: var(--as--gauge-widget--tooltip--padding);
       transform: translateX(-50%);
       border-radius: var(--as--gauge-widget--tooltip--border-radius);
       opacity: 0;
