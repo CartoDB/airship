@@ -153,6 +153,7 @@ export class TimeSeries {
       this._animation = expr;
     }
 
+    this._viz.variables[this._variableName] = this._animation;
     this._viz[this._propertyName].blendTo(expr, 0);
 
     this._animation.parent = this._viz;
@@ -192,15 +193,10 @@ export class TimeSeries {
     if (this._propertyName &&
       this._viz[this._propertyName] &&
       this._viz[this._propertyName].isAnimated()) {
-        this._viz.variables[this._variableName] = this._viz[this._propertyName];
         return this._viz[this._propertyName];
     }
 
-    const animation = this._createDefaultAnimation();
-
-    // this._viz[this._propertyName].blendTo(animation, 0);
-    // this._viz.variables[this._variableName] = animation;
-    return animation;
+    return this._createDefaultAnimation();
   }
 
   private _createDefaultAnimation() {
