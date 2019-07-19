@@ -834,7 +834,7 @@ export namespace Components {
     /**
     * Proxy to as-histogram-widget getSelection()
     */
-    'getSelection': () => Promise<number[] | string[]>;
+    'getSelection': () => Promise<string[] | number[]>;
     /**
     * Title of the widget to be displayed
     */
@@ -1054,6 +1054,83 @@ export namespace Components {
   interface AsToolbar {}
   interface AsToolbarAttributes extends StencilHTMLAttributes {}
 
+  interface AsAxis {
+    /**
+    * Lower limit of the axis
+    */
+    'from': number;
+    /**
+    * Use this attribute to decide if the widget should be rerendered on window resize Defaults to true
+    */
+    'responsive': boolean;
+    /**
+    * The scale method to aplly
+    */
+    'scale': any;
+    /**
+    * Chart tick padding
+    */
+    'tickPadding': number;
+    /**
+    * Chart tick size
+    */
+    'tickSize': number;
+    /**
+    * Chart tick size inner
+    */
+    'tickSizeInner': number;
+    /**
+    * Chart tick size outer
+    */
+    'tickSizeOuter': number;
+    /**
+    * Upper limit of the axis
+    */
+    'to': number;
+    /**
+    * Axes type
+    */
+    'type': string;
+  }
+  interface AsAxisAttributes extends StencilHTMLAttributes {
+    /**
+    * Lower limit of the axis
+    */
+    'from'?: number;
+    /**
+    * Use this attribute to decide if the widget should be rerendered on window resize Defaults to true
+    */
+    'responsive'?: boolean;
+    /**
+    * The scale method to aplly
+    */
+    'scale'?: any;
+    /**
+    * Chart tick padding
+    */
+    'tickPadding'?: number;
+    /**
+    * Chart tick size
+    */
+    'tickSize'?: number;
+    /**
+    * Chart tick size inner
+    */
+    'tickSizeInner'?: number;
+    /**
+    * Chart tick size outer
+    */
+    'tickSizeOuter'?: number;
+    /**
+    * Upper limit of the axis
+    */
+    'to'?: number;
+    /**
+    * Axes type
+    */
+    'type'?: string;
+  }
+
   interface AsLegend {
     /**
     * Data to be displayed by the legend
@@ -1201,6 +1278,7 @@ declare global {
     'AsTabs': Components.AsTabs;
     'AsTimeSeriesWidget': Components.AsTimeSeriesWidget;
     'AsToolbar': Components.AsToolbar;
+    'AsAxis': Components.AsAxis;
     'AsLegend': Components.AsLegend;
     'AsLoader': Components.AsLoader;
     'AsWidgetHeader': Components.AsWidgetHeader;
@@ -1222,6 +1300,7 @@ declare global {
     'as-tabs': Components.AsTabsAttributes;
     'as-time-series-widget': Components.AsTimeSeriesWidgetAttributes;
     'as-toolbar': Components.AsToolbarAttributes;
+    'as-axis': Components.AsAxisAttributes;
     'as-legend': Components.AsLegendAttributes;
     'as-loader': Components.AsLoaderAttributes;
     'as-widget-header': Components.AsWidgetHeaderAttributes;
@@ -1308,6 +1387,12 @@ declare global {
     new (): HTMLAsToolbarElement;
   };
 
+  interface HTMLAsAxisElement extends Components.AsAxis, HTMLStencilElement {}
+  var HTMLAsAxisElement: {
+    prototype: HTMLAsAxisElement;
+    new (): HTMLAsAxisElement;
+  };
+
   interface HTMLAsLegendElement extends Components.AsLegend, HTMLStencilElement {}
   var HTMLAsLegendElement: {
     prototype: HTMLAsLegendElement;
@@ -1352,6 +1437,7 @@ declare global {
     'as-tabs': HTMLAsTabsElement
     'as-time-series-widget': HTMLAsTimeSeriesWidgetElement
     'as-toolbar': HTMLAsToolbarElement
+    'as-axis': HTMLAsAxisElement
     'as-legend': HTMLAsLegendElement
     'as-loader': HTMLAsLoaderElement
     'as-widget-header': HTMLAsWidgetHeaderElement
@@ -1373,6 +1459,7 @@ declare global {
     'as-tabs': HTMLAsTabsElement;
     'as-time-series-widget': HTMLAsTimeSeriesWidgetElement;
     'as-toolbar': HTMLAsToolbarElement;
+    'as-axis': HTMLAsAxisElement;
     'as-legend': HTMLAsLegendElement;
     'as-loader': HTMLAsLoaderElement;
     'as-widget-header': HTMLAsWidgetHeaderElement;

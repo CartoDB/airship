@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+  <base href="/">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+  <title>Airship</title>
+  <link rel="stylesheet" href="/packages/styles/dist/airship.css">
+  <script src="/packages/components/dist/airship.js"></script>
+  <script type='text/javascript' src='http://d3js.org/d3.v4.min.js'></script>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: #F2F2F2;
+    }
+
+    section {
+      width: 100vw;
+      padding: 20px;
+      background: white;
+    }
+
+    svg {
+      position: relative;
+      border: 1px dashed black;
+    }
+
+    .axis path,
+    .axis line {
+      fill: none;
+      stroke: slategray;
+      shape-rendering: crispEdges;
+    }
+  </style>
+</head>
+
+<body>
+  <section class="as-widget">
+    <h2>Axis top</h2>
+    <svg width="100%" height="200"></svg>
+    <as-axis id="top" 
+      type="axisTop"
+      from="0" 
+      to="100000">
+    </as-axis>
+  </section>
+
+  <section class="as-widget">
+    <h2>Axis right</h2>
+    <svg width="100%" height="200"></svg>
+    <as-axis type="axisRight" from="0" to="100000"></as-axis>
+  </section>
+
+  <section class="as-widget">
+    <h2>Axis bottom</h2>
+    <svg width="100%" height="200"></svg>
+    <as-axis type="axisBottom" from="0" to="100000"></as-axis>
+  </section>
+
+  <section class="as-widget">
+    <h2>Axis left</h2>
+    <svg width="100%" height="200"></svg>
+    <as-axis type="axisLeft"from="0" to="100000"></as-axis>
+  </section>
+
+  <script>
+    // const topp = document.querySelector('#top')
+    // topp.scale = d3.scaleBand
+  </script>
+</body>
+
+</html>
