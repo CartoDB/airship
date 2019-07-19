@@ -16,7 +16,7 @@ import { BaseHistogramFilter } from './BaseHistogramFilter';
  * @class NumericalHistogramFilter
  * @extends {BaseHistogramFilter<[number, number]>}
  */
-export class NumericalHistogramFilter extends BaseHistogramFilter<[number, number]> {
+export class NumericalHistogramFilter extends BaseHistogramFilter<Array<number | Date>> {
   private _lastHistogram: VLNumericalHistogram = null;
   private _isTimeSeries: boolean;
   private _bucketRanges: BucketRange[];
@@ -71,7 +71,12 @@ export class NumericalHistogramFilter extends BaseHistogramFilter<[number, numbe
       return null;
     }
 
-    return `(@${this.columnPropName} >= ${this._selection[0]} and @${this.columnPropName} < ${this._selection[1]})`;
+    const minN = this._selection[0];
+    const maxN = this._selection[1];
+    const min = minN instanceof Date ? `date('${minN.toISOString()}')` : minN;
+    const max = maxN instanceof Date ? `date('${maxN.toISOString()}')` : maxN;
+
+    return `(@${this.columnPropName} >= ${min} and @${this.columnPropName} < ${max})`;
   }
 
   /**
