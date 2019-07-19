@@ -29,7 +29,14 @@
       ];
 
       histogramWidget.tooltipFormatter = function (data) {
-        return [`From ${histogramWidget.xFormatter(data.start)} to ${histogramWidget.xFormatter(data.end)}:`, histogramWidget.defaultFormatter(data) + ' kg'];
+        return Promise.all(
+          [histogramWidget.xFormatter(data.start), histogramWidget.xFormatter(data.end), histogramWidget.defaultFormatter(data)]
+        ).then((value) => {
+          return [
+            `From ${value[0]} to ${value[1]}`,
+            value[1] + ' kg'
+          ]
+        });
       }
     </script>
   </body>
