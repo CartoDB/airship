@@ -5,7 +5,7 @@ import {
   Selection
 } from 'd3-selection';
 import { shadeOrBlend } from '../../../utils/styles';
-import { HistogramData } from '../interfaces';
+import { HistogramData, TooltipFormat } from '../interfaces';
 import { SVGContainer, SVGGContainer } from '../types/Container';
 
 export function addTooltip(
@@ -14,8 +14,8 @@ export function addTooltip(
   hasSelection: { selection: number[] | null, setSelection: any },
   color: string,
   unselectedColor: string,
-  formatter: (d: HistogramData) => string | string[],
-  setTooltip: (tooltip: string | string[] | null, node: ClientRect, evt?: MouseEvent) => void,
+  formatter: (d: HistogramData) => TooltipFormat | Promise<TooltipFormat>,
+  setTooltip: (tooltip: TooltipFormat | null, node: ClientRect, evt?: MouseEvent) => void,
   className: string
 ) {
   container.on('mousemove', () => {
@@ -24,13 +24,17 @@ export function addTooltip(
     let anyHovered = false;
 
     _forEachRect(barsContainer, clientX, clientY, className,
-      (data, node, bucketIndex, boundingBox: ClientRect) => {
+      async (data, node, bucketIndex, boundingBox: ClientRect) => {
         const selected = _isSelected(hasSelection.selection, bucketIndex);
 
         let _color = selected ? data.color || color : unselectedColor;
         _color = shadeOrBlend(-0.16, _color);
         node.style('fill', _color);
-        setTooltip(formatter(data), boundingBox, evt);
+
+        const tooltip = await formatter(data);
+
+        setTooltip(tooltip, boundingBox, evt);
+
         anyHovered = true;
       },
       (data, node, bucketIndex) => {

@@ -14,6 +14,7 @@ import {
   HistogramColorRange,
   HistogramData,
   HistogramSelection,
+  TooltipFormat,
 } from './components/as-histogram-widget/interfaces';
 import {
   RenderOptions,
@@ -279,7 +280,7 @@ export namespace Components {
     /**
     * Function that formats the tooltip. Receives HistogramData and outputs a string
     */
-    'tooltipFormatter': (value: HistogramData) => string | string[];
+    'tooltipFormatter': (value: HistogramData) => TooltipFormat | Promise<TooltipFormat>;
     /**
     * Override color for the non selected histogram bars
     */
@@ -1360,7 +1361,7 @@ declare namespace LocalJSX {
     /**
     * Function that formats the tooltip. Receives HistogramData and outputs a string
     */
-    'tooltipFormatter'?: (value: HistogramData) => string | string[];
+    'tooltipFormatter'?: (value: HistogramData) => TooltipFormat | Promise<TooltipFormat>;
     /**
     * Override color for the non selected histogram bars
     */

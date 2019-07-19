@@ -15,7 +15,14 @@ import {
   DEFAULT_BAR_COLOR_HEX
 } from '../common/constants';
 import contentFragment from '../common/content.fragment';
-import { AxisOptions, HistogramColorRange, HistogramData, HistogramSelection, HistogramType } from './interfaces';
+import {
+  AxisOptions,
+  HistogramColorRange,
+  HistogramData,
+  HistogramSelection,
+  HistogramType,
+  TooltipFormat
+} from './interfaces';
 import { SVGContainer, SVGGContainer } from './types/Container';
 import { RenderOptions } from './types/RenderOptions';
 import brushService from './utils/brush.service';
@@ -132,7 +139,7 @@ export class HistogramWidget {
    * @type {(HistogramData) => string}
    * @memberof HistogramWidget
    */
-  @Prop() public tooltipFormatter: (value: HistogramData) => string | string[] = this.formatter;
+  @Prop() public tooltipFormatter: (value: HistogramData) => TooltipFormat | Promise<TooltipFormat> = this.formatter;
 
   /**
    * Label the x axis of the histogram with the given string.

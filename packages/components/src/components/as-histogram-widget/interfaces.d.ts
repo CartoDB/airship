@@ -14,6 +14,7 @@ export interface HistogramSelection {
 
 type CategoricalSelectionPayload = string[];
 type ContinuousSelectionPayload = Array<Date | number>;
+type TooltipFormat = string | string[];
 
 export type HistogramType = 'continuous' | 'categorical';
 
