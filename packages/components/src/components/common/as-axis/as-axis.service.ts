@@ -43,10 +43,11 @@ export function renderAxis(
 
   // Axis.tickSizeInner(TICK_SIZE + TICK_RIGHT_MARGIN)
   
-  // Axis.tickPadding(tickPadding)
-  //   .tickSize(tickSize)
-  //   .tickSizeInner(tickSizeInner)
-  //   .tickSizeOuter(tickSizeOuter)
+  Axis.tickPadding(tickPadding)
+    .tickSize(tickSize)
+    .tickSizeInner(tickSizeInner)
+    .tickSizeOuter(tickSizeOuter)
+    
   Axis.ticks(6)
     .tickFormat((d) => `${readableNumber(d)}`);
 

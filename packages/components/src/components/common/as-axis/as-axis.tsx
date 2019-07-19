@@ -76,7 +76,7 @@ export class Axis {
    * @type {number}
    * @memberof Axis
    */
-  @Prop() public tickPadding: number = 0;
+  @Prop() public tickPadding: number = 4;
 
   /**
    * Chart tick size
@@ -92,7 +92,7 @@ export class Axis {
    * @type {number}
    * @memberof Axis
    */
-  @Prop() public tickSizeInner: number = 0;
+  @Prop() public tickSizeInner: number = 6;
 
   /**
    * Chart tick size outer
