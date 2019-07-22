@@ -1,4 +1,4 @@
-import { Component, Event, EventEmitter, h, Method, Prop, Watch } from '@stencil/core';
+import { Component, Event, EventEmitter, h, Host, Method, Prop, Watch } from '@stencil/core';
 import { scaleLinear } from 'd3-scale';
 import { event as d3event } from 'd3-selection';
 import {
@@ -293,7 +293,9 @@ export class TimeSeriesWidget {
   public onTimeFormatChanged(newFormat) {
     this._formatter = timeFormat(newFormat);
 
-    this.histogram.forceUpdate();
+    if (this.histogram) {
+      this.histogram.forceUpdate();
+    }
   }
 
   @Watch('timeFormatLocale')
@@ -408,37 +410,42 @@ export class TimeSeriesWidget {
   }
 
   public render() {
-    return [
-        this._renderButton(),
-        <as-histogram-widget
-          ref={(ref) => { this.histogram = ref as HTMLAsHistogramWidgetElement; }}
-          heading={this.heading}
-          description={this.description}
-          showHeader={this.showHeader}
-          showClear={this.showClear}
-          disableInteractivity={this.disableInteractivity}
-          data={this.data}
-          backgroundData={this._backgroundData}
-          color={this.color}
-          unselectedColor={this.unselectedColor}
-          colorRange={this.colorRange}
-          axisFormatter={this.axisFormatter}
-          tooltipFormatter={this.tooltipFormatter || this._tooltipFormatter.bind(this)}
-          xLabel={this.xLabel}
-          yLabel={this.yLabel}
-          isLoading={this.isLoading}
-          error={this.error}
-          errorDescription={this.errorDescription}
-          noDataHeaderMessage={this.noDataHeaderMessage}
-          noDataBodyMessage={this.noDataBodyMessage}
-          responsive={this.responsive}
-          clearText={this.clearText}
-          range={this.range}
-          disableAnimation={this.disableAnimation}
-          xAxisOptions={this.xAxisOptions}
-          yAxisOptions={this.yAxisOptions}
-        >
-      </as-histogram-widget>];
+    const classes = {
+      'as-time-series--animated': this.animated
+    };
+
+    return <Host class={classes}>
+      {this._renderButton()}
+      <as-histogram-widget
+        ref={(ref) => { this.histogram = ref as HTMLAsHistogramWidgetElement; }}
+        heading={this.heading}
+        description={this.description}
+        showHeader={this.showHeader}
+        showClear={this.showClear}
+        disableInteractivity={this.disableInteractivity}
+        data={this.data}
+        backgroundData={this._backgroundData}
+        color={this.color}
+        unselectedColor={this.unselectedColor}
+        colorRange={this.colorRange}
+        axisFormatter={this.axisFormatter}
+        tooltipFormatter={this.tooltipFormatter || this._tooltipFormatter.bind(this)}
+        xLabel={this.xLabel}
+        yLabel={this.yLabel}
+        isLoading={this.isLoading}
+        error={this.error}
+        errorDescription={this.errorDescription}
+        noDataHeaderMessage={this.noDataHeaderMessage}
+        noDataBodyMessage={this.noDataBodyMessage}
+        responsive={this.responsive}
+        clearText={this.clearText}
+        range={this.range}
+        disableAnimation={this.disableAnimation}
+        xAxisOptions={this.xAxisOptions}
+        yAxisOptions={this.yAxisOptions}
+      >
+    </as-histogram-widget>
+    </Host>;
   }
 
   private axisFormatter(value: number | Date): string {
@@ -447,9 +454,8 @@ export class TimeSeriesWidget {
 
   private _tooltipFormatter(data: TimeSeriesData): string[] {
     return [
-      `start: ${this.axisFormatter(data.start)}`,
-      `end: ${this.axisFormatter(data.end)}`,
-      `value: ${data.value}`
+      `${this.axisFormatter(data.start)} - ${this.axisFormatter(data.end)}`,
+      `${data.value}`
     ];
   }
 

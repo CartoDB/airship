@@ -5,7 +5,7 @@ import {
   Selection
 } from 'd3-selection';
 import { shadeOrBlend } from '../../../utils/styles';
-import { HistogramData } from '../interfaces';
+import { HistogramData, TooltipFormat } from '../interfaces';
 import { SVGContainer, SVGGContainer } from '../types/Container';
 
 export function addTooltip(
@@ -14,8 +14,8 @@ export function addTooltip(
   hasSelection: { selection: number[] | null, setSelection: any },
   color: string,
   unselectedColor: string,
-  formatter: (d: HistogramData) => string | string[],
-  setTooltip: (tooltip: string | string[] | null, evt?: MouseEvent) => void,
+  formatter: (d: HistogramData) => TooltipFormat | Promise<TooltipFormat>,
+  setTooltip: (tooltip: TooltipFormat | null, node: ClientRect, evt?: MouseEvent) => void,
   className: string
 ) {
   container.on('mousemove', () => {
@@ -24,13 +24,17 @@ export function addTooltip(
     let anyHovered = false;
 
     _forEachRect(barsContainer, clientX, clientY, className,
-      (data, node, bucketIndex) => {
+      async (data, node, bucketIndex, boundingBox: ClientRect) => {
         const selected = _isSelected(hasSelection.selection, bucketIndex);
 
         let _color = selected ? data.color || color : unselectedColor;
         _color = shadeOrBlend(-0.16, _color);
         node.style('fill', _color);
-        setTooltip(formatter(data), evt);
+
+        const tooltip = await formatter(data);
+
+        setTooltip(tooltip, boundingBox, evt);
+
         anyHovered = true;
       },
       (data, node, bucketIndex) => {
@@ -39,7 +43,7 @@ export function addTooltip(
       });
 
     if (!anyHovered) {
-      setTooltip(null);
+      setTooltip(null, null);
     }
   })
   .on('click', () => {
@@ -51,7 +55,7 @@ export function addTooltip(
     });
   })
   .on('mouseleave', () => {
-    setTooltip(null);
+    setTooltip(null, null);
     barsContainer.selectAll(`rect.${className}`)
       .style('fill', (data: HistogramData, bucketIndex) => {
         if (_isSelected(hasSelection.selection, bucketIndex)) {
@@ -70,7 +74,12 @@ function _isSelected(range: number[] | null, bucketIndex: number) {
   return bucketIndex >= range[0] && bucketIndex < range[1];
 }
 
-type RectCallback = (data: HistogramData, node: Selection<BaseType, {}, null, undefined>, index: number) => void;
+type RectCallback = (
+  data: HistogramData,
+  node: Selection<BaseType, {}, null, undefined>,
+  index: number,
+  boundingBox: ClientRect
+) => void;
 
 /**
  * Cycles through all rects in container, fires a callback for the rect that contains the x / y points,
@@ -100,12 +109,12 @@ function _forEachRect(
         y <= bb.bottom;
 
       if (isInsideBB) {
-        insideCallback(data, nodeSelection, i);
+        insideCallback(data, nodeSelection, i, bb);
         return;
       }
 
       if (outsideCallback) {
-        outsideCallback(data, nodeSelection, i);
+        outsideCallback(data, nodeSelection, i, null);
       }
     });
 }

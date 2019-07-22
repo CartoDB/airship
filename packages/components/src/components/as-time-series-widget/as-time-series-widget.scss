@@ -11,7 +11,9 @@ as-time-series-widget {
 
   as-histogram-widget {
     overflow: unset;
+  }
 
+  &.as-time-series--animated as-histogram-widget {
     as-widget-header,
     as-widget-selection,
     .content {

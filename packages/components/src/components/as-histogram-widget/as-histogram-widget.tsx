@@ -15,7 +15,14 @@ import {
   DEFAULT_BAR_COLOR_HEX
 } from '../common/constants';
 import contentFragment from '../common/content.fragment';
-import { AxisOptions, HistogramColorRange, HistogramData, HistogramSelection, HistogramType } from './interfaces';
+import {
+  AxisOptions,
+  HistogramColorRange,
+  HistogramData,
+  HistogramSelection,
+  HistogramType,
+  TooltipFormat
+} from './interfaces';
 import { SVGContainer, SVGGContainer } from './types/Container';
 import { RenderOptions } from './types/RenderOptions';
 import brushService from './utils/brush.service';
@@ -132,7 +139,7 @@ export class HistogramWidget {
    * @type {(HistogramData) => string}
    * @memberof HistogramWidget
    */
-  @Prop() public tooltipFormatter: (value: HistogramData) => string | string[] = this.formatter;
+  @Prop() public tooltipFormatter: (value: HistogramData) => TooltipFormat | Promise<TooltipFormat> = this.formatter;
 
   /**
    * Label the x axis of the histogram with the given string.
@@ -273,7 +280,6 @@ export class HistogramWidget {
   private _color: string;
   private _barBackgroundColor: string;
   private _muteSelectionChanged: boolean = false;
-  private _skipRender: boolean;
   private _dataJustChanged: boolean;
   private _lastEmittedSelection: number[] = null;
 
@@ -288,6 +294,7 @@ export class HistogramWidget {
 
   constructor() {
     this._resizeRender = this._resizeRender.bind(this);
+    this._setTooltip = this._setTooltip.bind(this);
   }
 
   @Watch('backgroundData')
@@ -417,11 +424,7 @@ export class HistogramWidget {
    */
   @Method()
   public async xFormatter(value) {
-    if (this.axisFormatter) {
-      return this.axisFormatter(value);
-    }
-
-    return value;
+    return this._xFormatter(value);
   }
 
   public componentDidLoad() {
@@ -440,11 +443,11 @@ export class HistogramWidget {
   }
 
   public componentDidUpdate() {
-    if (!this._skipRender || this._dataJustChanged) {
-      this._renderGraph();
+    if (!this._dataJustChanged) {
+      return;
     }
 
-    this._skipRender = false;
+    this._renderGraph();
     this._dataJustChanged = false;
   }
 
@@ -563,16 +566,14 @@ export class HistogramWidget {
 
     this.barsContainer = drawService.renderPlot(this.container);
 
-    const tooltipFormatter = this.tooltipFormatter || this._tooltipFormatter;
-
     interactionService.addTooltip(
       this.container,
       this.barsContainer,
       this,
       this._color,
       this._barBackgroundColor,
-      (value) => tooltipFormatter(value),
-      this._setTooltip.bind(this),
+      (value) => this.tooltipFormatter(value),
+      this._setTooltip,
       FG_CLASSNAME
     );
 
@@ -642,21 +643,14 @@ export class HistogramWidget {
     this._muteSelectionChanged = false;
   }
 
-  private _setTooltip(value: string | string[] | null, evt?: MouseEvent) {
-    this._muteSelectionChanged = true;
-
+  private _setTooltip(value: string | string[] | null, barBBox: ClientRect) {
     if (value === null) {
       this._hideTooltip();
       return;
     }
 
-    this._skipRender = true;
     this.tooltip = value;
-    this._showTooltip(evt);
-  }
-
-  private _tooltipFormatter(data: HistogramData): string {
-    return `${data.start}, ${data.value}`;
+    this._showTooltip(barBBox);
   }
 
   private _updateSelection() {
@@ -882,8 +876,6 @@ export class HistogramWidget {
     const spaceValues = values
       .map(this.xScale);
 
-    const domainValues = values.map(this.binsScale.invert);
-
     this.brushArea.call(this.brush.move, spaceValues);
 
     this.customHandles
@@ -907,9 +899,10 @@ export class HistogramWidget {
           return;
         }
 
-        if (!(domainValues[0] <= d.start && d.end <= domainValues[1])) {
+        if (i < values[0] || i >= values[1]) {
           return this._barBackgroundColor;
         }
+
         return d.color || this._color;
       });
   }
@@ -953,45 +946,15 @@ export class HistogramWidget {
     this.xScale = xAxis.scale();
   }
 
-  private _getTooltipPosition(mouseX: number, mouseY: number) {
-    const OFFSET = 25;
-    let x = mouseX;
-    let y = mouseY;
-
-    const viewportBoundaries = {
-      bottom: window.innerHeight + window.pageYOffset,
-      right: window.innerWidth + window.pageXOffset,
-    };
-
-    const tooltipContainerBoundingRect = this.tooltipElement.getBoundingClientRect();
-
-    const tooltipBoundaries = {
-      bottom: mouseY + tooltipContainerBoundingRect.height,
-      right: mouseX + tooltipContainerBoundingRect.width,
-    };
-
-    if (viewportBoundaries.right < tooltipBoundaries.right) {
-      x = mouseX - tooltipContainerBoundingRect.width;
-    }
-
-    if (viewportBoundaries.bottom < tooltipBoundaries.bottom) {
-      y = mouseY - tooltipContainerBoundingRect.height - OFFSET;
-    }
-
-    return [x, y];
-  }
-
-  private _showTooltip(event: MouseEvent) {
+  private _showTooltip(barBoundingBox: ClientRect) {
     if (!this.tooltipElement) {
       return;
     }
 
-    const [x, y] = this._getTooltipPosition(event.clientX, event.clientY);
-
     select(this.tooltipElement)
       .style('display', 'inline')
-      .style('left', `${x}px`)
-      .style('top', `${y}px`);
+      .style('left', `${barBoundingBox.left + (barBoundingBox.width / 2)}px`)
+      .style('top', `${barBoundingBox.top}px`);
   }
 
   private _hideTooltip() {
@@ -1087,10 +1050,20 @@ export class HistogramWidget {
 
     if (this.isCategoricalData) {
       tooltip.push(`${data.category}`);
+    } else {
+      tooltip.push(`${this._xFormatter(data.start)} - ${this._xFormatter(data.end)}`);
     }
 
     tooltip.push(`${readableNumber(data.value).trim()}`);
 
     return tooltip;
+  }
+
+  private _xFormatter(value: Date | number): string {
+    if (this.axisFormatter) {
+      return this.axisFormatter(value);
+    } else {
+      return conditionalFormatter(value);
+    }
   }
 }
