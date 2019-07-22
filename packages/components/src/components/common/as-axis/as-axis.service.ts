@@ -1,8 +1,8 @@
 import { extent } from 'd3-array';
-import { axisTop, axisRight, axisBottom, axisLeft } from 'd3-axis';
+import { axisTop, axisRight, axisBottom, axisLeft, AxisDomain } from 'd3-axis';
 import { select, Selection } from 'd3-selection';
 import { scaleLinear, scaleTime } from 'd3-scale';
-import { timeFormat, timeParse } from 'd3-time-format';
+import { timeFormat } from 'd3-time-format';
 import readableNumber from '../../../utils/readable-number';
 
 
@@ -18,7 +18,6 @@ export function renderAxis(
   tickSizeInner: number,
   tickSizeOuter: number
 ): SVGGElement {
-  // const margin = { top: 20, right: 20, bottom: 30, left: 40 };
   const element = select(svgElement);
   const outerWidth = element.node().getBoundingClientRect().width;
   const outerHeight = element.node().getBoundingClientRect().height;
@@ -48,8 +47,18 @@ export function renderAxis(
   switch (type) {
     case 'axisTop':
       scale.range([0, width]);
-      Axis = axisTop(scale)
-        .tickSizeOuter(0);
+      Axis = axisBottom(scale).tickPadding(-13);
+
+      if (_scale === 'scaleTime') {
+        Axis.tickFormat((d) => `${formatTime(d)}`)  // TODO: why red?!
+          .tickSizeOuter(0)
+          .ticks(null);
+      } else {
+        Axis.tickFormat((d) => `${readableNumber(d)}`)
+          .tickSizeInner(yTickSize)
+          .tickSizeOuter(0)
+          .ticks(6);
+      }
       break;
     case 'axisRight':
       scale.range([height, 0]);
@@ -61,10 +70,18 @@ export function renderAxis(
       break;
     case 'axisBottom':
       scale.range([0, width]);
-      Axis = axisBottom(scale)
-        .tickFormat((d) => `${formatTime(d)}`)  // TODO: why red?!
-        .tickSizeOuter(0)
-        .ticks(null);
+      Axis = axisBottom(scale);
+
+      if (_scale === 'scaleTime') {
+        Axis.tickFormat((d) => `${formatTime(d)}`)  // TODO: why red?!
+          .tickSizeOuter(0)
+          .ticks(null);
+      } else {
+        Axis.tickFormat((d) => `${readableNumber(d)}`)
+          .tickSizeInner(yTickSize)
+          .tickSizeOuter(0)
+          .ticks(6);
+      }
       break;
     case 'axisLeft':
       scale.range([height, 0]);
@@ -75,7 +92,7 @@ export function renderAxis(
         .ticks(6);  // TODO: as prop
       break;
   }
-  
+
   element.selectAll('g.as-axis').remove()
   if (element.select('.as-axis').empty()) {
     _createAxisElement(element, type, width, height, margin).call(Axis);

@@ -52,7 +52,7 @@
 <body>
   <section class="as-widget">
     <svg></svg>
-    <as-axis id="bottom" type="axisBottom" time="true" scale="scaleTime"></as-axis>
+    <as-axis id="bottom" type="axisBottom" time="true" scale="scaleTime" time-format="%b %d, %y"></as-axis>
   </section>
 
   <section class="as-widget">
@@ -85,8 +85,9 @@
     left.domain = domain
     left.margin = { top: 20, right: 0, bottom: 30, left: 40 }
     
+    topp.domain = ['1/1/2003', '2/1/2003', '3/1/2003', '4/1/2003', '5/1/2003', '6/1/2003']
     topp.domain = domain
-    topp.margin = { top: 20, right: 20, bottom: 30, left: 20 }
+    topp.margin = { top: 30, right: 40, bottom: 20, left: 40 }
     
     right.domain = domain
     right.margin = { top: 20, right: 0, bottom: 20, left: 40 }

@@ -75,7 +75,7 @@ export class Axis {
    * @type {string}
    * @memberof Axis
    */
-  @Prop() public timeFormat: string = '%b %d, %y';
+  @Prop() public timeFormat: string;
   
   /**
    * Chart tick padding
