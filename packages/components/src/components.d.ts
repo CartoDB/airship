@@ -1590,6 +1590,7 @@ declare namespace LocalJSX {
     'onThumbDecrease'?: (event: CustomEvent<number>) => void;
     'onThumbIncrease'?: (event: CustomEvent<number>) => void;
     'onThumbMove'?: (event: CustomEvent<number>) => void;
+    'onThumbRender'?: (event: CustomEvent<void>) => void;
     'percentage'?: number;
     'showCaption'?: boolean;
     'value'?: number;
