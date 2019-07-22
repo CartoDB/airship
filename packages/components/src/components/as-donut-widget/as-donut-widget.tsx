@@ -1,9 +1,9 @@
-import { Component, Element, Prop, Watch, Method, State } from '@stencil/core';
+import { Component, /*Element,*/ Method, Prop, State, Watch } from '@stencil/core';
 import { format as d3Format } from 'd3-format';
-import { select } from 'd3-selection';
 import { interpolateNumber } from 'd3-interpolate';
-import { SVGContainer } from './types/Container';
+import { select } from 'd3-selection';
 import { DonutData } from './interfaces';
+import { SVGContainer } from './types/Container';
 import drawService from './utils/draw.service';
 
 const TRANSITION_DURATION = 500;
@@ -157,7 +157,7 @@ export class DonutWidget {
    */
   @Prop() public labelFormat: string;
 
-  @Element() private el: HTMLStencilElement;
+  // @Element() private el: HTMLStencilElement;
 
   /**
    * Reference to the svg element where the plot will be rendered
@@ -200,6 +200,13 @@ export class DonutWidget {
 
   private bbox: any;
 
+  @State()
+  private selectionEmpty: boolean = true;
+
+  constructor() {
+    this.resizeRender = this.resizeRender.bind(this);
+  }
+
   @Watch('data')
   public _onDataChanged() {
     this.clearSelection();
@@ -213,23 +220,16 @@ export class DonutWidget {
 
   @Method()
   public setSelection(id: any) {
-    const itemData = this.data.find(item => item.id === id)
+    const itemData = this.data.find((it) => it.id === id);
     const item = {
       data: itemData
-    }
+    };
     this.onGraphClick(item);
   }
 
   @Method()
   public clearSelection() {
     this.onGraphClick();
-  }
-
-  @State()
-  private selectionEmpty: boolean = true;
-
-  constructor() {
-    this.resizeRender = this.resizeRender.bind(this);
   }
 
   public componentWillLoad() {
@@ -261,7 +261,7 @@ export class DonutWidget {
       this.clearGraph();
       this.renderGraph(false);
     });
-  } 
+  }
 
   private renderHeader() {
     if (!this.showHeader) {
@@ -279,7 +279,7 @@ export class DonutWidget {
   }
 
   private prepareData() {
-    this.data.map((item: any, i: number) => {
+    this.data.map((item: DonutData, i: number) => {
       if (!item.color) {
         item.color = (this.statusColors && this.data.length <= 3) ? STATUS_COLORS[i] : CATEGORICAL_COLORS[i];
       }
@@ -287,7 +287,7 @@ export class DonutWidget {
 
     this.totalValue = this.data.reduce((prev, curr) => prev + curr.value, 0);
 
-    const sel = this.data.filter((item: any) => this.selected && item.id === this.selected.data.id)[0];
+    const sel = this.data.filter((item: DonutData) => this.selected && item.id === this.selected.data.id)[0];
 
     if (sel) {
       this.setLabel(sel.key, sel.value);
@@ -347,8 +347,8 @@ export class DonutWidget {
       <div ref={(ref) => this.labelElement = ref} class='as-donut-label'>
         <p class='as-label-title'></p>
         <p class='as-label-value'>
-          <span class="as-label-value-value"></span>
-          <span class="as-label-value-unit">{this.labelUnits}</span>
+          <span class='as-label-value-value'></span>
+          <span class='as-label-value-unit'>{this.labelUnits}</span>
         </p>
       </div>
     );
@@ -360,10 +360,10 @@ export class DonutWidget {
     if (this.labelFormat) {
       this.label.select('.as-label-value .as-label-value-value')
         .text(d3Format(this.labelFormat)(value));
-    } else {   
+    } else {
       this.label.select('.as-label-value .as-label-value-value')
         .transition()
-        .tween('text', function () {
+        .tween('text', function() {
           const selection = select(this);
           const start = parseInt(select(this).text(), 0) || 0;
           const end = value ? value : 0;
@@ -381,7 +381,7 @@ export class DonutWidget {
     if (this.isLoading || this._isEmpty() || this.error || !this.showClear) {
       return '';
     }
-    
+
     return <as-widget-selection
       selection={this.selectionText}
       clearText={this.clearText}
@@ -408,7 +408,7 @@ export class DonutWidget {
     if (this.tooltipVisible) {
       this.hideTooltip();
     }
-    
+
     if (item) {
       this.selected = item;
       this.selectionEmpty = false;

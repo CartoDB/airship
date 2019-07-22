@@ -27,23 +27,23 @@ export function renderDonut(
   onMouseOut?,
   onMouseMove?,
   onClick?) {
-  
+
   selectedItem = selected;
 
   const radius = Math.min(width, height);
   const center = radius / 2;
 
-  if (order && order !== 'ascending' && order !== 'descending') { 
-    throw new Error(`Airship: DonutChart: the order property can be 'ascending' or 'descending'`) 
+  if (order && order !== 'ascending' && order !== 'descending') {
+    throw new Error(`Airship: DonutChart: the order property can be 'ascending' or 'descending'`);
   }
 
   pie = d3Pie()
-    .sort((a: any, b: any) => 
-      (!order) ? null : 
+    .sort((a: any, b: any) =>
+      (!order) ? null :
       (order === 'ascending') ?
       ascending(a.value, b.value) : descending(a.value, b.value))
-    .value((d: any) => d.value).padAngle(0.01);  // TODO: check this  
-  
+    .value((d: any) => d.value).padAngle(0.01);  // TODO: check this
+
   arc = d3Arc()
     .innerRadius((center - arcSize) - padding)
     .outerRadius(center - padding);
@@ -77,7 +77,7 @@ export function renderDonut(
     select(this)
       .transition('arc-fill-in')
       .duration(TRANSITION_DURATION)
-      .attr('fill', <any>d3Color(d.data.color).darker(0.6));  // TODO: check this
+      .attr('fill', d3Color(d.data.color).darker(0.6));  // TODO: check this
   });
 
   donut.on('mousemove', function () {
@@ -97,14 +97,14 @@ export function renderDonut(
 
   donut.on('click', function (d: any) {
     if (onMouseOut) onMouseOut();
-    
+
     if (selectedItem && selectedItem.data.id === d.data.id) {
       selectedItem = null;
       if (onClick) onClick();
       unselectItem(container)
     } else {
       selectedItem = d;
-      
+
       if (onClick) onClick(d);
       selectItem(container, selectedItem)
     }
@@ -123,7 +123,7 @@ function selectItem(svg: SVGContainer, selected: any) {
       } else {
         return GREY_COLOR;
       }
-    })
+    });
 }
 
 function unselectItem(svg: SVGContainer) {
