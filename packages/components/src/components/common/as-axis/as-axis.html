@@ -18,12 +18,19 @@
       margin: 0;
       padding: 0;
       background: #F2F2F2;
+
+      padding-bottom: 100px;
     }
 
     section {
       width: 100vw;
       padding: 20px;
       background: white;
+    }
+
+    .as-widget {
+      width: 100%;
+      height: 300px;
     }
 
     svg {
@@ -42,36 +49,45 @@
 
 <body>
   <section class="as-widget">
-    <h2>Axis top</h2>
-    <svg width="100%" height="200"></svg>
-    <as-axis id="top" 
-      type="axisTop"
-      from="0" 
-      to="100000">
+    <svg width="100%" height="100%"></svg>
+    <as-axis id="bottom" type="axisBottom" time="true" scale="scaleTime"></as-axis>
+  </section>
+
+  <section class="as-widget">
+    <svg width="100%" height="100%"></svg>
+    <as-axis id="left" type="axisLeft"></as-axis>
+  </section>
+
+  <section class="as-widget">
+    <svg width="100%" height="100%"></svg>
+    <as-axis id="top" type="axisTop">
     </as-axis>
   </section>
 
   <section class="as-widget">
-    <h2>Axis right</h2>
-    <svg width="100%" height="200"></svg>
-    <as-axis type="axisRight" from="0" to="100000"></as-axis>
-  </section>
-
-  <section class="as-widget">
-    <h2>Axis bottom</h2>
-    <svg width="100%" height="200"></svg>
-    <as-axis type="axisBottom" from="0" to="100000"></as-axis>
-  </section>
-
-  <section class="as-widget">
-    <h2>Axis left</h2>
-    <svg width="100%" height="200"></svg>
-    <as-axis type="axisLeft"from="0" to="100000"></as-axis>
+    <svg width="100%" height="100%"></svg>
+    <as-axis id="right" type="axisRight"></as-axis>
   </section>
 
   <script>
-    // const topp = document.querySelector('#top')
-    // topp.scale = d3.scaleBand
+    const bottom = document.querySelector('#bottom')
+    const left = document.querySelector('#left')
+    const topp = document.querySelector('#top')
+    const right = document.querySelector('#right')
+
+    const domain = [0, 10000]
+
+    bottom.domain = ['1/1/2003', '2/1/2003', '3/1/2003', '4/1/2003', '5/1/2003', '6/1/2003']
+    bottom.margin = { top: 20, right: 20, bottom: 10, left: 20 }
+
+    left.domain = domain
+    left.margin = { top: 20, right: 0, bottom: 30, left: 40 }
+    
+    topp.domain = domain
+    topp.margin = { top: 20, right: 20, bottom: 30, left: 20 }
+    
+    right.domain = domain
+    right.margin = { top: 20, right: 0, bottom: 20, left: 40 }
   </script>
 </body>
 

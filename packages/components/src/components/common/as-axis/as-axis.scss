@@ -4,23 +4,23 @@
   &.x-axis {
     --widget-axis-text-color: var(--as--color--type-01, #{$color-type-01});
     --widget-axis-line-color: var(--as--color--ui-05, #{$color-ui-05});
-  
+
     .tick {
       text {
         width: 30px;
         fill: var(--widget-axis-text-color);
         white-space: pre;
       }
-  
+
       line {
         display: none;
       }
-  
+
       line.zero {
         display: none;
       }
     }
-  
+
     .domain {
       stroke: var(--widget-axis-line-color);
     }
@@ -29,24 +29,24 @@
   &.y-axis {
     --widget-axis-text-color: var(--as--color--type-01, #{$color-type-01});
     --widget-axis-line-color: var(--as--color--ui-05, #{$color-ui-05});
-  
+
     .tick {
       text {
         width: 30px;
         fill: var(--widget-axis-text-color);
         white-space: pre;
       }
-  
+
       line {
         stroke: var(--widget-axis-line-color);
         opacity: 0.1;
       }
-  
+
       line.zero {
         opacity: 0.5;
       }
     }
-  
+
     .domain {
       display: none;
     }

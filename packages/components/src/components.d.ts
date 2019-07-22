@@ -1056,9 +1056,13 @@ export namespace Components {
 
   interface AsAxis {
     /**
-    * Lower limit of the axis
+    * Axis domain
     */
-    'from': number;
+    'domain': [];
+    /**
+    * Margin
+    */
+    'margin': any;
     /**
     * Use this attribute to decide if the widget should be rerendered on window resize Defaults to true
     */
@@ -1066,7 +1070,7 @@ export namespace Components {
     /**
     * The scale method to aplly
     */
-    'scale': any;
+    'scale': string;
     /**
     * Chart tick padding
     */
@@ -1084,19 +1088,19 @@ export namespace Components {
     */
     'tickSizeOuter': number;
     /**
-    * Upper limit of the axis
-    */
-    'to': number;
-    /**
     * Axes type
     */
     'type': string;
   }
   interface AsAxisAttributes extends StencilHTMLAttributes {
     /**
-    * Lower limit of the axis
+    * Axis domain
     */
-    'from'?: number;
+    'domain'?: [];
+    /**
+    * Margin
+    */
+    'margin'?: any;
     /**
     * Use this attribute to decide if the widget should be rerendered on window resize Defaults to true
     */
@@ -1104,7 +1108,7 @@ export namespace Components {
     /**
     * The scale method to aplly
     */
-    'scale'?: any;
+    'scale'?: string;
     /**
     * Chart tick padding
     */
@@ -1121,10 +1125,6 @@ export namespace Components {
     * Chart tick size outer
     */
     'tickSizeOuter'?: number;
-    /**
-    * Upper limit of the axis
-    */
-    'to'?: number;
     /**
     * Axes type
     */

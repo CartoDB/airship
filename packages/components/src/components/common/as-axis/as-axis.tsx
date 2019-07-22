@@ -1,5 +1,4 @@
 import { Component, Element, Prop } from '@stencil/core';
-import { scaleLinear, scaleBand } from 'd3-scale';
 import axisService from './as-axis.service';
 
 
@@ -68,7 +67,7 @@ export class Axis {
    *  scalePoint
    * ]
    */
-  @Prop() public scale: any = scaleLinear;
+  @Prop() public scale: string = 'scaleLinear';
 
   /**
    * Chart tick padding
@@ -92,7 +91,7 @@ export class Axis {
    * @type {number}
    * @memberof Axis
    */
-  @Prop() public tickSizeInner: number = 6;
+  @Prop() public tickSizeInner: number = 0;
 
   /**
    * Chart tick size outer
@@ -103,20 +102,20 @@ export class Axis {
   @Prop() public tickSizeOuter: number = 0;
 
   /**
-   * Lower limit of the axis
+   * Axis domain
    *
    * @type {number}
    * @memberof Axis
    */
-  @Prop() public from: number = 0;
-
+  @Prop() public domain: [];
+  
   /**
-   * Upper limit of the axis
+   * Margin
    *
-   * @type {Number[]}
+   * @type {any}
    * @memberof Axis
    */
-  @Prop() public to: number = 0;
+  @Prop() public margin: any = { top: 20, right: 20, bottom: 20, left: 20 };
 
   /**
    * Use this attribute to decide if the widget should be rerendered on window resize
@@ -142,16 +141,17 @@ export class Axis {
   }
 
   public render() {
-    // console.log(this.scale);
     
     const element = this.element.previousElementSibling as SVGElement;
-    const scale = [this.from, this.to] as [number, number];
+    // const domain = [this.from, this.to] as [number, number];
+    
 
     axisService.renderAxis(
       element, 
-      scale, 
-      this.type, 
-      this.scale, 
+      this.domain, 
+      this.type,
+      this.scale,
+      this.margin,
       this.tickPadding,
       this.tickSize,
       this.tickSizeInner,

@@ -1,74 +1,101 @@
+import { extent } from 'd3-array';
 import { axisTop, axisRight, axisBottom, axisLeft } from 'd3-axis';
 import { select, Selection } from 'd3-selection';
+import { scaleLinear, scaleTime } from 'd3-scale';
+import { timeFormat, timeParse } from 'd3-time-format';
 import readableNumber from '../../../utils/readable-number';
 
 
 export function renderAxis(
-  svgElement: SVGElement, 
-  domain: [number, number], 
-  type: string, 
-  scale: any,
+  svgElement: SVGElement,
+  domain: [],
+  type: string,
+  _scale: string,
+  margin: any,
   tickPadding: number,
   tickSize: number,
   tickSizeInner: number,
   tickSizeOuter: number
 ): SVGGElement {
-  const padding = { top: 20, right: 20, bottom: 20, left: 20 };
+  // const margin = { top: 20, right: 20, bottom: 30, left: 40 };
   const element = select(svgElement);
-  const height = element.node().getBoundingClientRect().height - padding.top - padding.bottom;
-  const width = element.node().getBoundingClientRect().width - padding.left - padding.right;
-  const range = (type === 'axisRight' || type === 'axisLeft') ? [height, 0] : [domain[0], width]
-  
+  const outerWidth = element.node().getBoundingClientRect().width;
+  const outerHeight = element.node().getBoundingClientRect().height;
+  const width = outerWidth - margin.left - margin.right;
+  const height = outerHeight - margin.top - margin.bottom;
 
-  const yScale = scale()
-    .domain(domain)
-    .range(range);
+  const yTickSize = - width + 30;
+
+  const formatTime = timeFormat('%b %d, %y');
+
+  element.attr('width', width + margin.left + margin.right)
+    .attr('height', height + margin.top + margin.bottom);
+
+
+  let scale;
+
+  switch (_scale) {
+    case 'scaleLinear':
+      scale = scaleLinear().domain(domain);
+      break;
+    case 'scaleTime':
+      const dd = domain.map(item => new Date(item))
+      scale = scaleTime().domain(extent(dd, (d) => d));
+      break;
+  }
 
   let Axis;
 
   switch (type) {
     case 'axisTop':
-      Axis = axisTop(yScale)
+      scale.range([0, width]);
+      Axis = axisTop(scale)
+        .tickSizeOuter(0);
       break;
     case 'axisRight':
-      Axis = axisRight(yScale)
+      scale.range([height, 0]);
+      Axis = axisRight(scale)
+        .tickFormat((d) => `${readableNumber(d)}`)
+        .tickSizeInner(yTickSize)
+        .tickSizeOuter(0)
+        .ticks(6);  // TODO: as prop
       break;
     case 'axisBottom':
-      Axis = axisBottom(yScale)
+      scale.range([0, width]);
+      Axis = axisBottom(scale)
+        .tickFormat((d) => `${formatTime(d)}`)  // TODO: ?¿?¿?¿?¿
+        .tickSizeOuter(0);
       break;
     case 'axisLeft':
-      Axis = axisLeft(yScale)
+      scale.range([height, 0]);
+      Axis = axisLeft(scale)
+        .tickFormat((d) => `${readableNumber(d)}`)
+        .tickSizeInner(yTickSize)
+        .tickSizeOuter(0)
+        .ticks(6);  // TODO: as prop
       break;
   }
 
-  // Axis.tickSizeInner(TICK_SIZE + TICK_RIGHT_MARGIN)
-  
-  Axis.tickPadding(tickPadding)
-    .tickSize(tickSize)
-    .tickSizeInner(tickSizeInner)
-    .tickSizeOuter(tickSizeOuter)
-    
-  Axis.ticks(6)
-    .tickFormat((d) => `${readableNumber(d)}`);
 
-  if (element.select('.axis').empty()) {
-    _createAxisElement(element, type).call(Axis);
+  if (element.select('.as-axis').empty()) {
+    _createAxisElement(element, type, width, height, margin).call(Axis);
   } else {
-    element.select('.axis').call(Axis);
+    element.select('.as-axis').call(Axis);
   }
 
   element.selectAll('.tick text')
     .attr('lengthAdjust', 'spacing');
 
-  return svgElement.querySelector('g.axis');
+  return svgElement.querySelector('g.as-axis');
 }
 
-function _createAxisElement(element: Selection<Element, {}, null, undefined>, type: string) {
-  const margin = {top: 20, right: 20, bottom: 20, left: 20};
+function _createAxisElement(element: Selection<Element, {}, null, undefined>, type: string, width: number, height: number, margin: any) {
+  const left = type === 'axisRight' ? width : margin.left;
+  const top = type === 'axisBottom' ? height : margin.top;
 
   return element.append('g')
-    .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
-    .attr('class', type === 'V' ? 'axis y-axis' : 'axis x-axis');
+    .attr('transform', 'translate(' + left + ',' + top + ')')
+    .attr('class', (type === 'axisLeft' || type === 'axisRight') ? 'as-axis y-axis' : 'as-axis x-axis');
 }
 
 export default { renderAxis };
