@@ -70,6 +70,14 @@ export class Axis {
   @Prop() public scale: string = 'scaleLinear';
 
   /**
+   * Time format
+   *
+   * @type {string}
+   * @memberof Axis
+   */
+  @Prop() public timeFormat: string = '%b %d, %y';
+  
+  /**
    * Chart tick padding
    *
    * @type {number}
@@ -141,10 +149,7 @@ export class Axis {
   }
 
   public render() {
-    
     const element = this.element.previousElementSibling as SVGElement;
-    // const domain = [this.from, this.to] as [number, number];
-    
 
     axisService.renderAxis(
       element, 
@@ -152,6 +157,7 @@ export class Axis {
       this.type,
       this.scale,
       this.margin,
+      this.timeFormat,
       this.tickPadding,
       this.tickSize,
       this.tickSizeInner,

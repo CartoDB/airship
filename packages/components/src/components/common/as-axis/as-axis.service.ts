@@ -12,6 +12,7 @@ export function renderAxis(
   type: string,
   _scale: string,
   margin: any,
+  timeFormatString: string,
   tickPadding: number,
   tickSize: number,
   tickSizeInner: number,
@@ -23,10 +24,8 @@ export function renderAxis(
   const outerHeight = element.node().getBoundingClientRect().height;
   const width = outerWidth - margin.left - margin.right;
   const height = outerHeight - margin.top - margin.bottom;
-
   const yTickSize = - width + 30;
-
-  const formatTime = timeFormat('%b %d, %y');
+  const formatTime = timeFormat(timeFormatString);
 
   element.attr('width', width + margin.left + margin.right)
     .attr('height', height + margin.top + margin.bottom);
@@ -63,8 +62,9 @@ export function renderAxis(
     case 'axisBottom':
       scale.range([0, width]);
       Axis = axisBottom(scale)
-        .tickFormat((d) => `${formatTime(d)}`)  // TODO: ?¿?¿?¿?¿
-        .tickSizeOuter(0);
+        .tickFormat((d) => `${formatTime(d)}`)  // TODO: why red?!
+        .tickSizeOuter(0)
+        .ticks(null);
       break;
     case 'axisLeft':
       scale.range([height, 0]);
@@ -75,8 +75,8 @@ export function renderAxis(
         .ticks(6);  // TODO: as prop
       break;
   }
-
-
+  
+  element.selectAll('g.as-axis').remove()
   if (element.select('.as-axis').empty()) {
     _createAxisElement(element, type, width, height, margin).call(Axis);
   } else {

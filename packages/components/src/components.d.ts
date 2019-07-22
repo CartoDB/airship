@@ -1088,6 +1088,10 @@ export namespace Components {
     */
     'tickSizeOuter': number;
     /**
+    * Time format
+    */
+    'timeFormat': string;
+    /**
     * Axes type
     */
     'type': string;
@@ -1125,6 +1129,10 @@ export namespace Components {
     * Chart tick size outer
     */
     'tickSizeOuter'?: number;
+    /**
+    * Time format
+    */
+    'timeFormat'?: string;
     /**
     * Axes type
     */

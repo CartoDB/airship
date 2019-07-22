@@ -34,6 +34,8 @@
     }
 
     svg {
+      width: 100%;
+      height: 100%;
       position: relative;
       border: 1px dashed black;
     }
@@ -49,23 +51,23 @@
 
 <body>
   <section class="as-widget">
-    <svg width="100%" height="100%"></svg>
+    <svg></svg>
     <as-axis id="bottom" type="axisBottom" time="true" scale="scaleTime"></as-axis>
   </section>
 
   <section class="as-widget">
-    <svg width="100%" height="100%"></svg>
+    <svg></svg>
     <as-axis id="left" type="axisLeft"></as-axis>
   </section>
 
   <section class="as-widget">
-    <svg width="100%" height="100%"></svg>
+    <svg></svg>
     <as-axis id="top" type="axisTop">
     </as-axis>
   </section>
 
   <section class="as-widget">
-    <svg width="100%" height="100%"></svg>
+    <svg></svg>
     <as-axis id="right" type="axisRight"></as-axis>
   </section>
 
@@ -78,7 +80,7 @@
     const domain = [0, 10000]
 
     bottom.domain = ['1/1/2003', '2/1/2003', '3/1/2003', '4/1/2003', '5/1/2003', '6/1/2003']
-    bottom.margin = { top: 20, right: 20, bottom: 10, left: 20 }
+    bottom.margin = { top: 20, right: 40, bottom: 10, left: 40 }
 
     left.domain = domain
     left.margin = { top: 20, right: 0, bottom: 30, left: 40 }
