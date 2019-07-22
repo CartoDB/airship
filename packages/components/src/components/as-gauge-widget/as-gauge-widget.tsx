@@ -1,7 +1,7 @@
 import { Component, Element, Prop, Watch } from '@stencil/core';
 import { format as d3Format } from 'd3-format';
-import { select } from 'd3-selection';
-import { arc as d3Arc } from 'd3-shape';
+import { select, Selection } from 'd3-selection';
+import { arc as d3Arc, Arc, DefaultArcObject } from 'd3-shape';
 import { SVGContainer } from './types/Container';
 import drawService from './utils/draw.service';
 
@@ -133,10 +133,10 @@ export class GaugeWidget {
   private container: SVGContainer;
 
   private wrapper: HTMLElement;
-  private bbox: any;
+  private bbox: ClientRect;
 
-  private arc: any;
-  private foreground: any;
+  private arc: Arc<any, DefaultArcObject>;
+  private foreground: Selection<SVGPathElement, {}, null, undefined>;
 
   private tooltipElement: HTMLElement;
 
@@ -296,11 +296,11 @@ export class GaugeWidget {
     );
 
     tooltip.style('left', pageX + 'px')
-      .style('top', pageY - this.tooltipMargin + 'px')
+      .style('top', pageY - this.tooltipMargin + 'px');
 
     tooltip.transition('show-tooltip')
       .duration(250)
-      .style('opacity', 1)
+      .style('opacity', 1);
   }
 
   private hideTooltip() {

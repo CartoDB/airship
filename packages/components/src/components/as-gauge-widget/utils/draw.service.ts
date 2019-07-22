@@ -1,21 +1,22 @@
 import { SVGContainer } from '../types/Container';
 import { color as d3Color } from 'd3-color';
 import { format as d3Format } from 'd3-format';
-import { event as d3Event, select, selectAll } from 'd3-selection';
+import { event as d3Event, select, selectAll, Selection } from 'd3-selection';
 import { interpolate as d3Interpolate, interpolateNumber } from 'd3-interpolate';
 import 'd3-transition';
+import { Arc, DefaultArcObject } from 'd3-shape';
 
 const GREY_COLOR = '#e2e6e3';
 const TRANSITION_DURATION = 500;
 const BASE_COLOR = '#80b622';
-let curColor;
-let nextColor;
-let holdColor;
+let curColor: string;
+let nextColor: string;
+let holdColor: string;
 
 /**
  * Renders the background arc
  */
-export function renderBackground(container: SVGContainer, arc: any) {
+export function renderBackground(container: SVGContainer, arc: Arc<any, DefaultArcObject>) {
   container.select('g')
     .append('path')
     .datum({ endAngle: 90 * (Math.PI / 180) })
@@ -29,7 +30,7 @@ export function renderBackground(container: SVGContainer, arc: any) {
  */
 export function renderForeground(
   container: SVGContainer,
-  arc: any,
+  arc: Arc<any, DefaultArcObject>,
   onMouseOver?,
   onMouseMove?,
   onMouseOut?
@@ -48,7 +49,7 @@ export function renderForeground(
     select(this)
       .transition()
       .duration(500)
-      .attr('fill', () => d3Color(BASE_COLOR).darker(0.6))
+      .attr('fill', () => d3Color(BASE_COLOR).darker(0.6).toString());
   });
 
   foreground.on('mousemove', function () {
@@ -77,7 +78,7 @@ export function renderThresholds(
 ) {
   selectAll('line.threshold').remove();
 
-  threshold.forEach((t) => {
+  threshold.forEach((t: any) => {
     const angle = Math.PI * (t.value - min) / (max - min);
     const x0 = (innerRadius * Math.cos(angle));
     const y0 = (innerRadius * Math.sin(angle));
@@ -138,8 +139,8 @@ export function update(
   value: number,
   min: number,
   max: number,
-  arc: any,
-  foreground: any,
+  arc: Arc<any, DefaultArcObject>,
+  foreground: Selection<SVGPathElement, {}, null, undefined>,
   threshold: Array<any>
 ) {
   const num = ((value - min) * 180) / (max - min);
@@ -158,11 +159,11 @@ export function update(
 
   foreground.transition()
     .duration(TRANSITION_DURATION)
-    .attrTween('d', (d) => {
-      const interpolate = d3Interpolate(d.endAngle, rad)
-      return (t) => {
-        d.endAngle = interpolate(t)
-        return arc(d)
+    .attrTween('d', (d: any) => {
+      const interpolate = d3Interpolate(d.endAngle, rad);
+      return (t: number) => {
+        d.endAngle = interpolate(t);
+        return arc(d);
       }
     })
     .on('start', () => {
@@ -191,13 +192,13 @@ export function updateLabel(
   select(el).select('.as-gauge-label-value')
     .transition()
     .tween('text', function () {
-      const selection = select(this)
-      const start = select(this).text()
-      const end = Math.floor(percentage)
-      const interpolator = interpolateNumber(Number(start), end)
+      const selection = select(this);
+      const start = select(this).text();
+      const end = Math.floor(percentage);
+      const interpolator = interpolateNumber(Number(start), end);
 
-      return (t) => {
-        selection.text(Math.round(interpolator(t)))
+      return (t: number) => {
+        selection.text(Math.round(interpolator(t)));
       }
     })
     .duration(TRANSITION_DURATION);
