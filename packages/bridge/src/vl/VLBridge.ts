@@ -431,7 +431,6 @@ export default class VLBridge {
 
   private _getVariables() {
     const variables = this._readOnlyLayer !== undefined ? this._readOnlyLayer.viz.variables : {};
-
     for (const filter of this._vizFilters) {
       const name = filter.name;
 
@@ -478,8 +477,10 @@ export default class VLBridge {
       this._readOnlyLayer.viz.filter.blendTo(newFilter, 0);
     }
 
-    if (this._layer.viz.filter.isAnimated()) {
-      newFilter = `@${this._animation.variableName} and ${newFilter}`;
+    if (this._layer.viz.filter.isAnimated() && this._animation) {
+      if (this._layer.viz.variables[this._animation.variableName]) {
+        newFilter = `@${this._animation.variableName} and ${newFilter}`;
+      }
     }
 
     // Update the Visualization filter

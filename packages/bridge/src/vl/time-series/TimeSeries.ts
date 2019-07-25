@@ -78,7 +78,7 @@ export class TimeSeries {
    * @returns
    * @memberof TimeSeries
    */
-  public setRange(range: [number, number]) {
+  public setRange(range: [number, number] | [ Date, Date ]) {
     if (!this._animation || !this._animation.input || !this._animation.input.min || !this._animation.input.max) {
       return;
     }
@@ -88,13 +88,28 @@ export class TimeSeries {
       this._animation.input.max.blendTo(this._max, 0);
       this._animation.duration.blendTo(this._duration, 0);
     } else if (range[0] !== range[1]) {
-      const ratio = Math.min(1, (range[1] - range[0]) / (this._max.value - this._min.value));
-      this._animation.input.min.blendTo(range[0], 0);
-      this._animation.input.max.blendTo(range[1], 0);
+      const s = this._carto.expressions;
+      let min;
+      let max;
+      let ratio;
 
-      this._animation.duration.blendTo(this._duration * ratio, 0);
+      if (this._animation.input.min.expressionName === 'Blend' &&
+        this._animation.input.min.mix.expressionName !== 'Transition') {
+        if (typeof range[0] === 'number' && typeof range[1] === 'number') {
+          min = range[0];
+          max = range[1];
+          ratio = Math.min(1, (max - min) / (this._max.value - this._min.value));
+        } else if (range[0] instanceof Date && range[1] instanceof Date) {
+          min = s.time(range[0]);
+          max = s.time(range[1]);
+          ratio = Math.min(1, (range[0].getTime() - range[1].getTime()) / (this._max.value - this._min.value));
+        }
+
+        this._animation.input.min.blendTo(min, 0);
+        this._animation.input.max.blendTo(max, 0);
+        this._animation.duration.blendTo(this._duration * ratio, 0);
+      }
     }
-
   }
 
   public get variableName(): string {
@@ -138,6 +153,7 @@ export class TimeSeries {
       this._animation = expr;
     }
 
+    this._viz.variables[this._variableName] = this._animation;
     this._viz[this._propertyName].blendTo(expr, 0);
 
     this._animation.parent = this._viz;
@@ -174,31 +190,26 @@ export class TimeSeries {
       return this._viz.variables[this._variableName];
     }
 
-    this._viz.variables[this._variableName] = this._propertyName &&
+    if (this._propertyName &&
       this._viz[this._propertyName] &&
-      this._viz[this._propertyName].isAnimated()
-        ? this._viz[this._propertyName]
-        : this._createDefaultAnimation();
+      this._viz[this._propertyName].isAnimated()) {
+        return this._viz[this._propertyName];
+    }
 
-    return this._viz.variables[this._variableName];
+    return this._createDefaultAnimation();
   }
 
   private _createDefaultAnimation() {
     const s = this._carto.expressions;
-    const animation = s.animation(
-      s.linear(
-        s.prop(this._columnName),
-        s.globalMin(s.prop(this._columnName)),
-        s.globalMax(s.prop(this._columnName))
-      ),
+
+    return s.animation(
+      s.linear(s.prop(this._columnName)),
       this._duration,
       s.fade(
         this._fade[0],
         this._fade[1]
       )
     );
-
-    return animation;
   }
 }
 

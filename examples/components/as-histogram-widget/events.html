@@ -29,11 +29,16 @@
       ];
 
       histogramWidget.tooltipFormatter = function (data) {
-        return histogramWidget.defaultFormatter(data) + ' kg';
-      }
+        return histogramWidget.defaultFormatter(data).then((formatted) => {
+          formatted[1] = `${formatted[1]} kg`;
+  
+          return formatted;
+        });
+      };
 
       var selectionEl = document.querySelector('#selection');
       histogramWidget.addEventListener('selectionChanged', function (e) {
+        console.log('selectionChanged');
         if (e.detail === null) {
           selectionEl.innerText = 'Nothing selected';
         } else {

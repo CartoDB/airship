@@ -14,10 +14,10 @@
   overflow-y: auto;
   transition: opacity 0.3s;
   background-color: var(--as--sidebar--background-color);
+  box-shadow: none;
 
   &--left {
     order: -1;
-    box-shadow: var(--as--sidebar--shadow-color) 1px 0 4px 0;
 
     &.as-sidebar--visible {
       display: flex;
@@ -27,7 +27,6 @@
 
   &--right {
     order: 9999;
-    box-shadow: var(--as--sidebar--shadow-color) -1px 0 4px 0;
 
     &.as-sidebar--visible {
       display: flex;
@@ -58,6 +57,14 @@
 
     &--xl {
       width: 460px;
+    }
+
+    &--left {
+      box-shadow: var(--as--sidebar--shadow-color) 1px 0 4px 0;
+    }
+
+    &--right {
+      box-shadow: var(--as--sidebar--shadow-color) -1px 0 4px 0;
     }
 
     // Containers

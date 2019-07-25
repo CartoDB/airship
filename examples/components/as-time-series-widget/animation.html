@@ -104,10 +104,18 @@
     });
 
     timeSeriesWidget.tooltipFormatter = (data) => {
-      return [
-        `From ${timeSeriesWidget.xFormatter(data.start)} to ${timeSeriesWidget.xFormatter(data.end)}:`,
-        timeSeriesWidget.defaultFormatter(data)
-      ];
+      return Promise.all(
+        [ 
+          timeSeriesWidget.xFormatter(data.start),
+          timeSeriesWidget.xFormatter(data.end),
+          timeSeriesWidget.defaultFormatter(data)
+        ]
+      ).then((resolved) => {
+        return [
+          `From ${resolved[0]} to ${resolved[1]}`,
+          resolved[2][1]
+        ];
+      });
     };
   </script>
 </body>
