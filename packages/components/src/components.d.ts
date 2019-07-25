@@ -314,6 +314,9 @@ export namespace Components {
     'heading': string;
     'loading': boolean;
   }
+  interface AsLegendBivariate {
+    'data': LegendData[];
+  }
   interface AsLegendCategory {
     'data': LegendData[];
     'orientation': 'horizontal' | 'vertical';
@@ -839,6 +842,12 @@ declare global {
     new (): HTMLAsLegendElement;
   };
 
+  interface HTMLAsLegendBivariateElement extends Components.AsLegendBivariate, HTMLStencilElement {}
+  var HTMLAsLegendBivariateElement: {
+    prototype: HTMLAsLegendBivariateElement;
+    new (): HTMLAsLegendBivariateElement;
+  };
+
   interface HTMLAsLegendCategoryElement extends Components.AsLegendCategory, HTMLStencilElement {}
   var HTMLAsLegendCategoryElement: {
     prototype: HTMLAsLegendCategoryElement;
@@ -1079,6 +1088,7 @@ declare global {
     'as-histogram-widget': HTMLAsHistogramWidgetElement;
     'as-infowindow': HTMLAsInfowindowElement;
     'as-legend': HTMLAsLegendElement;
+    'as-legend-bivariate': HTMLAsLegendBivariateElement;
     'as-legend-category': HTMLAsLegendCategoryElement;
     'as-legend-category-line-entry': HTMLAsLegendCategoryLineEntryElement;
     'as-legend-category-point-entry': HTMLAsLegendCategoryPointEntryElement;
@@ -1390,6 +1400,9 @@ declare namespace LocalJSX {
     'description'?: string;
     'heading'?: string;
     'loading'?: boolean;
+  }
+  interface AsLegendBivariate extends JSXBase.HTMLAttributes<HTMLAsLegendBivariateElement> {
+    'data'?: LegendData[];
   }
   interface AsLegendCategory extends JSXBase.HTMLAttributes<HTMLAsLegendCategoryElement> {
     'data'?: LegendData[];
@@ -1898,6 +1911,7 @@ declare namespace LocalJSX {
     'as-histogram-widget': AsHistogramWidget;
     'as-infowindow': AsInfowindow;
     'as-legend': AsLegend;
+    'as-legend-bivariate': AsLegendBivariate;
     'as-legend-category': AsLegendCategory;
     'as-legend-category-line-entry': AsLegendCategoryLineEntry;
     'as-legend-category-point-entry': AsLegendCategoryPointEntry;
