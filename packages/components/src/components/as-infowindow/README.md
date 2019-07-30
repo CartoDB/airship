@@ -38,7 +38,7 @@ Use this component to show extra information about the data.
 
 ### CSS Variables
 
-````
+```
 as-infowindow{
   --as--infowindow--color--background
   --as--infowindow--color--shadow
