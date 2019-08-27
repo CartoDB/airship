@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.1](https://github.com/CartoDB/airship/compare/v2.1.0...v2.1.1) (2019-07-30)
+
+
+### Bug Fixes
+
+* **docs:** Fix infowindows CSS variables documentation ([bd3b73e](https://github.com/CartoDB/airship/commit/bd3b73e))
+
+
+
+
+
 <a name="2.1.0"></a>
 # [2.1.0](https://github.com/CartoDB/airship/compare/v2.0.5...v2.1.0) (2019-06-18)
 
