@@ -171,17 +171,13 @@ export default class Legends {
 
     waitUntilLoaded(parsedLayer.layer, () => {
       const baseStyle = _styleFromLayer(parsedLayer);
-
       const vizProp = parsedLayer.layer.viz[prop];
-
       const config = options.config;
-      const dataProp = options.variable || prop;
+      const dataProp = options.config.variable || prop;
       const data = parsedLayer.layer.viz.variables[dataProp]
           ? parsedLayer.layer.viz.variables[dataProp]
           : parsedLayer.layer.viz[dataProp];
-
       const legendData = data.getLegendData(config).data;
-
       const parsedData = legendData.map((data, index, arr) => {
         return {
           ...baseStyle,
