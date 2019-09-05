@@ -40,7 +40,7 @@ function _getNumberValue(viz, propName, defaultValue?) {
 }
 
 function _getSymbolValue(viz, value) {
-  const prop = viz.variables[value] 
+  const prop = viz.variables[value]
     ? viz.variables[value]
     : viz.symbol;
 
@@ -178,11 +178,11 @@ export default class Legends {
           ? parsedLayer.layer.viz.variables[dataProp]
           : parsedLayer.layer.viz[dataProp];
       const legendData = data.getLegendData(config).data;
-      const parsedData = legendData.map((data, index, arr) => {
+      const parsedData = legendData.map((legend, index, arr) => {
         return {
           ...baseStyle,
-          [prop]: _formatProp(vizProp, data.value),
-          label: options.format ? options.format(data.key, index, arr) : _formatLegendKey(data.key)
+          [prop]: _formatProp(vizProp, legend.value),
+          label: options.format ? options.format(legend.key, index, arr) : _formatLegendKey(data.key)
         };
       });
 
