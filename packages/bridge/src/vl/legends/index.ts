@@ -66,7 +66,7 @@ function _styleFromLayer(layerWithProps) {
   return {
     color: _getColorValue(viz, 'color'),
     label: props.label,
-    marker: viz.symbol.default ? undefined : _getSymbolValue(viz),
+    marker: viz.symbol.default ? undefined : _getSymbolValue(viz, 'marker'),
     strokeColor: _getColorValue(viz, 'strokeColor'),
     strokeStyle: _getNumberValue(viz, 'strokeWidth') === 0 ? 'hidden' : undefined,
     type: layer.metadata.geomType,
