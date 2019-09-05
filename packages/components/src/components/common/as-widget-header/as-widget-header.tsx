@@ -63,13 +63,13 @@ export class WidgetHeader {
 
   private _getSubHeader() {
     if (this.isLoading) {
-      return <p class='as-widget-header__subheader as-body '>{this.subheader}</p>;
+      return <p class='as-widget-header__subheader as-body'>{this.subheader}</p>;
     }
     if (this.error) {
-      return <p class='as-widget-header__subheader as-widget-header__subheader--error as-body '>{this.error}</p>;
+      return <p class='as-widget-header__subheader as-widget-header__subheader--error as-body'>{this.error}</p>;
     }
     if (this.isEmpty) {
-      return <p class='as-widget-header__subheader as-widget-header__subheader--empty as-body '>
+      return <p class='as-widget-header__subheader as-widget-header__subheader--empty as-body'>
         {this.noDataMessage}
       </p>;
     }
