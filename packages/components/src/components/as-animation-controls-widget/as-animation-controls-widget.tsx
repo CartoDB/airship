@@ -78,13 +78,13 @@ export class AnimationControlsWidget {
    * User clicks the play button
    */
   @Event ()
-  private play: EventEmitter;
+  private playAnimation: EventEmitter;
 
   /**
    * User clicks the pause button
    */
   @Event()
-  private pause: EventEmitter;
+  private pauseAnimation: EventEmitter;
 
   /**
    * The user has seeked the animation to this percentage.
@@ -142,12 +142,12 @@ export class AnimationControlsWidget {
   }
 
   private _pause(evt) {
-    this.pause.emit(evt);
+    this.pauseAnimation.emit(evt);
     this.playing = false;
   }
 
   private _play(evt) {
-    this.play.emit(evt);
+    this.playAnimation.emit(evt);
     this.playing = true;
   }
 
