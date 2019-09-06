@@ -395,16 +395,27 @@ export class RangeSlider {
 
   private _checkLabelOverflow() {
     const thumbLabels = this.element.querySelectorAll('as-range-slider-thumb .as-range-slider__value');
-    const { overflow: leftLabelOverflows } = this.checkOverflowInParentContainer(
-      thumbLabels[0] as HTMLElement
-    );
 
-    const { overflow: rightLabelOverflows } = this.checkOverflowInParentContainer(
-      thumbLabels[1] as HTMLElement
-    );
+    if (thumbLabels) {
+      const { overflow: leftLabelOverflows } = this.checkOverflowInParentContainer(
+        thumbLabels[0] as HTMLElement
+      );
 
-    this.isLeftLabelOverflowing = leftLabelOverflows;
-    this.isRightLabelOverflowing = rightLabelOverflows;
+      const { overflow: rightLabelOverflows } = (thumbLabels.length > 1)
+        ? this.checkOverflowInParentContainer(thumbLabels[1] as HTMLElement)
+        : false;
+
+      this.isLeftLabelOverflowing = leftLabelOverflows;
+      this.isRightLabelOverflowing = rightLabelOverflows;
+    }
+  }
+
+  private _setLeftLabelOverflowing(thumbLabel: HTMLElement) {
+
+  }
+
+  private _setRightLabelOverflowing(thumbLabel: HTMLElement) {
+    
   }
 
   private checkThumbCollision() {
@@ -423,19 +434,21 @@ export class RangeSlider {
   }
 
   private checkOverflowInParentContainer(labelElement: HTMLElement) {
-    const containerElement = this.element.parentElement;
+    if (labelElement) {
+      const containerElement = this.element.parentElement;
 
-    const containerBCR = containerElement.getBoundingClientRect();
-    const labelBCR = labelElement.getBoundingClientRect();
+      const containerBCR = containerElement.getBoundingClientRect();
+      const labelBCR = labelElement.getBoundingClientRect();
 
-    const isOverflowingLeft = containerBCR.left > labelBCR.left;
-    const isOverflowingRight = containerBCR.right < labelBCR.left + labelBCR.width;
+      const isOverflowingLeft = containerBCR.left > labelBCR.left;
+      const isOverflowingRight = containerBCR.right < labelBCR.left + labelBCR.width;
 
-    return {
-      left: isOverflowingLeft,
-      overflow: isOverflowingLeft || isOverflowingRight,
-      right: isOverflowingRight
-    };
+      return {
+        left: isOverflowingLeft,
+        overflow: isOverflowingLeft || isOverflowingRight,
+        right: isOverflowingRight
+      };
+    }
   }
 }
 
