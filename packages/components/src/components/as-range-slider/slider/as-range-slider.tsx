@@ -410,14 +410,6 @@ export class RangeSlider {
     }
   }
 
-  private _setLeftLabelOverflowing(thumbLabel: HTMLElement) {
-
-  }
-
-  private _setRightLabelOverflowing(thumbLabel: HTMLElement) {
-    
-  }
-
   private checkThumbCollision() {
     const thumbLabels = this.element.querySelectorAll('as-range-slider-thumb .as-range-slider__value');
     if (!thumbLabels || thumbLabels.length !== 2) {
