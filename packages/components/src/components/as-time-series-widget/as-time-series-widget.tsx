@@ -234,13 +234,13 @@ export class TimeSeriesWidget {
    * User clicks the play button
    */
   @Event()
-  private playAnimation: EventEmitter;
+  private play: EventEmitter;
 
   /**
    * User clicks the pause button
    */
   @Event()
-  private pauseAnimation: EventEmitter;
+  private pause: EventEmitter;
 
   /**
    * This method proxies the selectionChanged event on the underlying graph, but parses it into
@@ -476,7 +476,7 @@ export class TimeSeriesWidget {
   }
 
   private _playPauseClick() {
-    this.playing ? this.pauseAnimation.emit() : this.playAnimation.emit();
+    this.playing ? this.pause.emit() : this.play.emit();
   }
 
   private _render() {
