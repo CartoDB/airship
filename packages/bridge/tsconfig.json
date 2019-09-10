@@ -16,8 +16,7 @@
     "jsx": "react",
     "jsxFactory": "h",
     "outDir": "dist",
-    "rootDir": "src",
-    "skipLibCheck": true
+    "rootDir": "src"
   },
   "include": [
     "src"
