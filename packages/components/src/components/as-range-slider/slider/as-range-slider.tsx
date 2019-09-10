@@ -428,22 +428,6 @@ export class RangeSlider {
   private checkOverflowInParentContainer(labelElement: HTMLElement) {
     if (labelElement) {
       const containerElement = this.element.parentElement;
-<<<<<<< HEAD
-
-      const containerBCR = containerElement.getBoundingClientRect();
-      const labelBCR = labelElement.getBoundingClientRect();
-
-      const isOverflowingLeft = containerBCR.left > labelBCR.left;
-      const isOverflowingRight = containerBCR.right < labelBCR.left + labelBCR.width;
-
-      return {
-        left: isOverflowingLeft,
-        overflow: isOverflowingLeft || isOverflowingRight,
-        right: isOverflowingRight
-      };
-    }
-=======
-
       const containerBCR = containerElement.getBoundingClientRect();
       const labelBCR = labelElement.getBoundingClientRect();
 
@@ -462,7 +446,6 @@ export class RangeSlider {
       overflow: false,
       right: false
     };
->>>>>>> develop
   }
 }
 
