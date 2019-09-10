@@ -403,7 +403,7 @@ export class RangeSlider {
 
       const { overflow: rightLabelOverflows } = (thumbLabels.length > 1)
         ? this.checkOverflowInParentContainer(thumbLabels[1] as HTMLElement)
-        : false;
+        : { overflow: false };
 
       this.isLeftLabelOverflowing = leftLabelOverflows;
       this.isRightLabelOverflowing = rightLabelOverflows;
@@ -441,6 +441,12 @@ export class RangeSlider {
         right: isOverflowingRight
       };
     }
+
+    return {
+      left: false,
+      overflow: false,
+      right: false
+    };
   }
 }
 
