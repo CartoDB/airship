@@ -42,6 +42,8 @@ export namespace Components {
   interface AsAnimationControlsWidget {
     /**
     * Description of the widget to be displayed
+    * @type {string}
+    * @memberof AnimationControlsWidget
     */
     'description': string;
     'duration': number;
@@ -55,6 +57,8 @@ export namespace Components {
     'errorDescription': string;
     /**
     * Title of the widget to be displayed
+    * @type {string}
+    * @memberof AnimationControlsWidget
     */
     'heading': string;
     /**
@@ -79,6 +83,8 @@ export namespace Components {
     'progressValue': number | string;
     /**
     * Toggles displaying title and description
+    * @type {boolean}
+    * @memberof AnimationControlsWidget
     */
     'showHeader': boolean;
     'showThumb': boolean;
@@ -87,22 +93,32 @@ export namespace Components {
   interface AsCategoryWidget {
     /**
     * Array of categories to display in the widget. Each category should include a `name` and a `value`. You can also override the bar color for each category with `color`.
+    * @type {object[]}
+    * @memberof CategoryWidget
     */
     'categories': object[];
     /**
     * Clear current selected categories
+    * @returns
+    * @memberof CategoryWidget
     */
     'clearSelection': () => Promise<void>;
     /**
     * Default color to draw the bars. Default value is `#47DB99`.
+    * @type {string}
+    * @memberof CategoryWidget
     */
     'defaultBarColor': string;
     /**
     * Description text of the widget
+    * @type {string}
+    * @memberof CategoryWidget
     */
     'description': string;
     /**
     * Disable category selection in Widget
+    * @type {string}
+    * @memberof CategoryWidget
     */
     'disableInteractivity': boolean;
     /**
@@ -115,10 +131,14 @@ export namespace Components {
     'errorDescription': string;
     /**
     * Get current selected categories
+    * @returns
+    * @memberof CategoryWidget
     */
     'getSelectedCategories': () => Promise<string[]>;
     /**
     * Heading text of the widget
+    * @type {string}
+    * @memberof CategoryWidget
     */
     'heading': string;
     /**
@@ -135,62 +155,87 @@ export namespace Components {
     'noDataHeaderMessage': string;
     /**
     * If truthy, it'll show a button to clear selected categories when there are any. Default value is `false`.
+    * @type {boolean}
+    * @memberof CategoryWidget
     */
     'showClearButton': boolean;
     /**
     * If truthy, it'll render the heading and component's description. Default value is `true`.
+    * @type {boolean}
+    * @memberof CategoryWidget
     */
     'showHeader': boolean;
     /**
     * If truthy, we'll use the sum of all categories' value to render the bar percentage. By default, we use the maximum category value to render the bar percentage.
+    * @type {boolean}
+    * @memberof CategoryWidget
     */
     'useTotalPercentage': boolean;
     /**
     * If this property receives a function, it will be used to format the numbers (eg. for adding $ or €).
+    * @type {function (value: number)}
+    * @memberof RangeSlider
     */
     'valueFormatter': (value: number) => string;
     /**
     * The number of visible categories without aggregation.
+    * @type {number}
+    * @memberof CategoryWidget
     */
     'visibleCategories': number;
   }
   interface AsDropdown {
     /**
     * Closes the list, useful in case you need to customize {onClickOutside}
+    * @memberof Dropdown
     */
     'closeList': () => Promise<void>;
     /**
     * Default text to show when no option is selected
+    * @type {string}
+    * @memberof Dropdown
     */
     'defaultText': string;
     /**
     * Function called when clicking outside of the dropdown. By default it closes the list.
+    * @type {function}
+    * @memberof Dropdown
     */
     'onClickOutside': () => void;
     /**
     * Array of options to display in the dropdown
+    * @type {string[]}
+    * @memberof Dropdown
     */
     'options': DropdownOption[];
     /**
     * Selected option to show in the dropdown
+    * @type {string}
+    * @memberof Dropdown
     */
     'selectedOption': string;
     /**
     * Allow the user to clear selected option
+    * @type {string}
+    * @memberof Dropdown
     */
     'showClearButton': boolean;
   }
   interface AsHistogramWidget {
     /**
     * Function used to format the x-axis values
+    * @memberof HistogramWidget
     */
     'axisFormatter': (value: number | Date) => string;
     /**
     * Data that will be merged into buckets with value === 0
+    * @type {HistogramData[]}
+    * @memberof HistogramWidget
     */
     'backgroundData': HistogramData[];
     /**
     * Clears the Histogram selection
+    * @memberof HistogramWidget
     */
     'clearSelection': () => Promise<void>;
     /**
@@ -199,30 +244,43 @@ export namespace Components {
     'clearText': string;
     /**
     * Override color for the histogram bars
+    * @type {string}
+    * @memberof HistogramWidget
     */
     'color': string;
     /**
     * Color range for histogram data
+    * @type {HistogramColorRange[]}
+    * @memberof HistogramWidget
     */
     'colorRange': HistogramColorRange[];
     /**
     * Histogram data to be displayed
+    * @type {HistogramData[]}
+    * @memberof HistogramWidget
     */
     'data': HistogramData[];
     /**
     * Default formatting function. Makes the value a readable number and converts it into a string. Useful to compose with your own formatting function.
+    * @memberof HistogramWidget
     */
     'defaultFormatter': (data: HistogramData) => Promise<any[]>;
     /**
     * Description of the widget to be displayed
+    * @type {string}
+    * @memberof HistogramWidget
     */
     'description': string;
     /**
     * This lets you disable the animations for the bars when showing / updating the data
+    * @type {boolean}
+    * @memberof HistogramWidget
     */
     'disableAnimation': boolean;
     /**
     * Disables selection brushes and events for the widget
+    * @type {boolean}
+    * @memberof HistogramWidget
     */
     'disableInteractivity': boolean;
     /**
@@ -235,10 +293,14 @@ export namespace Components {
     'errorDescription': string;
     /**
     * Returns the current selection
+    * @returns
+    * @memberof HistogramWidget
     */
     'getSelection': () => Promise<(string | number | Date)[]>;
     /**
     * Title of the widget to be displayed
+    * @type {string}
+    * @memberof HistogramWidget
     */
     'heading': string;
     /**
@@ -255,6 +317,7 @@ export namespace Components {
     'noDataHeaderMessage': string;
     /**
     * This prop lets you provide the range of the y-axis so it's not automatically calculated with data or backgroundData. It always starts at 0, you can provide the top value.
+    * @memberof HistogramWidget
     */
     'range': [number, number];
     /**
@@ -263,34 +326,49 @@ export namespace Components {
     'responsive': boolean;
     /**
     * Function to format the range selected text displayed below the histogram
+    * @memberof HistogramWidget
     */
     'selectedFormatter': (value: number[]) => string;
     /**
     * Programmatically set the selection. It will be adjusted to the buckets present in {@link data}. To clear see {@link clearSelection} or call with null
+    * @param values
+    * @param emit Set to true to force emitting the selectionChanged event.
+    * @memberof HistogramWidget
     */
     'setSelection': (values: number[], emit?: boolean) => Promise<void>;
     /**
     * Display a clear button that clears the histogram selection.
+    * @type {boolean}
+    * @memberof HistogramWidget
     */
     'showClear': boolean;
     /**
     * Toggles displaying title and description
+    * @type {boolean}
+    * @memberof HistogramWidget
     */
     'showHeader': boolean;
     /**
     * Function that formats the tooltip. Receives HistogramData and outputs a string
+    * @type {(HistogramData) => string}
+    * @memberof HistogramWidget
     */
     'tooltipFormatter': (value: HistogramData) => TooltipFormat | Promise<TooltipFormat>;
     /**
     * Override color for the non selected histogram bars
+    * @type {string}
+    * @memberof HistogramWidget
     */
     'unselectedColor': string;
     /**
     * This prop is a proxy to some d3-axis options for the X Axis
+    * @type {AxisOptions}
+    * @memberof TimeSeriesWidget
     */
     'xAxisOptions': AxisOptions;
     /**
     * Formats a number using the component's x-axis formatter if present
+    * @memberof HistogramWidget
     */
     'xFormatter': (value: any) => Promise<string>;
     /**
@@ -299,6 +377,8 @@ export namespace Components {
     'xLabel': string;
     /**
     * This prop is a proxy to some d3-axis options for the Y Axis
+    * @type {AxisOptions}
+    * @memberof TimeSeriesWidget
     */
     'yAxisOptions': AxisOptions;
     /**
@@ -453,43 +533,68 @@ export namespace Components {
   interface AsRangeSlider {
     /**
     * Disables component if truthy
+    * @type {boolean}
+    * @memberof RangeSlider
     */
     'disabled': boolean;
+    /**
+    * @deprecated Use isDraggable instead
+    * @type {boolean}
+    * @memberof RangeSlider
+    */
     'draggable': boolean;
     /**
     * If this property receives a function, it will be used to format the numbers (eg. for adding $ or €).
+    * @type {function (value: number)}
+    * @memberof RangeSlider
     */
     'formatValue': (value: number) => string|number;
     /**
     * If this property is set to true, and it has multiple value, you can drag the entire track.
+    * @type {number}
+    * @memberof RangeSlider
     */
     'isDraggable': boolean;
     /**
     * Top limit of the range. You cannot drag your slider beyond this value. By default the value is 10.
+    * @type {number}
+    * @memberof RangeSlider
     */
     'maxValue': number;
     /**
     * Bottom limit of the range. You cannot drag your slider below this value. By default the value is 0.
+    * @type {number}
+    * @memberof RangeSlider
     */
     'minValue': number;
     /**
     * Initial range.
+    * @type {number}
+    * @memberof RangeSlider
     */
     'range': number[];
     /**
     * Disables the range slider thumb
+    * @type {boolean}
+    * @memberof RangeSlider
     */
     'showThumb': boolean;
     /**
     * Disables the range slider thumb caption
+    * @type {boolean}
+    * @memberof RangeSlider
     */
     'showThumbCaption': boolean;
     /**
     * Increment/decrement step of the slider. You can change the step setting a different number to this property. Defaults to 1.
+    * @type {number}
+    * @memberof RangeSlider
     */
     'step': number;
     /**
     * Initial value.
+    * @type {number}
+    * @memberof RangeSlider
     */
     'value': number;
   }
@@ -516,10 +621,14 @@ export namespace Components {
   interface AsStackedBarWidget {
     /**
     * The data that will be drawn.
+    * @type {RawStackedbarData}
+    * @memberof StackedBarWidget
     */
     'data': RawStackedbarData[];
     /**
     * Description of the widget to be displayed
+    * @type {string}
+    * @memberof StackedBarWidget
     */
     'description': string;
     /**
@@ -536,6 +645,8 @@ export namespace Components {
     'formatFn': (value: any) => any;
     /**
     * Header of the widget to be displayed
+    * @type {string}
+    * @memberof StackedBarWidget
     */
     'heading': string;
     /**
@@ -568,24 +679,34 @@ export namespace Components {
     'responsive': boolean;
     /**
     * Boolean flag to control legend visibility. Defaults: true
+    * @type {boolean}
+    * @memberof StackedBarWidget
     */
     'showLegend': boolean;
   }
   interface AsSwitch {
     /**
     * Boolean flag to control if the input is checked or not
+    * @type {boolean}
+    * @memberof Switch
     */
     'checked': boolean;
     /**
     * Boolean flag to control when the switch is disabled or not
+    * @type {boolean}
+    * @memberof Switch
     */
     'disabled': boolean;
     /**
     * Input label
+    * @type {string}
+    * @memberof Switch
     */
     'label': string;
     /**
     * The input name
+    * @type {string}
+    * @memberof Switch
     */
     'name': string;
   }
@@ -606,10 +727,13 @@ export namespace Components {
     'animated': boolean;
     /**
     * Histogram data to be displayed
+    * @type {HistogramData[]}
+    * @memberof HistogramWidget
     */
     'backgroundData': TimeSeriesData[];
     /**
     * Proxy to as-histogram-widget clearSelection()
+    * @memberof TimeSeriesWidget
     */
     'clearSelection': () => Promise<void>;
     /**
@@ -618,30 +742,43 @@ export namespace Components {
     'clearText': string;
     /**
     * Override color for the histogram bars
+    * @type {string}
+    * @memberof HistogramWidget
     */
     'color': string;
     /**
     * Color range for histogram data
+    * @type {HistogramColorRange[]}
+    * @memberof HistogramWidget
     */
     'colorRange': HistogramColorRange[];
     /**
     * Histogram data to be displayed
+    * @type {HistogramData[]}
+    * @memberof HistogramWidget
     */
     'data': TimeSeriesData[];
     /**
     * Proxy to as-histogram-widget defaultFormatter()
+    * @memberof TimeSeriesWidget
     */
     'defaultFormatter': (data: HistogramData) => Promise<any>;
     /**
     * Description of the widget to be displayed
+    * @type {string}
+    * @memberof HistogramWidget
     */
     'description': string;
     /**
     * This lets you disable the animations for the bars when showing / updating the data
+    * @type {boolean}
+    * @memberof HistogramWidget
     */
     'disableAnimation': boolean;
     /**
     * Disables selection brushes and events for the widget
+    * @type {boolean}
+    * @memberof HistogramWidget
     */
     'disableInteractivity': boolean;
     /**
@@ -654,10 +791,14 @@ export namespace Components {
     'errorDescription': string;
     /**
     * Proxy to as-histogram-widget getSelection()
+    * @returns
+    * @memberof TimeSeriesWidget
     */
     'getSelection': () => Promise<any>;
     /**
     * Title of the widget to be displayed
+    * @type {string}
+    * @memberof HistogramWidget
     */
     'heading': string;
     /**
@@ -682,6 +823,7 @@ export namespace Components {
     'progress': number;
     /**
     * This prop lets you provide the range of the y-axis so it's not automatically calculated with data or backgroundData. It always starts at 0, you can provide the top value.
+    * @memberof HistogramWidget
     */
     'range': [number, number];
     /**
@@ -690,14 +832,20 @@ export namespace Components {
     'responsive': boolean;
     /**
     * Proxy to as-histogram-widget setSelection()
+    * @param values
+    * @memberof TimeSeriesWidget
     */
     'setSelection': (values: number[]) => Promise<void>;
     /**
     * Display a clear button that clears the histogram selection.
+    * @type {boolean}
+    * @memberof HistogramWidget
     */
     'showClear': boolean;
     /**
     * Toggles displaying title and description
+    * @type {boolean}
+    * @memberof HistogramWidget
     */
     'showHeader': boolean;
     /**
@@ -710,18 +858,25 @@ export namespace Components {
     'timeFormatLocale': TimeLocaleDefinition;
     /**
     * Function that formats the tooltip. Receives TimeSeriesData and outputs a string
+    * @type {(TimeSeriesData) => string}
+    * @memberof HistogramWidget
     */
     'tooltipFormatter': (value: TimeSeriesData) => string;
     /**
     * Override color for the selected histogram bars
+    * @type {string}
+    * @memberof HistogramWidget
     */
     'unselectedColor': string;
     /**
     * This prop is a proxy to some d3-axis options for the X Axis
+    * @type {AxisOptions}
+    * @memberof TimeSeriesWidget
     */
     'xAxisOptions': AxisOptions;
     /**
     * Proxy to as-histogram-widget xFormatter method
+    * @param value
     */
     'xFormatter': (value: any) => Promise<any>;
     /**
@@ -730,6 +885,8 @@ export namespace Components {
     'xLabel': string;
     /**
     * This prop is a proxy to some d3-axis options for the Y Axis
+    * @type {AxisOptions}
+    * @memberof TimeSeriesWidget
     */
     'yAxisOptions': AxisOptions;
     /**
@@ -745,6 +902,8 @@ export namespace Components {
     'error': string;
     /**
     * Main title
+    * @type {string}
+    * @memberof WidgetHeader
     */
     'header': string;
     /**
@@ -761,32 +920,44 @@ export namespace Components {
     'noDataMessage': string;
     /**
     * Secondary title
+    * @type {string}
+    * @memberof WidgetHeader
     */
     'subheader': string;
   }
   interface AsWidgetLegend {
     /**
     * Data to be displayed by the legend
+    * @type {WidgetLegendData}
+    * @memberof WidgetLegend
     */
     'data': WidgetLegendData;
   }
   interface AsWidgetSelection {
     /**
     * Text for the clear text
+    * @type {string}
+    * @memberof WidgetSelection
     */
     'clearText': string;
     /**
     * The text to be displayed
+    * @type {string}
+    * @memberof WidgetSelection
     */
     'selection': string;
     /**
     * Whether to display the clear button or not
+    * @type {boolean}
+    * @memberof WidgetSelection
     */
     'showClear': boolean;
   }
   interface AsYAxis {
     /**
     * Lower limit of the axis
+    * @type {number}
+    * @memberof YAxis
     */
     'from': number;
     /**
@@ -795,6 +966,8 @@ export namespace Components {
     'responsive': boolean;
     /**
     * Upper limit of the axis
+    * @type {Number[]}
+    * @memberof YAxis
     */
     'to': number;
   }
@@ -1125,6 +1298,8 @@ declare namespace LocalJSX {
   interface AsAnimationControlsWidget extends JSXBase.HTMLAttributes<HTMLAsAnimationControlsWidgetElement> {
     /**
     * Description of the widget to be displayed
+    * @type {string}
+    * @memberof AnimationControlsWidget
     */
     'description'?: string;
     'duration'?: number;
@@ -1138,6 +1313,8 @@ declare namespace LocalJSX {
     'errorDescription'?: string;
     /**
     * Title of the widget to be displayed
+    * @type {string}
+    * @memberof AnimationControlsWidget
     */
     'heading'?: string;
     /**
@@ -1174,6 +1351,8 @@ declare namespace LocalJSX {
     'progressValue'?: number | string;
     /**
     * Toggles displaying title and description
+    * @type {boolean}
+    * @memberof AnimationControlsWidget
     */
     'showHeader'?: boolean;
     'showThumb'?: boolean;
@@ -1182,18 +1361,26 @@ declare namespace LocalJSX {
   interface AsCategoryWidget extends JSXBase.HTMLAttributes<HTMLAsCategoryWidgetElement> {
     /**
     * Array of categories to display in the widget. Each category should include a `name` and a `value`. You can also override the bar color for each category with `color`.
+    * @type {object[]}
+    * @memberof CategoryWidget
     */
     'categories'?: object[];
     /**
     * Default color to draw the bars. Default value is `#47DB99`.
+    * @type {string}
+    * @memberof CategoryWidget
     */
     'defaultBarColor'?: string;
     /**
     * Description text of the widget
+    * @type {string}
+    * @memberof CategoryWidget
     */
     'description'?: string;
     /**
     * Disable category selection in Widget
+    * @type {string}
+    * @memberof CategoryWidget
     */
     'disableInteractivity'?: boolean;
     /**
@@ -1206,6 +1393,8 @@ declare namespace LocalJSX {
     'errorDescription'?: string;
     /**
     * Heading text of the widget
+    * @type {string}
+    * @memberof CategoryWidget
     */
     'heading'?: string;
     /**
@@ -1222,62 +1411,90 @@ declare namespace LocalJSX {
     'noDataHeaderMessage'?: string;
     /**
     * Fired when selected categories changed or selected categories are cleared.
+    * @event categoriesSelected
+    * @type {EventEmitter<string[]>}
+    * @memberof CategoryWidget
     */
     'onCategoriesSelected'?: (event: CustomEvent<string[]>) => void;
     /**
     * If truthy, it'll show a button to clear selected categories when there are any. Default value is `false`.
+    * @type {boolean}
+    * @memberof CategoryWidget
     */
     'showClearButton'?: boolean;
     /**
     * If truthy, it'll render the heading and component's description. Default value is `true`.
+    * @type {boolean}
+    * @memberof CategoryWidget
     */
     'showHeader'?: boolean;
     /**
     * If truthy, we'll use the sum of all categories' value to render the bar percentage. By default, we use the maximum category value to render the bar percentage.
+    * @type {boolean}
+    * @memberof CategoryWidget
     */
     'useTotalPercentage'?: boolean;
     /**
     * If this property receives a function, it will be used to format the numbers (eg. for adding $ or €).
+    * @type {function (value: number)}
+    * @memberof RangeSlider
     */
     'valueFormatter'?: (value: number) => string;
     /**
     * The number of visible categories without aggregation.
+    * @type {number}
+    * @memberof CategoryWidget
     */
     'visibleCategories'?: number;
   }
   interface AsDropdown extends JSXBase.HTMLAttributes<HTMLAsDropdownElement> {
     /**
     * Default text to show when no option is selected
+    * @type {string}
+    * @memberof Dropdown
     */
     'defaultText'?: string;
     /**
     * Function called when clicking outside of the dropdown. By default it closes the list.
+    * @type {function}
+    * @memberof Dropdown
     */
     'onClickOutside'?: () => void;
     /**
     * Fired when selected option changes or option is cleared
+    * @type {string}
+    * @memberof Dropdown
     */
     'onOptionChanged'?: (event: CustomEvent<string>) => void;
     /**
     * Array of options to display in the dropdown
+    * @type {string[]}
+    * @memberof Dropdown
     */
     'options'?: DropdownOption[];
     /**
     * Selected option to show in the dropdown
+    * @type {string}
+    * @memberof Dropdown
     */
     'selectedOption'?: string;
     /**
     * Allow the user to clear selected option
+    * @type {string}
+    * @memberof Dropdown
     */
     'showClearButton'?: boolean;
   }
   interface AsHistogramWidget extends JSXBase.HTMLAttributes<HTMLAsHistogramWidgetElement> {
     /**
     * Function used to format the x-axis values
+    * @memberof HistogramWidget
     */
     'axisFormatter'?: (value: number | Date) => string;
     /**
     * Data that will be merged into buckets with value === 0
+    * @type {HistogramData[]}
+    * @memberof HistogramWidget
     */
     'backgroundData'?: HistogramData[];
     /**
@@ -1286,26 +1503,38 @@ declare namespace LocalJSX {
     'clearText'?: string;
     /**
     * Override color for the histogram bars
+    * @type {string}
+    * @memberof HistogramWidget
     */
     'color'?: string;
     /**
     * Color range for histogram data
+    * @type {HistogramColorRange[]}
+    * @memberof HistogramWidget
     */
     'colorRange'?: HistogramColorRange[];
     /**
     * Histogram data to be displayed
+    * @type {HistogramData[]}
+    * @memberof HistogramWidget
     */
     'data'?: HistogramData[];
     /**
     * Description of the widget to be displayed
+    * @type {string}
+    * @memberof HistogramWidget
     */
     'description'?: string;
     /**
     * This lets you disable the animations for the bars when showing / updating the data
+    * @type {boolean}
+    * @memberof HistogramWidget
     */
     'disableAnimation'?: boolean;
     /**
     * Disables selection brushes and events for the widget
+    * @type {boolean}
+    * @memberof HistogramWidget
     */
     'disableInteractivity'?: boolean;
     /**
@@ -1318,6 +1547,8 @@ declare namespace LocalJSX {
     'errorDescription'?: string;
     /**
     * Title of the widget to be displayed
+    * @type {string}
+    * @memberof HistogramWidget
     */
     'heading'?: string;
     /**
@@ -1335,11 +1566,14 @@ declare namespace LocalJSX {
     'onDrawParametersChanged'?: (event: CustomEvent<RenderOptions>) => void;
     /**
     * Fired when user update or clear the widget selection.
+    * @type {EventEmitter<number[]>}
+    * @memberof HistogramWidget
     */
     'onSelectionChanged'?: (event: CustomEvent<HistogramSelection>) => void;
     'onSelectionInput'?: (event: CustomEvent<HistogramSelection>) => void;
     /**
     * This prop lets you provide the range of the y-axis so it's not automatically calculated with data or backgroundData. It always starts at 0, you can provide the top value.
+    * @memberof HistogramWidget
     */
     'range'?: [number, number];
     /**
@@ -1348,26 +1582,37 @@ declare namespace LocalJSX {
     'responsive'?: boolean;
     /**
     * Function to format the range selected text displayed below the histogram
+    * @memberof HistogramWidget
     */
     'selectedFormatter'?: (value: number[]) => string;
     /**
     * Display a clear button that clears the histogram selection.
+    * @type {boolean}
+    * @memberof HistogramWidget
     */
     'showClear'?: boolean;
     /**
     * Toggles displaying title and description
+    * @type {boolean}
+    * @memberof HistogramWidget
     */
     'showHeader'?: boolean;
     /**
     * Function that formats the tooltip. Receives HistogramData and outputs a string
+    * @type {(HistogramData) => string}
+    * @memberof HistogramWidget
     */
     'tooltipFormatter'?: (value: HistogramData) => TooltipFormat | Promise<TooltipFormat>;
     /**
     * Override color for the non selected histogram bars
+    * @type {string}
+    * @memberof HistogramWidget
     */
     'unselectedColor'?: string;
     /**
     * This prop is a proxy to some d3-axis options for the X Axis
+    * @type {AxisOptions}
+    * @memberof TimeSeriesWidget
     */
     'xAxisOptions'?: AxisOptions;
     /**
@@ -1376,6 +1621,8 @@ declare namespace LocalJSX {
     'xLabel'?: string;
     /**
     * This prop is a proxy to some d3-axis options for the Y Axis
+    * @type {AxisOptions}
+    * @memberof TimeSeriesWidget
     */
     'yAxisOptions'?: AxisOptions;
     /**
@@ -1530,23 +1777,38 @@ declare namespace LocalJSX {
   interface AsRangeSlider extends JSXBase.HTMLAttributes<HTMLAsRangeSliderElement> {
     /**
     * Disables component if truthy
+    * @type {boolean}
+    * @memberof RangeSlider
     */
     'disabled'?: boolean;
+    /**
+    * @deprecated Use isDraggable instead
+    * @type {boolean}
+    * @memberof RangeSlider
+    */
     'draggable'?: boolean;
     /**
     * If this property receives a function, it will be used to format the numbers (eg. for adding $ or €).
+    * @type {function (value: number)}
+    * @memberof RangeSlider
     */
     'formatValue'?: (value: number) => string|number;
     /**
     * If this property is set to true, and it has multiple value, you can drag the entire track.
+    * @type {number}
+    * @memberof RangeSlider
     */
     'isDraggable'?: boolean;
     /**
     * Top limit of the range. You cannot drag your slider beyond this value. By default the value is 10.
+    * @type {number}
+    * @memberof RangeSlider
     */
     'maxValue'?: number;
     /**
     * Bottom limit of the range. You cannot drag your slider below this value. By default the value is 0.
+    * @type {number}
+    * @memberof RangeSlider
     */
     'minValue'?: number;
     'onChange'?: (event: CustomEvent<number[]>) => void;
@@ -1554,22 +1816,32 @@ declare namespace LocalJSX {
     'onChangeStart'?: (event: CustomEvent<number[]>) => void;
     /**
     * Initial range.
+    * @type {number}
+    * @memberof RangeSlider
     */
     'range'?: number[];
     /**
     * Disables the range slider thumb
+    * @type {boolean}
+    * @memberof RangeSlider
     */
     'showThumb'?: boolean;
     /**
     * Disables the range slider thumb caption
+    * @type {boolean}
+    * @memberof RangeSlider
     */
     'showThumbCaption'?: boolean;
     /**
     * Increment/decrement step of the slider. You can change the step setting a different number to this property. Defaults to 1.
+    * @type {number}
+    * @memberof RangeSlider
     */
     'step'?: number;
     /**
     * Initial value.
+    * @type {number}
+    * @memberof RangeSlider
     */
     'value'?: number;
   }
@@ -1605,10 +1877,14 @@ declare namespace LocalJSX {
   interface AsStackedBarWidget extends JSXBase.HTMLAttributes<HTMLAsStackedBarWidgetElement> {
     /**
     * The data that will be drawn.
+    * @type {RawStackedbarData}
+    * @memberof StackedBarWidget
     */
     'data'?: RawStackedbarData[];
     /**
     * Description of the widget to be displayed
+    * @type {string}
+    * @memberof StackedBarWidget
     */
     'description'?: string;
     /**
@@ -1625,6 +1901,8 @@ declare namespace LocalJSX {
     'formatFn'?: (value: any) => any;
     /**
     * Header of the widget to be displayed
+    * @type {string}
+    * @memberof StackedBarWidget
     */
     'heading'?: string;
     /**
@@ -1657,28 +1935,40 @@ declare namespace LocalJSX {
     'responsive'?: boolean;
     /**
     * Boolean flag to control legend visibility. Defaults: true
+    * @type {boolean}
+    * @memberof StackedBarWidget
     */
     'showLegend'?: boolean;
   }
   interface AsSwitch extends JSXBase.HTMLAttributes<HTMLAsSwitchElement> {
     /**
     * Boolean flag to control if the input is checked or not
+    * @type {boolean}
+    * @memberof Switch
     */
     'checked'?: boolean;
     /**
     * Boolean flag to control when the switch is disabled or not
+    * @type {boolean}
+    * @memberof Switch
     */
     'disabled'?: boolean;
     /**
     * Input label
+    * @type {string}
+    * @memberof Switch
     */
     'label'?: string;
     /**
     * The input name
+    * @type {string}
+    * @memberof Switch
     */
     'name'?: string;
     /**
     * Event triggered by a enabled Switch component when the user clicks on it.
+    * @type {boolean}
+    * @memberof Switch
     */
     'onChange'?: (event: CustomEvent<any>) => void;
   }
@@ -1699,6 +1989,8 @@ declare namespace LocalJSX {
     'animated'?: boolean;
     /**
     * Histogram data to be displayed
+    * @type {HistogramData[]}
+    * @memberof HistogramWidget
     */
     'backgroundData'?: TimeSeriesData[];
     /**
@@ -1707,26 +1999,38 @@ declare namespace LocalJSX {
     'clearText'?: string;
     /**
     * Override color for the histogram bars
+    * @type {string}
+    * @memberof HistogramWidget
     */
     'color'?: string;
     /**
     * Color range for histogram data
+    * @type {HistogramColorRange[]}
+    * @memberof HistogramWidget
     */
     'colorRange'?: HistogramColorRange[];
     /**
     * Histogram data to be displayed
+    * @type {HistogramData[]}
+    * @memberof HistogramWidget
     */
     'data'?: TimeSeriesData[];
     /**
     * Description of the widget to be displayed
+    * @type {string}
+    * @memberof HistogramWidget
     */
     'description'?: string;
     /**
     * This lets you disable the animations for the bars when showing / updating the data
+    * @type {boolean}
+    * @memberof HistogramWidget
     */
     'disableAnimation'?: boolean;
     /**
     * Disables selection brushes and events for the widget
+    * @type {boolean}
+    * @memberof HistogramWidget
     */
     'disableInteractivity'?: boolean;
     /**
@@ -1739,6 +2043,8 @@ declare namespace LocalJSX {
     'errorDescription'?: string;
     /**
     * Title of the widget to be displayed
+    * @type {string}
+    * @memberof HistogramWidget
     */
     'heading'?: string;
     /**
@@ -1779,6 +2085,7 @@ declare namespace LocalJSX {
     'progress'?: number;
     /**
     * This prop lets you provide the range of the y-axis so it's not automatically calculated with data or backgroundData. It always starts at 0, you can provide the top value.
+    * @memberof HistogramWidget
     */
     'range'?: [number, number];
     /**
@@ -1787,10 +2094,14 @@ declare namespace LocalJSX {
     'responsive'?: boolean;
     /**
     * Display a clear button that clears the histogram selection.
+    * @type {boolean}
+    * @memberof HistogramWidget
     */
     'showClear'?: boolean;
     /**
     * Toggles displaying title and description
+    * @type {boolean}
+    * @memberof HistogramWidget
     */
     'showHeader'?: boolean;
     /**
@@ -1803,14 +2114,20 @@ declare namespace LocalJSX {
     'timeFormatLocale'?: TimeLocaleDefinition;
     /**
     * Function that formats the tooltip. Receives TimeSeriesData and outputs a string
+    * @type {(TimeSeriesData) => string}
+    * @memberof HistogramWidget
     */
     'tooltipFormatter'?: (value: TimeSeriesData) => string;
     /**
     * Override color for the selected histogram bars
+    * @type {string}
+    * @memberof HistogramWidget
     */
     'unselectedColor'?: string;
     /**
     * This prop is a proxy to some d3-axis options for the X Axis
+    * @type {AxisOptions}
+    * @memberof TimeSeriesWidget
     */
     'xAxisOptions'?: AxisOptions;
     /**
@@ -1819,6 +2136,8 @@ declare namespace LocalJSX {
     'xLabel'?: string;
     /**
     * This prop is a proxy to some d3-axis options for the Y Axis
+    * @type {AxisOptions}
+    * @memberof TimeSeriesWidget
     */
     'yAxisOptions'?: AxisOptions;
     /**
@@ -1834,6 +2153,8 @@ declare namespace LocalJSX {
     'error'?: string;
     /**
     * Main title
+    * @type {string}
+    * @memberof WidgetHeader
     */
     'header'?: string;
     /**
@@ -1850,36 +2171,50 @@ declare namespace LocalJSX {
     'noDataMessage'?: string;
     /**
     * Secondary title
+    * @type {string}
+    * @memberof WidgetHeader
     */
     'subheader'?: string;
   }
   interface AsWidgetLegend extends JSXBase.HTMLAttributes<HTMLAsWidgetLegendElement> {
     /**
     * Data to be displayed by the legend
+    * @type {WidgetLegendData}
+    * @memberof WidgetLegend
     */
     'data'?: WidgetLegendData;
   }
   interface AsWidgetSelection extends JSXBase.HTMLAttributes<HTMLAsWidgetSelectionElement> {
     /**
     * Text for the clear text
+    * @type {string}
+    * @memberof WidgetSelection
     */
     'clearText'?: string;
     /**
     * Event fired when clicking on clear text
+    * @private
+    * @memberof WidgetSelection
     */
     'onClear'?: (event: CustomEvent<any>) => void;
     /**
     * The text to be displayed
+    * @type {string}
+    * @memberof WidgetSelection
     */
     'selection'?: string;
     /**
     * Whether to display the clear button or not
+    * @type {boolean}
+    * @memberof WidgetSelection
     */
     'showClear'?: boolean;
   }
   interface AsYAxis extends JSXBase.HTMLAttributes<HTMLAsYAxisElement> {
     /**
     * Lower limit of the axis
+    * @type {number}
+    * @memberof YAxis
     */
     'from'?: number;
     /**
@@ -1888,6 +2223,8 @@ declare namespace LocalJSX {
     'responsive'?: boolean;
     /**
     * Upper limit of the axis
+    * @type {Number[]}
+    * @memberof YAxis
     */
     'to'?: number;
   }
