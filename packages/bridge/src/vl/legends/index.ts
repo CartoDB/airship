@@ -39,8 +39,8 @@ function _getNumberValue(viz, propName, defaultValue?) {
   return defaultValue;
 }
 
-function _getSymbolValue(viz, value) {
-  const prop = viz.variables[value]
+function _getSymbolValue(viz, value=null) {
+  const prop = value && viz.variables[value]
     ? viz.variables[value]
     : viz.symbol;
 
@@ -66,7 +66,7 @@ function _styleFromLayer(layerWithProps) {
   return {
     color: _getColorValue(viz, 'color'),
     label: props.label,
-    marker: viz.symbol.default ? undefined : _getSymbolValue(viz, 'marker'),
+    marker: viz.symbol.default ? undefined : _getSymbolValue(viz),
     strokeColor: _getColorValue(viz, 'strokeColor'),
     strokeStyle: _getNumberValue(viz, 'strokeWidth') === 0 ? 'hidden' : undefined,
     type: layer.metadata.geomType,
