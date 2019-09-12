@@ -428,7 +428,6 @@ export class RangeSlider {
   private checkOverflowInParentContainer(labelElement: HTMLElement) {
     if (labelElement) {
       const containerElement = this.element.parentElement;
-
       const containerBCR = containerElement.getBoundingClientRect();
       const labelBCR = labelElement.getBoundingClientRect();
 

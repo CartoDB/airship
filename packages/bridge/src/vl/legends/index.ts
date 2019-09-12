@@ -18,7 +18,7 @@ function _getColorValue(viz, propName) {
     return rgbaToString(_getLegendData(prop));
   }
 
-  if (propName === 'color' || propName === 'strokeColor') {
+  if (prop.type === 'color') {
     return rgbaToString(prop.value);
   }
 
@@ -39,8 +39,10 @@ function _getNumberValue(viz, propName, defaultValue?) {
   return defaultValue;
 }
 
-function _getSymbolValue(viz) {
-  const prop = viz.symbol;
+function _getSymbolValue(viz, value = null) {
+  const prop = value && viz.variables[value]
+    ? viz.variables[value]
+    : viz.symbol;
 
   if (prop.expressionName === 'ramp') {
     return _getLegendData(prop);
@@ -55,7 +57,6 @@ function _getSymbolValue(viz) {
  */
 function _styleFromLayer(layerWithProps) {
   const { layer, props } = layerWithProps;
-
   const viz = layer.viz;
 
   if (!viz) {
@@ -136,8 +137,9 @@ interface LegendOptions {
   onLoad?: () => void;
   // Should the legend repaint after layer updates or just initially
   dynamic?: boolean;
-  config?: { othersLabel?: string, samples?: number };
+  config?: { othersLabel?: string, samples?: number, variable?: string };
 }
+
 export default class Legends {
   public static layersLegend(widget, layers, options: LegendOptions = {}) {
     widget = select(widget);
@@ -169,16 +171,18 @@ export default class Legends {
 
     waitUntilLoaded(parsedLayer.layer, () => {
       const baseStyle = _styleFromLayer(parsedLayer);
-
       const vizProp = parsedLayer.layer.viz[prop];
       const config = options.config;
-      const legendData = parsedLayer.layer.viz[prop].getLegendData(config).data;
-
-      const parsedData = legendData.map((data, index, arr) => {
+      const dataProp = options.config.variable || prop;
+      const data = parsedLayer.layer.viz.variables[dataProp]
+          ? parsedLayer.layer.viz.variables[dataProp]
+          : parsedLayer.layer.viz[dataProp];
+      const legendData = data.getLegendData(config).data;
+      const parsedData = legendData.map((legend, index, arr) => {
         return {
           ...baseStyle,
-          [prop]: _formatProp(vizProp, data.value),
-          label: options.format ? options.format(data.key, index, arr) : _formatLegendKey(data.key)
+          [prop]: _formatProp(vizProp, legend.value),
+          label: options.format ? options.format(legend.key, index, arr) : _formatLegendKey(data.key)
         };
       });
 
