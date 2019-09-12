@@ -39,7 +39,7 @@ function _getNumberValue(viz, propName, defaultValue?) {
   return defaultValue;
 }
 
-function _getSymbolValue(viz, value=null) {
+function _getSymbolValue(viz, value = null) {
   const prop = value && viz.variables[value]
     ? viz.variables[value]
     : viz.symbol;
