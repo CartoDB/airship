@@ -1,5 +1,7 @@
-import mitt from 'mitt';
 import { LegendData, LegendEntry } from '../../types';
+
+import * as Mitt from 'mitt/dist/mitt.umd';
+import { Emitter } from 'mitt';
 
 /**
  * Base class for all possible CARTO VL Filters to be combined with Airship
@@ -13,7 +15,7 @@ export abstract class BaseFilter {
   // column and the same type
   private static _counter: number = 0;
 
-  protected _emitter: mitt.Emitter;
+  protected _emitter: Emitter;
   protected _column: string;
   protected _layer: any;
   protected _source: any;
@@ -33,7 +35,7 @@ export abstract class BaseFilter {
    * @memberof BaseFilter
    */
   constructor(type: string, column: string, layer: any, source: any, readOnly: boolean = true) {
-    this._emitter = new mitt();
+    this._emitter = new Mitt();
 
     this._name = `asbind_${type}_${column}_${BaseFilter._counter}`;
     this._column = column;

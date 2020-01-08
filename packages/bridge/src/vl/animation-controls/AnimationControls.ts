@@ -54,6 +54,10 @@ export class AnimationControls {
     return this._animation;
   }
 
+  public restart() {
+    this._animation.setProgressPct(0);
+  }
+
   public get variableName(): string {
     return this._variableName;
   }

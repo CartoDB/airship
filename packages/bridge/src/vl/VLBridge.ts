@@ -382,7 +382,7 @@ export default class VLBridge {
   }
 
   private _addFilter(filter: BaseFilter) {
-    filter.on('filterChanged', this._rebuildFilters);
+    filter.on('filterChanged', this._rebuildFilters.bind(this, 'filterChanged'));
     filter.on('expressionReady', this._updateDataLayerVariables);
     this._vizFilters.push(filter);
   }
@@ -465,7 +465,7 @@ export default class VLBridge {
    * @private
    * @memberof VLBridge
    */
-  private _rebuildFilters() {
+  private _rebuildFilters(filterType='') {
     let newFilter = this._combineFilters(
       this._vizFilters
         .filter((hasFilter) => hasFilter.filter !== null)
@@ -485,6 +485,10 @@ export default class VLBridge {
 
     // Update the Visualization filter
     this._layer.viz.filter.blendTo(newFilter, 0);
+
+    if (filterType === 'filterChanged') {
+      this._animation.restart();
+    }
   }
 
   private _combineFilters(filters) {
