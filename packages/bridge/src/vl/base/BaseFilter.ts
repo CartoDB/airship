@@ -1,6 +1,4 @@
-import { Emitter } from 'mitt';
-import * as Mitt from 'mitt/dist/mitt.umd';
-
+import mitt from 'mitt'
 import { LegendData, LegendEntry } from '../../types';
 
 /**
@@ -15,7 +13,7 @@ export abstract class BaseFilter {
   // column and the same type
   private static _counter: number = 0;
 
-  protected _emitter: Emitter;
+  protected _emitter: mitt.Emitter;
   protected _column: string;
   protected _layer: any;
   protected _source: any;
@@ -35,7 +33,7 @@ export abstract class BaseFilter {
    * @memberof BaseFilter
    */
   constructor(type: string, column: string, layer: any, source: any, readOnly: boolean = true) {
-    this._emitter = new Mitt();
+    this._emitter = mitt();
 
     this._name = `asbind_${type}_${column}_${BaseFilter._counter}`;
     this._column = column;
