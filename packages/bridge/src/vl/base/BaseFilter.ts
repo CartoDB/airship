@@ -33,7 +33,7 @@ export abstract class BaseFilter {
    * @memberof BaseFilter
    */
   constructor(type: string, column: string, layer: any, source: any, readOnly: boolean = true) {
-    this._emitter = new mitt();
+    this._emitter = mitt();
 
     this._name = `asbind_${type}_${column}_${BaseFilter._counter}`;
     this._column = column;

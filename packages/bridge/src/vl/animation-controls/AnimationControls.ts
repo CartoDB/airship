@@ -66,6 +66,10 @@ export class AnimationControls {
     this._propertyName = name;
   }
 
+  public restart() {
+    this._animation.setProgressPct(0);
+  }
+
   public setRange() {
     // TODO
   }
