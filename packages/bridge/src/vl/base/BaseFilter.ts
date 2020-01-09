@@ -1,6 +1,7 @@
 import { Emitter } from 'mitt';
-import { LegendData, LegendEntry } from '../../types';
 import * as Mitt from 'mitt/dist/mitt.umd';
+
+import { LegendData, LegendEntry } from '../../types';
 
 /**
  * Base class for all possible CARTO VL Filters to be combined with Airship
