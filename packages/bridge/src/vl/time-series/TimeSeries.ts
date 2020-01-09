@@ -133,6 +133,10 @@ export class TimeSeries {
     return this._animation;
   }
 
+  public restart() {
+    this._animation.setProgressPct(0);
+  }
+
   /**
    * This method sets up the events to handle animation updates and bind it to the TimeSeries widget:
    *  - Update the progress
