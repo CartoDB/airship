@@ -382,7 +382,7 @@ export default class VLBridge {
   }
 
   private _addFilter(filter: BaseFilter) {
-    filter.on('filterChanged', this._rebuildFilters.bind(this));
+    filter.on('filterChanged', this._rebuildFilters);
     filter.on('expressionReady', this._updateDataLayerVariables);
     this._vizFilters.push(filter);
   }
