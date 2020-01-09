@@ -32,7 +32,7 @@ describe('vl/time-series/TimeSeries', () => {
       }
     };
 
-    layer.emitter = new mitt();
+    layer.emitter = mitt();
   });
 
   describe('validation', () => {
