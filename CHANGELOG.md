@@ -9,59 +9,9 @@
 
 * update dependencies to fix vulnerabilities ([13e7c90](https://github.com/CartoDB/airship/commit/13e7c90700457998d2052d84924ef745ff5eefeb))
 
-
-
-# [2.2.0-rc.2.2](https://github.com/CartoDB/airship/compare/v2.2.0-rc.2.1...v2.2.0-rc.2.2) (2020-01-09)
-
-
-
-# [2.2.0-rc.2.1](https://github.com/CartoDB/airship/compare/v2.2.0-2.2.0-rc.3.0...v2.2.0-rc.2.1) (2019-09-12)
-
-
-
-# [2.2.0-2.2.0-rc.3.0](https://github.com/CartoDB/airship/compare/v2.1.1...v2.2.0-2.2.0-rc.3.0) (2019-09-12)
-
-
-### Bug Fixes
-
 * **components:** time series / histogram improvements ([#641](https://github.com/CartoDB/airship/issues/641)) ([31789ae](https://github.com/CartoDB/airship/commit/31789ae0e1c253fa754a983be0d699254d2bb618))
-
-
-
-# [2.2.0-rc.1](https://github.com/CartoDB/airship/compare/v2.2.0-rc.0...v2.2.0-rc.1) (2019-07-16)
-
-
-### Bug Fixes
-
 * **bridge:** Fix bridge tests ([1b2c1d7](https://github.com/CartoDB/airship/commit/1b2c1d74fd67feca48b6d34f73ca2ae82b89d9bd))
-
-
-### Features
-
-* **components:** Animation controls API ([#634](https://github.com/CartoDB/airship/issues/634)) ([8fc2d1a](https://github.com/CartoDB/airship/commit/8fc2d1af54629c282ec7e7185fd7f239aa06358c))
-* **components:** Improve animation controls API ([#635](https://github.com/CartoDB/airship/issues/635)) ([5a24e3a](https://github.com/CartoDB/airship/commit/5a24e3a2bc6f3597ac4e18a734d0648daf7187c5))
-* **components:** Time Series date format improvements ([#638](https://github.com/CartoDB/airship/issues/638)) ([ef6fec8](https://github.com/CartoDB/airship/commit/ef6fec8a49ba3f600ee26517314467764b57c8f4)), closes [CartoDB/cartoframes#813](https://github.com/CartoDB/cartoframes/issues/813)
-
-
-
-# [2.2.0-rc.0](https://github.com/CartoDB/airship/compare/v2.1.0...v2.2.0-rc.0) (2019-06-26)
-
-
-
-## [2.1.1](https://github.com/CartoDB/airship/compare/v2.2.0-rc.1...v2.1.1) (2019-07-30)
-
-
-### Bug Fixes
-
 * **docs:** Fix infowindows CSS variables documentation ([bd3b73e](https://github.com/CartoDB/airship/commit/bd3b73e44d71f8ef92da7d97cb8c83edcec8c8bd))
-
-
-
-# [2.2.0-rc.1](https://github.com/CartoDB/airship/compare/v2.2.0-rc.0...v2.2.0-rc.1) (2019-07-16)
-
-
-### Bug Fixes
-
 * **bridge:** Fix bridge tests ([1b2c1d7](https://github.com/CartoDB/airship/commit/1b2c1d74fd67feca48b6d34f73ca2ae82b89d9bd))
 
 
@@ -70,11 +20,9 @@
 * **components:** Animation controls API ([#634](https://github.com/CartoDB/airship/issues/634)) ([8fc2d1a](https://github.com/CartoDB/airship/commit/8fc2d1af54629c282ec7e7185fd7f239aa06358c))
 * **components:** Improve animation controls API ([#635](https://github.com/CartoDB/airship/issues/635)) ([5a24e3a](https://github.com/CartoDB/airship/commit/5a24e3a2bc6f3597ac4e18a734d0648daf7187c5))
 * **components:** Time Series date format improvements ([#638](https://github.com/CartoDB/airship/issues/638)) ([ef6fec8](https://github.com/CartoDB/airship/commit/ef6fec8a49ba3f600ee26517314467764b57c8f4)), closes [CartoDB/cartoframes#813](https://github.com/CartoDB/cartoframes/issues/813)
-
-
-
-# [2.2.0-rc.0](https://github.com/CartoDB/airship/compare/v2.1.0...v2.2.0-rc.0) (2019-06-26)
-
+* **components:** Animation controls API ([#634](https://github.com/CartoDB/airship/issues/634)) ([8fc2d1a](https://github.com/CartoDB/airship/commit/8fc2d1af54629c282ec7e7185fd7f239aa06358c))
+* **components:** Improve animation controls API ([#635](https://github.com/CartoDB/airship/issues/635)) ([5a24e3a](https://github.com/CartoDB/airship/commit/5a24e3a2bc6f3597ac4e18a734d0648daf7187c5))
+* **components:** Time Series date format improvements ([#638](https://github.com/CartoDB/airship/issues/638)) ([ef6fec8](https://github.com/CartoDB/airship/commit/ef6fec8a49ba3f600ee26517314467764b57c8f4)), closes [CartoDB/cartoframes#813](https://github.com/CartoDB/cartoframes/issues/813)
 
 
 # [2.1.0](https://github.com/CartoDB/airship/compare/v2.0.5...v2.1.0) (2019-06-18)
