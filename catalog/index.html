@@ -18,14 +18,15 @@
 </head>
 
 <body>
-  <div id="catalog" />
+  <div id="catalog"></div>
 
   <!-- Use the development version to get helpful errors in your console -->
   <!-- <script src="https://unpkg.com/catalog@3/dist/catalog-standalone.development.js"></script> -->
 
   <!-- Use the minified production version to get optimal performance -->
   <script src="./catalog.min.js"></script>
-  <script src="../packages/components/dist/airship.js"></script>
+  <script type="module" src="../packages/components/dist/airship/airship.esm.js"></script>
+  <script nomodule="" src="../packages/components/dist/airship/airship.js"></script>
   <script src="../packages/styles/dist/airship.css"></script>
 
   <script>
@@ -372,6 +373,11 @@
           path: '/bridge/vl/time-series',
           title: 'Time Series',
           src: '../packages/bridge/src/vl/time-series/README.md'
+        },
+        {
+          path: '/bridge/vl/animation-controls',
+          title: 'Animation Controls',
+          src: '../packages/bridge/src/vl/animation-controls/README.md'
         },
         {
           path: '/bridge/vl/global-range',

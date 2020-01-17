@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
     <title>Airship</title>
     <link rel="stylesheet" href="../../../packages/styles/dist/airship.css">
-    <script src="../../../packages/components/dist/airship.js"></script>
+    <script type="module" src="../../../packages/components/dist/airship/airship.esm.js"></script>
+    <script nomodule="" src="../../../packages/components/dist/airship/airship.js"></script>
   </head>
 
   <body>
@@ -28,7 +29,14 @@
       ];
 
       histogramWidget.tooltipFormatter = function (data) {
-        return [`From ${histogramWidget.xFormatter(data.start)} to ${histogramWidget.xFormatter(data.end)}:`, histogramWidget.defaultFormatter(data) + ' kg'];
+        return Promise.all(
+          [histogramWidget.xFormatter(data.start), histogramWidget.xFormatter(data.end), histogramWidget.defaultFormatter(data)]
+        ).then((value) => {
+          return [
+            `From ${value[0]} to ${value[1]}`,
+            value[1] + ' kg'
+          ]
+        });
       }
     </script>
   </body>

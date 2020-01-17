@@ -1,4 +1,4 @@
-import { Component, Element, Event, EventEmitter, Method, State } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, h, Method, State } from '@stencil/core';
 import { redrawChildren } from '../../utils/redraw-children';
 import ApplicationSection from './utils/ApplicationSection';
 import contentService from './utils/content.service';

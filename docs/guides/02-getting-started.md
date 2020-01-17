@@ -19,7 +19,8 @@ The simplest way to use Airship is to load it from CARTO CDN by including the fo
   <!-- Include Icons -->
   <link rel="stylesheet" href="https://libs.cartocdn.com/airship-icons/%AS-VERSION%/icons.css">
   <!-- Include Web Components -->
-  <script src="https://libs.cartocdn.com/airship-components/%AS-VERSION%/airship.js"></script>
+  <script type="module" src="https://libs.cartocdn.com/airship-components/%AS-VERSION%/airship/airship.esm.js"></script>
+  <script nomodule="" src="https://libs.cartocdn.com/airship-components/%AS-VERSION%/airship/airship.js"></script>
 <head>
 ```
 
@@ -143,9 +144,10 @@ For example a range slider
   <!-- Include icons -->
   <link rel="stylesheet" href="https://libs.cartocdn.com/airship-icons/%AS-VERSION%/icons.css">
   <!-- Include airship components -->
-  <script src="https://libs.cartocdn.com/airship-components/%AS-VERSION%/airship.js"></script>
+  <script type="module" src="https://libs.cartocdn.com/airship-components/%AS-VERSION%/airship/airship.esm.js"></script>
+  <script nomodule="" src="https://libs.cartocdn.com/airship-components/%AS-VERSION%/airship/airship.js"></script>
   <!-- Include CARTO VL -->
-  <script src="https://libs.cartocdn.com/carto-vl/v1.2/carto-vl.min.js"></script>
+  <script src="https://libs.cartocdn.com/carto-vl/v1.4/carto-vl.min.js"></script>
   <!-- Include Mapbox GL JS -->
   <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.js"></script>
   <!-- Include Mapbox GL CSS -->

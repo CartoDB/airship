@@ -39,9 +39,9 @@ export class YAxis {
   @Prop() public responsive: boolean = true;
 
   /**
-   * Reference to the HTMLStencilElement
+   * Reference to the HTMLAsYAxisElement
    */
-  @Element() private element: HTMLStencilElement;
+  @Element() private element: HTMLAsYAxisElement;
 
   constructor() {
     this._resizeListener = this._resizeListener.bind(this);

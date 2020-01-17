@@ -31,4 +31,36 @@ as-range-slider {
       pointer-events: none;
     }
   }
+
+  .as-range-slider__rail-label {
+    visibility: hidden;
+    position: absolute;
+    top: 16px;
+    transform: translate3d(-50%, 0, 0);
+    white-space: nowrap;
+
+    &.as-range-slider__rail-label__overflow--left {
+      transform: translate3d(-6px, 0, 0);
+    }
+
+    &.as-range-slider__rail-label__overflow--right {
+      transform: translate3d(calc(-100% + 6px), 0, 0);
+    }
+
+    .as-range-slider__label-separator {
+      display: inline-block;
+      width: 8px;
+      transition: opacity 200ms ease-in;
+      opacity: 0;
+      text-align: center;
+    }
+
+    &.as-range-slider__rail-label--active {
+      visibility: visible;
+
+      .as-range-slider__label-separator {
+        opacity: 1;
+      }
+    }
+  }
 }

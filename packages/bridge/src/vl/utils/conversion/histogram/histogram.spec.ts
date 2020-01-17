@@ -3,6 +3,7 @@ import * as conversion from '.';
 describe('utils/conversion/histogram', () => {
   it('should correctly convert from VL data to Airship format', () => {
     const airship = conversion.numerical({
+      input: '',
       value: [
         {
           x: [0, 10],

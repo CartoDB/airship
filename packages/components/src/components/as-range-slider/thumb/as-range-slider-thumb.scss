@@ -22,12 +22,17 @@ as-range-slider-thumb {
     position: absolute;
     bottom: -16px;
     left: 50%;
-    transform: translate3d(-53%, 0, 0);
+    transform: translate3d(-50%, 0, 0);
     transition: transform 200ms ease;
     pointer-events: none;
 
     &--disabled {
       color: var(--as--range-slider--disabled--value--color);
+    }
+
+    &--hidden {
+      visibility: hidden;
+      opacity: 0;
     }
   }
 

@@ -1,17 +1,21 @@
 import semver from 'semver';
 import {
+  AnimationControlsOptions,
   AnimationOptions,
   CategoricalHistogramOptions,
   CategoryOptions,
   NumericalHistogramOptions,
-  VLBridgeOptions } from '../types';
+  VLBridgeOptions
+} from '../types';
 import { getColumnName, getExpression } from '../util/Utils';
+import { AnimationControls } from './animation-controls/AnimationControls';
 import { BaseFilter } from './base/BaseFilter';
 import { CategoryFilter } from './category/CategoryFilter';
 import { CategoricalHistogramFilter } from './histogram/CategoricalHistogramFilter';
 import { NumericalHistogramFilter } from './histogram/NumericalHistogramFilter';
 import { GlobalRangeFilter } from './range/GlobalRangeFilter';
 import { TimeSeries } from './time-series/TimeSeries';
+
 
 const VL_VERSION = '^1.2.3';
 
@@ -41,7 +45,7 @@ export default class VLBridge {
   private _vizFilters: BaseFilter[] = [];
   private _readOnlyLayer: any;
   private _id: string;
-  private _animation: TimeSeries;
+  private _animation: TimeSeries | AnimationControls;
 
   /**
    * Creates an instance of VLBridge.
@@ -239,6 +243,7 @@ export default class VLBridge {
     widget: any | string,
     column: string,
     options: AnimationOptions = {}) {
+
     if (this._animation) {
       throw new Error('There can only be one animation');
     }
@@ -250,7 +255,8 @@ export default class VLBridge {
       totals,
       duration,
       fade,
-      variableName
+      variableName,
+      propertyName
     } = options;
 
     this._animation = new TimeSeries(
@@ -259,11 +265,14 @@ export default class VLBridge {
       column,
       widget,
       () => {
-        this._rebuildFilters();
+        if (propertyName === 'filter') {
+          this._rebuildFilters();
+        }
       },
       duration,
       fade,
-      variableName
+      variableName,
+      propertyName
     );
 
     const histogram = this.numericalHistogram(widget, column, {
@@ -282,6 +291,54 @@ export default class VLBridge {
     return this._animation;
   }
 
+  /**
+   * Creates an animation controls widget
+   *
+   * By default, the animation is set to the 'filter' property,
+   * but it is possible to animate any style property using the 'propertyName' option.
+   *
+   * There can only be one animation per layer (per VLBridge instance)
+   *
+   * @param {(any | string)} widget The Animation Controls widget, or a selector
+   * @param {string} column The name of the column in the dataset used in the animation
+   * @param {AnimationControlsOptions} [options={}]
+   * @param {number} [options.duration] Animation duration in seconds. It is 10 by default
+   * @param {[number, number]} [options.fade] Animation fade in and out.
+   * @param {string} [options.variableName] Name of the viz variable that has the animation assigned
+   * @param {string} [options.propertyName] Name of the style property to apply the animation, 'filter' by default.
+   * @memberof VLBridge
+   */
+  public animationControls(
+    widget: any | string,
+    column: string,
+    options: AnimationControlsOptions = {}) {
+
+    const {
+      duration,
+      fade,
+      variableName,
+      propertyName = 'filter'
+    } = options;
+
+    this._animation = new AnimationControls(
+      widget,
+      this._carto,
+      column,
+      variableName,
+      propertyName,
+      duration,
+      fade,
+      this._layer,
+      () => {
+        if (propertyName === 'filter') {
+          this._rebuildFilters();
+        }
+      },
+      null
+    );
+
+    return this._animation;
+  }
   /**
    * Creates a global range slider filter.
    *
@@ -374,7 +431,6 @@ export default class VLBridge {
 
   private _getVariables() {
     const variables = this._readOnlyLayer !== undefined ? this._readOnlyLayer.viz.variables : {};
-
     for (const filter of this._vizFilters) {
       const name = filter.name;
 
@@ -412,8 +468,8 @@ export default class VLBridge {
   private _rebuildFilters() {
     let newFilter = this._combineFilters(
       this._vizFilters
-      .filter((hasFilter) => hasFilter.filter !== null)
-      .map((hasFilter) => hasFilter.filter)
+        .filter((hasFilter) => hasFilter.filter !== null)
+        .map((hasFilter) => hasFilter.filter)
     );
 
     // Update (if required) the readonly layer
@@ -421,12 +477,15 @@ export default class VLBridge {
       this._readOnlyLayer.viz.filter.blendTo(newFilter, 0);
     }
 
-    if (this._animation) {
-      newFilter = `@${this._animation.variableName} and ${newFilter}`;
+    if (this._layer.viz.filter.isAnimated() && this._animation) {
+      if (this._layer.viz.variables[this._animation.variableName]) {
+        newFilter = `@${this._animation.variableName} and ${newFilter}`;
+      }
     }
 
     // Update the Visualization filter
     this._layer.viz.filter.blendTo(newFilter, 0);
+    this._animation.restart();
   }
 
   private _combineFilters(filters) {

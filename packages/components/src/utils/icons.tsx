@@ -1,4 +1,4 @@
-// tslint:disable:max-line-length
+import { h } from '@stencil/core';
 import paths from '../resources/icon-paths.json';
 
 export function icon(name, color = '#000', props: any) {

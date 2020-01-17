@@ -1,4 +1,4 @@
-import { Component, Element, Event, EventEmitter, Listen, Prop } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, h, Listen, Prop } from '@stencil/core';
 import { handleMouseDown } from '../MouseTrack';
 
 @Component({
@@ -12,6 +12,7 @@ export class RangeSliderThumb {
   @Prop() public valueMin: number;
   @Prop() public valueMax: number;
   @Prop() public disabled: boolean;
+  @Prop() public showCaption: boolean = true;
   @Prop() public formatValue: (value: number) => string|number;
 
   @Event() public thumbMove: EventEmitter<number>;
@@ -19,12 +20,17 @@ export class RangeSliderThumb {
   @Event() public thumbChangeEnd: EventEmitter<void>;
   @Event() public thumbIncrease: EventEmitter<number>;
   @Event() public thumbDecrease: EventEmitter<number>;
+  @Event() public thumbRender: EventEmitter<void>;
 
 
   @Element() public element: HTMLElement;
   public railElement: HTMLElement;
   public thumbValue: HTMLElement;
   public railBoundingClientRect: ClientRect | DOMRect;
+
+  public componentDidRender() {
+    this.thumbRender.emit();
+  }
 
   public render() {
     const thumbStyles = {
@@ -36,13 +42,6 @@ export class RangeSliderThumb {
       'as-range-slider__thumb--disabled': this.disabled
     };
 
-    const cssValueClasses = {
-      'as-caption': true,
-      'as-font-medium': true,
-      'as-range-slider__value': true,
-      'as-range-slider__value--disabled': this.disabled,
-    };
-
     return (
       <div role='slider'
         tabindex={this.disabled ? '-1' : '0'}
@@ -52,9 +51,7 @@ export class RangeSliderThumb {
         aria-valuemax={this.valueMax}
         class={cssClasses} style={thumbStyles} data-value={this.value}>
         <div class='as-range-slider__thumb-handle'></div>
-        <span class={cssValueClasses}>
-          {this._getDisplayValue(this.value)}
-        </span>
+        {this._renderDisplayValue()}
       </div>);
   }
 
@@ -66,9 +63,6 @@ export class RangeSliderThumb {
 
     const thumb = event.target as HTMLElement;
     thumb.classList.add('as-range-slider__thumb-handle--moving');
-
-    this.thumbValue = thumb.parentElement.querySelector('.as-range-slider__value');
-    this.thumbValue.classList.add('as-range-slider__value--moving');
 
     this.railBoundingClientRect = this.railElement.getBoundingClientRect();
 
@@ -139,11 +133,26 @@ export class RangeSliderThumb {
 
   private _onRelease(thumb: HTMLElement) {
     thumb.classList.remove('as-range-slider__thumb-handle--moving');
-    this.thumbValue.classList.remove('as-range-slider__value--moving');
 
     this.setCursorTo('');
 
     this.thumbChangeEnd.emit();
+  }
+
+  private _renderDisplayValue() {
+    const cssValueClasses = {
+      'as-caption': true,
+      'as-font-medium': true,
+      'as-range-slider__value': true,
+      'as-range-slider__value--disabled': this.disabled,
+      'as-range-slider__value--hidden': !this.showCaption,
+    };
+
+    return (
+      <span class={cssValueClasses}>
+        {this._getDisplayValue(this.value)}
+      </span>
+    );
   }
 
   private _getDisplayValue(value: number) {

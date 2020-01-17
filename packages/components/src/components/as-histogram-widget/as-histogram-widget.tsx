@@ -1,4 +1,4 @@
-import { Component, Element, Event, EventEmitter, Method, Prop, State, Watch } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, h, Method, Prop, State, Watch } from '@stencil/core';
 import { Axis } from 'd3';
 import { BrushBehavior } from 'd3-brush';
 import { ScaleLinear } from 'd3-scale';
@@ -15,7 +15,14 @@ import {
   DEFAULT_BAR_COLOR_HEX
 } from '../common/constants';
 import contentFragment from '../common/content.fragment';
-import { AxisOptions, HistogramColorRange, HistogramData, HistogramSelection, HistogramType } from './interfaces';
+import {
+  AxisOptions,
+  HistogramColorRange,
+  HistogramData,
+  HistogramSelection,
+  HistogramType,
+  TooltipFormat
+} from './interfaces';
 import { SVGContainer, SVGGContainer } from './types/Container';
 import { RenderOptions } from './types/RenderOptions';
 import brushService from './utils/brush.service';
@@ -132,7 +139,7 @@ export class HistogramWidget {
    * @type {(HistogramData) => string}
    * @memberof HistogramWidget
    */
-  @Prop() public tooltipFormatter: (value: HistogramData) => string | string[] = this.defaultFormatter;
+  @Prop() public tooltipFormatter: (value: HistogramData) => TooltipFormat | Promise<TooltipFormat> = this.formatter;
 
   /**
    * Label the x axis of the histogram with the given string.
@@ -231,7 +238,7 @@ export class HistogramWidget {
 
   public selection: number[] = null;
 
-  @Element() private el: HTMLStencilElement;
+  @Element() private el: HTMLAsHistogramWidgetElement;
 
   /**
    * Fired when user update or clear the widget selection.
@@ -273,7 +280,6 @@ export class HistogramWidget {
   private _color: string;
   private _barBackgroundColor: string;
   private _muteSelectionChanged: boolean = false;
-  private _skipRender: boolean;
   private _dataJustChanged: boolean;
   private _lastEmittedSelection: number[] = null;
 
@@ -288,6 +294,7 @@ export class HistogramWidget {
 
   constructor() {
     this._resizeRender = this._resizeRender.bind(this);
+    this._setTooltip = this._setTooltip.bind(this);
   }
 
   @Watch('backgroundData')
@@ -354,16 +361,8 @@ export class HistogramWidget {
    * @memberof HistogramWidget
    */
   @Method()
-  public defaultFormatter(data: HistogramData) {
-    const tooltip = [];
-
-    if (this.isCategoricalData) {
-      tooltip.push(`${data.category}`);
-    }
-
-    tooltip.push(`${readableNumber(data.value).trim()}`);
-
-    return tooltip;
+  public async defaultFormatter(data: HistogramData) {
+    return this.formatter(data);
   }
 
   /**
@@ -373,7 +372,7 @@ export class HistogramWidget {
    * @memberof HistogramWidget
    */
   @Method()
-  public async getSelection(): Promise<number[] | string[]> {
+  public async getSelection(): Promise<Array<number | Date | string>> {
     const data = this._dataForSelection(this.selection);
     return this._simplifySelection(data);
   }
@@ -387,7 +386,7 @@ export class HistogramWidget {
    * @memberof HistogramWidget
    */
   @Method()
-  public setSelection(values: number[] | null, emit = false) {
+  public async setSelection(values: number[] | null, emit = false) {
     if (values === null) {
       this._setSelection(null);
       this.emitSelection(this.selectionChanged, this.selection);
@@ -414,7 +413,7 @@ export class HistogramWidget {
    * @memberof HistogramWidget
    */
   @Method()
-  public clearSelection() {
+  public async clearSelection() {
     this.setSelection(null);
   }
 
@@ -424,12 +423,8 @@ export class HistogramWidget {
    * @memberof HistogramWidget
    */
   @Method()
-  public xFormatter(value) {
-    if (this.axisFormatter) {
-      return this.axisFormatter(value);
-    }
-
-    return value;
+  public async xFormatter(value) {
+    return this._xFormatter(value);
   }
 
   public componentDidLoad() {
@@ -448,11 +443,11 @@ export class HistogramWidget {
   }
 
   public componentDidUpdate() {
-    if (!this._skipRender || this._dataJustChanged) {
-      this._renderGraph();
+    if (!this._dataJustChanged) {
+      return;
     }
 
-    this._skipRender = false;
+    this._renderGraph();
     this._dataJustChanged = false;
   }
 
@@ -489,8 +484,8 @@ export class HistogramWidget {
     };
     const svgClasses = {
       'figure': true,
-      'figure--has-x-label': this.xLabel,
-      'figure--has-y-label': this.yLabel
+      'figure--has-x-label': !!this.xLabel,
+      'figure--has-y-label': !!this.yLabel
     };
     return contentFragment(
       this.isLoading,
@@ -578,7 +573,7 @@ export class HistogramWidget {
       this._color,
       this._barBackgroundColor,
       (value) => this.tooltipFormatter(value),
-      this._setTooltip.bind(this),
+      this._setTooltip,
       FG_CLASSNAME
     );
 
@@ -648,17 +643,14 @@ export class HistogramWidget {
     this._muteSelectionChanged = false;
   }
 
-  private _setTooltip(value: string | string[] | null, evt?: MouseEvent) {
-    this._muteSelectionChanged = true;
-
+  private _setTooltip(value: string | string[] | null, barBBox: ClientRect) {
     if (value === null) {
       this._hideTooltip();
       return;
     }
 
-    this._skipRender = true;
     this.tooltip = value;
-    this._showTooltip(evt);
+    this._showTooltip(barBBox);
   }
 
   private _updateSelection() {
@@ -802,7 +794,7 @@ export class HistogramWidget {
     return [data[selection[0]], data[selection[1] - 1]];
   }
 
-  private _simplifySelection(selection: HistogramData[]): string[] | number[] {
+  private _simplifySelection(selection: HistogramData[]): string[] | Array<Date | number> {
     if (selection === null) {
       return null;
     }
@@ -884,8 +876,6 @@ export class HistogramWidget {
     const spaceValues = values
       .map(this.xScale);
 
-    const domainValues = values.map(this.binsScale.invert);
-
     this.brushArea.call(this.brush.move, spaceValues);
 
     this.customHandles
@@ -909,9 +899,10 @@ export class HistogramWidget {
           return;
         }
 
-        if (!(domainValues[0] <= d.start && d.end <= domainValues[1])) {
+        if (i < values[0] || i >= values[1]) {
           return this._barBackgroundColor;
         }
+
         return d.color || this._color;
       });
   }
@@ -928,7 +919,9 @@ export class HistogramWidget {
   }
 
   private _generateYAxis() {
-    const yDomain: [number, number] = this.range !== null ? this.range : dataService.getYDomain(this._dataForDomain());
+    const yDomain: [number | Date, number | Date] = this.range !== null
+      ? this.range
+      : dataService.getYDomain(this._dataForDomain());
     this.yAxis = drawService.generateYScale(
       this.container,
       yDomain,
@@ -953,45 +946,15 @@ export class HistogramWidget {
     this.xScale = xAxis.scale();
   }
 
-  private _getTooltipPosition(mouseX: number, mouseY: number) {
-    const OFFSET = 25;
-    let x = mouseX;
-    let y = mouseY;
-
-    const viewportBoundaries = {
-      bottom: window.innerHeight + window.pageYOffset,
-      right: window.innerWidth + window.pageXOffset,
-    };
-
-    const tooltipContainerBoundingRect = this.tooltipElement.getBoundingClientRect();
-
-    const tooltipBoundaries = {
-      bottom: mouseY + tooltipContainerBoundingRect.height,
-      right: mouseX + tooltipContainerBoundingRect.width,
-    };
-
-    if (viewportBoundaries.right < tooltipBoundaries.right) {
-      x = mouseX - tooltipContainerBoundingRect.width;
-    }
-
-    if (viewportBoundaries.bottom < tooltipBoundaries.bottom) {
-      y = mouseY - tooltipContainerBoundingRect.height - OFFSET;
-    }
-
-    return [x, y];
-  }
-
-  private _showTooltip(event: MouseEvent) {
+  private _showTooltip(barBoundingBox: ClientRect) {
     if (!this.tooltipElement) {
       return;
     }
 
-    const [x, y] = this._getTooltipPosition(event.clientX, event.clientY);
-
     select(this.tooltipElement)
       .style('display', 'inline')
-      .style('left', `${x}px`)
-      .style('top', `${y}px`);
+      .style('left', `${barBoundingBox.left + (barBoundingBox.width / 2)}px`)
+      .style('top', `${barBoundingBox.top}px`);
   }
 
   private _hideTooltip() {
@@ -1080,5 +1043,27 @@ export class HistogramWidget {
 
   private _hasDataToDisplay() {
     return !(this.isLoading || this._isEmpty() || this.error);
+  }
+
+  private formatter(data: HistogramData) {
+    const tooltip = [];
+
+    if (this.isCategoricalData) {
+      tooltip.push(`${data.category}`);
+    } else {
+      tooltip.push(`${this._xFormatter(data.start)} - ${this._xFormatter(data.end)}`);
+    }
+
+    tooltip.push(`${readableNumber(data.value).trim()}`);
+
+    return tooltip;
+  }
+
+  private _xFormatter(value: Date | number): string {
+    if (this.axisFormatter) {
+      return this.axisFormatter(value);
+    } else {
+      return conditionalFormatter(value);
+    }
   }
 }

@@ -53,20 +53,30 @@ describe('as-time-series-widget', () => {
       expect(Math.abs(translateX - lineX2)).not.toBeGreaterThan(3);
     });
 
-    it('should render the x-axis as dates', async () => {
+    it('should render the x-axis as numbers', async () => {
       const element: E2EElement = await page.find('as-time-series-widget');
       await page.waitForChanges();
       element.setProperty('animated', 'true');
-      await page.waitForChanges();
       element.setProperty('data', histogramData);
-      await page.waitForChanges();
-      element.setProperty('progress', '50');
+      element.setProperty('timeFormat', '%Q');
       await page.waitForChanges();
 
       const text = await page.find('.x-axis text');
 
-      expect(text.innerText).not.toBe('0');
-      expect(text.innerText).toContain('1970');
+      expect(text.innerText).toContain('0');
+    });
+
+    it('should render the x-axis as dates', async () => {
+      const element: E2EElement = await page.find('as-time-series-widget');
+      await page.waitForChanges();
+      element.setProperty('animated', 'true');
+      element.setProperty('data', histogramDateData);
+      element.setProperty('timeFormat', '%x');
+      await page.waitForChanges();
+
+      const text = await page.find('.x-axis text');
+
+      expect(text.innerText).toEqual('1/1/2019');
     });
 
     it('should fire a seek event', async () => {
@@ -119,4 +129,11 @@ const histogramData = [
   { start: 10, end: 20, value: 10 },
   { start: 20, end: 30, value: 15 },
   { start: 30, end: 40, value: 20 },
+];
+
+const histogramDateData = [
+  { start: Date.parse('1/1/2019'), end: Date.parse('2/1/2019'), value: 50 },
+  { start: Date.parse('2/1/2019'), end: Date.parse('3/1/2019'), value: 10 },
+  { start: Date.parse('3/1/2019'), end: Date.parse('4/1/2019'), value: 15 },
+  { start: Date.parse('4/1/2019'), end: Date.parse('5/1/2019'), value: 20 },
 ];

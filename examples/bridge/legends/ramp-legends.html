@@ -8,13 +8,14 @@
   <title>Airship bridge ramp legends</title>
 
   <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.11/lodash.min.js"></script>
-  <script src="https://libs.cartocdn.com/carto-vl/v1.2/carto-vl.min.js"></script>
+  <script src="https://libs.cartocdn.com/carto-vl/v1.4/carto-vl.min.js"></script>
 
   <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.css" rel="stylesheet" />
   <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.js"></script>
 
   <link rel="stylesheet" href="../../../packages/styles/dist/airship.css">
-  <script src="../../../packages/components/dist/airship.js"></script>
+  <script type="module" src="../../../packages/components/dist/airship/airship.esm.js"></script>
+  <script nomodule="" src="../../../packages/components/dist/airship/airship.js"></script>
   <script src="../../../packages/bridge/dist/asbridge.js"></script>
 
   <style>

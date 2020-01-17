@@ -1,6 +1,6 @@
 export interface HistogramData {
-  start: number;
-  end: number;
+  start: Date | number;
+  end: Date | number;
   category?: string;
   value: number;
   color?: string;
@@ -13,7 +13,8 @@ export interface HistogramSelection {
 }
 
 type CategoricalSelectionPayload = string[];
-type ContinuousSelectionPayload = number[];
+type ContinuousSelectionPayload = Array<Date | number>;
+type TooltipFormat = string | string[];
 
 export type HistogramType = 'continuous' | 'categorical';
 

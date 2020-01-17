@@ -13,16 +13,19 @@ const hist1 = [
 
 describe('vl/utils/comparison/histogram', () => {
   it('should detect equal histograms', () => {
-    expect(isNumericalHistogramEqual({ value: hist1 }, { value: hist1 })).toBe(true);
+    expect(isNumericalHistogramEqual({ input: '', value: hist1 }, { input: '', value: hist1 })).toBe(true);
   });
 
   it('should detect histograms of different length as different', () => {
     // Test for different length
-    expect(isNumericalHistogramEqual({ value: hist1 }, { value: hist1.slice(0, 1) })).toBe(false);
+    expect(isNumericalHistogramEqual({ input: '', value: hist1 }, { input: '', value: hist1.slice(0, 1) })).toBe(false);
   });
 
   it('should detect non-equal histograms through content', () => {
     // Test for different content
-    expect(isNumericalHistogramEqual({ value: hist1 }, { value: [hist1[1], hist1[0]] })).toBe(false);
+    expect(isNumericalHistogramEqual(
+      { input: '', value: hist1 },
+      { input: '', value: [hist1[1], hist1[0]] }
+    )).toBe(false);
   });
 });

@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
     <title>Airship</title>
     <link rel="stylesheet" href="../../../packages/styles/dist/airship.css">
-    <script src="../../../packages/components/dist/airship.js"></script>
+    <script type="module" src="../../../packages/components/dist/airship/airship.esm.js"></script>
+    <script nomodule="" src="../../../packages/components/dist/airship/airship.js"></script>
   </head>
 
   <body>
@@ -28,11 +29,16 @@
       ];
 
       histogramWidget.tooltipFormatter = function (data) {
-        return histogramWidget.defaultFormatter(data) + ' kg';
-      }
+        return histogramWidget.defaultFormatter(data).then((formatted) => {
+          formatted[1] = `${formatted[1]} kg`;
+  
+          return formatted;
+        });
+      };
 
       var selectionEl = document.querySelector('#selection');
       histogramWidget.addEventListener('selectionChanged', function (e) {
+        console.log('selectionChanged');
         if (e.detail === null) {
           selectionEl.innerText = 'Nothing selected';
         } else {

@@ -43,7 +43,8 @@ We provide some responsive utilities by default, for example `sidebars` are hidd
   <!-- Include icons -->
   <link rel="stylesheet" href="https://libs.cartocdn.com/airship-icons/%AS-VERSION%/icons.css">
   <!-- Include airship components -->
-  <script src="https://libs.cartocdn.com/airship-components/%AS-VERSION%/airship.js"></script>
+  <script type="module" src="https://libs.cartocdn.com/airship-components/%AS-VERSION%/airship/airship.esm.js"></script>
+  <script nomodule="" src="https://libs.cartocdn.com/airship-components/%AS-VERSION%/airship/airship.js"></script>
 </head>
 <body class="as-app-body">
   <div class="as-app">

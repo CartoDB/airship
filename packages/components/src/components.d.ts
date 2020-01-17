@@ -5,9 +5,7 @@
  */
 
 
-import '@stencil/core';
-
-
+import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 import {
   DropdownOption,
 } from './components/as-dropdown/types/DropdownOption';
@@ -16,10 +14,8 @@ import {
   HistogramColorRange,
   HistogramData,
   HistogramSelection,
+  TooltipFormat,
 } from './components/as-histogram-widget/interfaces';
-import {
-  EventEmitter,
-} from '@stencil/core';
 import {
   RenderOptions,
 } from './components/as-histogram-widget/types/RenderOptions';
@@ -30,6 +26,9 @@ import {
   Metadata,
 } from './components/as-stacked-bar-widget/types/Metadata';
 import {
+  RectangleData,
+} from './components/as-stacked-bar-widget/types/RectangleData';
+import {
   TimeSeriesData,
 } from './components/as-time-series-widget/interfaces';
 import {
@@ -39,28 +38,87 @@ import {
   WidgetLegendData,
 } from './components/common/as-widget-legend/types/WidgetLegendData';
 
-
 export namespace Components {
-
+  interface AsAnimationControlsWidget {
+    /**
+    * Description of the widget to be displayed
+    * @type {string}
+    * @memberof AnimationControlsWidget
+    */
+    'description': string;
+    'duration': number;
+    /**
+    * Use this widget to put the widget in "error mode". When error mode is active. The header will display the given text. And the body will be display the errorDescription instead any data.
+    */
+    'error': string;
+    /**
+    * Extended error description, only shown when error is present
+    */
+    'errorDescription': string;
+    /**
+    * Title of the widget to be displayed
+    * @type {string}
+    * @memberof AnimationControlsWidget
+    */
+    'heading': string;
+    /**
+    * Use this attribute to put the widget in "loading mode". When loading mode is active, a spinner will be shown and the data will be hidden.
+    */
+    'isLoading': boolean;
+    'max': number;
+    'min': number;
+    /**
+    * Message shown in body when no data is available
+    */
+    'noDataBodyMessage': string;
+    /**
+    * Message shown in header when no data is available
+    */
+    'noDataHeaderMessage': string;
+    'playing': boolean;
+    /**
+    * This attribute is the percentage of progress elapsed on an animation.
+    */
+    'progress': number;
+    'progressValue': number | string;
+    /**
+    * Toggles displaying title and description
+    * @type {boolean}
+    * @memberof AnimationControlsWidget
+    */
+    'showHeader': boolean;
+    'showThumb': boolean;
+    'showThumbCaption': boolean;
+  }
   interface AsCategoryWidget {
     /**
     * Array of categories to display in the widget. Each category should include a `name` and a `value`. You can also override the bar color for each category with `color`.
+    * @type {object[]}
+    * @memberof CategoryWidget
     */
     'categories': object[];
     /**
     * Clear current selected categories
+    * @returns
+    * @memberof CategoryWidget
     */
     'clearSelection': () => Promise<void>;
     /**
     * Default color to draw the bars. Default value is `#47DB99`.
+    * @type {string}
+    * @memberof CategoryWidget
     */
     'defaultBarColor': string;
     /**
     * Description text of the widget
+    * @type {string}
+    * @memberof CategoryWidget
     */
     'description': string;
     /**
     * Disable category selection in Widget
+    * @type {string}
+    * @memberof CategoryWidget
     */
     'disableInteractivity': boolean;
     /**
@@ -73,10 +131,14 @@ export namespace Components {
     'errorDescription': string;
     /**
     * Get current selected categories
+    * @returns
+    * @memberof CategoryWidget
     */
     'getSelectedCategories': () => Promise<string[]>;
     /**
     * Heading text of the widget
+    * @type {string}
+    * @memberof CategoryWidget
     */
     'heading': string;
     /**
@@ -93,188 +155,132 @@ export namespace Components {
     'noDataHeaderMessage': string;
     /**
     * If truthy, it'll show a button to clear selected categories when there are any. Default value is `false`.
+    * @type {boolean}
+    * @memberof CategoryWidget
     */
     'showClearButton': boolean;
     /**
     * If truthy, it'll render the heading and component's description. Default value is `true`.
+    * @type {boolean}
+    * @memberof CategoryWidget
     */
     'showHeader': boolean;
     /**
     * If truthy, we'll use the sum of all categories' value to render the bar percentage. By default, we use the maximum category value to render the bar percentage.
+    * @type {boolean}
+    * @memberof CategoryWidget
     */
     'useTotalPercentage': boolean;
     /**
     * If this property receives a function, it will be used to format the numbers (eg. for adding $ or €).
+    * @type {function (value: number)}
+    * @memberof RangeSlider
     */
     'valueFormatter': (value: number) => string;
     /**
     * The number of visible categories without aggregation.
+    * @type {number}
+    * @memberof CategoryWidget
     */
     'visibleCategories': number;
   }
-  interface AsCategoryWidgetAttributes extends StencilHTMLAttributes {
-    /**
-    * Array of categories to display in the widget. Each category should include a `name` and a `value`. You can also override the bar color for each category with `color`.
-    */
-    'categories'?: object[];
-    /**
-    * Default color to draw the bars. Default value is `#47DB99`.
-    */
-    'defaultBarColor'?: string;
-    /**
-    * Description text of the widget
-    */
-    'description'?: string;
-    /**
-    * Disable category selection in Widget
-    */
-    'disableInteractivity'?: boolean;
-    /**
-    * Text shown in the header subtitle when there's an error
-    */
-    'error'?: string;
-    /**
-    * Extended error description, only shown when error is present
-    */
-    'errorDescription'?: string;
-    /**
-    * Heading text of the widget
-    */
-    'heading'?: string;
-    /**
-    * Boolean property to control the widget loading state. If true, a spinner is shown.
-    */
-    'isLoading'?: boolean;
-    /**
-    * Message shown in body when no data is available
-    */
-    'noDataBodyMessage'?: string;
-    /**
-    * Message shown in header when no data is available
-    */
-    'noDataHeaderMessage'?: string;
-    /**
-    * Fired when selected categories changed or selected categories are cleared.
-    */
-    'onCategoriesSelected'?: (event: CustomEvent<string[]>) => void;
-    /**
-    * If truthy, it'll show a button to clear selected categories when there are any. Default value is `false`.
-    */
-    'showClearButton'?: boolean;
-    /**
-    * If truthy, it'll render the heading and component's description. Default value is `true`.
-    */
-    'showHeader'?: boolean;
-    /**
-    * If truthy, we'll use the sum of all categories' value to render the bar percentage. By default, we use the maximum category value to render the bar percentage.
-    */
-    'useTotalPercentage'?: boolean;
-    /**
-    * If this property receives a function, it will be used to format the numbers (eg. for adding $ or €).
-    */
-    'valueFormatter'?: (value: number) => string;
-    /**
-    * The number of visible categories without aggregation.
-    */
-    'visibleCategories'?: number;
-  }
-
   interface AsDropdown {
     /**
     * Closes the list, useful in case you need to customize {onClickOutside}
+    * @memberof Dropdown
     */
     'closeList': () => Promise<void>;
     /**
     * Default text to show when no option is selected
+    * @type {string}
+    * @memberof Dropdown
     */
     'defaultText': string;
     /**
     * Function called when clicking outside of the dropdown. By default it closes the list.
+    * @type {function}
+    * @memberof Dropdown
     */
     'onClickOutside': () => void;
     /**
     * Array of options to display in the dropdown
+    * @type {string[]}
+    * @memberof Dropdown
     */
     'options': DropdownOption[];
     /**
     * Selected option to show in the dropdown
+    * @type {string}
+    * @memberof Dropdown
     */
     'selectedOption': string;
     /**
     * Allow the user to clear selected option
+    * @type {string}
+    * @memberof Dropdown
     */
     'showClearButton': boolean;
   }
-  interface AsDropdownAttributes extends StencilHTMLAttributes {
-    /**
-    * Default text to show when no option is selected
-    */
-    'defaultText'?: string;
-    /**
-    * Function called when clicking outside of the dropdown. By default it closes the list.
-    */
-    'onClickOutside'?: () => void;
-    /**
-    * Fired when selected option changes or option is cleared
-    */
-    'onOptionChanged'?: (event: CustomEvent<string>) => void;
-    /**
-    * Array of options to display in the dropdown
-    */
-    'options'?: DropdownOption[];
-    /**
-    * Selected option to show in the dropdown
-    */
-    'selectedOption'?: string;
-    /**
-    * Allow the user to clear selected option
-    */
-    'showClearButton'?: boolean;
-  }
-
   interface AsHistogramWidget {
     /**
     * Function used to format the x-axis values
+    * @memberof HistogramWidget
     */
     'axisFormatter': (value: number | Date) => string;
     /**
     * Data that will be merged into buckets with value === 0
+    * @type {HistogramData[]}
+    * @memberof HistogramWidget
     */
     'backgroundData': HistogramData[];
     /**
     * Clears the Histogram selection
+    * @memberof HistogramWidget
     */
-    'clearSelection': () => void;
+    'clearSelection': () => Promise<void>;
     /**
     * Text rendered inside the clear selection button
     */
     'clearText': string;
     /**
     * Override color for the histogram bars
+    * @type {string}
+    * @memberof HistogramWidget
     */
     'color': string;
     /**
     * Color range for histogram data
+    * @type {HistogramColorRange[]}
+    * @memberof HistogramWidget
     */
     'colorRange': HistogramColorRange[];
     /**
     * Histogram data to be displayed
+    * @type {HistogramData[]}
+    * @memberof HistogramWidget
     */
     'data': HistogramData[];
     /**
     * Default formatting function. Makes the value a readable number and converts it into a string. Useful to compose with your own formatting function.
+    * @memberof HistogramWidget
     */
-    'defaultFormatter': (data: HistogramData) => any[];
+    'defaultFormatter': (data: HistogramData) => Promise<any[]>;
     /**
     * Description of the widget to be displayed
+    * @type {string}
+    * @memberof HistogramWidget
     */
     'description': string;
     /**
     * This lets you disable the animations for the bars when showing / updating the data
+    * @type {boolean}
+    * @memberof HistogramWidget
     */
     'disableAnimation': boolean;
     /**
     * Disables selection brushes and events for the widget
+    * @type {boolean}
+    * @memberof HistogramWidget
     */
     'disableInteractivity': boolean;
     /**
@@ -287,10 +293,14 @@ export namespace Components {
     'errorDescription': string;
     /**
     * Returns the current selection
+    * @returns
+    * @memberof HistogramWidget
     */
-    'getSelection': () => Promise<string[] | number[]>;
+    'getSelection': () => Promise<(string | number | Date)[]>;
     /**
     * Title of the widget to be displayed
+    * @type {string}
+    * @memberof HistogramWidget
     */
     'heading': string;
     /**
@@ -307,6 +317,7 @@ export namespace Components {
     'noDataHeaderMessage': string;
     /**
     * This prop lets you provide the range of the y-axis so it's not automatically calculated with data or backgroundData. It always starts at 0, you can provide the top value.
+    * @memberof HistogramWidget
     */
     'range': [number, number];
     /**
@@ -315,42 +326,59 @@ export namespace Components {
     'responsive': boolean;
     /**
     * Function to format the range selected text displayed below the histogram
+    * @memberof HistogramWidget
     */
     'selectedFormatter': (value: number[]) => string;
     /**
     * Programmatically set the selection. It will be adjusted to the buckets present in {@link data}. To clear see {@link clearSelection} or call with null
+    * @param values
+    * @param emit Set to true to force emitting the selectionChanged event.
+    * @memberof HistogramWidget
     */
-    'setSelection': (values: number[], emit?: boolean) => void;
+    'setSelection': (values: number[], emit?: boolean) => Promise<void>;
     /**
     * Display a clear button that clears the histogram selection.
+    * @type {boolean}
+    * @memberof HistogramWidget
     */
     'showClear': boolean;
     /**
     * Toggles displaying title and description
+    * @type {boolean}
+    * @memberof HistogramWidget
     */
     'showHeader': boolean;
     /**
     * Function that formats the tooltip. Receives HistogramData and outputs a string
+    * @type {(HistogramData) => string}
+    * @memberof HistogramWidget
     */
-    'tooltipFormatter': (value: HistogramData) => string | string[];
+    'tooltipFormatter': (value: HistogramData) => TooltipFormat | Promise<TooltipFormat>;
     /**
     * Override color for the non selected histogram bars
+    * @type {string}
+    * @memberof HistogramWidget
     */
     'unselectedColor': string;
     /**
     * This prop is a proxy to some d3-axis options for the X Axis
+    * @type {AxisOptions}
+    * @memberof TimeSeriesWidget
     */
     'xAxisOptions': AxisOptions;
     /**
     * Formats a number using the component's x-axis formatter if present
+    * @memberof HistogramWidget
     */
-    'xFormatter': (value: any) => any;
+    'xFormatter': (value: any) => Promise<string>;
     /**
     * Label the x axis of the histogram with the given string.
     */
     'xLabel': string;
     /**
     * This prop is a proxy to some d3-axis options for the Y Axis
+    * @type {AxisOptions}
+    * @memberof TimeSeriesWidget
     */
     'yAxisOptions': AxisOptions;
     /**
@@ -358,254 +386,249 @@ export namespace Components {
     */
     'yLabel': string;
   }
-  interface AsHistogramWidgetAttributes extends StencilHTMLAttributes {
-    /**
-    * Function used to format the x-axis values
-    */
-    'axisFormatter'?: (value: number | Date) => string;
-    /**
-    * Data that will be merged into buckets with value === 0
-    */
-    'backgroundData'?: HistogramData[];
-    /**
-    * Text rendered inside the clear selection button
-    */
-    'clearText'?: string;
-    /**
-    * Override color for the histogram bars
-    */
-    'color'?: string;
-    /**
-    * Color range for histogram data
-    */
-    'colorRange'?: HistogramColorRange[];
-    /**
-    * Histogram data to be displayed
-    */
-    'data'?: HistogramData[];
-    /**
-    * Description of the widget to be displayed
-    */
-    'description'?: string;
-    /**
-    * This lets you disable the animations for the bars when showing / updating the data
-    */
-    'disableAnimation'?: boolean;
-    /**
-    * Disables selection brushes and events for the widget
-    */
-    'disableInteractivity'?: boolean;
-    /**
-    * Use this widget to put the widget in "error mode". When error mode is active. The header will display the given text. And the body will be display the errorDescription instead any data.
-    */
-    'error'?: string;
-    /**
-    * Extended error description, only shown when error is present
-    */
-    'errorDescription'?: string;
-    /**
-    * Title of the widget to be displayed
-    */
-    'heading'?: string;
-    /**
-    * Use this attribute to put the widget in "loading mode". When loading mode is active, a spinner will be shown and the data will be hidden.
-    */
-    'isLoading'?: boolean;
-    /**
-    * Message shown in body when no data is available
-    */
-    'noDataBodyMessage'?: string;
-    /**
-    * Message shown in header when no data is available
-    */
-    'noDataHeaderMessage'?: string;
-    'onDrawParametersChanged'?: (event: CustomEvent<RenderOptions>) => void;
-    /**
-    * Fired when user update or clear the widget selection.
-    */
-    'onSelectionChanged'?: (event: CustomEvent<HistogramSelection>) => void;
-    'onSelectionInput'?: (event: CustomEvent<HistogramSelection>) => void;
-    /**
-    * This prop lets you provide the range of the y-axis so it's not automatically calculated with data or backgroundData. It always starts at 0, you can provide the top value.
-    */
-    'range'?: [number, number];
-    /**
-    * Use this attribute to decide if the widget should be rerendered on window resize. Defaults to true.
-    */
-    'responsive'?: boolean;
-    /**
-    * Function to format the range selected text displayed below the histogram
-    */
-    'selectedFormatter'?: (value: number[]) => string;
-    /**
-    * Display a clear button that clears the histogram selection.
-    */
-    'showClear'?: boolean;
-    /**
-    * Toggles displaying title and description
-    */
-    'showHeader'?: boolean;
-    /**
-    * Function that formats the tooltip. Receives HistogramData and outputs a string
-    */
-    'tooltipFormatter'?: (value: HistogramData) => string | string[];
-    /**
-    * Override color for the non selected histogram bars
-    */
-    'unselectedColor'?: string;
-    /**
-    * This prop is a proxy to some d3-axis options for the X Axis
-    */
-    'xAxisOptions'?: AxisOptions;
-    /**
-    * Label the x axis of the histogram with the given string.
-    */
-    'xLabel'?: string;
-    /**
-    * This prop is a proxy to some d3-axis options for the Y Axis
-    */
-    'yAxisOptions'?: AxisOptions;
-    /**
-    * Label the y axis of the histogram with the given string.
-    */
-    'yLabel'?: string;
-  }
-
   interface AsInfowindow {
     'src': string;
   }
-  interface AsInfowindowAttributes extends StencilHTMLAttributes {
-    'src'?: string;
+  interface AsLegend {
+    'description': string;
+    'heading': string;
+    'loading': boolean;
   }
-
+  interface AsLegendCategory {
+    'data': LegendData[];
+    'orientation': 'horizontal' | 'vertical';
+    'width': number;
+  }
+  interface AsLegendCategoryLineEntry {
+    'color': string;
+    'label': string;
+    'strokeStyle': string;
+    'width': number;
+  }
+  interface AsLegendCategoryPointEntry {
+    'color': string;
+    'label': string;
+    'marker': string;
+    'strokeColor': string;
+    'strokeStyle': string;
+    'width': number;
+  }
+  interface AsLegendCategoryPolygonEntry {
+    'color': string;
+    'label': string;
+    'strokeColor': string;
+    'strokeStyle': string;
+  }
+  interface AsLegendColorBins {
+    'data': LegendData[];
+    'orientation': 'horizontal' | 'vertical';
+    'width': number;
+  }
+  interface AsLegendColorBinsLine {
+    'data': LegendData[];
+    'orientation': 'horizontal' | 'vertical';
+    'width': number;
+  }
+  interface AsLegendColorBinsPoint {
+    'data': LegendData[];
+    'orientation': 'horizontal' | 'vertical';
+    'width': number;
+  }
+  interface AsLegendColorBinsPolygon {
+    'data': LegendData[];
+    'orientation': 'horizontal' | 'vertical';
+  }
+  interface AsLegendColorCategory {
+    'data': LegendData[];
+    'orientation': 'horizontal' | 'vertical';
+    'width': number;
+  }
+  interface AsLegendColorCategoryLine {
+    'data': LegendData[];
+    'orientation': 'horizontal' | 'vertical';
+    'width': number;
+  }
+  interface AsLegendColorCategoryPoint {
+    'data': LegendData[];
+    'orientation': 'horizontal' | 'vertical';
+    'width': number;
+  }
+  interface AsLegendColorCategoryPolygon {
+    'data': LegendData[];
+    'orientation': 'horizontal' | 'vertical';
+    'width': number;
+  }
+  interface AsLegendColorContinuous {
+    'data': LegendData[];
+    'orientation': 'horizontal' | 'vertical';
+    'width': number;
+  }
+  interface AsLegendColorContinuousLine {
+    'data': LegendData[];
+    'orientation': 'horizontal' | 'vertical';
+    'width': number;
+  }
+  interface AsLegendColorContinuousPoint {
+    'data': LegendData[];
+    'orientation': 'horizontal' | 'vertical';
+    'width': number;
+  }
+  interface AsLegendColorContinuousPolygon {
+    'data': LegendData[];
+    'orientation': 'horizontal' | 'vertical';
+  }
+  interface AsLegendSizeBins {
+    'data': LegendData[];
+    'orientation': 'horizontal' | 'vertical';
+    'width': number;
+  }
+  interface AsLegendSizeBinsLine {
+    'data': LegendData[];
+    'orientation': 'horizontal' | 'vertical';
+    'width': number;
+  }
+  interface AsLegendSizeBinsPoint {
+    'data': LegendData[];
+    'orientation': 'horizontal' | 'vertical';
+    'width': number;
+  }
+  interface AsLegendSizeCategory {
+    'data': LegendData[];
+    'orientation': 'horizontal' | 'vertical';
+    'width': number;
+  }
+  interface AsLegendSizeCategoryLine {
+    'aligned': boolean;
+    'data': LegendData[];
+    'factor': number;
+    'minWidth': number;
+    'orientation': 'horizontal' | 'vertical';
+  }
+  interface AsLegendSizeCategoryPoint {
+    'data': LegendData[];
+    'orientation': 'horizontal' | 'vertical';
+    'width': number;
+  }
+  interface AsLegendSizeContinuous {
+    'data': LegendData[];
+    'orientation': 'horizontal' | 'vertical';
+    'scale': number;
+  }
+  interface AsLegendSizeContinuousLine {
+    'data': LegendData[];
+    'leadingLineStrokeWidth': number;
+    'orientation': 'horizontal' | 'vertical';
+    'size': number;
+    'textLineHeight': number;
+    'width': number;
+    'xMarginFactor': number;
+    'yMarginFactor': number;
+  }
+  interface AsLegendSizeContinuousPoint {
+    'data': LegendData[];
+    'orientation': 'horizontal' | 'vertical';
+    'scale': number;
+  }
+  interface AsLoader {}
   interface AsRangeSlider {
     /**
     * Disables component if truthy
+    * @type {boolean}
+    * @memberof RangeSlider
     */
     'disabled': boolean;
     /**
-    * If this property is set to true, and it has multiple value, you can drag the entire track.
+    * @deprecated Use isDraggable instead
+    * @type {boolean}
+    * @memberof RangeSlider
     */
     'draggable': boolean;
     /**
     * If this property receives a function, it will be used to format the numbers (eg. for adding $ or €).
+    * @type {function (value: number)}
+    * @memberof RangeSlider
     */
     'formatValue': (value: number) => string|number;
     /**
+    * If this property is set to true, and it has multiple value, you can drag the entire track.
+    * @type {number}
+    * @memberof RangeSlider
+    */
+    'isDraggable': boolean;
+    /**
     * Top limit of the range. You cannot drag your slider beyond this value. By default the value is 10.
+    * @type {number}
+    * @memberof RangeSlider
     */
     'maxValue': number;
     /**
     * Bottom limit of the range. You cannot drag your slider below this value. By default the value is 0.
+    * @type {number}
+    * @memberof RangeSlider
     */
     'minValue': number;
     /**
     * Initial range.
+    * @type {number}
+    * @memberof RangeSlider
     */
     'range': number[];
     /**
+    * Disables the range slider thumb
+    * @type {boolean}
+    * @memberof RangeSlider
+    */
+    'showThumb': boolean;
+    /**
+    * Disables the range slider thumb caption
+    * @type {boolean}
+    * @memberof RangeSlider
+    */
+    'showThumbCaption': boolean;
+    /**
     * Increment/decrement step of the slider. You can change the step setting a different number to this property. Defaults to 1.
+    * @type {number}
+    * @memberof RangeSlider
     */
     'step': number;
     /**
     * Initial value.
+    * @type {number}
+    * @memberof RangeSlider
     */
     'value': number;
   }
-  interface AsRangeSliderAttributes extends StencilHTMLAttributes {
-    /**
-    * Disables component if truthy
-    */
-    'disabled'?: boolean;
-    /**
-    * If this property is set to true, and it has multiple value, you can drag the entire track.
-    */
-    'draggable'?: boolean;
-    /**
-    * If this property receives a function, it will be used to format the numbers (eg. for adding $ or €).
-    */
-    'formatValue'?: (value: number) => string|number;
-    /**
-    * Top limit of the range. You cannot drag your slider beyond this value. By default the value is 10.
-    */
-    'maxValue'?: number;
-    /**
-    * Bottom limit of the range. You cannot drag your slider below this value. By default the value is 0.
-    */
-    'minValue'?: number;
-    'onChange'?: (event: CustomEvent<number[]>) => void;
-    'onChangeEnd'?: (event: CustomEvent<number[]>) => void;
-    'onChangeStart'?: (event: CustomEvent<number[]>) => void;
-    /**
-    * Initial range.
-    */
-    'range'?: number[];
-    /**
-    * Increment/decrement step of the slider. You can change the step setting a different number to this property. Defaults to 1.
-    */
-    'step'?: number;
-    /**
-    * Initial value.
-    */
-    'value'?: number;
-  }
-
-  interface AsRangeSliderThumb {
-    'disabled': boolean;
-    'formatValue': (value: number) => string|number;
-    'percentage': number;
-    'value': number;
-    'valueMax': number;
-    'valueMin': number;
-  }
-  interface AsRangeSliderThumbAttributes extends StencilHTMLAttributes {
-    'disabled'?: boolean;
-    'formatValue'?: (value: number) => string|number;
-    'onThumbChangeEnd'?: (event: CustomEvent<void>) => void;
-    'onThumbChangeStart'?: (event: CustomEvent<void>) => void;
-    'onThumbDecrease'?: (event: CustomEvent<number>) => void;
-    'onThumbIncrease'?: (event: CustomEvent<number>) => void;
-    'onThumbMove'?: (event: CustomEvent<number>) => void;
-    'percentage'?: number;
-    'value'?: number;
-    'valueMax'?: number;
-    'valueMin'?: number;
-  }
-
   interface AsRangeSliderBar {
     'disabled': boolean;
-    'draggable': boolean;
+    'isDraggable': boolean;
     'rangeEndPercentage': number;
     'rangeStartPercentage': number;
     'stepPercentage': number;
   }
-  interface AsRangeSliderBarAttributes extends StencilHTMLAttributes {
-    'disabled'?: boolean;
-    'draggable'?: boolean;
-    'onBarChangeEnd'?: (event: CustomEvent<void>) => void;
-    'onBarChangeStart'?: (event: CustomEvent<void>) => void;
-    'onBarMove'?: (event: CustomEvent<number[]>) => void;
-    'rangeEndPercentage'?: number;
-    'rangeStartPercentage'?: number;
-    'stepPercentage'?: number;
+  interface AsRangeSliderThumb {
+    'disabled': boolean;
+    'formatValue': (value: number) => string|number;
+    'percentage': number;
+    'showCaption': boolean;
+    'value': number;
+    'valueMax': number;
+    'valueMin': number;
   }
-
   interface AsResponsiveContent {
     'getSections': () => Promise<object[]>;
     'setVisible': (sectionName: string) => Promise<void>;
   }
-  interface AsResponsiveContentAttributes extends StencilHTMLAttributes {
-    'onReady'?: (event: CustomEvent<void>) => void;
-    'onSectionChange'?: (event: CustomEvent<object>) => void;
-  }
-
   interface AsStackedBarWidget {
     /**
     * The data that will be drawn.
+    * @type {RawStackedbarData}
+    * @memberof StackedBarWidget
     */
     'data': RawStackedbarData[];
     /**
     * Description of the widget to be displayed
+    * @type {string}
+    * @memberof StackedBarWidget
     */
     'description': string;
     /**
@@ -619,9 +642,11 @@ export namespace Components {
     /**
     * Easy customize tooltip format
     */
-    'formatFn': any;
+    'formatFn': (value: any) => any;
     /**
     * Header of the widget to be displayed
+    * @type {string}
+    * @memberof StackedBarWidget
     */
     'heading': string;
     /**
@@ -635,11 +660,11 @@ export namespace Components {
     /**
     * Callback executed when the mouse is placed outside a rectangle.
     */
-    'mouseLeave': any;
+    'mouseLeave': () => void;
     /**
     * Callback executed when the mouse is placed over a rectangle.
     */
-    'mouseOver': any;
+    'mouseOver': (data: RectangleData) => void;
     /**
     * Message shown in body when no data is available
     */
@@ -654,109 +679,37 @@ export namespace Components {
     'responsive': boolean;
     /**
     * Boolean flag to control legend visibility. Defaults: true
+    * @type {boolean}
+    * @memberof StackedBarWidget
     */
     'showLegend': boolean;
   }
-  interface AsStackedBarWidgetAttributes extends StencilHTMLAttributes {
-    /**
-    * The data that will be drawn.
-    */
-    'data'?: RawStackedbarData[];
-    /**
-    * Description of the widget to be displayed
-    */
-    'description'?: string;
-    /**
-    * Use this attribute to put the widget in "error mode". When this attribute is given, its text will be shown in the subheader and the widget content won't be displayed.
-    */
-    'error'?: string;
-    /**
-    * Extended error description, only shown when error is present
-    */
-    'errorDescription'?: string;
-    /**
-    * Easy customize tooltip format
-    */
-    'formatFn'?: any;
-    /**
-    * Header of the widget to be displayed
-    */
-    'heading'?: string;
-    /**
-    * Use this attribute to put the widget in "loading mode". When this attribute is true, the widget won't show any data, a spinner will be placed instead.
-    */
-    'isLoading'?: boolean;
-    /**
-    * Legend data
-    */
-    'metadata'?: Metadata;
-    /**
-    * Callback executed when the mouse is placed outside a rectangle.
-    */
-    'mouseLeave'?: any;
-    /**
-    * Callback executed when the mouse is placed over a rectangle.
-    */
-    'mouseOver'?: any;
-    /**
-    * Message shown in body when no data is available
-    */
-    'noDataBodyMessage'?: string;
-    /**
-    * Message shown in header when no data is available
-    */
-    'noDataHeaderMessage'?: string;
-    /**
-    * Use this attribute to decide if the widget should be rerendered on window resize. Defaults to true.
-    */
-    'responsive'?: boolean;
-    /**
-    * Boolean flag to control legend visibility. Defaults: true
-    */
-    'showLegend'?: boolean;
-  }
-
   interface AsSwitch {
     /**
     * Boolean flag to control if the input is checked or not
+    * @type {boolean}
+    * @memberof Switch
     */
     'checked': boolean;
     /**
     * Boolean flag to control when the switch is disabled or not
+    * @type {boolean}
+    * @memberof Switch
     */
     'disabled': boolean;
     /**
     * Input label
+    * @type {string}
+    * @memberof Switch
     */
     'label': string;
     /**
     * The input name
+    * @type {string}
+    * @memberof Switch
     */
     'name': string;
   }
-  interface AsSwitchAttributes extends StencilHTMLAttributes {
-    /**
-    * Boolean flag to control if the input is checked or not
-    */
-    'checked'?: boolean;
-    /**
-    * Boolean flag to control when the switch is disabled or not
-    */
-    'disabled'?: boolean;
-    /**
-    * Input label
-    */
-    'label'?: string;
-    /**
-    * The input name
-    */
-    'name'?: string;
-    /**
-    * Event triggered by a enabled Switch component when the user clicks on it.
-    */
-    'onChange'?: (event: CustomEvent) => void;
-  }
-
   interface AsTabs {
     /**
     * Index of the active tab. Defaults to 0
@@ -767,17 +720,6 @@ export namespace Components {
     */
     'xl': boolean;
   }
-  interface AsTabsAttributes extends StencilHTMLAttributes {
-    /**
-    * Index of the active tab. Defaults to 0
-    */
-    'activeTab'?: number;
-    /**
-    * Make the tabs XL
-    */
-    'xl'?: boolean;
-  }
-
   interface AsTimeSeriesWidget {
     /**
     * Whether it should have animated properties or not. Disabling this makes this look like a histogra widget with time capabilities
@@ -785,42 +727,58 @@ export namespace Components {
     'animated': boolean;
     /**
     * Histogram data to be displayed
+    * @type {HistogramData[]}
+    * @memberof HistogramWidget
     */
     'backgroundData': TimeSeriesData[];
     /**
     * Proxy to as-histogram-widget clearSelection()
+    * @memberof TimeSeriesWidget
     */
-    'clearSelection': () => void;
+    'clearSelection': () => Promise<void>;
     /**
     * Text rendered inside the clear selection button
     */
     'clearText': string;
     /**
     * Override color for the histogram bars
+    * @type {string}
+    * @memberof HistogramWidget
     */
     'color': string;
     /**
     * Color range for histogram data
+    * @type {HistogramColorRange[]}
+    * @memberof HistogramWidget
     */
     'colorRange': HistogramColorRange[];
     /**
     * Histogram data to be displayed
+    * @type {HistogramData[]}
+    * @memberof HistogramWidget
     */
     'data': TimeSeriesData[];
     /**
     * Proxy to as-histogram-widget defaultFormatter()
+    * @memberof TimeSeriesWidget
     */
-    'defaultFormatter': (data: HistogramData) => any;
+    'defaultFormatter': (data: HistogramData) => Promise<any>;
     /**
     * Description of the widget to be displayed
+    * @type {string}
+    * @memberof HistogramWidget
     */
     'description': string;
     /**
     * This lets you disable the animations for the bars when showing / updating the data
+    * @type {boolean}
+    * @memberof HistogramWidget
     */
     'disableAnimation': boolean;
     /**
     * Disables selection brushes and events for the widget
+    * @type {boolean}
+    * @memberof HistogramWidget
     */
     'disableInteractivity': boolean;
     /**
@@ -833,10 +791,14 @@ export namespace Components {
     'errorDescription': string;
     /**
     * Proxy to as-histogram-widget getSelection()
+    * @returns
+    * @memberof TimeSeriesWidget
     */
-    'getSelection': () => Promise<string[] | number[]>;
+    'getSelection': () => Promise<any>;
     /**
     * Title of the widget to be displayed
+    * @type {string}
+    * @memberof HistogramWidget
     */
     'heading': string;
     /**
@@ -861,6 +823,7 @@ export namespace Components {
     'progress': number;
     /**
     * This prop lets you provide the range of the y-axis so it's not automatically calculated with data or backgroundData. It always starts at 0, you can provide the top value.
+    * @memberof HistogramWidget
     */
     'range': [number, number];
     /**
@@ -869,14 +832,20 @@ export namespace Components {
     'responsive': boolean;
     /**
     * Proxy to as-histogram-widget setSelection()
+    * @param values
+    * @memberof TimeSeriesWidget
     */
-    'setSelection': (values: number[]) => void;
+    'setSelection': (values: number[]) => Promise<void>;
     /**
     * Display a clear button that clears the histogram selection.
+    * @type {boolean}
+    * @memberof HistogramWidget
     */
     'showClear': boolean;
     /**
     * Toggles displaying title and description
+    * @type {boolean}
+    * @memberof HistogramWidget
     */
     'showHeader': boolean;
     /**
@@ -889,26 +858,35 @@ export namespace Components {
     'timeFormatLocale': TimeLocaleDefinition;
     /**
     * Function that formats the tooltip. Receives TimeSeriesData and outputs a string
+    * @type {(TimeSeriesData) => string}
+    * @memberof HistogramWidget
     */
     'tooltipFormatter': (value: TimeSeriesData) => string;
     /**
     * Override color for the selected histogram bars
+    * @type {string}
+    * @memberof HistogramWidget
     */
     'unselectedColor': string;
     /**
     * This prop is a proxy to some d3-axis options for the X Axis
+    * @type {AxisOptions}
+    * @memberof TimeSeriesWidget
     */
     'xAxisOptions': AxisOptions;
     /**
     * Proxy to as-histogram-widget xFormatter method
+    * @param value
     */
-    'xFormatter': (value: any) => any;
+    'xFormatter': (value: any) => Promise<any>;
     /**
     * Label the x axis of the histogram with the given string.
     */
     'xLabel': string;
     /**
     * This prop is a proxy to some d3-axis options for the Y Axis
+    * @type {AxisOptions}
+    * @memberof TimeSeriesWidget
     */
     'yAxisOptions': AxisOptions;
     /**
@@ -916,147 +894,7 @@ export namespace Components {
     */
     'yLabel': string;
   }
-  interface AsTimeSeriesWidgetAttributes extends StencilHTMLAttributes {
-    /**
-    * Whether it should have animated properties or not. Disabling this makes this look like a histogra widget with time capabilities
-    */
-    'animated'?: boolean;
-    /**
-    * Histogram data to be displayed
-    */
-    'backgroundData'?: TimeSeriesData[];
-    /**
-    * Text rendered inside the clear selection button
-    */
-    'clearText'?: string;
-    /**
-    * Override color for the histogram bars
-    */
-    'color'?: string;
-    /**
-    * Color range for histogram data
-    */
-    'colorRange'?: HistogramColorRange[];
-    /**
-    * Histogram data to be displayed
-    */
-    'data'?: TimeSeriesData[];
-    /**
-    * Description of the widget to be displayed
-    */
-    'description'?: string;
-    /**
-    * This lets you disable the animations for the bars when showing / updating the data
-    */
-    'disableAnimation'?: boolean;
-    /**
-    * Disables selection brushes and events for the widget
-    */
-    'disableInteractivity'?: boolean;
-    /**
-    * Use this widget to put the widget in "error mode". When error mode is active. The header will display the given text. And the body will be display the errorDescription instead any data.
-    */
-    'error'?: string;
-    /**
-    * Extended error description, only shown when error is present
-    */
-    'errorDescription'?: string;
-    /**
-    * Title of the widget to be displayed
-    */
-    'heading'?: string;
-    /**
-    * Use this attribute to put the widget in "loading mode". When loading mode is active, a spinner will be shown and the data will be hidden.
-    */
-    'isLoading'?: boolean;
-    /**
-    * Message shown in body when no data is available
-    */
-    'noDataBodyMessage'?: string;
-    /**
-    * Message shown in header when no data is available
-    */
-    'noDataHeaderMessage'?: string;
-    /**
-    * User clicks the pause button
-    */
-    'onPause'?: (event: CustomEvent) => void;
-    /**
-    * User clicks the play button
-    */
-    'onPlay'?: (event: CustomEvent) => void;
-    /**
-    * The user has seeked the animation to this percentage.
-    */
-    'onSeek'?: (event: CustomEvent<number>) => void;
-    /**
-    * This method proxies the selectionChanged event on the underlying graph, but parses it into a Date
-    */
-    'onSelectionChanged'?: (event: CustomEvent<Date[]>) => void;
-    /**
-    * Whether the animation is playing or not.
-    */
-    'playing'?: boolean;
-    /**
-    * This attribute is the percentage of progress elapsed on an animation.
-    */
-    'progress'?: number;
-    /**
-    * This prop lets you provide the range of the y-axis so it's not automatically calculated with data or backgroundData. It always starts at 0, you can provide the top value.
-    */
-    'range'?: [number, number];
-    /**
-    * Use this attribute to decide if the widget should be rerendered on window resize. Defaults to true.
-    */
-    'responsive'?: boolean;
-    /**
-    * Display a clear button that clears the histogram selection.
-    */
-    'showClear'?: boolean;
-    /**
-    * Toggles displaying title and description
-    */
-    'showHeader'?: boolean;
-    /**
-    * This string will be parsed by d3-time-format (https://github.com/d3/d3-time-format) and will be used to format the graph's x-axis
-    */
-    'timeFormat'?: string;
-    /**
-    * Setting this property will make the date formatter be sensitive to locales. The format is described on https://github.com/d3/d3-time-format
-    */
-    'timeFormatLocale'?: TimeLocaleDefinition;
-    /**
-    * Function that formats the tooltip. Receives TimeSeriesData and outputs a string
-    */
-    'tooltipFormatter'?: (value: TimeSeriesData) => string;
-    /**
-    * Override color for the selected histogram bars
-    */
-    'unselectedColor'?: string;
-    /**
-    * This prop is a proxy to some d3-axis options for the X Axis
-    */
-    'xAxisOptions'?: AxisOptions;
-    /**
-    * Label the x axis of the histogram with the given string.
-    */
-    'xLabel'?: string;
-    /**
-    * This prop is a proxy to some d3-axis options for the Y Axis
-    */
-    'yAxisOptions'?: AxisOptions;
-    /**
-    * Label the y axis of the histogram with the given string.
-    */
-    'yLabel'?: string;
-  }
-
   interface AsToolbar {}
-  interface AsToolbarAttributes extends StencilHTMLAttributes {}
-
-  interface AsLoader {}
-  interface AsLoaderAttributes extends StencilHTMLAttributes {}
-
   interface AsWidgetHeader {
     /**
     * Use this attribute to put the widget-header in "error mode". When this attribute is not empty the subheader will display the given value.
@@ -1064,6 +902,8 @@ export namespace Components {
     'error': string;
     /**
     * Main title
+    * @type {string}
+    * @memberof WidgetHeader
     */
     'header': string;
     /**
@@ -1080,85 +920,44 @@ export namespace Components {
     'noDataMessage': string;
     /**
     * Secondary title
+    * @type {string}
+    * @memberof WidgetHeader
     */
     'subheader': string;
   }
-  interface AsWidgetHeaderAttributes extends StencilHTMLAttributes {
-    /**
-    * Use this attribute to put the widget-header in "error mode". When this attribute is not empty the subheader will display the given value.
-    */
-    'error'?: string;
-    /**
-    * Main title
-    */
-    'header'?: string;
-    /**
-    * Use this attribute to put the widget-header in "empty mode". When this attribute is true the subheader will show the text defined by noDataMessage.
-    */
-    'isEmpty'?: boolean;
-    /**
-    * Use this attribute to put the widget-header in "loading mode". When this attribute is true the subheader text will be displayed as usual.
-    */
-    'isLoading'?: boolean;
-    /**
-    * Use this attribute to select the text displayed in the subheader when the header is in "empty mode". Defaults to "NO DATA AVAILABLE"
-    */
-    'noDataMessage'?: string;
-    /**
-    * Secondary title
-    */
-    'subheader'?: string;
-  }
-
   interface AsWidgetLegend {
     /**
     * Data to be displayed by the legend
+    * @type {WidgetLegendData}
+    * @memberof WidgetLegend
     */
     'data': WidgetLegendData;
   }
-  interface AsWidgetLegendAttributes extends StencilHTMLAttributes {
-    /**
-    * Data to be displayed by the legend
-    */
-    'data'?: WidgetLegendData;
-  }
-
   interface AsWidgetSelection {
     /**
     * Text for the clear text
+    * @type {string}
+    * @memberof WidgetSelection
     */
     'clearText': string;
     /**
     * The text to be displayed
+    * @type {string}
+    * @memberof WidgetSelection
     */
     'selection': string;
     /**
     * Whether to display the clear button or not
+    * @type {boolean}
+    * @memberof WidgetSelection
     */
     'showClear': boolean;
   }
-  interface AsWidgetSelectionAttributes extends StencilHTMLAttributes {
-    /**
-    * Text for the clear text
-    */
-    'clearText'?: string;
-    /**
-    * Event fired when clicking on clear text
-    */
-    'onClear'?: (event: CustomEvent) => void;
-    /**
-    * The text to be displayed
-    */
-    'selection'?: string;
-    /**
-    * Whether to display the clear button or not
-    */
-    'showClear'?: boolean;
-  }
-
   interface AsYAxis {
     /**
     * Lower limit of the axis
+    * @type {number}
+    * @memberof YAxis
     */
     'from': number;
     /**
@@ -1167,426 +966,21 @@ export namespace Components {
     'responsive': boolean;
     /**
     * Upper limit of the axis
+    * @type {Number[]}
+    * @memberof YAxis
     */
     'to': number;
-  }
-  interface AsYAxisAttributes extends StencilHTMLAttributes {
-    /**
-    * Lower limit of the axis
-    */
-    'from'?: number;
-    /**
-    * Use this attribute to decide if the widget should be rerendered on window resize Defaults to true
-    */
-    'responsive'?: boolean;
-    /**
-    * Upper limit of the axis
-    */
-    'to'?: number;
-  }
-
-  interface AsLegendCategoryLineEntry {
-    'color': string;
-    'label': string;
-    'strokeStyle': string;
-    'width': number;
-  }
-  interface AsLegendCategoryLineEntryAttributes extends StencilHTMLAttributes {
-    'color'?: string;
-    'label'?: string;
-    'strokeStyle'?: string;
-    'width'?: number;
-  }
-
-  interface AsLegendCategoryPointEntry {
-    'color': string;
-    'label': string;
-    'marker': string;
-    'strokeColor': string;
-    'strokeStyle': string;
-    'width': number;
-  }
-  interface AsLegendCategoryPointEntryAttributes extends StencilHTMLAttributes {
-    'color'?: string;
-    'label'?: string;
-    'marker'?: string;
-    'strokeColor'?: string;
-    'strokeStyle'?: string;
-    'width'?: number;
-  }
-
-  interface AsLegendCategoryPolygonEntry {
-    'color': string;
-    'label': string;
-    'strokeColor': string;
-    'strokeStyle': string;
-  }
-  interface AsLegendCategoryPolygonEntryAttributes extends StencilHTMLAttributes {
-    'color'?: string;
-    'label'?: string;
-    'strokeColor'?: string;
-    'strokeStyle'?: string;
-  }
-
-  interface AsLegendCategory {
-    'data': LegendData[];
-    'orientation': 'horizontal' | 'vertical';
-    'width': number;
-  }
-  interface AsLegendCategoryAttributes extends StencilHTMLAttributes {
-    'data'?: LegendData[];
-    'orientation'?: 'horizontal' | 'vertical';
-    'width'?: number;
-  }
-
-  interface AsLegendColorBinsLine {
-    'data': LegendData[];
-    'orientation': 'horizontal' | 'vertical';
-    'width': number;
-  }
-  interface AsLegendColorBinsLineAttributes extends StencilHTMLAttributes {
-    'data'?: LegendData[];
-    'orientation'?: 'horizontal' | 'vertical';
-    'width'?: number;
-  }
-
-  interface AsLegendColorBinsPoint {
-    'data': LegendData[];
-    'orientation': 'horizontal' | 'vertical';
-    'width': number;
-  }
-  interface AsLegendColorBinsPointAttributes extends StencilHTMLAttributes {
-    'data'?: LegendData[];
-    'orientation'?: 'horizontal' | 'vertical';
-    'width'?: number;
-  }
-
-  interface AsLegendColorBinsPolygon {
-    'data': LegendData[];
-    'orientation': 'horizontal' | 'vertical';
-  }
-  interface AsLegendColorBinsPolygonAttributes extends StencilHTMLAttributes {
-    'data'?: LegendData[];
-    'orientation'?: 'horizontal' | 'vertical';
-  }
-
-  interface AsLegendColorBins {
-    'data': LegendData[];
-    'orientation': 'horizontal' | 'vertical';
-    'width': number;
-  }
-  interface AsLegendColorBinsAttributes extends StencilHTMLAttributes {
-    'data'?: LegendData[];
-    'orientation'?: 'horizontal' | 'vertical';
-    'width'?: number;
-  }
-
-  interface AsLegendColorCategoryLine {
-    'data': LegendData[];
-    'orientation': 'horizontal' | 'vertical';
-    'width': number;
-  }
-  interface AsLegendColorCategoryLineAttributes extends StencilHTMLAttributes {
-    'data'?: LegendData[];
-    'orientation'?: 'horizontal' | 'vertical';
-    'width'?: number;
-  }
-
-  interface AsLegendColorCategoryPoint {
-    'data': LegendData[];
-    'orientation': 'horizontal' | 'vertical';
-    'width': number;
-  }
-  interface AsLegendColorCategoryPointAttributes extends StencilHTMLAttributes {
-    'data'?: LegendData[];
-    'orientation'?: 'horizontal' | 'vertical';
-    'width'?: number;
-  }
-
-  interface AsLegendColorCategoryPolygon {
-    'data': LegendData[];
-    'orientation': 'horizontal' | 'vertical';
-    'width': number;
-  }
-  interface AsLegendColorCategoryPolygonAttributes extends StencilHTMLAttributes {
-    'data'?: LegendData[];
-    'orientation'?: 'horizontal' | 'vertical';
-    'width'?: number;
-  }
-
-  interface AsLegendColorCategory {
-    'data': LegendData[];
-    'orientation': 'horizontal' | 'vertical';
-    'width': number;
-  }
-  interface AsLegendColorCategoryAttributes extends StencilHTMLAttributes {
-    'data'?: LegendData[];
-    'orientation'?: 'horizontal' | 'vertical';
-    'width'?: number;
-  }
-
-  interface AsLegendColorContinuousLine {
-    'data': LegendData[];
-    'orientation': 'horizontal' | 'vertical';
-    'width': number;
-  }
-  interface AsLegendColorContinuousLineAttributes extends StencilHTMLAttributes {
-    'data'?: LegendData[];
-    'orientation'?: 'horizontal' | 'vertical';
-    'width'?: number;
-  }
-
-  interface AsLegendColorContinuousPoint {
-    'data': LegendData[];
-    'orientation': 'horizontal' | 'vertical';
-    'width': number;
-  }
-  interface AsLegendColorContinuousPointAttributes extends StencilHTMLAttributes {
-    'data'?: LegendData[];
-    'orientation'?: 'horizontal' | 'vertical';
-    'width'?: number;
-  }
-
-  interface AsLegendColorContinuousPolygon {
-    'data': LegendData[];
-    'orientation': 'horizontal' | 'vertical';
-  }
-  interface AsLegendColorContinuousPolygonAttributes extends StencilHTMLAttributes {
-    'data'?: LegendData[];
-    'orientation'?: 'horizontal' | 'vertical';
-  }
-
-  interface AsLegendColorContinuous {
-    'data': LegendData[];
-    'orientation': 'horizontal' | 'vertical';
-    'width': number;
-  }
-  interface AsLegendColorContinuousAttributes extends StencilHTMLAttributes {
-    'data'?: LegendData[];
-    'orientation'?: 'horizontal' | 'vertical';
-    'width'?: number;
-  }
-
-  interface AsLegendSizeBinsLine {
-    'data': LegendData[];
-    'orientation': 'horizontal' | 'vertical';
-    'width': number;
-  }
-  interface AsLegendSizeBinsLineAttributes extends StencilHTMLAttributes {
-    'data'?: LegendData[];
-    'orientation'?: 'horizontal' | 'vertical';
-    'width'?: number;
-  }
-
-  interface AsLegendSizeBinsPoint {
-    'data': LegendData[];
-    'orientation': 'horizontal' | 'vertical';
-    'width': number;
-  }
-  interface AsLegendSizeBinsPointAttributes extends StencilHTMLAttributes {
-    'data'?: LegendData[];
-    'orientation'?: 'horizontal' | 'vertical';
-    'width'?: number;
-  }
-
-  interface AsLegendSizeBins {
-    'data': LegendData[];
-    'orientation': 'horizontal' | 'vertical';
-    'width': number;
-  }
-  interface AsLegendSizeBinsAttributes extends StencilHTMLAttributes {
-    'data'?: LegendData[];
-    'orientation'?: 'horizontal' | 'vertical';
-    'width'?: number;
-  }
-
-  interface AsLegendSizeCategoryLine {
-    'aligned': boolean;
-    'data': LegendData[];
-    'factor': number;
-    'minWidth': number;
-    'orientation': 'horizontal' | 'vertical';
-  }
-  interface AsLegendSizeCategoryLineAttributes extends StencilHTMLAttributes {
-    'aligned'?: boolean;
-    'data'?: LegendData[];
-    'factor'?: number;
-    'minWidth'?: number;
-    'orientation'?: 'horizontal' | 'vertical';
-  }
-
-  interface AsLegendSizeCategoryPoint {
-    'data': LegendData[];
-    'orientation': 'horizontal' | 'vertical';
-    'width': number;
-  }
-  interface AsLegendSizeCategoryPointAttributes extends StencilHTMLAttributes {
-    'data'?: LegendData[];
-    'orientation'?: 'horizontal' | 'vertical';
-    'width'?: number;
-  }
-
-  interface AsLegendSizeCategory {
-    'data': LegendData[];
-    'orientation': 'horizontal' | 'vertical';
-    'width': number;
-  }
-  interface AsLegendSizeCategoryAttributes extends StencilHTMLAttributes {
-    'data'?: LegendData[];
-    'orientation'?: 'horizontal' | 'vertical';
-    'width'?: number;
-  }
-
-  interface AsLegendSizeContinuousLine {
-    'data': LegendData[];
-    'leadingLineStrokeWidth': number;
-    'orientation': 'horizontal' | 'vertical';
-    'size': number;
-    'textLineHeight': number;
-    'width': number;
-    'xMarginFactor': number;
-    'yMarginFactor': number;
-  }
-  interface AsLegendSizeContinuousLineAttributes extends StencilHTMLAttributes {
-    'data'?: LegendData[];
-    'leadingLineStrokeWidth'?: number;
-    'orientation'?: 'horizontal' | 'vertical';
-    'size'?: number;
-    'textLineHeight'?: number;
-    'width'?: number;
-    'xMarginFactor'?: number;
-    'yMarginFactor'?: number;
-  }
-
-  interface AsLegendSizeContinuousPoint {
-    'data': LegendData[];
-    'orientation': 'horizontal' | 'vertical';
-    'scale': number;
-  }
-  interface AsLegendSizeContinuousPointAttributes extends StencilHTMLAttributes {
-    'data'?: LegendData[];
-    'orientation'?: 'horizontal' | 'vertical';
-    'scale'?: number;
-  }
-
-  interface AsLegendSizeContinuous {
-    'data': LegendData[];
-    'orientation': 'horizontal' | 'vertical';
-    'scale': number;
-  }
-  interface AsLegendSizeContinuousAttributes extends StencilHTMLAttributes {
-    'data'?: LegendData[];
-    'orientation'?: 'horizontal' | 'vertical';
-    'scale'?: number;
-  }
-
-  interface AsLegend {
-    'description': string;
-    'heading': string;
-    'loading': boolean;
-  }
-  interface AsLegendAttributes extends StencilHTMLAttributes {
-    'description'?: string;
-    'heading'?: string;
-    'loading'?: boolean;
   }
 }
 
 declare global {
-  interface StencilElementInterfaces {
-    'AsCategoryWidget': Components.AsCategoryWidget;
-    'AsDropdown': Components.AsDropdown;
-    'AsHistogramWidget': Components.AsHistogramWidget;
-    'AsInfowindow': Components.AsInfowindow;
-    'AsRangeSlider': Components.AsRangeSlider;
-    'AsRangeSliderThumb': Components.AsRangeSliderThumb;
-    'AsRangeSliderBar': Components.AsRangeSliderBar;
-    'AsResponsiveContent': Components.AsResponsiveContent;
-    'AsStackedBarWidget': Components.AsStackedBarWidget;
-    'AsSwitch': Components.AsSwitch;
-    'AsTabs': Components.AsTabs;
-    'AsTimeSeriesWidget': Components.AsTimeSeriesWidget;
-    'AsToolbar': Components.AsToolbar;
-    'AsLoader': Components.AsLoader;
-    'AsWidgetHeader': Components.AsWidgetHeader;
-    'AsWidgetLegend': Components.AsWidgetLegend;
-    'AsWidgetSelection': Components.AsWidgetSelection;
-    'AsYAxis': Components.AsYAxis;
-    'AsLegendCategoryLineEntry': Components.AsLegendCategoryLineEntry;
-    'AsLegendCategoryPointEntry': Components.AsLegendCategoryPointEntry;
-    'AsLegendCategoryPolygonEntry': Components.AsLegendCategoryPolygonEntry;
-    'AsLegendCategory': Components.AsLegendCategory;
-    'AsLegendColorBinsLine': Components.AsLegendColorBinsLine;
-    'AsLegendColorBinsPoint': Components.AsLegendColorBinsPoint;
-    'AsLegendColorBinsPolygon': Components.AsLegendColorBinsPolygon;
-    'AsLegendColorBins': Components.AsLegendColorBins;
-    'AsLegendColorCategoryLine': Components.AsLegendColorCategoryLine;
-    'AsLegendColorCategoryPoint': Components.AsLegendColorCategoryPoint;
-    'AsLegendColorCategoryPolygon': Components.AsLegendColorCategoryPolygon;
-    'AsLegendColorCategory': Components.AsLegendColorCategory;
-    'AsLegendColorContinuousLine': Components.AsLegendColorContinuousLine;
-    'AsLegendColorContinuousPoint': Components.AsLegendColorContinuousPoint;
-    'AsLegendColorContinuousPolygon': Components.AsLegendColorContinuousPolygon;
-    'AsLegendColorContinuous': Components.AsLegendColorContinuous;
-    'AsLegendSizeBinsLine': Components.AsLegendSizeBinsLine;
-    'AsLegendSizeBinsPoint': Components.AsLegendSizeBinsPoint;
-    'AsLegendSizeBins': Components.AsLegendSizeBins;
-    'AsLegendSizeCategoryLine': Components.AsLegendSizeCategoryLine;
-    'AsLegendSizeCategoryPoint': Components.AsLegendSizeCategoryPoint;
-    'AsLegendSizeCategory': Components.AsLegendSizeCategory;
-    'AsLegendSizeContinuousLine': Components.AsLegendSizeContinuousLine;
-    'AsLegendSizeContinuousPoint': Components.AsLegendSizeContinuousPoint;
-    'AsLegendSizeContinuous': Components.AsLegendSizeContinuous;
-    'AsLegend': Components.AsLegend;
-  }
 
-  interface StencilIntrinsicElements {
-    'as-category-widget': Components.AsCategoryWidgetAttributes;
-    'as-dropdown': Components.AsDropdownAttributes;
-    'as-histogram-widget': Components.AsHistogramWidgetAttributes;
-    'as-infowindow': Components.AsInfowindowAttributes;
-    'as-range-slider': Components.AsRangeSliderAttributes;
-    'as-range-slider-thumb': Components.AsRangeSliderThumbAttributes;
-    'as-range-slider-bar': Components.AsRangeSliderBarAttributes;
-    'as-responsive-content': Components.AsResponsiveContentAttributes;
-    'as-stacked-bar-widget': Components.AsStackedBarWidgetAttributes;
-    'as-switch': Components.AsSwitchAttributes;
-    'as-tabs': Components.AsTabsAttributes;
-    'as-time-series-widget': Components.AsTimeSeriesWidgetAttributes;
-    'as-toolbar': Components.AsToolbarAttributes;
-    'as-loader': Components.AsLoaderAttributes;
-    'as-widget-header': Components.AsWidgetHeaderAttributes;
-    'as-widget-legend': Components.AsWidgetLegendAttributes;
-    'as-widget-selection': Components.AsWidgetSelectionAttributes;
-    'as-y-axis': Components.AsYAxisAttributes;
-    'as-legend-category-line-entry': Components.AsLegendCategoryLineEntryAttributes;
-    'as-legend-category-point-entry': Components.AsLegendCategoryPointEntryAttributes;
-    'as-legend-category-polygon-entry': Components.AsLegendCategoryPolygonEntryAttributes;
-    'as-legend-category': Components.AsLegendCategoryAttributes;
-    'as-legend-color-bins-line': Components.AsLegendColorBinsLineAttributes;
-    'as-legend-color-bins-point': Components.AsLegendColorBinsPointAttributes;
-    'as-legend-color-bins-polygon': Components.AsLegendColorBinsPolygonAttributes;
-    'as-legend-color-bins': Components.AsLegendColorBinsAttributes;
-    'as-legend-color-category-line': Components.AsLegendColorCategoryLineAttributes;
-    'as-legend-color-category-point': Components.AsLegendColorCategoryPointAttributes;
-    'as-legend-color-category-polygon': Components.AsLegendColorCategoryPolygonAttributes;
-    'as-legend-color-category': Components.AsLegendColorCategoryAttributes;
-    'as-legend-color-continuous-line': Components.AsLegendColorContinuousLineAttributes;
-    'as-legend-color-continuous-point': Components.AsLegendColorContinuousPointAttributes;
-    'as-legend-color-continuous-polygon': Components.AsLegendColorContinuousPolygonAttributes;
-    'as-legend-color-continuous': Components.AsLegendColorContinuousAttributes;
-    'as-legend-size-bins-line': Components.AsLegendSizeBinsLineAttributes;
-    'as-legend-size-bins-point': Components.AsLegendSizeBinsPointAttributes;
-    'as-legend-size-bins': Components.AsLegendSizeBinsAttributes;
-    'as-legend-size-category-line': Components.AsLegendSizeCategoryLineAttributes;
-    'as-legend-size-category-point': Components.AsLegendSizeCategoryPointAttributes;
-    'as-legend-size-category': Components.AsLegendSizeCategoryAttributes;
-    'as-legend-size-continuous-line': Components.AsLegendSizeContinuousLineAttributes;
-    'as-legend-size-continuous-point': Components.AsLegendSizeContinuousPointAttributes;
-    'as-legend-size-continuous': Components.AsLegendSizeContinuousAttributes;
-    'as-legend': Components.AsLegendAttributes;
-  }
 
+  interface HTMLAsAnimationControlsWidgetElement extends Components.AsAnimationControlsWidget, HTMLStencilElement {}
+  var HTMLAsAnimationControlsWidgetElement: {
+    prototype: HTMLAsAnimationControlsWidgetElement;
+    new (): HTMLAsAnimationControlsWidgetElement;
+  };
 
   interface HTMLAsCategoryWidgetElement extends Components.AsCategoryWidget, HTMLStencilElement {}
   var HTMLAsCategoryWidgetElement: {
@@ -1612,22 +1006,184 @@ declare global {
     new (): HTMLAsInfowindowElement;
   };
 
+  interface HTMLAsLegendElement extends Components.AsLegend, HTMLStencilElement {}
+  var HTMLAsLegendElement: {
+    prototype: HTMLAsLegendElement;
+    new (): HTMLAsLegendElement;
+  };
+
+  interface HTMLAsLegendCategoryElement extends Components.AsLegendCategory, HTMLStencilElement {}
+  var HTMLAsLegendCategoryElement: {
+    prototype: HTMLAsLegendCategoryElement;
+    new (): HTMLAsLegendCategoryElement;
+  };
+
+  interface HTMLAsLegendCategoryLineEntryElement extends Components.AsLegendCategoryLineEntry, HTMLStencilElement {}
+  var HTMLAsLegendCategoryLineEntryElement: {
+    prototype: HTMLAsLegendCategoryLineEntryElement;
+    new (): HTMLAsLegendCategoryLineEntryElement;
+  };
+
+  interface HTMLAsLegendCategoryPointEntryElement extends Components.AsLegendCategoryPointEntry, HTMLStencilElement {}
+  var HTMLAsLegendCategoryPointEntryElement: {
+    prototype: HTMLAsLegendCategoryPointEntryElement;
+    new (): HTMLAsLegendCategoryPointEntryElement;
+  };
+
+  interface HTMLAsLegendCategoryPolygonEntryElement extends Components.AsLegendCategoryPolygonEntry, HTMLStencilElement {}
+  var HTMLAsLegendCategoryPolygonEntryElement: {
+    prototype: HTMLAsLegendCategoryPolygonEntryElement;
+    new (): HTMLAsLegendCategoryPolygonEntryElement;
+  };
+
+  interface HTMLAsLegendColorBinsElement extends Components.AsLegendColorBins, HTMLStencilElement {}
+  var HTMLAsLegendColorBinsElement: {
+    prototype: HTMLAsLegendColorBinsElement;
+    new (): HTMLAsLegendColorBinsElement;
+  };
+
+  interface HTMLAsLegendColorBinsLineElement extends Components.AsLegendColorBinsLine, HTMLStencilElement {}
+  var HTMLAsLegendColorBinsLineElement: {
+    prototype: HTMLAsLegendColorBinsLineElement;
+    new (): HTMLAsLegendColorBinsLineElement;
+  };
+
+  interface HTMLAsLegendColorBinsPointElement extends Components.AsLegendColorBinsPoint, HTMLStencilElement {}
+  var HTMLAsLegendColorBinsPointElement: {
+    prototype: HTMLAsLegendColorBinsPointElement;
+    new (): HTMLAsLegendColorBinsPointElement;
+  };
+
+  interface HTMLAsLegendColorBinsPolygonElement extends Components.AsLegendColorBinsPolygon, HTMLStencilElement {}
+  var HTMLAsLegendColorBinsPolygonElement: {
+    prototype: HTMLAsLegendColorBinsPolygonElement;
+    new (): HTMLAsLegendColorBinsPolygonElement;
+  };
+
+  interface HTMLAsLegendColorCategoryElement extends Components.AsLegendColorCategory, HTMLStencilElement {}
+  var HTMLAsLegendColorCategoryElement: {
+    prototype: HTMLAsLegendColorCategoryElement;
+    new (): HTMLAsLegendColorCategoryElement;
+  };
+
+  interface HTMLAsLegendColorCategoryLineElement extends Components.AsLegendColorCategoryLine, HTMLStencilElement {}
+  var HTMLAsLegendColorCategoryLineElement: {
+    prototype: HTMLAsLegendColorCategoryLineElement;
+    new (): HTMLAsLegendColorCategoryLineElement;
+  };
+
+  interface HTMLAsLegendColorCategoryPointElement extends Components.AsLegendColorCategoryPoint, HTMLStencilElement {}
+  var HTMLAsLegendColorCategoryPointElement: {
+    prototype: HTMLAsLegendColorCategoryPointElement;
+    new (): HTMLAsLegendColorCategoryPointElement;
+  };
+
+  interface HTMLAsLegendColorCategoryPolygonElement extends Components.AsLegendColorCategoryPolygon, HTMLStencilElement {}
+  var HTMLAsLegendColorCategoryPolygonElement: {
+    prototype: HTMLAsLegendColorCategoryPolygonElement;
+    new (): HTMLAsLegendColorCategoryPolygonElement;
+  };
+
+  interface HTMLAsLegendColorContinuousElement extends Components.AsLegendColorContinuous, HTMLStencilElement {}
+  var HTMLAsLegendColorContinuousElement: {
+    prototype: HTMLAsLegendColorContinuousElement;
+    new (): HTMLAsLegendColorContinuousElement;
+  };
+
+  interface HTMLAsLegendColorContinuousLineElement extends Components.AsLegendColorContinuousLine, HTMLStencilElement {}
+  var HTMLAsLegendColorContinuousLineElement: {
+    prototype: HTMLAsLegendColorContinuousLineElement;
+    new (): HTMLAsLegendColorContinuousLineElement;
+  };
+
+  interface HTMLAsLegendColorContinuousPointElement extends Components.AsLegendColorContinuousPoint, HTMLStencilElement {}
+  var HTMLAsLegendColorContinuousPointElement: {
+    prototype: HTMLAsLegendColorContinuousPointElement;
+    new (): HTMLAsLegendColorContinuousPointElement;
+  };
+
+  interface HTMLAsLegendColorContinuousPolygonElement extends Components.AsLegendColorContinuousPolygon, HTMLStencilElement {}
+  var HTMLAsLegendColorContinuousPolygonElement: {
+    prototype: HTMLAsLegendColorContinuousPolygonElement;
+    new (): HTMLAsLegendColorContinuousPolygonElement;
+  };
+
+  interface HTMLAsLegendSizeBinsElement extends Components.AsLegendSizeBins, HTMLStencilElement {}
+  var HTMLAsLegendSizeBinsElement: {
+    prototype: HTMLAsLegendSizeBinsElement;
+    new (): HTMLAsLegendSizeBinsElement;
+  };
+
+  interface HTMLAsLegendSizeBinsLineElement extends Components.AsLegendSizeBinsLine, HTMLStencilElement {}
+  var HTMLAsLegendSizeBinsLineElement: {
+    prototype: HTMLAsLegendSizeBinsLineElement;
+    new (): HTMLAsLegendSizeBinsLineElement;
+  };
+
+  interface HTMLAsLegendSizeBinsPointElement extends Components.AsLegendSizeBinsPoint, HTMLStencilElement {}
+  var HTMLAsLegendSizeBinsPointElement: {
+    prototype: HTMLAsLegendSizeBinsPointElement;
+    new (): HTMLAsLegendSizeBinsPointElement;
+  };
+
+  interface HTMLAsLegendSizeCategoryElement extends Components.AsLegendSizeCategory, HTMLStencilElement {}
+  var HTMLAsLegendSizeCategoryElement: {
+    prototype: HTMLAsLegendSizeCategoryElement;
+    new (): HTMLAsLegendSizeCategoryElement;
+  };
+
+  interface HTMLAsLegendSizeCategoryLineElement extends Components.AsLegendSizeCategoryLine, HTMLStencilElement {}
+  var HTMLAsLegendSizeCategoryLineElement: {
+    prototype: HTMLAsLegendSizeCategoryLineElement;
+    new (): HTMLAsLegendSizeCategoryLineElement;
+  };
+
+  interface HTMLAsLegendSizeCategoryPointElement extends Components.AsLegendSizeCategoryPoint, HTMLStencilElement {}
+  var HTMLAsLegendSizeCategoryPointElement: {
+    prototype: HTMLAsLegendSizeCategoryPointElement;
+    new (): HTMLAsLegendSizeCategoryPointElement;
+  };
+
+  interface HTMLAsLegendSizeContinuousElement extends Components.AsLegendSizeContinuous, HTMLStencilElement {}
+  var HTMLAsLegendSizeContinuousElement: {
+    prototype: HTMLAsLegendSizeContinuousElement;
+    new (): HTMLAsLegendSizeContinuousElement;
+  };
+
+  interface HTMLAsLegendSizeContinuousLineElement extends Components.AsLegendSizeContinuousLine, HTMLStencilElement {}
+  var HTMLAsLegendSizeContinuousLineElement: {
+    prototype: HTMLAsLegendSizeContinuousLineElement;
+    new (): HTMLAsLegendSizeContinuousLineElement;
+  };
+
+  interface HTMLAsLegendSizeContinuousPointElement extends Components.AsLegendSizeContinuousPoint, HTMLStencilElement {}
+  var HTMLAsLegendSizeContinuousPointElement: {
+    prototype: HTMLAsLegendSizeContinuousPointElement;
+    new (): HTMLAsLegendSizeContinuousPointElement;
+  };
+
+  interface HTMLAsLoaderElement extends Components.AsLoader, HTMLStencilElement {}
+  var HTMLAsLoaderElement: {
+    prototype: HTMLAsLoaderElement;
+    new (): HTMLAsLoaderElement;
+  };
+
   interface HTMLAsRangeSliderElement extends Components.AsRangeSlider, HTMLStencilElement {}
   var HTMLAsRangeSliderElement: {
     prototype: HTMLAsRangeSliderElement;
     new (): HTMLAsRangeSliderElement;
   };
 
-  interface HTMLAsRangeSliderThumbElement extends Components.AsRangeSliderThumb, HTMLStencilElement {}
-  var HTMLAsRangeSliderThumbElement: {
-    prototype: HTMLAsRangeSliderThumbElement;
-    new (): HTMLAsRangeSliderThumbElement;
-  };
-
   interface HTMLAsRangeSliderBarElement extends Components.AsRangeSliderBar, HTMLStencilElement {}
   var HTMLAsRangeSliderBarElement: {
     prototype: HTMLAsRangeSliderBarElement;
     new (): HTMLAsRangeSliderBarElement;
+  };
+
+  interface HTMLAsRangeSliderThumbElement extends Components.AsRangeSliderThumb, HTMLStencilElement {}
+  var HTMLAsRangeSliderThumbElement: {
+    prototype: HTMLAsRangeSliderThumbElement;
+    new (): HTMLAsRangeSliderThumbElement;
   };
 
   interface HTMLAsResponsiveContentElement extends Components.AsResponsiveContent, HTMLStencilElement {}
@@ -1666,12 +1222,6 @@ declare global {
     new (): HTMLAsToolbarElement;
   };
 
-  interface HTMLAsLoaderElement extends Components.AsLoader, HTMLStencilElement {}
-  var HTMLAsLoaderElement: {
-    prototype: HTMLAsLoaderElement;
-    new (): HTMLAsLoaderElement;
-  };
-
   interface HTMLAsWidgetHeaderElement extends Components.AsWidgetHeader, HTMLStencilElement {}
   var HTMLAsWidgetHeaderElement: {
     prototype: HTMLAsWidgetHeaderElement;
@@ -1695,264 +1245,1046 @@ declare global {
     prototype: HTMLAsYAxisElement;
     new (): HTMLAsYAxisElement;
   };
-
-  interface HTMLAsLegendCategoryLineEntryElement extends Components.AsLegendCategoryLineEntry, HTMLStencilElement {}
-  var HTMLAsLegendCategoryLineEntryElement: {
-    prototype: HTMLAsLegendCategoryLineEntryElement;
-    new (): HTMLAsLegendCategoryLineEntryElement;
-  };
-
-  interface HTMLAsLegendCategoryPointEntryElement extends Components.AsLegendCategoryPointEntry, HTMLStencilElement {}
-  var HTMLAsLegendCategoryPointEntryElement: {
-    prototype: HTMLAsLegendCategoryPointEntryElement;
-    new (): HTMLAsLegendCategoryPointEntryElement;
-  };
-
-  interface HTMLAsLegendCategoryPolygonEntryElement extends Components.AsLegendCategoryPolygonEntry, HTMLStencilElement {}
-  var HTMLAsLegendCategoryPolygonEntryElement: {
-    prototype: HTMLAsLegendCategoryPolygonEntryElement;
-    new (): HTMLAsLegendCategoryPolygonEntryElement;
-  };
-
-  interface HTMLAsLegendCategoryElement extends Components.AsLegendCategory, HTMLStencilElement {}
-  var HTMLAsLegendCategoryElement: {
-    prototype: HTMLAsLegendCategoryElement;
-    new (): HTMLAsLegendCategoryElement;
-  };
-
-  interface HTMLAsLegendColorBinsLineElement extends Components.AsLegendColorBinsLine, HTMLStencilElement {}
-  var HTMLAsLegendColorBinsLineElement: {
-    prototype: HTMLAsLegendColorBinsLineElement;
-    new (): HTMLAsLegendColorBinsLineElement;
-  };
-
-  interface HTMLAsLegendColorBinsPointElement extends Components.AsLegendColorBinsPoint, HTMLStencilElement {}
-  var HTMLAsLegendColorBinsPointElement: {
-    prototype: HTMLAsLegendColorBinsPointElement;
-    new (): HTMLAsLegendColorBinsPointElement;
-  };
-
-  interface HTMLAsLegendColorBinsPolygonElement extends Components.AsLegendColorBinsPolygon, HTMLStencilElement {}
-  var HTMLAsLegendColorBinsPolygonElement: {
-    prototype: HTMLAsLegendColorBinsPolygonElement;
-    new (): HTMLAsLegendColorBinsPolygonElement;
-  };
-
-  interface HTMLAsLegendColorBinsElement extends Components.AsLegendColorBins, HTMLStencilElement {}
-  var HTMLAsLegendColorBinsElement: {
-    prototype: HTMLAsLegendColorBinsElement;
-    new (): HTMLAsLegendColorBinsElement;
-  };
-
-  interface HTMLAsLegendColorCategoryLineElement extends Components.AsLegendColorCategoryLine, HTMLStencilElement {}
-  var HTMLAsLegendColorCategoryLineElement: {
-    prototype: HTMLAsLegendColorCategoryLineElement;
-    new (): HTMLAsLegendColorCategoryLineElement;
-  };
-
-  interface HTMLAsLegendColorCategoryPointElement extends Components.AsLegendColorCategoryPoint, HTMLStencilElement {}
-  var HTMLAsLegendColorCategoryPointElement: {
-    prototype: HTMLAsLegendColorCategoryPointElement;
-    new (): HTMLAsLegendColorCategoryPointElement;
-  };
-
-  interface HTMLAsLegendColorCategoryPolygonElement extends Components.AsLegendColorCategoryPolygon, HTMLStencilElement {}
-  var HTMLAsLegendColorCategoryPolygonElement: {
-    prototype: HTMLAsLegendColorCategoryPolygonElement;
-    new (): HTMLAsLegendColorCategoryPolygonElement;
-  };
-
-  interface HTMLAsLegendColorCategoryElement extends Components.AsLegendColorCategory, HTMLStencilElement {}
-  var HTMLAsLegendColorCategoryElement: {
-    prototype: HTMLAsLegendColorCategoryElement;
-    new (): HTMLAsLegendColorCategoryElement;
-  };
-
-  interface HTMLAsLegendColorContinuousLineElement extends Components.AsLegendColorContinuousLine, HTMLStencilElement {}
-  var HTMLAsLegendColorContinuousLineElement: {
-    prototype: HTMLAsLegendColorContinuousLineElement;
-    new (): HTMLAsLegendColorContinuousLineElement;
-  };
-
-  interface HTMLAsLegendColorContinuousPointElement extends Components.AsLegendColorContinuousPoint, HTMLStencilElement {}
-  var HTMLAsLegendColorContinuousPointElement: {
-    prototype: HTMLAsLegendColorContinuousPointElement;
-    new (): HTMLAsLegendColorContinuousPointElement;
-  };
-
-  interface HTMLAsLegendColorContinuousPolygonElement extends Components.AsLegendColorContinuousPolygon, HTMLStencilElement {}
-  var HTMLAsLegendColorContinuousPolygonElement: {
-    prototype: HTMLAsLegendColorContinuousPolygonElement;
-    new (): HTMLAsLegendColorContinuousPolygonElement;
-  };
-
-  interface HTMLAsLegendColorContinuousElement extends Components.AsLegendColorContinuous, HTMLStencilElement {}
-  var HTMLAsLegendColorContinuousElement: {
-    prototype: HTMLAsLegendColorContinuousElement;
-    new (): HTMLAsLegendColorContinuousElement;
-  };
-
-  interface HTMLAsLegendSizeBinsLineElement extends Components.AsLegendSizeBinsLine, HTMLStencilElement {}
-  var HTMLAsLegendSizeBinsLineElement: {
-    prototype: HTMLAsLegendSizeBinsLineElement;
-    new (): HTMLAsLegendSizeBinsLineElement;
-  };
-
-  interface HTMLAsLegendSizeBinsPointElement extends Components.AsLegendSizeBinsPoint, HTMLStencilElement {}
-  var HTMLAsLegendSizeBinsPointElement: {
-    prototype: HTMLAsLegendSizeBinsPointElement;
-    new (): HTMLAsLegendSizeBinsPointElement;
-  };
-
-  interface HTMLAsLegendSizeBinsElement extends Components.AsLegendSizeBins, HTMLStencilElement {}
-  var HTMLAsLegendSizeBinsElement: {
-    prototype: HTMLAsLegendSizeBinsElement;
-    new (): HTMLAsLegendSizeBinsElement;
-  };
-
-  interface HTMLAsLegendSizeCategoryLineElement extends Components.AsLegendSizeCategoryLine, HTMLStencilElement {}
-  var HTMLAsLegendSizeCategoryLineElement: {
-    prototype: HTMLAsLegendSizeCategoryLineElement;
-    new (): HTMLAsLegendSizeCategoryLineElement;
-  };
-
-  interface HTMLAsLegendSizeCategoryPointElement extends Components.AsLegendSizeCategoryPoint, HTMLStencilElement {}
-  var HTMLAsLegendSizeCategoryPointElement: {
-    prototype: HTMLAsLegendSizeCategoryPointElement;
-    new (): HTMLAsLegendSizeCategoryPointElement;
-  };
-
-  interface HTMLAsLegendSizeCategoryElement extends Components.AsLegendSizeCategory, HTMLStencilElement {}
-  var HTMLAsLegendSizeCategoryElement: {
-    prototype: HTMLAsLegendSizeCategoryElement;
-    new (): HTMLAsLegendSizeCategoryElement;
-  };
-
-  interface HTMLAsLegendSizeContinuousLineElement extends Components.AsLegendSizeContinuousLine, HTMLStencilElement {}
-  var HTMLAsLegendSizeContinuousLineElement: {
-    prototype: HTMLAsLegendSizeContinuousLineElement;
-    new (): HTMLAsLegendSizeContinuousLineElement;
-  };
-
-  interface HTMLAsLegendSizeContinuousPointElement extends Components.AsLegendSizeContinuousPoint, HTMLStencilElement {}
-  var HTMLAsLegendSizeContinuousPointElement: {
-    prototype: HTMLAsLegendSizeContinuousPointElement;
-    new (): HTMLAsLegendSizeContinuousPointElement;
-  };
-
-  interface HTMLAsLegendSizeContinuousElement extends Components.AsLegendSizeContinuous, HTMLStencilElement {}
-  var HTMLAsLegendSizeContinuousElement: {
-    prototype: HTMLAsLegendSizeContinuousElement;
-    new (): HTMLAsLegendSizeContinuousElement;
-  };
-
-  interface HTMLAsLegendElement extends Components.AsLegend, HTMLStencilElement {}
-  var HTMLAsLegendElement: {
-    prototype: HTMLAsLegendElement;
-    new (): HTMLAsLegendElement;
-  };
-
   interface HTMLElementTagNameMap {
-    'as-category-widget': HTMLAsCategoryWidgetElement
-    'as-dropdown': HTMLAsDropdownElement
-    'as-histogram-widget': HTMLAsHistogramWidgetElement
-    'as-infowindow': HTMLAsInfowindowElement
-    'as-range-slider': HTMLAsRangeSliderElement
-    'as-range-slider-thumb': HTMLAsRangeSliderThumbElement
-    'as-range-slider-bar': HTMLAsRangeSliderBarElement
-    'as-responsive-content': HTMLAsResponsiveContentElement
-    'as-stacked-bar-widget': HTMLAsStackedBarWidgetElement
-    'as-switch': HTMLAsSwitchElement
-    'as-tabs': HTMLAsTabsElement
-    'as-time-series-widget': HTMLAsTimeSeriesWidgetElement
-    'as-toolbar': HTMLAsToolbarElement
-    'as-loader': HTMLAsLoaderElement
-    'as-widget-header': HTMLAsWidgetHeaderElement
-    'as-widget-legend': HTMLAsWidgetLegendElement
-    'as-widget-selection': HTMLAsWidgetSelectionElement
-    'as-y-axis': HTMLAsYAxisElement
-    'as-legend-category-line-entry': HTMLAsLegendCategoryLineEntryElement
-    'as-legend-category-point-entry': HTMLAsLegendCategoryPointEntryElement
-    'as-legend-category-polygon-entry': HTMLAsLegendCategoryPolygonEntryElement
-    'as-legend-category': HTMLAsLegendCategoryElement
-    'as-legend-color-bins-line': HTMLAsLegendColorBinsLineElement
-    'as-legend-color-bins-point': HTMLAsLegendColorBinsPointElement
-    'as-legend-color-bins-polygon': HTMLAsLegendColorBinsPolygonElement
-    'as-legend-color-bins': HTMLAsLegendColorBinsElement
-    'as-legend-color-category-line': HTMLAsLegendColorCategoryLineElement
-    'as-legend-color-category-point': HTMLAsLegendColorCategoryPointElement
-    'as-legend-color-category-polygon': HTMLAsLegendColorCategoryPolygonElement
-    'as-legend-color-category': HTMLAsLegendColorCategoryElement
-    'as-legend-color-continuous-line': HTMLAsLegendColorContinuousLineElement
-    'as-legend-color-continuous-point': HTMLAsLegendColorContinuousPointElement
-    'as-legend-color-continuous-polygon': HTMLAsLegendColorContinuousPolygonElement
-    'as-legend-color-continuous': HTMLAsLegendColorContinuousElement
-    'as-legend-size-bins-line': HTMLAsLegendSizeBinsLineElement
-    'as-legend-size-bins-point': HTMLAsLegendSizeBinsPointElement
-    'as-legend-size-bins': HTMLAsLegendSizeBinsElement
-    'as-legend-size-category-line': HTMLAsLegendSizeCategoryLineElement
-    'as-legend-size-category-point': HTMLAsLegendSizeCategoryPointElement
-    'as-legend-size-category': HTMLAsLegendSizeCategoryElement
-    'as-legend-size-continuous-line': HTMLAsLegendSizeContinuousLineElement
-    'as-legend-size-continuous-point': HTMLAsLegendSizeContinuousPointElement
-    'as-legend-size-continuous': HTMLAsLegendSizeContinuousElement
-    'as-legend': HTMLAsLegendElement
-  }
-
-  interface ElementTagNameMap {
+    'as-animation-controls-widget': HTMLAsAnimationControlsWidgetElement;
     'as-category-widget': HTMLAsCategoryWidgetElement;
     'as-dropdown': HTMLAsDropdownElement;
     'as-histogram-widget': HTMLAsHistogramWidgetElement;
     'as-infowindow': HTMLAsInfowindowElement;
+    'as-legend': HTMLAsLegendElement;
+    'as-legend-category': HTMLAsLegendCategoryElement;
+    'as-legend-category-line-entry': HTMLAsLegendCategoryLineEntryElement;
+    'as-legend-category-point-entry': HTMLAsLegendCategoryPointEntryElement;
+    'as-legend-category-polygon-entry': HTMLAsLegendCategoryPolygonEntryElement;
+    'as-legend-color-bins': HTMLAsLegendColorBinsElement;
+    'as-legend-color-bins-line': HTMLAsLegendColorBinsLineElement;
+    'as-legend-color-bins-point': HTMLAsLegendColorBinsPointElement;
+    'as-legend-color-bins-polygon': HTMLAsLegendColorBinsPolygonElement;
+    'as-legend-color-category': HTMLAsLegendColorCategoryElement;
+    'as-legend-color-category-line': HTMLAsLegendColorCategoryLineElement;
+    'as-legend-color-category-point': HTMLAsLegendColorCategoryPointElement;
+    'as-legend-color-category-polygon': HTMLAsLegendColorCategoryPolygonElement;
+    'as-legend-color-continuous': HTMLAsLegendColorContinuousElement;
+    'as-legend-color-continuous-line': HTMLAsLegendColorContinuousLineElement;
+    'as-legend-color-continuous-point': HTMLAsLegendColorContinuousPointElement;
+    'as-legend-color-continuous-polygon': HTMLAsLegendColorContinuousPolygonElement;
+    'as-legend-size-bins': HTMLAsLegendSizeBinsElement;
+    'as-legend-size-bins-line': HTMLAsLegendSizeBinsLineElement;
+    'as-legend-size-bins-point': HTMLAsLegendSizeBinsPointElement;
+    'as-legend-size-category': HTMLAsLegendSizeCategoryElement;
+    'as-legend-size-category-line': HTMLAsLegendSizeCategoryLineElement;
+    'as-legend-size-category-point': HTMLAsLegendSizeCategoryPointElement;
+    'as-legend-size-continuous': HTMLAsLegendSizeContinuousElement;
+    'as-legend-size-continuous-line': HTMLAsLegendSizeContinuousLineElement;
+    'as-legend-size-continuous-point': HTMLAsLegendSizeContinuousPointElement;
+    'as-loader': HTMLAsLoaderElement;
     'as-range-slider': HTMLAsRangeSliderElement;
-    'as-range-slider-thumb': HTMLAsRangeSliderThumbElement;
     'as-range-slider-bar': HTMLAsRangeSliderBarElement;
+    'as-range-slider-thumb': HTMLAsRangeSliderThumbElement;
     'as-responsive-content': HTMLAsResponsiveContentElement;
     'as-stacked-bar-widget': HTMLAsStackedBarWidgetElement;
     'as-switch': HTMLAsSwitchElement;
     'as-tabs': HTMLAsTabsElement;
     'as-time-series-widget': HTMLAsTimeSeriesWidgetElement;
     'as-toolbar': HTMLAsToolbarElement;
-    'as-loader': HTMLAsLoaderElement;
     'as-widget-header': HTMLAsWidgetHeaderElement;
     'as-widget-legend': HTMLAsWidgetLegendElement;
     'as-widget-selection': HTMLAsWidgetSelectionElement;
     'as-y-axis': HTMLAsYAxisElement;
-    'as-legend-category-line-entry': HTMLAsLegendCategoryLineEntryElement;
-    'as-legend-category-point-entry': HTMLAsLegendCategoryPointEntryElement;
-    'as-legend-category-polygon-entry': HTMLAsLegendCategoryPolygonEntryElement;
-    'as-legend-category': HTMLAsLegendCategoryElement;
-    'as-legend-color-bins-line': HTMLAsLegendColorBinsLineElement;
-    'as-legend-color-bins-point': HTMLAsLegendColorBinsPointElement;
-    'as-legend-color-bins-polygon': HTMLAsLegendColorBinsPolygonElement;
-    'as-legend-color-bins': HTMLAsLegendColorBinsElement;
-    'as-legend-color-category-line': HTMLAsLegendColorCategoryLineElement;
-    'as-legend-color-category-point': HTMLAsLegendColorCategoryPointElement;
-    'as-legend-color-category-polygon': HTMLAsLegendColorCategoryPolygonElement;
-    'as-legend-color-category': HTMLAsLegendColorCategoryElement;
-    'as-legend-color-continuous-line': HTMLAsLegendColorContinuousLineElement;
-    'as-legend-color-continuous-point': HTMLAsLegendColorContinuousPointElement;
-    'as-legend-color-continuous-polygon': HTMLAsLegendColorContinuousPolygonElement;
-    'as-legend-color-continuous': HTMLAsLegendColorContinuousElement;
-    'as-legend-size-bins-line': HTMLAsLegendSizeBinsLineElement;
-    'as-legend-size-bins-point': HTMLAsLegendSizeBinsPointElement;
-    'as-legend-size-bins': HTMLAsLegendSizeBinsElement;
-    'as-legend-size-category-line': HTMLAsLegendSizeCategoryLineElement;
-    'as-legend-size-category-point': HTMLAsLegendSizeCategoryPointElement;
-    'as-legend-size-category': HTMLAsLegendSizeCategoryElement;
-    'as-legend-size-continuous-line': HTMLAsLegendSizeContinuousLineElement;
-    'as-legend-size-continuous-point': HTMLAsLegendSizeContinuousPointElement;
-    'as-legend-size-continuous': HTMLAsLegendSizeContinuousElement;
-    'as-legend': HTMLAsLegendElement;
   }
-
-
-  export namespace JSX {
-    export interface Element {}
-    export interface IntrinsicElements extends StencilIntrinsicElements {
-      [tagName: string]: any;
-    }
-  }
-  export interface HTMLAttributes extends StencilHTMLAttributes {}
-
 }
+
+declare namespace LocalJSX {
+  interface AsAnimationControlsWidget extends JSXBase.HTMLAttributes<HTMLAsAnimationControlsWidgetElement> {
+    /**
+    * Description of the widget to be displayed
+    * @type {string}
+    * @memberof AnimationControlsWidget
+    */
+    'description'?: string;
+    'duration'?: number;
+    /**
+    * Use this widget to put the widget in "error mode". When error mode is active. The header will display the given text. And the body will be display the errorDescription instead any data.
+    */
+    'error'?: string;
+    /**
+    * Extended error description, only shown when error is present
+    */
+    'errorDescription'?: string;
+    /**
+    * Title of the widget to be displayed
+    * @type {string}
+    * @memberof AnimationControlsWidget
+    */
+    'heading'?: string;
+    /**
+    * Use this attribute to put the widget in "loading mode". When loading mode is active, a spinner will be shown and the data will be hidden.
+    */
+    'isLoading'?: boolean;
+    'max'?: number;
+    'min'?: number;
+    /**
+    * Message shown in body when no data is available
+    */
+    'noDataBodyMessage'?: string;
+    /**
+    * Message shown in header when no data is available
+    */
+    'noDataHeaderMessage'?: string;
+    /**
+    * User clicks the pause button
+    */
+    'onPause'?: (event: CustomEvent<any>) => void;
+    /**
+    * User clicks the play button
+    */
+    'onPlay'?: (event: CustomEvent<any>) => void;
+    /**
+    * The user has seeked the animation to this percentage.
+    */
+    'onSeek'?: (event: CustomEvent<any>) => void;
+    'playing'?: boolean;
+    /**
+    * This attribute is the percentage of progress elapsed on an animation.
+    */
+    'progress'?: number;
+    'progressValue'?: number | string;
+    /**
+    * Toggles displaying title and description
+    * @type {boolean}
+    * @memberof AnimationControlsWidget
+    */
+    'showHeader'?: boolean;
+    'showThumb'?: boolean;
+    'showThumbCaption'?: boolean;
+  }
+  interface AsCategoryWidget extends JSXBase.HTMLAttributes<HTMLAsCategoryWidgetElement> {
+    /**
+    * Array of categories to display in the widget. Each category should include a `name` and a `value`. You can also override the bar color for each category with `color`.
+    * @type {object[]}
+    * @memberof CategoryWidget
+    */
+    'categories'?: object[];
+    /**
+    * Default color to draw the bars. Default value is `#47DB99`.
+    * @type {string}
+    * @memberof CategoryWidget
+    */
+    'defaultBarColor'?: string;
+    /**
+    * Description text of the widget
+    * @type {string}
+    * @memberof CategoryWidget
+    */
+    'description'?: string;
+    /**
+    * Disable category selection in Widget
+    * @type {string}
+    * @memberof CategoryWidget
+    */
+    'disableInteractivity'?: boolean;
+    /**
+    * Text shown in the header subtitle when there's an error
+    */
+    'error'?: string;
+    /**
+    * Extended error description, only shown when error is present
+    */
+    'errorDescription'?: string;
+    /**
+    * Heading text of the widget
+    * @type {string}
+    * @memberof CategoryWidget
+    */
+    'heading'?: string;
+    /**
+    * Boolean property to control the widget loading state. If true, a spinner is shown.
+    */
+    'isLoading'?: boolean;
+    /**
+    * Message shown in body when no data is available
+    */
+    'noDataBodyMessage'?: string;
+    /**
+    * Message shown in header when no data is available
+    */
+    'noDataHeaderMessage'?: string;
+    /**
+    * Fired when selected categories changed or selected categories are cleared.
+    * @event categoriesSelected
+    * @type {EventEmitter<string[]>}
+    * @memberof CategoryWidget
+    */
+    'onCategoriesSelected'?: (event: CustomEvent<string[]>) => void;
+    /**
+    * If truthy, it'll show a button to clear selected categories when there are any. Default value is `false`.
+    * @type {boolean}
+    * @memberof CategoryWidget
+    */
+    'showClearButton'?: boolean;
+    /**
+    * If truthy, it'll render the heading and component's description. Default value is `true`.
+    * @type {boolean}
+    * @memberof CategoryWidget
+    */
+    'showHeader'?: boolean;
+    /**
+    * If truthy, we'll use the sum of all categories' value to render the bar percentage. By default, we use the maximum category value to render the bar percentage.
+    * @type {boolean}
+    * @memberof CategoryWidget
+    */
+    'useTotalPercentage'?: boolean;
+    /**
+    * If this property receives a function, it will be used to format the numbers (eg. for adding $ or €).
+    * @type {function (value: number)}
+    * @memberof RangeSlider
+    */
+    'valueFormatter'?: (value: number) => string;
+    /**
+    * The number of visible categories without aggregation.
+    * @type {number}
+    * @memberof CategoryWidget
+    */
+    'visibleCategories'?: number;
+  }
+  interface AsDropdown extends JSXBase.HTMLAttributes<HTMLAsDropdownElement> {
+    /**
+    * Default text to show when no option is selected
+    * @type {string}
+    * @memberof Dropdown
+    */
+    'defaultText'?: string;
+    /**
+    * Function called when clicking outside of the dropdown. By default it closes the list.
+    * @type {function}
+    * @memberof Dropdown
+    */
+    'onClickOutside'?: () => void;
+    /**
+    * Fired when selected option changes or option is cleared
+    * @type {string}
+    * @memberof Dropdown
+    */
+    'onOptionChanged'?: (event: CustomEvent<string>) => void;
+    /**
+    * Array of options to display in the dropdown
+    * @type {string[]}
+    * @memberof Dropdown
+    */
+    'options'?: DropdownOption[];
+    /**
+    * Selected option to show in the dropdown
+    * @type {string}
+    * @memberof Dropdown
+    */
+    'selectedOption'?: string;
+    /**
+    * Allow the user to clear selected option
+    * @type {string}
+    * @memberof Dropdown
+    */
+    'showClearButton'?: boolean;
+  }
+  interface AsHistogramWidget extends JSXBase.HTMLAttributes<HTMLAsHistogramWidgetElement> {
+    /**
+    * Function used to format the x-axis values
+    * @memberof HistogramWidget
+    */
+    'axisFormatter'?: (value: number | Date) => string;
+    /**
+    * Data that will be merged into buckets with value === 0
+    * @type {HistogramData[]}
+    * @memberof HistogramWidget
+    */
+    'backgroundData'?: HistogramData[];
+    /**
+    * Text rendered inside the clear selection button
+    */
+    'clearText'?: string;
+    /**
+    * Override color for the histogram bars
+    * @type {string}
+    * @memberof HistogramWidget
+    */
+    'color'?: string;
+    /**
+    * Color range for histogram data
+    * @type {HistogramColorRange[]}
+    * @memberof HistogramWidget
+    */
+    'colorRange'?: HistogramColorRange[];
+    /**
+    * Histogram data to be displayed
+    * @type {HistogramData[]}
+    * @memberof HistogramWidget
+    */
+    'data'?: HistogramData[];
+    /**
+    * Description of the widget to be displayed
+    * @type {string}
+    * @memberof HistogramWidget
+    */
+    'description'?: string;
+    /**
+    * This lets you disable the animations for the bars when showing / updating the data
+    * @type {boolean}
+    * @memberof HistogramWidget
+    */
+    'disableAnimation'?: boolean;
+    /**
+    * Disables selection brushes and events for the widget
+    * @type {boolean}
+    * @memberof HistogramWidget
+    */
+    'disableInteractivity'?: boolean;
+    /**
+    * Use this widget to put the widget in "error mode". When error mode is active. The header will display the given text. And the body will be display the errorDescription instead any data.
+    */
+    'error'?: string;
+    /**
+    * Extended error description, only shown when error is present
+    */
+    'errorDescription'?: string;
+    /**
+    * Title of the widget to be displayed
+    * @type {string}
+    * @memberof HistogramWidget
+    */
+    'heading'?: string;
+    /**
+    * Use this attribute to put the widget in "loading mode". When loading mode is active, a spinner will be shown and the data will be hidden.
+    */
+    'isLoading'?: boolean;
+    /**
+    * Message shown in body when no data is available
+    */
+    'noDataBodyMessage'?: string;
+    /**
+    * Message shown in header when no data is available
+    */
+    'noDataHeaderMessage'?: string;
+    'onDrawParametersChanged'?: (event: CustomEvent<RenderOptions>) => void;
+    /**
+    * Fired when user update or clear the widget selection.
+    * @type {EventEmitter<number[]>}
+    * @memberof HistogramWidget
+    */
+    'onSelectionChanged'?: (event: CustomEvent<HistogramSelection>) => void;
+    'onSelectionInput'?: (event: CustomEvent<HistogramSelection>) => void;
+    /**
+    * This prop lets you provide the range of the y-axis so it's not automatically calculated with data or backgroundData. It always starts at 0, you can provide the top value.
+    * @memberof HistogramWidget
+    */
+    'range'?: [number, number];
+    /**
+    * Use this attribute to decide if the widget should be rerendered on window resize. Defaults to true.
+    */
+    'responsive'?: boolean;
+    /**
+    * Function to format the range selected text displayed below the histogram
+    * @memberof HistogramWidget
+    */
+    'selectedFormatter'?: (value: number[]) => string;
+    /**
+    * Display a clear button that clears the histogram selection.
+    * @type {boolean}
+    * @memberof HistogramWidget
+    */
+    'showClear'?: boolean;
+    /**
+    * Toggles displaying title and description
+    * @type {boolean}
+    * @memberof HistogramWidget
+    */
+    'showHeader'?: boolean;
+    /**
+    * Function that formats the tooltip. Receives HistogramData and outputs a string
+    * @type {(HistogramData) => string}
+    * @memberof HistogramWidget
+    */
+    'tooltipFormatter'?: (value: HistogramData) => TooltipFormat | Promise<TooltipFormat>;
+    /**
+    * Override color for the non selected histogram bars
+    * @type {string}
+    * @memberof HistogramWidget
+    */
+    'unselectedColor'?: string;
+    /**
+    * This prop is a proxy to some d3-axis options for the X Axis
+    * @type {AxisOptions}
+    * @memberof TimeSeriesWidget
+    */
+    'xAxisOptions'?: AxisOptions;
+    /**
+    * Label the x axis of the histogram with the given string.
+    */
+    'xLabel'?: string;
+    /**
+    * This prop is a proxy to some d3-axis options for the Y Axis
+    * @type {AxisOptions}
+    * @memberof TimeSeriesWidget
+    */
+    'yAxisOptions'?: AxisOptions;
+    /**
+    * Label the y axis of the histogram with the given string.
+    */
+    'yLabel'?: string;
+  }
+  interface AsInfowindow extends JSXBase.HTMLAttributes<HTMLAsInfowindowElement> {
+    'src'?: string;
+  }
+  interface AsLegend extends JSXBase.HTMLAttributes<HTMLAsLegendElement> {
+    'description'?: string;
+    'heading'?: string;
+    'loading'?: boolean;
+  }
+  interface AsLegendCategory extends JSXBase.HTMLAttributes<HTMLAsLegendCategoryElement> {
+    'data'?: LegendData[];
+    'orientation'?: 'horizontal' | 'vertical';
+    'width'?: number;
+  }
+  interface AsLegendCategoryLineEntry extends JSXBase.HTMLAttributes<HTMLAsLegendCategoryLineEntryElement> {
+    'color'?: string;
+    'label'?: string;
+    'strokeStyle'?: string;
+    'width'?: number;
+  }
+  interface AsLegendCategoryPointEntry extends JSXBase.HTMLAttributes<HTMLAsLegendCategoryPointEntryElement> {
+    'color'?: string;
+    'label'?: string;
+    'marker'?: string;
+    'strokeColor'?: string;
+    'strokeStyle'?: string;
+    'width'?: number;
+  }
+  interface AsLegendCategoryPolygonEntry extends JSXBase.HTMLAttributes<HTMLAsLegendCategoryPolygonEntryElement> {
+    'color'?: string;
+    'label'?: string;
+    'strokeColor'?: string;
+    'strokeStyle'?: string;
+  }
+  interface AsLegendColorBins extends JSXBase.HTMLAttributes<HTMLAsLegendColorBinsElement> {
+    'data'?: LegendData[];
+    'orientation'?: 'horizontal' | 'vertical';
+    'width'?: number;
+  }
+  interface AsLegendColorBinsLine extends JSXBase.HTMLAttributes<HTMLAsLegendColorBinsLineElement> {
+    'data'?: LegendData[];
+    'orientation'?: 'horizontal' | 'vertical';
+    'width'?: number;
+  }
+  interface AsLegendColorBinsPoint extends JSXBase.HTMLAttributes<HTMLAsLegendColorBinsPointElement> {
+    'data'?: LegendData[];
+    'orientation'?: 'horizontal' | 'vertical';
+    'width'?: number;
+  }
+  interface AsLegendColorBinsPolygon extends JSXBase.HTMLAttributes<HTMLAsLegendColorBinsPolygonElement> {
+    'data'?: LegendData[];
+    'orientation'?: 'horizontal' | 'vertical';
+  }
+  interface AsLegendColorCategory extends JSXBase.HTMLAttributes<HTMLAsLegendColorCategoryElement> {
+    'data'?: LegendData[];
+    'orientation'?: 'horizontal' | 'vertical';
+    'width'?: number;
+  }
+  interface AsLegendColorCategoryLine extends JSXBase.HTMLAttributes<HTMLAsLegendColorCategoryLineElement> {
+    'data'?: LegendData[];
+    'orientation'?: 'horizontal' | 'vertical';
+    'width'?: number;
+  }
+  interface AsLegendColorCategoryPoint extends JSXBase.HTMLAttributes<HTMLAsLegendColorCategoryPointElement> {
+    'data'?: LegendData[];
+    'orientation'?: 'horizontal' | 'vertical';
+    'width'?: number;
+  }
+  interface AsLegendColorCategoryPolygon extends JSXBase.HTMLAttributes<HTMLAsLegendColorCategoryPolygonElement> {
+    'data'?: LegendData[];
+    'orientation'?: 'horizontal' | 'vertical';
+    'width'?: number;
+  }
+  interface AsLegendColorContinuous extends JSXBase.HTMLAttributes<HTMLAsLegendColorContinuousElement> {
+    'data'?: LegendData[];
+    'orientation'?: 'horizontal' | 'vertical';
+    'width'?: number;
+  }
+  interface AsLegendColorContinuousLine extends JSXBase.HTMLAttributes<HTMLAsLegendColorContinuousLineElement> {
+    'data'?: LegendData[];
+    'orientation'?: 'horizontal' | 'vertical';
+    'width'?: number;
+  }
+  interface AsLegendColorContinuousPoint extends JSXBase.HTMLAttributes<HTMLAsLegendColorContinuousPointElement> {
+    'data'?: LegendData[];
+    'orientation'?: 'horizontal' | 'vertical';
+    'width'?: number;
+  }
+  interface AsLegendColorContinuousPolygon extends JSXBase.HTMLAttributes<HTMLAsLegendColorContinuousPolygonElement> {
+    'data'?: LegendData[];
+    'orientation'?: 'horizontal' | 'vertical';
+  }
+  interface AsLegendSizeBins extends JSXBase.HTMLAttributes<HTMLAsLegendSizeBinsElement> {
+    'data'?: LegendData[];
+    'orientation'?: 'horizontal' | 'vertical';
+    'width'?: number;
+  }
+  interface AsLegendSizeBinsLine extends JSXBase.HTMLAttributes<HTMLAsLegendSizeBinsLineElement> {
+    'data'?: LegendData[];
+    'orientation'?: 'horizontal' | 'vertical';
+    'width'?: number;
+  }
+  interface AsLegendSizeBinsPoint extends JSXBase.HTMLAttributes<HTMLAsLegendSizeBinsPointElement> {
+    'data'?: LegendData[];
+    'orientation'?: 'horizontal' | 'vertical';
+    'width'?: number;
+  }
+  interface AsLegendSizeCategory extends JSXBase.HTMLAttributes<HTMLAsLegendSizeCategoryElement> {
+    'data'?: LegendData[];
+    'orientation'?: 'horizontal' | 'vertical';
+    'width'?: number;
+  }
+  interface AsLegendSizeCategoryLine extends JSXBase.HTMLAttributes<HTMLAsLegendSizeCategoryLineElement> {
+    'aligned'?: boolean;
+    'data'?: LegendData[];
+    'factor'?: number;
+    'minWidth'?: number;
+    'orientation'?: 'horizontal' | 'vertical';
+  }
+  interface AsLegendSizeCategoryPoint extends JSXBase.HTMLAttributes<HTMLAsLegendSizeCategoryPointElement> {
+    'data'?: LegendData[];
+    'orientation'?: 'horizontal' | 'vertical';
+    'width'?: number;
+  }
+  interface AsLegendSizeContinuous extends JSXBase.HTMLAttributes<HTMLAsLegendSizeContinuousElement> {
+    'data'?: LegendData[];
+    'orientation'?: 'horizontal' | 'vertical';
+    'scale'?: number;
+  }
+  interface AsLegendSizeContinuousLine extends JSXBase.HTMLAttributes<HTMLAsLegendSizeContinuousLineElement> {
+    'data'?: LegendData[];
+    'leadingLineStrokeWidth'?: number;
+    'orientation'?: 'horizontal' | 'vertical';
+    'size'?: number;
+    'textLineHeight'?: number;
+    'width'?: number;
+    'xMarginFactor'?: number;
+    'yMarginFactor'?: number;
+  }
+  interface AsLegendSizeContinuousPoint extends JSXBase.HTMLAttributes<HTMLAsLegendSizeContinuousPointElement> {
+    'data'?: LegendData[];
+    'orientation'?: 'horizontal' | 'vertical';
+    'scale'?: number;
+  }
+  interface AsLoader extends JSXBase.HTMLAttributes<HTMLAsLoaderElement> {}
+  interface AsRangeSlider extends JSXBase.HTMLAttributes<HTMLAsRangeSliderElement> {
+    /**
+    * Disables component if truthy
+    * @type {boolean}
+    * @memberof RangeSlider
+    */
+    'disabled'?: boolean;
+    /**
+    * @deprecated Use isDraggable instead
+    * @type {boolean}
+    * @memberof RangeSlider
+    */
+    'draggable'?: boolean;
+    /**
+    * If this property receives a function, it will be used to format the numbers (eg. for adding $ or €).
+    * @type {function (value: number)}
+    * @memberof RangeSlider
+    */
+    'formatValue'?: (value: number) => string|number;
+    /**
+    * If this property is set to true, and it has multiple value, you can drag the entire track.
+    * @type {number}
+    * @memberof RangeSlider
+    */
+    'isDraggable'?: boolean;
+    /**
+    * Top limit of the range. You cannot drag your slider beyond this value. By default the value is 10.
+    * @type {number}
+    * @memberof RangeSlider
+    */
+    'maxValue'?: number;
+    /**
+    * Bottom limit of the range. You cannot drag your slider below this value. By default the value is 0.
+    * @type {number}
+    * @memberof RangeSlider
+    */
+    'minValue'?: number;
+    'onChange'?: (event: CustomEvent<number[]>) => void;
+    'onChangeEnd'?: (event: CustomEvent<number[]>) => void;
+    'onChangeStart'?: (event: CustomEvent<number[]>) => void;
+    /**
+    * Initial range.
+    * @type {number}
+    * @memberof RangeSlider
+    */
+    'range'?: number[];
+    /**
+    * Disables the range slider thumb
+    * @type {boolean}
+    * @memberof RangeSlider
+    */
+    'showThumb'?: boolean;
+    /**
+    * Disables the range slider thumb caption
+    * @type {boolean}
+    * @memberof RangeSlider
+    */
+    'showThumbCaption'?: boolean;
+    /**
+    * Increment/decrement step of the slider. You can change the step setting a different number to this property. Defaults to 1.
+    * @type {number}
+    * @memberof RangeSlider
+    */
+    'step'?: number;
+    /**
+    * Initial value.
+    * @type {number}
+    * @memberof RangeSlider
+    */
+    'value'?: number;
+  }
+  interface AsRangeSliderBar extends JSXBase.HTMLAttributes<HTMLAsRangeSliderBarElement> {
+    'disabled'?: boolean;
+    'isDraggable'?: boolean;
+    'onBarChangeEnd'?: (event: CustomEvent<void>) => void;
+    'onBarChangeStart'?: (event: CustomEvent<void>) => void;
+    'onBarMove'?: (event: CustomEvent<number[]>) => void;
+    'rangeEndPercentage'?: number;
+    'rangeStartPercentage'?: number;
+    'stepPercentage'?: number;
+  }
+  interface AsRangeSliderThumb extends JSXBase.HTMLAttributes<HTMLAsRangeSliderThumbElement> {
+    'disabled'?: boolean;
+    'formatValue'?: (value: number) => string|number;
+    'onThumbChangeEnd'?: (event: CustomEvent<void>) => void;
+    'onThumbChangeStart'?: (event: CustomEvent<void>) => void;
+    'onThumbDecrease'?: (event: CustomEvent<number>) => void;
+    'onThumbIncrease'?: (event: CustomEvent<number>) => void;
+    'onThumbMove'?: (event: CustomEvent<number>) => void;
+    'onThumbRender'?: (event: CustomEvent<void>) => void;
+    'percentage'?: number;
+    'showCaption'?: boolean;
+    'value'?: number;
+    'valueMax'?: number;
+    'valueMin'?: number;
+  }
+  interface AsResponsiveContent extends JSXBase.HTMLAttributes<HTMLAsResponsiveContentElement> {
+    'onReady'?: (event: CustomEvent<void>) => void;
+    'onSectionChange'?: (event: CustomEvent<object>) => void;
+  }
+  interface AsStackedBarWidget extends JSXBase.HTMLAttributes<HTMLAsStackedBarWidgetElement> {
+    /**
+    * The data that will be drawn.
+    * @type {RawStackedbarData}
+    * @memberof StackedBarWidget
+    */
+    'data'?: RawStackedbarData[];
+    /**
+    * Description of the widget to be displayed
+    * @type {string}
+    * @memberof StackedBarWidget
+    */
+    'description'?: string;
+    /**
+    * Use this attribute to put the widget in "error mode". When this attribute is given, its text will be shown in the subheader and the widget content won't be displayed.
+    */
+    'error'?: string;
+    /**
+    * Extended error description, only shown when error is present
+    */
+    'errorDescription'?: string;
+    /**
+    * Easy customize tooltip format
+    */
+    'formatFn'?: (value: any) => any;
+    /**
+    * Header of the widget to be displayed
+    * @type {string}
+    * @memberof StackedBarWidget
+    */
+    'heading'?: string;
+    /**
+    * Use this attribute to put the widget in "loading mode". When this attribute is true, the widget won't show any data, a spinner will be placed instead.
+    */
+    'isLoading'?: boolean;
+    /**
+    * Legend data
+    */
+    'metadata'?: Metadata;
+    /**
+    * Callback executed when the mouse is placed outside a rectangle.
+    */
+    'mouseLeave'?: () => void;
+    /**
+    * Callback executed when the mouse is placed over a rectangle.
+    */
+    'mouseOver'?: (data: RectangleData) => void;
+    /**
+    * Message shown in body when no data is available
+    */
+    'noDataBodyMessage'?: string;
+    /**
+    * Message shown in header when no data is available
+    */
+    'noDataHeaderMessage'?: string;
+    /**
+    * Use this attribute to decide if the widget should be rerendered on window resize. Defaults to true.
+    */
+    'responsive'?: boolean;
+    /**
+    * Boolean flag to control legend visibility. Defaults: true
+    * @type {boolean}
+    * @memberof StackedBarWidget
+    */
+    'showLegend'?: boolean;
+  }
+  interface AsSwitch extends JSXBase.HTMLAttributes<HTMLAsSwitchElement> {
+    /**
+    * Boolean flag to control if the input is checked or not
+    * @type {boolean}
+    * @memberof Switch
+    */
+    'checked'?: boolean;
+    /**
+    * Boolean flag to control when the switch is disabled or not
+    * @type {boolean}
+    * @memberof Switch
+    */
+    'disabled'?: boolean;
+    /**
+    * Input label
+    * @type {string}
+    * @memberof Switch
+    */
+    'label'?: string;
+    /**
+    * The input name
+    * @type {string}
+    * @memberof Switch
+    */
+    'name'?: string;
+    /**
+    * Event triggered by a enabled Switch component when the user clicks on it.
+    * @type {boolean}
+    * @memberof Switch
+    */
+    'onChange'?: (event: CustomEvent<any>) => void;
+  }
+  interface AsTabs extends JSXBase.HTMLAttributes<HTMLAsTabsElement> {
+    /**
+    * Index of the active tab. Defaults to 0
+    */
+    'activeTab'?: number;
+    /**
+    * Make the tabs XL
+    */
+    'xl'?: boolean;
+  }
+  interface AsTimeSeriesWidget extends JSXBase.HTMLAttributes<HTMLAsTimeSeriesWidgetElement> {
+    /**
+    * Whether it should have animated properties or not. Disabling this makes this look like a histogra widget with time capabilities
+    */
+    'animated'?: boolean;
+    /**
+    * Histogram data to be displayed
+    * @type {HistogramData[]}
+    * @memberof HistogramWidget
+    */
+    'backgroundData'?: TimeSeriesData[];
+    /**
+    * Text rendered inside the clear selection button
+    */
+    'clearText'?: string;
+    /**
+    * Override color for the histogram bars
+    * @type {string}
+    * @memberof HistogramWidget
+    */
+    'color'?: string;
+    /**
+    * Color range for histogram data
+    * @type {HistogramColorRange[]}
+    * @memberof HistogramWidget
+    */
+    'colorRange'?: HistogramColorRange[];
+    /**
+    * Histogram data to be displayed
+    * @type {HistogramData[]}
+    * @memberof HistogramWidget
+    */
+    'data'?: TimeSeriesData[];
+    /**
+    * Description of the widget to be displayed
+    * @type {string}
+    * @memberof HistogramWidget
+    */
+    'description'?: string;
+    /**
+    * This lets you disable the animations for the bars when showing / updating the data
+    * @type {boolean}
+    * @memberof HistogramWidget
+    */
+    'disableAnimation'?: boolean;
+    /**
+    * Disables selection brushes and events for the widget
+    * @type {boolean}
+    * @memberof HistogramWidget
+    */
+    'disableInteractivity'?: boolean;
+    /**
+    * Use this widget to put the widget in "error mode". When error mode is active. The header will display the given text. And the body will be display the errorDescription instead any data.
+    */
+    'error'?: string;
+    /**
+    * Extended error description, only shown when error is present
+    */
+    'errorDescription'?: string;
+    /**
+    * Title of the widget to be displayed
+    * @type {string}
+    * @memberof HistogramWidget
+    */
+    'heading'?: string;
+    /**
+    * Use this attribute to put the widget in "loading mode". When loading mode is active, a spinner will be shown and the data will be hidden.
+    */
+    'isLoading'?: boolean;
+    /**
+    * Message shown in body when no data is available
+    */
+    'noDataBodyMessage'?: string;
+    /**
+    * Message shown in header when no data is available
+    */
+    'noDataHeaderMessage'?: string;
+    /**
+    * User clicks the pause button
+    */
+    'onPause'?: (event: CustomEvent<any>) => void;
+    /**
+    * User clicks the play button
+    */
+    'onPlay'?: (event: CustomEvent<any>) => void;
+    /**
+    * The user has seeked the animation to this percentage.
+    */
+    'onSeek'?: (event: CustomEvent<number>) => void;
+    /**
+    * This method proxies the selectionChanged event on the underlying graph, but parses it into a Date
+    */
+    'onSelectionChanged'?: (event: CustomEvent<Array<Date | number>>) => void;
+    /**
+    * Whether the animation is playing or not.
+    */
+    'playing'?: boolean;
+    /**
+    * This attribute is the percentage of progress elapsed on an animation.
+    */
+    'progress'?: number;
+    /**
+    * This prop lets you provide the range of the y-axis so it's not automatically calculated with data or backgroundData. It always starts at 0, you can provide the top value.
+    * @memberof HistogramWidget
+    */
+    'range'?: [number, number];
+    /**
+    * Use this attribute to decide if the widget should be rerendered on window resize. Defaults to true.
+    */
+    'responsive'?: boolean;
+    /**
+    * Display a clear button that clears the histogram selection.
+    * @type {boolean}
+    * @memberof HistogramWidget
+    */
+    'showClear'?: boolean;
+    /**
+    * Toggles displaying title and description
+    * @type {boolean}
+    * @memberof HistogramWidget
+    */
+    'showHeader'?: boolean;
+    /**
+    * This string will be parsed by d3-time-format (https://github.com/d3/d3-time-format) and will be used to format the graph's x-axis
+    */
+    'timeFormat'?: string;
+    /**
+    * Setting this property will make the date formatter be sensitive to locales. The format is described on https://github.com/d3/d3-time-format
+    */
+    'timeFormatLocale'?: TimeLocaleDefinition;
+    /**
+    * Function that formats the tooltip. Receives TimeSeriesData and outputs a string
+    * @type {(TimeSeriesData) => string}
+    * @memberof HistogramWidget
+    */
+    'tooltipFormatter'?: (value: TimeSeriesData) => string;
+    /**
+    * Override color for the selected histogram bars
+    * @type {string}
+    * @memberof HistogramWidget
+    */
+    'unselectedColor'?: string;
+    /**
+    * This prop is a proxy to some d3-axis options for the X Axis
+    * @type {AxisOptions}
+    * @memberof TimeSeriesWidget
+    */
+    'xAxisOptions'?: AxisOptions;
+    /**
+    * Label the x axis of the histogram with the given string.
+    */
+    'xLabel'?: string;
+    /**
+    * This prop is a proxy to some d3-axis options for the Y Axis
+    * @type {AxisOptions}
+    * @memberof TimeSeriesWidget
+    */
+    'yAxisOptions'?: AxisOptions;
+    /**
+    * Label the y axis of the histogram with the given string.
+    */
+    'yLabel'?: string;
+  }
+  interface AsToolbar extends JSXBase.HTMLAttributes<HTMLAsToolbarElement> {}
+  interface AsWidgetHeader extends JSXBase.HTMLAttributes<HTMLAsWidgetHeaderElement> {
+    /**
+    * Use this attribute to put the widget-header in "error mode". When this attribute is not empty the subheader will display the given value.
+    */
+    'error'?: string;
+    /**
+    * Main title
+    * @type {string}
+    * @memberof WidgetHeader
+    */
+    'header'?: string;
+    /**
+    * Use this attribute to put the widget-header in "empty mode". When this attribute is true the subheader will show the text defined by noDataMessage.
+    */
+    'isEmpty'?: boolean;
+    /**
+    * Use this attribute to put the widget-header in "loading mode". When this attribute is true the subheader text will be displayed as usual.
+    */
+    'isLoading'?: boolean;
+    /**
+    * Use this attribute to select the text displayed in the subheader when the header is in "empty mode". Defaults to "NO DATA AVAILABLE"
+    */
+    'noDataMessage'?: string;
+    /**
+    * Secondary title
+    * @type {string}
+    * @memberof WidgetHeader
+    */
+    'subheader'?: string;
+  }
+  interface AsWidgetLegend extends JSXBase.HTMLAttributes<HTMLAsWidgetLegendElement> {
+    /**
+    * Data to be displayed by the legend
+    * @type {WidgetLegendData}
+    * @memberof WidgetLegend
+    */
+    'data'?: WidgetLegendData;
+  }
+  interface AsWidgetSelection extends JSXBase.HTMLAttributes<HTMLAsWidgetSelectionElement> {
+    /**
+    * Text for the clear text
+    * @type {string}
+    * @memberof WidgetSelection
+    */
+    'clearText'?: string;
+    /**
+    * Event fired when clicking on clear text
+    * @private
+    * @memberof WidgetSelection
+    */
+    'onClear'?: (event: CustomEvent<any>) => void;
+    /**
+    * The text to be displayed
+    * @type {string}
+    * @memberof WidgetSelection
+    */
+    'selection'?: string;
+    /**
+    * Whether to display the clear button or not
+    * @type {boolean}
+    * @memberof WidgetSelection
+    */
+    'showClear'?: boolean;
+  }
+  interface AsYAxis extends JSXBase.HTMLAttributes<HTMLAsYAxisElement> {
+    /**
+    * Lower limit of the axis
+    * @type {number}
+    * @memberof YAxis
+    */
+    'from'?: number;
+    /**
+    * Use this attribute to decide if the widget should be rerendered on window resize Defaults to true
+    */
+    'responsive'?: boolean;
+    /**
+    * Upper limit of the axis
+    * @type {Number[]}
+    * @memberof YAxis
+    */
+    'to'?: number;
+  }
+
+  interface IntrinsicElements {
+    'as-animation-controls-widget': AsAnimationControlsWidget;
+    'as-category-widget': AsCategoryWidget;
+    'as-dropdown': AsDropdown;
+    'as-histogram-widget': AsHistogramWidget;
+    'as-infowindow': AsInfowindow;
+    'as-legend': AsLegend;
+    'as-legend-category': AsLegendCategory;
+    'as-legend-category-line-entry': AsLegendCategoryLineEntry;
+    'as-legend-category-point-entry': AsLegendCategoryPointEntry;
+    'as-legend-category-polygon-entry': AsLegendCategoryPolygonEntry;
+    'as-legend-color-bins': AsLegendColorBins;
+    'as-legend-color-bins-line': AsLegendColorBinsLine;
+    'as-legend-color-bins-point': AsLegendColorBinsPoint;
+    'as-legend-color-bins-polygon': AsLegendColorBinsPolygon;
+    'as-legend-color-category': AsLegendColorCategory;
+    'as-legend-color-category-line': AsLegendColorCategoryLine;
+    'as-legend-color-category-point': AsLegendColorCategoryPoint;
+    'as-legend-color-category-polygon': AsLegendColorCategoryPolygon;
+    'as-legend-color-continuous': AsLegendColorContinuous;
+    'as-legend-color-continuous-line': AsLegendColorContinuousLine;
+    'as-legend-color-continuous-point': AsLegendColorContinuousPoint;
+    'as-legend-color-continuous-polygon': AsLegendColorContinuousPolygon;
+    'as-legend-size-bins': AsLegendSizeBins;
+    'as-legend-size-bins-line': AsLegendSizeBinsLine;
+    'as-legend-size-bins-point': AsLegendSizeBinsPoint;
+    'as-legend-size-category': AsLegendSizeCategory;
+    'as-legend-size-category-line': AsLegendSizeCategoryLine;
+    'as-legend-size-category-point': AsLegendSizeCategoryPoint;
+    'as-legend-size-continuous': AsLegendSizeContinuous;
+    'as-legend-size-continuous-line': AsLegendSizeContinuousLine;
+    'as-legend-size-continuous-point': AsLegendSizeContinuousPoint;
+    'as-loader': AsLoader;
+    'as-range-slider': AsRangeSlider;
+    'as-range-slider-bar': AsRangeSliderBar;
+    'as-range-slider-thumb': AsRangeSliderThumb;
+    'as-responsive-content': AsResponsiveContent;
+    'as-stacked-bar-widget': AsStackedBarWidget;
+    'as-switch': AsSwitch;
+    'as-tabs': AsTabs;
+    'as-time-series-widget': AsTimeSeriesWidget;
+    'as-toolbar': AsToolbar;
+    'as-widget-header': AsWidgetHeader;
+    'as-widget-legend': AsWidgetLegend;
+    'as-widget-selection': AsWidgetSelection;
+    'as-y-axis': AsYAxis;
+  }
+}
+
+export { LocalJSX as JSX };
+
+
+declare module "@stencil/core" {
+  export namespace JSX {
+    interface IntrinsicElements extends LocalJSX.IntrinsicElements {}
+  }
+}
+
+

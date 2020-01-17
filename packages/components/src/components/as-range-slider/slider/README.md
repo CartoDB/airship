@@ -49,7 +49,7 @@ showSource: false
     const rangeSliderWidget = document.querySelector('as-range-slider');
     rangeSliderWidget.range = [30, 70];
     rangeSliderWidget.step = 5;
-    rangeSliderWidget.draggable = true;
+    rangeSliderWidget.isDraggable = true;
     rangeSliderWidget.formatValue = (value) => (`${value}€`);
     rangeSliderWidget.addEventListener('change', (event) => console.log('Changed:', event.detail));
     rangeSliderWidget.addEventListener('changeStart', (event) => console.log('Change Start:', event.detail));
@@ -113,7 +113,10 @@ Increment/decrement step of the slider. You can change the step setting a differ
 #### **disabled**: boolean = false
 Disables component if truthy. False by default.
 
-#### **draggable**: boolean = false
+#### **isDraggable**: boolean = false
+**DEPRECATED** use **isDraggable** instead.
+
+#### **isDraggable**: boolean = false
 If this property is set to true, and it has multiple value, you can drag the entire track. False by default
 
 #### **formatValue**: (value: number) => void

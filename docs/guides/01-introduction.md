@@ -25,7 +25,8 @@ The easiest way to include Airship is through our CDN, adding the tags in the he
   <!-- Include icons -->
   <link rel="stylesheet" href="https://libs.cartocdn.com/airship-icons/%AS-VERSION%/icons.css">
   <!-- Include airship components -->
-  <script src="https://libs.cartocdn.com/airship-components/%AS-VERSION%/airship.js"></script>
+  <script type="module" src="https://libs.cartocdn.com/airship-components/%AS-VERSION%/airship/airship.esm.js"></script>
+  <script nomodule="" src="https://libs.cartocdn.com/airship-components/%AS-VERSION%/airship/airship.js"></script>
   <!-- Include Mapbox GL JS -->
   <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.js"></script>
   <!-- Include Mapbox GL CSS -->

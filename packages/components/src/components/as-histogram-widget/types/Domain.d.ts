@@ -1,1 +1,1 @@
-export type Domain = [number, number];
+export type Domain = [Date | number, Date | number];

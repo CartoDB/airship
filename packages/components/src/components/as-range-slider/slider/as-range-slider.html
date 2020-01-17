@@ -7,7 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
   <title>Airship</title>
   <link rel="stylesheet" href="packages/styles/dist/airship.css">
-  <script src="packages/components/dist/airship.js"></script>
+  <script type="module" src="packages/components/dist/airship/airship.esm.js"></script>
+  <script nomodule="" src="packages/components/dist/airship/airship.js"></script>
 
   <style>
     body {
@@ -54,7 +55,7 @@
     const rangeSlider = document.querySelector('#range');
     rangeSlider.range = [30, 70];
     rangeSlider.step = 5;
-    rangeSlider.draggable = true;
+    rangeSlider.isDraggable = true;
     rangeSlider.formatValue = (value) => (`${value}€`);
     rangeSlider.addEventListener('change', (event) => console.log('Changed:', event.detail));
     rangeSlider.addEventListener('changeStart', (event) => console.log('Change Start:', event.detail));

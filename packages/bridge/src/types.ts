@@ -2,6 +2,7 @@ export interface VLViz {
   variables: {
     [key: string]: any
   };
+  [key: string]: any;
   _changed: () => void;
 }
 
@@ -10,19 +11,27 @@ export interface VLAnimation {
   _paused: boolean;
   parent: any;
   duration: any;
+  propertyName: string;
   notify: () => void;
   getProgressPct(): number;
+  getProgressValue(): number | Date | VLTimeZoneDate;
   setProgressPct(pct: number): void;
   play(): void;
   pause(): void;
   isPlaying(): boolean;
 }
 
+export interface VLTimeZoneDate {
+  _value: number | string;
+  _date: Date;
+  _timeZone: number | string;
+}
 
-export type NumericalHistogramData = VLHistogramData<[number, number]>;
+export type NumericalHistogramData = VLHistogramData<[number | Date, number | Date]>;
 export type CategoricalHistogramData = VLHistogramData<string>;
 export interface VLNumericalHistogram {
   value: NumericalHistogramData[];
+  input: any;
 }
 
 export interface VLCategoricalHistogram {
@@ -49,7 +58,7 @@ export interface LegendData {
   data: LegendEntry[];
 }
 
-export type BucketRange = [number, number];
+export type BucketRange = [Date | number, Date | number];
 
 export interface VLBridgeOptions {
   carto: any;
@@ -102,6 +111,23 @@ export interface AnimationOptions extends NumericalHistogramOptions {
   fade?: [number, number];
 
   variableName?: string;
+
+  propertyName?: string;
+}
+
+/**
+ * Options for the Animation Controls widget
+ *
+ * @type {AnimationControlsOptions}
+ */
+export interface AnimationControlsOptions {
+  duration?: number;
+
+  fade?: [number, number];
+
+  variableName?: string;
+
+  propertyName?: string;
 }
 
 /**

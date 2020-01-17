@@ -12,7 +12,7 @@ import { select } from '../../util/Utils';
  * @class TimeSeries
  */
 export class TimeSeries {
-  private _timeSeries: any;
+  private _timeSeriesWidget: any;
   private _animation: VLAnimation;
   private _layer: any;
   private _viz: VLViz;
@@ -24,6 +24,7 @@ export class TimeSeries {
   private _duration: number;
   private _fade: [number, number];
   private _variableName: string;
+  private _propertyName: string;
 
   /**
    * Creates an instance of TimeSeries.
@@ -41,16 +42,17 @@ export class TimeSeries {
     readyCb: () => void,
     duration: number = 10,
     fade: [number, number] = [0.15, 0.15],
-    variableName: string = 'animation'
+    variableName: string,
+    propertyName: string
   ) {
-
-    this._timeSeries = select(timeSeries) as any;
+    this._timeSeriesWidget = select(timeSeries) as any;
     this._layer = layer;
     this._carto = carto;
     this._columnName = column;
     this._duration = duration;
     this._fade = fade;
-    this._variableName = variableName;
+    this._variableName = variableName || 'animation';
+    this._propertyName = propertyName || 'filter';
 
     if (layer.viz) {
       this._onLayerLoaded();
@@ -76,7 +78,7 @@ export class TimeSeries {
    * @returns
    * @memberof TimeSeries
    */
-  public setRange(range: [number, number]) {
+  public setRange(range: [number, number] | [ Date, Date ]) {
     if (!this._animation || !this._animation.input || !this._animation.input.min || !this._animation.input.max) {
       return;
     }
@@ -86,17 +88,40 @@ export class TimeSeries {
       this._animation.input.max.blendTo(this._max, 0);
       this._animation.duration.blendTo(this._duration, 0);
     } else if (range[0] !== range[1]) {
-      const ratio = Math.min(1, (range[1] - range[0]) / (this._max.value - this._min.value));
-      this._animation.input.min.blendTo(range[0], 0);
-      this._animation.input.max.blendTo(range[1], 0);
+      const s = this._carto.expressions;
+      let min;
+      let max;
+      let ratio;
 
-      this._animation.duration.blendTo(this._duration * ratio, 0);
+      if (this._animation.input.min.expressionName === 'Blend' &&
+        this._animation.input.min.mix.expressionName !== 'Transition') {
+        if (typeof range[0] === 'number' && typeof range[1] === 'number') {
+          min = range[0];
+          max = range[1];
+          ratio = Math.min(1, (max - min) / (this._max.value - this._min.value));
+        } else if (range[0] instanceof Date && range[1] instanceof Date) {
+          min = s.time(range[0]);
+          max = s.time(range[1]);
+          ratio = Math.min(1, (range[0].getTime() - range[1].getTime()) / (this._max.value - this._min.value));
+        }
+
+        this._animation.input.min.blendTo(min, 0);
+        this._animation.input.max.blendTo(max, 0);
+        this._animation.duration.blendTo(this._duration * ratio, 0);
+      }
     }
-
   }
 
   public get variableName(): string {
     return this._variableName;
+  }
+
+  public get propertyName(): string {
+    return this._propertyName;
+  }
+
+  public set propertyName(name) {
+    this._propertyName = name;
   }
 
   public setDuration(duration: number) {
@@ -106,6 +131,10 @@ export class TimeSeries {
 
   public get animation(): VLAnimation {
     return this._animation;
+  }
+
+  public restart() {
+    this._animation.setProgressPct(0);
   }
 
   /**
@@ -120,54 +149,65 @@ export class TimeSeries {
   private _onLayerLoaded() {
     this._viz = this._layer.viz;
 
-    if (!this._viz.variables[this._variableName]) {
-      this._animation = this._createAnimation();
+    const expr = this._getAnimationExpression();
 
-      /* Big hack, this is done internally on VL */
-      this._animation.parent = this._viz;
-      this._animation.notify = this._viz._changed.bind(this._viz);
-
-      this._viz.variables[this._variableName] = this._animation;
+    if (expr.a && expr.b) {
+      this._animation = expr.a.expressionName === 'animation' ? expr.a : expr.b;
     } else {
-      this._animation = this._viz.variables[this._variableName];
+      this._animation = expr;
     }
+
+    this._viz.variables[this._variableName] = this._animation;
+    this._viz[this._propertyName].blendTo(expr, 0);
+
+    this._animation.parent = this._viz;
+    this._animation.notify = this._viz._changed.bind(this._viz);
 
     this._max = this._animation.input.max;
     this._min = this._animation.input.min;
     this._duration = this._animation.duration.value;
 
     this._layer.on('updated', () => {
-      this._timeSeries.progress = this._animation.getProgressPct() * 100;
-
-      this._timeSeries.playing = this._animation.isPlaying();
+      this._timeSeriesWidget.progress = this._animation.getProgressPct() * 100;
+      this._timeSeriesWidget.playing = this._animation.isPlaying();
     });
 
-    this._timeSeries.animated = true;
+    this._timeSeriesWidget.animated = true;
 
-    this._timeSeries.addEventListener('seek', (evt: CustomEvent) => {
+    this._timeSeriesWidget.addEventListener('seek', (evt: CustomEvent) => {
       this._animation.setProgressPct(evt.detail / 100);
 
-      this._timeSeries.progress = evt.detail;
+      this._timeSeriesWidget.progress = evt.detail;
     });
 
-    this._timeSeries.addEventListener('play', () => {
+    this._timeSeriesWidget.addEventListener('play', () => {
       this._animation.play();
     });
 
-    this._timeSeries.addEventListener('pause', () => {
+    this._timeSeriesWidget.addEventListener('pause', () => {
       this._animation.pause();
     });
   }
 
-  private _createAnimation() {
+  private _getAnimationExpression() {
+    if (this._variableName && this._viz.variables[this._variableName]) {
+      return this._viz.variables[this._variableName];
+    }
+
+    if (this._propertyName &&
+      this._viz[this._propertyName] &&
+      this._viz[this._propertyName].isAnimated()) {
+        return this._viz[this._propertyName];
+    }
+
+    return this._createDefaultAnimation();
+  }
+
+  private _createDefaultAnimation() {
     const s = this._carto.expressions;
 
     return s.animation(
-      s.linear(
-        s.prop(this._columnName),
-        s.globalMin(s.prop(this._columnName)),
-        s.globalMax(s.prop(this._columnName))
-      ),
+      s.linear(s.prop(this._columnName)),
       this._duration,
       s.fade(
         this._fade[0],

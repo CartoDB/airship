@@ -214,7 +214,8 @@ Using that Bounding Box filter, our widget will be automatically updated wheneve
       <!-- Include Icons -->
       <link rel="stylesheet" href="https://libs.cartocdn.com/airship-icons/v1.0.0-alpha.40/icons.css">
       <!-- Include Web Components -->
-      <script src="https://libs.cartocdn.com/airship-components/v1.0.0-alpha.40/airship.js"></script>
+      <script type="module" src="https://libs.cartocdn.com/airship-components/v1.0.0-alpha.40/airship/airship.esm.js"></script>
+      <script nomodule="" src="https://libs.cartocdn.com/airship-components/v1.0.0-alpha.40/airship/airship.js"></script>
 
       <!-- Include Leaflet -->
       <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
