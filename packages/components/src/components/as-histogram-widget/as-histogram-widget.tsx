@@ -258,7 +258,7 @@ export class HistogramWidget {
   @State()
   private tooltip: string | string[] = null;
 
-  @State() private firstDataSupplied: boolean = false;
+  @State() private _firstDataSupplied: boolean = false;
 
   private container: SVGContainer;
   private tooltipElement: HTMLElement;
@@ -315,8 +315,8 @@ export class HistogramWidget {
   public _onDataChanged(newData, oldData) {
     this.onNewData(newData, oldData);
 
-    if (!this.firstDataSupplied) {
-      this.firstDataSupplied = Boolean(newData && newData.length);
+    if (!this._firstDataSupplied) {
+      this._firstDataSupplied = Boolean(newData && newData.length);
     }
   }
 
@@ -464,7 +464,7 @@ export class HistogramWidget {
 
   public componentWillLoad() {
     addEventListener('resize', this._resizeRender);
-    this.firstDataSupplied = Boolean(this.data && this.data.length);
+    this._firstDataSupplied = Boolean(this.data && this.data.length);
     this.selectionFooter = this.selectedFormatter(this.selection);
     this._onBackgroundDataChanged(this.backgroundData);
     this.onNewData(this.data, null);
@@ -1058,7 +1058,7 @@ export class HistogramWidget {
   }
 
   private _isLoading(): boolean {
-    return (!this.firstDataSupplied || this.isLoading) && !this.error;
+    return (!this._firstDataSupplied || this.isLoading) && !this.error;
   }
 
   private _isEmpty(): boolean {

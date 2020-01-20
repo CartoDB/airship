@@ -137,17 +137,17 @@ export class CategoryWidget {
   @Event() public categoriesSelected: EventEmitter<string[]>;
 
   @State() private selectedCategories: string[] = [];
-  @State() private firstDataSupplied: boolean = false;
+  @State() private _firstDataSupplied: boolean = false;
 
   @Watch('categories')
   public onDataChange() {
-    if (!this.firstDataSupplied) {
-      this.firstDataSupplied =  Boolean(this.categories && this.categories.length);
+    if (!this._firstDataSupplied) {
+      this._firstDataSupplied =  Boolean(this.categories && this.categories.length);
     }
   }
 
   public componentWillLoad() {
-    this.firstDataSupplied = Boolean(this.categories && this.categories.length);
+    this._firstDataSupplied = Boolean(this.categories && this.categories.length);
   }
 
   /**
@@ -391,7 +391,7 @@ export class CategoryWidget {
   }
 
   private _isLoading(): boolean {
-    return (!this.firstDataSupplied || this.isLoading) && !this.error;
+    return (!this._firstDataSupplied || this.isLoading) && !this.error;
   }
 
   private _isEmpty(): boolean {
