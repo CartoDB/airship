@@ -40,7 +40,7 @@
       description="Description"
       is-loading="true"></as-category-widget>
 
-    <as-category-widget
+      <as-category-widget
       id="widget-3"
       heading="Business Volume"
       description="Description"></as-category-widget>
@@ -56,6 +56,10 @@
         { name: 'Shopping mall', value: 250 },
         { name: 'Transportation', value: 650 }
       ];
+
+      // No loading
+      var noDataCategoryWidget = document.getElementById('widget-3');
+      noDataCategoryWidget.data = [];
     </script>
   </body>
 </html>

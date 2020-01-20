@@ -20,6 +20,10 @@ as-category-widget {
     min-height: 100px;
   }
 
+  .as-widget-header {
+    padding-top: 6px;
+  }
+
   .as-category-widget__count {
     color: var(--as--category-widget--description--color);
   }

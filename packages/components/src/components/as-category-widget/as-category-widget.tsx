@@ -1,4 +1,4 @@
-import { Component, Event, EventEmitter, h, Method, Prop, State } from '@stencil/core';
+import { Component, Event, EventEmitter, h, Method, Prop, State, Watch } from '@stencil/core';
 import readableNumber from '../../utils/readable-number';
 import { shadeOrBlend } from '../../utils/styles';
 import contentFragment from '../common/content.fragment';
@@ -137,6 +137,16 @@ export class CategoryWidget {
   @Event() public categoriesSelected: EventEmitter<string[]>;
 
   @State() private selectedCategories: string[] = [];
+  @State() private firstDataSupplied: boolean = false;
+
+  @Watch('categories')
+  public onDataChange() {
+    this.firstDataSupplied = Boolean(this.categories && this.categories.length);
+  }
+
+  public componentWillLoad() {
+    this.firstDataSupplied = Boolean(this.categories && this.categories.length);
+  }
 
   /**
    * Default formatting function. Makes the value a readable number and
@@ -177,6 +187,14 @@ export class CategoryWidget {
   }
 
   public render() {
+    if (this._isLoading()) {
+      return (
+        <as-category-widget-placeholder>
+          {this._renderHeader()}
+        </as-category-widget-placeholder>
+      );
+    }
+
     return [
       this._renderHeader(),
       this._renderSelection(),
@@ -185,7 +203,7 @@ export class CategoryWidget {
   }
 
   private _renderSelection() {
-    if (this.isLoading || this._isEmpty() || this.error || !this.showClearButton) {
+    if (this._isLoading() || this._isEmpty() || this.error || !this.showClearButton) {
       return '';
     }
 
@@ -195,7 +213,7 @@ export class CategoryWidget {
       selection={`${selectedCount || 'All'} selected`}
       clearText='Clear selection'
       showClear={selectedCount > 0}
-      onClear={() => this.clearSelection() }
+      onClear={() => this.clearSelection()}
       >
     </as-widget-selection>;
   }
@@ -209,7 +227,7 @@ export class CategoryWidget {
       header={this.heading}
       subheader={this.description}
       is-empty={this._isEmpty()}
-      is-loading={this.isLoading}
+      is-loading={this._isLoading()}
       error={this.error}
       no-data-message={this.noDataHeaderMessage}>
     </as-widget-header>;
@@ -217,7 +235,7 @@ export class CategoryWidget {
 
   private _renderContent() {
     return contentFragment(
-      this.isLoading,
+      false,
       this.error,
       this._isEmpty(),
       this.heading,
@@ -370,7 +388,11 @@ export class CategoryWidget {
     return parsedCategories.slice(0, this.visibleCategories);
   }
 
+  private _isLoading(): boolean {
+    return (!this.firstDataSupplied || this.isLoading) && !this.error;
+  }
+
   private _isEmpty(): boolean {
-    return !this.categories || !this.categories.length;
+    return this.categories && !this.categories.length;
   }
 }
