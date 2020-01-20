@@ -314,7 +314,10 @@ export class HistogramWidget {
   @Watch('data')
   public _onDataChanged(newData, oldData) {
     this.onNewData(newData, oldData);
-    this.firstDataSupplied = Boolean(newData && newData.length);
+
+    if (!this.firstDataSupplied) {
+      this.firstDataSupplied = Boolean(newData && newData.length);
+    }
   }
 
 
