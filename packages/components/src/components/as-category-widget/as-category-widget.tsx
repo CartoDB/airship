@@ -141,11 +141,13 @@ export class CategoryWidget {
 
   @Watch('categories')
   public onDataChange() {
-    this.firstDataSupplied = Boolean(this.categories);
+    if (!this.firstDataSupplied) {
+      this.firstDataSupplied =  Boolean(this.categories && this.categories.length);
+    }
   }
 
   public componentWillLoad() {
-    this.firstDataSupplied = Boolean(this.categories);
+    this.firstDataSupplied = Boolean(this.categories && this.categories.length);
   }
 
   /**

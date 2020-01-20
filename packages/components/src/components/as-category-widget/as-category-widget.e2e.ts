@@ -25,6 +25,27 @@ describe('as-category-widget', () => {
       expect(element.outerHTML).toMatchSnapshot();
     });
 
+    it('should render loading when data is not present yet', async () => {
+      const element: E2EElement = await page.find('as-category-widget');
+      element.setProperty('heading', 'Category Widget Example');
+      element.setProperty('description', 'Description for Category Widget');
+
+      await page.waitForChanges();
+
+      expect(element.outerHTML).toMatchSnapshot();
+    });
+
+    it('should render empty state when data is empty', async () => {
+      const element: E2EElement = await page.find('as-category-widget');
+      element.setProperty('heading', 'Category Widget Example');
+      element.setProperty('description', 'Description for Category Widget');
+      element.setProperty('categories', []);
+
+      await page.waitForChanges();
+
+      expect(element.outerHTML).toMatchSnapshot();
+    });
+
     it('should not render header when showHeader is false', async () => {
       const element: E2EElement = await page.find('as-category-widget');
       element.setProperty('heading', 'Category Widget Example');
