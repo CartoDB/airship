@@ -3,6 +3,10 @@ import { Component, h } from '@stencil/core';
 @Component({
   shadow: false,
   styles: `
+    as-category-widget-placeholder {
+      background-color: var(--as--color--ui-01, $color-ui-01);
+    }
+
     as-placeholder-bar {
       margin-bottom: 12px;
     }

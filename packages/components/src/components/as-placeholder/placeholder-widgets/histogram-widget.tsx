@@ -2,6 +2,11 @@ import { Component, h } from '@stencil/core';
 
 @Component({
   shadow: false,
+  styles: `
+    as-histogram-widget-placeholder {
+      background-color: var(--as--color--ui-01, $color-ui-01);
+    }
+  `,
   tag: 'as-histogram-widget-placeholder',
 })
 export class CategoryWidgetPlaceholder {
