@@ -258,6 +258,8 @@ export class HistogramWidget {
   @State()
   private tooltip: string | string[] = null;
 
+  @State() private firstDataSupplied: boolean = false;
+
   private container: SVGContainer;
   private tooltipElement: HTMLElement;
 
@@ -311,6 +313,12 @@ export class HistogramWidget {
 
   @Watch('data')
   public _onDataChanged(newData, oldData) {
+    this.onNewData(newData, oldData);
+    this.firstDataSupplied = Boolean(newData);
+  }
+
+
+  public onNewData(newData, oldData) {
     // Invalidated, indexes might be different data now
     this._lastEmittedSelection = null;
 
@@ -453,9 +461,10 @@ export class HistogramWidget {
 
   public componentWillLoad() {
     addEventListener('resize', this._resizeRender);
+    this.firstDataSupplied = Boolean(this.data);
     this.selectionFooter = this.selectedFormatter(this.selection);
     this._onBackgroundDataChanged(this.backgroundData);
-    this._onDataChanged(this.data, null);
+    this.onNewData(this.data, null);
   }
 
   public componentDidUnload() {
@@ -463,6 +472,14 @@ export class HistogramWidget {
   }
 
   public render() {
+    if (this._isLoading()) {
+      return (
+        <as-histogram-widget-placeholder>
+          {this._renderHeader()}
+        </as-histogram-widget-placeholder>
+      );
+    }
+
     return [
       this._renderHeader(),
       this._renderSelection(),
@@ -488,7 +505,7 @@ export class HistogramWidget {
       'figure--has-y-label': !!this.yLabel
     };
     return contentFragment(
-      this.isLoading,
+      this._isLoading(),
       this.error,
       this._isEmpty(),
       this.heading,
@@ -533,7 +550,7 @@ export class HistogramWidget {
   }
 
   private _renderSelection() {
-    if (this.isLoading || this._isEmpty() || this.error || !this.showClear) {
+    if (this._isLoading() || this._isEmpty() || this.error || !this.showClear) {
       return '';
     }
 
@@ -970,8 +987,7 @@ export class HistogramWidget {
     return <as-widget-header
       header={this.heading}
       subheader={this.description}
-      is-loading={this.isLoading}
-      is-empty={this._isEmpty()}
+      is-loading={this._isLoading()}
       error={this.error}
       no-data-message={this.noDataHeaderMessage}>
     </as-widget-header>;
@@ -1037,12 +1053,16 @@ export class HistogramWidget {
     return color;
   }
 
+  private _isLoading(): boolean {
+    return (!this.firstDataSupplied || this.isLoading) && !this.error;
+  }
+
   private _isEmpty(): boolean {
-    return !this._data || !this._data.length;
+    return this._data && !this._data.length;
   }
 
   private _hasDataToDisplay() {
-    return !(this.isLoading || this._isEmpty() || this.error);
+    return !(this._isLoading() || this._isEmpty() || this.error);
   }
 
   private formatter(data: HistogramData) {
