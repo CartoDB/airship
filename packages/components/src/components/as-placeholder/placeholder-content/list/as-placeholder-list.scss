@@ -1,0 +1,11 @@
+.placeholder-list__items:not(:last-child) {
+  margin-bottom: 12px;
+}
+
+.placeholder-list__item {
+  display: block;
+
+  &.placeholder-list__item--first {
+    margin-bottom: 8px;
+  }
+}
