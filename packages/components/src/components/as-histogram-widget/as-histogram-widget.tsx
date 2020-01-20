@@ -988,6 +988,7 @@ export class HistogramWidget {
       header={this.heading}
       subheader={this.description}
       is-loading={this._isLoading()}
+      is-empty={this._isEmpty()}
       error={this.error}
       no-data-message={this.noDataHeaderMessage}>
     </as-widget-header>;

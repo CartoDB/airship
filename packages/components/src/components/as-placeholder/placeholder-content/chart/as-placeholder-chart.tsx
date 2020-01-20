@@ -44,7 +44,7 @@ export class PlaceholderChart {
     const bars = [];
 
     for (let i = 0; i < numberOfBars; i++) {
-      const barPercentage = Math.max(Math.trunc(Math.random() * 100), 15);
+      const barPercentage = Math.trunc(Math.random() * 85) + 15;
 
       bars.push(
         <as-placeholder-bar class='placeholder-chart__bar' height={`${barPercentage}%`} width={`${this.barWidth}px`}>

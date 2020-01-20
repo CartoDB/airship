@@ -17,7 +17,7 @@ export class LoadingBar {
   }
 
   public renderBarSection() {
-    const barPercentage = Math.max(Math.trunc(Math.random() * 100), 40);
+    const barPercentage = Math.trunc(Math.random() * 60) + 40;
 
     return (
       <div class='placeholder-list__items'>
