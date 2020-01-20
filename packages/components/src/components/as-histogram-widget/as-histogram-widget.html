@@ -58,6 +58,11 @@
         { start: 30, end: 40, value: 1350 },
         { start: 40, end: 50, value: 2000 },
       ];
+
+      // Empty
+      var noDataHistogramWidget = document.getElementById('widget-3');
+      setTimeout(() => { noDataHistogramWidget.data = categories; }, 1500);
+      setTimeout(() => { noDataHistogramWidget.data = []; }, 3000);
     </script>
   </body>
 </html>

@@ -184,6 +184,7 @@ export namespace Components {
     */
     'visibleCategories': number;
   }
+  interface AsCategoryWidgetPlaceholder {}
   interface AsDropdown {
     /**
     * Closes the list, useful in case you need to customize {onClickOutside}
@@ -386,6 +387,7 @@ export namespace Components {
     */
     'yLabel': string;
   }
+  interface AsHistogramWidgetPlaceholder {}
   interface AsInfowindow {
     'src': string;
   }
@@ -530,6 +532,15 @@ export namespace Components {
     'scale': number;
   }
   interface AsLoader {}
+  interface AsPlaceholder {}
+  interface AsPlaceholderBar {
+    'height': string;
+    'width': string;
+  }
+  interface AsPlaceholderChart {
+    'barWidth': number;
+  }
+  interface AsPlaceholderList {}
   interface AsRangeSlider {
     /**
     * Disables component if truthy
@@ -988,6 +999,12 @@ declare global {
     new (): HTMLAsCategoryWidgetElement;
   };
 
+  interface HTMLAsCategoryWidgetPlaceholderElement extends Components.AsCategoryWidgetPlaceholder, HTMLStencilElement {}
+  var HTMLAsCategoryWidgetPlaceholderElement: {
+    prototype: HTMLAsCategoryWidgetPlaceholderElement;
+    new (): HTMLAsCategoryWidgetPlaceholderElement;
+  };
+
   interface HTMLAsDropdownElement extends Components.AsDropdown, HTMLStencilElement {}
   var HTMLAsDropdownElement: {
     prototype: HTMLAsDropdownElement;
@@ -998,6 +1015,12 @@ declare global {
   var HTMLAsHistogramWidgetElement: {
     prototype: HTMLAsHistogramWidgetElement;
     new (): HTMLAsHistogramWidgetElement;
+  };
+
+  interface HTMLAsHistogramWidgetPlaceholderElement extends Components.AsHistogramWidgetPlaceholder, HTMLStencilElement {}
+  var HTMLAsHistogramWidgetPlaceholderElement: {
+    prototype: HTMLAsHistogramWidgetPlaceholderElement;
+    new (): HTMLAsHistogramWidgetPlaceholderElement;
   };
 
   interface HTMLAsInfowindowElement extends Components.AsInfowindow, HTMLStencilElement {}
@@ -1168,6 +1191,30 @@ declare global {
     new (): HTMLAsLoaderElement;
   };
 
+  interface HTMLAsPlaceholderElement extends Components.AsPlaceholder, HTMLStencilElement {}
+  var HTMLAsPlaceholderElement: {
+    prototype: HTMLAsPlaceholderElement;
+    new (): HTMLAsPlaceholderElement;
+  };
+
+  interface HTMLAsPlaceholderBarElement extends Components.AsPlaceholderBar, HTMLStencilElement {}
+  var HTMLAsPlaceholderBarElement: {
+    prototype: HTMLAsPlaceholderBarElement;
+    new (): HTMLAsPlaceholderBarElement;
+  };
+
+  interface HTMLAsPlaceholderChartElement extends Components.AsPlaceholderChart, HTMLStencilElement {}
+  var HTMLAsPlaceholderChartElement: {
+    prototype: HTMLAsPlaceholderChartElement;
+    new (): HTMLAsPlaceholderChartElement;
+  };
+
+  interface HTMLAsPlaceholderListElement extends Components.AsPlaceholderList, HTMLStencilElement {}
+  var HTMLAsPlaceholderListElement: {
+    prototype: HTMLAsPlaceholderListElement;
+    new (): HTMLAsPlaceholderListElement;
+  };
+
   interface HTMLAsRangeSliderElement extends Components.AsRangeSlider, HTMLStencilElement {}
   var HTMLAsRangeSliderElement: {
     prototype: HTMLAsRangeSliderElement;
@@ -1248,8 +1295,10 @@ declare global {
   interface HTMLElementTagNameMap {
     'as-animation-controls-widget': HTMLAsAnimationControlsWidgetElement;
     'as-category-widget': HTMLAsCategoryWidgetElement;
+    'as-category-widget-placeholder': HTMLAsCategoryWidgetPlaceholderElement;
     'as-dropdown': HTMLAsDropdownElement;
     'as-histogram-widget': HTMLAsHistogramWidgetElement;
+    'as-histogram-widget-placeholder': HTMLAsHistogramWidgetPlaceholderElement;
     'as-infowindow': HTMLAsInfowindowElement;
     'as-legend': HTMLAsLegendElement;
     'as-legend-category': HTMLAsLegendCategoryElement;
@@ -1278,6 +1327,10 @@ declare global {
     'as-legend-size-continuous-line': HTMLAsLegendSizeContinuousLineElement;
     'as-legend-size-continuous-point': HTMLAsLegendSizeContinuousPointElement;
     'as-loader': HTMLAsLoaderElement;
+    'as-placeholder': HTMLAsPlaceholderElement;
+    'as-placeholder-bar': HTMLAsPlaceholderBarElement;
+    'as-placeholder-chart': HTMLAsPlaceholderChartElement;
+    'as-placeholder-list': HTMLAsPlaceholderListElement;
     'as-range-slider': HTMLAsRangeSliderElement;
     'as-range-slider-bar': HTMLAsRangeSliderBarElement;
     'as-range-slider-thumb': HTMLAsRangeSliderThumbElement;
@@ -1447,6 +1500,7 @@ declare namespace LocalJSX {
     */
     'visibleCategories'?: number;
   }
+  interface AsCategoryWidgetPlaceholder extends JSXBase.HTMLAttributes<HTMLAsCategoryWidgetPlaceholderElement> {}
   interface AsDropdown extends JSXBase.HTMLAttributes<HTMLAsDropdownElement> {
     /**
     * Default text to show when no option is selected
@@ -1630,6 +1684,7 @@ declare namespace LocalJSX {
     */
     'yLabel'?: string;
   }
+  interface AsHistogramWidgetPlaceholder extends JSXBase.HTMLAttributes<HTMLAsHistogramWidgetPlaceholderElement> {}
   interface AsInfowindow extends JSXBase.HTMLAttributes<HTMLAsInfowindowElement> {
     'src'?: string;
   }
@@ -1774,6 +1829,15 @@ declare namespace LocalJSX {
     'scale'?: number;
   }
   interface AsLoader extends JSXBase.HTMLAttributes<HTMLAsLoaderElement> {}
+  interface AsPlaceholder extends JSXBase.HTMLAttributes<HTMLAsPlaceholderElement> {}
+  interface AsPlaceholderBar extends JSXBase.HTMLAttributes<HTMLAsPlaceholderBarElement> {
+    'height'?: string;
+    'width'?: string;
+  }
+  interface AsPlaceholderChart extends JSXBase.HTMLAttributes<HTMLAsPlaceholderChartElement> {
+    'barWidth'?: number;
+  }
+  interface AsPlaceholderList extends JSXBase.HTMLAttributes<HTMLAsPlaceholderListElement> {}
   interface AsRangeSlider extends JSXBase.HTMLAttributes<HTMLAsRangeSliderElement> {
     /**
     * Disables component if truthy
@@ -2232,8 +2296,10 @@ declare namespace LocalJSX {
   interface IntrinsicElements {
     'as-animation-controls-widget': AsAnimationControlsWidget;
     'as-category-widget': AsCategoryWidget;
+    'as-category-widget-placeholder': AsCategoryWidgetPlaceholder;
     'as-dropdown': AsDropdown;
     'as-histogram-widget': AsHistogramWidget;
+    'as-histogram-widget-placeholder': AsHistogramWidgetPlaceholder;
     'as-infowindow': AsInfowindow;
     'as-legend': AsLegend;
     'as-legend-category': AsLegendCategory;
@@ -2262,6 +2328,10 @@ declare namespace LocalJSX {
     'as-legend-size-continuous-line': AsLegendSizeContinuousLine;
     'as-legend-size-continuous-point': AsLegendSizeContinuousPoint;
     'as-loader': AsLoader;
+    'as-placeholder': AsPlaceholder;
+    'as-placeholder-bar': AsPlaceholderBar;
+    'as-placeholder-chart': AsPlaceholderChart;
+    'as-placeholder-list': AsPlaceholderList;
     'as-range-slider': AsRangeSlider;
     'as-range-slider-bar': AsRangeSliderBar;
     'as-range-slider-thumb': AsRangeSliderThumb;

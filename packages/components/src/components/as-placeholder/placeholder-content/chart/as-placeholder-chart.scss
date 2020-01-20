@@ -1,0 +1,55 @@
+as-placeholder-chart {
+  display: block;
+  position: relative;
+  height: 150px;
+  min-height: 100%;
+  margin: 16px 0 18px;
+}
+
+.placeholder-chart {
+  display: flex;
+  align-items: flex-end;
+  justify-content: left;
+  height: 100%;
+  padding: 0 10px 6px 30px;
+}
+
+.placeholder-chart__bar {
+  position: relative;
+  height: 100%;
+
+  &:not(:last-child) {
+    padding-right: 1px;
+  }
+
+  &:first-child::after,
+  &:nth-child(6n)::after {
+    content: '';
+    position: absolute;
+    bottom: -22px;
+    width: 6px;
+    height: 8px;
+    background-color: var(--as--color--ui-02, $color-ui-02);
+  }
+}
+
+.placeholder__vaxis {
+  position: absolute;
+  bottom: 2px;
+  left: 8px;
+}
+
+.vaxis-item {
+  height: 8px;
+  margin-top: 30px;
+  background-color: var(--as--color--ui-02, $color-ui-02);
+
+  &.vaxis-item--y {
+    width: 10px;
+  }
+
+  &.vaxis-item--x {
+    width: 6px;
+    margin-left: 4px;
+  }
+}
