@@ -314,7 +314,7 @@ export class HistogramWidget {
   @Watch('data')
   public _onDataChanged(newData, oldData) {
     this.onNewData(newData, oldData);
-    this.firstDataSupplied = Boolean(newData);
+    this.firstDataSupplied = Boolean(newData && newData.length);
   }
 
 
@@ -461,7 +461,7 @@ export class HistogramWidget {
 
   public componentWillLoad() {
     addEventListener('resize', this._resizeRender);
-    this.firstDataSupplied = Boolean(this.data);
+    this.firstDataSupplied = Boolean(this.data && this.data.length);
     this.selectionFooter = this.selectedFormatter(this.selection);
     this._onBackgroundDataChanged(this.backgroundData);
     this.onNewData(this.data, null);

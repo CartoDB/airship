@@ -59,9 +59,10 @@
         { start: 40, end: 50, value: 2000 },
       ];
 
-      // No loading
+      // Empty
       var noDataHistogramWidget = document.getElementById('widget-3');
-      noDataHistogramWidget.data = [];
+      setTimeout(() => { noDataHistogramWidget.data = categories; }, 1500);
+      setTimeout(() => { noDataHistogramWidget.data = []; }, 3000);
     </script>
   </body>
 </html>
