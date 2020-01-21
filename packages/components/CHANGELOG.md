@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.1](https://github.com/CartoDB/airship/compare/v2.2.0...v2.2.1) (2020-01-21)
+
+
+### Bug Fixes
+
+* **components:** Add loading placeholders for widgets ([57802e3](https://github.com/CartoDB/airship/commit/57802e3))
+
+
+
+
+
 # [2.2.0](https://github.com/CartoDB/airship/compare/v2.2.0-rc.2.2...v2.2.0) (2020-01-17)
 
 
