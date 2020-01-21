@@ -19,6 +19,10 @@ as-histogram-widget {
   overflow: auto;
   background: var(--as--histogram-widget--background-color);
 
+  as-widget-header {
+    padding-top: 6px;
+  }
+
   .as-histogram-widget__wrapper {
     display: flex;
     position: relative;

@@ -182,7 +182,7 @@ master ---   A      ---------------------   B  ---------------> C
 
 Use the following script to release a public version.
 
-    npm run publish
+    npm run release
 
 It will install dependencies, run all the tests and let you tweak the version to be released. It will first upload to npm and then to the CDN.
 
