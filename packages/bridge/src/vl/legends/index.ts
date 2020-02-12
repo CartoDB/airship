@@ -137,7 +137,7 @@ interface LegendOptions {
   onLoad?: () => void;
   // Should the legend repaint after layer updates or just initially
   dynamic?: boolean;
-  config?: { othersLabel?: string, samples?: number, variable?: string };
+  config?: { othersLabel?: string, samples?: number, variable?: string, sort?: string };
 }
 
 export default class Legends {
