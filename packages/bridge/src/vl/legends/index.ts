@@ -29,7 +29,7 @@ function _getNumberValue(viz, propName, options: LegendOptions = {}) {
   const prop = viz[propName];
 
   if (prop.expressionName === 'ramp') {
-    return options ? _getLegendData(prop, options) : FALLBACK_WIDTH
+    return options ? _getLegendData(prop, options) : FALLBACK_WIDTH;
   }
 
   if (prop.type === 'number') {
