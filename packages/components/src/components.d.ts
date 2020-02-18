@@ -391,6 +391,9 @@ export namespace Components {
   interface AsInfowindow {
     'src': string;
   }
+  interface AsLayerSelector {
+    'layers': Array<string>;
+  }
   interface AsLegend {
     'description': string;
     'heading': string;
@@ -1029,6 +1032,12 @@ declare global {
     new (): HTMLAsInfowindowElement;
   };
 
+  interface HTMLAsLayerSelectorElement extends Components.AsLayerSelector, HTMLStencilElement {}
+  var HTMLAsLayerSelectorElement: {
+    prototype: HTMLAsLayerSelectorElement;
+    new (): HTMLAsLayerSelectorElement;
+  };
+
   interface HTMLAsLegendElement extends Components.AsLegend, HTMLStencilElement {}
   var HTMLAsLegendElement: {
     prototype: HTMLAsLegendElement;
@@ -1300,6 +1309,7 @@ declare global {
     'as-histogram-widget': HTMLAsHistogramWidgetElement;
     'as-histogram-widget-placeholder': HTMLAsHistogramWidgetPlaceholderElement;
     'as-infowindow': HTMLAsInfowindowElement;
+    'as-layer-selector': HTMLAsLayerSelectorElement;
     'as-legend': HTMLAsLegendElement;
     'as-legend-category': HTMLAsLegendCategoryElement;
     'as-legend-category-line-entry': HTMLAsLegendCategoryLineEntryElement;
@@ -1687,6 +1697,13 @@ declare namespace LocalJSX {
   interface AsHistogramWidgetPlaceholder extends JSXBase.HTMLAttributes<HTMLAsHistogramWidgetPlaceholderElement> {}
   interface AsInfowindow extends JSXBase.HTMLAttributes<HTMLAsInfowindowElement> {
     'src'?: string;
+  }
+  interface AsLayerSelector extends JSXBase.HTMLAttributes<HTMLAsLayerSelectorElement> {
+    'layers'?: Array<string>;
+    /**
+    * This method proxies the toggleLayer event
+    */
+    'onToggleLayer'?: (event: CustomEvent<any>) => void;
   }
   interface AsLegend extends JSXBase.HTMLAttributes<HTMLAsLegendElement> {
     'description'?: string;
@@ -2301,6 +2318,7 @@ declare namespace LocalJSX {
     'as-histogram-widget': AsHistogramWidget;
     'as-histogram-widget-placeholder': AsHistogramWidgetPlaceholder;
     'as-infowindow': AsInfowindow;
+    'as-layer-selector': AsLayerSelector;
     'as-legend': AsLegend;
     'as-legend-category': AsLegendCategory;
     'as-legend-category-line-entry': AsLegendCategoryLineEntry;
