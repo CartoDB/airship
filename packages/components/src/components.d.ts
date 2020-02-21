@@ -392,7 +392,12 @@ export namespace Components {
     'src': string;
   }
   interface AsLayerSelector {
-    'layers': Array<string>;
+    'layersInfo': Array<string>;
+    'mapLayers': Array<string>;
+  }
+  interface AsLayerSelectorSlot {
+    'index': number;
+    'layer': any;
   }
   interface AsLegend {
     'description': string;
@@ -1038,6 +1043,12 @@ declare global {
     new (): HTMLAsLayerSelectorElement;
   };
 
+  interface HTMLAsLayerSelectorSlotElement extends Components.AsLayerSelectorSlot, HTMLStencilElement {}
+  var HTMLAsLayerSelectorSlotElement: {
+    prototype: HTMLAsLayerSelectorSlotElement;
+    new (): HTMLAsLayerSelectorSlotElement;
+  };
+
   interface HTMLAsLegendElement extends Components.AsLegend, HTMLStencilElement {}
   var HTMLAsLegendElement: {
     prototype: HTMLAsLegendElement;
@@ -1310,6 +1321,7 @@ declare global {
     'as-histogram-widget-placeholder': HTMLAsHistogramWidgetPlaceholderElement;
     'as-infowindow': HTMLAsInfowindowElement;
     'as-layer-selector': HTMLAsLayerSelectorElement;
+    'as-layer-selector-slot': HTMLAsLayerSelectorSlotElement;
     'as-legend': HTMLAsLegendElement;
     'as-legend-category': HTMLAsLegendCategoryElement;
     'as-legend-category-line-entry': HTMLAsLegendCategoryLineEntryElement;
@@ -1699,11 +1711,20 @@ declare namespace LocalJSX {
     'src'?: string;
   }
   interface AsLayerSelector extends JSXBase.HTMLAttributes<HTMLAsLayerSelectorElement> {
-    'layers'?: Array<string>;
+    'layersInfo'?: Array<string>;
+    'mapLayers'?: Array<string>;
     /**
     * This method proxies the toggleLayer event
     */
-    'onToggleLayer'?: (event: CustomEvent<any>) => void;
+    'onOnToggleLayer'?: (event: CustomEvent<any>) => void;
+  }
+  interface AsLayerSelectorSlot extends JSXBase.HTMLAttributes<HTMLAsLayerSelectorSlotElement> {
+    'index'?: number;
+    'layer'?: any;
+    /**
+    * This method proxies the toggleLayer event
+    */
+    'onOnToggleCheckbox'?: (event: CustomEvent<any>) => void;
   }
   interface AsLegend extends JSXBase.HTMLAttributes<HTMLAsLegendElement> {
     'description'?: string;
@@ -2319,6 +2340,7 @@ declare namespace LocalJSX {
     'as-histogram-widget-placeholder': AsHistogramWidgetPlaceholder;
     'as-infowindow': AsInfowindow;
     'as-layer-selector': AsLayerSelector;
+    'as-layer-selector-slot': AsLayerSelectorSlot;
     'as-legend': AsLegend;
     'as-legend-category': AsLegendCategory;
     'as-legend-category-line-entry': AsLegendCategoryLineEntry;

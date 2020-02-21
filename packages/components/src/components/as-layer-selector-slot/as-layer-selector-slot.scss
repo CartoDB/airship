@@ -1,0 +1,9 @@
+.as-checkbox-layer-slot {
+  &.as-checkbox-layer-slot--visible {
+    display: block;
+  }
+
+  &.as-checkbox-layer-slot--hidden {
+    display: none;
+  }
+}
