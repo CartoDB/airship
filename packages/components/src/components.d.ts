@@ -1711,9 +1711,6 @@ declare namespace LocalJSX {
   }
   interface AsLayerSelector extends JSXBase.HTMLAttributes<HTMLAsLayerSelectorElement> {
     'layers'?: string[];
-    /**
-    * This method proxies the toggleLayer event
-    */
     'onOnToggleLayer'?: (event: CustomEvent<any>) => void;
   }
   interface AsLayerSelectorSlot extends JSXBase.HTMLAttributes<HTMLAsLayerSelectorSlotElement> {

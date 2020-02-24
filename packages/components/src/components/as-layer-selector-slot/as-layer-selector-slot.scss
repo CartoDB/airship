@@ -1,22 +1,25 @@
-.as-checkbox-layer-slot {
-  &.as-checkbox-layer-slot--visible {
-    display: block;
+as-layer-selector-slot {
+  display: block;
+
+  .as-checkbox-layer-slot {
+    &.as-checkbox-layer-slot--visible {
+      display: block;
+      margin: 12px 0;
+    }
+
+    &.as-checkbox-layer-slot--hidden {
+      display: none;
+    }
+
+    .as-legend--wrapper {
+      padding: var(--as-legend--padding) 0;
+    }
   }
 
-  &.as-checkbox-layer-slot--hidden {
-    display: none;
-  }
-
-  .as-legend--wrapper {
-    padding: var(--as-legend--padding) 0;
-  }
-}
-
-.as-layer-selector-slot--wrapper {
-  padding-bottom: 12px;
-
-  .as-caption {
-    font-size: 16px;
-    line-height: 16px;
+  .as-layer-selector-slot--wrapper {
+    .as-caption {
+      font-size: 16px;
+      line-height: 16px;
+    }
   }
 }
