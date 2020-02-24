@@ -21,9 +21,6 @@ import {
 export class LayerSelector {
   @Prop() public layers: string[] = [];
 
-  /**
-   * This method proxies the toggleLayer event
-   */
   @Event()
   public onToggleLayer: EventEmitter;
 
