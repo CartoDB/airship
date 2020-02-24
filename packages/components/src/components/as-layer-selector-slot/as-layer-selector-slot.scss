@@ -7,3 +7,15 @@
     display: none;
   }
 }
+
+.as-layer-selector-slot--wrapper {
+  padding-bottom: 12px;
+
+  .as-checkbox {
+    margin: 12px 12px 0;
+  }
+
+  .as-caption {
+    font-size: 16px;
+  }
+}
