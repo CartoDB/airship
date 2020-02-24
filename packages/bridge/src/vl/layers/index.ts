@@ -4,7 +4,7 @@ export default class Layers {
   private _layersSelector: any;
   private _carto: any;
   private _layers: any[];
-  private _mapLayers: any[]
+  private _mapLayers: any[];
 
   constructor(layersSelector: any | string, carto: any, layers: any[], mapLayers: any[]) {
     this._layersSelector = select(layersSelector) as any;
@@ -23,6 +23,6 @@ export default class Layers {
 
         layer[toggle]();
       });
-    })
+    });
   }
-};
+}

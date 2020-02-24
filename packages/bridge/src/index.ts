@@ -4,8 +4,8 @@ import VLBridge from './vl/VLBridge';
 
 const VL = {
   Bridge: VLBridge,
-  Legends,
-  Layers
+  Layers,
+  Legends
 };
 
 export {
