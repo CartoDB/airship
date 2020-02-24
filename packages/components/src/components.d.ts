@@ -392,8 +392,7 @@ export namespace Components {
     'src': string;
   }
   interface AsLayerSelector {
-    'layersInfo': Array<string>;
-    'mapLayers': Array<string>;
+    'layers': string[];
   }
   interface AsLayerSelectorSlot {
     'index': number;
@@ -1711,8 +1710,7 @@ declare namespace LocalJSX {
     'src'?: string;
   }
   interface AsLayerSelector extends JSXBase.HTMLAttributes<HTMLAsLayerSelectorElement> {
-    'layersInfo'?: Array<string>;
-    'mapLayers'?: Array<string>;
+    'layers'?: string[];
     /**
     * This method proxies the toggleLayer event
     */

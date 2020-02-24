@@ -6,16 +6,17 @@
   &.as-checkbox-layer-slot--hidden {
     display: none;
   }
+
+  .as-legend--wrapper {
+    padding: var(--as-legend--padding) 0;
+  }
 }
 
 .as-layer-selector-slot--wrapper {
   padding-bottom: 12px;
 
-  .as-checkbox {
-    margin: 12px 12px 0;
-  }
-
   .as-caption {
     font-size: 16px;
+    line-height: 16px;
   }
 }

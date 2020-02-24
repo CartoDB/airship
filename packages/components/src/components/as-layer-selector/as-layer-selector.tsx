@@ -1,18 +1,25 @@
-import { Component, h, Prop, Event, EventEmitter, Listen } from '@stencil/core';
+import {
+  Component,
+  Event,
+  EventEmitter,
+  h,
+  Listen,
+  Prop
+} from '@stencil/core';
 
 /**
- * Category Widget
+ * Layer Selector
  *
  * @export
  * @class LayerSelector
  */
 @Component({
   shadow: false,
+  styleUrl: './as-layer-selector.scss',
   tag: 'as-layer-selector'
 })
 export class LayerSelector {
-  @Prop() public mapLayers: Array<string> = [];
-  @Prop() public layersInfo: Array<string> = [];
+  @Prop() public layers: string[] = [];
 
   /**
    * This method proxies the toggleLayer event
@@ -21,14 +28,14 @@ export class LayerSelector {
   public onToggleLayer: EventEmitter;
 
   @Listen('onToggleCheckbox')
-  protected onToggleCheckbox(evt: any) {
+  public onToggleCheckbox(evt: any) {
     this.onToggleLayer.emit(evt.detail);
   }
 
   public render() {
     return (
       <div class='as-layer-selector--wrapper'>
-        {this.layersInfo.map(this._renderCheckbox.bind(this))}
+        {this.layers.map(this._renderCheckbox.bind(this))}
       </div>
     );
   }

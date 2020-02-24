@@ -1,4 +1,11 @@
-import { Component, h, Prop, Event, EventEmitter, State } from '@stencil/core';
+import {
+  Component,
+  Event,
+  EventEmitter,
+  h,
+  Prop,
+  State
+} from '@stencil/core';
 
 /**
  * Layer Selector Slot
@@ -14,7 +21,7 @@ import { Component, h, Prop, Event, EventEmitter, State } from '@stencil/core';
 export class LayerSelectorSlot {
   @Prop() public layer: any;
   @Prop() public index: number;
-  @State() visible: boolean = true;
+  @State() public visible: boolean = true;
 
   /**
    * This method proxies the toggleLayer event
@@ -22,12 +29,7 @@ export class LayerSelectorSlot {
   @Event()
   public onToggleCheckbox: EventEmitter;
 
-  private _onChange(index: string, event: any) {
-    this.toggleCheckbox();
-    this.onToggleCheckbox.emit({ event, index });
-  }
-
-  protected toggleCheckbox() {
+  public toggleCheckbox() {
     this.visible = !this.visible;
   }
 
@@ -58,5 +60,10 @@ export class LayerSelectorSlot {
         </div>
       </div>
     );
+  }
+
+  private _onChange(index: string, event: any) {
+    this.toggleCheckbox();
+    this.onToggleCheckbox.emit({ event, index });
   }
 }
