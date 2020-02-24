@@ -5,17 +5,17 @@ import { waitUntilLoaded } from '../utils/layers';
 const FALLBACK_WIDTH = 16;
 const FALLBACK_COLOR = '#000';
 
-function _getLegendData(ramp) {
-  const legendData = ramp.getLegendData();
+function _getLegendData(ramp, options: LegendOptions = {}) {
+  const legendData = ramp.getLegendData(options.config);
   const index = Math.floor(legendData.data.length / 2);
   return legendData.data[index].value;
 }
 
-function _getColorValue(viz, propName) {
+function _getColorValue(viz, propName, options: LegendOptions = {}) {
   const prop = viz[propName];
 
   if (prop.expressionName === 'ramp' || prop.expressionName === 'opacity') {
-    return rgbaToString(_getLegendData(prop));
+    return rgbaToString(_getLegendData(prop, options));
   }
 
   if (prop.type === 'color') {
@@ -25,27 +25,27 @@ function _getColorValue(viz, propName) {
   return FALLBACK_COLOR;
 }
 
-function _getNumberValue(viz, propName, defaultValue?) {
+function _getNumberValue(viz, propName, options: LegendOptions = {}) {
   const prop = viz[propName];
 
   if (prop.expressionName === 'ramp') {
-    return defaultValue || _getLegendData(prop);
+    return options ? _getLegendData(prop, options) : FALLBACK_WIDTH;
   }
 
   if (prop.type === 'number') {
     return prop.value;
   }
 
-  return defaultValue;
+  return FALLBACK_WIDTH;
 }
 
-function _getSymbolValue(viz, value = null) {
+function _getSymbolValue(viz, value = null, options: LegendOptions = {}) {
   const prop = value && viz.variables[value]
     ? viz.variables[value]
     : viz.symbol;
 
   if (prop.expressionName === 'ramp') {
-    return _getLegendData(prop);
+    return _getLegendData(prop, options);
   }
 
   return prop.value;
@@ -55,7 +55,7 @@ function _getSymbolValue(viz, value = null) {
  * Get Airship Legends Style object from a VL Layer's Viz
  * @param layerWithProps An object with: layer and props properties.
  */
-function _styleFromLayer(layerWithProps) {
+function _styleFromLayer(layerWithProps, options) {
   const { layer, props } = layerWithProps;
   const viz = layer.viz;
 
@@ -64,13 +64,13 @@ function _styleFromLayer(layerWithProps) {
   }
 
   return {
-    color: _getColorValue(viz, 'color'),
+    color: _getColorValue(viz, 'color', options),
     label: props.label,
-    marker: viz.symbol.default ? undefined : _getSymbolValue(viz),
-    strokeColor: _getColorValue(viz, 'strokeColor'),
-    strokeStyle: _getNumberValue(viz, 'strokeWidth') === 0 ? 'hidden' : undefined,
+    marker: viz.symbol.default ? undefined : _getSymbolValue(viz, options),
+    strokeColor: _getColorValue(viz, 'strokeColor', options),
+    strokeStyle: _getNumberValue(viz, 'strokeWidth', options) === 0 ? 'hidden' : undefined,
     type: layer.metadata.geomType,
-    width: _getNumberValue(viz, 'width', FALLBACK_WIDTH),
+    width: _getNumberValue(viz, 'width', options),
     ...props
   };
 }
@@ -137,7 +137,7 @@ interface LegendOptions {
   onLoad?: () => void;
   // Should the legend repaint after layer updates or just initially
   dynamic?: boolean;
-  config?: { othersLabel?: string, samples?: number, variable?: string };
+  config?: { othersLabel?: string, samples?: number, variable?: string, order?: string };
 }
 
 export default class Legends {
@@ -147,7 +147,7 @@ export default class Legends {
 
     parsedLayers.forEach((layerWithOpts, index, arr) => {
       waitUntilLoaded(layerWithOpts.layer, () => {
-        const data = parsedLayers.map(_styleFromLayer);
+        const data = parsedLayers.map(_styleFromLayer.bind(this, options));
 
         if (options.format) {
           data.label = options.format(data.label, index, arr);
@@ -170,7 +170,7 @@ export default class Legends {
     const parsedLayer = _parseLayer(layer);
 
     waitUntilLoaded(parsedLayer.layer, () => {
-      const baseStyle = _styleFromLayer(parsedLayer);
+      const baseStyle = _styleFromLayer(parsedLayer, options);
       const vizProp = parsedLayer.layer.viz[prop];
       const config = options.config;
       const dataProp = options.config.variable || prop;

@@ -485,7 +485,10 @@ export default class VLBridge {
 
     // Update the Visualization filter
     this._layer.viz.filter.blendTo(newFilter, 0);
-    this._animation.restart();
+
+    if (this._animation) {
+      this._animation.restart();
+    }
   }
 
   private _combineFilters(filters) {
