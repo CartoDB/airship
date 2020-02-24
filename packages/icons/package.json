@@ -1,6 +1,6 @@
 {
   "name": "@carto/airship-icons",
-  "version": "2.2.1",
+  "version": "2.3.0",
   "description": "Airship is a set of tools designed to facilitate the development of location intelligence apps by offering layouts, basic patterns, templates, CSS classes, components, widgets and much more.",
   "files": [
     "dist/"
