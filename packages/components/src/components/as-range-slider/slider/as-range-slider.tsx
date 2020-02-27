@@ -1,4 +1,4 @@
-import { Component, Event, EventEmitter, h, Prop, State, Watch } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, h, Prop, State, Watch } from '@stencil/core';
 import getDecimalPlaces from '../../../utils/get-decimal-places';
 import { Thumb } from '../thumb/interfaces';
 
@@ -103,8 +103,12 @@ export class RangeSlider {
   @Event() public changeStart: EventEmitter<number[]>;
   @Event() public changeEnd: EventEmitter<number[]>;
 
-  @State() private thumbs: Thumb[] = [];
+  @Element() public element: HTMLElement;
 
+  @State() private thumbs: Thumb[] = [];
+  @State() private areLabelsColliding: boolean;
+  @State() private isLeftLabelOverflowing: boolean;
+  @State() private isRightLabelOverflowing: boolean;
 
   @Watch('value')
   public validateValue(newValue: number) {
@@ -132,6 +136,14 @@ export class RangeSlider {
     this._updateThumbs();
   }
 
+  public componentDidRender() {
+    this._checkLabelOverflow();
+  }
+
+  public componentDidLoad() {
+    this.checkThumbCollision();
+  }
+
   public render() {
     if (this.thumbs.length < 1) {
       return;
@@ -147,9 +159,15 @@ export class RangeSlider {
         <div class='as-range-slider__rail'>
           {this.thumbs.map((thumb) => this._renderThumb(thumb))}
           {this._renderRangeBar()}
+          {this._renderCollapsedLabel()}
         </div>
       </div>
     );
+  }
+
+  private _getLabelOffsetPercentage() {
+    const difference = this.thumbs[1].percentage - this.thumbs[0].percentage;
+    return this.thumbs[0].percentage + (difference / 2);
   }
 
   private _updateThumbs() {
@@ -165,12 +183,13 @@ export class RangeSlider {
         percentage={thumb.percentage}
         disabled={this.disabled}
         formatValue={this.formatValue}
-        showCaption={this.showThumbCaption}
+        showCaption={this._shouldShowCaption()}
         onThumbMove={(event) => this._onThumbMove(thumb, event.detail)}
         onThumbIncrease={() => this._onKeyboardThumbMove(thumb, +1)}
         onThumbDecrease={() => this._onKeyboardThumbMove(thumb, -1)}
         onThumbChangeStart={() => this._emitChangeIn(this.changeStart)}
-        onThumbChangeEnd={() => this._emitChangeIn(this.changeEnd)}>
+        onThumbChangeEnd={() => this._emitChangeIn(this.changeEnd)}
+        onThumbRender={() => this.checkThumbCollision()}>
       </as-range-slider-thumb>;
     }
   }
@@ -189,10 +208,47 @@ export class RangeSlider {
              onBarMove={(event) => this._onBarMove(event)}></as-range-slider-bar>;
   }
 
+  private _renderCollapsedLabel() {
+    if (this.thumbs.length !== 2) {
+      return;
+    }
+
+    const defaultFormatValue = (value: string | number) => value;
+    const formatValue = this.formatValue || defaultFormatValue;
+
+    const labelOffsetPercentage = this._getLabelOffsetPercentage();
+    const thumbsBalancedLeft = this.thumbs[0].percentage < 50;
+
+    const positionStyles = {
+      left: `${labelOffsetPercentage}%`
+    };
+
+    const classes = {
+      'as-caption': true,
+      'as-font-medium': true,
+      'as-range-slider__rail-label': true,
+      'as-range-slider__rail-label--active': this.areLabelsColliding,
+      'as-range-slider__rail-label__overflow--left': this.isLeftLabelOverflowing && thumbsBalancedLeft,
+      'as-range-slider__rail-label__overflow--right': this.isRightLabelOverflowing && !thumbsBalancedLeft
+    };
+
+    return (
+      <div class={classes} style={positionStyles}>
+        {formatValue(this.thumbs[0].value)}
+        <span class='as-range-slider__label-separator'>&mdash;</span>
+        {formatValue(this.thumbs[1].value)}
+      </div>
+    );
+  }
+
   private _getCurrentThumbPercentages() {
     const firstThumbPercentage = this._sliderHasRange() ? this.thumbs[0].percentage : 0;
     const lastThumbPercentage = this.thumbs[this.thumbs.length - 1].percentage;
     return [firstThumbPercentage, lastThumbPercentage];
+  }
+
+  private _shouldShowCaption() {
+    return !this.areLabelsColliding && this.showThumbCaption;
   }
 
   private _validateValues() {
@@ -219,7 +275,7 @@ export class RangeSlider {
     return thumbs;
   }
 
-  private _getThumbData(value) {
+  private _getThumbData(value: number) {
     return {
       percentage: this._isBetweenValidValues(value) ?
         this._getPercentage(value)
@@ -336,4 +392,68 @@ export class RangeSlider {
   private roundToStep(numberToRound: number, step: number) {
     return Number.parseFloat(numberToRound.toFixed(getDecimalPlaces(step)));
   }
+
+  private _checkLabelOverflow() {
+    const thumbLabels = this.element.querySelectorAll('as-range-slider-thumb .as-range-slider__value');
+
+    if (thumbLabels) {
+      const { overflow: leftLabelOverflows } = this.checkOverflowInParentContainer(
+        thumbLabels[0] as HTMLElement
+      );
+
+      const { overflow: rightLabelOverflows } = (thumbLabels.length > 1)
+        ? this.checkOverflowInParentContainer(thumbLabels[1] as HTMLElement)
+        : { overflow: false };
+
+      this.isLeftLabelOverflowing = leftLabelOverflows;
+      this.isRightLabelOverflowing = rightLabelOverflows;
+    }
+  }
+
+  private checkThumbCollision() {
+    const thumbLabels = this.element.querySelectorAll('as-range-slider-thumb .as-range-slider__value');
+    if (!thumbLabels || thumbLabels.length !== 2) {
+      return;
+    }
+
+    const leftThumbLabel = thumbLabels[0];
+    const rightThumbLabel = thumbLabels[1];
+
+    const leftThumbLabelCR = leftThumbLabel.getBoundingClientRect();
+    const rightThumbLabelCR = rightThumbLabel.getBoundingClientRect();
+
+    this.areLabelsColliding = isColliding(leftThumbLabelCR, rightThumbLabelCR, 8);
+  }
+
+  private checkOverflowInParentContainer(labelElement: HTMLElement) {
+    if (labelElement) {
+      const containerElement = this.element.parentElement;
+      const containerBCR = containerElement.getBoundingClientRect();
+      const labelBCR = labelElement.getBoundingClientRect();
+
+      const isOverflowingLeft = containerBCR.left > labelBCR.left;
+      const isOverflowingRight = containerBCR.right < labelBCR.left + labelBCR.width;
+
+      return {
+        left: isOverflowingLeft,
+        overflow: isOverflowingLeft || isOverflowingRight,
+        right: isOverflowingRight
+      };
+    }
+
+    return {
+      left: false,
+      overflow: false,
+      right: false
+    };
+  }
+}
+
+function isColliding(a, b, margin: number) {
+  return !(
+    ((a.y + a.height) < (b.y)) ||
+    (a.y > (b.y + b.height)) ||
+    ((a.x + a.width + margin) < b.x) ||
+    (a.x > (b.x + b.width + margin))
+  );
 }

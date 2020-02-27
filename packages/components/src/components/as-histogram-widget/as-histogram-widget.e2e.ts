@@ -19,6 +19,29 @@ describe('as-histogram-widget', () => {
       expect(actual).toBeFalsy();
     });
 
+    it('should render loading when data is not present yet', async () => {
+      const element: E2EElement = await page.find('as-histogram-widget');
+      element.setProperty('heading', 'Category Widget Example');
+
+      await page.waitForChanges();
+
+      const placeholderElement = await element.find('as-placeholder');
+      expect(placeholderElement).toBeDefined();
+    });
+
+    it('should render empty state when data is empty', async () => {
+      const element: E2EElement = await page.find('as-histogram-widget');
+      element.setProperty('heading', 'Category Widget Example');
+
+      element.setProperty('data', histogramData);
+      await page.waitForChanges();
+
+      element.setProperty('data', []);
+      await page.waitForChanges();
+
+      expect(element.outerHTML).toMatchSnapshot();
+    });
+
     it('should never render clear button when the showClear attribute is false', async () => {
       const element: E2EElement = await page.find('as-histogram-widget');
       element.setProperty('showClear', false);

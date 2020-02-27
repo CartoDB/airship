@@ -1,6 +1,6 @@
 {
   "name": "@carto/airship-components",
-  "version": "2.2.0-rc.2",
+  "version": "2.3.0",
   "description": "Airship is a set of tools designed to facilitate the development of location intelligence apps by offering layouts, basic patterns, templates, CSS classes, components, widgets and much more.",
   "module": "dist/index.mjs",
   "main": "dist/index.js",
@@ -25,21 +25,20 @@
     "test:e2e:watch": "npm run build &&  stencil test --e2e --watch"
   },
   "devDependencies": {
-    "@stencil/core": "^1.1.0",
+    "@stencil/core": "1.3.3",
     "@stencil/sass": "^1.0.0",
     "@types/d3": "5.0.1",
     "@types/jest": "24.0.15",
-    "@types/puppeteer": "1.12.4",
+    "@types/puppeteer": "1.19.1",
     "conventional-changelog-cli": "^2.0.1",
     "jest": "24.8.0",
     "jest-cli": "24.8.0",
     "jest-environment-node": "23.4.0",
-    "puppeteer": "1.17.0",
+    "puppeteer": "1.19.0",
     "stylelint": "^9.3.0",
     "stylelint-config-property-sort-order-smacss": "^4.0.0",
     "stylelint-config-standard": "^18.2.0",
-    "tslint": "^5.11.0",
-    "typescript": "^3.1.6"
+    "tslint": "^5.11.0"
   },
   "repository": {
     "type": "git",
@@ -57,9 +56,9 @@
   "dependencies": {
     "d3-array": "1.2.1",
     "d3-axis": "1.0.8",
-    "d3-brush": "1.0.4",
+    "d3-brush": "1.1.4",
     "d3-format": "1.3.2",
-    "d3-scale": "2.1.0",
+    "d3-scale": "2.2.0",
     "d3-scale-chromatic": "1.3.3",
     "d3-selection": "1.3.0",
     "d3-time-format": "2.1.3",

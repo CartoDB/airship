@@ -46,9 +46,7 @@
       description="Description"></as-category-widget>
 
     <script>
-      var categoryWidget = document.querySelector('#widget-0');
-      categoryWidget.showClearButton = true;
-      categoryWidget.categories = [
+      var categories = [
         { name: 'Bars & Restaurants', value: 1000, color: '#FABADA' },
         { name: 'Fashion', value: 900 },
         { name: 'Grocery', value: 800 },
@@ -56,6 +54,15 @@
         { name: 'Shopping mall', value: 250 },
         { name: 'Transportation', value: 650 }
       ];
+
+      var categoryWidget = document.querySelector('#widget-0');
+      categoryWidget.showClearButton = true;
+      categoryWidget.categories = categories;
+
+      // Empty widget
+      var noDataCategoryWidget = document.getElementById('widget-3');
+      setTimeout(() => { noDataCategoryWidget.categories = categories; }, 1500);
+      setTimeout(() => { noDataCategoryWidget.categories = []; }, 3000);
     </script>
   </body>
 </html>

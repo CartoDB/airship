@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.1](https://github.com/CartoDB/airship/compare/v2.2.0...v2.2.1) (2020-01-21)
+
+
+### Bug Fixes
+
+* **components:** Add loading placeholders for widgets ([57802e3](https://github.com/CartoDB/airship/commit/57802e3))
+
+
+
+
+
+# [2.2.0](https://github.com/CartoDB/airship/compare/v2.2.0-rc.2.2...v2.2.0) (2020-01-17)
+
+
+### Bug Fixes
+
+* update dependencies to fix vulnerabilities ([13e7c90](https://github.com/CartoDB/airship/commit/13e7c90))
+
+
+
+
+
+## [2.1.1](https://github.com/CartoDB/airship/compare/v2.1.0...v2.1.1) (2019-07-30)
+
+
+### Bug Fixes
+
+* **docs:** Fix infowindows CSS variables documentation ([bd3b73e](https://github.com/CartoDB/airship/commit/bd3b73e))
+
+
+
+
+
 <a name="2.1.0"></a>
 # [2.1.0](https://github.com/CartoDB/airship/compare/v2.0.5...v2.1.0) (2019-06-18)
 

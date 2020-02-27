@@ -20,12 +20,17 @@ export class RangeSliderThumb {
   @Event() public thumbChangeEnd: EventEmitter<void>;
   @Event() public thumbIncrease: EventEmitter<number>;
   @Event() public thumbDecrease: EventEmitter<number>;
+  @Event() public thumbRender: EventEmitter<void>;
 
 
   @Element() public element: HTMLElement;
   public railElement: HTMLElement;
   public thumbValue: HTMLElement;
   public railBoundingClientRect: ClientRect | DOMRect;
+
+  public componentDidRender() {
+    this.thumbRender.emit();
+  }
 
   public render() {
     const thumbStyles = {
@@ -58,11 +63,6 @@ export class RangeSliderThumb {
 
     const thumb = event.target as HTMLElement;
     thumb.classList.add('as-range-slider__thumb-handle--moving');
-
-    if (this.showCaption) {
-      this.thumbValue = thumb.parentElement.querySelector('.as-range-slider__value');
-      this.thumbValue.classList.add('as-range-slider__value--moving');
-    }
 
     this.railBoundingClientRect = this.railElement.getBoundingClientRect();
 
@@ -133,9 +133,6 @@ export class RangeSliderThumb {
 
   private _onRelease(thumb: HTMLElement) {
     thumb.classList.remove('as-range-slider__thumb-handle--moving');
-    if (this.showCaption) {
-      this.thumbValue.classList.remove('as-range-slider__value--moving');
-    }
 
     this.setCursorTo('');
 
@@ -148,13 +145,14 @@ export class RangeSliderThumb {
       'as-font-medium': true,
       'as-range-slider__value': true,
       'as-range-slider__value--disabled': this.disabled,
+      'as-range-slider__value--hidden': !this.showCaption,
     };
 
-    if (this.showCaption) {
-      return <span class={cssValueClasses}>
+    return (
+      <span class={cssValueClasses}>
         {this._getDisplayValue(this.value)}
-      </span>;
-    }
+      </span>
+    );
   }
 
   private _getDisplayValue(value: number) {

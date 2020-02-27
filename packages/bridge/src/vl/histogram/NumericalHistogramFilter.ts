@@ -76,7 +76,7 @@ export class NumericalHistogramFilter extends BaseHistogramFilter<Array<number |
     const min = minN instanceof Date ? `date('${minN.toISOString()}')` : minN;
     const max = maxN instanceof Date ? `date('${maxN.toISOString()}')` : maxN;
 
-    return `(@${this.columnPropName} >= ${min} and @${this.columnPropName} < ${max})`;
+    return `(@${this.columnPropName} >= ${min} and @${this.columnPropName} <= ${max})`;
   }
 
   /**
@@ -158,7 +158,7 @@ export class NumericalHistogramFilter extends BaseHistogramFilter<Array<number |
         }
       }
 
-      const newHistogram = (this._dataLayer.viz.variables[this.name] as VLNumericalHistogram);
+      const newHistogram = this._dataLayer.viz.variables[this.name] as VLNumericalHistogram;
 
       if (!newHistogram) {
         return;

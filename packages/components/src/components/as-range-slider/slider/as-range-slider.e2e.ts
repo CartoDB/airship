@@ -41,6 +41,36 @@ describe('as-range-slider', () => {
       expect(element.outerHTML).toMatchSnapshot();
     });
 
+    it('should show collapsed range label when labels collapse', async () => {
+      const element = await page.find('as-range-slider');
+      element.setProperty('minValue', 1000);
+      element.setProperty('maxValue', 2000);
+      element.setProperty('range', [1510, 1512]);
+      await page.waitForChanges();
+
+      expect(element.outerHTML).toMatchSnapshot();
+    });
+
+    it('should set ".as-range-slider__rail-label__overflow--left" when range label overlaps left edge', async () => {
+      const element = await page.find('as-range-slider');
+      element.setProperty('minValue', 1000);
+      element.setProperty('maxValue', 2000);
+      element.setProperty('range', [1000, 1002]);
+      await page.waitForChanges();
+
+      expect(element.outerHTML).toMatchSnapshot();
+    });
+
+    it('should set ".as-range-slider__rail-label__overflow--right" when range label overlaps right edge', async () => {
+      const element = await page.find('as-range-slider');
+      element.setProperty('minValue', 1000);
+      element.setProperty('maxValue', 2000);
+      element.setProperty('range', [1998, 2000]);
+      await page.waitForChanges();
+
+      expect(element.outerHTML).toMatchSnapshot();
+    });
+
     it('can be rendered disabled', async () => {
       const element = await page.find('as-range-slider');
       element.setProperty('disabled', true);
