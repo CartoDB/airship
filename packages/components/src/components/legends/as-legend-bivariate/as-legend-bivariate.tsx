@@ -1,6 +1,8 @@
 import { Component, Element, h, Prop } from '@stencil/core';
 import { renderBivariateGraph } from './utils/draw.service';
 
+const SIZE = 100;
+const SHAPE_SIZE = 80;
 
 @Component({
   shadow: false,
@@ -8,28 +10,33 @@ import { renderBivariateGraph } from './utils/draw.service';
   tag: 'as-legend-bivariate',
 })
 export class LegendBivariate {
-  @Prop() public data: LegendData[];
-  @Element() private el: HTMLAsLegendBivariateElement;
+  @Prop() public colors: LegendData[];
+  @Prop() public numQuantiles: number = 3;
+  @Prop() public labelX: string = 'x';
+  @Prop() public labelY: string = 'y';
+  @Element() private element: HTMLElement;
+
+  public get elementId() {
+    return `#${this.element.id} > .as-legend-bivariate--wrapper`;
+  }
 
   public render() {
-    if (!this.data || this.data.length === 0) {
-      return null;
-    }
-
     return <div class='as-legend-bivariate--wrapper'></div>;
   }
 
-  public componentDidLoad() {
-    console.log('!!! data', this.data);
-    const colors = [];
-    const data = {
-      x: [],
-      y: []
-    };
-    const width = 100;
-    const height = 100;
-    const margin = { top: 30, right: 30, bottom: 30, left: 30 };
+  public componentDidRender() {
+    if (!this.colors || this.colors.length === 0) {
+      return null;
+    }
 
-    renderBivariateGraph(this.el, width, height, margin, data, colors);
+    renderBivariateGraph(
+      this.elementId,
+      SIZE,
+      SHAPE_SIZE,
+      this.numQuantiles,
+      this.labelX,
+      this.labelY,
+      this.colors
+    );
   }
 }

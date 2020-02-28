@@ -1,64 +1,60 @@
-import { axisBottom, axisLeft } from 'd3-axis';
-import { scaleBand } from 'd3-scale';
+import { select } from 'd3-selection';
 
-export function xScaleBand(width, data) {
-  return scaleBand()
-    .range([ 0, width ])
-    .domain(data)
-    .padding(0.01);
-}
-
-export function yScaleBand(height, data) {
-  return scaleBand()
-    .range([ height, 0 ])
-    .domain(data)
-    .padding(0.01);
-
-}
-
-export function renderXBottom(svg, width, height, data) {
-  const x = xScaleBand(width, data);
-
-  return svg
-    .append('g')
-    .attr('transform', `translate(0, '${height}')`)
-    .call(axisBottom(x));
-}
-
-export function renderYLeft(svg, height, data) {
-  const y = yScaleBand(height, data);
-
-  return svg
-    .append('g')
-    .call(axisLeft(y));
-}
-
-export function renderBivariateContainer(container, margin, width, height) {
+export function renderBivariateContainer(container, shapeSize) {
   return container
-    .append('svg')
-    .attr('width', width + margin.left + margin.right)
-    .attr('height', height + margin.top + margin.bottom)
     .append('g')
-    .attr('transform', `translate(${margin.left}, ${margin.top})`);
+    .attr('viewBox', `0 0 ${shapeSize} ${shapeSize}`);
 }
 
-export function renderBivariateGraph(container, width, height, margin, data, colors) {
-  const svg = renderBivariateContainer(container, width, height, margin);
-  const xData = data.x;
-  const yData = data.y;
-  const x = renderXBottom(svg, width, height, xData);
-  const y = renderYLeft(svg, height, yData);
+export function renderBivariateGraph(id, size, shapeSize, numElems, labelX, labelY, colors) {
+  if (colors) {
+    const svg = select(id).append('svg').attr('viewBox', `0 0 ${size} ${size}`);
+    const bivariateGraph = renderBivariateContainer(svg, shapeSize);
 
-  return svg
-    .selectAll()
-    .data(data, (d) => +`${d.group}:${d.variable}`)
-    .enter()
-    .append('rect')
-    .attr('x', (d) => x(d.group) )
-    .attr('y', (d) => y(d.variable))
-    .attr('width', x.bandwidth() )
-    .attr('height', y.bandwidth() )
-    .style('fill', (d) => colors(d.value));
+    const SIDE = shapeSize / numElems;
+
+    // BIVARIATE MATRIX
+    colors.forEach((color, index) => {
+      const TRANSLATE_X = (index % numElems) * SIDE;
+      const TRANSLATE_Y = Math.floor(index / numElems) * SIDE;
+
+      bivariateGraph
+        .append('rect')
+        .attr('class', 'square')
+        .attr('width', SIDE)
+        .attr('height', SIDE)
+        .attr('transform', `translate(${TRANSLATE_Y}, ${TRANSLATE_X})`)
+        .style('fill', color);
+    });
+
+    // ROTATE MATRIX
+    bivariateGraph
+      .attr('transform', `rotate(-90) translate(-${shapeSize}, 0)`);
+
+    // X LABEL
+    svg
+      .append('text')
+      .attr('dy', 12)
+      .attr('x', SIDE * (numElems/2))
+      .attr('y', shapeSize)
+      .attr('width', '100%')
+      .style('font', '8px sans-serif')
+      .style('text-anchor', 'middle')
+      .text(labelX);
+
+    // Y LABEL
+    svg
+      .append('text')
+      .attr('dy', 12)
+      .attr('x', SIDE * (numElems/2) - shapeSize)
+      .attr('y', shapeSize)
+      .style('font', '8px sans-serif')
+      .style('text-anchor', 'middle')
+      .attr('transform', 'rotate(-90)')
+      .text(labelY)
+
+    return svg;
+  }
 }
 
 export default {

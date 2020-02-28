@@ -205,4 +205,19 @@ export default class Legends {
 
     }, options.dynamic);
   }
+
+  public static bivariateLegend(widget, layer, options: LegendOptions = {}) {
+    widget = select(widget);
+    const parsedLayer = _parseLayer(layer);
+
+    waitUntilLoaded(parsedLayer.layer, () => {
+      const legends = parsedLayer.layer.viz.color.getLegendData();
+      const colors = legends.data.map((legend) => rgbToHex(legend.value));
+
+      widget.colors = colors;
+      widget.labelX = parsedLayer.props.labelX;
+      widget.labelY = parsedLayer.props.labelY;
+      widget.numQuantiles = parsedLayer.props.numQuantiles;
+    }, options.dynamic);
+  }
 }

@@ -404,7 +404,10 @@ export namespace Components {
     'loading': boolean;
   }
   interface AsLegendBivariate {
-    'data': LegendData[];
+    'colors': LegendData[];
+    'labelX': string;
+    'labelY': string;
+    'numQuantiles': number;
   }
   interface AsLegendCategory {
     'data': LegendData[];
@@ -1737,7 +1740,10 @@ declare namespace LocalJSX {
     'loading'?: boolean;
   }
   interface AsLegendBivariate extends JSXBase.HTMLAttributes<HTMLAsLegendBivariateElement> {
-    'data'?: LegendData[];
+    'colors'?: LegendData[];
+    'labelX'?: string;
+    'labelY'?: string;
+    'numQuantiles'?: number;
   }
   interface AsLegendCategory extends JSXBase.HTMLAttributes<HTMLAsLegendCategoryElement> {
     'data'?: LegendData[];
