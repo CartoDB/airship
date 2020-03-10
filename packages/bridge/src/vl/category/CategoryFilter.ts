@@ -67,7 +67,7 @@ export class CategoryFilter extends BaseFilter {
   public setDataLayer(layer: any) {
     this._dataLayer = layer;
 
-    this._dataLayer.on('updated', () => {
+    this._dataLayer.on('loaded', () => {
       const newHistogram = (this._dataLayer.viz.variables[this.name] as VLCategoricalHistogram);
       if (!newHistogram) {
         return;
