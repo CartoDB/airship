@@ -289,8 +289,8 @@ export default class VLBridge {
       bucketRanges,
       buckets,
       readOnly,
-      weight,
-      totals
+      totals,
+      weight
     });
 
     histogram.setTimeSeries(true);
