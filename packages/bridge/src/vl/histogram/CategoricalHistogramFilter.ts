@@ -26,6 +26,7 @@ export class CategoricalHistogramFilter extends BaseHistogramFilter<string[]> {
    * @param {string} columnName The column to pull data from
    * @param {*} source CARTO VL source
    * @param {boolean} [readOnly=true] Whether this histogram allows filtering or not
+   * @param {weight} weight Value to weight by
    * @param {object} [inputExpression=null] VL Expression to use instead of s.prop for the histogram input
    * @memberof CategoricalHistogramFilter
    */
@@ -36,10 +37,11 @@ export class CategoricalHistogramFilter extends BaseHistogramFilter<string[]> {
     columnName: string,
     source: any,
     readOnly: boolean = true,
+    weight: number | string,
     showTotals: boolean = false,
     inputExpression: object = null
   ) {
-    super('categorical', carto, layer, histogram, columnName, source, readOnly, showTotals, inputExpression);
+    super('categorical', carto, layer, histogram, columnName, source, readOnly, weight, showTotals, inputExpression);
   }
 
   /**
@@ -67,7 +69,7 @@ export class CategoricalHistogramFilter extends BaseHistogramFilter<string[]> {
   public get expression(): any {
     const s = this._carto.expressions;
 
-    return s.viewportHistogram(this._inputExpression ? this._inputExpression : s.prop(this._column));
+    return s.viewportHistogram(this._inputExpression ? this._inputExpression : s.prop(this._column), this._weight);
   }
 
   public get globalExpression(): any {
@@ -76,7 +78,7 @@ export class CategoricalHistogramFilter extends BaseHistogramFilter<string[]> {
     }
 
     const s = this._carto.expressions;
-    return s.globalHistogram(this._inputExpression ? this._inputExpression : s.prop(this._column));
+    return s.globalHistogram(this._inputExpression ? this._inputExpression : s.prop(this._column), this._weight);
   }
 
   protected bindDataLayer()  {

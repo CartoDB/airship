@@ -20,6 +20,7 @@ export abstract class BaseFilter {
   protected _legendData: LegendEntry[];
   protected _mapColors: boolean;
   protected _widget: any;
+  protected _weight: number | string;
   private _readOnly: boolean;
   private _name: string;
 
@@ -32,7 +33,9 @@ export abstract class BaseFilter {
    * @param {boolean} [readOnly=true] Whether this filter should be read only or not
    * @memberof BaseFilter
    */
-  constructor(type: string, column: string, layer: any, source: any, readOnly: boolean = true) {
+  constructor(type: string, carto: any, column: string, layer: any, source: any, readOnly: boolean = true, weight: number | string = 1) {
+    const s = carto.expressions;
+
     this._emitter = mitt();
 
     this._name = `asbind_${type}_${column}_${BaseFilter._counter}`;
@@ -43,7 +46,10 @@ export abstract class BaseFilter {
 
     BaseFilter._counter++;
 
-    this._loadLegendData = this._loadLegendData.bind(this);
+    this._weight = typeof weight === 'number' ? weight : s.prop(weight);
+
+    // TODO: loadLegendData from used variable here instead
+    this._loadLegendData = this._loadLegendData.bind(this, this._name);
   }
 
   /**
@@ -203,14 +209,14 @@ export abstract class BaseFilter {
    * @returns
    * @memberof BaseFilter
    */
-  protected _loadLegendData() {
-    const color = this._layer.viz.color;
+  protected _loadLegendData(property='color') {
+    const prop = this._layer.viz[property];
 
-    if (!color.getLegendData) {
+    if (!prop.getLegendData) {
       return;
     }
 
-    this.setLegendData(color.getLegendData(this._getLegendConfig()));
+    this.setLegendData(prop.getLegendData(this._getLegendConfig()));
   }
 
   /**

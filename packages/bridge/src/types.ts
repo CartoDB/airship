@@ -31,11 +31,13 @@ export type NumericalHistogramData = VLHistogramData<[number | Date, number | Da
 export type CategoricalHistogramData = VLHistogramData<string>;
 export interface VLNumericalHistogram {
   value: NumericalHistogramData[];
+  getJoinedValues?: any;
   input: any;
 }
 
 export interface VLCategoricalHistogram {
   value: CategoricalHistogramData[];
+  getJoinedValues?: any;
 }
 
 export interface VLHistogramData<T> {
@@ -79,6 +81,14 @@ export interface NumericalHistogramOptions {
    * @type {number}
    */
   buckets?: number;
+
+  /**
+   * Numeric value to weight by. 1 by default
+   *
+   * @type {number|string}
+   */
+
+  weight?: number | string;
 
   /**
    * Explicit bucket declarations. See
@@ -144,6 +154,13 @@ export interface CategoryOptions {
   readOnly?: boolean;
 
   /**
+   * Numeric value to weight by. 1 by default
+   *
+   * @type {number|string}
+  */
+  weight?: number | string;
+
+  /**
    * If this is passed, the filtering will happen after this button is pressed
    *
    * @type {HTMLElement}
@@ -165,6 +182,13 @@ export interface CategoricalHistogramOptions {
    * @memberof CategoricalHistogramOptions
    */
   readOnly?: boolean;
+
+  /**
+   * Numeric value to weight by. 1 by default
+   *
+   * @type {number|string}
+  */
+  weight?: number | string;
 
   /**
    * Whether this widget should show the total values or not

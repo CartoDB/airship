@@ -18,8 +18,8 @@ as-layer-selector-slot {
 
   .as-layer-selector-slot--wrapper {
     .as-caption {
-      font-size: 16px;
-      line-height: 16px;
+      font-size: var(--as--font--subheader);
+      line-height: var(--as--font--subheader);
     }
   }
 }
