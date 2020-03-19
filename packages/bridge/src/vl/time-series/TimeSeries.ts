@@ -25,6 +25,7 @@ export class TimeSeries {
   private _fade: [number, number];
   private _variableName: string;
   private _propertyName: string;
+  private _autoplay: boolean;
 
   /**
    * Creates an instance of TimeSeries.
@@ -43,7 +44,8 @@ export class TimeSeries {
     duration: number = 10,
     fade: [number, number] = [0.15, 0.15],
     variableName: string,
-    propertyName: string
+    propertyName: string,
+    autoplay: boolean
   ) {
     this._timeSeriesWidget = select(timeSeries) as any;
     this._layer = layer;
@@ -53,6 +55,7 @@ export class TimeSeries {
     this._fade = fade;
     this._variableName = variableName || 'animation';
     this._propertyName = propertyName || 'filter';
+    this._autoplay = autoplay || false;
 
     if (layer.viz) {
       this._onLayerLoaded();
@@ -172,7 +175,7 @@ export class TimeSeries {
       this._timeSeriesWidget.playing = this._animation.isPlaying();
     });
 
-    this._timeSeriesWidget.animated = true;
+    this._timeSeriesWidget.animated = this._autoplay;
 
     this._timeSeriesWidget.addEventListener('seek', (evt: CustomEvent) => {
       this._animation.setProgressPct(evt.detail / 100);

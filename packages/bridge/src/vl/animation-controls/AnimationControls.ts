@@ -10,6 +10,7 @@ export class AnimationControls {
   private _propertyName: string;
   private _duration: number;
   private _fade: [number, number];
+  private _autoplay: boolean;
   private _layer: any;
   private _viz: VLViz;
   private _formatCb: (value: number | Date | VLTimeZoneDate) => string;
@@ -23,6 +24,7 @@ export class AnimationControls {
     propertyName: string,
     duration: number = 10,
     fade: [number, number] = [0.15, 0.15],
+    autoplay: boolean,
     layer: any,
     readyCb: () => void,
     formatCb: (value: number | Date | VLTimeZoneDate) => string
@@ -34,7 +36,8 @@ export class AnimationControls {
     this._carto = carto;
     this._duration = duration;
     this._fade = fade;
-    this._animationWidget.playing = false;
+    this._autoplay = autoplay || false;
+    this._animationWidget.playing = this._autoplay;
     this._animationWidget.isLoading = true;
     this._layer = layer;
     this._formatCb = formatCb;
@@ -91,7 +94,7 @@ export class AnimationControls {
     this._animation.notify = this._viz._changed.bind(this._viz);
 
     this._animationWidget.duration = this._animation.duration.value;
-    this._animationWidget.playing = true;
+    this._animationWidget.playing = this._autoplay;
     this._animationWidget.isLoading = false;
 
     this._animationWidget.addEventListener('play', () => {

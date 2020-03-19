@@ -123,6 +123,8 @@ export interface AnimationOptions extends NumericalHistogramOptions {
   variableName?: string;
 
   propertyName?: string;
+
+  autoplay?: boolean;
 }
 
 /**
@@ -138,6 +140,8 @@ export interface AnimationControlsOptions {
   variableName?: string;
 
   propertyName?: string;
+
+  autoplay?: boolean;
 }
 
 /**
