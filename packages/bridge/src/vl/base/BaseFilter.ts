@@ -33,7 +33,15 @@ export abstract class BaseFilter {
    * @param {boolean} [readOnly=true] Whether this filter should be read only or not
    * @memberof BaseFilter
    */
-  constructor(type: string, carto: any, column: string, layer: any, source: any, readOnly: boolean = true, weight: number | string = 1) {
+  constructor(
+    type: string,
+    carto: any,
+    column: string,
+    layer: any,
+    source: any,
+    readOnly: boolean = true,
+    weight: number | string = 1
+    ) {
     const s = carto.expressions;
 
     this._emitter = mitt();
@@ -209,7 +217,7 @@ export abstract class BaseFilter {
    * @returns
    * @memberof BaseFilter
    */
-  protected _loadLegendData(property='color') {
+  protected _loadLegendData(property= 'color') {
     const prop = this._layer.viz[property];
 
     if (!prop.getLegendData) {

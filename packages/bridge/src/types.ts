@@ -161,7 +161,7 @@ export interface CategoryOptions {
    * Numeric value to weight by. 1 by default
    *
    * @type {number|string}
-  */
+   */
   weight?: number | string;
 
   /**
@@ -191,7 +191,7 @@ export interface CategoricalHistogramOptions {
    * Numeric value to weight by. 1 by default
    *
    * @type {number|string}
-  */
+   */
   weight?: number | string;
 
   /**

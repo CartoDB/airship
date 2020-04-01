@@ -188,8 +188,8 @@ export default class VLBridge {
       const histogramWidget = widget as any;
       return this.categoricalHistogram(histogramWidget, column, {
         readOnly,
-        weight,
-        totals
+        totals,
+        weight
       });
     }
 
@@ -525,4 +525,3 @@ export default class VLBridge {
     return filters.join(' and ');
   }
 }
-
