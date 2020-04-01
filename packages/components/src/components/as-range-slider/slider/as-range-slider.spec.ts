@@ -78,7 +78,7 @@ describe('as-range-slider', () => {
     });
   });
 
-  describe('Validation', async () => {
+  describe('Validation', () => {
     let element: RangeSlider;
 
     beforeEach(async () => {

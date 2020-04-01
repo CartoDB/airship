@@ -1,8 +1,8 @@
 import { EventSpy } from '@stencil/core/dist/declarations';
 import { E2EPage, newE2EPage } from '@stencil/core/testing';
 
-describe('as-switch', async () => {
-  describe('Rendering', async () => {
+describe('as-switch', () => {
+  describe('Rendering', () => {
     let page: E2EPage;
 
     beforeEach(async () => {

@@ -1,7 +1,7 @@
 import { E2EPage, newE2EPage } from '@stencil/core/testing';
 
-describe('as-legend-size-bins-point', async () => {
-  describe('Rendering', async () => {
+describe('as-legend-size-bins-point', () => {
+  describe('Rendering', () => {
     let page: E2EPage;
 
     it('basic', async () => {
