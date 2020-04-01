@@ -66,11 +66,11 @@ module.exports = [
 ];
 ```
 
-- Run `npm run test:build-references`. This will create the new references. Check them and, if they're OK, commit them to the project. `BackstopJS` will use these references from now on.
+- Run `npm run test:styles:build-references`. This will create the new references. Check them and, if they're OK, commit them to the project. `BackstopJS` will use these references from now on.
 
 **Recreate image references**
 
-If you make any change in an existing visual spec, run `npm run test:build-references`. This command recreates the reference and if there's any difference, the current git diff will tell you that there are changes in an existing reference.
+If you make any change in an existing visual spec, run `npm run test:styles:build-references`. This command recreates the reference and if there's any difference, the current git diff will tell you that there are changes in an existing reference.
 
 If you're OK with the reference image, commit it.
 
@@ -94,7 +94,7 @@ We use [conventional commits](https://www.conventionalcommits.org/) to have more
 Feel free to write your regular commits as you want but ensure your PR has an associated conventional commit:
 
 - Before the merge commit.
-- Use squash and merge/rebase and merge button in github and use a conventionalcommit 
+- Use squash and merge/rebase and merge button in github and use a conventionalcommit
 
 We usually use one of the following:
 
