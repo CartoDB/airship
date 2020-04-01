@@ -7,7 +7,7 @@ describe('as-responsive-content', () => {
     page = await newE2EPage({ html: `<as-responsive-content>${domExample}</as-responsive-content>` });
   });
 
-  describe('Rendering', async () => {
+  describe('Rendering', () => {
     it('should render tabs based on content', async () => {
       const tabs: E2EElement = await page.find('.as-toolbar-tabs');
       const tabsHTML = tabs.innerHTML;
@@ -40,7 +40,7 @@ describe('as-responsive-content', () => {
     });
   });
 
-  describe('Behaviour', async () => {
+  describe('Behaviour', () => {
     let tabs: E2EElement[];
     beforeEach(async () => {
       tabs = await page.findAll('.as-tabs__item');

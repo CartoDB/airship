@@ -1,7 +1,7 @@
 import { E2EPage, newE2EPage } from '@stencil/core/testing';
 
-describe('as-legend-size-category-line', async () => {
-  describe('Rendering', async () => {
+describe('as-legend-size-category-line', () => {
+  describe('Rendering', () => {
     let page: E2EPage;
 
     it('basic', async () => {

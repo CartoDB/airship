@@ -12,7 +12,7 @@ describe('as-category-widget', () => {
     `);
   });
 
-  describe('Rendering', async () => {
+  describe('Rendering', () => {
     it('should render properly', async () => {
       const element: E2EElement = await page.find('as-category-widget');
       element.setProperty('heading', 'Category Widget Example');
@@ -95,7 +95,7 @@ describe('as-category-widget', () => {
     });
   });
 
-  describe('Behaviour', async () => {
+  describe('Behaviour', () => {
     it('should emit an event containing selected categories when a new category is selected', async () => {
       const element: E2EElement = await page.find('as-category-widget');
       element.setProperty('categories', exampleCategories);

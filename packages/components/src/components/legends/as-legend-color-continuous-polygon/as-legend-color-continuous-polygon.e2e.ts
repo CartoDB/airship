@@ -1,7 +1,7 @@
 import { E2EPage, newE2EPage } from '@stencil/core/testing';
 
-describe('as-legend-color-continuous-polygon', async () => {
-  describe('Rendering', async () => {
+describe('as-legend-color-continuous-polygon', () => {
+  describe('Rendering', () => {
     let page: E2EPage;
 
     it('basic', async () => {

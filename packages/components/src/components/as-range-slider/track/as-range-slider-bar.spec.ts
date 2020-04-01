@@ -5,14 +5,14 @@ describe('as-range-slider-bar', () => {
       expect(new RangeSliderBar()).toBeTruthy();
   });
 
-  describe('Methods', async () => {
+  describe('Methods', () => {
     let element: RangeSliderBar;
 
     beforeEach(async () => {
       element = new RangeSliderBar();
     });
 
-    describe('_onMove', async () => {
+    describe('_onMove', () => {
       it('should move from 20% to 0% when mouse is moved to the left of the screen', async () => {
         const barMoveEmitSpy = jest.fn();
 

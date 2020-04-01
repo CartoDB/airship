@@ -1,7 +1,7 @@
 
 import { E2EPage, newE2EPage } from '@stencil/core/testing';
 
-describe('as-range-slider-thumb', async () => {
+describe('as-range-slider-thumb', () => {
   let page: E2EPage;
 
   beforeEach(async () => {
@@ -17,7 +17,7 @@ describe('as-range-slider-thumb', async () => {
     `);
   });
 
-  describe('Rendering', async () => {
+  describe('Rendering', () => {
       it('should render a text with its value', async () => {
         const element = await page.find('as-range-slider-thumb');
         element.setProperty('value', 5);
@@ -39,7 +39,7 @@ describe('as-range-slider-thumb', async () => {
       });
   });
 
-  describe('Interaction', async () => {
+  describe('Interaction', () => {
     it('should emit thumbIncrease / thumbDecrease events when using keyboard arrows', async () => {
       await page.waitForChanges();
       const onThumbIncreaseSpy = await page.spyOnEvent('thumbIncrease');
