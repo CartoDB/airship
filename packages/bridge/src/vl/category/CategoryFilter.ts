@@ -36,11 +36,12 @@ export class CategoryFilter extends BaseFilter {
     widget: any | string,
     columnName: string,
     source: any,
+    weight: number | string,
     readOnly: boolean = true,
     button: HTMLElement | string,
     expression: object
   ) {
-    super(`category`, columnName, layer, source, readOnly);
+    super(`category`, carto, columnName, layer, source, readOnly, weight);
 
     this._widget = select(widget) as any;
 
@@ -69,13 +70,13 @@ export class CategoryFilter extends BaseFilter {
 
     this._dataLayer.on('updated', () => {
       const newHistogram = (this._dataLayer.viz.variables[this.name] as VLCategoricalHistogram);
+
       if (!newHistogram) {
         return;
       }
 
       if (this._lastHistogram === null || !isCategoricalHistogramEqual(this._lastHistogram, newHistogram)) {
         this._lastHistogram = { value: newHistogram.value };
-
         this._widget.categories = vlToCategory(newHistogram, this._legendData);
       }
     });
@@ -91,7 +92,8 @@ export class CategoryFilter extends BaseFilter {
 
   public get expression(): any {
     const s = this._carto.expressions;
-    return s.viewportHistogram(this._expression ? this._expression : s.prop(this._column));
+
+    return s.viewportHistogram(this._expression ? this._expression : s.prop(this._column), this._weight);
   }
 
   private selectionChanged(evt: CustomEvent) {

@@ -18,6 +18,7 @@ export abstract class BaseHistogramFilter<T> extends BaseFilter {
   protected _dataLayer: any;
   protected _inputExpression = null;
   protected _totals = false;
+  protected _weight: number | string;
 
   /**
    * Creates an instance of BaseHistogramFilter.
@@ -39,10 +40,11 @@ export abstract class BaseHistogramFilter<T> extends BaseFilter {
     columnName: string,
     source: any,
     readOnly: boolean = true,
+    weight: number | string,
     showTotals: boolean = false,
     inputExpression: object = null
   ) {
-    super(`histogram_${type}`, columnName, layer, source, readOnly);
+    super(`histogram_${type}`, carto, columnName, layer, source, readOnly, weight);
 
     this._widget = select(histogram);
     this._carto = carto;

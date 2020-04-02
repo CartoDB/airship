@@ -5,5 +5,6 @@ export interface Category {
 }
 export interface CategoryOptions {
   maximumValue: number;
+  weight?: number | string;
   isOther?: boolean;
 }

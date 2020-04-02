@@ -33,6 +33,7 @@ export class NumericalHistogramFilter extends BaseHistogramFilter<Array<number |
    * @param {(any)} histogram Airship histogram / time series HTML element, or a selector
    * @param {string} columnName Column to pull data from
    * @param {number} nBuckets Number of buckets
+   * @param {weight} weight Value to weight by
    * @param {*} source CARTO VL source
    * @param {BucketRange[]} bucketRanges Array describing the bucket ranges. This has priority over nBuckets.
    * See https://carto.com/developers/carto-vl/reference/#cartoexpressionsviewporthistogram for more information
@@ -46,13 +47,15 @@ export class NumericalHistogramFilter extends BaseHistogramFilter<Array<number |
     histogram: any | string,
     columnName: string,
     nBuckets: number = 20,
+    weight: number | string,
     source: any,
     bucketRanges?: BucketRange[],
     readOnly: boolean = true,
     showTotals: boolean = false,
     inputExpression: object = null
   ) {
-    super('numerical', carto, layer, histogram, columnName, source, readOnly, showTotals, inputExpression);
+    super('numerical', carto, layer, histogram, columnName, source, readOnly, weight, showTotals, inputExpression);
+
     this._buckets = bucketRanges !== undefined ? bucketRanges.length : nBuckets;
     this._bucketRanges = bucketRanges;
   }
@@ -97,7 +100,8 @@ export class NumericalHistogramFilter extends BaseHistogramFilter<Array<number |
 
     return s.viewportHistogram(
       this._inputExpression ? this._inputExpression : s.prop(this._column),
-      this._bucketArg()
+      this._bucketArg(),
+      this._weight
     );
   }
 
@@ -107,7 +111,11 @@ export class NumericalHistogramFilter extends BaseHistogramFilter<Array<number |
     }
 
     const s = this._carto.expressions;
-    return s.globalHistogram(this._inputExpression ? this._inputExpression : s.prop(this._column), this._bucketArg());
+    return s.globalHistogram(
+      this._inputExpression ? this._inputExpression : s.prop(this._column),
+      this._bucketArg(),
+      this._weight
+    );
   }
 
   /**
