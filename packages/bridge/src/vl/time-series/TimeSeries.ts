@@ -45,7 +45,7 @@ export class TimeSeries {
     fade: [number, number] = [0.15, 0.15],
     variableName: string,
     propertyName: string,
-    autoplay: boolean
+    autoplay?: boolean
   ) {
     this._timeSeriesWidget = select(timeSeries) as any;
     this._layer = layer;
