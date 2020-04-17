@@ -151,7 +151,7 @@ export function renderXAxis(
   let xAxis;
 
   // Get domain precision for formatter in case of numbers
-  let domainPrecision = getDomainPrecision(domain);
+  const domainPrecision = getDomainPrecision(domain);
 
   if (axisOptions.values || axisOptions.format) {
     const altScale = scaleLinear()
@@ -297,9 +297,9 @@ function _delayFn(_d, i) {
 }
 
 function getFloatPrecision(value) {
-  const expValue = value.toPrecision()
-  const expPos = expValue.indexOf('.')
-  return expPos > -1 ? expValue.slice(expPos + 1).length : 0
+  const expValue = value.toPrecision();
+  const expPos = expValue.indexOf('.');
+  return expPos > -1 ? expValue.slice(expPos + 1).length : 0;
 }
 
 function getDomainPrecision(domain) {
