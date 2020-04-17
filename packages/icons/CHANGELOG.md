@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.1](https://github.com/CartoDB/airship/compare/v2.3.1-rc.2...v2.3.1) (2020-04-03)
+
+
+### Bug Fixes
+
+* manual reset back packages version before bump in new release ([ce71061](https://github.com/CartoDB/airship/commit/ce710614facaf82387e06e7da4027f189ec1e86c))
+
+
+
+
+
 ## [2.2.1](https://github.com/CartoDB/airship/compare/v2.2.0...v2.2.1) (2020-01-21)
 
 **Note:** Version bump only for package @carto/airship-icons

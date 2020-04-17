@@ -8,9 +8,9 @@
   "license": "BSD-3-Clause",
   "devDependencies": {
     "aws-sdk": "^2.300.0",
-    "backstopjs": "^3.9.2",
+    "backstopjs": "^3.9.13",
     "fastly": "^2.2.1",
-    "lerna": "3.15.0",
+    "lerna": "^3.20.2",
     "map-stream": "0.0.7",
     "mime": "^2.3.1",
     "opener": "^1.5.1",

@@ -1,7 +1,7 @@
 import { E2EElement, E2EPage, newE2EPage } from '@stencil/core/testing';
 
-describe('as-animation-controls-widget', async () => {
-  describe('Rendering', async () => {
+describe('as-animation-controls-widget', () => {
+  describe('Rendering', () => {
     let page: E2EPage;
 
     beforeEach(async () => {
@@ -88,7 +88,7 @@ describe('as-animation-controls-widget', async () => {
     });
   });
 
-  describe('Behaviour', async () => {
+  describe('Behaviour', () => {
     let page: E2EPage;
 
     beforeEach(async () => {

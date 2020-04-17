@@ -90,9 +90,11 @@ export default class VLBridge {
     widget: any | string,
     column: string | { propertyName: string },
     options: NumericalHistogramOptions = {}): NumericalHistogramFilter {
+
     const {
       buckets,
       bucketRanges,
+      weight,
       readOnly,
       totals
     } = options;
@@ -106,6 +108,7 @@ export default class VLBridge {
       widget,
       colName,
       buckets,
+      weight,
       this._source,
       bucketRanges,
       readOnly,
@@ -133,7 +136,8 @@ export default class VLBridge {
     options: CategoricalHistogramOptions = {}): CategoricalHistogramFilter {
     const {
       readOnly,
-      totals
+      totals,
+      weight
     } = options;
 
     const colName = getColumnName(column);
@@ -146,6 +150,7 @@ export default class VLBridge {
       colName,
       this._source,
       readOnly,
+      weight,
       totals,
       expression
     );
@@ -170,19 +175,31 @@ export default class VLBridge {
     widget: any | string,
     column: string | { propertyName: string },
     options: NumericalHistogramOptions = {}): NumericalHistogramFilter | CategoricalHistogramFilter {
+
     const {
       buckets,
       bucketRanges,
       readOnly,
+      weight,
       totals
     } = options;
 
     if (buckets === undefined && bucketRanges === undefined) {
       const histogramWidget = widget as any;
-      return this.categoricalHistogram(histogramWidget, column, { readOnly, totals });
+      return this.categoricalHistogram(histogramWidget, column, {
+        readOnly,
+        totals,
+        weight
+      });
     }
 
-    return this.numericalHistogram(widget, column, { readOnly, buckets, bucketRanges, totals });
+    return this.numericalHistogram(widget, column, {
+      bucketRanges,
+      buckets,
+      readOnly,
+      totals,
+      weight
+    });
   }
 
   /**
@@ -200,10 +217,12 @@ export default class VLBridge {
   public category(
     widget: any | string,
     column: string | { propertyName: string },
-    options: CategoryOptions = {}) {
+    options: CategoryOptions = {}): CategoryFilter {
+
     const {
       readOnly,
-      button
+      button,
+      weight
     } = options;
 
     const colName = getColumnName(column);
@@ -215,6 +234,7 @@ export default class VLBridge {
       widget,
       colName,
       this._source,
+      weight,
       readOnly,
       button,
       expression
@@ -253,10 +273,12 @@ export default class VLBridge {
       bucketRanges,
       readOnly,
       totals,
+      weight,
       duration,
       fade,
       variableName,
-      propertyName
+      propertyName,
+      autoplay
     } = options;
 
     this._animation = new TimeSeries(
@@ -272,14 +294,16 @@ export default class VLBridge {
       duration,
       fade,
       variableName,
-      propertyName
+      propertyName,
+      autoplay
     );
 
     const histogram = this.numericalHistogram(widget, column, {
       bucketRanges,
       buckets,
       readOnly,
-      totals
+      totals,
+      weight
     });
 
     histogram.setTimeSeries(true);
@@ -317,7 +341,8 @@ export default class VLBridge {
       duration,
       fade,
       variableName,
-      propertyName = 'filter'
+      propertyName = 'filter',
+      autoplay
     } = options;
 
     this._animation = new AnimationControls(
@@ -328,6 +353,7 @@ export default class VLBridge {
       propertyName,
       duration,
       fade,
+      autoplay,
       this._layer,
       () => {
         if (propertyName === 'filter') {
@@ -499,4 +525,3 @@ export default class VLBridge {
     return filters.join(' and ');
   }
 }
-

@@ -7,8 +7,8 @@ const layers = [
   {id: 'cartodb-4', title: 'Test Layer 4'},
 ];
 
-describe('as-layer-selector', async () => {
-  describe('Rendering', async () => {
+describe('as-layer-selector', () => {
+  describe('Rendering', () => {
     let page: E2EPage;
 
     beforeEach(async () => {
@@ -29,7 +29,7 @@ describe('as-layer-selector', async () => {
     });
   });
 
-  describe('Behaviour', async () => {
+  describe('Behaviour', () => {
     let page: E2EPage;
 
     beforeEach(async () => {

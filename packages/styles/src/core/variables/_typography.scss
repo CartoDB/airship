@@ -13,7 +13,7 @@ $font-family-mono: "Overpass Mono", sans-serif;
 // font-size
 $font-size-01: 10px;
 $font-size-02: 12px;
-$font-size-03: 16px;
+$font-size-03: 14px;
 $font-size-04: 24px;
 $font-size-05: 40px;
 $font-size-06: 72px;
@@ -33,6 +33,7 @@ $line-height-06: 80px;
   --as--font--body: var(--as--size--font-02)/var(--as--size--line-height-02) var(--as--font-family--base);
   --as--font--subheader: var(--as--size--font-03)/var(--as--size--line-height-03) var(--as--font-family--base);
   --as--font--title: var(--as--size--font-04)/var(--as--size--line-height-04) var(--as--font-family--base);
+  --as--font--subtitle: var(--as--size--font-04)/var(--as--size--line-height-04) var(--as--font-family--base);
   --as--font--display: var(--as--size--font-05)/var(--as--size--line-height-05) var(--as--font-family--base);
   --as--font--jumbo: var(--as--size--font-06)/var(--as--size--line-height-06) var(--as--font-family--base);
 

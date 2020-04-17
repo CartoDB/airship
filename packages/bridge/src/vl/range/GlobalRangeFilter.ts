@@ -22,7 +22,7 @@ export class GlobalRangeFilter extends BaseFilter {
     columnName: string,
     source: any
   ) {
-    super(`global_range`, columnName, layer, source, false);
+    super(`global_range`, carto, columnName, layer, source, false);
 
     this._widget = select(widget) as any;
     this._carto = carto;
