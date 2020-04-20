@@ -297,7 +297,7 @@ function _delayFn(_d, i) {
 }
 
 function getFloatPrecision(value) {
-  const expValue = value.toPrecision();
+  const expValue = value.toString();
   const expPos = expValue.indexOf('.');
   return expPos > -1 ? expValue.slice(expPos + 1).length : 0;
 }
