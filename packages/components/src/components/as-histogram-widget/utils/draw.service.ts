@@ -299,13 +299,13 @@ function _delayFn(_d, i) {
 function getFloatPrecision(value) {
   const expValue = value.toString();
   const expPos = expValue.indexOf('.');
-  return expPos > -1 ? expValue.slice(expPos + 1).length : 0;
+  return expPos > -1 ? expValue.length - (expPos + 1) : 0;
 }
 
 function getDomainPrecision(domain) {
   let domainPrecision = 0;
   if (!(domain[0] instanceof Date)) {
-    const domainDiff = domain[domain.length - 1] as any - domain[0];
+    const domainDiff = domain[domain.length - 1] as number - domain[0];
     const domainDiffPrecision = getFloatPrecision(domainDiff);
     if (domainDiff > 1 && domainDiffPrecision > 1) {
       domainPrecision = 1;
