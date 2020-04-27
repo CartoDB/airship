@@ -1,4 +1,4 @@
-import { VLCategoricalHistogram } from '../../../../types';
+import { LegendEntry, VLCategoricalHistogram } from '../../../../types';
 import { findColorForCategory } from '../histogram';
 
 /**
@@ -9,15 +9,19 @@ import { findColorForCategory } from '../histogram';
  * @param {*} [colors]
  * @returns {object[]}
  */
-export function vlToCategory(histogram: VLCategoricalHistogram, legendData: any = []): object[] {
+export function vlToCategory(histogram: VLCategoricalHistogram, legendData: LegendEntry[] = []): object[] {
   const fullCategories = (histogram as any)._categories;
-  const values = histogram.value;
+  const values = histogram.value.reduce((acum, elem) => {
+    acum[elem.x] = elem;
+    return acum;
+  }, {});
+
   return fullCategories.map((d) => {
-    const value = values.find((elem) => elem.x === d.name);
+    const value = values[d.name];
     return {
       color: findColorForCategory(d.name, legendData),
       name: d.name,
-      value: value ? value.y : 0
+      value: value ? value.y : null
     };
   }).sort((a, b) => b.value - a.value);
 
