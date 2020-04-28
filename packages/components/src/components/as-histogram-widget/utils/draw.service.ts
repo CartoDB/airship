@@ -304,7 +304,7 @@ function getFloatPrecision(value) {
 
 function getDomainPrecision(domain) {
   let domainPrecision = 0;
-  if (!(domain[0] instanceof Date)) {
+  if (Number.isFinite(domain[0])) {
     const domainDiff = domain[domain.length - 1] as number - domain[0];
     const domainDiffPrecision = getFloatPrecision(domainDiff);
     if (domainDiff > 1 && domainDiffPrecision > 1) {
