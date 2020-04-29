@@ -126,7 +126,7 @@ export function renderXAxis(
   bins: number,
   X_PADDING: number,
   Y_PADDING: number,
-  customFormatter: (value: Date | number) => string = conditionalFormatter,
+  customFormatter: (value: Date | number, domainPrecision: number) => string = conditionalFormatter,
   axisOptions: AxisOptions): Axis<{ valueOf(): number }> {
 
   if (!container || !container.node()) {
@@ -150,6 +150,9 @@ export function renderXAxis(
 
   let xAxis;
 
+  // Get domain precision for formatter in case of numbers
+  const domainPrecision = getDomainPrecision(domain);
+
   if (axisOptions.values || axisOptions.format) {
     const altScale = scaleLinear()
       .domain(domain)
@@ -164,7 +167,7 @@ export function renderXAxis(
       .tickValues(ticks !== undefined ? null : tickValues)
       .tickFormat((value) => {
         const realValue = realScale.invert(value);
-        return customFormatter(realValue);
+        return customFormatter(realValue, domainPrecision);
       });
   }
 
@@ -293,9 +296,31 @@ function _delayFn(_d, i) {
   return i;
 }
 
-export function conditionalFormatter(value) {
-  if (value > 0 && value < 1) {
-    return decimalFormatter(value);
+function getFloatPrecision(value) {
+  const expValue = value.toString();
+  const expPos = expValue.indexOf('.');
+  return expPos > -1 ? expValue.length - (expPos + 1) : 0;
+}
+
+function getDomainPrecision(domain) {
+  let domainPrecision = 0;
+  if (Number.isFinite(domain[0])) {
+    const domainDiff = domain[domain.length - 1] as number - domain[0];
+    const domainDiffPrecision = getFloatPrecision(domainDiff);
+    if (domainDiff > 1 && domainDiffPrecision > 1) {
+      domainPrecision = 1;
+    } else if (domainDiff < 1) {
+      domainPrecision = domainDiffPrecision;
+    }
+  }
+
+  return domainPrecision;
+}
+
+export function conditionalFormatter(value, domainPrecision = 0) {
+  // Until we really need to use kilo or milli, we will not use SI prefixes
+  if (value > -100 && value < 100 && domainPrecision < 3) {
+      return decimalFormatter(value);
   }
 
   return formatter(value);
