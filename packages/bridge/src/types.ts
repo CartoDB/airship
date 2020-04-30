@@ -38,8 +38,7 @@ export interface VLNumericalHistogram {
 export interface VLCategoricalHistogram {
   value: CategoricalHistogramData[];
   getJoinedValues?: any;
-  // TODO: Make categories access public
-  _categories: Array<{ name: string, frequency: number }>;
+  getAllCategories?(): Array<{ name: string, frequency: number }>;
 }
 
 export interface VLHistogramData<T> {

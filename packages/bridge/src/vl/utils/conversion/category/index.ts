@@ -10,7 +10,7 @@ import { findColorForCategory } from '../histogram';
  * @returns {object[]}
  */
 export function vlToCategory(histogram: VLCategoricalHistogram, legendData: LegendEntry[] = []): object[] {
-  const fullCategories = histogram._categories;
+  const fullCategories = histogram.getAllCategories();
   const values = histogram.value.reduce((acum, elem) => {
     acum[elem.x] = elem;
     return acum;
