@@ -38,6 +38,7 @@ export interface VLNumericalHistogram {
 export interface VLCategoricalHistogram {
   value: CategoricalHistogramData[];
   getJoinedValues?: any;
+  getAllCategories?(): Array<{ name: string, frequency: number }>;
 }
 
 export interface VLHistogramData<T> {
