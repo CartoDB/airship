@@ -296,7 +296,7 @@ export class CategoryWidget {
       'as-category-widget__category--selected': isSelected
     };
 
-    const displayValue = this.valueFormatter(category.value);
+    const displayValue = category.value !== null ? this.valueFormatter(category.value) : '';
 
     return (
       <li class={cssClasses} onClick={() => this._toggleCategory(category)}>
