@@ -55,7 +55,10 @@ export class LayerSelectorSlot {
           </span>
           <label class='as-caption' htmlFor={`checkbox-${this.index}`}>{this.layer.title}</label>
         </div>
-        <div class={`as-checkbox-layer-slot ${this.visible ? 'as-checkbox-layer-slot--visible' : 'as-checkbox-layer-slot--hidden'}`}>
+        <div class={`as-checkbox-layer-slot ${this.visible
+          ? 'as-checkbox-layer-slot--visible'
+          : 'as-checkbox-layer-slot--hidden'
+          }`}>
           <slot name={`as-checkbox-layer-${this.index}-slot`}></slot>
         </div>
       </div>

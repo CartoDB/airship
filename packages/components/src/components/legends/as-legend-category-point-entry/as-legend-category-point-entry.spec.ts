@@ -1,4 +1,4 @@
-import { newSpecPage, SpecPage } from '@stencil/core/dist/testing';
+import { newSpecPage, SpecPage } from '@stencil/core/testing';
 import { LegendCategoryPointEntry } from './as-legend-category-point-entry';
 
 describe('as-legend-category-point-entry', () => {

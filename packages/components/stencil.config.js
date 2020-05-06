@@ -20,7 +20,7 @@ exports.config = {
   ],
   testing: {
     transform: {
-      "^.+\\.(js)$": path.join(__dirname, "../../node_modules/@stencil/core/testing/jest.preprocessor.js")
+      "^.+\\.(js)$": path.join(__dirname, "../../node_modules/@stencil/core/testing/jest-preprocessor.js")
     },
     browserArgs: ['--no-sandbox', '–disable-setuid-sandbox']
   },
