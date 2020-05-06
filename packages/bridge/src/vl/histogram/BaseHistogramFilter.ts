@@ -19,7 +19,6 @@ export abstract class BaseHistogramFilter<T> extends BaseFilter {
   protected _inputExpression = null;
   protected _totals = false;
   protected _weight: number | string;
-  protected _formatNumber: string;
 
   /**
    * Creates an instance of BaseHistogramFilter.
@@ -43,8 +42,7 @@ export abstract class BaseHistogramFilter<T> extends BaseFilter {
     readOnly: boolean = true,
     weight: number | string,
     showTotals: boolean = false,
-    inputExpression: object = null,
-    formatNumber: string = null
+    inputExpression: object = null
   ) {
     super(`histogram_${type}`, carto, columnName, layer, source, readOnly, weight);
 
@@ -77,10 +75,6 @@ export abstract class BaseHistogramFilter<T> extends BaseFilter {
     return {
       samples: this._buckets
     };
-  }
-
-  protected _getFormatNumber() {
-    return this._formatNumber;
   }
 
   /**

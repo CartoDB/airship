@@ -52,10 +52,9 @@ export class NumericalHistogramFilter extends BaseHistogramFilter<Array<number |
     bucketRanges?: BucketRange[],
     readOnly: boolean = true,
     showTotals: boolean = false,
-    inputExpression: object = null,
-    formatNumber: string = null
+    inputExpression: object = null
   ) {
-    super('numerical', carto, layer, histogram, columnName, source, readOnly, weight, showTotals, inputExpression, formatNumber);
+    super('numerical', carto, layer, histogram, columnName, source, readOnly, weight, showTotals, inputExpression);
 
     this._buckets = bucketRanges !== undefined ? bucketRanges.length : nBuckets;
     this._bucketRanges = bucketRanges;

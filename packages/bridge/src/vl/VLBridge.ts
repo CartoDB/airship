@@ -96,8 +96,7 @@ export default class VLBridge {
       bucketRanges,
       weight,
       readOnly,
-      totals,
-      formatNumber
+      totals
     } = options;
 
     const colName = getColumnName(column);
@@ -182,8 +181,7 @@ export default class VLBridge {
       bucketRanges,
       readOnly,
       weight,
-      totals,
-      formatNumber
+      totals
     } = options;
 
     if (buckets === undefined && bucketRanges === undefined) {
@@ -200,8 +198,7 @@ export default class VLBridge {
       buckets,
       readOnly,
       totals,
-      weight,
-      formatNumber
+      weight
     });
   }
 

@@ -113,14 +113,6 @@ export interface NumericalHistogramOptions {
    * @memberof NumericalHistogramOptions
    */
   totals?: boolean;
-
-  /**
-   * Whether the widget should format numbers in a specific way
-   * using [d3-format]{@link https://github.com/d3/d3-format#locale_format} specifier format
-   *
-   * @type {string}
-   */
-  formatNumber?: string;
 }
 
 export interface AnimationOptions extends NumericalHistogramOptions {
