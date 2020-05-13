@@ -3,9 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.3.2](https://github.com/CartoDB/airship/compare/v2.3.2-rc.2...v2.3.2) (2020-05-13)
+## [2.3.2](https://github.com/CartoDB/airship/compare/v2.3.1...v2.3.2) (2020-05-13)
 
-**Note:** Version bump only for package @carto/airship-components
+### Bug fixes
+* Fix histogram showing incorrect numeric values on axis
+* Fix rendering null values as 0 in category widget
 
 
 
