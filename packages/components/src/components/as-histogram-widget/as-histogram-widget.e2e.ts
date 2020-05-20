@@ -104,7 +104,19 @@ describe('as-histogram-widget', () => {
       expect(ticksValues).toEqual(['-0.12', '0.88', '1.9', '2.9', '3.9']);
     });
 
-    it('should format X axis using SI prefixes when range is lower than 1', async () => {
+    it('should format X axis using only decimals when range is lower than 1 and higher than 0.001', async () => {
+      const element: E2EElement = await page.find('as-histogram-widget');
+
+      element.setProperty('data', histogramDataFloatingToDecimal2);
+      await page.waitForChanges();
+
+      const ticks = await page.findAll('.x-axis text');
+      const ticksValues = ticks.map((tick) => tick.innerText);
+
+      expect(ticksValues).toEqual(['0.12', '0.32', '0.52', '0.71', '0.91']);
+    });
+
+    it('should format X axis using SI prefixes when range is lower than 0.001', async () => {
       const element: E2EElement = await page.find('as-histogram-widget');
 
       element.setProperty('data', histogramDataFloatingToSIPrefix);
@@ -113,7 +125,7 @@ describe('as-histogram-widget', () => {
       const ticks = await page.findAll('.x-axis text');
       const ticksValues = ticks.map((tick) => tick.innerText);
 
-      expect(ticksValues).toEqual(['120m', '320m', '520m', '710m', '910m']);
+      expect(ticksValues).toEqual(['123.4m', '123.5m', '123.6m', '123.7m', '123.8m']);
     });
   });
 });
@@ -132,9 +144,16 @@ const histogramDataFloatingToDecimal = [
   { start: 3.8901, end: 3.9081, value: 20 },
 ];
 
-const histogramDataFloatingToSIPrefix = [
+const histogramDataFloatingToDecimal2 = [
   { start: 0.1234, end: 0.1432, value: 5 },
   { start: 0.2345, end: 0.4543, value: 10 },
   { start: 0.5678, end: 0.7876, value: 15 },
   { start: 0.8901, end: 0.9081, value: 20 },
+];
+
+const histogramDataFloatingToSIPrefix = [
+  { start: 0.1234, end: 0.1235, value: 5 },
+  { start: 0.1235, end: 0.1236, value: 10 },
+  { start: 0.1236, end: 0.1237, value: 15 },
+  { start: 0.1237, end: 0.1238, value: 20 },
 ];
