@@ -104,7 +104,9 @@ describe('as-histogram-widget', () => {
       expect(ticksValues).toEqual(['-0.12', '0.88', '1.9', '2.9', '3.9']);
     });
 
-    it('should format X axis using up to 3 decimals when range is lower than 1 using values with precision lower than 3', async () => {
+    it(
+      'should format X axis using up to 3 decimals when range is lower than 1 using values with precision lower than 3',
+      async () => {
       const element: E2EElement = await page.find('as-histogram-widget');
 
       element.setProperty('data', histogramDataFloatingToDecimalPrecision2);
@@ -116,7 +118,9 @@ describe('as-histogram-widget', () => {
       expect(ticksValues).toEqual(['0.12', '0.32', '0.51', '0.71', '0.9']);
     });
 
-    it('should format X axis using up to 3 decimals when range is lower than 1 using values with precision equal to 3', async () => {
+    it(
+      'should format X axis using up to 3 decimals when range is lower than 1 using values with precision equal to 3',
+      async () => {
       const element: E2EElement = await page.find('as-histogram-widget');
 
       element.setProperty('data', histogramDataFloatingToDecimalPrecision3);
