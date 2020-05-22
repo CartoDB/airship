@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.3](https://github.com/CartoDB/airship/compare/v2.3.2...v2.3.3) (2020-05-22)
+
+
+### Bug Fixes
+
+* Apply SI format for histogram axes only if domain difference is lower than 0.001 ([52d8d08](https://github.com/CartoDB/airship/commit/52d8d080c3831e94840f8ea2625944cd96730d2b))
+* set new rules to format X axis for histogram [ch76214] ([2933c71](https://github.com/CartoDB/airship/commit/2933c71d1a31899233cdecd0aee4a0e7ae8007d7))
+
+
+
+
+
 ## [2.3.2](https://github.com/CartoDB/airship/compare/v2.3.1...v2.3.2) (2020-05-13)
 
 ### Features
