@@ -7,7 +7,7 @@ import { SVGContainer, SVGGContainer } from '../types/Container';
 import { Domain } from '../types/Domain';
 
 const BAR_WIDTH_THRESHOLD = 3;
-const formatter = format('.2~s');
+const formatter = format('.3');
 const decimalFormatter = format('.2');
 
 export function cleanAxes(yAxisSelection: SVGGContainer) {
@@ -319,7 +319,7 @@ function getDomainPrecision(domain) {
 
 export function conditionalFormatter(value, domainPrecision = 0) {
   // Until we really need to use kilo or milli, we will not use SI prefixes
-  if (value > -100 && value < 100 && domainPrecision < 3) {
+  if (value > -100 && value < 100 && domainPrecision < 4) {
       return decimalFormatter(value);
   }
 
