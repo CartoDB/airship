@@ -7,8 +7,8 @@ import { SVGContainer, SVGGContainer } from '../types/Container';
 import { Domain } from '../types/Domain';
 
 const BAR_WIDTH_THRESHOLD = 3;
-const formatter = format('.3');
-const decimalFormatter = format('.2');
+const formatter = format('.3~s');
+const decimalFormatter = format('.3');
 
 export function cleanAxes(yAxisSelection: SVGGContainer) {
   yAxisSelection.select('.domain').remove();
@@ -307,7 +307,7 @@ function getDomainPrecision(domain) {
   if (Number.isFinite(domain[0])) {
     const domainDiff = domain[domain.length - 1] as number - domain[0];
     const domainDiffPrecision = getFloatPrecision(domainDiff);
-    if (domainDiff > 1 && domainDiffPrecision > 1) {
+    if (domainDiff > 0.001 && domainDiffPrecision > 1) {
       domainPrecision = 1;
     } else if (domainDiff < 1) {
       domainPrecision = domainDiffPrecision;
