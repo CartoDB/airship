@@ -92,7 +92,7 @@ describe('as-histogram-widget', () => {
       expect(actual.innerText).toEqual('Radio Gaga');
     });
 
-    it('should format X axis using up to 2 decimals when range is higher than 1 using values with precision higher than 2', async () => {
+    it('should format X axis using up to 3 decimals when range is higher than 1 using values with precision higher than 2', async () => {
       const element: E2EElement = await page.find('as-histogram-widget');
       const histogramDataFloatingToDecimal = [
         { start: -0.1234, end: 0.1432, value: 5 },
@@ -172,10 +172,10 @@ describe('as-histogram-widget', () => {
     it('should format X axis using SI format when range is lower than 0.001 using micro values', async () => {
       const element: E2EElement = await page.find('as-histogram-widget');
       const histogramDataFloatingToDecimalMicro = [
-        { start: 0.0001234, end: 0.0001235, value: 5 },
+        { start: 0.0000123, end: 0.0001235, value: 5 },
         { start: 0.0001235, end: 0.0001236, value: 10 },
         { start: 0.0001236, end: 0.0001237, value: 15 },
-        { start: 0.0001237, end: 0.0001238, value: 20 },
+        { start: 0.0001237, end: 0.001238, value: 20 },
       ];
 
       element.setProperty('data', histogramDataFloatingToDecimalMicro);
@@ -203,6 +203,46 @@ describe('as-histogram-widget', () => {
       const ticksValues = ticks.map((tick) => tick.innerText);
 
       expect(ticksValues).toEqual(['0', '400', '800', '1.2k', '1.6k']);
+    });
+
+    it(
+      'should format X axis using SI format when values are higher than 999 and range lower than 1 ignoring decimals',
+      async () => {
+        const element: E2EElement = await page.find('as-histogram-widget');
+        const histogramDataToSI = [
+          { start: 1234456.0123, end: 1234456.1234, value: 5 },
+          { start: 1234456.1234, end: 1234456.2345, value: 10 },
+          { start: 1234456.2345, end: 1234456.3456, value: 15 },
+          { start: 1234456.3456, end: 1234456.4567, value: 20 },
+        ];
+
+        element.setProperty('data', histogramDataToSI);
+        await page.waitForChanges();
+
+        const ticks = await page.findAll('.x-axis text');
+        const ticksValues = ticks.map((tick) => tick.innerText);
+
+        expect(ticksValues).toEqual(['0', '400', '800', '1.2k', '1.6k']);
+    });
+
+    it(
+      'should format X axis using SI format when values are higher than 999 and range higher than 1 ignoring decimals',
+      async () => {
+        const element: E2EElement = await page.find('as-histogram-widget');
+        const histogramDataToSI = [
+          { start: 9.0123, end: 45.2345, value: 5 },
+          { start: 45.2345, end: 735.3456, value: 10 },
+          { start: 735.3456, end: 9463.9275, value: 15 },
+          { start: 9463.9275, end: 27503.9287, value: 20 },
+        ];
+
+        element.setProperty('data', histogramDataToSI);
+        await page.waitForChanges();
+
+        const ticks = await page.findAll('.x-axis text');
+        const ticksValues = ticks.map((tick) => tick.innerText);
+
+        expect(ticksValues).toEqual(['0', '400', '800', '1.2k', '1.6k']);
     });
   });
 });
