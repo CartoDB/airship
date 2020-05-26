@@ -107,7 +107,7 @@ describe('as-histogram-widget', () => {
       const ticks = await page.findAll('.x-axis text');
       const ticksValues = ticks.map((tick) => tick.innerText);
 
-      expect(ticksValues).toEqual(['-0.123', '0.884', '1.89', '2.9', '3.91']);
+      expect(ticksValues).toEqual(['-0.123', '0.884', '1.9', '2.9', '3.9']);
     });
 
     it(
@@ -184,7 +184,7 @@ describe('as-histogram-widget', () => {
       const ticks = await page.findAll('.x-axis text');
       const ticksValues = ticks.map((tick) => tick.innerText);
 
-      expect(ticksValues).toEqual(['123µ', '123µ', '124µ', '124µ', '124µ']);
+      expect(ticksValues).toEqual(['12µ', '320µ', '630µ', '930µ', '0.001']);
     });
 
     it('should format X axis using SI format when values are higher than 999', async () => {
@@ -222,7 +222,7 @@ describe('as-histogram-widget', () => {
         const ticks = await page.findAll('.x-axis text');
         const ticksValues = ticks.map((tick) => tick.innerText);
 
-        expect(ticksValues).toEqual(['0', '400', '800', '1.2k', '1.6k']);
+        expect(ticksValues).toEqual(['1.2M', '1.2M', '1.2M', '1.2M', '1.2M']);
     });
 
     it(
@@ -242,7 +242,7 @@ describe('as-histogram-widget', () => {
         const ticks = await page.findAll('.x-axis text');
         const ticksValues = ticks.map((tick) => tick.innerText);
 
-        expect(ticksValues).toEqual(['0', '400', '800', '1.2k', '1.6k']);
+        expect(ticksValues).toEqual(['9', '6.9k', '14k', '21k', '28k']);
     });
   });
 });
