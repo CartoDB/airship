@@ -169,22 +169,24 @@ describe('as-histogram-widget', () => {
     });
 
     // As we define 3 decimals, d3-format reads at least 3 non-zero decimals
-    it('should format X axis using SI format when range is lower than 0.001 using micro values', async () => {
-      const element: E2EElement = await page.find('as-histogram-widget');
-      const histogramDataFloatingToDecimalMicro = [
-        { start: 0.0000123, end: 0.0001235, value: 5 },
-        { start: 0.0001235, end: 0.0001236, value: 10 },
-        { start: 0.0001236, end: 0.0001237, value: 15 },
-        { start: 0.0001237, end: 0.001238, value: 20 },
-      ];
+    it(
+      'should format X axis using SI format when range is lower than 0.001 only when using micro values or with higher precision',
+      async () => {
+        const element: E2EElement = await page.find('as-histogram-widget');
+        const histogramDataFloatingToDecimalMicro = [
+          { start: 0.0000123, end: 0.0001235, value: 5 },
+          { start: 0.0001235, end: 0.0001236, value: 10 },
+          { start: 0.0001236, end: 0.0001237, value: 15 },
+          { start: 0.0001237, end: 0.001238, value: 20 },
+        ];
 
-      element.setProperty('data', histogramDataFloatingToDecimalMicro);
-      await page.waitForChanges();
+        element.setProperty('data', histogramDataFloatingToDecimalMicro);
+        await page.waitForChanges();
 
-      const ticks = await page.findAll('.x-axis text');
-      const ticksValues = ticks.map((tick) => tick.innerText);
+        const ticks = await page.findAll('.x-axis text');
+        const ticksValues = ticks.map((tick) => tick.innerText);
 
-      expect(ticksValues).toEqual(['12µ', '320µ', '630µ', '930µ', '0.001']);
+        expect(ticksValues).toEqual(['12µ', '320µ', '630µ', '930µ', '0.001']);
     });
 
     it('should format X axis using SI format when values are higher than 999', async () => {
