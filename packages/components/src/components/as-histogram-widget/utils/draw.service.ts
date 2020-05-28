@@ -295,7 +295,7 @@ function _delayFn(_d, i) {
 
 function precisionIsMicroOrSmaller(value) {
   const valueStr = value.toString();
-  const microTest = /\.0{3}[0-9]{3}/g;
+  const microTest = /\.0{3}|e-[4-9]|e-[0-9]{2,}/;
   return microTest.test(valueStr);
 }
 

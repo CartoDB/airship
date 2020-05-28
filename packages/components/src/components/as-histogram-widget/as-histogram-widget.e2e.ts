@@ -246,6 +246,26 @@ describe('as-histogram-widget', () => {
 
         expect(ticksValues).toEqual(['9', '6.9k', '14k', '21k', '28k']);
     });
+
+    it(
+      'should format X axis using SI format when range is lower than 0.001 and values whose exponential value is higher than 3',
+      async () => {
+        const element: E2EElement = await page.find('as-histogram-widget');
+        const histogramDataToSI = [
+          { start: -0.000001119192, end: -0.0000009948377, value: 5 },
+          { start: -0.0000009948377, end: -0.0000008704830, value: 10 },
+          { start: -0.0000008704830, end: -0.0000007461283, value: 15 },
+          { start: -0.0000007461283, end: 0, value: 20 },
+        ];
+
+        element.setProperty('data', histogramDataToSI);
+        await page.waitForChanges();
+
+        const ticks = await page.findAll('.x-axis text');
+        const ticksValues = ticks.map((tick) => tick.innerText);
+
+        expect(ticksValues).toEqual(['-1.1µ', '-840n', '-560n', '-280n', '0']);
+    });
   });
 });
 
