@@ -7,8 +7,8 @@ import { SVGContainer, SVGGContainer } from '../types/Container';
 import { Domain } from '../types/Domain';
 
 const BAR_WIDTH_THRESHOLD = 3;
-const formatter = format('.3');
-const decimalFormatter = format('.2');
+const formatter = format('.2~s');
+const decimalFormatter = format('.3~f');
 
 export function cleanAxes(yAxisSelection: SVGGContainer) {
   yAxisSelection.select('.domain').remove();
@@ -126,7 +126,7 @@ export function renderXAxis(
   bins: number,
   X_PADDING: number,
   Y_PADDING: number,
-  customFormatter: (value: Date | number, domainPrecision: number) => string = conditionalFormatter,
+  customFormatter: (value: Date | number) => string = conditionalFormatter,
   axisOptions: AxisOptions): Axis<{ valueOf(): number }> {
 
   if (!container || !container.node()) {
@@ -150,9 +150,6 @@ export function renderXAxis(
 
   let xAxis;
 
-  // Get domain precision for formatter in case of numbers
-  const domainPrecision = getDomainPrecision(domain);
-
   if (axisOptions.values || axisOptions.format) {
     const altScale = scaleLinear()
       .domain(domain)
@@ -167,7 +164,7 @@ export function renderXAxis(
       .tickValues(ticks !== undefined ? null : tickValues)
       .tickFormat((value) => {
         const realValue = realScale.invert(value);
-        return customFormatter(realValue, domainPrecision);
+        return customFormatter(realValue);
       });
   }
 
@@ -296,30 +293,15 @@ function _delayFn(_d, i) {
   return i;
 }
 
-function getFloatPrecision(value) {
-  const expValue = value.toString();
-  const expPos = expValue.indexOf('.');
-  return expPos > -1 ? expValue.length - (expPos + 1) : 0;
+function precisionIsMicroOrSmaller(value) {
+  const valueStr = value.toString();
+  const microTest = /\.0{3}|e-[4-9]|e-[0-9]{2,}/;
+  return microTest.test(valueStr);
 }
 
-function getDomainPrecision(domain) {
-  let domainPrecision = 0;
-  if (Number.isFinite(domain[0])) {
-    const domainDiff = domain[domain.length - 1] as number - domain[0];
-    const domainDiffPrecision = getFloatPrecision(domainDiff);
-    if (domainDiff > 1 && domainDiffPrecision > 1) {
-      domainPrecision = 1;
-    } else if (domainDiff < 1) {
-      domainPrecision = domainDiffPrecision;
-    }
-  }
-
-  return domainPrecision;
-}
-
-export function conditionalFormatter(value, domainPrecision = 0) {
+export function conditionalFormatter(value) {
   // Until we really need to use kilo or milli, we will not use SI prefixes
-  if (value > -100 && value < 100 && domainPrecision < 4) {
+  if (value > -1 && value < 1 && !precisionIsMicroOrSmaller(value)) {
       return decimalFormatter(value);
   }
 
