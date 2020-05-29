@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.4](https://github.com/CartoDB/airship/compare/v2.3.3...v2.3.4) (2020-05-29)
+
+
+### Bug Fixes
+
+* Return to SI format for values using precision higher than 3 and values higher than 999 ([#695](https://github.com/CartoDB/airship/issues/695)) ([392b960](https://github.com/CartoDB/airship/commit/392b960b90209659c93627a0632627d3533edafb))
+
+
+
+
+
 ## [2.3.3](https://github.com/CartoDB/airship/compare/v2.3.2...v2.3.3) (2020-05-22)
 
 
