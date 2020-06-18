@@ -97,7 +97,7 @@ export class FormulaWidget {
    * converts it into a string. Useful to compose with your own formatting
    * function.
    *
-   * @memberof CategoryWidget
+   * @memberof FormulaWidget
    */
   public defaultFormatter(value: number) {
     return `${readableNumber(value)}`;

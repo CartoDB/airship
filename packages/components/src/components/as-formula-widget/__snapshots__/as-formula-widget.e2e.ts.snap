@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`as-formula-widget Rendering should render empty state when data is empty 1`] = `"<as-formula-widget class=\\"hydrated\\"><as-widget-header no-data-message=\\"NO DATA AVAILABLE\\" class=\\"hydrated\\" is-empty=\\"\\"><h2 class=\\"as-widget-header__header\\">Formula Widget Example</h2><p class=\\"as-widget-header__subheader as-widget-header__subheader--empty as-body\\">NO DATA AVAILABLE</p></as-widget-header><p class=\\"content as-body\\">There is no data to display.</p></as-formula-widget>"`;
+
+exports[`as-formula-widget Rendering should render properly 1`] = `"<as-formula-widget class=\\"hydrated\\"><as-widget-header no-data-message=\\"NO DATA AVAILABLE\\" class=\\"hydrated\\"><h2 class=\\"as-widget-header__header\\">Formula Widget Example</h2><p class=\\"as-widget-header__subheader as-body\\">Description for Formula Widget</p></as-widget-header><div class=\\"as-title as-font--medium\\"> 1.0K</div></as-formula-widget>"`;

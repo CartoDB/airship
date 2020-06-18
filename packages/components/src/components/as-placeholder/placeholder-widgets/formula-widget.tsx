@@ -13,7 +13,7 @@ import { Component, h } from '@stencil/core';
   `,
   tag: 'as-formula-widget-placeholder',
 })
-export class CategoryWidgetPlaceholder {
+export class FormulaWidgetPlaceholder {
   public render() {
     return [
       <as-placeholder>
