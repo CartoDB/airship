@@ -20,7 +20,7 @@ export class FormulaWidgetPlaceholder {
         <div slot='header'>
           <slot />
         </div>
-        <as-placeholder-bar width='6%' height='32px'></as-placeholder-bar>
+        <as-placeholder-bar width='80px' height='32px'></as-placeholder-bar>
       </as-placeholder>
     ];
   }
