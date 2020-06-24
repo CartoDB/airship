@@ -222,6 +222,59 @@ export namespace Components {
     */
     'showClearButton': boolean;
   }
+  interface AsFormulaWidget {
+    /**
+    * Description text of the widget
+    * @type {string}
+    * @memberof FormulaWidget
+    */
+    'description': string;
+    /**
+    * Text shown in the header subtitle when there's an error
+    */
+    'error': string;
+    /**
+    * Extended error description, only shown when error is present
+    */
+    'errorDescription': string;
+    /**
+    * Heading text of the widget
+    * @type {string}
+    * @memberof FormulaWidget
+    */
+    'heading': string;
+    /**
+    * Boolean property to control the widget loading state. If true, a spinner is shown.
+    */
+    'isLoading': boolean;
+    /**
+    * Message shown in body when no data is available
+    */
+    'noDataBodyMessage': string;
+    /**
+    * Message shown in header when no data is available
+    */
+    'noDataHeaderMessage': string;
+    /**
+    * If truthy, it'll render the heading and component's description. Default value is `true`.
+    * @type {boolean}
+    * @memberof FormulaWidget
+    */
+    'showHeader': boolean;
+    /**
+    * Numeric value to display in the widget.
+    * @type {number}
+    * @memberof FormulaWidget
+    */
+    'value': number;
+    /**
+    * If this property receives a function, it will be used to format the numbers (eg. for adding $ or €).
+    * @type {function (value: number)}
+    * @memberof RangeSlider
+    */
+    'valueFormatter': (value: number) => string;
+  }
+  interface AsFormulaWidgetPlaceholder {}
   interface AsHistogramWidget {
     /**
     * Function used to format the x-axis values
@@ -1018,6 +1071,18 @@ declare global {
     new (): HTMLAsDropdownElement;
   };
 
+  interface HTMLAsFormulaWidgetElement extends Components.AsFormulaWidget, HTMLStencilElement {}
+  var HTMLAsFormulaWidgetElement: {
+    prototype: HTMLAsFormulaWidgetElement;
+    new (): HTMLAsFormulaWidgetElement;
+  };
+
+  interface HTMLAsFormulaWidgetPlaceholderElement extends Components.AsFormulaWidgetPlaceholder, HTMLStencilElement {}
+  var HTMLAsFormulaWidgetPlaceholderElement: {
+    prototype: HTMLAsFormulaWidgetPlaceholderElement;
+    new (): HTMLAsFormulaWidgetPlaceholderElement;
+  };
+
   interface HTMLAsHistogramWidgetElement extends Components.AsHistogramWidget, HTMLStencilElement {}
   var HTMLAsHistogramWidgetElement: {
     prototype: HTMLAsHistogramWidgetElement;
@@ -1316,6 +1381,8 @@ declare global {
     'as-category-widget': HTMLAsCategoryWidgetElement;
     'as-category-widget-placeholder': HTMLAsCategoryWidgetPlaceholderElement;
     'as-dropdown': HTMLAsDropdownElement;
+    'as-formula-widget': HTMLAsFormulaWidgetElement;
+    'as-formula-widget-placeholder': HTMLAsFormulaWidgetPlaceholderElement;
     'as-histogram-widget': HTMLAsHistogramWidgetElement;
     'as-histogram-widget-placeholder': HTMLAsHistogramWidgetPlaceholderElement;
     'as-infowindow': HTMLAsInfowindowElement;
@@ -1560,6 +1627,59 @@ declare namespace LocalJSX {
     */
     'showClearButton'?: boolean;
   }
+  interface AsFormulaWidget extends JSXBase.HTMLAttributes<HTMLAsFormulaWidgetElement> {
+    /**
+    * Description text of the widget
+    * @type {string}
+    * @memberof FormulaWidget
+    */
+    'description'?: string;
+    /**
+    * Text shown in the header subtitle when there's an error
+    */
+    'error'?: string;
+    /**
+    * Extended error description, only shown when error is present
+    */
+    'errorDescription'?: string;
+    /**
+    * Heading text of the widget
+    * @type {string}
+    * @memberof FormulaWidget
+    */
+    'heading'?: string;
+    /**
+    * Boolean property to control the widget loading state. If true, a spinner is shown.
+    */
+    'isLoading'?: boolean;
+    /**
+    * Message shown in body when no data is available
+    */
+    'noDataBodyMessage'?: string;
+    /**
+    * Message shown in header when no data is available
+    */
+    'noDataHeaderMessage'?: string;
+    /**
+    * If truthy, it'll render the heading and component's description. Default value is `true`.
+    * @type {boolean}
+    * @memberof FormulaWidget
+    */
+    'showHeader'?: boolean;
+    /**
+    * Numeric value to display in the widget.
+    * @type {number}
+    * @memberof FormulaWidget
+    */
+    'value'?: number;
+    /**
+    * If this property receives a function, it will be used to format the numbers (eg. for adding $ or €).
+    * @type {function (value: number)}
+    * @memberof RangeSlider
+    */
+    'valueFormatter'?: (value: number) => string;
+  }
+  interface AsFormulaWidgetPlaceholder extends JSXBase.HTMLAttributes<HTMLAsFormulaWidgetPlaceholderElement> {}
   interface AsHistogramWidget extends JSXBase.HTMLAttributes<HTMLAsHistogramWidgetElement> {
     /**
     * Function used to format the x-axis values
@@ -2331,6 +2451,8 @@ declare namespace LocalJSX {
     'as-category-widget': AsCategoryWidget;
     'as-category-widget-placeholder': AsCategoryWidgetPlaceholder;
     'as-dropdown': AsDropdown;
+    'as-formula-widget': AsFormulaWidget;
+    'as-formula-widget-placeholder': AsFormulaWidgetPlaceholder;
     'as-histogram-widget': AsHistogramWidget;
     'as-histogram-widget-placeholder': AsHistogramWidgetPlaceholder;
     'as-infowindow': AsInfowindow;
