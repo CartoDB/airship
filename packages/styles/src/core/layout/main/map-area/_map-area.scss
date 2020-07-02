@@ -9,5 +9,6 @@
   #map {
     z-index: $z-index-0;
     flex: 1;
+    overflow: hidden;
   }
 }
