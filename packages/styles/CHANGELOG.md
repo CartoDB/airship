@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/CartoDB/airship/compare/v2.4.0-rc.0...v2.4.0) (2020-07-03)
+
+
+### Bug Fixes
+
+* **styles:** Add overflow hidden to #map ([#698](https://github.com/CartoDB/airship/issues/698)) ([f4abb11](https://github.com/CartoDB/airship/commit/f4abb11a938e5ac7f92bfd99e1278ce957fc8cdb))
+
+
+
+
+
 ## [2.3.4](https://github.com/CartoDB/airship/compare/v2.3.3...v2.3.4) (2020-05-29)
 
 **Note:** Version bump only for package @carto/airship-style
