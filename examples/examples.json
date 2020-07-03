@@ -284,23 +284,23 @@
         },
         {
           "title": "Animation Controls bridge simple",
-          "file": "bridge/animation-controls-widget/simple.html"
+          "file": "bridge/animation-controls/simple.html"
         },
         {
           "title": "Animation Controls bridge default",
-          "file": "bridge/animation-controls-widget/default.html"
+          "file": "bridge/animation-controls/default.html"
         },
         {
           "title": "Animation Controls bridge property",
-          "file": "bridge/animation-controls-widget/property.html"
+          "file": "bridge/animation-controls/property.html"
         },
         {
           "title": "Animation Controls bridge date format",
-          "file": "bridge/animation-controls-widget/date-format.html"
+          "file": "bridge/animation-controls/date-format.html"
         },
         {
           "title": "Animation Controls bridge combined filters",
-          "file": "bridge/animation-controls-widget/combined-filters.html"
+          "file": "bridge/animation-controls/combined-filters.html"
         },
         {
           "title": "Legend ramp bridge",
