@@ -1,7 +1,6 @@
-# Change Log
+# [0.0.0](https://github.com/CartoDB/airship/compare/v2.4.0...v0.0.0) (2020-07-03)
 
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 
 # [2.4.0](https://github.com/CartoDB/airship/compare/v2.4.0-rc.0...v2.4.0) (2020-07-03)
 
@@ -12,6 +11,13 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+# [2.4.0-rc.0](https://github.com/CartoDB/airship/compare/v2.3.4...v2.4.0-rc.0) (2020-06-24)
+
+
+### Features
+
+* **components:** Formula Widget ([#696](https://github.com/CartoDB/airship/issues/696)) ([edea7aa](https://github.com/CartoDB/airship/commit/edea7aa548a56ba7aa1215f90b17ac72e9c0ffe8))
+
 
 
 ## [2.3.4](https://github.com/CartoDB/airship/compare/v2.3.3...v2.3.4) (2020-05-29)
@@ -20,8 +26,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Bug Fixes
 
 * Return to SI format for values using precision higher than 3 and values higher than 999 ([#695](https://github.com/CartoDB/airship/issues/695)) ([392b960](https://github.com/CartoDB/airship/commit/392b960b90209659c93627a0632627d3533edafb))
-
-
 
 
 
@@ -35,20 +39,15 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+## [2.3.2](https://github.com/CartoDB/airship/compare/v2.3.2-rc.2...v2.3.2) (2020-05-13)
 
 
-## [2.3.2](https://github.com/CartoDB/airship/compare/v2.3.1...v2.3.2) (2020-05-13)
 
-### Features
-* Allow multi-selection in category widget
-* Allow custom formatting values in bridge
-
-### Bug fixes
-* Fix histogram showing incorrect numeric values on axis
-* Improve legend values formatting call
-* Fix rendering null values as 0 in category widget
+## [2.3.2-rc.2](https://github.com/CartoDB/airship/compare/v2.3.2-rc.0...v2.3.2-rc.2) (2020-05-08)
 
 
+
+## [2.3.2-rc.0](https://github.com/CartoDB/airship/compare/v2.3.1...v2.3.2-rc.0) (2020-04-30)
 
 
 
@@ -61,13 +60,26 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-
-
 ## [2.3.1-rc.2](https://github.com/CartoDB/airship/compare/v2.3.1-rc.1...v2.3.1-rc.2) (2020-04-03)
 
-**Note:** Version bump only for package @carto/airship
 
 
+## [2.3.1-rc.1](https://github.com/CartoDB/airship/compare/v2.3.1-rc.0...v2.3.1-rc.1) (2020-04-02)
+
+
+### Bug Fixes
+
+* linter issues ([eb8f041](https://github.com/CartoDB/airship/commit/eb8f0419debe1713ecbdd66fa766487ebb72e690))
+* tests not being executed due to describe with async ([0eb4659](https://github.com/CartoDB/airship/commit/0eb4659f570437f6470c3b7eb5da52d5a8a6f718))
+* tslint error detecting an es2017 feature on bridge ([4f3035b](https://github.com/CartoDB/airship/commit/4f3035b6408434b53dc94fb87e01a3ea03028456))
+
+
+
+## [2.3.1-rc.0](https://github.com/CartoDB/airship/compare/v2.3.0...v2.3.1-rc.0) (2020-03-18)
+
+
+
+# [2.3.0](https://github.com/CartoDB/airship/compare/v2.2.1...v2.3.0) (2020-02-24)
 
 
 
@@ -76,27 +88,26 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* Developer docs ([099bd11](https://github.com/CartoDB/airship/commit/099bd11))
-* **components:** Add loading placeholders for widgets ([57802e3](https://github.com/CartoDB/airship/commit/57802e3))
+* Developer docs ([099bd11](https://github.com/CartoDB/airship/commit/099bd11daa115a0202971ddf7be0d5bce9977703))
+* **components:** Add loading placeholders for widgets ([57802e3](https://github.com/CartoDB/airship/commit/57802e353f429b5f39d09b83425d9a88adf5ee57))
 
 
 
-
-
-# [0.0.0](https://github.com/CartoDB/airship/compare/v2.2.0...v0.0.0) (2020-01-17)
-
-
-
-# [2.2.0](https://github.com/CartoDB/airship/compare/v2.2.0-rc.2.2...v2.2.0) (2020-01-17)
+# [2.2.0](https://github.com/CartoDB/airship/compare/v2.1.1...v2.2.0) (2020-01-17)
 
 
 ### Bug Fixes
 
 * update dependencies to fix vulnerabilities ([13e7c90](https://github.com/CartoDB/airship/commit/13e7c90700457998d2052d84924ef745ff5eefeb))
-
 * **components:** time series / histogram improvements ([#641](https://github.com/CartoDB/airship/issues/641)) ([31789ae](https://github.com/CartoDB/airship/commit/31789ae0e1c253fa754a983be0d699254d2bb618))
-* **bridge:** Fix bridge tests ([1b2c1d7](https://github.com/CartoDB/airship/commit/1b2c1d74fd67feca48b6d34f73ca2ae82b89d9bd))
-* **docs:** Fix infowindows CSS variables documentation ([bd3b73e](https://github.com/CartoDB/airship/commit/bd3b73e44d71f8ef92da7d97cb8c83edcec8c8bd))
+
+
+
+# [2.2.0-rc.1](https://github.com/CartoDB/airship/compare/v2.2.0-rc.0...v2.2.0-rc.1) (2019-07-16)
+
+
+### Bug Fixes
+
 * **bridge:** Fix bridge tests ([1b2c1d7](https://github.com/CartoDB/airship/commit/1b2c1d74fd67feca48b6d34f73ca2ae82b89d9bd))
 
 
@@ -105,9 +116,40 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **components:** Animation controls API ([#634](https://github.com/CartoDB/airship/issues/634)) ([8fc2d1a](https://github.com/CartoDB/airship/commit/8fc2d1af54629c282ec7e7185fd7f239aa06358c))
 * **components:** Improve animation controls API ([#635](https://github.com/CartoDB/airship/issues/635)) ([5a24e3a](https://github.com/CartoDB/airship/commit/5a24e3a2bc6f3597ac4e18a734d0648daf7187c5))
 * **components:** Time Series date format improvements ([#638](https://github.com/CartoDB/airship/issues/638)) ([ef6fec8](https://github.com/CartoDB/airship/commit/ef6fec8a49ba3f600ee26517314467764b57c8f4)), closes [CartoDB/cartoframes#813](https://github.com/CartoDB/cartoframes/issues/813)
+
+
+
+# [2.2.0-rc.0](https://github.com/CartoDB/airship/compare/v2.1.0...v2.2.0-rc.0) (2019-06-26)
+
+
+
+## [2.1.1](https://github.com/CartoDB/airship/compare/v2.2.0-rc.1...v2.1.1) (2019-07-30)
+
+
+### Bug Fixes
+
+* **docs:** Fix infowindows CSS variables documentation ([bd3b73e](https://github.com/CartoDB/airship/commit/bd3b73e44d71f8ef92da7d97cb8c83edcec8c8bd))
+
+
+
+# [2.2.0-rc.1](https://github.com/CartoDB/airship/compare/v2.2.0-rc.0...v2.2.0-rc.1) (2019-07-16)
+
+
+### Bug Fixes
+
+* **bridge:** Fix bridge tests ([1b2c1d7](https://github.com/CartoDB/airship/commit/1b2c1d74fd67feca48b6d34f73ca2ae82b89d9bd))
+
+
+### Features
+
 * **components:** Animation controls API ([#634](https://github.com/CartoDB/airship/issues/634)) ([8fc2d1a](https://github.com/CartoDB/airship/commit/8fc2d1af54629c282ec7e7185fd7f239aa06358c))
 * **components:** Improve animation controls API ([#635](https://github.com/CartoDB/airship/issues/635)) ([5a24e3a](https://github.com/CartoDB/airship/commit/5a24e3a2bc6f3597ac4e18a734d0648daf7187c5))
 * **components:** Time Series date format improvements ([#638](https://github.com/CartoDB/airship/issues/638)) ([ef6fec8](https://github.com/CartoDB/airship/commit/ef6fec8a49ba3f600ee26517314467764b57c8f4)), closes [CartoDB/cartoframes#813](https://github.com/CartoDB/cartoframes/issues/813)
+
+
+
+# [2.2.0-rc.0](https://github.com/CartoDB/airship/compare/v2.1.0...v2.2.0-rc.0) (2019-06-26)
+
 
 
 # [2.1.0](https://github.com/CartoDB/airship/compare/v2.0.5...v2.1.0) (2019-06-18)
@@ -281,7 +323,7 @@ More info can be found https://github.com/CartoDB/airship/pull/493
 
 
 
-# [1.0.0-beta.9](https://github.com/CartoDB/airship/compare/v1.0.0-beta.7...v1.0.0-beta.9) (2018-11-05)
+# [1.0.0-beta.9](https://github.com/CartoDB/airship/compare/v1.0.0-beta.8...v1.0.0-beta.9) (2018-11-05)
 
 
 ### Bug Fixes
@@ -290,7 +332,11 @@ More info can be found https://github.com/CartoDB/airship/pull/493
 
 
 
-# [1.0.0-beta.7](https://github.com/CartoDB/airship/compare/v1.0.0-beta.5...v1.0.0-beta.7) (2018-10-31)
+# [1.0.0-beta.8](https://github.com/CartoDB/airship/compare/v1.0.0-beta.7...v1.0.0-beta.8) (2018-10-31)
+
+
+
+# [1.0.0-beta.7](https://github.com/CartoDB/airship/compare/v1.0.0-beta.6...v1.0.0-beta.7) (2018-10-31)
 
 
 ### Bug Fixes
@@ -305,6 +351,10 @@ More info can be found https://github.com/CartoDB/airship/pull/493
 * **components:** 217 histogram redesign ([#442](https://github.com/CartoDB/airship/issues/442)) ([5033fb2](https://github.com/CartoDB/airship/commit/5033fb213fb6cb4eb3f1075c9441ef34d652516e))
 * **components:** Add airship tabs ([#445](https://github.com/CartoDB/airship/issues/445)) ([f90a2a4](https://github.com/CartoDB/airship/commit/f90a2a4fd01827b4d05832229e03b9f66c122f46)), closes [#452](https://github.com/CartoDB/airship/issues/452)
 * **components:** Add toolbar component ([#449](https://github.com/CartoDB/airship/issues/449)) ([0768f7a](https://github.com/CartoDB/airship/commit/0768f7a4db2a3abb20f5ac4717b26b13a7598daf))
+
+
+
+# [1.0.0-beta.6](https://github.com/CartoDB/airship/compare/v1.0.0-beta.5...v1.0.0-beta.6) (2018-10-26)
 
 
 
@@ -739,3 +789,6 @@ This reverts commit acb63b2610d2d53c6af4c4e1dea631b125e99745.
 
 
 # 1.0.0-alpha.1 (2018-04-05)
+
+
+
