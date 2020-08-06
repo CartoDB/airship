@@ -21,7 +21,7 @@ showSource: false
 <script>
   const categoryWidget = document.querySelector('as-category-widget');
   categoryWidget.showHeader = true;
-  categoryWidget.showClearButton = true;
+  categoryWidget.showClear = true;
   categoryWidget.useTotalPercentage = false;
   categoryWidget.visibleCategories = Infinity;
   categoryWidget.categories = [
@@ -139,19 +139,19 @@ lang: javascript
 categoryWidget.heading = 'Business Volume';
 ```
 
-#### **showClearButton**: boolean = false
+#### **showClear**: boolean = false
 If truthy, it'll show a button to clear selected categories when there are any. Default value is `false`.
 
 ```code
 lang: html
 ---
-<as-category-widget show-clear-button="true"></as-category-widget>
+<as-category-widget show-clear="true"></as-category-widget>
 ```
 
 ```code
 lang: javascript
 ---
-categoryWidget.showClearButton = true;
+categoryWidget.showClear = true;
 ```
 
 #### **showHeader**: boolean = true
@@ -402,7 +402,7 @@ showSource: false
 
 <script>
   const categoryWidget = document.querySelector('as-category-widget');
-  categoryWidget.showClearButton = true;
+  categoryWidget.showClear = true;
   categoryWidget.showHeader = false;
   categoryWidget.visibleCategories = 5;
   categoryWidget.categories = [

@@ -158,6 +158,13 @@ export namespace Components {
     * @type {boolean}
     * @memberof CategoryWidget
     */
+    'showClear': boolean;
+    /**
+    * Deprecated. Use showClear instead. If truthy, it'll show a button to clear selected categories when there are any. Default value is `false`.
+    * @type {boolean}
+    * @memberof CategoryWidget
+    * @deprecated
+    */
     'showClearButton': boolean;
     /**
     * If truthy, it'll render the heading and component's description. Default value is `true`.
@@ -1561,6 +1568,13 @@ declare namespace LocalJSX {
     * If truthy, it'll show a button to clear selected categories when there are any. Default value is `false`.
     * @type {boolean}
     * @memberof CategoryWidget
+    */
+    'showClear'?: boolean;
+    /**
+    * Deprecated. Use showClear instead. If truthy, it'll show a button to clear selected categories when there are any. Default value is `false`.
+    * @type {boolean}
+    * @memberof CategoryWidget
+    * @deprecated
     */
     'showClearButton'?: boolean;
     /**

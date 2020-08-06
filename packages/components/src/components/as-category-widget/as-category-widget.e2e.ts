@@ -13,12 +13,24 @@ describe('as-category-widget', () => {
   });
 
   describe('Rendering', () => {
-    it('should render properly', async () => {
+    it('should render properly with showClearButton', async () => {
       const element: E2EElement = await page.find('as-category-widget');
       element.setProperty('heading', 'Category Widget Example');
       element.setProperty('description', 'Description for Category Widget');
       element.setProperty('categories', exampleCategories);
       element.setProperty('showClearButton', true);
+
+      await page.waitForChanges();
+
+      expect(element.outerHTML).toMatchSnapshot();
+    });
+
+    it('should render properly with showClear', async () => {
+      const element: E2EElement = await page.find('as-category-widget');
+      element.setProperty('heading', 'Category Widget Example');
+      element.setProperty('description', 'Description for Category Widget');
+      element.setProperty('categories', exampleCategories);
+      element.setProperty('showClear', true);
 
       await page.waitForChanges();
 
@@ -63,9 +75,19 @@ describe('as-category-widget', () => {
       expect(actual).toBeFalsy();
     });
 
-    it('should render clear button', async () => {
+    it('should render clear button with showClearButton', async () => {
       const element: E2EElement = await page.find('as-category-widget');
       element.setProperty('showClearButton', true);
+      element.setProperty('categories', exampleCategories);
+
+      await page.waitForChanges();
+
+      expect(element.outerHTML).toMatchSnapshot();
+    });
+
+    it('should render clear button with showClear', async () => {
+      const element: E2EElement = await page.find('as-category-widget');
+      element.setProperty('showClear', true);
       element.setProperty('categories', exampleCategories);
 
       await page.waitForChanges();
@@ -110,10 +132,29 @@ describe('as-category-widget', () => {
       expect(categoriesSelectedSpy).toHaveReceivedEventDetail([exampleCategories[0].name]);
     });
 
-    it('should emit an event containing selected categories when categories are cleared', async () => {
+    it('should emit an event containing selected categories when categories are cleared with showClearButton',
+     async () => {
       const element: E2EElement = await page.find('as-category-widget');
       element.setProperty('categories', exampleCategories);
       element.setProperty('showClearButton', true);
+
+      await page.waitForChanges();
+
+      await page.click('.as-category-widget__category');
+      await page.waitForChanges();
+
+      const categoriesSelectedSpy = await page.spyOnEvent('categoriesSelected');
+
+      await page.click('.as-widget-selection__clear');
+      await page.waitForChanges();
+
+      expect(categoriesSelectedSpy).toHaveReceivedEventDetail([]);
+    });
+
+    it('should emit an event containing selected categories when categories are cleared with showClear', async () => {
+      const element: E2EElement = await page.find('as-category-widget');
+      element.setProperty('categories', exampleCategories);
+      element.setProperty('showClear', true);
 
       await page.waitForChanges();
 

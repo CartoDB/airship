@@ -70,12 +70,22 @@ export class CategoryWidget {
   @Prop() public heading: string;
 
   /**
+   * Deprecated. Use showClear instead.
+   * If truthy, it'll show a button to clear selected categories when there are any. Default value is `false`.
+   *
+   * @type {boolean}
+   * @memberof CategoryWidget
+   * @deprecated
+   */
+  @Prop() public showClearButton: boolean = false;
+
+  /**
    * If truthy, it'll show a button to clear selected categories when there are any. Default value is `false`.
    *
    * @type {boolean}
    * @memberof CategoryWidget
    */
-  @Prop() public showClearButton: boolean = false;
+  @Prop() public showClear: boolean = false;
 
   /**
    * If truthy, it'll render the heading and component's description. Default value is `true`.
@@ -205,7 +215,7 @@ export class CategoryWidget {
   }
 
   private _renderSelection() {
-    if (this._isLoading() || this._isEmpty() || this.error || !this.showClearButton) {
+    if (this._isLoading() || this._isEmpty() || this.error || !(this.showClear || this.showClearButton)) {
       return '';
     }
 
