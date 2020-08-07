@@ -58,12 +58,22 @@ export class TimeSeriesWidget {
   @Prop() public showHeader: boolean = true;
 
   /**
+   * Deprecated, use showClearButton instead.
+   * Display a clear button that clears the histogram selection.
+   *
+   * @type {boolean}
+   * @memberof HistogramWidget
+   * @deprecated
+   */
+  @Prop() public showClear: boolean;
+
+  /**
    * Display a clear button that clears the histogram selection.
    *
    * @type {boolean}
    * @memberof HistogramWidget
    */
-  @Prop() public showClear: boolean;
+  @Prop() public showClearButton: boolean;
 
   /**
    * Disables selection brushes and events for the widget
@@ -421,7 +431,7 @@ export class TimeSeriesWidget {
         heading={this.heading}
         description={this.description}
         showHeader={this.showHeader}
-        showClear={this.showClear}
+        showClearButton={this.showClearButton}
         disableInteractivity={this.disableInteractivity}
         data={this.data}
         backgroundData={this._backgroundData}

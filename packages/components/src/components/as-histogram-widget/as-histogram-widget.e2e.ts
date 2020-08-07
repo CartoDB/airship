@@ -55,9 +55,34 @@ describe('as-histogram-widget', () => {
       expect(actual).toBeFalsy();
     });
 
+    it('should never render clear button when the showClearButton attribute is false', async () => {
+      const element: E2EElement = await page.find('as-histogram-widget');
+      element.setProperty('showClearButton', false);
+      element.setProperty('data', histogramData);
+      // It only shows if there's a selection
+      element.callMethod('setSelection', [0, 10]);
+      await page.waitForChanges();
+
+      const actual = await page.find('.as-widget-selection__clear');
+
+      expect(actual).toBeFalsy();
+    });
+
     it('should not render the clear button disabled if no selection is present', async () => {
       const element: E2EElement = await page.find('as-histogram-widget');
       element.setProperty('showClear', true);
+      element.setProperty('data', histogramData);
+      element.callMethod('setSelection', [0, 10]);
+      await page.waitForChanges();
+
+      const actual = await page.find('.as-widget-selection__clear');
+
+      expect(actual).not.toBeFalsy();
+    });
+
+    it('should not render the clear button disabled if no selection is present with showClearButton', async () => {
+      const element: E2EElement = await page.find('as-histogram-widget');
+      element.setProperty('showClearButton', true);
       element.setProperty('data', histogramData);
       element.callMethod('setSelection', [0, 10]);
       await page.waitForChanges();
@@ -79,9 +104,34 @@ describe('as-histogram-widget', () => {
       expect(actual).not.toBeFalsy();
     });
 
+    it('should render clear button enabled if there is a selection with showClearButton', async () => {
+      const element: E2EElement = await page.find('as-histogram-widget');
+      element.setProperty('showClearButton', true);
+      element.setProperty('data', histogramData);
+      element.callMethod('setSelection', [0, 10]);
+      await page.waitForChanges();
+
+      const actual = await page.find('.as-widget-selection__clear');
+
+      expect(actual).not.toBeFalsy();
+    });
+
     it('should render custom clear button text', async () => {
       const element: E2EElement = await page.find('as-histogram-widget');
       element.setProperty('showClear', true);
+      element.setProperty('clearText', 'Radio Gaga');
+      element.setProperty('data', histogramData);
+      element.callMethod('setSelection', [0, 10]);
+      await page.waitForChanges();
+
+      const actual = await page.find('.as-widget-selection__clear');
+
+      expect(actual.innerText).toEqual('Radio Gaga');
+    });
+
+    it('should render custom clear button text with showClearButton', async () => {
+      const element: E2EElement = await page.find('as-histogram-widget');
+      element.setProperty('showClearButton', true);
       element.setProperty('clearText', 'Radio Gaga');
       element.setProperty('data', histogramData);
       element.callMethod('setSelection', [0, 10]);

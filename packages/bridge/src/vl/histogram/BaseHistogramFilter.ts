@@ -51,7 +51,7 @@ export abstract class BaseHistogramFilter<T> extends BaseFilter {
     this._totals = showTotals;
 
     this._widget.disableInteractivity = readOnly;
-    this._widget.showClear = !readOnly;
+    this._widget.showClearButton = !readOnly;
 
     this._inputExpression = inputExpression;
 
