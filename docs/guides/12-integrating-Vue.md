@@ -141,7 +141,7 @@ To mirror the Airship Component, we need to create a new Vue component like this
   <as-category-widget
     heading={heading}
     description={description}
-    show-clear={showClear}
+    show-clear-button={showClearButton}
     defaultBarColor={defaultBarColor}>
   </as-category-widget>
 </template>
@@ -152,7 +152,7 @@ To mirror the Airship Component, we need to create a new Vue component like this
     properties: {
       heading: String,
       description: String,
-      showClear: Boolean,
+      showClearButton: Boolean,
       defaultBarColor: String,
       categories: Object
     },

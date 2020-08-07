@@ -14,7 +14,7 @@
     <div style="width: 250px;">
       <as-histogram-widget
         show-header="false"
-        show-clear>
+        show-clear-button>
       </as-histogram-widget>
     </div>
     <p id="selection">Nothing selected</p>
@@ -31,7 +31,7 @@
       histogramWidget.tooltipFormatter = function (data) {
         return histogramWidget.defaultFormatter(data).then((formatted) => {
           formatted[1] = `${formatted[1]} kg`;
-  
+
           return formatted;
         });
       };
