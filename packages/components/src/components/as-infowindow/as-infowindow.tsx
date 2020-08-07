@@ -9,12 +9,26 @@ import { Component, Element, h, Prop, } from '@stencil/core';
 export class Infowindow {
 
   @Prop() public src: string;
+
+  /**
+   * Width of the content. This should be a valid
+   * width CSS value.
+   *
+   * @type {string}
+   * @memberof Infowindow
+   */
+  @Prop() public width: string;
+
   @Element() private element: HTMLElement;
 
   public render() {
+    const styleWidth = this.width
+      ? { width: this.width }
+      : undefined;
+
     return this.element.childElementCount === 0 && this.src
-      ? this._renderImageInfoWindow()
-      : this._renderStandarInfowindow();
+      ? this._renderImageInfoWindow(styleWidth)
+      : this._renderStandarInfowindow(styleWidth);
   }
 
   public componentDidLoad() {
@@ -23,9 +37,9 @@ export class Infowindow {
     }
   }
 
-  private _renderStandarInfowindow() {
+  private _renderStandarInfowindow(style = {}) {
     return (
-      <div class='as-infowindow'>
+      <div class='as-infowindow' style={style}>
         {this.src && <img src={this.src} />}
         <div class='as-infowindow__content'>
           <slot />
@@ -35,15 +49,15 @@ export class Infowindow {
     );
   }
 
-  private _renderImageInfoWindow() {
+  private _renderImageInfoWindow(style = {}) {
     return (
-      <div class='as-infowindow'>
+      <div class='as-infowindow' style={style}>
         <div class='as-infowindow__media'>
           <img src={this.src} />
         </div>
         <div class='as-infowindow__imageHook'>
           <div class='as-infowindow__imageHook--inner'>
-            <img src={this.src} />
+            <img src={this.src} style={style} />
           </div>
         </div>
       </div>

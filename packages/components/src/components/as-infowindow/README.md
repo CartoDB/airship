@@ -49,3 +49,17 @@ as-infowindow{
 
 #### **src**: string
 The url for the image shown at the top of the content.
+
+#### **width**: string
+Width of the content. This should be a valid CSS value.
+
+```code
+lang: html
+---
+<as-category-widget width="400px"></as-category-widget>
+```
+```code
+lang: javascript
+---
+categoryWidget.width = '400px';
+```
