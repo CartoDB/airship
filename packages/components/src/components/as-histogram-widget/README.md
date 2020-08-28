@@ -176,21 +176,6 @@ lang: javascript
 histogramWidget.heading = 'Business Volume';
 ```
 
-#### **showClear (deprecated)**: boolean = false
-Deprected: see `showClearButton`.
-If truthy, it'll show a button to clear the histogram selection. Default value is `false`.
-
-```code
-lang: html
----
-<as-histogram-widget show-clear-button></as-histogram-widget>
-```
-
-```code
-lang: javascript
----
-histogram.showClear = true;
-
 #### **showClearButton**: boolean = false
 If truthy, it'll show a button to clear the histogram selection. Default value is `false`.
 
