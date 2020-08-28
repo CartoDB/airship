@@ -391,11 +391,18 @@ export namespace Components {
     */
     'setSelection': (values: number[], emit?: boolean) => Promise<void>;
     /**
+    * Deprecated, use showClearButton instead. Display a clear button that clears the histogram selection.
+    * @type {boolean}
+    * @memberof HistogramWidget
+    * @deprecated
+    */
+    'showClear': boolean;
+    /**
     * Display a clear button that clears the histogram selection.
     * @type {boolean}
     * @memberof HistogramWidget
     */
-    'showClear': boolean;
+    'showClearButton': boolean;
     /**
     * Toggles displaying title and description
     * @type {boolean}
@@ -908,11 +915,18 @@ export namespace Components {
     */
     'setSelection': (values: number[]) => Promise<void>;
     /**
+    * Deprecated, use showClearButton instead. Display a clear button that clears the histogram selection.
+    * @type {boolean}
+    * @memberof HistogramWidget
+    * @deprecated
+    */
+    'showClear': boolean;
+    /**
     * Display a clear button that clears the histogram selection.
     * @type {boolean}
     * @memberof HistogramWidget
     */
-    'showClear': boolean;
+    'showClearButton': boolean;
     /**
     * Toggles displaying title and description
     * @type {boolean}
@@ -1781,11 +1795,18 @@ declare namespace LocalJSX {
     */
     'selectedFormatter'?: (value: number[]) => string;
     /**
+    * Deprecated, use showClearButton instead. Display a clear button that clears the histogram selection.
+    * @type {boolean}
+    * @memberof HistogramWidget
+    * @deprecated
+    */
+    'showClear'?: boolean;
+    /**
     * Display a clear button that clears the histogram selection.
     * @type {boolean}
     * @memberof HistogramWidget
     */
-    'showClear'?: boolean;
+    'showClearButton'?: boolean;
     /**
     * Toggles displaying title and description
     * @type {boolean}
@@ -2310,11 +2331,18 @@ declare namespace LocalJSX {
     */
     'responsive'?: boolean;
     /**
+    * Deprecated, use showClearButton instead. Display a clear button that clears the histogram selection.
+    * @type {boolean}
+    * @memberof HistogramWidget
+    * @deprecated
+    */
+    'showClear'?: boolean;
+    /**
     * Display a clear button that clears the histogram selection.
     * @type {boolean}
     * @memberof HistogramWidget
     */
-    'showClear'?: boolean;
+    'showClearButton'?: boolean;
     /**
     * Toggles displaying title and description
     * @type {boolean}

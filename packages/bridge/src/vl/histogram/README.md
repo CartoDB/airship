@@ -107,4 +107,4 @@ The following properties of the histogram will be modified internally, so modify
 - `backgroundData`
 - `data`
 - `disableInteractivity`
-- `showClear`
+- `showClearButton`

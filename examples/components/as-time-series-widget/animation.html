@@ -29,10 +29,10 @@
 <body>
   <as-time-series-widget
     animated
-    x-label="Time" 
+    x-label="Time"
     y-label="Overall world coolness"
     responsive
-    show-clear
+    show-clear-button
     heading="World coolness evolution"
     time-format="%x"
   >
@@ -79,7 +79,7 @@
       }
 
       progress = Math.min(progress + 20, 100);
-      
+
       timeSeriesWidget.progress = progress;
       timeSeriesWidget.playing = !paused;
 
@@ -105,7 +105,7 @@
 
     timeSeriesWidget.tooltipFormatter = (data) => {
       return Promise.all(
-        [ 
+        [
           timeSeriesWidget.xFormatter(data.start),
           timeSeriesWidget.xFormatter(data.end),
           timeSeriesWidget.defaultFormatter(data)

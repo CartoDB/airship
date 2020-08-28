@@ -27,7 +27,7 @@
 </head>
 
 <body>
-  <as-histogram-widget x-label="x-axis" y-label="y-axis" responsive show-clear heading="Business Volume" description="Description">
+  <as-histogram-widget x-label="x-axis" y-label="y-axis" responsive show-clear-button heading="Business Volume" description="Description">
   </as-histogram-widget>
 
   <script>
@@ -53,7 +53,7 @@
         value: 4000
       },
     ];
-    
+
     let dataSource = histogramWidget.data = data;
     histogramWidget.backgroundData = data.map((value) => ({
       ...value,
@@ -71,7 +71,7 @@
       const newData = histogramWidget.data
         .filter((d) => selection.indexOf(d.category) !== -1)
         .map(d => d);
-      
+
       histogramWidget.data = newData;
     });
   </script>

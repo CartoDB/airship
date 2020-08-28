@@ -24,6 +24,16 @@ describe('as-time-series-widget', () => {
       expect(actual).toBeFalsy();
     });
 
+    it('should not render button when animated is false with show-clear-button', async () => {
+      const element: E2EElement = await page.find('as-time-series-widget');
+      element.setProperty('show-clear-button', 'false');
+      await page.waitForChanges();
+
+      const actual = await page.find('.as-time-series--play-button');
+
+      expect(actual).toBeFalsy();
+    });
+
     it('should not render the scrubber container', async () => {
       await page.find('as-time-series-widget');
       await page.waitForChanges();

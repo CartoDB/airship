@@ -30,7 +30,7 @@
   <button class="as-btn as-btn--primary js-back">Change background data to range: [0 - 500]</button>
   <button class="as-btn as-btn--primary js-data">Set data to range [0 - 500]</button>
   <button class="as-btn as-btn--primary js-wrongBack">Set background data to [-10, currentMaxRange]</button>
-  <as-histogram-widget x-label="x-axis" y-label="y-axis" responsive show-clear heading="Business Volume" description="Description">
+  <as-histogram-widget x-label="x-axis" y-label="y-axis" responsive show-clear-button heading="Business Volume" description="Description">
   </as-histogram-widget>
 
   <script>
@@ -61,7 +61,7 @@
         value: 2000
       },
     ];
-    
+
     let dataSource = histogramWidget.data = data;
     histogramWidget.backgroundData = data.map((value) => ({
       ...value,

@@ -18,7 +18,7 @@ showSource: false
   heading="Title"
   description="Description"
   show-header
-  show-clear>
+  show-clear-button>
 </as-histogram-widget>
 
 <script>
@@ -176,19 +176,19 @@ lang: javascript
 histogramWidget.heading = 'Business Volume';
 ```
 
-#### **showClear**: boolean = false
+#### **showClearButton**: boolean = false
 If truthy, it'll show a button to clear the histogram selection. Default value is `false`.
 
 ```code
 lang: html
 ---
-<as-histogram-widget show-clear></as-histogram-widget>
+<as-histogram-widget show-clear-button></as-histogram-widget>
 ```
 
 ```code
 lang: javascript
 ---
-histogram.showClear = true;
+histogram.showClearButton = true;
 ```
 
 #### **clearText**: string = 'Clear selection'
@@ -511,7 +511,7 @@ showSource: false
 ---
 <as-histogram-widget
   show-header="false"
-  show-clear>
+  show-clear-button>
 </as-histogram-widget>
 <p id="selection">Nothing selected</p>
 <script>
@@ -557,7 +557,7 @@ showSource: false
   heading="Title"
   description="Description"
   show-header
-  show-clear>
+  show-clear-button>
 </as-histogram-widget>
 
 <script>

@@ -78,12 +78,22 @@ export class HistogramWidget {
   @Prop() public showHeader: boolean = true;
 
   /**
+   * Deprecated, use showClearButton instead.
+   * Display a clear button that clears the histogram selection.
+   *
+   * @type {boolean}
+   * @memberof HistogramWidget
+   * @deprecated
+   */
+  @Prop() public showClear: boolean;
+
+  /**
    * Display a clear button that clears the histogram selection.
    *
    * @type {boolean}
    * @memberof HistogramWidget
    */
-  @Prop() public showClear: boolean;
+  @Prop() public showClearButton: boolean;
 
   /**
    * Disables selection brushes and events for the widget
@@ -553,7 +563,7 @@ export class HistogramWidget {
   }
 
   private _renderSelection() {
-    if (this._isLoading() || this._isEmpty() || this.error || !this.showClear) {
+    if (this._isLoading() || this._isEmpty() || this.error || !(this.showClear || this.showClearButton)) {
       return '';
     }
 
