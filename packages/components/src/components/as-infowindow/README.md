@@ -63,3 +63,17 @@ lang: javascript
 ---
 categoryWidget.width = '400px';
 ```
+
+#### **height**: string
+Height of the content. This should be a valid CSS value.
+
+```code
+lang: html
+---
+<as-category-widget height="200px"></as-category-widget>
+```
+```code
+lang: javascript
+---
+categoryWidget.height = '200px';
+```

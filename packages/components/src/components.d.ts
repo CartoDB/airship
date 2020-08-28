@@ -449,6 +449,12 @@ export namespace Components {
   }
   interface AsHistogramWidgetPlaceholder {}
   interface AsInfowindow {
+    /**
+    * Height of the content. This should be a valid height CSS value.
+    * @type {string}
+    * @memberof Infowindow
+    */
+    'height': string;
     'src': string;
     /**
     * Width of the content. This should be a valid width CSS value.
@@ -1854,6 +1860,12 @@ declare namespace LocalJSX {
   }
   interface AsHistogramWidgetPlaceholder extends JSXBase.HTMLAttributes<HTMLAsHistogramWidgetPlaceholderElement> {}
   interface AsInfowindow extends JSXBase.HTMLAttributes<HTMLAsInfowindowElement> {
+    /**
+    * Height of the content. This should be a valid height CSS value.
+    * @type {string}
+    * @memberof Infowindow
+    */
+    'height'?: string;
     'src'?: string;
     /**
     * Width of the content. This should be a valid width CSS value.

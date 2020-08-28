@@ -19,6 +19,15 @@ export class Infowindow {
    */
   @Prop() public width: string;
 
+  /**
+   * Height of the content. This should be a valid
+   * height CSS value.
+   *
+   * @type {string}
+   * @memberof Infowindow
+   */
+  @Prop() public height: string;
+
   @Element() private element: HTMLElement;
 
   public render() {
@@ -26,9 +35,15 @@ export class Infowindow {
       ? { width: this.width }
       : undefined;
 
+    const styleHeight = this.height
+      ? { height: this.height }
+      : undefined;
+
+    const style = {...styleWidth, ...styleHeight};
+
     return this.element.childElementCount === 0 && this.src
-      ? this._renderImageInfoWindow(styleWidth)
-      : this._renderStandarInfowindow(styleWidth);
+      ? this._renderImageInfoWindow(style)
+      : this._renderStandarInfowindow(style);
   }
 
   public componentDidLoad() {
