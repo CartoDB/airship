@@ -56,12 +56,12 @@ Width of the content. This should be a valid CSS value.
 ```code
 lang: html
 ---
-<as-category-widget width="400px"></as-category-widget>
+<as-infowindow width="400px"></as-infowindow>
 ```
 ```code
 lang: javascript
 ---
-categoryWidget.width = '400px';
+infowindow.width = '400px';
 ```
 
 #### **height**: string
@@ -70,10 +70,10 @@ Height of the content. This should be a valid CSS value.
 ```code
 lang: html
 ---
-<as-category-widget height="200px"></as-category-widget>
+<as-infowindow height="200px"></as-infowindow>
 ```
 ```code
 lang: javascript
 ---
-categoryWidget.height = '200px';
+infowindow.height = '200px';
 ```
