@@ -11,6 +11,7 @@ as-infowindow {
     position: relative;
     z-index: $z-index-3;
     width: 260px;
+    max-width: 400px;
     border-radius: 4px 4px 4px 0;
     background: var(--as--infowindow--color--background);
     box-shadow: 0 4px 16px 0 var(--as--infowindow--color--shadow);
