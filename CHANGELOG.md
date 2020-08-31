@@ -1,5 +1,15 @@
-# [0.0.0](https://github.com/CartoDB/airship/compare/v2.4.0...v0.0.0) (2020-07-03)
+# Change Log
 
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.4.1](https://github.com/CartoDB/airship/compare/v2.4.1-rc.0...v2.4.1) (2020-08-31)
+
+### Features
+
+* **components:** add option `show-clear-button` for histogram and time series widgets ([#707](https://github.com/CartoDB/airship/pulls/707)) ([fe41775a](https://github.com/CartoDB/airship/commit/fe41775a9c7470efeae1784de0c629da0450eb3e))
+
+* **components:** add width & height parameters to Infowindow component ([#708](https://github.com/CartoDB/airship/pulls/708)) ([9fe287d7](https://github.com/CartoDB/airship/commit/9fe287d72f10c9b6150ad85de2d71e507275745d))
 
 
 # [2.4.0](https://github.com/CartoDB/airship/compare/v2.4.0-rc.0...v2.4.0) (2020-07-03)
@@ -789,6 +799,3 @@ This reverts commit acb63b2610d2d53c6af4c4e1dea631b125e99745.
 
 
 # 1.0.0-alpha.1 (2018-04-05)
-
-
-
