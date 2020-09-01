@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <base href="/">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>Bivariate legend</title>
+
+  <link rel="stylesheet" href="packages/styles/dist/airship.css">
+  <link rel="stylesheet" href="packages/icons/dist/icons.css">
+  <script type="module" src="packages/components/dist/airship/airship.esm.js"></script>
+  <script nomodule="" src="packages/components/dist/airship/airship.js"></script>
+  <script src="/packages/bridge/dist/asbridge.js"></script>
+
+  <style>
+    #legends {
+      flex-direction: column;
+      width: 100%;
+    }
+
+  </style>
+</head>
+
+<body class="as-app-body">
+  <div class="as-app">
+    <main class="as-main">
+      <div class="as-map-area">
+        <div id="map"></div>
+        <div class="as-map-panels">
+          <div class="as-panel as-panel--top as-panel--left" id="legends">
+            <as-legend id="legendsLocation" heading="Location" description="Color intensity is defined by location">
+              <div slot="legends">
+                <as-legend-bivariate id="bivariateLegend"></as-legend-bivariate>
+              </div>
+            </as-legend>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script>
+    bivariateLegend.colors = ['red', 'yellow', 'blue', 'green', 'orange', 'purple', 'pink', 'violet', 'silver'];
+    bivariateLegend.labelX = 'labelX';
+    bivariateLegend.labelY = 'labelY';
+    bivariateLegend.numQuantiles = 3;
+  </script>
+</body>
+
+</html>
