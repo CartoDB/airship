@@ -11,7 +11,7 @@
   "license": "ISC",
   "devDependencies": {
     "css-loader": "^1.0.1",
-    "node-sass": "^4.11.0",
+    "node-sass": "^4.13.1",
     "opener": "^1.5.1",
     "sass-loader": "^7.0.3",
     "style-loader": "^0.21.0",
