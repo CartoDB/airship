@@ -2,7 +2,7 @@
   "name": "@carto/react-airship-ui",
   "version": "3.0.0-alpha1",
   "description": "Airship CARTO API utilities",
-  "main": "dist/asreactui.min.js",
+  "main": "dist/asreactui.js",
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
