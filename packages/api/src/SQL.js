@@ -4,8 +4,9 @@ const REQUEST_GET_MAX_URL_LENGTH = 2048;
 export const execute = async (query, credentials) => {
   let response;
 
+  console.log('BBB');
   try {
-    const request = createSqlApiRequest(query, credentials);
+    const request = createRequest(query, credentials);
     /* global fetch */
     /* eslint no-undef: "error" */
     response = await fetch(request);
@@ -16,7 +17,7 @@ export const execute = async (query, credentials) => {
   const data = await response.json();
 
   if (!response.ok) {
-    dealWithApiError({ response, data, credentials });
+    dealWithError({ response, data, credentials });
   }
 
   return data.rows;
@@ -25,7 +26,7 @@ export const execute = async (query, credentials) => {
 /**
  * Display proper message from SQL API error
  */
-function dealWithApiError({ response, data, credentials }) {
+function dealWithError({ response, data, credentials }) {
   switch (response.status) {
     case 401:
       throw new Error(
@@ -43,7 +44,7 @@ function dealWithApiError({ response, data, credentials }) {
 /**
  * Create a GET or POST request, with all required parameters
  */
-function createSqlApiRequest(query, credentials) {
+function createRequest(query, credentials) {
   const encodedApiKey = encodeParameter('api_key', credentials.apiKey);
   const encodedClient = encodeParameter('client', credentials.username);
   const parameters = [encodedApiKey, encodedClient];

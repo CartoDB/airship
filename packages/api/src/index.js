@@ -1,4 +1,4 @@
-import { execute } from './Sql';
+import { execute } from './SQL';
 import { AggregationTypes } from './models/AggregationTypes';
 import { getCategories } from './models/CategoryModel';
 import { getValue } from './models/FormulaModel';
