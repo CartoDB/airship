@@ -1,7 +1,6 @@
 const DEFAULT_USER_COMPONENT_IN_URL = '{user}';
 const REQUEST_GET_MAX_URL_LENGTH = 2048;
 
-
 export const execute = async (query, credentials) => {
   let response;
 
@@ -17,28 +16,24 @@ export const execute = async (query, credentials) => {
   const data = await response.json();
 
   if (!response.ok) {
-    dealWithApiError({response, data, credentials});
+    dealWithApiError({ response, data, credentials });
   }
 
   return data.rows;
-}
+};
 
 /**
  * Display proper message from SQL API error
  */
-function dealWithApiError({response, data, credentials}) {
+function dealWithApiError({ response, data, credentials }) {
   switch (response.status) {
     case 401:
       throw new Error(
-        `Unauthorized access to SQL API: invalid combination of user ('${
-          credentials.username
-        }') and apiKey ('${credentials.apiKey}')`
+        `Unauthorized access to SQL API: invalid combination of user ('${credentials.username}') and apiKey ('${credentials.apiKey}')`
       );
     case 403:
       throw new Error(
-        `Unauthorized access to dataset: the provided apiKey('${
-          credentials.apiKey
-        }') doesn't provide access to the requested data`
+        `Unauthorized access to dataset: the provided apiKey('${credentials.apiKey}') doesn't provide access to the requested data`
       );
     default:
       throw new Error(`${JSON.stringify(data.error)}`);
@@ -96,8 +91,8 @@ function getRequest(url) {
   return new Request(url, {
     method: 'GET',
     headers: {
-      Accept: 'application/json'
-    }
+      Accept: 'application/json',
+    },
   });
 }
 
@@ -109,9 +104,9 @@ function postRequest(url, payload) {
     method: 'POST',
     headers: {
       Accept: 'application/json',
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
-    body: payload
+    body: payload,
   });
 }
 

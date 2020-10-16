@@ -3,5 +3,5 @@ export const AggregationTypes = Object.freeze({
   AVG: 'avg',
   MIN: 'min',
   MAX: 'max',
-  SUM: 'sum'
+  SUM: 'sum',
 });

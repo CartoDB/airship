@@ -1,5 +1,5 @@
 export const FilterTypes = Object.freeze({
-  IN: 'in'
+  IN: 'in',
 });
 
 export const getFilterCondition = (filters = {}) => {

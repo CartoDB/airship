@@ -32,7 +32,7 @@ export function CategoryWidgetUI (props) {
 }
 
 CategoryWidgetUI.propTypes = {
-  data: PropTypes.Array.isRequired,
-  selectedCategories: PropTypes.Array.isRequired,
+  data: PropTypes.array.isRequired,
+  selectedCategories: PropTypes.array.isRequired,
   onSelectedCategoriesChange: PropTypes.func
 };

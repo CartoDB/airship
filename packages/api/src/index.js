@@ -1,6 +1,7 @@
 import { execute } from './Sql';
 import { AggregationTypes } from './models/AggregationTypes';
 import { getCategories } from './models/CategoryModel';
+import { getValue } from './models/FormulaModel';
 import { FilterTypes, getFilterCondition, getConditionFromViewPort, getFilteredQuery } from './models/FilterConditionBuilder';
 
 export {
@@ -8,6 +9,7 @@ export {
   AggregationTypes,
   FilterTypes,
   getCategories,
+  getValue,
   getFilterCondition,
   getConditionFromViewPort,
   getFilteredQuery
