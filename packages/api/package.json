@@ -1,0 +1,22 @@
+{
+  "name": "@carto/airship-api",
+  "version": "3.0.0-alpha1",
+  "description": "Airship UI components for react",
+  "main": "dist/asapi.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "eslint src/**/*.js",
+    "lint:fix": "eslint src/**/*.js --fix",
+    "dev": "webpack --watch",
+    "docs": "typedoc --mode file --out docs --theme minimal --name 'Airship API'",
+    "build": "rm -rf dist && webpack --config webpack.config.js"
+  },
+  "author": "CARTO Dev Team",
+  "license": "BSD-3-Clause",
+  "devDependencies": {
+    "jest": "23.6.0",
+    "webpack": "^4.27.0",
+    "webpack-cli": "^3.1.2"
+  }
+}

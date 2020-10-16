@@ -1,5 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`as-range-slider-thumb Rendering should have aria attributes 1`] = `"<as-range-slider-thumb percentage=\\"50\\" value=\\"50\\" valuemin=\\"0\\" valuemax=\\"100\\" class=\\"hydrated\\"><div role=\\"slider\\" tabindex=\\"0\\" aria-valuetext=\\"5\\" aria-valuenow=\\"5\\" class=\\"as-range-slider__thumb\\" data-value=\\"5\\" aria-valuemin=\\"0\\" aria-valuemax=\\"10\\" style=\\"left: 10%;\\"><div class=\\"as-range-slider__thumb-handle\\"></div><span class=\\"as-caption as-font-medium as-range-slider__value\\">5</span></div></as-range-slider-thumb>"`;
-
-exports[`as-range-slider-thumb Rendering should render a text with its value 1`] = `"<as-range-slider-thumb percentage=\\"50\\" value=\\"50\\" valuemin=\\"0\\" valuemax=\\"100\\" class=\\"hydrated\\"><div role=\\"slider\\" tabindex=\\"0\\" aria-valuetext=\\"5\\" aria-valuenow=\\"5\\" class=\\"as-range-slider__thumb\\" data-value=\\"5\\" style=\\"left: 50%;\\"><div class=\\"as-range-slider__thumb-handle\\"></div><span class=\\"as-caption as-font-medium as-range-slider__value\\">5</span></div></as-range-slider-thumb>"`;

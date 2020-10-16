@@ -9,6 +9,13 @@
   "devDependencies": {
     "aws-sdk": "^2.300.0",
     "backstopjs": "^3.9.13",
+    "eslint": "^7.11.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.21.4",
+    "eslint-plugin-standard": "^4.0.1",
     "fastly": "^2.2.1",
     "jest-diff": "25.5.0",
     "lerna": "^3.20.2",
@@ -43,5 +50,8 @@
     "test:bridge": "lerna exec --scope @carto/airship-bridge npm run test",
     "test:watch": "lerna run --parallel test:watch",
     "test": "npm run lint && npm run test:components && npm run test:styles && npm run test:bridge"
+  },
+  "dependencies": {
+    "eslint-config-semistandard": "^15.0.1"
   }
 }
