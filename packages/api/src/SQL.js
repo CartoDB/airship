@@ -4,6 +4,8 @@ const REQUEST_GET_MAX_URL_LENGTH = 2048;
 export const execute = async (query, credentials) => {
   let response;
 
+  console.log('BBB');
+
   try {
     const request = createRequest(query, credentials);
     /* global fetch */

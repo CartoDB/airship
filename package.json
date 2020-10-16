@@ -7,51 +7,24 @@
   "author": "CARTO Dev Team",
   "license": "BSD-3-Clause",
   "devDependencies": {
-    "aws-sdk": "^2.300.0",
-    "backstopjs": "^3.9.13",
     "eslint": "^7.11.0",
-    "eslint-config-standard": "^14.1.1",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-react": "^7.21.4",
+    "eslint-config-semistandard": "^15.0.1",
     "eslint-plugin-standard": "^4.0.1",
-    "fastly": "^2.2.1",
-    "jest-diff": "25.5.0",
-    "lerna": "^3.20.2",
-    "map-stream": "0.0.7",
-    "mime": "^2.3.1",
-    "opener": "^1.5.1",
-    "puppeteer": "1.8.0",
-    "serve": "^11.0.0",
-    "zlib": "^1.0.5"
+    "lerna": "^3.20.2"
   },
   "scripts": {
-    "build:components": "lerna exec --scope @carto/airship-components npm run build",
-    "build:styles": "lerna exec --scope @carto/airship-style npm run build",
+    "build:api": "lerna exec --scope @carto/airship-api npm run build",
+    "build:react-ui": "lerna exec --scope @carto/react-airship-ui npm run build",
     "build": "lerna run --parallel build",
-    "changelog": "git fetch --prune origin '+refs/tags/*:refs/tags/*' && conventional-changelog -p angular -o CHANGELOG.md -r 0 && git add CHANGELOG.md && git commit -m \"chore: Update CHANGELOG.md\"",
     "dev": "lerna run --parallel dev",
     "lint:fix": "lerna run lint:fix",
     "lint": "lerna run lint",
     "postinstall": "lerna bootstrap --hoist",
-    "release": "npm install && npm run test && npm run build && lerna publish --force-publish=* --conventional-commits && ./release.sh",
-    "publish:prerelease": "npm install && npm run test && npm run build && lerna publish --npm-tag prerelease --force-publish=* --preid rc && ./prerelease.sh",
-    "publish:prepatch": "npm install && npm run test && npm run build && lerna publish prepatch --npm-tag prerelease --force-publish=* --preid rc && ./prerelease.sh",
-    "publish:preminor": "npm install && npm run test && npm run build && lerna publish preminor --npm-tag prerelease --force-publish=* --preid rc && ./prerelease.sh",
-    "publish:premajor": "npm install && npm run test && npm run build && lerna publish premajor --npm-tag prerelease --force-publish=* --preid rc && ./prerelease.sh",
-    "serve": "serve",
-    "test:components:watch": "lerna exec --scope @carto/airship-components -- npm run test:watch",
-    "test:components": "lerna exec --scope @carto/airship-components npm run test",
-    "test:styles:build-references": "npm run build:styles && docker run --rm -v $(pwd):/src backstopjs/backstopjs reference --i --configPath=backstop_data/backstop.config.js",
-    "test:styles:ci": "backstop test --configPath=backstop_data/backstop.config.js",
-    "test:styles:reset-references": "docker run --rm -v $(pwd):/src backstopjs/backstopjs reference --configPath=backstop_data/backstop.config.js",
-    "test:styles": "npm run build:styles && docker run --rm -v $(pwd):/src backstopjs/backstopjs test --configPath=backstop_data/backstop.config.js; opener ./backstop_data/html_report/index.html",
-    "test:bridge": "lerna exec --scope @carto/airship-bridge npm run test",
-    "test:watch": "lerna run --parallel test:watch",
-    "test": "npm run lint && npm run test:components && npm run test:styles && npm run test:bridge"
-  },
-  "dependencies": {
-    "eslint-config-semistandard": "^15.0.1"
+    "publish": "lerna run publish",
+    "publish:beta": "lerna run publish:beta"
   }
 }
