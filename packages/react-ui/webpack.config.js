@@ -9,9 +9,16 @@ module.exports = {
     library: 'AsReactUi',
     libraryTarget: 'umd'
   },
+  externals: [
+    {
+      react: 'react',
+      'react-dom': 'react-dom',
+    },
+    /^@material-ui\/.+$/,
+  ],
   module: {
     rules: [
-      {  
+      {
         test: /\.jsx?$/,
         exclude: /(node_modules)/,
         loader: 'babel-loader',
