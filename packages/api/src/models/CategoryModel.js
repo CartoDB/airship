@@ -31,11 +31,11 @@ export const getCategories = (props) => {
       FROM (${query}) as q
     ${getFilterCondition(filters)}
     GROUP BY category
-    ORDER BY value DESC
   )
   SELECT a.category, b.value
     FROM all_categories a
-    LEFT JOIN categories b ON a.category=b.category;`;
+    LEFT JOIN categories b ON a.category=b.category
+    ORDER BY value DESC NULLS LAST;`;
 
   return execute(query, credentials);
 };
