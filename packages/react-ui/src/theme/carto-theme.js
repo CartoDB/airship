@@ -8,10 +8,10 @@ export const cartoOptions = {
       sm: 600,
       md: 960,
       lg: 1280,
-      xl: 1920
+      xl: 1920,
     },
     unit: 'px',
-    tep: 5
+    tep: 5,
     // For more information about use this helper functions: https://material-ui.com/customization/spacing/#custom-spacing
     // up: f d(),
     // down: f down(),
@@ -25,88 +25,88 @@ export const cartoOptions = {
     toolbar: {
       minHeight: 56,
       '@media (min-width:0px) and (orientation: landscape)': {
-        minHeight: 48
+        minHeight: 48,
       },
       '@media (min-width:600px)': {
-        minHeight: 64
-      }
-    }
+        minHeight: 56,
+      },
+    },
   },
   palette: {
     type: 'light',
     common: {
-      black: '#000',
-      white: '#fff'
+      black: '#2c3032',
+      white: '#fff',
     },
     primary: {
       light: '#7986cb',
-      main: '#3f51b5',
-      dark: '#303f9f',
-      contrastText: '#fff'
+      main: '#036fe2',
+      dark: '#012c5a',
+      contrastText: '#fff',
     },
     secondary: {
       light: '#ff4081',
-      main: '#f50057',
+      main: '#47db99',
       dark: '#c51162',
-      contrastText: '#fff'
+      contrastText: '#fff',
     },
     error: {
       light: '#e57373',
-      main: '#f44336',
+      main: '#c1300b',
       dark: '#d32f2f',
-      contrastText: '#fff'
+      contrastText: '#fff',
     },
     warning: {
       light: '#ffb74d',
       main: '#ff9800',
       dark: '#f57c00',
-      contrastText: 'rgba(0, 0, 0, 0.87)'
+      contrastText: 'rgba(0, 0, 0, 0.87)',
     },
     info: {
       light: '#64b5f6',
       main: '#2196f3',
       dark: '#1976d2',
-      contrastText: '#fff'
+      contrastText: '#fff',
     },
     success: {
       light: '#81c784',
       main: '#4caf50',
       dark: '#388e3c',
-      contrastText: 'rgba(0, 0, 0, 0.87)'
+      contrastText: 'rgba(0, 0, 0, 0.87)',
     },
     contrastThreshold: 3,
     // getContrastText: f E(),
     // augmentColor: f B(),
     tonalOffset: 0.2,
     text: {
-      primary: 'rgba(0, 0, 0, 0.87)',
-      secondary: 'rgba(0, 0, 0, 0.54)',
-      disabled: 'rgba(0, 0, 0, 0.38)',
-      hint: 'rgba(0, 0, 0, 0.38)'
+      primary: '#2c3032',
+      secondary: 'rgba(44, 48, 50, 0.6)',
+      disabled: 'rgba(44, 48, 50, 0.2)',
+      hint: 'rgba(44, 48, 50, 0.38)',
     },
     divider: 'rgba(0, 0, 0, 0.12)',
     background: {
-      paper: '#fff',
-      default: '#fafafa'
+      paper: '#ffffff',
+      default: '#ffffff',
     },
     // props: Object => Research,
     /* Custom Colors palette */
     customGrey: {
-      50: '#fafafa',
-      100: '#f5f5f5',
-      200: '#eeeeee',
-      300: '#e0e0e0',
-      400: '#bdbdbd',
-      500: '#9e9e9e',
-      600: '#757575',
-      700: '#616161',
-      800: '#424242',
-      900: '#212121',
+      50: '#f8f9f9',
+      100: '#e1e3e4',
+      200: '#cbcdcf',
+      300: '#b4b8ba',
+      400: '#9da2a6',
+      500: '#868d91',
+      600: '#6f777c',
+      700: '#595f63',
+      800: '#43474a',
+      900: '#2c3032',
       A100: '#d5d5d5',
       A200: '#aaaaaa',
       A400: '#303030',
-      A700: '#616161'
-    }
+      A700: '#616161',
+    },
   },
   action: {
     active: 'rgba(0, 0, 0, 0.54)',
@@ -119,7 +119,7 @@ export const cartoOptions = {
     disabledOpacity: 0.38,
     focus: 'rgba(0, 0, 0, 0.12)',
     focusOpacity: 0.12,
-    activatedOpacity: 0.12
+    activatedOpacity: 0.12,
   },
   shadows: [
     'none',
@@ -146,122 +146,122 @@ export const cartoOptions = {
     '0px 10px 13px -6px rgba(0,0,0,0.2),0px 21px 33px 3px rgba(0,0,0,0.14),0px 8px 40px 7px rgba(0,0,0,0.12)',
     '0px 10px 14px -6px rgba(0,0,0,0.2),0px 22px 35px 3px rgba(0,0,0,0.14),0px 8px 42px 7px rgba(0,0,0,0.12)',
     '0px 11px 14px -7px rgba(0,0,0,0.2),0px 23px 36px 3px rgba(0,0,0,0.14),0px 9px 44px 8px rgba(0,0,0,0.12)',
-    '0px 11px 15px -7px rgba(0,0,0,0.2),0px 24px 38px 3px rgba(0,0,0,0.14),0px 9px 46px 8px rgba(0,0,0,0.12)'
+    '0px 11px 15px -7px rgba(0,0,0,0.2),0px 24px 38px 3px rgba(0,0,0,0.14),0px 9px 46px 8px rgba(0,0,0,0.12)',
   ],
   typography: {
     htmlFontSize: 16,
     // pxToRem: f (),
     // round: f S(),
-    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif"',
-    fontSize: 14,
+    fontFamily: 'Montserrat, sans-serif',
+    fontSize: 16,
     fontWeightLight: 300,
     fontWeightRegular: 400,
-    fontWeightMedium: 500,
+    fontWeightMedium: 600,
     fontWeightBold: 700,
     h1: {
-      fontFamily: 'Roboto", "Helvetica", "Arial", sans-serif',
-      fontWeight: 300,
+      fontFamily: 'Montserrat, sans-serif',
+      fontWeight: 600,
       fontSize: '6rem',
-      lineHeight: 1.167,
-      letterSpacing: '-0.01562em'
+      lineHeight: 1.8,
+      letterSpacing: '-0.01562em',
     },
     h2: {
-      fontFamily: 'Roboto", "Helvetica", "Arial", sans-serif',
-      fontWeight: 300,
-      fontSize: '3.75rem',
-      lineHeight: 1.2,
-      letterSpacing: '-0.00833em'
+      fontFamily: 'Montserrat, sans-serif',
+      fontWeight: 600,
+      fontSize: '4rem',
+      lineHeight: 1.13,
+      letterSpacing: '-0.00833em',
     },
     h3: {
-      fontFamily: 'Roboto", "Helvetica", "Arial", sans-serif',
-      fontWeight: 400,
+      fontFamily: 'Montserrat, sans-serif',
+      fontWeight: 600,
       fontSize: '3rem',
-      lineHeight: 1.167,
-      letterSpacing: '0em'
+      lineHeight: 1.17,
+      letterSpacing: '0em',
     },
     h4: {
-      fontFamily: 'Roboto", "Helvetica", "Arial", sans-serif',
-      fontWeight: 400,
+      fontFamily: 'Montserrat, sans-serif',
+      fontWeight: 600,
       fontSize: '2.125rem',
-      lineHeight: 1.235,
-      letterSpacing: '0.00735em'
+      lineHeight: 1.18,
+      letterSpacing: '0.00735em',
     },
     h5: {
-      fontFamily: 'Roboto", "Helvetica", "Arial", sans-serif',
-      fontWeight: 400,
+      fontFamily: 'Montserrat, sans-serif',
+      fontWeight: 600,
       fontSize: '1.5rem',
-      lineHeight: 1.334,
-      letterSpacing: '0em'
+      lineHeight: 1.33,
+      letterSpacing: '0em',
     },
     h6: {
-      fontFamily: 'Roboto", "Helvetica", "Arial", sans-serif',
-      fontWeight: 500,
+      fontFamily: 'Montserrat, sans-serif',
+      fontWeight: 600,
       fontSize: '1.25rem',
-      lineHeight: 1.6,
-      letterSpacing: '0.0075em'
+      lineHeight: 1.2,
+      letterSpacing: '0.0075em',
     },
     subtitle1: {
-      fontFamily: 'Roboto", "Helvetica", "Arial", sans-serif',
-      fontWeight: 400,
+      fontFamily: 'Montserrat, sans-serif',
+      fontWeight: 600,
       fontSize: '1rem',
-      lineHeight: 1.75,
-      letterSpacing: '0.00938em'
+      lineHeight: 1.5,
+      letterSpacing: '0.00938em',
     },
     subtitle2: {
-      fontFamily: 'Roboto", "Helvetica", "Arial", sans-serif',
-      fontWeight: 500,
+      fontFamily: '"Open Sans", sans-serif',
+      fontWeight: 600,
       fontSize: '0.875rem',
-      lineHeight: 1.57,
-      letterSpacing: '0.00714em'
+      lineHeight: 1.71,
+      letterSpacing: '0.00714em',
     },
     body1: {
-      fontFamily: 'Roboto", "Helvetica", "Arial", sans-serif',
+      fontFamily: '"Open Sans", sans-serif',
       fontWeight: 400,
       fontSize: '1rem',
       lineHeight: 1.5,
-      letterSpacing: '0.00938em'
+      letterSpacing: '0.00938em',
     },
     body2: {
-      fontFamily: 'Roboto", "Helvetica", "Arial", sans-serif',
+      fontFamily: '"Open Sans", sans-serif',
       fontWeight: 400,
       fontSize: '0.875rem',
-      lineHeight: 1.43,
-      letterSpacing: '0.01071em'
+      lineHeight: 1.14,
+      letterSpacing: '0.01071em',
     },
     button: {
-      fontFamily: 'Roboto", "Helvetica", "Arial", sans-serif',
-      fontWeight: 500,
+      fontFamily: 'Montserrat, sans-serif',
+      fontWeight: 600,
       fontSize: '0.875rem',
-      lineHeight: 1.75,
+      lineHeight: 1.71,
       letterSpacing: '0.02857em',
-      textTransform: 'uppercase'
+      textTransform: 'inherit',
     },
     caption: {
-      fontFamily: 'Roboto", "Helvetica", "Arial", sans-serif',
+      fontFamily: '"Open Sans", sans-serif',
       fontWeight: 400,
       fontSize: '0.75rem',
-      lineHeight: 1.66,
-      letterSpacing: '0.03333em'
+      lineHeight: 1.33,
+      letterSpacing: '0.03333em',
     },
     overline: {
-      fontFamily: 'Roboto", "Helvetica", "Arial", sans-serif',
+      fontFamily: '"Open Sans", sans-serif',
       fontWeight: 400,
-      fontSize: '0.75rem',
-      lineHeight: 2.66,
+      fontSize: '0.625rem',
+      lineHeight: 1.6,
       letterSpacing: '0.08333em',
-      textTransform: 'uppercase'
-    }
+      textTransform: 'uppercase',
+    },
   },
   spacing: 8, // For custom spacing: https://material-ui.com/customization/spacing/#custom-spacing
   shape: {
-    borderRadius: 4
+    borderRadius: 4,
   },
   transitions: {
     easing: {
       easeInOut: 'cubic-bezier(0.4, 0, 0.2, 1)',
       easeOut: 'cubic-bezier(0.0, 0, 0.2, 1)',
       easeIn: 'cubic-bezier(0.4, 0, 1, 1)',
-      sharp: 'cubic-bezier(0.4, 0, 0.6, 1)'
+      sharp: 'cubic-bezier(0.4, 0, 0.6, 1)',
     },
     duration: {
       shortest: 150,
@@ -270,8 +270,8 @@ export const cartoOptions = {
       standard: 300,
       complex: 375,
       enteringScreen: 225,
-      leavingScreen: 195
-    }
+      leavingScreen: 195,
+    },
     // create: f create(), => Research
     // getAutoHeightDuration: f getAutoHeightDuration(), => Research
   },
@@ -282,8 +282,44 @@ export const cartoOptions = {
     drawer: 1200,
     modal: 1300,
     snackbar: 1400,
-    tooltip: 1500
-  }
+    tooltip: 1500,
+  },
+  overrides: {
+    MuiCssBaseline: {
+      '@global': {
+        '*::-webkit-scrollbar': {
+          position: 'fixed',
+          width: '6px',
+        },
+        '*::-webkit-scrollbar-track': {
+          '-webkit-box-shadow': 'none',
+          background: 'rgba(0, 0, 0, 0.05)',
+        },
+        '*::-webkit-scrollbar-thumb': {
+          borderRadius: '3px',
+          background: 'rgba(0, 0, 0, 0.3)',
+          outline: 'none',
+        },
+      },
+    },
+    MuiIconButton: {
+      root: {
+        padding: '6px',
+        borderRadius: '3px',
+      },
+    },
+    MuiBreadcrumbs: {
+      separator: {
+        marginLeft: 0,
+        marginRight: 0,
+      },
+    },
+  },
+  props: {
+    MuiButtonBase: {
+      disableRipple: true,
+    },
+  },
   /*
    * Change every single style injected by Material-UI into the DOM
    * Example
@@ -300,6 +336,16 @@ export const cartoOptions = {
         html: {
           WebkitFontSmoothing: 'auto',
         },
+        '*::-webkit-scrollbar': {
+          width: '0.4em'
+        },
+        '*::-webkit-scrollbar-track': {
+          '-webkit-box-shadow': 'inset 0 0 6px rgba(0,0,0,0.00)'
+        },
+        '*::-webkit-scrollbar-thumb': {
+          backgroundColor: 'rgba(0,0,0,.1)',
+          outline: '1px solid slategrey'
+        }
       },
     }
   },
@@ -314,10 +360,10 @@ export const cartoOptions = {
   */
 };
 
-export function createTheme (options = {}) {
+export function createTheme(options = {}) {
   const themeOptions = {
     ...cartoOptions,
-    ...options
+    ...options,
   };
 
   let theme = createMuiTheme(themeOptions);
@@ -339,8 +385,8 @@ export function createTheme (options = {}) {
       'body2',
       'button',
       'caption',
-      'overline'
-    ]
+      'overline',
+    ],
   });
 
   return theme;
