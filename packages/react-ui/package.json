@@ -13,7 +13,8 @@
     "publish": "npm publish --access public",
     "publish:beta": "npm publish --tag beta --access public",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "publish-storybook": "build-storybook && cd storybook-static && npx vercel --prod --name 'react-airship-ui'"
   },
   "author": "CARTO Dev Team",
   "license": "BSD-3-Clause",
