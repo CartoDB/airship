@@ -11,7 +11,9 @@
     "dev": "webpack --watch",
     "build": "rm -rf dist && webpack --config webpack.prod.js",
     "publish": "npm publish --access public",
-    "publish:beta": "npm publish --tag beta --access public"
+    "publish:beta": "npm publish --tag beta --access public",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "author": "CARTO Dev Team",
   "license": "BSD-3-Clause",
@@ -20,11 +22,17 @@
     "@babel/preset-env": "^7.12.1",
     "@babel/preset-react": "^7.12.1",
     "@material-ui/core": "^4.11.0",
+    "@storybook/addon-actions": "^6.0.27",
+    "@storybook/addon-essentials": "^6.0.27",
+    "@storybook/addon-links": "^6.0.27",
+    "@storybook/react": "^6.0.27",
     "babel-loader": "^8.1.0",
     "jest": "23.6.0",
     "prop-types": "^15.7.2",
     "react": "^16.14.0",
+    "react-is": "^17.0.1",
     "webpack": "^4.27.0",
     "webpack-cli": "^3.1.2"
-  }
+  },
+  "dependencies": {}
 }

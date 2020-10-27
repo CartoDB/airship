@@ -25,3 +25,6 @@ Thumbs.db
 UserInterfaceState.xcuserstate
 www/
 secrets.json
+
+# Packages ignoring items
+packages/react-ui/storybook-static

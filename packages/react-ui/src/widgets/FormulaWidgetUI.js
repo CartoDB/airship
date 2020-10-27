@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
 function FormulaWidgetUI(props) {
   const classes = useStyles();
 
-  const { data, formatter = (v) => v } = props;
+  const { data = '-', formatter = (v) => v } = props;
   const value = formatter(data);
   return (
     <Box
@@ -23,13 +23,13 @@ function FormulaWidgetUI(props) {
       fontSize='h4.fontSize'
       className={classes.root}
     >
-      {value.length ? (
+      {typeof value === 'object' && value !== null ? (
         <span>
-          <span className={classes.unit}>{value[0]}</span>
-          {value[1]}
+          <span className={classes.unit}>{value.unit}</span>
+          {value.value}
         </span>
       ) : (
-        { value }
+        <span>{ value }</span>
       )}
     </Box>
   );

@@ -1,6 +1,7 @@
 import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
 
 export const cartoOptions = {
+  themeName: 'CARTO',
   breakpoints: {
     keys: ['xs', 'sm', 'md', 'lg', 'xl'],
     values: {
@@ -319,45 +320,7 @@ export const cartoOptions = {
     MuiButtonBase: {
       disableRipple: true,
     },
-  },
-  /*
-   * Change every single style injected by Material-UI into the DOM
-   * Example
-  overrides: {
-    MuiButton: {
-      // Name of the rule
-      text: {
-        // Some CSS
-        color: 'white',
-      },
-    },
-    MuiCssBaseline: {
-      '@global': {
-        html: {
-          WebkitFontSmoothing: 'auto',
-        },
-        '*::-webkit-scrollbar': {
-          width: '0.4em'
-        },
-        '*::-webkit-scrollbar-track': {
-          '-webkit-box-shadow': 'inset 0 0 6px rgba(0,0,0,0.00)'
-        },
-        '*::-webkit-scrollbar-thumb': {
-          backgroundColor: 'rgba(0,0,0,.1)',
-          outline: '1px solid slategrey'
-        }
-      },
-    }
-  },
-  * Change default props of all the Material-UI components
-  * Example
-  props: {
-    MuiButtonBase: {
-      // The default props to change
-      disableRipple: true, // No more ripple, on the whole application 💣!
-    },
   }
-  */
 };
 
 export function createTheme(options = {}) {

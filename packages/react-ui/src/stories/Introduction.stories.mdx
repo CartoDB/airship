@@ -1,0 +1,41 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import Code from './assets/code-brackets.svg';
+import Colors from './assets/colors.svg';
+import Comments from './assets/comments.svg';
+import Direction from './assets/direction.svg';
+import Flow from './assets/flow.svg';
+import Plugin from './assets/plugin.svg';
+import Repo from './assets/repo.svg';
+import StackAlt from './assets/stackalt.svg';
+
+<Meta title="Introduction" />
+
+# Airship UI for React (v3.0.0-alpha4)
+
+## How to add a new Story
+Put your `stories.js` files inside the `src/stories` folder following the same folder structure as the source files. For example:
+`stories/widgets/FormulaWidgetUI.stories.js` for `src/widgets/FormulaWidgetUI.js` component.
+
+As long as we are using a decorator to inject the MaterialUI theme, you just need to import and add your component to the `template` of your story.
+```js
+import React from 'react';
+import FormulaWidgetUI from '../../widgets/FormulaWidgetUI';
+
+const Template = (args) => <FormulaWidgetUI {...args} />;
+```
+
+Then, export your story and the different variations:
+```js
+export default {
+  title: 'Widgets/FormulaWidgetUI',
+  component: FormulaWidgetUI,
+};
+
+export const Empty = Template.bind({});
+Empty.args = {};
+
+export const Text = Template.bind({});
+Text.args = { data: '$1000000'};
+```
+
+Optionally, you can add some extra controls to your story, but by default Storybook will add automatic controls for your story arguments.
