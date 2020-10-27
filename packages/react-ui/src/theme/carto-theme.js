@@ -40,15 +40,15 @@ export const cartoOptions = {
       white: '#fff',
     },
     primary: {
-      light: '#7986cb',
+      light: '#68a9ee',
       main: '#036fe2',
       dark: '#012c5a',
       contrastText: '#fff',
     },
     secondary: {
-      light: '#ff4081',
+      light: '#91e9c2',
       main: '#47db99',
-      dark: '#c51162',
+      dark: '#2b835c',
       contrastText: '#fff',
     },
     error: {
