@@ -32,7 +32,7 @@ const currencyFormatter = (v) => {
 
 // This default export determines where your story goes in the story list
 export default {
-  title: 'Widgets/FormulaWidgetUI',
+  title: '3 Widgets/FormulaWidgetUI',
   component: FormulaWidgetUI,
 };
 

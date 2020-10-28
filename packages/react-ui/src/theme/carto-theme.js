@@ -52,27 +52,27 @@ export const cartoOptions = {
       contrastText: '#fff',
     },
     error: {
-      light: '#e57373',
+      light: '#f3d6ce',
       main: '#c1300b',
-      dark: '#d32f2f',
+      dark: '#741d07',
       contrastText: '#fff',
     },
     warning: {
-      light: '#ffb74d',
-      main: '#ff9800',
-      dark: '#f57c00',
+      light: '#fbebcc',
+      main: '#f29e02',
+      dark: '#5f3e01',
       contrastText: 'rgba(0, 0, 0, 0.87)',
     },
     info: {
-      light: '#64b5f6',
-      main: '#2196f3',
-      dark: '#1976d2',
+      light: '#cde2f9',
+      main: '#024388',
+      dark: '#012c5a',
       contrastText: '#fff',
     },
     success: {
-      light: '#81c784',
-      main: '#4caf50',
-      dark: '#388e3c',
+      light: '#e2ecd2',
+      main: '#709f1d',
+      dark: '#435f11',
       contrastText: 'rgba(0, 0, 0, 0.87)',
     },
     contrastThreshold: 3,
@@ -82,13 +82,13 @@ export const cartoOptions = {
     text: {
       primary: '#2c3032',
       secondary: 'rgba(44, 48, 50, 0.6)',
-      disabled: 'rgba(44, 48, 50, 0.2)',
-      hint: 'rgba(44, 48, 50, 0.38)',
+      disabled: 'rgba(44, 48, 50, 0.4)',
+      hint: 'rgba(44, 48, 50, 0.2)',
     },
     divider: 'rgba(0, 0, 0, 0.12)',
     background: {
-      paper: '#ffffff',
-      default: '#ffffff',
+      default: 'rgba(44, 48, 50, 0.05)',
+      paper: '#ffffff'
     },
     // props: Object => Research,
     /* Custom Colors palette */
@@ -303,11 +303,34 @@ export const cartoOptions = {
         },
       },
     },
+    MuiButton: {
+      contained: {
+        boxShadow: 'none'
+      },
+      outlined: {
+        borderWidth: '2px',
+        '&:hover': {
+          borderWidth: '2px'
+        }
+      },
+      outlinedPrimary: {
+        borderWidth: '2px',
+        '&:hover': {
+          borderWidth: '2px'
+        }
+      },
+      outlinedSecondary: {
+        borderWidth: '2px',
+        '&:hover': {
+          borderWidth: '2px'
+        }
+      }
+    },
     MuiIconButton: {
       root: {
         padding: '6px',
         borderRadius: '3px',
-      },
+      }
     },
     MuiBreadcrumbs: {
       separator: {
@@ -318,7 +341,10 @@ export const cartoOptions = {
   },
   props: {
     MuiButtonBase: {
-      disableRipple: true,
+      disableRipple: true
+    },
+    MuiButton: {
+      disableElevation: true
     },
   }
 };
