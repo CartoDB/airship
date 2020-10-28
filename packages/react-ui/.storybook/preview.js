@@ -14,5 +14,15 @@ export const decorators = [
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
-  viewMode: 'docs'
+  viewMode: 'docs',
+  options: {
+    storySort: {
+      order: [
+        'Introduction',
+        'Getting Started',
+        'Common',
+        'Widgets'
+      ]
+    }
+  } 
 }

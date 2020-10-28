@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, IconButton, Grid, SvgIcon } from '@material-ui/core';
 
 export default {
-  title: '2 Common/01-Button',
+  title: 'Common/01-Button',
   component: Button,
   argTypes: {
     variant: {

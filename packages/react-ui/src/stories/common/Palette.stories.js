@@ -3,7 +3,7 @@ import { Box, Grid, Typography } from '@material-ui/core';
 import { useTheme } from '@material-ui/core/styles';
 
 export default {
-  title: '1 Getting Started/01-Palette',
+  title: 'Getting Started/01-Palette',
   component: Box,
   argTypes: {
     colorVariant: {
