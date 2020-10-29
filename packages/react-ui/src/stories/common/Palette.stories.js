@@ -67,6 +67,22 @@ const BackgroundTemplate = (args) => {
   );
 }
 
+const ActionTemplate = (args) => {
+  const theme = useTheme();
+  const colorDef = theme.palette.action;
+  const textColor = theme.palette.common.black;
+  return (
+    <Grid container>
+      <Box style={{ backgroundColor: colorDef.active, ...boxStyle }} {...args}><Typography variant="caption" style={{ color: textColor  }}>Active<br/>{colorDef.active}</Typography></Box>
+      <Box style={{ backgroundColor: colorDef.hover, ...boxStyle }} {...args}><Typography variant="caption" style={{ color: textColor }}>Hover<br/>{colorDef.hover}</Typography></Box>
+      <Box style={{ backgroundColor: colorDef.selected, ...boxStyle }} {...args}><Typography variant="caption" style={{ color: textColor }}>Selected<br/>{colorDef.selected}</Typography></Box>
+      <Box style={{ backgroundColor: colorDef.disabled, ...boxStyle }} {...args}><Typography variant="caption" style={{ color: textColor }}>Disabled<br/>{colorDef.disabled}</Typography></Box>
+      <Box style={{ backgroundColor: colorDef.disabledBackground, ...boxStyle }} {...args}><Typography variant="caption" style={{ color: textColor }}>DisabledBackground<br/>{colorDef.disabledBackground}</Typography></Box>
+      <Box style={{ backgroundColor: colorDef.focus, ...boxStyle }} {...args}><Typography variant="caption" style={{ color: textColor }}>Focus<br/>{colorDef.focus}</Typography></Box>
+    </Grid>
+  );
+}
+
 export const Default = ColorTemplate.bind({});
 Default.args = { colorVariant: 'primary' };
 
@@ -93,3 +109,5 @@ export const Common = CommonTemplate.bind({});
 export const TextLight = TextTemplate.bind({});
 
 export const Background = BackgroundTemplate.bind({});
+
+export const Action = ActionTemplate.bind({});
