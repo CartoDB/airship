@@ -1,5 +1,115 @@
 import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
 
+const colors = {
+  common: {
+    black: '#2c3032',
+    white: '#fff',
+  },
+  neutral: {
+    50: '#f8f9f9',
+    100: '#e1e3e4',
+    200: '#cbcdcf',
+    300: '#b4b8ba',
+    400: '#9da2a6',
+    500: '#868d91',
+    600: '#6f777c',
+    700: '#595f63',
+    800: '#43474a',
+    900: '#2c3032',
+  },
+  shades: {
+    dark: {
+      100: '#2c3032', // Neutral900
+      60: 'rgba(44, 48, 50, 0.6)',
+      40: 'rgba(44, 48, 50, 0.4)',
+      25: 'rgba(44, 48, 50, 0.25)',
+      12: 'rgba(44, 48, 50, 0.12)',
+      5: 'rgba(44, 48, 50, 0.05)'
+    },
+    light: {
+      100: '#fff', // White
+      60: 'rgba(255, 255, 255, 0.6)',
+      40: 'rgba(255, 255, 255, 0.4)',
+      20: 'rgba(255, 255, 255, 0.2)',
+      12: 'rgba(255, 255, 255, 0.12)',
+      5: 'rgba(255, 255, 255, 0.05)'
+    }
+  }
+};
+
+const variables = {
+  palette: {
+    type: 'light',
+    common: { ...colors.common },
+    primary: {
+      light: '#358be7',
+      main: '#036fe2',
+      dark: '#024d9e',
+      contrastText: colors.common.white,
+    },
+    secondary: {
+      light: '#6be2ad',
+      main: '#47db99',
+      dark: '#31996b',
+      contrastText: colors.common.black,
+    },
+    error: {
+      light: '#cd593b',
+      main: '#c1300b',
+      dark: '#872107',
+      contrastText: colors.common.white,
+    },
+    warning: {
+      light: '#f4b134',
+      main: '#f29e02',
+      dark: '#a96e01',
+      contrastText: colors.common.black,
+    },
+    info: {
+      light: '#34689f',
+      main: '#024388',
+      dark: '#012e5f',
+      contrastText: colors.common.white,
+    },
+    success: {
+      light: '#8cb24a',
+      main: '#709f1d',
+      dark: '#4e6f14',
+      contrastText: colors.common.white,
+    },
+    text: {
+      primary: colors.shades.dark[100],
+      secondary: colors.shades.dark[60],
+      hint: colors.shades.dark[40],
+      disabled: colors.shades.dark[25],
+    },
+    background: {
+      default: colors.neutral[50],
+      paper: colors.common.white
+    },
+    customGrey: {
+      ...colors.neutral,
+      A100: '#d5d5d5',
+      A200: '#aaaaaa',
+      A400: '#616161',
+      A700: '#303030',
+    },
+    action: {
+      active: colors.shades.dark[40],
+      hover: colors.shades.dark[5],
+      hoverOpacity: 0.04,
+      selected: colors.shades.dark[12],
+      selectedOpacity: 0.08,
+      disabled: colors.shades.dark[25],
+      disabledBackground: colors.shades.dark[12],
+      disabledOpacity: 0.38,
+      focus: colors.shades.dark[12],
+      focusOpacity: 0.12,
+      activatedOpacity: 0.12,
+    }
+  }
+};
+
 export const cartoOptions = {
   themeName: 'CARTO',
   breakpoints: {
@@ -35,92 +145,24 @@ export const cartoOptions = {
   },
   palette: {
     type: 'light',
-    common: {
-      black: '#2c3032',
-      white: '#fff',
-    },
-    primary: {
-      light: '#68a9ee',
-      main: '#036fe2',
-      dark: '#012c5a',
-      contrastText: '#fff',
-    },
-    secondary: {
-      light: '#91e9c2',
-      main: '#47db99',
-      dark: '#2b835c',
-      contrastText: '#fff',
-    },
-    error: {
-      light: '#f3d6ce',
-      main: '#c1300b',
-      dark: '#741d07',
-      contrastText: '#fff',
-    },
-    warning: {
-      light: '#fbebcc',
-      main: '#f29e02',
-      dark: '#5f3e01',
-      contrastText: 'rgba(0, 0, 0, 0.87)',
-    },
-    info: {
-      light: '#cde2f9',
-      main: '#024388',
-      dark: '#012c5a',
-      contrastText: '#fff',
-    },
-    success: {
-      light: '#e2ecd2',
-      main: '#709f1d',
-      dark: '#435f11',
-      contrastText: 'rgba(0, 0, 0, 0.87)',
-    },
+    common: { ...variables.palette.common },
+    primary: { ...variables.palette.primary },
+    secondary: { ...variables.palette.secondary },
+    error: { ...variables.palette.error },
+    warning: { ...variables.palette.warning },
+    info: { ...variables.palette.info },
+    success: { ...variables.palette.success },
     contrastThreshold: 3,
     // getContrastText: f E(),
     // augmentColor: f B(),
     tonalOffset: 0.2,
-    text: {
-      primary: '#2c3032',
-      secondary: 'rgba(44, 48, 50, 0.6)',
-      disabled: 'rgba(44, 48, 50, 0.4)',
-      hint: 'rgba(44, 48, 50, 0.2)',
-    },
+    text: { ...variables.palette.text },
     divider: 'rgba(0, 0, 0, 0.12)',
-    background: {
-      default: 'rgba(44, 48, 50, 0.05)',
-      paper: '#ffffff'
-    },
+    background: { ...variables.palette.background },
     // props: Object => Research,
     /* Custom Colors palette */
-    customGrey: {
-      50: '#f8f9f9',
-      100: '#e1e3e4',
-      200: '#cbcdcf',
-      300: '#b4b8ba',
-      400: '#9da2a6',
-      500: '#868d91',
-      600: '#6f777c',
-      700: '#595f63',
-      800: '#43474a',
-      900: '#2c3032',
-      A100: '#d5d5d5',
-      A200: '#aaaaaa',
-      A400: '#303030',
-      A700: '#616161',
-    },
-  },
-  action: {
-    active: 'rgba(0, 0, 0, 0.54)',
-    hover: 'rgba(0, 0, 0, 0.04)',
-    hoverOpacity: 0.04,
-    selected: 'rgba(0, 0, 0, 0.08)',
-    selectedOpacity: 0.08,
-    disabled: 'rgba(0, 0, 0, 0.26)',
-    disabledBackground: 'rgba(0, 0, 0, 0.12)',
-    disabledOpacity: 0.38,
-    focus: 'rgba(0, 0, 0, 0.12)',
-    focusOpacity: 0.12,
-    activatedOpacity: 0.12,
+    customGrey: { ...variables.palette.customGrey },
+    action: { ...variables.palette.action }
   },
   shadows: [
     'none',
@@ -303,13 +345,36 @@ export const cartoOptions = {
         },
       },
     },
+
+    // Button
     MuiButton: {
+      root: {
+        '&$disabled': {
+          opacity: .4
+        }
+      },
       contained: {
         boxShadow: 'none'
       },
+      containedPrimary: {
+        '&$disabled': {
+          backgroundColor: variables.palette.primary.main,
+          color: variables.palette.primary.contrastText
+        }
+      },
+      containedSecondary: {
+        '&$disabled': {
+          backgroundColor: variables.palette.secondary.main,
+          color: variables.palette.secondary.contrastText
+        }
+      },
       outlined: {
         borderWidth: '2px',
+        padding: '4px 14px',
         '&:hover': {
+          borderWidth: '2px'
+        },
+        '&$disabled': {
           borderWidth: '2px'
         }
       },
@@ -317,19 +382,52 @@ export const cartoOptions = {
         borderWidth: '2px',
         '&:hover': {
           borderWidth: '2px'
+        },
+        '&$disabled': {
+          borderWidth: '2px',
+          borderColor: variables.palette.primary.main,
+          color: variables.palette.primary.main
         }
       },
       outlinedSecondary: {
         borderWidth: '2px',
         '&:hover': {
           borderWidth: '2px'
+        },
+        '&$disabled': {
+          borderWidth: '2px',
+          borderColor: variables.palette.secondary.main,
+          color: variables.palette.secondary.main
         }
-      }
+      },
+      textPrimary: {
+        '&$disabled': {
+          color: variables.palette.primary.main
+        }
+      },
+      textSecondary: {
+        '&$disabled': {
+          color: variables.palette.secondary.main
+        }
+      },
     },
     MuiIconButton: {
       root: {
         padding: '6px',
-        borderRadius: '3px',
+        borderRadius: '4px',
+        '&$disabled': {
+          opacity: 0.4
+        }
+      },
+      colorPrimary: {
+        '&$disabled': {
+          color: variables.palette.primary.main
+        }
+      },
+      colorSecondary: {
+        '&$disabled': {
+          color: variables.palette.secondary.main
+        }
       }
     },
     MuiBreadcrumbs: {
