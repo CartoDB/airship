@@ -1,6 +1,23 @@
 import React from 'react';
 import FormulaWidgetUI from '../../widgets/FormulaWidgetUI';
 
+export default {
+  title: 'Widgets/FormulaWidgetUI',
+  component: FormulaWidgetUI,
+  argTypes: {
+    data: {
+      control: {
+        type: 'text'
+      }
+    },
+    formatter: {
+      table: {
+        disable: true
+      }
+    }
+  }
+};
+
 const currencyFormatter = (v) => {
   const moneyFormatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -28,24 +45,6 @@ const currencyFormatter = (v) => {
     { unit: '', value: '' }
   );
   return valueParted;
-};
-
-// This default export determines where your story goes in the story list
-export default {
-  title: 'Widgets/02 - FormulaWidgetUI',
-  component: FormulaWidgetUI,
-  argTypes: {
-    data: {
-      control: {
-        type: 'text'
-      }
-    },
-    formatter: {
-      table: {
-        disable: true
-      }
-    }
-  }
 };
 
 const Template = (args) => <FormulaWidgetUI {...args} />;

@@ -16,6 +16,10 @@ const colors = {
     700: '#595f63',
     800: '#43474a',
     900: '#2c3032',
+    A100: '#ddddde',
+    A200: '#b9babb',
+    A400: '#7c7e7f',
+    A700: '#545759',
   },
   shades: {
     dark: {
@@ -88,11 +92,7 @@ const variables = {
       paper: colors.common.white
     },
     customGrey: {
-      ...colors.neutral,
-      A100: '#d5d5d5',
-      A200: '#aaaaaa',
-      A400: '#616161',
-      A700: '#303030',
+      ...colors.neutral
     },
     action: {
       active: colors.shades.dark[40],
