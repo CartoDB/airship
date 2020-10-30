@@ -20,8 +20,20 @@ export const parameters = {
       order: [
         'Introduction',
         'Getting Started',
+        [
+          'Palette',
+          'Typography'
+        ],
         'Common',
-        'Widgets'
+        [
+          'Button'
+        ],
+        'Widgets',
+        [
+          'WrapperWidgetUI',
+          'FormulaWidgetUI',
+          'CategoryWidgetUI'
+        ]
       ]
     }
   } 

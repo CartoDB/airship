@@ -3,7 +3,7 @@ import { Box, Grid, Typography } from '@material-ui/core';
 import { useTheme } from '@material-ui/core/styles';
 
 export default {
-  title: 'Getting Started/01-Palette',
+  title: 'Getting Started/Palette',
   component: Box,
   argTypes: {
     colorVariant: {
@@ -83,6 +83,31 @@ const ActionTemplate = (args) => {
   );
 }
 
+const GreyTemplate = (args) => {
+  const theme = useTheme();
+  const colorDef = theme.palette.customGrey;
+  const textColorDark = theme.palette.common.white;
+  const textColorLight = theme.palette.common.black;
+  return (
+    <Grid container>
+      <Box style={{ backgroundColor: colorDef[900], ...boxStyle }} {...args}><Typography variant="caption" style={{ color: textColorDark  }}>N900<br/>{colorDef[900]}</Typography></Box>
+      <Box style={{ backgroundColor: colorDef[800], ...boxStyle }} {...args}><Typography variant="caption" style={{ color: textColorDark  }}>N800<br/>{colorDef[800]}</Typography></Box>
+      <Box style={{ backgroundColor: colorDef[700], ...boxStyle }} {...args}><Typography variant="caption" style={{ color: textColorDark  }}>N700<br/>{colorDef[700]}</Typography></Box>
+      <Box style={{ backgroundColor: colorDef[600], ...boxStyle }} {...args}><Typography variant="caption" style={{ color: textColorDark  }}>N600<br/>{colorDef[600]}</Typography></Box>
+      <Box style={{ backgroundColor: colorDef[500], ...boxStyle }} {...args}><Typography variant="caption" style={{ color: textColorDark  }}>N500<br/>{colorDef[500]}</Typography></Box>
+      <Box style={{ backgroundColor: colorDef[400], ...boxStyle }} {...args}><Typography variant="caption" style={{ color: textColorLight  }}>N400<br/>{colorDef[400]}</Typography></Box>
+      <Box style={{ backgroundColor: colorDef[300], ...boxStyle }} {...args}><Typography variant="caption" style={{ color: textColorLight  }}>N300<br/>{colorDef[300]}</Typography></Box>
+      <Box style={{ backgroundColor: colorDef[200], ...boxStyle }} {...args}><Typography variant="caption" style={{ color: textColorLight  }}>N200<br/>{colorDef[200]}</Typography></Box>
+      <Box style={{ backgroundColor: colorDef[100], ...boxStyle }} {...args}><Typography variant="caption" style={{ color: textColorLight  }}>N100<br/>{colorDef[100]}</Typography></Box>
+      <Box style={{ backgroundColor: colorDef[50], ...boxStyle }} {...args}><Typography variant="caption" style={{ color: textColorLight  }}>N050<br/>{colorDef[50]}</Typography></Box>
+      <Box style={{ backgroundColor: colorDef['A100'], ...boxStyle }} {...args}><Typography variant="caption" style={{ color: textColorLight  }}>A100<br/>{colorDef['A100']}</Typography></Box>
+      <Box style={{ backgroundColor: colorDef['A200'], ...boxStyle }} {...args}><Typography variant="caption" style={{ color: textColorLight  }}>A200<br/>{colorDef['A200']}</Typography></Box>
+      <Box style={{ backgroundColor: colorDef['A400'], ...boxStyle }} {...args}><Typography variant="caption" style={{ color: textColorDark  }}>A400<br/>{colorDef['A400']}</Typography></Box>
+      <Box style={{ backgroundColor: colorDef['A700'], ...boxStyle }} {...args}><Typography variant="caption" style={{ color: textColorDark  }}>A700<br/>{colorDef['A700']}</Typography></Box>
+    </Grid>
+  );
+}
+
 export const Default = ColorTemplate.bind({});
 Default.args = { colorVariant: 'primary' };
 
@@ -111,3 +136,5 @@ export const TextLight = TextTemplate.bind({});
 export const Background = BackgroundTemplate.bind({});
 
 export const Action = ActionTemplate.bind({});
+
+export const CustomGrey = GreyTemplate.bind({});

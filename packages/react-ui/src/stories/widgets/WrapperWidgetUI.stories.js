@@ -3,7 +3,7 @@ import { Typography } from '@material-ui/core';
 import WrapperWidgetUI from '../../widgets/WrapperWidgetUI';
 
 export default {
-  title: 'Widgets/01 - WrapperWidgetUI',
+  title: 'Widgets/WrapperWidgetUI',
   component: WrapperWidgetUI,
   argTypes: {
     actions: {

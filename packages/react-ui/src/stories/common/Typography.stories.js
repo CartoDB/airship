@@ -2,7 +2,7 @@ import React from 'react';
 import Typography from '@material-ui/core/Typography';
 
 export default {
-  title: 'Getting Started/02-Typography',
+  title: 'Getting Started/Typography',
   component: Typography,
   argTypes: {
     variant: {

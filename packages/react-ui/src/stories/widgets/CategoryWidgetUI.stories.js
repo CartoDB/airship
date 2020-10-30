@@ -2,9 +2,9 @@ import React from 'react';
 import CategoryWidgetUI from '../../widgets/CategoryWidgetUI';
 
 export default {
-  title: 'Widgets/03 - CategoryWidgetUI',
+  title: 'Widgets/CategoryWidgetUI',
   component: CategoryWidgetUI,
-  // argTypes: {
+  argTypes: {
   //   data: {
   //     table: { disable: true }
   //   },
@@ -14,13 +14,13 @@ export default {
   //   labels: {
   //     table: { disable: true }
   //   },
-  //   selectedCategories: {
-  //     table: { disable: true }
-  //   },
-  //   onSelectedCategoriesChange: {
-  //     table: { disable: true }
-  //   }
-  // }
+    selectedCategories: {
+      table: { disable: true }
+    },
+    onSelectedCategoriesChange: {
+      table: { disable: true }
+    }
+  }
 };
 
 const currencyFormatter = (v) => {
