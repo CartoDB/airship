@@ -57,7 +57,7 @@ const ButtonTemplate = ({ label, icon, ...rest }) => {
         <Grid item xs={3}><Button {...rest} size="small">{smallLabel}</Button></Grid>
         <Grid item xs={3}><Button {...rest} startIcon={<Icon/>} size="small">{smallLabel}</Button></Grid>
         <Grid item xs={3}><Button {...rest} endIcon={<Icon/>} size="small">{smallLabel}</Button></Grid>
-        <Grid item xs={3}><IconButton {...rest} aria-label={smallLabel} size="small"><Icon/></IconButton></Grid>
+        <Grid item xs={3}><IconButton {...rest} aria-label={smallLabel} size="small"><Icon fontSize="small"/></IconButton></Grid>
       </Grid>
       <Grid item container spacing={2}>
         <Grid item xs={3}><Button {...rest} size="medium">{mediumLabel}</Button></Grid>

@@ -107,8 +107,15 @@ const variables = {
       focusOpacity: 0.12,
       activatedOpacity: 0.12,
     }
+  },
+  typography: {
+    htmlFontSize: 16,
+    fontSize: 16
   }
 };
+
+const round = (value) => Math.round(value * 1e5) / 1e5;
+const pxToRem = (size) => `${round(size / variables.typography.htmlFontSize)}rem`;
 
 export const cartoOptions = {
   themeName: 'CARTO',
@@ -192,11 +199,11 @@ export const cartoOptions = {
     '0px 11px 15px -7px rgba(0,0,0,0.2),0px 24px 38px 3px rgba(0,0,0,0.14),0px 9px 46px 8px rgba(0,0,0,0.12)',
   ],
   typography: {
-    htmlFontSize: 16,
-    // pxToRem: f (),
-    // round: f S(),
+    htmlFontSize: variables.typography.htmlFontSize,
+    pxToRem: pxToRem,
+    round: round,
     fontFamily: 'Montserrat, sans-serif',
-    fontSize: 16,
+    fontSize: variables.typography.fontSize,
     fontWeightLight: 300,
     fontWeightRegular: 400,
     fontWeightMedium: 600,
@@ -281,7 +288,7 @@ export const cartoOptions = {
     },
     caption: {
       fontFamily: '"Open Sans", sans-serif',
-      fontWeight: 400,
+      fontWeight: 600,
       fontSize: '0.75rem',
       lineHeight: 1.33,
       letterSpacing: '0.03333em',
@@ -348,28 +355,11 @@ export const cartoOptions = {
 
     // Button
     MuiButton: {
-      root: {
-        '&$disabled': {
-          opacity: .4
-        }
-      },
       contained: {
         boxShadow: 'none'
       },
-      containedPrimary: {
-        '&$disabled': {
-          backgroundColor: variables.palette.primary.main,
-          color: variables.palette.primary.contrastText
-        }
-      },
-      containedSecondary: {
-        '&$disabled': {
-          backgroundColor: variables.palette.secondary.main,
-          color: variables.palette.secondary.contrastText
-        }
-      },
       outlined: {
-        borderWidth: '2px',
+        border: `2px solid ${variables.palette.text.primary}`,
         padding: '4px 14px',
         '&:hover': {
           borderWidth: '2px'
@@ -379,55 +369,88 @@ export const cartoOptions = {
         }
       },
       outlinedPrimary: {
-        borderWidth: '2px',
+        border: `2px solid ${variables.palette.primary.main}`,
         '&:hover': {
           borderWidth: '2px'
-        },
-        '&$disabled': {
-          borderWidth: '2px',
-          borderColor: variables.palette.primary.main,
-          color: variables.palette.primary.main
         }
       },
       outlinedSecondary: {
-        borderWidth: '2px',
+        border: `2px solid ${variables.palette.secondary.main}`,
         '&:hover': {
           borderWidth: '2px'
         },
         '&$disabled': {
-          borderWidth: '2px',
-          borderColor: variables.palette.secondary.main,
-          color: variables.palette.secondary.main
+          borderWidth: '2px'
         }
       },
-      textPrimary: {
-        '&$disabled': {
-          color: variables.palette.primary.main
-        }
+      containedSizeSmall: {
+        padding: '2px 12px',
+        fontSize: pxToRem(12)
       },
-      textSecondary: {
-        '&$disabled': {
-          color: variables.palette.secondary.main
-        }
+      outlinedSizeSmall: {
+        padding: '2px 12px',
+        fontSize: pxToRem(12)
       },
+      textSizeSmall: {
+        padding: '2px 12px',
+        fontSize: pxToRem(12)
+      },
+      containedSizeLarge: {
+        padding: '16px 24px',
+        fontSize: pxToRem(16)
+      },
+      outlinedSizeLarge: {
+        padding: '16px 24px',
+        fontSize: pxToRem(16)
+      },
+      textSizeLarge: {
+        padding: '16px 24px',
+        fontSize: pxToRem(16)
+      },
+      startIcon: {
+        marginRight: 6,
+        marginLeft: -4,
+        '&$iconSizeSmall': {
+          marginLeft: -4,
+        },
+        '&$iconSizeLarge': {
+          marginRight: 8,
+        },
+      },
+      endIcon: {
+        marginRight: -4,
+        marginLeft: 6,
+        '&$iconSizeSmall': {
+          marginRight: -4,
+        },
+        '&$iconSizeLarge': {
+          marginLeft: 8,
+        },
+      },
+      iconSizeSmall: {
+        '& > *:first-child': {
+          fontSize: 20,
+        },
+      },
+      iconSizeMedium: {
+        '& > *:first-child': {
+          fontSize: 24,
+        },
+      },
+      iconSizeLarge: {
+        '& > *:first-child': {
+          fontSize: 24,
+        },
+      }
     },
     MuiIconButton: {
       root: {
         padding: '6px',
         borderRadius: '4px',
-        '&$disabled': {
-          opacity: 0.4
-        }
+        color: variables.palette.text.primary,
       },
-      colorPrimary: {
-        '&$disabled': {
-          color: variables.palette.primary.main
-        }
-      },
-      colorSecondary: {
-        '&$disabled': {
-          color: variables.palette.secondary.main
-        }
+      sizeSmall: {
+        padding: 2
       }
     },
     MuiBreadcrumbs: {
