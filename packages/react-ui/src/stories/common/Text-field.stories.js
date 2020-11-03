@@ -115,7 +115,7 @@ const TextFieldTemplate = ({ ...rest }) => {
         </Grid> 
       </Grid>
       <Grid item container spacing={2}>
-        <Grid item xs={2}><Typography>Error</Typography></Grid>
+        <Grid item xs={2}><Typography>Disabled</Typography></Grid>
         <Grid item xs={10} container spacing={2}>
           <Grid item xs={3}>
             <TextField label="Placeholder" disabled {...rest}/>
