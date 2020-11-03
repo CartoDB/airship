@@ -45,6 +45,8 @@ const EyeIcon = (props) => (
   </SvgIcon>
 );
 
+const Template = (args) => <TextField {...args}></TextField>;
+
 const TextFieldTemplate = ({ ...rest }) => {
   const adornment = {
     startAdornment: (
@@ -150,13 +152,80 @@ const TextFieldTemplate = ({ ...rest }) => {
   );
 };
 
-const Template = (args) => <TextField {...args}></TextField>;
+const MultilineTemplate = ({ ...rest }) => {
+  return (
+    <Grid container spacing={2}>
+      <Grid item container spacing={2}>
+        <Grid item xs={4}>
+          <TextField label="Default" value="Hello World!" multiline />
+        </Grid>
+        <Grid item xs={4}>
+          <TextField label="With max rows" value="Hello World!" rowsMax={4} multiline />
+        </Grid>
+        
+        <Grid item xs={4}>
+          <TextField label="Fixed rows" value="Hello World!" rows={4} multiline />
+        </Grid>
+      </Grid>
+      <Grid item container spacing={2}>
+        <Grid item xs={4}>
+          <TextField label="Default" variant="filled" value="Hello World!" multiline />
+        </Grid>
+        <Grid item xs={4}>
+          <TextField label="With max rows" variant="filled" value="Hello World!" rowsMax={4} multiline />
+        </Grid>
+        
+        <Grid item xs={4}>
+          <TextField label="Fixed rows" variant="filled" value="Hello World!" rows={4} multiline />
+        </Grid>
+      </Grid>
+      <Grid item container spacing={2}>
+        <Grid item xs={4}>
+          <TextField label="Default" variant="outlined" value="Hello World!" multiline />
+        </Grid>
+        <Grid item xs={4}>
+          <TextField label="With max rows" variant="outlined" value="Hello World!" rowsMax={4} multiline />
+        </Grid>
+        
+        <Grid item xs={4}>
+          <TextField label="Fixed rows" variant="outlined" value="Hello World!" rows={4} multiline />
+        </Grid>
+      </Grid>
+    </Grid>
+  );
+};
 
 const disabledControlsArgTypes = {
   variant: { table: { disable: true } },
   disabled: { table: { disable: true } },
   required: { table: { disable: true } },
 };
+
+/*
+
+
+<TextField
+          id="standard-multiline-flexible"
+          label="Multiline"
+          multiline
+          rowsMax={4}
+          value={value}
+          onChange={handleChange}
+        />
+        <TextField
+          id="standard-textarea"
+          label="Multiline Placeholder"
+          placeholder="Placeholder"
+          multiline
+        />
+        <TextField
+          id="standard-multiline-static"
+          label="Multiline"
+          multiline
+          rows={4}
+          defaultValue="Default Value"
+        />
+*/
 
 export const Playground = Template.bind({});
 Playground.args = { label: 'placeholder' };
@@ -171,3 +240,6 @@ Filled.argTypes = disabledControlsArgTypes;
 export const Outlined = TextFieldTemplate.bind({});
 Outlined.args = { variant: 'outlined' };
 Outlined.argTypes = disabledControlsArgTypes;
+
+export const Multiline = MultilineTemplate.bind({});
+Multiline.args = {  };
