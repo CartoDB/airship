@@ -25,6 +25,7 @@
     "lint": "lerna run lint",
     "postinstall": "lerna bootstrap --hoist",
     "publish": "lerna run publish",
-    "publish:beta": "lerna run publish:beta"
+    "publish:beta": "lerna run publish:beta",
+    "local-link": "lerna run local-link"
   }
 }

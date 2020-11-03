@@ -1,10 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Grid, Typography, makeStyles, withTheme } from '@material-ui/core';
+import { Button, Grid, Typography, makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     ...theme.typography.caption,
+  },
+  element: {
+    cursor: 'pointer'
   },
   progressbar: {
     height: '5px',
@@ -33,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function CategoryWidgetUIRaw(props) {
+function CategoryWidgetUI(props) {
   const { data = [], selectedCategories = [], formatter = (v) => v, labels = {} } = props;
   const classes = useStyles();
 
@@ -76,16 +79,16 @@ function CategoryWidgetUIRaw(props) {
       {data.map((d, i) => {
         const value = formatter(d.value || 0);
         return (
-          <Grid container onClick={() => categoryClicked(d.category)} key={i}>
+          <Grid container onClick={() => categoryClicked(d.category)} key={i} className={classes.element}>
             <Grid container item direction='row' justify='space-between'>
               <span>{labels[d.category] ? labels[d.category] : d.category}</span>
-              {value.length ? (
+              { typeof value === 'object' && value !== null ? (
                 <span>
-                  {value[0]}
-                  {value[1]}
+                  {value.unit}
+                  {value.value}
                 </span>
               ) : (
-                { value }
+                <span>{ value }</span>
               )}
             </Grid>
             <Grid item className={classes.progressbar}>
@@ -100,14 +103,17 @@ function CategoryWidgetUIRaw(props) {
   );
 }
 
-CategoryWidgetUIRaw.propTypes = {
-  data: PropTypes.array.isRequired,
+CategoryWidgetUI.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      category: PropTypes.string.isRequired,
+      value: PropTypes.number.isRequired
+    })
+  ).isRequired,
   formatter: PropTypes.func,
   labels: PropTypes.object,
   selectedCategories: PropTypes.array.isRequired,
   onSelectedCategoriesChange: PropTypes.func,
 };
-
-const CategoryWidgetUI = withTheme(CategoryWidgetUIRaw)
 
 export default CategoryWidgetUI;

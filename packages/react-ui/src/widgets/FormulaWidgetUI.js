@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Box, makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
@@ -14,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
 function FormulaWidgetUI(props) {
   const classes = useStyles();
 
-  const { data = '-', formatter = (v) => v } = props;
+  const { data, formatter } = props;
   const value = formatter(data);
   return (
     <Box
@@ -34,5 +35,24 @@ function FormulaWidgetUI(props) {
     </Box>
   );
 }
+
+FormulaWidgetUI.defaultProps = {
+  data: '-',
+  formatter: (v) => v
+};
+
+FormulaWidgetUI.propTypes = {
+  data: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.shape({
+      value: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string
+      ]).isRequired,
+      unit: PropTypes.string.isRequired
+    })
+  ]),
+  formatter: PropTypes.func
+};
 
 export default FormulaWidgetUI;
