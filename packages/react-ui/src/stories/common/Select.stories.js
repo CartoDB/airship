@@ -76,7 +76,7 @@ const SelectTemplate = ({ ...args }) => {
                 <MenuItem value={20}>Twenty</MenuItem>
                 <MenuItem value={30}>Thirty</MenuItem>
               </Select>
-              <FormHelperText>This select is required</FormHelperText>
+              <FormHelperText>This select is disabled</FormHelperText>
             </FormControl>
           </Grid>
         </Grid> 
