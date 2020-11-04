@@ -107,7 +107,7 @@ CategoryWidgetUI.propTypes = {
   data: PropTypes.arrayOf(
     PropTypes.shape({
       category: PropTypes.string.isRequired,
-      value: PropTypes.number.isRequired
+      value: PropTypes.number
     })
   ).isRequired,
   formatter: PropTypes.func,

@@ -44,12 +44,13 @@ FormulaWidgetUI.defaultProps = {
 FormulaWidgetUI.propTypes = {
   data: PropTypes.oneOfType([
     PropTypes.string,
+    PropTypes.number,
     PropTypes.shape({
       value: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string
-      ]).isRequired,
-      unit: PropTypes.string.isRequired
+      ]),
+      unit: PropTypes.string
     })
   ]),
   formatter: PropTypes.func
