@@ -5,11 +5,6 @@ export default {
   title: 'Widgets/FormulaWidgetUI',
   component: FormulaWidgetUI,
   argTypes: {
-    data: {
-      control: {
-        type: 'text'
-      }
-    },
     formatter: {
       table: {
         disable: true
@@ -63,3 +58,6 @@ FormatterText.args = { data: 1000000, formatter: (v) => `$${v}` };
 
 export const FormatterValueUnit = Template.bind({});
 FormatterValueUnit.args = { data: 1000000, formatter: currencyFormatter };
+
+export const FormatterValueUnitBefore = Template.bind({});
+FormatterValueUnitBefore.args = { data: 1000000, formatter: currencyFormatter, unitBefore: true };
