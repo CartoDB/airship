@@ -98,7 +98,7 @@ const IconMinimize = () => (<svg xmlns="http://www.w3.org/2000/svg" width="24" h
 
 function WrapperWidgetUI(props) {
   const wrapper = createRef();
-  const classes = useStyles();
+  const classes = useStyles(props);
   const [expanded, setExpanded] = useState(true);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
