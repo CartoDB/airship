@@ -33,7 +33,7 @@ const Template = ({ ...args }) => {
   )
 };
 
-const HorizontalDividerTemplate = ({ ...args }) => {
+const VerticalDividerTemplate = ({ ...args }) => {
   return (
     <Grid container alignItems="center">
       <FormatAlignLeft />
@@ -51,6 +51,6 @@ export const Playground = Template.bind({});
 
 export const ListWithDivider = Template.bind({})
 
-export const VerticalDivider = HorizontalDividerTemplate.bind({})
+export const VerticalDivider = VerticalDividerTemplate.bind({})
 VerticalDivider.args = {}
 
