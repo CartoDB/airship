@@ -31,6 +31,8 @@
     "@storybook/addon-links": "^6.0.27",
     "@storybook/react": "^6.0.27",
     "babel-loader": "^8.1.0",
+    "echarts": "^4.9.0",
+    "echarts-for-react": "^2.0.16",
     "jest": "23.6.0",
     "prop-types": "^15.7.2",
     "react": "^16.14.0",

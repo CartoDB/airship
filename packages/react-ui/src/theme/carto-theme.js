@@ -166,6 +166,10 @@ export const cartoOptions = {
     text: { ...variables.palette.text },
     divider: 'rgba(0, 0, 0, 0.12)',
     background: { ...variables.palette.background },
+    charts: {
+      axisLine: 'rgba(44, 48, 50, 0.05)',
+      maxLabel: 'rgba(44, 48, 50, 0.6)'
+    },
     // props: Object => Research,
     /* Custom Colors palette */
     customGrey: { ...variables.palette.customGrey },
@@ -301,6 +305,13 @@ export const cartoOptions = {
       letterSpacing: '0.08333em',
       textTransform: 'uppercase',
     },
+    charts: {
+      fontFamily: '"Open Sans", sans-serif',
+      fontWeight: 400,
+      fontSize: 10,
+      lineHeight: 16,
+      letterSpacing: 1.5
+    }
   },
   spacing: 8, // For custom spacing: https://material-ui.com/customization/spacing/#custom-spacing
   shape: {
