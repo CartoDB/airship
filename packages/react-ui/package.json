@@ -1,6 +1,6 @@
 {
   "name": "@carto/react-airship-ui",
-  "version": "3.0.0-alpha4",
+  "version": "3.0.0-alpha4-1",
   "description": "Airship CARTO API utilities",
   "main": "dist/asreactui.js",
   "scripts": {
@@ -14,7 +14,8 @@
     "publish:beta": "npm publish --tag beta --access public",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "publish-storybook": "build-storybook && cd storybook-static && npx vercel --prod --name 'react-airship-ui'"
+    "publish-storybook": "build-storybook && cd storybook-static && npx vercel --prod --name 'react-airship-ui'",
+    "local-link": "yarn link"
   },
   "author": "CARTO Dev Team",
   "license": "BSD-3-Clause",

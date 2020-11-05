@@ -275,8 +275,8 @@ export const cartoOptions = {
       fontFamily: '"Open Sans", sans-serif',
       fontWeight: 400,
       fontSize: '0.875rem',
-      lineHeight: 1.14,
-      letterSpacing: '0.01071em',
+      lineHeight: 1.429,
+      letterSpacing: '0.018em',
     },
     button: {
       fontFamily: 'Montserrat, sans-serif',
