@@ -2,7 +2,7 @@ import React from 'react';
 import ReactEcharts from 'echarts-for-react';
 import { useTheme } from '@material-ui/core';
 
-function __generateDefaultConfig (theme, { xAxisData = [], tooltipFormatter}) {
+function __generateDefaultConfig ({ xAxisData, tooltipFormatter}, data, theme) {
   return {
     grid: {
       left: 8,
@@ -35,7 +35,7 @@ function __generateDefaultConfig (theme, { xAxisData = [], tooltipFormatter}) {
         show: false,
       },
       axisLabel: theme.typography.charts,
-      data: xAxisData
+      data: xAxisData || data.map(d => d.tick)
     },
     yAxis: {
       type: 'value',
@@ -77,7 +77,7 @@ function HistogramWidgetUI(props) {
   const theme = useTheme()
 
   const series = __generateSerie (name, data, theme)
-  const DEFAULT_CONFIG = __generateDefaultConfig(theme, config)
+  const DEFAULT_CONFIG = __generateDefaultConfig(config, data, theme)
 
   const options = Object.assign({ series }, DEFAULT_CONFIG);
   

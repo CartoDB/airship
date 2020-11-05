@@ -9,64 +9,52 @@ export default {
 
 const DATA = [
   {
-    "revenue": 170155,
-    "date": "2019-01-01",
-    "avg": 124866.42434721242
+    "value": 170155,
+    "tick": "2019-01-01"
   },
   {
-    "revenue": 175562,
-    "date": "2019-02-01",
-    "avg": 124866.42434721242
+    "value": 175562,
+    "tick": "2019-02-01"
   },
   {
-    "revenue": 156243,
-    "date": "2019-03-01",
-    "avg": 124866.42434721242
+    "value": 156243,
+    "tick": "2019-03-01"
   },
   {
-    "revenue": 111641,
-    "date": "2019-04-01",
-    "avg": 124866.42434721242
+    "value": 111641,
+    "tick": "2019-04-01"
   },
   {
-    "revenue": 53716,
-    "date": "2019-05-01",
-    "avg": 124866.42434721242
+    "value": 53716,
+    "tick": "2019-05-01"
   },
   {
-    "revenue": 145437,
-    "date": "2019-06-01",
-    "avg": 124866.42434721242
+    "value": 145437,
+    "tick": "2019-06-01"
   },
   {
-    "revenue": 58538,
-    "date": "2019-07-01",
-    "avg": 124866.42434721242
+    "value": 58538,
+    "tick": "2019-07-01"
   },
   {
-    "revenue": 192782,
-    "date": "2019-08-01",
-    "avg": 124866.42434721242
+    "value": 192782,
+    "tick": "2019-08-01"
   },
   {
-    "revenue": 57275,
-    "date": "2019-09-01",
-    "avg": 124866.42434721242
+    "value": 57275,
+    "tick": "2019-09-01"
   },
   {
-    "revenue": 195200,
-    "date": "2019-10-01",
-    "avg": 124866.42434721242
+    "value": 195200,
+    "tick": "2019-10-01"
   },
   {
-    "revenue": 69473,
-    "date": "2019-11-01",
-    "avg": 124866.42434721242
+    "value": 69473,
+    "tick": "2019-11-01"
   },
   {
-    "revenue": 195346,
-    "date": "2019-12-01",
-    "avg": 124866.42434721242
+    "value": 195346,
+    "tick": "2019-12-01"
   }
 ]
 
@@ -75,19 +63,15 @@ const Template = (args) => <HistogramWidgetUI {...args} />;
 export const Empty = Template.bind({});
 Empty.args = {
   name: 'STORE',
-  data: DATA.map((month) => month.revenue),
-  xAxis: ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'],
-  config: {
-    xAxisData: ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC']
-  }
+  data: DATA,
 };
 
 export const UNIQUE = Template.bind({});
 UNIQUE.args = {
   name: 'STORE',
-  data: DATA.map((month) => month.revenue),
+  data: DATA,
   config: {
-    xAxisData: ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'],
-    tooltipFormatter: ([serie]) =>{return serie.value + ' $'}
+    tooltipFormatter: ([serie]) =>{return serie.value + ' $'},
+    xAxisData: ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC']
   }
 };
