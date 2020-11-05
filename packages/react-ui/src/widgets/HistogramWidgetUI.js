@@ -2,7 +2,7 @@ import React from 'react';
 import ReactEcharts from 'echarts-for-react';
 import { useTheme } from '@material-ui/core';
 
-function __generateDefaultConfig ({ xAxisData, tooltipFormatter}, data, theme) {
+function __generateDefaultConfig ({ dataAxis, tooltipFormatter}, data, theme) {
   return {
     grid: {
       left: 8,
@@ -35,12 +35,13 @@ function __generateDefaultConfig ({ xAxisData, tooltipFormatter}, data, theme) {
         show: false,
       },
       axisLabel: theme.typography.charts,
-      data: xAxisData || data.map(d => d.tick)
+      data: dataAxis || data.map(d => d.tick)
     },
     yAxis: {
       type: 'value',
       axisLabel: {
         margin: 0,
+        padding: [0, 0, theme.typography.charts.lineHeight, 0],
         show: true,
         showMaxLabel: true,
         showMinLabel: false,
@@ -48,7 +49,8 @@ function __generateDefaultConfig ({ xAxisData, tooltipFormatter}, data, theme) {
         color: (value) => {
           // FIXME: Workaround to show only maxlabel
           let col = 'transparent'
-          if (value > data[data.length - 1].value) {
+          const maxValue = Math.max(...data.map(d => d.value))
+          if (value > maxValue) {
             col = theme.palette.charts.maxLabel
           }
 
@@ -89,12 +91,11 @@ function __generateSerie (name, data, theme) {
 
 
 function HistogramWidgetUI(props) {
-  const {name, data = [], config = {}, notMerge = true} = props;
-
+  const {name, data = [], dataAxis, tooltipFormatter, notMerge = true} = props;
   const theme = useTheme()
 
   const series = __generateSerie (name, data, theme)
-  const DEFAULT_CONFIG = __generateDefaultConfig(config, data, theme)
+  const DEFAULT_CONFIG = __generateDefaultConfig({ dataAxis, tooltipFormatter }, data, theme)
 
   const options = Object.assign({ series }, DEFAULT_CONFIG);
   
