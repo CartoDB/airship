@@ -90,6 +90,9 @@ export const cartoOptions = {
       paper: '#ffffff',
       default: '#ffffff',
     },
+    charts: {
+      axisLine: 'rgba(44, 48, 50, 0.05)'
+    },
     // props: Object => Research,
     /* Custom Colors palette */
     customGrey: {
@@ -252,6 +255,13 @@ export const cartoOptions = {
       letterSpacing: '0.08333em',
       textTransform: 'uppercase',
     },
+    charts: {
+      fontFamily: '"Open Sans", sans-serif',
+      fontWeight: 400,
+      fontSize: 10,
+      lineHeight: 16,
+      letterSpacing: 1.5
+    }
   },
   spacing: 8, // For custom spacing: https://material-ui.com/customization/spacing/#custom-spacing
   shape: {
