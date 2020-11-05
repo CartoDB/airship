@@ -24,7 +24,7 @@ export default {
   }
 }
 
-const Template = ({ label, color = 'primary', checked = false, ...args }) => {
+const Template = ({ label, color, checked = false, ...args }) => {
   return (
     <FormControl component="fieldset">
       <FormLabel component="legend">Gender</FormLabel>

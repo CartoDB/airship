@@ -24,7 +24,7 @@ export default {
   }
 }
 
-const Template = ({ label, color = 'primary', checked = false, ...args }) => {
+const Template = ({ label, color, checked, ...args }) => {
   return (
     <FormControlLabel
       control={
