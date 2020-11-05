@@ -25,9 +25,6 @@ export const parameters = {
           'Typography'
         ],
         'Common',
-        [
-          'Button'
-        ],
         'Widgets',
         [
           'WrapperWidgetUI',
