@@ -39,6 +39,23 @@ function __generateDefaultConfig ({ xAxisData, tooltipFormatter}, data, theme) {
     },
     yAxis: {
       type: 'value',
+      axisLabel: {
+        margin: 0,
+        show: true,
+        showMaxLabel: true,
+        showMinLabel: false,
+        inside: true,
+        color: (value) => {
+          // FIXME: Workaround to show only maxlabel
+          let col = 'transparent'
+          if (value > data[data.length - 1].value) {
+            col = theme.palette.charts.maxLabel
+          }
+
+          return col
+        },
+        ...theme.typography.charts
+      },
       axisLine: {
         show: false
       },

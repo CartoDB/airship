@@ -91,7 +91,8 @@ export const cartoOptions = {
       default: '#ffffff',
     },
     charts: {
-      axisLine: 'rgba(44, 48, 50, 0.05)'
+      axisLine: 'rgba(44, 48, 50, 0.05)',
+      maxLabel: 'rgba(44, 48, 50, 0.6)'
     },
     // props: Object => Research,
     /* Custom Colors palette */
