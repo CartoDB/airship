@@ -1,6 +1,18 @@
 import React from 'react';
 import FormulaWidgetUI from '../../widgets/FormulaWidgetUI';
 
+export default {
+  title: 'Widgets/FormulaWidgetUI',
+  component: FormulaWidgetUI,
+  argTypes: {
+    formatter: {
+      table: {
+        disable: true
+      }
+    }
+  }
+};
+
 const currencyFormatter = (v) => {
   const moneyFormatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -30,12 +42,6 @@ const currencyFormatter = (v) => {
   return valueParted;
 };
 
-// This default export determines where your story goes in the story list
-export default {
-  title: 'Widgets/FormulaWidgetUI',
-  component: FormulaWidgetUI,
-};
-
 const Template = (args) => <FormulaWidgetUI {...args} />;
 
 export const Empty = Template.bind({});
@@ -52,3 +58,6 @@ FormatterText.args = { data: 1000000, formatter: (v) => `$${v}` };
 
 export const FormatterValueUnit = Template.bind({});
 FormatterValueUnit.args = { data: 1000000, formatter: currencyFormatter };
+
+export const FormatterValueUnitBefore = Template.bind({});
+FormatterValueUnitBefore.args = { data: 1000000, formatter: currencyFormatter, unitBefore: true };
