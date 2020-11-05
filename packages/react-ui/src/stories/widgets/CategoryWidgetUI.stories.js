@@ -90,5 +90,6 @@ WithCustomLabels.args = {
 export const WithSelectedCategories = Template.bind({});
 WithSelectedCategories.args = {
   data: dataFiltered,
-  selectedCategories: ['categoryB', 'categoryC']
+  selectedCategories: ['categoryB', 'categoryC'],
+  onSelectedCategoriesChange: (categories) => console.log(categories)
 };

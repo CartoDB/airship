@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Grid, Typography, makeStyles } from '@material-ui/core';
+import { Grid, Link, Typography, makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,17 +35,19 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.action.disabledBackground,
 
     '& div': {
+      width: 0,
       height: '100%',
       borderRadius: theme.spacing(0.5),
       backgroundColor: theme.palette.secondary.main,
-      transition: `background-color ${theme.transitions.easing.sharp} ${theme.transitions.duration.shortest}ms`,
+      transition: `background-color ${theme.transitions.easing.sharp} ${theme.transitions.duration.shortest}ms,
+                   width ${theme.transitions.easing.sharp} ${theme.transitions.duration.complex}ms`,
     },
   },
 
   unselected: {},
 
   optionsSelectedBar: {
-    marginBottom: theme.spacing(1),
+    marginBottom: theme.spacing(2),
 
     '& .MuiTypography-caption': {
       color: theme.palette.text.secondary,
@@ -55,6 +57,11 @@ const useStyles = makeStyles((theme) => ({
       ...theme.typography.caption,
     },
   },
+
+  selectAllButton: {
+    ...theme.typography.caption,
+    cursor: 'pointer'
+  }
 }));
 
 function CategoryWidgetUI(props) {
@@ -92,9 +99,9 @@ function CategoryWidgetUI(props) {
           {selectedCategories.length ? selectedCategories.length : 'All'} selected
         </Typography>
         {selectedCategories.length > 0 && (
-          <Button className={classes.selectAllButton} onClick={() => clearCategories()}>
+          <Link className={classes.selectAllButton} onClick={() => clearCategories()}>
             All
-          </Button>
+          </Link>
         )}
       </Grid>
       {data.map((d, i) => {
