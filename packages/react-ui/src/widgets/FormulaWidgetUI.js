@@ -4,12 +4,20 @@ import { Box, makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    ...theme.typography.h5,
+    fontWeight: theme.typography.fontWeightRegular,
     color: theme.palette.text.primary,
   },
   unit: {
     color: theme.palette.text.secondary,
-    marginRight: theme.spacing(0.5),
+    marginLeft: theme.spacing(0.5),
+
+    '&$before': {
+      marginLeft: 0,
+      marginRight: theme.spacing(0.5),
+    }
   },
+  before: {}
 }));
 
 function FormulaWidgetUI(props) {
@@ -18,27 +26,21 @@ function FormulaWidgetUI(props) {
   const { data, formatter } = props;
   const value = formatter(data);
   return (
-    <Box
-      fontFamily='h4.fontFamily'
-      fontWeight='fontWeightLight'
-      fontSize='h4.fontSize'
-      className={classes.root}
-    >
-      {typeof value === 'object' && value !== null ? (
-        <span>
-          <span className={classes.unit}>{value.unit}</span>
-          {value.value}
-        </span>
-      ) : (
-        <span>{ value }</span>
-      )}
+    <Box className={classes.root}>
+      {typeof value === 'object' && value !== null
+        ? props.unitBefore
+          ? (<span><span className={`${classes.unit} ${classes.before}`}>{value.unit}</span>{value.value}</span>)
+          : (<span>{value.value}<span className={classes.unit}>{value.unit}</span></span>)
+        : (<span>{ value }</span>)
+      }
     </Box>
   );
 }
 
 FormulaWidgetUI.defaultProps = {
   data: '-',
-  formatter: (v) => v
+  formatter: (v) => v,
+  unitBefore: false
 };
 
 FormulaWidgetUI.propTypes = {
@@ -48,10 +50,11 @@ FormulaWidgetUI.propTypes = {
       value: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string
-      ]).isRequired,
-      unit: PropTypes.string.isRequired
+      ]),
+      unit: PropTypes.string
     })
   ]),
+  unitBefore: PropTypes.bool,
   formatter: PropTypes.func
 };
 
