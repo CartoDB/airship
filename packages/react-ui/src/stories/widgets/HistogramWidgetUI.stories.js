@@ -70,8 +70,7 @@ export const UNIQUE = Template.bind({});
 UNIQUE.args = {
   name: 'STORE',
   data: DATA,
-  config: {
-    tooltipFormatter: ([serie]) =>{return serie.value + ' $'},
-    xAxisData: ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC']
-  }
+  onSelectedBarsChange: (event) => {console.log(event)},
+  tooltipFormatter: ([serie]) => serie.value + ' $',
+  dataAxis: ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC']
 };

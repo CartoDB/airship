@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ReactEcharts from 'echarts-for-react';
 import { useTheme } from '@material-ui/core';
 
@@ -89,22 +90,89 @@ function __generateSerie (name, data, theme) {
   }]
 }
 
+function __applyFilter (serie, clickedBarIndex, theme) {
+  const anyDisabled = serie.data.find(d => d.disabled)
+
+  if (!anyDisabled) {
+    serie.data.forEach((bar, index) => {
+      if (index !== clickedBarIndex) {
+        bar.disabled = true;
+        bar.itemStyle = { color: theme.palette.charts.disabled };
+      }
+    })
+  } else {
+    const clickedData = serie.data[clickedBarIndex]
+    clickedData.disabled = !clickedData.disabled
+    if (clickedData.disabled) {
+      clickedData.itemStyle = { color: theme.palette.charts.disabled }
+
+      const anyActive = serie.data.find(d => !d.disabled)
+
+      if (!anyActive) {
+        serie.data.forEach(bar => {
+          bar.disabled = false;
+          delete bar.itemStyle;
+        })
+      }
+    } else {
+      delete clickedData.itemStyle
+    }
+  }
+
+  return serie
+}
+
 
 function HistogramWidgetUI(props) {
-  const {name, data = [], dataAxis, tooltipFormatter, notMerge = true} = props;
-  const theme = useTheme()
+  const {name, data = [], dataAxis, onSelectedBarsChange, tooltipFormatter, notMerge = true} = props;
+  const theme = useTheme();
+  let chartInstance;
 
-  const series = __generateSerie (name, data, theme)
-  const DEFAULT_CONFIG = __generateDefaultConfig({ dataAxis, tooltipFormatter }, data, theme)
+  const series = __generateSerie (name, data, theme);
+  const DEFAULT_CONFIG = __generateDefaultConfig({ dataAxis, tooltipFormatter }, data, theme);
 
   const options = Object.assign({ series }, DEFAULT_CONFIG);
-  
+
+  const clickEvent = (params) => {
+    if (onSelectedBarsChange) {
+      const echart = chartInstance.getEchartsInstance();
+
+      const option = echart.getOption()
+      const serie = option.series[params.seriesIndex]
+      __applyFilter(serie, params.dataIndex, theme)
+      echart.setOption(option)
+
+      const activeBars = serie.data.filter(d => !d.disabled).map(b => b.tick)
+
+      onSelectedBarsChange({ bars: (activeBars.length === serie.data.length) ? [] : activeBars, chartInstance });
+    }
+  }
+
+
+  const onEvents = {
+    click: clickEvent
+  };
 
   return (<ReactEcharts
+            ref={ec => chartInstance = ec}
             option={options}
             notMerge={notMerge}
             lazyUpdate={true}
+            onEvents={onEvents}
           />);
+};
+
+HistogramWidgetUI.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      tick: PropTypes.string.isRequired,
+      value: PropTypes.number
+    })
+  ).isRequired,
+  tooltipFormatter: PropTypes.func,
+  dataAxis: PropTypes.array,
+  name: PropTypes.object,
+  onSelectedBarsChange: PropTypes.func,
 };
 
 export default HistogramWidgetUI;
