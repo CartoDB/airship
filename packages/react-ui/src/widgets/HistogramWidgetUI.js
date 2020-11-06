@@ -1,7 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactEcharts from 'echarts-for-react';
-import { useTheme } from '@material-ui/core';
+import { Grid, Link, Typography, useTheme, makeStyles } from '@material-ui/core';
+
+const useStyles = makeStyles((theme) => ({
+  optionsSelectedBar: {
+    marginBottom: theme.spacing(2),
+
+    '& .MuiTypography-caption': {
+      color: theme.palette.text.secondary,
+    },
+
+    '& .MuiButton-label': {
+      ...theme.typography.caption,
+    },
+  },
+
+  selectAllButton: {
+    ...theme.typography.caption,
+    cursor: 'pointer'
+  }
+}));
+
+
+
 
 function __generateDefaultConfig ({ dataAxis, tooltipFormatter}, data, theme) {
   return {
@@ -90,6 +112,13 @@ function __generateSerie (name, data, theme) {
   }]
 }
 
+function __clearFilter (serie) {
+  serie.data.forEach(bar => {
+    bar.disabled = false;
+    delete bar.itemStyle;
+  })
+}
+
 function __applyFilter (serie, clickedBarIndex, theme) {
   const anyDisabled = serie.data.find(d => d.disabled)
 
@@ -109,10 +138,7 @@ function __applyFilter (serie, clickedBarIndex, theme) {
       const anyActive = serie.data.find(d => !d.disabled)
 
       if (!anyActive) {
-        serie.data.forEach(bar => {
-          bar.disabled = false;
-          delete bar.itemStyle;
-        })
+        __clearFilter(serie)
       }
     } else {
       delete clickedData.itemStyle
@@ -124,14 +150,25 @@ function __applyFilter (serie, clickedBarIndex, theme) {
 
 
 function HistogramWidgetUI(props) {
-  const {name, data = [], dataAxis, onSelectedBarsChange, tooltipFormatter, notMerge = true} = props;
+  const {name, data = [], dataAxis, onSelectedBarsChange, selectedBars, tooltipFormatter, notMerge = true} = props;
   const theme = useTheme();
+  const classes = useStyles();
+
   let chartInstance;
 
   const series = __generateSerie (name, data, theme);
   const DEFAULT_CONFIG = __generateDefaultConfig({ dataAxis, tooltipFormatter }, data, theme);
 
   const options = Object.assign({ series }, DEFAULT_CONFIG);
+
+  const clearBars = () => {
+    const echart = chartInstance.getEchartsInstance();
+
+    const option = echart.getOption()
+    const serie = option.series[0]
+    __clearFilter(serie)
+    onSelectedBarsChange({ bars: [], chartInstance });
+  }
 
   const clickEvent = (params) => {
     if (onSelectedBarsChange) {
@@ -153,13 +190,32 @@ function HistogramWidgetUI(props) {
     click: clickEvent
   };
 
-  return (<ReactEcharts
-            ref={ec => chartInstance = ec}
-            option={options}
-            notMerge={notMerge}
-            lazyUpdate={true}
-            onEvents={onEvents}
-          />);
+  return (
+    <div>
+      <Grid
+        container
+        direction='row'
+        justify='space-between'
+        alignItems='center'
+        className={classes.optionsSelectedBar}
+      >
+        <Typography variant='caption'>
+          {selectedBars.length ? selectedBars.length : 'All'} selected
+        </Typography>
+        {selectedBars.length > 0 && (
+          <Link className={classes.selectAllButton} onClick={() => clearBars()}>
+            All
+          </Link>
+        )}
+      </Grid>
+      <ReactEcharts
+        ref={ec => chartInstance = ec}
+        option={options}
+        notMerge={notMerge}
+        lazyUpdate={true}
+        onEvents={onEvents}
+      />
+    </div>);
 };
 
 HistogramWidgetUI.propTypes = {
