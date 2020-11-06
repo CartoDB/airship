@@ -1,6 +1,6 @@
 {
   "name": "@carto/react-airship-ui",
-  "version": "3.0.0-alpha4-1",
+  "version": "3.0.0-alpha5",
   "description": "Airship CARTO API utilities",
   "main": "dist/asreactui.js",
   "scripts": {
