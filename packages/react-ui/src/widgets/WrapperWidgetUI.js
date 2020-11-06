@@ -95,7 +95,7 @@ const IconMinimize = (props) => (<SvgIcon viewBox="0 0 24 24" {...props}>
 
 function WrapperWidgetUI(props) {
   const wrapper = createRef();
-  const classes = useStyles();
+  const classes = useStyles(props);
   const [expanded, setExpanded] = useState(true);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
