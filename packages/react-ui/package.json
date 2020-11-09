@@ -15,6 +15,7 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "publish-storybook": "build-storybook && cd storybook-static && npx vercel --prod --name 'react-airship-ui'",
+    "publish-storybook-staging": "build-storybook && cd storybook-static && npx vercel --prod --name 'react-airship-ui-staging'",
     "local-link": "yarn link"
   },
   "author": "CARTO Dev Team",
