@@ -110,104 +110,10 @@ const variables = {
   },
   typography: {
     htmlFontSize: 16,
-    fontSize: 16
-  }
-};
-
-const round = (value) => Math.round(value * 1e5) / 1e5;
-const pxToRem = (size) => `${round(size / variables.typography.htmlFontSize)}rem`;
-
-export const cartoOptions = {
-  themeName: 'CARTO',
-  breakpoints: {
-    keys: ['xs', 'sm', 'md', 'lg', 'xl'],
-    values: {
-      xs: 0,
-      sm: 600,
-      md: 960,
-      lg: 1280,
-      xl: 1920,
-    },
-    unit: 'px',
-    tep: 5,
-    // For more information about use this helper functions: https://material-ui.com/customization/spacing/#custom-spacing
-    // up: f d(),
-    // down: f down(),
-    // between: f p(),
-    // only: f only(),
-    // width: f width(),
-  },
-  direction: 'ltr',
-  mixins: {
-    // gutters: f gutters(),
-    toolbar: {
-      minHeight: 56,
-      '@media (min-width:0px) and (orientation: landscape)': {
-        minHeight: 48,
-      },
-      '@media (min-width:600px)': {
-        minHeight: 56,
-      },
-    },
-  },
-  palette: {
-    type: 'light',
-    common: { ...variables.palette.common },
-    primary: { ...variables.palette.primary },
-    secondary: { ...variables.palette.secondary },
-    error: { ...variables.palette.error },
-    warning: { ...variables.palette.warning },
-    info: { ...variables.palette.info },
-    success: { ...variables.palette.success },
-    contrastThreshold: 3,
-    // getContrastText: f E(),
-    // augmentColor: f B(),
-    tonalOffset: 0.2,
-    text: { ...variables.palette.text },
-    divider: 'rgba(0, 0, 0, 0.12)',
-    background: { ...variables.palette.background },
-    charts: {
-      axisLine: 'rgba(44, 48, 50, 0.05)',
-      maxLabel: 'rgba(44, 48, 50, 0.6)'
-    },
-    // props: Object => Research,
-    /* Custom Colors palette */
-    customGrey: { ...variables.palette.customGrey },
-    action: { ...variables.palette.action }
-  },
-  shadows: [
-    'none',
-    '0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12)',
-    '0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12)',
-    '0px 3px 3px -2px rgba(0,0,0,0.2),0px 3px 4px 0px rgba(0,0,0,0.14),0px 1px 8px 0px rgba(0,0,0,0.12)',
-    '0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12)',
-    '0px 3px 5px -1px rgba(0,0,0,0.2),0px 5px 8px 0px rgba(0,0,0,0.14),0px 1px 14px 0px rgba(0,0,0,0.12)',
-    '0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12)',
-    '0px 4px 5px -2px rgba(0,0,0,0.2),0px 7px 10px 1px rgba(0,0,0,0.14),0px 2px 16px 1px rgba(0,0,0,0.12)',
-    '0px 5px 5px -3px rgba(0,0,0,0.2),0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12)',
-    '0px 5px 6px -3px rgba(0,0,0,0.2),0px 9px 12px 1px rgba(0,0,0,0.14),0px 3px 16px 2px rgba(0,0,0,0.12)',
-    '0px 6px 6px -3px rgba(0,0,0,0.2),0px 10px 14px 1px rgba(0,0,0,0.14),0px 4px 18px 3px rgba(0,0,0,0.12)',
-    '0px 6px 7px -4px rgba(0,0,0,0.2),0px 11px 15px 1px rgba(0,0,0,0.14),0px 4px 20px 3px rgba(0,0,0,0.12)',
-    '0px 7px 8px -4px rgba(0,0,0,0.2),0px 12px 17px 2px rgba(0,0,0,0.14),0px 5px 22px 4px rgba(0,0,0,0.12)',
-    '0px 7px 8px -4px rgba(0,0,0,0.2),0px 13px 19px 2px rgba(0,0,0,0.14),0px 5px 24px 4px rgba(0,0,0,0.12)',
-    '0px 7px 9px -4px rgba(0,0,0,0.2),0px 14px 21px 2px rgba(0,0,0,0.14),0px 5px 26px 4px rgba(0,0,0,0.12)',
-    '0px 8px 9px -5px rgba(0,0,0,0.2),0px 15px 22px 2px rgba(0,0,0,0.14),0px 6px 28px 5px rgba(0,0,0,0.12)',
-    '0px 8px 10px -5px rgba(0,0,0,0.2),0px 16px 24px 2px rgba(0,0,0,0.14),0px 6px 30px 5px rgba(0,0,0,0.12)',
-    '0px 8px 11px -5px rgba(0,0,0,0.2),0px 17px 26px 2px rgba(0,0,0,0.14),0px 6px 32px 5px rgba(0,0,0,0.12)',
-    '0px 9px 11px -5px rgba(0,0,0,0.2),0px 18px 28px 2px rgba(0,0,0,0.14),0px 7px 34px 6px rgba(0,0,0,0.12)',
-    '0px 9px 12px -6px rgba(0,0,0,0.2),0px 19px 29px 2px rgba(0,0,0,0.14),0px 7px 36px 6px rgba(0,0,0,0.12)',
-    '0px 10px 13px -6px rgba(0,0,0,0.2),0px 20px 31px 3px rgba(0,0,0,0.14),0px 8px 38px 7px rgba(0,0,0,0.12)',
-    '0px 10px 13px -6px rgba(0,0,0,0.2),0px 21px 33px 3px rgba(0,0,0,0.14),0px 8px 40px 7px rgba(0,0,0,0.12)',
-    '0px 10px 14px -6px rgba(0,0,0,0.2),0px 22px 35px 3px rgba(0,0,0,0.14),0px 8px 42px 7px rgba(0,0,0,0.12)',
-    '0px 11px 14px -7px rgba(0,0,0,0.2),0px 23px 36px 3px rgba(0,0,0,0.14),0px 9px 44px 8px rgba(0,0,0,0.12)',
-    '0px 11px 15px -7px rgba(0,0,0,0.2),0px 24px 38px 3px rgba(0,0,0,0.14),0px 9px 46px 8px rgba(0,0,0,0.12)',
-  ],
-  typography: {
-    htmlFontSize: variables.typography.htmlFontSize,
     pxToRem: pxToRem,
     round: round,
     fontFamily: 'Montserrat, sans-serif',
-    fontSize: variables.typography.fontSize,
+    fontSize: 16,
     fontWeightLight: 300,
     fontWeightRegular: 400,
     fontWeightMedium: 600,
@@ -312,6 +218,99 @@ export const cartoOptions = {
       lineHeight: 16,
       letterSpacing: 1.5
     }
+  }
+};
+
+const round = (value) => Math.round(value * 1e5) / 1e5;
+const pxToRem = (size) => `${round(size / variables.typography.htmlFontSize)}rem`;
+
+export const cartoOptions = {
+  themeName: 'CARTO',
+  breakpoints: {
+    keys: ['xs', 'sm', 'md', 'lg', 'xl'],
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 960,
+      lg: 1280,
+      xl: 1920,
+    },
+    unit: 'px',
+    tep: 5,
+    // For more information about use this helper functions: https://material-ui.com/customization/spacing/#custom-spacing
+    // up: f d(),
+    // down: f down(),
+    // between: f p(),
+    // only: f only(),
+    // width: f width(),
+  },
+  direction: 'ltr',
+  mixins: {
+    // gutters: f gutters(),
+    toolbar: {
+      minHeight: 56,
+      '@media (min-width:0px) and (orientation: landscape)': {
+        minHeight: 48,
+      },
+      '@media (min-width:600px)': {
+        minHeight: 56,
+      },
+    },
+  },
+  palette: {
+    type: 'light',
+    common: { ...variables.palette.common },
+    primary: { ...variables.palette.primary },
+    secondary: { ...variables.palette.secondary },
+    error: { ...variables.palette.error },
+    warning: { ...variables.palette.warning },
+    info: { ...variables.palette.info },
+    success: { ...variables.palette.success },
+    contrastThreshold: 3,
+    // getContrastText: f E(),
+    // augmentColor: f B(),
+    tonalOffset: 0.2,
+    text: { ...variables.palette.text },
+    divider: 'rgba(0, 0, 0, 0.12)',
+    background: { ...variables.palette.background },
+    charts: {
+      axisLine: 'rgba(44, 48, 50, 0.05)',
+      maxLabel: 'rgba(44, 48, 50, 0.6)'
+    },
+    // props: Object => Research,
+    /* Custom Colors palette */
+    customGrey: { ...variables.palette.customGrey },
+    action: { ...variables.palette.action }
+  },
+  shadows: [
+    'none',
+    '0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12)',
+    '0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12)',
+    '0px 3px 3px -2px rgba(0,0,0,0.2),0px 3px 4px 0px rgba(0,0,0,0.14),0px 1px 8px 0px rgba(0,0,0,0.12)',
+    '0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12)',
+    '0px 3px 5px -1px rgba(0,0,0,0.2),0px 5px 8px 0px rgba(0,0,0,0.14),0px 1px 14px 0px rgba(0,0,0,0.12)',
+    '0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12)',
+    '0px 4px 5px -2px rgba(0,0,0,0.2),0px 7px 10px 1px rgba(0,0,0,0.14),0px 2px 16px 1px rgba(0,0,0,0.12)',
+    '0px 5px 5px -3px rgba(0,0,0,0.2),0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12)',
+    '0px 5px 6px -3px rgba(0,0,0,0.2),0px 9px 12px 1px rgba(0,0,0,0.14),0px 3px 16px 2px rgba(0,0,0,0.12)',
+    '0px 6px 6px -3px rgba(0,0,0,0.2),0px 10px 14px 1px rgba(0,0,0,0.14),0px 4px 18px 3px rgba(0,0,0,0.12)',
+    '0px 6px 7px -4px rgba(0,0,0,0.2),0px 11px 15px 1px rgba(0,0,0,0.14),0px 4px 20px 3px rgba(0,0,0,0.12)',
+    '0px 7px 8px -4px rgba(0,0,0,0.2),0px 12px 17px 2px rgba(0,0,0,0.14),0px 5px 22px 4px rgba(0,0,0,0.12)',
+    '0px 7px 8px -4px rgba(0,0,0,0.2),0px 13px 19px 2px rgba(0,0,0,0.14),0px 5px 24px 4px rgba(0,0,0,0.12)',
+    '0px 7px 9px -4px rgba(0,0,0,0.2),0px 14px 21px 2px rgba(0,0,0,0.14),0px 5px 26px 4px rgba(0,0,0,0.12)',
+    '0px 8px 9px -5px rgba(0,0,0,0.2),0px 15px 22px 2px rgba(0,0,0,0.14),0px 6px 28px 5px rgba(0,0,0,0.12)',
+    '0px 8px 10px -5px rgba(0,0,0,0.2),0px 16px 24px 2px rgba(0,0,0,0.14),0px 6px 30px 5px rgba(0,0,0,0.12)',
+    '0px 8px 11px -5px rgba(0,0,0,0.2),0px 17px 26px 2px rgba(0,0,0,0.14),0px 6px 32px 5px rgba(0,0,0,0.12)',
+    '0px 9px 11px -5px rgba(0,0,0,0.2),0px 18px 28px 2px rgba(0,0,0,0.14),0px 7px 34px 6px rgba(0,0,0,0.12)',
+    '0px 9px 12px -6px rgba(0,0,0,0.2),0px 19px 29px 2px rgba(0,0,0,0.14),0px 7px 36px 6px rgba(0,0,0,0.12)',
+    '0px 10px 13px -6px rgba(0,0,0,0.2),0px 20px 31px 3px rgba(0,0,0,0.14),0px 8px 38px 7px rgba(0,0,0,0.12)',
+    '0px 10px 13px -6px rgba(0,0,0,0.2),0px 21px 33px 3px rgba(0,0,0,0.14),0px 8px 40px 7px rgba(0,0,0,0.12)',
+    '0px 10px 14px -6px rgba(0,0,0,0.2),0px 22px 35px 3px rgba(0,0,0,0.14),0px 8px 42px 7px rgba(0,0,0,0.12)',
+    '0px 11px 14px -7px rgba(0,0,0,0.2),0px 23px 36px 3px rgba(0,0,0,0.14),0px 9px 44px 8px rgba(0,0,0,0.12)',
+    '0px 11px 15px -7px rgba(0,0,0,0.2),0px 24px 38px 3px rgba(0,0,0,0.14),0px 9px 46px 8px rgba(0,0,0,0.12)',
+  ],
+  typography: {
+    ...variables.typography
   },
   spacing: 8, // For custom spacing: https://material-ui.com/customization/spacing/#custom-spacing
   shape: {
@@ -464,6 +463,100 @@ export const cartoOptions = {
         padding: 2
       }
     },
+
+    // TextField
+    MuiInputBase: {
+      root: {
+        '&$disabled .MuiInputAdornment-root': {
+          color: variables.palette.action.disabled
+        },
+        '&$disabled .MuiTypography-root': {
+          color: variables.palette.action.disabled
+        }
+      }
+    },
+    MuiOutlinedInput: {
+      input: {
+        ...variables.typography.body1,
+        height: `${variables.typography.body1.lineHeight}em`,
+        padding: '22px 16px 10px'
+      },
+
+      inputMarginDense: {
+        ...variables.typography.body2,
+        height: `${variables.typography.body2.lineHeight}em`,
+        padding: '8px 16px', 
+      },
+
+      notchedOutline: {
+        border: `2px solid ${variables.palette.text.disabled}`,
+      },
+
+      root: {
+        '&$disabled': {
+          backgroundColor: variables.palette.action.hover
+        }
+      }
+    },
+    MuiInputLabel: {
+      ...variables.typography.body1,
+
+      outlined: {
+        '&$shrink': {
+          ...variables.typography.caption,
+          transform: 'translate(16px, 10px) scale(0.75)'  
+        },
+
+        '&$marginDense': {
+          ...variables.typography.body2,
+
+          '&$shrink': {
+            transform: 'translate(0, -14px) scale(0.75)'  
+          }
+        }
+        
+      },
+    },
+    MuiInputAdornment: {
+      root: {
+        alignItems: 'baseline',
+        marginBottom: 12,
+        color: variables.palette.text.secondary,
+
+        '&$disabled': {
+          color: variables.palette.action.disabled
+        }
+      },
+
+      positionStart: {
+        marginLeft: 2
+      },
+
+      positionEnd: {
+        marginRight: 2
+      },
+
+      marginDense: {
+        marginBottom: 0,
+        alignItems: 'center',
+        ...variables.typography.body2,
+
+        '& .MuiTypography-root': {
+          ...variables.typography.body2
+        }
+      }
+    },
+    MuiFormHelperText: {
+      ...variables.typography.caption,
+
+      marginDense: {
+        '&$contained': {
+          marginLeft: 0
+        }
+      }
+    },
+
+    // Breadcrumbs
     MuiBreadcrumbs: {
       separator: {
         marginLeft: 0,
@@ -478,6 +571,12 @@ export const cartoOptions = {
     MuiButton: {
       disableElevation: true
     },
+    MuiTextField: {
+      variant: 'outlined'
+    },
+    MuiOutlinedInput: {
+      notched: false
+    }
   }
 };
 

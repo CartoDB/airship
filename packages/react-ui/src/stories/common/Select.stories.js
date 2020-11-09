@@ -11,6 +11,12 @@ export default {
         options: ['default', 'filled', 'outlined']
       }
     },
+    size: {
+      control: {
+        type: 'select',
+        options: ['small', 'medium']
+      }
+    },
     color: {
       control: {
         type: 'select',
