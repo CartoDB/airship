@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import ReactEcharts from 'echarts-for-react';
 import { Grid, Link, Typography, useTheme, makeStyles } from '@material-ui/core';
@@ -148,21 +148,19 @@ function __applyFilter (serie, clickedBarIndex, theme) {
   return serie
 }
 
-
 function HistogramWidgetUI(props) {
-  const {name, data = [], dataAxis, onSelectedBarsChange, selectedBars, tooltipFormatter, notMerge = true} = props;
+  const { name, data = [], dataAxis, onSelectedBarsChange, selectedBars, tooltipFormatter } = props;
   const theme = useTheme();
   const classes = useStyles();
-
-  let chartInstance;
-
-  const series = __generateSerie (name, data, theme);
-  const DEFAULT_CONFIG = __generateDefaultConfig({ dataAxis, tooltipFormatter }, data, theme);
-
-  const options = Object.assign({ series }, DEFAULT_CONFIG);
+  const chartInstance = useRef();
+  const options = useMemo(() => {
+    const config = __generateDefaultConfig({ dataAxis, tooltipFormatter }, data, theme)
+    const series = __generateSerie (name, data, theme)
+    return Object.assign({}, config, { series })
+  }, [data]);
 
   const clearBars = () => {
-    const echart = chartInstance.getEchartsInstance();
+    const echart = chartInstance.current.getEchartsInstance();
 
     const option = echart.getOption()
     const serie = option.series[0]
@@ -172,7 +170,7 @@ function HistogramWidgetUI(props) {
 
   const clickEvent = (params) => {
     if (onSelectedBarsChange) {
-      const echart = chartInstance.getEchartsInstance();
+      const echart = chartInstance.current.getEchartsInstance();
 
       const option = echart.getOption()
       const serie = option.series[params.seriesIndex]
@@ -185,14 +183,13 @@ function HistogramWidgetUI(props) {
     }
   }
 
-
   const onEvents = {
     click: clickEvent
   };
-
+  
   return (
     <div>
-      <Grid
+      {onSelectedBarsChange  && <Grid
         container
         direction='row'
         justify='space-between'
@@ -207,14 +204,13 @@ function HistogramWidgetUI(props) {
             All
           </Link>
         )}
-      </Grid>
-      <ReactEcharts
-        ref={ec => chartInstance = ec}
+      </Grid>}
+      {!!options && <ReactEcharts
+        ref={chartInstance}
         option={options}
-        notMerge={notMerge}
         lazyUpdate={true}
         onEvents={onEvents}
-      />
+      />}
     </div>);
 };
 
@@ -227,7 +223,7 @@ HistogramWidgetUI.propTypes = {
   ).isRequired,
   tooltipFormatter: PropTypes.func,
   dataAxis: PropTypes.array,
-  name: PropTypes.object,
+  name: PropTypes.string,
   onSelectedBarsChange: PropTypes.func,
 };
 

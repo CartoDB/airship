@@ -71,6 +71,6 @@ UNIQUE.args = {
   name: 'STORE',
   data: DATA,
   onSelectedBarsChange: (event) => {console.log(event)},
+  selectedBars: [],
   tooltipFormatter: ([serie]) => serie.value + ' $',
-  dataAxis: ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC']
 };
