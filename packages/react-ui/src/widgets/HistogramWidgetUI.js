@@ -23,7 +23,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-
+function __dataEqual (dataPrev, dataNext) {
+  if (dataPrev && dataNext && dataPrev.length === dataNext.length) {
+    return !dataNext.some(({ value, tick }, index) => {
+      return !(value === dataPrev[index].value && tick === dataPrev[index].tick)
+    });
+  }
+  return false
+}
 
 function __generateDefaultConfig ({ dataAxis, tooltipFormatter}, data, theme) {
   return {
@@ -96,7 +103,7 @@ function __generateDefaultConfig ({ dataAxis, tooltipFormatter}, data, theme) {
       },
     }
   }
-};
+}
 
 function __generateSerie (name, data, theme) {
   return [{
@@ -227,4 +234,4 @@ HistogramWidgetUI.propTypes = {
   onSelectedBarsChange: PropTypes.func,
 };
 
-export default HistogramWidgetUI;
+export default React.memo(HistogramWidgetUI, ({ data: dataPrev }, { data: dataNext }) => __dataEqual(dataPrev, dataNext));
