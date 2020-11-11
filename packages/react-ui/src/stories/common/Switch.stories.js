@@ -34,67 +34,40 @@ const Template = ({ label, color, checked, ...args }) => {
   )
 }
 
-const SwitchTemplate = ({ ...args }) => {
+const SwitchTemplate = ({ color, ...args }) => {
   return (
     <Grid container spacing={2}>
       <Grid item container spacing={2}>
-        <Grid item xs={2}>
-          <Switch checked={true} color="default"/>
+        <Grid item xs={4}>
+          <FormControlLabel
+            control={
+              <Switch color={color}/>
+            }
+            label="Off" {...args}/>
         </Grid>
-        <Grid item xs={2}>
-          <Switch checked={true} color="primary"/>
-        </Grid>
-        <Grid item xs={2}>
-          <Switch checked={true} color="secondary"/>
-        </Grid>
-        <Grid item xs={2}>
-          <Switch disabled/>
-        </Grid>
-        <Grid item xs={2}>
-          <Switch checked={true} disabled/>
+        <Grid item xs={4}>
+          <FormControlLabel
+            control={
+              <Switch color={color} checked/>
+            }
+            label="On" {...args}/>
         </Grid>
       </Grid>
-    </Grid>
-  );
-};
-const SwitchWithLabelTemplate = ({ ...args }) => {
-  return (
-    <Grid container spacing={2}>
+
       <Grid item container spacing={2}>
-        <Grid item xs={2}>
+        <Grid item xs={4}>
           <FormControlLabel
             control={
-              <Switch checked={true} color="default"/>
+              <Switch color={color} disabled/>
             }
-            label="Default" {...args}/>
+            label="Disabled Off" {...args}/>
         </Grid>
-        <Grid item xs={2}>
+        <Grid item xs={4}>
           <FormControlLabel
             control={
-              <Switch checked={true} color="primary"/>
+              <Switch color={color} checked disabled/>
             }
-            label="Primary" {...args}/>
-        </Grid>
-        <Grid item xs={2}>
-          <FormControlLabel
-            control={
-              <Switch checked={true} color="secondary"/>
-            }
-            label="Primary" {...args}/>
-        </Grid>
-        <Grid item xs={2}>
-          <FormControlLabel
-            control={
-              <Switch disabled/>
-            }
-            label="Disabled" {...args}/>
-        </Grid>
-        <Grid item xs={3}>
-          <FormControlLabel
-            control={
-              <Switch checked={true} disabled/>
-            }
-            label="Disabled checked" {...args}/>
+            label="Disabled On" {...args}/>
         </Grid>
       </Grid>
     </Grid>
@@ -105,8 +78,8 @@ const SwitchWithLabelTemplate = ({ ...args }) => {
 export const Playground = Template.bind({});
 Playground.args = { label: 'Text' };
 
-export const Basic = SwitchTemplate.bind({});
-Basic.args = { color: 'default' };
+export const Primary = SwitchTemplate.bind({});
+Primary.args = {};
 
-export const WithLabel = SwitchWithLabelTemplate.bind({});
-WithLabel.args = { color: 'default' };
+export const Secondary = SwitchTemplate.bind({});
+Secondary.args = { color: 'secondary' };

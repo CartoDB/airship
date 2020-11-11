@@ -38,67 +38,48 @@ const Template = ({ label, color, checked = false, ...args }) => {
   )
 }
 
-const RadioTemplate = ({ ...args }) => {
+const RadioTemplate = ({ color, ...args }) => {
   return (
     <Grid container spacing={2}>
       <Grid item container spacing={2}>
-        <Grid item xs={2}>
-          <Radio checked={true} color="default"/>
+        <Grid item xs={4}>
+          <FormControlLabel
+            control={
+              <Radio color={color} checked/>
+            }
+            label="Active"
+            {...args}
+          />
         </Grid>
-        <Grid item xs={2}>
-          <Radio checked={true} color="primary"/>
-        </Grid>
-        <Grid item xs={2}>
-          <Radio checked={true} color="secondary"/>
-        </Grid>
-        <Grid item xs={2}>
-          <Radio disabled/>
-        </Grid>
-        <Grid item xs={2}>
-          <Radio checked={true} disabled/>
+        <Grid item xs={4}>
+          <FormControlLabel
+            control={
+              <Radio color={color}/>
+            }
+            label="Inactive"
+            {...args}
+          />
         </Grid>
       </Grid>
-    </Grid>
-  );
-};
-const RadioWithLabelTemplate = ({ ...args }) => {
-  return (
-    <Grid container spacing={2}>
+
       <Grid item container spacing={2}>
-        <Grid item xs={2}>
+        <Grid item xs={4}>
           <FormControlLabel
             control={
-              <Radio checked={true} color="default"/>
+              <Radio color={color} checked disabled/>
             }
-            label="Default" {...args}/>
+            label="Disabled Active"
+            {...args}
+          />
         </Grid>
-        <Grid item xs={2}>
+        <Grid item xs={4}>
           <FormControlLabel
             control={
-              <Radio checked={true} color="primary"/>
+              <Radio color={color} disabled/>
             }
-            label="Primary" {...args}/>
-        </Grid>
-        <Grid item xs={2}>
-          <FormControlLabel
-            control={
-              <Radio checked={true} color="secondary"/>
-            }
-            label="Primary" {...args}/>
-        </Grid>
-        <Grid item xs={2}>
-          <FormControlLabel
-            control={
-              <Radio disabled/>
-            }
-            label="Disabled" {...args}/>
-        </Grid>
-        <Grid item xs={3}>
-          <FormControlLabel
-            control={
-              <Radio checked={true} disabled/>
-            }
-            label="Disabled checked" {...args}/>
+            label="Disabled Inactive"
+            {...args}
+          />
         </Grid>
       </Grid>
     </Grid>
@@ -109,8 +90,8 @@ const RadioWithLabelTemplate = ({ ...args }) => {
 export const Playground = Template.bind({});
 Playground.args = { label: 'Text' };
 
-export const Basic = RadioTemplate.bind({});
-Basic.args = { color: 'default' };
+export const Primary = RadioTemplate.bind({});
+Primary.args = {};
 
-export const WithLabel = RadioWithLabelTemplate.bind({});
-WithLabel.args = { color: 'default' };
+export const Secondary = RadioTemplate.bind({});
+Secondary.args = { color: 'secondary' };

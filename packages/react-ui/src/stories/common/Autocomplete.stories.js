@@ -59,7 +59,7 @@ const Template = ({ label = 'Choose films', disabled, ...args}) => (
   />
 );
 
-const AutocompleteTemplate = ({ disabled, ...args }) => {
+const AutocompleteTemplate = ({ disabled, size, ...args }) => {
   const options = top100Films.map((option) => {
     const firstLetter = option.title[0].toUpperCase();
     return {
@@ -69,7 +69,7 @@ const AutocompleteTemplate = ({ disabled, ...args }) => {
   });
 
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={6}>
       <Grid item container spacing={2}>
         <Grid item xs={6}>
           <Autocomplete
@@ -78,6 +78,7 @@ const AutocompleteTemplate = ({ disabled, ...args }) => {
             getOptionLabel={(option) => option.title}
             disabled={disabled}
             renderInput={(params) => (<TextField {...args} {...params} label="Basic autocomplete"/>)}
+            size={size}
           />
         </Grid>
         <Grid item xs={6}>
@@ -88,6 +89,7 @@ const AutocompleteTemplate = ({ disabled, ...args }) => {
             getOptionLabel={(option) => option.title}
             disabled={disabled}
             renderInput={(params) => (<TextField {...args} {...params} label="Grouped autocomplete"/>)}
+            size={size}
           />
         </Grid>
       </Grid>
@@ -100,6 +102,7 @@ const AutocompleteTemplate = ({ disabled, ...args }) => {
             getOptionLabel={(option) => option.title}
             disabled={disabled}
             renderInput={(params) => (<TextField {...args} {...params} label="Multiple autocomplete"/>)}
+            size={size}
           />
         </Grid>
       </Grid>
@@ -112,8 +115,5 @@ export const Playground = Template.bind({});
 export const Default = AutocompleteTemplate.bind({});
 Default.args = { }
 
-export const Filled = AutocompleteTemplate.bind({});
-Filled.args = { variant: 'filled' }
-
-export const Outlined = AutocompleteTemplate.bind({});
-Outlined.args = { variant: 'outlined' }
+export const Small = AutocompleteTemplate.bind({});
+Small.args = { size: 'small' }
