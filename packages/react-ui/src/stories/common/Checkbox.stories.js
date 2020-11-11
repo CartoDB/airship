@@ -39,46 +39,65 @@ const Template = ({ label, color = 'primary', checked = false, ...args }) => {
   )
 }
 
-const CheckboxTemplate = ({ color="primary", ...args }) => {
+const CheckboxTemplate = ({ color, ...args }) => {
   return (
     <Grid container spacing={2}>
       <Grid item container spacing={2}>
-        <Grid item xs={3}>
+        <Grid item xs={4}>
+          <FormControlLabel
+            control={
+              <Checkbox color={color} checked/>
+            }
+            label="Active"
+            {...args}
+          />
+        </Grid>
+        <Grid item xs={4}>
           <FormControlLabel
             control={
               <Checkbox color={color}/>
             }
-            label="Primary" {...args}/>
+            label="Inactive"
+            {...args}
+          />
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={4}>
+          <FormControlLabel
+            control={
+              <Checkbox color={color} checked indeterminate/>
+            }
+            label="Indeterminate"
+            {...args}
+          />
+        </Grid>
+      </Grid>
+      <Grid item container spacing={2}>
+        <Grid item xs={4}>
+          <FormControlLabel
+            control={
+              <Checkbox color={color} checked disabled/>
+            }
+            label="Disabled Active"
+            {...args}
+          />
+        </Grid>
+        <Grid item xs={4}>
           <FormControlLabel
             control={
               <Checkbox color={color} disabled/>
             }
-            label="Disabled" {...args}/>
+            label="Disabled Inactive"
+            {...args}
+          />
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={4}>
           <FormControlLabel
             control={
-              <Checkbox checked={true} color={color} disabled/>
+              <Checkbox color={color} checked indeterminate disabled/>
             }
-            label="Disabled checked" {...args}/>
-        </Grid>
-        <Grid item xs={3}>
-          <FormControlLabel
-            control={
-              <Checkbox checked={true} color={color} disabled indeterminate/>
-            }
-            label="Disabled indeterminate" {...args}/>
-        </Grid>
-      </Grid>
-      <Grid item container spacing={2}>
-        <Grid item xs={3}>
-          <FormControlLabel
-            control={
-              <Checkbox color={color} indeterminate/>
-            }
-            label="Indeterminate" {...args}/>
+            label="Disabled Indeterminate"
+            {...args}
+          />
         </Grid>
       </Grid>
     </Grid>
@@ -88,9 +107,6 @@ const CheckboxTemplate = ({ color="primary", ...args }) => {
 
 export const Playground = Template.bind({});
 Playground.args = { label: 'Text' };
-
-export const Default = CheckboxTemplate.bind({});
-Default.args = { color: 'default' };
 
 export const Primary = CheckboxTemplate.bind({});
 Primary.args = { color: 'primary' };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, Paper, Typography } from '@material-ui/core';
+import { Grid, makeStyles, Paper, Typography } from '@material-ui/core';
 
 export default {
   title: 'Common/Paper',
@@ -15,15 +15,12 @@ export default {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    backgroundColor: '#fafafa',
+    backgroundColor: theme.palette.customGrey[50],
 
-    '& > *': {
-      margin: theme.spacing(1),
-      width: theme.spacing(16),
-      height: theme.spacing(16),
-    },
+    '& .MuiPaper': {
+      height: 100,
+      width: 100
+    }
   },
 }));
 
@@ -41,18 +38,83 @@ const PaperTemplate = ({ ...args }) => {
   const classes = useStyles();
   
   return (
-    <div className={classes.root}>
-      <Paper elevation={0}>
-        <Typography>elevation: 1</Typography>
-      </Paper>
-      <Paper>
-        <Typography>elevation: 2</Typography>
-        
-      </Paper>
-      <Paper elevation={3}>
-        <Typography>elevation: 3</Typography>
-      </Paper>
-    </div>
+    <Grid container spacing={6} className={classes.root}>
+      <Grid container item spacing={2} className={classes.root}>
+        <Grid item xs={1}>
+          <Paper elevation={0}>
+            <Typography>elevation: 0</Typography>
+          </Paper>
+        </Grid>
+        <Grid item xs={1}>
+          <Paper elevation={1}>
+            <Typography>elevation: 1</Typography>
+          </Paper>
+        </Grid>
+        <Grid item xs={1}>
+          <Paper elevation={2}>
+            <Typography>elevation: 2</Typography>
+          </Paper>
+        </Grid>
+        <Grid item xs={1}>
+          <Paper elevation={4}>
+            <Typography>elevation: 4</Typography>
+          </Paper>
+        </Grid>
+        <Grid item xs={1}>
+          <Paper elevation={8}>
+            <Typography>elevation: 8</Typography>
+          </Paper>
+        </Grid>
+        <Grid item xs={1}>
+          <Paper elevation={16}>
+            <Typography>elevation: 16</Typography>
+          </Paper>
+        </Grid>
+        <Grid item xs={1}>
+          <Paper elevation={24}>
+            <Typography>elevation: 24</Typography>
+          </Paper>
+        </Grid>
+      </Grid>
+
+      <Grid container item spacing={6} className={classes.root}>
+        <Grid item xs={1}>
+          <Paper elevation={0} square>
+            <Typography>elevation: 0</Typography>
+          </Paper>
+        </Grid>
+        <Grid item xs={1}>
+          <Paper elevation={1} square>
+            <Typography>elevation: 1</Typography>
+          </Paper>
+        </Grid>
+        <Grid item xs={1}>
+          <Paper elevation={2} square>
+            <Typography>elevation: 2</Typography>
+          </Paper>
+        </Grid>
+        <Grid item xs={1}>
+          <Paper elevation={4} square>
+            <Typography>elevation: 4</Typography>
+          </Paper>
+        </Grid>
+        <Grid item xs={1}>
+          <Paper elevation={8} square>
+            <Typography>elevation: 8</Typography>
+          </Paper>
+        </Grid>
+        <Grid item xs={1}>
+          <Paper elevation={16} square>
+            <Typography>elevation: 16</Typography>
+          </Paper>
+        </Grid>
+        <Grid item xs={1}>
+          <Paper elevation={24} square>
+            <Typography>elevation: 24</Typography>
+          </Paper>
+        </Grid>
+      </Grid>
+    </Grid>
   )
 };
 

@@ -1,6 +1,6 @@
 import React from 'react';
-import { Grid, InputAdornment, SvgIcon, TextField, Typography } from '@material-ui/core';
-import { AccountCircle, Visibility } from '@material-ui/icons';
+import { Grid, InputAdornment, TextField, Typography } from '@material-ui/core';
+import { Visibility } from '@material-ui/icons';
 
 export default {
   title: 'Common/Text Field',
@@ -59,7 +59,7 @@ const TextFieldTemplate = ({ ...rest }) => {
             <TextField label="Placeholder" {...rest}/>
           </Grid>
           <Grid item xs={3}>
-            <TextField label="Leading icon" {...rest} InputProps={{startAdornment: adornment.startAdornment}}/>
+            <TextField label="Leading adornment" {...rest} InputProps={{startAdornment: adornment.startAdornment}}/>
           </Grid>
           <Grid item xs={3}>
             <TextField label="Trailing icon" {...rest} InputProps={{endAdornment: adornment.endAdornment}}/>
@@ -77,7 +77,7 @@ const TextFieldTemplate = ({ ...rest }) => {
             <TextField label="Placeholder" {...rest} focused/>
           </Grid>
           <Grid item xs={3}>
-            <TextField label="Leading icon" {...rest} focused InputProps={{startAdornment: adornment.startAdornment}}/>
+            <TextField label="Leading adornment" {...rest} focused InputProps={{startAdornment: adornment.startAdornment}}/>
           </Grid>
           <Grid item xs={3}>
             <TextField label="Trailing icon" {...rest} focused InputProps={{endAdornment: adornment.endAdornment}}/>
@@ -94,7 +94,7 @@ const TextFieldTemplate = ({ ...rest }) => {
             <TextField label="Placeholder" disabled {...rest}/>
           </Grid>
           <Grid item xs={3}>
-            <TextField label="Leading icon" {...rest} disabled InputProps={{startAdornment: adornment.startAdornment}}/>
+            <TextField label="Leading adornment" {...rest} disabled InputProps={{startAdornment: adornment.startAdornment}}/>
           </Grid>
           <Grid item xs={3}>
             <TextField label="Trailing icon" {...rest} disabled InputProps={{endAdornment: adornment.endAdornment}}/>
@@ -112,7 +112,7 @@ const TextFieldTemplate = ({ ...rest }) => {
             <TextField label="Placeholder" defaultValue="Hello world" {...rest}/>
           </Grid>
           <Grid item xs={3}>
-            <TextField label="Leading icon" {...rest} defaultValue="Hello world" InputProps={{startAdornment: adornment.startAdornment}}/>
+            <TextField label="Leading adornment" {...rest} defaultValue="Hello world" InputProps={{startAdornment: adornment.startAdornment}}/>
           </Grid>
           <Grid item xs={3}>
             <TextField label="Trailing icon" {...rest} defaultValue="Hello world" InputProps={{endAdornment: adornment.endAdornment}}/>
@@ -130,7 +130,7 @@ const TextFieldTemplate = ({ ...rest }) => {
             <TextField label="Placeholder" error {...rest}/>
           </Grid>
           <Grid item xs={3}>
-            <TextField label="Leading icon" {...rest} error InputProps={{startAdornment: adornment.startAdornment}}/>
+            <TextField label="Leading adornment" {...rest} error InputProps={{startAdornment: adornment.startAdornment}}/>
           </Grid>
           <Grid item xs={3}>
             <TextField label="Trailing icon" {...rest} error InputProps={{endAdornment: adornment.endAdornment}}/>
@@ -148,7 +148,7 @@ const TextFieldTemplate = ({ ...rest }) => {
             <TextField label="Placeholder" error defaultValue="Hello world" InputProps={{readOnly: true}} {...rest}/>
           </Grid>
           <Grid item xs={3}>
-            <TextField label="Leading icon" error {...rest} defaultValue="Hello world" InputProps={{startAdornment: adornment.startAdornment, readOnly: true}}/>
+            <TextField label="Leading adornment" error {...rest} defaultValue="Hello world" InputProps={{startAdornment: adornment.startAdornment, readOnly: true}}/>
           </Grid>
           <Grid item xs={3}>
             <TextField label="Trailing icon" error {...rest} defaultValue="Hello world" InputProps={{endAdornment: adornment.endAdornment, readOnly: true}}/>
@@ -167,38 +167,14 @@ const MultilineTemplate = ({ ...rest }) => {
     <Grid container spacing={2}>
       <Grid item container spacing={2}>
         <Grid item xs={4}>
-          <TextField label="Default" value="Hello World!" multiline />
+          <TextField label="Default" multiline {...rest} />
         </Grid>
         <Grid item xs={4}>
-          <TextField label="With max rows" value="Hello World!" rowsMax={4} multiline />
-        </Grid>
-        
-        <Grid item xs={4}>
-          <TextField label="Fixed rows" value="Hello World!" rows={4} multiline />
-        </Grid>
-      </Grid>
-      <Grid item container spacing={2}>
-        <Grid item xs={4}>
-          <TextField label="Default" variant="filled" value="Hello World!" multiline />
-        </Grid>
-        <Grid item xs={4}>
-          <TextField label="With max rows" variant="filled" value="Hello World!" rowsMax={4} multiline />
+          <TextField label="With max rows" rowsMax={4} multiline {...rest} />
         </Grid>
         
         <Grid item xs={4}>
-          <TextField label="Fixed rows" variant="filled" value="Hello World!" rows={4} multiline />
-        </Grid>
-      </Grid>
-      <Grid item container spacing={2}>
-        <Grid item xs={4}>
-          <TextField label="Default" variant="outlined" value="Hello World!" multiline />
-        </Grid>
-        <Grid item xs={4}>
-          <TextField label="With max rows" variant="outlined" value="Hello World!" rowsMax={4} multiline />
-        </Grid>
-        
-        <Grid item xs={4}>
-          <TextField label="Fixed rows" variant="outlined" value="Hello World!" rows={4} multiline />
+          <TextField label="Fixed rows" rows={4} multiline {...rest} />
         </Grid>
       </Grid>
     </Grid>
@@ -224,4 +200,4 @@ Small.args = { ...commonArgs, size: 'small' };
 Small.argTypes = disabledControlsArgTypes;
 
 export const Multiline = MultilineTemplate.bind({});
-Multiline.args = {  };
+Multiline.args = { value: 'Hello world\nwith multiple lines' };

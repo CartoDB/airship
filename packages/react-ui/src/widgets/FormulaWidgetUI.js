@@ -5,7 +5,7 @@ import { Box, makeStyles } from '@material-ui/core';
 const useStyles = makeStyles((theme) => ({
   root: {
     ...theme.typography.h5,
-    fontWeight: theme.typography.fontWeightRegular,
+    fontWeight: theme.typography.fontWeightMedium,
     color: theme.palette.text.primary,
   },
   unit: {

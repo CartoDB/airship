@@ -1,6 +1,6 @@
 import React from 'react';
 import { Breadcrumbs, Link, Typography } from '@material-ui/core';
-import { Home, CloudCircle, Style } from '@material-ui/icons';
+import { NavigateNext, CloudCircle, Home, Style } from '@material-ui/icons';
 
 export default {
   title: 'Common/Breadcrumbs',
@@ -10,18 +10,12 @@ export default {
       control: {
         type: 'number'
       }
-    },
-    separator: {
-      control: {
-        type: 'select',
-        options: ['/', '>', '-']
-      }
     }
   }
 }
 
 const Template = ({ ...args }) => (
-  <Breadcrumbs aria-label="breadcrumb" {...args}>
+  <Breadcrumbs aria-label="breadcrumb" separator={<NavigateNext fontSize="small" />} {...args}>
     <Link color="inherit" href="#">
       CARTO
     </Link>
@@ -33,7 +27,7 @@ const Template = ({ ...args }) => (
 );
 
 const WithIconsTemplate = ({ ...args }) => (
-  <Breadcrumbs aria-label="breadcrumb" {...args}>
+  <Breadcrumbs aria-label="breadcrumb" separator={<NavigateNext fontSize="small" />} {...args}>
     <Link color="inherit" href="#">
       <Home/>
       CARTO
@@ -51,9 +45,15 @@ const WithIconsTemplate = ({ ...args }) => (
 
 export const Playground = Template.bind({});
 
-export const WithIcons = WithIconsTemplate.bind({})
-WithIcons.args = {}
+export const TextOnly = Template.bind({})
+TextOnly.args = {}
 
 export const Collapsed = Template.bind({})
 Collapsed.args = {maxItems: 2}
+
+export const WithIcons = WithIconsTemplate.bind({})
+WithIcons.args = {}
+
+export const WithIconsCollapsed = WithIconsTemplate.bind({})
+WithIconsCollapsed.args = {maxItems: 2}
 
