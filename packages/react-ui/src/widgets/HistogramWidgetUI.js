@@ -1,6 +1,39 @@
-import React from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import PropTypes from 'prop-types';
 import ReactEcharts from 'echarts-for-react';
-import { useTheme } from '@material-ui/core';
+import { Grid, Link, Typography, useTheme, makeStyles } from '@material-ui/core';
+
+const useStyles = makeStyles((theme) => ({
+  optionsSelectedBar: {
+    marginBottom: theme.spacing(2),
+
+    '& .MuiTypography-caption': {
+      color: theme.palette.text.secondary,
+    },
+
+    '& .MuiButton-label': {
+      ...theme.typography.caption,
+    },
+  },
+
+  selectAllButton: {
+    ...theme.typography.caption,
+    cursor: 'pointer'
+  }
+}));
+
+
+function __dataEqual (optionPrev, optionNext) {
+  const dataPrev = optionPrev.series[0].data
+  const dataNext = optionNext.series[0].data
+  
+  if (dataPrev && dataNext && dataPrev.length === dataNext.length) {
+    return !dataNext.some(({ value, tick }, index) => {
+      return !(value === dataPrev[index].value && tick === dataPrev[index].tick)
+    });
+  }
+  return false
+}
 
 function __generateDefaultConfig ({ dataAxis, tooltipFormatter}, data, theme) {
   return {
@@ -73,7 +106,7 @@ function __generateDefaultConfig ({ dataAxis, tooltipFormatter}, data, theme) {
       },
     }
   }
-};
+}
 
 function __generateSerie (name, data, theme) {
   return [{
@@ -89,22 +122,129 @@ function __generateSerie (name, data, theme) {
   }]
 }
 
+function __clearFilter (serie) {
+  serie.data.forEach(bar => {
+    bar.disabled = false;
+    delete bar.itemStyle;
+  })
+}
+
+function __applyFilter (serie, clickedBarIndex, theme) {
+  const anyDisabled = serie.data.find(d => d.disabled)
+
+  if (!anyDisabled) {
+    serie.data.forEach((bar, index) => {
+      if (index !== clickedBarIndex) {
+        bar.disabled = true;
+        bar.itemStyle = { color: theme.palette.charts.disabled };
+      }
+    })
+  } else {
+    const clickedData = serie.data[clickedBarIndex]
+    clickedData.disabled = !clickedData.disabled
+    if (clickedData.disabled) {
+      clickedData.itemStyle = { color: theme.palette.charts.disabled }
+
+      const anyActive = serie.data.find(d => !d.disabled)
+
+      if (!anyActive) {
+        __clearFilter(serie)
+      }
+    } else {
+      delete clickedData.itemStyle
+    }
+  }
+
+  return serie
+}
+
+const EchartsWrapper = React.memo(ReactEcharts, ({ option: optionPrev }, { option: optionNext }) => __dataEqual(optionPrev, optionNext))
+
 
 function HistogramWidgetUI(props) {
-  const {name, data = [], dataAxis, tooltipFormatter, notMerge = true} = props;
-  const theme = useTheme()
+  const { name, data = [], dataAxis, onSelectedBarsChange, selectedBars, tooltipFormatter } = props;
+  const theme = useTheme();
+  const classes = useStyles();
+  const chartInstance = useRef();
+  const options = useMemo(() => {
+    const config = __generateDefaultConfig({ dataAxis, tooltipFormatter }, data, theme)
+    const series = __generateSerie (name, data, theme)
+    return Object.assign({}, config, { series })
+  }, [data]);
 
-  const series = __generateSerie (name, data, theme)
-  const DEFAULT_CONFIG = __generateDefaultConfig({ dataAxis, tooltipFormatter }, data, theme)
+  const clearBars = () => {
+    const echart = chartInstance.current.getEchartsInstance();
 
-  const options = Object.assign({ series }, DEFAULT_CONFIG);
+    const option = echart.getOption()
+    const serie = option.series[0]
+    __clearFilter(serie)
+    echart.setOption(option)
+    onSelectedBarsChange({ bars: [], chartInstance });
+  }
+
+  const clickEvent = (params) => {
+    if (onSelectedBarsChange) {
+      const echart = chartInstance.current.getEchartsInstance();
+
+      const option = echart.getOption()
+      const serie = option.series[params.seriesIndex]
+      __applyFilter(serie, params.dataIndex, theme)
+      echart.setOption(option)
+
+      const activeBars = []
+      serie.data.forEach((d, index) => {
+        if (!d.disabled) {
+          activeBars.push(index)
+        }
+      })
+
+      onSelectedBarsChange({ bars: (activeBars.length === serie.data.length) ? [] : activeBars, chartInstance });
+    }
+  }
+
+  const onEvents = {
+    click: clickEvent
+  };
   
-
-  return (<ReactEcharts
-            option={options}
-            notMerge={notMerge}
-            lazyUpdate={true}
-          />);
+  return (
+    <div>
+      {onSelectedBarsChange  && <Grid
+        container
+        direction='row'
+        justify='space-between'
+        alignItems='center'
+        className={classes.optionsSelectedBar}
+      >
+        <Typography variant='caption'>
+          {selectedBars.length ? selectedBars.length : 'All'} selected
+        </Typography>
+        {selectedBars.length > 0 && (
+          <Link className={classes.selectAllButton} onClick={() => clearBars()}>
+            All
+          </Link>
+        )}
+      </Grid>}
+      {!!options && <EchartsWrapper
+        ref={chartInstance}
+        option={options}
+        lazyUpdate={true}
+        onEvents={onEvents}
+      />}
+    </div>);
 };
+
+HistogramWidgetUI.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      tick: PropTypes.string.isRequired,
+      value: PropTypes.number
+    })
+  ).isRequired,
+  tooltipFormatter: PropTypes.func,
+  dataAxis: PropTypes.array,
+  name: PropTypes.string,
+  onSelectedBarsChange: PropTypes.func,
+};
+
 
 export default HistogramWidgetUI;

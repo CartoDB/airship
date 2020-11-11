@@ -278,7 +278,8 @@ export const cartoOptions = {
     background: { ...variables.palette.background },
     charts: {
       axisLine: 'rgba(44, 48, 50, 0.05)',
-      maxLabel: 'rgba(44, 48, 50, 0.6)'
+      maxLabel: 'rgba(44, 48, 50, 0.6)',
+      disabled: 'rgba(44, 48, 50, 0.25)'
     },
     // props: Object => Research,
     /* Custom Colors palette */
