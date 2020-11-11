@@ -23,7 +23,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-function __dataEqual (dataPrev, dataNext) {
+function __dataEqual (optionPrev, optionNext) {
+  const dataPrev = optionPrev.series[0].data
+  const dataNext = optionNext.series[0].data
+  
   if (dataPrev && dataNext && dataPrev.length === dataNext.length) {
     return !dataNext.some(({ value, tick }, index) => {
       return !(value === dataPrev[index].value && tick === dataPrev[index].tick)
@@ -155,6 +158,9 @@ function __applyFilter (serie, clickedBarIndex, theme) {
   return serie
 }
 
+const EchartsWrapper = React.memo(ReactEcharts, ({ option: optionPrev }, { option: optionNext }) => __dataEqual(optionPrev, optionNext))
+
+
 function HistogramWidgetUI(props) {
   const { name, data = [], dataAxis, onSelectedBarsChange, selectedBars, tooltipFormatter } = props;
   const theme = useTheme();
@@ -172,6 +178,7 @@ function HistogramWidgetUI(props) {
     const option = echart.getOption()
     const serie = option.series[0]
     __clearFilter(serie)
+    echart.setOption(option)
     onSelectedBarsChange({ bars: [], chartInstance });
   }
 
@@ -184,7 +191,12 @@ function HistogramWidgetUI(props) {
       __applyFilter(serie, params.dataIndex, theme)
       echart.setOption(option)
 
-      const activeBars = serie.data.filter(d => !d.disabled).map(b => b.tick)
+      const activeBars = []
+      serie.data.forEach((d, index) => {
+        if (!d.disabled) {
+          activeBars.push(index)
+        }
+      })
 
       onSelectedBarsChange({ bars: (activeBars.length === serie.data.length) ? [] : activeBars, chartInstance });
     }
@@ -212,7 +224,7 @@ function HistogramWidgetUI(props) {
           </Link>
         )}
       </Grid>}
-      {!!options && <ReactEcharts
+      {!!options && <EchartsWrapper
         ref={chartInstance}
         option={options}
         lazyUpdate={true}
@@ -234,4 +246,5 @@ HistogramWidgetUI.propTypes = {
   onSelectedBarsChange: PropTypes.func,
 };
 
-export default React.memo(HistogramWidgetUI, ({ data: dataPrev }, { data: dataNext }) => __dataEqual(dataPrev, dataNext));
+
+export default HistogramWidgetUI;
